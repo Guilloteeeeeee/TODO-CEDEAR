@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# Datos cacheados (no versionar, son datos temporales)
+data/cache_datos.json
+
+# Sí versionar el universo de tickers custom
+# data/tickers_custom.json  ← lo incluimos
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS
+.DS_Store
+Thumbs.db
