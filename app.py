@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.8"
+APP_VERSION = "1.2.9"
 
 import streamlit as st
 import pandas as pd
@@ -295,7 +295,12 @@ def _metodos_fv_html(row) -> str:
                 f'<span style="color:#8c959f" title="peso {peso * 100:.0f}%">'
                 f'✗ {label} — <i>{motivo}</i></span>'
             )
-    return '<div style="font-size:11px;line-height:1.35">' + "<br>".join(lineas) + "</div>"
+    n_ok = sum(1 for m in esperados if detalle.get(m) and _num_valido(detalle[m].get("precio")))
+    color_n = "#57606a" if n_ok >= len(esperados) else "#bf8700" if n_ok >= 3 else "#cf222e"
+    cabecera = f'<span style="color:{color_n};font-weight:700">{n_ok}/{len(esperados)} métodos</span>'
+    return (
+        '<div style="font-size:11px;line-height:1.35">' + cabecera + "<br>" + "<br>".join(lineas) + "</div>"
+    )
 
 
 def _resumen_cobertura_fv(df_show: pd.DataFrame) -> str:
@@ -737,13 +742,23 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         # Barra 52 semanas
         cols[7].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
 
-        # Categoría badge
+        # Categoría badge + cantidad de métricas usadas en el score (ej: 4/4)
+        usadas, total = row.get("metricas_usadas"), row.get("metricas_total")
+        if _num_valido(usadas) and _num_valido(total) and total > 0:
+            color_n = "#57606a" if usadas >= total else "#bf8700" if usadas >= 3 else "#cf222e"
+            metricas_html = (
+                f'<br><span style="font-size:11px;color:{color_n}" '
+                f'title="Métricas del sector que tuvieron dato actual e histórico para calcular el score">'
+                f'📐 {int(usadas)}/{int(total)} métricas</span>'
+            )
+        else:
+            metricas_html = ""
         cols[8].markdown(
             render_categoria_badge(
                 row.get("emoji", "⚫"),
                 row.get("categoria", "—"),
                 row.get("color_hex", "#6e7781"),
-            ),
+            ) + metricas_html,
             unsafe_allow_html=True,
         )
 

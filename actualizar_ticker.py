@@ -69,11 +69,18 @@ def main(tickers):
     with open(CACHE_PATH, "w") as f:
         json.dump(cache, f)
 
+    # Releer el archivo para confirmar que quedo guardado
+    with open(CACHE_PATH) as f:
+        guardados = {r["ticker"] for r in json.load(f)["data"]}
     print()
     for r in nuevas:
         print(f"  OK {r['ticker']}: {r['categoria']} (score {r['score_total']}, "
               f"DY {r['dividend_yield_actual']}, precio {r['precio_actual']})")
-    print(f"\nListo. Cache con {len(filas)} tickers. Subi data/cache_datos.json a GitHub.")
+    print(f"\nVerificacion: {', '.join(sorted(tickers_ok))} "
+          f"{'ESTA' if tickers_ok <= guardados else 'NO ESTA'} en el archivo guardado.")
+    print(f"\nListo. Cache con {len(filas)} tickers.")
+    print("ARCHIVO MODIFICADO (este es el que hay que subir a GitHub, a la carpeta data/):")
+    print("  " + os.path.abspath(CACHE_PATH))
     return 0
 
 
