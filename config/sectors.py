@@ -152,3 +152,51 @@ TICKER_TO_SECTOR = {
     for sector, tickers in TICKER_UNIVERSE.items()
     for ticker in tickers
 }
+
+
+# ---------------------------------------------------------------------------
+# REGLAS DE DATOS (v1.2.11)
+# ---------------------------------------------------------------------------
+# Rango en el que un multiplo (actual o mediana historica) es creible. Fuera de este rango
+# el dato casi seguro esta roto (moneda mezclada, ADR, ganancia casi cero) y la metrica
+# se DESCARTA: el score y el Fair Value se calculan con las metricas que si funcionan,
+# repartiendo su peso. Solo se cortan los valores IMPOSIBLES (ej.: PER 0,13 o EV/EBITDA 0,01);
+# los multiplos muy altos pero posibles (PER 350, P/FCF 800) se mantienen: son empresas caras de verdad.
+# El PEG no tiene limites (sus valores extremos son reales).
+RANGOS_PLAUSIBLES = {
+    "ev_ebitda":      (1.0, 500.0),
+    "per":            (3.0, 2000.0),
+    "p_fcf":          (3.0, 2000.0),
+    "p_b":            (0.3, 200.0),
+    "dividend_yield": (0.0005, 0.5),
+    "p_ffo":          (3.0, 2000.0),
+    "p_affo":         (3.0, 2000.0),
+}
+
+# Un metodo de Fair Value que dice que la empresa vale mas de 3 veces (o menos de 1/3) su precio
+# no se promedia: es mas probable un dato roto que una oportunidad. No se toca el score.
+FV_RATIO_MIN = 1.0 / 3.0
+FV_RATIO_MAX = 3.0
+
+# Cantidad minima de empresas con PEG en un sector para usar la mediana del sector como referencia.
+PEG_MIN_EMPRESAS_SECTOR = 5
+
+
+def motivo_descarte(metrica, actual, mediana):
+    """
+    Si el par (actual, mediana) de una metrica no es creible devuelve un texto con el motivo;
+    si es utilizable (o falta algun dato, que es otro caso) devuelve None.
+    """
+    rango = RANGOS_PLAUSIBLES.get(metrica)
+    if rango is None:
+        return None
+    lo, hi = rango
+    for etiqueta, v in (("valor actual", actual), ("mediana histórica", mediana)):
+        try:
+            if v is None or v != v:      # None o NaN: no es un descarte, es un dato faltante
+                continue
+            if v < lo or v > hi:
+                return f"{etiqueta} fuera de rango ({v:g})"
+        except TypeError:
+            continue
+    return None

@@ -1,0 +1,6 @@
+@echo off
+echo Instalando dependencias...
+pip install yfinance pandas numpy requests beautifulsoup4 --quiet
+echo.
+echo Actualizando las empresas de fuera de EEUU (con el control de moneda nuevo)...
+python actualizar_ticker.py --extranjeras

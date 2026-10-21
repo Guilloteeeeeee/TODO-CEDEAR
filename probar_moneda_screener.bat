@@ -1,0 +1,6 @@
+@echo off
+echo Instalando dependencias...
+pip install yfinance pandas numpy requests beautifulsoup4 --quiet
+echo.
+echo Probando el control de moneda...
+python probar_moneda_screener.py

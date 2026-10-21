@@ -12,19 +12,28 @@ Lógica central:
   4. Agrega el componente técnico (rango 52 semanas, 15%).
   5. Asigna categoría de color según el score final.
 
+v1.2.11 — reglas de datos:
+  - Una métrica con un valor imposible (ej.: PER histórico 0,13 por mezclar yenes con dólares)
+    se DESCARTA y el score se arma con las métricas que sí funcionan (se reparte su peso).
+  - Alcanza con 1 métrica fundamental; si no hay ninguna, la categoría sale del rango de 52 semanas.
+  - El PEG se compara contra la mediana de su sector (antes se comparaba contra sí mismo).
+
 Categorías de color:
   🟢 VERDE OSCURO  — Podría estar infravalorada       (score >= 70)
   🟩 VERDE CLARO   — Tendencia a infravalorada        (score >= 58)
   🟡 AMARILLO      — Parece bien valuada              (score >= 42)
   🟠 NARANJA       — Tendencia a sobrevalorada        (score >= 30)
   🔴 ROJO          — Podría estar sobrevalorada       (score < 30)
-  ⚫ GRIS          — Datos insuficientes              (< 2 métricas disponibles)
+  ⚫ GRIS          — Sin datos                        (ni métricas ni rango de 52 semanas)
 """
 
 import numpy as np
 import pandas as pd
 from typing import Optional
-from config.sectors import SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR
+from config.sectors import (
+    SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR,
+    motivo_descarte, PEG_MIN_EMPRESAS_SECTOR,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -40,11 +49,14 @@ CATEGORIAS = [
 ]
 CATEGORIA_GRIS = ("DATOS INSUFICIENTES", "#6e7781", "⚫")
 
-# Mínimo de métricas fundamentales para asignar categoría (no gris)
-MIN_METRICAS = 2
+# Mínimo de métricas fundamentales para armar el score fundamental.
+# v1.2.11: con 1 alcanza ("mejor algo que nada"): las métricas descartadas por datos rotos
+# no hacen caer a la empresa a "datos insuficientes"; el score se arma con las que sí funcionan.
+# La columna "Métricas" (n/N) muestra cuán sólido es el resultado.
+MIN_METRICAS = 1
 
-# Cuántas métricas del sector debe tener disponibles (de 4) para no ser gris
-MIN_METRICAS_DEL_SECTOR = 2
+# Cuántas métricas del sector debe tener disponibles (de 4) para armar el score fundamental
+MIN_METRICAS_DEL_SECTOR = 1
 
 
 # ---------------------------------------------------------------------------
@@ -72,6 +84,9 @@ def _score_metrica(actual: Optional[float], mediana: Optional[float],
         return None
     if mediana <= 0 or actual < 0:
         return None
+    # v1.2.11: dato imposible (moneda mezclada, ADR, etc.) -> la métrica se descarta
+    if motivo_descarte(metrica, actual, mediana):
+        return None
 
     YIELD_METRICS = {"dividend_yield"}
 
@@ -87,6 +102,24 @@ def _score_metrica(actual: Optional[float], mediana: Optional[float],
     k = 4.0
     score = 100.0 / (1.0 + np.exp(-k * (ratio - 1.0)))
     return round(float(score), 1)
+
+
+def _estado_metrica(metrica: str, actual, mediana) -> tuple[str, Optional[str]]:
+    """('ok' | 'descartada' | 'sin dato', motivo) para mostrar por qué una métrica no cuenta."""
+    def falta(v):
+        return v is None or pd.isna(v)
+    if falta(actual) and falta(mediana):
+        return "sin dato", "sin valor actual ni mediana"
+    if falta(actual):
+        return "sin dato", "sin valor actual"
+    if falta(mediana):
+        return "sin dato", "sin mediana histórica"
+    if mediana <= 0 or actual < 0:
+        return "descartada", "valor no positivo"
+    motivo = motivo_descarte(metrica, actual, mediana)
+    if motivo:
+        return "descartada", motivo
+    return "ok", None
 
 
 # ---------------------------------------------------------------------------
@@ -184,21 +217,25 @@ def calcular_score(row: dict, sector: str) -> dict:
     resultado["metricas_usadas"] = usadas
     resultado["metricas_total"] = total
 
-    if score_fund is None:
-        return resultado
-
-    resultado["score_fundamental"] = score_fund
-
     # Score técnico
     score_tec = _score_tecnico(row.get("posicion_52s"))
     resultado["score_tecnico"] = score_tec
 
-    # Score total
-    if score_tec is not None:
-        score_total = (score_fund * FUNDAMENTAL_WEIGHT) + (score_tec * TECHNICAL_WEIGHT)
+    if score_fund is None:
+        # Ninguna métrica fundamental usable. Sin etiquetas de "datos insuficientes" (pedido del
+        # usuario): si hay rango de 52 semanas, la categoría sale solo de él. La columna
+        # "Métricas" muestra 0/N para que se vea que es una lectura débil.
+        if score_tec is None or sector not in SECTOR_CONFIG:
+            return resultado
+        score_total = score_tec
     else:
-        # Si no hay dato técnico, el fundamental es el 100%
-        score_total = score_fund
+        resultado["score_fundamental"] = score_fund
+        # Score total
+        if score_tec is not None:
+            score_total = (score_fund * FUNDAMENTAL_WEIGHT) + (score_tec * TECHNICAL_WEIGHT)
+        else:
+            # Si no hay dato técnico, el fundamental es el 100%
+            score_total = score_fund
 
     resultado["score_total"] = round(score_total, 1)
 
@@ -216,11 +253,14 @@ def calcular_score(row: dict, sector: str) -> dict:
             actual = row.get(f"{metrica}_actual")
             mediana = row.get(f"{metrica}_mediana")
             score_m = _score_metrica(actual, mediana, metrica)
+            estado, motivo = _estado_metrica(metrica, actual, mediana)
             resultado["detalle"][metrica] = {
                 "actual": actual,
                 "mediana": mediana,
                 "score": score_m,
                 "peso": peso,
+                "estado": estado,
+                "motivo": motivo,
             }
 
     return resultado
@@ -230,25 +270,60 @@ def calcular_score(row: dict, sector: str) -> dict:
 # PROCESAR DATAFRAME COMPLETO
 # ---------------------------------------------------------------------------
 
-def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None) -> pd.DataFrame:
+def peg_mediana_por_sector(df: pd.DataFrame, ticker_to_sector: dict = None,
+                           referencia: Optional[pd.DataFrame] = None) -> dict:
+    """
+    Mediana del PEG de cada sector que usa PEG (hoy Tecnología y Comunicación), calculada con
+    las empresas del universo. El PEG no tiene historia confiable: en vez de compararlo contra
+    sí mismo (siempre daría 50 puntos), se compara contra sus pares del sector.
+    `referencia` permite sumar empresas que no están en `df` (ej.: al actualizar un solo ticker).
+    """
+    if ticker_to_sector is None:
+        ticker_to_sector = TICKER_TO_SECTOR
+    base = df if referencia is None else pd.concat(
+        [df, referencia[~referencia["ticker"].isin(df["ticker"])]], ignore_index=True)
+    valores: dict = {}
+    for _, r in base.iterrows():
+        sector = ticker_to_sector.get(r.get("ticker", ""), "")
+        if "peg" not in SECTOR_CONFIG.get(sector, {}).get("metrics", {}):
+            continue
+        peg = r.get("peg_actual")
+        if peg is not None and not pd.isna(peg) and peg > 0:
+            valores.setdefault(sector, []).append(float(peg))
+    return {
+        sector: round(float(np.median(v)), 3)
+        for sector, v in valores.items()
+        if len(v) >= PEG_MIN_EMPRESAS_SECTOR
+    }
+
+
+def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
+                    referencia: Optional[pd.DataFrame] = None) -> pd.DataFrame:
     """
     Aplica el scoring a todo el DataFrame de tickers.
     Agrega columnas: score_fundamental, score_tecnico, score_total,
                      categoria, color_hex, emoji, metricas_usadas, metricas_total,
                      fair_value, fair_value_detalle, fair_value_metodos.
+
+    v1.2.11: el PEG se compara contra la mediana de su sector (ver peg_mediana_por_sector).
     """
     from data.fetcher import calc_fair_value
 
     if ticker_to_sector is None:
         ticker_to_sector = TICKER_TO_SECTOR
 
+    peg_sector = peg_mediana_por_sector(df, ticker_to_sector, referencia)
+
     rows = []
     for _, row in df.iterrows():
         ticker = row.get("ticker", "")
         sector = ticker_to_sector.get(ticker, "")
-        resultado = calcular_score(row.to_dict(), sector)
-        fv_resultado = calc_fair_value(row.to_dict(), sector)
-        rows.append({**row.to_dict(), **resultado, **fv_resultado, "sector": sector})
+        datos = row.to_dict()
+        if sector in peg_sector:
+            datos["peg_mediana"] = peg_sector[sector]
+        resultado = calcular_score(datos, sector)
+        fv_resultado = calc_fair_value(datos, sector)
+        rows.append({**datos, **resultado, **fv_resultado, "sector": sector})
 
     return pd.DataFrame(rows)
 
@@ -281,7 +356,7 @@ def leyenda_categorias() -> list[dict]:
         ("🟡", "PARECE BIEN VALUADA",          "#d4a017", "Score 42–57"),
         ("🟠", "TENDENCIA A SOBREVALORADA",    "#e16a1a", "Score 30–41"),
         ("🔴", "PODRÍA ESTAR SOBREVALORADA",   "#cf222e", "Score < 30"),
-        ("⚫", "DATOS INSUFICIENTES",          "#6e7781", "< 2 métricas disponibles"),
+        ("⚫", "DATOS INSUFICIENTES",          "#6e7781", "Sin métricas ni rango de 52 semanas"),
     ]
     for emoji, nombre, color, rango in thresholds:
         leyenda.append({

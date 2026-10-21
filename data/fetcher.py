@@ -17,6 +17,8 @@ import time
 import json
 import os
 
+from data import moneda   # v1.2.11: control de moneda / ADR
+
 logger = logging.getLogger(__name__)
 
 # Años de histórico para calcular medianas
@@ -182,6 +184,10 @@ def fetch_ticker_data(ticker: str) -> dict:
         # Metadatos
         "error": None,
         "metricas_disponibles": 0,
+        # Control de moneda / ADR (v1.2.11)
+        "moneda_estados": None,
+        "moneda_cotizacion": None,
+        "moneda_nota": None,
     }
 
     try:
@@ -280,6 +286,72 @@ def fetch_ticker_data(ticker: str) -> dict:
     return result
 
 
+def _equity_local(balance) -> Optional[float]:
+    """Patrimonio neto del ultimo balance, en la moneda en que Yahoo lo informa (sin convertir)."""
+    try:
+        if balance is None or balance.empty:
+            return None
+        row = (
+            _find_row(balance, "stockholders equity") or
+            _find_row(balance, "total equity gross minority interest") or
+            _find_row(balance, "common stock equity")
+        )
+        return _get_col_value(balance, row, balance.columns[0]) if row else None
+    except Exception:
+        return None
+
+
+def _corregir_actuales_extranjeras(result: dict, info: dict, balance_conv, ctx: dict) -> None:
+    """
+    Para empresas de afuera, Yahoo mezcla monedas en algunos multiplos actuales
+    (ej.: SONY EV/EBITDA = 0,12; BP = 14; SAP = 316). Se recalculan con totales en la
+    moneda de cotizacion: capitalizacion (Yahoo, en dolares) contra montos convertidos.
+    Solo reemplaza lo que se puede calcular; lo demas queda como estaba.
+    """
+    mc = result.get("market_cap")
+    fxr = ctx.get("fxr") or 1.0
+    if not mc or mc <= 0:
+        return
+    cambios = []
+
+    fcf = _safe_float(info.get("freeCashflow"))
+    if fcf and fcf > 0:
+        v = mc / (fcf * fxr)
+        if 0 < v < 5000:
+            result["p_fcf_actual"] = round(v, 2)
+            cambios.append("P/FCF")
+
+    ebitda = _safe_float(info.get("ebitda"))
+    if ebitda and ebitda > 0:
+        deuda = _safe_float(info.get("totalDebt")) or 0.0
+        caja = _safe_float(info.get("totalCash")) or 0.0
+        ev = mc + (deuda - caja) * fxr
+        if ev > 0:
+            v = ev / (ebitda * fxr)
+            if 0 < v < 500:
+                result["ev_ebitda_actual"] = round(v, 3)
+                cambios.append("EV/EBITDA")
+
+    try:
+        row = (
+            _find_row(balance_conv, "stockholders equity") or
+            _find_row(balance_conv, "total equity gross minority interest") or
+            _find_row(balance_conv, "common stock equity")
+        )
+        eq = _get_col_value(balance_conv, row, balance_conv.columns[0]) if row else None
+        if eq and eq > 0:
+            v = mc / eq
+            if 0 < v < 200:
+                result["p_b_actual"] = round(v, 3)
+                cambios.append("P/B")
+    except Exception:
+        pass
+
+    if cambios:
+        nota = result.get("moneda_nota") or ""
+        result["moneda_nota"] = (nota + " Actuales recalculados: " + ", ".join(cambios) + ".").strip()
+
+
 def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
     """
     Agrega medianas históricas al resultado.
@@ -310,6 +382,26 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
             _safe_float(info.get("sharesOutstanding")) or
             _safe_float(info.get("impliedSharesOutstanding"))
         )
+
+        # --- v1.2.11: control de moneda / ADR (empresas de afuera) ---
+        # Si los estados estan en otra moneda o el ADR representa varias acciones, se
+        # llevan los montos a dolares y las acciones a "equivalentes del ADR" ANTES de
+        # calcular los multiplos historicos. Si algo falla, se sigue como antes.
+        try:
+            ctx = moneda.decidir_contexto(
+                info, result.get("precio_actual"), result.get("market_cap"), _equity_local(balance))
+            result["moneda_estados"] = ctx.get("fin_cur")
+            result["moneda_cotizacion"] = ctx.get("qcur")
+            result["moneda_nota"] = ctx.get("nota") or None
+            if ctx.get("activo"):
+                income = moneda.convertir_estado(income, ctx["fx_anio"], ctx["fxr"], ctx["n_inv"])
+                balance = moneda.convertir_estado(balance, ctx["fx_anio"], ctx["fxr"], ctx["n_inv"])
+                cashflow = moneda.convertir_estado(cashflow, ctx["fx_anio"], ctx["fxr"], ctx["n_inv"])
+                if shares:
+                    shares = shares * ctx["n_inv"]
+                _corregir_actuales_extranjeras(result, info, balance, ctx)
+        except Exception as e:
+            logger.debug(f"Control de moneda fallo para {result['ticker']}: {e}")
 
         # --- EV/EBITDA histórico ---
         if not (income is None or income.empty) and shares and not hist.empty:
@@ -632,12 +724,13 @@ def calc_fair_value(result: dict, sector: str) -> dict:
       - fair_value_detalle: dict con precio implícito por método y su peso
       - fair_value_metodos: cantidad de métodos con precio calculado
     """
-    from config.sectors import SECTOR_CONFIG
+    from config.sectors import SECTOR_CONFIG, motivo_descarte, FV_RATIO_MIN, FV_RATIO_MAX
 
     fv_result = {
         "fair_value": None,
         "fair_value_detalle": {},
         "fair_value_metodos": 0,
+        "fair_value_descartados": {},   # v1.2.11: {metodo: motivo} de lo que NO entra al promedio
     }
 
     if sector not in SECTOR_CONFIG:
@@ -649,11 +742,19 @@ def calc_fair_value(result: dict, sector: str) -> dict:
 
     precios_metodos = {}
 
+    descartados = fv_result["fair_value_descartados"]
+
     for metrica, peso in config.items():
         mediana = result.get(f"{metrica}_mediana")
         actual = result.get(f"{metrica}_actual")
 
-        if mediana is None or mediana <= 0:
+        if mediana is None or mediana != mediana or mediana <= 0:
+            continue
+
+        # v1.2.11: dato imposible (moneda mezclada, etc.) -> el método no se usa
+        motivo = motivo_descarte(metrica, actual, mediana)
+        if motivo:
+            descartados[metrica] = motivo
             continue
 
         precio_implicito = None
@@ -705,14 +806,22 @@ def calc_fair_value(result: dict, sector: str) -> dict:
                 ffo_per_share = precio_actual / actual
                 precio_implicito = mediana * ffo_per_share
 
-        # Validar precio implícito (máximo 10x el precio actual para evitar outliers)
+        # v1.2.11: si un método dice que la empresa vale más de 3 veces (o menos de 1/3) su precio,
+        # no se promedia: es más probable un dato roto que una oportunidad. Se reparte su peso entre
+        # los demás métodos. (El score no se toca: ahí las métricas extremas siguen contando.)
         if precio_implicito and precio_actual and precio_implicito > 0:
             ratio_check = precio_implicito / precio_actual
-            if 0.05 < ratio_check < 10.0:  # entre 5% y 1000% del precio actual
+            if FV_RATIO_MIN <= ratio_check <= FV_RATIO_MAX:
                 precios_metodos[metrica] = {
                     "precio": round(precio_implicito, 2),
                     "peso": peso,
                 }
+            else:
+                descartados[metrica] = (
+                    f"precio implícito {ratio_check:.1f}x el precio (fuera de 1/3x–3x)"
+                    if ratio_check > 1 else
+                    f"precio implícito {ratio_check:.2f}x el precio (fuera de 1/3x–3x)"
+                )
 
     if not precios_metodos:
         return fv_result

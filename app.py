@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.10"
+APP_VERSION = "1.2.11"
 
 import streamlit as st
 import pandas as pd
@@ -253,6 +253,9 @@ def _num_valido(x) -> bool:
 
 def _motivo_metodo_faltante(row, metrica: str) -> str:
     """Por qué un método del sector no aportó precio al Fair Value."""
+    descartados = row.get("fair_value_descartados")
+    if isinstance(descartados, dict) and descartados.get(metrica):
+        return str(descartados[metrica])
     mediana = row.get(f"{metrica}_mediana")
     actual = row.get(f"{metrica}_actual")
     if metrica == "dividend_yield":
@@ -263,7 +266,7 @@ def _motivo_metodo_faltante(row, metrica: str) -> str:
         return "sin mediana histórica"
     if metrica != "dividend_yield" and (not _num_valido(actual) or actual <= 0):
         return "sin dato actual"
-    return "descartado por fuera de rango"
+    return "sin precio implícito válido"
 
 
 def _metodos_fv_html(row) -> str:
@@ -504,8 +507,9 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
             "📐 Métricas mínimas",
             min_value=1,
             max_value=4,
-            value=2,
-            help="Empresas con menos métricas se muestran en gris",
+            value=1,
+            help="Si subís este número, las empresas con menos métricas se muestran en gris. "
+                 "Con 1 se ve todo (mejor algo que nada).",
         )
 
     with col_diag:
@@ -853,6 +857,8 @@ def render_detalle(df: pd.DataFrame):
             actual = datos.get("actual")
             mediana = datos.get("mediana")
             score_m = datos.get("score")
+            estado_m = datos.get("estado")
+            motivo_m = datos.get("motivo")
 
             label = METRIC_LABELS.get(metrica, metrica.upper())
             suffix = "%" if metrica == "dividend_yield" else ""
@@ -882,6 +888,17 @@ def render_detalle(df: pd.DataFrame):
                     )
                 else:
                     st.markdown("Score: —")
+                if estado_m == "descartada" and motivo_m:
+                    st.caption(f"🚫 No se usa: {motivo_m}. Su peso se reparte entre las otras métricas.")
+                elif estado_m == "sin dato":
+                    st.caption("Sin dato para esta métrica. Su peso se reparte entre las otras.")
+
+        usadas_d, total_d = row.get("metricas_usadas"), row.get("metricas_total")
+        if _num_valido(usadas_d) and int(usadas_d) == 0:
+            st.info(
+                "Ninguna métrica fundamental pudo usarse para esta empresa. "
+                "La categoría se calculó solo con la posición en el rango de 52 semanas."
+            )
 
     # --- Fair Value desglose ---
     fv = row.get("fair_value")
@@ -906,6 +923,17 @@ def render_detalle(df: pd.DataFrame):
             unsafe_allow_html=True,
         )
         st.caption("Promedio ponderado de los métodos disponibles, usando los mismos pesos del sector.")
+        descartados_fv = row.get("fair_value_descartados")
+        if isinstance(descartados_fv, dict) and descartados_fv:
+            etiquetas = {"ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF", "p_b": "P/Book",
+                         "dividend_yield": "Div. Yield", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO"}
+            st.caption(
+                "Métodos que no entran al promedio: "
+                + " · ".join(f"{etiquetas.get(m, m)} ({mot})" for m, mot in descartados_fv.items())
+            )
+        nota_moneda = row.get("moneda_nota")
+        if isinstance(nota_moneda, str) and nota_moneda.strip():
+            st.caption(f"💱 Moneda: {nota_moneda}")
 
         METRIC_LABELS_FV = {
             "ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF",
