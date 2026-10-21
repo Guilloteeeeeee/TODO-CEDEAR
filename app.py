@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.6"
+APP_VERSION = "1.2.7"
 
 import streamlit as st
 import pandas as pd
@@ -265,7 +265,7 @@ def get_logo_url(ticker: str) -> str:
         "IBN": "icicibank.com", "HDB": "hdfcbank.com", "MUFG": "mufg.jp",
         "ING": "ing.com", "NU": "nu.com.br", "IBKR": "interactivebrokers.com",
         "BX": "blackstone.com", "SPGI": "spglobal.com", "SCHW": "schwab.com",
-        "USB": "usbank.com", "BK": "bny.com", "FISV": "fiserv.com",
+        "USB": "usbank.com", "BNY": "bny.com", "FISV": "fiserv.com",
         "C": "citigroup.com", "AIG": "aig.com", "TJX": "tjx.com",
         "ROST": "rossstores.com", "GM": "gm.com", "RACE": "ferrari.com",
         "ORLY": "oreillyauto.com", "FDX": "fedex.com", "MMM": "3m.com",

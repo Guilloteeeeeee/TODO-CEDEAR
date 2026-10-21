@@ -1,0 +1,6 @@
+@echo off
+echo Instalando dependencias...
+pip install yfinance pandas numpy requests beautifulsoup4 --quiet
+echo.
+echo Actualizando BNY en el cache...
+python actualizar_ticker.py BNY

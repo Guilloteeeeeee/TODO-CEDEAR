@@ -120,7 +120,7 @@ TICKER_UNIVERSE = {
     "Financieros":        [
         "BRK-B", "JPM", "V", "MA", "MUFG", "BAC", "MS", "GS", "HSBC", "C",
         "AXP", "SCHW", "BX", "SPGI", "MMS", "HDB", "SAN", "IBN", "PYPL",
-        "USB", "COIN", "BBVA", "ITUB", "AIG", "BK", "FISV", "ING", "NU", "IBKR",
+        "USB", "COIN", "BBVA", "ITUB", "AIG", "BNY", "FISV", "ING", "NU", "IBKR",
     ],
     "Consumo Discrecional": [
         "AMZN", "TSLA", "HD", "BABA", "TM", "BKNG", "PDD", "MELI",
