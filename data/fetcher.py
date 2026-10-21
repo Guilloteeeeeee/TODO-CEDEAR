@@ -159,11 +159,15 @@ def _get_annual_price(hist: pd.DataFrame, year: int) -> Optional[float]:
     return None
 
 
-def fetch_ticker_data(ticker: str) -> dict:
+def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
     """
     Descarga todos los datos necesarios para un ticker.
     Retorna un dict con métricas actuales e históricas.
+
+    modo_sa: "apagado" | "respaldo" | "principal" (si es None se usa config.ajustes).
+    La app publicada usa "apagado": Stock Analysis solo se consulta cuando se genera el caché en la PC.
     """
+    modo = modo_sa or STOCK_ANALYSIS_MODO
     result = {
         "ticker": ticker,
         "nombre": None,
@@ -282,10 +286,10 @@ def fetch_ticker_data(ticker: str) -> dict:
 
         # --- Histórico anual para medianas ---
         time.sleep(REQUEST_DELAY)
-        _enrich_with_history(tk, result, info)
+        _enrich_with_history(tk, result, info, modo)
 
         # --- v1.2.12: Stock Analysis como fuente principal (si esta activado) ---
-        if STOCK_ANALYSIS_MODO == "principal":
+        if modo == "principal":
             _aplicar_stockanalysis_principal(result)
         _etiquetar_fuentes(result)
 
@@ -371,7 +375,7 @@ def _corregir_actuales_extranjeras(result: dict, info: dict, balance_conv, ctx: 
         result["moneda_nota"] = (nota + " Actuales recalculados: " + ", ".join(cambios) + ".").strip()
 
 
-def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
+def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict, modo: str = "respaldo") -> None:
     """
     Agrega medianas históricas al resultado.
 
@@ -468,7 +472,7 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
     _log_yf_debug(result["ticker"], income, balance, cashflow, result)
 
     # --- Fallback 2: Stock Analysis para métricas que siguen sin mediana (modo "respaldo") ---
-    if STOCK_ANALYSIS_MODO == "respaldo":
+    if modo == "respaldo":
         antes = {m: result.get(f"{m}_mediana") for m in _METRICAS}
         _enrich_with_stockanalysis_fallback(result, precio_hist)
         completadas = [m for m in _METRICAS if antes[m] is None and result.get(f"{m}_mediana") is not None]
@@ -892,10 +896,11 @@ def calc_fair_value(result: dict, sector: str) -> dict:
     return fv_result
 
 
-def fetch_all_tickers(tickers: list, progress_callback=None) -> pd.DataFrame:
+def fetch_all_tickers(tickers: list, progress_callback=None, modo_sa: Optional[str] = None) -> pd.DataFrame:
     """
     Descarga datos para una lista de tickers.
     progress_callback(i, total, ticker): función opcional para mostrar progreso.
+    modo_sa: ver fetch_ticker_data.
     Retorna DataFrame con una fila por ticker.
     """
     results = []
@@ -905,7 +910,7 @@ def fetch_all_tickers(tickers: list, progress_callback=None) -> pd.DataFrame:
         if progress_callback:
             progress_callback(i, total, ticker)
         logger.info(f"Fetching {ticker} ({i+1}/{total})")
-        data = fetch_ticker_data(ticker)
+        data = fetch_ticker_data(ticker, modo_sa)
         results.append(data)
         time.sleep(REQUEST_DELAY)
 

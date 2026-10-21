@@ -1,12 +1,12 @@
 """
 CEDEAR Screener — App principal Streamlit
 Detecta CEDEARs potencialmente infravalorados usando métricas fundamentales
-y técnicas descargadas automáticamente desde Yahoo Finance.
+y técnicas de Stock Analysis y Yahoo Finance (caché mensual).
 
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.12"
+APP_VERSION = "1.2.13"
 
 import streamlit as st
 import pandas as pd
@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Importaciones del proyecto
 from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias
+from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG
 
 # ---------------------------------------------------------------------------
@@ -102,9 +103,10 @@ def save_cache(df: pd.DataFrame):
 def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
     """
     Carga datos con esta prioridad:
-    1. Cache vigente (< 6hs) → mostrar directo sin llamar a yfinance
-    2. yfinance → descargar frescos y guardar cache
-    3. Cache vencido → mejor que nada
+    1. Cache guardado (de cualquier edad) → mostrar directo. v1.2.13: el cache se genera en la PC
+       (generar_cache.bat, con Stock Analysis como fuente principal) y es la fuente oficial; la app
+       NO lo reemplaza con datos de Yahoo.
+    2. Sin cache (primera instalación) → yfinance, solo Yahoo
     Retorna (df, fuente).
     """
     universe = load_custom_tickers()
@@ -115,8 +117,8 @@ def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
         for ticker in tickers
     }
 
-    # 1. Cache vigente → usar directo
-    df_cache, ts_cache = load_cache(ignorar_ttl=False)
+    # 1. Cache guardado → usar directo
+    df_cache, ts_cache = load_cache(ignorar_ttl=True)
     if df_cache is not None and not df_cache.empty:
         ts_str = ts_cache.strftime("%d/%m %H:%M") if ts_cache else "?"
         return df_cache, f"cache_vigente|{ts_str}"
@@ -128,7 +130,7 @@ def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
             pct = int((i / total) * 100)
             progress_bar.progress(pct, text=f"Descargando {ticker} ({i+1}/{total})...")
 
-        raw_df = fetch_all_tickers(all_tickers, progress_callback=progress_cb)
+        raw_df = fetch_all_tickers(all_tickers, progress_callback=progress_cb, modo_sa="apagado")
         progress_bar.progress(100, text="Calculando scores...")
 
         datos_ok = raw_df["precio_actual"].notna().sum() > len(all_tickers) * 0.1
@@ -525,7 +527,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         st.markdown("<br>", unsafe_allow_html=True)
         forzar_refresh = st.button(
             "🔄 Actualizar datos",
-            help=f"Los datos se refrescan automáticamente cada {CACHE_TTL_HORAS} horas",
+            help="Vuelve a leer el caché guardado (el caché se actualiza una vez al mes desde la PC)",
         )
 
     st.markdown("---")
@@ -996,7 +998,7 @@ def main():
     col_title, col_ver = st.columns([8, 1])
     with col_title:
         st.title("📊 CEDEAR Screener")
-        st.markdown("Detector de empresas potencialmente infravaloradas — datos automáticos vía Yahoo Finance")
+        st.markdown("Detector de empresas potencialmente infravaloradas — datos de Stock Analysis y Yahoo Finance")
     with col_ver:
         st.markdown(f"<br><span style='color:#888;font-size:0.85em'>v{APP_VERSION}</span>", unsafe_allow_html=True)
 
@@ -1015,11 +1017,23 @@ def main():
                 )
             elif fuente.startswith("cache_vigente"):
                 ts_str = fuente.split("|")[1] if "|" in fuente else "?"
-                st.info(f"📦 Datos del caché ({ts_str}) — se actualizan cada {CACHE_TTL_HORAS}hs")
+                st.info(f"📦 Datos del caché ({ts_str}) — se actualiza una vez al mes")
         except Exception as e:
             st.error(f"❌ Error al cargar datos y sin caché disponible: {e}")
             df = None
             fuente = "error"
+
+    # Aviso si el caché tiene más de un mes
+    try:
+        _, ts_cache = load_cache(ignorar_ttl=True)
+        if ts_cache is not None and (datetime.now() - ts_cache).days >= CACHE_VIEJO_DIAS:
+            st.warning(
+                f"⏰ **El caché tiene {(datetime.now() - ts_cache).days} días.** Es hora de actualizarlo: "
+                "corré generar_cache.bat en tu PC y subí data/cache_datos.json y la carpeta data/historial a GitHub.",
+                icon="⏰",
+            )
+    except Exception:
+        pass
 
     # Países en castellano (antes de los filtros, así el filtro, el orden y la tabla los usan)
     if df is not None and not df.empty and "pais" in df.columns:
@@ -1057,8 +1071,70 @@ def main():
     # Panel de detalle
     render_detalle(df)
 
+    # Seguimiento mensual (historial del caché)
+    render_seguimiento()
+
     # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
     render_debug_panel()
+
+
+CACHE_VIEJO_DIAS = 35
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _evaluar_historial(clave: str) -> dict:
+    copias = cargar_copias()
+    res = evaluar_copias(copias)
+    res["fechas"] = [f.strftime("%d/%m/%Y") for f, _ in copias]
+    return res
+
+
+def render_seguimiento():
+    """Panel: ¿las categorías del screener acertaron lo que pasó con el precio el mes siguiente?"""
+    st.markdown("---")
+    carpeta = os.path.join("data", "historial")
+    clave = "|".join(sorted(os.listdir(carpeta))) if os.path.isdir(carpeta) else "sin_historial"
+    try:
+        res = _evaluar_historial(clave)
+    except Exception as e:
+        st.caption(f"Seguimiento no disponible: {e}")
+        return
+    n = len(res["fechas"])
+    with st.expander(f"📈 Seguimiento: ¿el screener acierta? ({n} copia{'s' if n != 1 else ''} del caché)"):
+        st.caption(
+            "Cada vez que corrés generar_cache.bat se guarda una copia con fecha en data/historial. "
+            "Acá se mira cuánto cambió el precio hasta la copia siguiente, según la categoría que tenía cada empresa. "
+            "Solo precio (no incluye dividendos). Con pocos meses no es concluyente."
+        )
+        if n:
+            st.markdown("**Copias guardadas:** " + ", ".join(res["fechas"]))
+        if not res["pares"]:
+            st.info(
+                f"Todavía no se puede medir: hacen falta dos copias separadas por al menos {MIN_DIAS_ENTRE_COPIAS} días. "
+                "La próxima actualización mensual del caché la completa."
+            )
+            return
+        filas = [{
+            "Desde": str(p["desde"]), "Hasta": str(p["hasta"]), "Empresas": p["empresas"],
+            "Todas (%)": round(p["todas"], 1),
+            "Baratas − caras, oficial (pts)": None if p["spread_oficial"] is None else round(p["spread_oficial"], 1),
+            "Baratas − caras, vs sector (pts)": None if p["spread_sector"] is None else round(p["spread_sector"], 1),
+        } for p in res["pares"]]
+        st.markdown("**Por período** (baratas − caras: cuánto más subieron las empresas marcadas como infravaloradas que las sobrevaloradas; positivo = el screener acertó)")
+        st.dataframe(pd.DataFrame(filas), hide_index=True, use_container_width=True)
+        c1, c2 = st.columns(2)
+        with c1:
+            st.markdown("**Oficial (contra su historia)**")
+            if "oficial" in res["tablas"]:
+                st.dataframe(res["tablas"]["oficial"].round(1), use_container_width=True)
+        with c2:
+            st.markdown("**En sombra (contra su sector)**")
+            if "sector" in res["tablas"]:
+                st.dataframe(res["tablas"]["sector"].round(1), use_container_width=True)
+            else:
+                st.caption("Las copias anteriores no tienen este puntaje.")
+        if res["todas"] is not None:
+            st.caption(f"Variación media de todas las empresas en esos períodos: {res['todas']:+.1f}%")
 
 
 def render_debug_panel():

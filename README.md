@@ -22,13 +22,16 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
 | Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
 
-### Fuentes de datos y respaldo de sector (v1.2.12)
+### Fuentes de datos y respaldo de sector (v1.2.12 / v1.2.13)
 
+- **Stock Analysis es la fuente principal (v1.2.13):** para cada empresa se baja una sola página (ratios anuales) y de ahí salen el valor actual y la mediana de los últimos 5 años fiscales, incluidos PEG y, en REITs, Price/FFO y Price/AFFO reales. Yahoo Finance queda de respaldo para lo que Stock Analysis no trae (con el control de moneda de `data/moneda.py`).
 - **Respaldo de sector:** si a una empresa le falta (o tiene imposible) la mediana histórica propia de una métrica, se compara contra la mediana de su sector (mediana de las medianas de sus pares, mínimo 5). Se ve en el detalle de cada empresa.
 - **PEG:** usa su propia historia (5 años fiscales) cuando viene de Stock Analysis; si no, la mediana del sector. Nunca se compara contra sí mismo.
-- **Fuente de cada métrica:** el detalle muestra si salió de Yahoo, de Stock Analysis o de la mediana del sector.
-- **Stock Analysis:** se elige en `config/ajustes.py` (`STOCK_ANALYSIS_MODO`): `"apagado"`, `"respaldo"` (por defecto, solo completa lo que Yahoo deja vacío) o `"principal"` (valor actual y 5 años de historia de la misma página, Yahoo queda de respaldo). Ojo: los términos de uso de Stock Analysis piden uso personal y manual, sin scripts, salvo rastreadores que respeten su `robots.txt`; el modo `"principal"` aumenta ese uso. Para probarlo: `probar_stockanalysis.bat`.
-- **REITs:** hoy P/FFO y P/AFFO se aproximan con el PER (no hay fuente en Yahoo). Stock Analysis sí trae Price/FFO y Price/AFFO reales (modo `"principal"`).
+- **Fuente de cada métrica:** el detalle muestra si salió de Yahoo, de Stock Analysis o de la mediana del sector. Al terminar `generar_cache.bat` queda `resultados_cache.txt` con el resumen de fuentes.
+- **La app publicada solo lee el caché guardado.** Nunca baja datos de Stock Analysis ni de Yahoo por su cuenta: el caché se genera una vez al mes en la PC con `generar_cache.bat`.
+- **Trato con Stock Analysis:** respeta su `robots.txt`, una página por empresa con pausa entre pedidos, reintenta una vez si pide frenar y se detiene si lo bloquean. Sus términos de uso piden uso personal y manual, sin scripts, salvo rastreadores que respeten el `robots.txt`: usarlo es una decisión informada del dueño de la herramienta. El interruptor está en `config/ajustes.py` (`STOCK_ANALYSIS_MODO`: `"apagado"`, `"respaldo"` o `"principal"`).
+- **Puntaje en sombra vs sector y Seguimiento:** cada fila guarda además `score_total_sector` / `categoria_sector` (la misma cuenta, pero comparando contra los pares del sector hoy). No cambia la categoría oficial. El panel "📈 Seguimiento" de la app compara, mes a mes, cuánto cambió el precio según cada categoría, usando las copias de `data/historial/`. Empieza a medir desde la segunda copia (con al menos 20 días de diferencia).
+- **Aviso:** si el caché tiene más de 35 días, la app muestra un cartel para actualizarlo.
 
 ### Reglas de datos (v1.2.11)
 
@@ -86,8 +89,10 @@ cedear-screener/
 │   ├── fetcher.py          # Descarga de datos (Yahoo Finance)
 │   ├── moneda.py           # Control de moneda y acciones por ADR (empresas de fuera de EEUU)
 │   ├── stockanalysis.py    # Ratios de Stock Analysis (respaldo o fuente principal)
+│   ├── resumen.py          # Resumen de fuentes al generar el caché
 │   ├── historial/          # Copias con fecha del cache (se crean con generar_cache)
 │   └── tickers_custom.json # Universo personalizado (se genera al editar)
 └── scoring/
-    └── engine.py           # Motor de scoring y categorías
+    ├── engine.py           # Motor de scoring y categorías
+    └── seguimiento.py      # Seguimiento mensual con las copias del historial
 ```

@@ -50,15 +50,64 @@ MAX_YEARS = 5
 # FETCH HTML
 # ---------------------------------------------------------------------------
 
+# v1.2.13 - Trato correcto con el sitio: respeta robots.txt, una pagina a la vez con pausa,
+# espera y reintenta una vez si pide frenar (429), y se detiene si lo bloquean.
+_ROBOTS = {}
+_FALLOS_SEGUIDOS = 0
+MAX_FALLOS_SEGUIDOS = 5      # tras esta cantidad de bloqueos seguidos se deja de consultar en esta corrida
+ESPERA_429 = 15              # segundos antes de reintentar si el sitio pide frenar
+
+
+def _robots_permite(url: str, session=None) -> bool:
+    """True si el robots.txt del sitio permite pedir `url` (si no se puede leer, se permite)."""
+    from urllib import robotparser
+    from urllib.parse import urlparse
+    partes = urlparse(url)
+    base = f"{partes.scheme}://{partes.netloc}"
+    if base not in _ROBOTS:
+        rp = robotparser.RobotFileParser()
+        try:
+            import requests
+            r = (session or requests).get(base + "/robots.txt", headers=HEADERS, timeout=15)
+            if r.status_code == 200:
+                rp.parse(r.text.splitlines())
+            else:
+                rp = None
+        except Exception:
+            rp = None
+        _ROBOTS[base] = rp
+    rp = _ROBOTS[base]
+    return True if rp is None else rp.can_fetch("*", url)
+
+
+def sa_disponible() -> bool:
+    """False cuando el sitio nos bloqueo varias veces seguidas en esta corrida."""
+    return _FALLOS_SEGUIDOS < MAX_FALLOS_SEGUIDOS
+
+
 def _fetch_html(url: str, session=None) -> Optional[str]:
-    """Descarga HTML de una URL."""
+    """Descarga HTML de una URL (respetando robots.txt)."""
+    global _FALLOS_SEGUIDOS
+    if not sa_disponible():
+        return None
     try:
         import requests
         s = session or requests.Session()
-        resp = s.get(url, headers=HEADERS, timeout=15)
-        if resp.status_code == 200:
-            return resp.text
+        if not _robots_permite(url, s):
+            logger.warning(f"robots.txt no permite {url}")
+            return None
+        for intento in range(2):
+            resp = s.get(url, headers=HEADERS, timeout=15)
+            if resp.status_code == 200:
+                _FALLOS_SEGUIDOS = 0
+                return resp.text
+            if resp.status_code == 429 and intento == 0:
+                time.sleep(ESPERA_429)
+                continue
+            break
         logger.debug(f"HTTP {resp.status_code} para {url}")
+        if resp.status_code in (403, 429):
+            _FALLOS_SEGUIDOS += 1
     except Exception as e:
         logger.debug(f"Error fetching {url}: {e}")
     return None

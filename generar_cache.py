@@ -15,6 +15,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe
 from config.sectors import TICKER_UNIVERSE
+from data.resumen import resumen_fuentes
+try:
+    from config.ajustes import STOCK_ANALYSIS_MODO
+except Exception:
+    STOCK_ANALYSIS_MODO = "respaldo"
 
 print("=" * 40)
 print("  CEDEAR Screener - Generar Cache")
@@ -23,7 +28,8 @@ print()
 
 tickers = [t for ts in TICKER_UNIVERSE.values() for t in ts]
 print(f"Descargando {len(tickers)} tickers...")
-print("Esto tarda 5-10 minutos, esperá...")
+print(f"Fuente principal de los ratios: {'Stock Analysis (Yahoo de respaldo)' if STOCK_ANALYSIS_MODO == 'principal' else 'Yahoo Finance'}")
+print("Esto tarda 10-15 minutos, esperá...")
 print()
 
 df = fetch_all_tickers(tickers)
@@ -58,6 +64,16 @@ try:
 except Exception as e:
     print(f"  (No se pudo guardar la copia del historial: {e})")
 
+# v1.2.13 - Resumen de que fuente aporto cada dato (se guarda tambien en resultados_cache.txt)
+resumen = resumen_fuentes(scored, STOCK_ANALYSIS_MODO)
+try:
+    with open("resultados_cache.txt", "w", encoding="utf-8") as f:
+        f.write(resumen)
+except Exception:
+    pass
+print()
+print(resumen)
+
 print()
 print("=" * 40)
 print(f"  LISTO! {len(scored)} tickers descargados")
@@ -65,5 +81,6 @@ print("  Archivo: data/cache_datos.json")
 if copia:
     print(f"  Copia para el historial: {copia}")
 print("  Subilo a GitHub en la carpeta data/ (incluida la carpeta historial/)")
+print("  Mandame resultados_cache.txt (el resumen de fuentes)")
 print("=" * 40)
 input("\nPresioná Enter para cerrar...")

@@ -362,6 +362,41 @@ def peg_mediana_por_sector(df: pd.DataFrame, ticker_to_sector: dict = None,
             if "peg" in m}
 
 
+def valores_actuales_por_sector(df: pd.DataFrame, ticker_to_sector: dict = None,
+                                referencia: Optional[pd.DataFrame] = None) -> dict:
+    """{(sector, metrica): [(ticker, valor actual valido), ...]} para el puntaje en sombra vs sector."""
+    if ticker_to_sector is None:
+        ticker_to_sector = TICKER_TO_SECTOR
+    base = df if referencia is None else pd.concat(
+        [df, referencia[~referencia["ticker"].isin(df["ticker"])]], ignore_index=True)
+    pool: dict = {}
+    for _, r in base.iterrows():
+        sector = ticker_to_sector.get(r.get("ticker", ""), "")
+        for m in SECTOR_CONFIG.get(sector, {}).get("metrics", {}):
+            if _actual_valido(r, m):
+                pool.setdefault((sector, m), []).append((r["ticker"], float(r[f"{m}_actual"])))
+    return pool
+
+
+def puntaje_vs_sector(datos: dict, sector: str, ticker: str, pool: dict) -> dict:
+    """
+    Puntaje "en sombra" (v1.2.13): la misma cuenta del puntaje oficial, pero comparando cada metrica
+    contra la mediana de los valores ACTUALES de sus pares del sector (sin la propia empresa), en
+    lugar de su historia. No afecta la categoria oficial: se guarda para medir en el historial
+    mensual cual de las dos formas acierta mas.
+    """
+    vacio = {"score_total_sector": None, "categoria_sector": CATEGORIA_GRIS[0], "metricas_usadas_sector": 0}
+    if sector not in SECTOR_CONFIG:
+        return vacio
+    calc = dict(datos)
+    for m in SECTOR_CONFIG[sector]["metrics"]:
+        vals = [v for t, v in pool.get((sector, m), []) if t != ticker]
+        calc[f"{m}_mediana"] = float(np.median(vals)) if len(vals) >= SECTOR_MIN_EMPRESAS else None
+    r = calcular_score(calc, sector)
+    return {"score_total_sector": r["score_total"], "categoria_sector": r["categoria"],
+            "metricas_usadas_sector": r["metricas_usadas"]}
+
+
 def aplicar_respaldo_sector(datos: dict, sector: str, refs: dict) -> dict:
     """
     Si a una empresa le falta (o tiene imposible) la mediana historica propia de una metrica
@@ -394,7 +429,7 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
     Agrega columnas: score_fundamental, score_tecnico, score_total,
                      categoria, color_hex, emoji, metricas_usadas, metricas_total,
                      fair_value, fair_value_detalle, fair_value_metodos,
-                     respaldo_sector.
+                     respaldo_sector, score_total_sector, categoria_sector (puntaje en sombra).
 
     v1.2.12: si la mediana propia de una metrica falta o es imposible, se compara contra la
     mediana de su sector (ver referencias_sector). Los datos originales de la fila no se pisan:
@@ -406,6 +441,7 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
         ticker_to_sector = TICKER_TO_SECTOR
 
     refs = referencias_sector(df, ticker_to_sector, referencia)
+    pool_sombra = valores_actuales_por_sector(df, ticker_to_sector, referencia)
 
     rows = []
     for _, row in df.iterrows():
@@ -420,8 +456,9 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
         for m, d in resultado["detalle"].items():
             d["fuente"] = fuentes.get(m)
             d["referencia"] = "sector" if m in usados else "propia"
+        sombra = puntaje_vs_sector(datos, sector, ticker, pool_sombra)
         rows.append({**datos, **resultado, **fv_resultado, "sector": sector,
-                     "respaldo_sector": usados})
+                     "respaldo_sector": usados, **sombra})
 
     return pd.DataFrame(rows)
 
