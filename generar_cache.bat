@@ -1,0 +1,6 @@
+@echo off
+echo Instalando dependencias...
+pip install yfinance pandas numpy requests beautifulsoup4 --quiet
+echo.
+echo Generando cache...
+python generar_cache.py
