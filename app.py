@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché mensual).
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.13"
+APP_VERSION = "1.2.14"
 
 import streamlit as st
 import pandas as pd

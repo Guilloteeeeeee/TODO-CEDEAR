@@ -35,7 +35,7 @@ HEADERS = {
     ),
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
     "Accept-Language": "en-US,en;q=0.5",
-    "Accept-Encoding": "gzip, deflate, br",
+    "Accept-Encoding": "gzip, deflate",   # sin "br": sin la libreria brotli, requests no sabe abrirlo (v1.2.14)
     "Cache-Control": "no-cache",
 }
 
@@ -53,7 +53,8 @@ MAX_YEARS = 5
 # v1.2.13 - Trato correcto con el sitio: respeta robots.txt, una pagina a la vez con pausa,
 # espera y reintenta una vez si pide frenar (429), y se detiene si lo bloquean.
 _ROBOTS = {}
-_FALLOS_SEGUIDOS = 0
+_FALLOS_SEGUIDOS = 0         # bloqueos / paginas ilegibles seguidos
+_FALLOS_LECTURA = 0          # paginas bajadas bien pero cuya tabla no se pudo leer, seguidas
 MAX_FALLOS_SEGUIDOS = 5      # tras esta cantidad de bloqueos seguidos se deja de consultar en esta corrida
 ESPERA_429 = 15              # segundos antes de reintentar si el sitio pide frenar
 
@@ -82,34 +83,59 @@ def _robots_permite(url: str, session=None) -> bool:
 
 def sa_disponible() -> bool:
     """False cuando el sitio nos bloqueo varias veces seguidas en esta corrida."""
-    return _FALLOS_SEGUIDOS < MAX_FALLOS_SEGUIDOS
+    return _FALLOS_SEGUIDOS < MAX_FALLOS_SEGUIDOS and _FALLOS_LECTURA < MAX_FALLOS_SEGUIDOS
+
+
+def _legible(texto: str) -> bool:
+    """True si `texto` parece HTML de verdad (y no bytes comprimidos mal abiertos)."""
+    if not texto:
+        return False
+    cabeza = texto[:3000].lower()
+    return "<html" in cabeza or "<!doctype" in cabeza or "<head" in cabeza or "<body" in cabeza
+
+
+ULTIMO_ERROR = ""   # motivo del ultimo fallo de descarga (para el diagnostico)
 
 
 def _fetch_html(url: str, session=None) -> Optional[str]:
     """Descarga HTML de una URL (respetando robots.txt)."""
-    global _FALLOS_SEGUIDOS
+    global _FALLOS_SEGUIDOS, ULTIMO_ERROR
+    ULTIMO_ERROR = ""
     if not sa_disponible():
+        ULTIMO_ERROR = "Stock Analysis se dejo de consultar en esta corrida (bloqueos, paginas ilegibles o sin tabla, varias seguidas)"
         return None
     try:
         import requests
         s = session or requests.Session()
         if not _robots_permite(url, s):
             logger.warning(f"robots.txt no permite {url}")
+            ULTIMO_ERROR = "robots.txt no permite esta pagina"
             return None
-        for intento in range(2):
-            resp = s.get(url, headers=HEADERS, timeout=15)
+        headers = dict(HEADERS)
+        for intento in range(3):
+            resp = s.get(url, headers=headers, timeout=15)
             if resp.status_code == 200:
-                _FALLOS_SEGUIDOS = 0
-                return resp.text
+                if _legible(resp.text):
+                    _FALLOS_SEGUIDOS = 0
+                    return resp.text
+                # Pagina que no parece HTML (compresion mal abierta): se reintenta sin compresion
+                if headers.get("Accept-Encoding") != "identity":
+                    headers["Accept-Encoding"] = "identity"
+                    continue
+                ULTIMO_ERROR = "la pagina llego ilegible (no parece HTML)"
+                _FALLOS_SEGUIDOS += 1
+                return None
             if resp.status_code == 429 and intento == 0:
                 time.sleep(ESPERA_429)
                 continue
             break
         logger.debug(f"HTTP {resp.status_code} para {url}")
+        ULTIMO_ERROR = f"HTTP {resp.status_code}"
         if resp.status_code in (403, 429):
             _FALLOS_SEGUIDOS += 1
     except Exception as e:
         logger.debug(f"Error fetching {url}: {e}")
+        ULTIMO_ERROR = f"{type(e).__name__}: {e}"
     return None
 
 
@@ -217,10 +243,21 @@ def _parse_next_data_table(next_data: dict) -> dict:
 # ESTRATEGIA 2: Parseo HTML de tablas (BeautifulSoup)
 # ---------------------------------------------------------------------------
 
+_PATRON_ENCABEZADO = re.compile(r"^(current|ttm)$|fy\s*20\d{2}|^20\d{2}$|^(q[1-4]\s*)?20\d{2}", re.I)
+
+
+def _texto_celda(celda) -> str:
+    """Texto de una celda con espacios normalizados (separa los trozos de texto con un espacio)."""
+    t = celda.get_text(" ", strip=True).replace("\xa0", " ")
+    return re.sub(r"\s+", " ", t).strip()
+
+
 def _parse_html_table(html: str, section_keywords: list) -> dict:
     """
     Parsea tablas HTML de Stock Analysis via BeautifulSoup.
     Retorna dict {row_label: {column_header: value}}.
+    v1.2.14: la fila de encabezados se busca entre las primeras 4 filas (la que tiene mas
+    columnas tipo "Current" / "FY 2025"), por si la tabla trae una fila extra arriba.
     """
     try:
         from bs4 import BeautifulSoup
@@ -238,30 +275,31 @@ def _parse_html_table(html: str, section_keywords: list) -> dict:
             if not rows:
                 continue
 
-            # Leer encabezados (años)
-            headers = []
-            header_row = rows[0]
-            for th in header_row.find_all(["th", "td"]):
-                text = th.get_text(strip=True)
-                headers.append(text)
+            # Fila de encabezados: la que mas columnas tipo "Current"/"FY 20xx" tenga
+            mejor_idx, mejor_n = 0, 0
+            for idx, row in enumerate(rows[:4]):
+                textos = [_texto_celda(c) for c in row.find_all(["th", "td"])]
+                n = sum(1 for t in textos[1:] if _PATRON_ENCABEZADO.search(t))
+                if n > mejor_n:
+                    mejor_idx, mejor_n = idx, n
+            headers = [_texto_celda(c) for c in rows[mejor_idx].find_all(["th", "td"])]
 
             if len(headers) < 2:
                 continue
 
             # Leer filas de datos
             table_data = {}
-            for row in rows[1:]:
+            for row in rows[mejor_idx + 1:]:
                 cells = row.find_all(["td", "th"])
                 if not cells:
                     continue
-                label = cells[0].get_text(strip=True)
+                label = _texto_celda(cells[0])
                 if not label:
                     continue
                 row_data = {}
                 for i, cell in enumerate(cells[1:], 1):
                     if i < len(headers):
-                        val_text = cell.get_text(strip=True)
-                        val = _parse_number(val_text)
+                        val = _parse_number(_texto_celda(cell))
                         if val is not None:
                             row_data[headers[i]] = val
                 if row_data:
@@ -269,7 +307,7 @@ def _parse_html_table(html: str, section_keywords: list) -> dict:
 
             # ¿Esta tabla tiene alguna de las keywords?
             found = any(
-                any(kw.lower() in label.lower() for kw in section_keywords)
+                any(_sin_espacios(kw) in _sin_espacios(label) for kw in section_keywords)
                 for label in table_data.keys()
             )
             if found:
@@ -279,6 +317,10 @@ def _parse_html_table(html: str, section_keywords: list) -> dict:
         logger.debug(f"Error parseando tabla HTML: {e}")
 
     return result
+
+
+def _sin_espacios(texto: str) -> str:
+    return re.sub(r"\s+", "", str(texto)).lower()
 
 
 def _parse_page(html: str, section_keywords: list) -> dict:
@@ -333,12 +375,14 @@ def _parse_number(text: str) -> Optional[float]:
 
 
 def _find_label(data: dict, *keywords, exclude: list = None) -> Optional[str]:
-    """Busca la primera clave del dict que contenga todos los keywords."""
+    """Busca la primera clave del dict que contenga todos los keywords (sin importar espacios)."""
     exclude = exclude or []
+    kws = [_sin_espacios(k) for k in keywords]
+    exs = [_sin_espacios(e) for e in exclude]
     for label in data.keys():
-        label_lower = label.lower()
-        if all(kw.lower() in label_lower for kw in keywords):
-            if not any(ex.lower() in label_lower for ex in exclude):
+        label_lower = _sin_espacios(label)
+        if all(kw in label_lower for kw in kws):
+            if not any(ex in label_lower for ex in exs):
                 return label
     return None
 
@@ -604,6 +648,9 @@ def _anio_columna(header) -> Optional[int]:
     m = re.search(r"fy\s*(20\d{2})", str(header).lower())
     if m:
         return int(m.group(1))
+    m = re.fullmatch(r"\s*(20\d{2})\s*", str(header))
+    if m:
+        return int(m.group(1))
     return None
 
 
@@ -642,6 +689,7 @@ def fetch_ratios_completos(ticker: str, session=None) -> dict:
     Baja la pagina de ratios anuales de un ticker.
     Devuelve {"ok": bool, "metricas": {...}, "etiquetas": [...], "columnas": [...], "url": str}.
     """
+    global _FALLOS_LECTURA
     ticker_url = ticker.lower().replace(".", "-")
     url = f"https://stockanalysis.com/stocks/{ticker_url}/financials/ratios/?p=annual"
     resultado = {"ok": False, "metricas": {}, "etiquetas": [], "columnas": [], "url": url}
@@ -651,21 +699,69 @@ def fetch_ratios_completos(ticker: str, session=None) -> dict:
         time.sleep(REQUEST_DELAY)
         html = _fetch_html(url, session)
         if not html:
-            resultado["error"] = "no se pudo bajar la pagina"
+            resultado["error"] = "no se pudo bajar la pagina" + (f" ({ULTIMO_ERROR})" if ULTIMO_ERROR else "")
             return resultado
         tabla = _parse_page(
             html, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "FFO"])
         if not tabla:
+            # Se bajo bien pero no se entiende: si pasa varias veces seguidas se deja de insistir
+            _FALLOS_LECTURA += 1
             resultado["error"] = "la pagina se bajo pero no se pudo leer la tabla"
             return resultado
         resultado["etiquetas"] = list(tabla)[:80]
         resultado["columnas"] = sorted({c for fila in tabla.values() for c in fila})
         resultado["metricas"] = extraer_metricas_ratios(tabla)
         resultado["ok"] = bool(resultado["metricas"])
+        _FALLOS_LECTURA = 0 if resultado["ok"] else _FALLOS_LECTURA + 1
     except Exception as e:
         logger.warning(f"Error en Stock Analysis (ratios completos) para {ticker}: {e}")
         resultado["error"] = str(e)
     return resultado
+
+
+def diagnosticar_pagina(ticker: str, session=None):
+    """
+    Para el script de prueba: baja la pagina SIN interpretarla y describe que llego.
+    Devuelve (lineas_de_texto, bytes_crudos). Sirve para ver por que no se pudo leer la tabla.
+    """
+    import requests
+    ticker_url = ticker.lower().replace(".", "-")
+    url = f"https://stockanalysis.com/stocks/{ticker_url}/financials/ratios/?p=annual"
+    s = session or requests.Session()
+    lineas = []
+    crudo = b""
+    for etiqueta, enc in (("con los encabezados normales", HEADERS.get("Accept-Encoding")), ("sin compresion", "identity")):
+        h = dict(HEADERS)
+        h["Accept-Encoding"] = enc
+        try:
+            r = s.get(url, headers=h, timeout=20)
+        except Exception as e:  # noqa: BLE001
+            lineas.append(f"[{etiqueta}] FALLO la conexion: {type(e).__name__}: {e}")
+            continue
+        txt = r.text or ""
+        crudo = r.content or crudo
+        soup_tablas = txt.lower().count("<table")
+        titulo = ""
+        i = txt.lower().find("<title>")
+        if i >= 0:
+            titulo = txt[i + 7: i + 120].split("</")[0].strip()
+        marcas = {k: (k.lower() in txt.lower()) for k in
+                  ("PE Ratio", "PB Ratio", "Fiscal Year", "Current", "Just a moment", "captcha", "cloudflare", "Upgrade")}
+        lineas.append(
+            f"[{etiqueta}] HTTP {r.status_code} | {len(txt):,} caracteres | Content-Encoding={r.headers.get('Content-Encoding')} "
+            f"| Content-Type={r.headers.get('Content-Type')} | parece HTML={_legible(txt)} | <table>={soup_tablas}")
+        lineas.append(f"    Titulo: {titulo!r}")
+        lineas.append("    Aparece en la pagina: " + ", ".join(f"{k}={'si' if v else 'no'}" for k, v in marcas.items()))
+        lineas.append(f"    Primeros 200 caracteres: {txt[:200]!r}")
+        if _legible(txt):
+            try:
+                tabla = _parse_page(txt, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "FFO"])
+                lineas.append(f"    El lector entiende {len(tabla)} filas; columnas: "
+                              f"{sorted({c for f in tabla.values() for c in f})[:10]}")
+            except Exception as e:  # noqa: BLE001
+                lineas.append(f"    El lector fallo: {type(e).__name__}: {e}")
+            break      # con la primera descarga legible alcanza
+    return lineas, crudo
 
 
 def aplicar_stockanalysis(result: dict, datos_sa: Optional[dict] = None, session=None) -> list:

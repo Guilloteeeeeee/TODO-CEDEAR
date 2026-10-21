@@ -7,7 +7,7 @@ Uso (desde la carpeta del proyecto):
     python probar_stockanalysis.py
     python probar_stockanalysis.py SAP TSM        (otros tickers)
 
-Guarda resultados_stockanalysis.txt: mandalo para revisarlo.
+Guarda resultados_stockanalysis.txt: mandalo para revisarlo (y sa_pagina_cruda.bin si aparece).
 """
 import os
 import sys
@@ -33,16 +33,17 @@ def _fmt(x, d=2):
 
 def main(tickers):
     out = ["Prueba de Stock Analysis — " + ", ".join(tickers)]
-    # Estado de la conexion con la primera pagina (para saber si lo bloquean)
+    # Diagnostico de la primera pagina: que llega realmente (sirve si no se puede leer la tabla)
     try:
-        import requests
-        t0 = tickers[0].lower().replace(".", "-")
-        r = requests.get(f"https://stockanalysis.com/stocks/{t0}/financials/ratios/?p=annual", headers=sa.HEADERS, timeout=20)
-        out.append(f"Conexion: HTTP {r.status_code}, {len(r.text):,} caracteres")
-        if r.status_code != 200:
-            out.append("  Respuesta: " + r.text[:300].replace("\n", " "))
+        lineas, crudo = sa.diagnosticar_pagina(tickers[0])
+        out.append(f"Diagnostico de la pagina de {tickers[0]}:")
+        out.extend("  " + l for l in lineas)
+        if crudo:
+            with open("sa_pagina_cruda.bin", "wb") as f:
+                f.write(crudo)
+            out.append("  (se guardo sa_pagina_cruda.bin con lo que llego, por si hace falta mandarlo)")
     except Exception as e:  # noqa: BLE001
-        out.append(f"Conexion: FALLO {type(e).__name__}: {e}")
+        out.append(f"Diagnostico: FALLO {type(e).__name__}: {e}")
 
     for sym in tickers:
         out.append(f"\n===== {sym} =====")
