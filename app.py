@@ -11,8 +11,12 @@ import pandas as pd
 import numpy as np
 import json
 import os
+import sys
 import time
 from datetime import datetime
+
+# Asegurar que el directorio raíz esté en el path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Importaciones del proyecto
 from data.fetcher import fetch_all_tickers
