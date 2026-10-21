@@ -188,23 +188,103 @@ def format_market_cap(val: float | None) -> str:
     return f"${val:.0f}"
 
 
+def get_logo_url(ticker: str) -> str:
+    """
+    Retorna URL del logo para un ticker dado.
+    Usa Logo.dev (logo.dev) como fuente principal.
+    """
+    # Mapeo de tickers a dominio de empresa para logos
+    TICKER_DOMAIN = {
+        "AAPL": "apple.com", "MSFT": "microsoft.com", "GOOGL": "google.com",
+        "AMZN": "amazon.com", "NVDA": "nvidia.com", "META": "meta.com",
+        "TSLA": "tesla.com", "JPM": "jpmorganchase.com", "V": "visa.com",
+        "MA": "mastercard.com", "AVGO": "broadcom.com", "UNH": "unitedhealthgroup.com",
+        "JNJ": "jnj.com", "XOM": "exxonmobil.com", "WMT": "walmart.com",
+        "LLY": "lilly.com", "HD": "homedepot.com", "PG": "pg.com",
+        "COST": "costco.com", "MRK": "merck.com", "ABBV": "abbvie.com",
+        "CVX": "chevron.com", "KO": "coca-cola.com", "PEP": "pepsico.com",
+        "BAC": "bankofamerica.com", "NFLX": "netflix.com", "CRM": "salesforce.com",
+        "ORCL": "oracle.com", "ACN": "accenture.com", "MCD": "mcdonalds.com",
+        "CSCO": "cisco.com", "IBM": "ibm.com", "ADBE": "adobe.com",
+        "NOW": "servicenow.com", "QCOM": "qualcomm.com", "TXN": "ti.com",
+        "INTC": "intel.com", "AMD": "amd.com", "GE": "ge.com",
+        "CAT": "caterpillar.com", "DE": "deere.com", "BA": "boeing.com",
+        "LMT": "lockheedmartin.com", "RTX": "rtx.com", "HON": "honeywell.com",
+        "UNP": "up.com", "NEE": "nexteraenergy.com", "DIS": "disney.com",
+        "SBUX": "starbucks.com", "NKE": "nike.com", "SPOT": "spotify.com",
+        "SHOP": "shopify.com", "SLB": "slb.com", "PFE": "pfizer.com",
+        "TMO": "thermofisher.com", "ABT": "abbott.com", "GS": "goldmansachs.com",
+        "MS": "morganstanley.com", "AXP": "americanexpress.com", "BRK-B": "berkshirehathaway.com",
+        "BKNG": "booking.com", "UBER": "uber.com", "ABNB": "airbnb.com",
+        "PYPL": "paypal.com", "COIN": "coinbase.com", "MELI": "mercadolibre.com",
+        "PLTR": "palantir.com", "PANW": "paloaltonetworks.com", "CRWD": "crowdstrike.com",
+        "ANET": "arista.com", "SNOW": "snowflake.com", "MU": "micron.com",
+        "ASML": "asml.com", "TSM": "tsmc.com", "SAP": "sap.com",
+        "NVO": "novonordisk.com", "NVS": "novartis.com", "AZN": "astrazeneca.com",
+        "GILD": "gilead.com", "AMGN": "amgen.com", "VRTX": "vrtx.com",
+        "ISRG": "intuitivesurgical.com", "DHR": "danaher.com", "MDT": "medtronic.com",
+        "BHP": "bhp.com", "RIO": "riotinto.com", "VALE": "vale.com",
+        "FCX": "fcx.com", "NEM": "newmont.com", "LIN": "linde.com",
+        "SHW": "sherwin-williams.com", "SCCO": "southerncopper.com",
+        "XOM": "exxonmobil.com", "CVX": "chevron.com", "SHEL": "shell.com",
+        "TTE": "totalenergies.com", "COP": "conocophillips.com", "BP": "bp.com",
+        "PBR": "petrobras.com.br", "EQNR": "equinor.com",
+        "O": "realtyincome.com", "PLD": "prologis.com", "WELL": "welltower.com",
+        "VZ": "verizon.com", "T": "att.com", "TMUS": "t-mobile.com",
+        "PM": "pmi.com", "MO": "altria.com", "UL": "unilever.com",
+        "DEO": "diageo.com", "CL": "colgate.com", "MDLZ": "mondelezinternational.com",
+        "TGT": "target.com", "TM": "toyota.com", "SONY": "sony.com",
+        "BABA": "alibaba.com", "PDD": "pinduoduo.com", "HSBC": "hsbc.com",
+        "SAN": "santander.com", "BBVA": "bbva.com", "ITUB": "itau.com.br",
+        "IBN": "icicibank.com", "HDB": "hdfcbank.com", "MUFG": "mufg.jp",
+        "ING": "ing.com", "NU": "nu.com.br", "IBKR": "interactivebrokers.com",
+        "BX": "blackstone.com", "SPGI": "spglobal.com", "SCHW": "schwab.com",
+        "USB": "usbank.com", "BK": "bny.com", "FISV": "fiserv.com",
+        "C": "citigroup.com", "AIG": "aig.com", "TJX": "tjx.com",
+        "ROST": "rossstores.com", "GM": "gm.com", "RACE": "ferrari.com",
+        "ORLY": "oreillyauto.com", "FDX": "fedex.com", "MMM": "3m.com",
+        "PSX": "phillips66.com", "GEV": "gevernova.com", "HWM": "howmet.com",
+        "PCAR": "paccar.com", "SIEGY": "siemens.com", "ARM": "arm.com",
+        "AMAT": "appliedmaterials.com", "LRCX": "lamresearch.com",
+        "KLAC": "kla.com", "ADI": "analog.com", "MRVL": "marvell.com",
+        "INFY": "infosys.com", "DELL": "dell.com", "WDC": "westerndigital.com",
+        "MSI": "motorolasolutions.com", "ADP": "adp.com", "CEG": "constellationenergy.com",
+        "VST": "vistratenergy.com", "TLN": "talenenergy.com", "CVS": "cvshealth.com",
+        "BMY": "bms.com", "GSK": "gsk.com", "NTES": "netease.com",
+    }
+    domain = TICKER_DOMAIN.get(ticker)
+    if domain:
+        return f"https://logo.clearbit.com/{domain}"
+    # Fallback: URL genérica de logo.dev
+    return f"https://logo.clearbit.com/{ticker.lower()}.com"
+
+
+def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]:
+    """
+    Retorna (texto, color) para el Fair Value.
+    Muestra el precio y el upside/downside vs precio actual.
+    """
+    if fv is None or precio is None or precio <= 0:
+        return "—", "#6e7781"
+    upside = (fv - precio) / precio
+    color = "#2da44e" if upside > 0.05 else "#cf222e" if upside < -0.05 else "#d4a017"
+    upside_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
+    return f"${fv:.2f} ({upside_str})", color
+
+
 # ---------------------------------------------------------------------------
 # SIDEBAR
 # ---------------------------------------------------------------------------
 
-def render_sidebar(universe: dict) -> tuple[list, list, int, bool]:
+def render_sidebar(universe: dict, df: pd.DataFrame = None) -> dict:
     """
-    Renderiza el sidebar y retorna:
-      - sectores_seleccionados
-      - categorias_seleccionadas
-      - min_metricas
-      - forzar_refresh
+    Renderiza el sidebar y retorna dict con todos los filtros activos.
     """
     st.sidebar.title("📊 CEDEAR Screener")
     st.sidebar.markdown("---")
 
     # Filtro por sector
-    st.sidebar.subheader("Sectores")
+    st.sidebar.subheader("🏭 Sectores")
     todos_sectores = list(universe.keys())
     seleccionar_todos = st.sidebar.checkbox("Todos los sectores", value=True)
     if seleccionar_todos:
@@ -218,7 +298,7 @@ def render_sidebar(universe: dict) -> tuple[list, list, int, bool]:
 
     # Filtro por categoría
     st.sidebar.markdown("---")
-    st.sidebar.subheader("Categorías")
+    st.sidebar.subheader("🎯 Categorías")
     leyenda = leyenda_categorias()
     cats_disponibles = [f"{l['emoji']} {l['nombre']}" for l in leyenda]
     cats_sel = st.sidebar.multiselect(
@@ -228,9 +308,58 @@ def render_sidebar(universe: dict) -> tuple[list, list, int, bool]:
     )
     cats_nombres = [c.split(" ", 1)[1] for c in cats_sel]
 
+    # Filtro por país
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("🌎 País")
+    paises_disponibles = []
+    if df is not None and not df.empty and "pais" in df.columns:
+        paises_disponibles = sorted(
+            [p for p in df["pais"].dropna().unique().tolist() if p],
+            key=lambda x: x.lower()
+        )
+    if paises_disponibles:
+        paises_sel = st.sidebar.multiselect(
+            "Filtrar por país",
+            paises_disponibles,
+            default=[],
+            placeholder="Todos los países",
+        )
+    else:
+        paises_sel = []
+
+    # Filtro por Dividend Yield mínimo
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("💰 Dividend Yield")
+    dy_minimo = st.sidebar.slider(
+        "DY mínimo (%)",
+        min_value=0.0,
+        max_value=10.0,
+        value=0.0,
+        step=0.5,
+        format="%.1f%%",
+    )
+
+    # Filtro por Market Cap mínimo
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("📏 Market Cap")
+    mktcap_opciones = {
+        "Sin mínimo": 0,
+        "≥ $1B": 1e9,
+        "≥ $10B": 10e9,
+        "≥ $50B": 50e9,
+        "≥ $100B": 100e9,
+        "≥ $500B": 500e9,
+    }
+    mktcap_label = st.sidebar.selectbox(
+        "Market Cap mínimo",
+        list(mktcap_opciones.keys()),
+        index=0,
+    )
+    mktcap_minimo = mktcap_opciones[mktcap_label]
+
     # Filtro por cobertura de métricas
     st.sidebar.markdown("---")
-    st.sidebar.subheader("Calidad de datos")
+    st.sidebar.subheader("📐 Calidad de datos")
     min_metricas = st.sidebar.slider(
         "Mínimo de métricas disponibles",
         min_value=1,
@@ -238,6 +367,24 @@ def render_sidebar(universe: dict) -> tuple[list, list, int, bool]:
         value=2,
         help="Empresas con menos métricas disponibles se muestran en gris",
     )
+
+    # Ordenamiento
+    st.sidebar.markdown("---")
+    st.sidebar.subheader("↕️ Ordenar por")
+    sort_opciones = {
+        "Fair Value (upside %)": "fv_upside",
+        "Market Cap": "market_cap",
+        "Dividend Yield": "dividend_yield_actual",
+        "País": "pais",
+        "Categoría (score)": "score_total",
+    }
+    sort_label = st.sidebar.selectbox(
+        "Criterio",
+        list(sort_opciones.keys()),
+        index=0,
+    )
+    sort_col = sort_opciones[sort_label]
+    sort_asc = st.sidebar.checkbox("Orden ascendente", value=False)
 
     # Refresh
     st.sidebar.markdown("---")
@@ -267,7 +414,17 @@ def render_sidebar(universe: dict) -> tuple[list, list, int, bool]:
         "Siempre investigá más antes de invertir."
     )
 
-    return sectores_sel, cats_nombres, min_metricas, forzar_refresh
+    return {
+        "sectores": sectores_sel,
+        "categorias": cats_nombres,
+        "paises": paises_sel,
+        "dy_minimo": dy_minimo / 100.0,  # convertir a fracción
+        "mktcap_minimo": mktcap_minimo,
+        "min_metricas": min_metricas,
+        "sort_col": sort_col,
+        "sort_asc": sort_asc,
+        "forzar_refresh": forzar_refresh,
+    }
 
 
 # ---------------------------------------------------------------------------
@@ -317,77 +474,147 @@ def render_ticker_manager(universe: dict) -> dict | None:
 # TABLA PRINCIPAL
 # ---------------------------------------------------------------------------
 
-def render_main_table(df: pd.DataFrame, sectores_sel: list,
-                      cats_nombres: list, min_metricas: int):
+def render_main_table(df: pd.DataFrame, filtros: dict):
     """Renderiza la tabla principal con colores y filtros aplicados."""
 
-    # Filtrar por sector
-    df_show = df[df["sector"].isin(sectores_sel)].copy()
+    df_show = df.copy()
 
-    # Filtrar por mínimo de métricas
+    # --- Aplicar filtros ---
+    df_show = df_show[df_show["sector"].isin(filtros["sectores"])]
+
     df_show = df_show[
-        (df_show["metricas_usadas"] >= min_metricas) |
+        (df_show["metricas_usadas"] >= filtros["min_metricas"]) |
         (df_show["categoria"] == "DATOS INSUFICIENTES")
     ]
 
-    # Filtrar por categoría seleccionada
-    df_show = df_show[df_show["categoria"].isin(cats_nombres)]
+    df_show = df_show[df_show["categoria"].isin(filtros["categorias"])]
 
-    # Ordenar: mejor score primero, gris al final
-    df_show["_sort_score"] = df_show["score_total"].fillna(-1)
-    df_show = df_show.sort_values("_sort_score", ascending=False).drop(columns=["_sort_score"])
+    # Filtro por país (solo si hay países seleccionados)
+    if filtros["paises"]:
+        df_show = df_show[df_show["pais"].isin(filtros["paises"])]
+
+    # Filtro por DY mínimo
+    if filtros["dy_minimo"] > 0:
+        mask_dy = (
+            df_show["dividend_yield_actual"].notna() &
+            (df_show["dividend_yield_actual"] >= filtros["dy_minimo"])
+        )
+        df_show = df_show[mask_dy]
+
+    # Filtro por Market Cap mínimo
+    if filtros["mktcap_minimo"] > 0:
+        df_show = df_show[
+            df_show["market_cap"].notna() &
+            (df_show["market_cap"] >= filtros["mktcap_minimo"])
+        ]
+
+    # --- Calcular columna de upside para ordenamiento ---
+    def _fv_upside(row):
+        fv = row.get("fair_value")
+        p = row.get("precio_actual")
+        if fv and p and p > 0:
+            return (fv - p) / p
+        return None
+
+    df_show["fv_upside"] = df_show.apply(_fv_upside, axis=1)
+
+    # --- Ordenamiento ---
+    sort_col = filtros["sort_col"]
+    sort_asc = filtros["sort_asc"]
+
+    if sort_col == "score_total":
+        # Gris al final
+        df_show["_sort_v"] = df_show["score_total"].fillna(-1)
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col == "fv_upside":
+        df_show["_sort_v"] = df_show["fv_upside"].fillna(-999 if not sort_asc else 999)
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col == "market_cap":
+        df_show["_sort_v"] = df_show["market_cap"].fillna(0 if sort_asc else -1)
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col == "dividend_yield_actual":
+        df_show["_sort_v"] = df_show["dividend_yield_actual"].fillna(-1 if not sort_asc else 999)
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col == "pais":
+        df_show = df_show.sort_values("pais", ascending=sort_asc, na_position="last")
+    else:
+        df_show["_sort_v"] = df_show["score_total"].fillna(-1)
+        df_show = df_show.sort_values("_sort_v", ascending=False).drop(columns=["_sort_v"])
 
     if df_show.empty:
         st.warning("No hay empresas que coincidan con los filtros seleccionados.")
         return
 
-    st.markdown(f"**{len(df_show)} empresas** | Actualizado: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
+    st.markdown(f"**{len(df_show)} empresas**")
     st.markdown("---")
 
-    # Encabezados de tabla
-    header_cols = st.columns([2.5, 1, 1.5, 1, 1, 1, 1, 1.5, 2, 3])
-    headers = ["Empresa", "Ticker", "Sector", "Market Cap", "Precio", "Score\nFund.", "Score\nTotal", "Métricas", "Rango 52s", "Categoría"]
+    # --- Encabezados ---
+    # Logo|Empresa | País | Sector | Mkt Cap | Precio | Fair Value | DY | Rango 52s | Categoría
+    header_cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 0.9, 1.8, 2.8])
+    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Precio", "Fair Value", "DY", "Rango 52s", "Categoría"]
     for col, h in zip(header_cols, headers):
         col.markdown(f"**{h}**")
 
     st.markdown("---")
 
-    # Filas
+    # --- Filas ---
     for _, row in df_show.iterrows():
-        cols = st.columns([2.5, 1, 1.5, 1, 1, 1, 1, 1.5, 2, 3])
+        cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 0.9, 1.8, 2.8])
 
-        nombre = row.get("nombre") or row.get("ticker", "—")
-        cols[0].markdown(f"**{nombre}**")
-        cols[1].markdown(row.get("ticker", "—"))
+        ticker = row.get("ticker", "—")
+        nombre = row.get("nombre") or ticker
+
+        # Columna 0: Logo + Empresa
+        logo_url = get_logo_url(ticker)
+        cols[0].markdown(
+            f'<div style="display:flex;align-items:center;gap:8px;">'
+            f'<img src="{logo_url}" width="22" height="22" '
+            f'style="border-radius:4px;object-fit:contain;" '
+            f'onerror="this.style.display=\'none\'">'
+            f'<div><span style="font-weight:600;font-size:14px">{nombre}</span>'
+            f'<br><span style="font-size:11px;color:#57606a">{ticker}</span></div>'
+            f'</div>',
+            unsafe_allow_html=True,
+        )
+
+        # País
+        cols[1].markdown(row.get("pais") or "—")
+
+        # Sector
         cols[2].markdown(row.get("sector", "—"))
+
+        # Market Cap
         cols[3].markdown(format_market_cap(row.get("market_cap")))
-        cols[4].markdown(f"${format_metric(row.get('precio_actual'), 2)}")
 
-        # Score fundamental
-        sf = row.get("score_fundamental")
-        cols[5].markdown(f"**{sf:.0f}**" if sf is not None else "—")
+        # Precio actual
+        precio = row.get("precio_actual")
+        cols[4].markdown(f"${format_metric(precio, 2)}" if precio else "—")
 
-        # Score total (con color)
-        st_val = row.get("score_total")
-        color = row.get("color_hex", "#6e7781")
-        if st_val is not None:
+        # Fair Value con color
+        fv = row.get("fair_value")
+        fv_text, fv_color = format_fair_value(fv, precio)
+        cols[5].markdown(
+            f'<span style="color:{fv_color};font-weight:600;font-size:13px">{fv_text}</span>',
+            unsafe_allow_html=True,
+        )
+
+        # Dividend Yield
+        dy = row.get("dividend_yield_actual")
+        if dy is not None:
+            dy_str = f"{dy*100:.1f}%"
+            dy_color = "#2da44e" if dy >= 0.03 else "#57606a"
             cols[6].markdown(
-                f'<span style="color:{color};font-weight:700;font-size:16px">{st_val:.0f}</span>',
+                f'<span style="color:{dy_color};font-weight:500">{dy_str}</span>',
                 unsafe_allow_html=True,
             )
         else:
             cols[6].markdown("—")
 
-        # Métricas disponibles
-        usadas = row.get("metricas_usadas", 0)
-        total = row.get("metricas_total", 4)
-        cols[7].markdown(f"{usadas}/{total}")
-
         # Barra 52 semanas
-        cols[8].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
+        cols[7].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
 
         # Categoría badge
-        cols[9].markdown(
+        cols[8].markdown(
             render_categoria_badge(
                 row.get("emoji", "⚫"),
                 row.get("categoria", "—"),
@@ -504,6 +731,60 @@ def render_detalle(df: pd.DataFrame):
                 else:
                     st.markdown("Score: —")
 
+    # --- Fair Value desglose ---
+    fv = row.get("fair_value")
+    precio_actual = row.get("precio_actual")
+    fv_detalle = row.get("fair_value_detalle")
+
+    if fv_detalle:
+        if isinstance(fv_detalle, str):
+            import ast
+            try:
+                fv_detalle = ast.literal_eval(fv_detalle)
+            except Exception:
+                fv_detalle = {}
+
+    if fv is not None and fv_detalle:
+        st.markdown("---")
+        st.subheader("🎯 Fair Value por método")
+
+        fv_text, fv_color = format_fair_value(fv, precio_actual)
+        st.markdown(
+            f'**Fair Value estimado:** <span style="color:{fv_color};font-size:20px;font-weight:700">{fv_text}</span>',
+            unsafe_allow_html=True,
+        )
+        st.caption("Promedio ponderado de los métodos disponibles, usando los mismos pesos del sector.")
+
+        METRIC_LABELS_FV = {
+            "ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF",
+            "p_b": "P/Book", "dividend_yield": "Div. Yield",
+            "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO",
+        }
+
+        fv_cols = st.columns(len(fv_detalle))
+        for i, (metrica, datos) in enumerate(fv_detalle.items()):
+            precio_m = datos.get("precio")
+            peso_m = datos.get("peso", 0)
+            label = METRIC_LABELS_FV.get(metrica, metrica.upper())
+
+            with fv_cols[i]:
+                if precio_actual and precio_m:
+                    upside = (precio_m - precio_actual) / precio_actual
+                    up_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
+                    color_m = "#2da44e" if upside > 0.05 else "#cf222e" if upside < -0.05 else "#d4a017"
+                else:
+                    up_str = "—"
+                    color_m = "#6e7781"
+
+                st.markdown(f"**{label}**")
+                st.markdown(f"<small>Peso: {peso_m*100:.0f}%</small>", unsafe_allow_html=True)
+                st.markdown(
+                    f'<span style="font-size:18px;font-weight:700;color:{color_m}">'
+                    f'${precio_m:.2f}</span><br>'
+                    f'<span style="font-size:12px;color:{color_m}">{up_str} vs precio actual</span>',
+                    unsafe_allow_html=True,
+                )
+
     # Aviso trampa de valor si el score es alto
     if row.get("score_total") and row.get("score_total") >= 65:
         st.warning(
@@ -521,41 +802,140 @@ def main():
     # Cargar universo de tickers
     universe = load_custom_tickers()
 
-    # Sidebar
-    sectores_sel, cats_nombres, min_metricas, forzar_refresh = render_sidebar(universe)
-
-    # Gestión de tickers
-    universe = render_ticker_manager(universe)
+    # Cargar datos primero para poder poblar el filtro de países en el sidebar
+    universe_key = str(sorted([t for ts in universe.values() for t in ts]))
 
     # Título principal
     st.title("📊 CEDEAR Screener")
     st.markdown("Detector de empresas potencialmente infravaloradas — datos automáticos vía Yahoo Finance")
 
-    # Calcular universe_key para invalidar cache cuando cambian los tickers
-    universe_key = str(sorted([t for ts in universe.values() for t in ts]))
-
-    # Forzar refresh limpia el cache de Streamlit
-    if forzar_refresh:
-        st.cache_data.clear()
-        st.rerun()
-
-    # Cargar datos
+    # Cargar datos (antes del sidebar para tener lista de países disponible)
     with st.spinner("Cargando datos..."):
         try:
             df = get_scored_data(universe_key)
         except Exception as e:
             st.error(f"Error al cargar datos: {e}")
-            st.stop()
+            df = None
+
+    # Sidebar (recibe df para filtro de países dinámico)
+    filtros = render_sidebar(universe, df)
+
+    # Gestión de tickers
+    universe = render_ticker_manager(universe)
+
+    # Forzar refresh limpia el cache de Streamlit
+    if filtros["forzar_refresh"]:
+        st.cache_data.clear()
+        st.rerun()
 
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
         st.stop()
 
     # Tabla principal
-    render_main_table(df, sectores_sel, cats_nombres, min_metricas)
+    render_main_table(df, filtros)
 
     # Panel de detalle
     render_detalle(df)
+
+    # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
+    render_debug_panel()
+
+
+def render_debug_panel():
+    """
+    Panel de diagnóstico oculto. Muestra qué devolvió yfinance para cada ticker.
+    Para activarlo: agregar ?debug=1 a la URL de Streamlit.
+    Útil para entender por qué ciertos tickers muestran DATOS INSUFICIENTES.
+    """
+    # Verificar si debug mode está activo (via query param o session state)
+    query_params = st.query_params
+    debug_mode = query_params.get("debug", "0") == "1"
+
+    if not debug_mode:
+        return
+
+    st.divider()
+    st.subheader("🔧 Panel de Diagnóstico — yfinance Debug")
+    st.caption(
+        "Este panel muestra exactamente qué devolvió yfinance para cada ticker. "
+        "Útil para entender por qué algunas empresas no tienen medianas calculadas."
+    )
+
+    debug_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "yf_debug_log.json")
+
+    if not os.path.exists(debug_path):
+        st.info("Archivo de diagnóstico no encontrado. Actualizá los datos primero.")
+        return
+
+    try:
+        with open(debug_path, "r", encoding="utf-8") as f:
+            debug_log = json.load(f)
+    except Exception as e:
+        st.error(f"Error leyendo diagnóstico: {e}")
+        return
+
+    st.markdown(f"**{len(debug_log)} tickers registrados** en el último fetch.")
+
+    # Filtro por ticker
+    tickers_disponibles = sorted(debug_log.keys())
+    ticker_sel = st.selectbox("Seleccionar ticker para ver diagnóstico:", tickers_disponibles)
+
+    if ticker_sel and ticker_sel in debug_log:
+        entry = debug_log[ticker_sel]
+
+        col1, col2, col3 = st.columns(3)
+        for col_ui, df_name in zip([col1, col2, col3], ["income", "balance", "cashflow"]):
+            info = entry.get(df_name, {})
+            with col_ui:
+                st.markdown(f"**{df_name}**")
+                status = info.get("status", "unknown")
+                if status == "ok":
+                    st.success(f"✅ OK — {info['shape'][0]} filas × {info['shape'][1]} cols")
+                    st.caption("Columnas: " + ", ".join(str(c) for c in info.get("columns", [])))
+                    with st.expander("Ver filas del índice"):
+                        for row in info.get("index", []):
+                            st.text(row)
+                elif status == "empty":
+                    st.warning("⚠️ DataFrame vacío")
+                else:
+                    st.error("❌ None (no devuelto)")
+
+        st.markdown("**Medianas calculadas:**")
+        medianas = entry.get("medianas_calculadas", {})
+        meds_display = []
+        for k, v in medianas.items():
+            metrica = k.replace("_mediana", "").upper()
+            valor = f"{v:.2f}" if v is not None else "❌ None"
+            meds_display.append({"Métrica": metrica, "Mediana": valor})
+        st.dataframe(pd.DataFrame(meds_display), use_container_width=False, hide_index=True)
+
+        # Mostrar JSON completo
+        with st.expander("Ver JSON completo"):
+            st.json(entry)
+
+    # Resumen de problemas detectados
+    st.markdown("---")
+    st.markdown("**Resumen de tickers con problemas:**")
+    problemas = []
+    for tk, entry in debug_log.items():
+        meds = entry.get("medianas_calculadas", {})
+        faltantes = [k.replace("_mediana", "").upper() for k, v in meds.items() if v is None]
+        inc_status = entry.get("income", {}).get("status", "unknown")
+        bal_status = entry.get("balance", {}).get("status", "unknown")
+        cf_status = entry.get("cashflow", {}).get("status", "unknown")
+        if faltantes:
+            problemas.append({
+                "Ticker": tk,
+                "Income": "✅" if inc_status == "ok" else "❌",
+                "Balance": "✅" if bal_status == "ok" else "❌",
+                "Cashflow": "✅" if cf_status == "ok" else "❌",
+                "Medianas faltantes": ", ".join(faltantes),
+            })
+    if problemas:
+        st.dataframe(pd.DataFrame(problemas), use_container_width=True, hide_index=True)
+    else:
+        st.success("✅ No se detectaron problemas en los tickers analizados.")
 
 
 if __name__ == "__main__":
