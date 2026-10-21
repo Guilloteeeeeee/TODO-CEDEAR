@@ -1,0 +1,524 @@
+"""
+Scraper de Stock Analysis (stockanalysis.com) para obtener ratios históricos.
+
+Se usa como fuente secundaria cuando yfinance no devuelve estados financieros
+completos para calcular las medianas históricas.
+
+Estrategia de extracción (en orden):
+  1. __NEXT_DATA__ JSON embebido en el HTML → más robusto, no depende del DOM
+  2. <table> HTML via BeautifulSoup → fallback si Next.js no embebe datos
+
+Endpoints usados:
+  - /stocks/{ticker}/financials/ratios/?p=annual  → PE Ratio, PB Ratio, Dividend Yield, EV/EBITDA, P/FCF
+  - /stocks/{ticker}/financials/?p=annual         → EPS, FCF, Revenue
+  - /stocks/{ticker}/financials/balance-sheet/?p=annual → Book Value Per Share, Shares
+
+Para ADRs y tickers extranjeros: igual URL base /stocks/{ticker}/
+"""
+
+import re
+import json
+import time
+import logging
+import numpy as np
+from typing import Optional
+import pandas as pd
+
+logger = logging.getLogger(__name__)
+
+# Headers para no ser bloqueado
+HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/120.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Cache-Control": "no-cache",
+}
+
+# Pausa entre requests
+REQUEST_DELAY = 1.0
+
+# Años a buscar
+MAX_YEARS = 5
+
+
+# ---------------------------------------------------------------------------
+# FETCH HTML
+# ---------------------------------------------------------------------------
+
+def _fetch_html(url: str, session=None) -> Optional[str]:
+    """Descarga HTML de una URL."""
+    try:
+        import requests
+        s = session or requests.Session()
+        resp = s.get(url, headers=HEADERS, timeout=15)
+        if resp.status_code == 200:
+            return resp.text
+        logger.debug(f"HTTP {resp.status_code} para {url}")
+    except Exception as e:
+        logger.debug(f"Error fetching {url}: {e}")
+    return None
+
+
+# ---------------------------------------------------------------------------
+# ESTRATEGIA 1: __NEXT_DATA__ JSON (Next.js)
+# ---------------------------------------------------------------------------
+
+def _extract_next_data(html: str) -> Optional[dict]:
+    """
+    Extrae el JSON embebido en <script id="__NEXT_DATA__">.
+    Stock Analysis (Next.js) incluye todos los datos de la tabla en este JSON.
+    """
+    if not html:
+        return None
+    try:
+        m = re.search(
+            r'<script[^>]+id=["\']__NEXT_DATA__["\'][^>]*>(.*?)</script>',
+            html, re.DOTALL
+        )
+        if m:
+            return json.loads(m.group(1))
+    except Exception as e:
+        logger.debug(f"Error parseando __NEXT_DATA__: {e}")
+    return None
+
+
+def _parse_next_data_table(next_data: dict) -> dict:
+    """
+    Extrae datos de tabla desde el __NEXT_DATA__ de Stock Analysis.
+    Retorna dict {row_label: {column_header: value}}.
+
+    La estructura de pageProps varía por página pero generalmente:
+    props.pageProps.data.financialData o similar.
+    """
+    result = {}
+    try:
+        page_props = next_data.get("props", {}).get("pageProps", {})
+
+        # Intentar varias rutas donde SA puede guardar los datos
+        data_candidates = [
+            page_props.get("data"),
+            page_props.get("financialData"),
+            page_props.get("ratioData"),
+            page_props.get("tableData"),
+        ]
+
+        # También buscar en cualquier dict que tenga estructura de tabla
+        def _find_tables(obj, depth=0):
+            if depth > 6 or not isinstance(obj, dict):
+                return []
+            tables = []
+            # Una tabla de SA suele tener "headers" y "rows" o "data"
+            if "headers" in obj and ("rows" in obj or "data" in obj):
+                tables.append(obj)
+            for v in obj.values():
+                if isinstance(v, dict):
+                    tables.extend(_find_tables(v, depth + 1))
+                elif isinstance(v, list):
+                    for item in v:
+                        if isinstance(item, dict):
+                            tables.extend(_find_tables(item, depth + 1))
+            return tables
+
+        tables = _find_tables(page_props)
+
+        for table in tables:
+            headers = table.get("headers", [])
+            rows = table.get("rows", table.get("data", []))
+            if not headers or not rows:
+                continue
+
+            # Extraer texto de headers (pueden ser dicts o strings)
+            def _get_text(cell):
+                if isinstance(cell, str):
+                    return cell
+                if isinstance(cell, dict):
+                    return cell.get("text") or cell.get("value") or cell.get("title") or str(cell)
+                return str(cell)
+
+            header_texts = [_get_text(h) for h in headers]
+
+            for row in rows:
+                cells = row if isinstance(row, list) else row.get("cells", row.get("values", []))
+                if not cells:
+                    continue
+                label = _get_text(cells[0]) if cells else ""
+                if not label:
+                    continue
+                row_data = {}
+                for i, cell in enumerate(cells[1:], 1):
+                    if i < len(header_texts):
+                        val = _parse_number(_get_text(cell))
+                        if val is not None:
+                            row_data[header_texts[i]] = val
+                if row_data:
+                    result[label] = row_data
+
+    except Exception as e:
+        logger.debug(f"Error parseando __NEXT_DATA__ table: {e}")
+
+    return result
+
+
+# ---------------------------------------------------------------------------
+# ESTRATEGIA 2: Parseo HTML de tablas (BeautifulSoup)
+# ---------------------------------------------------------------------------
+
+def _parse_html_table(html: str, section_keywords: list) -> dict:
+    """
+    Parsea tablas HTML de Stock Analysis via BeautifulSoup.
+    Retorna dict {row_label: {column_header: value}}.
+    """
+    try:
+        from bs4 import BeautifulSoup
+    except ImportError:
+        logger.warning("BeautifulSoup no instalado — pip install beautifulsoup4")
+        return {}
+
+    result = {}
+    try:
+        soup = BeautifulSoup(html, "html.parser")
+        tables = soup.find_all("table")
+
+        for table in tables:
+            rows = table.find_all("tr")
+            if not rows:
+                continue
+
+            # Leer encabezados (años)
+            headers = []
+            header_row = rows[0]
+            for th in header_row.find_all(["th", "td"]):
+                text = th.get_text(strip=True)
+                headers.append(text)
+
+            if len(headers) < 2:
+                continue
+
+            # Leer filas de datos
+            table_data = {}
+            for row in rows[1:]:
+                cells = row.find_all(["td", "th"])
+                if not cells:
+                    continue
+                label = cells[0].get_text(strip=True)
+                if not label:
+                    continue
+                row_data = {}
+                for i, cell in enumerate(cells[1:], 1):
+                    if i < len(headers):
+                        val_text = cell.get_text(strip=True)
+                        val = _parse_number(val_text)
+                        if val is not None:
+                            row_data[headers[i]] = val
+                if row_data:
+                    table_data[label] = row_data
+
+            # ¿Esta tabla tiene alguna de las keywords?
+            found = any(
+                any(kw.lower() in label.lower() for kw in section_keywords)
+                for label in table_data.keys()
+            )
+            if found:
+                result.update(table_data)
+
+    except Exception as e:
+        logger.debug(f"Error parseando tabla HTML: {e}")
+
+    return result
+
+
+def _parse_page(html: str, section_keywords: list) -> dict:
+    """
+    Intenta extraer datos de una página SA:
+    1. Primero __NEXT_DATA__ (más confiable)
+    2. Si no encuentra datos relevantes, cae a BeautifulSoup
+    """
+    if not html:
+        return {}
+
+    # Intento 1: __NEXT_DATA__
+    next_data = _extract_next_data(html)
+    if next_data:
+        table = _parse_next_data_table(next_data)
+        if table and any(
+            any(kw.lower() in label.lower() for kw in section_keywords)
+            for label in table.keys()
+        ):
+            return table
+
+    # Intento 2: BeautifulSoup HTML
+    return _parse_html_table(html, section_keywords)
+
+
+# ---------------------------------------------------------------------------
+# UTILIDADES
+# ---------------------------------------------------------------------------
+
+def _parse_number(text: str) -> Optional[float]:
+    """Convierte texto de Stock Analysis a float."""
+    if not text or text in ("-", "—", "N/A", "", "∞", "--"):
+        return None
+    try:
+        clean = text.replace("%", "").replace("$", "").replace(",", "").strip()
+        multiplier = 1.0
+        if clean.endswith("B"):
+            multiplier = 1e9
+            clean = clean[:-1]
+        elif clean.endswith("M"):
+            multiplier = 1e6
+            clean = clean[:-1]
+        elif clean.endswith("K"):
+            multiplier = 1e3
+            clean = clean[:-1]
+        val = float(clean) * multiplier
+        if np.isnan(val) or np.isinf(val):
+            return None
+        return val
+    except (ValueError, TypeError):
+        return None
+
+
+def _find_label(data: dict, *keywords, exclude: list = None) -> Optional[str]:
+    """Busca la primera clave del dict que contenga todos los keywords."""
+    exclude = exclude or []
+    for label in data.keys():
+        label_lower = label.lower()
+        if all(kw.lower() in label_lower for kw in keywords):
+            if not any(ex.lower() in label_lower for ex in exclude):
+                return label
+    return None
+
+
+def _extract_annual_series(row_data: dict, max_years: int = MAX_YEARS) -> list:
+    """
+    Extrae valores anuales de un dict {header: value}.
+    Filtra solo columnas que parecen años (FY20xx, 20xx, TTM).
+    Retorna lista de floats, máximo max_years valores.
+    """
+    year_cols = []
+    for col in row_data.keys():
+        match = re.search(r'(20\d{2})', str(col))
+        if match:
+            year_cols.append((int(match.group(1)), col))
+
+    year_cols.sort(reverse=True)
+
+    values = []
+    for _, col in year_cols[:max_years]:
+        val = row_data.get(col)
+        if val is not None and val > 0:
+            values.append(val)
+
+    return values
+
+
+# ---------------------------------------------------------------------------
+# FETCH PRINCIPAL
+# ---------------------------------------------------------------------------
+
+def fetch_ratios_stockanalysis(ticker: str, session=None) -> dict:
+    """
+    Obtiene ratios históricos de Stock Analysis para un ticker.
+
+    Retorna dict con listas de valores históricos:
+      - per_historia: [float, ...]
+      - p_b_historia: [float, ...]
+      - ev_ebitda_historia: [float, ...]
+      - p_fcf_historia: [float, ...]
+      - dividend_yield_historia: [float, ...]
+    """
+    result = {
+        "per_historia": [],
+        "p_b_historia": [],
+        "ev_ebitda_historia": [],
+        "p_fcf_historia": [],
+        "dividend_yield_historia": [],
+    }
+
+    # Normalizar ticker para URL (BRK-B → brk-b)
+    ticker_url = ticker.lower().replace(".", "-")
+    base = f"https://stockanalysis.com/stocks/{ticker_url}"
+
+    try:
+        import requests
+        session = session or requests.Session()
+
+        # --- 1. Ratios page: PE, PB, EV/EBITDA, P/FCF, Dividend Yield ---
+        time.sleep(REQUEST_DELAY)
+        ratios_html = _fetch_html(f"{base}/financials/ratios/?p=annual", session)
+        ratios_data = _parse_page(
+            ratios_html,
+            ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "Price to"]
+        )
+
+        if ratios_data:
+            pe_label = _find_label(ratios_data, "pe ratio") or _find_label(ratios_data, "price to earnings")
+            if pe_label:
+                result["per_historia"] = _extract_annual_series(ratios_data[pe_label])
+
+            pb_label = _find_label(ratios_data, "pb ratio") or _find_label(ratios_data, "price to book")
+            if pb_label:
+                result["p_b_historia"] = _extract_annual_series(ratios_data[pb_label])
+
+            ev_label = (_find_label(ratios_data, "ev/ebitda") or
+                        _find_label(ratios_data, "ev to ebitda") or
+                        _find_label(ratios_data, "enterprise value"))
+            if ev_label:
+                result["ev_ebitda_historia"] = _extract_annual_series(ratios_data[ev_label])
+
+            pfcf_label = (_find_label(ratios_data, "p/fcf") or
+                          _find_label(ratios_data, "price to free cash flow") or
+                          _find_label(ratios_data, "price/fcf"))
+            if pfcf_label:
+                result["p_fcf_historia"] = _extract_annual_series(ratios_data[pfcf_label])
+
+            dy_label = _find_label(ratios_data, "dividend yield")
+            if dy_label:
+                vals = _extract_annual_series(ratios_data[dy_label])
+                # En SA el DY viene como porcentaje (ej: 2.5 = 2.5%)
+                result["dividend_yield_historia"] = [v / 100.0 for v in vals if 0 < v < 50]
+
+        # --- 2. Income statement: EPS, FCF ---
+        time.sleep(REQUEST_DELAY)
+        income_html = _fetch_html(f"{base}/financials/?p=annual", session)
+        income_data = _parse_page(income_html, ["EPS", "Free Cash Flow", "Revenue", "Net Income"])
+
+        if income_data:
+            fcf_label = (_find_label(income_data, "free cash flow") or
+                         _find_label(income_data, "fcf"))
+            if fcf_label:
+                result["_fcf_historia_raw"] = income_data[fcf_label]
+
+        # --- 3. Balance sheet: Book Value Per Share, Shares ---
+        time.sleep(REQUEST_DELAY)
+        balance_html = _fetch_html(f"{base}/financials/balance-sheet/?p=annual", session)
+        balance_data = _parse_page(balance_html, ["Book Value", "Shares Outstanding", "Equity"])
+
+        if balance_data:
+            bvps_label = (_find_label(balance_data, "book value per share", exclude=["tangible"]) or
+                          _find_label(balance_data, "bvps"))
+            if bvps_label and not result["p_b_historia"]:
+                result["_bvps_historia_raw"] = balance_data[bvps_label]
+
+            shares_label = (_find_label(balance_data, "shares outstanding", exclude=["filing"]) or
+                            _find_label(balance_data, "common shares outstanding") or
+                            _find_label(balance_data, "weighted average shares"))
+            if shares_label:
+                result["_shares_historia_raw"] = balance_data[shares_label]
+
+    except Exception as e:
+        logger.warning(f"Error en Stock Analysis para {ticker}: {e}")
+
+    return result
+
+
+# ---------------------------------------------------------------------------
+# ENRIQUECIMIENTO DEL RESULT
+# ---------------------------------------------------------------------------
+
+def enrich_with_stockanalysis(ticker: str, result: dict, precio_hist: dict) -> None:
+    """
+    Enriquece el result dict con medianas de Stock Analysis cuando yfinance no tiene histórico.
+
+    precio_hist: dict {year: precio_cierre} para calcular ratios de precio.
+    Modifica result in-place, solo llena campos que siguen siendo None.
+    """
+    needs = [
+        ("per_mediana", "per_actual"),
+        ("p_b_mediana", "p_b_actual"),
+        ("ev_ebitda_mediana", "ev_ebitda_actual"),
+        ("p_fcf_mediana", "p_fcf_actual"),
+        ("dividend_yield_mediana", "dividend_yield_actual"),
+    ]
+    if not any(result.get(med) is None and result.get(act) is not None
+               for med, act in needs):
+        return  # Ya tiene todas las medianas
+
+    logger.info(f"Usando Stock Analysis como fallback para {ticker}")
+
+    try:
+        sa = fetch_ratios_stockanalysis(ticker)
+
+        # PER mediana
+        if result.get("per_mediana") is None and sa["per_historia"]:
+            result["per_mediana"] = round(float(np.median(sa["per_historia"])), 2)
+            logger.debug(f"{ticker} SA PER mediana: {result['per_mediana']}")
+
+        # P/B mediana
+        if result.get("p_b_mediana") is None and sa["p_b_historia"]:
+            result["p_b_mediana"] = round(float(np.median(sa["p_b_historia"])), 2)
+            logger.debug(f"{ticker} SA P/B mediana: {result['p_b_mediana']}")
+
+        # EV/EBITDA mediana (SA también tiene este dato en ratios)
+        if result.get("ev_ebitda_mediana") is None and sa["ev_ebitda_historia"]:
+            result["ev_ebitda_mediana"] = round(float(np.median(sa["ev_ebitda_historia"])), 2)
+            logger.debug(f"{ticker} SA EV/EBITDA mediana: {result['ev_ebitda_mediana']}")
+
+        # P/FCF mediana directa (si SA lo tiene en ratios)
+        if result.get("p_fcf_mediana") is None and sa["p_fcf_historia"]:
+            result["p_fcf_mediana"] = round(float(np.median(sa["p_fcf_historia"])), 2)
+            logger.debug(f"{ticker} SA P/FCF mediana: {result['p_fcf_mediana']}")
+
+        # Dividend Yield mediana
+        if result.get("dividend_yield_mediana") is None and sa["dividend_yield_historia"]:
+            result["dividend_yield_mediana"] = round(
+                float(np.median(sa["dividend_yield_historia"])), 4
+            )
+            logger.debug(f"{ticker} SA DY mediana: {result['dividend_yield_mediana']}")
+
+        # P/B desde BVPS + precio histórico (fallback si P/B de ratios no disponible)
+        if result.get("p_b_mediana") is None and "_bvps_historia_raw" in sa and precio_hist:
+            pb_vals = []
+            for col, bvps in sa["_bvps_historia_raw"].items():
+                match = re.search(r'(20\d{2})', str(col))
+                if match and bvps and bvps > 0:
+                    year = int(match.group(1))
+                    precio = precio_hist.get(year)
+                    if precio and precio > 0:
+                        val = precio / bvps
+                        if 0 < val < 100:
+                            pb_vals.append(val)
+            if pb_vals:
+                result["p_b_mediana"] = round(float(np.median(pb_vals)), 2)
+
+        # P/FCF desde FCF + shares + precio histórico (fallback)
+        if result.get("p_fcf_mediana") is None and "_fcf_historia_raw" in sa and precio_hist:
+            pfcf_vals = []
+            shares_raw = sa.get("_shares_historia_raw", {})
+            for col, fcf in sa["_fcf_historia_raw"].items():
+                match = re.search(r'(20\d{2})', str(col))
+                if not match or fcf is None or fcf <= 0:
+                    continue
+                year = int(match.group(1))
+                precio = precio_hist.get(year)
+                if not precio or precio <= 0:
+                    continue
+                # Buscar shares del mismo año
+                shares = None
+                for scol, sv in shares_raw.items():
+                    smatch = re.search(r'(20\d{2})', str(scol))
+                    if smatch and int(smatch.group(1)) == year and sv and sv > 0:
+                        shares = sv
+                        break
+                if shares is None:
+                    # Fallback: calcular shares desde market_cap / precio_actual
+                    mktcap = result.get("market_cap")
+                    p_act = result.get("precio_actual")
+                    if mktcap and p_act and p_act > 0:
+                        shares = mktcap / p_act
+                if shares and shares > 0:
+                    fcf_per_share = fcf / shares
+                    if fcf_per_share > 0:
+                        val = precio / fcf_per_share
+                        if 0 < val < 1000:
+                            pfcf_vals.append(val)
+            if pfcf_vals:
+                result["p_fcf_mediana"] = round(float(np.median(pfcf_vals)), 2)
+
+    except Exception as e:
+        logger.warning(f"Error enriqueciendo con Stock Analysis para {ticker}: {e}")

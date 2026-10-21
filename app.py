@@ -6,6 +6,8 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
+APP_VERSION = "1.2"
+
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -281,6 +283,7 @@ def render_sidebar(universe: dict, df: pd.DataFrame = None) -> dict:
     Renderiza el sidebar y retorna dict con todos los filtros activos.
     """
     st.sidebar.title("📊 CEDEAR Screener")
+    st.sidebar.caption(f"v{APP_VERSION}")
     st.sidebar.markdown("---")
 
     # Filtro por sector
@@ -806,8 +809,12 @@ def main():
     universe_key = str(sorted([t for ts in universe.values() for t in ts]))
 
     # Título principal
-    st.title("📊 CEDEAR Screener")
-    st.markdown("Detector de empresas potencialmente infravaloradas — datos automáticos vía Yahoo Finance")
+    col_title, col_ver = st.columns([6, 1])
+    with col_title:
+        st.title("📊 CEDEAR Screener")
+        st.markdown("Detector de empresas potencialmente infravaloradas — datos automáticos vía Yahoo Finance")
+    with col_ver:
+        st.markdown(f"<br><span style='color:#888;font-size:0.85em'>v{APP_VERSION}</span>", unsafe_allow_html=True)
 
     # Cargar datos (antes del sidebar para tener lista de países disponible)
     with st.spinner("Cargando datos..."):
