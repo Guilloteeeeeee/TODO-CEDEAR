@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.9"
+APP_VERSION = "1.2.10"
 
 import streamlit as st
 import pandas as pd
@@ -613,6 +613,10 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     elif sort_col == "precio_actual":
         df_show["_sort_v"] = df_show["precio_actual"].fillna(-1 if not sort_asc else 999)
         df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col == "metricas_usadas":
+        # desempate por nombre para que el orden sea estable entre empresas con la misma cantidad
+        df_show["_sort_v"] = pd.to_numeric(df_show["metricas_usadas"], errors="coerce").fillna(-1)
+        df_show = df_show.sort_values(["_sort_v", "nombre"], ascending=[sort_asc, True]).drop(columns=["_sort_v"])
     else:
         df_show["_sort_v"] = df_show["score_total"].fillna(-1)
         df_show = df_show.sort_values("_sort_v", ascending=False).drop(columns=["_sort_v"])
@@ -639,9 +643,10 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         "Div. Yield": "dividend_yield_actual",
         "Rango 52s": "posicion_52s",
         "Categoría": "score_total",
+        "Métricas": "metricas_usadas",
     }
-    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Precio", "Fair Value", "Div. Yield", "Rango 52s", "Categoría"]
-    anchos = [3, 1, 1.5, 1, 1, 1.8, 1.2, 1.8, 2.8]
+    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Precio", "Fair Value", "Div. Yield", "Rango 52s", "Categoría", "Métricas"]
+    anchos = [3, 1, 1.5, 1, 1, 1.8, 1.2, 1.8, 2.8, 1.3]
     if ver_metodos:
         headers = headers + ["Métodos del Fair Value"]
         anchos = anchos + [3.6]
@@ -665,14 +670,15 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
                 st.session_state["sort_asc"] = not current_asc
             else:
                 st.session_state["sort_col"] = sort_key
-                st.session_state["sort_asc"] = False
+                # Métricas: el primer clic ordena de menos a más (para ver primero a las que fallan)
+                st.session_state["sort_asc"] = (sort_key == "metricas_usadas")
             st.rerun()
 
     st.markdown("---")
 
     # --- Filas ---
     for _, row in df_show.iterrows():
-        cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 0.9, 1.8, 2.8] + ([3.6] if ver_metodos else []))
+        cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 0.9, 1.8, 2.8, 1.3] + ([3.6] if ver_metodos else []))
 
         ticker = row.get("ticker", "—")
         nombre = row.get("nombre") or ticker
@@ -742,29 +748,32 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         # Barra 52 semanas
         cols[7].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
 
-        # Categoría badge + cantidad de métricas usadas en el score (ej: 4/4)
-        usadas, total = row.get("metricas_usadas"), row.get("metricas_total")
-        if _num_valido(usadas) and _num_valido(total) and total > 0:
-            color_n = "#57606a" if usadas >= total else "#bf8700" if usadas >= 3 else "#cf222e"
-            metricas_html = (
-                f'<br><span style="font-size:11px;color:{color_n}" '
-                f'title="Métricas del sector que tuvieron dato actual e histórico para calcular el score">'
-                f'📐 {int(usadas)}/{int(total)} métricas</span>'
-            )
-        else:
-            metricas_html = ""
+        # Categoría badge
         cols[8].markdown(
             render_categoria_badge(
                 row.get("emoji", "⚫"),
                 row.get("categoria", "—"),
                 row.get("color_hex", "#6e7781"),
-            ) + metricas_html,
+            ),
             unsafe_allow_html=True,
         )
 
+        # Métricas usadas en el score (ej: 4/4) — columna propia y ordenable
+        usadas, total = row.get("metricas_usadas"), row.get("metricas_total")
+        if _num_valido(usadas) and _num_valido(total) and total > 0:
+            color_n = "#57606a" if usadas >= total else "#bf8700" if usadas >= 3 else "#cf222e"
+            cols[9].markdown(
+                f'<span style="font-size:14px;font-weight:700;color:{color_n}" '
+                f'title="Métricas del sector que tuvieron dato actual e histórico para calcular el score">'
+                f'{int(usadas)}/{int(total)}</span>',
+                unsafe_allow_html=True,
+            )
+        else:
+            cols[9].markdown("—")
+
         # Vista de revisión: métodos usados en el Fair Value
         if ver_metodos:
-            cols[9].markdown(_metodos_fv_html(row), unsafe_allow_html=True)
+            cols[10].markdown(_metodos_fv_html(row), unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------
