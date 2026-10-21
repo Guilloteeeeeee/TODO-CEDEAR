@@ -19,7 +19,7 @@ import yfinance as yf
 from data import moneda
 from data.fetcher import fetch_ticker_data
 
-TICKERS_DEFECTO = ["VALE", "PBR", "ITUB", "TSM", "ASML", "SAP", "TM", "SONY", "BABA", "HDB", "MUFG", "DEO", "NVO", "BP"]
+TICKERS_DEFECTO = ["VALE", "PBR", "ITUB", "TSM", "ASML", "SAP", "TM", "SONY", "BABA", "HDB", "MUFG", "DEO", "NVO", "BP", "BRK-B"]
 
 
 def _fmt(x, d=2):
