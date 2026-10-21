@@ -63,8 +63,11 @@ def save_custom_tickers(universe: dict):
         json.dump(universe, f, indent=2)
 
 
-def load_cache() -> tuple[pd.DataFrame | None, datetime | None]:
-    """Carga datos del cache si existen y no están vencidos."""
+def load_cache(ignorar_ttl: bool = False) -> tuple[pd.DataFrame | None, datetime | None]:
+    """
+    Carga datos del cache.
+    Si ignorar_ttl=True, devuelve el cache aunque esté vencido (fallback cuando yfinance falla).
+    """
     if not os.path.exists(CACHE_FILE):
         return None, None
     try:
@@ -72,7 +75,7 @@ def load_cache() -> tuple[pd.DataFrame | None, datetime | None]:
             cache = json.load(f)
         ts = datetime.fromisoformat(cache["timestamp"])
         horas_pasadas = (datetime.now() - ts).total_seconds() / 3600
-        if horas_pasadas > CACHE_TTL_HORAS:
+        if horas_pasadas > CACHE_TTL_HORAS and not ignorar_ttl:
             return None, ts
         df = pd.DataFrame(cache["data"])
         return df, ts
@@ -96,34 +99,48 @@ def save_cache(df: pd.DataFrame):
 # ---------------------------------------------------------------------------
 
 @st.cache_data(ttl=CACHE_TTL_HORAS * 3600, show_spinner=False)
-def get_scored_data(universe_key: str) -> pd.DataFrame:
+def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
     """
     Descarga datos y calcula scores. Cachea en sesión de Streamlit.
     universe_key fuerza recargar cuando cambia el universo.
+    Retorna (df, fuente) donde fuente es "live", "cache_vigente" o "cache_vencido".
     """
     universe = load_custom_tickers()
     all_tickers = [t for tickers in universe.values() for t in tickers]
 
-    # Mapeo ticker -> sector actualizado con tickers custom
     ticker_to_sector = {
         ticker: sector
         for sector, tickers in universe.items()
         for ticker in tickers
     }
 
-    progress_bar = st.progress(0, text="Descargando datos...")
+    progress_bar = st.progress(0, text="Descargando datos de Yahoo Finance...")
 
-    def progress_cb(i, total, ticker):
-        pct = int((i / total) * 100)
-        progress_bar.progress(pct, text=f"Descargando {ticker} ({i+1}/{total})...")
+    try:
+        def progress_cb(i, total, ticker):
+            pct = int((i / total) * 100)
+            progress_bar.progress(pct, text=f"Descargando {ticker} ({i+1}/{total})...")
 
-    raw_df = fetch_all_tickers(all_tickers, progress_callback=progress_cb)
-    progress_bar.progress(100, text="Calculando scores...")
+        raw_df = fetch_all_tickers(all_tickers, progress_callback=progress_cb)
+        progress_bar.progress(100, text="Calculando scores...")
 
-    scored_df = score_dataframe(raw_df, ticker_to_sector)
-    save_cache(scored_df)
-    progress_bar.empty()
-    return scored_df
+        # Verificar que el fetch trajo datos reales (no todo None)
+        datos_ok = raw_df["precio_actual"].notna().sum() > len(all_tickers) * 0.1
+        if not datos_ok:
+            raise ValueError("yfinance devolvió menos del 10% de datos — posible bloqueo o timeout")
+
+        scored_df = score_dataframe(raw_df, ticker_to_sector)
+        save_cache(scored_df)
+        progress_bar.empty()
+        return scored_df, "live"
+
+    except Exception as e:
+        progress_bar.empty()
+        # Fallback: cache aunque esté vencido
+        df_cache, ts_cache = load_cache(ignorar_ttl=True)
+        if df_cache is not None and not df_cache.empty:
+            return df_cache, f"cache_vencido|{e}|{ts_cache.strftime('%d/%m %H:%M') if ts_cache else '?'}"
+        raise  # Si no hay cache tampoco, propagar el error
 
 
 # ---------------------------------------------------------------------------
@@ -819,10 +836,20 @@ def main():
     # Cargar datos (antes del sidebar para tener lista de países disponible)
     with st.spinner("Cargando datos..."):
         try:
-            df = get_scored_data(universe_key)
+            df, fuente = get_scored_data(universe_key)
+            if fuente.startswith("cache_vencido"):
+                partes = fuente.split("|")
+                error_msg = partes[1] if len(partes) > 1 else "error desconocido"
+                ts_str = partes[2] if len(partes) > 2 else "?"
+                st.warning(
+                    f"⚠️ **Yahoo Finance no disponible** — mostrando datos del caché ({ts_str}). "
+                    f"Motivo: {error_msg}",
+                    icon="⚠️",
+                )
         except Exception as e:
-            st.error(f"Error al cargar datos: {e}")
+            st.error(f"❌ Error al cargar datos y sin caché disponible: {e}")
             df = None
+            fuente = "error"
 
     # Sidebar (recibe df para filtro de países dinámico)
     filtros = render_sidebar(universe, df)
