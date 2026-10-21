@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.11"
+APP_VERSION = "1.2.12"
 
 import streamlit as st
 import pandas as pd
@@ -859,6 +859,8 @@ def render_detalle(df: pd.DataFrame):
             score_m = datos.get("score")
             estado_m = datos.get("estado")
             motivo_m = datos.get("motivo")
+            fuente_m = datos.get("fuente")
+            referencia_m = datos.get("referencia")
 
             label = METRIC_LABELS.get(metrica, metrica.upper())
             suffix = "%" if metrica == "dividend_yield" else ""
@@ -888,6 +890,13 @@ def render_detalle(df: pd.DataFrame):
                     )
                 else:
                     st.markdown("Score: —")
+                if estado_m == "ok" and (fuente_m or referencia_m == "sector"):
+                    partes = []
+                    if fuente_m:
+                        partes.append(f"Fuente: {fuente_m}")
+                    if referencia_m == "sector":
+                        partes.append("comparada con la mediana de su sector (falta su historia propia)")
+                    st.caption(" · ".join(partes))
                 if estado_m == "descartada" and motivo_m:
                     st.caption(f"🚫 No se usa: {motivo_m}. Su peso se reparte entre las otras métricas.")
                 elif estado_m == "sin dato":

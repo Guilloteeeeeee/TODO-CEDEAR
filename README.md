@@ -22,6 +22,14 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
 | Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
 
+### Fuentes de datos y respaldo de sector (v1.2.12)
+
+- **Respaldo de sector:** si a una empresa le falta (o tiene imposible) la mediana histórica propia de una métrica, se compara contra la mediana de su sector (mediana de las medianas de sus pares, mínimo 5). Se ve en el detalle de cada empresa.
+- **PEG:** usa su propia historia (5 años fiscales) cuando viene de Stock Analysis; si no, la mediana del sector. Nunca se compara contra sí mismo.
+- **Fuente de cada métrica:** el detalle muestra si salió de Yahoo, de Stock Analysis o de la mediana del sector.
+- **Stock Analysis:** se elige en `config/ajustes.py` (`STOCK_ANALYSIS_MODO`): `"apagado"`, `"respaldo"` (por defecto, solo completa lo que Yahoo deja vacío) o `"principal"` (valor actual y 5 años de historia de la misma página, Yahoo queda de respaldo). Ojo: los términos de uso de Stock Analysis piden uso personal y manual, sin scripts, salvo rastreadores que respeten su `robots.txt`; el modo `"principal"` aumenta ese uso. Para probarlo: `probar_stockanalysis.bat`.
+- **REITs:** hoy P/FFO y P/AFFO se aproximan con el PER (no hay fuente en Yahoo). Stock Analysis sí trae Price/FFO y Price/AFFO reales (modo `"principal"`).
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.
@@ -72,10 +80,12 @@ cedear-screener/
 ├── app.py                  # App Streamlit principal
 ├── requirements.txt
 ├── config/
-│   └── sectors.py          # Sectores, métricas, pesos y universo de tickers
+│   ├── sectors.py          # Sectores, métricas, pesos y universo de tickers
+│   └── ajustes.py          # Interruptor de Stock Analysis (apagado / respaldo / principal)
 ├── data/
 │   ├── fetcher.py          # Descarga de datos (Yahoo Finance)
 │   ├── moneda.py           # Control de moneda y acciones por ADR (empresas de fuera de EEUU)
+│   ├── stockanalysis.py    # Ratios de Stock Analysis (respaldo o fuente principal)
 │   ├── historial/          # Copias con fecha del cache (se crean con generar_cache)
 │   └── tickers_custom.json # Universo personalizado (se genera al editar)
 └── scoring/

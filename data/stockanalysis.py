@@ -522,3 +522,125 @@ def enrich_with_stockanalysis(ticker: str, result: dict, precio_hist: dict) -> N
 
     except Exception as e:
         logger.warning(f"Error enriqueciendo con Stock Analysis para {ticker}: {e}")
+
+
+# ---------------------------------------------------------------------------
+# v1.2.12 - PAGINA DE RATIOS COMPLETA (valor actual + historia en la MISMA fuente)
+# ---------------------------------------------------------------------------
+# Una sola pagina (/financials/ratios/) trae, para cada ratio, la columna "Current" y las
+# columnas de los ultimos 5 anios fiscales ("FY 2025", ...). Con eso se arma tanto el valor
+# actual como la mediana historica sin mezclar fuentes.
+
+SA_ETIQUETAS = {
+    # metrica: (palabras que debe tener la etiqueta, palabras que NO debe tener)
+    "per":            (["pe ratio"], ["forward"]),
+    "p_b":            (["pb ratio"], []),
+    "ev_ebitda":      (["ev/ebitda"], []),
+    "p_fcf":          (["p/fcf"], []),
+    "peg":            (["peg ratio"], []),
+    "p_ffo":          (["price/ffo"], []),
+    "p_affo":         (["price/affo"], []),
+    "dividend_yield": (["dividend yield"], []),
+}
+
+SA_MIN_PUNTOS = 3   # anios fiscales utiles minimos para usar la mediana de Stock Analysis
+
+
+def _es_columna_actual(header) -> bool:
+    h = str(header).strip().lower()
+    return h.startswith("current") or h == "ttm"
+
+
+def _anio_columna(header) -> Optional[int]:
+    m = re.search(r"fy\s*(20\d{2})", str(header).lower())
+    if m:
+        return int(m.group(1))
+    return None
+
+
+def extraer_metricas_ratios(tabla: dict) -> dict:
+    """
+    tabla: {etiqueta_de_fila: {encabezado_de_columna: valor}} (salida de _parse_page).
+    Devuelve {metrica: {"actual": float|None, "historia": [floats > 0, mas reciente primero]}}.
+    Dividend yield se devuelve como decimal (0.0095 = 0,95 %).
+    """
+    salida = {}
+    for metrica, (claves, excluir) in SA_ETIQUETAS.items():
+        etiqueta = _find_label(tabla, *claves, exclude=excluir)
+        if not etiqueta:
+            continue
+        actual, por_anio = None, {}
+        for columna, valor in tabla[etiqueta].items():
+            if _es_columna_actual(columna):
+                actual = valor
+            else:
+                anio = _anio_columna(columna)
+                if anio is not None:
+                    por_anio[anio] = valor
+        anios = sorted(por_anio, reverse=True)[:MAX_YEARS]
+        serie = [por_anio[a] for a in anios if por_anio[a] is not None and por_anio[a] > 0]
+        if actual is not None and actual <= 0:
+            actual = None                      # negativo o cero = sin dato (empresa con perdidas, sin dividendo)
+        if metrica == "dividend_yield":        # SA lo muestra en porcentaje
+            actual = actual / 100.0 if actual is not None and actual < 50 else None
+            serie = [v / 100.0 for v in serie if v < 50]
+        salida[metrica] = {"actual": actual, "historia": serie}
+    return salida
+
+
+def fetch_ratios_completos(ticker: str, session=None) -> dict:
+    """
+    Baja la pagina de ratios anuales de un ticker.
+    Devuelve {"ok": bool, "metricas": {...}, "etiquetas": [...], "columnas": [...], "url": str}.
+    """
+    ticker_url = ticker.lower().replace(".", "-")
+    url = f"https://stockanalysis.com/stocks/{ticker_url}/financials/ratios/?p=annual"
+    resultado = {"ok": False, "metricas": {}, "etiquetas": [], "columnas": [], "url": url}
+    try:
+        import requests
+        session = session or requests.Session()
+        time.sleep(REQUEST_DELAY)
+        html = _fetch_html(url, session)
+        if not html:
+            resultado["error"] = "no se pudo bajar la pagina"
+            return resultado
+        tabla = _parse_page(
+            html, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "FFO"])
+        if not tabla:
+            resultado["error"] = "la pagina se bajo pero no se pudo leer la tabla"
+            return resultado
+        resultado["etiquetas"] = list(tabla)[:80]
+        resultado["columnas"] = sorted({c for fila in tabla.values() for c in fila})
+        resultado["metricas"] = extraer_metricas_ratios(tabla)
+        resultado["ok"] = bool(resultado["metricas"])
+    except Exception as e:
+        logger.warning(f"Error en Stock Analysis (ratios completos) para {ticker}: {e}")
+        resultado["error"] = str(e)
+    return resultado
+
+
+def aplicar_stockanalysis(result: dict, datos_sa: Optional[dict] = None, session=None) -> list:
+    """
+    Pisa los valores de Yahoo por los de Stock Analysis, metrica por metrica, cuando SA trae el
+    valor actual Y al menos SA_MIN_PUNTOS anios de historia (asi actual y mediana salen de la
+    misma fuente). Lo que SA no trae se deja como estaba (Yahoo = respaldo).
+    Devuelve la lista de metricas tomadas de Stock Analysis. Modifica `result`.
+    """
+    if datos_sa is None:
+        datos_sa = fetch_ratios_completos(result["ticker"], session)
+    tomadas = []
+    fuentes = dict(result.get("fuentes") or {})
+    for metrica, d in (datos_sa.get("metricas") or {}).items():
+        actual, serie = d.get("actual"), d.get("historia") or []
+        if actual is None or len(serie) < SA_MIN_PUNTOS:
+            continue
+        dec = 4 if metrica == "dividend_yield" else 2
+        result[f"{metrica}_actual"] = round(float(actual), dec)
+        result[f"{metrica}_mediana"] = round(float(np.median(serie)), dec)
+        fuentes[metrica] = "Stock Analysis"
+        tomadas.append(metrica)
+    # El dividendo anual (para el Fair Value por DY) sale de Yahoo; si falta, se deduce del DY de SA
+    if result.get("annual_dividend") is None and "dividend_yield" in tomadas and result.get("precio_actual"):
+        result["annual_dividend"] = round(result["dividend_yield_actual"] * result["precio_actual"], 4)
+    result["fuentes"] = fuentes
+    return tomadas

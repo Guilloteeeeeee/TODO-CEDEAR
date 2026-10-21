@@ -2,10 +2,15 @@
 Módulo de descarga de datos desde Yahoo Finance (yfinance).
 Obtiene métricas actuales e históricas para calcular medianas.
 
-Estrategia de obtención de medianas (en orden de prioridad):
-  1. Calcular desde estados financieros históricos de yfinance (tk.financials, etc.)
-  2. Si yfinance no tiene el dato → scrapear Stock Analysis (stockanalysis.com)
-  3. Si tampoco → la métrica queda sin mediana (DATOS INSUFICIENTES solo si < 2 métricas)
+Estrategia de obtención de medianas (depende de config.ajustes.STOCK_ANALYSIS_MODO):
+  "respaldo"  (por defecto):
+     1. Calcular desde estados financieros históricos de yfinance (tk.financials, etc.)
+     2. Si yfinance no tiene el dato → Stock Analysis (stockanalysis.com)
+  "principal" (v1.2.12):
+     1. Stock Analysis: valor actual y mediana de 5 años fiscales de la MISMA página
+     2. Lo que Stock Analysis no trae → yfinance (con el control de moneda de data/moneda.py)
+  "apagado": solo yfinance.
+  Lo que no tenga mediana propia válida lo cubre el motor con la mediana del sector.
 """
 
 import yfinance as yf
@@ -18,6 +23,13 @@ import json
 import os
 
 from data import moneda   # v1.2.11: control de moneda / ADR
+
+try:
+    from config.ajustes import STOCK_ANALYSIS_MODO
+except Exception:             # archivo de ajustes ausente: comportamiento de siempre
+    STOCK_ANALYSIS_MODO = "respaldo"
+
+_METRICAS = ("ev_ebitda", "per", "p_fcf", "p_b", "dividend_yield", "peg", "p_ffo", "p_affo")
 
 logger = logging.getLogger(__name__)
 
@@ -188,6 +200,8 @@ def fetch_ticker_data(ticker: str) -> dict:
         "moneda_estados": None,
         "moneda_cotizacion": None,
         "moneda_nota": None,
+        # v1.2.12: de donde salio cada metrica ("Yahoo" / "Stock Analysis" / ...)
+        "fuentes": {},
     }
 
     try:
@@ -269,6 +283,11 @@ def fetch_ticker_data(ticker: str) -> dict:
         # --- Histórico anual para medianas ---
         time.sleep(REQUEST_DELAY)
         _enrich_with_history(tk, result, info)
+
+        # --- v1.2.12: Stock Analysis como fuente principal (si esta activado) ---
+        if STOCK_ANALYSIS_MODO == "principal":
+            _aplicar_stockanalysis_principal(result)
+        _etiquetar_fuentes(result)
 
     except Exception as e:
         result["error"] = str(e)
@@ -434,8 +453,11 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
             if vals:
                 result["dividend_yield_mediana"] = round(float(np.median(vals)), 4)
 
-        # PEG y FFO/AFFO: usar actual como mediana (no tienen fuente histórica confiable)
-        result["peg_mediana"] = result["peg_actual"]
+        # PEG: Yahoo solo da el valor actual. v1.2.12: NO se guarda el actual como "mediana"
+        # (se comparaba contra si mismo y daba siempre 50 puntos); la historia real viene de
+        # Stock Analysis y, si no esta, el motor usa la mediana del sector.
+        result["peg_mediana"] = None
+        # FFO/AFFO: aproximados con el PER mientras no haya fuente real (Stock Analysis si la tiene)
         result["p_ffo_mediana"] = result["per_mediana"]
         result["p_affo_mediana"] = result["per_mediana"]
 
@@ -445,8 +467,41 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
     # Guardar diagnóstico (qué devolvió yfinance exactamente)
     _log_yf_debug(result["ticker"], income, balance, cashflow, result)
 
-    # --- Fallback 2: Stock Analysis para métricas que siguen sin mediana ---
-    _enrich_with_stockanalysis_fallback(result, precio_hist)
+    # --- Fallback 2: Stock Analysis para métricas que siguen sin mediana (modo "respaldo") ---
+    if STOCK_ANALYSIS_MODO == "respaldo":
+        antes = {m: result.get(f"{m}_mediana") for m in _METRICAS}
+        _enrich_with_stockanalysis_fallback(result, precio_hist)
+        completadas = [m for m in _METRICAS if antes[m] is None and result.get(f"{m}_mediana") is not None]
+        if completadas:
+            fuentes = dict(result.get("fuentes") or {})
+            for m in completadas:
+                fuentes[m] = "Yahoo + Stock Analysis (mediana)"
+            result["fuentes"] = fuentes
+
+
+def _aplicar_stockanalysis_principal(result: dict) -> None:
+    """Modo "principal": pisa las metricas con las de Stock Analysis (actual + historia, misma fuente)."""
+    try:
+        from data.stockanalysis import aplicar_stockanalysis
+        tomadas = aplicar_stockanalysis(result)
+        if not tomadas:
+            logger.info(f"{result['ticker']}: Stock Analysis no aporto metricas, se queda con Yahoo")
+    except ImportError:
+        logger.debug("stockanalysis.py no disponible")
+    except Exception as e:
+        logger.debug(f"Error en Stock Analysis (principal) para {result['ticker']}: {e}")
+
+
+def _etiquetar_fuentes(result: dict) -> None:
+    """Marca de donde sale cada metrica que tiene valor actual y mediana y todavia no tiene etiqueta."""
+    fuentes = dict(result.get("fuentes") or {})
+    for m in _METRICAS:
+        if m in fuentes:
+            continue
+        if result.get(f"{m}_actual") is None or result.get(f"{m}_mediana") is None:
+            continue
+        fuentes[m] = "Yahoo (aprox. con PER)" if m in ("p_ffo", "p_affo") else "Yahoo"
+    result["fuentes"] = fuentes
 
 
 def _enrich_with_stockanalysis_fallback(result: dict, precio_hist: dict) -> None:

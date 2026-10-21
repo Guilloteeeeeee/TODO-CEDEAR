@@ -1,0 +1,6 @@
+@echo off
+echo Instalando dependencias...
+pip install yfinance pandas numpy requests beautifulsoup4 --quiet
+echo.
+echo Probando Stock Analysis (una pagina por empresa)...
+python probar_stockanalysis.py

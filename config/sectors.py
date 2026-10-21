@@ -178,8 +178,10 @@ RANGOS_PLAUSIBLES = {
 FV_RATIO_MIN = 1.0 / 3.0
 FV_RATIO_MAX = 3.0
 
-# Cantidad minima de empresas con PEG en un sector para usar la mediana del sector como referencia.
-PEG_MIN_EMPRESAS_SECTOR = 5
+# Cantidad minima de empresas de un sector con dato propio valido para usar la mediana del sector
+# como respaldo cuando a una empresa le falta (o tiene imposible) su mediana historica.
+SECTOR_MIN_EMPRESAS = 5
+PEG_MIN_EMPRESAS_SECTOR = SECTOR_MIN_EMPRESAS   # nombre anterior (v1.2.11)
 
 
 def motivo_descarte(metrica, actual, mediana):

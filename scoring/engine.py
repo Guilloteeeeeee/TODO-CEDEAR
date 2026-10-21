@@ -18,6 +18,13 @@ v1.2.11 — reglas de datos:
   - Alcanza con 1 métrica fundamental; si no hay ninguna, la categoría sale del rango de 52 semanas.
   - El PEG se compara contra la mediana de su sector (antes se comparaba contra sí mismo).
 
+v1.2.12 — respaldo de sector:
+  - Si a una empresa le falta (o tiene imposible) la mediana histórica propia de una métrica,
+    se usa la mediana de su sector (mediana de las medianas propias de sus pares, mínimo 5).
+  - El PEG usa su propia historia cuando viene de Stock Analysis; si no, la mediana del sector.
+  - Las extranjeras viejas del caché (sin 'fuentes') no usan respaldo, salvo el PEG, porque su
+    valor actual también puede estar roto hasta que se actualicen.
+
 Categorías de color:
   🟢 VERDE OSCURO  — Podría estar infravalorada       (score >= 70)
   🟩 VERDE CLARO   — Tendencia a infravalorada        (score >= 58)
@@ -32,7 +39,7 @@ import pandas as pd
 from typing import Optional
 from config.sectors import (
     SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR,
-    motivo_descarte, PEG_MIN_EMPRESAS_SECTOR,
+    motivo_descarte, SECTOR_MIN_EMPRESAS,
 )
 
 
@@ -270,31 +277,114 @@ def calcular_score(row: dict, sector: str) -> dict:
 # PROCESAR DATAFRAME COMPLETO
 # ---------------------------------------------------------------------------
 
-def peg_mediana_por_sector(df: pd.DataFrame, ticker_to_sector: dict = None,
-                           referencia: Optional[pd.DataFrame] = None) -> dict:
+def _num_ok(v) -> bool:
+    return v is not None and not pd.isna(v)
+
+
+def _fuentes_de(row) -> dict:
+    f = row.get("fuentes") if hasattr(row, "get") else None
+    return f if isinstance(f, dict) else {}
+
+
+def _mediana_propia_valida(row, metrica: str) -> Optional[float]:
     """
-    Mediana del PEG de cada sector que usa PEG (hoy Tecnología y Comunicación), calculada con
-    las empresas del universo. El PEG no tiene historia confiable: en vez de compararlo contra
-    sí mismo (siempre daría 50 puntos), se compara contra sus pares del sector.
-    `referencia` permite sumar empresas que no están en `df` (ej.: al actualizar un solo ticker).
+    Mediana historica PROPIA de la empresa si es utilizable; None si falta o es imposible.
+    El PEG solo cuenta como propio si viene con historia real (Stock Analysis): en versiones
+    anteriores se guardaba el PEG actual (o la mediana del sector) en ese campo.
+    """
+    med = row.get(f"{metrica}_mediana")
+    if not _num_ok(med) or med <= 0:
+        return None
+    if motivo_descarte(metrica, None, med):
+        return None
+    if metrica == "peg" and _fuentes_de(row).get("peg") != "Stock Analysis":
+        return None
+    return float(med)
+
+
+def _actual_valido(row, metrica: str) -> bool:
+    a = row.get(f"{metrica}_actual")
+    return _num_ok(a) and a > 0 and not motivo_descarte(metrica, a, None)
+
+
+def _apto_respaldo_sector(row) -> bool:
+    """
+    El respaldo de sector se aplica cuando el valor ACTUAL tambien es confiable:
+    filas bajadas con la version nueva (traen 'fuentes') o empresas de EEUU. Las extranjeras
+    viejas del cache pueden tener el valor actual roto (moneda / ADR) hasta que se actualicen.
+    """
+    if _fuentes_de(row):
+        return True
+    pais = row.get("pais")
+    if not _num_ok(pais):
+        return True
+    return str(pais) in ("United States", "USA", "US")
+
+
+def referencias_sector(df: pd.DataFrame, ticker_to_sector: dict = None,
+                       referencia: Optional[pd.DataFrame] = None) -> dict:
+    """
+    {sector: {metrica: valor}}: lo que cuestan "normalmente" las empresas del sector, calculado
+    como la mediana de las medianas historicas PROPIAS validas de sus pares (minimo
+    SECTOR_MIN_EMPRESAS pares). Para el PEG, si no hay suficientes medianas propias se usa la
+    mediana de los PEG actuales de los pares.
+    `referencia` suma empresas que no estan en `df` (ej.: al actualizar un solo ticker).
     """
     if ticker_to_sector is None:
         ticker_to_sector = TICKER_TO_SECTOR
     base = df if referencia is None else pd.concat(
         [df, referencia[~referencia["ticker"].isin(df["ticker"])]], ignore_index=True)
-    valores: dict = {}
+    propias: dict = {}
+    actuales_peg: dict = {}
     for _, r in base.iterrows():
         sector = ticker_to_sector.get(r.get("ticker", ""), "")
-        if "peg" not in SECTOR_CONFIG.get(sector, {}).get("metrics", {}):
+        cfg = SECTOR_CONFIG.get(sector, {}).get("metrics", {})
+        for m in cfg:
+            v = _mediana_propia_valida(r, m)
+            if v is not None:
+                propias.setdefault((sector, m), []).append(v)
+            if m == "peg" and _num_ok(r.get("peg_actual")) and r["peg_actual"] > 0:
+                actuales_peg.setdefault(sector, []).append(float(r["peg_actual"]))
+    refs: dict = {}
+    for (sector, m), vals in propias.items():
+        if len(vals) >= SECTOR_MIN_EMPRESAS:
+            refs.setdefault(sector, {})[m] = round(float(np.median(vals)), 4)
+    for sector, vals in actuales_peg.items():
+        if "peg" not in refs.get(sector, {}) and len(vals) >= SECTOR_MIN_EMPRESAS:
+            refs.setdefault(sector, {})["peg"] = round(float(np.median(vals)), 4)
+    return refs
+
+
+def peg_mediana_por_sector(df: pd.DataFrame, ticker_to_sector: dict = None,
+                           referencia: Optional[pd.DataFrame] = None) -> dict:
+    """Mediana de referencia del PEG por sector (compatibilidad con v1.2.11)."""
+    return {sec: m["peg"] for sec, m in referencias_sector(df, ticker_to_sector, referencia).items()
+            if "peg" in m}
+
+
+def aplicar_respaldo_sector(datos: dict, sector: str, refs: dict) -> dict:
+    """
+    Si a una empresa le falta (o tiene imposible) la mediana historica propia de una metrica
+    de su sector, y su valor actual es creible, usa la mediana del sector.
+    Modifica `datos` (una copia de trabajo) y devuelve {metrica: valor_usado}.
+    """
+    usados: dict = {}
+    if sector not in SECTOR_CONFIG:
+        return usados
+    apto = _apto_respaldo_sector(datos)
+    for m in SECTOR_CONFIG[sector]["metrics"]:
+        # El PEG lo calcula Yahoo/Stock Analysis como cociente de ratios y no se vio roto por moneda
+        # o ADR: se permite siempre. Las demas metricas, solo si el valor actual tambien es confiable.
+        if not apto and m != "peg":
             continue
-        peg = r.get("peg_actual")
-        if peg is not None and not pd.isna(peg) and peg > 0:
-            valores.setdefault(sector, []).append(float(peg))
-    return {
-        sector: round(float(np.median(v)), 3)
-        for sector, v in valores.items()
-        if len(v) >= PEG_MIN_EMPRESAS_SECTOR
-    }
+        if _mediana_propia_valida(datos, m) is not None or not _actual_valido(datos, m):
+            continue
+        ref = refs.get(sector, {}).get(m)
+        if ref is None:
+            continue
+        datos[f"{m}_mediana"] = ref
+        usados[m] = ref
+    return usados
 
 
 def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
@@ -303,27 +393,35 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
     Aplica el scoring a todo el DataFrame de tickers.
     Agrega columnas: score_fundamental, score_tecnico, score_total,
                      categoria, color_hex, emoji, metricas_usadas, metricas_total,
-                     fair_value, fair_value_detalle, fair_value_metodos.
+                     fair_value, fair_value_detalle, fair_value_metodos,
+                     respaldo_sector.
 
-    v1.2.11: el PEG se compara contra la mediana de su sector (ver peg_mediana_por_sector).
+    v1.2.12: si la mediana propia de una metrica falta o es imposible, se compara contra la
+    mediana de su sector (ver referencias_sector). Los datos originales de la fila no se pisan:
+    el valor usado queda en `detalle[metrica]` y en `respaldo_sector`.
     """
     from data.fetcher import calc_fair_value
 
     if ticker_to_sector is None:
         ticker_to_sector = TICKER_TO_SECTOR
 
-    peg_sector = peg_mediana_por_sector(df, ticker_to_sector, referencia)
+    refs = referencias_sector(df, ticker_to_sector, referencia)
 
     rows = []
     for _, row in df.iterrows():
         ticker = row.get("ticker", "")
         sector = ticker_to_sector.get(ticker, "")
         datos = row.to_dict()
-        if sector in peg_sector:
-            datos["peg_mediana"] = peg_sector[sector]
-        resultado = calcular_score(datos, sector)
-        fv_resultado = calc_fair_value(datos, sector)
-        rows.append({**datos, **resultado, **fv_resultado, "sector": sector})
+        calc = dict(datos)
+        usados = aplicar_respaldo_sector(calc, sector, refs)
+        resultado = calcular_score(calc, sector)
+        fv_resultado = calc_fair_value(calc, sector)
+        fuentes = _fuentes_de(row)
+        for m, d in resultado["detalle"].items():
+            d["fuente"] = fuentes.get(m)
+            d["referencia"] = "sector" if m in usados else "propia"
+        rows.append({**datos, **resultado, **fv_resultado, "sector": sector,
+                     "respaldo_sector": usados})
 
     return pd.DataFrame(rows)
 
