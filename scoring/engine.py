@@ -64,7 +64,11 @@ def _score_metrica(actual: Optional[float], mediana: Optional[float],
     Para dividend_yield:
       - Mayor actual que mediana = más rendimiento = score alto (lógica inversa)
     """
+    # None o NaN = métrica faltante (pandas convierte None en NaN dentro de un DataFrame;
+    # un NaN que se cuela contamina toda la suma ponderada y deja la empresa en gris)
     if actual is None or mediana is None:
+        return None
+    if pd.isna(actual) or pd.isna(mediana):
         return None
     if mediana <= 0 or actual < 0:
         return None
@@ -98,7 +102,7 @@ def _score_tecnico(posicion_52s: Optional[float]) -> Optional[float]:
       - 1.0 = precio en el máximo del año → muy cara por precio  → score 0
       - 0.5 = mitad del rango → neutro → score 50
     """
-    if posicion_52s is None:
+    if posicion_52s is None or pd.isna(posicion_52s):
         return None
     # Inversión lineal simple: score = (1 - posicion) * 100
     return round((1.0 - posicion_52s) * 100.0, 1)

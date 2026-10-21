@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.5"
+APP_VERSION = "1.2.6"
 
 import streamlit as st
 import pandas as pd
@@ -203,7 +203,7 @@ def format_metric(val: float | None, decimals: int = 1, suffix: str = "") -> str
 
 def format_market_cap(val: float | None) -> str:
     """Formatea market cap en billones/millones."""
-    if val is None:
+    if val is None or pd.isna(val):
         return "—"
     if val >= 1e12:
         return f"${val/1e12:.1f}T"
@@ -290,7 +290,7 @@ def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]
     Retorna (texto, color) para el Fair Value.
     Muestra el precio y el upside/downside vs precio actual.
     """
-    if fv is None or precio is None or precio <= 0:
+    if fv is None or precio is None or pd.isna(fv) or pd.isna(precio) or precio <= 0:
         return "—", "#6e7781"
     upside = (fv - precio) / precio
     color = "#2da44e" if upside > 0.05 else "#cf222e" if upside < -0.05 else "#d4a017"
@@ -552,7 +552,8 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         )
 
         # País
-        cols[1].markdown(row.get("pais") or "—")
+        pais_txt = row.get("pais")
+        cols[1].markdown(pais_txt if isinstance(pais_txt, str) and pais_txt else "—")
 
         # Sector
         cols[2].markdown(row.get("sector", "—"))
@@ -562,7 +563,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
 
         # Precio actual
         precio = row.get("precio_actual")
-        cols[4].markdown(f"${format_metric(precio, 2)}" if precio else "—")
+        cols[4].markdown(f"${format_metric(precio, 2)}" if (pd.notna(precio) and precio) else "—")
 
         # Fair Value con color
         fv = row.get("fair_value")
@@ -754,7 +755,7 @@ def render_detalle(df: pd.DataFrame):
             label = METRIC_LABELS_FV.get(metrica, metrica.upper())
 
             with fv_cols[i]:
-                if precio_actual and precio_m:
+                if pd.notna(precio_actual) and precio_actual and precio_m:
                     upside = (precio_m - precio_actual) / precio_actual
                     up_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
                     color_m = "#2da44e" if upside > 0.05 else "#cf222e" if upside < -0.05 else "#d4a017"

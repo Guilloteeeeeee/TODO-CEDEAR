@@ -223,14 +223,22 @@ def fetch_ticker_data(ticker: str) -> dict:
         # P/B
         result["p_b_actual"] = _safe_float(info.get("priceToBook"), min_val=0, max_val=200)
 
-        # Dividendo anual (para Fair Value por DY) — base para validar DY
-        annual_div = _safe_float(info.get("dividendRate"), min_val=0, max_val=100)
+        # Dividendo anual (para Fair Value por DY) — base para calcular el DY
+        annual_div = (
+            _safe_float(info.get("dividendRate"), min_val=0, max_val=100)
+            or _safe_float(info.get("trailingAnnualDividendRate"), min_val=0, max_val=100)
+        )
         result["annual_dividend"] = annual_div
 
-        # Dividend Yield — solo válido si la empresa realmente paga dividendo
-        dy_raw = _safe_float(info.get("dividendYield"), min_val=0, max_val=0.5)
-        if dy_raw is not None and dy_raw > 0 and annual_div and annual_div > 0:
-            result["dividend_yield_actual"] = dy_raw
+        # Dividend Yield = dividendo anual / precio (decimal: 0.0128 = 1.28%).
+        # NO se usa info["dividendYield"]: Yahoo cambió sus unidades a porcentaje
+        # (1.4 en vez de 0.014) y el filtro viejo descartaba a casi todos los que pagan.
+        if annual_div and annual_div > 0 and precio and precio > 0:
+            dy_calc = annual_div / precio
+            if 0 < dy_calc <= 0.5:
+                result["dividend_yield_actual"] = round(dy_calc, 4)
+            else:
+                result["dividend_yield_actual"] = None  # valor absurdo → descartado
         else:
             result["dividend_yield_actual"] = None  # no paga dividendo
 
