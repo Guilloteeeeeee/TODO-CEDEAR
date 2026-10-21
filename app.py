@@ -6,7 +6,7 @@ y técnicas descargadas automáticamente desde Yahoo Finance.
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.1"
+APP_VERSION = "1.2.5"
 
 import streamlit as st
 import pandas as pd
@@ -33,7 +33,7 @@ st.set_page_config(
     page_title="CEDEAR Screener",
     page_icon="📊",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
 )
 
 # ---------------------------------------------------------------------------
@@ -299,76 +299,55 @@ def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]
 
 
 # ---------------------------------------------------------------------------
-# SIDEBAR
+# FILTROS INLINE (reemplaza sidebar)
 # ---------------------------------------------------------------------------
 
-def render_sidebar(universe: dict, df: pd.DataFrame = None) -> dict:
+def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     """
-    Renderiza el sidebar y retorna dict con todos los filtros activos.
+    Renderiza los filtros encima de la tabla (sin sidebar) y retorna dict con filtros activos.
     """
-    st.sidebar.title("📊 CEDEAR Screener")
-    st.sidebar.caption(f"v{APP_VERSION}")
-    st.sidebar.markdown("---")
+    leyenda = leyenda_categorias()
 
-    # Filtro por sector
-    st.sidebar.subheader("🏭 Sectores")
+    # --- Fila 1: Sectores + Categorías + País ---
+    col_sec, col_cat, col_pais, col_mkt = st.columns([2, 2, 2, 2])
+
     todos_sectores = list(universe.keys())
-    seleccionar_todos = st.sidebar.checkbox("Todos los sectores", value=True)
-    if seleccionar_todos:
-        sectores_sel = todos_sectores
-    else:
-        sectores_sel = st.sidebar.multiselect(
-            "Elegir sectores",
+    with col_sec:
+        sectores_sel = st.multiselect(
+            "🏭 Sectores",
             todos_sectores,
             default=todos_sectores,
+            placeholder="Todos los sectores",
         )
+        if not sectores_sel:
+            sectores_sel = todos_sectores
 
-    # Filtro por categoría
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("🎯 Categorías")
-    leyenda = leyenda_categorias()
     cats_disponibles = [f"{l['emoji']} {l['nombre']}" for l in leyenda]
-    cats_sel = st.sidebar.multiselect(
-        "Mostrar categorías",
-        cats_disponibles,
-        default=cats_disponibles,
-    )
+    with col_cat:
+        cats_sel = st.multiselect(
+            "🎯 Categorías",
+            cats_disponibles,
+            default=cats_disponibles,
+            placeholder="Todas las categorías",
+        )
+        if not cats_sel:
+            cats_sel = cats_disponibles
     cats_nombres = [c.split(" ", 1)[1] for c in cats_sel]
 
-    # Filtro por país
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("🌎 País")
     paises_disponibles = []
     if df is not None and not df.empty and "pais" in df.columns:
         paises_disponibles = sorted(
             [p for p in df["pais"].dropna().unique().tolist() if p],
             key=lambda x: x.lower()
         )
-    if paises_disponibles:
-        paises_sel = st.sidebar.multiselect(
-            "Filtrar por país",
+    with col_pais:
+        paises_sel = st.multiselect(
+            "🌎 País",
             paises_disponibles,
             default=[],
             placeholder="Todos los países",
         )
-    else:
-        paises_sel = []
 
-    # Filtro por Dividend Yield mínimo
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("💰 Dividend Yield")
-    dy_minimo = st.sidebar.slider(
-        "DY mínimo (%)",
-        min_value=0.0,
-        max_value=10.0,
-        value=0.0,
-        step=0.5,
-        format="%.1f%%",
-    )
-
-    # Filtro por Market Cap mínimo
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("📏 Market Cap")
     mktcap_opciones = {
         "Sin mínimo": 0,
         "≥ $1B": 1e9,
@@ -377,124 +356,56 @@ def render_sidebar(universe: dict, df: pd.DataFrame = None) -> dict:
         "≥ $100B": 100e9,
         "≥ $500B": 500e9,
     }
-    mktcap_label = st.sidebar.selectbox(
-        "Market Cap mínimo",
-        list(mktcap_opciones.keys()),
-        index=0,
-    )
+    with col_mkt:
+        mktcap_label = st.selectbox(
+            "📏 Market Cap mínimo",
+            list(mktcap_opciones.keys()),
+            index=0,
+        )
     mktcap_minimo = mktcap_opciones[mktcap_label]
 
-    # Filtro por cobertura de métricas
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("📐 Calidad de datos")
-    min_metricas = st.sidebar.slider(
-        "Mínimo de métricas disponibles",
-        min_value=1,
-        max_value=4,
-        value=2,
-        help="Empresas con menos métricas disponibles se muestran en gris",
-    )
+    # --- Fila 2: DY + Métricas + Refresh ---
+    col_dy, col_met, col_ref = st.columns([2, 2, 4])
 
-    # Ordenamiento
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("↕️ Ordenar por")
-    sort_opciones = {
-        "Fair Value (upside %)": "fv_upside",
-        "Market Cap": "market_cap",
-        "Dividend Yield": "dividend_yield_actual",
-        "País": "pais",
-        "Categoría (score)": "score_total",
-    }
-    sort_label = st.sidebar.selectbox(
-        "Criterio",
-        list(sort_opciones.keys()),
-        index=0,
-    )
-    sort_col = sort_opciones[sort_label]
-    sort_asc = st.sidebar.checkbox("Orden ascendente", value=False)
-
-    # Refresh
-    st.sidebar.markdown("---")
-    forzar_refresh = st.sidebar.button(
-        "🔄 Actualizar datos",
-        help=f"Los datos se refrescan automáticamente cada {CACHE_TTL_HORAS} horas",
-        use_container_width=True,
-    )
-
-    # Leyenda de colores
-    st.sidebar.markdown("---")
-    st.sidebar.subheader("Leyenda")
-    for item in leyenda:
-        st.sidebar.markdown(
-            f'<span style="color:{item["color"]};font-size:16px">{item["emoji"]}</span> '
-            f'**{item["nombre"]}**  \n'
-            f'<span style="font-size:11px;color:#57606a">{item["rango"]}</span>',
-            unsafe_allow_html=True,
+    with col_dy:
+        dy_minimo = st.slider(
+            "💰 Div. Yield mínimo (%)",
+            min_value=0.0,
+            max_value=10.0,
+            value=0.0,
+            step=0.5,
+            format="%.1f%%",
         )
 
-    # Aviso trampa de valor
-    st.sidebar.markdown("---")
-    st.sidebar.info(
-        "⚠️ **Aviso importante**\n\n"
-        "Este screener es una herramienta de filtrado inicial. "
-        "Una empresa 'potencialmente infravalorada' puede ser una **trampa de valor**. "
-        "Siempre investigá más antes de invertir."
-    )
+    with col_met:
+        min_metricas = st.slider(
+            "📐 Métricas mínimas",
+            min_value=1,
+            max_value=4,
+            value=2,
+            help="Empresas con menos métricas se muestran en gris",
+        )
+
+    with col_ref:
+        st.markdown("<br>", unsafe_allow_html=True)
+        forzar_refresh = st.button(
+            "🔄 Actualizar datos",
+            help=f"Los datos se refrescan automáticamente cada {CACHE_TTL_HORAS} horas",
+        )
+
+    st.markdown("---")
 
     return {
         "sectores": sectores_sel,
         "categorias": cats_nombres,
         "paises": paises_sel,
-        "dy_minimo": dy_minimo / 100.0,  # convertir a fracción
+        "dy_minimo": dy_minimo / 100.0,
         "mktcap_minimo": mktcap_minimo,
         "min_metricas": min_metricas,
-        "sort_col": sort_col,
-        "sort_asc": sort_asc,
+        "sort_col": st.session_state.get("sort_col", "fv_upside"),
+        "sort_asc": st.session_state.get("sort_asc", False),
         "forzar_refresh": forzar_refresh,
     }
-
-
-# ---------------------------------------------------------------------------
-# PANEL DE GESTIÓN DE TICKERS
-# ---------------------------------------------------------------------------
-
-def render_ticker_manager(universe: dict) -> dict | None:
-    """
-    Panel para agregar/quitar tickers. Retorna universo actualizado o None si no cambió.
-    """
-    with st.expander("⚙️ Gestionar tickers del universo", expanded=False):
-        st.markdown("Agregá o quitá tickers por sector. Los cambios actualizan el universo local.")
-
-        col1, col2 = st.columns(2)
-
-        with col1:
-            st.subheader("Agregar ticker")
-            new_sector = st.selectbox("Sector", list(universe.keys()), key="add_sector")
-            new_ticker = st.text_input("Ticker (ej: AAPL, MSFT)", key="add_ticker").upper().strip()
-            if st.button("Agregar", key="btn_add"):
-                if new_ticker and new_ticker not in universe[new_sector]:
-                    universe[new_sector].append(new_ticker)
-                    save_custom_tickers(universe)
-                    st.success(f"{new_ticker} agregado a {new_sector}")
-                    st.rerun()
-                elif new_ticker in universe[new_sector]:
-                    st.warning(f"{new_ticker} ya está en {new_sector}")
-
-        with col2:
-            st.subheader("Quitar ticker")
-            del_sector = st.selectbox("Sector", list(universe.keys()), key="del_sector")
-            del_ticker = st.selectbox(
-                "Ticker a quitar",
-                universe[del_sector],
-                key="del_ticker",
-            )
-            if st.button("Quitar", key="btn_del", type="secondary"):
-                universe[del_sector].remove(del_ticker)
-                save_custom_tickers(universe)
-                st.success(f"{del_ticker} quitado de {del_sector}")
-                st.rerun()
-
-    return universe
 
 
 # ---------------------------------------------------------------------------
@@ -546,11 +457,13 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     df_show["fv_upside"] = df_show.apply(_fv_upside, axis=1)
 
     # --- Ordenamiento ---
-    sort_col = filtros["sort_col"]
-    sort_asc = filtros["sort_asc"]
+    sort_col = st.session_state.get("sort_col", "fv_upside")
+    sort_asc = st.session_state.get("sort_asc", False)
 
-    if sort_col == "score_total":
-        # Gris al final
+    STR_COLS = {"nombre", "pais", "sector"}
+    if sort_col in STR_COLS:
+        df_show = df_show.sort_values(sort_col, ascending=sort_asc, na_position="last")
+    elif sort_col == "score_total":
         df_show["_sort_v"] = df_show["score_total"].fillna(-1)
         df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
     elif sort_col == "fv_upside":
@@ -562,8 +475,12 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     elif sort_col == "dividend_yield_actual":
         df_show["_sort_v"] = df_show["dividend_yield_actual"].fillna(-1 if not sort_asc else 999)
         df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
-    elif sort_col == "pais":
-        df_show = df_show.sort_values("pais", ascending=sort_asc, na_position="last")
+    elif sort_col == "posicion_52s":
+        df_show["_sort_v"] = df_show["posicion_52s"].fillna(-1 if not sort_asc else 999)
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col == "precio_actual":
+        df_show["_sort_v"] = df_show["precio_actual"].fillna(-1 if not sort_asc else 999)
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
     else:
         df_show["_sort_v"] = df_show["score_total"].fillna(-1)
         df_show = df_show.sort_values("_sort_v", ascending=False).drop(columns=["_sort_v"])
@@ -575,12 +492,39 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     st.markdown(f"**{len(df_show)} empresas**")
     st.markdown("---")
 
-    # --- Encabezados ---
-    # Logo|Empresa | País | Sector | Mkt Cap | Precio | Fair Value | DY | Rango 52s | Categoría
-    header_cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 0.9, 1.8, 2.8])
-    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Precio", "Fair Value", "DY", "Rango 52s", "Categoría"]
-    for col, h in zip(header_cols, headers):
-        col.markdown(f"**{h}**")
+    # --- Encabezados con sort clickable ---
+    # Mapeo: nombre visible → columna interna para sort
+    SORT_MAP = {
+        "Empresa": "nombre",
+        "País": "pais",
+        "Sector": "sector",
+        "Mkt Cap": "market_cap",
+        "Precio": "precio_actual",
+        "Fair Value": "fv_upside",
+        "Div. Yield": "dividend_yield_actual",
+        "Rango 52s": "posicion_52s",
+        "Categoría": "score_total",
+    }
+    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Precio", "Fair Value", "Div. Yield", "Rango 52s", "Categoría"]
+    header_cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 1.2, 1.8, 2.8])
+
+    current_sort = st.session_state.get("sort_col", "fv_upside")
+    current_asc = st.session_state.get("sort_asc", False)
+
+    for col_ui, h in zip(header_cols, headers):
+        sort_key = SORT_MAP[h]
+        if sort_key == current_sort:
+            arrow = "↑" if current_asc else "↓"
+            label = f"**{h} {arrow}**"
+        else:
+            label = f"**{h}**"
+        if col_ui.button(label, key=f"sort_btn_{h}", use_container_width=True):
+            if current_sort == sort_key:
+                st.session_state["sort_asc"] = not current_asc
+            else:
+                st.session_state["sort_col"] = sort_key
+                st.session_state["sort_asc"] = False
+            st.rerun()
 
     st.markdown("---")
 
@@ -591,13 +535,16 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         ticker = row.get("ticker", "—")
         nombre = row.get("nombre") or ticker
 
-        # Columna 0: Logo + Empresa
+        # Columna 0: Logo + Empresa (con fallback a iniciales si el logo no carga)
         logo_url = get_logo_url(ticker)
+        inicial = ticker[0] if ticker else "?"
         cols[0].markdown(
             f'<div style="display:flex;align-items:center;gap:8px;">'
+            f'<span id="logo-wrap-{ticker}" style="display:inline-block;width:22px;height:22px;flex-shrink:0;">'
             f'<img src="{logo_url}" width="22" height="22" '
             f'style="border-radius:4px;object-fit:contain;" '
-            f'onerror="this.style.display=\'none\'">'
+            f'onerror="this.parentNode.innerHTML=\'<span style=&quot;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:4px;background:#e1e4e8;font-size:10px;font-weight:700;color:#57606a;&quot;>{inicial}</span>\'">'
+            f'</span>'
             f'<div><span style="font-weight:600;font-size:14px">{nombre}</span>'
             f'<br><span style="font-size:11px;color:#57606a">{ticker}</span></div>'
             f'</div>',
@@ -627,8 +574,14 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
 
         # Dividend Yield
         # dividend_yield_actual viene como decimal desde yfinance (ej: 0.0128 = 1.28%)
+        # None o NaN → no tiene datos; 0 → no paga dividendo → ambos muestran "—"
         dy = row.get("dividend_yield_actual")
-        if dy is not None:
+        dy_valido = (
+            dy is not None
+            and not (isinstance(dy, float) and np.isnan(dy))
+            and dy > 0  # 0.0 = no paga dividendo → "—"
+        )
+        if dy_valido:
             # Si el valor es > 1, ya viene como porcentaje (cache viejo); si < 1, es decimal
             if dy > 1:
                 dy_pct = dy  # ya es porcentaje (ej: 1.28 → "1.3%")
@@ -834,19 +787,17 @@ def render_detalle(df: pd.DataFrame):
 def main():
     # Cargar universo de tickers
     universe = load_custom_tickers()
-
-    # Cargar datos primero para poder poblar el filtro de países en el sidebar
     universe_key = str(sorted([t for ts in universe.values() for t in ts]))
 
     # Título principal
-    col_title, col_ver = st.columns([6, 1])
+    col_title, col_ver = st.columns([8, 1])
     with col_title:
         st.title("📊 CEDEAR Screener")
         st.markdown("Detector de empresas potencialmente infravaloradas — datos automáticos vía Yahoo Finance")
     with col_ver:
         st.markdown(f"<br><span style='color:#888;font-size:0.85em'>v{APP_VERSION}</span>", unsafe_allow_html=True)
 
-    # Cargar datos (antes del sidebar para tener lista de países disponible)
+    # Cargar datos
     with st.spinner("Cargando datos..."):
         try:
             df, fuente = get_scored_data(universe_key)
@@ -867,11 +818,8 @@ def main():
             df = None
             fuente = "error"
 
-    # Sidebar (recibe df para filtro de países dinámico)
-    filtros = render_sidebar(universe, df)
-
-    # Gestión de tickers
-    universe = render_ticker_manager(universe)
+    # Filtros inline (encima de la tabla)
+    filtros = render_filtros_inline(universe, df)
 
     # Forzar refresh limpia el cache de Streamlit
     if filtros["forzar_refresh"]:
@@ -881,6 +829,19 @@ def main():
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
         st.stop()
+
+    # Leyenda compacta
+    leyenda = leyenda_categorias()
+    legend_parts = [
+        f'<span style="color:{item["color"]}">{item["emoji"]}</span> {item["nombre"]}'
+        for item in leyenda
+    ]
+    st.markdown(
+        '<div style="font-size:12px;color:#57606a;margin-bottom:4px">'
+        + "  &nbsp;|&nbsp;  ".join(legend_parts)
+        + '</div>',
+        unsafe_allow_html=True,
+    )
 
     # Tabla principal
     render_main_table(df, filtros)

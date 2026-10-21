@@ -2,15 +2,10 @@
 Módulo de descarga de datos desde Yahoo Finance (yfinance).
 Obtiene métricas actuales e históricas para calcular medianas.
 
-Métricas que descarga por ticker:
-  - EV/EBITDA actual e histórico (últimos 5 años anuales)
-  - P/E Ratio (PER) actual e histórico
-  - P/FCF actual e histórico
-  - P/B actual e histórico
-  - Dividend Yield actual e histórico
-  - PEG actual
-  - P/FFO y P/AFFO (solo REITs — aproximado via P/E ajustado)
-  - Precio actual, máximo y mínimo 52 semanas
+Estrategia de obtención de medianas (en orden de prioridad):
+  1. Calcular desde estados financieros históricos de yfinance (tk.financials, etc.)
+  2. Si yfinance no tiene el dato → scrapear Stock Analysis (stockanalysis.com)
+  3. Si tampoco → la métrica queda sin mediana (DATOS INSUFICIENTES solo si < 2 métricas)
 """
 
 import yfinance as yf
@@ -19,6 +14,8 @@ import numpy as np
 from typing import Optional
 import logging
 import time
+import json
+import os
 
 logger = logging.getLogger(__name__)
 
@@ -28,24 +25,130 @@ HISTORY_YEARS = 5
 # Pausa entre requests para no saturar la API
 REQUEST_DELAY = 0.3  # segundos
 
+# Archivo de diagnóstico — se actualiza con cada fetch completo
+# Útil para debuggear qué devuelve yfinance en producción (Streamlit Cloud)
+_DEBUG_LOG_PATH = os.path.join(os.path.dirname(__file__), "..", "yf_debug_log.json")
 
-def _safe_get(obj, *keys, default=None):
-    """Navega un dict anidado de forma segura."""
-    for key in keys:
-        if obj is None:
-            return default
-        if isinstance(obj, dict):
-            obj = obj.get(key)
-        else:
-            return default
-    return obj if obj is not None else default
+
+def _log_yf_debug(ticker: str, income, balance, cashflow, result: dict) -> None:
+    """
+    Guarda diagnóstico de lo que devolvió yfinance para este ticker.
+    El archivo yf_debug_log.json se acumula con cada fetch (máx. 50 tickers).
+    Para ver el diagnóstico: agregar ?debug=1 a la URL de Streamlit o usar el panel Debug.
+    """
+    try:
+        def _df_info(df, name: str) -> dict:
+            if df is None:
+                return {"status": "None"}
+            if df.empty:
+                return {"status": "empty"}
+            return {
+                "status": "ok",
+                "shape": list(df.shape),
+                "columns": [str(c) for c in df.columns[:6]],
+                "index": list(df.index[:30]),  # primeras 30 filas
+            }
+
+        entry = {
+            "ticker": ticker,
+            "income": _df_info(income, "income"),
+            "balance": _df_info(balance, "balance"),
+            "cashflow": _df_info(cashflow, "cashflow"),
+            "medianas_calculadas": {
+                k: result.get(k)
+                for k in [
+                    "ev_ebitda_mediana", "per_mediana", "p_fcf_mediana",
+                    "p_b_mediana", "dividend_yield_mediana",
+                ]
+            },
+        }
+
+        # Leer log existente
+        log = {}
+        try:
+            if os.path.exists(_DEBUG_LOG_PATH):
+                with open(_DEBUG_LOG_PATH, "r", encoding="utf-8") as f:
+                    log = json.load(f)
+        except Exception:
+            log = {}
+
+        log[ticker] = entry
+
+        # Mantener solo los últimos 50 tickers para no crecer indefinidamente
+        if len(log) > 50:
+            oldest_keys = list(log.keys())[:-50]
+            for k in oldest_keys:
+                del log[k]
+
+        with open(_DEBUG_LOG_PATH, "w", encoding="utf-8") as f:
+            json.dump(log, f, ensure_ascii=False, indent=2, default=str)
+
+    except Exception as e:
+        logger.debug(f"Error escribiendo debug log para {ticker}: {e}")
+
+
+def _safe_float(val, min_val=None, max_val=None) -> Optional[float]:
+    """Convierte a float de forma segura, con filtros de rango opcionales."""
+    try:
+        if val is None:
+            return None
+        f = float(val)
+        if np.isnan(f) or np.isinf(f):
+            return None
+        if min_val is not None and f < min_val:
+            return None
+        if max_val is not None and f > max_val:
+            return None
+        return f
+    except (TypeError, ValueError):
+        return None
+
+
+def _find_row(df: pd.DataFrame, *keywords, exclude=None) -> Optional[str]:
+    """
+    Busca la primera fila del DataFrame cuyo índice contenga TODOS los keywords.
+    Si exclude es una lista, descarta filas que contengan alguna de esas palabras.
+    """
+    if df is None or df.empty:
+        return None
+    exclude = exclude or []
+    for idx in df.index:
+        idx_str = str(idx).lower()
+        if all(kw.lower() in idx_str for kw in keywords):
+            if not any(ex.lower() in idx_str for ex in exclude):
+                return idx
+    return None
+
+
+def _get_col_value(df: pd.DataFrame, row_key: str, col) -> Optional[float]:
+    """Obtiene un valor del DataFrame de forma segura."""
+    try:
+        if row_key is None or df is None or df.empty:
+            return None
+        if row_key not in df.index:
+            return None
+        if col not in df.columns:
+            return None
+        return _safe_float(df.loc[row_key, col])
+    except Exception:
+        return None
+
+
+def _get_annual_price(hist: pd.DataFrame, year: int) -> Optional[float]:
+    """Precio de cierre al final de un año dado."""
+    try:
+        year_data = hist[hist.index.year == year]
+        if not year_data.empty:
+            return _safe_float(year_data["Close"].iloc[-1])
+    except Exception:
+        pass
+    return None
 
 
 def fetch_ticker_data(ticker: str) -> dict:
     """
     Descarga todos los datos necesarios para un ticker.
     Retorna un dict con métricas actuales e históricas.
-    En caso de error, retorna dict con valores None.
     """
     result = {
         "ticker": ticker,
@@ -56,7 +159,7 @@ def fetch_ticker_data(ticker: str) -> dict:
         "precio_actual": None,
         "precio_max_52s": None,
         "precio_min_52s": None,
-        "posicion_52s": None,           # (precio - min) / (max - min), de 0 a 1
+        "posicion_52s": None,
         # Valores actuales
         "ev_ebitda_actual": None,
         "per_actual": None,
@@ -64,9 +167,10 @@ def fetch_ticker_data(ticker: str) -> dict:
         "p_b_actual": None,
         "dividend_yield_actual": None,
         "peg_actual": None,
-        "p_ffo_actual": None,           # REITs
-        "p_affo_actual": None,          # REITs
-        # Medianas históricas (últimos HISTORY_YEARS años)
+        "p_ffo_actual": None,
+        "p_affo_actual": None,
+        "annual_dividend": None,
+        # Medianas históricas
         "ev_ebitda_mediana": None,
         "per_mediana": None,
         "p_fcf_mediana": None,
@@ -82,9 +186,10 @@ def fetch_ticker_data(ticker: str) -> dict:
 
     try:
         tk = yf.Ticker(ticker)
-        info = tk.info
+        info = tk.info or {}
 
-        if not info or info.get("regularMarketPrice") is None:
+        precio = _safe_float(info.get("currentPrice") or info.get("regularMarketPrice"))
+        if precio is None:
             result["error"] = "Sin datos en Yahoo Finance"
             return result
 
@@ -92,46 +197,70 @@ def fetch_ticker_data(ticker: str) -> dict:
         result["nombre"] = info.get("shortName") or info.get("longName") or ticker
         result["pais"] = info.get("country")
         result["sector_yf"] = info.get("sector")
-        result["market_cap"] = info.get("marketCap")
-        result["precio_actual"] = info.get("currentPrice") or info.get("regularMarketPrice")
-        result["precio_max_52s"] = info.get("fiftyTwoWeekHigh")
-        result["precio_min_52s"] = info.get("fiftyTwoWeekLow")
+        result["market_cap"] = _safe_float(info.get("marketCap"))
+        result["precio_actual"] = precio
+        result["precio_max_52s"] = _safe_float(info.get("fiftyTwoWeekHigh"))
+        result["precio_min_52s"] = _safe_float(info.get("fiftyTwoWeekLow"))
 
-        # --- Posición en rango 52 semanas (0 = mínimo, 1 = máximo) ---
+        # --- Posición en rango 52 semanas ---
         p = result["precio_actual"]
         hi = result["precio_max_52s"]
         lo = result["precio_min_52s"]
         if p and hi and lo and hi != lo:
             result["posicion_52s"] = round((p - lo) / (hi - lo), 4)
 
-        # --- Métricas actuales desde info ---
-        result["ev_ebitda_actual"] = info.get("enterpriseToEbitda")
-        result["per_actual"] = info.get("trailingPE") or info.get("forwardPE")
-        result["p_b_actual"] = info.get("priceToBook")
-        result["dividend_yield_actual"] = info.get("dividendYield")
-        result["peg_actual"] = info.get("pegRatio")
+        # --- Métricas actuales desde info (múltiples campos alternativos) ---
 
-        # P/FCF: market cap / free cash flow
-        fcf = info.get("freeCashflow")
+        # EV/EBITDA
+        result["ev_ebitda_actual"] = _safe_float(info.get("enterpriseToEbitda"), min_val=0, max_val=500)
+
+        # PER: trailing primero, luego forward
+        result["per_actual"] = (
+            _safe_float(info.get("trailingPE"), min_val=0, max_val=2000) or
+            _safe_float(info.get("forwardPE"), min_val=0, max_val=2000)
+        )
+
+        # P/B
+        result["p_b_actual"] = _safe_float(info.get("priceToBook"), min_val=0, max_val=200)
+
+        # Dividendo anual (para Fair Value por DY) — base para validar DY
+        annual_div = _safe_float(info.get("dividendRate"), min_val=0, max_val=100)
+        result["annual_dividend"] = annual_div
+
+        # Dividend Yield — solo válido si la empresa realmente paga dividendo
+        dy_raw = _safe_float(info.get("dividendYield"), min_val=0, max_val=0.5)
+        if dy_raw is not None and dy_raw > 0 and annual_div and annual_div > 0:
+            result["dividend_yield_actual"] = dy_raw
+        else:
+            result["dividend_yield_actual"] = None  # no paga dividendo
+
+        # PEG
+        result["peg_actual"] = _safe_float(info.get("pegRatio"), min_val=0, max_val=100)
+
+        # P/FCF desde info
+        fcf = _safe_float(info.get("freeCashflow"))
         mktcap = result["market_cap"]
-        if fcf and mktcap and fcf > 0:
+        if fcf and fcf > 0 and mktcap and mktcap > 0:
             result["p_fcf_actual"] = round(mktcap / fcf, 2)
 
-        # P/FFO y P/AFFO para REITs (aproximación):
-        # yfinance no expone FFO directamente.
-        # Usamos P/E como proxy del P/FFO (suficientemente bueno para screening).
+        # Si P/FCF no está en info, intentar calcularlo de otra forma
+        if result["p_fcf_actual"] is None:
+            pfcf_info = _safe_float(info.get("priceToFreeCashflows"), min_val=0, max_val=2000)
+            result["p_fcf_actual"] = pfcf_info
+
+        # P/FFO y P/AFFO para REITs (proxy via P/E)
         result["p_ffo_actual"] = result["per_actual"]
         result["p_affo_actual"] = result["per_actual"]
 
         # --- Histórico anual para medianas ---
         time.sleep(REQUEST_DELAY)
-        _enrich_with_history(tk, result)
+        _enrich_with_history(tk, result, info)
 
     except Exception as e:
         result["error"] = str(e)
         logger.warning(f"Error fetching {ticker}: {e}")
 
-    # Contar métricas disponibles
+    # Contar métricas disponibles (con valor actual Y mediana)
     metric_keys = [
         "ev_ebitda_actual", "per_actual", "p_fcf_actual", "p_b_actual",
         "dividend_yield_actual", "peg_actual", "p_ffo_actual", "p_affo_actual"
@@ -143,191 +272,316 @@ def fetch_ticker_data(ticker: str) -> dict:
     return result
 
 
-def _enrich_with_history(tk: yf.Ticker, result: dict) -> None:
+def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict) -> None:
     """
-    Agrega medianas históricas al resultado usando los estados financieros anuales.
-    Modifica result in-place.
+    Agrega medianas históricas al resultado.
+
+    Estrategia:
+    1. Intenta calcular medianas desde estados financieros históricos de yfinance.
+    2. Para métricas que siguen sin mediana → intenta Stock Analysis scraping.
+    3. Si tampoco hay → queda None (la métrica no aporta al score).
     """
+    # Precio histórico anual (necesario para algunos cálculos de SA también)
+    precio_hist = {}
     try:
-        # Financials anuales
-        income = tk.financials          # income statement anual
-        balance = tk.balance_sheet      # balance sheet anual
-        cashflow = tk.cashflow          # cash flow anual
-
-        # Precio histórico anual para calcular múltiplos históricos
         hist = tk.history(period=f"{HISTORY_YEARS}y", interval="1mo")
-        if hist.empty:
-            return
+        if not hist.empty:
+            for year in range(hist.index[-1].year - HISTORY_YEARS + 1, hist.index[-1].year + 1):
+                p = _get_annual_price(hist, year)
+                if p:
+                    precio_hist[year] = p
+    except Exception:
+        hist = pd.DataFrame()
 
-        # EV/EBITDA histórico: necesita EBITDA y EV (deuda + market cap - caja)
-        ev_ebitda_list = _calc_ev_ebitda_history(tk, income, balance, hist)
-        if ev_ebitda_list:
-            result["ev_ebitda_mediana"] = round(float(np.median(ev_ebitda_list)), 2)
+    income = balance = cashflow = None
+    try:
+        income = tk.financials
+        balance = tk.balance_sheet
+        cashflow = tk.cashflow
+        shares = (
+            _safe_float(info.get("sharesOutstanding")) or
+            _safe_float(info.get("impliedSharesOutstanding"))
+        )
 
-        # PER histórico: EPS anual vs precio fin de año
-        per_list = _calc_per_history(income, hist)
-        if per_list:
-            result["per_mediana"] = round(float(np.median(per_list)), 2)
+        # --- EV/EBITDA histórico ---
+        if not (income is None or income.empty) and shares and not hist.empty:
+            vals = _calc_ev_ebitda_history(income, balance, hist, shares)
+            if vals:
+                result["ev_ebitda_mediana"] = round(float(np.median(vals)), 2)
 
-        # P/FCF histórico
-        pfcf_list = _calc_pfcf_history(cashflow, balance, hist)
-        if pfcf_list:
-            result["p_fcf_mediana"] = round(float(np.median(pfcf_list)), 2)
+        # --- PER histórico ---
+        if not (income is None or income.empty) and not hist.empty:
+            vals = _calc_per_history(income, balance, hist, shares, info)
+            if vals:
+                result["per_mediana"] = round(float(np.median(vals)), 2)
 
-        # P/B histórico
-        pb_list = _calc_pb_history(balance, hist)
-        if pb_list:
-            result["p_b_mediana"] = round(float(np.median(pb_list)), 2)
+        # --- P/FCF histórico ---
+        if (not (cashflow is None or cashflow.empty) and
+                not (balance is None or balance.empty) and not hist.empty):
+            vals = _calc_pfcf_history(cashflow, balance, hist, shares, info)
+            if vals:
+                result["p_fcf_mediana"] = round(float(np.median(vals)), 2)
 
-        # Dividend Yield histórico
-        dy_list = _calc_divy_history(tk, hist)
-        if dy_list:
-            result["dividend_yield_mediana"] = round(float(np.median(dy_list)), 4)
+        # --- P/B histórico ---
+        if not (balance is None or balance.empty) and not hist.empty:
+            vals = _calc_pb_history(balance, hist, shares, info)
+            if vals:
+                result["p_b_mediana"] = round(float(np.median(vals)), 2)
 
-        # PEG: no calculamos histórico, usamos el actual como mediana
+        # --- Dividend Yield histórico ---
+        if not hist.empty:
+            vals = _calc_divy_history(tk, hist)
+            if vals:
+                result["dividend_yield_mediana"] = round(float(np.median(vals)), 4)
+
+        # PEG y FFO/AFFO: usar actual como mediana (no tienen fuente histórica confiable)
         result["peg_mediana"] = result["peg_actual"]
-
-        # FFO/AFFO: usamos PER como proxy
         result["p_ffo_mediana"] = result["per_mediana"]
         result["p_affo_mediana"] = result["per_mediana"]
 
     except Exception as e:
-        logger.debug(f"Error en histórico para {result['ticker']}: {e}")
+        logger.debug(f"Error en histórico yfinance para {result['ticker']}: {e}")
+
+    # Guardar diagnóstico (qué devolvió yfinance exactamente)
+    _log_yf_debug(result["ticker"], income, balance, cashflow, result)
+
+    # --- Fallback 2: Stock Analysis para métricas que siguen sin mediana ---
+    _enrich_with_stockanalysis_fallback(result, precio_hist)
 
 
-def _get_annual_price(hist: pd.DataFrame, year: int) -> Optional[float]:
-    """Precio de cierre al final de un año dado."""
+def _enrich_with_stockanalysis_fallback(result: dict, precio_hist: dict) -> None:
+    """
+    Intenta completar medianas faltantes usando Stock Analysis.
+    Solo actúa si hay métricas con valor actual pero sin mediana.
+    """
+    # Verificar si hay algo que necesite fallback
+    needs_fallback = (
+        (result.get("per_mediana") is None and result.get("per_actual") is not None) or
+        (result.get("p_b_mediana") is None and result.get("p_b_actual") is not None) or
+        (result.get("p_fcf_mediana") is None and result.get("p_fcf_actual") is not None) or
+        (result.get("dividend_yield_mediana") is None and result.get("dividend_yield_actual") is not None)
+    )
+    if not needs_fallback:
+        return
+
     try:
-        year_data = hist[hist.index.year == year]
-        if not year_data.empty:
-            return float(year_data["Close"].iloc[-1])
-    except Exception:
-        pass
-    return None
+        from data.stockanalysis import enrich_with_stockanalysis
+        enrich_with_stockanalysis(result["ticker"], result, precio_hist)
+    except ImportError:
+        logger.debug("stockanalysis.py no disponible")
+    except Exception as e:
+        logger.debug(f"Error en Stock Analysis fallback para {result['ticker']}: {e}")
 
 
-def _calc_ev_ebitda_history(tk, income, balance, hist) -> list:
+def _calc_ev_ebitda_history(income, balance, hist, shares: float) -> list:
     """Calcula EV/EBITDA para cada año disponible."""
     values = []
     try:
-        shares = tk.info.get("sharesOutstanding", 0)
+        # Buscar EBITDA directo o calcular desde EBIT + D&A
+        ebitda_row = _find_row(income, "ebitda")
+        ebit_row = _find_row(income, "ebit", exclude=["ebitda"])
+        da_row = _find_row(income, "depreciation") or _find_row(income, "amortization")
+
+        # Buscar deuda y caja en balance
+        debt_row = (
+            _find_row(balance, "total debt") or
+            _find_row(balance, "long term debt") or
+            _find_row(balance, "totaldebt")
+        )
+        cash_row = (
+            _find_row(balance, "cash and cash equivalents") or
+            _find_row(balance, "cash equivalents") or
+            _find_row(balance, "cash", exclude=["restricted"])
+        )
+
         for col in income.columns[:HISTORY_YEARS]:
-            year = col.year
+            year = col.year if hasattr(col, 'year') else pd.Timestamp(col).year
             price = _get_annual_price(hist, year)
-            if not price or not shares:
+            if not price:
                 continue
 
-            ebitda = _safe_get(income, "EBITDA", col) if "EBITDA" in income.index else None
-            if ebitda is None:
-                # Reconstruir: EBIT + D&A
-                ebit_row = next((r for r in income.index if "EBIT" in str(r) and "DA" not in str(r)), None)
-                da_row = next((r for r in income.index if "Depreciation" in str(r)), None)
-                if ebit_row and da_row:
-                    ebitda = income.loc[ebit_row, col] + abs(income.loc[da_row, col])
+            ebitda = _get_col_value(income, ebitda_row, col)
+            if ebitda is None and ebit_row and da_row:
+                ebit = _get_col_value(income, ebit_row, col)
+                da = _get_col_value(income, da_row, col)
+                if ebit is not None and da is not None:
+                    ebitda = ebit + abs(da)
 
-            debt_row = next((r for r in balance.index if "Total Debt" in str(r) or "LongTermDebt" in str(r)), None)
-            cash_row = next((r for r in balance.index if "Cash" in str(r) and "Equivalents" in str(r)), None)
+            if ebitda is None or ebitda <= 0:
+                continue
 
-            if ebitda and debt_row:
-                debt = balance.loc[debt_row, col] if col in balance.columns else 0
-                cash = balance.loc[cash_row, col] if cash_row and col in balance.columns else 0
-                market_cap = price * shares
-                ev = market_cap + (debt or 0) - (cash or 0)
-                if ebitda > 0:
-                    val = ev / ebitda
-                    if 0 < val < 200:  # filtrar outliers
-                        values.append(val)
+            debt = _get_col_value(balance, debt_row, col) or 0
+            cash = _get_col_value(balance, cash_row, col) or 0
+
+            market_cap = price * shares
+            ev = market_cap + debt - cash
+            if ev <= 0:
+                continue
+
+            val = ev / ebitda
+            if 0 < val < 200:
+                values.append(val)
+
     except Exception as e:
         logger.debug(f"EV/EBITDA history error: {e}")
     return values
 
 
-def _calc_per_history(income, hist) -> list:
+def _calc_per_history(income, balance, hist, shares: Optional[float], info: dict) -> list:
     """Calcula PER para cada año disponible."""
     values = []
     try:
-        eps_row = next((r for r in income.index if "EPS" in str(r) or "Earnings Per Share" in str(r)), None)
-        ni_row = next((r for r in income.index if "Net Income" in str(r)), None)
+        # Buscar EPS directo o Net Income para calcularlo
+        eps_row = (
+            _find_row(income, "diluted eps") or
+            _find_row(income, "basic eps") or
+            _find_row(income, "eps")
+        )
+        ni_row = (
+            _find_row(income, "net income common stockholders") or
+            _find_row(income, "net income") or
+            _find_row(income, "netincome")
+        )
+        # Shares del balance (para calcular EPS desde NI)
+        shares_row = (
+            _find_row(balance, "diluted average shares") or
+            _find_row(balance, "ordinary shares number") or
+            _find_row(balance, "share issued") or
+            _find_row(balance, "shares outstanding")
+        )
 
         for col in income.columns[:HISTORY_YEARS]:
-            year = col.year
+            year = col.year if hasattr(col, 'year') else pd.Timestamp(col).year
             price = _get_annual_price(hist, year)
             if not price:
                 continue
 
-            eps = None
-            if eps_row:
-                eps = income.loc[eps_row, col]
-            elif ni_row:
-                # EPS aproximado si tenemos shares
-                pass  # lo dejamos para cuando tengamos shares del histórico
+            eps = _get_col_value(income, eps_row, col)
 
-            if eps and eps > 0:
+            # Si no hay EPS directo, calcularlo desde NI / shares
+            if eps is None and ni_row:
+                ni = _get_col_value(income, ni_row, col)
+                sh = _get_col_value(balance, shares_row, col) if shares_row else None
+                if sh is None:
+                    sh = shares  # usar shares actuales como proxy
+                if ni is not None and sh and sh > 0:
+                    eps = ni / sh
+
+            if eps is not None and eps > 0:
                 val = price / eps
-                if 0 < val < 500:
+                if 0 < val < 1000:
                     values.append(val)
+
     except Exception as e:
         logger.debug(f"PER history error: {e}")
     return values
 
 
-def _calc_pfcf_history(cashflow, balance, hist) -> list:
+def _calc_pfcf_history(cashflow, balance, hist, shares: Optional[float], info: dict) -> list:
     """Calcula P/FCF para cada año disponible."""
     values = []
     try:
-        fcf_row = next((r for r in cashflow.index if "Free Cash Flow" in str(r)), None)
-        shares_row = next((r for r in balance.index if "Ordinary Shares Number" in str(r)
-                           or "Share Issued" in str(r)), None)
-
-        if not fcf_row:
-            return values
+        fcf_row = (
+            _find_row(cashflow, "free cash flow") or
+            _find_row(cashflow, "freecashflow")
+        )
+        # Alternativamente: Operating CF - CapEx
+        opcf_row = (
+            _find_row(cashflow, "operating cash flow") or
+            _find_row(cashflow, "cash from operations") or
+            _find_row(cashflow, "operating activities")
+        )
+        capex_row = (
+            _find_row(cashflow, "capital expenditure") or
+            _find_row(cashflow, "capex") or
+            _find_row(cashflow, "purchase of property")
+        )
+        shares_row = (
+            _find_row(balance, "diluted average shares") or
+            _find_row(balance, "ordinary shares number") or
+            _find_row(balance, "share issued")
+        )
 
         for col in cashflow.columns[:HISTORY_YEARS]:
-            year = col.year
+            if col not in (balance.columns if balance is not None else []):
+                continue
+            year = col.year if hasattr(col, 'year') else pd.Timestamp(col).year
             price = _get_annual_price(hist, year)
             if not price:
                 continue
 
-            fcf = cashflow.loc[fcf_row, col]
-            shares = balance.loc[shares_row, col] if shares_row and col in balance.columns else None
+            fcf = _get_col_value(cashflow, fcf_row, col)
 
-            if fcf and shares and fcf > 0 and shares > 0:
-                fcf_per_share = fcf / shares
-                val = price / fcf_per_share
-                if 0 < val < 500:
-                    values.append(val)
+            # Si no hay FCF directo, calcular desde OpCF - CapEx
+            if fcf is None and opcf_row:
+                opcf = _get_col_value(cashflow, opcf_row, col)
+                capex = _get_col_value(cashflow, capex_row, col) or 0
+                if opcf is not None:
+                    fcf = opcf - abs(capex)  # capex suele ser negativo
+
+            if fcf is None or fcf <= 0:
+                continue
+
+            sh = _get_col_value(balance, shares_row, col) if shares_row else None
+            if sh is None:
+                sh = shares
+            if sh is None or sh <= 0:
+                continue
+
+            fcf_per_share = fcf / sh
+            if fcf_per_share <= 0:
+                continue
+            val = price / fcf_per_share
+            if 0 < val < 1000:
+                values.append(val)
+
     except Exception as e:
         logger.debug(f"P/FCF history error: {e}")
     return values
 
 
-def _calc_pb_history(balance, hist) -> list:
+def _calc_pb_history(balance, hist, shares: Optional[float], info: dict) -> list:
     """Calcula P/B para cada año disponible."""
     values = []
     try:
-        equity_row = next((r for r in balance.index
-                           if "Stockholders Equity" in str(r) or "Total Equity" in str(r)), None)
-        shares_row = next((r for r in balance.index
-                           if "Ordinary Shares Number" in str(r) or "Share Issued" in str(r)), None)
+        equity_row = (
+            _find_row(balance, "stockholders equity") or
+            _find_row(balance, "total equity gross minority interest") or
+            _find_row(balance, "total equity") or
+            _find_row(balance, "common stock equity")
+        )
+        shares_row = (
+            _find_row(balance, "diluted average shares") or
+            _find_row(balance, "ordinary shares number") or
+            _find_row(balance, "share issued") or
+            _find_row(balance, "shares outstanding")
+        )
 
-        if not equity_row or not shares_row:
+        if equity_row is None:
             return values
 
         for col in balance.columns[:HISTORY_YEARS]:
-            year = col.year
+            year = col.year if hasattr(col, 'year') else pd.Timestamp(col).year
             price = _get_annual_price(hist, year)
             if not price:
                 continue
 
-            equity = balance.loc[equity_row, col]
-            shares = balance.loc[shares_row, col]
+            equity = _get_col_value(balance, equity_row, col)
+            sh = _get_col_value(balance, shares_row, col) if shares_row else None
+            if sh is None:
+                sh = shares
 
-            if equity and shares and shares > 0:
-                bvps = equity / shares
-                if bvps > 0:
-                    val = price / bvps
-                    if 0 < val < 100:
-                        values.append(val)
+            if equity is None or sh is None or sh <= 0:
+                continue
+
+            bvps = equity / sh
+            if bvps <= 0:
+                continue
+
+            val = price / bvps
+            if 0 < val < 100:
+                values.append(val)
+
     except Exception as e:
         logger.debug(f"P/B history error: {e}")
     return values
@@ -338,19 +592,132 @@ def _calc_divy_history(tk, hist) -> list:
     values = []
     try:
         divs = tk.dividends
-        if divs.empty:
+        if divs is None or divs.empty:
             return values
 
-        for year in range(hist.index[-1].year - HISTORY_YEARS + 1, hist.index[-1].year + 1):
+        # Normalizar timezone de dividendos
+        if hasattr(divs.index, 'tz') and divs.index.tz is not None:
+            divs.index = divs.index.tz_localize(None)
+
+        min_year = hist.index[-1].year - HISTORY_YEARS + 1
+        max_year = hist.index[-1].year
+
+        for year in range(min_year, max_year + 1):
             annual_div = divs[divs.index.year == year].sum()
             price = _get_annual_price(hist, year)
             if annual_div > 0 and price and price > 0:
                 val = annual_div / price
-                if 0 < val < 0.5:  # máximo 50% yield, filtrar outliers
-                    values.append(val)
+                if 0 < val < 0.5:
+                    values.append(float(val))
+
     except Exception as e:
         logger.debug(f"DivY history error: {e}")
     return values
+
+
+def calc_fair_value(result: dict, sector: str) -> dict:
+    """
+    Calcula el Fair Value (precio objetivo) usando múltiples métodos ponderados por sector.
+
+    Retorna un dict con:
+      - fair_value: precio objetivo ponderado en USD (o None si no hay suficientes datos)
+      - fair_value_detalle: dict con precio implícito por método y su peso
+      - fair_value_metodos: cantidad de métodos con precio calculado
+    """
+    from config.sectors import SECTOR_CONFIG
+
+    fv_result = {
+        "fair_value": None,
+        "fair_value_detalle": {},
+        "fair_value_metodos": 0,
+    }
+
+    if sector not in SECTOR_CONFIG:
+        return fv_result
+
+    config = SECTOR_CONFIG[sector]["metrics"]
+    precio_actual = result.get("precio_actual")
+    shares = None  # no disponible en result; usar proxy cuando sea necesario
+
+    precios_metodos = {}
+
+    for metrica, peso in config.items():
+        mediana = result.get(f"{metrica}_mediana")
+        actual = result.get(f"{metrica}_actual")
+
+        if mediana is None or mediana <= 0:
+            continue
+
+        precio_implicito = None
+
+        if metrica == "per":
+            # PER_mediana × EPS_actual
+            # EPS = precio / PER_actual (si PER_actual existe); sino intentamos reconstruir
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                eps = precio_actual / actual
+                precio_implicito = mediana * eps
+
+        elif metrica == "ev_ebitda":
+            # Para EV/EBITDA no podemos reconstruir el precio limpiamente sin deuda/caja/shares
+            # Usamos el ratio: precio_implicito = precio_actual * (mediana / actual)
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                precio_implicito = precio_actual * (mediana / actual)
+
+        elif metrica == "p_fcf":
+            # P/FCF_mediana × FCF_per_share
+            # FCF/share = precio / P/FCF_actual
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                fcf_per_share = precio_actual / actual
+                precio_implicito = mediana * fcf_per_share
+
+        elif metrica == "p_b":
+            # P/B_mediana × Book Value per share
+            # BVPS = precio / P/B_actual
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                bvps = precio_actual / actual
+                precio_implicito = mediana * bvps
+
+        elif metrica == "dividend_yield":
+            # precio = dividendo_anual / DY_mediana
+            annual_div = result.get("annual_dividend")
+            if annual_div and annual_div > 0 and mediana > 0:
+                precio_implicito = annual_div / mediana
+            elif actual and actual > 0 and precio_actual and precio_actual > 0:
+                # Fallback: precio_actual × (actual / mediana)
+                precio_implicito = precio_actual * (actual / mediana)
+
+        elif metrica in ("peg",):
+            # PEG: usamos ratio directo como EV/EBITDA
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                precio_implicito = precio_actual * (mediana / actual)
+
+        elif metrica in ("p_ffo", "p_affo"):
+            # Similar a P/E para REITs
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                ffo_per_share = precio_actual / actual
+                precio_implicito = mediana * ffo_per_share
+
+        # Validar precio implícito (máximo 10x el precio actual para evitar outliers)
+        if precio_implicito and precio_actual and precio_implicito > 0:
+            ratio_check = precio_implicito / precio_actual
+            if 0.05 < ratio_check < 10.0:  # entre 5% y 1000% del precio actual
+                precios_metodos[metrica] = {
+                    "precio": round(precio_implicito, 2),
+                    "peso": peso,
+                }
+
+    if not precios_metodos:
+        return fv_result
+
+    # Promedio ponderado solo con los métodos disponibles
+    peso_total = sum(v["peso"] for v in precios_metodos.values())
+    fv = sum(v["precio"] * v["peso"] for v in precios_metodos.values()) / peso_total
+
+    fv_result["fair_value"] = round(fv, 2)
+    fv_result["fair_value_detalle"] = precios_metodos
+    fv_result["fair_value_metodos"] = len(precios_metodos)
+
+    return fv_result
 
 
 def fetch_all_tickers(tickers: list, progress_callback=None) -> pd.DataFrame:

@@ -230,8 +230,11 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None) -> pd.DataF
     """
     Aplica el scoring a todo el DataFrame de tickers.
     Agrega columnas: score_fundamental, score_tecnico, score_total,
-                     categoria, color_hex, emoji, metricas_usadas, metricas_total.
+                     categoria, color_hex, emoji, metricas_usadas, metricas_total,
+                     fair_value, fair_value_detalle, fair_value_metodos.
     """
+    from data.fetcher import calc_fair_value
+
     if ticker_to_sector is None:
         ticker_to_sector = TICKER_TO_SECTOR
 
@@ -240,7 +243,8 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None) -> pd.DataF
         ticker = row.get("ticker", "")
         sector = ticker_to_sector.get(ticker, "")
         resultado = calcular_score(row.to_dict(), sector)
-        rows.append({**row.to_dict(), **resultado, "sector": sector})
+        fv_resultado = calc_fair_value(row.to_dict(), sector)
+        rows.append({**row.to_dict(), **resultado, **fv_resultado, "sector": sector})
 
     return pd.DataFrame(rows)
 
