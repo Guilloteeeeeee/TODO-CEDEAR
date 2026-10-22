@@ -198,6 +198,31 @@ TICKER_TO_SECTOR = {
 
 
 # ---------------------------------------------------------------------------
+# SECTOR / INDUSTRIA (v1.2.20) - solo para mostrar en pantalla
+# Los grupos de arriba (SECTOR_CONFIG / TICKER_UNIVERSE) son los que se usan para puntuar. Algunos son
+# una industria dentro de un sector mas grande; en las tablas se muestran como "Sector / Industria".
+# Los grupos que no figuran aca (Salud, Industrial, Energia, etc.) se muestran solo con su nombre.
+# ---------------------------------------------------------------------------
+SECTOR_E_INDUSTRIA = {
+    "Bancos y seguros":        ("Financiero", "Bancos y seguros"),
+    "Pagos y datos":           ("Financiero", "Pagos y datos"),
+    "Semiconductores":         ("Tecnología", "Semiconductores"),
+    "Software y nube":         ("Tecnología", "Software y nube"),
+    "Hardware y servicios TI": ("Tecnología", "Hardware y servicios TI"),
+    "Comunicación":            ("Comunicación", "Internet y medios"),
+    "Telecomunicaciones":      ("Comunicación", "Telecomunicaciones"),
+}
+
+
+def etiqueta_sector(grupo) -> str:
+    """Texto para mostrar: 'Financiero / Pagos y datos', o solo 'Salud' si el grupo no tiene industria."""
+    if not isinstance(grupo, str) or not grupo:
+        return "—"
+    sector, industria = SECTOR_E_INDUSTRIA.get(grupo, (grupo, None))
+    return f"{sector} / {industria}" if industria else sector
+
+
+# ---------------------------------------------------------------------------
 # REGLAS DE DATOS (v1.2.11)
 # ---------------------------------------------------------------------------
 # Rango en el que un multiplo (actual o mediana historica) es creible. Fuera de este rango

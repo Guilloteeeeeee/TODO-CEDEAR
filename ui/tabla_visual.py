@@ -17,6 +17,7 @@ import math
 
 import pandas as pd
 
+from config.sectors import etiqueta_sector
 from ui.logos import logo_html
 
 _TEXTO_OSCURO = {"#d4a017": "#8a6100", "#2da44e": "#1f7a3a", "#e16a1a": "#b24a0a"}   # para que se lea sobre blanco
@@ -93,7 +94,8 @@ def _clamp(x, lo=0.0, hi=100.0):
 def _celda_empresa(row):
     t = _txt(row.get("ticker"), "—")
     nombre = html.escape(_txt(row.get("nombre"), t))
-    meta = " • ".join(html.escape(str(x)) for x in (t, row.get("sector"), row.get("pais")) if isinstance(x, str) and x)
+    sec = etiqueta_sector(row.get("sector")) if isinstance(row.get("sector"), str) and row.get("sector") else None
+    meta = " • ".join(html.escape(str(x)) for x in (t, sec, row.get("pais")) if isinstance(x, str) and x)
     return (f'<div class="tv-emp">{logo_html(t, 34)}<div><div class="tv-meta">{meta}</div>'
             f'<div class="tv-nm">{nombre}</div></div></div>')
 

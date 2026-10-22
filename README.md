@@ -64,6 +64,11 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Efecto en el caché:** 30 de las 36 empresas cambian 1 punto o más y 15 cambian de categoría (ejemplos: TSM 79 → 50, ASML 44 → 29, CSCO 38 → 50, ANET 30 → 48, TXN 45 → 33). Casi todo sale del PEG comparado con el sector, que hoy se usa porque Yahoo no trae la historia de PEG. Con Stock Analysis cada empresa tendrá su propio PEG histórico y el efecto debería achicarse; después de esa corrida se repite la medición y, si el cambio no se justifica, se puede volver al grupo único.
 - **Logos:** con MS, IBN, PCAR y SIEGY (logos que pasó Guille) ya están los 166.
 
+### Sector / Industria en pantalla (v1.2.20)
+
+- Las tablas, el filtro y el detalle muestran **"Sector / Industria"** para los grupos que son una industria dentro de un sector más grande. Ejemplos: *Financiero / Pagos y datos*, *Financiero / Bancos y seguros*, *Tecnología / Semiconductores*, *Tecnología / Software y nube*, *Tecnología / Hardware y servicios TI*, *Comunicación / Internet y medios*, *Comunicación / Telecomunicaciones*. Los demás (Salud, Industrial, Energía, etc.) se muestran solo con el nombre del sector.
+- Es solo una etiqueta: el puntaje sigue usando los grupos de siempre. El cuadro se define en `SECTOR_E_INDUSTRIA` de `config/sectors.py`, y el orden del filtro y de la columna "Sector" agrupa las industrias del mismo sector.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.

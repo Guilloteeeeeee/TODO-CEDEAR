@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.19"
+APP_VERSION = "1.2.20"
 
 import streamlit as st
 import pandas as pd
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias
 from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
-from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG
+from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -373,12 +373,13 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     # --- Fila 1: Sectores + Categorías + País ---
     col_sec, col_cat, col_pais, col_mkt = st.columns([2, 2, 2, 2])
 
-    todos_sectores = list(universe.keys())
+    todos_sectores = sorted(universe.keys(), key=etiqueta_sector)
     with col_sec:
         sectores_sel = st.multiselect(
-            "🏭 Sectores",
+            "🏭 Sector / Industria",
             todos_sectores,
             default=todos_sectores,
+            format_func=etiqueta_sector,
             placeholder="Todos los sectores",
         )
         if not sectores_sel:
@@ -533,7 +534,10 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     sort_col = st.session_state.get("sort_col", "fv_upside")
     sort_asc = st.session_state.get("sort_asc", False)
 
-    STR_COLS = {"nombre", "pais", "sector"}
+    df_show["sector_txt"] = df_show["sector"].map(etiqueta_sector)
+    STR_COLS = {"nombre", "pais", "sector_txt"}
+    if sort_col == "sector":
+        sort_col = "sector_txt"
     if sort_col in STR_COLS:
         df_show = df_show.sort_values(sort_col, ascending=sort_asc, na_position="last")
     elif sort_col == "score_total":
@@ -674,7 +678,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         cols[1].markdown(pais_txt if isinstance(pais_txt, str) and pais_txt else "—")
 
         # Sector
-        cols[2].markdown(row.get("sector", "—"))
+        cols[2].markdown(etiqueta_sector(row.get("sector")))
 
         # Market Cap
         cols[3].markdown(format_market_cap(row.get("market_cap")))
@@ -770,7 +774,7 @@ def render_detalle(df: pd.DataFrame):
     sector = row.get("sector", "")
 
     st.markdown(f"### {row.get('nombre', ticker_sel)} ({ticker_sel})")
-    st.markdown(f"**Sector:** {sector} | **País:** {row.get('pais', '—')} | **Market Cap:** {format_market_cap(row.get('market_cap'))}")
+    st.markdown(f"**Sector / Industria:** {etiqueta_sector(sector)} | **País:** {row.get('pais', '—')} | **Market Cap:** {format_market_cap(row.get('market_cap'))}")
 
     # Score y categoría
     st.markdown(
