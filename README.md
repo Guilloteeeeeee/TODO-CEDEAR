@@ -35,6 +35,11 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Cada cuánto actualizar (v1.2.15):** una vez por trimestre, el día 1 de marzo, junio, septiembre y diciembre (`MESES_ACTUALIZACION` en `config/ajustes.py`). Para esas fechas casi todas las empresas ya presentaron resultados, que es cuando cambian de verdad los balances; las medianas de 5 años cambian una sola vez por año. Lo que sí se mueve todos los meses es el precio: con un caché de 1 mes, aproximadamente 1 de cada 3 empresas queda en una categoría vecina a la de hoy (solo ~2% se corre 2 o más escalones); con 3 meses, ~45% (y ~9% a 2 o más escalones). Es una estimación hecha moviendo solo los precios con el motor real (volatilidad tomada del rango de 52 semanas); el panel "Seguimiento" va a medirlo con datos reales.
 - **Aviso:** si el caché tiene más de 100 días (`DIAS_AVISO_CACHE_VIEJO`), la app muestra un cartel para actualizarlo.
 
+### Vista visual y logos (v1.2.16)
+
+- **Vista visual (en prueba):** arriba de la tabla hay un selector "Tabla clásica / Vista visual (prueba)". La vista visual muestra, por empresa: logo y nombre, la categoría con color y una barra de valoración (punto = precio de hoy, franja = rango de los métodos del Fair Value, raya = Fair Value promedio), una caja con el puntaje y las métricas usadas, el rango de 52 semanas, el Dividend Yield contra su mediana y el Mkt Cap. Se ordena con el selector de al lado. Con qué vista abre la app se cambia en `config/ajustes.py` (`VISTA_POR_DEFECTO`). El código está en `ui/tabla_visual.py`.
+- **Logos:** el servicio que se usaba (Clearbit) dejó de funcionar. Ahora cada logo sale, en este orden, de `assets/logos/<TICKER>.png` (incrustado en la página), del favicon de la empresa servido por Google (`LOGOS_EN_LINEA` en `config/ajustes.py`) o, si no hay nada, de un círculo con las iniciales. Para bajar los logos a la carpeta: `descargar_logos.bat` en la PC (una sola vez), y subir `assets/logos/` a GitHub. Deja `resultados_logos.txt` con el resumen de qué fuente funcionó.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.
@@ -94,7 +99,12 @@ cedear-screener/
 │   ├── resumen.py          # Resumen de fuentes al generar el caché
 │   ├── historial/          # Copias con fecha del cache (se crean con generar_cache)
 │   └── tickers_custom.json # Universo personalizado (se genera al editar)
-└── scoring/
-    ├── engine.py           # Motor de scoring y categorías
-    └── seguimiento.py      # Seguimiento con las copias del historial
+├── scoring/
+│   ├── engine.py           # Motor de scoring y categorías
+│   └── seguimiento.py      # Seguimiento con las copias del historial
+├── ui/
+│   ├── tabla_visual.py     # Vista visual de la tabla (v1.2.16)
+│   └── logos.py            # Logos: archivo local, favicon o iniciales
+├── assets/logos/           # Logos (<TICKER>.png) que baja descargar_logos.bat
+└── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```

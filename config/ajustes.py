@@ -47,3 +47,13 @@ def proxima_actualizacion(hoy=None):
         if cand > hoy and cand.month in MESES_ACTUALIZACION:
             return cand
     return None
+
+
+# --- Logos y vista de la tabla (v1.2.16) ---------------------------------------------------------
+# "google": si no hay archivo local assets/logos/<TICKER>.png se usa el favicon de la empresa servido
+#           por Google (lo carga el navegador de quien mira la app). "ninguno": solo archivos locales
+#           e iniciales.
+LOGOS_EN_LINEA = "google"
+
+# Vista con la que abre la tabla principal: "clasica" o "visual".
+VISTA_POR_DEFECTO = "clasica"

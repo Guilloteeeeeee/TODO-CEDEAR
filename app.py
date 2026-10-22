@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.15"
+APP_VERSION = "1.2.16"
 
 import streamlit as st
 import pandas as pd
@@ -342,74 +342,9 @@ def _resumen_cobertura_fv(df_show: pd.DataFrame) -> str:
 
 
 def get_logo_url(ticker: str) -> str:
-    """
-    Retorna URL del logo para un ticker dado.
-    Usa Logo.dev (logo.dev) como fuente principal.
-    """
-    # Mapeo de tickers a dominio de empresa para logos
-    TICKER_DOMAIN = {
-        "AAPL": "apple.com", "MSFT": "microsoft.com", "GOOGL": "google.com",
-        "AMZN": "amazon.com", "NVDA": "nvidia.com", "META": "meta.com",
-        "TSLA": "tesla.com", "JPM": "jpmorganchase.com", "V": "visa.com",
-        "MA": "mastercard.com", "AVGO": "broadcom.com", "UNH": "unitedhealthgroup.com",
-        "JNJ": "jnj.com", "XOM": "exxonmobil.com", "WMT": "walmart.com",
-        "LLY": "lilly.com", "HD": "homedepot.com", "PG": "pg.com",
-        "COST": "costco.com", "MRK": "merck.com", "ABBV": "abbvie.com",
-        "CVX": "chevron.com", "KO": "coca-cola.com", "PEP": "pepsico.com",
-        "BAC": "bankofamerica.com", "NFLX": "netflix.com", "CRM": "salesforce.com",
-        "ORCL": "oracle.com", "ACN": "accenture.com", "MCD": "mcdonalds.com",
-        "CSCO": "cisco.com", "IBM": "ibm.com", "ADBE": "adobe.com",
-        "NOW": "servicenow.com", "QCOM": "qualcomm.com", "TXN": "ti.com",
-        "INTC": "intel.com", "AMD": "amd.com", "GE": "ge.com",
-        "CAT": "caterpillar.com", "DE": "deere.com", "BA": "boeing.com",
-        "LMT": "lockheedmartin.com", "RTX": "rtx.com", "HON": "honeywell.com",
-        "UNP": "up.com", "NEE": "nexteraenergy.com", "DIS": "disney.com",
-        "SBUX": "starbucks.com", "NKE": "nike.com", "SPOT": "spotify.com",
-        "SHOP": "shopify.com", "SLB": "slb.com", "PFE": "pfizer.com",
-        "TMO": "thermofisher.com", "ABT": "abbott.com", "GS": "goldmansachs.com",
-        "MS": "morganstanley.com", "AXP": "americanexpress.com", "BRK-B": "berkshirehathaway.com",
-        "BKNG": "booking.com", "UBER": "uber.com", "ABNB": "airbnb.com",
-        "PYPL": "paypal.com", "COIN": "coinbase.com", "MELI": "mercadolibre.com",
-        "PLTR": "palantir.com", "PANW": "paloaltonetworks.com", "CRWD": "crowdstrike.com",
-        "ANET": "arista.com", "SNOW": "snowflake.com", "MU": "micron.com",
-        "ASML": "asml.com", "TSM": "tsmc.com", "SAP": "sap.com",
-        "NVO": "novonordisk.com", "NVS": "novartis.com", "AZN": "astrazeneca.com",
-        "GILD": "gilead.com", "AMGN": "amgen.com", "VRTX": "vrtx.com",
-        "ISRG": "intuitivesurgical.com", "DHR": "danaher.com", "MDT": "medtronic.com",
-        "BHP": "bhp.com", "RIO": "riotinto.com", "VALE": "vale.com",
-        "FCX": "fcx.com", "NEM": "newmont.com", "LIN": "linde.com",
-        "SHW": "sherwin-williams.com", "SCCO": "southerncopper.com",
-        "XOM": "exxonmobil.com", "CVX": "chevron.com", "SHEL": "shell.com",
-        "TTE": "totalenergies.com", "COP": "conocophillips.com", "BP": "bp.com",
-        "PBR": "petrobras.com.br", "EQNR": "equinor.com",
-        "O": "realtyincome.com", "PLD": "prologis.com", "WELL": "welltower.com",
-        "VZ": "verizon.com", "T": "att.com", "TMUS": "t-mobile.com",
-        "PM": "pmi.com", "MO": "altria.com", "UL": "unilever.com",
-        "DEO": "diageo.com", "CL": "colgate.com", "MDLZ": "mondelezinternational.com",
-        "TGT": "target.com", "TM": "toyota.com", "SONY": "sony.com",
-        "BABA": "alibaba.com", "PDD": "pinduoduo.com", "HSBC": "hsbc.com",
-        "SAN": "santander.com", "BBVA": "bbva.com", "ITUB": "itau.com.br",
-        "IBN": "icicibank.com", "HDB": "hdfcbank.com", "MUFG": "mufg.jp",
-        "ING": "ing.com", "NU": "nu.com.br", "IBKR": "interactivebrokers.com",
-        "BX": "blackstone.com", "SPGI": "spglobal.com", "SCHW": "schwab.com",
-        "USB": "usbank.com", "BNY": "bny.com", "FISV": "fiserv.com",
-        "C": "citigroup.com", "AIG": "aig.com", "TJX": "tjx.com",
-        "ROST": "rossstores.com", "GM": "gm.com", "RACE": "ferrari.com",
-        "ORLY": "oreillyauto.com", "FDX": "fedex.com", "MMM": "3m.com",
-        "PSX": "phillips66.com", "GEV": "gevernova.com", "HWM": "howmet.com",
-        "PCAR": "paccar.com", "SIEGY": "siemens.com", "ARM": "arm.com",
-        "AMAT": "appliedmaterials.com", "LRCX": "lamresearch.com",
-        "KLAC": "kla.com", "ADI": "analog.com", "MRVL": "marvell.com",
-        "INFY": "infosys.com", "DELL": "dell.com", "WDC": "westerndigital.com",
-        "MSI": "motorolasolutions.com", "ADP": "adp.com", "CEG": "constellationenergy.com",
-        "VST": "vistratenergy.com", "TLN": "talenenergy.com", "CVS": "cvshealth.com",
-        "BMY": "bms.com", "GSK": "gsk.com", "NTES": "netease.com",
-    }
-    domain = TICKER_DOMAIN.get(ticker)
-    if domain:
-        return f"https://logo.clearbit.com/{domain}"
-    # Fallback: URL genérica de logo.dev
-    return f"https://logo.clearbit.com/{ticker.lower()}.com"
+    """URL (o data URI) del logo de un ticker; vacio si solo hay iniciales. Ver ui/logos.py."""
+    from ui.logos import logo_url
+    return logo_url(ticker) or ""
 
 
 def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]:
@@ -631,7 +566,41 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         st.warning("No hay empresas que coincidan con los filtros seleccionados.")
         return
 
-    st.markdown(f"**{len(df_show)} empresas**")
+    # --- Vista: clasica (con encabezados ordenables) o visual (v1.2.16, en prueba) ---
+    try:
+        from config.ajustes import VISTA_POR_DEFECTO
+    except Exception:  # noqa: BLE001
+        VISTA_POR_DEFECTO = "clasica"
+    VISTAS = ["Tabla clásica", "Vista visual (prueba)"]
+    col_n, col_v, col_o, col_d = st.columns([1.3, 3.2, 2.4, 3.2])
+    col_n.markdown(f"**{len(df_show)} empresas**")
+    vista = col_v.radio(
+        "Vista", VISTAS, index=1 if VISTA_POR_DEFECTO == "visual" else 0,
+        horizontal=True, key="vista_tabla", label_visibility="collapsed",
+    )
+    if vista == VISTAS[1]:
+        ORDEN_VISUAL = {
+            "Potencial al Fair Value": "fv_upside", "Puntaje": "score_total", "Mkt Cap": "market_cap",
+            "Div. Yield": "dividend_yield_actual", "Rango 52 semanas": "posicion_52s", "Precio": "precio_actual",
+            "Empresa (A-Z)": "nombre", "Métricas usadas": "metricas_usadas",
+        }
+
+        def _cambio_orden():
+            st.session_state["sort_col"] = ORDEN_VISUAL[st.session_state["vv_orden"]]
+            st.session_state["sort_asc"] = st.session_state["vv_dir"] == "Menor a mayor"
+
+        actual_col = st.session_state.get("sort_col", "fv_upside")
+        claves = list(ORDEN_VISUAL)
+        idx = next((i for i, k in enumerate(claves) if ORDEN_VISUAL[k] == actual_col), 0)
+        col_o.selectbox("Ordenar por", claves, index=idx, key="vv_orden", on_change=_cambio_orden,
+                        label_visibility="collapsed")
+        col_d.radio("Sentido", ["Mayor a menor", "Menor a mayor"],
+                    index=1 if st.session_state.get("sort_asc", False) else 0,
+                    key="vv_dir", on_change=_cambio_orden, horizontal=True, label_visibility="collapsed")
+        from ui.tabla_visual import html_tabla_visual
+        st.markdown(html_tabla_visual(df_show), unsafe_allow_html=True)
+        return
+
     ver_metodos = bool(filtros.get("ver_metodos_fv"))
     if ver_metodos:
         st.markdown(_resumen_cobertura_fv(df_show), unsafe_allow_html=True)
@@ -689,16 +658,11 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         ticker = row.get("ticker", "—")
         nombre = row.get("nombre") or ticker
 
-        # Columna 0: Logo + Empresa (con fallback a iniciales si el logo no carga)
-        logo_url = get_logo_url(ticker)
-        inicial = ticker[0] if ticker else "?"
+        # Columna 0: Logo + Empresa (logo local o favicon; si no hay, iniciales: ver ui/logos.py)
+        from ui.logos import logo_html
         cols[0].markdown(
             f'<div style="display:flex;align-items:center;gap:8px;">'
-            f'<span id="logo-wrap-{ticker}" style="display:inline-block;width:22px;height:22px;flex-shrink:0;">'
-            f'<img src="{logo_url}" width="22" height="22" '
-            f'style="border-radius:4px;object-fit:contain;" '
-            f'onerror="this.parentNode.innerHTML=\'<span style=&quot;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:4px;background:#e1e4e8;font-size:10px;font-weight:700;color:#57606a;&quot;>{inicial}</span>\'">'
-            f'</span>'
+            f'{logo_html(ticker, 22)}'
             f'<div><span style="font-weight:600;font-size:14px">{nombre}</span>'
             f'<br><span style="font-size:11px;color:#57606a">{ticker}</span></div>'
             f'</div>',

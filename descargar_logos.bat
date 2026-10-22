@@ -1,0 +1,6 @@
+@echo off
+echo Instalando dependencias...
+pip install requests pillow --quiet
+echo.
+echo Bajando logos...
+python descargar_logos.py
