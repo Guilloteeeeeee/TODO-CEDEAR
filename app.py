@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.34"
+APP_VERSION = "1.2.35"
 
 import streamlit as st
 import pandas as pd
@@ -34,6 +34,10 @@ try:
     from config.ajustes import NOMBRE_APP
 except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
+try:
+    from config.ajustes import SUBTITULO_APP
+except ImportError:      # ajustes.py viejo
+    SUBTITULO_APP = "El primer filtro para valuar CEDEARs: qué podría estar barato, qué caro y qué a precio razonable, en un solo vistazo."
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
                              texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual)
 
@@ -133,7 +137,7 @@ def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
     # 1. Cache guardado → usar directo
     df_cache, ts_cache = load_cache(ignorar_ttl=True)
     if df_cache is not None and not df_cache.empty:
-        ts_str = ts_cache.strftime("%d/%m %H:%M") if ts_cache else "?"
+        ts_str = ts_cache.strftime("%d/%m/%Y %H:%M") if ts_cache else "?"
         return df_cache, f"cache_vigente|{ts_str}"
 
     # 2. Intentar yfinance
@@ -160,7 +164,7 @@ def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
         # 3. Cache vencido como último recurso
         df_viejo, ts_viejo = load_cache(ignorar_ttl=True)
         if df_viejo is not None and not df_viejo.empty:
-            ts_str = ts_viejo.strftime("%d/%m %H:%M") if ts_viejo else "?"
+            ts_str = ts_viejo.strftime("%d/%m/%Y %H:%M") if ts_viejo else "?"
             return df_viejo, f"cache_vencido|{e}|{ts_str}"
         raise
 
@@ -980,10 +984,10 @@ def main():
     universe = load_custom_tickers()
     universe_key = str(sorted([t for ts in universe.values() for t in ts]))
 
-    # Título principal
-    st.markdown(f"<style>{CSS_MARCA}</style>"
-                + encabezado_html(NOMBRE_APP, "Detector de empresas potencialmente infravaloradas — datos de Stock Analysis y Yahoo Finance",
-                                  APP_VERSION), unsafe_allow_html=True)
+    # Título principal: cartel oscuro con el nombre y el subtítulo. Se dibuja ya y, cuando se sabe la fecha de los datos, se completa.
+    cartel = st.empty()
+    cartel.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP, SUBTITULO_APP, APP_VERSION),
+                    unsafe_allow_html=True)
 
     # Aviso fijo al pie (se muestra siempre, aunque despues falle algo)
     render_aviso_legal()
@@ -1002,8 +1006,12 @@ def main():
                     icon="⚠️",
                 )
             elif fuente.startswith("cache_vigente"):
-                ts_str = fuente.split("|")[1] if "|" in fuente else "?"
-                st.info(f"📦 Datos del caché ({ts_str}) — se actualiza una vez por trimestre")
+                # Antes habia un cuadro azul grande con esto; ahora es un renglon chico dentro del cartel de arriba
+                ts_str = fuente.split("|")[1] if "|" in fuente else ""
+                fecha = ts_str.split(" ")[0] if ts_str and ts_str != "?" else None
+                if fecha:
+                    cartel.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP, SUBTITULO_APP, APP_VERSION, datos_al=fecha),
+                                    unsafe_allow_html=True)
         except Exception as e:
             st.error(f"❌ Error al cargar datos y sin caché disponible: {e}")
             df = None

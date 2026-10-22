@@ -278,6 +278,13 @@ METRICAS_EXCLUIDAS = {
         "p_fcf": ("descartada a mano: su flujo de caja libre es unas 6,5 veces su ganancia y parece incluir "
                   "fondos de clientes de Mercado Pago, así que no mide lo que le queda al accionista"),
     },
+    # v1.2.35 (aprobado por el dueño el 22/10): el P/B de hoy (6,2) y los de los años anteriores en la fuente (0,6 a 1,4)
+    # parecen calculados con distinta base de capitalización (otra fuente lo ubica en 4,0 hace un año y 5,4 en el
+    # 1.er trimestre de 2026), así que su comparación contra la mediana no sirve.
+    "IBKR": {
+        "p_b": ("descartada a mano: el P/B de hoy (6,2) y los de años anteriores en la fuente (0,6 a 1,4) parecen "
+                "calculados con distinta base, así que compararlos no tiene sentido"),
+    },
 }
 
 

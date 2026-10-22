@@ -3,12 +3,13 @@ Tabla visual (definitiva desde v1.2.28). Una pieza de HTML (sin JavaScript) con 
 Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) y ordenan al tocarlos.
   Empresa        logo, nombre en negrita y (TICKER) sin negrita; abajo, sector (industria) y bandera, sin negrita
   Market Cap     numero centrado
-  Valoracion     categoria en una etiqueta de color ("Podria estar" chico arriba y la categoria grande abajo) y una barra con
-                 el Fair Value SIEMPRE en el centro (rayita azul, con su valor y la distancia abajo), una franja celeste de
-                 referencia (Fair Value +-15 %) y el punto del precio (con su valor arriba): a la izquierda = mas barata
+  Valoracion     categoria con un medidor de cinco tramos de color (de barata a cara; el de la empresa encendido) y el nombre
+                 debajo ("Podria estar" chico y la categoria grande), o una etiqueta de color (ESTILO_ETIQUETA = "pildora"); y una
+                 barra con el Fair Value SIEMPRE en el centro (rayita azul, con su valor y la distancia abajo), una franja celeste
+                 de referencia (Fair Value +-20 %) y el punto del precio (con su valor arriba): a la izquierda = mas barata
   Puntaje        caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar
-  Div. Yield     rendimiento actual en grande y, abajo, el recorrido de los ultimos años fiscales (linea gris), la mediana
-                 (linea horizontal) y hoy (punto con el color segun donde esta respecto de esa mediana: rojo, naranja,
+  Div. Yield     rendimiento actual en grande y, abajo, el recorrido de los años fiscales (linea gris), la mediana
+                 (linea horizontal; el texto dice solo "Mediana histórica X %", sin cantidad de años) y hoy (punto con el color segun donde esta respecto de esa mediana: rojo, naranja,
                  amarillo, verde claro, verde). Si no hay serie de años, una escala corta con la marca de la mediana.
 El rango de 52 semanas no va en la tabla: esta en el detalle de cada empresa.
 
@@ -32,7 +33,11 @@ _TEXTO_EN_RELLENO = {"#15803d": "#ffffff", "#82b93f": "#1a2e05", "#eab308": "#3b
 try:
     from config.ajustes import RANGO_FV_MARGEN, ESCALA_BARRA_VECES
 except ImportError:      # ajustes.py viejo
-    RANGO_FV_MARGEN, ESCALA_BARRA_VECES = 0.15, 2.0
+    RANGO_FV_MARGEN, ESCALA_BARRA_VECES = 0.20, 1.8
+try:
+    from config.ajustes import ESTILO_ETIQUETA
+except ImportError:      # ajustes.py viejo
+    ESTILO_ETIQUETA = "medidor"
 
 
 def texto_categoria(color):
@@ -61,8 +66,9 @@ def sector_plano(grupo):
 
 
 def escala_valoracion_html(mostrar_gris=False):
-    """Escala de valoracion: cinco tramos de color con el nombre de cada categoria (sin rangos a la vista: el rango de
-    puntaje queda en el texto que aparece al pasar el mouse)."""
+    """Escala de valoracion: cinco tramos de color con el nombre de cada categoria, de la mas barata (izquierda) a la mas cara
+    (derecha) - el mismo orden y los mismos colores que el medidor de cada fila. El rango de puntaje de cada tramo queda en
+    el texto que aparece al pasar el mouse."""
     from scoring.engine import CATEGORIAS, CATEGORIA_GRIS, nombre_visible
     rangos = ["70 o más", "58 a 69", "42 a 57", "30 a 41", "menos de 30"]
     tramos = []
@@ -75,8 +81,10 @@ def escala_valoracion_html(mostrar_gris=False):
     gris = (f'<div class="esc-gp"><span class="esc-gc" style="background:{CATEGORIA_GRIS[1]}">{html.escape(nombre_visible(CATEGORIA_GRIS[0]))}</span>'
             f'<span class="esc-gt">sin métricas ni rango de 52 semanas</span></div>') if mostrar_gris else ""
     return ('<div class="esc"><div class="esc-t"><b>Escala de valoración</b>'
-            '<span>según el puntaje final de 0 (caro) a 100 (barato)</span></div>'
-            f'<div class="esc-b">{"".join(tramos)}</div>{gris}</div>')
+            '<span>según el puntaje final: 100 = muy barata, 0 = muy cara</span></div>'
+            f'<div class="esc-b">{"".join(tramos)}</div>'
+            '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
+            f'{gris}</div>')
 
 # Anchos relativos de las 5 columnas (Empresa, Market Cap, Valoracion, Puntaje, Div. Yield): los usan los
 # encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
@@ -107,13 +115,20 @@ CSS = """
 .tv-hd{display:block;font-size:11.5px;font-weight:500;opacity:.9;letter-spacing:.1px}
 .tv-mn{display:block;font-size:15px;font-weight:700}
 .tv-up{font-weight:700;color:#374151}
-.tv-v2{position:relative;height:56px;margin:0 10px}
+.tv-med{width:100%}
+.tv-segs{display:flex;gap:3px;height:12px;align-items:center;max-width:230px;margin:0 auto}
+.tv-sg{flex:1;height:6px;border-radius:3px;opacity:.3}
+.tv-sg.on{height:12px;opacity:1;border-radius:4px;box-shadow:0 1px 3px rgba(15,23,42,.35)}
+.tv-mt{margin-top:6px;text-align:center;line-height:1.2}
+.tv-mh{display:block;font-size:11.5px;font-weight:500;color:#4b5563}
+.tv-mm{display:block;font-size:15px;font-weight:700}
+.tv-v2{position:relative;height:66px;margin:0 10px}
 .tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:13px;font-weight:700;color:#111827;white-space:nowrap}
-.tv-line{position:absolute;left:0;right:0;top:27px;height:3px;border-radius:2px;background:#c9dced}
-.tv-band{position:absolute;top:-5px;height:13px;background:rgba(47,127,184,.2);border:1px solid rgba(47,127,184,.4);border-radius:3px;box-sizing:border-box}
-.tv-fv{position:absolute;top:-6px;left:50%;width:2px;height:15px;background:#1f6aa5;border-radius:1px;transform:translateX(-50%)}
-.tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #64748b;transform:translateX(-50%);box-sizing:border-box}
-.tv-fl{position:absolute;top:38px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:#1f4e79;white-space:nowrap}
+.tv-line{position:absolute;left:0;right:0;top:30px;height:4px;border-radius:2px;background:#bcd2e6}
+.tv-band{position:absolute;top:-7px;height:18px;background:rgba(47,127,184,.24);border:1px solid rgba(31,106,165,.6);border-radius:4px;box-sizing:border-box}
+.tv-fv{position:absolute;top:-9px;left:50%;width:3px;height:22px;background:#1f6aa5;border-radius:1px;transform:translateX(-50%)}
+.tv-dot{position:absolute;top:-7px;width:18px;height:18px;border-radius:50%;border:2.5px solid #fff;box-shadow:0 0 0 1px #475569,0 1px 3px rgba(15,23,42,.35);transform:translateX(-50%);box-sizing:border-box}
+.tv-fl{position:absolute;top:46px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:#1f4e79;white-space:nowrap}
 .tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#4b5563;margin-top:5px}
 .tv-sub{font-size:12px;color:#4b5563;margin-top:4px}
 .tv-score{margin:0 auto;width:62px;border-radius:8px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
@@ -138,6 +153,7 @@ CSS = """
 .esc-s:last-child{border-radius:0 8px 8px 0}
 .esc-s b{display:block;font-size:13.5px;font-weight:700}
 .esc-hd{display:block;font-size:11px;font-weight:500;opacity:.9}
+.esc-ej{display:flex;justify-content:space-between;margin-top:4px;font-size:11.5px;font-weight:600;color:#4b5563}
 .esc-gp{margin-top:6px}
 .esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
 .esc-gt{font-size:12px;color:#4b5563}
@@ -253,19 +269,28 @@ def _pos_barra(x, fv):
     return 50.0 + 50.0 * _clamp(math.log(x / fv) / k, -1.0, 1.0)
 
 
+def _etiqueta_categoria(cat, color):
+    """Etiqueta de la categoria de una fila. "medidor": cinco tramos (de barata a cara) con el de la empresa encendido y el
+    nombre debajo; "pildora": una etiqueta de color. Si la categoria es la gris (sin datos), ningun tramo se enciende."""
+    from scoring.engine import CATEGORIAS, nombre_visible
+    aviso, nombre = _partes_nombre(nombre_visible(cat))
+    if ESTILO_ETIQUETA == "pildora":
+        fondo, texto = color, _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
+        hd = f'<span class="tv-hd">{html.escape(aviso)}</span>' if aviso else ""
+        return (f'<div class="tv-cat"><span class="tv-pill" style="background:{fondo};color:{texto}">'
+                f'{hd}<span class="tv-mn">{html.escape(nombre)}</span></span></div>')
+    segs = "".join(f'<i class="tv-sg{" on" if n == cat else ""}" style="background:{c}"></i>' for (_, n, c, _) in CATEGORIAS)
+    hd = f'<span class="tv-mh">{html.escape(aviso)}</span>' if aviso else ""
+    return (f'<div class="tv-cat"><div class="tv-med" title="Categoría según el puntaje, de más barata (izquierda) a más cara (derecha)">'
+            f'<div class="tv-segs">{segs}</div>'
+            f'<div class="tv-mt">{hd}<span class="tv-mm" style="color:{texto_categoria(color)}">{html.escape(nombre)}</span></div></div></div>')
+
+
 def _celda_valoracion(row, con_categoria=True):
-    from scoring.engine import nombre_visible
     cat = _txt(row.get("categoria"), "—")
     color = _txt(row.get("color_hex"), "#6e7781")
-    fondo, texto = color, _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
-    if con_categoria:
-        aviso, nombre = _partes_nombre(nombre_visible(cat))
-        hd = f'<span class="tv-hd">{html.escape(aviso)}</span>' if aviso else ""
-        cabeza = (f'<div class="tv-cat"><span class="tv-pill" style="background:{fondo};color:{texto}">'
-                  f'{hd}<span class="tv-mn">{html.escape(nombre)}</span></span></div>')
-    else:
-        cabeza = ""
+    cabeza = _etiqueta_categoria(cat, color) if con_categoria else ""
     if not precio or not fv or precio <= 0 or fv <= 0:
         return cabeza + f'<div class="tv-sub">Sin Fair Value · precio {_money(precio)}</div>'
     up = (fv - precio) / precio
@@ -390,11 +415,7 @@ def _dy_datos(row):
     pct = dy if dy > 1 else dy * 100
     m = (med if med > 1 else med * 100) if med and med > 0 else None
     serie = _dy_serie(row, m)
-    anios = (row.get("anios_historia") or {}).get("dividend_yield") if isinstance(row.get("anios_historia"), dict) else None
-    if serie:
-        etiqueta = f"Mediana {len(serie)} años"
-    else:
-        etiqueta = f"Mediana {int(anios)} años" if anios and anios >= 2 else "Mediana histórica"
+    etiqueta = "Mediana histórica"      # sin la cantidad de años: cada empresa tiene una historia distinta
     # Si el puntaje comparo contra la mediana de su sector (poca historia propia), el dibujito muestra esa misma mediana
     det = row.get("detalle")
     det = det.get("dividend_yield") if isinstance(det, dict) else None
@@ -407,8 +428,8 @@ def _dy_datos(row):
 
 
 def _celda_dy(row):
-    """Rendimiento por dividendo: numero grande y, abajo, su recorrido de los ultimos años contra la mediana (punto de
-    hoy con color segun la posicion) y el texto "Mediana N años: X%". Sin serie de años, una escala corta."""
+    """Rendimiento por dividendo: numero grande y, abajo, su recorrido de los años fiscales contra la mediana (punto de
+    hoy con color segun la posicion) y el texto "Mediana histórica: X%". Sin serie de años, una escala corta."""
     datos = _dy_datos(row)
     if not datos:
         return '<div class="tv2-dy"><div class="tv2-dyn" style="color:#9ca3af">—</div></div>'
@@ -425,7 +446,7 @@ def _celda_dy(row):
         lectura = f"Hoy rinde lo mismo que lo habitual (mediana de {mtxt})."
     color = _color_dy(row, ratio)
     if serie:
-        tip = lectura + f" Línea gris: rendimiento de cada año fiscal (últimos {len(serie)} años). Línea punteada: su mediana. Punto de color: hoy."
+        tip = lectura + " Línea gris: rendimiento de cada año fiscal. Línea punteada: su mediana histórica. Punto de color: hoy."
         dibujo = _svg_serie(serie, pct, m, color)
     else:
         tip = lectura + " La marca del centro es su mediana histórica; el punto es hoy."

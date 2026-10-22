@@ -74,13 +74,24 @@ FUENTE_APP = "Inter"
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"
 
-# --- Barra de valoracion (v1.2.34) -----------------------------------------------------------------
+# --- Encabezado de la app (v1.2.35) ----------------------------------------------------------------
+# Subtitulo que va debajo del nombre, en el cartel oscuro de arriba. Cambialo a gusto.
+SUBTITULO_APP = ("El primer filtro para valuar CEDEARs: qué podría estar barato, qué caro y qué a precio razonable, "
+                 "en un solo vistazo.")
+
+# --- Etiqueta de valoracion de cada fila (v1.2.35) -------------------------------------------------
+# "medidor": cinco tramos de color (de barata a cara) con el tramo de la empresa encendido y el nombre de la categoria abajo.
+# "pildora": una etiqueta de color con el nombre de la categoria (el estilo de la v1.2.34).
+ESTILO_ETIQUETA = "medidor"
+
+# --- Barra de valoracion (v1.2.34; franja y escala ajustadas en la v1.2.35) --------------------------
 # Es solo dibujo: no cambia el Fair Value, el puntaje ni la categoria.
 # El Fair Value va SIEMPRE en el centro de la barra; el punto del precio se mueve a su izquierda (cotiza mas barata)
 # o a su derecha (mas cara).
-# RANGO_FV_MARGEN: la franja celeste va del Fair Value menos X % al Fair Value mas X % (0.15 = 15 %). Es una zona
+# RANGO_FV_MARGEN: la franja celeste va del Fair Value menos X % al Fair Value mas X % (0.20 = 20 %). Es una zona
 #                  de referencia, NO un intervalo de confianza: los metodos suelen discrepar bastante mas que eso.
 # ESCALA_BARRA_VECES: el punto llega al borde de la barra cuando el precio vale esta cantidad de veces el Fair Value
-#                  (o su inversa): con 2.0, en el borde derecho el precio es el doble y en el izquierdo, la mitad.
-RANGO_FV_MARGEN = 0.15
-ESCALA_BARRA_VECES = 2.0
+#                  (o su inversa): con 1.8, en el borde derecho el precio es 1,8 veces el Fair Value y en el izquierdo, 1/1,8.
+#                  Mas chica = franja mas ancha pero mas empresas "pegadas" al borde (hoy ~9 %); el numero de abajo (+N %) siempre es el real.
+RANGO_FV_MARGEN = 0.20
+ESCALA_BARRA_VECES = 1.8
