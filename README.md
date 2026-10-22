@@ -12,7 +12,8 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 |---|---|---|---|---|
 | Materiales Básicos | EV/EBITDA (35%) | P/FCF (30%) | Div. Yield (25%) | P/B (10%) |
 | REITs | P/FFO (30%) | P/AFFO (30%) | Div. Yield (30%) | EV/EBITDA (10%) |
-| Financieros | P/B (40%) | PER (30%) | Div. Yield (20%) | P/FCF (10%) |
+| Bancos y seguros | P/B (40%) | PER (35%) | Div. Yield (25%) | — |
+| Pagos y datos | PER (35%) | P/FCF (35%) | EV/EBITDA (20%) | Div. Yield (10%) |
 | Consumo Discrecional | P/FCF (30%) | EV/EBITDA (30%) | PER (25%) | Div. Yield (15%) |
 | Consumo Básico | Div. Yield (35%) | EV/EBITDA (25%) | PER (25%) | P/FCF (15%) |
 | Comunicación | PEG (30%) | EV/EBITDA (30%) | Div. Yield (20%) | PER (20%) |
@@ -38,7 +39,13 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 ### Vista visual y logos (v1.2.16)
 
 - **Vista visual (en prueba):** arriba de la tabla hay un selector "Tabla clásica / Vista visual (prueba)". La vista visual muestra, por empresa: logo y nombre, la categoría con color y una barra de valoración (punto = precio de hoy, franja = rango de los métodos del Fair Value, raya = Fair Value promedio), una caja con el puntaje y las métricas usadas, el rango de 52 semanas, el Dividend Yield contra su mediana y el Mkt Cap. Se ordena con el selector de al lado. Con qué vista abre la app se cambia en `config/ajustes.py` (`VISTA_POR_DEFECTO`). El código está en `ui/tabla_visual.py`.
-- **Logos:** el servicio que se usaba (Clearbit) dejó de funcionar. Ahora cada logo sale, en este orden, de `assets/logos/<TICKER>.png` (incrustado en la página), del favicon de la empresa servido por Google (`LOGOS_EN_LINEA` en `config/ajustes.py`) o, si no hay nada, de un círculo con las iniciales. Para bajar los logos a la carpeta: `descargar_logos.bat` en la PC (una sola vez), y subir `assets/logos/` a GitHub. Deja `resultados_logos.txt` con el resumen de qué fuente funcionó.
+- **Logos:** el servicio que se usaba (Clearbit) dejó de funcionar. Ahora cada logo sale, en este orden, de `assets/logos/<TICKER>.png` (incrustado en la página), del favicon de la empresa servido por Google (`LOGOS_EN_LINEA` en `config/ajustes.py`) o, si no hay nada, de un círculo con las iniciales. Desde la v1.2.17 la carpeta ya viene con los logos; `descargar_logos.bat` queda como opcional para mejorar o completar alguno (deja `resultados_logos.txt` con el resumen de qué fuente funcionó).
+
+### Financieros separados y logos incluidos (v1.2.17)
+
+- **"Financieros" ahora son dos grupos:** *Bancos y seguros* (P/B 40%, PER 35%, Div. Yield 25%: los bancos y aseguradoras se valúan por su valor contable y sus ganancias) y *Pagos y datos* (V, MA, SPGI, PYPL, COIN, FISV, MRSH: negocios de comisiones y datos, que no prestan plata y se miden mejor por PER, P/FCF y EV/EBITDA). BRK-B, AIG, BX, IBKR y los brokers quedan en *Bancos y seguros*. Mientras no se agregue MRSH al caché, *Pagos y datos* tiene 6 empresas (el respaldo de sector pide al menos 5).
+- **Corrección:** MMC (Marsh McLennan) cambió su ticker a **MRSH** el 14/01/2026. En una versión intermedia se había puesto "MMS" por error: MMS es Maximus, otra empresa. Quedó MRSH. Sus datos entran con la próxima corrida en la PC (`actualizar_ticker.bat MRSH` o `generar_cache.bat`); que Yahoo Finance reconozca ya "MRSH" todavía no está verificado.
+- **Logos incluidos:** `assets/logos/` trae 162 logos de 64×64 ya armados (fuente: el repositorio público `nvstly/icons` en GitHub; los logos son marcas de cada empresa y se usan solo para identificarla). Los logos blancos se apoyan sobre un fondo gris oscuro para que se vean. Faltan MS, IBN, PCAR y SIEGY (la imagen disponible no era el logo): esos cuatro usan el favicon de Google o, sin conexión, las iniciales.
 
 ### Reglas de datos (v1.2.11)
 
@@ -105,6 +112,6 @@ cedear-screener/
 ├── ui/
 │   ├── tabla_visual.py     # Vista visual de la tabla (v1.2.16)
 │   └── logos.py            # Logos: archivo local, favicon o iniciales
-├── assets/logos/           # Logos (<TICKER>.png) que baja descargar_logos.bat
+├── assets/logos/           # Logos 64x64 (<TICKER>.png), ya incluidos desde la v1.2.17
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```

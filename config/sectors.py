@@ -30,12 +30,21 @@ SECTOR_CONFIG = {
             "ev_ebitda":       0.10,
         },
     },
-    "Financieros": {
+    # v1.2.17: "Financieros" se separo en dos (el P/B pesa mucho para bancos y aseguradoras, pero casi no
+    # dice nada de empresas de pagos y datos, que casi no tienen activos y recompran acciones):
+    "Bancos y seguros": {          # bancos, aseguradoras, brokers y administradoras de activos
         "metrics": {
             "p_b":             0.40,
-            "per":             0.30,
-            "dividend_yield":  0.20,
-            "p_fcf":           0.10,
+            "per":             0.35,
+            "dividend_yield":  0.25,
+        },
+    },
+    "Pagos y datos": {             # redes de pago, datos financieros, cripto, corredores de seguros
+        "metrics": {
+            "per":             0.35,
+            "p_fcf":           0.35,
+            "ev_ebitda":       0.20,
+            "dividend_yield":  0.10,
         },
     },
     "Consumo Discrecional": {
@@ -117,11 +126,11 @@ FUNDAMENTAL_WEIGHT = 1.0 - TECHNICAL_WEIGHT  # 0.85
 TICKER_UNIVERSE = {
     "Materiales Básicos": ["LIN", "BHP", "RIO", "SCCO", "FCX", "SHW", "NEM", "VALE", "AEM", "ECL"],
     "REITs":              ["O", "PLD", "WELL"],
-    "Financieros":        [
-        "BRK-B", "JPM", "V", "MA", "MUFG", "BAC", "MS", "GS", "HSBC", "C",
-        "AXP", "SCHW", "BX", "SPGI", "MMS", "HDB", "SAN", "IBN", "PYPL",
-        "USB", "COIN", "BBVA", "ITUB", "AIG", "BNY", "FISV", "ING", "NU", "IBKR",
+    "Bancos y seguros":   [
+        "BRK-B", "JPM", "MUFG", "BAC", "MS", "GS", "HSBC", "C", "AXP", "SCHW", "BX", "HDB", "SAN",
+        "IBN", "USB", "BBVA", "ITUB", "AIG", "BNY", "ING", "NU", "IBKR",
     ],
+    "Pagos y datos":      ["V", "MA", "SPGI", "PYPL", "COIN", "FISV", "MRSH"],   # MRSH = Marsh McLennan (antes MMC)
     "Consumo Discrecional": [
         "AMZN", "TSLA", "HD", "BABA", "TM", "BKNG", "PDD", "MELI",
         "SONY", "RACE", "NKE", "MCD", "SBUX", "TJX", "ABNB", "ORLY", "GM", "ROST",

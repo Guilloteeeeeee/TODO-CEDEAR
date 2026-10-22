@@ -28,7 +28,7 @@ EXTENSIONES = {".png": "image/png", ".webp": "image/webp", ".jpg": "image/jpeg",
 
 # Dominio de cada empresa (para el favicon y para el script de descarga)
 DOMINIOS = {
-    "AEM": "agnicoeagle.com", "ECL": "ecolab.com", "MMS": "marshmclennan.com",
+    "AEM": "agnicoeagle.com", "ECL": "ecolab.com", "MRSH": "marshmclennan.com",
     "AAPL": "apple.com", "MSFT": "microsoft.com", "GOOGL": "google.com",
     "AMZN": "amazon.com", "NVDA": "nvidia.com", "META": "meta.com",
     "TSLA": "tesla.com", "JPM": "jpmorganchase.com", "V": "visa.com",
