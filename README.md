@@ -112,6 +112,14 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
   - **Grupos con muchas "sobrevaluadas":** Energía (8 de 10) y Bancos y seguros (10 de 22). Puede ser real o efecto de compararse con una mediana de años de múltiplos bajos; queda para revisar.
   - **MELI:** el P/FCF de Stock Analysis (7,58) parece bajo; su flujo de caja incluye el negocio financiero. No está verificado.
 
+### Pantalla: Sector en negrita, celeste en el Fair Value y nueva escala (v1.2.27)
+
+- **Sector / Industria:** el sector va en **negrita** y la industria entre paréntesis (por ejemplo **Financiero** (Pagos y datos)). En el filtro, como no admite negrita, se ve "Financiero (Pagos y datos)". Los sectores sin industria muestran solo el nombre en negrita.
+- **Market Cap** en negrita (tabla clásica y vista visual).
+- **Barra de Valoración:** la raya y la franja del Fair Value usan tonos de **celeste claro**; la rayita del Fair Value es un celeste más fuerte. El punto del precio sigue con el color de la categoría.
+- **Escala de valoración** (arriba de la tabla, estilo GuruFocus): título y cinco tramos de color con su rango de puntaje (70 o más, 58 a 69, 42 a 57, 30 a 41, menos de 30). Sin circulitos ni cuadraditos, también en el filtro y en el cartel de la categoría. El filtro de categorías ahora se llama **Valoración**.
+- **Colores de las categorías** (más fáciles de distinguir): verde oscuro, verde lima, amarillo, naranja y rojo. El código repinta solo los cachés viejos según el nombre de la categoría, así que no hace falta regenerar nada.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.26"
+APP_VERSION = "1.2.27"
 
 import streamlit as st
 import pandas as pd
@@ -22,11 +22,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Importaciones del proyecto
 from data.fetcher import fetch_all_tickers
-from scoring.engine import score_dataframe, leyenda_categorias
+from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA
 from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
-from ui.tabla_visual import CSS as CSS_VISUAL, celda_valoracion
+from ui.tabla_visual import CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html, texto_categoria
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -81,6 +81,8 @@ def load_cache(ignorar_ttl: bool = False) -> tuple[pd.DataFrame | None, datetime
         if horas_pasadas > CACHE_TTL_HORAS and not ignorar_ttl:
             return None, ts
         df = pd.DataFrame(cache["data"])
+        if "categoria" in df.columns:
+            df["color_hex"] = df["categoria"].map(COLOR_POR_CATEGORIA).fillna(df.get("color_hex"))
         return df, ts
     except Exception:
         return None, None
@@ -181,13 +183,13 @@ def render_52w_bar(posicion: float | None) -> str:
     )
 
 
-def render_categoria_badge(emoji: str, categoria: str, color_hex: str) -> str:
-    """Badge HTML para mostrar la categoría con color."""
+def render_categoria_badge(categoria: str, color_hex: str) -> str:
+    """Badge HTML para mostrar la categoría con color (sin circulitos ni cuadraditos)."""
     return (
-        f'<span style="background:{color_hex}22;color:{color_hex};'
-        f'border:1px solid {color_hex}66;border-radius:12px;'
-        f'padding:2px 10px;font-size:12px;font-weight:600;white-space:nowrap">'
-        f'{emoji} {categoria}</span>'
+        f'<span style="background:{color_hex}22;color:{texto_categoria(color_hex)};'
+        f'border:1px solid {color_hex}88;border-radius:12px;'
+        f'padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap">'
+        f'{categoria}</span>'
     )
 
 
@@ -285,7 +287,7 @@ def _metodos_fv_html(row) -> str:
             extra, color = "", "#57606a"
             if _num_valido(precio) and precio > 0:
                 up = (pm - precio) / precio
-                color = "#2da44e" if up > 0.05 else "#cf222e" if up < -0.05 else "#d4a017"
+                color = "#15803d" if up > 0.05 else "#b91c1c" if up < -0.05 else "#a16207"
                 extra = f" ({up * 100:+.0f}%)"
             lineas.append(
                 f'<span style="color:{color};font-weight:600" title="peso {peso * 100:.0f}%">'
@@ -298,7 +300,7 @@ def _metodos_fv_html(row) -> str:
                 f'✗ {label} — <i>{motivo}</i></span>'
             )
     n_ok = sum(1 for m in esperados if detalle.get(m) and _num_valido(detalle[m].get("precio")))
-    color_n = "#57606a" if n_ok >= len(esperados) else "#bf8700" if n_ok >= 3 else "#cf222e"
+    color_n = "#57606a" if n_ok >= len(esperados) else "#bf8700" if n_ok >= 3 else "#b91c1c"
     cabecera = f'<span style="color:{color_n};font-weight:700">{n_ok}/{len(esperados)} métodos</span>'
     return (
         '<div style="font-size:11px;line-height:1.35">' + cabecera + "<br>" + "<br>".join(lineas) + "</div>"
@@ -382,17 +384,18 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         if not sectores_sel:
             sectores_sel = todos_sectores
 
-    cats_disponibles = [f"{l['emoji']} {l['nombre']}" for l in leyenda]
+    hay_gris = df is not None and not df.empty and "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
+    cats_disponibles = [l["nombre"] for l in leyenda if hay_gris or l["nombre"] != "DATOS INSUFICIENTES"]
     with col_cat:
         cats_sel = st.multiselect(
-            "🎯 Categorías",
+            "⚖️ Valoración",
             cats_disponibles,
             default=cats_disponibles,
             placeholder="Todas las categorías",
         )
         if not cats_sel:
             cats_sel = cats_disponibles
-    cats_nombres = [c.split(" ", 1)[1] for c in cats_sel]
+    cats_nombres = list(cats_sel)
 
     paises_disponibles = []
     if df is not None and not df.empty and "pais" in df.columns:
@@ -677,10 +680,10 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         cols[1].markdown(bandera_html(row.get("pais")), unsafe_allow_html=True)
 
         # Sector
-        cols[2].markdown(etiqueta_sector(row.get("sector")))
+        cols[2].markdown(sector_html(row.get("sector")), unsafe_allow_html=True)
 
         # Market Cap
-        cols[3].markdown(format_market_cap(row.get("market_cap")))
+        cols[3].markdown(f'<b>{format_market_cap(row.get("market_cap")).replace("$", "&#36;")}</b>', unsafe_allow_html=True)
 
         # Valoración: precio de hoy (punto) contra el rango de los métodos del Fair Value y su promedio
         cols[4].markdown(celda_valoracion(row.to_dict()), unsafe_allow_html=True)
@@ -715,7 +718,6 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         # Categoría badge
         cols[7].markdown(
             render_categoria_badge(
-                row.get("emoji", "⚫"),
                 row.get("categoria", "—"),
                 row.get("color_hex", "#6e7781"),
             ),
@@ -764,12 +766,11 @@ def render_detalle(df: pd.DataFrame):
     sector = row.get("sector", "")
 
     st.markdown(f"### {row.get('nombre', ticker_sel)} ({ticker_sel})")
-    st.markdown(f"**Sector / Industria:** {etiqueta_sector(sector)} | **País:** {bandera_html(row.get('pais'), con_nombre=True)} | **Market Cap:** {format_market_cap(row.get('market_cap'))}", unsafe_allow_html=True)
+    st.markdown(f"**Sector:** {sector_html(sector, en_linea=True)} | **País:** {bandera_html(row.get('pais'), con_nombre=True)} | **Market Cap:** <b>{format_market_cap(row.get('market_cap')).replace('$', '&#36;')}</b>", unsafe_allow_html=True)
 
     # Score y categoría
     st.markdown(
         render_categoria_badge(
-            row.get("emoji", "⚫"),
             row.get("categoria", "—"),
             row.get("color_hex", "#6e7781"),
         ),
@@ -843,7 +844,7 @@ def render_detalle(df: pd.DataFrame):
                         delta_color="inverse",
                     )
                 if score_m is not None:
-                    color_m = "#2da44e" if score_m >= 60 else "#d4a017" if score_m >= 40 else "#cf222e"
+                    color_m = "#15803d" if score_m >= 60 else "#a16207" if score_m >= 40 else "#b91c1c"
                     st.markdown(
                         f'Score: <span style="color:{color_m};font-weight:700">{score_m:.0f}/100</span>',
                         unsafe_allow_html=True,
@@ -920,7 +921,7 @@ def render_detalle(df: pd.DataFrame):
                 if pd.notna(precio_actual) and precio_actual and precio_m:
                     upside = (precio_m - precio_actual) / precio_actual
                     up_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
-                    color_m = "#2da44e" if upside > 0.05 else "#cf222e" if upside < -0.05 else "#d4a017"
+                    color_m = "#15803d" if upside > 0.05 else "#b91c1c" if upside < -0.05 else "#a16207"
                 else:
                     up_str = "—"
                     color_m = "#6e7781"
@@ -1012,22 +1013,15 @@ def main():
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
         st.stop()
 
-    # Leyenda compacta
-    leyenda = leyenda_categorias()
-    legend_parts = [
-        f'<span style="color:{item["color"]}">{item["emoji"]}</span> {item["nombre"]}'
-        for item in leyenda
-    ]
-    st.markdown(
-        '<div style="font-size:12px;color:#57606a;margin-bottom:4px">'
-        + "  &nbsp;|&nbsp;  ".join(legend_parts)
-        + '</div>',
-        unsafe_allow_html=True,
-    )
+    # Estilos de la tabla (una sola vez por pagina; los usan la escala, la tabla y el detalle)
+    st.markdown(f"<style>{CSS_VISUAL}</style>", unsafe_allow_html=True)
+
+    # Escala de valoracion (titulo + tramos de color)
+    hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
+    st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
 
     # Estilos de las banderas (una sola vez por pagina; los usan la tabla y el detalle)
     st.markdown(css_banderas(), unsafe_allow_html=True)
-    st.markdown(f"<style>{CSS_VISUAL}</style>", unsafe_allow_html=True)
 
     # Tabla principal
     render_main_table(df, filtros)

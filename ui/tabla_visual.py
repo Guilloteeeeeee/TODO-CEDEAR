@@ -17,11 +17,46 @@ import math
 
 import pandas as pd
 
-from config.sectors import etiqueta_sector
+from config.sectors import etiqueta_sector, partes_sector
 from ui.banderas import bandera_html
 from ui.logos import logo_html
 
-_TEXTO_OSCURO = {"#d4a017": "#8a6100", "#2da44e": "#1f7a3a", "#e16a1a": "#b24a0a"}   # para que se lea sobre blanco
+# Color de texto (para leer sobre blanco) de cada color de categoria, y color del texto sobre el relleno de la escala
+_TEXTO_OSCURO = {"#eab308": "#854d0e", "#82b93f": "#4d7a12", "#f97316": "#c2410c", "#dc2626": "#b91c1c"}
+_TEXTO_EN_RELLENO = {"#15803d": "#ffffff", "#82b93f": "#1f2937", "#eab308": "#1f2937", "#f97316": "#1f2937", "#dc2626": "#ffffff"}
+
+
+def texto_categoria(color):
+    """Color de texto legible sobre blanco para una categoria con ese color de relleno."""
+    return _TEXTO_OSCURO.get(str(color).lower(), color)
+
+
+def sector_html(grupo, en_linea=False):
+    """Sector en negrita y la industria entre parentesis. Dos lineas en la tabla; en una sola en la vista visual."""
+    sector, industria = partes_sector(grupo)
+    if not sector:
+        return "—"
+    s = f"<b>{html.escape(sector)}</b>"
+    if not industria:
+        return s if en_linea else f'<div class="tv-sec">{s}</div>'
+    ind = html.escape(industria)
+    return f'{s} <span class="tv-ind">({ind})</span>' if en_linea else f'<div class="tv-sec">{s}<span class="tv-ind">({ind})</span></div>'
+
+
+def escala_valoracion_html(mostrar_gris=False):
+    """Escala de valoracion (titulo + 5 tramos de color con su rango de puntaje), sin circulos ni cuadraditos."""
+    from scoring.engine import CATEGORIAS, CATEGORIA_GRIS
+    rangos = ["70 o más", "58 a 69", "42 a 57", "30 a 41", "menos de 30"]
+    tramos = []
+    for (umbral, nombre, color, _), rango in zip(CATEGORIAS, rangos):
+        txt = _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
+        tramos.append(f'<div class="esc-s" style="background:{color};color:{txt}"><b>{html.escape(nombre.capitalize())}</b>'
+                      f'<small>Puntaje {rango}</small></div>')
+    gris = (f'<div class="esc-gp"><span class="esc-gc" style="background:{CATEGORIA_GRIS[1]}">{html.escape(CATEGORIA_GRIS[0].capitalize())}</span>'
+            f'<span class="esc-gt">sin métricas ni rango de 52 semanas</span></div>') if mostrar_gris else ""
+    return ('<div class="esc"><div class="esc-t"><b>Escala de valoración</b>'
+            '<span>según el puntaje final de 0 (caro) a 100 (barato)</span></div>'
+            f'<div class="esc-b">{"".join(tramos)}</div>{gris}</div>')
 
 CSS = """
 .tv-wrap{overflow-x:auto;border:1px solid #e5e7eb;border-radius:10px;background:#fff;color:#1f2328;font-family:inherit}
@@ -42,10 +77,10 @@ CSS = """
 .tv-leg{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11.5px;color:#4b5563;white-space:nowrap;margin-top:6px}
 .tv-leg>span{display:inline-flex;align-items:center;gap:5px}
 .tv-ld{display:inline-block;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 1px #94a3b8}
-.tv-lf{display:inline-block;width:2px;height:12px;background:#475569;border-radius:1px}
-.tv-line{position:relative;height:3px;border-radius:2px;background:#d1d5db;margin:8px 0}
-.tv-band{position:absolute;top:-4px;height:11px;border-radius:5px;background:#a7b4c6;opacity:.75}
-.tv-fv{position:absolute;top:-5px;width:2px;height:13px;background:#475569;border-radius:1px;transform:translateX(-50%)}
+.tv-lf{display:inline-block;width:2px;height:12px;background:#2f7fb8;border-radius:1px}
+.tv-line{position:relative;height:3px;border-radius:2px;background:#cfe3f3;margin:8px 0}
+.tv-band{position:absolute;top:-4px;height:11px;border-radius:5px;background:#a9d3f2;opacity:.9}
+.tv-fv{position:absolute;top:-5px;width:2px;height:13px;background:#2f7fb8;border-radius:1px;transform:translateX(-50%)}
 .tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#6b7280;margin-top:5px}
 .tv-sub{font-size:12px;color:#6b7280;margin-top:4px}
@@ -56,7 +91,24 @@ CSS = """
 .tv-d2{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-dy{font-weight:700;font-size:15px}
 .tv-dy small{font-weight:600;font-size:12px;display:block;margin-top:2px}
-.tv-mc{font-size:14px;font-weight:600;color:#374151}
+.tv-mc{font-size:14px;font-weight:700;color:#111827}
+.tv-sec{line-height:1.25}
+.tv-sec b{display:block;font-size:14px;color:#111827}
+.tv-ind{display:block;margin-top:1px;font-size:12px;color:#6b7280}
+.tv-meta .tv-ind{display:inline;margin:0}
+.tv-emp .tv-meta b{color:#374151;font-weight:700}
+.esc{margin:2px 0 14px}
+.esc-t{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px;color:#111827}
+.esc-t span{font-size:12px;color:#6b7280}
+.esc-b{display:flex;flex-wrap:wrap;gap:2px}
+.esc-s{flex:1 1 150px;padding:7px 10px;text-align:center;line-height:1.25}
+.esc-s:first-child{border-radius:8px 0 0 8px}
+.esc-s:last-child{border-radius:0 8px 8px 0}
+.esc-s b{display:block;font-size:12.5px;font-weight:700}
+.esc-s small{display:block;font-size:11px;opacity:.92}
+.esc-gp{margin-top:6px}
+.esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
+.esc-gt{font-size:12px;color:#6b7280}
 .tv-nota{font-size:12px;color:#6b7280;padding:10px 16px;border-top:1px solid #eef0f2}
 .tv-ini{font-family:inherit}
 """
@@ -99,8 +151,8 @@ def _clamp(x, lo=0.0, hi=100.0):
 def _celda_empresa(row):
     t = _txt(row.get("ticker"), "—")
     nombre = html.escape(_txt(row.get("nombre"), t))
-    sec = etiqueta_sector(row.get("sector")) if isinstance(row.get("sector"), str) and row.get("sector") else None
-    partes = [html.escape(str(x)) for x in (t, sec) if isinstance(x, str) and x]
+    sec = sector_html(row.get("sector"), en_linea=True) if isinstance(row.get("sector"), str) and row.get("sector") else None
+    partes = [html.escape(t)] + ([sec] if sec else [])
     pais = row.get("pais")
     if isinstance(pais, str) and pais:
         partes.append(bandera_html(pais, chica=True))
@@ -129,7 +181,7 @@ def _franja_fv(precios, fv):
 def _celda_valoracion(row, con_categoria=True):
     cat = _txt(row.get("categoria"), "—")
     color = _txt(row.get("color_hex"), "#6e7781")
-    txt = _TEXTO_OSCURO.get(color.lower(), color)
+    txt = texto_categoria(color)
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
     det = row.get("fair_value_detalle")
     precios = []

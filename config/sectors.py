@@ -222,12 +222,19 @@ SECTOR_E_INDUSTRIA = {
 }
 
 
-def etiqueta_sector(grupo) -> str:
-    """Texto para mostrar: 'Financiero / Pagos y datos', o solo 'Salud' si el grupo no tiene industria."""
+def partes_sector(grupo):
+    """(sector, industria) para mostrar. La industria es None si el grupo no tiene subgrupo."""
     if not isinstance(grupo, str) or not grupo:
+        return None, None
+    return SECTOR_E_INDUSTRIA.get(grupo, (grupo, None))
+
+
+def etiqueta_sector(grupo) -> str:
+    """Texto plano: 'Financiero (Pagos y datos)', o solo 'Salud' si el grupo no tiene industria."""
+    sector, industria = partes_sector(grupo)
+    if not sector:
         return "—"
-    sector, industria = SECTOR_E_INDUSTRIA.get(grupo, (grupo, None))
-    return f"{sector} / {industria}" if industria else sector
+    return f"{sector} ({industria})" if industria else sector
 
 
 # ---------------------------------------------------------------------------

@@ -48,13 +48,17 @@ from config.sectors import (
 # ---------------------------------------------------------------------------
 
 CATEGORIAS = [
-    (70, "PODRÍA ESTAR INFRAVALORADA",   "#1a7f37", "🟢"),  # verde oscuro
-    (58, "TENDENCIA A INFRAVALORADA",    "#2da44e", "🟩"),  # verde claro
-    (42, "PARECE BIEN VALUADA",          "#d4a017", "🟡"),  # amarillo
-    (30, "TENDENCIA A SOBREVALORADA",    "#e16a1a", "🟠"),  # naranja
-    (0,  "PODRÍA ESTAR SOBREVALORADA",   "#cf222e", "🔴"),  # rojo
+    (70, "PODRÍA ESTAR INFRAVALORADA",   "#15803d", "🟢"),  # verde oscuro
+    (58, "TENDENCIA A INFRAVALORADA",    "#82b93f", "🟩"),  # verde claro (lima)
+    (42, "PARECE BIEN VALUADA",          "#eab308", "🟡"),  # amarillo
+    (30, "TENDENCIA A SOBREVALORADA",    "#f97316", "🟠"),  # naranja
+    (0,  "PODRÍA ESTAR SOBREVALORADA",   "#dc2626", "🔴"),  # rojo
 ]
 CATEGORIA_GRIS = ("DATOS INSUFICIENTES", "#6e7781", "⚫")
+
+# Color de cada categoria por nombre (la pantalla lo usa para repintar caches viejos).
+COLOR_POR_CATEGORIA = {nombre: color for _, nombre, color, _ in CATEGORIAS}
+COLOR_POR_CATEGORIA[CATEGORIA_GRIS[0]] = CATEGORIA_GRIS[1]
 
 # Mínimo de métricas fundamentales para armar el score fundamental.
 # v1.2.11: con 1 alcanza ("mejor algo que nada"): las métricas descartadas por datos rotos
@@ -486,11 +490,11 @@ def leyenda_categorias() -> list[dict]:
     """Retorna la leyenda completa para mostrar en la app."""
     leyenda = []
     thresholds = [
-        ("🟢", "PODRÍA ESTAR INFRAVALORADA",   "#1a7f37", "Score ≥ 70"),
-        ("🟩", "TENDENCIA A INFRAVALORADA",    "#2da44e", "Score 58–69"),
-        ("🟡", "PARECE BIEN VALUADA",          "#d4a017", "Score 42–57"),
-        ("🟠", "TENDENCIA A SOBREVALORADA",    "#e16a1a", "Score 30–41"),
-        ("🔴", "PODRÍA ESTAR SOBREVALORADA",   "#cf222e", "Score < 30"),
+        ("🟢", "PODRÍA ESTAR INFRAVALORADA",   "#15803d", "Score ≥ 70"),
+        ("🟩", "TENDENCIA A INFRAVALORADA",    "#82b93f", "Score 58–69"),
+        ("🟡", "PARECE BIEN VALUADA",          "#eab308", "Score 42–57"),
+        ("🟠", "TENDENCIA A SOBREVALORADA",    "#f97316", "Score 30–41"),
+        ("🔴", "PODRÍA ESTAR SOBREVALORADA",   "#dc2626", "Score < 30"),
         ("⚫", "DATOS INSUFICIENTES",          "#6e7781", "Sin métricas ni rango de 52 semanas"),
     ]
     for emoji, nombre, color, rango in thresholds:
