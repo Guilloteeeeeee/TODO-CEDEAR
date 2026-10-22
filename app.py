@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.31"
+APP_VERSION = "1.2.32"
 
 import streamlit as st
 import pandas as pd
@@ -1109,12 +1109,11 @@ def render_seguimiento():
             "Todas (%)": f"{p['todas']:+.1f}",
             "Baratas − caras, oficial (pts)": None if p["spread_oficial"] is None else round(p["spread_oficial"], 1),
             "Baratas − caras, vs sector (pts)": None if p["spread_sector"] is None else round(p["spread_sector"], 1),
-            "Baratas − caras, ajustado (pts)": None if p.get("spread_ajustado") is None else round(p["spread_ajustado"], 1),
         } for p in res["pares"]]
         st.markdown("**Por período** (baratas − caras: cuánto más subieron las empresas marcadas como infravaloradas que las sobrevaloradas; positivo = el screener acertó)")
         st.dataframe(pd.DataFrame(filas), hide_index=True, use_container_width=True)
         # Una sola tabla: por categoria, cuantas empresas habia y cuanto cambio el precio medio segun cada puntaje
-        etiquetas = (("oficial", "Oficial"), ("sector", "En sombra: vs sector"), ("ajustado", "En sombra: ajustado"))
+        etiquetas = (("oficial", "Oficial"), ("sector", "En sombra: vs sector"))
         comp = pd.DataFrame(index=[c for c in CATEGORIAS_ORDEN])
         faltan = []
         for clave, rotulo in etiquetas:
