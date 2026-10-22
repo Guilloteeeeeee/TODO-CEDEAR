@@ -103,7 +103,7 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 ### Caché del 22/10 con Stock Analysis como fuente principal (v1.2.26)
 
 - **Resultado de la corrida:** Stock Analysis aportó datos a **165 de 166** empresas. Solo GEV quedó con Yahoo, probablemente por tener poca historia (la regla pide al menos 3 años fiscales). MRSH (Marsh McLennan) ya está incluida.
-- **Métricas por empresa:** antes 9 empresas tenían 0 o 1 métrica; ahora ninguna. Quedan 3 con 2 métricas (BRK-B y NU, que no pagan dividendo, y BA, que tiene EV/EBITDA negativo). Reparto actual: 4/4 en 122 empresas, 3/4 en 21, 3/3 en 20, 2/4 en 1 y 2/3 en 2.
+- **Métricas por empresa:** antes 9 empresas tenían 0 o 1 métrica; ahora ninguna. Quedan 3 con 2 métricas: BRK-B y NU (no pagan dividendo) y BA (sin EV/EBITDA actual ni dividendo). Reparto actual: 4/4 en 122 empresas, 3/4 en 21, 3/3 en 20, 2/4 en 1 y 2/3 en 2.
 - **Datos rotos que se corrigieron:** el caché viejo traía medianas imposibles de empresas de afuera (por ejemplo MUFG: mediana de P/B 0,01 y de PER 0,10; ahora 1,00 y 17,62). Por eso 71 de 165 empresas cambiaron de categoría; la mayoría se movió un solo escalón. Parte del cambio puede deberse a un día de diferencia en los precios (21/10 vs 22/10), pero la mayor parte viene del cambio de fuente.
 - **Fair Value y categoría:** solo 3 empresas quedan en contra por más de 5% (INTC, WDC y VST).
 - **Cosas a tener en cuenta (no se cambió nada):**
