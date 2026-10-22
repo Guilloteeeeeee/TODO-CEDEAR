@@ -1,5 +1,5 @@
 """
-Seguimiento del screener (v1.2.13): compara, mes a mes, cuanto subieron o bajaron las empresas
+Seguimiento del screener (v1.2.13): compara, entre una copia y la siguiente, cuanto subieron o bajaron las empresas
 segun la categoria que tenian en una copia anterior del cache (data/historial/cache_AAAA-MM-DD.json).
 
 Se calcula para dos formas de puntuar:

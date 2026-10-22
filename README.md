@@ -29,10 +29,11 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Respaldo de sector:** si a una empresa le falta (o tiene imposible) la mediana histórica propia de una métrica, se compara contra la mediana de su sector (mediana de las medianas de sus pares, mínimo 5). Se ve en el detalle de cada empresa.
 - **PEG:** usa su propia historia (5 años fiscales) cuando viene de Stock Analysis; si no, la mediana del sector. Nunca se compara contra sí mismo.
 - **Fuente de cada métrica:** el detalle muestra si salió de Yahoo, de Stock Analysis o de la mediana del sector. Al terminar `generar_cache.bat` queda `resultados_cache.txt` con el resumen de fuentes.
-- **La app publicada solo lee el caché guardado.** Nunca baja datos de Stock Analysis ni de Yahoo por su cuenta: el caché se genera una vez al mes en la PC con `generar_cache.bat`.
+- **La app publicada solo lee el caché guardado.** Nunca baja datos de Stock Analysis ni de Yahoo por su cuenta: el caché se genera una vez por trimestre en la PC con `generar_cache.bat` (ver "Cada cuánto actualizar").
 - **Trato con Stock Analysis:** respeta su `robots.txt`, una página por empresa con pausa entre pedidos, reintenta una vez si pide frenar y se detiene si lo bloquean. Sus términos de uso piden uso personal y manual, sin scripts, salvo rastreadores que respeten el `robots.txt`: usarlo es una decisión informada del dueño de la herramienta. El interruptor está en `config/ajustes.py` (`STOCK_ANALYSIS_MODO`: `"apagado"`, `"respaldo"` o `"principal"`).
-- **Puntaje en sombra vs sector y Seguimiento:** cada fila guarda además `score_total_sector` / `categoria_sector` (la misma cuenta, pero comparando contra los pares del sector hoy). No cambia la categoría oficial. El panel "📈 Seguimiento" de la app compara, mes a mes, cuánto cambió el precio según cada categoría, usando las copias de `data/historial/`. Empieza a medir desde la segunda copia (con al menos 20 días de diferencia).
-- **Aviso:** si el caché tiene más de 35 días, la app muestra un cartel para actualizarlo.
+- **Puntaje en sombra vs sector y Seguimiento:** cada fila guarda además `score_total_sector` / `categoria_sector` (la misma cuenta, pero comparando contra los pares del sector hoy). No cambia la categoría oficial. El panel "📈 Seguimiento" de la app compara, entre una copia y la siguiente, cuánto cambió el precio según cada categoría, usando las copias de `data/historial/`. Empieza a medir desde la segunda copia (con al menos 20 días de diferencia).
+- **Cada cuánto actualizar (v1.2.15):** una vez por trimestre, el día 1 de marzo, junio, septiembre y diciembre (`MESES_ACTUALIZACION` en `config/ajustes.py`). Para esas fechas casi todas las empresas ya presentaron resultados, que es cuando cambian de verdad los balances; las medianas de 5 años cambian una sola vez por año. Lo que sí se mueve todos los meses es el precio: con un caché de 1 mes, aproximadamente 1 de cada 3 empresas queda en una categoría vecina a la de hoy (solo ~2% se corre 2 o más escalones); con 3 meses, ~45% (y ~9% a 2 o más escalones). Es una estimación hecha moviendo solo los precios con el motor real (volatilidad tomada del rango de 52 semanas); el panel "Seguimiento" va a medirlo con datos reales.
+- **Aviso:** si el caché tiene más de 100 días (`DIAS_AVISO_CACHE_VIEJO`), la app muestra un cartel para actualizarlo.
 
 ### Reglas de datos (v1.2.11)
 
@@ -95,5 +96,5 @@ cedear-screener/
 │   └── tickers_custom.json # Universo personalizado (se genera al editar)
 └── scoring/
     ├── engine.py           # Motor de scoring y categorías
-    └── seguimiento.py      # Seguimiento mensual con las copias del historial
+    └── seguimiento.py      # Seguimiento con las copias del historial
 ```

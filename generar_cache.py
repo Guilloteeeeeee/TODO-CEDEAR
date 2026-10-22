@@ -55,7 +55,7 @@ cache = {
 with open("data/cache_datos.json", "w") as f:
     json.dump(cache, f)
 
-# v1.2.11 - Historial: copia con fecha para poder comparar como cambian los datos mes a mes
+# v1.2.11 - Historial: copia con fecha para poder comparar como cambian los datos entre actualizaciones
 copia = None
 try:
     os.makedirs("data/historial", exist_ok=True)
@@ -81,6 +81,13 @@ print("  Archivo: data/cache_datos.json")
 if copia:
     print(f"  Copia para el historial: {copia}")
 print("  Subilo a GitHub en la carpeta data/ (incluida la carpeta historial/)")
+try:
+    from config.ajustes import proxima_actualizacion
+    _prox = proxima_actualizacion()
+    if _prox:
+        print(f"  Proxima actualizacion completa sugerida: {_prox:%d/%m/%Y} (despues de la temporada de resultados)")
+except Exception:
+    pass
 print("  Mandame resultados_cache.txt (el resumen de fuentes)")
 print("=" * 40)
 input("\nPresioná Enter para cerrar...")

@@ -1,12 +1,12 @@
 """
 CEDEAR Screener — App principal Streamlit
 Detecta CEDEARs potencialmente infravalorados usando métricas fundamentales
-y técnicas de Stock Analysis y Yahoo Finance (caché mensual).
+y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez por trimestre).
 
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.14"
+APP_VERSION = "1.2.15"
 
 import streamlit as st
 import pandas as pd
@@ -527,7 +527,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         st.markdown("<br>", unsafe_allow_html=True)
         forzar_refresh = st.button(
             "🔄 Actualizar datos",
-            help="Vuelve a leer el caché guardado (el caché se actualiza una vez al mes desde la PC)",
+            help="Vuelve a leer el caché guardado (el caché se actualiza una vez por trimestre desde la PC)",
         )
 
     st.markdown("---")
@@ -1017,13 +1017,13 @@ def main():
                 )
             elif fuente.startswith("cache_vigente"):
                 ts_str = fuente.split("|")[1] if "|" in fuente else "?"
-                st.info(f"📦 Datos del caché ({ts_str}) — se actualiza una vez al mes")
+                st.info(f"📦 Datos del caché ({ts_str}) — se actualiza una vez por trimestre")
         except Exception as e:
             st.error(f"❌ Error al cargar datos y sin caché disponible: {e}")
             df = None
             fuente = "error"
 
-    # Aviso si el caché tiene más de un mes
+    # Aviso si el caché es viejo (más de un trimestre)
     try:
         _, ts_cache = load_cache(ignorar_ttl=True)
         if ts_cache is not None and (datetime.now() - ts_cache).days >= CACHE_VIEJO_DIAS:
@@ -1071,14 +1071,17 @@ def main():
     # Panel de detalle
     render_detalle(df)
 
-    # Seguimiento mensual (historial del caché)
+    # Seguimiento (historial del caché)
     render_seguimiento()
 
     # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
     render_debug_panel()
 
 
-CACHE_VIEJO_DIAS = 35
+try:
+    from config.ajustes import DIAS_AVISO_CACHE_VIEJO as CACHE_VIEJO_DIAS
+except Exception:  # noqa: BLE001
+    CACHE_VIEJO_DIAS = 100
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -1111,7 +1114,7 @@ def render_seguimiento():
         if not res["pares"]:
             st.info(
                 f"Todavía no se puede medir: hacen falta dos copias separadas por al menos {MIN_DIAS_ENTRE_COPIAS} días. "
-                "La próxima actualización mensual del caché la completa."
+                "La próxima actualización del caché la completa."
             )
             return
         filas = [{
