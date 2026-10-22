@@ -36,11 +36,14 @@ CSS = """
 .tv-emp .tv-meta{font-size:12px;color:#6b7280;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv-emp>div{min-width:0}
 .tv-cat{font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.tv-leg{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:#4b5563;margin:3px 0 10px;white-space:nowrap}
-.tv-ld{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
-.tv-lf{display:inline-block;width:14px;height:6px;border-radius:3px;background:#a7b4c6;margin-right:5px;vertical-align:1px}
 .tv-up{font-weight:700;color:#374151;margin-left:3px}
-.tv-line{position:relative;height:3px;border-radius:2px;background:#d1d5db;margin:8px 4px 8px}
+.tv-v2{position:relative;padding-top:19px;margin:0 4px}
+.tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:12px;font-weight:700;color:#111827;white-space:nowrap}
+.tv-leg{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11.5px;color:#4b5563;white-space:nowrap;margin-top:6px}
+.tv-leg>span{display:inline-flex;align-items:center;gap:5px}
+.tv-ld{display:inline-block;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 1px #94a3b8}
+.tv-lf{display:inline-block;width:2px;height:12px;background:#475569;border-radius:1px}
+.tv-line{position:relative;height:3px;border-radius:2px;background:#d1d5db;margin:8px 0}
 .tv-band{position:absolute;top:-4px;height:11px;border-radius:5px;background:#a7b4c6;opacity:.75}
 .tv-fv{position:absolute;top:-5px;width:2px;height:13px;background:#475569;border-radius:1px;transform:translateX(-50%)}
 .tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
@@ -137,13 +140,10 @@ def _celda_valoracion(row, con_categoria=True):
                 precios.append(p)
     cabeza = (f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span></div>'
               if con_categoria else "")
-    dot = f'<i class="tv-ld" style="background:{color}"></i>'
     if not precio or not fv:
-        return cabeza + f'<div class="tv-leg"><span>{dot}Precio {_money(precio)}</span><span>Sin Fair Value</span></div>'
+        return cabeza + f'<div class="tv-sub">Sin Fair Value · precio {_money(precio)}</div>'
     up = (fv - precio) / precio
     up_txt = f'<b class="tv-up" title="Distancia entre el precio y el Fair Value promedio">{"+" if up >= 0 else ""}{up * 100:.0f}%</b>'
-    leyenda = (f'<div class="tv-leg"><span>{dot}Precio {_money(precio)}</span>'
-               f'<span><i class="tv-lf"></i>Fair Value {_money(fv)} {up_txt}</span></div>')
     fr = _franja_fv(precios, fv)
     lo, hi = fr if fr else (fv, fv)
     a, b = min(precio, lo, fv), max(precio, hi, fv)
@@ -152,9 +152,13 @@ def _celda_valoracion(row, con_categoria=True):
     pos = lambda x: _clamp((x - a) / (b - a) * 100.0)
     pl, ph, pf, pp = pos(lo), pos(hi), pos(fv), pos(precio)
     banda = (f'<div class="tv-band" style="left:{pl:.1f}%;width:{max(ph - pl, 1.5):.1f}%"></div>' if fr else "")
-    return (cabeza + leyenda + '<div class="tv-line">' + banda
+    return (cabeza + '<div class="tv-v2">'
+            + f'<div class="tv-pl" style="left:{_clamp(pp, 10, 90):.1f}%">{_money(precio)}</div>'
+            + '<div class="tv-line">' + banda
             + f'<div class="tv-fv" style="left:{pf:.1f}%"></div>'
-            + f'<div class="tv-dot" style="left:{pp:.1f}%;background:{color}"></div></div>')
+            + f'<div class="tv-dot" style="left:{pp:.1f}%;background:{color}"></div></div>'
+            + f'<div class="tv-leg"><span><i class="tv-ld" style="background:{color}"></i>Precio</span>'
+            + f'<span><i class="tv-lf"></i>Fair Value {_money(fv)} {up_txt}</span></div></div>')
 
 
 def celda_valoracion(row):
@@ -211,7 +215,7 @@ def html_tabla_visual(df: pd.DataFrame) -> str:
                      + f'<div>{_celda_dy(r)}</div>' + f'<div class="tv-mc">{_mcap(r.get("market_cap"))}</div></div>')
     cab = ('<div class="tv-h"><div>Empresa</div><div>Valoración: precio vs Fair Value</div><div>Puntaje</div>'
            '<div>Rango 52 semanas</div><div>Div. Yield</div><div>Mkt Cap</div></div>')
-    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría), la <b>raya oscura</b> '
-            'es el Fair Value promedio y la <b>franja gris</b> es una zona de referencia alrededor del Fair Value. Es solo una guía visual: '
+    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría y su valor arriba), la <b>raya oscura</b> '
+            'es el Fair Value promedio (con su valor abajo) y la <b>franja gris</b> es una zona de referencia alrededor del Fair Value. Es solo una guía visual: '
             'la categoría sale del puntaje.</div>')
     return f'<style>{CSS}</style><div class="tv-wrap"><div class="tv-grid">{cab}{"".join(filas)}{nota}</div></div>'
