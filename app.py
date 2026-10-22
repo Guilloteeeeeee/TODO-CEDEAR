@@ -29,6 +29,7 @@ from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
+from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html
 try:
     from config.ajustes import NOMBRE_APP
 except ImportError:      # ajustes.py viejo
@@ -42,7 +43,7 @@ from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, e
 
 st.set_page_config(
     page_title=NOMBRE_APP,
-    page_icon="📊",
+    page_icon=icono_pagina("📊"),
     layout="wide",
     initial_sidebar_state="collapsed",
 )
@@ -980,12 +981,9 @@ def main():
     universe_key = str(sorted([t for ts in universe.values() for t in ts]))
 
     # Título principal
-    col_title, col_ver = st.columns([8, 1])
-    with col_title:
-        st.title(NOMBRE_APP)
-        st.markdown("Detector de empresas potencialmente infravaloradas — datos de Stock Analysis y Yahoo Finance")
-    with col_ver:
-        st.markdown(f"<br><span style='color:#888;font-size:0.85em'>v{APP_VERSION}</span>", unsafe_allow_html=True)
+    st.markdown(f"<style>{CSS_MARCA}</style>"
+                + encabezado_html(NOMBRE_APP, "Detector de empresas potencialmente infravaloradas — datos de Stock Analysis y Yahoo Finance",
+                                  APP_VERSION), unsafe_allow_html=True)
 
     # Aviso fijo al pie (se muestra siempre, aunque despues falle algo)
     render_aviso_legal()

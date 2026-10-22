@@ -95,12 +95,12 @@ CSS = """
 .tv2-ec{min-width:0;flex:1}
 .tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
 .tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px;font-weight:700;color:#111827}
-.tv2-tk{flex:none;font-size:14px;font-weight:400;color:#6b7280}
+.tv2-tk{flex:none;font-size:14px;font-weight:400;color:#4b5563}
 .tv2-mc{font-size:15.5px;font-weight:700;color:#111827;white-space:nowrap}
-.tv2-l2{margin-top:4px;font-size:12.5px;font-weight:400;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv2-l2{margin-top:4px;font-size:12.5px;font-weight:400;color:#4b5563;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv2-dyn{font-size:22px;font-weight:600;color:#111827;line-height:1.15}
 .tv2-dy img{display:block;margin:5px auto 0}
-.tv2-dym{font-size:12px;color:#6b7280;margin-top:3px}
+.tv2-dym{font-size:12px;color:#4b5563;margin-top:3px}
 .tv2-dym b{color:#374151;font-weight:600}
 .tv-cat{display:flex;justify-content:center;margin-bottom:8px}
 .tv-pill{display:inline-block;max-width:100%;padding:5px 14px 6px;border-radius:12px;text-align:center;line-height:1.2}
@@ -114,8 +114,8 @@ CSS = """
 .tv-fv{position:absolute;top:-6px;left:50%;width:2px;height:15px;background:#1f6aa5;border-radius:1px;transform:translateX(-50%)}
 .tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #64748b;transform:translateX(-50%);box-sizing:border-box}
 .tv-fl{position:absolute;top:38px;left:50%;transform:translateX(-50%);font-size:13px;font-weight:600;color:#1f4e79;white-space:nowrap}
-.tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#6b7280;margin-top:5px}
-.tv-sub{font-size:12px;color:#6b7280;margin-top:4px}
+.tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#4b5563;margin-top:5px}
+.tv-sub{font-size:12px;color:#4b5563;margin-top:4px}
 .tv-score{margin:0 auto;width:62px;border-radius:8px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
 .tv-num{font-size:21px;font-weight:700;line-height:36px;color:#111827}
 .tv-met{font-size:11px;font-weight:600;color:#fff;line-height:19px}
@@ -126,12 +126,12 @@ CSS = """
 .tv-mc{font-size:14px;font-weight:700;color:#111827}
 .tv-sec{line-height:1.25}
 .tv-sec b{display:block;font-size:14px;color:#111827}
-.tv-ind{display:block;margin-top:1px;font-size:12px;color:#6b7280}
+.tv-ind{display:block;margin-top:1px;font-size:12px;color:#4b5563}
 .tv-meta .tv-ind{display:inline;margin:0}
 .tv-emp .tv-meta b{color:#374151;font-weight:700}
 .esc{margin:2px 0 14px}
 .esc-t{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px;color:#111827}
-.esc-t span{font-size:12px;color:#6b7280}
+.esc-t span{font-size:12px;color:#4b5563}
 .esc-b{display:flex;flex-wrap:wrap;gap:2px}
 .esc-s{flex:1 1 150px;padding:10px 12px;text-align:center;line-height:1.25;display:flex;align-items:center;justify-content:center}
 .esc-s:first-child{border-radius:8px 0 0 8px}
@@ -140,24 +140,24 @@ CSS = """
 .esc-hd{display:block;font-size:11px;font-weight:500;opacity:.9}
 .esc-gp{margin-top:6px}
 .esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
-.esc-gt{font-size:12px;color:#6b7280}
-.tv-nota{font-size:12px;color:#6b7280;padding:10px 16px;border-top:1px solid #eef0f2}
+.esc-gt{font-size:12px;color:#4b5563}
+.tv-nota{font-size:12px;color:#4b5563;padding:10px 16px;border-top:1px solid #eef0f2}
 .tv-ini{font-family:inherit}
 .flt-t{font-size:13px;font-weight:700;color:#374151;margin:12px 0 2px}
 [data-testid="stButtonGroup"] button{border:1px solid #cfd8e3;border-radius:18px;background-color:#fff;color:#374151;padding:3px 13px;font-size:13.5px;transition:background .12s,border-color .12s}
-[data-testid="stButtonGroup"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#1e3a52}
-[data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"]{background:#1e3a52!important;border-color:#1e3a52!important;color:#fff!important;font-weight:600}
+[data-testid="stButtonGroup"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}
+[data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"]{background:#222d36!important;border-color:#222d36!important;color:#fff!important;font-weight:600}
 [data-testid="stButtonGroup"] button[aria-pressed="true"] p,[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"] p{color:#fff}
-[data-testid="stButtonGroup"] button[aria-pressed="true"]:hover{background:#2a4d6b!important;border-color:#2a4d6b!important;color:#fff!important}
+[data-testid="stButtonGroup"] button[aria-pressed="true"]:hover{background:#33414d!important;border-color:#33414d!important;color:#fff!important}
 span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!important}
 span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}
 span[data-baseweb="tag"] svg{fill:#475569!important}
 """
 CSS = CSS.replace("__COLS__", " ".join(f"minmax(0,{w}fr)" for w in ANCHOS_VISUAL))
 
-# Colores del encabezado (barra oscura, titulos blancos centrados; la columna Valoracion un poco mas oscura)
-_BARRA = "#1e3a52"
-_BARRA_VAL = "#122a3e"
+# Colores del encabezado (barra gris pizarra oscura, la misma gama del logo, con titulos blancos centrados; la columna Valoracion un poco mas oscura)
+_BARRA = "#222d36"
+_BARRA_VAL = "#141c23"
 
 
 def css_encabezado(sort_col):
@@ -332,7 +332,7 @@ def _svg_dy(ratio, color):
     x = x_med + (W / 2 - 10) * math.log(_clamp(ratio, lo, hi)) / math.log(hi)
     partes = [
         f'<line x1="6" y1="12" x2="{W - 6}" y2="12" stroke="#d1d5db" stroke-width="3" stroke-linecap="round"/>',
-        f'<line x1="{x_med}" y1="4" x2="{x_med}" y2="20" stroke="#6b7280" stroke-width="2" stroke-linecap="round"/>',
+        f'<line x1="{x_med}" y1="4" x2="{x_med}" y2="20" stroke="#4b5563" stroke-width="2" stroke-linecap="round"/>',
         f'<circle cx="{x:.1f}" cy="12" r="7.5" fill="none" stroke="#9ca3af" stroke-width="1" opacity=".7"/>',
         f'<circle cx="{x:.1f}" cy="12" r="6" fill="{color}" stroke="#fff" stroke-width="2"/>',
     ]

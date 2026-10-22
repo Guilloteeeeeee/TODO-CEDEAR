@@ -1,10 +1,10 @@
 [theme]
 # v1.2.22: colores sobrios. El rojo que trae Streamlit por defecto (filtros, controles deslizantes, selectores)
 # se cambia por un tono sobrio; el color "de semaforo" queda solo para la valoracion de las empresas.
-# v1.2.34: paleta de finanzas: azul marino (el mismo de los encabezados de la tabla), texto casi negro azulado
+# v1.2.34: paleta de finanzas: gris pizarra oscuro (la gama del logo, en los encabezados de la tabla y los controles), texto casi negro azulado
 # y gris azulado muy claro en los controles. Fondo blanco.
 base = "light"
-primaryColor = "#1e3a52"
+primaryColor = "#222d36"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#eef2f7"
 textColor = "#0f172a"
