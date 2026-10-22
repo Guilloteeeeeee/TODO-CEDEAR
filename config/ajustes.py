@@ -70,3 +70,17 @@ VISTA_POR_DEFECTO = "clasica"
 # "Inter": fuente pensada para pantallas y tablas de numeros (viene incluida en assets/fuentes, no se baja de internet).
 # "": usa la tipografia que trae Streamlit (Source Sans).
 FUENTE_APP = "Inter"
+
+# --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
+NOMBRE_APP = "TodoCedears"
+
+# --- Barra de valoracion (v1.2.34) -----------------------------------------------------------------
+# Es solo dibujo: no cambia el Fair Value, el puntaje ni la categoria.
+# El Fair Value va SIEMPRE en el centro de la barra; el punto del precio se mueve a su izquierda (cotiza mas barata)
+# o a su derecha (mas cara).
+# RANGO_FV_MARGEN: la franja celeste va del Fair Value menos X % al Fair Value mas X % (0.15 = 15 %). Es una zona
+#                  de referencia, NO un intervalo de confianza: los metodos suelen discrepar bastante mas que eso.
+# ESCALA_BARRA_VECES: el punto llega al borde de la barra cuando el precio vale esta cantidad de veces el Fair Value
+#                  (o su inversa): con 2.0, en el borde derecho el precio es el doble y en el izquierdo, la mitad.
+RANGO_FV_MARGEN = 0.15
+ESCALA_BARRA_VECES = 2.0

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.33"
+APP_VERSION = "1.2.34"
 
 import streamlit as st
 import pandas as pd
@@ -23,12 +23,16 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Importaciones del proyecto
 from data.fetcher import fetch_all_tickers
-from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA, nombre_visible
+from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA, nombre_visible, nombre_corto
 from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion, CATEGORIAS_ORDEN,
                                  MIN_DIAS_ENTRE_COPIAS)
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
+try:
+    from config.ajustes import NOMBRE_APP
+except ImportError:      # ajustes.py viejo
+    NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
                              texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual)
 
@@ -37,7 +41,7 @@ from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, e
 # ---------------------------------------------------------------------------
 
 st.set_page_config(
-    page_title="CEDEAR Screener",
+    page_title=NOMBRE_APP,
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="collapsed",
@@ -393,7 +397,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     hay_gris = df is not None and not df.empty and "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     cats_disponibles = [l["nombre"] for l in leyenda if hay_gris or l["nombre"] != "DATOS INSUFICIENTES"]
     st.markdown('<div class="flt-t">Valoración</div>', unsafe_allow_html=True)
-    cats_sel = _pastillas("Valoración", cats_disponibles, nombre_visible, "flt_valoracion")
+    cats_sel = _pastillas("Valoración", cats_disponibles, nombre_corto, "flt_valoracion")
     if not cats_sel:
         cats_sel = cats_disponibles
     cats_nombres = list(cats_sel)
@@ -978,7 +982,7 @@ def main():
     # Título principal
     col_title, col_ver = st.columns([8, 1])
     with col_title:
-        st.title("📊 CEDEAR Screener")
+        st.title(NOMBRE_APP)
         st.markdown("Detector de empresas potencialmente infravaloradas — datos de Stock Analysis y Yahoo Finance")
     with col_ver:
         st.markdown(f"<br><span style='color:#888;font-size:0.85em'>v{APP_VERSION}</span>", unsafe_allow_html=True)
@@ -1125,7 +1129,7 @@ def render_seguimiento():
             comp[(rotulo, "Precio medio (%)")] = t["Variación media del precio (%)"].reindex(comp.index).round(1)
         if comp.shape[1]:
             comp.columns = pd.MultiIndex.from_tuples(comp.columns)
-            comp.index = [nombre_visible(c) for c in comp.index]
+            comp.index = [nombre_corto(c) for c in comp.index]
             comp.index.name = "Categoría"
             st.markdown("**Por categoría** (variación media del precio de las empresas que tenían esa categoría al inicio de cada período)")
             fmt = {c: ("{:.0f}" if c[1] == "Empresas" else "{:+.1f}") for c in comp.columns}

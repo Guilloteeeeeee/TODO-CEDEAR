@@ -79,6 +79,15 @@ def nombre_visible(categoria) -> str:
         return "—"
     return NOMBRE_VISIBLE.get(categoria, categoria.capitalize())
 
+
+def nombre_corto(categoria) -> str:
+    """Igual que nombre_visible pero sin el "Podría estar" del principio ("Significativamente infravalorada"): para
+    filtros y tablas chicas, donde repetirlo cinco veces es ruido. El aviso de que es una estimacion queda en la etiqueta
+    de cada empresa y en el aviso legal."""
+    t = nombre_visible(categoria)
+    pref = "Podría estar "
+    return t[len(pref):].capitalize() if t.startswith(pref) else t
+
 # Mínimo de métricas fundamentales para armar el score fundamental.
 # v1.2.11: con 1 alcanza ("mejor algo que nada"): las métricas descartadas por datos rotos
 # no hacen caer a la empresa a "datos insuficientes"; el score se arma con las que sí funcionan.

@@ -1,5 +1,5 @@
 """
-Tipografia de la app (v1.2.33). La fuente Inter (licencia SIL OFL, ver assets/fuentes/LICENCIA-Inter.txt) viene dentro
+Tipografia de la app (v1.2.33; numeros tabulares en toda la app desde la v1.2.34). La fuente Inter (licencia SIL OFL, ver assets/fuentes/LICENCIA-Inter.txt) viene dentro
 del proyecto y se incrusta en el CSS, asi no depende de internet ni de Google Fonts. Se elige en config/ajustes.py (FUENTE_APP).
 """
 import base64
@@ -40,4 +40,7 @@ def css_fuente(nombre: str = None) -> str:
     return (_cache["inter"]
             + f".stApp,.stApp :is(p,li,label,h1,h2,h3,h4,h5,h6,button,input,textarea,select,table,th,td,div,span,a,small,b,strong)"
               f":not([data-testid='stIconMaterial']):not([class*='material-symbols']){{font-family:{familia}!important}}"
+            # Numeros tabulares (todas las cifras con el mismo ancho: los totales y porcentajes quedan alineados, como en
+            # una planilla) en toda la app, y la "a" simple de Inter (cv11) solo en la tabla
+            + ".stApp{font-variant-numeric:tabular-nums}"
             + ".tv2,.tv-ini{font-feature-settings:'tnum' 1,'cv11' 1}")
