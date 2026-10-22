@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.22"
+APP_VERSION = "1.2.23"
 
 import streamlit as st
 import pandas as pd
@@ -26,6 +26,7 @@ from scoring.engine import score_dataframe, leyenda_categorias
 from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
+from ui.tabla_visual import CSS as CSS_VISUAL, celda_valoracion
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -482,6 +483,10 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 # TABLA PRINCIPAL
 # ---------------------------------------------------------------------------
 
+# Anchos de las columnas de la tabla clasica (encabezados y filas deben coincidir)
+ANCHOS_TABLA = [3, 0.9, 1.6, 1, 3.6, 1.1, 1.8, 2.8, 1.2]
+
+
 def render_main_table(df: pd.DataFrame, filtros: dict):
     """Renderiza la tabla principal con colores y filtros aplicados."""
 
@@ -613,15 +618,14 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         "País": "pais",
         "Sector": "sector",
         "Mkt Cap": "market_cap",
-        "Precio": "precio_actual",
-        "Fair Value": "fv_upside",
+        "Valoración": "fv_upside",
         "Div. Yield": "dividend_yield_actual",
         "Rango 52s": "posicion_52s",
         "Categoría": "score_total",
         "Métricas": "metricas_usadas",
     }
-    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Precio", "Fair Value", "Div. Yield", "Rango 52s", "Categoría", "Métricas"]
-    anchos = [3, 1, 1.5, 1, 1, 1.8, 1.2, 1.8, 2.8, 1.3]
+    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Valoración", "Div. Yield", "Rango 52s", "Categoría", "Métricas"]
+    anchos = ANCHOS_TABLA
     if ver_metodos:
         headers = headers + ["Métodos del Fair Value"]
         anchos = anchos + [3.6]
@@ -653,7 +657,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
 
     # --- Filas ---
     for _, row in df_show.iterrows():
-        cols = st.columns([3, 1, 1.5, 1, 1, 1.8, 0.9, 1.8, 2.8, 1.3] + ([3.6] if ver_metodos else []))
+        cols = st.columns(ANCHOS_TABLA + ([3.6] if ver_metodos else []))
 
         ticker = row.get("ticker", "—")
         nombre = row.get("nombre") or ticker
@@ -678,17 +682,8 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         # Market Cap
         cols[3].markdown(format_market_cap(row.get("market_cap")))
 
-        # Precio actual
-        precio = row.get("precio_actual")
-        cols[4].markdown(f"${format_metric(precio, 2)}" if (pd.notna(precio) and precio) else "—")
-
-        # Fair Value con color
-        fv = row.get("fair_value")
-        fv_text, fv_color = format_fair_value(fv, precio)
-        cols[5].markdown(
-            f'<span style="color:{fv_color};font-weight:600;font-size:13px">{fv_text}</span>',
-            unsafe_allow_html=True,
-        )
+        # Valoración: precio de hoy (punto) contra el rango de los métodos del Fair Value y su promedio
+        cols[4].markdown(celda_valoracion(row.to_dict()), unsafe_allow_html=True)
 
         # Dividend Yield
         # dividend_yield_actual viene como decimal desde yfinance (ej: 0.0128 = 1.28%)
@@ -707,18 +702,18 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
                 dy_pct = dy * 100  # decimal → porcentaje (ej: 0.0128 → "1.3%")
             dy_str = f"{dy_pct:.1f}%"
             dy_color = "#57606a"
-            cols[6].markdown(
+            cols[5].markdown(
                 f'<span style="color:{dy_color};font-weight:500">{dy_str}</span>',
                 unsafe_allow_html=True,
             )
         else:
-            cols[6].markdown("—")
+            cols[5].markdown("—")
 
         # Barra 52 semanas
-        cols[7].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
+        cols[6].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
 
         # Categoría badge
-        cols[8].markdown(
+        cols[7].markdown(
             render_categoria_badge(
                 row.get("emoji", "⚫"),
                 row.get("categoria", "—"),
@@ -731,18 +726,18 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         usadas, total = row.get("metricas_usadas"), row.get("metricas_total")
         if _num_valido(usadas) and _num_valido(total) and total > 0:
             color_n = "#57606a"
-            cols[9].markdown(
+            cols[8].markdown(
                 f'<span style="font-size:14px;font-weight:700;color:{color_n}" '
                 f'title="Métricas del sector que tuvieron dato actual e histórico para calcular el score">'
                 f'{int(usadas)}/{int(total)}</span>',
                 unsafe_allow_html=True,
             )
         else:
-            cols[9].markdown("—")
+            cols[8].markdown("—")
 
         # Vista de revisión: métodos usados en el Fair Value
         if ver_metodos:
-            cols[10].markdown(_metodos_fv_html(row), unsafe_allow_html=True)
+            cols[9].markdown(_metodos_fv_html(row), unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------
@@ -1032,6 +1027,7 @@ def main():
 
     # Estilos de las banderas (una sola vez por pagina; los usan la tabla y el detalle)
     st.markdown(css_banderas(), unsafe_allow_html=True)
+    st.markdown(f"<style>{CSS_VISUAL}</style>", unsafe_allow_html=True)
 
     # Tabla principal
     render_main_table(df, filtros)

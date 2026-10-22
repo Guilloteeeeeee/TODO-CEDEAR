@@ -83,6 +83,11 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Por qué una empresa puede mostrar pocas métricas (1/3, 1/4):** (1) las extranjeras (ADR) con datos de Yahoo en otra moneda tienen la mediana histórica rota y la métrica se descarta; Stock Analysis es la solución prevista; (2) si no paga dividendo, el Div. Yield no se puede calcular; (3) huecos de Yahoo en el valor actual (por ejemplo, P/FCF de FISV o EV/EBITDA negativo de Boeing); (4) BRK-B: Yahoo calcula el P/B con el valor de una acción A, y el resultado no sirve para la B.
 - **Por qué el Fair Value y la categoría pueden no coincidir:** el Fair Value descarta un método cuyo precio implícito queda fuera de 1/3x–3x el precio, pero el puntaje sigue usando esa métrica; además el PEG entra en el puntaje y no en el Fair Value, y el puntaje incluye 15% de rango de 52 semanas. Ejemplo MELI (cache del 21/10): su P/FCF (269 vs mediana 14,7) se descarta del Fair Value (+16%) pero pesa 30% en el puntaje, con 2,2 puntos.
 
+### Columna "Valoración" en la tabla clásica (v1.2.23)
+
+- La tabla clásica reemplaza las columnas **Precio** y **Fair Value** por una sola columna **Valoración**, la misma barra de la vista visual: el **punto** es el precio de hoy (con su valor arriba), la **franja gris** va del método de Fair Value más bajo al más alto, la **raya oscura** es el Fair Value promedio, y a la derecha figura la distancia al Fair Value (por ejemplo "+183% a FV"). Los valores de la franja y del promedio figuran debajo.
+- Al hacer clic en el encabezado **Valoración** se ordena por esa distancia (lo que antes ordenaba "Fair Value"). La categoría sigue en su columna y sigue saliendo del puntaje; la franja es solo una ayuda visual.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.

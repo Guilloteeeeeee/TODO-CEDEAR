@@ -105,7 +105,7 @@ def _celda_empresa(row):
             f'<div class="tv-nm">{nombre}</div></div></div>')
 
 
-def _celda_valoracion(row):
+def _celda_valoracion(row, con_categoria=True):
     cat = _txt(row.get("categoria"), "—")
     color = _txt(row.get("color_hex"), "#6e7781")
     txt = _TEXTO_OSCURO.get(color.lower(), color)
@@ -123,7 +123,10 @@ def _celda_valoracion(row):
         c_up = "#4b5563"   # v1.2.22: sin semaforo; el color queda solo para la categoria
         up_html = (f'<span class="tv-up" style="color:{c_up}" title="Distancia entre el precio y el Fair Value promedio">'
                    f'{"+" if up >= 0 else ""}{up * 100:.0f}% a FV</span>')
-    cabeza = f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span>{up_html}</div>'
+    if con_categoria:
+        cabeza = f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span>{up_html}</div>'
+    else:   # tabla clasica: la categoria ya tiene su propia columna
+        cabeza = f'<div class="tv-cat" style="justify-content:flex-end">{up_html}</div>'
     if not precio or not (precios or fv):
         return cabeza + f'<div class="tv-sub">Sin Fair Value · precio {_money(precio)}</div>'
     lo, hi = (min(precios), max(precios)) if precios else (fv, fv)
@@ -140,6 +143,11 @@ def _celda_valoracion(row):
             f'<div class="tv-dot" style="left:{pp:.1f}%;background:#334155"></div></div>'
             f'<div class="tv-lbls"><span>{_money(lo)}</span><span>Fair Value {_money(fv)}</span><span>{_money(hi)}</span></div>'
             '</div>')
+
+
+def celda_valoracion(row):
+    """Barra de valoracion para la tabla clasica (sin el nombre de la categoria)."""
+    return _celda_valoracion(row, con_categoria=False)
 
 
 def _celda_puntaje(row):
