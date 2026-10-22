@@ -144,6 +144,12 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - El texto es una base: se cambia en `config/ajustes.py` (`AVISO_LEGAL`; si se deja vacío no se muestra). Por ser Guille asesor registrado, conviene que lo revise y lo ajuste a lo que corresponda.
 - README: se corrigió la frase vieja de "cada 6 horas" (la app solo lee el caché) y se agregó cómo limitar quién ve la app.
 
+### Prueba de ROE y recompras, y notas sobre las tasas (v1.2.30, solo herramienta: no cambia ningún puntaje)
+
+- **Nuevo `probar_roe_recompras.bat`:** baja de Stock Analysis (la misma página de ratios anuales que ya usa `generar_cache`, una por empresa, con pausa y respetando robots.txt) el **ROE**, el ROIC, las **recompras netas de acciones** ("Buyback Yield / Dilution"), el payout, el dividendo, el P/B y el PER, con hasta 5 años de historia. Guarda `resultados_roe_recompras.json` y `.txt`. Sirve para probar **aparte** (sin tocar la app) si ajustar el P/B de los bancos por su ROE, o sumar las recompras al dividendo, cambia el resultado y vale la pena. Se corre una sola vez; `python probar_roe_recompras.py JPM BAC` prueba solo algunas.
+- **Puntaje "en sombra" (vs sector):** ya existe desde la v1.2.13 y se guarda en el caché (`score_total_sector`); se ve en el detalle de cada empresa y en el panel "Seguimiento", que compara oficial contra sombra apenas hay dos copias del caché separadas por el mínimo de días. Con la actualización trimestral, la primera comparación posible es en diciembre.
+- **Nota del 22/10 (simulación, no está en la app):** hoy el múltiplo medio de cada sector está muy por encima de su mediana de 5 años en Bancos (P/B 1,65 veces), Energía (P/FCF 1,46; EV/EBITDA 1,32) y Materiales, y por debajo en Software (0,63) y Comunicación (0,61–0,80). Por eso Energía (90 %) y Bancos (64 %) concentran las "sobrevaluadas". No se puede distinguir con estos datos si el sector está realmente caro o si cambió el nivel de tasas/mercado. Decisión pendiente (opciones: esperar el historial, ajustar cada empresa por lo que se encareció su sector, o combinar).
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.
