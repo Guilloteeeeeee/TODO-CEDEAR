@@ -120,7 +120,7 @@ def _celda_valoracion(row):
     up_html = ""
     if precio and fv and precio > 0:
         up = (fv - precio) / precio
-        c_up = "#1f7a3a" if up > 0.05 else "#cf222e" if up < -0.05 else "#6b7280"
+        c_up = "#4b5563"   # v1.2.22: sin semaforo; el color queda solo para la categoria
         up_html = (f'<span class="tv-up" style="color:{c_up}" title="Distancia entre el precio y el Fair Value promedio">'
                    f'{"+" if up >= 0 else ""}{up * 100:.0f}% a FV</span>')
     cabeza = f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span>{up_html}</div>'
@@ -137,7 +137,7 @@ def _celda_valoracion(row):
             f'<div class="tv-plbl" style="left:{_clamp(pp, 9, 91):.1f}%">{_money(precio)}</div>'
             f'<div class="tv-track"><div class="tv-band" style="left:{pl:.1f}%;width:{max(ph - pl, 1.5):.1f}%"></div>'
             f'<div class="tv-fv" style="left:{pf:.1f}%"></div>'
-            f'<div class="tv-dot" style="left:{pp:.1f}%;background:{color}"></div></div>'
+            f'<div class="tv-dot" style="left:{pp:.1f}%;background:#334155"></div></div>'
             f'<div class="tv-lbls"><span>{_money(lo)}</span><span>Fair Value {_money(fv)}</span><span>{_money(hi)}</span></div>'
             '</div>')
 
@@ -148,8 +148,8 @@ def _celda_puntaje(row):
     num = f"{s:.0f}" if s is not None else "—"
     u, t = _n(row.get("metricas_usadas")), _n(row.get("metricas_total"))
     met = f"{int(u)}/{int(t)} métr." if u is not None and t else "—"
-    return (f'<div class="tv-score" style="border-color:{color}" title="Puntaje total (0 = caro, 100 = barato) y métricas usadas">'
-            f'<div class="tv-num">{num}</div><div class="tv-met" style="background:{color}">{met}</div></div>')
+    return (f'<div class="tv-score" title="Puntaje total (0 = caro, 100 = barato) y métricas usadas">'
+            f'<div class="tv-num">{num}</div><div class="tv-met" style="background:#64748b">{met}</div></div>')
 
 
 def _celda_52s(row):
@@ -157,7 +157,7 @@ def _celda_52s(row):
     if pos is None:
         return '<div class="tv-sub">—</div>'
     pct = _clamp(pos * 100)
-    c = "#2da44e" if pct <= 30 else "#d4a017" if pct <= 70 else "#cf222e"
+    c = "#64748b"   # un solo color (gris azulado)
     return (f'<div title="El precio está al {pct:.0f}% del rango de las últimas 52 semanas (0% = mínimo, 100% = máximo)">'
             f'<div class="tv-t2"><div class="tv-d2" style="left:{pct:.0f}%;background:{c}"></div></div>'
             f'<div class="tv-lbls"><span>{_money(row.get("precio_min_52s"))}</span><span>{_money(row.get("precio_max_52s"))}</span></div></div>')
@@ -173,12 +173,12 @@ def _celda_dy(row):
         m = med if med > 1 else med * 100
         mtxt = f"{m:.1f}%" if m >= 1 else f"{m:.2f}%"
         if pct > m * 1.1:
-            sub = f'<small style="color:#1f7a3a">▲ sobre su mediana ({mtxt})</small>'
+            sub = f'<small style="color:#6b7280">▲ sobre su mediana ({mtxt})</small>'
         elif pct < m * 0.9:
-            sub = f'<small style="color:#b45309">▼ bajo su mediana ({mtxt})</small>'
+            sub = f'<small style="color:#6b7280">▼ bajo su mediana ({mtxt})</small>'
         else:
             sub = f'<small style="color:#6b7280">≈ su mediana ({mtxt})</small>'
-    return f'<div class="tv-dy" style="color:{"#1f7a3a" if pct >= 3 else "#374151"}">{pct:.2f}%{sub}</div>'
+    return f'<div class="tv-dy" style="color:#374151">{pct:.2f}%{sub}</div>'
 
 
 def html_tabla_visual(df: pd.DataFrame) -> str:

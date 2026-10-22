@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.21"
+APP_VERSION = "1.2.22"
 
 import streamlit as st
 import pandas as pd
@@ -24,7 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias
 from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
-from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector
+from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
 
 # ---------------------------------------------------------------------------
@@ -168,12 +168,7 @@ def render_52w_bar(posicion: float | None) -> str:
         pct = int(float(posicion) * 100)
     except (TypeError, ValueError):
         return "—"
-    if pct <= 30:
-        color = "#2da44e"   # verde
-    elif pct <= 70:
-        color = "#d4a017"   # amarillo
-    else:
-        color = "#cf222e"   # rojo
+    color = "#64748b"   # v1.2.22: un solo color (gris azulado), sin semaforo
 
     return (
         f'<div style="display:flex;align-items:center;gap:6px;min-width:120px">'
@@ -356,7 +351,7 @@ def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]
     if fv is None or precio is None or pd.isna(fv) or pd.isna(precio) or precio <= 0:
         return "—", "#6e7781"
     upside = (fv - precio) / precio
-    color = "#2da44e" if upside > 0.05 else "#cf222e" if upside < -0.05 else "#d4a017"
+    color = "#374151"   # v1.2.22: sin semaforo; el color queda solo para la categoria
     upside_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
     return f"${fv:.2f} ({upside_str})", color
 
@@ -711,7 +706,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
             else:
                 dy_pct = dy * 100  # decimal → porcentaje (ej: 0.0128 → "1.3%")
             dy_str = f"{dy_pct:.1f}%"
-            dy_color = "#2da44e" if dy_pct >= 3.0 else "#57606a"
+            dy_color = "#57606a"
             cols[6].markdown(
                 f'<span style="color:{dy_color};font-weight:500">{dy_str}</span>',
                 unsafe_allow_html=True,
@@ -735,7 +730,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         # Métricas usadas en el score (ej: 4/4) — columna propia y ordenable
         usadas, total = row.get("metricas_usadas"), row.get("metricas_total")
         if _num_valido(usadas) and _num_valido(total) and total > 0:
-            color_n = "#57606a" if usadas >= total else "#bf8700" if usadas >= 3 else "#cf222e"
+            color_n = "#57606a"
             cols[9].markdown(
                 f'<span style="font-size:14px;font-weight:700;color:{color_n}" '
                 f'title="Métricas del sector que tuvieron dato actual e histórico para calcular el score">'
@@ -1006,6 +1001,8 @@ def main():
     # Países en castellano (antes de los filtros, así el filtro, el orden y la tabla los usan)
     if df is not None and not df.empty and "pais" in df.columns:
         df = df.copy()
+        # Si Yahoo no informo el pais de una empresa, se usa el de respaldo (config/sectors.py)
+        df["pais"] = [p if isinstance(p, str) and p else PAIS_MANUAL.get(t) for p, t in zip(df["pais"], df["ticker"])]
         df["pais"] = df["pais"].map(traducir_pais)
 
     # Filtros inline (encima de la tabla)

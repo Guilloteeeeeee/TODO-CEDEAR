@@ -1,0 +1,5 @@
+[theme]
+# v1.2.22: colores sobrios. El rojo que trae Streamlit por defecto (filtros, controles deslizantes, selectores)
+# se cambia por un gris azulado; el color queda solo para las categorias.
+base = "light"
+primaryColor = "#475569"

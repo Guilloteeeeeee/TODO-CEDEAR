@@ -190,6 +190,14 @@ TICKER_UNIVERSE = {
 }
 
 # Mapeo inverso: ticker -> sector (se genera automáticamente)
+# Pais de respaldo: solo se usa cuando Yahoo Finance no informa el pais de la empresa (ej.: FISV, que
+# cambio de ticker, o MRSH). Los nombres van como los entrega Yahoo (en ingles).
+PAIS_MANUAL = {
+    "FISV": "United States",   # Fiserv (Milwaukee, EEUU)
+    "MRSH": "United States",   # Marsh McLennan (Nueva York, EEUU)
+}
+
+
 TICKER_TO_SECTOR = {
     ticker: sector
     for sector, tickers in TICKER_UNIVERSE.items()

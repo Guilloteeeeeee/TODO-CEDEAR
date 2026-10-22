@@ -75,6 +75,14 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - Son imágenes (`assets/flags/<código>.png`, 48×36, del paquete `flag-icons`, licencia MIT) y no emojis, porque en Windows los emojis de banderas se ven como dos letras ("US"). Están las de los países de la lista de traducción de `app.py`; para sumar uno nuevo se agrega la imagen y su nombre en `ISO` de `ui/banderas.py`.
 - El filtro "País" y el orden de la columna siguen usando el nombre.
 
+### Colores sobrios y país de respaldo (v1.2.22)
+
+- **Menos colores:** el color queda solo para la **categoría** (el cartel de la tabla clásica y el texto de la vista visual). El Fair Value (+% / −%), el Div. Yield, la cantidad de métricas (4/4), el punto de la barra de valoración y el rango de 52 semanas pasan a gris. Antes el +16% de MELI salía en verde mientras su categoría decía "parece bien valuada", y el semáforo del rango de 52 semanas sumaba otro color más. El rango de 52 semanas es ahora una barrita de un solo color (gris azulado).
+- **Colores de Streamlit:** `.streamlit/config.toml` cambia el rojo que Streamlit trae por defecto (filtros, controles deslizantes, selectores) por un gris azulado.
+- **País de respaldo:** `PAIS_MANUAL` en `config/sectors.py` completa el país cuando Yahoo no lo informa (hoy FISV y MRSH). El país que informa Yahoo siempre tiene prioridad.
+- **Por qué una empresa puede mostrar pocas métricas (1/3, 1/4):** (1) las extranjeras (ADR) con datos de Yahoo en otra moneda tienen la mediana histórica rota y la métrica se descarta; Stock Analysis es la solución prevista; (2) si no paga dividendo, el Div. Yield no se puede calcular; (3) huecos de Yahoo en el valor actual (por ejemplo, P/FCF de FISV o EV/EBITDA negativo de Boeing); (4) BRK-B: Yahoo calcula el P/B con el valor de una acción A, y el resultado no sirve para la B.
+- **Por qué el Fair Value y la categoría pueden no coincidir:** el Fair Value descarta un método cuyo precio implícito queda fuera de 1/3x–3x el precio, pero el puntaje sigue usando esa métrica; además el PEG entra en el puntaje y no en el Fair Value, y el puntaje incluye 15% de rango de 52 semanas. Ejemplo MELI (cache del 21/10): su P/FCF (269 vs mediana 14,7) se descarta del Fair Value (+16%) pero pesa 30% en el puntaje, con 2,2 puntos.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.

@@ -44,6 +44,15 @@ REQUEST_DELAY = 0.3  # segundos
 _DEBUG_LOG_PATH = os.path.join(os.path.dirname(__file__), "..", "yf_debug_log.json")
 
 
+def _pais_manual(ticker):
+    """Pais de respaldo (config/sectors.py) para cuando Yahoo no lo informa."""
+    try:
+        from config.sectors import PAIS_MANUAL
+        return PAIS_MANUAL.get(ticker)
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _log_yf_debug(ticker: str, income, balance, cashflow, result: dict) -> None:
     """
     Guarda diagnóstico de lo que devolvió yfinance para este ticker.
@@ -219,7 +228,7 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
 
         # --- Datos básicos ---
         result["nombre"] = info.get("shortName") or info.get("longName") or ticker
-        result["pais"] = info.get("country")
+        result["pais"] = info.get("country") or _pais_manual(ticker)
         result["sector_yf"] = info.get("sector")
         result["market_cap"] = _safe_float(info.get("marketCap"))
         result["precio_actual"] = precio
