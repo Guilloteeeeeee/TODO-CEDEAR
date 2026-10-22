@@ -100,6 +100,18 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - Debajo de la raya va la **leyenda**: a la izquierda "● Precio" (con el mismo punto del color de la categoría) y a la derecha "▌ Fair Value $Y +N%" (con la raya oscura y la distancia al Fair Value).
 - Es solo un cambio de diseño: el Fair Value, el puntaje y la categoría no cambian. Si el precio queda muy cerca de un borde, el número se corre un poco para que no se corte.
 
+### Caché del 22/10 con Stock Analysis como fuente principal (v1.2.26)
+
+- **Resultado de la corrida:** Stock Analysis aportó datos a **165 de 166** empresas. Solo GEV quedó con Yahoo, probablemente por tener poca historia (la regla pide al menos 3 años fiscales). MRSH (Marsh McLennan) ya está incluida.
+- **Métricas por empresa:** antes 9 empresas tenían 0 o 1 métrica; ahora ninguna. Quedan 3 con 2 métricas (BRK-B y NU, que no pagan dividendo, y BA, que tiene EV/EBITDA negativo). Reparto actual: 4/4 en 122 empresas, 3/4 en 21, 3/3 en 20, 2/4 en 1 y 2/3 en 2.
+- **Datos rotos que se corrigieron:** el caché viejo traía medianas imposibles de empresas de afuera (por ejemplo MUFG: mediana de P/B 0,01 y de PER 0,10; ahora 1,00 y 17,62). Por eso 71 de 165 empresas cambiaron de categoría; la mayoría se movió un solo escalón. Parte del cambio puede deberse a un día de diferencia en los precios (21/10 vs 22/10), pero la mayor parte viene del cambio de fuente.
+- **Fair Value y categoría:** solo 3 empresas quedan en contra por más de 5% (INTC, WDC y VST).
+- **Cosas a tener en cuenta (no se cambió nada):**
+  - **Dividend Yield de ITUB:** la app muestra ~1,5% (Stock Analysis y Yahoo coinciden en la tasa regular). Trendlyne informa 5,65% sobre los últimos 12 meses; en 2025 los dividendos fueron mucho mayores que en años anteriores (posibles pagos extra: es una inferencia, no lo confirmé). Es una diferencia de definición.
+  - **GEV:** su mediana histórica sale de pocos años; es menos confiable que la del resto.
+  - **Grupos con muchas "sobrevaluadas":** Energía (8 de 10) y Bancos y seguros (10 de 22). Puede ser real o efecto de compararse con una mediana de años de múltiplos bajos; queda para revisar.
+  - **MELI:** el P/FCF de Stock Analysis (7,58) parece bajo; su flujo de caja incluye el negocio financiero. No está verificado.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.
