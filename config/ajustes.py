@@ -57,3 +57,12 @@ LOGOS_EN_LINEA = "google"
 
 # Vista con la que abre la tabla principal: "clasica" o "visual".
 VISTA_POR_DEFECTO = "clasica"
+
+
+# --- Franja del Fair Value en la barra de valoracion (v1.2.24) -------------------------------------
+# Es solo dibujo: no cambia el Fair Value, el puntaje ni la categoria.
+# "margen": la franja va del Fair Value promedio menos X% al promedio mas X% (FRANJA_FV_MARGEN).
+# "promedio_metodos": desde el promedio de los metodos que dan menos que el Fair Value hasta el
+#                     promedio de los que dan mas (si hay un solo metodo, no hay franja).
+FRANJA_FV_MODO = "margen"
+FRANJA_FV_MARGEN = 0.15

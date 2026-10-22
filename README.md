@@ -85,8 +85,14 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 
 ### Columna "Valoración" en la tabla clásica (v1.2.23)
 
-- La tabla clásica reemplaza las columnas **Precio** y **Fair Value** por una sola columna **Valoración**, la misma barra de la vista visual: el **punto** es el precio de hoy (con su valor arriba), la **franja gris** va del método de Fair Value más bajo al más alto, la **raya oscura** es el Fair Value promedio, y a la derecha figura la distancia al Fair Value (por ejemplo "+183% a FV"). Los valores de la franja y del promedio figuran debajo.
+- La tabla clásica reemplaza las columnas **Precio** y **Fair Value** por una sola columna **Valoración**, la misma barra de la vista visual: el **punto** es el precio de hoy (con su valor arriba), la **raya oscura** es el Fair Value promedio y la franja gris va alrededor de él (ver v1.2.24). Arriba figuran el precio y el Fair Value con su distancia (por ejemplo "+183%").
 - Al hacer clic en el encabezado **Valoración** se ordena por esa distancia (lo que antes ordenaba "Fair Value"). La categoría sigue en su columna y sigue saliendo del puntaje; la franja es solo una ayuda visual.
+
+### Barra de valoración simplificada (v1.2.24)
+
+- La barra de **Valoración** (tabla clásica y vista visual) ahora tiene: una **raya** fina, el **punto del precio** con el color de la categoría, la **raya oscura** del Fair Value promedio y una **franjita** gris alrededor del Fair Value. Arriba va la **leyenda**: "Precio $X" con el mismo punto de color, y "Fair Value $Y" con la distancia (por ejemplo "+145%"). Ya no se dibuja el rango entre el método más bajo y el más alto.
+- **La franjita es solo dibujo.** No cambia el Fair Value, el puntaje ni la categoría. Por defecto va del Fair Value −15% al +15%. En `config/ajustes.py`: `FRANJA_FV_MARGEN` cambia ese porcentaje, y `FRANJA_FV_MODO = "promedio_metodos"` la dibuja desde el promedio de los métodos que dan menos que el Fair Value hasta el promedio de los que dan más (con un solo método no hay franja).
+- Como la categoría sale del puntaje y no de la franja, un precio puede quedar dentro de la franja con una categoría de "sobrevalorada" o "infravalorada".
 
 ### Reglas de datos (v1.2.11)
 

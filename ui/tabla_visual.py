@@ -36,13 +36,14 @@ CSS = """
 .tv-emp .tv-meta{font-size:12px;color:#6b7280;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv-emp>div{min-width:0}
 .tv-cat{font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
-.tv-up{font-size:12px;font-weight:600}
-.tv-val{position:relative;padding-top:20px}
-.tv-track{position:relative;height:8px;border-radius:4px;background:#e5e7eb;margin-top:3px}
-.tv-band{position:absolute;top:0;height:8px;border-radius:4px;background:#a7b4c6}
-.tv-fv{position:absolute;top:-3px;width:2px;height:14px;background:#475569;border-radius:1px}
-.tv-dot{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
-.tv-plbl{position:absolute;top:0;transform:translateX(-50%);font-size:12px;font-weight:700;color:#111827;white-space:nowrap}
+.tv-leg{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:12px;color:#4b5563;margin:3px 0 10px;white-space:nowrap}
+.tv-ld{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:5px;vertical-align:-1px}
+.tv-lf{display:inline-block;width:14px;height:6px;border-radius:3px;background:#a7b4c6;margin-right:5px;vertical-align:1px}
+.tv-up{font-weight:700;color:#374151;margin-left:3px}
+.tv-line{position:relative;height:3px;border-radius:2px;background:#d1d5db;margin:8px 4px 8px}
+.tv-band{position:absolute;top:-4px;height:11px;border-radius:5px;background:#a7b4c6;opacity:.75}
+.tv-fv{position:absolute;top:-5px;width:2px;height:13px;background:#475569;border-radius:1px;transform:translateX(-50%)}
+.tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#6b7280;margin-top:5px}
 .tv-sub{font-size:12px;color:#6b7280;margin-top:4px}
 .tv-score{width:62px;border-radius:8px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
@@ -105,6 +106,23 @@ def _celda_empresa(row):
             f'<div class="tv-nm">{nombre}</div></div></div>')
 
 
+def _franja_fv(precios, fv):
+    """(bajo, alto) de la franja de Fair Value segun config/ajustes.py, o None si no se puede dibujar."""
+    try:
+        from config.ajustes import FRANJA_FV_MODO as modo, FRANJA_FV_MARGEN as margen
+    except Exception:  # noqa: BLE001
+        modo, margen = "margen", 0.15
+    if not fv or fv <= 0:
+        return None
+    if modo == "promedio_metodos":
+        abajo = [p for p in precios if p < fv * 0.999]
+        arriba = [p for p in precios if p > fv * 1.001]
+        if not abajo and not arriba:
+            return None
+        return (sum(abajo) / len(abajo) if abajo else fv), (sum(arriba) / len(arriba) if arriba else fv)
+    return fv * (1 - margen), fv * (1 + margen)
+
+
 def _celda_valoracion(row, con_categoria=True):
     cat = _txt(row.get("categoria"), "—")
     color = _txt(row.get("color_hex"), "#6e7781")
@@ -117,32 +135,26 @@ def _celda_valoracion(row, con_categoria=True):
             p = _n(v.get("precio")) if isinstance(v, dict) else None
             if p and p > 0:
                 precios.append(p)
-    up_html = ""
-    if precio and fv and precio > 0:
-        up = (fv - precio) / precio
-        c_up = "#4b5563"   # v1.2.22: sin semaforo; el color queda solo para la categoria
-        up_html = (f'<span class="tv-up" style="color:{c_up}" title="Distancia entre el precio y el Fair Value promedio">'
-                   f'{"+" if up >= 0 else ""}{up * 100:.0f}% a FV</span>')
-    if con_categoria:
-        cabeza = f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span>{up_html}</div>'
-    else:   # tabla clasica: la categoria ya tiene su propia columna
-        cabeza = f'<div class="tv-cat" style="justify-content:flex-end">{up_html}</div>'
-    if not precio or not (precios or fv):
-        return cabeza + f'<div class="tv-sub">Sin Fair Value · precio {_money(precio)}</div>'
-    lo, hi = (min(precios), max(precios)) if precios else (fv, fv)
-    fv = fv or (lo + hi) / 2
-    a, b = min(precio, lo), max(precio, hi)
+    cabeza = (f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span></div>'
+              if con_categoria else "")
+    dot = f'<i class="tv-ld" style="background:{color}"></i>'
+    if not precio or not fv:
+        return cabeza + f'<div class="tv-leg"><span>{dot}Precio {_money(precio)}</span><span>Sin Fair Value</span></div>'
+    up = (fv - precio) / precio
+    up_txt = f'<b class="tv-up" title="Distancia entre el precio y el Fair Value promedio">{"+" if up >= 0 else ""}{up * 100:.0f}%</b>'
+    leyenda = (f'<div class="tv-leg"><span>{dot}Precio {_money(precio)}</span>'
+               f'<span><i class="tv-lf"></i>Fair Value {_money(fv)} {up_txt}</span></div>')
+    fr = _franja_fv(precios, fv)
+    lo, hi = fr if fr else (fv, fv)
+    a, b = min(precio, lo, fv), max(precio, hi, fv)
     span = (b - a) or precio * 0.2
-    a, b = a - span * 0.18, b + span * 0.18
+    a, b = a - span * 0.12, b + span * 0.12
     pos = lambda x: _clamp((x - a) / (b - a) * 100.0)
     pl, ph, pf, pp = pos(lo), pos(hi), pos(fv), pos(precio)
-    return (cabeza + '<div class="tv-val">'
-            f'<div class="tv-plbl" style="left:{_clamp(pp, 9, 91):.1f}%">{_money(precio)}</div>'
-            f'<div class="tv-track"><div class="tv-band" style="left:{pl:.1f}%;width:{max(ph - pl, 1.5):.1f}%"></div>'
-            f'<div class="tv-fv" style="left:{pf:.1f}%"></div>'
-            f'<div class="tv-dot" style="left:{pp:.1f}%;background:#334155"></div></div>'
-            f'<div class="tv-lbls"><span>{_money(lo)}</span><span>Fair Value {_money(fv)}</span><span>{_money(hi)}</span></div>'
-            '</div>')
+    banda = (f'<div class="tv-band" style="left:{pl:.1f}%;width:{max(ph - pl, 1.5):.1f}%"></div>' if fr else "")
+    return (cabeza + leyenda + '<div class="tv-line">' + banda
+            + f'<div class="tv-fv" style="left:{pf:.1f}%"></div>'
+            + f'<div class="tv-dot" style="left:{pp:.1f}%;background:{color}"></div></div>')
 
 
 def celda_valoracion(row):
@@ -199,7 +211,7 @@ def html_tabla_visual(df: pd.DataFrame) -> str:
                      + f'<div>{_celda_dy(r)}</div>' + f'<div class="tv-mc">{_mcap(r.get("market_cap"))}</div></div>')
     cab = ('<div class="tv-h"><div>Empresa</div><div>Valoración: precio vs Fair Value</div><div>Puntaje</div>'
            '<div>Rango 52 semanas</div><div>Div. Yield</div><div>Mkt Cap</div></div>')
-    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy, la <b>franja gris</b> va del método de Fair Value '
-            'más bajo al más alto, y la <b>raya oscura</b> es el Fair Value promedio. Si el punto está a la izquierda de la franja, '
-            'el precio queda por debajo de lo que dan los métodos.</div>')
+    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría), la <b>raya oscura</b> '
+            'es el Fair Value promedio y la <b>franja gris</b> es una zona de referencia alrededor del Fair Value. Es solo una guía visual: '
+            'la categoría sale del puntaje.</div>')
     return f'<style>{CSS}</style><div class="tv-wrap"><div class="tv-grid">{cab}{"".join(filas)}{nota}</div></div>'
