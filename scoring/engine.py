@@ -25,12 +25,12 @@ v1.2.12 — respaldo de sector:
   - Las extranjeras viejas del caché (sin 'fuentes') no usan respaldo, salvo el PEG, porque su
     valor actual también puede estar roto hasta que se actualicen.
 
-Categorías de color:
-  🟢 VERDE OSCURO  — Podría estar infravalorada       (score >= 70)
-  🟩 VERDE CLARO   — Tendencia a infravalorada        (score >= 58)
-  🟡 AMARILLO      — Parece bien valuada              (score >= 42)
-  🟠 NARANJA       — Tendencia a sobrevalorada        (score >= 30)
-  🔴 ROJO          — Podría estar sobrevalorada       (score < 30)
+Categorías de color (nombre interno -> cómo se lee en pantalla, ver NOMBRE_VISIBLE):
+  🟢 VERDE OSCURO  — Podría estar significativamente infravalorada  (score >= 70)
+  🟩 VERDE CLARO   — Podría estar moderadamente infravalorada       (score >= 58)
+  🟡 AMARILLO      — Podría estar razonablemente valuada            (score >= 42)
+  🟠 NARANJA       — Podría estar moderadamente sobrevalorada       (score >= 30)
+  🔴 ROJO          — Podría estar significativamente sobrevalorada  (score < 30)
   ⚫ GRIS          — Sin datos                        (ni métricas ni rango de 52 semanas)
 """
 
@@ -59,6 +59,25 @@ CATEGORIA_GRIS = ("DATOS INSUFICIENTES", "#6e7781", "⚫")
 # Color de cada categoria por nombre (la pantalla lo usa para repintar caches viejos).
 COLOR_POR_CATEGORIA = {nombre: color for _, nombre, color, _ in CATEGORIAS}
 COLOR_POR_CATEGORIA[CATEGORIA_GRIS[0]] = CATEGORIA_GRIS[1]
+
+# v1.2.33: como se LEE cada categoria en pantalla (escala de cinco niveles al estilo GuruFocus, con "Podria..."
+# porque es una estimacion y no una afirmacion). El nombre interno de arriba NO cambia: es lo que guardan el cache
+# y las copias del historial. Solo la pantalla usa estos textos.
+NOMBRE_VISIBLE = {
+    "PODRÍA ESTAR INFRAVALORADA": "Podría estar significativamente infravalorada",
+    "TENDENCIA A INFRAVALORADA":  "Podría estar moderadamente infravalorada",
+    "PARECE BIEN VALUADA":        "Podría estar razonablemente valuada",
+    "TENDENCIA A SOBREVALORADA":  "Podría estar moderadamente sobrevalorada",
+    "PODRÍA ESTAR SOBREVALORADA": "Podría estar significativamente sobrevalorada",
+    "DATOS INSUFICIENTES":        "Datos insuficientes",
+}
+
+
+def nombre_visible(categoria) -> str:
+    """Texto de la categoria para mostrar en pantalla (el nombre interno, tal como esta en el cache, es la clave)."""
+    if not isinstance(categoria, str) or not categoria.strip():
+        return "—"
+    return NOMBRE_VISIBLE.get(categoria, categoria.capitalize())
 
 # Mínimo de métricas fundamentales para armar el score fundamental.
 # v1.2.11: con 1 alcanza ("mejor algo que nada"): las métricas descartadas por datos rotos
@@ -523,6 +542,7 @@ def leyenda_categorias() -> list[dict]:
         leyenda.append({
             "emoji": emoji,
             "nombre": nombre,
+            "visible": nombre_visible(nombre),
             "color": color,
             "rango": rango,
         })

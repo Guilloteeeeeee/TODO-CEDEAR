@@ -41,7 +41,7 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 
 ### Vista visual y logos (v1.2.16)
 
-- **Vista visual (en prueba):** arriba de la tabla hay un selector "Tabla clásica / Vista visual (prueba)". La vista visual muestra, por empresa: logo y nombre, la categoría con color y una barra de valoración (punto = precio de hoy, franja = rango de los métodos del Fair Value, raya = Fair Value promedio), una caja con el puntaje y las métricas usadas, el rango de 52 semanas, el Dividend Yield contra su mediana y el Mkt Cap. Se ordena con el selector de al lado. Con qué vista abre la app se cambia en `config/ajustes.py` (`VISTA_POR_DEFECTO`). El código está en `ui/tabla_visual.py`.
+- **Vista visual (en prueba; ver la v1.2.33 para cómo quedó):** arriba de la tabla hay un selector "Tabla clásica / Vista visual (prueba)". La vista visual muestra, por empresa: logo y nombre, la categoría con color y una barra de valoración (punto = precio de hoy, franja = rango de los métodos del Fair Value, raya = Fair Value promedio), una caja con el puntaje y las métricas usadas, el rango de 52 semanas, el Dividend Yield contra su mediana y el Mkt Cap. Se ordena con el selector de al lado. Con qué vista abre la app se cambia en `config/ajustes.py` (`VISTA_POR_DEFECTO`). El código está en `ui/tabla_visual.py`.
 - **Logos:** el servicio que se usaba (Clearbit) dejó de funcionar. Ahora cada logo sale, en este orden, de `assets/logos/<TICKER>.png` (incrustado en la página), del favicon de la empresa servido por Google (`LOGOS_EN_LINEA` en `config/ajustes.py`) o, si no hay nada, de un círculo con las iniciales. Desde la v1.2.17 la carpeta ya viene con los logos; `descargar_logos.bat` queda como opcional para mejorar o completar alguno (deja `resultados_logos.txt` con el resumen de qué fuente funcionó).
 
 ### Financieros separados y logos incluidos (v1.2.17)
@@ -91,7 +91,7 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 ### Barra de valoración simplificada (v1.2.24)
 
 - La barra de **Valoración** (tabla clásica y vista visual) ahora tiene: una **raya** fina, el **punto del precio** con el color de la categoría, la **raya oscura** del Fair Value promedio y una **franjita** gris alrededor del Fair Value. (La leyenda cambió de lugar en v1.2.25.) Ya no se dibuja el rango entre el método más bajo y el más alto.
-- **La franjita es solo dibujo.** No cambia el Fair Value, el puntaje ni la categoría. Por defecto va del Fair Value −15% al +15%. En `config/ajustes.py`: `FRANJA_FV_MARGEN` cambia ese porcentaje, y `FRANJA_FV_MODO = "promedio_metodos"` la dibuja desde el promedio de los métodos que dan menos que el Fair Value hasta el promedio de los que dan más (con un solo método no hay franja).
+- **(Desde la v1.2.33 la franjita ya no se dibuja.)** Era solo dibujo: no cambiaba el Fair Value, el puntaje ni la categoría. Por defecto va del Fair Value −15% al +15%. En `config/ajustes.py`: `FRANJA_FV_MARGEN` cambia ese porcentaje, y `FRANJA_FV_MODO = "promedio_metodos"` la dibuja desde el promedio de los métodos que dan menos que el Fair Value hasta el promedio de los que dan más (con un solo método no hay franja).
 - Como la categoría sale del puntaje y no de la franja, un precio puede quedar dentro de la franja con una categoría de "sobrevalorada" o "infravalorada".
 
 ### Precio sobre el punto y leyenda abajo (v1.2.25)
@@ -150,6 +150,17 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Puntaje "en sombra" (vs sector):** ya existe desde la v1.2.13 y se guarda en el caché (`score_total_sector`). Se ve solo en el panel "Seguimiento" (no en el detalle de cada empresa), que compara oficial contra sombra apenas hay dos copias del caché separadas por el mínimo de días. Con la actualización trimestral, la primera comparación posible es en diciembre.
 - **Nota del 22/10 (simulación, no está en la app):** hoy el múltiplo medio de cada sector está muy por encima de su mediana de 5 años en Bancos (P/B 1,65 veces), Energía (P/FCF 1,46; EV/EBITDA 1,32) y Materiales, y por debajo en Software (0,63) y Comunicación (0,61–0,80). Por eso Energía (90 %) y Bancos (64 %) concentran las "sobrevaluadas". No se puede distinguir con estos datos si el sector está realmente caro o si cambió el nivel de tasas/mercado. Decisión pendiente (opciones: esperar el historial, ajustar cada empresa por lo que se encareció su sector, o combinar).
 
+### Tabla visual: categorías tipo GuruFocus, dibujito del yield, nombre y ticker, tipografía (v1.2.33)
+
+- **Categorías (solo cambia cómo se leen en pantalla):** son cinco niveles al estilo GuruFocus y todos empiezan con "Podría estar" porque es una estimación y no una afirmación: *significativamente infravalorada*, *moderadamente infravalorada*, *razonablemente valuada*, *moderadamente sobrevalorada* y *significativamente sobrevalorada*. Los cortes de puntaje no cambiaron (70 / 58 / 42 / 30). Los nombres que guardan el caché y las copias del historial siguen siendo los de siempre (`PODRÍA ESTAR INFRAVALORADA`, etc.); la tabla de equivalencias es `NOMBRE_VISIBLE` en `scoring/engine.py`. Por eso no hay que regenerar nada.
+- **Etiqueta de valoración:** ahora es una pieza de color lleno, más grande (15 px) y centrada, para que los cinco colores se distingan bien. La escala de arriba muestra solo los nombres; el rango de puntaje de cada tramo aparece al pasar el mouse.
+- **Barra de valoración:** sin franja ni leyenda. El **punto** es el precio (con su valor arriba) y la **rayita azul** es el Fair Value promedio, con su valor y la distancia al precio **justo abajo**. La barra solo deja un margen del 15 % a cada lado para que dos valores parecidos queden cerca (es solo dibujo).
+- **Div. Yield:** debajo del número hay una escala corta: la marca del centro es la **mediana histórica** y el punto es hoy. A la derecha rinde más que lo habitual y a la izquierda menos. El punto es **rojo, naranja, amarillo, verde claro o verde** según el puntaje que ese dividendo le da a la empresa en el score (mismos cortes que las categorías); si ese dato no está, según cuánto se aleja de su mediana. Si el puntaje usó la mediana de su sector (poca historia propia, ej. GEV), el dibujo y el texto muestran esa misma mediana ("Mediana del sector"). El texto dice "Mediana 5 años" cuando el caché trae los años de historia y "Mediana histórica" cuando no (el caché del 22/10 todavía no los trae; con la actualización de diciembre sale solo).
+- **Empresa:** **Nombre** en negrita y (TICKER) sin negrita ni punto de separación; abajo, sector (industria) y bandera, sin negrita. **Market Cap** pasó a una columna propia, con ese nombre completo y los números centrados.
+- **Tipografía:** Inter (pensada para pantallas y tablas de números; viene incluida en `assets/fuentes/`, no se baja de internet). Para volver a la de Streamlit: `FUENTE_APP = ""` en `config/ajustes.py`.
+- **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
+- **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
+
 ### Se prueba y se descarta el puntaje "ajustado"; panel de Seguimiento más claro; ROE corregido (v1.2.32)
 
 - **Qué pasó:** la v1.2.31 agregó un tercer puntaje en sombra ("ajustado": la historia de cada empresa corregida por cuánto se encareció su sector). Con los datos del 22/10 cambiaba la categoría de 69 de las 166 empresas (42 %; 58 por un escalón y 11 por dos) y llevaba el promedio de cada sector hacia el centro (Energía 24 → 44, Bancos 39 → 54, Comunicación 65 → 54). Por construcción un ajuste así no puede decir que un sector entero está caro o barato, y no se puede saber hoy si acierta más. Como no cambia el puntaje oficial y solo agrega datos al panel, **se sacó en la v1.2.32**: el puntaje oficial no cambia y ya no se guarda ninguna columna `*_ajustado`. La simulación se puede rehacer cuando haga falta, fuera de la app, con las copias de `data/historial/` (guardan los valores actuales y las medianas de cada empresa).
@@ -172,14 +183,14 @@ Para ver qué hace con cada ADR: `probar_moneda_screener.bat` (guarda `resultado
 
 ### Categorías de color
 
-| Color | Categoría | Score |
+| Color | Categoría (como se lee en pantalla desde la v1.2.33) | Score |
 |---|---|---|
-| 🟢 Verde oscuro | Podría estar infravalorada | ≥ 70 |
-| 🟩 Verde claro | Tendencia a infravalorada | 58–69 |
-| 🟡 Amarillo | Parece bien valuada | 42–57 |
-| 🟠 Naranja | Tendencia a sobrevalorada | 30–41 |
-| 🔴 Rojo | Podría estar sobrevalorada | < 30 |
-| ⚫ Gris | Sin datos (ni métricas ni rango de 52 semanas) | — |
+| 🟢 Verde oscuro | Podría estar significativamente infravalorada | ≥ 70 |
+| 🟩 Verde claro | Podría estar moderadamente infravalorada | 58–69 |
+| 🟡 Amarillo | Podría estar razonablemente valuada | 42–57 |
+| 🟠 Naranja | Podría estar moderadamente sobrevalorada | 30–41 |
+| 🔴 Rojo | Podría estar significativamente sobrevalorada | < 30 |
+| ⚫ Gris | Datos insuficientes (ni métricas ni rango de 52 semanas) | — |
 
 > ⚠️ **Aviso:** Este screener es una herramienta de filtrado inicial. Una empresa con score alto puede ser una trampa de valor. Siempre investigá más antes de invertir.
 
@@ -228,5 +239,6 @@ cedear-screener/
 │   └── banderas.py         # Banderas de los paises (v1.2.21)
 ├── assets/logos/           # Logos 64x64 (<TICKER>.png), ya incluidos desde la v1.2.17
 ├── assets/flags/           # Banderas 48x36 (<codigo>.png) de los paises
+├── assets/fuentes/         # Tipografia Inter (incluida, licencia SIL OFL); se elige en config/ajustes.py (FUENTE_APP)
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```

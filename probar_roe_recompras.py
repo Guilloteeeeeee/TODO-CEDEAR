@@ -11,6 +11,7 @@ el resultado y (2) si sumar las recompras al dividendo cambia el resultado.
 Uso (desde la carpeta del proyecto):
     python probar_roe_recompras.py              (todas las empresas, unos 5 a 10 minutos)
     python probar_roe_recompras.py JPM BAC C    (solo esas)
+    python probar_roe_recompras.py bancos       (solo las 22 de Bancos y seguros, 2 o 3 minutos)
 
 Trato con el sitio: igual que generar_cache (respeta robots.txt, una pagina a la vez con pausa, se detiene si
 lo bloquean). Se guarda de a poco, asi que si se corta queda lo ya bajado.
@@ -164,10 +165,15 @@ def main(tickers):
     print(f"\nListo. Guardé {SALIDA_JSON} y {SALIDA_TXT}. Mandalos para revisarlos.")
 
 
+def lista_desde_args(args):
+    """Sin argumentos: todas las empresas. "bancos": solo las de Bancos y seguros. Si no, los tickers que se pasen."""
+    from config.sectors import TICKER_UNIVERSE
+    if args and args[0].lower() == "bancos":
+        return list(TICKER_UNIVERSE.get("Bancos y seguros", []))
+    if args:
+        return [a.upper() for a in args]
+    return [t for ts in TICKER_UNIVERSE.values() for t in ts]
+
+
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        lista = [a.upper() for a in sys.argv[1:]]
-    else:
-        from config.sectors import TICKER_UNIVERSE
-        lista = [t for ts in TICKER_UNIVERSE.values() for t in ts]
-    main(lista)
+    main(lista_desde_args(sys.argv[1:]))

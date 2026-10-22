@@ -1,13 +1,14 @@
 """
-Tabla visual (definitiva desde v1.2.28; antes "en prueba"): una pieza de HTML (sin JavaScript) con una fila por empresa.
+Tabla visual (definitiva desde v1.2.28). Una pieza de HTML (sin JavaScript) con una fila por empresa.
 Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) y ordenan al tocarlos.
-  Empresa        logo, "nombre • TICKER" (mismo tono y tamano) con el Market Cap en negrita al lado;
-                 abajo, sector (industria) y bandera del pais
-  Valoracion     categoria con color + barra: franja = zona alrededor del Fair Value, raya = Fair Value promedio,
-                 punto = precio actual; columna con un tono azul clarito
+  Empresa        logo, nombre en negrita y (TICKER) sin negrita; abajo, sector (industria) y bandera, sin negrita
+  Market Cap     numero centrado
+  Valoracion     categoria en una etiqueta de color y grande ("Podria estar ..."), y una barra: punto = precio actual
+                 (con su valor arriba) y rayita azul = Fair Value promedio (con su valor y la distancia abajo)
   Puntaje        caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar
-  Div. Yield     rendimiento actual en grande y minigrafico anual contra su mediana historica
-El rango de 52 semanas ya no va en la tabla: esta en el detalle de cada empresa.
+  Div. Yield     rendimiento actual en grande y, abajo, una escala corta: la marca es la mediana historica y el punto
+                 es hoy, con el color segun donde esta respecto de esa mediana (rojo, naranja, amarillo, verde claro, verde)
+El rango de 52 semanas no va en la tabla: esta en el detalle de cada empresa.
 
 Los signos $ se escriben como &#36; para que el markdown no los tome como formulas.
 """
@@ -21,9 +22,12 @@ from config.sectors import etiqueta_sector, partes_sector
 from ui.banderas import bandera_html
 from ui.logos import logo_html
 
-# Color de texto (para leer sobre blanco) de cada color de categoria, y color del texto sobre el relleno de la escala
+# Color de texto (para leer sobre blanco) de cada color de categoria, y color del texto sobre el relleno de la etiqueta
 _TEXTO_OSCURO = {"#eab308": "#854d0e", "#82b93f": "#4d7a12", "#f97316": "#c2410c", "#dc2626": "#b91c1c"}
-_TEXTO_EN_RELLENO = {"#15803d": "#ffffff", "#82b93f": "#1f2937", "#eab308": "#1f2937", "#f97316": "#1f2937", "#dc2626": "#ffffff"}
+_TEXTO_EN_RELLENO = {"#15803d": "#ffffff", "#82b93f": "#1a2e05", "#eab308": "#3b2f00", "#f97316": "#2b1300", "#dc2626": "#ffffff"}
+
+# Margen que se le deja a la barra de valoracion a cada lado del precio y del Fair Value (15 %): solo dibujo.
+_MARGEN_ESCALA = 0.15
 
 
 def texto_categoria(color):
@@ -32,7 +36,7 @@ def texto_categoria(color):
 
 
 def sector_html(grupo, en_linea=False):
-    """Sector en negrita y la industria entre parentesis. Dos lineas en la tabla; en una sola en la vista visual."""
+    """Sector en negrita y la industria entre parentesis (detalle de la empresa). Dos lineas, o una sola si en_linea."""
     sector, industria = partes_sector(grupo)
     if not sector:
         return "—"
@@ -43,24 +47,33 @@ def sector_html(grupo, en_linea=False):
     return f'{s} <span class="tv-ind">({ind})</span>' if en_linea else f'<div class="tv-sec">{s}<span class="tv-ind">({ind})</span></div>'
 
 
+def sector_plano(grupo):
+    """Sector (industria) en texto normal, sin negrita: es lo que va debajo del nombre en la tabla."""
+    sector, industria = partes_sector(grupo)
+    if not sector:
+        return ""
+    return html.escape(sector) + (f" ({html.escape(industria)})" if industria else "")
+
+
 def escala_valoracion_html(mostrar_gris=False):
-    """Escala de valoracion (titulo + 5 tramos de color con su rango de puntaje), sin circulos ni cuadraditos."""
-    from scoring.engine import CATEGORIAS, CATEGORIA_GRIS
+    """Escala de valoracion: cinco tramos de color con el nombre de cada categoria (sin rangos a la vista: el rango de
+    puntaje queda en el texto que aparece al pasar el mouse)."""
+    from scoring.engine import CATEGORIAS, CATEGORIA_GRIS, nombre_visible
     rangos = ["70 o más", "58 a 69", "42 a 57", "30 a 41", "menos de 30"]
     tramos = []
     for (umbral, nombre, color, _), rango in zip(CATEGORIAS, rangos):
         txt = _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
-        tramos.append(f'<div class="esc-s" style="background:{color};color:{txt}"><b>{html.escape(nombre.capitalize())}</b>'
-                      f'<small>Puntaje {rango}</small></div>')
-    gris = (f'<div class="esc-gp"><span class="esc-gc" style="background:{CATEGORIA_GRIS[1]}">{html.escape(CATEGORIA_GRIS[0].capitalize())}</span>'
+        tramos.append(f'<div class="esc-s" style="background:{color};color:{txt}" title="Puntaje {rango}">'
+                      f'<b>{html.escape(nombre_visible(nombre))}</b></div>')
+    gris = (f'<div class="esc-gp"><span class="esc-gc" style="background:{CATEGORIA_GRIS[1]}">{html.escape(nombre_visible(CATEGORIA_GRIS[0]))}</span>'
             f'<span class="esc-gt">sin métricas ni rango de 52 semanas</span></div>') if mostrar_gris else ""
     return ('<div class="esc"><div class="esc-t"><b>Escala de valoración</b>'
             '<span>según el puntaje final de 0 (caro) a 100 (barato)</span></div>'
             f'<div class="esc-b">{"".join(tramos)}</div>{gris}</div>')
 
-# Anchos relativos de las 4 columnas (Empresa, Valoracion, Puntaje, Div. Yield): los usan los
+# Anchos relativos de las 5 columnas (Empresa, Market Cap, Valoracion, Puntaje, Div. Yield): los usan los
 # encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
-ANCHOS_VISUAL = [3.6, 3.7, 1.2, 2.3]
+ANCHOS_VISUAL = [3.4, 1.3, 3.6, 1.05, 2.0]
 
 CSS = """
 .tv2{border:1px solid #d5dde6;border-top:0;border-radius:0 0 10px 10px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit}
@@ -73,28 +86,24 @@ CSS = """
 .tv2-c{align-items:center;text-align:center}
 .tv2-emp{display:flex;align-items:center;gap:12px;min-width:0}
 .tv2-ec{min-width:0;flex:1}
-.tv2-l1{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;font-weight:700;color:#111827}
-.tv2-mc{font-size:15px;font-weight:700;color:#111827;white-space:nowrap}
-.tv2-l2{margin-top:4px;font-size:12.5px;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tv2-l2 b{color:#374151;font-weight:700}
-.tv2-l2 .tv-ind{display:inline;margin:0;color:#6b7280}
+.tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
+.tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px;font-weight:700;color:#111827}
+.tv2-tk{flex:none;font-size:14px;font-weight:400;color:#6b7280}
+.tv2-mc{font-size:15.5px;font-weight:700;color:#111827;white-space:nowrap}
+.tv2-l2{margin-top:4px;font-size:12.5px;font-weight:400;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv2-dyn{font-size:22px;font-weight:600;color:#111827;line-height:1.15}
-.tv2-dy img{display:block;margin:3px auto 0}
-.tv2-dym{font-size:12px;color:#6b7280;margin-top:4px}
-.tv2-dym b{color:#374151}
-.tv-cat{font-weight:700;font-size:13.5px;display:flex;justify-content:center;align-items:baseline;gap:8px;margin-bottom:2px}
-.tv-up{font-weight:700;color:#374151;margin-left:3px}
-.tv-v2{position:relative;padding-top:19px;margin:0 4px}
-.tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:12px;font-weight:700;color:#111827;white-space:nowrap}
-.tv-leg{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:11.5px;color:#4b5563;white-space:nowrap;margin-top:6px}
-.tv-leg>span{display:inline-flex;align-items:center;gap:5px}
-.tv-ld{display:inline-block;width:10px;height:10px;border-radius:50%;box-shadow:0 0 0 1px #94a3b8}
-.tv-lf{display:inline-block;width:2px;height:12px;background:#2f7fb8;border-radius:1px}
-.tv-line{position:relative;height:3px;border-radius:2px;background:#cfe3f3;margin:8px 0}
-.tv-band{position:absolute;top:-4px;height:11px;border-radius:5px;background:#a9d3f2;opacity:.9}
-.tv-fv{position:absolute;top:-5px;width:2px;height:13px;background:#2f7fb8;border-radius:1px;transform:translateX(-50%)}
+.tv2-dy img{display:block;margin:5px auto 0}
+.tv2-dym{font-size:12px;color:#6b7280;margin-top:3px}
+.tv2-dym b{color:#374151;font-weight:600}
+.tv-cat{display:flex;justify-content:center;margin-bottom:8px}
+.tv-pill{display:inline-block;max-width:100%;padding:6px 14px;border-radius:12px;font-weight:700;font-size:15px;line-height:1.25;text-align:center}
+.tv-up{font-weight:700;color:#374151}
+.tv-v2{position:relative;height:58px;margin:0 8px}
+.tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:13px;font-weight:700;color:#111827;white-space:nowrap}
+.tv-line{position:absolute;left:0;right:0;top:28px;height:3px;border-radius:2px;background:#c9dced}
+.tv-fv{position:absolute;top:-6px;width:2px;height:15px;background:#2f7fb8;border-radius:1px;transform:translateX(-50%)}
 .tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
+.tv-fl{position:absolute;top:40px;transform:translateX(-50%);font-size:13px;font-weight:600;color:#1f4e79;white-space:nowrap}
 .tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#6b7280;margin-top:5px}
 .tv-sub{font-size:12px;color:#6b7280;margin-top:4px}
 .tv-score{margin:0 auto;width:62px;border-radius:8px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
@@ -114,11 +123,10 @@ CSS = """
 .esc-t{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px;color:#111827}
 .esc-t span{font-size:12px;color:#6b7280}
 .esc-b{display:flex;flex-wrap:wrap;gap:2px}
-.esc-s{flex:1 1 150px;padding:7px 10px;text-align:center;line-height:1.25}
+.esc-s{flex:1 1 150px;padding:10px 12px;text-align:center;line-height:1.25;display:flex;align-items:center;justify-content:center}
 .esc-s:first-child{border-radius:8px 0 0 8px}
 .esc-s:last-child{border-radius:0 8px 8px 0}
-.esc-s b{display:block;font-size:12.5px;font-weight:700}
-.esc-s small{display:block;font-size:11px;opacity:.92}
+.esc-s b{display:block;font-size:13.5px;font-weight:700}
 .esc-gp{margin-top:6px}
 .esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
 .esc-gt{font-size:12px;color:#6b7280}
@@ -201,70 +209,45 @@ def _nombre_limpio(nombre, ticker):
 
 
 def _celda_empresa(row):
-    """Nombre • TICKER (mismo tono y tamano) con el Market Cap en negrita al lado; abajo, sector (industria) y bandera."""
+    """Nombre en negrita y (TICKER) sin negrita; abajo, sector (industria) sin negrita y la bandera del pais."""
     t = _txt(row.get("ticker"), "—")
     nombre = html.escape(_nombre_limpio(row.get("nombre"), t))
     g = row.get("sector")
-    sec = sector_html(g, en_linea=True) if isinstance(g, str) and g else ""
+    sec = sector_plano(g) if isinstance(g, str) and g else ""
     pais = row.get("pais")
     bandera = bandera_html(pais, chica=True) if isinstance(pais, str) and pais else ""
     l2 = " ".join(x for x in (sec, bandera) if x)
     return (f'<div class="tv2-emp">{logo_html(t, 38)}<div class="tv2-ec">'
-            f'<div class="tv2-l1"><span class="tv2-nm">{nombre} • {html.escape(t)}</span>'
-            f'<span class="tv2-mc">{_mcap(row.get("market_cap"))}</span></div>'
+            f'<div class="tv2-l1"><span class="tv2-nm">{nombre}</span><span class="tv2-tk">({html.escape(t)})</span></div>'
             f'<div class="tv2-l2">{l2}</div></div></div>')
 
 
-def _franja_fv(precios, fv):
-    """(bajo, alto) de la franja de Fair Value segun config/ajustes.py, o None si no se puede dibujar."""
-    try:
-        from config.ajustes import FRANJA_FV_MODO as modo, FRANJA_FV_MARGEN as margen
-    except Exception:  # noqa: BLE001
-        modo, margen = "margen", 0.15
-    if not fv or fv <= 0:
-        return None
-    if modo == "promedio_metodos":
-        abajo = [p for p in precios if p < fv * 0.999]
-        arriba = [p for p in precios if p > fv * 1.001]
-        if not abajo and not arriba:
-            return None
-        return (sum(abajo) / len(abajo) if abajo else fv), (sum(arriba) / len(arriba) if arriba else fv)
-    return fv * (1 - margen), fv * (1 + margen)
+def _celda_mcap(row):
+    return f'<span class="tv2-mc">{_mcap(row.get("market_cap"))}</span>'
 
 
 def _celda_valoracion(row, con_categoria=True):
+    from scoring.engine import nombre_visible
     cat = _txt(row.get("categoria"), "—")
     color = _txt(row.get("color_hex"), "#6e7781")
-    txt = texto_categoria(color)
+    fondo, texto = color, _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
-    det = row.get("fair_value_detalle")
-    precios = []
-    if isinstance(det, dict):
-        for v in det.values():
-            p = _n(v.get("precio")) if isinstance(v, dict) else None
-            if p and p > 0:
-                precios.append(p)
-    cabeza = (f'<div class="tv-cat" style="color:{txt}"><span>{html.escape(cat.capitalize())}</span></div>'
-              if con_categoria else "")
+    cabeza = (f'<div class="tv-cat"><span class="tv-pill" style="background:{fondo};color:{texto}">'
+              f'{html.escape(nombre_visible(cat))}</span></div>' if con_categoria else "")
     if not precio or not fv:
         return cabeza + f'<div class="tv-sub">Sin Fair Value · precio {_money(precio)}</div>'
     up = (fv - precio) / precio
-    up_txt = f'<b class="tv-up" title="Distancia entre el precio y el Fair Value promedio">{"+" if up >= 0 else ""}{up * 100:.0f}%</b>'
-    fr = _franja_fv(precios, fv)
-    lo, hi = fr if fr else (fv, fv)
-    a, b = min(precio, lo, fv), max(precio, hi, fv)
-    span = (b - a) or precio * 0.2
-    a, b = a - span * 0.12, b + span * 0.12
+    up_txt = f'<span class="tv-up" title="Distancia entre el precio y el Fair Value promedio">{"+" if up >= 0 else ""}{up * 100:.0f}%</span>'
+    # La barra deja un margen a cada lado (solo dibujo) para que dos valores parecidos queden cerca
+    a, b = min(precio, fv) * (1 - _MARGEN_ESCALA), max(precio, fv) * (1 + _MARGEN_ESCALA)
     pos = lambda x: _clamp((x - a) / (b - a) * 100.0)
-    pl, ph, pf, pp = pos(lo), pos(hi), pos(fv), pos(precio)
-    banda = (f'<div class="tv-band" style="left:{pl:.1f}%;width:{max(ph - pl, 1.5):.1f}%"></div>' if fr else "")
+    pf, pp = pos(fv), pos(precio)
     return (cabeza + '<div class="tv-v2">'
-            + f'<div class="tv-pl" style="left:{_clamp(pp, 10, 90):.1f}%">{_money(precio)}</div>'
-            + '<div class="tv-line">' + banda
+            + f'<div class="tv-pl" style="left:{_clamp(pp, 9, 91):.1f}%" title="Precio actual">{_money(precio)}</div>'
+            + '<div class="tv-line">'
             + f'<div class="tv-fv" style="left:{pf:.1f}%"></div>'
             + f'<div class="tv-dot" style="left:{pp:.1f}%;background:{color}"></div></div>'
-            + f'<div class="tv-leg"><span><i class="tv-ld" style="background:{color}"></i>Precio</span>'
-            + f'<span><i class="tv-lf"></i>Fair Value {_money(fv)} {up_txt}</span></div></div>')
+            + f'<div class="tv-fl" style="left:{_clamp(pf, 14, 86):.1f}%" title="Fair Value promedio">{_money(fv)} {up_txt}</div></div>')
 
 
 def celda_valoracion(row):
@@ -293,57 +276,73 @@ def _celda_52s(row):
             f'<div class="tv-lbls"><span>{_money(row.get("precio_min_52s"))}</span><span>{_money(row.get("precio_max_52s"))}</span></div></div>')
 
 
-def _svg_dy(serie, dy_pct, med_pct, etiqueta):
-    """Minigrafico del Div. Yield como imagen (data URI): serie anual en gris, linea de la mediana y punto de hoy."""
-    W, H, px, py = 156, 44, 5, 8
-    vals = [v * 100 if v <= 1 else v for v in serie] + [dy_pct] if serie and len(serie) >= 2 else None
-    cand = list(vals or [dy_pct]) + ([med_pct] if med_pct else [])
-    lo, hi = min(cand), max(cand)
-    if hi - lo < 1e-9:
-        hi = lo + 1.0
-    pad = (hi - lo) * 0.18
-    lo, hi = lo - pad, hi + pad
-    y = lambda v: H - py - (v - lo) / (hi - lo) * (H - 2 * py)
-    partes = []
-    if vals:
-        xs = [px + i * (W - 2 * px - 4) / (len(vals) - 1) for i in range(len(vals))]
-        pts = " ".join(f"{x:.1f},{y(v):.1f}" for x, v in zip(xs, vals))
-        partes.append(f'<polyline points="{pts}" fill="none" stroke="#c3cad4" stroke-width="1.6" stroke-linejoin="round"/>')
-        cx, cy = xs[-1], y(vals[-1])
-    else:
-        cx, cy = W - px - 4, y(dy_pct)
-    if med_pct:
-        ym = y(med_pct)
-        partes.append(f'<line x1="{px}" y1="{ym:.1f}" x2="{W - px}" y2="{ym:.1f}" stroke="#8793a3" stroke-width="1"/>')
-        ty = ym - 4 if ym > 17 else ym + 11
-        partes.append(f'<text x="{px}" y="{ty:.1f}" font-size="10" fill="#5b6675" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round" font-family="Arial,Helvetica,sans-serif">{html.escape(etiqueta)}</text>')
-    partes.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4.5" fill="#475569" stroke="#fff" stroke-width="1.5"/>')
+def _color_dy(row, ratio):
+    """Color del punto del Div. Yield segun donde esta respecto de su mediana. Usa el puntaje de esa metrica en el score
+    (mismos cortes que las categorias: 70/58/42/30); si no esta, usa la relacion hoy / mediana."""
+    from scoring.engine import get_categoria_label
+    det = row.get("detalle")
+    sc = _n(det.get("dividend_yield", {}).get("score")) if isinstance(det, dict) and isinstance(det.get("dividend_yield"), dict) else None
+    if sc is None:
+        # relacion hoy / mediana: mas rendimiento que lo habitual = mas barata
+        sc = 85 if ratio >= 1.25 else 64 if ratio >= 1.08 else 50 if ratio >= 0.92 else 36 if ratio >= 0.75 else 15
+    return get_categoria_label(sc)[1]
+
+
+def _svg_dy(ratio, color):
+    """Escala corta del Div. Yield como imagen (data URI): la marca del centro es la mediana historica y el punto es hoy.
+    A la derecha = rinde mas que lo habitual. El punto lleva el color segun su posicion."""
+    W, H = 150, 24
+    x_med = W / 2
+    lo, hi = 1 / 1.8, 1.8
+    x = x_med + (W / 2 - 10) * math.log(_clamp(ratio, lo, hi)) / math.log(hi)
+    partes = [
+        f'<line x1="6" y1="12" x2="{W - 6}" y2="12" stroke="#d1d5db" stroke-width="3" stroke-linecap="round"/>',
+        f'<line x1="{x_med}" y1="4" x2="{x_med}" y2="20" stroke="#6b7280" stroke-width="2" stroke-linecap="round"/>',
+        f'<circle cx="{x:.1f}" cy="12" r="7.5" fill="none" stroke="#9ca3af" stroke-width="1" opacity=".7"/>',
+        f'<circle cx="{x:.1f}" cy="12" r="6" fill="{color}" stroke="#fff" stroke-width="2"/>',
+    ]
     svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">{"".join(partes)}</svg>'
     return f'<img src="data:image/svg+xml;base64,{base64.b64encode(svg.encode()).decode()}" width="{W}" height="{H}" alt="">'
 
 
-def _celda_dy(row):
-    """Rendimiento por dividendo: numero grande y, abajo, minigrafico contra su mediana de los ultimos anios.
-    Si el cache todavia no trae la serie anual, no se dibuja un grafico a medias: se muestra la mediana en texto."""
+def _dy_datos(row):
+    """(rendimiento de hoy en %, mediana en % o None, texto de la mediana) o None si no paga dividendo."""
     dy, med = _n(row.get("dividend_yield_actual")), _n(row.get("dividend_yield_mediana"))
     if not dy or dy <= 0:
-        return '<div class="tv2-dy"><div class="tv2-dyn" style="color:#9ca3af">—</div></div>'
+        return None
     pct = dy if dy > 1 else dy * 100
     m = (med if med > 1 else med * 100) if med and med > 0 else None
-    serie = row.get("dividend_yield_serie")
-    serie = [v for v in (_n(x) for x in serie) if v is not None] if isinstance(serie, (list, tuple)) else None
     anios = (row.get("anios_historia") or {}).get("dividend_yield") if isinstance(row.get("anios_historia"), dict) else None
-    n = len(serie) if serie else (int(anios) if anios else None)
-    etiqueta = f"Mediana {n} años" if n and n >= 2 else "Mediana histórica"
+    etiqueta = f"Mediana {int(anios)} años" if anios and anios >= 2 else "Mediana histórica"
+    # Si el puntaje comparo contra la mediana de su sector (poca historia propia), el dibujito muestra esa misma mediana
+    det = row.get("detalle")
+    det = det.get("dividend_yield") if isinstance(det, dict) else None
+    if isinstance(det, dict) and det.get("referencia") == "sector" and _n(det.get("mediana")) and _n(det.get("mediana")) > 0:
+        dm = _n(det.get("mediana"))
+        m = dm if dm > 1 else dm * 100
+        etiqueta = "Mediana del sector"
+    return pct, m, etiqueta
+
+
+def _celda_dy(row):
+    """Rendimiento por dividendo: numero grande y, abajo, una escala corta contra su mediana de los ultimos anios
+    (marca = mediana, punto = hoy, con color segun la posicion) y el texto "Mediana N años: X%"."""
+    datos = _dy_datos(row)
+    if not datos:
+        return '<div class="tv2-dy"><div class="tv2-dyn" style="color:#9ca3af">—</div></div>'
+    pct, m, etiqueta = datos
     mtxt = f"{m:.1f}%" if m and m >= 1 else (f"{m:.2f}%" if m else "")
-    tip = (f"Rendimiento por dividendo de hoy. La línea es su mediana histórica ({mtxt}); el punto es hoy." if m
-           else "Rendimiento por dividendo de hoy.")
-    if serie and len(serie) >= 2:
-        pie = _svg_dy(serie, pct, m, etiqueta)
-    elif m:
-        pie = f'<div class="tv2-dym">{html.escape(etiqueta)}: <b>{mtxt}</b></div>'
+    if not m:
+        return f'<div class="tv2-dy" title="Rendimiento por dividendo de hoy."><div class="tv2-dyn">{pct:.2f}%</div></div>'
+    ratio = pct / m
+    if ratio >= 1.02:
+        lectura = f"Hoy rinde más que lo habitual ({pct:.2f}% contra una mediana de {mtxt})."
+    elif ratio <= 0.98:
+        lectura = f"Hoy rinde menos que lo habitual ({pct:.2f}% contra una mediana de {mtxt})."
     else:
-        pie = ""
+        lectura = f"Hoy rinde lo mismo que lo habitual (mediana de {mtxt})."
+    tip = lectura + " La marca del centro es su mediana histórica; el punto es hoy."
+    pie = _svg_dy(ratio, _color_dy(row, ratio)) + f'<div class="tv2-dym">{html.escape(etiqueta)}: <b>{mtxt}</b></div>'
     return f'<div class="tv2-dy" title="{html.escape(tip)}"><div class="tv2-dyn">{pct:.2f}%</div>{pie}</div>'
 
 
@@ -352,9 +351,11 @@ def html_tabla_visual(df: pd.DataFrame) -> str:
     filas = []
     for _, row in df.iterrows():
         r = row.to_dict()
-        filas.append('<div class="tv2-r">' + f'<div>{_celda_empresa(r)}</div>' + f'<div class="tv2-v">{_celda_valoracion(r)}</div>'
+        filas.append('<div class="tv2-r">' + f'<div>{_celda_empresa(r)}</div>' + f'<div class="tv2-c">{_celda_mcap(r)}</div>'
+                     + f'<div class="tv2-v">{_celda_valoracion(r)}</div>'
                      + f'<div class="tv2-c">{_celda_puntaje(r)}</div>' + f'<div class="tv2-c">{_celda_dy(r)}</div></div>')
-    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría y su valor arriba), la <b>rayita azul</b> '
-            'es el Fair Value promedio (con su valor abajo) y la <b>franja celeste</b> es una zona de referencia alrededor del Fair Value. Es solo una guía visual: '
-            'la categoría sale del puntaje. El rango de 52 semanas está en el detalle de cada empresa.</div>')
+    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría y su valor arriba) y la <b>rayita azul</b> '
+            'es el Fair Value promedio (con su valor y su distancia al precio abajo). Es solo una guía visual: la categoría sale del puntaje. '
+            'En el Div. Yield, la marca del centro es su mediana histórica y el punto es hoy: a la derecha rinde más que lo habitual, a la izquierda menos. '
+            'El rango de 52 semanas está en el detalle de cada empresa.</div>')
     return f'<div class="tv2">{"".join(filas)}{nota}</div>'

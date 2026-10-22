@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.32"
+APP_VERSION = "1.2.33"
 
 import streamlit as st
 import pandas as pd
@@ -23,11 +23,12 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 # Importaciones del proyecto
 from data.fetcher import fetch_all_tickers
-from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA
+from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA, nombre_visible
 from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion, CATEGORIAS_ORDEN,
                                  MIN_DIAS_ENTRE_COPIAS)
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
+from ui.fuentes import css_fuente
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
                              texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual)
 
@@ -191,8 +192,8 @@ def render_categoria_badge(categoria: str, color_hex: str) -> str:
     return (
         f'<span style="background:{color_hex}22;color:{texto_categoria(color_hex)};'
         f'border:1px solid {color_hex}88;border-radius:12px;'
-        f'padding:2px 10px;font-size:12px;font-weight:700;white-space:nowrap">'
-        f'{categoria}</span>'
+        f'padding:3px 12px;font-size:13px;font-weight:700;display:inline-block;line-height:1.25;text-align:center">'
+        f'{nombre_visible(categoria)}</span>'
     )
 
 
@@ -392,7 +393,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     hay_gris = df is not None and not df.empty and "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     cats_disponibles = [l["nombre"] for l in leyenda if hay_gris or l["nombre"] != "DATOS INSUFICIENTES"]
     st.markdown('<div class="flt-t">Valoración</div>', unsafe_allow_html=True)
-    cats_sel = _pastillas("Valoración", cats_disponibles, lambda c: c.capitalize(), "flt_valoracion")
+    cats_sel = _pastillas("Valoración", cats_disponibles, nombre_visible, "flt_valoracion")
     if not cats_sel:
         cats_sel = cats_disponibles
     cats_nombres = list(cats_sel)
@@ -487,7 +488,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 # ---------------------------------------------------------------------------
 
 # Anchos de las columnas de la tabla clasica (encabezados y filas deben coincidir)
-ANCHOS_TABLA = [3, 0.9, 1.6, 1, 3.6, 1.1, 1.8, 2.8, 1.2]
+ANCHOS_TABLA = [2.6, 0.8, 1.7, 1.7, 3.0, 1.2, 1.5, 3.4, 1.0]
 
 
 def render_tabla_visual(df_show: pd.DataFrame):
@@ -497,13 +498,12 @@ def render_tabla_visual(df_show: pd.DataFrame):
     st.markdown(f"<style>{css_encabezado(sort_col)}</style>", unsafe_allow_html=True)
 
     cols = st.columns(ANCHOS_VISUAL, gap="small")
-    sub = cols[0].columns([2.4, 1.2], gap="small")
     titulos = [
-        (sub[0], "Empresa", "nombre"),
-        (sub[1], "Mkt Cap", "market_cap"),
-        (cols[1], "Valoración: Precio vs Fair Value", "fv_upside"),
-        (cols[2], "Puntaje", "score_total"),
-        (cols[3], "Div. Yield", "dividend_yield_actual"),
+        (cols[0], "Empresa", "nombre"),
+        (cols[1], "Market Cap", "market_cap"),
+        (cols[2], "Valoración: Precio vs Fair Value", "fv_upside"),
+        (cols[3], "Puntaje", "score_total"),
+        (cols[4], "Div. Yield", "dividend_yield_actual"),
     ]
     for contenedor, etiqueta, clave in titulos:
         activo = sort_col == clave
@@ -621,14 +621,14 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         "Empresa": "nombre",
         "País": "pais",
         "Sector": "sector",
-        "Mkt Cap": "market_cap",
+        "Market Cap": "market_cap",
         "Valoración": "fv_upside",
         "Div. Yield": "dividend_yield_actual",
         "Rango 52s": "posicion_52s",
         "Categoría": "score_total",
         "Métricas": "metricas_usadas",
     }
-    headers = ["Empresa", "País", "Sector", "Mkt Cap", "Valoración", "Div. Yield", "Rango 52s", "Categoría", "Métricas"]
+    headers = ["Empresa", "País", "Sector", "Market Cap", "Valoración", "Div. Yield", "Rango 52s", "Categoría", "Métricas"]
     anchos = ANCHOS_TABLA
     if ver_metodos:
         headers = headers + ["Métodos del Fair Value"]
@@ -1039,7 +1039,7 @@ def main():
         st.stop()
 
     # Estilos de la tabla (una sola vez por pagina; los usan la escala, la tabla y el detalle)
-    st.markdown(f"<style>{CSS_VISUAL}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}</style>", unsafe_allow_html=True)
 
     # Escala de valoracion (titulo + tramos de color)
     hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
@@ -1125,6 +1125,7 @@ def render_seguimiento():
             comp[(rotulo, "Precio medio (%)")] = t["Variación media del precio (%)"].reindex(comp.index).round(1)
         if comp.shape[1]:
             comp.columns = pd.MultiIndex.from_tuples(comp.columns)
+            comp.index = [nombre_visible(c) for c in comp.index]
             comp.index.name = "Categoría"
             st.markdown("**Por categoría** (variación media del precio de las empresas que tenían esa categoría al inicio de cada período)")
             fmt = {c: ("{:.0f}" if c[1] == "Empresas" else "{:+.1f}") for c in comp.columns}

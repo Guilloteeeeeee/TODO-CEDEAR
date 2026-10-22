@@ -66,10 +66,7 @@ LOGOS_EN_LINEA = "google"
 VISTA_POR_DEFECTO = "clasica"
 
 
-# --- Franja del Fair Value en la barra de valoracion (v1.2.24) -------------------------------------
-# Es solo dibujo: no cambia el Fair Value, el puntaje ni la categoria.
-# "margen": la franja va del Fair Value promedio menos X% al promedio mas X% (FRANJA_FV_MARGEN).
-# "promedio_metodos": desde el promedio de los metodos que dan menos que el Fair Value hasta el
-#                     promedio de los que dan mas (si hay un solo metodo, no hay franja).
-FRANJA_FV_MODO = "margen"
-FRANJA_FV_MARGEN = 0.15
+# --- Tipografia de la app (v1.2.33) ---------------------------------------------------------------
+# "Inter": fuente pensada para pantallas y tablas de numeros (viene incluida en assets/fuentes, no se baja de internet).
+# "": usa la tipografia que trae Streamlit (Source Sans).
+FUENTE_APP = "Inter"
