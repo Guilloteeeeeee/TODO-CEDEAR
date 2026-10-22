@@ -71,6 +71,16 @@ SECTOR_CONFIG = {
             "per":             0.20,
         },
     },
+    # v1.2.18: telecomunicaciones aparte de Comunicación. Son negocios lentos, con mucha deuda y que
+    # pagan dividendo: el PEG (crecimiento) no las describe; se miden por dividendo, EV/EBITDA y flujo.
+    "Telecomunicaciones": {
+        "metrics": {
+            "dividend_yield":  0.30,
+            "ev_ebitda":       0.30,
+            "p_fcf":           0.25,
+            "per":             0.15,
+        },
+    },
     "Industrial": {
         "metrics": {
             "ev_ebitda":       0.30,
@@ -135,7 +145,8 @@ TICKER_UNIVERSE = {
         "AMZN", "TSLA", "HD", "BABA", "TM", "BKNG", "PDD", "MELI",
         "SONY", "RACE", "NKE", "MCD", "SBUX", "TJX", "ABNB", "ORLY", "GM", "ROST",
     ],
-    "Comunicación":       ["GOOGL", "META", "NFLX", "TMUS", "VZ", "T", "DIS", "SPOT", "NTES"],
+    "Comunicación":       ["GOOGL", "META", "NFLX", "DIS", "SPOT", "NTES"],   # internet y medios
+    "Telecomunicaciones": ["T", "VZ", "TMUS"],
     "Industrial":         [
         "CAT", "GE", "RTX", "SIEGY", "DE", "UNP", "UBER", "LMT",
         "HON", "BA", "MMM", "FDX", "GEV", "HWM", "PCAR",
