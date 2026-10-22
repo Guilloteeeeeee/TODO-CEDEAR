@@ -120,6 +120,24 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Escala de valoración** (arriba de la tabla, estilo GuruFocus): título y cinco tramos de color con su rango de puntaje (70 o más, 58 a 69, 42 a 57, 30 a 41, menos de 30). Sin circulitos ni cuadraditos, también en el filtro y en el cartel de la categoría. El filtro de categorías ahora se llama **Valoración**.
 - **Colores de las categorías** (más fáciles de distinguir): verde oscuro, verde lima, amarillo, naranja y rojo. El código repinta solo los cachés viejos según el nombre de la categoría, así que no hace falta regenerar nada.
 
+### Tabla visual definitiva, filtros nuevos y reglas para GEV y MELI (v1.2.28)
+
+**Las cuatro cosas que habían quedado anotadas en v1.2.26 (decididas con Guille):**
+- **Dividend Yield de ITUB:** se deja como está (~1,5%, la tasa regular; la diferencia con otros sitios es de definición).
+- **GEV (poca historia):** si una métrica tiene menos de **3 años** de historia propia (`MIN_ANIOS_MEDIANA_PROPIA` en `config/sectors.py`), la app no usa su mediana propia sino la **mediana de su sector** (la misma regla de respaldo que ya existía, con al menos 5 empresas pares). El caché ahora guarda cuántos años hay detrás de cada mediana (`anios_historia`). **Ojo:** el caché del 22/10 todavía no traía ese dato, así que para GEV se cargó a mano "2 años" (es una inferencia mía: cotiza desde abril de 2024). En la próxima corrida de `generar_cache.bat` el dato real reemplaza a ese. Efecto: GEV pasó de 92 puntos ("Podría estar infravalorada") a 39 ("Tendencia a sobrevalorada").
+- **Energía y Bancos y seguros ("muchas sobrevaluadas"):** se deja como está.
+- **MELI:** el P/FCF se descarta con una lista corta y explícita (`METRICAS_EXCLUIDAS` en `config/sectors.py`): su flujo de caja libre es unas 6,5 veces su ganancia y parece incluir fondos de clientes de Mercado Pago. MELI queda con 2 de 4 métricas; pasó de 81 a 74 puntos y sigue "Podría estar infravalorada". El motivo se ve en el detalle de la empresa. Ninguna otra empresa cambió.
+
+**Tabla visual (ahora es la tabla principal):**
+- Los **títulos ordenan al tocarlos** (flecha ▼ / ▲, la columna ordenada se oscurece): Empresa, Mkt Cap, Valoración (por distancia al Fair Value), Puntaje y Div. Yield. Títulos centrados, en blanco y más grandes; la columna Valoración tiene un tono azul clarito.
+- **Empresa:** "Nombre • TICKER" con el mismo tono y tamaño; abajo, **sector** (industria) y la bandera del país. El **Market Cap** va en negrita, en la misma línea del nombre (a la derecha) y bajo su propio título "Mkt Cap", que también ordena. Los nombres salen completos desde la próxima corrida de `generar_cache.bat` (Yahoo daba nombres cortados; ahora se usa el nombre largo); mientras tanto se limpian las comas que quedaban colgadas.
+- **Div. Yield:** número grande y mini gráfico con la serie anual contra su línea de **mediana de N años**. Mientras el caché no traiga la serie (se genera con la próxima corrida de `generar_cache.bat`) se ve el número y debajo "Mediana histórica: X%".
+- **Rango de 52 semanas:** ya no está en la tabla; sigue en el detalle de cada empresa.
+- La **tabla clásica** queda solo para revisión: tildando "Vista de revisión: métodos del Fair Value".
+- Sector, industria y país **se siguen pudiendo filtrar** aunque ya no sean columnas (lo único que se pierde es ordenar por esas columnas).
+
+**Filtros:** Sector / Industria y Valoración ahora son **pastillas** (sin selección = todas; la elegida se ve en azul oscuro). Requiere `streamlit>=1.46.0` (ya está en `requirements.txt`).
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.

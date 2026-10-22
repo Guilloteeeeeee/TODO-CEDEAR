@@ -215,6 +215,9 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         "moneda_nota": None,
         # v1.2.12: de donde salio cada metrica ("Yahoo" / "Stock Analysis" / ...)
         "fuentes": {},
+        # v1.2.28: cuantos anios de historia hay detras de cada mediana y la serie anual del Div. Yield
+        "anios_historia": {},
+        "dividend_yield_serie": None,
     }
 
     try:
@@ -227,7 +230,8 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
             return result
 
         # --- Datos básicos ---
-        result["nombre"] = info.get("shortName") or info.get("longName") or ticker
+        # longName trae el nombre completo; shortName lo corta a ~30 letras ("Mellon Cor", "Inc. New")
+        result["nombre"] = info.get("longName") or info.get("shortName") or ticker
         result["pais"] = info.get("country") or _pais_manual(ticker)
         result["sector_yf"] = info.get("sector")
         result["market_cap"] = _safe_float(info.get("marketCap"))
@@ -440,12 +444,14 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict, modo: str = "r
             vals = _calc_ev_ebitda_history(income, balance, hist, shares)
             if vals:
                 result["ev_ebitda_mediana"] = round(float(np.median(vals)), 2)
+                result.setdefault("anios_historia", {})["ev_ebitda"] = len(vals)
 
         # --- PER histórico ---
         if not (income is None or income.empty) and not hist.empty:
             vals = _calc_per_history(income, balance, hist, shares, info)
             if vals:
                 result["per_mediana"] = round(float(np.median(vals)), 2)
+                result.setdefault("anios_historia", {})["per"] = len(vals)
 
         # --- P/FCF histórico ---
         if (not (cashflow is None or cashflow.empty) and
@@ -453,18 +459,21 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict, modo: str = "r
             vals = _calc_pfcf_history(cashflow, balance, hist, shares, info)
             if vals:
                 result["p_fcf_mediana"] = round(float(np.median(vals)), 2)
+                result.setdefault("anios_historia", {})["p_fcf"] = len(vals)
 
         # --- P/B histórico ---
         if not (balance is None or balance.empty) and not hist.empty:
             vals = _calc_pb_history(balance, hist, shares, info)
             if vals:
                 result["p_b_mediana"] = round(float(np.median(vals)), 2)
+                result.setdefault("anios_historia", {})["p_b"] = len(vals)
 
         # --- Dividend Yield histórico ---
         if not hist.empty:
             vals = _calc_divy_history(tk, hist)
             if vals:
                 result["dividend_yield_mediana"] = round(float(np.median(vals)), 4)
+                result.setdefault("anios_historia", {})["dividend_yield"] = len(vals)
 
         # PEG: Yahoo solo da el valor actual. v1.2.12: NO se guarda el actual como "mediana"
         # (se comparaba contra si mismo y daba siempre 50 puntos); la historia real viene de

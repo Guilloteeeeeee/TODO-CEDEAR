@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.27"
+APP_VERSION = "1.2.28"
 
 import streamlit as st
 import pandas as pd
@@ -26,7 +26,8 @@ from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGO
 from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
-from ui.tabla_visual import CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html, texto_categoria
+from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
+                             texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual)
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -363,39 +364,39 @@ def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]
 # FILTROS INLINE (reemplaza sidebar)
 # ---------------------------------------------------------------------------
 
+def _pastillas(etiqueta, opciones, formato, key):
+    """Filtro en pastillas (st.pills, Streamlit 1.40+). Sin seleccion = todas. Si la version es vieja, usa un selector multiple."""
+    if hasattr(st, "pills"):
+        sel = st.pills(etiqueta, opciones, selection_mode="multi", format_func=formato, key=key,
+                       label_visibility="collapsed")
+        return list(sel or [])
+    return st.multiselect(etiqueta, opciones, format_func=formato, key=key, label_visibility="collapsed",
+                          placeholder="Todas")
+
+
 def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     """
     Renderiza los filtros encima de la tabla (sin sidebar) y retorna dict con filtros activos.
     """
     leyenda = leyenda_categorias()
 
-    # --- Fila 1: Sectores + Categorías + País ---
-    col_sec, col_cat, col_pais, col_mkt = st.columns([2, 2, 2, 2])
-
+    # --- Sector / Industria y Valoración: pastillas (sin selección = todas) ---
     todos_sectores = sorted(universe.keys(), key=etiqueta_sector)
-    with col_sec:
-        sectores_sel = st.multiselect(
-            "🏭 Sector / Industria",
-            todos_sectores,
-            default=todos_sectores,
-            format_func=etiqueta_sector,
-            placeholder="Todos los sectores",
-        )
-        if not sectores_sel:
-            sectores_sel = todos_sectores
+    st.markdown('<div class="flt-t">Sector / Industria</div>', unsafe_allow_html=True)
+    sectores_sel = _pastillas("Sector / Industria", todos_sectores, etiqueta_sector, "flt_sector")
+    if not sectores_sel:
+        sectores_sel = todos_sectores
 
     hay_gris = df is not None and not df.empty and "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     cats_disponibles = [l["nombre"] for l in leyenda if hay_gris or l["nombre"] != "DATOS INSUFICIENTES"]
-    with col_cat:
-        cats_sel = st.multiselect(
-            "⚖️ Valoración",
-            cats_disponibles,
-            default=cats_disponibles,
-            placeholder="Todas las categorías",
-        )
-        if not cats_sel:
-            cats_sel = cats_disponibles
+    st.markdown('<div class="flt-t">Valoración</div>', unsafe_allow_html=True)
+    cats_sel = _pastillas("Valoración", cats_disponibles, lambda c: c.capitalize(), "flt_valoracion")
+    if not cats_sel:
+        cats_sel = cats_disponibles
     cats_nombres = list(cats_sel)
+
+    # --- Fila 3: País + Market Cap + Div. Yield + Métricas ---
+    col_pais, col_mkt, col_dy, col_met = st.columns([2, 2, 2, 2])
 
     paises_disponibles = []
     if df is not None and not df.empty and "pais" in df.columns:
@@ -405,7 +406,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         )
     with col_pais:
         paises_sel = st.multiselect(
-            "🌎 País",
+            "País",
             paises_disponibles,
             default=[],
             placeholder="Todos los países",
@@ -421,18 +422,15 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     }
     with col_mkt:
         mktcap_label = st.selectbox(
-            "📏 Market Cap mínimo",
+            "Market Cap mínimo",
             list(mktcap_opciones.keys()),
             index=0,
         )
     mktcap_minimo = mktcap_opciones[mktcap_label]
 
-    # --- Fila 2: DY + Métricas + Refresh ---
-    col_dy, col_met, col_diag, col_ref = st.columns([2, 2, 2, 2])
-
     with col_dy:
         dy_minimo = st.slider(
-            "💰 Div. Yield mínimo (%)",
+            "Div. Yield mínimo (%)",
             min_value=0.0,
             max_value=10.0,
             value=0.0,
@@ -442,7 +440,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 
     with col_met:
         min_metricas = st.slider(
-            "📐 Métricas mínimas",
+            "Métricas mínimas",
             min_value=1,
             max_value=4,
             value=1,
@@ -450,19 +448,19 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
                  "Con 1 se ve todo (mejor algo que nada).",
         )
 
+    # --- Fila 4: vista de revisión + actualizar ---
+    col_diag, col_ref, _vacio = st.columns([3, 2, 3])
     with col_diag:
-        st.markdown("<br>", unsafe_allow_html=True)
         ver_metodos_fv = st.checkbox(
-            "🔬 Ver métodos del Fair Value",
+            "🔬 Vista de revisión: métodos del Fair Value",
             key="ver_metodos_fv",
-            help="Vista de revisión: agrega una columna con los métodos usados en cada Fair Value "
+            help="Muestra la tabla de revisión, con una columna con los métodos usados en cada Fair Value "
                  "(✓ con su precio implícito, ✗ con el motivo por el que no se pudo usar).",
         )
 
     with col_ref:
-        st.markdown("<br>", unsafe_allow_html=True)
         forzar_refresh = st.button(
-            "🔄 Actualizar datos",
+            "Actualizar datos",
             help="Vuelve a leer el caché guardado (el caché se actualiza una vez por trimestre desde la PC)",
         )
 
@@ -488,6 +486,34 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 
 # Anchos de las columnas de la tabla clasica (encabezados y filas deben coincidir)
 ANCHOS_TABLA = [3, 0.9, 1.6, 1, 3.6, 1.1, 1.8, 2.8, 1.2]
+
+
+def render_tabla_visual(df_show: pd.DataFrame):
+    """Tabla visual: titulos ordenables (botones) y filas en una sola pieza de HTML con la misma grilla."""
+    sort_col = st.session_state.get("sort_col", "fv_upside")
+    sort_asc = st.session_state.get("sort_asc", False)
+    st.markdown(f"<style>{css_encabezado(sort_col)}</style>", unsafe_allow_html=True)
+
+    cols = st.columns(ANCHOS_VISUAL, gap="small")
+    sub = cols[0].columns([2.4, 1.2], gap="small")
+    titulos = [
+        (sub[0], "Empresa", "nombre"),
+        (sub[1], "Mkt Cap", "market_cap"),
+        (cols[1], "Valoración: Precio vs Fair Value", "fv_upside"),
+        (cols[2], "Puntaje", "score_total"),
+        (cols[3], "Div. Yield", "dividend_yield_actual"),
+    ]
+    for contenedor, etiqueta, clave in titulos:
+        activo = sort_col == clave
+        flecha = (" ▲" if sort_asc else " ▼") if activo else ""
+        if contenedor.button(etiqueta + flecha, key=f"tvh_{clave}", use_container_width=True):
+            if activo:
+                st.session_state["sort_asc"] = not sort_asc
+            else:
+                st.session_state["sort_col"] = clave
+                st.session_state["sort_asc"] = (clave == "nombre")
+            st.rerun()
+    st.markdown(html_tabla_visual(df_show), unsafe_allow_html=True)
 
 
 def render_main_table(df: pd.DataFrame, filtros: dict):
@@ -543,7 +569,8 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     if sort_col == "sector":
         sort_col = "sector_txt"
     if sort_col in STR_COLS:
-        df_show = df_show.sort_values(sort_col, ascending=sort_asc, na_position="last")
+        df_show = df_show.sort_values(sort_col, ascending=sort_asc, na_position="last",
+                                      key=lambda s: s.astype(str).str.lower())
     elif sort_col == "score_total":
         df_show["_sort_v"] = df_show["score_total"].fillna(-1)
         df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
@@ -574,42 +601,14 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         st.warning("No hay empresas que coincidan con los filtros seleccionados.")
         return
 
-    # --- Vista: clasica (con encabezados ordenables) o visual (v1.2.16, en prueba) ---
-    try:
-        from config.ajustes import VISTA_POR_DEFECTO
-    except Exception:  # noqa: BLE001
-        VISTA_POR_DEFECTO = "clasica"
-    VISTAS = ["Tabla clásica", "Vista visual (prueba)"]
-    col_n, col_v, col_o, col_d = st.columns([1.3, 3.2, 2.4, 3.2])
-    col_n.markdown(f"**{len(df_show)} empresas**")
-    vista = col_v.radio(
-        "Vista", VISTAS, index=1 if VISTA_POR_DEFECTO == "visual" else 0,
-        horizontal=True, key="vista_tabla", label_visibility="collapsed",
-    )
-    if vista == VISTAS[1]:
-        ORDEN_VISUAL = {
-            "Potencial al Fair Value": "fv_upside", "Puntaje": "score_total", "Mkt Cap": "market_cap",
-            "Div. Yield": "dividend_yield_actual", "Rango 52 semanas": "posicion_52s", "Precio": "precio_actual",
-            "Empresa (A-Z)": "nombre", "Métricas usadas": "metricas_usadas",
-        }
-
-        def _cambio_orden():
-            st.session_state["sort_col"] = ORDEN_VISUAL[st.session_state["vv_orden"]]
-            st.session_state["sort_asc"] = st.session_state["vv_dir"] == "Menor a mayor"
-
-        actual_col = st.session_state.get("sort_col", "fv_upside")
-        claves = list(ORDEN_VISUAL)
-        idx = next((i for i, k in enumerate(claves) if ORDEN_VISUAL[k] == actual_col), 0)
-        col_o.selectbox("Ordenar por", claves, index=idx, key="vv_orden", on_change=_cambio_orden,
-                        label_visibility="collapsed")
-        col_d.radio("Sentido", ["Mayor a menor", "Menor a mayor"],
-                    index=1 if st.session_state.get("sort_asc", False) else 0,
-                    key="vv_dir", on_change=_cambio_orden, horizontal=True, label_visibility="collapsed")
-        from ui.tabla_visual import html_tabla_visual
-        st.markdown(html_tabla_visual(df_show), unsafe_allow_html=True)
+    # --- v1.2.28: la tabla visual es la definitiva (encabezados ordenables). La tabla clasica queda como
+    # vista de revision: se muestra cuando se marca "Ver métodos del Fair Value".
+    ver_metodos = bool(filtros.get("ver_metodos_fv"))
+    st.markdown(f"**{len(df_show)} empresas**" + ("  ·  vista de revisión (tabla clásica)" if ver_metodos else ""))
+    if not ver_metodos:
+        render_tabla_visual(df_show)
         return
 
-    ver_metodos = bool(filtros.get("ver_metodos_fv"))
     if ver_metodos:
         st.markdown(_resumen_cobertura_fv(df_show), unsafe_allow_html=True)
     st.markdown("---")

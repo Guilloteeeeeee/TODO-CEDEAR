@@ -266,6 +266,20 @@ FV_RATIO_MAX = 3.0
 SECTOR_MIN_EMPRESAS = 5
 PEG_MIN_EMPRESAS_SECTOR = SECTOR_MIN_EMPRESAS   # nombre anterior (v1.2.11)
 
+# v1.2.28: anios minimos de historia propia para usar la mediana historica de una metrica.
+# Con menos anios (empresas recien cotizadas, como GEV) se usa la mediana de su sector.
+# El dato "anios_historia" lo guarda generar_cache.py; si una fila no lo trae, no se aplica la regla.
+MIN_ANIOS_MEDIANA_PROPIA = 3
+
+# v1.2.28: metricas que NO se usan para una empresa puntual (el peso se reparte entre las demas
+# y el motivo se ve en el detalle). Es una lista corta y a mano: solo para casos revisados.
+METRICAS_EXCLUIDAS = {
+    "MELI": {
+        "p_fcf": ("descartada a mano: su flujo de caja libre es unas 6,5 veces su ganancia y parece incluir "
+                  "fondos de clientes de Mercado Pago, así que no mide lo que le queda al accionista"),
+    },
+}
+
 
 def motivo_descarte(metrica, actual, mediana):
     """

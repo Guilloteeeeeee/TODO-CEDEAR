@@ -39,7 +39,7 @@ import pandas as pd
 from typing import Optional
 from config.sectors import (
     SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR,
-    motivo_descarte, SECTOR_MIN_EMPRESAS,
+    motivo_descarte, SECTOR_MIN_EMPRESAS, MIN_ANIOS_MEDIANA_PROPIA, METRICAS_EXCLUIDAS,
 )
 
 
@@ -303,6 +303,11 @@ def _mediana_propia_valida(row, metrica: str) -> Optional[float]:
         return None
     if metrica == "peg" and _fuentes_de(row).get("peg") != "Stock Analysis":
         return None
+    # v1.2.28: con menos de MIN_ANIOS_MEDIANA_PROPIA anios de historia la mediana propia no es confiable
+    anios = row.get("anios_historia")
+    n = anios.get(metrica) if isinstance(anios, dict) else None
+    if n is not None and n < MIN_ANIOS_MEDIANA_PROPIA:
+        return None
     return float(med)
 
 
@@ -453,14 +458,31 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
         sector = ticker_to_sector.get(ticker, "")
         datos = row.to_dict()
         calc = dict(datos)
+        # v1.2.28: metricas excluidas a mano para esta empresa (ver METRICAS_EXCLUIDAS)
+        excluidas = METRICAS_EXCLUIDAS.get(ticker, {})
+        for m in excluidas:
+            calc[f"{m}_actual"] = None
+            calc[f"{m}_mediana"] = None
         usados = aplicar_respaldo_sector(calc, sector, refs)
         resultado = calcular_score(calc, sector)
         fv_resultado = calc_fair_value(calc, sector)
+        for m, motivo in excluidas.items():
+            d = resultado["detalle"].get(m)
+            if d is not None:
+                d.update({"actual": datos.get(f"{m}_actual"), "mediana": datos.get(f"{m}_mediana"),
+                          "score": None, "estado": "descartada", "motivo": motivo})
+            desc = fv_resultado.get("fair_value_descartados")
+            if isinstance(desc, dict) and m in SECTOR_CONFIG.get(sector, {}).get("metrics", {}):
+                desc[m] = motivo
         fuentes = _fuentes_de(row)
         for m, d in resultado["detalle"].items():
             d["fuente"] = fuentes.get(m)
             d["referencia"] = "sector" if m in usados else "propia"
-        sombra = puntaje_vs_sector(datos, sector, ticker, pool_sombra)
+        datos_sombra = dict(datos)
+        for m in excluidas:
+            datos_sombra[f"{m}_actual"] = None
+            datos_sombra[f"{m}_mediana"] = None
+        sombra = puntaje_vs_sector(datos_sombra, sector, ticker, pool_sombra)
         rows.append({**datos, **resultado, **fv_resultado, "sector": sector,
                      "respaldo_sector": usados, **sombra})
 

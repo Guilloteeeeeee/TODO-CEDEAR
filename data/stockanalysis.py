@@ -775,6 +775,7 @@ def aplicar_stockanalysis(result: dict, datos_sa: Optional[dict] = None, session
         datos_sa = fetch_ratios_completos(result["ticker"], session)
     tomadas = []
     fuentes = dict(result.get("fuentes") or {})
+    anios_hist = dict(result.get("anios_historia") or {})
     for metrica, d in (datos_sa.get("metricas") or {}).items():
         actual, serie = d.get("actual"), d.get("historia") or []
         if actual is None or len(serie) < SA_MIN_PUNTOS:
@@ -783,7 +784,12 @@ def aplicar_stockanalysis(result: dict, datos_sa: Optional[dict] = None, session
         result[f"{metrica}_actual"] = round(float(actual), dec)
         result[f"{metrica}_mediana"] = round(float(np.median(serie)), dec)
         fuentes[metrica] = "Stock Analysis"
+        anios_hist[metrica] = len(serie)
+        if metrica == "dividend_yield":
+            # v1.2.28: serie anual (de la mas vieja a la mas nueva) para el minigrafico de la tabla
+            result["dividend_yield_serie"] = [round(float(x), 4) for x in reversed(serie)]
         tomadas.append(metrica)
+    result["anios_historia"] = anios_hist
     # El dividendo anual (para el Fair Value por DY) sale de Yahoo; si falta, se deduce del DY de SA
     if result.get("annual_dividend") is None and "dividend_yield" in tomadas and result.get("precio_actual"):
         result["annual_dividend"] = round(result["dividend_yield_actual"] * result["precio_actual"], 4)

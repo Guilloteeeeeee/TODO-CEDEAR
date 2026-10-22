@@ -1,17 +1,17 @@
 """
-Vista visual de la tabla principal (v1.2.16, en prueba).
-
-Una sola pieza de HTML (sin JavaScript) con una fila por empresa:
-  Empresa        logo, nombre, ticker, sector y pais
-  Valoracion     categoria con color + barra: franja = rango de los metodos del Fair Value (del menor
-                 al mayor), raya = Fair Value promedio, punto = precio actual
+Tabla visual (definitiva desde v1.2.28; antes "en prueba"): una pieza de HTML (sin JavaScript) con una fila por empresa.
+Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) y ordenan al tocarlos.
+  Empresa        logo, "nombre • TICKER" (mismo tono y tamano) con el Market Cap en negrita al lado;
+                 abajo, sector (industria) y bandera del pais
+  Valoracion     categoria con color + barra: franja = zona alrededor del Fair Value, raya = Fair Value promedio,
+                 punto = precio actual; columna con un tono azul clarito
   Puntaje        caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar
-  Rango 52 sem.  barra con el punto donde esta el precio entre el minimo y el maximo del anio
-  Div. Yield     rendimiento actual y comparacion con su mediana historica
-  Mkt Cap        tamano de la empresa
+  Div. Yield     rendimiento actual en grande y minigrafico anual contra su mediana historica
+El rango de 52 semanas ya no va en la tabla: esta en el detalle de cada empresa.
 
 Los signos $ se escriben como &#36; para que el markdown no los tome como formulas.
 """
+import base64
 import html
 import math
 
@@ -58,19 +58,32 @@ def escala_valoracion_html(mostrar_gris=False):
             '<span>según el puntaje final de 0 (caro) a 100 (barato)</span></div>'
             f'<div class="esc-b">{"".join(tramos)}</div>{gris}</div>')
 
+# Anchos relativos de las 4 columnas (Empresa, Valoracion, Puntaje, Div. Yield): los usan los
+# encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
+ANCHOS_VISUAL = [3.6, 3.7, 1.2, 2.3]
+
 CSS = """
-.tv-wrap{overflow-x:auto;border:1px solid #e5e7eb;border-radius:10px;background:#fff;color:#1f2328;font-family:inherit}
-.tv-grid{min-width:1010px}
-.tv-h,.tv-r{display:grid;grid-template-columns:minmax(250px,2.4fr) minmax(270px,2.6fr) 92px minmax(150px,1.5fr) minmax(120px,1.1fr) 84px;align-items:center;column-gap:14px;padding:0 16px}
-.tv-h{background:#1f2937;color:#f3f4f6;font-size:13px;font-weight:600;height:44px;border-radius:10px 10px 0 0;letter-spacing:.2px}
-.tv-h div{white-space:nowrap}
-.tv-r{padding-top:14px;padding-bottom:14px;border-top:1px solid #eef0f2}
-.tv-r:hover{background:#f8fafc}
-.tv-emp{display:flex;align-items:center;gap:12px;min-width:0}
-.tv-emp .tv-nm{font-weight:700;font-size:15px;line-height:1.25;color:#111827}
-.tv-emp .tv-meta{font-size:12px;color:#6b7280;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.tv-emp>div{min-width:0}
-.tv-cat{font-weight:700;font-size:13.5px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.tv2{border:1px solid #d5dde6;border-top:0;border-radius:0 0 10px 10px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit}
+.tv2-r{display:grid;grid-template-columns:__COLS__;align-items:stretch;border-top:1px solid #e8ecf1}
+.tv2-r:first-child{border-top:0}
+.tv2-r>div{padding:14px 16px;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.tv2-r>.tv2-v{background:#f2f6fa}
+.tv2-r:hover>div{background:#f8fafc}
+.tv2-r:hover>.tv2-v{background:#e9f0f7}
+.tv2-c{align-items:center;text-align:center}
+.tv2-emp{display:flex;align-items:center;gap:12px;min-width:0}
+.tv2-ec{min-width:0;flex:1}
+.tv2-l1{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px;font-weight:700;color:#111827}
+.tv2-mc{font-size:15px;font-weight:700;color:#111827;white-space:nowrap}
+.tv2-l2{margin-top:4px;font-size:12.5px;color:#6b7280;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tv2-l2 b{color:#374151;font-weight:700}
+.tv2-l2 .tv-ind{display:inline;margin:0;color:#6b7280}
+.tv2-dyn{font-size:22px;font-weight:600;color:#111827;line-height:1.15}
+.tv2-dy img{display:block;margin:3px auto 0}
+.tv2-dym{font-size:12px;color:#6b7280;margin-top:4px}
+.tv2-dym b{color:#374151}
+.tv-cat{font-weight:700;font-size:13.5px;display:flex;justify-content:center;align-items:baseline;gap:8px;margin-bottom:2px}
 .tv-up{font-weight:700;color:#374151;margin-left:3px}
 .tv-v2{position:relative;padding-top:19px;margin:0 4px}
 .tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:12px;font-weight:700;color:#111827;white-space:nowrap}
@@ -84,7 +97,7 @@ CSS = """
 .tv-dot{position:absolute;top:-6px;width:15px;height:15px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-lbls{display:flex;justify-content:space-between;font-size:11.5px;color:#6b7280;margin-top:5px}
 .tv-sub{font-size:12px;color:#6b7280;margin-top:4px}
-.tv-score{width:62px;border-radius:8px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
+.tv-score{margin:0 auto;width:62px;border-radius:8px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
 .tv-num{font-size:21px;font-weight:700;line-height:36px;color:#111827}
 .tv-met{font-size:11px;font-weight:600;color:#fff;line-height:19px}
 .tv-t2{position:relative;height:8px;border-radius:4px;background:#e5e7eb;margin-top:12px}
@@ -111,7 +124,38 @@ CSS = """
 .esc-gt{font-size:12px;color:#6b7280}
 .tv-nota{font-size:12px;color:#6b7280;padding:10px 16px;border-top:1px solid #eef0f2}
 .tv-ini{font-family:inherit}
+.flt-t{font-size:13px;font-weight:700;color:#374151;margin:12px 0 2px}
+[data-testid="stButtonGroup"] button{border:1px solid #cfd8e3;border-radius:18px;background-color:#fff;color:#374151;padding:3px 13px;font-size:13.5px;transition:background .12s,border-color .12s}
+[data-testid="stButtonGroup"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#1e3a52}
+[data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"]{background:#1e3a52!important;border-color:#1e3a52!important;color:#fff!important;font-weight:600}
+[data-testid="stButtonGroup"] button[aria-pressed="true"] p,[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"] p{color:#fff}
+[data-testid="stButtonGroup"] button[aria-pressed="true"]:hover{background:#2a4d6b!important;border-color:#2a4d6b!important;color:#fff!important}
+span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!important}
+span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}
+span[data-baseweb="tag"] svg{fill:#475569!important}
 """
+CSS = CSS.replace("__COLS__", " ".join(f"minmax(0,{w}fr)" for w in ANCHOS_VISUAL))
+
+# Colores del encabezado (barra oscura, titulos blancos centrados; la columna Valoracion un poco mas oscura)
+_BARRA = "#1e3a52"
+_BARRA_VAL = "#122a3e"
+
+
+def css_encabezado(sort_col):
+    """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>'). La columna ordenada se oscurece."""
+    base = 'div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre)'
+    return (
+        f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:10px 10px 0 0;align-items:stretch!important}}'
+        f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
+        f'{base} [data-testid="stElementContainer"]{{width:100%}}'
+        '[class*="st-key-tvh_"] button{width:100%;min-height:54px;background:transparent;border:0;border-radius:0;box-shadow:none;color:#fff}'
+        '[class*="st-key-tvh_"] button p{font-size:15.5px;font-weight:700;color:#fff;margin:0;letter-spacing:.2px}'
+        '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
+        '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
+        f'.st-key-tvh_fv_upside button{{background:{_BARRA_VAL}}}'
+        f'.st-key-tvh_{sort_col} button{{background:rgba(0,0,0,.28)}}'
+        'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'
+    )
 
 
 def _n(x):
@@ -148,17 +192,27 @@ def _clamp(x, lo=0.0, hi=100.0):
     return max(lo, min(hi, x))
 
 
+def _nombre_limpio(nombre, ticker):
+    """Nombre sin comas ni puntos colgados al final (Yahoo viejo lo cortaba a ~30 letras: 'Financial Group,')."""
+    n = _txt(nombre, ticker).strip()
+    while n and n[-1] in ",;:-/ ":
+        n = n[:-1].rstrip()
+    return n or ticker
+
+
 def _celda_empresa(row):
+    """Nombre • TICKER (mismo tono y tamano) con el Market Cap en negrita al lado; abajo, sector (industria) y bandera."""
     t = _txt(row.get("ticker"), "—")
-    nombre = html.escape(_txt(row.get("nombre"), t))
-    sec = sector_html(row.get("sector"), en_linea=True) if isinstance(row.get("sector"), str) and row.get("sector") else None
-    partes = [html.escape(t)] + ([sec] if sec else [])
+    nombre = html.escape(_nombre_limpio(row.get("nombre"), t))
+    g = row.get("sector")
+    sec = sector_html(g, en_linea=True) if isinstance(g, str) and g else ""
     pais = row.get("pais")
-    if isinstance(pais, str) and pais:
-        partes.append(bandera_html(pais, chica=True))
-    meta = " • ".join(partes)
-    return (f'<div class="tv-emp">{logo_html(t, 34)}<div><div class="tv-meta">{meta}</div>'
-            f'<div class="tv-nm">{nombre}</div></div></div>')
+    bandera = bandera_html(pais, chica=True) if isinstance(pais, str) and pais else ""
+    l2 = " ".join(x for x in (sec, bandera) if x)
+    return (f'<div class="tv2-emp">{logo_html(t, 38)}<div class="tv2-ec">'
+            f'<div class="tv2-l1"><span class="tv2-nm">{nombre} • {html.escape(t)}</span>'
+            f'<span class="tv2-mc">{_mcap(row.get("market_cap"))}</span></div>'
+            f'<div class="tv2-l2">{l2}</div></div></div>')
 
 
 def _franja_fv(precios, fv):
@@ -239,35 +293,68 @@ def _celda_52s(row):
             f'<div class="tv-lbls"><span>{_money(row.get("precio_min_52s"))}</span><span>{_money(row.get("precio_max_52s"))}</span></div></div>')
 
 
+def _svg_dy(serie, dy_pct, med_pct, etiqueta):
+    """Minigrafico del Div. Yield como imagen (data URI): serie anual en gris, linea de la mediana y punto de hoy."""
+    W, H, px, py = 156, 44, 5, 8
+    vals = [v * 100 if v <= 1 else v for v in serie] + [dy_pct] if serie and len(serie) >= 2 else None
+    cand = list(vals or [dy_pct]) + ([med_pct] if med_pct else [])
+    lo, hi = min(cand), max(cand)
+    if hi - lo < 1e-9:
+        hi = lo + 1.0
+    pad = (hi - lo) * 0.18
+    lo, hi = lo - pad, hi + pad
+    y = lambda v: H - py - (v - lo) / (hi - lo) * (H - 2 * py)
+    partes = []
+    if vals:
+        xs = [px + i * (W - 2 * px - 4) / (len(vals) - 1) for i in range(len(vals))]
+        pts = " ".join(f"{x:.1f},{y(v):.1f}" for x, v in zip(xs, vals))
+        partes.append(f'<polyline points="{pts}" fill="none" stroke="#c3cad4" stroke-width="1.6" stroke-linejoin="round"/>')
+        cx, cy = xs[-1], y(vals[-1])
+    else:
+        cx, cy = W - px - 4, y(dy_pct)
+    if med_pct:
+        ym = y(med_pct)
+        partes.append(f'<line x1="{px}" y1="{ym:.1f}" x2="{W - px}" y2="{ym:.1f}" stroke="#8793a3" stroke-width="1"/>')
+        ty = ym - 4 if ym > 17 else ym + 11
+        partes.append(f'<text x="{px}" y="{ty:.1f}" font-size="10" fill="#5b6675" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round" font-family="Arial,Helvetica,sans-serif">{html.escape(etiqueta)}</text>')
+    partes.append(f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="4.5" fill="#475569" stroke="#fff" stroke-width="1.5"/>')
+    svg = f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}">{"".join(partes)}</svg>'
+    return f'<img src="data:image/svg+xml;base64,{base64.b64encode(svg.encode()).decode()}" width="{W}" height="{H}" alt="">'
+
+
 def _celda_dy(row):
+    """Rendimiento por dividendo: numero grande y, abajo, minigrafico contra su mediana de los ultimos anios.
+    Si el cache todavia no trae la serie anual, no se dibuja un grafico a medias: se muestra la mediana en texto."""
     dy, med = _n(row.get("dividend_yield_actual")), _n(row.get("dividend_yield_mediana"))
     if not dy or dy <= 0:
-        return '<div class="tv-sub">—</div>'
+        return '<div class="tv2-dy"><div class="tv2-dyn" style="color:#9ca3af">—</div></div>'
     pct = dy if dy > 1 else dy * 100
-    sub = ""
-    if med and med > 0:
-        m = med if med > 1 else med * 100
-        mtxt = f"{m:.1f}%" if m >= 1 else f"{m:.2f}%"
-        if pct > m * 1.1:
-            sub = f'<small style="color:#6b7280">▲ sobre su mediana ({mtxt})</small>'
-        elif pct < m * 0.9:
-            sub = f'<small style="color:#6b7280">▼ bajo su mediana ({mtxt})</small>'
-        else:
-            sub = f'<small style="color:#6b7280">≈ su mediana ({mtxt})</small>'
-    return f'<div class="tv-dy" style="color:#374151">{pct:.2f}%{sub}</div>'
+    m = (med if med > 1 else med * 100) if med and med > 0 else None
+    serie = row.get("dividend_yield_serie")
+    serie = [v for v in (_n(x) for x in serie) if v is not None] if isinstance(serie, (list, tuple)) else None
+    anios = (row.get("anios_historia") or {}).get("dividend_yield") if isinstance(row.get("anios_historia"), dict) else None
+    n = len(serie) if serie else (int(anios) if anios else None)
+    etiqueta = f"Mediana {n} años" if n and n >= 2 else "Mediana histórica"
+    mtxt = f"{m:.1f}%" if m and m >= 1 else (f"{m:.2f}%" if m else "")
+    tip = (f"Rendimiento por dividendo de hoy. La línea es su mediana histórica ({mtxt}); el punto es hoy." if m
+           else "Rendimiento por dividendo de hoy.")
+    if serie and len(serie) >= 2:
+        pie = _svg_dy(serie, pct, m, etiqueta)
+    elif m:
+        pie = f'<div class="tv2-dym">{html.escape(etiqueta)}: <b>{mtxt}</b></div>'
+    else:
+        pie = ""
+    return f'<div class="tv2-dy" title="{html.escape(tip)}"><div class="tv2-dyn">{pct:.2f}%</div>{pie}</div>'
 
 
 def html_tabla_visual(df: pd.DataFrame) -> str:
-    """HTML completo (estilos + tabla) para las filas de `df`, en el orden recibido."""
+    """HTML de las filas de `df`, en el orden recibido (los encabezados ordenables los dibuja la app)."""
     filas = []
     for _, row in df.iterrows():
         r = row.to_dict()
-        filas.append('<div class="tv-r">' + _celda_empresa(r) + f'<div>{_celda_valoracion(r)}</div>'
-                     + f'<div>{_celda_puntaje(r)}</div>' + f'<div>{_celda_52s(r)}</div>'
-                     + f'<div>{_celda_dy(r)}</div>' + f'<div class="tv-mc">{_mcap(r.get("market_cap"))}</div></div>')
-    cab = ('<div class="tv-h"><div>Empresa</div><div>Valoración: precio vs Fair Value</div><div>Puntaje</div>'
-           '<div>Rango 52 semanas</div><div>Div. Yield</div><div>Mkt Cap</div></div>')
-    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría y su valor arriba), la <b>raya oscura</b> '
-            'es el Fair Value promedio (con su valor abajo) y la <b>franja gris</b> es una zona de referencia alrededor del Fair Value. Es solo una guía visual: '
-            'la categoría sale del puntaje.</div>')
-    return f'<style>{CSS}</style><div class="tv-wrap"><div class="tv-grid">{cab}{"".join(filas)}{nota}</div></div>'
+        filas.append('<div class="tv2-r">' + f'<div>{_celda_empresa(r)}</div>' + f'<div class="tv2-v">{_celda_valoracion(r)}</div>'
+                     + f'<div class="tv2-c">{_celda_puntaje(r)}</div>' + f'<div class="tv2-c">{_celda_dy(r)}</div></div>')
+    nota = ('<div class="tv-nota">Cómo leer la valoración: el <b>punto</b> es el precio de hoy (con el color de la categoría y su valor arriba), la <b>rayita azul</b> '
+            'es el Fair Value promedio (con su valor abajo) y la <b>franja celeste</b> es una zona de referencia alrededor del Fair Value. Es solo una guía visual: '
+            'la categoría sale del puntaje. El rango de 52 semanas está en el detalle de cada empresa.</div>')
+    return f'<div class="tv2">{"".join(filas)}{nota}</div>'
