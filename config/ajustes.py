@@ -30,6 +30,13 @@ CADA CUANTO ACTUALIZAR EL CACHE (v1.2.15)
 
 STOCK_ANALYSIS_MODO = "principal"
 
+# AVISO LEGAL (v1.2.29): se muestra en una barra fija al pie de la pantalla. Se puede cambiar el texto aca;
+# si se deja vacio ("") la barra no se muestra. Lo redacto el programa como texto base: conviene que lo
+# revise el dueño de la herramienta (por ser asesor registrado) y lo ajuste a lo que corresponda.
+AVISO_LEGAL = ("Herramienta de filtrado inicial, con fines informativos y educativos. No es una recomendación de inversión "
+               "ni una oferta de compra o venta. Los datos pueden tener errores o estar desactualizados: "
+               "investigá cada empresa antes de decidir.")
+
 import datetime as _dt
 
 MESES_ACTUALIZACION = (3, 6, 9, 12)   # se actualiza el dia 1 de estos meses (despues de la temporada de resultados)

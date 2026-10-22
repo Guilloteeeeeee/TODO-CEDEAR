@@ -138,6 +138,12 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 
 **Filtros:** Sector / Industria y Valoración ahora son **pastillas** (sin selección = todas; la elegida se ve en azul oscuro). Requiere `streamlit>=1.46.0` (ya está en `requirements.txt`).
 
+### Aviso legal fijo (v1.2.29)
+
+- Barra fija al pie de la pantalla: "Herramienta de filtrado inicial, con fines informativos y educativos. No es una recomendación de inversión ni una oferta de compra o venta. Los datos pueden tener errores o estar desactualizados: investigá cada empresa antes de decidir." Se ve siempre.
+- El texto es una base: se cambia en `config/ajustes.py` (`AVISO_LEGAL`; si se deja vacío no se muestra). Por ser Guille asesor registrado, conviene que lo revise y lo ajuste a lo que corresponda.
+- README: se corrigió la frase vieja de "cada 6 horas" (la app solo lee el caché) y se agregó cómo limitar quién ve la app.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.
@@ -179,7 +185,9 @@ streamlit run app.py
 3. "New app" → elegís el repo → `app.py` como archivo principal
 4. Deploy
 
-Los datos se actualizan automáticamente cada 6 horas.
+La app solo **lee el caché** (`data/cache_datos.json`) y no consulta Yahoo ni Stock Analysis: los datos se actualizan una vez por trimestre corriendo `generar_cache.bat` en la PC y subiendo el caché nuevo a GitHub (Streamlit Cloud se actualiza solo al subirlo).
+
+Si la app es pública, cualquiera con el link la puede usar; para limitar quién entra: *App settings → Sharing → "Only specific people can view this app"*.
 
 ## Estructura del proyecto
 

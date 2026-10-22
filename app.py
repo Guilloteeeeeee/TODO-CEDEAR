@@ -6,11 +6,12 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.28"
+APP_VERSION = "1.2.29"
 
 import streamlit as st
 import pandas as pd
 import numpy as np
+import html
 import json
 import os
 import sys
@@ -947,6 +948,27 @@ def render_detalle(df: pd.DataFrame):
 # APP PRINCIPAL
 # ---------------------------------------------------------------------------
 
+def render_aviso_legal():
+    """Barra fija al pie de la pantalla con el aviso (texto en config/ajustes.py: AVISO_LEGAL)."""
+    try:
+        from config.ajustes import AVISO_LEGAL
+    except Exception:  # noqa: BLE001
+        AVISO_LEGAL = ("Herramienta de filtrado inicial, con fines informativos y educativos. No es una recomendación "
+                       "de inversión ni una oferta de compra o venta.")
+    texto = (AVISO_LEGAL or "").strip()
+    if not texto:
+        return
+    st.markdown(
+        '<style>'
+        '.aviso-fijo{position:fixed;left:0;right:0;bottom:0;z-index:999;background:#f3f5f8;border-top:1px solid #d5dde6;'
+        'color:#4b5563;font-size:12px;line-height:1.35;padding:7px 18px;text-align:center}'
+        '.aviso-fijo b{color:#374151}'
+        '[data-testid="stMainBlockContainer"]{padding-bottom:5rem}'
+        '</style>'
+        f'<div class="aviso-fijo"><b>Aviso:</b> {html.escape(texto)}</div>',
+        unsafe_allow_html=True)
+
+
 def main():
     # Cargar universo de tickers
     universe = load_custom_tickers()
@@ -959,6 +981,9 @@ def main():
         st.markdown("Detector de empresas potencialmente infravaloradas — datos de Stock Analysis y Yahoo Finance")
     with col_ver:
         st.markdown(f"<br><span style='color:#888;font-size:0.85em'>v{APP_VERSION}</span>", unsafe_allow_html=True)
+
+    # Aviso fijo al pie (se muestra siempre, aunque despues falle algo)
+    render_aviso_legal()
 
     # Cargar datos
     with st.spinner("Cargando datos..."):
