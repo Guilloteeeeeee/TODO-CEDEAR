@@ -406,6 +406,56 @@ def puntaje_vs_sector(datos: dict, sector: str, ticker: str, pool: dict) -> dict
             "metricas_usadas_sector": r["metricas_usadas"]}
 
 
+def factores_reencarecimiento(df: pd.DataFrame, ticker_to_sector: dict = None,
+                              referencia: Optional[pd.DataFrame] = None) -> dict:
+    """
+    v1.2.31: {(sector, metrica): factor} para el puntaje en sombra "ajustado" (opcion B).
+
+    Idea: si un sector entero se encareció (o abarató) respecto de su propia historia -por ejemplo
+    porque cambiaron las tasas de interés-, comparar cada empresa contra su historia sola la hace
+    ver cara (o barata) por culpa del sector, no de ella. El factor mide cuánto se movió el sector:
+    es la mediana de (valor actual / mediana propia) entre las empresas del sector con ambos datos
+    válidos. Hace falta un mínimo de SECTOR_MIN_EMPRESAS. El PEG no se ajusta.
+    """
+    if ticker_to_sector is None:
+        ticker_to_sector = TICKER_TO_SECTOR
+    base = df if referencia is None else pd.concat(
+        [df, referencia[~referencia["ticker"].isin(df["ticker"])]], ignore_index=True)
+    cocientes: dict = {}
+    for _, r in base.iterrows():
+        ticker = r.get("ticker", "")
+        sector = ticker_to_sector.get(ticker, "")
+        excluidas = METRICAS_EXCLUIDAS.get(ticker, {})
+        for m in SECTOR_CONFIG.get(sector, {}).get("metrics", {}):
+            if m == "peg" or m in excluidas:
+                continue
+            med = _mediana_propia_valida(r, m)
+            if med is not None and _actual_valido(r, m):
+                cocientes.setdefault((sector, m), []).append(float(r[f"{m}_actual"]) / med)
+    return {k: round(float(np.median(v)), 4) for k, v in cocientes.items() if len(v) >= SECTOR_MIN_EMPRESAS}
+
+
+def puntaje_ajustado_sector(calc: dict, sector: str, factores: dict) -> dict:
+    """
+    Puntaje "en sombra" ajustado (v1.2.31, opcion B): igual al oficial (misma mediana propia, mismo
+    respaldo de sector, mismas exclusiones), pero cada mediana se multiplica por el factor de
+    re-encarecimiento de su sector (ver factores_reencarecimiento). `calc` es la fila de trabajo
+    ya con el respaldo aplicado; no se modifica. No afecta la categoría oficial.
+    """
+    vacio = {"score_total_ajustado": None, "categoria_ajustado": CATEGORIA_GRIS[0], "metricas_usadas_ajustado": 0}
+    if sector not in SECTOR_CONFIG:
+        return vacio
+    ajust = dict(calc)
+    for m in SECTOR_CONFIG[sector]["metrics"]:
+        f = factores.get((sector, m))
+        med = ajust.get(f"{m}_mediana")
+        if f is not None and _num_ok(med) and med > 0:
+            ajust[f"{m}_mediana"] = float(med) * f
+    r = calcular_score(ajust, sector)
+    return {"score_total_ajustado": r["score_total"], "categoria_ajustado": r["categoria"],
+            "metricas_usadas_ajustado": r["metricas_usadas"]}
+
+
 def aplicar_respaldo_sector(datos: dict, sector: str, refs: dict) -> dict:
     """
     Si a una empresa le falta (o tiene imposible) la mediana historica propia de una metrica
@@ -438,7 +488,8 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
     Agrega columnas: score_fundamental, score_tecnico, score_total,
                      categoria, color_hex, emoji, metricas_usadas, metricas_total,
                      fair_value, fair_value_detalle, fair_value_metodos,
-                     respaldo_sector, score_total_sector, categoria_sector (puntaje en sombra).
+                     respaldo_sector, score_total_sector, categoria_sector (puntaje en sombra vs sector),
+                     score_total_ajustado, categoria_ajustado (puntaje en sombra ajustado, v1.2.31).
 
     v1.2.12: si la mediana propia de una metrica falta o es imposible, se compara contra la
     mediana de su sector (ver referencias_sector). Los datos originales de la fila no se pisan:
@@ -451,6 +502,7 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
 
     refs = referencias_sector(df, ticker_to_sector, referencia)
     pool_sombra = valores_actuales_por_sector(df, ticker_to_sector, referencia)
+    factores = factores_reencarecimiento(df, ticker_to_sector, referencia)
 
     rows = []
     for _, row in df.iterrows():
@@ -483,8 +535,9 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
             datos_sombra[f"{m}_actual"] = None
             datos_sombra[f"{m}_mediana"] = None
         sombra = puntaje_vs_sector(datos_sombra, sector, ticker, pool_sombra)
+        ajustado = puntaje_ajustado_sector(calc, sector, factores)
         rows.append({**datos, **resultado, **fv_resultado, "sector": sector,
-                     "respaldo_sector": usados, **sombra})
+                     "respaldo_sector": usados, **sombra, **ajustado})
 
     return pd.DataFrame(rows)
 

@@ -2,16 +2,19 @@
 Seguimiento del screener (v1.2.13): compara, entre una copia y la siguiente, cuanto subieron o bajaron las empresas
 segun la categoria que tenian en una copia anterior del cache (data/historial/cache_AAAA-MM-DD.json).
 
-Se calcula para dos formas de puntuar:
+Se calcula para tres formas de puntuar:
   - "oficial":   contra la historia propia de cada empresa (columna `categoria`)
   - "vs sector": contra sus pares del sector, puntaje en sombra (columna `categoria_sector`)
+  - "ajustado":  contra su historia propia corregida por lo que se encareció o abarató su sector, puntaje en
+                 sombra de la v1.2.31 (columna `categoria_ajustado`)
+Las copias viejas que no tienen una columna simplemente quedan sin esa medición.
 
 Solo mide variacion de PRECIO (no incluye dividendos). Con pocos meses no es concluyente.
 """
 import glob
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from typing import Optional
 
 import pandas as pd
@@ -61,10 +64,17 @@ def _spread(m: pd.DataFrame, col: str) -> Optional[float]:
     return float(baratas.mean() - caras.mean())
 
 
+def proxima_medicion(copias: list, min_dias: int = MIN_DIAS_ENTRE_COPIAS):
+    """Fecha desde la cual otra copia permitiría medir (última copia + min_dias), o None si no hay copias."""
+    if not copias:
+        return None
+    return (copias[-1][0] + timedelta(days=min_dias)).date()
+
+
 def evaluar_copias(copias: list, min_dias: int = MIN_DIAS_ENTRE_COPIAS) -> dict:
     """
     Usa pares de copias consecutivas separadas por al menos `min_dias` dias.
-    Devuelve {"pares": [...], "tablas": {"oficial": DataFrame, "sector": DataFrame}, "todas": float}.
+    Devuelve {"pares": [...], "tablas": {"oficial": DataFrame, "sector": DataFrame, "ajustado": DataFrame}, "todas": float}.
     """
     pares, acumulado = [], []
     for (f1, d1), (f2, d2) in zip(copias, copias[1:]):
@@ -79,6 +89,7 @@ def evaluar_copias(copias: list, min_dias: int = MIN_DIAS_ENTRE_COPIAS) -> dict:
             "todas": float(m["ret"].mean()),
             "spread_oficial": _spread(m, "categoria"),
             "spread_sector": _spread(m, "categoria_sector"),
+            "spread_ajustado": _spread(m, "categoria_ajustado"),
         })
         acumulado.append(m)
     salida = {"pares": pares, "tablas": {}, "todas": None}
@@ -86,7 +97,7 @@ def evaluar_copias(copias: list, min_dias: int = MIN_DIAS_ENTRE_COPIAS) -> dict:
         return salida
     todo = pd.concat(acumulado, ignore_index=True)
     salida["todas"] = float(todo["ret"].mean())
-    for clave, col in (("oficial", "categoria"), ("sector", "categoria_sector")):
+    for clave, col in (("oficial", "categoria"), ("sector", "categoria_sector"), ("ajustado", "categoria_ajustado")):
         if col not in todo.columns:
             continue
         g = todo[todo[col].isin(CATEGORIAS_ORDEN)].groupby(col)["ret"].agg(["count", "mean"])

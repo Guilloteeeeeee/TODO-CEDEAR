@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.30"
+APP_VERSION = "1.2.31"
 
 import streamlit as st
 import pandas as pd
@@ -24,7 +24,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 # Importaciones del proyecto
 from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA
-from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
+from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion, CATEGORIAS_ORDEN,
+                                 MIN_DIAS_ENTRE_COPIAS)
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
 from ui.banderas import css_banderas, bandera_html
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
@@ -1071,6 +1072,8 @@ def _evaluar_historial(clave: str) -> dict:
     copias = cargar_copias()
     res = evaluar_copias(copias)
     res["fechas"] = [f.strftime("%d/%m/%Y") for f, _ in copias]
+    prox = proxima_medicion(copias)
+    res["proxima"] = prox.strftime("%d/%m/%Y") if prox else None
     return res
 
 
@@ -1096,28 +1099,39 @@ def render_seguimiento():
         if not res["pares"]:
             st.info(
                 f"Todavía no se puede medir: hacen falta dos copias separadas por al menos {MIN_DIAS_ENTRE_COPIAS} días. "
-                "La próxima actualización del caché la completa."
+                + (f"Con la última copia que hay, otra copia hecha el {res['proxima']} o después ya permite medir "
+                   "(se crea al correr generar_cache.bat)." if res.get("proxima") else
+                   "La próxima actualización del caché la completa.")
             )
             return
         filas = [{
             "Desde": str(p["desde"]), "Hasta": str(p["hasta"]), "Empresas": p["empresas"],
-            "Todas (%)": round(p["todas"], 1),
+            "Todas (%)": f"{p['todas']:+.1f}",
             "Baratas − caras, oficial (pts)": None if p["spread_oficial"] is None else round(p["spread_oficial"], 1),
             "Baratas − caras, vs sector (pts)": None if p["spread_sector"] is None else round(p["spread_sector"], 1),
+            "Baratas − caras, ajustado (pts)": None if p.get("spread_ajustado") is None else round(p["spread_ajustado"], 1),
         } for p in res["pares"]]
         st.markdown("**Por período** (baratas − caras: cuánto más subieron las empresas marcadas como infravaloradas que las sobrevaloradas; positivo = el screener acertó)")
         st.dataframe(pd.DataFrame(filas), hide_index=True, use_container_width=True)
-        c1, c2 = st.columns(2)
-        with c1:
-            st.markdown("**Oficial (contra su historia)**")
-            if "oficial" in res["tablas"]:
-                st.dataframe(res["tablas"]["oficial"].round(1), use_container_width=True)
-        with c2:
-            st.markdown("**En sombra (contra su sector)**")
-            if "sector" in res["tablas"]:
-                st.dataframe(res["tablas"]["sector"].round(1), use_container_width=True)
-            else:
-                st.caption("Las copias anteriores no tienen este puntaje.")
+        # Una sola tabla: por categoria, cuantas empresas habia y cuanto cambio el precio medio segun cada puntaje
+        etiquetas = (("oficial", "Oficial"), ("sector", "En sombra: vs sector"), ("ajustado", "En sombra: ajustado"))
+        comp = pd.DataFrame(index=[c for c in CATEGORIAS_ORDEN])
+        faltan = []
+        for clave, rotulo in etiquetas:
+            t = res["tablas"].get(clave)
+            if t is None:
+                faltan.append(rotulo)
+                continue
+            comp[(rotulo, "Empresas")] = t["Empresas"].reindex(comp.index)
+            comp[(rotulo, "Precio medio (%)")] = t["Variación media del precio (%)"].reindex(comp.index).round(1)
+        if comp.shape[1]:
+            comp.columns = pd.MultiIndex.from_tuples(comp.columns)
+            comp.index.name = "Categoría"
+            st.markdown("**Por categoría** (variación media del precio de las empresas que tenían esa categoría al inicio de cada período)")
+            fmt = {c: ("{:.0f}" if c[1] == "Empresas" else "{:+.1f}") for c in comp.columns}
+            st.dataframe(comp.dropna(how="all").style.format(fmt, na_rep="—"), use_container_width=True)
+        if faltan:
+            st.caption("Las copias anteriores no tienen estos puntajes: " + ", ".join(faltan) + ".")
         if res["todas"] is not None:
             st.caption(f"Variación media de todas las empresas en esos períodos: {res['todas']:+.1f}%")
 
