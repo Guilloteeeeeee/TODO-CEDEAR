@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.18"
+APP_VERSION = "1.2.19"
 
 import streamlit as st
 import pandas as pd

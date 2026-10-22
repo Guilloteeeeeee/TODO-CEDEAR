@@ -89,7 +89,26 @@ SECTOR_CONFIG = {
             "dividend_yield":  0.15,
         },
     },
-    "Tecnología": {
+    # v1.2.19: Tecnología en tres grupos de negocios parecidos. Los pesos son los mismos de antes
+    # (PEG 40 / P-FCF 20 / EV-EBITDA 20 / PER 20): lo que cambia es contra quien se compara el
+    # sector cuando falta la historia propia (sobre todo el PEG).
+    "Semiconductores": {
+        "metrics": {
+            "peg":             0.40,
+            "p_fcf":           0.20,
+            "ev_ebitda":       0.20,
+            "per":             0.20,
+        },
+    },
+    "Software y nube": {
+        "metrics": {
+            "peg":             0.40,
+            "p_fcf":           0.20,
+            "ev_ebitda":       0.20,
+            "per":             0.20,
+        },
+    },
+    "Hardware y servicios TI": {
         "metrics": {
             "peg":             0.40,
             "p_fcf":           0.20,
@@ -151,11 +170,15 @@ TICKER_UNIVERSE = {
         "CAT", "GE", "RTX", "SIEGY", "DE", "UNP", "UBER", "LMT",
         "HON", "BA", "MMM", "FDX", "GEV", "HWM", "PCAR",
     ],
-    "Tecnología":         [
-        "NVDA", "AAPL", "MSFT", "TSM", "AVGO", "MU", "AMD", "ASML", "INTC",
-        "PLTR", "CSCO", "ORCL", "AMAT", "PANW", "ARM", "CRWD", "TXN", "ANET",
-        "SAP", "MRVL", "IBM", "SHOP", "ADI", "QCOM", "CRM", "NOW", "ACN",
-        "ADP", "ADBE", "LRCX", "INFY", "SNOW", "DELL", "KLAC", "MSI", "WDC",
+    "Semiconductores":    [
+        "NVDA", "TSM", "AVGO", "MU", "AMD", "ASML", "INTC", "AMAT", "ARM", "TXN",
+        "MRVL", "ADI", "QCOM", "LRCX", "KLAC",
+    ],
+    "Software y nube":    [
+        "MSFT", "ORCL", "PLTR", "PANW", "CRWD", "SAP", "SHOP", "CRM", "NOW", "ADBE", "SNOW",
+    ],
+    "Hardware y servicios TI": [
+        "AAPL", "CSCO", "ANET", "IBM", "ACN", "ADP", "INFY", "DELL", "MSI", "WDC",
     ],
     "Energía":            ["XOM", "CVX", "SHEL", "TTE", "COP", "PBR", "SLB", "BP", "EQNR", "PSX"],
     "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO"],

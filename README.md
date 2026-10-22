@@ -19,7 +19,9 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 | Comunicación (internet y medios) | PEG (30%) | EV/EBITDA (30%) | Div. Yield (20%) | PER (20%) |
 | Telecomunicaciones | Div. Yield (30%) | EV/EBITDA (30%) | P/FCF (25%) | PER (15%) |
 | Industrial | EV/EBITDA (30%) | PER (30%) | P/FCF (25%) | Div. Yield (15%) |
-| Tecnología | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
+| Semiconductores | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
+| Software y nube | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
+| Hardware y servicios TI | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
 | Energía | P/FCF (35%) | EV/EBITDA (30%) | Div. Yield (25%) | P/B (10%) |
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
 | Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
@@ -46,14 +48,21 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 
 - **"Financieros" ahora son dos grupos:** *Bancos y seguros* (P/B 40%, PER 35%, Div. Yield 25%: los bancos y aseguradoras se valúan por su valor contable y sus ganancias) y *Pagos y datos* (V, MA, SPGI, PYPL, COIN, FISV, MRSH: negocios de comisiones y datos, que no prestan plata y se miden mejor por PER, P/FCF y EV/EBITDA). BRK-B, AIG, BX, IBKR y los brokers quedan en *Bancos y seguros*. Mientras no se agregue MRSH al caché, *Pagos y datos* tiene 6 empresas (el respaldo de sector pide al menos 5).
 - **Corrección:** MMC (Marsh McLennan) cambió su ticker a **MRSH** el 14/01/2026. En una versión intermedia se había puesto "MMS" por error: MMS es Maximus, otra empresa. Quedó MRSH. Sus datos entran con la próxima corrida en la PC (`actualizar_ticker.bat MRSH` o `generar_cache.bat`); que Yahoo Finance reconozca ya "MRSH" todavía no está verificado.
-- **Logos incluidos:** `assets/logos/` trae 162 logos de 64×64 ya armados (fuente: el repositorio público `nvstly/icons` en GitHub; los logos son marcas de cada empresa y se usan solo para identificarla). Los logos blancos se apoyan sobre un fondo gris oscuro para que se vean. Faltan MS, IBN, PCAR y SIEGY (la imagen disponible no era el logo): esos cuatro usan el favicon de Google o, sin conexión, las iniciales.
+- **Logos incluidos:** `assets/logos/` trae los logos de 64×64 ya armados (fuente: el repositorio público `nvstly/icons` en GitHub; los logos son marcas de cada empresa y se usan solo para identificarla). Los logos blancos se apoyan sobre un fondo gris oscuro para que se vean. MS, IBN, PCAR y SIEGY se agregaron en la v1.2.19.
 
 ### Telecomunicaciones aparte (v1.2.18)
 
 - **AT&T, Verizon y T-Mobile salen de "Comunicación"** y forman *Telecomunicaciones*. Son negocios lentos, con mucha deuda y que pagan dividendo: el PEG (crecimiento) no las describe bien, y se miden mejor por dividendo, EV/EBITDA y flujo de caja. *Comunicación* queda para internet y medios (GOOGL, META, NFLX, DIS, SPOT, NTES), con los mismos pesos de antes (PEG incluido).
 - **Efecto en el caché:** VZ 52,9 → 40,6 y T 44,6 → 39,9 (las dos pasan de "parece bien valuada" a "tendencia a sobrevaluada"); TMUS 88,9 → 88,2 (sigue "podría estar infravalorada"). Los otros 6 de Comunicación se mueven menos de 1 punto, porque su mediana de PEG ahora se calcula solo entre pares de internet y medios.
 - **Pares:** Telecomunicaciones tiene 3 empresas, menos que los 5 que pide el respaldo de sector. No hay problema porque las tres tienen historia propia; si algún día les falta, ese dato se descarta en vez de compararse con el sector.
-- **Subgrupos en Tecnología, Salud, etc.:** en estudio. Quedan para decidir después de la primera corrida con Stock Analysis, porque hoy casi todo el efecto viene del PEG comparado con el sector, y con Stock Analysis el PEG pasa a tener historia propia.
+- **Subgrupos:** Tecnología se dividió en la v1.2.19 (ver abajo). Salud y los demás sectores quedan como están.
+
+### Tecnología en tres grupos (v1.2.19)
+
+- **Grupos:** *Semiconductores* (15: NVDA, TSM, AVGO, MU, AMD, ASML, INTC, AMAT, ARM, TXN, MRVL, ADI, QCOM, LRCX, KLAC), *Software y nube* (11: MSFT, ORCL, PLTR, PANW, CRWD, SAP, SHOP, CRM, NOW, ADBE, SNOW) y *Hardware y servicios TI* (10: AAPL, CSCO, ANET, IBM, ACN, ADP, INFY, DELL, MSI, WDC). El reparto es un criterio mío (una empresa como AVGO podría estar en dos); se cambia en `TICKER_UNIVERSE` de `config/sectors.py`.
+- **Los pesos no cambian** (PEG 40 / P/FCF 20 / EV/EBITDA 20 / PER 20) y el PEG se mantiene en todos. Lo que cambia es contra quién se compara cuando falta la historia propia. El PEG de referencia pasa de 1,125 (toda Tecnología) a 0,78 en semiconductores, 1,72 en software y 2,06 en hardware y servicios TI.
+- **Efecto en el caché:** 30 de las 36 empresas cambian 1 punto o más y 15 cambian de categoría (ejemplos: TSM 79 → 50, ASML 44 → 29, CSCO 38 → 50, ANET 30 → 48, TXN 45 → 33). Casi todo sale del PEG comparado con el sector, que hoy se usa porque Yahoo no trae la historia de PEG. Con Stock Analysis cada empresa tendrá su propio PEG histórico y el efecto debería achicarse; después de esa corrida se repite la medición y, si el cambio no se justifica, se puede volver al grupo único.
+- **Logos:** con MS, IBN, PCAR y SIEGY (logos que pasó Guille) ya están los 166.
 
 ### Reglas de datos (v1.2.11)
 
