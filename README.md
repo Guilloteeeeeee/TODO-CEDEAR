@@ -69,6 +69,12 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - Las tablas, el filtro y el detalle muestran **"Sector / Industria"** para los grupos que son una industria dentro de un sector más grande. Ejemplos: *Financiero / Pagos y datos*, *Financiero / Bancos y seguros*, *Tecnología / Semiconductores*, *Tecnología / Software y nube*, *Tecnología / Hardware y servicios TI*, *Comunicación / Internet y medios*, *Comunicación / Telecomunicaciones*. Los demás (Salud, Industrial, Energía, etc.) se muestran solo con el nombre del sector.
 - Es solo una etiqueta: el puntaje sigue usando los grupos de siempre. El cuadro se define en `SECTOR_E_INDUSTRIA` de `config/sectors.py`, y el orden del filtro y de la columna "Sector" agrupa las industrias del mismo sector.
 
+### Banderas (v1.2.21)
+
+- En la columna **País** de la tabla clásica, en la vista visual y en el detalle de cada empresa se muestra la **bandera** en lugar del nombre (al pasar el mouse por encima aparece el nombre del país). Si el país no está en la lista o no vino de Yahoo, se muestra el nombre o un guion.
+- Son imágenes (`assets/flags/<código>.png`, 48×36, del paquete `flag-icons`, licencia MIT) y no emojis, porque en Windows los emojis de banderas se ven como dos letras ("US"). Están las de los países de la lista de traducción de `app.py`; para sumar uno nuevo se agrega la imagen y su nombre en `ISO` de `ui/banderas.py`.
+- El filtro "País" y el orden de la columna siguen usando el nombre.
+
 ### Reglas de datos (v1.2.11)
 
 - **Valores imposibles se descartan y el peso se reparte entre las métricas que quedan.** Se descarta una métrica si su valor actual o su mediana histórica cae fuera de un rango posible (ej.: un PER de 0,1). Los rangos están en `config/sectors.py` (`RANGOS_PLAUSIBLES`) y solo cortan lo imposible, no los valores altos pero reales.
@@ -133,7 +139,9 @@ cedear-screener/
 │   └── seguimiento.py      # Seguimiento con las copias del historial
 ├── ui/
 │   ├── tabla_visual.py     # Vista visual de la tabla (v1.2.16)
-│   └── logos.py            # Logos: archivo local, favicon o iniciales
+│   ├── logos.py            # Logos: archivo local, favicon o iniciales
+│   └── banderas.py         # Banderas de los paises (v1.2.21)
 ├── assets/logos/           # Logos 64x64 (<TICKER>.png), ya incluidos desde la v1.2.17
+├── assets/flags/           # Banderas 48x36 (<codigo>.png) de los paises
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```

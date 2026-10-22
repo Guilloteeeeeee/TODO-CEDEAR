@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.20"
+APP_VERSION = "1.2.21"
 
 import streamlit as st
 import pandas as pd
@@ -25,6 +25,7 @@ from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias
 from scoring.seguimiento import cargar_copias, evaluar_copias, MIN_DIAS_ENTRE_COPIAS
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector
+from ui.banderas import css_banderas, bandera_html
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -674,8 +675,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         )
 
         # País
-        pais_txt = row.get("pais")
-        cols[1].markdown(pais_txt if isinstance(pais_txt, str) and pais_txt else "—")
+        cols[1].markdown(bandera_html(row.get("pais")), unsafe_allow_html=True)
 
         # Sector
         cols[2].markdown(etiqueta_sector(row.get("sector")))
@@ -774,7 +774,7 @@ def render_detalle(df: pd.DataFrame):
     sector = row.get("sector", "")
 
     st.markdown(f"### {row.get('nombre', ticker_sel)} ({ticker_sel})")
-    st.markdown(f"**Sector / Industria:** {etiqueta_sector(sector)} | **País:** {row.get('pais', '—')} | **Market Cap:** {format_market_cap(row.get('market_cap'))}")
+    st.markdown(f"**Sector / Industria:** {etiqueta_sector(sector)} | **País:** {bandera_html(row.get('pais'), con_nombre=True)} | **Market Cap:** {format_market_cap(row.get('market_cap'))}", unsafe_allow_html=True)
 
     # Score y categoría
     st.markdown(
@@ -1032,6 +1032,9 @@ def main():
         + '</div>',
         unsafe_allow_html=True,
     )
+
+    # Estilos de las banderas (una sola vez por pagina; los usan la tabla y el detalle)
+    st.markdown(css_banderas(), unsafe_allow_html=True)
 
     # Tabla principal
     render_main_table(df, filtros)
