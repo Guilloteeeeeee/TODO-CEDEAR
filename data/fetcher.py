@@ -29,7 +29,7 @@ try:
 except Exception:             # archivo de ajustes ausente: comportamiento de siempre
     STOCK_ANALYSIS_MODO = "respaldo"
 
-_METRICAS = ("ev_ebitda", "per", "p_fcf", "p_b", "dividend_yield", "peg", "p_ffo", "p_affo")
+_METRICAS = ("ev_ebitda", "per", "p_fcf", "p_b", "dividend_yield", "peg", "p_ffo", "p_affo", "ps")
 
 logger = logging.getLogger(__name__)
 
@@ -196,6 +196,7 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         "peg_actual": None,
         "p_ffo_actual": None,
         "p_affo_actual": None,
+        "ps_actual": None,
         "annual_dividend": None,
         # Medianas históricas
         "ev_ebitda_mediana": None,
@@ -206,6 +207,7 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         "peg_mediana": None,
         "p_ffo_mediana": None,
         "p_affo_mediana": None,
+        "ps_mediana": None,
         # Metadatos
         "error": None,
         "metricas_disponibles": 0,
@@ -874,6 +876,11 @@ def calc_fair_value(result: dict, sector: str) -> dict:
 
         elif metrica in ("peg",):
             # PEG: usamos ratio directo como EV/EBITDA
+            if actual and actual > 0 and precio_actual and precio_actual > 0:
+                precio_implicito = precio_actual * (mediana / actual)
+
+        elif metrica == "ps":
+            # v1.2.43: P/S = precio / ventas por accion, asi que el precio implicito es proporcional (igual que EV/EBITDA)
             if actual and actual > 0 and precio_actual and precio_actual > 0:
                 precio_implicito = precio_actual * (mediana / actual)
 

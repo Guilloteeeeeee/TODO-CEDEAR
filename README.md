@@ -19,9 +19,9 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 | Comunicación (internet y medios) | PEG (30%) | EV/EBITDA (30%) | Div. Yield (20%) | PER (20%) |
 | Telecomunicaciones | Div. Yield (30%) | EV/EBITDA (30%) | P/FCF (25%) | PER (15%) |
 | Industrial | EV/EBITDA (30%) | PER (30%) | P/FCF (25%) | Div. Yield (15%) |
-| Semiconductores | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
+| Semiconductores | P/S (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
 | Software y nube | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
-| Hardware y servicios TI | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
+| Hardware y servicios TI | P/S (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
 | Energía | P/FCF (35%) | EV/EBITDA (30%) | Div. Yield (25%) | P/B (10%) |
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
 | Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
@@ -160,6 +160,26 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Tipografía:** Inter (pensada para pantallas y tablas de números; viene incluida en `assets/fuentes/`, no se baja de internet). Para volver a la de Streamlit: `FUENTE_APP = ""` en `config/ajustes.py`.
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
+
+### P/S en lugar del PEG en Semiconductores y Hardware (v1.2.43)
+
+**Qué cambió (decisión de Guille del 23/10/2026, "prueba 2"):** en *Semiconductores* y *Hardware y servicios TI* el **PEG (40 %) sale y entra el P/S (precio / ventas) con el mismo 40 %**. Los otros tres métodos (P/FCF, EV/EBITDA y PER, 20 % cada uno) quedan igual. *Software y nube* y *Comunicación* **conservan el PEG**. En el resto de los sectores no cambia nada.
+
+**Por qué:** al comparar con la lista de GuruFocus del 23/10/2026 (163 empresas) el mayor desacuerdo estaba en estas dos industrias (correlación de orden local 0,25). El PEG se distorsiona en las cíclicas: el crecimiento sale de un piso del ciclo y el cociente se vuelve inestable (WDC: PEG 0,25 contra mediana propia 170; MU: 0,07 contra 1,63; INTC: 0,78 contra 6,42). El P/S no se rompe con ganancias bajas, cíclicas o negativas y Stock Analysis lo trae para las 166 empresas, en la misma página que ya se baja.
+
+**Resultado medido (simulación aparte, todo en `Ronda2_P-S_concordancia_GuruFocus_23-10-2026.xlsx`):** correlación de orden con GuruFocus 0,683 a 0,800; categorías opuestas 18 a 14; contradicciones entre categoría y Fair Value 9 a 4; en Semis y Hardware 0,25 a 0,76. La mejora supera al azar (remuestreo 100 %, permutación p = 0,02) y no depende de los 4 valores más extremos de GuruFocus. **Límites:** (1) el GF Value usa P/S, PER, P/FCF y P/B históricos, así que el parecido es en parte por construcción: **que nos parezcamos más a GuruFocus no prueba que tengamos razón** y el PEG podría estar captando algo que a ellos se les escapa (ej.: AVGO, que GuruFocus ve significativamente infravalorada, pasa de "razonablemente valuada" a "significativamente sobrevalorada"); (2) el P/S no mira márgenes ni deuda; (3) con 25 empresas el efecto local es orientativo. La validación contra la realidad llega con el historial del 1/12.
+
+**Qué cambia en pantalla:** las 25 empresas de Semis y Hardware cambian de puntaje (ver lista abajo) y su **Fair Value** (usa los mismos pesos): ej. NVDA +100 % a +48 % sobre el precio, AMAT +23 % a -47 %, DELL +31 % a -59 %. El detalle de cada una muestra P/S en lugar de PEG y el método P/S en "Fair Value por método". Las otras 141 empresas quedan **idénticas** (se comprobó campo por campo).
+
+**Lo que cambió en el código:** `config/sectors.py` (pesos), `data/stockanalysis.py` (lee la fila "PS Ratio"), `data/fetcher.py` (campos `ps_actual` / `ps_mediana` y método P/S del Fair Value: precio × mediana / actual, igual que EV/EBITDA) y `app.py` (nombre "P/S"). El motor no cambió: es genérico por métrica. P/S sin rango de descarte propio: solo se exige valor actual positivo y al menos 3 años de historia (la regla de Stock Analysis); sin eso queda el respaldo de la mediana del sector.
+
+**Datos del caché:** el P/S de las 166 empresas se bajó el 23/10/2026 a las 18:17 con `probar_ps.bat` y se cargó con `incorporar_ps.py` (sin volver a bajar el resto: el caché conserva su fecha del 22/10). 165 empresas lo tienen; GEV queda sin P/S (2 años de historia), y no le afecta porque su sector (Industrial) no lo usa. Con el próximo `generar_cache.bat` el P/S se baja junto con las demás métricas.
+
+**Historial:** la copia `data/historial/cache_2026-10-22.json` se reemplazó por el caché nuevo (mismos datos del 22/10, más el P/S del 23/10). Trae los dos juegos de datos, PEG y P/S, así que el 1/12 se puede puntuar con cualquiera de los dos métodos y comparar cuál acierta más; la copia anterior (v1.2.42, con PEG) queda en el historial de cambios de GitHub.
+
+**Para volver atrás:** en `config/sectors.py` poner de nuevo `"peg": 0.40` en lugar de `"ps": 0.40` en las dos industrias y volver a puntuar (`python actualizar_ticker.py` re-puntúa todo el caché sin descargar).
+
+**Pendiente (decisión de Guille):** sumar P/S con 0,15 en el resto de los sectores (sin bancos ni REITs) = "prueba 5": correlación 0,822, pero toca 13 sectores y se parece más a GuruFocus por construcción. Ya es solo cambiar pesos. Tampoco se ajustan los pesos del P/S sector por sector (la validación cruzada no mejora el 0,15 parejo).
 
 ### Tabla en el celular, descarga en Excel y traducción opcional de titulares (v1.2.42)
 
@@ -387,5 +407,7 @@ cedear-screener/
 ├── assets/flags/           # Banderas 48x36 (<codigo>.png) de los paises
 ├── assets/marca/           # Logo de Finanzas para Medicos (128 px)
 ├── assets/fuentes/         # Tipografia Inter (incluida, licencia SIL OFL); se elige en config/ajustes.py (FUENTE_APP)
+├── probar_ps.py/.bat       # Baja el P/S y otros multiplos de Stock Analysis (solo trae datos, v1.2.43)
+├── incorporar_ps.py        # Carga esos datos en el cache y vuelve a puntuar sin descargar nada (v1.2.43)
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```

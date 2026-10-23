@@ -10,7 +10,7 @@ Distribución: 85% fundamental (4 métricas ponderadas) + 15% técnico (rango 52
 # El rango 52 semanas siempre pesa 0.15 sobre el score total.
 #
 # Métricas disponibles:
-#   ev_ebitda, per, p_fcf, p_b, dividend_yield, p_ffo, p_affo, peg
+#   ev_ebitda, per, p_fcf, p_b, dividend_yield, p_ffo, p_affo, peg, ps
 # ---------------------------------------------------------------------------
 
 SECTOR_CONFIG = {
@@ -94,7 +94,7 @@ SECTOR_CONFIG = {
     # sector cuando falta la historia propia (sobre todo el PEG).
     "Semiconductores": {
         "metrics": {
-            "peg":             0.40,
+            "ps":              0.40,   # v1.2.43: P/S en lugar del PEG (ver README)
             "p_fcf":           0.20,
             "ev_ebitda":       0.20,
             "per":             0.20,
@@ -110,7 +110,7 @@ SECTOR_CONFIG = {
     },
     "Hardware y servicios TI": {
         "metrics": {
-            "peg":             0.40,
+            "ps":              0.40,   # v1.2.43: P/S en lugar del PEG (ver README)
             "p_fcf":           0.20,
             "ev_ebitda":       0.20,
             "per":             0.20,

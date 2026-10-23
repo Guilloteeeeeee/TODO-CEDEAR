@@ -631,6 +631,7 @@ SA_ETIQUETAS = {
     "ev_ebitda":      (["ev/ebitda"], []),
     "p_fcf":          (["p/fcf"], []),
     "peg":            (["peg ratio"], []),
+    "ps":             (["ps ratio"], []),        # v1.2.43: precio / ventas
     "p_ffo":          (["price/ffo"], []),
     "p_affo":         (["price/affo"], []),
     "dividend_yield": (["dividend yield"], []),
@@ -702,7 +703,7 @@ def fetch_ratios_completos(ticker: str, session=None) -> dict:
             resultado["error"] = "no se pudo bajar la pagina" + (f" ({ULTIMO_ERROR})" if ULTIMO_ERROR else "")
             return resultado
         tabla = _parse_page(
-            html, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "FFO"])
+            html, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "PS Ratio", "FFO"])
         if not tabla:
             # Se bajo bien pero no se entiende: si pasa varias veces seguidas se deja de insistir
             _FALLOS_LECTURA += 1
@@ -755,7 +756,7 @@ def diagnosticar_pagina(ticker: str, session=None):
         lineas.append(f"    Primeros 200 caracteres: {txt[:200]!r}")
         if _legible(txt):
             try:
-                tabla = _parse_page(txt, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "FFO"])
+                tabla = _parse_page(txt, ["PE Ratio", "PB Ratio", "Dividend Yield", "EV/EBITDA", "P/FCF", "PEG Ratio", "PS Ratio", "FFO"])
                 lineas.append(f"    El lector entiende {len(tabla)} filas; columnas: "
                               f"{sorted({c for f in tabla.values() for c in f})[:10]}")
             except Exception as e:  # noqa: BLE001

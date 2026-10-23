@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.42"
+APP_VERSION = "1.2.43"
 
 import streamlit as st
 import pandas as pd
@@ -259,7 +259,7 @@ def traducir_pais(pais):
 # --- Vista de diagnóstico: métodos del Fair Value (se activa con el casillero de los filtros) ---
 FV_LABELS = {
     "ev_ebitda": "EV/EBITDA", "per": "PER", "p_fcf": "P/FCF", "p_b": "P/B",
-    "dividend_yield": "DY", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO",
+    "dividend_yield": "DY", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S",
 }
 
 
@@ -883,6 +883,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
             "peg": "PEG",
             "p_ffo": "P/FFO",
             "p_affo": "P/AFFO",
+            "ps": "P/S",
         }
 
         for i, (metrica, peso) in enumerate(SECTOR_CONFIG[sector]["metrics"].items()):
@@ -972,7 +973,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
         descartados_fv = row.get("fair_value_descartados")
         if isinstance(descartados_fv, dict) and descartados_fv:
             etiquetas = {"ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF", "p_b": "P/Book",
-                         "dividend_yield": "Dividend Yield", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO"}
+                         "dividend_yield": "Dividend Yield", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S"}
             st.caption(
                 "Métodos que no entran al promedio: "
                 + " · ".join(f"{etiquetas.get(m, m)} ({mot})" for m, mot in descartados_fv.items())
@@ -984,7 +985,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
         METRIC_LABELS_FV = {
             "ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF",
             "p_b": "P/Book", "dividend_yield": "Dividend Yield",
-            "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO",
+            "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S",
         }
 
         fv_cols = st.columns(len(fv_detalle))
