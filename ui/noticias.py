@@ -1,17 +1,17 @@
 """
-Noticias de mercado (v1.2.39): titulares de Bloomberg (Mercados, Tecnologia, Economia) con link a la nota.
+Noticias Calientes (v1.2.39; fuente CNBC desde la v1.2.40): titulares de Mercados, Tecnologia y Economia con link a la nota.
 
 Regla de orden (la aprobo Guille el 23/10): primero las que nombran empresas del screener, despues las que estan en la
-portada de Bloomberg, y a igualdad, la mas reciente. Se muestran las 5 primeras de las ultimas 24 horas, solo con titulo,
+portada de la fuente, y a igualdad, la mas reciente. Se muestran las 5 primeras de las ultimas 24 horas, solo con titulo,
 fuente y link (no se copia el texto de las notas).
 
 Como funciona:
-  * Baja 4 feeds RSS publicos de Bloomberg al mismo tiempo (tres secciones + la portada). La portada se usa solo para saber
+  * Baja 4 feeds RSS publicos (CNBC) al mismo tiempo (tres secciones + la portada). La portada se usa solo para saber
     cuales notas estan ahi; las notas que se muestran salen de las tres secciones.
   * Si hay menos de 5 notas en 24 h, amplia la ventana a 48 y a 72 h.
   * Guarda el resultado 15 minutos en memoria (todos los que abren la app comparten la misma descarga).
-  * Si Bloomberg no responde, la app sigue normal y muestra un renglon chico avisandolo. Nunca rompe la pagina.
-  * Los titulares vienen en ingles (es lo que publica Bloomberg).
+  * Si la fuente no responde, la app sigue normal y muestra un renglon chico avisandolo. Nunca rompe la pagina.
+  * Los titulares vienen en ingles (es lo que publica la fuente).
 
 No usa JavaScript ni cuentas ni claves. Los feeds se cambian en config/ajustes.py (NOTICIAS_FEEDS).
 """
@@ -38,10 +38,10 @@ def _cfg(nombre, defecto):
 
 # Cada feed: (nombre que se muestra, url, es_portada)
 _FEEDS_DEFECTO = (
-    ("Mercados", "https://www.bloomberg.com/feeds/markets/news.rss", False),
-    ("Tecnología", "https://www.bloomberg.com/feeds/technology/news.rss", False),
-    ("Economía", "https://www.bloomberg.com/feeds/economics/news.rss", False),
-    ("Portada", "https://www.bloomberg.com/feeds/news.rss", True),
+    ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
+    ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
+    ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
+    ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
 )
 ACTIVAS = bool(_cfg("NOTICIAS_ACTIVAS", True))
 FEEDS = tuple(_cfg("NOTICIAS_FEEDS", _FEEDS_DEFECTO))
@@ -50,7 +50,7 @@ HORAS = int(_cfg("NOTICIAS_HORAS", 24))
 HORAS_MAX = int(_cfg("NOTICIAS_HORAS_MAX", 72))
 MINUTOS_CACHE = int(_cfg("NOTICIAS_MINUTOS_CACHE", 15))
 ABIERTO = bool(_cfg("NOTICIAS_ABIERTO", True))
-FUENTE = "Bloomberg"
+FUENTE = str(_cfg("NOTICIAS_FUENTE", "CNBC"))
 TIMEOUT_S = 5
 USER_AGENT = "TodoCedears/1.2 (lector de titulares RSS; contacto: finanzas.medicos@gmail.com)"
 
@@ -156,6 +156,14 @@ def _texto(el):
     return (el.text or "").strip() if el is not None else ""
 
 
+_DE_PAGO = re.compile(r"(?i)\bCNBC Pro\b|/pro/")
+
+
+def es_de_pago(titulo, link):
+    """Notas marcadas como "CNBC Pro" (de pago): no se muestran, porque se quiere que todo link se pueda leer gratis."""
+    return bool(_DE_PAGO.search(titulo or "") or _DE_PAGO.search(link or ""))
+
+
 def _link_seguro(url):
     u = (url or "").strip()
     return u if re.match(r"(?i)^https?://", u) else ""
@@ -213,7 +221,7 @@ def leer_feed(contenido):
                 link = _texto(h)
         titulo = re.sub(r"\s+", " ", html.unescape(titulo)).strip()
         link = _link_seguro(link)
-        if titulo and link:
+        if titulo and link and not es_de_pago(titulo, link):
             notas.append({"titulo": titulo, "link": link, "fecha": _fecha(fecha)})
     return notas
 
@@ -325,20 +333,21 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
 # Dibujo
 # ---------------------------------------------------------------------------------------------------------------
 CSS = """
-.nt{margin:10px 0 6px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;padding:2px 14px}
-.nt>summary{cursor:pointer;list-style:none;padding:9px 0;font-weight:700;font-size:.92rem;color:#111827;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.nt{margin:10px 0 14px;border:1px solid #d3e2f2;border-radius:14px;background:#f1f6fc;padding:2px 16px}
+.nt>summary{cursor:pointer;list-style:none;padding:11px 0;font-weight:700;font-size:1.02rem;color:#0f2a43;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .nt>summary::-webkit-details-marker{display:none}
-.nt>summary::before{content:"▸";color:#6b7280;font-size:.8rem}
+.nt>summary::before{content:"▸";color:#5b7a99;font-size:.85rem}
 .nt[open]>summary::before{content:"▾"}
-.nt>summary small{font-weight:500;color:#6b7280;font-size:.78rem}
+.nt>summary small{font-weight:500;color:#5b7a99;font-size:.78rem}
 .nt ul{list-style:none;margin:0 0 6px;padding:0}
-.nt li{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding:7px 0;border-top:1px solid #f1f5f9;font-size:.9rem;line-height:1.35}
+.nt li{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding:8px 0;border-top:1px solid #dde8f4;font-size:.9rem;line-height:1.35}
 .nt li a{color:#111827!important;font-weight:600;text-decoration:none!important;flex:1 1 420px;min-width:0}
 .nt li a:hover{text-decoration:underline!important}
-.nt-m{font-size:.76rem;color:#6b7280;white-space:nowrap}
+.nt-m{font-size:.76rem;color:#5b7a99;white-space:nowrap}
 .nt-e{font-size:.72rem;font-weight:700;color:#065f46;background:#d1fae5;border-radius:999px;padding:1px 8px;white-space:nowrap}
-.nt-pie{font-size:.74rem;color:#6b7280;padding:2px 0 9px}
-@media (max-width:820px){.nt{padding:2px 10px}.nt li a{flex-basis:100%}}
+.nt-pie{font-size:.74rem;color:#5b7a99;padding:2px 0 10px}
+.nt-vacio{font-size:.86rem;color:#41566b;padding:2px 0 12px}
+@media (max-width:820px){.nt{padding:2px 12px}.nt li a{flex-basis:100%}}
 """
 
 
@@ -357,13 +366,14 @@ def hace(fecha, ahora=None):
 
 
 def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None):
-    """Bloque desplegable con los titulares. Si no hay notas, un renglon chico que lo explica."""
+    """Recuadro desplegable "Noticias Calientes" con los titulares. Sin notas, adentro va un renglon que lo explica."""
     abierto = ABIERTO if abierto is None else abierto
     atr = " open" if abierto else ""
     if not notas:
-        motivo = ("Bloomberg no respondió en este momento" if not hubo_respuesta
-                  else f"no hay notas de Bloomberg de las últimas {horas} h")
-        return (f'<div class="nt-pie" style="margin:8px 0 2px">📰 Noticias de mercado: {motivo}. Probá recargar en unos minutos.</div>')
+        motivo = (f"{FUENTE} no respondió en este momento" if not hubo_respuesta
+                  else f"no hay notas de {FUENTE} de las últimas {horas} h")
+        return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE}</small></summary>'
+                f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div></details>')
     filas = []
     for n in notas:
         link = html.escape(n["link"], quote=True)
@@ -373,7 +383,7 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
             etiq = f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
         filas.append(f'<li><a href="{link}" target="_blank" rel="noopener noreferrer">{html.escape(n["titulo"])}</a>'
                      f'{etiq}<span class="nt-m">{html.escape(meta)}</span></li>')
-    return (f'<details class="nt"{atr}><summary>Noticias de mercado <small>{FUENTE} · últimas {horas} h · titulares en inglés</small></summary>'
+    return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE} · últimas {horas} h · titulares en inglés</small></summary>'
             f'<ul>{"".join(filas)}</ul>'
             f'<div class="nt-pie">Orden: primero las que nombran empresas del screener (etiqueta verde), después las de portada, '
             f'después las más recientes. Cada título abre la nota en {FUENTE}. Es información, no una recomendación.</div></details>')

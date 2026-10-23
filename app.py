@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.39"
+APP_VERSION = "1.2.40"
 
 import streamlit as st
 import pandas as pd
@@ -31,6 +31,7 @@ from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
 from ui import noticias as _noticias
+from ui.cajas import CSS as CSS_CAJAS
 from ui import estado as estado_url
 from ui.logos import logo_html
 try:
@@ -488,8 +489,6 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
             "Actualizar datos",
             help="Vuelve a leer el caché guardado (el caché se actualiza una vez por trimestre desde la PC)",
         )
-
-    st.markdown("---")
 
     # Texto con los filtros y el orden: viaja en el link de cada empresa para poder volver a la tabla tal cual estaba
     estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label, dy_minimo,
@@ -992,7 +991,7 @@ def render_aviso_legal():
 
 
 def render_noticias(df, descarga, lugar=None):
-    """Titulares de Bloomberg ordenados con la regla de ui/noticias.py. Nunca rompe la pagina."""
+    """Recuadro "Noticias Calientes": titulares ordenados con la regla de ui/noticias.py. Nunca rompe la pagina."""
     if not _noticias.ACTIVAS:
         return
     try:
@@ -1080,15 +1079,19 @@ def main():
         st.markdown(pie_html(APP_VERSION), unsafe_allow_html=True)
         return
 
-    # Noticias de mercado (Bloomberg), arriba de los filtros. Si ya estaban bajadas (se guardan 15 minutos) se dibujan al toque;
-    # si hay que esperar a Bloomberg, el lugar queda reservado y se completa al final, sin hacer esperar a la tabla.
+    # Noticias Calientes, arriba del Screener. Si ya estaban bajadas (se guardan 15 minutos) se dibujan al toque;
+    # si hay que esperar a la fuente, el lugar queda reservado y se completa al final, sin hacer esperar a la tabla.
     lugar_noticias = st.empty()
     noticias_pendientes = descarga_noticias is not None
     if not noticias_pendientes:
         render_noticias(df, None, lugar_noticias)
 
-    # Filtros inline (encima de la tabla)
-    filtros = render_filtros_inline(universe, df)
+    # Screener: recuadro desplegable (celeste suave, como Noticias Calientes) con todos los filtros adentro. Cerrado, los filtros
+    # siguen valiendo: solo se esconden.
+    st.markdown(f"<style>{CSS_CAJAS}</style>", unsafe_allow_html=True)
+    with st.container(key="caja_screener"):
+        with st.expander("Screener", expanded=True):
+            filtros = render_filtros_inline(universe, df)
 
     # Forzar refresh limpia el cache de Streamlit
     if filtros["forzar_refresh"]:

@@ -85,8 +85,8 @@ NOMBRE_APP = "TodoCedears"
 #                         con codigo de pais. Vacio: no se muestra el icono.
 #   intramed            : tu pagina institucional en Intramed (el icono es assets/marca/intramed.png)
 #   quienes_somos       : el link que quieras abrir (hoy vacio)
-#   comentarios         : donde la gente deja sugerencias u opiniones. Hoy abre un mail a la casilla de contacto con el asunto
-#                         ya escrito; si armas un formulario (ej. Google Forms), pone aca el link y se usa ese.
+#   comentarios         : si lo dejas vacio (hoy), "Comentarios" despliega un cuadro para escribir cuyo mensaje te llega por mail
+#                         (ver COMENTARIOS_MAIL mas abajo). Si pones un link (ej. un Google Forms), se usa ese link y no el cuadro.
 ENLACES_MARCA = {
     "youtube": "https://www.youtube.com/@FinanzasparaMedicosArgentina",
     "instagram": "https://www.instagram.com/finanzasparamedicos.argentina/",
@@ -94,8 +94,14 @@ ENLACES_MARCA = {
     "whatsapp": "",
     "intramed": "https://www.intramed.net/institution/finanzas-para-medicos-argentina",
     "quienes_somos": "",
-    "comentarios": "mailto:finanzas.medicos@gmail.com?subject=Comentarios%20sobre%20TodoCedears",
+    "comentarios": "",
 }
+
+# "Comentarios" (v1.2.40): el cuadro de la franja manda el mensaje por mail a esta casilla, a traves del servicio gratuito
+# FormSubmit (formsubmit.co), sin servidor ni claves propias. La PRIMERA vez que alguien envie algo, FormSubmit te manda un mail
+# de activacion: hay que abrirlo y confirmar (los mensajes enviados antes de confirmar se guardan y llegan al activar).
+# Vacio ("") = no se muestra el cuadro. El mensaje pasa por los servidores de FormSubmit (el cuadro lo avisa).
+COMENTARIOS_MAIL = "finanzas.medicos@gmail.com"
 
 # "Abrite una cuenta con nosotros" (desplegable): una fila por agente. El logo es un archivo de assets/marca/ ("logo") y al
 # tocarlo abre el link de apertura de cuenta ("url"). "detalle" es un renglon chico opcional debajo del logo (desde la v1.2.39
@@ -126,19 +132,22 @@ AVISO_PODRIA_EN_TABLA = False
 RANGO_FV_MARGEN = 0.20
 ESCALA_BARRA_VECES = 1.8
 
-# --- Noticias de mercado (v1.2.39) -----------------------------------------------------------------------
-# Titulares de Bloomberg (Mercados, Tecnologia, Economia), solo titulo + fuente + link. Orden: primero los que nombran
-# empresas del screener, despues los de la portada, y a igualdad el mas reciente. Ver ui/noticias.py.
+# --- Noticias Calientes (v1.2.39; fuente cambiada a CNBC en la v1.2.40) -------------------------------------
+# Titulares de CNBC (Mercados, Tecnologia, Economia), solo titulo + fuente + link. Orden: primero los que nombran empresas
+# del screener, despues los de la portada, y a igualdad el mas reciente. Ver ui/noticias.py.
+# Bloomberg se descarto porque sus notas son de pago. En CNBC casi todo se lee gratis; los articulos "CNBC Pro" (de pago) se
+# sacan de la lista.
 NOTICIAS_ACTIVAS = True          # False = no se muestra ni se descarga nada
+NOTICIAS_FUENTE = "CNBC"         # nombre que se muestra en cada renglon
 NOTICIAS_CANTIDAD = 5            # cuantos titulares
 NOTICIAS_HORAS = 24              # ventana de tiempo; si hay menos de NOTICIAS_CANTIDAD se amplia a 48 y 72 h (NOTICIAS_HORAS_MAX)
 NOTICIAS_HORAS_MAX = 72
 NOTICIAS_MINUTOS_CACHE = 15      # cada cuanto se vuelve a bajar (todos los visitantes comparten la descarga)
-NOTICIAS_ABIERTO = True          # True = el bloque aparece desplegado; False = cerrado (se abre con un toque)
+NOTICIAS_ABIERTO = True          # True = el recuadro aparece desplegado; False = cerrado (se abre con un toque)
 # (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca cuales notas estan ahi; no se muestra por separado.
 NOTICIAS_FEEDS = (
-    ("Mercados", "https://www.bloomberg.com/feeds/markets/news.rss", False),
-    ("Tecnología", "https://www.bloomberg.com/feeds/technology/news.rss", False),
-    ("Economía", "https://www.bloomberg.com/feeds/economics/news.rss", False),
-    ("Portada", "https://www.bloomberg.com/feeds/news.rss", True),
+    ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
+    ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
+    ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
+    ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
 )

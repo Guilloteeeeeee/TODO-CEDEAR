@@ -27,6 +27,10 @@ try:
 except Exception:  # noqa: BLE001
     CUENTAS_MARCA = []
 try:
+    from config.ajustes import COMENTARIOS_MAIL
+except Exception:  # noqa: BLE001
+    COMENTARIOS_MAIL = ""
+try:
     from config.ajustes import LOGOS_EN_LINEA
 except Exception:  # noqa: BLE001
     LOGOS_EN_LINEA = "google"
@@ -58,6 +62,15 @@ span.mc-it{cursor:default;opacity:.9}
 .mc-pop{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:#0c0f12;border:1px solid #3a3f45;border-radius:12px;padding:8px;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,.45)}
 .mc-pop a.mc-acc{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:10px 12px;border-radius:9px;text-decoration:none!important}
 .mc-pop a.mc-acc:hover{background:#1a2027}
+.mc-pop.mc-pop-f{width:310px;padding:12px}
+.mc-form{display:flex;flex-direction:column;gap:8px;margin:0}
+.mc-form input,.mc-form textarea{width:100%;box-sizing:border-box;background:#161b20;border:1px solid #3a3f45;border-radius:8px;color:#fff;font:inherit;font-size:.86rem;padding:8px 10px;outline:none}
+.mc-form input:focus,.mc-form textarea:focus{border-color:#00e85c}
+.mc-form textarea{min-height:96px;resize:vertical}
+.mc-form button{background:#00e85c;color:#000;border:0;border-radius:8px;padding:9px 12px;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer}
+.mc-form button:hover{background:#2cf27e}
+.mc-form small{font-size:.72rem;line-height:1.3;color:#9ca3af}
+.mc-form-t{font-size:.84rem;font-weight:600;color:#e5e7eb}
 .mc-acc img{height:40px;width:auto;max-width:100%;display:block;border-radius:9px}
 .mc-acc small{font-size:.76rem;line-height:1.3;color:#9ca3af}
 .mc-lg{height:40px;min-width:40px;padding:0 12px;border-radius:9px;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#334155}
@@ -74,7 +87,7 @@ span.mc-it{cursor:default;opacity:.9}
 .mc-izq{order:1;flex:1 1 0}.mc-toro{order:2;width:40px;height:40px}.mc-toro img{width:32px}
 .mc-nav{order:3;flex:1 1 100%;justify-content:center;gap:2px;border-top:1px solid #1d2227;padding-top:4px;margin-top:2px}
 .mc-t{font-size:1.7rem}.mc-img{height:36px}.mc-it{font-size:.8rem;padding:6px 8px}.mc-x{display:none}
-.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,230px)}
+.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,230px)}.mc-pop.mc-pop-f{right:0;left:auto;transform:none;width:min(88vw,310px)}
 }
 """
 
@@ -192,6 +205,34 @@ def _cuentas_html(cuentas=None):
             f'<div class="mc-pop">{"".join(filas)}</div></details>')
 
 
+_MAIL_OK = re.compile(r"^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$")
+
+
+def _comentarios_html(destino):
+    """Desplegable "Comentarios": un cuadro para escribir cuyo envio le llega por mail a `destino` (servicio FormSubmit).
+    Es un formulario HTML comun (sin JavaScript): al enviar se abre una pestana de FormSubmit que confirma el envio.
+    Nombre y mail son opcionales (el mail sirve para poder contestar). `_honey` es una trampa para robots."""
+    d = str(destino or "").strip()
+    if not _MAIL_OK.match(d):
+        return ""
+    d = html.escape(d, quote=True)
+    return (
+        '<details class="mc-d"><summary class="mc-it">Comentarios ▾</summary>'
+        '<div class="mc-pop mc-pop-f">'
+        f'<form class="mc-form" action="https://formsubmit.co/{d}" method="POST" target="_blank" accept-charset="UTF-8">'
+        '<div class="mc-form-t">Contanos tu sugerencia u opinión</div>'
+        '<input type="hidden" name="_subject" value="Comentarios sobre TodoCedears">'
+        '<input type="hidden" name="_template" value="table">'
+        '<input type="hidden" name="_captcha" value="false">'
+        '<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">'
+        '<textarea name="mensaje" required maxlength="2000" rows="4" placeholder="Escribí acá tu mensaje"></textarea>'
+        '<input type="text" name="nombre" maxlength="80" placeholder="Tu nombre (opcional)">'
+        '<input type="email" name="email" maxlength="120" placeholder="Tu mail (opcional, para contestarte)">'
+        '<button type="submit">Enviar</button>'
+        '<small>Se abre una pestaña que confirma el envío. El mensaje pasa por FormSubmit y nos llega por mail.</small>'
+        '</form></div></details>')
+
+
 def _icono_img(clave, titulo, url):
     """Icono hecho con una imagen de assets/marca/<clave>.png (ej. el logo de Intramed). Sin archivo, no se muestra."""
     uri = _uri(os.path.join(_DIR, f"{clave}.png"))
@@ -201,7 +242,7 @@ def _icono_img(clave, titulo, url):
             f'<img src="{uri}" alt="{titulo}"></a>')
 
 
-def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None):
+def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None):
     """Franja negra de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los iconos, "Quiénes somos",
     el desplegable "Abrite una cuenta con nosotros", "Comentarios" y el toro chico. Debajo, la fecha de los datos (chica, a la derecha)."""
     uri_titulo = _uri(TITULO)
@@ -221,8 +262,11 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None):
     # "Quiénes somos" se muestra siempre; sin link todavia, queda como texto (sin hacer nada al tocarlo)
     qs = (f'<a class="mc-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer">Quiénes somos</a>'
           if e["quienes_somos"] else '<span class="mc-it" title="Próximamente">Quiénes somos</span>')
-    com = (f'<a class="mc-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer" '
-           f'title="Escribinos tus sugerencias u opiniones">Comentarios</a>' if e["comentarios"] else "")
+    if e["comentarios"]:
+        com = (f'<a class="mc-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer" '
+               f'title="Escribinos tus sugerencias u opiniones">Comentarios</a>')
+    else:
+        com = _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
     nav = f'<div class="mc-nav">{iconos}{qs}{_cuentas_html(cuentas)}{com}</div>'
     uri = logo_uri()
     toro = (f'<div class="mc-toro"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}" title="{html.escape(NOMBRE_MARCA)}"></div>'
