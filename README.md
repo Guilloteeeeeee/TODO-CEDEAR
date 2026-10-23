@@ -161,10 +161,20 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
 
+### Título nuevo, links cargados, menú con cuentas y tabla de 6 columnas (v1.2.37)
+
+- **Título:** `assets/marca/titulo-todocedears.png` es el nuevo título (PNG con fondo transparente, letras superpuestas con un fino corte negro entre una y otra, la T y la C en verde vivo `#00E85C` sobre blanco). Se dibujó a partir de la imagen de Guille con la tipografía Inter Black; si se reemplaza el archivo por otro, la franja lo usa sin tocar código. La línea de abajo de la franja pasó de celeste a ese mismo verde.
+- **Links (en `config/ajustes.py`, `ENLACES_MARCA`):** YouTube, Instagram, mail y WhatsApp salen como iconos arriba a la derecha (en el celular se ven solo el menú y el toro). **Intramed** va dentro del menú. **"Quiénes somos" sigue vacío** (no hay link: no se muestra).
+- **Menú "Abrite una cuenta con nosotros" (`CUENTAS_MARCA`):** una fila por agente con logo, nombre y un renglón chico: **Balanz** ("Ap: Guillermo Di Palma · Mat. 2372 · gdipalma@ap.balanz.com") e **Inviu** ("Alias: G.DIPALMA.INVIU"). Logos: si existe `assets/marca/balanz.png` / `assets/marca/inviu.png` se usan esos archivos. Si no están, Balanz usa el icono del sitio que sirve Google (lo carga el navegador de quien mira; si no carga queda un cuadradito blanco) e Inviu muestra una inicial: **no se inventó ningún dominio** para Inviu.
+- **Tabla de 6 columnas:** Empresa | Market Cap | Precio | **Valoración** | Puntaje | Div. Yield. La columna Valoración junta lo que antes eran dos: **arriba la leyenda** en letras de color y negrita (sin "Podría estar") y **abajo el Fair Value con la distancia al precio entre paréntesis** (`$693 (+157%)`). El título "Valoración" ordena por esa distancia al Fair Value (el orden de arranque); "Puntaje" ordena por puntaje. **Market Cap sin negrita.**
+- **"Podría estar":** se sacó de las filas de la tabla. Se mantiene en la escala de colores de arriba, en la página de cada empresa y en la nota de cómo leer la tabla ("podría estar…"), que son los lugares donde queda claro que es una estimación y no una recomendación. Si se quiere volver al aviso chico sobre cada fila: `AVISO_PODRIA_EN_TABLA = True` en `config/ajustes.py`.
+- **Sin cambios de método:** ninguna fórmula, peso, umbral, Fair Value, puntaje ni categoría cambió.
+
+(Reemplazado en la v1.2.37: la tabla tiene 6 columnas y la Valoración incluye el Fair Value.)
 ### Franja negra, tabla de 7 columnas, página de empresa y pie (v1.2.36)
 
 - **Franja negra de punta a punta** arriba de todo (como Investing): **TodoCedears** en letras blancas y grandes a la izquierda, el toro de Finanzas para Médicos chiquito a la derecha, y el resto de la pantalla en blanco. Si guardás tu imagen del título como `assets/marca/titulo-todocedears.png`, se usa esa imagen en lugar del nombre escrito. A la derecha, **solo si cargaste los links** en `ENLACES_MARCA` (`config/ajustes.py`): iconos de YouTube, Instagram, mail y WhatsApp, y un **menú desplegable** con "Quiénes somos" y "Abrite una cuenta con nosotros". Lo que queda vacío (`""`) no se muestra: no hay links inventados. En WhatsApp alcanza con el número con código de país; en mail, con la dirección. Se ocultó la barra de Streamlit (Deploy y menú de los tres puntos). Sin subtítulo ni descripción debajo. La fecha de los datos va chica, a la derecha debajo de la franja ("Datos al 22/10/2026"), y al final de la página, "Powered by Claude AI · v1.2.36".
-- **Tabla de 7 columnas:** Empresa | Market Cap | Precio | Fair Value | Valoración | Puntaje | Div. Yield.
+- **Tabla de 7 columnas (hoy 6, ver v1.2.37):** Empresa | Market Cap | Precio | Fair Value | Valoración | Puntaje | Div. Yield.
   - *Empresa:* **nombre y (TICKER) en negrita**; debajo, sector (industria) y bandera, sin negrita.
   - *Fair Value:* el valor y, entre paréntesis, cuánto más (+) o menos (−) que el precio de hoy; sin negrita y **sin barra**.
   - *Valoración:* solo la categoría, **en letras de color y negrita** ("Podría estar" chico arriba), sin bloque de color. La escala de arriba (con bloques de color) queda como leyenda.
@@ -285,7 +295,7 @@ cedear-screener/
 ├── ui/
 │   ├── tabla_visual.py     # Vista visual de la tabla (v1.2.16)
 │   ├── fuentes.py          # Tipografia Inter incrustada en el CSS (v1.2.33)
-│   ├── marca.py            # Franja negra de arriba, iconos, menu y pie (v1.2.36) e icono de la pestaña
+│   ├── marca.py            # Franja negra de arriba, iconos, menu con cuentas y pie (v1.2.36/37) e icono de la pestaña
 │   ├── estado.py           # Filtros y orden en la URL para volver desde la pagina de una empresa (v1.2.36)
 │   ├── logos.py            # Logos: archivo local, favicon o iniciales
 │   └── banderas.py         # Banderas de los paises (v1.2.21)

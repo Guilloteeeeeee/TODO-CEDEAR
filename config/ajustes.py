@@ -74,22 +74,39 @@ FUENTE_APP = "Inter"
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"
 
-# --- Franja negra de arriba (v1.2.36) ----------------------------------------------------------------
-# La franja lleva el nombre TodoCedears a la izquierda. Para usar tu imagen del titulo, guardala como
-# assets/marca/titulo-todocedears.png (si el archivo no esta, se escribe el nombre en letras blancas).
-# A la derecha van los iconos y el menu desplegable. COMPLETA tus links: lo que quede vacio ("") no se muestra.
+# --- Franja negra de arriba (v1.2.36; links cargados en la v1.2.37) ----------------------------------
+# La franja lleva el nombre TodoCedears a la izquierda (la imagen assets/marca/titulo-todocedears.png; si el archivo no esta,
+# se escribe el nombre en letras blancas). A la derecha van los iconos y el menu desplegable.
+# Lo que quede vacio ("") no se muestra:
 #   youtube / instagram : el link del canal / del perfil
 #   mail                : tu mail (nombre@dominio.com) o un link
-#   whatsapp            : tu numero con codigo de pais y sin simbolos (ej. 5491112345678) o el link
-#   quienes_somos / abrir_cuenta : los links que quieras abrir desde el menu
+#   whatsapp            : tu numero con codigo de pais (ej. +5491112345678) o el link
+#   intramed            : tu pagina institucional en Intramed (va en el menu)
+#   quienes_somos       : el link que quieras abrir desde el menu (hoy vacio: no se muestra)
 ENLACES_MARCA = {
-    "youtube": "",
-    "instagram": "",
-    "mail": "",
-    "whatsapp": "",
+    "youtube": "https://www.youtube.com/@FinanzasparaMedicosArgentina",
+    "instagram": "https://www.instagram.com/finanzasparamedicos.argentina/",
+    "mail": "finanzas.medicos@gmail.com",
+    "whatsapp": "+5491132321659",
+    "intramed": "https://www.intramed.net/institution/finanzas-para-medicos-argentina",
     "quienes_somos": "",
-    "abrir_cuenta": "",
 }
+
+# "Abrite una cuenta con nosotros" (menu desplegable): una fila por agente. "logo" es el nombre del archivo en assets/marca/
+# (si no esta, se usa el icono del sitio servido por Google cuando se indica "dominio"; si tampoco, solo el nombre).
+# "detalle" es el renglon chico de abajo (identificacion del agente / alias).
+CUENTAS_MARCA = [
+    {"nombre": "Balanz", "url": "https://www.balanz.com/abrir-cuenta-2.aspx?reference=gdipalma@ap.balanz.com",
+     "logo": "balanz.png", "dominio": "balanz.com",
+     "detalle": "Ap: Guillermo Di Palma · Mat. 2372 · gdipalma@ap.balanz.com"},
+    {"nombre": "Inviu", "url": "https://inviu.page.link/4Yo7",
+     "logo": "inviu.png", "dominio": "",
+     "detalle": "Alias: G.DIPALMA.INVIU"},
+]
+
+# En la tabla, la valoracion se muestra solo como letras de color ("moderadamente infravalorada"). True agrega, chico arriba,
+# el "Podría estar" que usa la escala de arriba y la pagina de cada empresa (es el aviso de que es una estimacion).
+AVISO_PODRIA_EN_TABLA = False
 
 # --- Barra de valoracion (v1.2.34; franja y escala ajustadas en la v1.2.35) --------------------------
 # Es solo dibujo: no cambia el Fair Value, el puntaje ni la categoria.

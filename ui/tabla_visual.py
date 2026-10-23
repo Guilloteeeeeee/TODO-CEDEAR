@@ -1,12 +1,12 @@
 """
-Tabla visual (definitiva desde v1.2.28; columnas nuevas en la v1.2.36). Una pieza de HTML (sin JavaScript) con una fila por empresa.
+Tabla visual (definitiva desde v1.2.28; columnas nuevas en la v1.2.36; 6 columnas desde la v1.2.37). Una pieza de HTML (sin JavaScript) con una fila por empresa.
 Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) y ordenan al tocarlos.
   Empresa        logo, nombre y (TICKER) en negrita; abajo, sector (industria) y bandera, sin negrita. Al tocar el nombre se
                  abre la pagina de la empresa (?empresa=TICKER)
-  Market Cap     numero centrado
+  Market Cap     numero centrado (sin negrita)
   Precio         precio de hoy
-  Fair Value     valor y, entre parentesis, la distancia del precio al Fair Value (sin negrita, sin barra)
-  Valoracion     la categoria en letras de color y negrita (sin bloque de color)
+  Valoracion     arriba, la categoria en letras de color y negrita (sin bloque de color y, por defecto, sin el "Podría estar");
+                 abajo, el Fair Value y, entre parentesis, la distancia del precio al Fair Value (sin negrita, sin barra)
   Puntaje        caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar
   Div. Yield     rendimiento actual en grande y, abajo, el recorrido de los años fiscales (linea gris), la mediana
                  (linea horizontal; el texto dice solo "Mediana histórica X %", sin cantidad de años) y hoy (punto con el color
@@ -36,6 +36,10 @@ try:
     from config.ajustes import RANGO_FV_MARGEN, ESCALA_BARRA_VECES
 except ImportError:      # ajustes.py viejo
     RANGO_FV_MARGEN, ESCALA_BARRA_VECES = 0.20, 1.8
+try:
+    from config.ajustes import AVISO_PODRIA_EN_TABLA
+except ImportError:      # ajustes.py viejo
+    AVISO_PODRIA_EN_TABLA = False
 
 
 def texto_categoria(color):
@@ -84,9 +88,9 @@ def escala_valoracion_html(mostrar_gris=False):
             '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
             f'{gris}</div>')
 
-# Anchos relativos de las 7 columnas (Empresa, Market Cap, Precio, Fair Value, Valoracion, Puntaje, Div. Yield): los usan los
+# Anchos relativos de las 6 columnas (Empresa, Market Cap, Precio, Valoracion, Puntaje, Div. Yield): los usan los
 # encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
-ANCHOS_VISUAL = [3.0, 1.15, 1.05, 1.65, 3.2, 1.0, 1.85]
+ANCHOS_VISUAL = [3.3, 1.2, 1.1, 3.3, 1.0, 1.9]
 
 CSS = """
 .tv2{border:1px solid #d5dde6;border-top:0;border-radius:0 0 10px 10px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit}
@@ -102,13 +106,14 @@ CSS = """
 .tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
 .tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:16px;font-weight:700;color:#111827}
 .tv2-tk{flex:none;font-size:14px;font-weight:700;color:#475569}
-.tv2-mc{font-size:15.5px;font-weight:700;color:#111827;white-space:nowrap}
+.tv2-mc{font-size:15.5px;font-weight:400;color:#111827;white-space:nowrap}
 .tv2-l2{margin-top:4px;font-size:12.5px;font-weight:400;color:#4b5563;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv2-dyn{font-size:22px;font-weight:600;color:#111827;line-height:1.15}
 .tv2-dy img{display:block;margin:5px auto 0}
 .tv2-dym{font-size:12px;color:#4b5563;margin-top:3px}
 .tv2-dym b{color:#374151;font-weight:600}
 .tv-cat{display:flex;justify-content:center;margin-bottom:8px}
+.tv2-vc{display:flex;flex-direction:column;align-items:center;gap:4px}
 .tv-vl{text-align:center;line-height:1.2}
 .tv-vh{display:block;font-size:12px;font-weight:600;opacity:.85}
 .tv-vn{display:block;font-size:15.5px;font-weight:700}
@@ -201,7 +206,7 @@ def css_encabezado(sort_col):
         '[class*="st-key-tvh_"] button p{font-size:15.5px;font-weight:700;color:#fff;margin:0;letter-spacing:.2px}'
         '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
         '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
-        f'.st-key-tvh_categoria button{{background:{_BARRA_VAL}}}'
+        f'.st-key-tvh_fv_upside button{{background:{_BARRA_VAL}}}'
         f'.st-key-tvh_{sort_col} button{{background:rgba(0,0,0,.28)}}'
         'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'
     )
@@ -291,12 +296,12 @@ def _pos_barra(x, fv):
     return 50.0 + 50.0 * _clamp(math.log(x / fv) / k, -1.0, 1.0)
 
 
-def _texto_categoria(cat, color):
-    """La categoria como texto de color y negrita, sin bloque de fondo: "Podría estar" chico arriba y la categoria abajo.
-    El color es el de la categoria, un poco mas oscuro cuando es claro (para que se lea sobre blanco)."""
+def _texto_categoria(cat, color, con_aviso=True):
+    """La categoria como texto de color y negrita, sin bloque de fondo: "Podría estar" chico arriba (si `con_aviso`) y la
+    categoria abajo. El color es el de la categoria, un poco mas oscuro cuando es claro (para que se lea sobre blanco)."""
     from scoring.engine import nombre_visible
     aviso, nombre = _partes_nombre(nombre_visible(cat))
-    hd = f'<span class="tv-vh">{html.escape(aviso)}</span>' if aviso else ""
+    hd = f'<span class="tv-vh">{html.escape(aviso)}</span>' if aviso and con_aviso else ""
     return f'<div class="tv-vl" style="color:{texto_categoria(color)}">{hd}<span class="tv-vn">{html.escape(nombre)}</span></div>'
 
 
@@ -345,8 +350,14 @@ def _celda_fv(row):
             f'{_money(fv)} <span>({d})</span></span>')
 
 
-def _celda_categoria(row):
-    return _texto_categoria(_txt(row.get("categoria"), "—"), _txt(row.get("color_hex"), "#6e7781"))
+def _celda_categoria(row, con_aviso=True):
+    return _texto_categoria(_txt(row.get("categoria"), "—"), _txt(row.get("color_hex"), "#6e7781"), con_aviso)
+
+
+def _celda_valoracion_tabla(row):
+    """Celda "Valoración" de la tabla: arriba la categoria (letras de color en negrita) y abajo el Fair Value con la distancia
+    al precio entre parentesis. El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
+    return (f'<div class="tv2-vc">{_celda_categoria(row, con_aviso=bool(AVISO_PODRIA_EN_TABLA))}{_celda_fv(row)}</div>')
 
 
 def resumen_empresa_html(row):
@@ -511,12 +522,12 @@ def html_tabla_visual(df: pd.DataFrame, estado=None) -> str:
     for _, row in df.iterrows():
         r = row.to_dict()
         filas.append('<div class="tv2-r">' + f'<div>{_celda_empresa(r, estado)}</div>' + f'<div class="tv2-c">{_celda_mcap(r)}</div>'
-                     + f'<div class="tv2-c">{_celda_precio(r)}</div>' + f'<div class="tv2-c">{_celda_fv(r)}</div>'
-                     + f'<div class="tv2-v">{_celda_categoria(r)}</div>'
+                     + f'<div class="tv2-c">{_celda_precio(r)}</div>'
+                     + f'<div class="tv2-v">{_celda_valoracion_tabla(r)}</div>'
                      + f'<div class="tv2-c">{_celda_puntaje(r)}</div>' + f'<div class="tv2-c">{_celda_dy(r)}</div></div>')
-    nota = ('<div class="tv-nota">Cómo leer la tabla: el <b>Fair Value</b> es el precio que sale de promediar, con los pesos de su sector, lo que '
-            'valdría la empresa si cotizara a su múltiplo histórico; entre paréntesis, cuánto más (+) o menos (−) que el precio de hoy. '
-            'La <b>valoración</b> sale del puntaje (de 0 a 100) y es una estimación, no una recomendación. '
+    nota = ('<div class="tv-nota">Cómo leer la tabla: en <b>Valoración</b>, la frase de color sale del puntaje (de 0 a 100) y es una estimación '
+            '("podría estar…"), no una recomendación; debajo va el <b>Fair Value</b>, el precio que sale de promediar, con los pesos de su sector, lo que '
+            'valdría la empresa si cotizara a su múltiplo histórico, y entre paréntesis cuánto más (+) o menos (−) que el precio de hoy. '
             'En el Div. Yield, la línea gris es el rendimiento de cada año fiscal, la punteada es su mediana y el punto es hoy: arriba de la línea rinde más que lo habitual, abajo menos. '
             'Tocá el nombre de una empresa para ver su página con todo el detalle (métodos del Fair Value, rango de 52 semanas).</div>')
     return f'<div class="tv2">{"".join(filas)}{nota}</div>'

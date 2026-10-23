@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.36"
+APP_VERSION = "1.2.37"
 
 import streamlit as st
 import pandas as pd
@@ -528,10 +528,9 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None):
         (cols[0], "Empresa", "nombre"),
         (cols[1], "Market Cap", "market_cap"),
         (cols[2], "Precio", "precio_actual"),
-        (cols[3], "Fair Value", "fv_upside"),
-        (cols[4], "Valoración", "categoria"),
-        (cols[5], "Puntaje", "score_total"),
-        (cols[6], "Div. Yield", "dividend_yield_actual"),
+        (cols[3], "Valoración", "fv_upside"),
+        (cols[4], "Puntaje", "score_total"),
+        (cols[5], "Div. Yield", "dividend_yield_actual"),
     ]
     for contenedor, etiqueta, clave in titulos:
         activo = sort_col == clave
