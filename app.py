@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.38"
+APP_VERSION = "1.2.39"
 
 import streamlit as st
 import pandas as pd
@@ -30,6 +30,7 @@ from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, eti
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
+from ui import noticias as _noticias
 from ui import estado as estado_url
 from ui.logos import logo_html
 try:
@@ -990,6 +991,20 @@ def render_aviso_legal():
         unsafe_allow_html=True)
 
 
+def render_noticias(df, descarga, lugar=None):
+    """Titulares de Bloomberg ordenados con la regla de ui/noticias.py. Nunca rompe la pagina."""
+    if not _noticias.ACTIVAS:
+        return
+    try:
+        crudo = _noticias.esperar(descarga)
+        notas, horas = _noticias.ordenar(crudo, list(df["ticker"]))
+        hubo = bool(crudo and crudo.get("feeds_ok"))
+        cuerpo = f"<style>{_noticias.CSS}</style>" + _noticias.noticias_html(notas, horas, hubo_respuesta=hubo)
+        (lugar if lugar is not None else st).markdown(cuerpo, unsafe_allow_html=True)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def main():
     # Cargar universo de tickers
     universe = load_custom_tickers()
@@ -1002,6 +1017,9 @@ def main():
 
     # Aviso fijo al pie (se muestra siempre, aunque despues falle algo)
     render_aviso_legal()
+
+    # Noticias: la descarga arranca ya, en segundo plano, mientras se cargan los datos de las empresas
+    descarga_noticias = _noticias.iniciar_descarga()
 
     # Cargar datos
     with st.spinner("Cargando datos..."):
@@ -1062,6 +1080,13 @@ def main():
         st.markdown(pie_html(APP_VERSION), unsafe_allow_html=True)
         return
 
+    # Noticias de mercado (Bloomberg), arriba de los filtros. Si ya estaban bajadas (se guardan 15 minutos) se dibujan al toque;
+    # si hay que esperar a Bloomberg, el lugar queda reservado y se completa al final, sin hacer esperar a la tabla.
+    lugar_noticias = st.empty()
+    noticias_pendientes = descarga_noticias is not None
+    if not noticias_pendientes:
+        render_noticias(df, None, lugar_noticias)
+
     # Filtros inline (encima de la tabla)
     filtros = render_filtros_inline(universe, df)
 
@@ -1076,6 +1101,9 @@ def main():
 
     # Tabla principal
     render_main_table(df, filtros)
+
+    if noticias_pendientes:
+        render_noticias(df, descarga_noticias, lugar_noticias)
 
     # Seguimiento (historial del caché)
     render_seguimiento()

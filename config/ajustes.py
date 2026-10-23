@@ -98,15 +98,16 @@ ENLACES_MARCA = {
 }
 
 # "Abrite una cuenta con nosotros" (desplegable): una fila por agente. El logo es un archivo de assets/marca/ ("logo") y al
-# tocarlo abre el link de apertura de cuenta ("url"). "detalle" es el renglon chico de abajo (identificacion del agente / alias).
+# tocarlo abre el link de apertura de cuenta ("url"). "detalle" es un renglon chico opcional debajo del logo (desde la v1.2.39
+# va vacio: el desplegable muestra solo los logos). Datos de referencia, por si se quieren volver a mostrar:
+#   Balanz -> Ap: Guillermo Di Palma · Mat. 2372 · gdipalma@ap.balanz.com
+#   Inviu  -> Alias: G.DIPALMA.INVIU
 # Si falta el archivo del logo, se usa el icono del sitio servido por Google cuando se indica "dominio"; si no, el nombre.
 CUENTAS_MARCA = [
     {"nombre": "Balanz", "url": "https://www.balanz.com/abrir-cuenta-2.aspx?reference=gdipalma@ap.balanz.com",
-     "logo": "balanz.png", "dominio": "balanz.com",
-     "detalle": "Ap: Guillermo Di Palma · Mat. 2372 · gdipalma@ap.balanz.com"},
+     "logo": "balanz.png", "dominio": "balanz.com", "detalle": ""},
     {"nombre": "Inviu", "url": "https://inviu.page.link/4Yo7",
-     "logo": "inviu.png", "dominio": "",
-     "detalle": "Alias: G.DIPALMA.INVIU"},
+     "logo": "inviu.png", "dominio": "", "detalle": ""},
 ]
 
 # En la tabla, la valoracion se muestra solo como letras de color ("moderadamente infravalorada"). True agrega, chico arriba,
@@ -124,3 +125,20 @@ AVISO_PODRIA_EN_TABLA = False
 #                  Mas chica = franja mas ancha pero mas empresas "pegadas" al borde (hoy ~9 %); el numero de abajo (+N %) siempre es el real.
 RANGO_FV_MARGEN = 0.20
 ESCALA_BARRA_VECES = 1.8
+
+# --- Noticias de mercado (v1.2.39) -----------------------------------------------------------------------
+# Titulares de Bloomberg (Mercados, Tecnologia, Economia), solo titulo + fuente + link. Orden: primero los que nombran
+# empresas del screener, despues los de la portada, y a igualdad el mas reciente. Ver ui/noticias.py.
+NOTICIAS_ACTIVAS = True          # False = no se muestra ni se descarga nada
+NOTICIAS_CANTIDAD = 5            # cuantos titulares
+NOTICIAS_HORAS = 24              # ventana de tiempo; si hay menos de NOTICIAS_CANTIDAD se amplia a 48 y 72 h (NOTICIAS_HORAS_MAX)
+NOTICIAS_HORAS_MAX = 72
+NOTICIAS_MINUTOS_CACHE = 15      # cada cuanto se vuelve a bajar (todos los visitantes comparten la descarga)
+NOTICIAS_ABIERTO = True          # True = el bloque aparece desplegado; False = cerrado (se abre con un toque)
+# (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca cuales notas estan ahi; no se muestra por separado.
+NOTICIAS_FEEDS = (
+    ("Mercados", "https://www.bloomberg.com/feeds/markets/news.rss", False),
+    ("Tecnología", "https://www.bloomberg.com/feeds/technology/news.rss", False),
+    ("Economía", "https://www.bloomberg.com/feeds/economics/news.rss", False),
+    ("Portada", "https://www.bloomberg.com/feeds/news.rss", True),
+)

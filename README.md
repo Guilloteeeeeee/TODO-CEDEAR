@@ -161,6 +161,34 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
 
+### Noticias de Bloomberg, iconos de colores, WhatsApp visible y cuentas solo con logos (v1.2.39)
+
+- **Noticias de mercado (arriba de los filtros):** 5 titulares de Bloomberg (secciones Mercados, Tecnología y Economía) de las últimas 24 horas. **Regla de orden** (aprobada el 23/10): primero los que nombran empresas del screener (se marcan con una etiqueta verde con el ticker), después los que están en la portada de Bloomberg, y a igualdad, el más reciente. Cada renglón muestra solo **título, fuente y link** (no se copia el texto de la nota). Si hay menos de 5 notas en 24 h se amplía a 48 y a 72 h. Los titulares están en inglés (así los publica Bloomberg).
+- **Cómo se baja:** 4 feeds RSS públicos (`NOTICIAS_FEEDS` en `config/ajustes.py`: las tres secciones y la portada, que solo se usa para saber cuáles notas están ahí), todos a la vez y en segundo plano mientras se cargan los datos; se guardan 15 minutos (los visitantes comparten la descarga). Si Bloomberg no responde, la app sigue normal y aparece un renglón chico avisándolo. Código en `ui/noticias.py`; `NOTICIAS_ACTIVAS = False` lo apaga y `NOTICIAS_ABIERTO = False` lo deja plegado.
+- **Qué se probó y qué no:** el armado, el orden, las menciones, el vencimiento de 15 minutos y las fallas se probaron con feeds simulados (56 chequeos). **No se pudo probar la conexión real con Bloomberg desde el entorno de desarrollo** (sin acceso a internet): los links de los feeds están tomados de una página de terceros (feeder.co). Si en la PC no aparecen titulares, es lo primero para revisar.
+- **Cómo se detectan las empresas:** por nombre usado en los titulares (por ejemplo "Alphabet" o "Google" para GOOGL; tabla `ALIAS` en `ui/noticias.py`, con las 166 empresas) y por ticker en mayúsculas cuando tiene 3 letras o más. Los nombres que también son palabras comunes se buscan más largos (`Visa Inc`, `Target Corp`, `Shell Plc`) para no confundir "visa" de inmigración con Visa. Limitación: un titular que hable de una empresa sin nombrarla ("el mayor fabricante de chips") no cuenta como mención.
+- **Iconos de colores:** YouTube, Instagram, Gmail y WhatsApp como insignias redondas (como la de Intramed), con el dibujo oficial de cada marca (paquete Simple Icons, licencia CC0). **WhatsApp ya se ve**, sin acción hasta que se cargue el link en `ENLACES_MARCA["whatsapp"]` (al pasar el mouse dice "WhatsApp: próximamente").
+- **Abrite una cuenta con nosotros:** el desplegable muestra **solo los logos de Balanz e Inviu** (cada uno es un link a la apertura de cuenta). Se sacaron los renglones de abajo; los datos quedan anotados como comentario en `config/ajustes.py` por si se quieren volver a mostrar.
+- **Sin cambios de método:** ninguna fórmula, peso, umbral, Fair Value, puntaje ni categoría cambió.
+
+#### Análisis del 23/10 (solo lectura, sin implementar): ¿se arregla el Fair Value usando solo el mejor método, o descartando el que "está raro"?
+
+Pregunta de Guille: si el P/E de AMZN está inflado por una ganancia contable puntual, ¿no habría que descartarlo?, ¿y qué pasa si el Fair Value usa solo el mejor método? Se simuló sobre las 166 empresas del caché del 22/10. Se cuenta como "contradicción" una empresa cuya categoría va al revés del Fair Value en más de 15 % (barata con Fair Value por debajo del precio, o cara con Fair Value por encima), o que figura como "razonablemente valuada" con el Fair Value a más de 30 % del precio.
+
+| Variante | Contradicciones | Correlación puntaje / FV (Spearman) | Empresas cuyo FV cambia más de 10 % |
+|---|---|---|---|
+| Hoy (promedio ponderado, corte 1/3x a 3x) | 9 | 0,913 | — |
+| S1: solo el método de mayor peso | **17** | 0,800 | 78 |
+| O1: tirar los métodos que se alejan más de 50 % de la mediana de todos | 7 | 0,865 | 47 |
+| O2: corte actual + tirar los que se alejan más de 50 % de la mediana | 11 | 0,835 | 40 |
+
+- **S1 (solo el mejor método) empeora:** arregla 3 casos (AMZN, DIS, INTC) y rompe 11 (GS, BX, BABA, AMD, AMAT, MRVL, KLAC, CSCO, MSI, MDLZ, VST). En semiconductores el método de mayor peso es el PEG (40 %), justo el más inestable: ADI pasa de +34 % a +102 %, LRCX de +35 % a +149 % y DELL de +31 % a +113 %.
+- **O1 mejora poco y a un costo grande:** arregla 4 casos (AMZN, DIS, INTC, ADI), rompe 2 (AMAT, KLAC) y mueve más de 10 % el Fair Value de 47 empresas (28 %) para ganar 2 contradicciones. Baja la coherencia general (0,913 a 0,865).
+- **AMZN:** hoy el Fair Value da +65 % (P/E 557 USD implícitos, EV/EBITDA 291, P/FCF descartado por ser 0,08x). Con S1 u O1 daría +16 %, coherente con "razonablemente valuada". Pero el P/E de AMZN no se descarta hoy porque 557 USD es solo 1,9 veces el precio (el corte es 3x).
+- **Lo que ninguna regla automática resuelve:** detectar una ganancia "volada" por un hecho contable puntual (como la revalorización de la participación en Anthropic) requiere mirar la ganancia normalizada o las partidas extraordinarias de cada balance; el caché no tiene ese dato (ni el P/E forward). Descartar "lo que se aleja de los demás" detecta desacuerdo entre métodos, no cuál de ellos es el correcto: a veces el que se aleja es el bueno (GEV).
+- **Nota técnica:** de 592 precios implícitos, 10 no se reproducen exactos con la fórmula simple (GEV P/E y P/FCF; PEG de NTES, TSM, ASML y SAP; P/FCF de INTC); la comparación igual vale porque la fila "Hoy" usa el Fair Value guardado.
+- **Estado:** nada de esto se implementó. Queda abierta la decisión de Guille entre las opciones A, C y D (ver el análisis anterior).
+
 ### Franja con Quiénes somos / Abrite una cuenta / Comentarios, título con tipografía nueva y mayúsculas (v1.2.38)
 
 - **Franja negra (derecha):** de izquierda a derecha, los iconos (YouTube, Instagram, mail, WhatsApp de la comunidad e **Intramed con su logo**), **Quiénes somos** (se muestra siempre; sin link queda como texto hasta que se cargue), **Abrite una cuenta con nosotros ▾** (con un borde verde, siempre visible) y **Comentarios**, y el toro chico. Se sacó el botón "Menú". En el celular el título y el toro quedan arriba y los textos pasan a un segundo renglón (el texto se acorta a "Abrite una cuenta"; los iconos se ocultan).
@@ -312,7 +340,8 @@ cedear-screener/
 ├── ui/
 │   ├── tabla_visual.py     # Vista visual de la tabla (v1.2.16)
 │   ├── fuentes.py          # Tipografia Inter incrustada en el CSS (v1.2.33)
-│   ├── marca.py            # Franja negra de arriba, iconos, textos, desplegable de cuentas y pie (v1.2.36 a v1.2.38) e icono de la pestaña
+│   ├── marca.py            # Franja negra de arriba, iconos de colores, textos, desplegable de cuentas y pie (v1.2.36 a v1.2.39) e icono de la pestaña
+│   ├── noticias.py         # Noticias de mercado de Bloomberg (v1.2.39): descarga, orden por la regla aprobada y dibujo
 │   ├── estado.py           # Filtros y orden en la URL para volver desde la pagina de una empresa (v1.2.36)
 │   ├── logos.py            # Logos: archivo local, favicon o iniciales
 │   └── banderas.py         # Banderas de los paises (v1.2.21)
