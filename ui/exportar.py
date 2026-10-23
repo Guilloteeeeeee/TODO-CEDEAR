@@ -15,7 +15,7 @@ from config.sectors import partes_sector
 # (titulo de la columna, ancho, formato de numero de Excel o None)
 COLUMNAS = [
     ("Empresa", 34, None), ("Ticker", 9, None), ("País", 16, None), ("Sector", 22, None), ("Industria", 26, None),
-    ("Market Cap (USD)", 18, "#,##0"), ("Precio (USD)", 13, "#,##0.00"), ("Fair Value (USD)", 16, "#,##0.00"),
+    ("Capitalización bursátil (USD)", 26, "#,##0"), ("Precio (USD, cotización origen)", 30, "#,##0.00"), ("Fair Value (USD)", 16, "#,##0.00"),
     ("Fair Value vs precio (%)", 15, "0.0"), ("Valoración", 34, None), ("Puntaje (0 a 100)", 12, "0.0"),
     ("Métricas usadas", 11, "0"), ("Métricas totales", 11, "0"), ("Dividend Yield (%)", 14, "0.00"), ("Mediana histórica Dividend Yield (%)", 20, "0.00"),
 ]

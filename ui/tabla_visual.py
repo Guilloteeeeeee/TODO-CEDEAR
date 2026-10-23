@@ -5,10 +5,10 @@ Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) 
   Empresa        logo y nombre en negrita; abajo, sector (industria) y bandera, sin negrita. Al tocar el nombre se
                  abre la pagina de la empresa (?empresa=TICKER)
   Ticker         el ticker solo, en su propia columna (sin parentesis); tambien abre la pagina de la empresa
-  Market Cap     numero centrado (sin negrita)
-  Precio         precio de hoy
+  Capitalizacion bursatil (antes "Market Cap")  numero centrado (sin negrita)
+  Precio         precio de hoy, con "(Cotizacion origen)" chico en el titulo
   Valoracion     arriba, la categoria en letras de color y negrita (sin bloque de color y, por defecto, sin el "Podría estar");
-                 abajo, el Fair Value y, entre parentesis, la distancia del precio al Fair Value (sin negrita, sin barra)
+                 abajo, en gris y mas chico, el Fair Value y, entre parentesis, la distancia del precio al Fair Value (v1.2.45)
   Puntaje        caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar
   Dividend Yield rendimiento actual y, al lado, el recorrido de los años fiscales (linea gris), la mediana
                  (linea horizontal; abajo el texto "Mediana histórica X %", sin cantidad de años) y hoy (punto con el color
@@ -89,6 +89,26 @@ def escala_valoracion_html(mostrar_gris=False):
             '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
             f'{gris}</div>')
 
+AYUDA_TABLA = (
+    ("Empresa", "Nombre, sector (industria) y país. Tocá el nombre para ver su página con todo el detalle."),
+    ("Ticker", "El código con el que la empresa cotiza en su mercado de origen."),
+    ("Capitalización bursátil", "Lo que vale la empresa entera en la bolsa (precio × cantidad de acciones). B = mil millones, T = un billón."),
+    ("Precio (cotización origen)", "Lo que cuesta una acción en su mercado de origen, en dólares. No es el precio del CEDEAR en pesos."),
+    ("Valoración", "Una estimación, no una recomendación: si la empresa cotiza barata, razonable o cara frente a sus propios múltiplos históricos. "
+                   "Abajo, el Fair Value (el precio que resultaría de esos múltiplos) y cuánto más (+) o menos (−) que el precio de hoy."),
+    ("Puntaje", "De 0 (más cara) a 100 (más barata). Abajo, cuántas métricas se pudieron usar para calcularlo."),
+    ("Dividend Yield", "Lo que paga por año en dividendos, como porcentaje del precio. El dibujo lo compara con lo que rindió en años anteriores."),
+)
+
+
+def ayuda_tabla_html(cantidad_texto=""):
+    """Renglon de arriba de la tabla: la cantidad de empresas y un signo de pregunta que despliega una descripcion breve de cada columna."""
+    items = "".join(f"<dt>{html.escape(t)}</dt><dd>{html.escape(d)}</dd>" for t, d in AYUDA_TABLA)
+    return (f'<div class="tv-cab"><b>{html.escape(cantidad_texto)}</b>'
+            f'<details class="tv-q"><summary title="¿Qué es cada columna?" aria-label="¿Qué es cada columna?">?</summary>'
+            f'<div class="tv-qp"><b class="tv-qt">¿Qué es cada columna?</b><dl>{items}</dl></div></details></div>')
+
+
 def leyenda_tabla_html():
     """"Cómo leer la tabla": va dentro del recuadro Screener, debajo de la escala de valoracion."""
     return ('<div class="tv-leyenda"><b>Cómo leer la tabla:</b> en <b>Valoración</b>, la frase de color sale del puntaje (de 0 a 100) y es una '
@@ -101,22 +121,22 @@ def leyenda_tabla_html():
 
 # Anchos relativos de las 7 columnas (Empresa, Ticker, Market Cap, Precio, Valoracion, Puntaje, Dividend Yield): los usan los
 # encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
-ANCHOS_VISUAL = [3.0, 0.9, 1.15, 1.0, 3.0, 0.95, 1.9]
+ANCHOS_VISUAL = [2.9, 0.9, 1.5, 1.35, 2.8, 0.95, 1.9]
 
 CSS = """
-.tv2{border:1px solid #d5dde6;border-top:0;border-radius:0 0 10px 10px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit}
-.tv2-r{display:grid;grid-template-columns:__COLS__;align-items:stretch;border-top:1px solid #e8ecf1}
+.tv2{border:0;border-radius:0 0 14px 14px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07)}
+.tv2-r{display:grid;grid-template-columns:__COLS__;align-items:stretch;border-top:1px solid #f0f2f5}
 .tv2-r:first-child{border-top:0}
 .tv2-r>div{padding:8px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
-.tv2-r>.tv2-v{background:#f2f6fa}
+.tv2-r>.tv2-v{background:#f8fafc}
 .tv2-r:hover>div{background:#f8fafc}
-.tv2-r:hover>.tv2-v{background:#e9f0f7}
+.tv2-r:hover>.tv2-v{background:#f1f5f9}
 .tv2-c{align-items:center;text-align:center}
 .tv2-emp{display:flex;align-items:center;gap:10px;min-width:0}
 .tv2-ec{min-width:0;flex:1}
 .tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
-.tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700;color:#111827}
-.tv2-tk{flex:none;font-size:13.5px;font-weight:700;color:#374151;letter-spacing:.3px}
+.tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700;color:#111827;text-decoration:underline;text-decoration-color:rgba(75,85,99,.4);text-decoration-thickness:1px;text-underline-offset:3px}
+.tv2-tk{flex:none;font-size:13.5px;font-weight:700;color:#374151;letter-spacing:.3px;text-decoration:underline;text-decoration-color:rgba(75,85,99,.35);text-decoration-thickness:1px;text-underline-offset:3px}
 .tv2-mc{font-size:14px;font-weight:400;color:#111827;white-space:nowrap}
 .tv2-l2{margin-top:2px;font-size:11.5px;font-weight:400;color:#4b5563;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv2-dy{text-align:center}
@@ -133,13 +153,16 @@ CSS = """
 .tv-vh{display:block;font-size:12px;font-weight:600;opacity:.85}
 .tv-vn{display:block;font-size:14px;font-weight:700}
 .tv-up{font-weight:700;color:#374151}
+.tv2-vc .tv-vn{font-size:15px;font-weight:700}
+.tv2-fvs{font-size:12px;font-weight:400;color:#6b7280;white-space:nowrap}
+.tv2-fvs span{color:#6b7280}
 .tv2-pr{font-size:14px;font-weight:400;color:#111827;white-space:nowrap}
 .tv2-fvc{font-size:14px;font-weight:400;color:#111827;white-space:nowrap}
 .tv2-fvc span{font-size:13px;color:#4b5563}
 a.tv2-l1,a.tv2-lg{text-decoration:none!important;color:inherit!important}
 a.tv2-lg{flex:none;display:flex}
-a.tv2-l1:hover .tv2-nm{text-decoration:underline;color:#1d4ed8}
-a.tv2-l1:hover .tv2-tk,a.tv2-tkc:hover .tv2-tk{color:#1d4ed8}
+a.tv2-l1:hover .tv2-nm{text-decoration-color:#1d4ed8;color:#1d4ed8}
+a.tv2-l1:hover .tv2-tk,a.tv2-tkc:hover .tv2-tk{color:#1d4ed8;text-decoration-color:#1d4ed8}
 a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv-v2{position:relative;height:66px;margin:0 10px}
 .tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:13px;font-weight:700;color:#111827;white-space:nowrap}
@@ -171,8 +194,9 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .emp-s{margin-top:5px;font-size:14.5px;color:#374151}
 .emp-s b{color:#111827}
 .emp-k{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:14px 0 6px}
-.emp-b{border:1px solid #d5dde6;border-radius:12px;padding:12px 14px 14px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
-.emp-bt{font-size:12.5px;font-weight:600;color:#4b5563;margin-bottom:8px;letter-spacing:.2px}
+.emp-b{border:0;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);border-radius:14px;padding:12px 14px 14px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:flex-start}
+.emp-bt{font-size:12.5px;font-weight:600;color:#4b5563;margin-bottom:8px;letter-spacing:.2px;text-align:center}
+.emp-bt small{display:block;font-size:10.5px;font-weight:500;color:#6b7280;letter-spacing:0;margin-top:1px}
 .emp-b .tv2-pr,.emp-b .tv2-fvc{font-size:22px}
 .emp-b .tv-score{width:66px;border-radius:8px}
 .emp-b .tv-num{font-size:21px;line-height:36px}
@@ -182,7 +206,7 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .emp-b .tv2-dy img{margin:5px auto 0}
 .emp-b .tv2-fvc span{font-size:16px}
 .emp-b .tv-vn{font-size:17px}
-.emp-barra{border:1px solid #d5dde6;border-radius:12px;padding:14px 18px 6px;margin:10px 0;background:#f8fafc}
+.emp-barra{border:0;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);border-radius:14px;padding:14px 18px 6px;margin:10px 0;background:#fff}
 .emp-barra .tv-v2{margin:0 24px}
 .emp-barra small{display:block;color:#4b5563;font-size:12.5px;margin:2px 0 10px;line-height:1.4}
 .esc{margin:14px 0 4px}
@@ -198,6 +222,17 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .esc-gp{margin-top:6px}
 .esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
 .esc-gt{font-size:12px;color:#4b5563}
+@media (min-width:821px){[data-testid="stVerticalBlock"]:has(>.st-key-descarga_excel){align-items:flex-end}}
+.tv-cab{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px;color:#111827}
+.tv-q{position:relative;display:inline-block}
+.tv-q>summary{list-style:none;cursor:pointer;width:22px;height:22px;border-radius:50%;background:#fff;color:#4b5563;font-weight:700;font-size:13px;line-height:22px;text-align:center;box-shadow:0 1px 2px rgba(15,23,42,.12),0 2px 8px rgba(15,23,42,.08);user-select:none}
+.tv-q>summary::-webkit-details-marker{display:none}
+.tv-q>summary:hover,.tv-q[open]>summary{background:#2b2f33;color:#fff}
+.tv-qp{position:absolute;left:0;top:calc(100% + 10px);width:min(560px,86vw);z-index:1000;background:#fff;border-radius:14px;padding:14px 16px 10px;box-shadow:0 2px 6px rgba(15,23,42,.08),0 14px 36px rgba(15,23,42,.18);font-size:13px;line-height:1.45;color:#374151;font-weight:400}
+.tv-qp b.tv-qt{display:block;font-size:13.5px;color:#111827;margin-bottom:6px}
+.tv-qp dl{margin:0}
+.tv-qp dt{font-weight:700;color:#111827;margin-top:7px}
+.tv-qp dd{margin:0 0 0 0;color:#4b5563}
 .tv-leyenda{font-size:12.5px;color:#41566b;border-top:1px solid #dde8f4;margin:12px 0 4px;padding:10px 0 6px;line-height:1.5}
 .tv-ini{font-family:inherit}
 .flt-t{font-size:13px;font-weight:700;color:#374151;margin:12px 0 2px}
@@ -207,7 +242,7 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 [data-testid="stButtonGroup"] button[aria-pressed="true"] p,[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"] p{color:#fff}
 [data-testid="stButtonGroup"] button[aria-pressed="true"]:hover{background:#33414d!important;border-color:#33414d!important;color:#fff!important}
 /* Celular y pantallas angostas (v1.2.42): cada fila pasa a ser una tarjeta; el encabezado de botones se esconde y aparece el
-   selector "Ordenar por" (st-key-orden_movil_caja). Orden de las celdas de la fila: 1 Empresa, 2 Ticker, 3 Market Cap, 4 Precio,
+   selector "Ordenar por" (st-key-orden_movil_caja). Orden de las celdas de la fila: 1 Empresa, 2 Ticker, 3 Capitalizacion bursatil, 4 Precio,
    5 Valoracion, 6 Puntaje, 7 Dividend Yield. */
 .st-key-orden_movil_caja{display:none}
 @media (max-width:900px){
@@ -215,8 +250,9 @@ div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre){display:none!import
 .st-key-orden_movil_caja{display:block}
 div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2{border:0;background:transparent;border-radius:0;overflow:visible}
+.tv2{box-shadow:none}
 .tv2 .tv2-r,.tv2 .tv2-r:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
- grid-template-areas:"emp emp tk" "val val pts" "mc pr dy";gap:0;border:1px solid #d5dde6;border-radius:12px;background:#fff;margin:0 0 10px;padding:4px 2px}
+ grid-template-areas:"emp emp tk" "val val pts" "mc pr dy";gap:0;border:0;border-radius:14px;background:#fff;margin:0 0 12px;padding:4px 2px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.08)}
 .tv2-r>div{padding:6px 10px}
 .tv2-r:hover>div,.tv2-r:hover>.tv2-v,.tv2-r>.tv2-v{background:transparent}
 .tv2-r>div:nth-child(1){grid-area:emp}
@@ -226,10 +262,10 @@ div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2-r>div:nth-child(5){grid-area:val;align-items:flex-start}
 .tv2-r>div:nth-child(6){grid-area:pts;align-items:flex-end}
 .tv2-r>div:nth-child(7){grid-area:dy}
-.tv2-r>div:nth-child(3),.tv2-r>div:nth-child(4),.tv2-r>div:nth-child(7){align-items:flex-start;justify-content:flex-start;text-align:left;border-top:1px solid #eef1f4;padding-top:8px}
+.tv2-r>div:nth-child(3),.tv2-r>div:nth-child(4),.tv2-r>div:nth-child(7){align-items:flex-start;justify-content:flex-start;text-align:left;border-top:1px solid #f0f2f5;padding-top:8px}
 .tv2-r>div:nth-child(3)::before,.tv2-r>div:nth-child(4)::before,.tv2-r>div:nth-child(7)::before{font-size:10.5px;font-weight:600;color:#4b5563;margin-bottom:2px;letter-spacing:.2px}
-.tv2-r>div:nth-child(3)::before{content:"Market Cap"}
-.tv2-r>div:nth-child(4)::before{content:"Precio"}
+.tv2-r>div:nth-child(3)::before{content:"Capitalización bursátil"}
+.tv2-r>div:nth-child(4)::before{content:"Precio (cotización origen)"}
 .tv2-r>div:nth-child(7)::before{content:"Dividend Yield"}
 .tv2-r>div:nth-child(5) .tv2-vc,.tv2-r>div:nth-child(5) .tv-vl{align-items:flex-start;text-align:left}
 .tv2-r>div:nth-child(5) .tv-cat{justify-content:flex-start}
@@ -246,24 +282,27 @@ span[data-baseweb="tag"] svg{fill:#475569!important}
 CSS = CSS.replace("__COLS__", " ".join(f"minmax(0,{w}fr)" for w in ANCHOS_VISUAL))
 
 # Colores del encabezado (barra gris pizarra oscura, la misma gama del logo, con titulos blancos centrados; la columna Valoracion un poco mas oscura)
-_BARRA = "#222d36"
-_BARRA_VAL = "#141c23"
+_BARRA = "#2b2f33"
+_BARRA_VAL = "#1d2023"
 
 
 def css_encabezado(sort_col=None):
-    """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>'). Desde la v1.2.41 se resalta solo la columna
+    """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>'). v1.2.45: gris oscuro neutro y "(Cotización origen)" chico
+    debajo de "Precio". Desde la v1.2.41 se resalta solo la columna
     Valoracion (mas oscura); la columna por la que se ordena se reconoce por la flecha, ya no por el color. `sort_col` se acepta
     por compatibilidad."""
     base = 'div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre)'
     return (
-        f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:10px 10px 0 0;align-items:stretch!important}}'
+        f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:14px 14px 0 0;align-items:stretch!important}}'
         f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
         f'{base} [data-testid="stElementContainer"]{{width:100%}}'
         '[class*="st-key-tvh_"] button{width:100%;min-height:46px;background:transparent;border:0;border-radius:0;box-shadow:none;color:#fff}'
-        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:700;color:#fff;margin:0;letter-spacing:.2px}'
+        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:700;color:#fff;margin:0;letter-spacing:.2px;white-space:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
+        '[class*="st-key-tvh_"] button div,[class*="st-key-tvh_"] button [data-testid="stMarkdownContainer"]{white-space:normal;overflow:visible;text-overflow:clip}'
         '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
         '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
         f'.st-key-tvh_fv_upside button{{background:{_BARRA_VAL}}}'
+        '.st-key-tvh_precio_actual button p::after{content:"(Cotización origen)";display:block;font-size:10.5px;font-weight:500;letter-spacing:0;opacity:.78;margin-top:1px}'
         'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'
     )
 
@@ -423,15 +462,26 @@ def _celda_categoria(row, con_aviso=True):
     return _texto_categoria(_txt(row.get("categoria"), "—"), _txt(row.get("color_hex"), "#6e7781"), con_aviso)
 
 
+def _fv_chico(row):
+    """Fair Value para la tabla (v1.2.45): texto gris y chico, debajo de la categoria: "Fair Value $194 (-40%)"."""
+    precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
+    if not precio or not fv or precio <= 0 or fv <= 0:
+        return '<span class="tv2-fvs" title="No hubo datos para calcular un Fair Value">Fair Value —</span>'
+    v = int(round((fv - precio) / precio * 100))
+    d = f"{v:+d}%" if v else "0%"
+    return (f'<span class="tv2-fvs" title="Fair Value promedio. Entre paréntesis: cuánto más o menos que el precio de hoy">'
+            f'Fair Value {_money(fv)} <span>({d})</span></span>')
+
+
 def _celda_valoracion_tabla(row):
-    """Celda "Valoración" de la tabla: arriba la categoria (letras de color en negrita) y abajo el Fair Value con la distancia
-    al precio entre parentesis. El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
-    return (f'<div class="tv2-vc">{_celda_categoria(row, con_aviso=bool(AVISO_PODRIA_EN_TABLA))}{_celda_fv(row)}</div>')
+    """Celda "Valoración" de la tabla: arriba la categoria (letras de color en negrita) y abajo, en gris y mas chico, el Fair Value
+    con la distancia al precio entre parentesis. El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
+    return (f'<div class="tv2-vc">{_celda_categoria(row, con_aviso=bool(AVISO_PODRIA_EN_TABLA))}{_fv_chico(row)}</div>')
 
 
 def resumen_empresa_html(row):
     """Bloques de arriba de la pagina de una empresa: precio, Fair Value, valoracion, puntaje y Dividend Yield (los mismos de la tabla, un poco mas grandes)."""
-    bloques = [("Precio", _celda_precio(row)), ("Fair Value", _celda_fv(row)), ("Valoración", _celda_categoria(row)),
+    bloques = [('Precio<small>(Cotización origen)</small>', _celda_precio(row)), ("Fair Value", _celda_fv(row)), ("Valoración", _celda_categoria(row)),
                ("Puntaje", _celda_puntaje(row)), ("Dividend Yield", _celda_dy(row, grande=True))]
     return '<div class="emp-k">' + "".join(f'<div class="emp-b"><div class="emp-bt">{t}</div>{h}</div>' for t, h in bloques) + "</div>"
 

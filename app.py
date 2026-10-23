@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.44"
+APP_VERSION = "1.2.45"
 
 import streamlit as st
 import pandas as pd
@@ -41,7 +41,7 @@ except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
                              texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual, resumen_empresa_html,
-                             barra_empresa_html, leyenda_tabla_html, _mayusculas)
+                             barra_empresa_html, leyenda_tabla_html, ayuda_tabla_html, _mayusculas)
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -388,6 +388,8 @@ def _pastillas(etiqueta, opciones, formato, key):
                           placeholder="Todas")
 
 
+# v1.2.45: al abrir la pagina la tabla va ordenada por capitalizacion bursatil, de mayor a menor (antes: por Valoracion)
+ORDEN_INICIAL = ("market_cap", False)
 ORDENES_VALIDOS = ("nombre", "ticker", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total", "dividend_yield_actual")
 MKTCAP_OPCIONES = {
     "Sin mínimo": 0,
@@ -436,8 +438,10 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         cats_sel = cats_disponibles
     cats_nombres = list(cats_sel)
 
-    # --- Fila 3: País + Market Cap + Dividend Yield + Métricas ---
-    col_pais, col_mkt, col_dy, col_met = st.columns([2, 2, 2, 2])
+    # --- Fila 3: País + Capitalización bursátil + Dividend Yield + Métricas ---
+    # v1.2.45: el recuadro ocupa media pantalla, asi que los controles van de a dos por fila
+    col_pais, col_mkt = st.columns(2)
+    col_dy, col_met = st.columns(2)
 
     with col_pais:
         paises_sel = st.multiselect(
@@ -449,7 +453,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 
     with col_mkt:
         mktcap_label = st.selectbox(
-            "Market Cap mínimo",
+            "Capitalización bursátil mínima",
             list(MKTCAP_OPCIONES.keys()),
             key="flt_mkt",
         )
@@ -476,7 +480,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         )
 
     # --- Fila 4: vista de revisión + actualizar ---
-    col_diag, col_ref, _vacio = st.columns([3, 2, 3])
+    col_diag = col_ref = st.container()
     with col_diag:
         ver_metodos_fv = st.checkbox(
             "🔬 Vista de revisión: métodos del Fair Value",
@@ -493,7 +497,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 
     # Texto con los filtros y el orden: viaja en el link de cada empresa para poder volver a la tabla tal cual estaba
     estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label, dy_minimo,
-                                  min_metricas, st.session_state.get("sort_col", "fv_upside"), st.session_state.get("sort_asc", False),
+                                  min_metricas, st.session_state.get("sort_col", ORDEN_INICIAL[0]), st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
                                   bool(ver_metodos_fv))
     return {
         "estado_url": estado,
@@ -503,8 +507,8 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         "dy_minimo": dy_minimo / 100.0,
         "mktcap_minimo": mktcap_minimo,
         "min_metricas": min_metricas,
-        "sort_col": st.session_state.get("sort_col", "fv_upside"),
-        "sort_asc": st.session_state.get("sort_asc", False),
+        "sort_col": st.session_state.get("sort_col", ORDEN_INICIAL[0]),
+        "sort_asc": st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
         "ver_metodos_fv": ver_metodos_fv,
         "forzar_refresh": forzar_refresh,
     }
@@ -525,7 +529,7 @@ ORDENES_MOVIL = [
     ("Puntaje: de mayor a menor", "score_total", False), ("Puntaje: de menor a mayor", "score_total", True),
     ("Empresa: de la A a la Z", "nombre", True), ("Empresa: de la Z a la A", "nombre", False),
     ("Ticker: de la A a la Z", "ticker", True), ("Ticker: de la Z a la A", "ticker", False),
-    ("Market Cap: de mayor a menor", "market_cap", False), ("Market Cap: de menor a mayor", "market_cap", True),
+    ("Capitalización bursátil: de mayor a menor", "market_cap", False), ("Capitalización bursátil: de menor a mayor", "market_cap", True),
     ("Precio: de mayor a menor", "precio_actual", False), ("Precio: de menor a mayor", "precio_actual", True),
     ("Dividend Yield: de mayor a menor", "dividend_yield_actual", False), ("Dividend Yield: de menor a mayor", "dividend_yield_actual", True),
 ]
@@ -542,8 +546,8 @@ def _cambiar_orden_movil():
 
 def render_tabla_visual(df_show: pd.DataFrame, estado=None):
     """Tabla visual: titulos ordenables (botones) y filas en una sola pieza de HTML con la misma grilla."""
-    sort_col = st.session_state.get("sort_col", "fv_upside")
-    sort_asc = st.session_state.get("sort_asc", False)
+    sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
+    sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
     st.markdown(f"<style>{css_encabezado(sort_col)}</style>", unsafe_allow_html=True)
 
     # Celular: el selector reemplaza a los titulos (la hoja de estilos esconde uno u otro segun el ancho de la pantalla)
@@ -558,7 +562,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None):
     titulos = [
         (cols[0], "Empresa", "nombre"),
         (cols[1], "Ticker", "ticker"),
-        (cols[2], "Market Cap", "market_cap"),
+        (cols[2], "Capitalización bursátil", "market_cap"),
         (cols[3], "Precio", "precio_actual"),
         (cols[4], "Valoración", "fv_upside"),
         (cols[5], "Puntaje", "score_total"),
@@ -616,7 +620,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
         )
         df_show = df_show[mask_dy]
 
-    # Filtro por Market Cap mínimo
+    # Filtro por capitalización bursátil mínima
     if filtros["mktcap_minimo"] > 0:
         df_show = df_show[
             df_show["market_cap"].notna() &
@@ -634,8 +638,8 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
     df_show["fv_upside"] = df_show.apply(_fv_upside, axis=1)
 
     # --- Ordenamiento ---
-    sort_col = st.session_state.get("sort_col", "fv_upside")
-    sort_asc = st.session_state.get("sort_asc", False)
+    sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
+    sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
 
     df_show["sector_txt"] = df_show["sector"].map(etiqueta_sector)
     STR_COLS = {"nombre", "ticker", "pais", "sector_txt"}
@@ -686,7 +690,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
     ver_metodos = bool(filtros.get("ver_metodos_fv"))
     if not ver_metodos:
         c_n, c_xl = st.columns([3, 2], vertical_alignment="center")
-        c_n.markdown(f"**{len(df_show)} empresas**")
+        c_n.markdown(ayuda_tabla_html(f"{len(df_show)} empresas"), unsafe_allow_html=True)
         with c_xl:
             _boton_excel(df_show, fecha, aviso)
         render_tabla_visual(df_show, filtros.get("estado_url"))
@@ -703,22 +707,22 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
         "Empresa": "nombre",
         "País": "pais",
         "Sector": "sector",
-        "Market Cap": "market_cap",
+        "Capitalización bursátil": "market_cap",
         "Valoración": "fv_upside",
         "Dividend Yield": "dividend_yield_actual",
         "Rango 52s": "posicion_52s",
         "Categoría": "score_total",
         "Métricas": "metricas_usadas",
     }
-    headers = ["Empresa", "País", "Sector", "Market Cap", "Valoración", "Dividend Yield", "Rango 52s", "Categoría", "Métricas"]
+    headers = ["Empresa", "País", "Sector", "Capitalización bursátil", "Valoración", "Dividend Yield", "Rango 52s", "Categoría", "Métricas"]
     anchos = ANCHOS_TABLA
     if ver_metodos:
         headers = headers + ["Métodos del Fair Value"]
         anchos = anchos + [3.6]
     header_cols = st.columns(anchos)
 
-    current_sort = st.session_state.get("sort_col", "fv_upside")
-    current_asc = st.session_state.get("sort_asc", False)
+    current_sort = st.session_state.get("sort_col", ORDEN_INICIAL[0])
+    current_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
 
     for col_ui, h in zip(header_cols, headers):
         if h not in SORT_MAP:  # columna de revisión: no se ordena
@@ -848,7 +852,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
     st.markdown(
         f'<div class="emp-h">{logo_html(ticker_sel, 56)}<div><div class="emp-n">{nombre} <span>({html.escape(str(ticker_sel))})</span></div>'
         f'<div class="emp-s tv-meta">{sector_html(sector, en_linea=True)} &nbsp;·&nbsp; {bandera_html(row.get("pais"), con_nombre=True)} &nbsp;·&nbsp; '
-        f'Market Cap <b>{mcap}</b></div></div></div>',
+        f'Capitalización bursátil <b>{mcap}</b></div></div></div>',
         unsafe_allow_html=True)
     st.markdown(resumen_empresa_html(row.to_dict()), unsafe_allow_html=True)
     st.markdown(barra_empresa_html(row.to_dict()), unsafe_allow_html=True)
@@ -1122,21 +1126,28 @@ def main():
         st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
         return
 
-    # Noticias Calientes, arriba del Screener. Si ya estaban bajadas (se guardan 15 minutos) se dibujan al toque;
-    # si hay que esperar a la fuente, el lugar queda reservado y se completa al final, sin hacer esperar a la tabla.
-    lugar_noticias = st.empty()
-    noticias_pendientes = descarga_noticias is not None
-    if not noticias_pendientes:
-        render_noticias(df, None, lugar_noticias)
-
-    # Screener: recuadro desplegable (celeste suave, como Noticias Calientes), cerrado al abrir la pagina. Adentro: los filtros,
-    # la escala de valoracion y "Cómo leer la tabla". Cerrado, los filtros siguen valiendo: solo se esconden.
+    # v1.2.45: "Noticias Calientes" y "Filtro de empresas" (antes "Screener") van uno al lado del otro, para ocupar menos pantalla.
+    # Cada uno se despliega hacia abajo, en su mitad; la mitad que se abre se ensancha un poco (ui/cajas.py). En el celular quedan
+    # uno abajo del otro. Si ya estaban bajadas (se guardan 15 minutos) las noticias se dibujan al toque; si hay que esperar a la
+    # fuente, el lugar queda reservado y se completa al final, sin hacer esperar a la tabla.
     st.markdown(f"<style>{CSS_CAJAS}</style>", unsafe_allow_html=True)
     hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
-    with st.container(key="caja_screener"):
-        with st.expander("Screener", expanded=False):
-            filtros = render_filtros_inline(universe, df)
-            st.markdown(escala_valoracion_html(hay_gris) + leyenda_tabla_html(), unsafe_allow_html=True)
+    noticias_pendientes = descarga_noticias is not None
+    with st.container(key="fila_cajas"):
+        if _noticias.ACTIVAS:
+            col_noticias, col_filtro = st.columns(2, gap="medium")
+            lugar_noticias = col_noticias.empty()
+        else:
+            col_filtro, lugar_noticias = st.container(), st.empty()
+        if not noticias_pendientes:
+            render_noticias(df, None, lugar_noticias)
+        # Filtro de empresas: recuadro desplegable, cerrado al abrir la pagina. Adentro: los filtros, la escala de valoracion y
+        # "Cómo leer la tabla". Cerrado, los filtros siguen valiendo: solo se esconden.
+        with col_filtro:
+            with st.container(key="caja_screener"):
+                with st.expander("Filtro de empresas", expanded=False):
+                    filtros = render_filtros_inline(universe, df)
+                    st.markdown(escala_valoracion_html(hay_gris) + leyenda_tabla_html(), unsafe_allow_html=True)
 
     # Forzar refresh limpia el cache de Streamlit
     if filtros["forzar_refresh"]:

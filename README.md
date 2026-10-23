@@ -26,7 +26,7 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
 | Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
 
-*Semiconductores y Hardware (v1.2.44):* la fila muestra los pesos base. Si el PEG de una empresa es **creíble** (ver la sección v1.2.44), entra con 25 % y las otras cuatro métricas se achican a 0,75 de su peso (P/S 30 %, resto 15 %).
+*Semiconductores y Hardware:* los pesos de la fila son los que se usan (desde la v1.2.45 la regla del "PEG creíble" de la v1.2.44 está apagada; ver esa sección).
 
 ### Fuentes de datos y respaldo de sector (v1.2.12 / v1.2.13 / v1.2.14)
 
@@ -163,7 +163,29 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
 
+### Vuelta a la v1.2.43, segunda mirada con el DCF y cambios de pantalla (v1.2.45)
+
+**1) Vuelta atrás (decisión de Guille del 23/10/2026: "volvamos un paso para atrás").** La regla del PEG creíble (v1.2.44) quedó **apagada**: `PEG_CONDICIONAL["sectores"] = ()` en `config/sectors.py`. El puntaje, la categoría y el Fair Value de las 166 empresas son **idénticos a los de la v1.2.43** (se comprobó campo por campo). El código de la regla sigue ahí y probado; para prenderla de nuevo hay que poner `("Semiconductores", "Hardware y servicios TI")` en `"sectores"` y re-puntuar el caché. Motivo: la regla acercaba AVGO y NVDA a GuruFocus pero alejaba a AMAT, ADI, LRCX y DELL, subía mucho sus Fair Value, y dejaba a AVGO "razonablemente valuada" con un Fair Value 40 % por debajo del precio. En vez de afinar el PEG se prueba otra cosa: la segunda mirada con el DCF.
+
+**2) Segunda mirada con el DCF (en curso, no cambia ningún puntaje).** La idea: para las empresas que el screener ve caras (categorías "tendencia a sobrevalorada" o "podría estar sobrevalorada"), ver qué dice el DCF propio (repositorio `M-todo-DCF`, pantalla "Modo lote") y así detectar los casos donde el screener se equivoca por mirar solo múltiplos contra su propia historia (AVGO: todos sus múltiplos están por encima de su historia, salvo el PEG). Hoy son **85 empresas**; en **23** de ellas GuruFocus no las ve caras (marcadas primero en la lista): TSLA, V, JPM, AVGO, VRTX, ABNB, RIO, MSI, LIN, ANET, SBUX, ARM, ORLY, CL, UNP, ADP, MS, SNOW, AIG, COIN, VST, TLN, ECL. Lista completa para pegar en el lote (las 23 primero, el resto de la más cara a la menos cara): `TSLA, V, JPM, AVGO, VRTX, ABNB, RIO, MSI, LIN, ANET, SBUX, ARM, ORLY, CL, UNP, ADP, MS, SNOW, AIG, COIN, VST, TLN, ECL, PBR, DELL, SAN, ITUB, PANW, XOM, AMD, ABBV, DE, BBVA, EQNR, AAPL, CSCO, SHEL, PSX, HSBC, PM, FCX, TTE, WMT, AMAT, AMGN, CAT, MO, JNJ, ING, LRCX, BNY, MRVL, MRK, MMM, CVX, NVS, MUFG, COP, WELL, BRK-B, INTC, KO, C, KLAC, SCCO, BP, SIEGY, WDC, CRWD, BHP, GILD, ADI, PFE, TSM, TXN, CVS, ASML, GEV, TMO, USB, ROST, SONY, PCAR, IBKR, GSK`. El lote lo corre Guille en su app de DCF (Yahoo está bloqueado desde el entorno de Claude) y devuelve el Excel. Con ese Excel se comparan, por empresa: categoría del screener, Fair Value del screener, valor por DCF y por múltiplos del DCF, y categoría de GuruFocus; y se mira si una segunda mirada mejoraría el método. **No se implementa nada en el screener sin decisión explícita de Guille.**
+
+**3) Cambios de pantalla (todos pedidos por Guille el 23/10/2026):**
+- **Encabezado:** franja **gris oscuro** (antes negra con filete verde); los textos ("Quiénes somos", "Abrite una cuenta con nosotros", "Comentarios") y, **a la derecha de ellos**, los iconos (YouTube, Instagram, mail, WhatsApp, Intramed) **de un solo color** (gris claro, blanco al pasar el mouse); el icono de Intramed es `assets/marca/intramed-mono.png` (versión blanca del original, que sigue en `intramed.png`). **"Abrite una cuenta con nosotros" ya no lleva recuadro.** Los iconos siguen escondidos en pantallas de menos de 1180 px, como antes.
+- **Paneles blancos con sombra suave y sin bordes duros:** la tabla, los recuadros de Noticias y Filtro de empresas, las tarjetas del celular y las de la página de cada empresa. El **fondo de la página** pasa a un gris casi blanco (`FONDO_PAGINA = "#f5f6f8"` en `config/ajustes.py`) para que los paneles blancos se noten; con `"#ffffff"` vuelve al blanco de siempre. El encabezado de la tabla usa el mismo gris oscuro del encabezado de la página.
+- **Columna Valoración:** la categoría en **negrita y con el color de su categoría** (verde para las baratas, rojo para las caras, etc.; se mantuvo el color por categoría para no mostrar en verde una empresa cara) y, debajo, **más chico y en gris**, "Fair Value $315 (+48%)".
+- **Orden inicial por capitalización bursátil**, de mayor a menor (antes por Valoración); se puede cambiar tocando cualquier título, como siempre. `ORDEN_INICIAL` en `app.py`.
+- **"Market Cap" se llama ahora "Capitalización bursátil"** en la tabla, el filtro, el selector del celular, la página de la empresa y el Excel.
+- **Signo de pregunta "?"** al lado de "N empresas": despliega una descripción breve de cada una de las 7 columnas (`AYUDA_TABLA` en `ui/tabla_visual.py`).
+- **Empresas subrayadas** (línea fina gris, azul al pasar el mouse): en el celular no existe el "pasar el mouse", así que el subrayado fijo es lo que avisa que se puede tocar. Vale para el nombre y el ticker.
+- **Noticias Calientes y Filtro de empresas, uno al lado del otro** (en el celular quedan uno abajo del otro). Cada uno se despliega hacia abajo en su mitad y la mitad que se abre se **ensancha** (más ancho para los filtros). Los controles del filtro pasaron a ir de a dos por fila.
+- **"Screener" se llama ahora "Filtro de empresas".**
+- **Precio:** el título lleva debajo, chico y menos llamativo, "(Cotización origen)"; igual en las tarjetas del celular, en la página de la empresa y en el Excel ("Precio (USD, cotización origen)"). Es el precio de la acción en su mercado de origen, no el del CEDEAR en pesos.
+
+**Lo que NO cambió:** metodología, pesos, categorías, Fair Value y datos (el caché es el de la v1.2.43).
+
 ### PEG con historia creíble en Semiconductores y Hardware (v1.2.44)
+
+> **Apagada el mismo día (v1.2.45):** Guille pidió "volver un paso para atrás" porque no tenía sentido lo que se mostraba. Esta sección queda como registro de lo probado y de cómo se enciende de nuevo.
 
 **Qué cambió (decisión de Guille del 23/10/2026):** en *Semiconductores* y *Hardware y servicios TI* el PEG vuelve **solo para las empresas donde es creíble**, con **25 %**; las otras cuatro métricas se achican a 0,75 de su peso (P/S 30 %, P/FCF, EV/EBITDA y PER 15 % cada una). Para las demás empresas de estas dos industrias queda la v1.2.43 sin cambios (P/S 40 %, sin PEG). El resto de los sectores no cambia.
 

@@ -271,6 +271,9 @@ PEG_MIN_EMPRESAS_SECTOR = SECTOR_MIN_EMPRESAS   # nombre anterior (v1.2.11)
 # El dato "anios_historia" lo guarda generar_cache.py; si una fila no lo trae, no se aplica la regla.
 MIN_ANIOS_MEDIANA_PROPIA = 3
 
+# v1.2.45 (23/10/2026, decisión del dueño: "volvamos un paso para atrás"): la regla de abajo está APAGADA ("sectores" vacío) y el
+# puntaje vuelve a ser el de la v1.2.43 (P/S 0,40 y sin PEG en Semiconductores y Hardware). Para volver a prenderla, poner de nuevo
+# ("Semiconductores", "Hardware y servicios TI") en "sectores" y re-puntuar el caché. Se deja el código porque está probado.
 # v1.2.44 (decidido por el dueño el 23/10/2026): en Semiconductores y Hardware el PEG volvió, pero SOLO para las empresas
 # donde es creíble. Entra con peso 0,25 (el resto de los pesos se reduce a 0,75 de lo que tenía) si se cumplen LAS CUATRO:
 #   1) la mediana propia del PEG viene de Stock Analysis con 3 años de historia o más (misma regla que las otras métricas);
@@ -280,7 +283,7 @@ MIN_ANIOS_MEDIANA_PROPIA = 3
 # Si no se cumplen, esa empresa se puntúa sin PEG (P/S 0,40 + P/FCF + EV/EBITDA + PER). La regla se armó DESPUÉS de ver el caso
 # de AVGO: hay que VALIDARLA el 1/12 con una lista nueva de GuruFocus y con los retornos reales (ver README v1.2.44).
 PEG_CONDICIONAL = {
-    "sectores": ("Semiconductores", "Hardware y servicios TI"),
+    "sectores": (),   # v1.2.45: APAGADA. Antes: ("Semiconductores", "Hardware y servicios TI")
     "peso": 0.25,
     "peg_min": 0.1,
     "mediana_min": 0.3,

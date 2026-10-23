@@ -373,20 +373,20 @@ def traducir_notas(notas, traducir_lista=None):
 # Dibujo
 # ---------------------------------------------------------------------------------------------------------------
 CSS = """
-.nt{margin:10px 0 14px;border:1px solid #d3e2f2;border-radius:14px;background:#f1f6fc;padding:2px 16px}
-.nt>summary{cursor:pointer;list-style:none;padding:11px 0;font-weight:700;font-size:1.02rem;color:#0f2a43;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.nt{margin:0;border:0;border-radius:14px;background:#fff;padding:0 16px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07)}
+.nt>summary{cursor:pointer;list-style:none;padding:0;min-height:48px;box-sizing:border-box;align-items:center!important;font-weight:700;font-size:1.02rem;color:#111827;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .nt>summary::-webkit-details-marker{display:none}
-.nt>summary::before{content:"▸";color:#5b7a99;font-size:.85rem}
+.nt>summary::before{content:"▸";color:#6b7280;font-size:.85rem}
 .nt[open]>summary::before{content:"▾"}
-.nt>summary small{font-weight:500;color:#5b7a99;font-size:.78rem}
+.nt>summary small{font-weight:500;color:#6b7280;font-size:.78rem}
 .nt ul{list-style:none;margin:0 0 6px;padding:0}
-.nt li{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding:8px 0;border-top:1px solid #dde8f4;font-size:.9rem;line-height:1.35}
-.nt li a{color:#111827!important;font-weight:600;text-decoration:none!important;flex:1 1 420px;min-width:0}
+.nt li{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px;padding:8px 0;border-top:1px solid #eef1f4;font-size:.9rem;line-height:1.35}
+.nt li a{color:#111827!important;font-weight:600;text-decoration:none!important;flex:1 1 220px;min-width:0}
 .nt li a:hover{text-decoration:underline!important}
-.nt-m{font-size:.76rem;color:#5b7a99;white-space:nowrap}
+.nt-m{font-size:.76rem;color:#6b7280;white-space:nowrap}
 .nt-e{font-size:.72rem;font-weight:700;color:#065f46;background:#d1fae5;border-radius:999px;padding:1px 8px;white-space:nowrap}
-.nt-pie{font-size:.74rem;color:#5b7a99;padding:2px 0 10px}
-.nt-vacio{font-size:.86rem;color:#41566b;padding:2px 0 12px}
+.nt-pie{font-size:.74rem;color:#6b7280;padding:2px 0 10px}
+.nt-vacio{font-size:.86rem;color:#4b5563;padding:2px 0 12px}
 @media (max-width:820px){.nt{padding:2px 12px}.nt li a{flex-basis:100%}}
 """
 

@@ -10,11 +10,11 @@ import base64
 import json
 
 # Valores de arranque (lo que NO hace falta guardar)
-DEFECTO = {"mc": "Sin mínimo", "dy": 0.0, "met": 1, "ord": "fv_upside", "asc": False, "rev": False}
+DEFECTO = {"mc": "Sin mínimo", "dy": 0.0, "met": 1, "ord": "market_cap", "asc": False, "rev": False}   # v1.2.45: orden inicial por capitalizacion bursatil
 
 
 def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), paises=(), mc="Sin mínimo", dy=0.0, met=1,
-              ord_="fv_upside", asc=False, rev=False) -> str:
+              ord_="market_cap", asc=False, rev=False) -> str:
     """Texto corto (base64 de un JSON chico) con los filtros y el orden. Sin nada elegido devuelve ''.
     Sectores y categorias se guardan por su posicion en la lista completa (mas corto que el nombre)."""
     e = {}

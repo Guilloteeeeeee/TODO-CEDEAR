@@ -165,3 +165,8 @@ NOTICIAS_FUENTES = {
         ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
     )},
 }
+
+
+# v1.2.45: fondo de la pagina. Un gris casi blanco hace que los paneles blancos con sombra suave se noten como paneles.
+# Para volver al fondo blanco de siempre: FONDO_PAGINA = "#ffffff".
+FONDO_PAGINA = "#f5f6f8"
