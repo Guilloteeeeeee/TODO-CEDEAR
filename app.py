@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.41"
+APP_VERSION = "1.2.42"
 
 import streamlit as st
 import pandas as pd
@@ -32,6 +32,7 @@ from ui.fuentes import css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
 from ui import noticias as _noticias
 from ui.cajas import CSS as CSS_CAJAS
+from ui.exportar import excel_bytes
 from ui import estado as estado_url
 from ui.logos import logo_html
 try:
@@ -517,11 +518,41 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 ANCHOS_TABLA = [2.6, 0.8, 1.7, 1.7, 3.0, 1.2, 1.5, 3.4, 1.0]
 
 
+# Opciones del selector "Ordenar por" (solo se ve en el celular, donde los titulos de la tabla no entran): (texto, columna, ascendente).
+# Es el mismo orden que dan los titulos de la tabla en la computadora.
+ORDENES_MOVIL = [
+    ("Valoración: de más barata a más cara", "fv_upside", False), ("Valoración: de más cara a más barata", "fv_upside", True),
+    ("Puntaje: de mayor a menor", "score_total", False), ("Puntaje: de menor a mayor", "score_total", True),
+    ("Empresa: de la A a la Z", "nombre", True), ("Empresa: de la Z a la A", "nombre", False),
+    ("Ticker: de la A a la Z", "ticker", True), ("Ticker: de la Z a la A", "ticker", False),
+    ("Market Cap: de mayor a menor", "market_cap", False), ("Market Cap: de menor a mayor", "market_cap", True),
+    ("Precio: de mayor a menor", "precio_actual", False), ("Precio: de menor a mayor", "precio_actual", True),
+    ("Dividend Yield: de mayor a menor", "dividend_yield_actual", False), ("Dividend Yield: de menor a mayor", "dividend_yield_actual", True),
+]
+
+
+def _cambiar_orden_movil():
+    """Al elegir un orden en el selector del celular se guarda como si se hubiera tocado el titulo de la tabla."""
+    eleg = st.session_state.get("orden_movil")
+    for texto, col, asc in ORDENES_MOVIL:
+        if texto == eleg:
+            st.session_state["sort_col"], st.session_state["sort_asc"] = col, asc
+            return
+
+
 def render_tabla_visual(df_show: pd.DataFrame, estado=None):
     """Tabla visual: titulos ordenables (botones) y filas en una sola pieza de HTML con la misma grilla."""
     sort_col = st.session_state.get("sort_col", "fv_upside")
     sort_asc = st.session_state.get("sort_asc", False)
     st.markdown(f"<style>{css_encabezado(sort_col)}</style>", unsafe_allow_html=True)
+
+    # Celular: el selector reemplaza a los titulos (la hoja de estilos esconde uno u otro segun el ancho de la pantalla)
+    for texto, col, asc in ORDENES_MOVIL:
+        if col == sort_col and asc == bool(sort_asc):
+            st.session_state["orden_movil"] = texto
+            break
+    with st.container(key="orden_movil_caja"):
+        st.selectbox("Ordenar por", [t for t, _, _ in ORDENES_MOVIL], key="orden_movil", on_change=_cambiar_orden_movil)
 
     cols = st.columns(ANCHOS_VISUAL, gap="small")
     titulos = [
@@ -546,7 +577,19 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None):
     st.markdown(html_tabla_visual(df_show, estado), unsafe_allow_html=True)
 
 
-def render_main_table(df: pd.DataFrame, filtros: dict):
+def _boton_excel(df_show, fecha, aviso):
+    """Boton "Descargar en Excel": las empresas que se ven (con los filtros y el orden elegidos). Si algo falla, no se muestra."""
+    try:
+        datos = excel_bytes(df_show, fecha, aviso, APP_VERSION)
+    except Exception:  # noqa: BLE001
+        return
+    dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
+    st.download_button("⬇ Descargar la tabla en Excel", data=datos, file_name=f"todocedears_{dia}.xlsx", key="descarga_excel",
+                       mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
+                       help="Baja un archivo .xlsx con las empresas que ves ahora (con los filtros y el orden elegidos). Es información, no una recomendación.")
+
+
+def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
     """Renderiza la tabla principal con colores y filtros aplicados."""
 
     df_show = df.copy()
@@ -641,10 +684,14 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     # --- v1.2.28: la tabla visual es la definitiva (encabezados ordenables). La tabla clasica queda como
     # vista de revision: se muestra cuando se marca "Ver métodos del Fair Value".
     ver_metodos = bool(filtros.get("ver_metodos_fv"))
-    st.markdown(f"**{len(df_show)} empresas**" + ("  ·  vista de revisión (tabla clásica)" if ver_metodos else ""))
     if not ver_metodos:
+        c_n, c_xl = st.columns([3, 2], vertical_alignment="center")
+        c_n.markdown(f"**{len(df_show)} empresas**")
+        with c_xl:
+            _boton_excel(df_show, fecha, aviso)
         render_tabla_visual(df_show, filtros.get("estado_url"))
         return
+    st.markdown(f"**{len(df_show)} empresas**  ·  vista de revisión (tabla clásica)")
 
     if ver_metodos:
         st.markdown(_resumen_cobertura_fv(df_show), unsafe_allow_html=True)
@@ -994,6 +1041,7 @@ def render_noticias(df, descarga, lugar=None):
     try:
         crudo = _noticias.esperar(descarga)
         notas, horas = _noticias.ordenar(crudo, list(df["ticker"]))
+        notas = _noticias.traducir_notas(notas)
         hubo = bool(crudo and crudo.get("feeds_ok"))
         cuerpo = f"<style>{_noticias.CSS}</style>" + _noticias.noticias_html(notas, horas, hubo_respuesta=hubo)
         (lugar if lugar is not None else st).markdown(cuerpo, unsafe_allow_html=True)
@@ -1094,7 +1142,7 @@ def main():
         st.rerun()
 
     # Tabla principal
-    render_main_table(df, filtros)
+    render_main_table(df, filtros, fecha, aviso)
 
     if noticias_pendientes:
         render_noticias(df, descarga_noticias, lugar_noticias)

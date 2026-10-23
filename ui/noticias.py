@@ -12,7 +12,8 @@ Como funciona:
   * Si hay menos de 5 notas en 24 h, amplia la ventana a 48 y a 72 h.
   * Guarda el resultado 15 minutos en memoria (todos los que abren la app comparten la misma descarga).
   * Si la fuente no responde, la app sigue normal y muestra un renglon chico avisandolo. Nunca rompe la pagina.
-  * Los titulares salen en el idioma de la fuente elegida (español con Ambito, ingles con CNBC).
+  * Los titulares salen en el idioma de la fuente elegida (español con Ambito, ingles con CNBC). Con CNBC se pueden traducir
+    automaticamente al español (NOTICIAS_TRADUCIR = True; ver ui/traducir.py); si la traduccion falla, el titular queda en ingles.
 
 No usa JavaScript ni cuentas ni claves. Las fuentes y sus feeds se cambian en config/ajustes.py (NOTICIAS_FUENTES).
 """
@@ -64,6 +65,9 @@ HORAS = int(_cfg("NOTICIAS_HORAS", 24))
 HORAS_MAX = int(_cfg("NOTICIAS_HORAS_MAX", 72))
 MINUTOS_CACHE = int(_cfg("NOTICIAS_MINUTOS_CACHE", 15))
 ABIERTO = bool(_cfg("NOTICIAS_ABIERTO", False))
+# Traduccion automatica al español: solo tiene sentido con la fuente en ingles (IDIOMA = "en"). Ver ui/traducir.py.
+TRADUCIR = bool(_cfg("NOTICIAS_TRADUCIR", False)) and IDIOMA == "en"
+TRADUCIR_MAIL = str(_cfg("NOTICIAS_TRADUCIR_MAIL", "") or _cfg("COMENTARIOS_MAIL", "") or "")
 TIMEOUT_S = 5
 USER_AGENT = "Mozilla/5.0 (compatible; TodoCedears/1.2; lector de titulares RSS; contacto: finanzas.medicos@gmail.com)"
 
@@ -351,6 +355,20 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
     return salida[:cantidad], usadas
 
 
+def traducir_notas(notas, traducir_lista=None):
+    """Agrega `titulo_es` a las notas que se pudieron traducir (solo si TRADUCIR esta activo; si no, devuelve las notas tal cual).
+    Las menciones de empresas ya se buscaron en el titulo original: esto solo cambia lo que se lee."""
+    if not TRADUCIR or not notas:
+        return notas
+    try:
+        if traducir_lista is None:
+            from ui.traducir import traducir_lista
+        mapa = traducir_lista([n["titulo"] for n in notas], TRADUCIR_MAIL)
+        return [{**n, "titulo_es": mapa[n["titulo"]]} if n["titulo"] in mapa else n for n in notas]
+    except Exception:  # noqa: BLE001
+        return notas
+
+
 # ---------------------------------------------------------------------------------------------------------------
 # Dibujo
 # ---------------------------------------------------------------------------------------------------------------
@@ -403,10 +421,15 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
         etiq = ""
         if n.get("menciona"):
             etiq = f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
-        filas.append(f'<li><a href="{link}" target="_blank" rel="noopener noreferrer">{html.escape(n["titulo"])}</a>'
+        es = n.get("titulo_es")
+        texto = es or n["titulo"]
+        tip = f' title="Titular original: {html.escape(n["titulo"], quote=True)}"' if es else ""
+        filas.append(f'<li><a href="{link}" target="_blank" rel="noopener noreferrer"{tip}>{html.escape(texto)}</a>'
                      f'{etiq}<span class="nt-m">{html.escape(meta)}</span></li>')
-    idioma = " · titulares en inglés" if IDIOMA == "en" else ""
+    hay_es = any(n.get("titulo_es") for n in notas)
+    idioma = (" · titulares traducidos del inglés" if hay_es else " · titulares en inglés") if IDIOMA == "en" else ""
+    aviso_trad = (" Los titulares están traducidos automáticamente: pueden tener errores (al pasar el mouse se ve el original)." if hay_es else "")
     return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE} · últimas {horas} h{idioma}</small></summary>'
             f'<ul>{"".join(filas)}</ul>'
             f'<div class="nt-pie">Orden: primero las que nombran empresas del screener (etiqueta verde), después las de portada, '
-            f'después las más recientes. Cada título abre la nota en {FUENTE}. Es información, no una recomendación.</div></details>')
+            f'después las más recientes. Cada título abre la nota en {FUENTE}.{aviso_trad} Es información, no una recomendación.</div></details>')

@@ -146,6 +146,10 @@ NOTICIAS_HORAS = 24              # ventana de tiempo; si hay menos de NOTICIAS_C
 NOTICIAS_HORAS_MAX = 72
 NOTICIAS_MINUTOS_CACHE = 15      # cada cuanto se vuelve a bajar (todos los visitantes comparten la descarga)
 NOTICIAS_ABIERTO = False         # True = el recuadro aparece desplegado; False = cerrado (se abre con un toque)
+# Traduccion automatica (v1.2.42): con NOTICIAS_IDIOMA = "en", True traduce al español los titulares de CNBC con el servicio
+# gratuito MyMemory. Es traduccion automatica (puede tener errores); si falla, el titular queda en ingles. Con "es" no hace nada.
+NOTICIAS_TRADUCIR = False
+NOTICIAS_TRADUCIR_MAIL = ""      # opcional: mail para subir la cuota gratuita de MyMemory de 5.000 a 50.000 caracteres por dia (vacio = COMENTARIOS_MAIL)
 # Por idioma: nombre de la fuente y sus feeds (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca
 # cuales notas estan ahi; no se muestra por separado.
 NOTICIAS_FUENTES = {

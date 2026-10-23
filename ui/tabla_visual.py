@@ -206,6 +206,39 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 [data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"]{background:#222d36!important;border-color:#222d36!important;color:#fff!important;font-weight:600}
 [data-testid="stButtonGroup"] button[aria-pressed="true"] p,[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"] p{color:#fff}
 [data-testid="stButtonGroup"] button[aria-pressed="true"]:hover{background:#33414d!important;border-color:#33414d!important;color:#fff!important}
+/* Celular y pantallas angostas (v1.2.42): cada fila pasa a ser una tarjeta; el encabezado de botones se esconde y aparece el
+   selector "Ordenar por" (st-key-orden_movil_caja). Orden de las celdas de la fila: 1 Empresa, 2 Ticker, 3 Market Cap, 4 Precio,
+   5 Valoracion, 6 Puntaje, 7 Dividend Yield. */
+.st-key-orden_movil_caja{display:none}
+@media (max-width:900px){
+div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre){display:none!important}
+.st-key-orden_movil_caja{display:block}
+div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
+.tv2{border:0;background:transparent;border-radius:0;overflow:visible}
+.tv2 .tv2-r,.tv2 .tv2-r:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+ grid-template-areas:"emp emp tk" "val val pts" "mc pr dy";gap:0;border:1px solid #d5dde6;border-radius:12px;background:#fff;margin:0 0 10px;padding:4px 2px}
+.tv2-r>div{padding:6px 10px}
+.tv2-r:hover>div,.tv2-r:hover>.tv2-v,.tv2-r>.tv2-v{background:transparent}
+.tv2-r>div:nth-child(1){grid-area:emp}
+.tv2-r>div:nth-child(2){grid-area:tk;align-items:flex-end;text-align:right}
+.tv2-r>div:nth-child(3){grid-area:mc}
+.tv2-r>div:nth-child(4){grid-area:pr}
+.tv2-r>div:nth-child(5){grid-area:val;align-items:flex-start}
+.tv2-r>div:nth-child(6){grid-area:pts;align-items:flex-end}
+.tv2-r>div:nth-child(7){grid-area:dy}
+.tv2-r>div:nth-child(3),.tv2-r>div:nth-child(4),.tv2-r>div:nth-child(7){align-items:flex-start;justify-content:flex-start;text-align:left;border-top:1px solid #eef1f4;padding-top:8px}
+.tv2-r>div:nth-child(3)::before,.tv2-r>div:nth-child(4)::before,.tv2-r>div:nth-child(7)::before{font-size:10.5px;font-weight:600;color:#4b5563;margin-bottom:2px;letter-spacing:.2px}
+.tv2-r>div:nth-child(3)::before{content:"Market Cap"}
+.tv2-r>div:nth-child(4)::before{content:"Precio"}
+.tv2-r>div:nth-child(7)::before{content:"Dividend Yield"}
+.tv2-r>div:nth-child(5) .tv2-vc,.tv2-r>div:nth-child(5) .tv-vl{align-items:flex-start;text-align:left}
+.tv2-r>div:nth-child(5) .tv-cat{justify-content:flex-start}
+.tv2-r>div:nth-child(7) .tv2-dy{text-align:left}
+.tv2-r>div:nth-child(7) .tv2-dyc .tv2-dyr{flex-direction:column;align-items:flex-start;gap:2px}
+.tv2-r>div:nth-child(7) .tv2-dym{margin-top:1px}
+.tv2-nm{font-size:15px}
+.tv2-l2{white-space:normal}
+}
 span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!important}
 span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}
 span[data-baseweb="tag"] svg{fill:#475569!important}
