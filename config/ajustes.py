@@ -74,15 +74,22 @@ FUENTE_APP = "Inter"
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"
 
-# --- Encabezado de la app (v1.2.35) ----------------------------------------------------------------
-# Subtitulo que va debajo del nombre, en el cartel oscuro de arriba. Cambialo a gusto.
-SUBTITULO_APP = ("El primer filtro para valuar CEDEARs: qué podría estar barato, qué caro y qué a precio razonable, "
-                 "en un solo vistazo.")
-
-# --- Etiqueta de valoracion de cada fila (v1.2.35) -------------------------------------------------
-# "medidor": cinco tramos de color (de barata a cara) con el tramo de la empresa encendido y el nombre de la categoria abajo.
-# "pildora": una etiqueta de color con el nombre de la categoria (el estilo de la v1.2.34).
-ESTILO_ETIQUETA = "medidor"
+# --- Franja negra de arriba (v1.2.36) ----------------------------------------------------------------
+# La franja lleva el nombre TodoCedears a la izquierda. Para usar tu imagen del titulo, guardala como
+# assets/marca/titulo-todocedears.png (si el archivo no esta, se escribe el nombre en letras blancas).
+# A la derecha van los iconos y el menu desplegable. COMPLETA tus links: lo que quede vacio ("") no se muestra.
+#   youtube / instagram : el link del canal / del perfil
+#   mail                : tu mail (nombre@dominio.com) o un link
+#   whatsapp            : tu numero con codigo de pais y sin simbolos (ej. 5491112345678) o el link
+#   quienes_somos / abrir_cuenta : los links que quieras abrir desde el menu
+ENLACES_MARCA = {
+    "youtube": "",
+    "instagram": "",
+    "mail": "",
+    "whatsapp": "",
+    "quienes_somos": "",
+    "abrir_cuenta": "",
+}
 
 # --- Barra de valoracion (v1.2.34; franja y escala ajustadas en la v1.2.35) --------------------------
 # Es solo dibujo: no cambia el Fair Value, el puntaje ni la categoria.
