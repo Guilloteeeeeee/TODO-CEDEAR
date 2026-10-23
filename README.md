@@ -161,6 +161,23 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
 
+### Franja con Quiénes somos / Abrite una cuenta / Comentarios, título con tipografía nueva y mayúsculas (v1.2.38)
+
+- **Franja negra (derecha):** de izquierda a derecha, los iconos (YouTube, Instagram, mail, WhatsApp de la comunidad e **Intramed con su logo**), **Quiénes somos** (se muestra siempre; sin link queda como texto hasta que se cargue), **Abrite una cuenta con nosotros ▾** (con un borde verde, siempre visible) y **Comentarios**, y el toro chico. Se sacó el botón "Menú". En el celular el título y el toro quedan arriba y los textos pasan a un segundo renglón (el texto se acorta a "Abrite una cuenta"; los iconos se ocultan).
+- **Abrite una cuenta con nosotros:** al tocarlo se despliega con los logos de **Balanz** (bordes redondeados) e **Inviu**; cada logo es un link a la apertura de cuenta (Balanz: `…/abrir-cuenta-2.aspx?reference=gdipalma@ap.balanz.com`; Inviu: `https://inviu.page.link/4Yo7`). Debajo de cada logo va un renglón chico: la identificación del agente de Balanz (Ap, matrícula y mail) y el alias de Inviu (solo texto, no es un link). Los logos son `assets/marca/balanz.png` e `inviu.png`; el de Intramed, `assets/marca/intramed.png`. Se cargan en `CUENTAS_MARCA` y `ENLACES_MARCA` de `config/ajustes.py`.
+- **Comentarios:** por ahora abre un mail a `finanzas.medicos@gmail.com` con el asunto "Comentarios sobre TodoCedears" ya escrito. Si se arma un formulario (por ejemplo, Google Forms), se pone su link en `ENLACES_MARCA["comentarios"]`.
+- **WhatsApp:** se sacó el número personal. El icono vuelve a aparecer cuando se cargue en `ENLACES_MARCA["whatsapp"]` el link de invitación a la comunidad (`https://chat.whatsapp.com/...`).
+- **Título:** nueva tipografía (Poppins Bold, de aspecto parecido a la de Investing: redondeada y gruesa), con las letras superpuestas y un fino corte negro entre una y otra; la T y la C en verde vivo `#00E85C`. PNG con fondo transparente en `assets/marca/titulo-todocedears.png`.
+- **Mayúsculas en la valoración:** cada palabra con su inicial en mayúscula ("Significativamente Sobrevalorada", "Razonablemente Valuada") en la tabla, la página de cada empresa, la escala de colores y las pastillas del filtro.
+- **Imágenes más livianas:** los logos y el título se redujeron al tamaño que se usa en pantalla.
+- **Sin cambios de método:** ninguna fórmula, peso, umbral, Fair Value, puntaje ni categoría cambió.
+
+#### Análisis del 23/10 (solo lectura, sin implementar): qué tira del promedio en las empresas que cambiarían con la opción B
+
+- **Qué son los números:** 22 de 166 empresas tienen al menos un método descartado por el Fair Value (precio implícito fuera de 1/3x a 3x). Por método, el Fair Value descarta: PEG 7 de 42 empresas que lo usan, Div. Yield 6 de 113, P/E 4 de 143, P/FCF 4 de 129, EV/EBITDA 3 de 141, P/B 1 de 41. Además acepta, sin descartar, precios implícitos de 2x o más (o de 0,5x o menos) en 21 casos de P/FCF, 13 de P/E, 9 de PEG y 9 de EV/EBITDA: el corte es grueso.
+- **Tres familias de causas** (ver el detalle en la respuesta del 23/10): (1) PEG en semiconductores (peso 40 %): 9 de 15 tienen un PEG de 0,07 a 0,97 que llena el puntaje de la métrica (95 a 100) porque depende de proyecciones de crecimiento; INTC, TXN, WDC y AVGO cambiarían de categoría solo por descartarlo; (2) múltiplos actuales distorsionados por un hecho puntual (AMZN: P/E de 20,1 con ganancias que incluyen una revalorización contable de Anthropic y P/FCF de 838,7 por la inversión en capacidad; MRK: P/E de 117 por un resultado contable deprimido); (3) medianas de 5 años que reflejan otra época (CRWD, P/E mediano 925; WDC, PEG mediano 170; DIS y AMZN, P/E mediano de 55 y 45).
+- **Conclusión:** la opción B alinea el puntaje con el Fair Value, pero no corrige la causa (datos puntuales o referencias distorsionadas). En AMZN la haría pasar de "razonablemente valuada" a "significativamente infravalorada" apoyándose en un P/E que está inflado por una ganancia contable no operativa. Pendiente de decisión de Guille.
+
 ### Título nuevo, links cargados, menú con cuentas y tabla de 6 columnas (v1.2.37)
 
 - **Título:** `assets/marca/titulo-todocedears.png` es el nuevo título (PNG con fondo transparente, letras superpuestas con un fino corte negro entre una y otra, la T y la C en verde vivo `#00E85C` sobre blanco). Se dibujó a partir de la imagen de Guille con la tipografía Inter Black; si se reemplaza el archivo por otro, la franja lo usa sin tocar código. La línea de abajo de la franja pasó de celeste a ese mismo verde.
@@ -295,7 +312,7 @@ cedear-screener/
 ├── ui/
 │   ├── tabla_visual.py     # Vista visual de la tabla (v1.2.16)
 │   ├── fuentes.py          # Tipografia Inter incrustada en el CSS (v1.2.33)
-│   ├── marca.py            # Franja negra de arriba, iconos, menu con cuentas y pie (v1.2.36/37) e icono de la pestaña
+│   ├── marca.py            # Franja negra de arriba, iconos, textos, desplegable de cuentas y pie (v1.2.36 a v1.2.38) e icono de la pestaña
 │   ├── estado.py           # Filtros y orden en la URL para volver desde la pagina de una empresa (v1.2.36)
 │   ├── logos.py            # Logos: archivo local, favicon o iniciales
 │   └── banderas.py         # Banderas de los paises (v1.2.21)

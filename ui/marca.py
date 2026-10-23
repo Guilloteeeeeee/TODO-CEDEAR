@@ -1,8 +1,9 @@
 """
-Marca de la app (v1.2.36): franja negra de punta a punta arriba de todo (como Investing), con el nombre TodoCedears a la
-izquierda (la imagen del titulo si esta en assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas)
-y, a la derecha, los iconos de YouTube / Instagram / mail / WhatsApp, un menu desplegable (Quienes somos, Abrite una
-cuenta) y el toro de "Finanzas para Medicos" chiquito. Los links se cargan en config/ajustes.py (ENLACES_MARCA y CUENTAS_MARCA): lo que
+Marca de la app (v1.2.36; menu rehecho en la v1.2.38): franja negra de punta a punta arriba de todo (como Investing), con el
+nombre TodoCedears a la izquierda (la imagen del titulo si esta en assets/marca/titulo-todocedears.png; si no, el nombre
+escrito en letras blancas) y, a la derecha, los iconos (YouTube, Instagram, mail, WhatsApp de la comunidad e Intramed),
+los textos "Quiénes somos", "Abrite una cuenta con nosotros" (desplegable con los logos de Balanz e Inviu, que llevan a la
+apertura de cuenta) y "Comentarios", y el toro de "Finanzas para Medicos" chiquito. Los links se cargan en config/ajustes.py (ENLACES_MARCA y CUENTAS_MARCA): lo que
 no tiene link no se muestra. El resto de la pantalla es blanco.
 
 El logo es de propiedad del dueño de la herramienta y viene en assets/marca/. Tambien es el icono de la pestaña.
@@ -35,39 +36,44 @@ CSS = """
 html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"]{overflow-x:hidden}
 [data-testid="stMainBlockContainer"]{padding-top:0!important}
 .mc-band{width:100vw;margin-left:calc(50% - 50vw);background:#000;border-bottom:3px solid #00e85c}
-.mc-in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:80px;padding:0 clamp(16px,3vw,48px);box-sizing:border-box}
-.mc-izq{min-width:0;display:flex;align-items:center}
+.mc-in{display:flex;align-items:center;gap:22px;height:80px;padding:0 clamp(16px,3vw,48px);box-sizing:border-box}
+.mc-izq{flex:1;min-width:0;display:flex;align-items:center}
 .mc-t{font-size:2.5rem;font-weight:800;line-height:1;letter-spacing:-1px;color:#fff;white-space:nowrap}
 .mc-t span{color:#00e85c}
 .mc-img{display:block;height:48px;width:auto;max-width:100%}
-.mc-der{display:flex;align-items:center;gap:18px;flex:none}
-.mc-ic{display:flex;align-items:center;gap:14px}
-.mc-ic a{display:flex;opacity:.78;transition:opacity .12s}
+.mc-nav{display:flex;align-items:center;gap:6px;flex:none}
+.mc-ic{display:flex;align-items:center;gap:14px;margin-right:12px}
+.mc-ic a{display:flex;align-items:center;opacity:.8;transition:opacity .12s}
 .mc-ic a:hover{opacity:1}
 .mc-ic svg{width:22px;height:22px;display:block}
-.mc-menu{position:relative}
-.mc-menu summary{list-style:none;cursor:pointer;color:#e5e7eb;font-size:.92rem;font-weight:600;padding:7px 12px;border:1px solid #3a3f45;border-radius:8px;user-select:none}
-.mc-menu summary::-webkit-details-marker{display:none}
-.mc-menu summary:hover,.mc-menu[open] summary{background:#1b1f23;color:#fff}
-.mc-pop{position:absolute;right:0;top:calc(100% + 8px);min-width:330px;background:#0c0f12;border:1px solid #3a3f45;border-radius:10px;padding:6px;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,.4)}
-.mc-pop a{display:block;padding:10px 12px;border-radius:7px;color:#f3f4f6!important;text-decoration:none!important;font-size:.95rem}
-.mc-pop a:hover{background:#1f2937}
-.mc-sep{margin:8px 12px 4px;padding-top:10px;border-top:1px solid #2a3037;font-size:.74rem;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:#9ca3af}
-.mc-pop a.mc-cta{display:flex;align-items:center;gap:12px}
-.mc-lg{flex:none;width:34px;height:34px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.mc-lg img{width:100%;height:100%;object-fit:contain;display:block}
-.mc-fv{display:block;width:100%;height:100%;background:#fff center/72% no-repeat}
-.mc-lg i{font-style:normal;font-weight:800;font-size:1rem;color:#334155}
-.mc-tx{min-width:0;display:flex;flex-direction:column;gap:2px}
-.mc-tx b{font-size:.98rem;font-weight:700;color:#fff}
-.mc-tx small{font-size:.76rem;line-height:1.3;color:#9ca3af}
+.mc-ic img{width:26px;height:26px;display:block;border-radius:50%}
+.mc-it{color:#e5e7eb!important;font-size:.92rem;font-weight:600;padding:8px 12px;border-radius:8px;white-space:nowrap;text-decoration:none!important;cursor:pointer;user-select:none;list-style:none}
+a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#1b1f23;color:#fff!important}
+span.mc-it{cursor:default;opacity:.9}
+.mc-d{position:relative}
+.mc-d summary::-webkit-details-marker{display:none}
+.mc-cta{border:1px solid #00e85c;color:#fff!important}
+.mc-pop{position:absolute;right:0;top:calc(100% + 8px);width:320px;background:#0c0f12;border:1px solid #3a3f45;border-radius:12px;padding:8px;z-index:1000;box-shadow:0 8px 24px rgba(0,0,0,.45)}
+.mc-pop a.mc-acc{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:10px 12px;border-radius:9px;text-decoration:none!important}
+.mc-pop a.mc-acc:hover{background:#1a2027}
+.mc-acc img{height:40px;width:auto;max-width:100%;display:block;border-radius:9px}
+.mc-acc small{font-size:.76rem;line-height:1.3;color:#9ca3af}
+.mc-lg{height:40px;min-width:40px;padding:0 12px;border-radius:9px;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#334155}
+.mc-fv{display:block;width:40px;height:40px;background:#fff center/72% no-repeat;border-radius:9px}
 .mc-toro{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .mc-toro img{width:36px;height:auto;display:block}
 .mc-datos{text-align:right;font-size:12.5px;color:#4b5563;margin:6px 4px -18px}
 .mc-datos b{color:#1f2937;font-weight:600}
 .mc-pie{margin:26px 0 10px;text-align:center;font-size:12.5px;color:#4b5563}
 .mc-pie b{color:#1f2937;font-weight:600}
-@media (max-width:760px){.mc-t{font-size:1.7rem}.mc-in{height:64px;gap:10px}.mc-ic{display:none}.mc-img{height:34px}}
+@media (max-width:1180px){.mc-ic{display:none}}
+@media (max-width:820px){
+.mc-in{flex-wrap:wrap;height:auto;gap:2px 12px;padding:8px 16px 6px}
+.mc-izq{order:1;flex:1 1 0}.mc-toro{order:2;width:40px;height:40px}.mc-toro img{width:32px}
+.mc-nav{order:3;flex:1 1 100%;justify-content:center;gap:2px;border-top:1px solid #1d2227;padding-top:4px;margin-top:2px}
+.mc-t{font-size:1.7rem}.mc-img{height:36px}.mc-it{font-size:.8rem;padding:6px 8px}.mc-x{display:none}
+.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,320px)}
+}
 """
 
 _SVG = {
@@ -77,7 +83,6 @@ _SVG = {
     "whatsapp": '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"><path d="M12 3a9 9 0 0 0-7.7 13.6L3 21l4.6-1.2A9 9 0 1 0 12 3z"/><path d="M9 8.4c.2-.4.5-.5.8-.5h.5c.2 0 .3.1.4.3l.8 1.8c.1.2 0 .4-.1.6l-.6.7c-.1.1-.1.3 0 .4.7 1.1 1.5 1.8 2.6 2.4.2.1.3.1.4 0l.7-.8c.2-.2.4-.2.6-.1l1.7.8c.2.1.3.2.3.4 0 .8-.4 1.4-1 1.7-.6.3-1.3.3-1.9.1-2.9-1-4.8-3-5.7-5.4-.2-.6-.1-1.3.3-1.9z" fill="#fff" stroke="none"/></svg>',
 }
 _TITULOS_ICONO = {"youtube": "YouTube", "instagram": "Instagram", "mail": "Contacto por mail", "whatsapp": "WhatsApp"}
-_ITEMS_MENU = [("quienes_somos", "Quiénes somos"), ("intramed", "Intramed")]
 _TITULO_CUENTAS = "Abrite una cuenta con nosotros"
 _MIME = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp", ".svg": "image/svg+xml"}
 
@@ -126,14 +131,17 @@ def _url(clave, valor):
     return v
 
 
+_CLAVES = ("youtube", "instagram", "mail", "whatsapp", "intramed", "quienes_somos", "comentarios")
+
+
 def _enlaces(enlaces):
     e = ENLACES_MARCA if enlaces is None else enlaces
-    return {k: _url(k, e.get(k)) for k in ("youtube", "instagram", "mail", "whatsapp", "quienes_somos", "intramed")}
+    return {k: _url(k, e.get(k)) for k in _CLAVES}
 
 
 def _logo_cuenta(c):
-    """Logo de una cuenta del menu: el archivo local de assets/marca/ si esta; si no, el icono del sitio (Google) cuando hay
-    dominio; si no, la inicial del nombre en un cuadradito."""
+    """Logo de una cuenta del desplegable: el archivo de assets/marca/ si esta; si no, el icono del sitio (Google) cuando hay
+    dominio; si no, el nombre en un cuadradito blanco."""
     nombre = str(c.get("nombre") or "")
     arch = str(c.get("logo") or "")
     if arch:
@@ -145,41 +153,57 @@ def _logo_cuenta(c):
     if dom and LOGOS_EN_LINEA == "google" and re.fullmatch(r"[A-Za-z0-9.\-]+", dom):
         # como fondo (no como <img>): si el icono no carga queda un cuadradito blanco en vez del icono de imagen rota
         return f'<span class="mc-fv" style="background-image:url(https://www.google.com/s2/favicons?domain={dom}&amp;sz=64)"></span>'
-    return f'<i>{html.escape(nombre[:1].upper() or "?")}</i>'
+    return f'<span class="mc-lg">{html.escape(nombre)}</span>'
 
 
 def _cuentas_html(cuentas=None):
-    """Filas del menu "Abrite una cuenta con nosotros": logo, nombre y renglon chico (solo las que tienen link)."""
+    """Filas del desplegable "Abrite una cuenta con nosotros": el logo (clic = abre el link de apertura de cuenta) y un renglon
+    chico debajo. Solo las que tienen link."""
     filas = []
     for c in (CUENTAS_MARCA if cuentas is None else cuentas):
         url = _url("cuenta", c.get("url"))
         if not url or not str(c.get("nombre") or "").strip():
             continue
         det = f'<small>{html.escape(str(c.get("detalle")))}</small>' if c.get("detalle") else ""
-        filas.append(f'<a class="mc-cta" href="{html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer">'
-                     f'<span class="mc-lg">{_logo_cuenta(c)}</span><span class="mc-tx"><b>{html.escape(str(c["nombre"]))}</b>{det}</span></a>')
-    return (f'<div class="mc-sep">{html.escape(_TITULO_CUENTAS)}</div>' + "".join(filas)) if filas else ""
+        filas.append(f'<a class="mc-acc" href="{html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" '
+                     f'title="Abrir cuenta en {html.escape(str(c["nombre"]))}">{_logo_cuenta(c)}{det}</a>')
+    if not filas:
+        return ""
+    return (f'<details class="mc-d"><summary class="mc-it mc-cta">Abrite una cuenta<span class="mc-x"> con nosotros</span> ▾</summary>'
+            f'<div class="mc-pop">{"".join(filas)}</div></details>')
+
+
+def _icono_img(clave, titulo, url):
+    """Icono hecho con una imagen de assets/marca/<clave>.png (ej. el logo de Intramed). Sin archivo, no se muestra."""
+    uri = _uri(os.path.join(_DIR, f"{clave}.png"))
+    if not url or not uri:
+        return ""
+    return (f'<a href="{html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" title="{titulo}" aria-label="{titulo}">'
+            f'<img src="{uri}" alt="{titulo}"></a>')
 
 
 def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None):
-    """Franja negra de punta a punta con el nombre (o la imagen del titulo) a la izquierda y, a la derecha, iconos, menu y el
-    toro chico. Debajo, la fecha de los datos (chica, a la derecha)."""
+    """Franja negra de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los iconos, "Quiénes somos",
+    el desplegable "Abrite una cuenta con nosotros", "Comentarios" y el toro chico. Debajo, la fecha de los datos (chica, a la derecha)."""
     uri_titulo = _uri(TITULO)
     izq = (f'<img class="mc-img" src="{uri_titulo}" alt="{html.escape(str(nombre))}">' if uri_titulo
            else f'<div class="mc-t">{_titulo(nombre)}</div>')
     e = _enlaces(enlaces)
     iconos = "".join(f'<a href="{html.escape(e[k], quote=True)}" target="_blank" rel="noopener noreferrer" title="{_TITULOS_ICONO[k]}" '
                      f'aria-label="{_TITULOS_ICONO[k]}">{_SVG[k]}</a>' for k in ("youtube", "instagram", "mail", "whatsapp") if e[k])
-    items = "".join(f'<a href="{html.escape(e[k], quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(t)}</a>'
-                    for k, t in _ITEMS_MENU if e[k])
-    items += _cuentas_html(cuentas)
-    menu = f'<details class="mc-menu"><summary>Menú ▾</summary><div class="mc-pop">{items}</div></details>' if items else ""
+    iconos += _icono_img("intramed", "Intramed", e["intramed"])
+    iconos = f'<div class="mc-ic">{iconos}</div>' if iconos else ""
+    # "Quiénes somos" se muestra siempre; sin link todavia, queda como texto (sin hacer nada al tocarlo)
+    qs = (f'<a class="mc-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer">Quiénes somos</a>'
+          if e["quienes_somos"] else '<span class="mc-it" title="Próximamente">Quiénes somos</span>')
+    com = (f'<a class="mc-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer" '
+           f'title="Escribinos tus sugerencias u opiniones">Comentarios</a>' if e["comentarios"] else "")
+    nav = f'<div class="mc-nav">{iconos}{qs}{_cuentas_html(cuentas)}{com}</div>'
     uri = logo_uri()
     toro = (f'<div class="mc-toro"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}" title="{html.escape(NOMBRE_MARCA)}"></div>'
             if uri else "")
-    der = (f'<div class="mc-ic">{iconos}</div>' if iconos else "") + menu + toro
     datos = f'<div class="mc-datos">Datos al <b>{html.escape(str(datos_al))}</b></div>' if datos_al else ""
-    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div><div class="mc-der">{der}</div></div></div>{datos}'
+    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}</div></div>{datos}'
 
 
 def pie_html(version):

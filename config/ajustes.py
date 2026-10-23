@@ -74,27 +74,32 @@ FUENTE_APP = "Inter"
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"
 
-# --- Franja negra de arriba (v1.2.36; links cargados en la v1.2.37) ----------------------------------
+# --- Franja negra de arriba (v1.2.36; links cargados en la v1.2.37; menu rehecho en la v1.2.38) --------------------
 # La franja lleva el nombre TodoCedears a la izquierda (la imagen assets/marca/titulo-todocedears.png; si el archivo no esta,
-# se escribe el nombre en letras blancas). A la derecha van los iconos y el menu desplegable.
-# Lo que quede vacio ("") no se muestra:
+# se escribe el nombre en letras blancas). A la derecha van los iconos, "Quiénes somos", "Abrite una cuenta con nosotros"
+# (desplegable) y "Comentarios". Lo que quede vacio ("") no se muestra, salvo "Quiénes somos", que se muestra siempre (sin
+# link queda como texto, sin hacer nada al tocarlo, hasta que se cargue el link).
 #   youtube / instagram : el link del canal / del perfil
-#   mail                : tu mail (nombre@dominio.com) o un link
-#   whatsapp            : tu numero con codigo de pais (ej. +5491112345678) o el link
-#   intramed            : tu pagina institucional en Intramed (va en el menu)
-#   quienes_somos       : el link que quieras abrir desde el menu (hoy vacio: no se muestra)
+#   mail                : el mail de contacto (nombre@dominio.com) o un link
+#   whatsapp            : el link de invitacion al WhatsApp de la COMUNIDAD (https://chat.whatsapp.com/...) o un numero
+#                         con codigo de pais. Vacio: no se muestra el icono.
+#   intramed            : tu pagina institucional en Intramed (el icono es assets/marca/intramed.png)
+#   quienes_somos       : el link que quieras abrir (hoy vacio)
+#   comentarios         : donde la gente deja sugerencias u opiniones. Hoy abre un mail a la casilla de contacto con el asunto
+#                         ya escrito; si armas un formulario (ej. Google Forms), pone aca el link y se usa ese.
 ENLACES_MARCA = {
     "youtube": "https://www.youtube.com/@FinanzasparaMedicosArgentina",
     "instagram": "https://www.instagram.com/finanzasparamedicos.argentina/",
     "mail": "finanzas.medicos@gmail.com",
-    "whatsapp": "+5491132321659",
+    "whatsapp": "",
     "intramed": "https://www.intramed.net/institution/finanzas-para-medicos-argentina",
     "quienes_somos": "",
+    "comentarios": "mailto:finanzas.medicos@gmail.com?subject=Comentarios%20sobre%20TodoCedears",
 }
 
-# "Abrite una cuenta con nosotros" (menu desplegable): una fila por agente. "logo" es el nombre del archivo en assets/marca/
-# (si no esta, se usa el icono del sitio servido por Google cuando se indica "dominio"; si tampoco, solo el nombre).
-# "detalle" es el renglon chico de abajo (identificacion del agente / alias).
+# "Abrite una cuenta con nosotros" (desplegable): una fila por agente. El logo es un archivo de assets/marca/ ("logo") y al
+# tocarlo abre el link de apertura de cuenta ("url"). "detalle" es el renglon chico de abajo (identificacion del agente / alias).
+# Si falta el archivo del logo, se usa el icono del sitio servido por Google cuando se indica "dominio"; si no, el nombre.
 CUENTAS_MARCA = [
     {"nombre": "Balanz", "url": "https://www.balanz.com/abrir-cuenta-2.aspx?reference=gdipalma@ap.balanz.com",
      "logo": "balanz.png", "dominio": "balanz.com",

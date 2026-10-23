@@ -79,7 +79,7 @@ def escala_valoracion_html(mostrar_gris=False):
         aviso, principal = _partes_nombre(nombre_visible(nombre))
         hd = f'<span class="esc-hd">{html.escape(aviso)}</span>' if aviso else ""
         tramos.append(f'<div class="esc-s" style="background:{color};color:{txt}" title="Puntaje {rango}">'
-                      f'<div>{hd}<b>{html.escape(principal)}</b></div></div>')
+                      f'<div>{hd}<b>{html.escape(_mayusculas(principal))}</b></div></div>')
     gris = (f'<div class="esc-gp"><span class="esc-gc" style="background:{CATEGORIA_GRIS[1]}">{html.escape(nombre_visible(CATEGORIA_GRIS[0]))}</span>'
             f'<span class="esc-gt">sin métricas ni rango de 52 semanas</span></div>') if mostrar_gris else ""
     return ('<div class="esc"><div class="esc-t"><b>Escala de valoración</b>'
@@ -280,6 +280,11 @@ def _celda_mcap(row):
     return f'<span class="tv2-mc">{_mcap(row.get("market_cap"))}</span>'
 
 
+def _mayusculas(texto):
+    """Cada palabra con su inicial en mayuscula ("significativamente sobrevalorada" -> "Significativamente Sobrevalorada")."""
+    return " ".join(w[:1].upper() + w[1:] for w in str(texto).split(" "))
+
+
 def _partes_nombre(texto):
     """('Podría estar', 'significativamente infravalorada'): el aviso de que es una estimacion va chico arriba y la categoria
     grande abajo. Si el nombre no empieza con 'Podría estar' (p. ej. 'Datos insuficientes'), no hay aviso."""
@@ -302,7 +307,7 @@ def _texto_categoria(cat, color, con_aviso=True):
     from scoring.engine import nombre_visible
     aviso, nombre = _partes_nombre(nombre_visible(cat))
     hd = f'<span class="tv-vh">{html.escape(aviso)}</span>' if aviso and con_aviso else ""
-    return f'<div class="tv-vl" style="color:{texto_categoria(color)}">{hd}<span class="tv-vn">{html.escape(nombre)}</span></div>'
+    return f'<div class="tv-vl" style="color:{texto_categoria(color)}">{hd}<span class="tv-vn">{html.escape(_mayusculas(nombre))}</span></div>'
 
 
 def _celda_valoracion(row, con_categoria=True):

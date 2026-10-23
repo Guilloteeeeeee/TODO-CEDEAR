@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.37"
+APP_VERSION = "1.2.38"
 
 import streamlit as st
 import pandas as pd
@@ -38,7 +38,7 @@ except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
                              texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual, resumen_empresa_html,
-                             barra_empresa_html)
+                             barra_empresa_html, _mayusculas)
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -428,7 +428,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         sectores_sel = todos_sectores
 
     st.markdown('<div class="flt-t">Valoración</div>', unsafe_allow_html=True)
-    cats_sel = _pastillas("Valoración", cats_disponibles, nombre_corto, "flt_valoracion")
+    cats_sel = _pastillas("Valoración", cats_disponibles, lambda c: _mayusculas(nombre_corto(c)), "flt_valoracion")
     if not cats_sel:
         cats_sel = cats_disponibles
     cats_nombres = list(cats_sel)
