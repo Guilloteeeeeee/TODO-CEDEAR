@@ -30,7 +30,7 @@ CADA CUANTO ACTUALIZAR EL CACHE (v1.2.15)
 
 STOCK_ANALYSIS_MODO = "principal"
 
-# AVISO LEGAL (v1.2.29): se muestra en una barra fija al pie de la pantalla. Se puede cambiar el texto aca;
+# AVISO LEGAL (v1.2.29; desde la v1.2.41 va al final de la pagina, en el pie, y no en una barra fija). Se puede cambiar el texto aca;
 # si se deja vacio ("") la barra no se muestra. Lo redacto el programa como texto base: conviene que lo
 # revise el dueño de la herramienta (por ser asesor registrado) y lo ajuste a lo que corresponda.
 AVISO_LEGAL = ("Herramienta de filtrado inicial, con fines informativos y educativos. No es una recomendación de inversión "
@@ -132,22 +132,32 @@ AVISO_PODRIA_EN_TABLA = False
 RANGO_FV_MARGEN = 0.20
 ESCALA_BARRA_VECES = 1.8
 
-# --- Noticias Calientes (v1.2.39; fuente cambiada a CNBC en la v1.2.40) -------------------------------------
-# Titulares de CNBC (Mercados, Tecnologia, Economia), solo titulo + fuente + link. Orden: primero los que nombran empresas
-# del screener, despues los de la portada, y a igualdad el mas reciente. Ver ui/noticias.py.
-# Bloomberg se descarto porque sus notas son de pago. En CNBC casi todo se lee gratis; los articulos "CNBC Pro" (de pago) se
-# sacan de la lista.
+# --- Noticias Calientes (v1.2.39; CNBC en la v1.2.40; titulares en español desde la v1.2.41) ----------------
+# Titulares con solo titulo + fuente + link. Orden: primero los que nombran empresas del screener, despues los de la
+# portada, y a igualdad el mas reciente. Ver ui/noticias.py.
+# NOTICIAS_IDIOMA elige que fuente se usa:
+#   "es" = Ambito (titulares en español; mucha economia y mercados argentinos, poca tecnologia de Estados Unidos).
+#   "en" = CNBC (titulares en ingles; cubre mejor las empresas de Estados Unidos). Los articulos "CNBC Pro" (de pago) se sacan.
+# Bloomberg se descarto porque sus notas son de pago.
 NOTICIAS_ACTIVAS = True          # False = no se muestra ni se descarga nada
-NOTICIAS_FUENTE = "CNBC"         # nombre que se muestra en cada renglon
+NOTICIAS_IDIOMA = "es"           # "es" (Ambito) o "en" (CNBC)
 NOTICIAS_CANTIDAD = 5            # cuantos titulares
 NOTICIAS_HORAS = 24              # ventana de tiempo; si hay menos de NOTICIAS_CANTIDAD se amplia a 48 y 72 h (NOTICIAS_HORAS_MAX)
 NOTICIAS_HORAS_MAX = 72
 NOTICIAS_MINUTOS_CACHE = 15      # cada cuanto se vuelve a bajar (todos los visitantes comparten la descarga)
-NOTICIAS_ABIERTO = True          # True = el recuadro aparece desplegado; False = cerrado (se abre con un toque)
-# (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca cuales notas estan ahi; no se muestra por separado.
-NOTICIAS_FEEDS = (
-    ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
-    ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
-    ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
-    ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
-)
+NOTICIAS_ABIERTO = False         # True = el recuadro aparece desplegado; False = cerrado (se abre con un toque)
+# Por idioma: nombre de la fuente y sus feeds (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca
+# cuales notas estan ahi; no se muestra por separado.
+NOTICIAS_FUENTES = {
+    "es": {"fuente": "Ámbito", "feeds": (
+        ("Finanzas", "https://www.ambito.com/rss/pages/finanzas.xml", False),
+        ("Economía", "https://www.ambito.com/rss/pages/economia.xml", False),
+        ("Portada", "https://www.ambito.com/rss/home.xml", True),
+    )},
+    "en": {"fuente": "CNBC", "feeds": (
+        ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
+        ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
+        ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
+        ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
+    )},
+}

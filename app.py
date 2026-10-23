@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.40"
+APP_VERSION = "1.2.41"
 
 import streamlit as st
 import pandas as pd
@@ -40,7 +40,7 @@ except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
                              texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual, resumen_empresa_html,
-                             barra_empresa_html, _mayusculas)
+                             barra_empresa_html, leyenda_tabla_html, _mayusculas)
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -387,7 +387,7 @@ def _pastillas(etiqueta, opciones, formato, key):
                           placeholder="Todas")
 
 
-ORDENES_VALIDOS = ("nombre", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total", "dividend_yield_actual")
+ORDENES_VALIDOS = ("nombre", "ticker", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total", "dividend_yield_actual")
 MKTCAP_OPCIONES = {
     "Sin mínimo": 0,
     "≥ $1B": 1e9,
@@ -435,7 +435,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         cats_sel = cats_disponibles
     cats_nombres = list(cats_sel)
 
-    # --- Fila 3: País + Market Cap + Div. Yield + Métricas ---
+    # --- Fila 3: País + Market Cap + Dividend Yield + Métricas ---
     col_pais, col_mkt, col_dy, col_met = st.columns([2, 2, 2, 2])
 
     with col_pais:
@@ -456,7 +456,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 
     with col_dy:
         dy_minimo = st.slider(
-            "Div. Yield mínimo (%)",
+            "Dividend Yield mínimo (%)",
             min_value=0.0,
             max_value=10.0,
             step=0.5,
@@ -526,11 +526,12 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None):
     cols = st.columns(ANCHOS_VISUAL, gap="small")
     titulos = [
         (cols[0], "Empresa", "nombre"),
-        (cols[1], "Market Cap", "market_cap"),
-        (cols[2], "Precio", "precio_actual"),
-        (cols[3], "Valoración", "fv_upside"),
-        (cols[4], "Puntaje", "score_total"),
-        (cols[5], "Div. Yield", "dividend_yield_actual"),
+        (cols[1], "Ticker", "ticker"),
+        (cols[2], "Market Cap", "market_cap"),
+        (cols[3], "Precio", "precio_actual"),
+        (cols[4], "Valoración", "fv_upside"),
+        (cols[5], "Puntaje", "score_total"),
+        (cols[6], "Dividend Yield", "dividend_yield_actual"),
     ]
     for contenedor, etiqueta, clave in titulos:
         activo = sort_col == clave
@@ -540,7 +541,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None):
                 st.session_state["sort_asc"] = not sort_asc
             else:
                 st.session_state["sort_col"] = clave
-                st.session_state["sort_asc"] = (clave == "nombre")
+                st.session_state["sort_asc"] = (clave in ("nombre", "ticker"))
             st.rerun()
     st.markdown(html_tabla_visual(df_show, estado), unsafe_allow_html=True)
 
@@ -594,7 +595,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
     sort_asc = st.session_state.get("sort_asc", False)
 
     df_show["sector_txt"] = df_show["sector"].map(etiqueta_sector)
-    STR_COLS = {"nombre", "pais", "sector_txt"}
+    STR_COLS = {"nombre", "ticker", "pais", "sector_txt"}
     if sort_col == "sector":
         sort_col = "sector_txt"
     if sort_col in STR_COLS:
@@ -604,8 +605,15 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         df_show["_sort_v"] = df_show["score_total"].fillna(-1)
         df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
     elif sort_col == "fv_upside":
-        df_show["_sort_v"] = df_show["fv_upside"].fillna(-999 if not sort_asc else 999)
-        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+        # v1.2.41: la columna Valoracion ordena primero por categoria (de la mas barata a la mas cara, o al reves) y, adentro
+        # de cada categoria, por cuanto mas (o menos) vale el Fair Value que el precio. Asi las categorias no se mezclan.
+        # Sin tocar el orden (flecha ▼): primero las mas baratas y, adentro de cada categoria, la de mas diferencia. Con la flecha
+        # ▲ se invierte todo. "Datos insuficientes" (sin categoria) va siempre al final.
+        rango = {c: i for i, c in enumerate(CATEGORIAS_ORDEN)}
+        df_show["_cat"] = df_show["categoria"].map(rango)
+        df_show["_up"] = df_show["fv_upside"]
+        df_show = df_show.sort_values(["_cat", "_up"], ascending=[not sort_asc, sort_asc], na_position="last",
+                                      kind="mergesort").drop(columns=["_cat", "_up"])
     elif sort_col == "market_cap":
         df_show["_sort_v"] = df_show["market_cap"].fillna(0 if sort_asc else -1)
         df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
@@ -650,12 +658,12 @@ def render_main_table(df: pd.DataFrame, filtros: dict):
         "Sector": "sector",
         "Market Cap": "market_cap",
         "Valoración": "fv_upside",
-        "Div. Yield": "dividend_yield_actual",
+        "Dividend Yield": "dividend_yield_actual",
         "Rango 52s": "posicion_52s",
         "Categoría": "score_total",
         "Métricas": "metricas_usadas",
     }
-    headers = ["Empresa", "País", "Sector", "Market Cap", "Valoración", "Div. Yield", "Rango 52s", "Categoría", "Métricas"]
+    headers = ["Empresa", "País", "Sector", "Market Cap", "Valoración", "Dividend Yield", "Rango 52s", "Categoría", "Métricas"]
     anchos = ANCHOS_TABLA
     if ver_metodos:
         headers = headers + ["Métodos del Fair Value"]
@@ -824,7 +832,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
             "per": "P/E Ratio",
             "p_fcf": "P/FCF",
             "p_b": "P/Book",
-            "dividend_yield": "Div. Yield",
+            "dividend_yield": "Dividend Yield",
             "peg": "PEG",
             "p_ffo": "P/FFO",
             "p_affo": "P/AFFO",
@@ -917,7 +925,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
         descartados_fv = row.get("fair_value_descartados")
         if isinstance(descartados_fv, dict) and descartados_fv:
             etiquetas = {"ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF", "p_b": "P/Book",
-                         "dividend_yield": "Div. Yield", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO"}
+                         "dividend_yield": "Dividend Yield", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO"}
             st.caption(
                 "Métodos que no entran al promedio: "
                 + " · ".join(f"{etiquetas.get(m, m)} ({mot})" for m, mot in descartados_fv.items())
@@ -928,7 +936,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
 
         METRIC_LABELS_FV = {
             "ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF",
-            "p_b": "P/Book", "dividend_yield": "Div. Yield",
+            "p_b": "P/Book", "dividend_yield": "Dividend Yield",
             "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO",
         }
 
@@ -969,25 +977,14 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
 # APP PRINCIPAL
 # ---------------------------------------------------------------------------
 
-def render_aviso_legal():
-    """Barra fija al pie de la pantalla con el aviso (texto en config/ajustes.py: AVISO_LEGAL)."""
+def texto_aviso_legal():
+    """Texto del aviso (config/ajustes.py: AVISO_LEGAL). Desde la v1.2.41 va al final de la pagina, en el pie, y no en una barra fija."""
     try:
         from config.ajustes import AVISO_LEGAL
     except Exception:  # noqa: BLE001
         AVISO_LEGAL = ("Herramienta de filtrado inicial, con fines informativos y educativos. No es una recomendación "
                        "de inversión ni una oferta de compra o venta.")
-    texto = (AVISO_LEGAL or "").strip()
-    if not texto:
-        return
-    st.markdown(
-        '<style>'
-        '.aviso-fijo{position:fixed;left:0;right:0;bottom:0;z-index:999;background:#f3f5f8;border-top:1px solid #d5dde6;'
-        'color:#4b5563;font-size:12px;line-height:1.35;padding:7px 18px;text-align:center}'
-        '.aviso-fijo b{color:#374151}'
-        '[data-testid="stMainBlockContainer"]{padding-bottom:5rem}'
-        '</style>'
-        f'<div class="aviso-fijo"><b>Aviso:</b> {html.escape(texto)}</div>',
-        unsafe_allow_html=True)
+    return (AVISO_LEGAL or "").strip()
 
 
 def render_noticias(df, descarga, lugar=None):
@@ -1009,13 +1006,11 @@ def main():
     universe = load_custom_tickers()
     universe_key = str(sorted([t for ts in universe.values() for t in ts]))
 
-    # Franja negra de arriba con el nombre (y los iconos y el menu si estan cargados sus links). Se dibuja ya y, cuando se sabe
-    # la fecha de los datos, se completa con "Datos al ..." debajo.
-    cartel = st.empty()
-    cartel.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
-
-    # Aviso fijo al pie (se muestra siempre, aunque despues falle algo)
-    render_aviso_legal()
+    # Franja negra de arriba con el nombre (y los iconos y el menu si estan cargados sus links). El aviso y "Datos al ..." van
+    # al final de la pagina (pie_html).
+    st.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
+    aviso = texto_aviso_legal()
+    fecha = None
 
     # Noticias: la descarga arranca ya, en segundo plano, mientras se cargan los datos de las empresas
     descarga_noticias = _noticias.iniciar_descarga()
@@ -1034,12 +1029,9 @@ def main():
                     icon="⚠️",
                 )
             elif fuente.startswith("cache_vigente"):
-                # Antes habia un cuadro azul grande con esto; ahora es un renglon chico debajo de la franja negra
+                # Antes habia un cuadro azul grande con esto; ahora es un renglon chico en el pie de la pagina
                 ts_str = fuente.split("|")[1] if "|" in fuente else ""
                 fecha = ts_str.split(" ")[0] if ts_str and ts_str != "?" else None
-                if fecha:
-                    cartel.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP, datos_al=fecha),
-                                    unsafe_allow_html=True)
         except Exception as e:
             st.error(f"❌ Error al cargar datos y sin caché disponible: {e}")
             df = None
@@ -1066,6 +1058,7 @@ def main():
 
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
         st.stop()
 
     # Estilos de la tabla, de la escala, de la pagina de empresa y de las banderas (una sola vez por pagina)
@@ -1076,7 +1069,7 @@ def main():
     empresa = st.query_params.get("empresa")
     if empresa:
         render_pagina_empresa(df, empresa)
-        st.markdown(pie_html(APP_VERSION), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
         return
 
     # Noticias Calientes, arriba del Screener. Si ya estaban bajadas (se guardan 15 minutos) se dibujan al toque;
@@ -1086,21 +1079,19 @@ def main():
     if not noticias_pendientes:
         render_noticias(df, None, lugar_noticias)
 
-    # Screener: recuadro desplegable (celeste suave, como Noticias Calientes) con todos los filtros adentro. Cerrado, los filtros
-    # siguen valiendo: solo se esconden.
+    # Screener: recuadro desplegable (celeste suave, como Noticias Calientes), cerrado al abrir la pagina. Adentro: los filtros,
+    # la escala de valoracion y "Cómo leer la tabla". Cerrado, los filtros siguen valiendo: solo se esconden.
     st.markdown(f"<style>{CSS_CAJAS}</style>", unsafe_allow_html=True)
+    hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     with st.container(key="caja_screener"):
-        with st.expander("Screener", expanded=True):
+        with st.expander("Screener", expanded=False):
             filtros = render_filtros_inline(universe, df)
+            st.markdown(escala_valoracion_html(hay_gris) + leyenda_tabla_html(), unsafe_allow_html=True)
 
     # Forzar refresh limpia el cache de Streamlit
     if filtros["forzar_refresh"]:
         st.cache_data.clear()
         st.rerun()
-
-    # Escala de valoracion (titulo + tramos de color)
-    hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
-    st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
 
     # Tabla principal
     render_main_table(df, filtros)
@@ -1114,7 +1105,7 @@ def main():
     # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
     render_debug_panel()
 
-    st.markdown(pie_html(APP_VERSION), unsafe_allow_html=True)
+    st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
 
 
 try:

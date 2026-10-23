@@ -79,8 +79,9 @@ span.mc-it{cursor:default;opacity:.9}
 .mc-toro img{width:36px;height:auto;display:block}
 .mc-datos{text-align:right;font-size:12.5px;color:#4b5563;margin:6px 4px -18px}
 .mc-datos b{color:#1f2937;font-weight:600}
-.mc-pie{margin:26px 0 10px;text-align:center;font-size:12.5px;color:#4b5563}
+.mc-pie{margin:30px 0 10px;padding-top:14px;border-top:1px solid #e3e8ee;text-align:center;font-size:12.5px;color:#4b5563}
 .mc-pie b{color:#1f2937;font-weight:600}
+.mc-aviso{max-width:900px;margin:0 auto 8px;line-height:1.5}
 @media (max-width:1180px){.mc-ic{display:none}}
 @media (max-width:820px){
 .mc-in{flex-wrap:wrap;height:auto;gap:2px 12px;padding:8px 16px 6px}
@@ -275,6 +276,8 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}</div></div>{datos}'
 
 
-def pie_html(version):
-    """Renglon chico del final de la pagina."""
-    return f'<div class="mc-pie">Powered by <b>Claude AI</b> · v{html.escape(str(version))}</div>'
+def pie_html(version, aviso=None, datos_al=None):
+    """Final de la pagina (desde la v1.2.41): el aviso legal, la fecha de los datos ("Datos al ...") y "Powered by Claude AI · versión"."""
+    av = f'<div class="mc-aviso"><b>Aviso:</b> {html.escape(str(aviso))}</div>' if aviso else ""
+    dat = f'Datos al <b>{html.escape(str(datos_al))}</b> · ' if datos_al else ""
+    return f'<div class="mc-pie">{av}<div>{dat}Powered by <b>Claude AI</b> · v{html.escape(str(version))}</div></div>'

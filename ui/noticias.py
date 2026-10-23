@@ -1,19 +1,20 @@
 """
-Noticias Calientes (v1.2.39; fuente CNBC desde la v1.2.40): titulares de Mercados, Tecnologia y Economia con link a la nota.
+Noticias Calientes (v1.2.39; fuente CNBC en la v1.2.40; titulares en español -Ambito- desde la v1.2.41): titulares de las
+secciones de la fuente con link a la nota.
 
 Regla de orden (la aprobo Guille el 23/10): primero las que nombran empresas del screener, despues las que estan en la
 portada de la fuente, y a igualdad, la mas reciente. Se muestran las 5 primeras de las ultimas 24 horas, solo con titulo,
 fuente y link (no se copia el texto de las notas).
 
 Como funciona:
-  * Baja 4 feeds RSS publicos (CNBC) al mismo tiempo (tres secciones + la portada). La portada se usa solo para saber
-    cuales notas estan ahi; las notas que se muestran salen de las tres secciones.
+  * Baja los feeds RSS publicos de la fuente elegida (NOTICIAS_IDIOMA en config/ajustes.py: "es" = Ambito, "en" = CNBC) al
+    mismo tiempo. La portada se usa solo para saber cuales notas estan ahi; las notas que se muestran salen de las secciones.
   * Si hay menos de 5 notas en 24 h, amplia la ventana a 48 y a 72 h.
   * Guarda el resultado 15 minutos en memoria (todos los que abren la app comparten la misma descarga).
   * Si la fuente no responde, la app sigue normal y muestra un renglon chico avisandolo. Nunca rompe la pagina.
-  * Los titulares vienen en ingles (es lo que publica la fuente).
+  * Los titulares salen en el idioma de la fuente elegida (español con Ambito, ingles con CNBC).
 
-No usa JavaScript ni cuentas ni claves. Los feeds se cambian en config/ajustes.py (NOTICIAS_FEEDS).
+No usa JavaScript ni cuentas ni claves. Las fuentes y sus feeds se cambian en config/ajustes.py (NOTICIAS_FUENTES).
 """
 import html
 import re
@@ -36,23 +37,35 @@ def _cfg(nombre, defecto):
     return getattr(_aj, nombre, defecto) if _aj is not None else defecto
 
 
-# Cada feed: (nombre que se muestra, url, es_portada)
-_FEEDS_DEFECTO = (
-    ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
-    ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
-    ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
-    ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
-)
+# Por idioma: nombre de la fuente y sus feeds. Cada feed: (nombre que se muestra, url, es_portada)
+_FUENTES_DEFECTO = {
+    "es": {"fuente": "Ámbito", "feeds": (
+        ("Finanzas", "https://www.ambito.com/rss/pages/finanzas.xml", False),
+        ("Economía", "https://www.ambito.com/rss/pages/economia.xml", False),
+        ("Portada", "https://www.ambito.com/rss/home.xml", True),
+    )},
+    "en": {"fuente": "CNBC", "feeds": (
+        ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
+        ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
+        ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
+        ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
+    )},
+}
 ACTIVAS = bool(_cfg("NOTICIAS_ACTIVAS", True))
-FEEDS = tuple(_cfg("NOTICIAS_FEEDS", _FEEDS_DEFECTO))
+IDIOMA = str(_cfg("NOTICIAS_IDIOMA", "es")).strip().lower()
+_FUENTES = _cfg("NOTICIAS_FUENTES", _FUENTES_DEFECTO)
+_SEL = _FUENTES.get(IDIOMA) or _FUENTES.get("es") or _FUENTES_DEFECTO["es"]
+if IDIOMA not in _FUENTES:
+    IDIOMA = "es"
+FUENTE = str(_SEL.get("fuente", "Ámbito"))
+FEEDS = tuple(_SEL.get("feeds") or _FUENTES_DEFECTO["es"]["feeds"])
 CANTIDAD = int(_cfg("NOTICIAS_CANTIDAD", 5))
 HORAS = int(_cfg("NOTICIAS_HORAS", 24))
 HORAS_MAX = int(_cfg("NOTICIAS_HORAS_MAX", 72))
 MINUTOS_CACHE = int(_cfg("NOTICIAS_MINUTOS_CACHE", 15))
-ABIERTO = bool(_cfg("NOTICIAS_ABIERTO", True))
-FUENTE = str(_cfg("NOTICIAS_FUENTE", "CNBC"))
+ABIERTO = bool(_cfg("NOTICIAS_ABIERTO", False))
 TIMEOUT_S = 5
-USER_AGENT = "TodoCedears/1.2 (lector de titulares RSS; contacto: finanzas.medicos@gmail.com)"
+USER_AGENT = "Mozilla/5.0 (compatible; TodoCedears/1.2; lector de titulares RSS; contacto: finanzas.medicos@gmail.com)"
 
 # Como se nombra cada empresa en los titulares (el nombre de Yahoo, "Walt Disney Company (The)", no sirve para buscar).
 # Se busca respetando mayusculas (Apple si, "apple" no) y como palabra entera. Los nombres que tambien son palabras
@@ -68,7 +81,7 @@ ALIAS = {
     "USB": ["U.S. Bancorp", "US Bancorp"], "BBVA": ["BBVA"], "ITUB": ["Itau Unibanco", "Itaú Unibanco", "Itaú"],
     "AIG": ["AIG", "American International Group"], "BNY": ["BNY Mellon", "Bank of New York Mellon", "BNY"],
     "ING": ["ING Groep", "ING Group", "ING"], "NU": ["Nu Holdings", "Nubank"], "IBKR": ["Interactive Brokers"],
-    "V": ["Visa Inc", "Visa and Mastercard", "Mastercard and Visa"], "MA": ["Mastercard"], "SPGI": ["S&P Global"],
+    "V": ["Visa Inc", "Visa and Mastercard", "Mastercard and Visa", "Visa y Mastercard", "Mastercard y Visa"], "MA": ["Mastercard"], "SPGI": ["S&P Global"],
     "PYPL": ["PayPal"], "COIN": ["Coinbase"], "FISV": ["Fiserv"], "MRSH": ["Marsh McLennan"],
     "AMZN": ["Amazon"], "TSLA": ["Tesla"], "HD": ["Home Depot"], "BABA": ["Alibaba"], "TM": ["Toyota"],
     "BKNG": ["Booking Holdings", "Booking.com"], "PDD": ["PDD Holdings", "PDD", "Temu", "Pinduoduo"],
@@ -89,9 +102,9 @@ ALIAS = {
     "ADBE": ["Adobe"], "SNOW": ["Snowflake"], "AAPL": ["Apple"], "CSCO": ["Cisco"], "ANET": ["Arista"],
     "IBM": ["IBM"], "ACN": ["Accenture"], "ADP": ["Automatic Data Processing"], "INFY": ["Infosys"], "DELL": ["Dell"],
     "MSI": ["Motorola Solutions"], "WDC": ["Western Digital"], "XOM": ["Exxon", "ExxonMobil", "Exxon Mobil"],
-    "CVX": ["Chevron"], "SHEL": ["Shell Plc", "Shell PLC"], "TTE": ["TotalEnergies"], "COP": ["ConocoPhillips"],
+    "CVX": ["Chevron"], "SHEL": ["Shell Plc", "Shell PLC", "Shell"], "TTE": ["TotalEnergies"], "COP": ["ConocoPhillips"],
     "PBR": ["Petrobras"], "SLB": ["SLB", "Schlumberger"], "BP": ["BP"], "EQNR": ["Equinor"], "PSX": ["Phillips 66"],
-    "WMT": ["Walmart"], "COST": ["Costco"], "KO": ["Coca-Cola"], "PG": ["Procter & Gamble"], "PM": ["Philip Morris"],
+    "WMT": ["Walmart"], "COST": ["Costco"], "KO": ["Coca-Cola", "Coca Cola"], "PG": ["Procter & Gamble"], "PM": ["Philip Morris"],
     "PEP": ["PepsiCo", "Pepsi"], "UL": ["Unilever"], "TGT": ["Target Corp"], "MDLZ": ["Mondelez"], "MO": ["Altria"],
     "CL": ["Colgate-Palmolive", "Colgate"], "DEO": ["Diageo"], "LLY": ["Eli Lilly", "Lilly"],
     "JNJ": ["Johnson & Johnson"], "ABBV": ["AbbVie"], "MRK": ["Merck"], "UNH": ["UnitedHealth"], "NVS": ["Novartis"],
@@ -102,6 +115,12 @@ ALIAS = {
 }
 # Tickers que tambien son palabras o siglas comunes: no se buscan como ticker (si por nombre).
 _TICKER_NO_BUSCAR = {"NOW", "ARM", "CAT", "WELL", "COST", "DELL", "SNOW", "LIN", "ALL"}
+# Nombres que en español tambien son palabras comunes ("Meta de inflación", "Vale la pena", "Arista"): como los titulares
+# llevan mayuscula solo al empezar, estas formas cuentan unicamente si NO estan al comienzo del titular (solo con titulares en español).
+_NO_AL_INICIO = {"Meta", "Vale", "Arista", "Target"}
+
+# Frases que nombran a dos empresas juntas: se marcan las dos ("Visa y Mastercard")
+_CONJUNTAS = {f: ("V", "MA") for f in ("Visa and Mastercard", "Mastercard and Visa", "Visa y Mastercard", "Mastercard y Visa")}
 
 _PAT_CACHE = {}
 
@@ -132,10 +151,13 @@ def buscar_menciones(titulo, tickers):
     if pat is None or not titulo:
         return []
     out = []
+    tset = set(tickers or [])
     for m in pat.finditer(titulo):
-        t = formas.get(m.group(1))
-        if t and t not in out:
-            out.append(t)
+        if IDIOMA == "es" and m.group(1) in _NO_AL_INICIO and m.start() == 0:
+            continue
+        for t in _CONJUNTAS.get(m.group(1)) or (formas.get(m.group(1)),):
+            if t and t in tset and t not in out:
+                out.append(t)
     return out
 
 
@@ -383,7 +405,8 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
             etiq = f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
         filas.append(f'<li><a href="{link}" target="_blank" rel="noopener noreferrer">{html.escape(n["titulo"])}</a>'
                      f'{etiq}<span class="nt-m">{html.escape(meta)}</span></li>')
-    return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE} · últimas {horas} h · titulares en inglés</small></summary>'
+    idioma = " · titulares en inglés" if IDIOMA == "en" else ""
+    return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE} · últimas {horas} h{idioma}</small></summary>'
             f'<ul>{"".join(filas)}</ul>'
             f'<div class="nt-pie">Orden: primero las que nombran empresas del screener (etiqueta verde), después las de portada, '
             f'después las más recientes. Cada título abre la nota en {FUENTE}. Es información, no una recomendación.</div></details>')
