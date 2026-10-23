@@ -271,6 +271,64 @@ PEG_MIN_EMPRESAS_SECTOR = SECTOR_MIN_EMPRESAS   # nombre anterior (v1.2.11)
 # El dato "anios_historia" lo guarda generar_cache.py; si una fila no lo trae, no se aplica la regla.
 MIN_ANIOS_MEDIANA_PROPIA = 3
 
+# v1.2.44 (decidido por el dueño el 23/10/2026): en Semiconductores y Hardware el PEG volvió, pero SOLO para las empresas
+# donde es creíble. Entra con peso 0,25 (el resto de los pesos se reduce a 0,75 de lo que tenía) si se cumplen LAS CUATRO:
+#   1) la mediana propia del PEG viene de Stock Analysis con 3 años de historia o más (misma regla que las otras métricas);
+#   2) esa mediana está entre 0,3 y 3 (fuera de ese rango la historia del PEG está rota: WDC 170, INTC 6,4, TXN 4,0);
+#   3) el PEG de hoy es 0,1 o más (por debajo, el crecimiento sale de un piso del ciclo y el cociente no significa nada: MU 0,07);
+#   4) el PEG de hoy es al menos 2 veces más bajo que su mediana (ratio mediana / actual >= 2).
+# Si no se cumplen, esa empresa se puntúa sin PEG (P/S 0,40 + P/FCF + EV/EBITDA + PER). La regla se armó DESPUÉS de ver el caso
+# de AVGO: hay que VALIDARLA el 1/12 con una lista nueva de GuruFocus y con los retornos reales (ver README v1.2.44).
+PEG_CONDICIONAL = {
+    "sectores": ("Semiconductores", "Hardware y servicios TI"),
+    "peso": 0.25,
+    "peg_min": 0.1,
+    "mediana_min": 0.3,
+    "mediana_max": 3.0,
+    "ratio_min": 2.0,
+}
+
+
+def _num(v):
+    """float válido y finito, o None (acepta NaN y textos raros)."""
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return f if f == f and abs(f) != float("inf") else None
+
+
+def peg_creible(row) -> bool:
+    """True si el PEG de esta empresa cumple las cuatro condiciones de PEG_CONDICIONAL (no mira el sector)."""
+    c = PEG_CONDICIONAL
+    actual, med = _num(row.get("peg_actual")), _num(row.get("peg_mediana"))
+    if actual is None or med is None or actual < c["peg_min"]:
+        return False
+    fuentes = row.get("fuentes")
+    if not isinstance(fuentes, dict) or fuentes.get("peg") != "Stock Analysis":
+        return False
+    anios = row.get("anios_historia")
+    n = anios.get("peg") if isinstance(anios, dict) else None
+    if n is not None and n < MIN_ANIOS_MEDIANA_PROPIA:   # si la fila no trae los anios, no se aplica (igual que el motor)
+        return False
+    if not (c["mediana_min"] <= med <= c["mediana_max"]):
+        return False
+    return med / actual >= c["ratio_min"]
+
+
+def metricas_de(row, sector) -> dict:
+    """
+    {metrica: peso} que se usa para ESTA empresa. Casi siempre es SECTOR_CONFIG[sector]["metrics"]; en los sectores de
+    PEG_CONDICIONAL suma el PEG (0,25) cuando es creíble para la empresa. Los pesos siempre suman 1,0.
+    """
+    base = dict(SECTOR_CONFIG.get(sector, {}).get("metrics", {}))
+    if sector in PEG_CONDICIONAL["sectores"] and "peg" not in base and row is not None and peg_creible(row):
+        w = PEG_CONDICIONAL["peso"]
+        base = {m: round(p * (1.0 - w), 6) for m, p in base.items()}
+        base["peg"] = w
+    return base
+
+
 # v1.2.28: metricas que NO se usan para una empresa puntual (el peso se reparte entre las demas
 # y el motivo se ve en el detalle). Es una lista corta y a mano: solo para casos revisados.
 METRICAS_EXCLUIDAS = {

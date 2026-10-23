@@ -803,7 +803,7 @@ def calc_fair_value(result: dict, sector: str) -> dict:
       - fair_value_detalle: dict con precio implícito por método y su peso
       - fair_value_metodos: cantidad de métodos con precio calculado
     """
-    from config.sectors import SECTOR_CONFIG, motivo_descarte, FV_RATIO_MIN, FV_RATIO_MAX
+    from config.sectors import SECTOR_CONFIG, motivo_descarte, FV_RATIO_MIN, FV_RATIO_MAX, metricas_de
 
     fv_result = {
         "fair_value": None,
@@ -815,7 +815,7 @@ def calc_fair_value(result: dict, sector: str) -> dict:
     if sector not in SECTOR_CONFIG:
         return fv_result
 
-    config = SECTOR_CONFIG[sector]["metrics"]
+    config = metricas_de(result, sector)   # v1.2.44: puede traer el PEG si es creible para esta empresa
     precio_actual = result.get("precio_actual")
     shares = None  # no disponible en result; usar proxy cuando sea necesario
 

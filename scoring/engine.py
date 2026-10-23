@@ -38,7 +38,7 @@ import numpy as np
 import pandas as pd
 from typing import Optional
 from config.sectors import (
-    SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR,
+    SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR, metricas_de, PEG_CONDICIONAL,
     motivo_descarte, SECTOR_MIN_EMPRESAS, MIN_ANIOS_MEDIANA_PROPIA, METRICAS_EXCLUIDAS,
 )
 
@@ -196,7 +196,7 @@ def _score_fundamental(row: dict, sector: str) -> tuple[Optional[float], int, in
     if sector not in SECTOR_CONFIG:
         return None, 0, 0
 
-    config = SECTOR_CONFIG[sector]["metrics"]
+    config = metricas_de(row, sector)   # v1.2.44: puede traer el PEG si es creible para esta empresa
     metricas_total = len(config)
 
     scores_ponderados = []
@@ -288,7 +288,7 @@ def calcular_score(row: dict, sector: str) -> dict:
 
     # Detalle por métrica (para el panel de desglose)
     if sector in SECTOR_CONFIG:
-        for metrica, peso in SECTOR_CONFIG[sector]["metrics"].items():
+        for metrica, peso in metricas_de(row, sector).items():
             actual = row.get(f"{metrica}_actual")
             mediana = row.get(f"{metrica}_mediana")
             score_m = _score_metrica(actual, mediana, metrica)
@@ -426,6 +426,8 @@ def puntaje_vs_sector(datos: dict, sector: str, ticker: str, pool: dict) -> dict
     if sector not in SECTOR_CONFIG:
         return vacio
     calc = dict(datos)
+    if sector in PEG_CONDICIONAL["sectores"]:
+        calc["peg_mediana"] = None      # v1.2.44: el puntaje vs sector no usa el PEG condicional (no hay referencia de sector para el)
     for m in SECTOR_CONFIG[sector]["metrics"]:
         vals = [v for t, v in pool.get((sector, m), []) if t != ticker]
         calc[f"{m}_mediana"] = float(np.median(vals)) if len(vals) >= SECTOR_MIN_EMPRESAS else None

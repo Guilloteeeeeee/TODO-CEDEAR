@@ -26,6 +26,8 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
 | Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
 
+*Semiconductores y Hardware (v1.2.44):* la fila muestra los pesos base. Si el PEG de una empresa es **creíble** (ver la sección v1.2.44), entra con 25 % y las otras cuatro métricas se achican a 0,75 de su peso (P/S 30 %, resto 15 %).
+
 ### Fuentes de datos y respaldo de sector (v1.2.12 / v1.2.13 / v1.2.14)
 
 - **Stock Analysis es la fuente principal (v1.2.13):** para cada empresa se baja una sola página (ratios anuales) y de ahí salen el valor actual y la mediana de los últimos 5 años fiscales, incluidos PEG y, en REITs, Price/FFO y Price/AFFO reales. Yahoo Finance queda de respaldo para lo que Stock Analysis no trae (con el control de moneda de `data/moneda.py`).
@@ -160,6 +162,47 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Tipografía:** Inter (pensada para pantallas y tablas de números; viene incluida en `assets/fuentes/`, no se baja de internet). Para volver a la de Streamlit: `FUENTE_APP = ""` en `config/ajustes.py`.
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
+
+### PEG con historia creíble en Semiconductores y Hardware (v1.2.44)
+
+**Qué cambió (decisión de Guille del 23/10/2026):** en *Semiconductores* y *Hardware y servicios TI* el PEG vuelve **solo para las empresas donde es creíble**, con **25 %**; las otras cuatro métricas se achican a 0,75 de su peso (P/S 30 %, P/FCF, EV/EBITDA y PER 15 % cada una). Para las demás empresas de estas dos industrias queda la v1.2.43 sin cambios (P/S 40 %, sin PEG). El resto de los sectores no cambia.
+
+**Cuándo el PEG es creíble (las 5 condiciones juntas, en `PEG_CONDICIONAL` de `config/sectors.py`):** (1) PEG de hoy de 0,1 o más; (2) mediana propia entre 0,3 y 3; (3) la mediana es al menos 2 veces el PEG de hoy; (4) ambos datos vienen de Stock Analysis; (5) la mediana tiene al menos 3 años de historia (si la fila no informa los años, esta condición no se aplica, igual que en el motor). La idea: el PEG sirve cuando su historia es normal y hoy está muy por debajo; no sirve cuando la historia es un disparate de ciclo (WDC: mediana 170; INTC: 6,4) o el PEG de hoy es un piso de ciclo (MU: 0,07).
+
+**A quién le aplica hoy:** NVDA, AVGO, AMAT, ADI, LRCX y DELL (5 de 5 métricas). Las otras 19 de Semis y Hardware siguen con 4. Las otras 141 empresas quedan **idénticas** (se comprobó campo por campo).
+
+| Empresa | Puntaje v1.2.43 → v1.2.44 | Categoría hoy | Fair Value v1.2.43 → v1.2.44 | GuruFocus |
+|---|---|---|---|---|
+| NVDA | 77,0 → 80,4 | Podría estar infravalorada | 314,64 → 372,35 (+48 % → +75 %) | Muy infravalorada |
+| AVGO | 27,5 → 45,0 | Razonablemente valuada | 194,15 → 194,15 (-40 %) | Muy infravalorada |
+| AMAT | 21,9 → 40,1 | Tendencia a sobrevalorada | 202,56 → 368,12 (-47 % → -3 %) | Muy sobrevalorada |
+| ADI | 33,9 → 47,3 | Razonablemente valuada | 326,40 → 441,02 (-16 % → +14 %) | Sobrevalorada |
+| LRCX | 24,8 → 42,4 | Razonablemente valuada | 138,73 → 248,02 (-40 % → +7 %) | Sobrevalorada |
+| DELL | 11,6 → 30,8 | Tendencia a sobrevalorada | 186,92 → 414,77 (-59 % → -8 %) | Muy sobrevalorada |
+
+**Resultado medido contra GuruFocus (163 empresas, lista del 23/10/2026):**
+
+| | v1.2.42 (PEG 40 %) | v1.2.43 (P/S 40 %) | v1.2.44 (PEG creíble) |
+|---|---|---|---|
+| Correlación de orden | 0,683 | 0,800 | 0,796 |
+| Categoría exacta | 39,3 % | 46,0 % | 44,2 % |
+| A una categoría o menos | 84 % | 89 % | 89 % |
+| Categorías opuestas | 18 | 14 | 13 |
+| Contradicciones categoría / Fair Value | 9 | 4 | 5 |
+| Correlación del Fair Value | 0,636 | 0,754 | 0,722 |
+| Semis y Hardware (25 empresas) | 0,253 | 0,756 | 0,744 |
+
+**Costos que hay que tener presentes:**
+- **Nos aleja de GuruFocus en 4 de las 6:** AMAT, ADI, LRCX y DELL las ve caras y con la regla nuestro puntaje las ve más baratas. Nos acerca en AVGO y NVDA. El saldo neto es casi cero (0,800 → 0,796), con una categoría opuesta menos.
+- **El Fair Value de las 5 empresas que lo recalculan sube mucho** (tabla de arriba) porque usa los mismos pesos. El de AVGO no cambia: el precio implícito por PEG (324 × 1,45 / 0,36 ≈ 1.300) supera 3 veces el precio y se descarta, así que AVGO queda "razonablemente valuada" en el puntaje con un Fair Value 40 % por debajo del precio: es la contradicción nueva (4 → 5).
+- **AVGO sigue con todos los múltiplos por encima de su propia historia** salvo el PEG (P/S 17,3 contra 9,7; P/FCF 40,9 contra 19,6; EV/EBITDA 31,5 contra 18,2). Es un límite de comparar contra la historia propia: el crecimiento esperado de AVGO lo mide el PEG, no los otros cuatro. Una segunda mirada con flujos descontados es el complemento natural.
+- **La regla se diseñó después de ver AVGO** (riesgo de sobreajuste) y el piso de 0,1 contradice el criterio anterior de "nunca descartar un PEG por bajo" (MU). Además la métrica pesa distinto según la empresa (4 o 5 métricas), lo que es más difícil de explicar.
+
+**VALIDAR EL 1/12/2026 (compromiso con Guille):** la regla queda **fija hasta entonces**: no se tocan los umbrales antes de validar. Con la lista nueva de GuruFocus (fuera de muestra) y los retornos reales desde el 22/10 se compara, con el historial, v1.2.42 (PEG 40 %) contra v1.2.43 (P/S 40 %) contra v1.2.44 (PEG creíble): (1) ¿las 6 empresas con PEG creíble rindieron mejor que las otras de Semis y Hardware?; (2) ¿mejoró o empeoró la concordancia con GuruFocus fuera de muestra?; (3) ¿las contradicciones con el Fair Value crecieron? Los tres métodos se pueden recomputar porque el caché trae los campos `peg_*` y `ps_*`.
+
+**Para volver atrás:** en `config/sectors.py` poner `PEG_CONDICIONAL["sectores"] = ()` y volver a puntuar (`python actualizar_ticker.py` re-puntúa todo el caché sin descargar). Eso devuelve la v1.2.43.
+
+**Lo que cambió en el código:** `config/sectors.py` (`PEG_CONDICIONAL`, `peg_creible`, `metricas_de`), `scoring/engine.py` y `data/fetcher.py` (usan `metricas_de` en lugar de los pesos fijos del sector, tanto en el puntaje como en el Fair Value) y `app.py` (el detalle de la empresa muestra las columnas que corresponden a cada una).
 
 ### P/S en lugar del PEG en Semiconductores y Hardware (v1.2.43)
 

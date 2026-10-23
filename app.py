@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.43"
+APP_VERSION = "1.2.44"
 
 import streamlit as st
 import pandas as pd
@@ -26,7 +26,7 @@ from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA, nombre_visible, nombre_corto
 from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion, CATEGORIAS_ORDEN,
                                  MIN_DIAS_ENTRE_COPIAS)
-from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL
+from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL, metricas_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
@@ -287,7 +287,7 @@ def _motivo_metodo_faltante(row, metrica: str) -> str:
 
 def _metodos_fv_html(row) -> str:
     """Una línea por método esperado del sector: ✓ con su precio implícito, o ✗ con el motivo."""
-    esperados = SECTOR_CONFIG.get(row.get("sector"), {}).get("metrics", {})
+    esperados = metricas_de(row, row.get("sector"))
     if not esperados:
         return "—"
     detalle = row.get("fair_value_detalle")
@@ -326,7 +326,7 @@ def _resumen_cobertura_fv(df_show: pd.DataFrame) -> str:
     """Resumen de cuántas empresas pudieron usar cada método (sobre las empresas visibles)."""
     usados, esperados_n, por_cant = {}, {}, {}
     for _, r in df_show.iterrows():
-        esperados = list(SECTOR_CONFIG.get(r.get("sector"), {}).get("metrics", {}))
+        esperados = list(metricas_de(r, r.get("sector")))
         det = r.get("fair_value_detalle")
         det = det if isinstance(det, dict) else {}
         ok = 0
@@ -872,7 +872,8 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
             import ast
             detalle = ast.literal_eval(detalle)
 
-        metricas_cols = st.columns(len(SECTOR_CONFIG[sector]["metrics"]))
+        pesos_empresa = metricas_de(row, sector)   # v1.2.44: el PEG aparece solo si es creible para esta empresa
+        metricas_cols = st.columns(len(pesos_empresa))
 
         METRIC_LABELS = {
             "ev_ebitda": "EV/EBITDA",
@@ -886,7 +887,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
             "ps": "P/S",
         }
 
-        for i, (metrica, peso) in enumerate(SECTOR_CONFIG[sector]["metrics"].items()):
+        for i, (metrica, peso) in enumerate(pesos_empresa.items()):
             datos = detalle.get(metrica, {})
             if isinstance(datos, str):
                 import ast
