@@ -163,6 +163,26 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
 
+### Menú "Sobre Nosotros", "Cómo leer la tabla" desplegable, columnas que se pueden sacar y Excel al costado (v1.2.48)
+
+**El método no cambia** (puntajes, categorías y Fair Value idénticos; el cache no se tocó). Es un cambio de pantalla.
+
+- **Pie y ficha sin lenguaje interno:** ya no se avisa de qué fuente salió cada precio (ni "Stock Analysis, de respaldo" en el pie, ni la fuente en el encabezado de la ficha
+  ni en el mosaico CEDEAR). El pie dice "Precios en dólares al dd/mm/aaaa (consultados hh:mm)"; el encabezado de la ficha, "Dato del dd/mm/aaaa (consultado hh:mm)"; el mosaico
+  CEDEAR, "Dólar implícito: $ N". En el desglose de métricas de la ficha sigue "Fuente: …" por métrica (es de dónde salió el múltiplo histórico). La fuente de cada precio
+  sigue guardada en el dato (`precio_fuente`) por si hay que revisarla.
+- **"Cómo leer la tabla" es un menú desplegable**, cerrado al abrir la página, arriba de la tabla. "Tocá el nombre para ver su página con todo el detalle." va en azul
+  (clase `tv-tip`). Explica solo las columnas que se ven.
+- **Botón "⬇ Descargar en Excel"** en la misma fila, pegado al borde derecho (antes estaba dentro del Filtro). El Excel trae las empresas, el orden y **las columnas que se ven**.
+- **Columnas de la tabla (en el Filtro de empresas):** se puede sacar cualquier columna menos Empresa (Sector e industria, Precio, Capitalización bursátil, Valoración, Puntaje de
+  calidad); con todas sacadas queda solo Empresa. Se guarda en la URL al abrir una empresa y volver. Si se ordenaba por una columna que se sacó, vuelve al orden de arranque
+  (capitalización). En el celular el selector "Ordenar por" también respeta las columnas que se ven.
+- **Valoración siempre en dos líneas en la computadora** ("Significativamente" / "Infravalorada"; "Razonablemente" / "Valuada"), sin depender del ancho de la columna. En el celular
+  y en la ficha se lee seguida, en una sola línea.
+- **Barra de arriba:** un solo menú "Sobre Nosotros ▾" con panel **blanco** (letras oscuras): Quiénes somos (queda "próximamente" hasta cargar el link en `ENLACES_MARCA`), los logos de
+  Balanz e Inviu en sus colores (cada uno abre la apertura de cuenta), Comentarios (formulario) y Seguinos (YouTube, Instagram, mail, WhatsApp si hay link, Intramed). Los iconos
+  siguen también en la barra (se esconden en pantallas angostas, por eso están en el menú). El logo de Intramed va a todo color sobre un círculo blanco (el de un solo color casi no se veía).
+
 ### Tabla con 6 columnas y criterios agregables, buscador, ficha tipo Fiscal AI y precios con respaldo (v1.2.47)
 
 - **Sin cambios de método:** el puntaje, las categorías y el Fair Value son los de la v1.2.46 (el cache es idéntico). Tampoco se recalcula el puntaje con el precio de hoy (cambiarlo sería un cambio de método: queda para decidir).
@@ -176,7 +196,7 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **`data/fichas.json` y `bajar_fichas.bat` (nuevo, se corre en la PC, una vez por trimestre junto con el cache):** baja de Yahoo la descripción, el CEO, el sitio web, los empleados, el mercado donde cotiza, el valor de empresa, las acciones, los ingresos y el crecimiento de cada empresa; traduce la descripción con deep-translator (Google, traducción automática: se avisa en pantalla; el original en inglés queda guardado). Yahoo bloquea a los servidores en la nube, por eso se baja en la PC y se sube el archivo. Sin el archivo, la página muestra lo que tiene (resumen propio de `config/descripciones.py`) y pide el mercado a Yahoo en el momento.
 - **ADR (`config/mercados.py`):** lista curada a mano (la lista de ADR no sale de Yahoo). AZN dejó de ser ADR en febrero de 2026; ASML cotiza como "NY Registry Shares", no ADR. `bajar_fichas.py` avisa si una empresa extranjera que cotiza en EE. UU. no está en la lista.
 - **Precios en pesos con respaldo:** además de Yahoo (`SIMBOLO.BA`) se lee la tabla de CEDEARs de **Rava**. Para cada empresa se juntan los precios y se usa el primero cuyo dólar implícito (pesos × ratio ÷ dólares) cae a menos de 3 % de la mediana de todas; si ninguno, el más cercano mientras no pase de 25 %. Así un precio viejo o de otro instrumento (DIS, UL, SNOW, ISRG, ORLY, SIEGY) se reemplaza por el de Rava, y los CEDEARs que Yahoo no trae (BNY, MRSH) salen de Rava. La página dice de qué fuente salió cada precio.
-- **Precios en dólares con respaldo:** Yahoo primero; las empresas que Yahoo no devuelve se piden de a una a **Stock Analysis** (respeta `robots.txt`, con tope de 30 empresas y 25 segundos por consulta). El pie de la página lo avisa si se usó.
+- **Precios en dólares con respaldo:** Yahoo primero; las empresas que Yahoo no devuelve se piden de a una a **Stock Analysis** (respeta `robots.txt`, con tope de 30 empresas y 25 segundos por consulta). Desde la v1.2.48 el pie ya no avisa de qué fuente salió cada precio.
 - **Ratios corregidos en `data/cedears.csv`:** BAC y ROST 4:1 (la tabla de Rankia trae 41:1: es un error de tipeo), BNY y MRSH con su símbolo de BYMA, HWM sacado (su ratio no cerraba con el precio en pesos). Sin confirmar: SCHW (13:1).
 - **Para probar en la PC:** `probar_cedears.bat` (ahora muestra la fuente de cada precio y las que se descartaron) y `bajar_fichas.bat`. Ni Rava ni Stock Analysis se pudieron probar en vivo desde el entorno de desarrollo (está bloqueado): los lectores se probaron con páginas simuladas y, si el formato cambia, la fuente se ignora sin romper nada.
 - **Cruce DCF (24/10):** ver `Cruce_Screener_vs_DCF_vs_GuruFocus_24-10-2026.xlsx` (no cambia ningún método).

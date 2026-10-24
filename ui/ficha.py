@@ -57,6 +57,7 @@ CSS = """
 .fch-sub{font-size:12.5px;color:#4b5563;margin-top:6px;line-height:1.4}
 .fch-sub b{color:#111827}
 .fch-val .tv-vl{text-align:left}
+.fch-val .tv-ln1,.fch-val .tv-ln2{display:inline}
 .fch-val .tv-vh{font-size:12.5px;font-weight:500;color:#6b7280;margin-bottom:1px}
 .fch-val .tv-vn{font-size:21px}
 .fch-txt{font-size:14.5px;line-height:1.55;color:#1f2937}
@@ -385,9 +386,9 @@ def _encabezado(row, mercado, ficha):
     p = _n(row.get("precio_actual"))
     if p and p > 0:
         if row.get("precio_en_vivo") == True:  # noqa: E712  (puede ser numpy.bool_)
-            fuente = _txt(row.get("precio_fuente"), "Yahoo Finance")
+            # v1.2.48: sin nombrar de que fuente vino el precio (es un dato interno nuestro): solo la fecha y la hora
             f, h = _txt(row.get("precio_fecha"), ""), _txt(row.get("precio_hora"), "")
-            nota = html.escape(fuente) + (f" · dato del {html.escape(f)}" if f else "") + (f" (consultado {html.escape(h)})" if h else "")
+            nota = (f"Dato del {html.escape(f)}" if f else "Precio en vivo") + (f" (consultado {html.escape(h)})" if h else "")
         else:
             nota = "Precio de la última actualización de los datos"
         precio = f'<div class="pr"><div class="v">{_money(p)}</div><div class="n">{nota}</div></div>'
@@ -522,13 +523,10 @@ def _tile_cedear(row, datos):
     precio = _ars(ars) if ars else "—"
     hora = f' <span style="color:#9ca3af;font-size:12px">({html.escape(str(d["hora"]))})</span>' if ars and d.get("hora") else ""
     ccl = _n(d.get("ccl"))
-    sim = html.escape(str(d.get("simbolo") or ""))
     if ars and ccl:
-        fuente = d.get("fuente_ars") or "Yahoo Finance"
-        de = f"{fuente} ({sim}.BA)" if "yahoo" in str(fuente).lower() else f"{fuente} ({sim})"
-        nota = f'<div class="fch-nota">Dólar implícito: {_ars(ccl)} · Fuente: {html.escape(de)}</div>'
+        nota = f'<div class="fch-nota">Dólar implícito: {_ars(ccl)}</div>'
     elif d.get("ratio"):
-        nota = '<div class="fch-nota">Sin precio en pesos ahora: ninguna fuente (Yahoo, Rava) lo entregó o no pasó el control de coherencia.</div>'
+        nota = '<div class="fch-nota">Sin precio en pesos por ahora: no se pudo obtener o no pasó el control de coherencia.</div>'
     else:
         nota = '<div class="fch-nota">No tenemos el ratio de conversión de este CEDEAR confirmado, por eso no mostramos su precio en pesos.</div>'
     cuerpo = (f'<div class="fch-par"><div><div class="fch-k">Ratio de conversión</div><div class="fch-v">{ratio}</div></div>'

@@ -1,5 +1,5 @@
 """
-Descarga de la tabla en Excel (v1.2.42; columnas de la tabla y criterios agregados desde la v1.2.47).
+Descarga de la tabla en Excel (v1.2.42; columnas de la tabla y criterios agregados desde la v1.2.47; solo las columnas que se ven desde la v1.2.48).
 
 Arma un archivo .xlsx con las empresas que se ven en pantalla (respeta los filtros y el orden elegidos) y, en una segunda hoja,
 el aviso legal y la fecha de los datos. Son numeros (no texto), asi que se pueden ordenar y filtrar en Excel.
@@ -18,6 +18,8 @@ COLUMNAS = [
     ("Precio (USD)", 14, "#,##0.00"), ("Capitalización bursátil (USD)", 26, "#,##0"), ("Valoración", 34, None), ("Puntaje de calidad (0 a 100)", 14, "0.0"),
     ("Métricas usadas", 11, "0"), ("Métricas totales", 11, "0"),
 ]
+# A que columna de la tabla pertenece cada columna del Excel (v1.2.48: si en el Filtro se saca una columna de la tabla, tampoco va al Excel)
+CLAVES_COLUMNA = ["nombre", "nombre", "nombre", "sector_txt", "sector_txt", "precio_actual", "market_cap", "fv_upside", "score_total", "score_total", "score_total"]
 # clave del criterio -> lista de (titulo, ancho, formato) de las columnas que agrega al Excel
 COLUMNAS_CRITERIO = {
     "dividend_yield_actual": [("Dividend Yield (%)", 14, "0.00"), ("Mediana histórica Dividend Yield (%)", 20, "0.00")],
@@ -59,15 +61,20 @@ def _valores_criterio(clave, r):
     return [v if v is not None and v > 0 else None]
 
 
-def columnas_excel(extras=()):
-    """Titulos, anchos y formatos de las columnas del Excel: las de siempre y las de los criterios agregados (`extras`: lista de criterios)."""
-    cols = list(COLUMNAS)
+def _indices(visibles):
+    """Posiciones de las columnas de siempre que van al Excel (`visibles`: claves de las columnas de la tabla que se ven; None = todas)."""
+    return [i for i, k in enumerate(CLAVES_COLUMNA) if visibles is None or k == "nombre" or k in visibles]
+
+
+def columnas_excel(extras=(), visibles=None):
+    """Titulos, anchos y formatos de las columnas del Excel: las de siempre que se ven y las de los criterios agregados (`extras`: lista de criterios)."""
+    cols = [COLUMNAS[i] for i in _indices(visibles)]
     for c in extras or ():
         cols += COLUMNAS_CRITERIO.get(c["clave"], [])
     return cols
 
 
-def filas(df, extras=()):
+def filas(df, extras=(), visibles=None):
     """Lista de filas (una por empresa, en el orden de `df`) con los valores que van al Excel."""
     from scoring.engine import nombre_visible
     from ui.tabla_visual import sector_industria
@@ -83,6 +90,7 @@ def filas(df, extras=()):
             str(r.get("ticker", "")), r.get("pais") if isinstance(r.get("pais"), str) else "", sector or "", industria or "",
             precio, _n(r.get("market_cap")), cat_txt, _n(r.get("score_total")), _n(r.get("metricas_usadas")), _n(r.get("metricas_total")),
         ]
+        fila = [fila[i] for i in _indices(visibles)]
         for c in extras or ():
             if c["clave"] in COLUMNAS_CRITERIO:
                 fila += _valores_criterio(c["clave"], r)
@@ -90,7 +98,7 @@ def filas(df, extras=()):
     return out
 
 
-def excel_bytes(df, fecha_datos=None, aviso="", version="", extras=()):
+def excel_bytes(df, fecha_datos=None, aviso="", version="", extras=(), visibles=None):
     """Contenido del .xlsx (bytes). Hoja "Empresas" con la tabla y hoja "Aviso" con el texto legal, la fecha de los datos y la version."""
     from openpyxl import Workbook
     from openpyxl.styles import Alignment, Font, PatternFill
@@ -99,9 +107,9 @@ def excel_bytes(df, fecha_datos=None, aviso="", version="", extras=()):
     wb = Workbook()
     ws = wb.active
     ws.title = "Empresas"
-    columnas = columnas_excel(extras)
+    columnas = columnas_excel(extras, visibles)
     ws.append([c[0] for c in columnas])
-    for fila in filas(df, extras):
+    for fila in filas(df, extras, visibles):
         ws.append(fila)
     relleno = PatternFill("solid", fgColor="222D36")
     for j, (titulo, ancho, fmt) in enumerate(columnas, start=1):

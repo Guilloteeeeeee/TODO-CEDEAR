@@ -119,21 +119,25 @@ def ayuda_texto(clave, fecha=None):
     return f"**{titulo}.** {texto}"
 
 
-def como_leer_html(extras=()):
-    """"Cómo leer la tabla": va arriba de la tabla, en el mismo orden de las columnas que se ven. `extras` son los criterios agregados."""
-    items = [
-        "<b>Empresa</b>: el nombre, y abajo la bandera de su país y el ticker. Tocá el nombre para ver su página con todo el detalle.",
-        "<b>Sector e industria</b>: a qué se dedica. Es solo información; no cambia la valoración.",
-        "<b>Precio</b>: lo que cuesta una acción en dólares (US$), en su mercado de origen.",
-        "<b>Capitalización bursátil</b>: lo que vale la empresa entera en la bolsa (M = millón, B = mil millones, T = billón).",
-        "<b>Valoración</b>: una estimación (no una recomendación) de si cotiza barata, razonable o cara frente a sus propios múltiplos históricos.",
-        "<b>Puntaje de calidad</b>: de 0 (más cara) a 100 (más barata); por ahora es el puntaje de precio del screener.",
-    ]
+def como_leer_html(extras=(), visibles=None):
+    """"Cómo leer la tabla" (v1.2.48: va dentro de un menú desplegable, cerrado, arriba de la tabla): una línea por cada columna que se ve, en el
+    mismo orden. `extras` son los criterios agregados; `visibles`, las columnas de siempre que se ven (None = todas). La frase de tocar el nombre
+    va en azul (clase tv-tip) para que se note."""
+    textos = {
+        "nombre": "<b>Empresa</b>: el nombre, y abajo la bandera de su país y el ticker. "
+                  '<span class="tv-tip">Tocá el nombre para ver su página con todo el detalle.</span>',
+        "sector_txt": "<b>Sector e industria</b>: a qué se dedica. Es solo información; no cambia la valoración.",
+        "precio_actual": "<b>Precio</b>: lo que cuesta una acción en dólares (US$), en su mercado de origen.",
+        "market_cap": "<b>Capitalización bursátil</b>: lo que vale la empresa entera en la bolsa (M = millón, B = mil millones, T = billón).",
+        "fv_upside": "<b>Valoración</b>: una estimación (no una recomendación) de si cotiza barata, razonable o cara frente a sus propios múltiplos históricos.",
+        "score_total": "<b>Puntaje de calidad</b>: de 0 (más cara) a 100 (más barata); por ahora es el puntaje de precio del screener.",
+    }
+    items = [textos[c[0]] for c in columnas_base(visibles)]
     for c in extras:
         items.append(f"<b>{html.escape(c['nombre'])}</b>: {html.escape(c['ayuda'])}")
     pie = ('Otros datos (Dividend Yield, Fair Value, P/E…) no vienen por defecto: sumalos con <b>Agregar criterios</b>, en el Filtro de empresas. '
            'El Fair Value y el Dividend Yield contra su mediana también están en la página de cada empresa.')
-    return ('<div class="tv-como"><b class="tv-ct">Cómo leer la tabla</b><ol>' + "".join(f"<li>{t}</li>" for t in items) + f'</ol><div class="tv-cn">{pie}</div></div>')
+    return '<div class="tv-como"><ol>' + "".join(f"<li>{t}</li>" for t in items) + f'</ol><div class="tv-cn">{pie}</div></div>'
 
 
 # Columnas por defecto (clave de orden, titulo, ancho relativo). Los encabezados (botones de Streamlit) y las filas (grilla CSS) usan los mismos anchos.
@@ -142,16 +146,37 @@ COLUMNAS_BASE = [
     ("market_cap", "Capitalización bursátil", 1.6), ("fv_upside", "Valoración", 2.0), ("score_total", "Puntaje de calidad", 1.3),
 ]
 ANCHO_EXTRA = 1.7
+# v1.2.48: en el Filtro se puede sacar cualquier columna menos Empresa. (clave, titulo) de las que se pueden sacar:
+OPCIONALES = [(k, t) for k, t, _ in COLUMNAS_BASE if k != "nombre"]
 
 
-def anchos(n_extra=0):
-    """Anchos relativos de todas las columnas visibles (las de siempre y las agregadas)."""
-    return [w for _, _, w in COLUMNAS_BASE] + [ANCHO_EXTRA] * int(n_extra)
+def columnas_base(visibles=None):
+    """Las columnas de siempre que se ven, en su orden. `visibles`: claves elegidas (None = todas). Empresa se ve siempre."""
+    return [c for c in COLUMNAS_BASE if c[0] == "nombre" or visibles is None or c[0] in visibles]
 
 
-def css_columnas(n_extra=0):
+def claves_visibles(titulos_elegidos=None):
+    """Pasa los titulos elegidos en el menu "Columnas de la tabla" a claves de columna (None = todas)."""
+    if titulos_elegidos is None:
+        return [k for k, _ in OPCIONALES]
+    return [k for k, t in OPCIONALES if t in set(titulos_elegidos)]
+
+
+def anchos(n_extra=0, visibles=None):
+    """Anchos relativos de todas las columnas visibles (las de siempre que se ven y las agregadas)."""
+    return [w for _, _, w in columnas_base(visibles)] + [ANCHO_EXTRA] * int(n_extra)
+
+
+def css_columnas(n_extra=0, visibles=None):
     """Plantilla de la grilla de las filas para la cantidad de columnas visibles (solo vale en pantallas anchas: en el celular cada fila es una tarjeta)."""
-    return ".tv2-r{grid-template-columns:" + " ".join(f"minmax(0,{w}fr)" for w in anchos(n_extra)) + "}"
+    return ".tv2-r{grid-template-columns:" + " ".join(f"minmax(0,{w}fr)" for w in anchos(n_extra, visibles)) + "}"
+
+
+def css_movil(visibles=None):
+    """Tarjeta del celular (v1.2.48): si se saco el Puntaje, el nombre de la empresa ocupa todo el ancho de la tarjeta."""
+    if visibles is None or "score_total" in visibles:
+        return ""
+    return ('@media (max-width:900px){.tv2 .tv2-r,.tv2 .tv2-r:first-child{grid-template-areas:"emp emp emp" "sec sec sec" "val val val" "pre cap ."}}')
 
 
 CSS = """
@@ -278,12 +303,24 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv2-si{margin-top:2px;font-size:12px;font-weight:400;color:#4b5563;line-height:1.25}
 .tv2-ni{font-size:12.5px;color:#6b7280}
 .tv-buscar{margin:6px 0 4px}
-.tv-como{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:12px 16px 12px;margin:6px 0 14px;font-size:13px;line-height:1.5;color:#374151}
-.tv-como b.tv-ct{display:block;font-size:13.5px;color:#111827;margin-bottom:6px}
+.tv-como{font-size:13px;line-height:1.5;color:#374151;padding:2px 2px 0}
 .tv-como ol{margin:0;padding-left:20px}
 .tv-como li{margin:0 0 3px}
 .tv-como li b{color:#111827}
 .tv-como .tv-cn{margin-top:6px;color:#6b7280;font-size:12.5px}
+.tv-tip{color:#1d4ed8;font-weight:700}
+.tv-ln1,.tv-ln2{display:block}
+/* "Cómo leer la tabla" (v1.2.48): menú desplegable cerrado, a la izquierda; el botón de Excel queda a la derecha de la misma fila */
+.st-key-como_leer{margin:6px 0 4px}
+.st-key-como_leer [data-testid="stExpander"]{background:#fff;border:0!important;border-radius:14px;overflow:visible;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07)}
+.st-key-como_leer [data-testid="stExpander"] details{border:0!important;background:transparent!important}
+.st-key-como_leer [data-testid="stExpander"] summary{padding:0 1rem;min-height:44px;display:flex;align-items:center;background:transparent!important;border-radius:14px}
+.st-key-como_leer [data-testid="stExpander"] summary:hover{background:#f6f8fa!important}
+.st-key-como_leer [data-testid="stExpander"] summary p{font-weight:700;font-size:.98rem;color:#111827}
+.st-key-como_leer [data-testid="stExpanderDetails"]{padding:.6rem 1rem 1rem;border-top:1px solid #eef1f4!important}
+.st-key-fila_excel{margin:0}
+.st-key-fila_excel [data-testid="stHorizontalBlock"]{align-items:flex-start;gap:.75rem}
+.st-key-fila_excel [data-testid="stColumn"]:last-child [data-testid="stVerticalBlock"]{align-items:flex-end;padding-top:10px}
 @media (max-width:900px){
 div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre){display:none!important}
 .st-key-orden_movil_caja{display:block}
@@ -306,6 +343,8 @@ div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2-r>.c-val .tv-cat{justify-content:flex-start}
 .tv2-nm{font-size:15px}
 .tv2-l2{white-space:normal}
+.tv-ln1,.tv-ln2{display:inline}
+.st-key-fila_excel [data-testid="stColumn"]:last-child [data-testid="stVerticalBlock"]{align-items:flex-start;padding-top:0}
 }
 span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!important}
 span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}
@@ -317,14 +356,14 @@ _BARRA = "#2b2f33"
 _BARRA_VAL = "#1d2023"
 
 
-def css_encabezado(sort_col=None, n_extra=0):
+def css_encabezado(sort_col=None, n_extra=0, visibles=None):
     """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>') y de la grilla de las filas para `n_extra` criterios agregados.
     Gris oscuro neutro con titulos blancos; la columna Valoracion un poco mas oscura. La columna por la que se ordena se reconoce por la flecha.
     v1.2.47: sin los globitos "?" (la explicacion se ve al pasar el mouse por el titulo) y sin "(Cotizacion origen)" debajo de Precio.
-    `sort_col` se acepta por compatibilidad."""
+    `sort_col` se acepta por compatibilidad. v1.2.48: `visibles` son las columnas de siempre que se ven (None = todas)."""
     base = 'div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre)'
     return (
-        css_columnas(n_extra)
+        css_columnas(n_extra, visibles) + css_movil(visibles)
         + f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:14px 14px 0 0;align-items:stretch!important}}'
         f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
         f'{base} [data-testid="stElementContainer"]{{width:100%}}'
@@ -446,13 +485,22 @@ def _pos_barra(x, fv):
     return 50.0 + 50.0 * _clamp(math.log(x / fv) / k, -1.0, 1.0)
 
 
+def _dos_lineas(texto):
+    """v1.2.48: la categoria siempre en dos lineas en la computadora ("Significativamente" / "Infravalorada"), sin depender del ancho de la columna.
+    En el celular las dos partes se leen seguidas, en una sola linea (ver .tv-ln1/.tv-ln2 en el CSS). Un nombre de una palabra queda en una linea."""
+    partes = str(texto).split(" ", 1)
+    if len(partes) < 2:
+        return html.escape(texto)
+    return f'<span class="tv-ln1">{html.escape(partes[0])}</span> <span class="tv-ln2">{html.escape(partes[1])}</span>'
+
+
 def _texto_categoria(cat, color, con_aviso=True):
     """La categoria como texto de color y negrita, sin bloque de fondo: "Podría estar" chico arriba (si `con_aviso`) y la
     categoria abajo. El color es el de la categoria, un poco mas oscuro cuando es claro (para que se lea sobre blanco)."""
     from scoring.engine import nombre_visible
     aviso, nombre = _partes_nombre(nombre_visible(cat))
     hd = f'<span class="tv-vh">{html.escape(aviso)}</span>' if aviso and con_aviso else ""
-    return f'<div class="tv-vl" style="color:{texto_categoria(color)}">{hd}<span class="tv-vn">{html.escape(_mayusculas(nombre))}</span></div>'
+    return f'<div class="tv-vl" style="color:{texto_categoria(color)}">{hd}<span class="tv-vn">{_dos_lineas(_mayusculas(nombre))}</span></div>'
 
 
 def _celda_valoracion(row, con_categoria=True):
@@ -688,18 +736,26 @@ def _celda_dy(row, grande=False):
     return f'<div class="{cls}" title="{html.escape(tip)}"><div class="tv2-dyr"><span class="tv2-dyn">{pct:.2f}%</span>{dibujo}</div>{pie}</div>'
 
 
-def html_tabla_visual(df: pd.DataFrame, estado=None, extras=()) -> str:
+def html_tabla_visual(df: pd.DataFrame, estado=None, extras=(), visibles=None) -> str:
     """HTML de las filas de `df`, en el orden recibido (los encabezados ordenables los dibuja la app). `estado` es el texto con los filtros que
-    viajan en el link de cada empresa para poder volver a la tabla tal cual estaba. `extras`: criterios agregados (ui/criterios.py), una columna cada uno."""
+    viajan en el link de cada empresa para poder volver a la tabla tal cual estaba. `extras`: criterios agregados (ui/criterios.py), una columna cada uno.
+    `visibles` (v1.2.48): claves de las columnas de siempre que se ven (None = todas; Empresa se ve siempre)."""
     from ui import criterios as K
+    ver = {c[0] for c in columnas_base(visibles)}
     filas = []
     for _, row in df.iterrows():
         r = row.to_dict()
-        celdas = [f'<div class="c-emp">{_celda_empresa(r, estado)}</div>', f'<div class="c-sec">{_celda_sector(r)}</div>',
-                  f'<div class="tv2-c c-pre"><span class="tv2-lbl">Precio (US$)</span>{_celda_precio(r)}</div>',
-                  f'<div class="tv2-c c-cap"><span class="tv2-lbl">Capitalización bursátil</span>{_celda_mcap(r)}</div>',
-                  f'<div class="tv2-c tv2-v c-val"><span class="tv2-lbl">Valoración</span>{_celda_valoracion_tabla(r)}</div>',
-                  f'<div class="tv2-c c-pts">{_celda_puntaje(r)}</div>']
+        celdas = [f'<div class="c-emp">{_celda_empresa(r, estado)}</div>']
+        if "sector_txt" in ver:
+            celdas.append(f'<div class="c-sec">{_celda_sector(r)}</div>')
+        if "precio_actual" in ver:
+            celdas.append(f'<div class="tv2-c c-pre"><span class="tv2-lbl">Precio (US$)</span>{_celda_precio(r)}</div>')
+        if "market_cap" in ver:
+            celdas.append(f'<div class="tv2-c c-cap"><span class="tv2-lbl">Capitalización bursátil</span>{_celda_mcap(r)}</div>')
+        if "fv_upside" in ver:
+            celdas.append(f'<div class="tv2-c tv2-v c-val"><span class="tv2-lbl">Valoración</span>{_celda_valoracion_tabla(r)}</div>')
+        if "score_total" in ver:
+            celdas.append(f'<div class="tv2-c c-pts">{_celda_puntaje(r)}</div>')
         for c in extras:
             celdas.append(f'<div class="tv2-c c-x"><span class="tv2-lbl">{html.escape(c["nombre"])}</span>{K.celda(c, r)}</div>')
         filas.append('<div class="tv2-r">' + "".join(celdas) + '</div>')

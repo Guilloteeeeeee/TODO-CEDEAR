@@ -1,10 +1,9 @@
 """
 Marca de la app (v1.2.36; menu rehecho en la v1.2.38; v1.2.45: gris oscuro e iconos monocromaticos a la derecha): franja gris
 oscura de punta a punta arriba de todo, con el nombre TodoCedears a la izquierda (la imagen del titulo si esta en
-assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas) y, a la derecha, los textos "Quiénes somos",
-"Abrite una cuenta con nosotros" (desplegable con los logos de Balanz e Inviu, que llevan a la apertura de cuenta, sin recuadro)
-y "Comentarios", despues los iconos de colores neutros (YouTube, Instagram, mail, WhatsApp de la comunidad e Intramed) y el toro
-de "Finanzas para Medicos" chiquito. Los links se cargan en config/ajustes.py (ENLACES_MARCA y CUENTAS_MARCA): lo que
+assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas) y, a la derecha (v1.2.48), un solo menu desplegable
+"Sobre Nosotros" (panel claro con Quiénes somos, los logos de Balanz e Inviu para abrir una cuenta, Comentarios y las redes), despues
+los iconos de colores neutros (YouTube, Instagram, mail, WhatsApp de la comunidad e Intramed) y el toro de "Finanzas para Medicos" chiquito. Los links se cargan en config/ajustes.py (ENLACES_MARCA y CUENTAS_MARCA): lo que
 no tiene link no se muestra. El resto de la pantalla es blanco.
 
 El logo es de propiedad del dueño de la herramienta y viene en assets/marca/. Tambien es el icono de la pestaña.
@@ -61,27 +60,41 @@ html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"]{overflow-x:h
 span.mc-b{cursor:default;opacity:.7}
 .mc-ic img{width:30px;height:30px;display:block;opacity:.88;transition:opacity .12s;margin:0 -3px}
 .mc-ic a:hover img{opacity:1}
+.mc-ic a.mc-ib img{background:#fff;border-radius:50%;padding:2px;width:30px;height:30px;opacity:1;margin:0}
 .mc-it{color:#e5e7eb!important;font-size:.92rem;font-weight:600;padding:8px 12px;border-radius:8px;white-space:nowrap;text-decoration:none!important;cursor:pointer;user-select:none;list-style:none}
 a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;color:#fff!important}
-span.mc-it{cursor:default;opacity:.9}
 .mc-d{position:relative}
 .mc-d summary::-webkit-details-marker{display:none}
-.mc-pop{position:absolute;right:0;top:calc(100% + 8px);width:230px;background:#363b41;border:0;border-radius:12px;padding:8px;z-index:1000;box-shadow:0 10px 28px rgba(15,23,42,.35)}
-.mc-pop a.mc-acc{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:10px 12px;border-radius:9px;text-decoration:none!important}
-.mc-pop a.mc-acc:hover{background:#41474e}
-.mc-pop.mc-pop-f{width:310px;padding:12px}
-.mc-form{display:flex;flex-direction:column;gap:8px;margin:0}
-.mc-form input,.mc-form textarea{width:100%;box-sizing:border-box;background:#2b2f33;border:1px solid #4a5057;border-radius:8px;color:#fff;font:inherit;font-size:.86rem;padding:8px 10px;outline:none}
-.mc-form input:focus,.mc-form textarea:focus{border-color:#9aa3ad}
-.mc-form textarea{min-height:96px;resize:vertical}
-.mc-form button{background:#e5e7eb;color:#1f2937;border:0;border-radius:8px;padding:9px 12px;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer}
-.mc-form button:hover{background:#fff}
-.mc-form small{font-size:.72rem;line-height:1.3;color:#aab2bb}
-.mc-form-t{font-size:.84rem;font-weight:600;color:#e5e7eb}
+/* Menu "Sobre Nosotros" (v1.2.48): panel claro (blanco, letras oscuras) para que los logos se vean enteros y en sus colores */
+.mc-pop{position:absolute;right:0;top:calc(100% + 8px);width:320px;background:#fff;color:#1f2937;border:1px solid #e3e8ee;border-radius:14px;padding:6px;z-index:1000;box-shadow:0 14px 34px rgba(15,23,42,.30);text-align:left}
+.mc-pop a.mc-pi,.mc-pop summary.mc-pi,.mc-pop span.mc-pi{display:block;padding:10px 12px;border-radius:9px;color:#111827!important;font-size:.92rem;font-weight:600;text-decoration:none!important;cursor:pointer;list-style:none}
+.mc-pop a.mc-pi:hover,.mc-pop summary.mc-pi:hover,.mc-pop details[open]>summary.mc-pi{background:#f1f4f8}
+.mc-pop span.mc-pi{cursor:default;color:#6b7280!important}
+.mc-pop span.mc-pi small{font-weight:400;font-size:.76rem;margin-left:4px}
+.mc-pop summary::-webkit-details-marker{display:none}
+.mc-hr{height:1px;background:#eef1f4;margin:4px 8px}
+.mc-ps{padding:8px 12px 2px;font-size:.78rem;font-weight:700;color:#4b5563;letter-spacing:.2px}
+.mc-logos{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:6px 12px 10px}
+.mc-pop a.mc-acc{display:inline-flex;border-radius:9px;text-decoration:none!important;transition:transform .12s,box-shadow .12s}
+.mc-pop a.mc-acc:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(15,23,42,.25)}
 .mc-acc img{height:40px;width:auto;max-width:100%;display:block;border-radius:9px}
-.mc-acc small{font-size:.76rem;line-height:1.3;color:#aab2bb}
-.mc-lg{height:40px;min-width:40px;padding:0 12px;border-radius:9px;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#334155}
-.mc-fv{display:block;width:40px;height:40px;background:#fff center/72% no-repeat;border-radius:9px}
+.mc-lg{height:40px;min-width:40px;padding:0 12px;border-radius:9px;background:#eef1f4;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#334155}
+.mc-fv{display:block;width:40px;height:40px;background:#fff center/72% no-repeat;border-radius:9px;border:1px solid #e3e8ee}
+.mc-form{display:flex;flex-direction:column;gap:8px;margin:0;padding:6px 12px 12px}
+.mc-form input,.mc-form textarea{width:100%;box-sizing:border-box;background:#f8fafc;border:1px solid #d5dbe3;border-radius:8px;color:#111827;font:inherit;font-size:.86rem;padding:8px 10px;outline:none}
+.mc-form input:focus,.mc-form textarea:focus{border-color:#64748b;background:#fff}
+.mc-form textarea{min-height:96px;resize:vertical}
+.mc-form button{background:#222d36;color:#fff;border:0;border-radius:8px;padding:9px 12px;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer}
+.mc-form button:hover{background:#33414d}
+.mc-form small{font-size:.72rem;line-height:1.3;color:#6b7280}
+.mc-form-t{font-size:.84rem;font-weight:600;color:#1f2937}
+.mc-red{display:flex;align-items:center;gap:14px;padding:6px 12px 10px}
+.mc-red a{display:flex;align-items:center;transition:transform .12s}
+.mc-red a:hover{transform:scale(1.1)}
+.mc-red .mc-b{color:#4b5563;width:24px;height:24px}
+.mc-red .mc-b svg{width:24px;height:24px}
+.mc-red a:hover .mc-b{color:#111827}
+.mc-red img{width:30px;height:30px;display:block;border-radius:50%}
 .mc-toro{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .mc-toro img{width:36px;height:auto;display:block}
 .mc-datos{text-align:right;font-size:12.5px;color:#4b5563;margin:6px 4px -18px}
@@ -95,7 +108,7 @@ span.mc-it{cursor:default;opacity:.9}
 .mc-izq{order:1;flex:1 1 0}.mc-toro{order:2;width:40px;height:40px}.mc-toro img{width:32px}
 .mc-nav{order:3;flex:1 1 100%;justify-content:center;gap:2px;border-top:1px solid #41464c;padding-top:4px;margin-top:2px}
 .mc-t{font-size:1.7rem}.mc-img{height:36px}.mc-it{font-size:.8rem;padding:6px 8px}.mc-x{display:none}
-.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,230px)}.mc-pop.mc-pop-f{right:0;left:auto;transform:none;width:min(88vw,310px)}
+.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,320px)}
 }
 """
 CSS = CSS.replace("__FONDO__", str(FONDO_PAGINA or "#ffffff"))
@@ -191,8 +204,8 @@ def _logo_cuenta(c):
 
 
 def _cuentas_html(cuentas=None):
-    """Filas del desplegable "Abrite una cuenta con nosotros": el logo (clic = abre el link de apertura de cuenta) y un renglon
-    chico debajo. Solo las que tienen link."""
+    """Logos de "Abrite una cuenta con nosotros" (v1.2.48: dentro del menu "Sobre Nosotros", en sus colores sobre fondo claro): cada logo
+    abre el link de apertura de cuenta. Solo las que tienen link. Sin ninguna, devuelve ''."""
     filas = []
     for c in (CUENTAS_MARCA if cuentas is None else cuentas):
         url = _url("cuenta", c.get("url"))
@@ -203,15 +216,14 @@ def _cuentas_html(cuentas=None):
                      f'title="Abrir cuenta en {html.escape(str(c["nombre"]))}">{_logo_cuenta(c)}{det}</a>')
     if not filas:
         return ""
-    return (f'<details class="mc-d"><summary class="mc-it mc-cta">Abrite una cuenta<span class="mc-x"> con nosotros</span> ▾</summary>'
-            f'<div class="mc-pop">{"".join(filas)}</div></details>')
+    return f'<div class="mc-ps">Abrite una cuenta con nosotros</div><div class="mc-logos">{"".join(filas)}</div>'
 
 
 _MAIL_OK = re.compile(r"^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$")
 
 
 def _comentarios_html(destino):
-    """Desplegable "Comentarios": un cuadro para escribir cuyo envio le llega por mail a `destino` (servicio FormSubmit).
+    """"Comentarios" (adentro de "Sobre Nosotros"): un cuadro para escribir cuyo envio le llega por mail a `destino` (servicio FormSubmit).
     Es un formulario HTML comun (sin JavaScript): al enviar se abre una pestana de FormSubmit que confirma el envio.
     Nombre y mail son opcionales (el mail sirve para poder contestar). `_honey` es una trampa para robots."""
     d = str(destino or "").strip()
@@ -219,8 +231,7 @@ def _comentarios_html(destino):
         return ""
     d = html.escape(d, quote=True)
     return (
-        '<details class="mc-d"><summary class="mc-it">Comentarios ▾</summary>'
-        '<div class="mc-pop mc-pop-f">'
+        '<details class="mc-d2"><summary class="mc-pi">Comentarios ▾</summary>'
         f'<form class="mc-form" action="https://formsubmit.co/{d}" method="POST" target="_blank" accept-charset="UTF-8">'
         '<div class="mc-form-t">Contanos tu sugerencia u opinión</div>'
         '<input type="hidden" name="_subject" value="Comentarios sobre TodoCedears">'
@@ -232,21 +243,53 @@ def _comentarios_html(destino):
         '<input type="email" name="email" maxlength="120" placeholder="Tu mail (opcional, para contestarte)">'
         '<button type="submit">Enviar</button>'
         '<small>Se abre una pestaña que confirma el envío. El mensaje pasa por FormSubmit y nos llega por mail.</small>'
-        '</form></div></details>')
+        '</form></details>')
 
 
-def _icono_img(clave, titulo, url):
-    """Icono hecho con una imagen de assets/marca/<clave>.png (ej. el logo de Intramed). Sin archivo, no se muestra."""
-    uri = _uri(os.path.join(_DIR, f"{clave}-mono.png")) or _uri(os.path.join(_DIR, f"{clave}.png"))   # v1.2.45: version de un solo color si esta
+def _icono_img(clave, titulo, url, clase=""):
+    """Icono hecho con una imagen de assets/marca/<clave>.png (ej. el logo de Intramed). Sin archivo, no se muestra.
+    v1.2.48: se usa el logo a todo color (el de un solo color casi no se veia); en la franja va sobre un circulo blanco (clase mc-ib)."""
+    uri = _uri(os.path.join(_DIR, f"{clave}.png")) or _uri(os.path.join(_DIR, f"{clave}-mono.png"))
     if not url or not uri:
         return ""
-    return (f'<a href="{html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" title="{titulo}" aria-label="{titulo}">'
+    c = f' class="{clase}"' if clase else ""
+    return (f'<a{c} href="{html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer" title="{titulo}" aria-label="{titulo}">'
             f'<img src="{uri}" alt="{titulo}"></a>')
 
 
+def _sobre_nosotros_html(e, cuentas=None, comentarios_mail=None):
+    """Menu desplegable "Sobre Nosotros" (v1.2.48): reemplaza a los textos sueltos de la franja. Adentro, en un panel claro: Quiénes somos,
+    los logos para abrir una cuenta con nosotros, Comentarios y, abajo, las redes (YouTube, Instagram, mail, WhatsApp e Intramed: en el
+    celular los iconos de la franja se esconden y asi siguen a mano). Lo que no tiene link no se muestra (Quiénes somos queda como 'próximamente')."""
+    if e["quienes_somos"]:
+        qs = f'<a class="mc-pi" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer">Quiénes somos</a>'
+    else:
+        qs = '<span class="mc-pi" title="Próximamente">Quiénes somos <small>(próximamente)</small></span>'
+    bloques = [qs]
+    cuentas_html = _cuentas_html(cuentas)
+    if cuentas_html:
+        bloques += ['<div class="mc-hr"></div>', cuentas_html]
+    if e["comentarios"]:
+        com = (f'<a class="mc-pi" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer" '
+               f'title="Escribinos tus sugerencias u opiniones">Comentarios</a>')
+    else:
+        com = _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
+    if com:
+        bloques += ['<div class="mc-hr"></div>', com]
+    redes = ""
+    for k in ("youtube", "instagram", "mail", "whatsapp"):
+        if e[k]:
+            redes += (f'<a href="{html.escape(e[k], quote=True)}" target="_blank" rel="noopener noreferrer" '
+                      f'title="{_TITULOS_ICONO[k]}" aria-label="{_TITULOS_ICONO[k]}">{_insignia(k)}</a>')
+    redes += _icono_img("intramed", "Intramed", e["intramed"])
+    if redes:
+        bloques += ['<div class="mc-hr"></div>', '<div class="mc-ps">Seguinos</div>', f'<div class="mc-red">{redes}</div>']
+    return f'<details class="mc-d"><summary class="mc-it">Sobre Nosotros ▾</summary><div class="mc-pop">{"".join(bloques)}</div></details>'
+
+
 def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None):
-    """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha "Quiénes somos", el
-    desplegable "Abrite una cuenta con nosotros" (sin recuadro), "Comentarios", los iconos de un solo color y el toro chico."""
+    """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha el menu "Sobre Nosotros"
+    (v1.2.48), los iconos de un solo color (Intramed a todo color sobre un circulo blanco) y el toro chico."""
     uri_titulo = _uri(TITULO)
     izq = (f'<img class="mc-img" src="{uri_titulo}" alt="{html.escape(str(nombre))}">' if uri_titulo
            else f'<div class="mc-t">{_titulo(nombre)}</div>')
@@ -259,17 +302,9 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
         elif k == "whatsapp":
             # visible desde ya; sin link todavia queda como insignia sin accion (se activa al cargar ENLACES_MARCA["whatsapp"])
             iconos += _insignia(k, "WhatsApp: próximamente")
-    iconos += _icono_img("intramed", "Intramed", e["intramed"])
+    iconos += _icono_img("intramed", "Intramed", e["intramed"], "mc-ib")
     iconos = f'<div class="mc-ic">{iconos}</div>' if iconos else ""
-    # "Quiénes somos" se muestra siempre; sin link todavia, queda como texto (sin hacer nada al tocarlo)
-    qs = (f'<a class="mc-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer">Quiénes somos</a>'
-          if e["quienes_somos"] else '<span class="mc-it" title="Próximamente">Quiénes somos</span>')
-    if e["comentarios"]:
-        com = (f'<a class="mc-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer" '
-               f'title="Escribinos tus sugerencias u opiniones">Comentarios</a>')
-    else:
-        com = _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
-    nav = f'<div class="mc-nav">{qs}{_cuentas_html(cuentas)}{com}{iconos}</div>'
+    nav = f'<div class="mc-nav">{_sobre_nosotros_html(e, cuentas, comentarios_mail)}{iconos}</div>'
     uri = logo_uri()
     toro = (f'<div class="mc-toro"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}" title="{html.escape(NOMBRE_MARCA)}"></div>'
             if uri else "")

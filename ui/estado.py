@@ -14,10 +14,11 @@ DEFECTO = {"mc": "Sin mínimo", "met": 1, "ord": "market_cap", "asc": False}   #
 
 
 def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), paises=(), mc="Sin mínimo", met=1,
-              ord_="market_cap", asc=False, q="", industrias_sel=(), industrias_todas=(), criterios=None) -> str:
+              ord_="market_cap", asc=False, q="", industrias_sel=(), industrias_todas=(), criterios=None, ocultas=()) -> str:
     """Texto corto (base64 de un JSON chico) con los filtros y el orden. Sin nada elegido devuelve ''.
     Sectores, industrias y categorias se guardan por su posicion en la lista completa (mas corto que el nombre).
-    `criterios`: {clave: (minimo, maximo)} de los criterios agregados (v1.2.47); un criterio sin limites tambien se guarda (suma la columna)."""
+    `criterios`: {clave: (minimo, maximo)} de los criterios agregados (v1.2.47); un criterio sin limites tambien se guarda (suma la columna).
+    `ocultas` (v1.2.48): claves de las columnas de la tabla que se sacaron en el Filtro (se guardan solo si hay alguna)."""
     e = {}
     s = [i for i, x in enumerate(sectores_todos) if x in set(sectores_sel)]
     if s and len(s) < len(sectores_todos):
@@ -34,6 +35,8 @@ def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), pa
         e["q"] = q.strip()[:40]
     if criterios:
         e["c"] = {k: [mn, mx] for k, (mn, mx) in criterios.items()}
+    if ocultas:
+        e["h"] = [str(x) for x in ocultas]
     for k, val in (("mc", mc), ("met", met), ("ord", ord_), ("asc", asc)):
         if val != DEFECTO[k]:
             e[k] = val
@@ -58,9 +61,10 @@ def _num(x):
     return float(x) if isinstance(x, (int, float)) and not isinstance(x, bool) and x == x else None
 
 
-def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok, industrias_todas=(), criterios_ok=None) -> dict:
+def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok, industrias_todas=(), criterios_ok=None, columnas_ok=None) -> dict:
     """Pasa el dict decodificado a valores validos (solo lo que existe hoy). Devuelve las claves de session_state a fijar.
-    `criterios_ok`: {clave: nombre que se ve} de los criterios que existen hoy."""
+    `criterios_ok`: {clave: nombre que se ve} de los criterios que existen hoy.
+    `columnas_ok` (v1.2.48): {clave: titulo} de las columnas de la tabla que se pueden sacar; se devuelve "flt_columnas" con las que quedan."""
     out = {}
     try:
         s = [sectores_todos[i] for i in e.get("s", []) if isinstance(i, int) and 0 <= i < len(sectores_todos)]
@@ -94,6 +98,11 @@ def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok, industr
                         out[f"crit_{clave}_min"], out[f"crit_{clave}_max"] = _num(lim[0]), _num(lim[1])
             if nombres:
                 out["flt_criterios"] = nombres
+        h = e.get("h")
+        if isinstance(h, list) and columnas_ok:
+            ocultas = {x for x in h if x in columnas_ok}
+            if ocultas:
+                out["flt_columnas"] = [t for k, t in columnas_ok.items() if k not in ocultas]
     except Exception:  # noqa: BLE001
         return {}
     return out

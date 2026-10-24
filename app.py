@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.47"
+APP_VERSION = "1.2.48"
 
 import streamlit as st
 import pandas as pd
@@ -40,8 +40,8 @@ try:
     from config.ajustes import NOMBRE_APP
 except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
-from ui.tabla_visual import (CSS as CSS_VISUAL, escala_valoracion_html, COLUMNAS_BASE, css_encabezado, html_tabla_visual,
-                             como_leer_html, ayuda_texto, anchos as anchos_tabla, _mayusculas)
+from ui.tabla_visual import (CSS as CSS_VISUAL, escala_valoracion_html, COLUMNAS_BASE, columnas_base, css_encabezado, html_tabla_visual,
+                             como_leer_html, ayuda_texto, anchos as anchos_tabla, _mayusculas, OPCIONALES, claves_visibles)
 from ui import criterios as _criterios
 from ui.ficha import ficha_html, CSS as CSS_FICHA
 from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas
@@ -373,7 +373,8 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         f = st.query_params.get("f")
         if f:
             vals = estado_url.valores(estado_url.decodificar(f), todos_sectores, cats_disponibles, paises_disponibles,
-                                      list(MKTCAP_OPCIONES), ORDENES_VALIDOS, todas_industrias, {c["clave"]: c["nombre"] for c in _criterios.CRITERIOS})
+                                      list(MKTCAP_OPCIONES), ORDENES_VALIDOS, todas_industrias, {c["clave"]: c["nombre"] for c in _criterios.CRITERIOS},
+                                      dict(OPCIONALES))
             for k, v in vals.items():
                 st.session_state[k] = v
 
@@ -406,6 +407,14 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
                  "Con 1 se ve todo (mejor algo que nada).",
         )
 
+    # --- Columnas de la tabla (v1.2.48): se puede sacar cualquiera menos Empresa (que se ve siempre) ---
+    st.session_state.setdefault("flt_columnas", [t for _, t in OPCIONALES])
+    cols_sel = st.multiselect(
+        "Columnas de la tabla", [t for _, t in OPCIONALES], key="flt_columnas", placeholder="Solo se ve Empresa",
+        help="Sacá las columnas que no quieras ver. Empresa se ve siempre. También se sacan del Excel que descargás.")
+    visibles = claves_visibles(cols_sel)
+    ocultas = [k for k, _ in OPCIONALES if k not in visibles]
+
     # --- Agregar criterios (v1.2.47): suman una columna a la tabla y, con minimo y/o maximo, filtran ---
     nombres_sel = st.multiselect(
         "Agregar criterios", _criterios.NOMBRES, key="flt_criterios",
@@ -434,7 +443,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     busqueda = st.session_state.get("flt_busqueda", "") or ""
     estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label,
                                   min_metricas, st.session_state.get("sort_col", ORDEN_INICIAL[0]), st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
-                                  busqueda, industrias_sel, todas_industrias, criterios)
+                                  busqueda, industrias_sel, todas_industrias, criterios, ocultas)
     return {
         "estado_url": estado,
         "sectores": list(sectores_sel) or todos_sectores,
@@ -445,6 +454,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         "min_metricas": min_metricas,
         "criterios": criterios,
         "extras": extras,
+        "columnas": visibles,
         "sort_col": st.session_state.get("sort_col", ORDEN_INICIAL[0]),
         "sort_asc": st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
         "forzar_refresh": forzar_refresh,
@@ -463,9 +473,9 @@ def render_buscador() -> str:
 # TABLA PRINCIPAL
 # ---------------------------------------------------------------------------
 
-def ordenes_movil(extras=()):
+def ordenes_movil(extras=(), visibles=None):
     """Opciones del selector "Ordenar por" (solo se ve en el celular, donde los titulos de la tabla no entran): (texto, columna, ascendente).
-    Es el mismo orden que dan los titulos de la tabla en la computadora."""
+    Es el mismo orden que dan los titulos de la tabla en la computadora. `visibles` (v1.2.48): solo las columnas que se ven (None = todas)."""
     o = [
         ("Capitalización bursátil: de mayor a menor", "market_cap", False), ("Capitalización bursátil: de menor a mayor", "market_cap", True),
         ("Valoración: de más barata a más cara", "fv_upside", False), ("Valoración: de más cara a más barata", "fv_upside", True),
@@ -474,6 +484,7 @@ def ordenes_movil(extras=()):
         ("Sector e industria: de la A a la Z", "sector_txt", True), ("Sector e industria: de la Z a la A", "sector_txt", False),
         ("Precio: de mayor a menor", "precio_actual", False), ("Precio: de menor a mayor", "precio_actual", True),
     ]
+    o = [x for x in o if x[1] == "nombre" or visibles is None or x[1] in visibles]
     for c in extras:
         o += [(f"{c['nombre']}: de mayor a menor", c["clave"], False), (f"{c['nombre']}: de menor a mayor", c["clave"], True)]
     return o
@@ -483,29 +494,33 @@ def _cambiar_orden_movil():
     """Al elegir un orden en el selector del celular se guarda como si se hubiera tocado el titulo de la tabla."""
     eleg = st.session_state.get("orden_movil")
     extras = [c for c in _criterios.CRITERIOS if c["nombre"] in (st.session_state.get("flt_criterios") or [])]
-    for texto, col, asc in ordenes_movil(extras):
+    visibles = claves_visibles(st.session_state.get("flt_columnas"))
+    for texto, col, asc in ordenes_movil(extras, visibles):
         if texto == eleg:
             st.session_state["sort_col"], st.session_state["sort_asc"] = col, asc
             return
 
 
-def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=()):
+def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(), visibles=None):
     """Tabla visual: titulos ordenables (botones, con la explicacion al pasar el mouse) y filas en una sola pieza de HTML con la misma grilla."""
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
-    st.markdown(f"<style>{css_encabezado(sort_col, len(extras))}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{css_encabezado(sort_col, len(extras), visibles)}</style>", unsafe_allow_html=True)
 
     # Celular: el selector reemplaza a los titulos (la hoja de estilos esconde uno u otro segun el ancho de la pantalla)
-    opciones = ordenes_movil(extras)
+    opciones = ordenes_movil(extras, visibles)
+    sort_col = _orden_efectivo(sort_col, extras, visibles)
     for texto, col, asc in opciones:
         if col == sort_col and asc == bool(sort_asc):
             st.session_state["orden_movil"] = texto
             break
+    else:
+        st.session_state.pop("orden_movil", None)
     with st.container(key="orden_movil_caja"):
         st.selectbox("Ordenar por", [t for t, _, _ in opciones], key="orden_movil", on_change=_cambiar_orden_movil)
 
-    cols = st.columns(anchos_tabla(len(extras)), gap="small")
-    titulos = [(clave, etiqueta) for clave, etiqueta, _ in COLUMNAS_BASE] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
+    cols = st.columns(anchos_tabla(len(extras), visibles), gap="small")
+    titulos = [(clave, etiqueta) for clave, etiqueta, _ in columnas_base(visibles)] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
     for contenedor, (clave, etiqueta) in zip(cols, titulos):
         activo = sort_col == clave
         flecha = (" ▲" if sort_asc else " ▼") if activo else ""
@@ -516,14 +531,14 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
                 st.session_state["sort_col"] = clave
                 st.session_state["sort_asc"] = (clave in ("nombre", "ticker", "sector_txt"))
             st.rerun()
-    st.markdown(html_tabla_visual(df_show, estado, extras), unsafe_allow_html=True)
+    st.markdown(html_tabla_visual(df_show, estado, extras, visibles), unsafe_allow_html=True)
 
 
-def _boton_excel(df_show, fecha, aviso, extras=()):
-    """Boton de descarga en Excel (v1.2.46: chico y sin relleno, dentro del Filtro de empresas): las empresas que se ven, con los
+def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
+    """Boton de descarga en Excel (v1.2.48: en la misma fila de "Cómo leer la tabla", a la derecha): las empresas y columnas que se ven, con los
     filtros y el orden elegidos. Si algo falla, no se muestra."""
     try:
-        datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras)
+        datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras, visibles)
     except Exception:  # noqa: BLE001
         return
     dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
@@ -531,9 +546,19 @@ def _boton_excel(df_show, fecha, aviso, extras=()):
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
                 help="Baja un archivo .xlsx con las empresas que ves ahora (con los filtros y el orden elegidos). Es información, no una recomendación.")
     try:
-        st.download_button("⬇ Descargar lo que ves en Excel", type="tertiary", **args)
+        st.download_button("⬇ Descargar en Excel", type="tertiary", **args)
     except TypeError:       # Streamlit viejo, sin type="tertiary"
-        st.download_button("⬇ Descargar lo que ves en Excel", **args)
+        st.download_button("⬇ Descargar en Excel", **args)
+
+
+def _orden_efectivo(sort_col, extras=(), visibles=None):
+    """Columna por la que se ordena de verdad (v1.2.48): si se sacó de la tabla la columna elegida, vuelve al orden de arranque (capitalización)."""
+    if sort_col in ("nombre", "ticker", "categoria", "sector") or visibles is None:
+        return sort_col
+    base = {k for k, _, _ in COLUMNAS_BASE}
+    if sort_col in base and sort_col not in visibles:
+        return ORDEN_INICIAL[0]
+    return sort_col
 
 
 def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.DataFrame:
@@ -578,6 +603,8 @@ def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.D
     # --- Ordenamiento ---
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
+    if sort_col not in ("nombre", "ticker", "categoria", "sector") and sort_col in {k for k, _, _ in COLUMNAS_BASE} and sort_col not in filtros.get("columnas", [k for k, _, _ in COLUMNAS_BASE]):
+        sort_col, sort_asc = ORDEN_INICIAL      # la columna elegida se sacó de la tabla: orden de arranque
     if len(df_show) == 0:
         return df_show
     STR_COLS = {"nombre", "ticker", "pais", "sector_txt"}
@@ -621,11 +648,12 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
         st.warning("No hay empresas que coincidan con la búsqueda y los filtros seleccionados.")
         return
     extras = filtros.get("extras") or []
-    # El boton de Excel esta dentro del Filtro de empresas (v1.2.46)
+    visibles = filtros.get("columnas")
+    # El boton de Excel esta a la derecha de "Cómo leer la tabla" (v1.2.48)
     if lugar_excel is not None:
         with lugar_excel:
-            _boton_excel(df_show, fecha, aviso, extras)
-    render_tabla_visual(df_show, filtros.get("estado_url"), fecha, extras)
+            _boton_excel(df_show, fecha, aviso, extras, visibles)
+    render_tabla_visual(df_show, filtros.get("estado_url"), fecha, extras, visibles)
 
 
 # ---------------------------------------------------------------------------
@@ -842,10 +870,9 @@ def main():
             if n_p:
                 df = df_p
                 f_p = info_p.get("fecha")
-                n_sa = sum(1 for v in (info_p.get("fuente") or {}).values() if v == _pv.FUENTE_SA)
-                extra_sa = f"; {n_sa} desde {_pv.FUENTE_SA}, de respaldo" if n_sa else ""
-                texto_precios = (f"Precios en dólares de Yahoo Finance al <b>{f_p.strftime('%d/%m/%Y')}</b> (consultados {info_p.get('hora')}{extra_sa})" if f_p
-                                 else f"Precios en dólares de Yahoo Finance (consultados {info_p.get('hora')}{extra_sa})")
+                # v1.2.48: el pie no dice de que fuente vino cada precio (dato interno nuestro): solo la fecha y la hora
+                texto_precios = (f"Precios en dólares al <b>{f_p.strftime('%d/%m/%Y')}</b> (consultados {info_p.get('hora')})" if f_p
+                                 else f"Precios en dólares (consultados {info_p.get('hora')})")
         except Exception:  # noqa: BLE001
             pass
 
@@ -886,7 +913,6 @@ def main():
             with st.container(key="caja_screener"):
                 with st.expander("Filtro de empresas", expanded=False):
                     filtros = render_filtros_inline(universe, df)
-                    lugar_excel = st.container()
                     st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
 
     # Forzar refresh limpia el cache de Streamlit
@@ -896,7 +922,14 @@ def main():
 
     # v1.2.47: buscador (por nombre o ticker) y "Cómo leer la tabla" arriba de la tabla; despues, la tabla
     busqueda = render_buscador()
-    st.markdown(como_leer_html(filtros.get("extras") or []), unsafe_allow_html=True)
+    # v1.2.48: "Cómo leer la tabla" es un menú desplegable (cerrado) y el Excel va a la derecha de la misma fila
+    with st.container(key="fila_excel"):
+        col_leer, col_xls = st.columns([5, 1.6], gap="small")
+        with col_leer:
+            with st.container(key="como_leer"):
+                with st.expander("Cómo leer la tabla", expanded=False):
+                    st.markdown(como_leer_html(filtros.get("extras") or [], filtros.get("columnas")), unsafe_allow_html=True)
+        lugar_excel = col_xls.container()
     render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
 
     if noticias_pendientes:
