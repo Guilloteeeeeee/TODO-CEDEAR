@@ -14,7 +14,7 @@ DEFECTO = {"mc": "Sin mínimo", "dy": 0.0, "met": 1, "ord": "market_cap", "asc":
 
 
 def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), paises=(), mc="Sin mínimo", dy=0.0, met=1,
-              ord_="market_cap", asc=False, rev=False) -> str:
+              ord_="market_cap", asc=False, rev=False, q="") -> str:
     """Texto corto (base64 de un JSON chico) con los filtros y el orden. Sin nada elegido devuelve ''.
     Sectores y categorias se guardan por su posicion en la lista completa (mas corto que el nombre)."""
     e = {}
@@ -26,6 +26,8 @@ def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), pa
         e["v"] = v
     if paises:
         e["p"] = list(paises)
+    if isinstance(q, str) and q.strip():                 # v1.2.46: texto del buscador
+        e["q"] = q.strip()[:40]
     for k, val in (("mc", mc), ("dy", dy), ("met", met), ("ord", ord_), ("asc", asc), ("rev", rev)):
         if val != DEFECTO[k]:
             e[k] = val
@@ -70,6 +72,8 @@ def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok) -> dict
             out["sort_asc"] = bool(e.get("asc", False))
         if e.get("rev") is True:
             out["ver_metodos_fv"] = True
+        if isinstance(e.get("q"), str) and e["q"].strip():
+            out["flt_busqueda"] = e["q"].strip()[:40]
     except Exception:  # noqa: BLE001
         return {}
     return out

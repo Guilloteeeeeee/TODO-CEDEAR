@@ -163,6 +163,38 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
 
+### Tabla más liviana, ficha de empresa en mosaicos, precios en vivo y CEDEARs (v1.2.46)
+
+**El método no cambia**: puntajes, categorías y Fair Value son idénticos a la v1.2.43/v1.2.45 (el caché no se tocó).
+
+- **Tabla:** negrita solo en el nombre de la empresa, el puntaje y la categoría de la Valoración; en Capitalización bursátil y Precio el signo es **US$**
+  (en Argentina "$" se lee como pesos). Un "?" al lado de cada título explica la columna (el de Empresa menciona el buscador editable del Filtro de
+  empresas). Se sacó la cantidad de empresas. La columna Dividend Yield muestra solo el número de hoy; el dibujito con la mediana pasó a la ficha.
+  El botón de Excel quedó chico, dentro del Filtro de empresas. El Filtro de empresas tiene un buscador por nombre o ticker.
+- **Noticias calientes del día:** sin "Ámbito" ni "últimas 24 hs". La fuente es CNBC con los titulares traducidos al español (traducción automática,
+  puede tener errores; si falla queda el titular en inglés). No hay un feed de CNBC en español al que se pueda llegar, por eso se traduce. Una sola nota por
+  ticker: si una nota nombra una empresa que ya salió en otra más importante, se saltea y se sigue con la que viene (`ordenar` en `ui/noticias.py`).
+- **Ficha de empresa** (`ui/ficha.py`), en mosaicos: Score de calidad (grande), Valoración con su Fair Value, Precio, Capitalización bursátil, Sede fiscal
+  (país), CEDEAR (ratio de conversión y precio en pesos), Descripción (`config/descripciones.py`, 166 textos generales sin cifras), Sector e industria,
+  Rango de 52 semanas, Dividend Yield contra su mediana, cómo sale el puntaje, y abajo la **línea de precios**: el precio de hoy abajo y, arriba, una flecha
+  celeste por cada método del Fair Value (con su nombre y valor), una azul oscura con el promedio, y el **PEG** en gris como dato informativo (no entra al
+  puntaje ni al Fair Value; se calcula con el precio del caché, como su múltiplo). En el celular los mosaicos van uno abajo del otro.
+  **El "Score de calidad" hoy es el mismo puntaje de precio del screener** (decisión de Guille, provisoria): cuando exista el score de calidad se cambia
+  `_tile_score` en `ui/ficha.py`.
+- **Precios en vivo** (`data/precios_vivos.py`, `PRECIOS_VIVOS` y `PRECIOS_MINUTOS_CACHE` en `config/ajustes.py`): hasta la v1.2.45 la tabla mostraba el precio
+  del caché (se baja una vez por mes desde la PC), por eso no se movía. Ahora, al abrir la app, se baja de Yahoo el último precio de cada empresa (un solo
+  pedido, 5 minutos en memoria) y se usa en la tabla y en la ficha; cambian el porcentaje contra el Fair Value, la capitalización, el Dividend Yield de hoy y la
+  posición en el rango de 52 semanas. **El puntaje y la categoría NO se recalculan con el precio nuevo** (siguen saliendo de los múltiplos del último caché):
+  recalcularlos en vivo sería un cambio de método y lo decide Guille. Un precio que se aleje más de 0,4x–2,5x del del caché se ignora. Si Yahoo no responde,
+  la app sigue con el precio del caché y el pie no muestra el renglón "Precios de Yahoo Finance al ...". Desde el entorno de desarrollo Yahoo está bloqueado:
+  **esto se probó con un Yahoo simulado y falta verlo andar de verdad** (ver el plan de validación).
+- **CEDEARs** (`data/cedears.csv`, `data/cedears.py`): ratio de conversión de cada empresa y su símbolo en BYMA (BAC es BA.C, BBVA es BBV, BNY es BK, BRK-B es
+  BRKB, DIS es DISN, MRSH es MMC). Fuente: tabla de BYMA tal como la publica Rankia (actualizada el 20/10/2026), con controles cruzados en algunos casos
+  (ARM 27:1 contra TradingView; AZN 4:1, BX 30:1 y el 1:4 de SAN contra la librería CEDEARData de Eco Valores). Los ratios cambian con splits y programas nuevos.
+  El precio en pesos sale de Yahoo (símbolo de BYMA + ".BA") y solo se muestra si pasa un control: el dólar que implica (pesos x ratio / dólares) tiene que estar a
+  menos de 25% de la mediana de todos los CEDEARs; si no, aparece "—". **`probar_cedears.bat`** (en tu PC) lista el dólar implícito de cada CEDEAR y marca los que se
+  apartan más de 10%: sirve para detectar ratios mal cargados.
+
 ### Vuelta a la v1.2.43, segunda mirada con el DCF y cambios de pantalla (v1.2.45)
 
 **1) Vuelta atrás (decisión de Guille del 23/10/2026: "volvamos un paso para atrás").** La regla del PEG creíble (v1.2.44) quedó **apagada**: `PEG_CONDICIONAL["sectores"] = ()` en `config/sectors.py`. El puntaje, la categoría y el Fair Value de las 166 empresas son **idénticos a los de la v1.2.43** (se comprobó campo por campo). El código de la regla sigue ahí y probado; para prenderla de nuevo hay que poner `("Semiconductores", "Hardware y servicios TI")` en `"sectores"` y re-puntuar el caché. Motivo: la regla acercaba AVGO y NVDA a GuruFocus pero alejaba a AMAT, ADI, LRCX y DELL, subía mucho sus Fair Value, y dejaba a AVGO "razonablemente valuada" con un Fair Value 40 % por debajo del precio. En vez de afinar el PEG se prueba otra cosa: la segunda mirada con el DCF.

@@ -89,24 +89,33 @@ def escala_valoracion_html(mostrar_gris=False):
             '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
             f'{gris}</div>')
 
-AYUDA_TABLA = (
-    ("Empresa", "Nombre, sector (industria) y país. Tocá el nombre para ver su página con todo el detalle."),
-    ("Ticker", "El código con el que la empresa cotiza en su mercado de origen."),
-    ("Capitalización bursátil", "Lo que vale la empresa entera en la bolsa (precio × cantidad de acciones). B = mil millones, T = un billón."),
-    ("Precio (cotización origen)", "Lo que cuesta una acción en su mercado de origen, en dólares. No es el precio del CEDEAR en pesos."),
-    ("Valoración", "Una estimación, no una recomendación: si la empresa cotiza barata, razonable o cara frente a sus propios múltiplos históricos. "
-                   "Abajo, el Fair Value (el precio que resultaría de esos múltiplos) y cuánto más (+) o menos (−) que el precio de hoy."),
-    ("Puntaje", "De 0 (más cara) a 100 (más barata). Abajo, cuántas métricas se pudieron usar para calcularlo."),
-    ("Dividend Yield", "Lo que paga por año en dividendos, como porcentaje del precio. El dibujo lo compara con lo que rindió en años anteriores."),
-)
+# Ayuda de cada titulo de la tabla (v1.2.46: un signo de pregunta al lado de cada titulo). clave de columna -> (titulo, texto)
+AYUDA_COLUMNAS = {
+    "nombre": ("Empresa", "Nombre, sector (industria) y país. Tocá el nombre (está subrayado) para abrir su página con todo el detalle. "
+                          "En el Filtro de empresas hay un buscador editable (por nombre o ticker) y filtros por sector, valoración, país y más."),
+    "ticker": ("Ticker", "El código con el que la empresa cotiza en su mercado de origen. También abre su página."),
+    "market_cap": ("Capitalización bursátil", "Lo que vale la empresa entera en la bolsa (precio × cantidad de acciones), en dólares (US$). "
+                                              "M = millón, B = mil millones, T = un billón."),
+    "precio_actual": ("Precio (cotización origen)", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance "
+                                                     "cada pocos minutos (puede tener demora); si Yahoo no responde, queda el de la última actualización de los datos{fecha}. "
+                                                     "No es el precio del CEDEAR en pesos: ese está en la página de cada empresa."),
+    "fv_upside": ("Valoración", "Una estimación, no una recomendación: si la empresa cotiza barata, razonable o cara frente a sus propios múltiplos históricos. "
+                                "Abajo, el Fair Value (el precio que resultaría de esos múltiplos) y cuánto más (+) o menos (−) que el precio de hoy. "
+                                "El puntaje y el Fair Value se calculan con los datos de la última actualización; el porcentaje sí usa el precio de hoy."),
+    "score_total": ("Puntaje", "De 0 (más cara) a 100 (más barata). Abajo, cuántas métricas se pudieron usar para calcularlo."),
+    "dividend_yield_actual": ("Dividend Yield", "Lo que paga por año en dividendos, como porcentaje del precio. "
+                                                "En la página de cada empresa lo ves comparado con su mediana histórica."),
+}
+_AYUDA_A_LA_DERECHA = ("fv_upside", "score_total", "dividend_yield_actual")   # estos globitos se abren hacia la izquierda (si no, se salen de la pantalla)
 
 
-def ayuda_tabla_html(cantidad_texto=""):
-    """Renglon de arriba de la tabla: la cantidad de empresas y un signo de pregunta que despliega una descripcion breve de cada columna."""
-    items = "".join(f"<dt>{html.escape(t)}</dt><dd>{html.escape(d)}</dd>" for t, d in AYUDA_TABLA)
-    return (f'<div class="tv-cab"><b>{html.escape(cantidad_texto)}</b>'
-            f'<details class="tv-q"><summary title="¿Qué es cada columna?" aria-label="¿Qué es cada columna?">?</summary>'
-            f'<div class="tv-qp"><b class="tv-qt">¿Qué es cada columna?</b><dl>{items}</dl></div></details></div>')
+def ayuda_columna_html(clave, fecha=None):
+    """Signo de pregunta de un titulo de la tabla: al tocarlo se despliega una descripcion breve de esa columna."""
+    titulo, texto = AYUDA_COLUMNAS[clave]
+    texto = texto.replace("{fecha}", f" (datos al {fecha})" if fecha else "")
+    lado = " tv-q-r" if clave in _AYUDA_A_LA_DERECHA else ""
+    return (f'<details class="tv-q{lado}"><summary title="¿Qué es {html.escape(titulo)}?" aria-label="¿Qué es {html.escape(titulo)}?">?</summary>'
+            f'<div class="tv-qp tv-qp-c"><b class="tv-qt">{html.escape(titulo)}</b>{html.escape(texto)}</div></details>')
 
 
 def leyenda_tabla_html():
@@ -114,14 +123,13 @@ def leyenda_tabla_html():
     return ('<div class="tv-leyenda"><b>Cómo leer la tabla:</b> en <b>Valoración</b>, la frase de color sale del puntaje (de 0 a 100) y es una '
             'estimación ("podría estar…"), no una recomendación; debajo va el <b>Fair Value</b>, el precio que sale de promediar, con los pesos '
             'de su sector, lo que valdría la empresa si cotizara a su múltiplo histórico, y entre paréntesis cuánto más (+) o menos (−) que el '
-            'precio de hoy. En el <b>Dividend Yield</b>, la línea gris es el rendimiento de cada año fiscal, la punteada es su mediana y el punto '
-            'es hoy: arriba de la línea rinde más que lo habitual, abajo menos. Tocá el nombre o el ticker de una empresa para ver su página con '
-            'todo el detalle (métodos del Fair Value, rango de 52 semanas).</div>')
+            'precio de hoy. El <b>Dividend Yield</b> es lo que rinde hoy por dividendos. Tocá el nombre o el ticker de una empresa para ver su página con '
+            'todo el detalle (descripción, métodos del Fair Value, rango de 52 semanas y el Dividend Yield contra su mediana).</div>')
 
 
 # Anchos relativos de las 7 columnas (Empresa, Ticker, Market Cap, Precio, Valoracion, Puntaje, Dividend Yield): los usan los
 # encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
-ANCHOS_VISUAL = [2.9, 0.9, 1.5, 1.35, 2.8, 0.95, 1.9]
+ANCHOS_VISUAL = [3.1, 0.9, 1.6, 1.4, 2.9, 1.0, 1.2]
 
 CSS = """
 .tv2{border:0;border-radius:0 0 14px 14px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07)}
@@ -136,23 +144,23 @@ CSS = """
 .tv2-ec{min-width:0;flex:1}
 .tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
 .tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700;color:#111827;text-decoration:underline;text-decoration-color:rgba(75,85,99,.4);text-decoration-thickness:1px;text-underline-offset:3px}
-.tv2-tk{flex:none;font-size:13.5px;font-weight:700;color:#374151;letter-spacing:.3px;text-decoration:underline;text-decoration-color:rgba(75,85,99,.35);text-decoration-thickness:1px;text-underline-offset:3px}
+.tv2-tk{flex:none;font-size:13.5px;font-weight:400;color:#374151;letter-spacing:.3px;text-decoration:underline;text-decoration-color:rgba(75,85,99,.35);text-decoration-thickness:1px;text-underline-offset:3px}
 .tv2-mc{font-size:14px;font-weight:400;color:#111827;white-space:nowrap}
 .tv2-l2{margin-top:2px;font-size:11.5px;font-weight:400;color:#4b5563;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv2-dy{text-align:center}
-.tv2-dyn{font-size:15px;font-weight:600;color:#111827;line-height:1.15}
+.tv2-dyn{font-size:15px;font-weight:400;color:#111827;line-height:1.15}
 .tv2-dy img{display:block;margin:4px auto 0}
 .tv2-dyc .tv2-dyr{display:flex;align-items:center;justify-content:center;gap:8px}
 .tv2-dyc img{margin:0}
 .tv2-dym{font-size:11px;color:#4b5563;margin-top:2px}
-.tv2-dym b{color:#374151;font-weight:600}
+.tv2-dym b{color:#374151;font-weight:400}
 .tv-cat{display:flex;justify-content:center;margin-bottom:8px}
 .tv2-vc{display:flex;flex-direction:column;align-items:center;gap:2px}
 .tv2-vc .tv-cat{margin-bottom:0}
 .tv-vl{text-align:center;line-height:1.2}
 .tv-vh{display:block;font-size:12px;font-weight:600;opacity:.85}
 .tv-vn{display:block;font-size:14px;font-weight:700}
-.tv-up{font-weight:700;color:#374151}
+.tv-up{font-weight:400;color:#374151}
 .tv2-vc .tv-vn{font-size:15px;font-weight:700}
 .tv2-fvs{font-size:12px;font-weight:400;color:#6b7280;white-space:nowrap}
 .tv2-fvs span{color:#6b7280}
@@ -175,7 +183,7 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv-sub{font-size:12px;color:#4b5563;margin-top:4px}
 .tv-score{margin:0 auto;width:56px;border-radius:7px;overflow:hidden;border:2px solid #d1d5db;text-align:center;background:#fff}
 .tv-num{font-size:17px;font-weight:700;line-height:26px;color:#111827}
-.tv-met{font-size:10px;font-weight:600;color:#fff;line-height:15px}
+.tv-met{font-size:10px;font-weight:400;color:#fff;line-height:15px}
 .tv-t2{position:relative;height:8px;border-radius:4px;background:#e5e7eb;margin-top:12px}
 .tv-d2{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-dy{font-weight:700;font-size:15px}
@@ -222,14 +230,16 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .esc-gp{margin-top:6px}
 .esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
 .esc-gt{font-size:12px;color:#4b5563}
-@media (min-width:821px){[data-testid="stVerticalBlock"]:has(>.st-key-descarga_excel){align-items:flex-end}}
-.tv-cab{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:15px;color:#111827}
+.st-key-descarga_excel button{font-size:13px;color:#4b5563;padding:2px 0;min-height:0}
+.st-key-descarga_excel button:hover{color:#111827;text-decoration:underline}
 .tv-q{position:relative;display:inline-block}
 .tv-q>summary{list-style:none;cursor:pointer;width:22px;height:22px;border-radius:50%;background:#fff;color:#4b5563;font-weight:700;font-size:13px;line-height:22px;text-align:center;box-shadow:0 1px 2px rgba(15,23,42,.12),0 2px 8px rgba(15,23,42,.08);user-select:none}
 .tv-q>summary::-webkit-details-marker{display:none}
 .tv-q>summary:hover,.tv-q[open]>summary{background:#2b2f33;color:#fff}
 .tv-qp{position:absolute;left:0;top:calc(100% + 10px);width:min(560px,86vw);z-index:1000;background:#fff;border-radius:14px;padding:14px 16px 10px;box-shadow:0 2px 6px rgba(15,23,42,.08),0 14px 36px rgba(15,23,42,.18);font-size:13px;line-height:1.45;color:#374151;font-weight:400}
-.tv-qp b.tv-qt{display:block;font-size:13.5px;color:#111827;margin-bottom:6px}
+.tv-qp b.tv-qt{display:block;font-size:13.5px;color:#111827;margin-bottom:4px}
+.tv-qp-c{width:min(290px,80vw)}
+.tv-q-r>.tv-qp{left:auto;right:0}
 .tv-qp dl{margin:0}
 .tv-qp dt{font-weight:700;color:#111827;margin-top:7px}
 .tv-qp dd{margin:0 0 0 0;color:#4b5563}
@@ -263,7 +273,7 @@ div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2-r>div:nth-child(6){grid-area:pts;align-items:flex-end}
 .tv2-r>div:nth-child(7){grid-area:dy}
 .tv2-r>div:nth-child(3),.tv2-r>div:nth-child(4),.tv2-r>div:nth-child(7){align-items:flex-start;justify-content:flex-start;text-align:left;border-top:1px solid #f0f2f5;padding-top:8px}
-.tv2-r>div:nth-child(3)::before,.tv2-r>div:nth-child(4)::before,.tv2-r>div:nth-child(7)::before{font-size:10.5px;font-weight:600;color:#4b5563;margin-bottom:2px;letter-spacing:.2px}
+.tv2-r>div:nth-child(3)::before,.tv2-r>div:nth-child(4)::before,.tv2-r>div:nth-child(7)::before{font-size:10.5px;font-weight:400;color:#4b5563;margin-bottom:2px;letter-spacing:.2px}
 .tv2-r>div:nth-child(3)::before{content:"Capitalización bursátil"}
 .tv2-r>div:nth-child(4)::before{content:"Precio (cotización origen)"}
 .tv2-r>div:nth-child(7)::before{content:"Dividend Yield"}
@@ -297,12 +307,20 @@ def css_encabezado(sort_col=None):
         f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
         f'{base} [data-testid="stElementContainer"]{{width:100%}}'
         '[class*="st-key-tvh_"] button{width:100%;min-height:46px;background:transparent;border:0;border-radius:0;box-shadow:none;color:#fff}'
-        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:700;color:#fff;margin:0;letter-spacing:.2px;white-space:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
+        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:500;color:#fff;margin:0;padding:0 16px 0 2px;letter-spacing:0;white-space:normal;word-break:keep-all;overflow-wrap:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
         '[class*="st-key-tvh_"] button div,[class*="st-key-tvh_"] button [data-testid="stMarkdownContainer"]{white-space:normal;overflow:visible;text-overflow:clip}'
         '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
         '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
         f'.st-key-tvh_fv_upside button{{background:{_BARRA_VAL}}}'
         '.st-key-tvh_precio_actual button p::after{content:"(Cotización origen)";display:block;font-size:10.5px;font-weight:500;letter-spacing:0;opacity:.78;margin-top:1px}'
+        f'{base} [data-testid="stColumn"]{{position:relative}}'
+        f'{base} [data-testid="stColumn"] [data-testid="stVerticalBlock"]{{gap:0!important}}'
+        '[class*="st-key-tvh_"] button{padding-left:3px!important;padding-right:3px!important}'
+        '[class*="st-key-tvq_"]{position:absolute!important;top:0;right:3px;height:46px;width:auto!important;display:flex!important;align-items:center;z-index:40;pointer-events:none}'
+        '[class*="st-key-tvq_"] .tv-q{pointer-events:auto}'
+        '[class*="st-key-tvq_"] .tv-q>summary{width:17px;height:17px;line-height:17px;font-size:11px;font-weight:500;background:rgba(255,255,255,.16);color:#fff;box-shadow:none}'
+        '[class*="st-key-tvq_"] .tv-q>summary:hover,[class*="st-key-tvq_"] .tv-q[open]>summary{background:#fff;color:#2b2f33}'
+        '[class*="st-key-tvq_"] .tv-qp{top:calc(100% - 4px)}'
         'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'
     )
 
@@ -324,7 +342,7 @@ def _money(x):
     v = _n(x)
     if v is None:
         return "—"
-    return f"&#36;{v:,.0f}" if abs(v) >= 100 else f"&#36;{v:,.2f}"
+    return f"US&#36;&nbsp;{v:,.0f}" if abs(v) >= 100 else f"US&#36;&nbsp;{v:,.2f}"
 
 
 def _mcap(x):
@@ -333,8 +351,8 @@ def _mcap(x):
         return "—"
     for lim, suf in ((1e12, "T"), (1e9, "B"), (1e6, "M")):
         if v >= lim:
-            return f"&#36;{v / lim:.1f}{suf}"
-    return f"&#36;{v:,.0f}"
+            return f"US&#36;&nbsp;{v / lim:.1f}{suf}"
+    return f"US&#36;&nbsp;{v:,.0f}"
 
 
 def _clamp(x, lo=0.0, hi=100.0):
@@ -610,9 +628,14 @@ def _dy_datos(row):
 
 
 def _celda_dy(row, grande=False):
-    """Rendimiento por dividendo. Tabla (por defecto): el numero y, al lado, el recorrido de los años fiscales contra la mediana
-    (punto de hoy con color segun la posicion); abajo, "Mediana histórica: X%". Pagina de la empresa (`grande`): el numero
-    grande arriba y el dibujo mas grande abajo. Sin serie de años, una escala corta."""
+    """Rendimiento por dividendo. Tabla (por defecto, desde la v1.2.46): solo el numero de hoy; el recorrido de los años fiscales contra la
+    mediana pasó a la pagina de la empresa. Pagina de la empresa (`grande`): el numero grande arriba y el dibujo abajo, con la mediana.
+    Sin serie de años, una escala corta."""
+    if not grande:
+        d = _dy_datos(row)
+        if not d:
+            return '<div class="tv2-dy"><div class="tv2-dyn" style="color:#9ca3af">—</div></div>'
+        return f'<div class="tv2-dy" title="Rendimiento por dividendo de hoy. La comparación con su mediana histórica está en la página de la empresa."><div class="tv2-dyn">{d[0]:.2f}%</div></div>'
     datos = _dy_datos(row)
     cls = "tv2-dy" if grande else "tv2-dy tv2-dyc"
     if not datos:

@@ -326,9 +326,25 @@ def esperar(futuro, espera_s=TIMEOUT_S + 2):
 # ---------------------------------------------------------------------------------------------------------------
 # Orden de las notas
 # ---------------------------------------------------------------------------------------------------------------
+def _sin_repetir_ticker(ordenadas, cantidad):
+    """Recorre las notas ya ordenadas por importancia y se queda con una sola por empresa: si una nota nombra un ticker que ya
+    salio en una nota mas importante, se saltea y se sigue con la proxima. Las que no nombran empresas no se tocan."""
+    vistos, salida = set(), []
+    for n in ordenadas:
+        m = n.get("menciona") or []
+        if m and any(t in vistos for t in m):
+            continue
+        salida.append(n)
+        vistos.update(m)
+        if len(salida) >= cantidad:
+            break
+    return salida
+
+
 def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None):
-    """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si hay menos de `cantidad`), y orden por
-    (menciona empresas del screener, esta en portada, mas reciente). Devuelve (lista, horas_usadas)."""
+    """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si no alcanzan `cantidad` notas), orden por
+    (menciona empresas del screener, esta en portada, mas reciente) y una sola nota por ticker (v1.2.46: se saltea la repetida y se
+    sigue con la que viene). Devuelve (lista, horas_usadas)."""
     cantidad = CANTIDAD if cantidad is None else cantidad
     horas = HORAS if horas is None else horas
     horas_max = HORAS_MAX if horas_max is None else horas_max
@@ -336,23 +352,20 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
     if not crudo or not crudo.get("notas"):
         return [], horas
     ventanas = [horas] + [h for h in (48, 72) if horas < h <= horas_max]
-    usadas = horas
-    elegibles = []
+    portada = crudo.get("portada") or set()
+    tickers = list(tickers or [])
+    minimo = datetime.min.replace(tzinfo=timezone.utc)
+    usadas, salida = horas, []
     for h in ventanas:
         usadas = h
         lim = ahora - timedelta(hours=h)
         elegibles = [n for n in crudo["notas"] if n["fecha"] is None or lim <= n["fecha"] <= ahora + timedelta(minutes=10)]
-        if len(elegibles) >= cantidad:
+        todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers), "en_portada": n["clave"] in portada, "fuente": FUENTE} for n in elegibles]
+        todas.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
+        salida = _sin_repetir_ticker(todas, cantidad)
+        if len(salida) >= cantidad:
             break
-    portada = crudo.get("portada") or set()
-    tickers = list(tickers or [])
-    salida = []
-    for n in elegibles:
-        m = buscar_menciones(n["titulo"], tickers)
-        salida.append({**n, "menciona": m, "en_portada": n["clave"] in portada, "fuente": FUENTE})
-    minimo = datetime.min.replace(tzinfo=timezone.utc)
-    salida.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
-    return salida[:cantidad], usadas
+    return salida, usadas
 
 
 def traducir_notas(notas, traducir_lista=None):
@@ -406,18 +419,19 @@ def hace(fecha, ahora=None):
 
 
 def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None):
-    """Recuadro desplegable "Noticias Calientes" con los titulares. Sin notas, adentro va un renglon que lo explica."""
+    """Recuadro desplegable "Noticias calientes del día" con los titulares. Sin notas, adentro va un renglon que lo explica.
+    (v1.2.46: el titulo ya no lleva la fuente ni las horas; la fuente se nombra en cada nota y en el pie.)"""
     abierto = ABIERTO if abierto is None else abierto
     atr = " open" if abierto else ""
     if not notas:
         motivo = (f"{FUENTE} no respondió en este momento" if not hubo_respuesta
-                  else f"no hay notas de {FUENTE} de las últimas {horas} h")
-        return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE}</small></summary>'
+                  else f"no hay notas recientes de {FUENTE}")
+        return (f'<details class="nt"{atr}><summary>Noticias calientes del día</summary>'
                 f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div></details>')
     filas = []
     for n in notas:
         link = html.escape(n["link"], quote=True)
-        meta = " · ".join(x for x in (FUENTE, n.get("seccion", ""), hace(n.get("fecha"), ahora)) if x)
+        meta = " · ".join(x for x in (FUENTE, hace(n.get("fecha"), ahora)) if x)
         etiq = ""
         if n.get("menciona"):
             etiq = f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
@@ -427,9 +441,9 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
         filas.append(f'<li><a href="{link}" target="_blank" rel="noopener noreferrer"{tip}>{html.escape(texto)}</a>'
                      f'{etiq}<span class="nt-m">{html.escape(meta)}</span></li>')
     hay_es = any(n.get("titulo_es") for n in notas)
-    idioma = (" · titulares traducidos del inglés" if hay_es else " · titulares en inglés") if IDIOMA == "en" else ""
-    aviso_trad = (" Los titulares están traducidos automáticamente: pueden tener errores (al pasar el mouse se ve el original)." if hay_es else "")
-    return (f'<details class="nt"{atr}><summary>Noticias Calientes <small>{FUENTE} · últimas {horas} h{idioma}</small></summary>'
+    aviso_trad = (" Los titulares están traducidos automáticamente del inglés: pueden tener errores (al pasar el mouse se ve el original)."
+                  if hay_es else (" Los titulares salen en inglés porque la traducción no estuvo disponible." if IDIOMA == "en" else ""))
+    return (f'<details class="nt"{atr}><summary>Noticias calientes del día</summary>'
             f'<ul>{"".join(filas)}</ul>'
-            f'<div class="nt-pie">Orden: primero las que nombran empresas del screener (etiqueta verde), después las de portada, '
-            f'después las más recientes. Cada título abre la nota en {FUENTE}.{aviso_trad} Es información, no una recomendación.</div></details>')
+            f'<div class="nt-pie">Fuente: {FUENTE}. Primero las que nombran empresas del screener (etiqueta verde), una sola nota por empresa; '
+            f'después las de portada y las más recientes. Cada título abre la nota en {FUENTE}.{aviso_trad} Es información, no una recomendación.</div></details>')

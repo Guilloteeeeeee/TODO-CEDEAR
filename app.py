@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.45"
+APP_VERSION = "1.2.46"
 
 import streamlit as st
 import pandas as pd
@@ -40,8 +40,10 @@ try:
 except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
-                             texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual, resumen_empresa_html,
-                             barra_empresa_html, leyenda_tabla_html, ayuda_tabla_html, _mayusculas)
+                             texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual,
+                             leyenda_tabla_html, ayuda_columna_html, _mayusculas)
+from ui.ficha import ficha_html, CSS as CSS_FICHA
+from data import cedears as _cedears, precios_vivos as _pv
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -172,6 +174,58 @@ def get_scored_data(universe_key: str) -> tuple[pd.DataFrame, str]:
 
 
 # ---------------------------------------------------------------------------
+# PRECIOS EN VIVO (v1.2.46): ver data/precios_vivos.py
+# ---------------------------------------------------------------------------
+try:
+    from config.ajustes import PRECIOS_VIVOS, PRECIOS_MINUTOS_CACHE
+except ImportError:      # ajustes.py viejo
+    PRECIOS_VIVOS, PRECIOS_MINUTOS_CACHE = True, 5
+
+
+@st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
+def _precios_usd(tickers: tuple) -> dict:
+    """Precios en dolares de todas las empresas (un solo pedido a Yahoo). Si falla, {'usd': {}} y la app sigue con el precio del cache."""
+    try:
+        return _pv.bajar_usd(tickers)
+    except Exception:  # noqa: BLE001
+        return {"usd": {}, "fecha": None, "hora": _pv.hora_texto()}
+
+
+@st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
+def _precios_ars(items: tuple) -> dict:
+    """Precios en pesos de los CEDEARs: items = ((ticker, (simbolos de Yahoo...)), ...). Si falla, {}."""
+    try:
+        return _pv.bajar_ars({t: list(ss) for t, ss in items})
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def _datos_cedear(df: pd.DataFrame, ticker: str) -> dict:
+    """{TICKER: {'ratio', 'simbolo', 'precio_ars', 'ccl', 'hora'}} para la pagina de la empresa. El precio en pesos solo se muestra si
+    paso el control de coherencia (ver validar_ars). Nunca levanta excepciones."""
+    try:
+        datos = _cedears.cargar()
+        d = dict(datos.get(str(ticker).upper()) or {})
+        if not d or not PRECIOS_VIVOS:
+            return {str(ticker).upper(): d}
+        info = _precios_usd(tuple(sorted(df["ticker"])))
+        usd = info.get("usd") or {}
+        if not usd:
+            return {str(ticker).upper(): d}
+        simbolos = _cedears.simbolos_yahoo(datos)
+        items = tuple((t, tuple(ss)) for t, ss in sorted(simbolos.items()))
+        crudo = _precios_ars(items)
+        ratios = {t: v.get("ratio") for t, v in datos.items()}
+        buenos, ccl = _pv.validar_ars(crudo, ratios, usd)
+        b = buenos.get(str(ticker).upper())
+        if b:
+            d.update({"precio_ars": b["ars"], "ccl": b["ccl"], "ccl_mediana": ccl, "hora": info.get("hora")})
+        return {str(ticker).upper(): d}
+    except Exception:  # noqa: BLE001
+        return {str(ticker).upper(): {}}
+
+
+# ---------------------------------------------------------------------------
 # HELPERS DE VISUALIZACIÓN
 # ---------------------------------------------------------------------------
 
@@ -222,12 +276,12 @@ def format_market_cap(val: float | None) -> str:
     if val is None or pd.isna(val):
         return "—"
     if val >= 1e12:
-        return f"${val/1e12:.1f}T"
+        return f"US${val/1e12:.1f}T"
     if val >= 1e9:
-        return f"${val/1e9:.1f}B"
+        return f"US${val/1e9:.1f}B"
     if val >= 1e6:
-        return f"${val/1e6:.0f}M"
-    return f"${val:.0f}"
+        return f"US${val/1e6:.0f}M"
+    return f"US${val:.0f}"
 
 
 # Países (Yahoo los entrega en inglés) → castellano. Si aparece uno que no está, se muestra tal cual.
@@ -306,7 +360,7 @@ def _metodos_fv_html(row) -> str:
                 extra = f" ({up * 100:+.0f}%)"
             lineas.append(
                 f'<span style="color:{color};font-weight:600" title="peso {peso * 100:.0f}%">'
-                f'✓ {label} ${pm:,.2f}{extra}</span>'
+                f'✓ {label} US&#36;{pm:,.2f}{extra}</span>'
             )
         else:
             motivo = _motivo_metodo_faltante(row, metrica)
@@ -371,7 +425,7 @@ def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]
     upside = (fv - precio) / precio
     color = "#374151"   # v1.2.22: sin semaforo; el color queda solo para la categoria
     upside_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
-    return f"${fv:.2f} ({upside_str})", color
+    return f"US&#36;{fv:.2f} ({upside_str})", color
 
 
 # ---------------------------------------------------------------------------
@@ -393,11 +447,11 @@ ORDEN_INICIAL = ("market_cap", False)
 ORDENES_VALIDOS = ("nombre", "ticker", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total", "dividend_yield_actual")
 MKTCAP_OPCIONES = {
     "Sin mínimo": 0,
-    "≥ $1B": 1e9,
-    "≥ $10B": 10e9,
-    "≥ $50B": 50e9,
-    "≥ $100B": 100e9,
-    "≥ $500B": 500e9,
+    "≥ US$ 1B": 1e9,
+    "≥ US$ 10B": 10e9,
+    "≥ US$ 50B": 50e9,
+    "≥ US$ 100B": 100e9,
+    "≥ US$ 500B": 500e9,
 }
 
 
@@ -425,6 +479,11 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
                                       list(MKTCAP_OPCIONES), ORDENES_VALIDOS)
             for k, v in vals.items():
                 st.session_state[k] = v
+
+    # --- Buscador (v1.2.46): por nombre o ticker; se puede escribir y borrar ---
+    st.markdown('<div class="flt-t">Buscar empresa</div>', unsafe_allow_html=True)
+    busqueda = st.text_input("Buscar empresa", key="flt_busqueda", placeholder="Nombre o ticker (por ejemplo: Apple, KO)",
+                             label_visibility="collapsed", max_chars=40)
 
     # --- Sector / Industria y Valoración: pastillas (sin selección = todas) ---
     st.markdown('<div class="flt-t">Sector / Industria</div>', unsafe_allow_html=True)
@@ -498,8 +557,9 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     # Texto con los filtros y el orden: viaja en el link de cada empresa para poder volver a la tabla tal cual estaba
     estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label, dy_minimo,
                                   min_metricas, st.session_state.get("sort_col", ORDEN_INICIAL[0]), st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
-                                  bool(ver_metodos_fv))
+                                  bool(ver_metodos_fv), busqueda)
     return {
+        "busqueda": (busqueda or "").strip(),
         "estado_url": estado,
         "sectores": sectores_sel,
         "categorias": cats_nombres,
@@ -544,7 +604,7 @@ def _cambiar_orden_movil():
             return
 
 
-def render_tabla_visual(df_show: pd.DataFrame, estado=None):
+def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None):
     """Tabla visual: titulos ordenables (botones) y filas en una sola pieza de HTML con la misma grilla."""
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
@@ -578,22 +638,30 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None):
                 st.session_state["sort_col"] = clave
                 st.session_state["sort_asc"] = (clave in ("nombre", "ticker"))
             st.rerun()
+        # v1.2.46: un signo de pregunta al lado de cada titulo (se dibuja encima del boton, a la derecha)
+        with contenedor.container(key=f"tvq_{clave}"):
+            st.markdown(ayuda_columna_html(clave, fecha), unsafe_allow_html=True)
     st.markdown(html_tabla_visual(df_show, estado), unsafe_allow_html=True)
 
 
 def _boton_excel(df_show, fecha, aviso):
-    """Boton "Descargar en Excel": las empresas que se ven (con los filtros y el orden elegidos). Si algo falla, no se muestra."""
+    """Boton de descarga en Excel (v1.2.46: chico y sin relleno, dentro del Filtro de empresas): las empresas que se ven, con los
+    filtros y el orden elegidos. Si algo falla, no se muestra."""
     try:
         datos = excel_bytes(df_show, fecha, aviso, APP_VERSION)
     except Exception:  # noqa: BLE001
         return
     dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
-    st.download_button("⬇ Descargar la tabla en Excel", data=datos, file_name=f"todocedears_{dia}.xlsx", key="descarga_excel",
-                       mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
-                       help="Baja un archivo .xlsx con las empresas que ves ahora (con los filtros y el orden elegidos). Es información, no una recomendación.")
+    args = dict(data=datos, file_name=f"todocedears_{dia}.xlsx", key="descarga_excel",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
+                help="Baja un archivo .xlsx con las empresas que ves ahora (con los filtros y el orden elegidos). Es información, no una recomendación.")
+    try:
+        st.download_button("⬇ Descargar lo que ves en Excel", type="tertiary", **args)
+    except TypeError:       # Streamlit viejo, sin type="tertiary"
+        st.download_button("⬇ Descargar lo que ves en Excel", **args)
 
 
-def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
+def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lugar_excel=None):
     """Renderiza la tabla principal con colores y filtros aplicados."""
 
     df_show = df.copy()
@@ -619,6 +687,12 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
             (df_show["dividend_yield_actual"] >= filtros["dy_minimo"])
         )
         df_show = df_show[mask_dy]
+
+    # Buscador (v1.2.46): por nombre o ticker, sin importar mayusculas
+    q = (filtros.get("busqueda") or "").strip().casefold()
+    if q:
+        df_show = df_show[df_show["nombre"].fillna("").astype(str).str.casefold().str.contains(q, regex=False)
+                          | df_show["ticker"].fillna("").astype(str).str.casefold().str.contains(q, regex=False)]
 
     # Filtro por capitalización bursátil mínima
     if filtros["mktcap_minimo"] > 0:
@@ -689,11 +763,11 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso=""):
     # vista de revision: se muestra cuando se marca "Ver métodos del Fair Value".
     ver_metodos = bool(filtros.get("ver_metodos_fv"))
     if not ver_metodos:
-        c_n, c_xl = st.columns([3, 2], vertical_alignment="center")
-        c_n.markdown(ayuda_tabla_html(f"{len(df_show)} empresas"), unsafe_allow_html=True)
-        with c_xl:
-            _boton_excel(df_show, fecha, aviso)
-        render_tabla_visual(df_show, filtros.get("estado_url"))
+        # v1.2.46: ya no se muestra la cantidad de empresas y el boton de Excel pasa al Filtro de empresas
+        if lugar_excel is not None:
+            with lugar_excel:
+                _boton_excel(df_show, fecha, aviso)
+        render_tabla_visual(df_show, filtros.get("estado_url"), fecha)
         return
     st.markdown(f"**{len(df_show)} empresas**  ·  vista de revisión (tabla clásica)")
 
@@ -847,24 +921,12 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
     ticker_sel = row.get("ticker", ticker_sel)
     sector = row.get("sector", "")
     nombre = html.escape(str(row.get("nombre") or ticker_sel))
-    mcap = format_market_cap(row.get("market_cap")).replace("$", "&#36;")
 
+    # v1.2.46: nombre arriba y, abajo, todos los datos en mosaicos (ui/ficha.py)
     st.markdown(
-        f'<div class="emp-h">{logo_html(ticker_sel, 56)}<div><div class="emp-n">{nombre} <span>({html.escape(str(ticker_sel))})</span></div>'
-        f'<div class="emp-s tv-meta">{sector_html(sector, en_linea=True)} &nbsp;·&nbsp; {bandera_html(row.get("pais"), con_nombre=True)} &nbsp;·&nbsp; '
-        f'Capitalización bursátil <b>{mcap}</b></div></div></div>',
+        f'<div class="emp-h">{logo_html(ticker_sel, 56)}<div><div class="emp-n">{nombre} <span>({html.escape(str(ticker_sel))})</span></div></div></div>',
         unsafe_allow_html=True)
-    st.markdown(resumen_empresa_html(row.to_dict()), unsafe_allow_html=True)
-    st.markdown(barra_empresa_html(row.to_dict()), unsafe_allow_html=True)
-    st.markdown(f"**Puntaje fundamental:** {row.get('score_fundamental', '—')} | **Puntaje total:** {row.get('score_total', '—')}")
-
-    # Rango 52 semanas
-    st.markdown("**Posición en rango 52 semanas:**")
-    pos = row.get("posicion_52s")
-    if pos is not None:
-        st.progress(float(pos), text=f"{pos*100:.0f}% del rango | Mín: \\${format_metric(row.get('precio_min_52s'), 2)} — Máx: \\${format_metric(row.get('precio_max_52s'), 2)}")
-    else:
-        st.markdown("Sin datos de rango 52s")
+    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel)), unsafe_allow_html=True)
 
     # Desglose de métricas
     if sector in SECTOR_CONFIG and row.get("detalle"):
@@ -1012,7 +1074,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
                 st.markdown(f"<small>Peso: {peso_m*100:.0f}%</small>", unsafe_allow_html=True)
                 st.markdown(
                     f'<span style="font-size:18px;font-weight:700;color:{color_m}">'
-                    f'${precio_m:.2f}</span><br>'
+                    f'US&#36;{precio_m:.2f}</span><br>'
                     f'<span style="font-size:12px;color:{color_m}">{up_str} vs precio actual</span>',
                     unsafe_allow_html=True,
                 )
@@ -1110,20 +1172,35 @@ def main():
         df["pais"] = [p if isinstance(p, str) and p else PAIS_MANUAL.get(t) for p, t in zip(df["pais"], df["ticker"])]
         df["pais"] = df["pais"].map(traducir_pais)
 
+    # v1.2.46: precios de hoy (Yahoo) en lugar de los del cache. Si Yahoo no responde, queda el precio del cache y el pie lo dice.
+    texto_precios = None
+    if PRECIOS_VIVOS and df is not None and not df.empty:
+        try:
+            with st.spinner("Actualizando precios..."):
+                info_p = _precios_usd(tuple(sorted(df["ticker"])))
+            df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"))
+            if n_p:
+                df = df_p
+                f_p = info_p.get("fecha")
+                texto_precios = (f"Precios de Yahoo Finance al <b>{f_p.strftime('%d/%m/%Y')}</b> (consultados {info_p.get('hora')})" if f_p
+                                 else f"Precios de Yahoo Finance (consultados {info_p.get('hora')})")
+        except Exception:  # noqa: BLE001
+            pass
+
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
         st.stop()
 
     # Estilos de la tabla, de la escala, de la pagina de empresa y de las banderas (una sola vez por pagina)
-    st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}{CSS_FICHA}</style>", unsafe_allow_html=True)
     st.markdown(css_banderas(), unsafe_allow_html=True)
 
     # Pagina de una empresa (se abre al tocar su nombre en la tabla): ?empresa=TICKER
     empresa = st.query_params.get("empresa")
     if empresa:
         render_pagina_empresa(df, empresa)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
         return
 
     # v1.2.45: "Noticias Calientes" y "Filtro de empresas" (antes "Screener") van uno al lado del otro, para ocupar menos pantalla.
@@ -1147,6 +1224,7 @@ def main():
             with st.container(key="caja_screener"):
                 with st.expander("Filtro de empresas", expanded=False):
                     filtros = render_filtros_inline(universe, df)
+                    lugar_excel = st.container()
                     st.markdown(escala_valoracion_html(hay_gris) + leyenda_tabla_html(), unsafe_allow_html=True)
 
     # Forzar refresh limpia el cache de Streamlit
@@ -1155,7 +1233,7 @@ def main():
         st.rerun()
 
     # Tabla principal
-    render_main_table(df, filtros, fecha, aviso)
+    render_main_table(df, filtros, fecha, aviso, lugar_excel)
 
     if noticias_pendientes:
         render_noticias(df, descarga_noticias, lugar_noticias)
@@ -1166,7 +1244,7 @@ def main():
     # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
     render_debug_panel()
 
-    st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha), unsafe_allow_html=True)
+    st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
 
 
 try:

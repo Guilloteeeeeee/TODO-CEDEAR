@@ -140,7 +140,7 @@ ESCALA_BARRA_VECES = 1.8
 #   "en" = CNBC (titulares en ingles; cubre mejor las empresas de Estados Unidos). Los articulos "CNBC Pro" (de pago) se sacan.
 # Bloomberg se descarto porque sus notas son de pago.
 NOTICIAS_ACTIVAS = True          # False = no se muestra ni se descarga nada
-NOTICIAS_IDIOMA = "es"           # "es" (Ambito) o "en" (CNBC)
+NOTICIAS_IDIOMA = "en"           # v1.2.46: "en" = CNBC (con traduccion automatica al español, abajo); "es" = Ambito
 NOTICIAS_CANTIDAD = 5            # cuantos titulares
 NOTICIAS_HORAS = 24              # ventana de tiempo; si hay menos de NOTICIAS_CANTIDAD se amplia a 48 y 72 h (NOTICIAS_HORAS_MAX)
 NOTICIAS_HORAS_MAX = 72
@@ -148,7 +148,7 @@ NOTICIAS_MINUTOS_CACHE = 15      # cada cuanto se vuelve a bajar (todos los visi
 NOTICIAS_ABIERTO = False         # True = el recuadro aparece desplegado; False = cerrado (se abre con un toque)
 # Traduccion automatica (v1.2.42): con NOTICIAS_IDIOMA = "en", True traduce al español los titulares de CNBC con el servicio
 # gratuito MyMemory. Es traduccion automatica (puede tener errores); si falla, el titular queda en ingles. Con "es" no hace nada.
-NOTICIAS_TRADUCIR = False
+NOTICIAS_TRADUCIR = True         # v1.2.46: encendida - los titulares de CNBC se muestran en español (si la traduccion falla, queda el titular en ingles)
 NOTICIAS_TRADUCIR_MAIL = ""      # opcional: mail para subir la cuota gratuita de MyMemory de 5.000 a 50.000 caracteres por dia (vacio = COMENTARIOS_MAIL)
 # Por idioma: nombre de la fuente y sus feeds (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca
 # cuales notas estan ahi; no se muestra por separado.
@@ -159,7 +159,10 @@ NOTICIAS_FUENTES = {
         ("Portada", "https://www.ambito.com/rss/home.xml", True),
     )},
     "en": {"fuente": "CNBC", "feeds": (
+        # v1.2.46: mas secciones para tener de donde elegir cuando se saltean las notas con el mismo ticker
         ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False),
+        ("Inversiones", "https://www.cnbc.com/id/15839069/device/rss/rss.html", False),
+        ("Resultados", "https://www.cnbc.com/id/15839135/device/rss/rss.html", False),
         ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False),
         ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False),
         ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
@@ -170,3 +173,11 @@ NOTICIAS_FUENTES = {
 # v1.2.45: fondo de la pagina. Un gris casi blanco hace que los paneles blancos con sombra suave se noten como paneles.
 # Para volver al fondo blanco de siempre: FONDO_PAGINA = "#ffffff".
 FONDO_PAGINA = "#f5f6f8"
+
+
+# v1.2.46: precios en vivo. True = al abrir la app se baja de Yahoo Finance el ultimo precio de cada empresa (un solo pedido) y se usa en la
+# tabla y en la pagina de la empresa; tambien el precio en pesos de cada CEDEAR (pagina de la empresa). Se guarda PRECIOS_MINUTOS_CACHE minutos
+# (todos los visitantes comparten la descarga). El puntaje y el Fair Value NO se recalculan con el precio nuevo. Si Yahoo no responde, se
+# sigue con el precio del cache. False = como hasta la v1.2.45 (siempre el precio del cache).
+PRECIOS_VIVOS = True
+PRECIOS_MINUTOS_CACHE = 5
