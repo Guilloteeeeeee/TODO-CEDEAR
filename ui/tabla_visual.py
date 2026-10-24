@@ -1,20 +1,17 @@
 """
-Tabla visual (definitiva desde v1.2.28; columnas nuevas en la v1.2.36; 6 columnas desde la v1.2.37; 7 columnas y filas mas
-compactas desde la v1.2.41). Una pieza de HTML (sin JavaScript) con una fila por empresa.
-Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) y ordenan al tocarlos.
-  Empresa        logo y nombre en negrita; abajo, sector (industria) y bandera, sin negrita. Al tocar el nombre se
-                 abre la pagina de la empresa (?empresa=TICKER)
-  Ticker         el ticker solo, en su propia columna (sin parentesis); tambien abre la pagina de la empresa
-  Capitalizacion bursatil (antes "Market Cap")  numero centrado (sin negrita)
-  Precio         precio de hoy, con "(Cotizacion origen)" chico en el titulo
-  Valoracion     arriba, la categoria en letras de color y negrita (sin bloque de color y, por defecto, sin el "Podría estar");
-                 abajo, en gris y mas chico, el Fair Value y, entre parentesis, la distancia del precio al Fair Value (v1.2.45)
-  Puntaje        caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar
-  Dividend Yield rendimiento actual y, al lado, el recorrido de los años fiscales (linea gris), la mediana
-                 (linea horizontal; abajo el texto "Mediana histórica X %", sin cantidad de años) y hoy (punto con el color
-                 segun donde esta respecto de esa mediana). Si no hay serie de años, una escala corta con la marca de la mediana.
-La barra con el Fair Value al centro (celda_valoracion) ya no va en la tabla: esta en la pagina de cada empresa.
-El rango de 52 semanas tampoco va en la tabla: esta en la pagina de cada empresa.
+Tabla visual (definitiva desde v1.2.28). Una pieza de HTML (sin JavaScript) con una fila por empresa.
+Los titulos son botones de Streamlit (los dibuja app.py, con los mismos anchos) y ordenan al tocarlos. Al pasar el mouse por un titulo
+se ve su explicacion (v1.2.47: ya no hay signos de pregunta).
+
+Columnas por defecto (v1.2.47), en este orden:
+  Empresa              logo y nombre en negrita; abajo, la bandera del pais y el ticker. Al tocarlos se abre la pagina de la empresa (?empresa=TICKER)
+  Sector e industria   informativo (no cambia la valoracion): el sector y, abajo, la industria
+  Precio               precio de hoy, en dolares
+  Capitalizacion bursatil
+  Valoracion           solo la categoria, en letras de color y negrita (el Fair Value ya no va aca: esta en la pagina de la empresa o se suma
+                       desde "Agregar criterios")
+  Puntaje de calidad   caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar (por ahora es el puntaje de precio del screener)
+Columnas opcionales: las que la persona suma desde "Agregar criterios" (ui/criterios.py: Dividend Yield, Fair Value, P/E...).
 
 Los signos $ se escriben como &#36; para que el markdown no los tome como formulas.
 """
@@ -26,6 +23,7 @@ from urllib.parse import quote
 
 import pandas as pd
 
+from config.industrias import industria_de
 from config.sectors import etiqueta_sector, partes_sector
 from ui.banderas import bandera_html
 from ui.logos import logo_html
@@ -89,51 +87,76 @@ def escala_valoracion_html(mostrar_gris=False):
             '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
             f'{gris}</div>')
 
-# Ayuda de cada titulo de la tabla (v1.2.46: un signo de pregunta al lado de cada titulo). clave de columna -> (titulo, texto)
+# Ayuda de cada titulo de la tabla: se ve al pasar el mouse por el titulo (v1.2.47; antes habia un signo de pregunta al lado de cada uno).
+# clave de columna -> (titulo, texto). Las columnas que se suman desde "Agregar criterios" usan el texto de ui/criterios.py.
 AYUDA_COLUMNAS = {
-    "nombre": ("Empresa", "Nombre, sector (industria) y país. Tocá el nombre (está subrayado) para abrir su página con todo el detalle. "
-                          "En el Filtro de empresas hay un buscador editable (por nombre o ticker) y filtros por sector, valoración, país y más."),
-    "ticker": ("Ticker", "El código con el que la empresa cotiza en su mercado de origen. También abre su página."),
+    "nombre": ("Empresa", "Nombre de la empresa y, abajo, la bandera de su país y su ticker (el código con el que cotiza en su mercado de origen). "
+                          "Tocá el nombre para abrir su página con todo el detalle. Arriba de la tabla hay un buscador por nombre o ticker."),
+    "sector_txt": ("Sector e industria", "A qué se dedica la empresa: el sector y, abajo, su industria. Es solo información: no cambia la valoración ni el puntaje."),
+    "precio_actual": ("Precio", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance cada pocos minutos "
+                                "(puede tener demora); si no responde, queda el de la última actualización de los datos{fecha}. "
+                                "No es el precio del CEDEAR en pesos: ese está en la página de cada empresa."),
     "market_cap": ("Capitalización bursátil", "Lo que vale la empresa entera en la bolsa (precio × cantidad de acciones), en dólares (US$). "
                                               "M = millón, B = mil millones, T = un billón."),
-    "precio_actual": ("Precio (cotización origen)", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance "
-                                                     "cada pocos minutos (puede tener demora); si Yahoo no responde, queda el de la última actualización de los datos{fecha}. "
-                                                     "No es el precio del CEDEAR en pesos: ese está en la página de cada empresa."),
     "fv_upside": ("Valoración", "Una estimación, no una recomendación: si la empresa cotiza barata, razonable o cara frente a sus propios múltiplos históricos. "
-                                "Abajo, el Fair Value (el precio que resultaría de esos múltiplos) y cuánto más (+) o menos (−) que el precio de hoy. "
-                                "El puntaje y el Fair Value se calculan con los datos de la última actualización; el porcentaje sí usa el precio de hoy."),
-    "score_total": ("Puntaje", "De 0 (más cara) a 100 (más barata). Abajo, cuántas métricas se pudieron usar para calcularlo."),
-    "dividend_yield_actual": ("Dividend Yield", "Lo que paga por año en dividendos, como porcentaje del precio. "
-                                                "En la página de cada empresa lo ves comparado con su mediana histórica."),
+                                "El Fair Value (el precio que resultaría de esos múltiplos) está en la página de cada empresa; también lo podés sumar a la tabla "
+                                "desde “Agregar criterios”, en el Filtro de empresas."),
+    "score_total": ("Puntaje de calidad", "De 0 (más cara) a 100 (más barata). Por ahora es el puntaje de precio del screener; más adelante sumará la "
+                                          "calidad del negocio. Abajo, cuántas métricas se pudieron usar para calcularlo."),
 }
-_AYUDA_A_LA_DERECHA = ("fv_upside", "score_total", "dividend_yield_actual")   # estos globitos se abren hacia la izquierda (si no, se salen de la pantalla)
 
 
-def ayuda_columna_html(clave, fecha=None):
-    """Signo de pregunta de un titulo de la tabla: al tocarlo se despliega una descripcion breve de esa columna."""
-    titulo, texto = AYUDA_COLUMNAS[clave]
+def ayuda_texto(clave, fecha=None):
+    """Texto que se ve al pasar el mouse por el titulo de una columna (titulo y explicacion), o '' si no hay."""
+    from ui.criterios import POR_CLAVE
+    if clave in AYUDA_COLUMNAS:
+        titulo, texto = AYUDA_COLUMNAS[clave]
+    elif clave in POR_CLAVE:
+        titulo, texto = POR_CLAVE[clave]["nombre"], POR_CLAVE[clave]["ayuda"]
+    else:
+        return ""
     texto = texto.replace("{fecha}", f" (datos al {fecha})" if fecha else "")
-    lado = " tv-q-r" if clave in _AYUDA_A_LA_DERECHA else ""
-    return (f'<details class="tv-q{lado}"><summary title="¿Qué es {html.escape(titulo)}?" aria-label="¿Qué es {html.escape(titulo)}?">?</summary>'
-            f'<div class="tv-qp tv-qp-c"><b class="tv-qt">{html.escape(titulo)}</b>{html.escape(texto)}</div></details>')
+    return f"**{titulo}.** {texto}"
 
 
-def leyenda_tabla_html():
-    """"Cómo leer la tabla": va dentro del recuadro Screener, debajo de la escala de valoracion."""
-    return ('<div class="tv-leyenda"><b>Cómo leer la tabla:</b> en <b>Valoración</b>, la frase de color sale del puntaje (de 0 a 100) y es una '
-            'estimación ("podría estar…"), no una recomendación; debajo va el <b>Fair Value</b>, el precio que sale de promediar, con los pesos '
-            'de su sector, lo que valdría la empresa si cotizara a su múltiplo histórico, y entre paréntesis cuánto más (+) o menos (−) que el '
-            'precio de hoy. El <b>Dividend Yield</b> es lo que rinde hoy por dividendos. Tocá el nombre o el ticker de una empresa para ver su página con '
-            'todo el detalle (descripción, métodos del Fair Value, rango de 52 semanas y el Dividend Yield contra su mediana).</div>')
+def como_leer_html(extras=()):
+    """"Cómo leer la tabla": va arriba de la tabla, en el mismo orden de las columnas que se ven. `extras` son los criterios agregados."""
+    items = [
+        "<b>Empresa</b>: el nombre, y abajo la bandera de su país y el ticker. Tocá el nombre para ver su página con todo el detalle.",
+        "<b>Sector e industria</b>: a qué se dedica. Es solo información; no cambia la valoración.",
+        "<b>Precio</b>: lo que cuesta una acción en dólares (US$), en su mercado de origen.",
+        "<b>Capitalización bursátil</b>: lo que vale la empresa entera en la bolsa (M = millón, B = mil millones, T = billón).",
+        "<b>Valoración</b>: una estimación (no una recomendación) de si cotiza barata, razonable o cara frente a sus propios múltiplos históricos.",
+        "<b>Puntaje de calidad</b>: de 0 (más cara) a 100 (más barata); por ahora es el puntaje de precio del screener.",
+    ]
+    for c in extras:
+        items.append(f"<b>{html.escape(c['nombre'])}</b>: {html.escape(c['ayuda'])}")
+    pie = ('Otros datos (Dividend Yield, Fair Value, P/E…) no vienen por defecto: sumalos con <b>Agregar criterios</b>, en el Filtro de empresas. '
+           'El Fair Value y el Dividend Yield contra su mediana también están en la página de cada empresa.')
+    return ('<div class="tv-como"><b class="tv-ct">Cómo leer la tabla</b><ol>' + "".join(f"<li>{t}</li>" for t in items) + f'</ol><div class="tv-cn">{pie}</div></div>')
 
 
-# Anchos relativos de las 7 columnas (Empresa, Ticker, Market Cap, Precio, Valoracion, Puntaje, Dividend Yield): los usan los
-# encabezados (botones de Streamlit) y las filas (grilla CSS), asi quedan alineados.
-ANCHOS_VISUAL = [3.1, 0.9, 1.6, 1.4, 2.9, 1.0, 1.2]
+# Columnas por defecto (clave de orden, titulo, ancho relativo). Los encabezados (botones de Streamlit) y las filas (grilla CSS) usan los mismos anchos.
+COLUMNAS_BASE = [
+    ("nombre", "Empresa", 3.0), ("sector_txt", "Sector e industria", 2.6), ("precio_actual", "Precio", 1.3),
+    ("market_cap", "Capitalización bursátil", 1.6), ("fv_upside", "Valoración", 2.0), ("score_total", "Puntaje de calidad", 1.3),
+]
+ANCHO_EXTRA = 1.7
+
+
+def anchos(n_extra=0):
+    """Anchos relativos de todas las columnas visibles (las de siempre y las agregadas)."""
+    return [w for _, _, w in COLUMNAS_BASE] + [ANCHO_EXTRA] * int(n_extra)
+
+
+def css_columnas(n_extra=0):
+    """Plantilla de la grilla de las filas para la cantidad de columnas visibles (solo vale en pantallas anchas: en el celular cada fila es una tarjeta)."""
+    return ".tv2-r{grid-template-columns:" + " ".join(f"minmax(0,{w}fr)" for w in anchos(n_extra)) + "}"
+
 
 CSS = """
 .tv2{border:0;border-radius:0 0 14px 14px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07)}
-.tv2-r{display:grid;grid-template-columns:__COLS__;align-items:stretch;border-top:1px solid #f0f2f5}
+.tv2-r{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2.6fr) minmax(0,1.3fr) minmax(0,1.6fr) minmax(0,2fr) minmax(0,1.3fr);align-items:stretch;border-top:1px solid #f0f2f5}
 .tv2-r:first-child{border-top:0}
 .tv2-r>div{padding:8px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
 .tv2-r>.tv2-v{background:#f8fafc}
@@ -144,7 +167,7 @@ CSS = """
 .tv2-ec{min-width:0;flex:1}
 .tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
 .tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700;color:#111827;text-decoration:underline;text-decoration-color:rgba(75,85,99,.4);text-decoration-thickness:1px;text-underline-offset:3px}
-.tv2-tk{flex:none;font-size:13.5px;font-weight:400;color:#374151;letter-spacing:.3px;text-decoration:underline;text-decoration-color:rgba(75,85,99,.35);text-decoration-thickness:1px;text-underline-offset:3px}
+.tv2-tk{flex:none;font-size:12.5px;font-weight:400;color:#4b5563;letter-spacing:.3px}
 .tv2-mc{font-size:14px;font-weight:400;color:#111827;white-space:nowrap}
 .tv2-l2{margin-top:2px;font-size:11.5px;font-weight:400;color:#4b5563;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tv2-dy{text-align:center}
@@ -170,7 +193,8 @@ CSS = """
 a.tv2-l1,a.tv2-lg{text-decoration:none!important;color:inherit!important}
 a.tv2-lg{flex:none;display:flex}
 a.tv2-l1:hover .tv2-nm{text-decoration-color:#1d4ed8;color:#1d4ed8}
-a.tv2-l1:hover .tv2-tk,a.tv2-tkc:hover .tv2-tk{color:#1d4ed8;text-decoration-color:#1d4ed8}
+a.tv2-bd{text-decoration:none!important;color:inherit!important}
+a.tv2-bd:hover .tv2-tk{color:#1d4ed8;text-decoration:underline}
 a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv-v2{position:relative;height:66px;margin:0 10px}
 .tv-pl{position:absolute;top:0;transform:translateX(-50%);font-size:13px;font-weight:700;color:#111827;white-space:nowrap}
@@ -232,56 +256,54 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .esc-gt{font-size:12px;color:#4b5563}
 .st-key-descarga_excel button{font-size:13px;color:#4b5563;padding:2px 0;min-height:0}
 .st-key-descarga_excel button:hover{color:#111827;text-decoration:underline}
-.tv-q{position:relative;display:inline-block}
-.tv-q>summary{list-style:none;cursor:pointer;width:22px;height:22px;border-radius:50%;background:#fff;color:#4b5563;font-weight:700;font-size:13px;line-height:22px;text-align:center;box-shadow:0 1px 2px rgba(15,23,42,.12),0 2px 8px rgba(15,23,42,.08);user-select:none}
-.tv-q>summary::-webkit-details-marker{display:none}
-.tv-q>summary:hover,.tv-q[open]>summary{background:#2b2f33;color:#fff}
-.tv-qp{position:absolute;left:0;top:calc(100% + 10px);width:min(560px,86vw);z-index:1000;background:#fff;border-radius:14px;padding:14px 16px 10px;box-shadow:0 2px 6px rgba(15,23,42,.08),0 14px 36px rgba(15,23,42,.18);font-size:13px;line-height:1.45;color:#374151;font-weight:400}
-.tv-qp b.tv-qt{display:block;font-size:13.5px;color:#111827;margin-bottom:4px}
-.tv-qp-c{width:min(290px,80vw)}
-.tv-q-r>.tv-qp{left:auto;right:0}
-.tv-qp dl{margin:0}
-.tv-qp dt{font-weight:700;color:#111827;margin-top:7px}
-.tv-qp dd{margin:0 0 0 0;color:#4b5563}
-.tv-leyenda{font-size:12.5px;color:#41566b;border-top:1px solid #dde8f4;margin:12px 0 4px;padding:10px 0 6px;line-height:1.5}
 .tv-ini{font-family:inherit}
 .flt-t{font-size:13px;font-weight:700;color:#374151;margin:12px 0 2px}
+.crit-t{font-size:13px;font-weight:700;color:#374151;margin:0 0 4px}
+.crit-t span{font-weight:500;color:#6b7280}
+.st-key-buscador{margin:10px 0 4px}
+.st-key-buscador input{padding-left:44px!important;height:48px;font-size:15.5px;border-radius:14px;background-color:#fff;border:0!important;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);background-repeat:no-repeat;background-position:15px center;background-size:20px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>")}
+.st-key-buscador [data-baseweb='input'],.st-key-buscador [data-baseweb='base-input']{background:transparent!important;border:0!important}
+.st-key-buscador input::placeholder{color:#6b7280;opacity:1}
 [data-testid="stButtonGroup"] button{border:1px solid #cfd8e3;border-radius:18px;background-color:#fff;color:#374151;padding:3px 13px;font-size:13.5px;transition:background .12s,border-color .12s}
 [data-testid="stButtonGroup"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}
 [data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"]{background:#222d36!important;border-color:#222d36!important;color:#fff!important;font-weight:600}
 [data-testid="stButtonGroup"] button[aria-pressed="true"] p,[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"] p{color:#fff}
 [data-testid="stButtonGroup"] button[aria-pressed="true"]:hover{background:#33414d!important;border-color:#33414d!important;color:#fff!important}
-/* Celular y pantallas angostas (v1.2.42): cada fila pasa a ser una tarjeta; el encabezado de botones se esconde y aparece el
-   selector "Ordenar por" (st-key-orden_movil_caja). Orden de las celdas de la fila: 1 Empresa, 2 Ticker, 3 Capitalizacion bursatil, 4 Precio,
-   5 Valoracion, 6 Puntaje, 7 Dividend Yield. */
+/* Celular y pantallas angostas (v1.2.47): cada fila pasa a ser una tarjeta; el encabezado de botones se esconde y aparece el selector
+   "Ordenar por" (st-key-orden_movil_caja). Cada celda tiene su clase (c-emp, c-sec, c-pre, c-cap, c-val, c-pts; c-x = criterios agregados) */
 .st-key-orden_movil_caja{display:none}
+.tv2-lbl{display:none}
+.tv2-bd{display:flex;align-items:center;gap:6px;margin-top:2px;font-size:12px;color:#4b5563;white-space:nowrap}
+.tv2-sc{font-size:13.5px;font-weight:400;color:#111827;line-height:1.25}
+.tv2-si{margin-top:2px;font-size:12px;font-weight:400;color:#4b5563;line-height:1.25}
+.tv2-ni{font-size:12.5px;color:#6b7280}
+.tv-buscar{margin:6px 0 4px}
+.tv-como{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:12px 16px 12px;margin:6px 0 14px;font-size:13px;line-height:1.5;color:#374151}
+.tv-como b.tv-ct{display:block;font-size:13.5px;color:#111827;margin-bottom:6px}
+.tv-como ol{margin:0;padding-left:20px}
+.tv-como li{margin:0 0 3px}
+.tv-como li b{color:#111827}
+.tv-como .tv-cn{margin-top:6px;color:#6b7280;font-size:12.5px}
 @media (max-width:900px){
 div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre){display:none!important}
 .st-key-orden_movil_caja{display:block}
 div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
-.tv2{border:0;background:transparent;border-radius:0;overflow:visible}
-.tv2{box-shadow:none}
-.tv2 .tv2-r,.tv2 .tv2-r:first-child{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
- grid-template-areas:"emp emp tk" "val val pts" "mc pr dy";gap:0;border:0;border-radius:14px;background:#fff;margin:0 0 12px;padding:4px 2px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.08)}
+.tv2{border:0;background:transparent;border-radius:0;overflow:visible;box-shadow:none}
+.tv2 .tv2-r,.tv2 .tv2-r:first-child{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"emp emp pts" "sec sec sec" "val val val" "pre cap .";
+ gap:0;border:0;border-radius:14px;background:#fff;margin:0 0 12px;padding:4px 2px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.08)}
 .tv2-r>div{padding:6px 10px}
 .tv2-r:hover>div,.tv2-r:hover>.tv2-v,.tv2-r>.tv2-v{background:transparent}
-.tv2-r>div:nth-child(1){grid-area:emp}
-.tv2-r>div:nth-child(2){grid-area:tk;align-items:flex-end;text-align:right}
-.tv2-r>div:nth-child(3){grid-area:mc}
-.tv2-r>div:nth-child(4){grid-area:pr}
-.tv2-r>div:nth-child(5){grid-area:val;align-items:flex-start}
-.tv2-r>div:nth-child(6){grid-area:pts;align-items:flex-end}
-.tv2-r>div:nth-child(7){grid-area:dy}
-.tv2-r>div:nth-child(3),.tv2-r>div:nth-child(4),.tv2-r>div:nth-child(7){align-items:flex-start;justify-content:flex-start;text-align:left;border-top:1px solid #f0f2f5;padding-top:8px}
-.tv2-r>div:nth-child(3)::before,.tv2-r>div:nth-child(4)::before,.tv2-r>div:nth-child(7)::before{font-size:10.5px;font-weight:400;color:#4b5563;margin-bottom:2px;letter-spacing:.2px}
-.tv2-r>div:nth-child(3)::before{content:"Capitalización bursátil"}
-.tv2-r>div:nth-child(4)::before{content:"Precio (cotización origen)"}
-.tv2-r>div:nth-child(7)::before{content:"Dividend Yield"}
-.tv2-r>div:nth-child(5) .tv2-vc,.tv2-r>div:nth-child(5) .tv-vl{align-items:flex-start;text-align:left}
-.tv2-r>div:nth-child(5) .tv-cat{justify-content:flex-start}
-.tv2-r>div:nth-child(7) .tv2-dy{text-align:left}
-.tv2-r>div:nth-child(7) .tv2-dyc .tv2-dyr{flex-direction:column;align-items:flex-start;gap:2px}
-.tv2-r>div:nth-child(7) .tv2-dym{margin-top:1px}
+.tv2-r>.c-emp{grid-area:emp}
+.tv2-r>.c-pts{grid-area:pts;align-items:flex-end}
+.tv2-r>.c-sec{grid-area:sec}
+.tv2-r>.c-val{grid-area:val}
+.tv2-r>.c-pre{grid-area:pre}
+.tv2-r>.c-cap{grid-area:cap}
+.tv2-r>.c-x{grid-area:auto}
+.tv2-r>.c-sec,.tv2-r>.c-val,.tv2-r>.c-pre,.tv2-r>.c-cap,.tv2-r>.c-x{align-items:flex-start;justify-content:flex-start;text-align:left;border-top:1px solid #f0f2f5;padding-top:8px}
+.tv2-lbl{display:block;font-size:10.5px;font-weight:400;color:#4b5563;margin-bottom:2px;letter-spacing:.2px}
+.tv2-r>.c-val .tv2-vc,.tv2-r>.c-val .tv-vl{align-items:flex-start;text-align:left}
+.tv2-r>.c-val .tv-cat{justify-content:flex-start}
 .tv2-nm{font-size:15px}
 .tv2-l2{white-space:normal}
 }
@@ -289,38 +311,31 @@ span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!importa
 span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}
 span[data-baseweb="tag"] svg{fill:#475569!important}
 """
-CSS = CSS.replace("__COLS__", " ".join(f"minmax(0,{w}fr)" for w in ANCHOS_VISUAL))
 
 # Colores del encabezado (barra gris pizarra oscura, la misma gama del logo, con titulos blancos centrados; la columna Valoracion un poco mas oscura)
 _BARRA = "#2b2f33"
 _BARRA_VAL = "#1d2023"
 
 
-def css_encabezado(sort_col=None):
-    """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>'). v1.2.45: gris oscuro neutro y "(Cotización origen)" chico
-    debajo de "Precio". Desde la v1.2.41 se resalta solo la columna
-    Valoracion (mas oscura); la columna por la que se ordena se reconoce por la flecha, ya no por el color. `sort_col` se acepta
-    por compatibilidad."""
+def css_encabezado(sort_col=None, n_extra=0):
+    """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>') y de la grilla de las filas para `n_extra` criterios agregados.
+    Gris oscuro neutro con titulos blancos; la columna Valoracion un poco mas oscura. La columna por la que se ordena se reconoce por la flecha.
+    v1.2.47: sin los globitos "?" (la explicacion se ve al pasar el mouse por el titulo) y sin "(Cotizacion origen)" debajo de Precio.
+    `sort_col` se acepta por compatibilidad."""
     base = 'div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre)'
     return (
-        f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:14px 14px 0 0;align-items:stretch!important}}'
+        css_columnas(n_extra)
+        + f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:14px 14px 0 0;align-items:stretch!important}}'
         f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
         f'{base} [data-testid="stElementContainer"]{{width:100%}}'
         '[class*="st-key-tvh_"] button{width:100%;min-height:46px;background:transparent;border:0;border-radius:0;box-shadow:none;color:#fff}'
-        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:500;color:#fff;margin:0;padding:0 16px 0 2px;letter-spacing:0;white-space:normal;word-break:keep-all;overflow-wrap:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
+        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:500;color:#fff;margin:0;padding:0 2px;letter-spacing:0;white-space:normal;word-break:keep-all;overflow-wrap:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
         '[class*="st-key-tvh_"] button div,[class*="st-key-tvh_"] button [data-testid="stMarkdownContainer"]{white-space:normal;overflow:visible;text-overflow:clip}'
         '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
         '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
         f'.st-key-tvh_fv_upside button{{background:{_BARRA_VAL}}}'
-        '.st-key-tvh_precio_actual button p::after{content:"(Cotización origen)";display:block;font-size:10.5px;font-weight:500;letter-spacing:0;opacity:.78;margin-top:1px}'
-        f'{base} [data-testid="stColumn"]{{position:relative}}'
         f'{base} [data-testid="stColumn"] [data-testid="stVerticalBlock"]{{gap:0!important}}'
         '[class*="st-key-tvh_"] button{padding-left:3px!important;padding-right:3px!important}'
-        '[class*="st-key-tvq_"]{position:absolute!important;top:0;right:3px;height:46px;width:auto!important;display:flex!important;align-items:center;z-index:40;pointer-events:none}'
-        '[class*="st-key-tvq_"] .tv-q{pointer-events:auto}'
-        '[class*="st-key-tvq_"] .tv-q>summary{width:17px;height:17px;line-height:17px;font-size:11px;font-weight:500;background:rgba(255,255,255,.16);color:#fff;box-shadow:none}'
-        '[class*="st-key-tvq_"] .tv-q>summary:hover,[class*="st-key-tvq_"] .tv-q[open]>summary{background:#fff;color:#2b2f33}'
-        '[class*="st-key-tvq_"] .tv-qp{top:calc(100% - 4px)}'
         'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'
     )
 
@@ -374,27 +389,36 @@ def _href_empresa(ticker, estado=None):
 
 
 def _celda_empresa(row, estado=None):
-    """Logo y nombre en negrita (todo es un link a la pagina de la empresa); abajo, sector (industria) sin negrita y la bandera.
-    El ticker va en su propia columna (_celda_ticker)."""
+    """Logo y nombre en negrita (todo es un link a la pagina de la empresa); abajo, la bandera del pais y el ticker."""
     t = _txt(row.get("ticker"), "—")
     nombre = html.escape(_nombre_limpio(row.get("nombre"), t))
-    g = row.get("sector")
-    sec = sector_plano(g) if isinstance(g, str) and g else ""
     pais = row.get("pais")
     bandera = bandera_html(pais, chica=True) if isinstance(pais, str) and pais else ""
-    l2 = " ".join(x for x in (sec, bandera) if x)
     href = html.escape(_href_empresa(t, estado), quote=True)
     ttl = f'Ver la página de {nombre}'
     return (f'<div class="tv2-emp"><a class="tv2-lg" href="{href}" target="_self" title="{ttl}">{logo_html(t, 32)}</a><div class="tv2-ec">'
             f'<a class="tv2-l1" href="{href}" target="_self" title="{ttl}"><span class="tv2-nm">{nombre}</span></a>'
-            f'<div class="tv2-l2">{l2}</div></div></div>')
+            f'<a class="tv2-bd" href="{href}" target="_self" title="{ttl}">{bandera}<span class="tv2-tk">{html.escape(t)}</span></a></div></div>')
 
 
-def _celda_ticker(row, estado=None):
-    """El ticker solo (sin parentesis), en su propia columna; tambien abre la pagina de la empresa."""
-    t = _txt(row.get("ticker"), "—")
-    href = html.escape(_href_empresa(t, estado), quote=True)
-    return f'<a class="tv2-tkc" href="{href}" target="_self" title="Ver la página de {html.escape(t)}"><span class="tv2-tk">{html.escape(t)}</span></a>'
+def sector_industria(row):
+    """(sector, industria) para mostrar en la tabla: el sector es el de siempre (config/sectors.py) y la industria sale de config/industrias.py.
+    Es informacion: no interviene en ningun calculo. Si la fila ya trae las columnas `sector_macro` e `industria`, se usan esas."""
+    sector = _txt(row.get("sector_macro"), "")
+    industria = _txt(row.get("industria"), "")
+    if not sector:
+        sector = partes_sector(row.get("sector"))[0] or ""
+    if not industria:
+        industria = industria_de(row.get("ticker")) or partes_sector(row.get("sector"))[1] or ""
+    return sector, industria
+
+
+def _celda_sector(row):
+    sector, industria = sector_industria(row)
+    if not sector:
+        return '<span class="tv2-ni">—</span>'
+    ind = f'<div class="tv2-si">{html.escape(industria)}</div>' if industria else ""
+    return f'<div class="tv2-sc">{html.escape(sector)}</div>{ind}'
 
 
 def _celda_mcap(row):
@@ -492,9 +516,9 @@ def _fv_chico(row):
 
 
 def _celda_valoracion_tabla(row):
-    """Celda "Valoración" de la tabla: arriba la categoria (letras de color en negrita) y abajo, en gris y mas chico, el Fair Value
-    con la distancia al precio entre parentesis. El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
-    return (f'<div class="tv2-vc">{_celda_categoria(row, con_aviso=bool(AVISO_PODRIA_EN_TABLA))}{_fv_chico(row)}</div>')
+    """Celda "Valoración" de la tabla (v1.2.47): solo la categoria, en letras de color y negrita. El Fair Value ya no va aca: esta en la
+    pagina de la empresa o se suma a la tabla desde "Agregar criterios". El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
+    return f'<div class="tv2-vc">{_celda_categoria(row, con_aviso=bool(AVISO_PODRIA_EN_TABLA))}</div>'
 
 
 def resumen_empresa_html(row):
@@ -664,15 +688,19 @@ def _celda_dy(row, grande=False):
     return f'<div class="{cls}" title="{html.escape(tip)}"><div class="tv2-dyr"><span class="tv2-dyn">{pct:.2f}%</span>{dibujo}</div>{pie}</div>'
 
 
-def html_tabla_visual(df: pd.DataFrame, estado=None) -> str:
-    """HTML de las filas de `df`, en el orden recibido (los encabezados ordenables los dibuja la app). `estado` es el texto con
-    los filtros que viajan en el link de cada empresa para poder volver a la tabla tal cual estaba. La leyenda "Cómo leer la
-    tabla" ya no va aca: esta en el recuadro Screener (leyenda_tabla_html)."""
+def html_tabla_visual(df: pd.DataFrame, estado=None, extras=()) -> str:
+    """HTML de las filas de `df`, en el orden recibido (los encabezados ordenables los dibuja la app). `estado` es el texto con los filtros que
+    viajan en el link de cada empresa para poder volver a la tabla tal cual estaba. `extras`: criterios agregados (ui/criterios.py), una columna cada uno."""
+    from ui import criterios as K
     filas = []
     for _, row in df.iterrows():
         r = row.to_dict()
-        filas.append('<div class="tv2-r">' + f'<div>{_celda_empresa(r, estado)}</div>' + f'<div class="tv2-c">{_celda_ticker(r, estado)}</div>'
-                     + f'<div class="tv2-c">{_celda_mcap(r)}</div>' + f'<div class="tv2-c">{_celda_precio(r)}</div>'
-                     + f'<div class="tv2-v">{_celda_valoracion_tabla(r)}</div>'
-                     + f'<div class="tv2-c">{_celda_puntaje(r)}</div>' + f'<div class="tv2-c">{_celda_dy(r)}</div></div>')
+        celdas = [f'<div class="c-emp">{_celda_empresa(r, estado)}</div>', f'<div class="c-sec">{_celda_sector(r)}</div>',
+                  f'<div class="tv2-c c-pre"><span class="tv2-lbl">Precio (US$)</span>{_celda_precio(r)}</div>',
+                  f'<div class="tv2-c c-cap"><span class="tv2-lbl">Capitalización bursátil</span>{_celda_mcap(r)}</div>',
+                  f'<div class="tv2-c tv2-v c-val"><span class="tv2-lbl">Valoración</span>{_celda_valoracion_tabla(r)}</div>',
+                  f'<div class="tv2-c c-pts">{_celda_puntaje(r)}</div>']
+        for c in extras:
+            celdas.append(f'<div class="tv2-c c-x"><span class="tv2-lbl">{html.escape(c["nombre"])}</span>{K.celda(c, r)}</div>')
+        filas.append('<div class="tv2-r">' + "".join(celdas) + '</div>')
     return f'<div class="tv2">{"".join(filas)}</div>'

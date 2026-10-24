@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.46"
+APP_VERSION = "1.2.47"
 
 import streamlit as st
 import pandas as pd
@@ -26,7 +26,8 @@ from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA, nombre_visible, nombre_corto
 from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion, CATEGORIAS_ORDEN,
                                  MIN_DIAS_ENTRE_COPIAS)
-from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL, metricas_de
+from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL, metricas_de, partes_sector
+from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
@@ -39,11 +40,11 @@ try:
     from config.ajustes import NOMBRE_APP
 except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
-from ui.tabla_visual import (CSS as CSS_VISUAL, celda_valoracion, sector_html, escala_valoracion_html,
-                             texto_categoria, ANCHOS_VISUAL, css_encabezado, html_tabla_visual,
-                             leyenda_tabla_html, ayuda_columna_html, _mayusculas)
+from ui.tabla_visual import (CSS as CSS_VISUAL, escala_valoracion_html, COLUMNAS_BASE, css_encabezado, html_tabla_visual,
+                             como_leer_html, ayuda_texto, anchos as anchos_tabla, _mayusculas)
+from ui import criterios as _criterios
 from ui.ficha import ficha_html, CSS as CSS_FICHA
-from data import cedears as _cedears, precios_vivos as _pv
+from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -182,44 +183,75 @@ except ImportError:      # ajustes.py viejo
     PRECIOS_VIVOS, PRECIOS_MINUTOS_CACHE = True, 5
 
 
+def _orden_tickers(df: pd.DataFrame) -> tuple:
+    """Los tickers de la tabla, de mayor a menor capitalizacion (si Yahoo falla y hay que pedir el precio uno por uno a Stock Analysis,
+    se piden primero las empresas mas grandes)."""
+    try:
+        d = df[["ticker", "market_cap"]].copy()
+        d["_mc"] = pd.to_numeric(d["market_cap"], errors="coerce").fillna(-1)
+        return tuple(d.sort_values(["_mc", "ticker"], ascending=[False, True])["ticker"])
+    except Exception:  # noqa: BLE001
+        return tuple(sorted(df["ticker"]))
+
+
 @st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
 def _precios_usd(tickers: tuple) -> dict:
-    """Precios en dolares de todas las empresas (un solo pedido a Yahoo). Si falla, {'usd': {}} y la app sigue con el precio del cache."""
+    """Precios en dolares de todas las empresas (un solo pedido a Yahoo; las que falten, a Stock Analysis). Si falla, {'usd': {}} y la app
+    sigue con el precio del cache."""
     try:
         return _pv.bajar_usd(tickers)
     except Exception:  # noqa: BLE001
-        return {"usd": {}, "fecha": None, "hora": _pv.hora_texto()}
+        return {"usd": {}, "fecha": None, "hora": _pv.hora_texto(), "fuente": {}}
 
 
 @st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
 def _precios_ars(items: tuple) -> dict:
-    """Precios en pesos de los CEDEARs: items = ((ticker, (simbolos de Yahoo...)), ...). Si falla, {}."""
+    """Precios en pesos de los CEDEARs: items = ((ticker, (simbolos de Yahoo...), simbolo de BYMA), ...). Devuelve
+    {ticker: [(fuente, pesos), ...]} con los de Yahoo y el de Rava (sin controlar: ver _pv.elegir_ars). Si falla, {}."""
     try:
-        return _pv.bajar_ars({t: list(ss) for t, ss in items})
+        return _pv.bajar_ars_fuentes({t: list(ss) for t, ss, _ in items}, {t: b for t, _, b in items})
     except Exception:  # noqa: BLE001
         return {}
 
 
+@st.cache_data(ttl=3600, show_spinner=False)
+def _fichas_datos() -> dict:
+    """Datos de Yahoo de cada empresa (data/fichas.json: descripcion, CEO, web, mercado, EV, crecimiento...). {} si el archivo no esta."""
+    try:
+        return _fichas.cargar()[0]
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def _mercado_vivo(ticker: str):
+    """Codigo del mercado segun Yahoo, pedido en el momento (solo si data/fichas.json no trae el de esa empresa). None si no responde."""
+    try:
+        return _fichas.mercado_en_vivo(ticker)
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def _datos_cedear(df: pd.DataFrame, ticker: str) -> dict:
-    """{TICKER: {'ratio', 'simbolo', 'precio_ars', 'ccl', 'hora'}} para la pagina de la empresa. El precio en pesos solo se muestra si
-    paso el control de coherencia (ver validar_ars). Nunca levanta excepciones."""
+    """{TICKER: {'ratio', 'simbolo', 'precio_ars', 'ccl', 'fuente_ars', 'hora'}} para la pagina de la empresa. El precio en pesos solo se
+    muestra si paso el control de coherencia (ver _pv.elegir_ars). Nunca levanta excepciones."""
     try:
         datos = _cedears.cargar()
         d = dict(datos.get(str(ticker).upper()) or {})
         if not d or not PRECIOS_VIVOS:
             return {str(ticker).upper(): d}
-        info = _precios_usd(tuple(sorted(df["ticker"])))
+        info = _precios_usd(_orden_tickers(df))
         usd = info.get("usd") or {}
         if not usd:
             return {str(ticker).upper(): d}
         simbolos = _cedears.simbolos_yahoo(datos)
-        items = tuple((t, tuple(ss)) for t, ss in sorted(simbolos.items()))
-        crudo = _precios_ars(items)
+        items = tuple((t, tuple(ss), datos[t].get("simbolo") or t) for t, ss in sorted(simbolos.items()))
+        cand = _precios_ars(items)
         ratios = {t: v.get("ratio") for t, v in datos.items()}
-        buenos, ccl = _pv.validar_ars(crudo, ratios, usd)
+        buenos, ccl = _pv.elegir_ars(cand, ratios, usd)
         b = buenos.get(str(ticker).upper())
         if b:
-            d.update({"precio_ars": b["ars"], "ccl": b["ccl"], "ccl_mediana": ccl, "hora": info.get("hora")})
+            d.update({"precio_ars": b["ars"], "ccl": b["ccl"], "ccl_mediana": ccl, "fuente_ars": b["fuente"], "hora": info.get("hora")})
         return {str(ticker).upper(): d}
     except Exception:  # noqa: BLE001
         return {str(ticker).upper(): {}}
@@ -228,39 +260,6 @@ def _datos_cedear(df: pd.DataFrame, ticker: str) -> dict:
 # ---------------------------------------------------------------------------
 # HELPERS DE VISUALIZACIÓN
 # ---------------------------------------------------------------------------
-
-def render_52w_bar(posicion: float | None) -> str:
-    """
-    Genera una barra HTML del rango 52 semanas.
-    posicion: 0.0 (mínimo del año) a 1.0 (máximo del año)
-    """
-    if posicion is None or (isinstance(posicion, float) and (posicion != posicion)):
-        return "—"
-    try:
-        pct = int(float(posicion) * 100)
-    except (TypeError, ValueError):
-        return "—"
-    color = "#64748b"   # v1.2.22: un solo color (gris azulado), sin semaforo
-
-    return (
-        f'<div style="display:flex;align-items:center;gap:6px;min-width:120px">'
-        f'<div style="background:#e1e4e8;border-radius:4px;height:10px;width:80px;position:relative;">'
-        f'<div style="background:{color};width:{pct}%;height:100%;border-radius:4px;"></div>'
-        f'</div>'
-        f'<span style="font-size:12px;color:#57606a">{pct}%</span>'
-        f'</div>'
-    )
-
-
-def render_categoria_badge(categoria: str, color_hex: str) -> str:
-    """Badge HTML para mostrar la categoría con color (sin circulitos ni cuadraditos)."""
-    return (
-        f'<span style="background:{color_hex}22;color:{texto_categoria(color_hex)};'
-        f'border:1px solid {color_hex}88;border-radius:12px;'
-        f'padding:3px 12px;font-size:13px;font-weight:700;display:inline-block;line-height:1.25;text-align:center">'
-        f'{nombre_visible(categoria)}</span>'
-    )
-
 
 def format_metric(val: float | None, decimals: int = 1, suffix: str = "") -> str:
     """Formatea una métrica para mostrar en tabla."""
@@ -271,20 +270,6 @@ def format_metric(val: float | None, decimals: int = 1, suffix: str = "") -> str
     return f"{val:.{decimals}f}{suffix}"
 
 
-def format_market_cap(val: float | None) -> str:
-    """Formatea market cap en billones/millones."""
-    if val is None or pd.isna(val):
-        return "—"
-    if val >= 1e12:
-        return f"US${val/1e12:.1f}T"
-    if val >= 1e9:
-        return f"US${val/1e9:.1f}B"
-    if val >= 1e6:
-        return f"US${val/1e6:.0f}M"
-    return f"US${val:.0f}"
-
-
-# Países (Yahoo los entrega en inglés) → castellano. Si aparece uno que no está, se muestra tal cual.
 PAISES_ES = {
     "United States": "Estados Unidos", "United Kingdom": "Reino Unido", "Brazil": "Brasil",
     "Japan": "Japón", "India": "India", "Ireland": "Irlanda", "Canada": "Canadá",
@@ -310,141 +295,21 @@ def traducir_pais(pais):
     return PAISES_ES.get(pais, pais)
 
 
-# --- Vista de diagnóstico: métodos del Fair Value (se activa con el casillero de los filtros) ---
-FV_LABELS = {
-    "ev_ebitda": "EV/EBITDA", "per": "PER", "p_fcf": "P/FCF", "p_b": "P/B",
-    "dividend_yield": "DY", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S",
-}
-
-
 def _num_valido(x) -> bool:
-    return x is not None and not pd.isna(x)
-
-
-def _motivo_metodo_faltante(row, metrica: str) -> str:
-    """Por qué un método del sector no aportó precio al Fair Value."""
-    descartados = row.get("fair_value_descartados")
-    if isinstance(descartados, dict) and descartados.get(metrica):
-        return str(descartados[metrica])
-    mediana = row.get(f"{metrica}_mediana")
-    actual = row.get(f"{metrica}_actual")
-    if metrica == "dividend_yield":
-        div = row.get("annual_dividend")
-        if not (_num_valido(div) and div > 0) and not (_num_valido(actual) and actual > 0):
-            return "no paga dividendo"
-    if not _num_valido(mediana) or mediana <= 0:
-        return "sin mediana histórica"
-    if metrica != "dividend_yield" and (not _num_valido(actual) or actual <= 0):
-        return "sin dato actual"
-    return "sin precio implícito válido"
-
-
-def _metodos_fv_html(row) -> str:
-    """Una línea por método esperado del sector: ✓ con su precio implícito, o ✗ con el motivo."""
-    esperados = metricas_de(row, row.get("sector"))
-    if not esperados:
-        return "—"
-    detalle = row.get("fair_value_detalle")
-    detalle = detalle if isinstance(detalle, dict) else {}
-    precio = row.get("precio_actual")
-    lineas = []
-    for metrica, peso in esperados.items():
-        label = FV_LABELS.get(metrica, metrica)
-        d = detalle.get(metrica)
-        if d and _num_valido(d.get("precio")):
-            pm = d["precio"]
-            extra, color = "", "#57606a"
-            if _num_valido(precio) and precio > 0:
-                up = (pm - precio) / precio
-                color = "#15803d" if up > 0.05 else "#b91c1c" if up < -0.05 else "#a16207"
-                extra = f" ({up * 100:+.0f}%)"
-            lineas.append(
-                f'<span style="color:{color};font-weight:600" title="peso {peso * 100:.0f}%">'
-                f'✓ {label} US&#36;{pm:,.2f}{extra}</span>'
-            )
-        else:
-            motivo = _motivo_metodo_faltante(row, metrica)
-            lineas.append(
-                f'<span style="color:#8c959f" title="peso {peso * 100:.0f}%">'
-                f'✗ {label} — <i>{motivo}</i></span>'
-            )
-    n_ok = sum(1 for m in esperados if detalle.get(m) and _num_valido(detalle[m].get("precio")))
-    color_n = "#57606a" if n_ok >= len(esperados) else "#bf8700" if n_ok >= 3 else "#b91c1c"
-    cabecera = f'<span style="color:{color_n};font-weight:700">{n_ok}/{len(esperados)} métodos</span>'
-    return (
-        '<div style="font-size:11px;line-height:1.35">' + cabecera + "<br>" + "<br>".join(lineas) + "</div>"
-    )
-
-
-def _resumen_cobertura_fv(df_show: pd.DataFrame) -> str:
-    """Resumen de cuántas empresas pudieron usar cada método (sobre las empresas visibles)."""
-    usados, esperados_n, por_cant = {}, {}, {}
-    for _, r in df_show.iterrows():
-        esperados = list(metricas_de(r, r.get("sector")))
-        det = r.get("fair_value_detalle")
-        det = det if isinstance(det, dict) else {}
-        ok = 0
-        for m in esperados:
-            esperados_n[m] = esperados_n.get(m, 0) + 1
-            if m in det:
-                usados[m] = usados.get(m, 0) + 1
-                ok += 1
-        clave = (ok, len(esperados))
-        por_cant[clave] = por_cant.get(clave, 0) + 1
-    por_metodo = " · ".join(
-        f"<b>{FV_LABELS.get(m, m)}</b> {usados.get(m, 0)}/{n}"
-        for m, n in sorted(esperados_n.items(), key=lambda x: -x[1])
-    )
-    por_empresa = " · ".join(
-        f"{ok}/{tot} métodos: <b>{n}</b>"
-        for (ok, tot), n in sorted(por_cant.items(), key=lambda x: (-x[0][0], x[0][1]))
-    )
-    return (
-        '<div style="font-size:12px;color:#57606a;background:#f6f8fa;border:1px solid #d0d7de;'
-        'border-radius:6px;padding:8px 12px;margin-bottom:6px">'
-        '🔬 <b>Cobertura de métodos del Fair Value</b> (empresas visibles)<br>'
-        f'Por método (empresas que lo pudieron usar / donde aplica): {por_metodo}<br>'
-        f'Por empresa: {por_empresa}'
-        '</div>'
-    )
-
-
-def get_logo_url(ticker: str) -> str:
-    """URL (o data URI) del logo de un ticker; vacio si solo hay iniciales. Ver ui/logos.py."""
-    from ui.logos import logo_url
-    return logo_url(ticker) or ""
-
-
-def format_fair_value(fv: float | None, precio: float | None) -> tuple[str, str]:
-    """
-    Retorna (texto, color) para el Fair Value.
-    Muestra el precio y el upside/downside vs precio actual.
-    """
-    if fv is None or precio is None or pd.isna(fv) or pd.isna(precio) or precio <= 0:
-        return "—", "#6e7781"
-    upside = (fv - precio) / precio
-    color = "#374151"   # v1.2.22: sin semaforo; el color queda solo para la categoria
-    upside_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
-    return f"US&#36;{fv:.2f} ({upside_str})", color
+    """True si x es un numero (no None ni NaN)."""
+    try:
+        return x is not None and not pd.isna(x)
+    except Exception:  # noqa: BLE001
+        return False
 
 
 # ---------------------------------------------------------------------------
 # FILTROS INLINE (reemplaza sidebar)
 # ---------------------------------------------------------------------------
 
-def _pastillas(etiqueta, opciones, formato, key):
-    """Filtro en pastillas (st.pills, Streamlit 1.40+). Sin seleccion = todas. Si la version es vieja, usa un selector multiple."""
-    if hasattr(st, "pills"):
-        sel = st.pills(etiqueta, opciones, selection_mode="multi", format_func=formato, key=key,
-                       label_visibility="collapsed")
-        return list(sel or [])
-    return st.multiselect(etiqueta, opciones, format_func=formato, key=key, label_visibility="collapsed",
-                          placeholder="Todas")
-
-
 # v1.2.45: al abrir la pagina la tabla va ordenada por capitalizacion bursatil, de mayor a menor (antes: por Valoracion)
 ORDEN_INICIAL = ("market_cap", False)
-ORDENES_VALIDOS = ("nombre", "ticker", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total", "dividend_yield_actual")
+ORDENES_VALIDOS = ("nombre", "ticker", "sector_txt", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total") + tuple(c["clave"] for c in _criterios.CRITERIOS)
 MKTCAP_OPCIONES = {
     "Sin mínimo": 0,
     "≥ US$ 1B": 1e9,
@@ -455,14 +320,46 @@ MKTCAP_OPCIONES = {
 }
 
 
+def _normalizar(texto) -> str:
+    """Minusculas, sin tildes ni signos: 'Nestlé S.A.' -> 'nestlesa'; 'BRK-B' -> 'brkb'. Para buscar sin que importe como se escriba."""
+    import unicodedata
+    t = unicodedata.normalize("NFKD", str(texto or "")).encode("ascii", "ignore").decode("ascii").casefold()
+    return "".join(ch for ch in t if ch.isalnum())
+
+
+def _reiniciar_criterios():
+    """Boton "Reiniciar criterios": saca todos los criterios agregados (y sus minimos y maximos)."""
+    st.session_state["flt_criterios"] = []
+    for c in _criterios.CRITERIOS:
+        st.session_state.pop(f"crit_{c['clave']}_min", None)
+        st.session_state.pop(f"crit_{c['clave']}_max", None)
+
+
+def agregar_columnas_info(df: pd.DataFrame) -> pd.DataFrame:
+    """Copia de `df` con el sector (el de siempre), la industria de cada empresa y el texto "Sector · Industria" para ordenar y buscar. Es solo
+    informacion para mostrar y filtrar: no interviene en el puntaje ni en el Fair Value (que siguen usando la columna `sector`, el grupo del screener)."""
+    df = df.copy()
+    sec, ind = [], []
+    for g, t in zip(df["sector"], df["ticker"]):
+        s0, i0 = partes_sector(g)
+        sec.append(s0 or "")
+        ind.append(industria_de(t) or i0 or "")
+    df["sector_macro"], df["industria"] = sec, ind
+    df["sector_txt"] = [f"{a} · {b}" if b else a for a, b in zip(sec, ind)]
+    return df
+
+
 def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     """
-    Renderiza los filtros encima de la tabla (sin sidebar) y retorna dict con filtros activos.
+    Renderiza los filtros (dentro del recuadro "Filtro de empresas") y retorna dict con filtros activos.
+    v1.2.47: todas las selecciones son menus desplegables; el Dividend Yield y el Fair Value ya no son filtros fijos: se suman desde
+    "Agregar criterios" (cada criterio agrega una columna a la tabla y, si se escribe un minimo y/o un maximo, filtra).
     """
     leyenda = leyenda_categorias()
-    todos_sectores = sorted(universe.keys(), key=etiqueta_sector)
     hay_gris = df is not None and not df.empty and "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     cats_disponibles = [l["nombre"] for l in leyenda if hay_gris or l["nombre"] != "DATOS INSUFICIENTES"]
+    todos_sectores = sorted([x for x in df["sector_macro"].dropna().unique().tolist() if x], key=lambda x: x.lower()) if df is not None and not df.empty else []
+    todas_industrias = sorted([x for x in df["industria"].dropna().unique().tolist() if x], key=lambda x: x.lower()) if df is not None and not df.empty else []
     paises_disponibles = []
     if df is not None and not df.empty and "pais" in df.columns:
         paises_disponibles = sorted(
@@ -476,58 +373,29 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         f = st.query_params.get("f")
         if f:
             vals = estado_url.valores(estado_url.decodificar(f), todos_sectores, cats_disponibles, paises_disponibles,
-                                      list(MKTCAP_OPCIONES), ORDENES_VALIDOS)
+                                      list(MKTCAP_OPCIONES), ORDENES_VALIDOS, todas_industrias, {c["clave"]: c["nombre"] for c in _criterios.CRITERIOS})
             for k, v in vals.items():
                 st.session_state[k] = v
 
-    # --- Buscador (v1.2.46): por nombre o ticker; se puede escribir y borrar ---
-    st.markdown('<div class="flt-t">Buscar empresa</div>', unsafe_allow_html=True)
-    busqueda = st.text_input("Buscar empresa", key="flt_busqueda", placeholder="Nombre o ticker (por ejemplo: Apple, KO)",
-                             label_visibility="collapsed", max_chars=40)
-
-    # --- Sector / Industria y Valoración: pastillas (sin selección = todas) ---
-    st.markdown('<div class="flt-t">Sector / Industria</div>', unsafe_allow_html=True)
-    sectores_sel = _pastillas("Sector / Industria", todos_sectores, etiqueta_sector, "flt_sector")
-    if not sectores_sel:
-        sectores_sel = todos_sectores
-
-    st.markdown('<div class="flt-t">Valoración</div>', unsafe_allow_html=True)
-    cats_sel = _pastillas("Valoración", cats_disponibles, lambda c: _mayusculas(nombre_corto(c)), "flt_valoracion")
-    if not cats_sel:
-        cats_sel = cats_disponibles
-    cats_nombres = list(cats_sel)
-
-    # --- Fila 3: País + Capitalización bursátil + Dividend Yield + Métricas ---
-    # v1.2.45: el recuadro ocupa media pantalla, asi que los controles van de a dos por fila
-    col_pais, col_mkt = st.columns(2)
-    col_dy, col_met = st.columns(2)
-
+    # --- Sector, Industria, Valoracion y Pais: menus desplegables (sin seleccion = todos) ---
+    col_sec, col_ind = st.columns(2)
+    with col_sec:
+        sectores_sel = st.multiselect("Sector", todos_sectores, placeholder="Todos los sectores", key="flt_sector")
+    with col_ind:
+        industrias_sel = st.multiselect("Industria", todas_industrias, placeholder="Todas las industrias", key="flt_industria")
+    col_val, col_pais = st.columns(2)
+    with col_val:
+        cats_sel = st.multiselect("Valoración", cats_disponibles, format_func=lambda c: _mayusculas(nombre_corto(c)),
+                                  placeholder="Todas las valoraciones", key="flt_valoracion")
+    cats_nombres = list(cats_sel) or list(cats_disponibles)
     with col_pais:
-        paises_sel = st.multiselect(
-            "País",
-            paises_disponibles,
-            placeholder="Todos los países",
-            key="flt_pais",
-        )
+        paises_sel = st.multiselect("País", paises_disponibles, placeholder="Todos los países", key="flt_pais")
 
+    # --- Capitalizacion minima y metricas minimas ---
+    col_mkt, col_met = st.columns(2)
     with col_mkt:
-        mktcap_label = st.selectbox(
-            "Capitalización bursátil mínima",
-            list(MKTCAP_OPCIONES.keys()),
-            key="flt_mkt",
-        )
+        mktcap_label = st.selectbox("Capitalización bursátil mínima", list(MKTCAP_OPCIONES.keys()), key="flt_mkt")
     mktcap_minimo = MKTCAP_OPCIONES[mktcap_label]
-
-    with col_dy:
-        dy_minimo = st.slider(
-            "Dividend Yield mínimo (%)",
-            min_value=0.0,
-            max_value=10.0,
-            step=0.5,
-            format="%.1f%%",
-            key="flt_dy",
-        )
-
     with col_met:
         min_metricas = st.slider(
             "Métricas mínimas",
@@ -538,117 +406,124 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
                  "Con 1 se ve todo (mejor algo que nada).",
         )
 
-    # --- Fila 4: vista de revisión + actualizar ---
-    col_diag = col_ref = st.container()
-    with col_diag:
-        ver_metodos_fv = st.checkbox(
-            "🔬 Vista de revisión: métodos del Fair Value",
-            key="ver_metodos_fv",
-            help="Muestra la tabla de revisión, con una columna con los métodos usados en cada Fair Value "
-                 "(✓ con su precio implícito, ✗ con el motivo por el que no se pudo usar).",
-        )
+    # --- Agregar criterios (v1.2.47): suman una columna a la tabla y, con minimo y/o maximo, filtran ---
+    nombres_sel = st.multiselect(
+        "Agregar criterios", _criterios.NOMBRES, key="flt_criterios",
+        placeholder="Buscá y elegí datos para sumar a la tabla (Dividend Yield, Fair Value, P/E…)",
+        help="Cada criterio que elijas suma una columna a la tabla. Si además escribís un mínimo y/o un máximo, quedan solo las empresas dentro de ese rango.")
+    extras = [c for c in _criterios.CRITERIOS if c["nombre"] in nombres_sel]
+    criterios = {}
+    for c in extras:
+        k = c["clave"]
+        with st.container(border=True, key=f"crit_{k}"):
+            st.markdown(f'<div class="crit-t">{html.escape(c["nombre"])} <span>({c["unidad"] if c["unidad"] == "%" else "veces"})</span></div>', unsafe_allow_html=True)
+            c1, c2 = st.columns(2)
+            mn = c1.number_input("Mínimo", value=None, step=float(c["paso"]), format="%g", key=f"crit_{k}_min", placeholder="Mínimo", label_visibility="collapsed")
+            mx = c2.number_input("Máximo", value=None, step=float(c["paso"]), format="%g", key=f"crit_{k}_max", placeholder="Máximo", label_visibility="collapsed")
+        criterios[k] = (mn, mx)
+    if extras:
+        st.button("Reiniciar criterios", key="crit_reiniciar", type="tertiary", on_click=_reiniciar_criterios)
 
-    with col_ref:
-        forzar_refresh = st.button(
-            "Actualizar datos",
-            help="Vuelve a leer el caché guardado (el caché se actualiza una vez por trimestre desde la PC)",
-        )
+    # --- Actualizar ---
+    forzar_refresh = st.button(
+        "Actualizar datos",
+        help="Vuelve a leer el caché guardado (el caché se actualiza una vez por trimestre desde la PC)",
+    )
 
     # Texto con los filtros y el orden: viaja en el link de cada empresa para poder volver a la tabla tal cual estaba
-    estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label, dy_minimo,
+    busqueda = st.session_state.get("flt_busqueda", "") or ""
+    estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label,
                                   min_metricas, st.session_state.get("sort_col", ORDEN_INICIAL[0]), st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
-                                  bool(ver_metodos_fv), busqueda)
+                                  busqueda, industrias_sel, todas_industrias, criterios)
     return {
-        "busqueda": (busqueda or "").strip(),
         "estado_url": estado,
-        "sectores": sectores_sel,
+        "sectores": list(sectores_sel) or todos_sectores,
+        "industrias": list(industrias_sel) or todas_industrias,
         "categorias": cats_nombres,
         "paises": paises_sel,
-        "dy_minimo": dy_minimo / 100.0,
         "mktcap_minimo": mktcap_minimo,
         "min_metricas": min_metricas,
+        "criterios": criterios,
+        "extras": extras,
         "sort_col": st.session_state.get("sort_col", ORDEN_INICIAL[0]),
         "sort_asc": st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
-        "ver_metodos_fv": ver_metodos_fv,
         "forzar_refresh": forzar_refresh,
     }
+
+
+def render_buscador() -> str:
+    """Buscador de arriba de la tabla (v1.2.47): una lupa y "Buscar empresas por nombre o ticker". Busca de las dos formas, sin importar
+    mayusculas, tildes ni signos (Enter para buscar). Devuelve el texto escrito."""
+    with st.container(key="buscador"):
+        return (st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda", placeholder="Buscar empresas por nombre o ticker",
+                              label_visibility="collapsed", max_chars=40) or "").strip()
 
 
 # ---------------------------------------------------------------------------
 # TABLA PRINCIPAL
 # ---------------------------------------------------------------------------
 
-# Anchos de las columnas de la tabla clasica (encabezados y filas deben coincidir)
-ANCHOS_TABLA = [2.6, 0.8, 1.7, 1.7, 3.0, 1.2, 1.5, 3.4, 1.0]
-
-
-# Opciones del selector "Ordenar por" (solo se ve en el celular, donde los titulos de la tabla no entran): (texto, columna, ascendente).
-# Es el mismo orden que dan los titulos de la tabla en la computadora.
-ORDENES_MOVIL = [
-    ("Valoración: de más barata a más cara", "fv_upside", False), ("Valoración: de más cara a más barata", "fv_upside", True),
-    ("Puntaje: de mayor a menor", "score_total", False), ("Puntaje: de menor a mayor", "score_total", True),
-    ("Empresa: de la A a la Z", "nombre", True), ("Empresa: de la Z a la A", "nombre", False),
-    ("Ticker: de la A a la Z", "ticker", True), ("Ticker: de la Z a la A", "ticker", False),
-    ("Capitalización bursátil: de mayor a menor", "market_cap", False), ("Capitalización bursátil: de menor a mayor", "market_cap", True),
-    ("Precio: de mayor a menor", "precio_actual", False), ("Precio: de menor a mayor", "precio_actual", True),
-    ("Dividend Yield: de mayor a menor", "dividend_yield_actual", False), ("Dividend Yield: de menor a mayor", "dividend_yield_actual", True),
-]
+def ordenes_movil(extras=()):
+    """Opciones del selector "Ordenar por" (solo se ve en el celular, donde los titulos de la tabla no entran): (texto, columna, ascendente).
+    Es el mismo orden que dan los titulos de la tabla en la computadora."""
+    o = [
+        ("Capitalización bursátil: de mayor a menor", "market_cap", False), ("Capitalización bursátil: de menor a mayor", "market_cap", True),
+        ("Valoración: de más barata a más cara", "fv_upside", False), ("Valoración: de más cara a más barata", "fv_upside", True),
+        ("Puntaje de calidad: de mayor a menor", "score_total", False), ("Puntaje de calidad: de menor a mayor", "score_total", True),
+        ("Empresa: de la A a la Z", "nombre", True), ("Empresa: de la Z a la A", "nombre", False),
+        ("Sector e industria: de la A a la Z", "sector_txt", True), ("Sector e industria: de la Z a la A", "sector_txt", False),
+        ("Precio: de mayor a menor", "precio_actual", False), ("Precio: de menor a mayor", "precio_actual", True),
+    ]
+    for c in extras:
+        o += [(f"{c['nombre']}: de mayor a menor", c["clave"], False), (f"{c['nombre']}: de menor a mayor", c["clave"], True)]
+    return o
 
 
 def _cambiar_orden_movil():
     """Al elegir un orden en el selector del celular se guarda como si se hubiera tocado el titulo de la tabla."""
     eleg = st.session_state.get("orden_movil")
-    for texto, col, asc in ORDENES_MOVIL:
+    extras = [c for c in _criterios.CRITERIOS if c["nombre"] in (st.session_state.get("flt_criterios") or [])]
+    for texto, col, asc in ordenes_movil(extras):
         if texto == eleg:
             st.session_state["sort_col"], st.session_state["sort_asc"] = col, asc
             return
 
 
-def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None):
-    """Tabla visual: titulos ordenables (botones) y filas en una sola pieza de HTML con la misma grilla."""
+def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=()):
+    """Tabla visual: titulos ordenables (botones, con la explicacion al pasar el mouse) y filas en una sola pieza de HTML con la misma grilla."""
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
-    st.markdown(f"<style>{css_encabezado(sort_col)}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{css_encabezado(sort_col, len(extras))}</style>", unsafe_allow_html=True)
 
     # Celular: el selector reemplaza a los titulos (la hoja de estilos esconde uno u otro segun el ancho de la pantalla)
-    for texto, col, asc in ORDENES_MOVIL:
+    opciones = ordenes_movil(extras)
+    for texto, col, asc in opciones:
         if col == sort_col and asc == bool(sort_asc):
             st.session_state["orden_movil"] = texto
             break
     with st.container(key="orden_movil_caja"):
-        st.selectbox("Ordenar por", [t for t, _, _ in ORDENES_MOVIL], key="orden_movil", on_change=_cambiar_orden_movil)
+        st.selectbox("Ordenar por", [t for t, _, _ in opciones], key="orden_movil", on_change=_cambiar_orden_movil)
 
-    cols = st.columns(ANCHOS_VISUAL, gap="small")
-    titulos = [
-        (cols[0], "Empresa", "nombre"),
-        (cols[1], "Ticker", "ticker"),
-        (cols[2], "Capitalización bursátil", "market_cap"),
-        (cols[3], "Precio", "precio_actual"),
-        (cols[4], "Valoración", "fv_upside"),
-        (cols[5], "Puntaje", "score_total"),
-        (cols[6], "Dividend Yield", "dividend_yield_actual"),
-    ]
-    for contenedor, etiqueta, clave in titulos:
+    cols = st.columns(anchos_tabla(len(extras)), gap="small")
+    titulos = [(clave, etiqueta) for clave, etiqueta, _ in COLUMNAS_BASE] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
+    for contenedor, (clave, etiqueta) in zip(cols, titulos):
         activo = sort_col == clave
         flecha = (" ▲" if sort_asc else " ▼") if activo else ""
-        if contenedor.button(etiqueta + flecha, key=f"tvh_{clave}", use_container_width=True):
+        if contenedor.button(etiqueta + flecha, key=f"tvh_{clave}", use_container_width=True, help=ayuda_texto(clave, fecha) or None):
             if activo:
                 st.session_state["sort_asc"] = not sort_asc
             else:
                 st.session_state["sort_col"] = clave
-                st.session_state["sort_asc"] = (clave in ("nombre", "ticker"))
+                st.session_state["sort_asc"] = (clave in ("nombre", "ticker", "sector_txt"))
             st.rerun()
-        # v1.2.46: un signo de pregunta al lado de cada titulo (se dibuja encima del boton, a la derecha)
-        with contenedor.container(key=f"tvq_{clave}"):
-            st.markdown(ayuda_columna_html(clave, fecha), unsafe_allow_html=True)
-    st.markdown(html_tabla_visual(df_show, estado), unsafe_allow_html=True)
+    st.markdown(html_tabla_visual(df_show, estado, extras), unsafe_allow_html=True)
 
 
-def _boton_excel(df_show, fecha, aviso):
+def _boton_excel(df_show, fecha, aviso, extras=()):
     """Boton de descarga en Excel (v1.2.46: chico y sin relleno, dentro del Filtro de empresas): las empresas que se ven, con los
     filtros y el orden elegidos. Si algo falla, no se muestra."""
     try:
-        datos = excel_bytes(df_show, fecha, aviso, APP_VERSION)
+        datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras)
     except Exception:  # noqa: BLE001
         return
     dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
@@ -661,45 +536,34 @@ def _boton_excel(df_show, fecha, aviso):
         st.download_button("⬇ Descargar lo que ves en Excel", **args)
 
 
-def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lugar_excel=None):
-    """Renderiza la tabla principal con colores y filtros aplicados."""
-
-    df_show = df.copy()
+def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.DataFrame:
+    """Aplica el buscador, los filtros y los criterios agregados, y ordena. Devuelve las empresas que se ven, en el orden de la tabla."""
+    df_show = _criterios.agregar_columnas(df)
 
     # --- Aplicar filtros ---
-    df_show = df_show[df_show["sector"].isin(filtros["sectores"])]
-
+    df_show = df_show[df_show["sector_macro"].isin(filtros["sectores"])]
+    df_show = df_show[df_show["industria"].isin(filtros["industrias"]) | (df_show["industria"] == "")]
     df_show = df_show[
         (df_show["metricas_usadas"] >= filtros["min_metricas"]) |
         (df_show["categoria"] == "DATOS INSUFICIENTES")
     ]
-
     df_show = df_show[df_show["categoria"].isin(filtros["categorias"])]
-
-    # Filtro por país (solo si hay países seleccionados)
     if filtros["paises"]:
         df_show = df_show[df_show["pais"].isin(filtros["paises"])]
-
-    # Filtro por DY mínimo
-    if filtros["dy_minimo"] > 0:
-        mask_dy = (
-            df_show["dividend_yield_actual"].notna() &
-            (df_show["dividend_yield_actual"] >= filtros["dy_minimo"])
-        )
-        df_show = df_show[mask_dy]
-
-    # Buscador (v1.2.46): por nombre o ticker, sin importar mayusculas
-    q = (filtros.get("busqueda") or "").strip().casefold()
-    if q:
-        df_show = df_show[df_show["nombre"].fillna("").astype(str).str.casefold().str.contains(q, regex=False)
-                          | df_show["ticker"].fillna("").astype(str).str.casefold().str.contains(q, regex=False)]
-
-    # Filtro por capitalización bursátil mínima
     if filtros["mktcap_minimo"] > 0:
         df_show = df_show[
             df_show["market_cap"].notna() &
             (df_show["market_cap"] >= filtros["mktcap_minimo"])
         ]
+    # Criterios agregados (minimo / maximo)
+    df_show = _criterios.filtrar(df_show, filtros.get("criterios"))
+
+    # Buscador (v1.2.47): por nombre o ticker, sin importar mayusculas, tildes ni signos
+    q = _normalizar(busqueda)
+    if q:
+        nombres = df_show["nombre"].map(_normalizar)
+        tickers = df_show["ticker"].map(_normalizar)
+        df_show = df_show[nombres.str.contains(q, regex=False) | tickers.str.contains(q, regex=False)]
 
     # --- Calcular columna de upside para ordenamiento ---
     def _fv_upside(row):
@@ -709,13 +573,13 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
             return (fv - p) / p
         return None
 
-    df_show["fv_upside"] = df_show.apply(_fv_upside, axis=1)
+    df_show["fv_upside"] = df_show.apply(_fv_upside, axis=1) if len(df_show) else pd.Series(dtype=float)
 
     # --- Ordenamiento ---
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
-
-    df_show["sector_txt"] = df_show["sector"].map(etiqueta_sector)
+    if len(df_show) == 0:
+        return df_show
     STR_COLS = {"nombre", "ticker", "pais", "sector_txt"}
     if sort_col == "sector":
         sort_col = "sector_txt"
@@ -735,18 +599,11 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
         df_show["_up"] = df_show["fv_upside"]
         df_show = df_show.sort_values(["_cat", "_up"], ascending=[not sort_asc, sort_asc], na_position="last",
                                       kind="mergesort").drop(columns=["_cat", "_up"])
-    elif sort_col == "market_cap":
-        df_show["_sort_v"] = df_show["market_cap"].fillna(0 if sort_asc else -1)
-        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
-    elif sort_col == "dividend_yield_actual":
-        df_show["_sort_v"] = df_show["dividend_yield_actual"].fillna(-1 if not sort_asc else 999)
-        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
-    elif sort_col == "posicion_52s":
-        df_show["_sort_v"] = df_show["posicion_52s"].fillna(-1 if not sort_asc else 999)
-        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
-    elif sort_col == "precio_actual":
-        df_show["_sort_v"] = df_show["precio_actual"].fillna(-1 if not sort_asc else 999)
-        df_show = df_show.sort_values("_sort_v", ascending=sort_asc).drop(columns=["_sort_v"])
+    elif sort_col in _criterios.POR_CLAVE or sort_col in ("market_cap", "precio_actual", "posicion_52s", "dividend_yield_actual"):
+        # Numericos: las empresas sin dato van siempre al final, sin importar el sentido del orden
+        col = _criterios.POR_CLAVE[sort_col]["col"] if sort_col in _criterios.POR_CLAVE else sort_col
+        df_show["_sort_v"] = pd.to_numeric(df_show[col], errors="coerce")
+        df_show = df_show.sort_values("_sort_v", ascending=sort_asc, na_position="last", kind="mergesort").drop(columns=["_sort_v"])
     elif sort_col == "metricas_usadas":
         # desempate por nombre para que el orden sea estable entre empresas con la misma cantidad
         df_show["_sort_v"] = pd.to_numeric(df_show["metricas_usadas"], errors="coerce").fillna(-1)
@@ -754,153 +611,21 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
     else:
         df_show["_sort_v"] = df_show["score_total"].fillna(-1)
         df_show = df_show.sort_values("_sort_v", ascending=False).drop(columns=["_sort_v"])
+    return df_show
 
+
+def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lugar_excel=None, busqueda=""):
+    """Renderiza la tabla principal (v1.2.47: columnas por defecto + los criterios agregados; el buscador va arriba, fuera del filtro)."""
+    df_show = filtrar_ordenar(df, filtros, busqueda)
     if df_show.empty:
-        st.warning("No hay empresas que coincidan con los filtros seleccionados.")
+        st.warning("No hay empresas que coincidan con la búsqueda y los filtros seleccionados.")
         return
-
-    # --- v1.2.28: la tabla visual es la definitiva (encabezados ordenables). La tabla clasica queda como
-    # vista de revision: se muestra cuando se marca "Ver métodos del Fair Value".
-    ver_metodos = bool(filtros.get("ver_metodos_fv"))
-    if not ver_metodos:
-        # v1.2.46: ya no se muestra la cantidad de empresas y el boton de Excel pasa al Filtro de empresas
-        if lugar_excel is not None:
-            with lugar_excel:
-                _boton_excel(df_show, fecha, aviso)
-        render_tabla_visual(df_show, filtros.get("estado_url"), fecha)
-        return
-    st.markdown(f"**{len(df_show)} empresas**  ·  vista de revisión (tabla clásica)")
-
-    if ver_metodos:
-        st.markdown(_resumen_cobertura_fv(df_show), unsafe_allow_html=True)
-    st.markdown("---")
-
-    # --- Encabezados con sort clickable ---
-    # Mapeo: nombre visible → columna interna para sort
-    SORT_MAP = {
-        "Empresa": "nombre",
-        "País": "pais",
-        "Sector": "sector",
-        "Capitalización bursátil": "market_cap",
-        "Valoración": "fv_upside",
-        "Dividend Yield": "dividend_yield_actual",
-        "Rango 52s": "posicion_52s",
-        "Categoría": "score_total",
-        "Métricas": "metricas_usadas",
-    }
-    headers = ["Empresa", "País", "Sector", "Capitalización bursátil", "Valoración", "Dividend Yield", "Rango 52s", "Categoría", "Métricas"]
-    anchos = ANCHOS_TABLA
-    if ver_metodos:
-        headers = headers + ["Métodos del Fair Value"]
-        anchos = anchos + [3.6]
-    header_cols = st.columns(anchos)
-
-    current_sort = st.session_state.get("sort_col", ORDEN_INICIAL[0])
-    current_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
-
-    for col_ui, h in zip(header_cols, headers):
-        if h not in SORT_MAP:  # columna de revisión: no se ordena
-            col_ui.markdown(f"<div style='padding-top:6px'><b>🔬 {h}</b></div>", unsafe_allow_html=True)
-            continue
-        sort_key = SORT_MAP[h]
-        if sort_key == current_sort:
-            arrow = "↑" if current_asc else "↓"
-            label = f"**{h} {arrow}**"
-        else:
-            label = f"**{h}**"
-        if col_ui.button(label, key=f"sort_btn_{h}", use_container_width=True):
-            if current_sort == sort_key:
-                st.session_state["sort_asc"] = not current_asc
-            else:
-                st.session_state["sort_col"] = sort_key
-                # Métricas: el primer clic ordena de menos a más (para ver primero a las que fallan)
-                st.session_state["sort_asc"] = (sort_key == "metricas_usadas")
-            st.rerun()
-
-    st.markdown("---")
-
-    # --- Filas ---
-    for _, row in df_show.iterrows():
-        cols = st.columns(ANCHOS_TABLA + ([3.6] if ver_metodos else []))
-
-        ticker = row.get("ticker", "—")
-        nombre = row.get("nombre") or ticker
-
-        # Columna 0: Logo + Empresa (logo local o favicon; si no hay, iniciales: ver ui/logos.py)
-        from ui.logos import logo_html
-        cols[0].markdown(
-            f'<div style="display:flex;align-items:center;gap:8px;">'
-            f'{logo_html(ticker, 22)}'
-            f'<div><span style="font-weight:600;font-size:14px">{nombre}</span>'
-            f'<br><span style="font-size:11px;color:#57606a">{ticker}</span></div>'
-            f'</div>',
-            unsafe_allow_html=True,
-        )
-
-        # País
-        cols[1].markdown(bandera_html(row.get("pais")), unsafe_allow_html=True)
-
-        # Sector
-        cols[2].markdown(sector_html(row.get("sector")), unsafe_allow_html=True)
-
-        # Market Cap
-        cols[3].markdown(f'<b>{format_market_cap(row.get("market_cap")).replace("$", "&#36;")}</b>', unsafe_allow_html=True)
-
-        # Valoración: precio de hoy (punto) contra el rango de los métodos del Fair Value y su promedio
-        cols[4].markdown(celda_valoracion(row.to_dict()), unsafe_allow_html=True)
-
-        # Dividend Yield
-        # dividend_yield_actual viene como decimal desde yfinance (ej: 0.0128 = 1.28%)
-        # None o NaN → no tiene datos; 0 → no paga dividendo → ambos muestran "—"
-        dy = row.get("dividend_yield_actual")
-        dy_valido = (
-            dy is not None
-            and not (isinstance(dy, float) and np.isnan(dy))
-            and dy > 0  # 0.0 = no paga dividendo → "—"
-        )
-        if dy_valido:
-            # Si el valor es > 1, ya viene como porcentaje (cache viejo); si < 1, es decimal
-            if dy > 1:
-                dy_pct = dy  # ya es porcentaje (ej: 1.28 → "1.3%")
-            else:
-                dy_pct = dy * 100  # decimal → porcentaje (ej: 0.0128 → "1.3%")
-            dy_str = f"{dy_pct:.1f}%"
-            dy_color = "#57606a"
-            cols[5].markdown(
-                f'<span style="color:{dy_color};font-weight:500">{dy_str}</span>',
-                unsafe_allow_html=True,
-            )
-        else:
-            cols[5].markdown("—")
-
-        # Barra 52 semanas
-        cols[6].markdown(render_52w_bar(row.get("posicion_52s")), unsafe_allow_html=True)
-
-        # Categoría badge
-        cols[7].markdown(
-            render_categoria_badge(
-                row.get("categoria", "—"),
-                row.get("color_hex", "#6e7781"),
-            ),
-            unsafe_allow_html=True,
-        )
-
-        # Métricas usadas en el score (ej: 4/4) — columna propia y ordenable
-        usadas, total = row.get("metricas_usadas"), row.get("metricas_total")
-        if _num_valido(usadas) and _num_valido(total) and total > 0:
-            color_n = "#57606a"
-            cols[8].markdown(
-                f'<span style="font-size:14px;font-weight:700;color:{color_n}" '
-                f'title="Métricas del sector que tuvieron dato actual e histórico para calcular el score">'
-                f'{int(usadas)}/{int(total)}</span>',
-                unsafe_allow_html=True,
-            )
-        else:
-            cols[8].markdown("—")
-
-        # Vista de revisión: métodos usados en el Fair Value
-        if ver_metodos:
-            cols[9].markdown(_metodos_fv_html(row), unsafe_allow_html=True)
+    extras = filtros.get("extras") or []
+    # El boton de Excel esta dentro del Filtro de empresas (v1.2.46)
+    if lugar_excel is not None:
+        with lugar_excel:
+            _boton_excel(df_show, fecha, aviso, extras)
+    render_tabla_visual(df_show, filtros.get("estado_url"), fecha, extras)
 
 
 # ---------------------------------------------------------------------------
@@ -920,13 +645,11 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
     row = row.iloc[0]
     ticker_sel = row.get("ticker", ticker_sel)
     sector = row.get("sector", "")
-    nombre = html.escape(str(row.get("nombre") or ticker_sel))
 
-    # v1.2.46: nombre arriba y, abajo, todos los datos en mosaicos (ui/ficha.py)
-    st.markdown(
-        f'<div class="emp-h">{logo_html(ticker_sel, 56)}<div><div class="emp-n">{nombre} <span>({html.escape(str(ticker_sel))})</span></div></div></div>',
-        unsafe_allow_html=True)
-    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel)), unsafe_allow_html=True)
+    # v1.2.47: encabezado (logo, nombre, mercado, ticker, ADR, precio) y todos los datos en mosaicos (ui/ficha.py)
+    ficha = (_fichas_datos() or {}).get(str(ticker_sel).upper()) or {}
+    cod = None if (ficha.get("mercado_cod") or ficha.get("mercado_nombre")) else _mercado_vivo(str(ticker_sel))
+    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel), ficha, cod), unsafe_allow_html=True)
 
     # Desglose de métricas
     if sector in SECTOR_CONFIG and row.get("detalle"):
@@ -1013,71 +736,6 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
                 "Ninguna métrica fundamental pudo usarse para esta empresa. "
                 "La categoría se calculó solo con la posición en el rango de 52 semanas."
             )
-
-    # --- Fair Value desglose ---
-    fv = row.get("fair_value")
-    precio_actual = row.get("precio_actual")
-    fv_detalle = row.get("fair_value_detalle")
-
-    if fv_detalle:
-        if isinstance(fv_detalle, str):
-            import ast
-            try:
-                fv_detalle = ast.literal_eval(fv_detalle)
-            except Exception:
-                fv_detalle = {}
-
-    if fv is not None and fv_detalle:
-        st.markdown("---")
-        st.subheader("🎯 Fair Value por método")
-
-        fv_text, fv_color = format_fair_value(fv, precio_actual)
-        st.markdown(
-            f'**Fair Value estimado:** <span style="color:{fv_color};font-size:20px;font-weight:700">{fv_text}</span>',
-            unsafe_allow_html=True,
-        )
-        st.caption("Promedio ponderado de los métodos disponibles, usando los mismos pesos del sector.")
-        descartados_fv = row.get("fair_value_descartados")
-        if isinstance(descartados_fv, dict) and descartados_fv:
-            etiquetas = {"ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF", "p_b": "P/Book",
-                         "dividend_yield": "Dividend Yield", "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S"}
-            st.caption(
-                "Métodos que no entran al promedio: "
-                + " · ".join(f"{etiquetas.get(m, m)} ({mot})" for m, mot in descartados_fv.items())
-            )
-        nota_moneda = row.get("moneda_nota")
-        if isinstance(nota_moneda, str) and nota_moneda.strip():
-            st.caption(f"💱 Moneda: {nota_moneda}")
-
-        METRIC_LABELS_FV = {
-            "ev_ebitda": "EV/EBITDA", "per": "P/E Ratio", "p_fcf": "P/FCF",
-            "p_b": "P/Book", "dividend_yield": "Dividend Yield",
-            "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S",
-        }
-
-        fv_cols = st.columns(len(fv_detalle))
-        for i, (metrica, datos) in enumerate(fv_detalle.items()):
-            precio_m = datos.get("precio")
-            peso_m = datos.get("peso", 0)
-            label = METRIC_LABELS_FV.get(metrica, metrica.upper())
-
-            with fv_cols[i]:
-                if pd.notna(precio_actual) and precio_actual and precio_m:
-                    upside = (precio_m - precio_actual) / precio_actual
-                    up_str = f"+{upside*100:.0f}%" if upside >= 0 else f"{upside*100:.0f}%"
-                    color_m = "#15803d" if upside > 0.05 else "#b91c1c" if upside < -0.05 else "#a16207"
-                else:
-                    up_str = "—"
-                    color_m = "#6e7781"
-
-                st.markdown(f"**{label}**")
-                st.markdown(f"<small>Peso: {peso_m*100:.0f}%</small>", unsafe_allow_html=True)
-                st.markdown(
-                    f'<span style="font-size:18px;font-weight:700;color:{color_m}">'
-                    f'US&#36;{precio_m:.2f}</span><br>'
-                    f'<span style="font-size:12px;color:{color_m}">{up_str} vs precio actual</span>',
-                    unsafe_allow_html=True,
-                )
 
     # Aviso trampa de valor si el score es alto
     if row.get("score_total") and row.get("score_total") >= 65:
@@ -1171,19 +829,23 @@ def main():
         # Si Yahoo no informo el pais de una empresa, se usa el de respaldo (config/sectors.py)
         df["pais"] = [p if isinstance(p, str) and p else PAIS_MANUAL.get(t) for p, t in zip(df["pais"], df["ticker"])]
         df["pais"] = df["pais"].map(traducir_pais)
+    if df is not None and not df.empty and "sector" in df.columns:
+        df = agregar_columnas_info(df)       # v1.2.47: sector, industria y "sector · industria" (solo informacion)
 
     # v1.2.46: precios de hoy (Yahoo) en lugar de los del cache. Si Yahoo no responde, queda el precio del cache y el pie lo dice.
     texto_precios = None
     if PRECIOS_VIVOS and df is not None and not df.empty:
         try:
             with st.spinner("Actualizando precios..."):
-                info_p = _precios_usd(tuple(sorted(df["ticker"])))
-            df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"))
+                info_p = _precios_usd(_orden_tickers(df))
+            df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"))
             if n_p:
                 df = df_p
                 f_p = info_p.get("fecha")
-                texto_precios = (f"Precios de Yahoo Finance al <b>{f_p.strftime('%d/%m/%Y')}</b> (consultados {info_p.get('hora')})" if f_p
-                                 else f"Precios de Yahoo Finance (consultados {info_p.get('hora')})")
+                n_sa = sum(1 for v in (info_p.get("fuente") or {}).values() if v == _pv.FUENTE_SA)
+                extra_sa = f"; {n_sa} desde {_pv.FUENTE_SA}, de respaldo" if n_sa else ""
+                texto_precios = (f"Precios en dólares de Yahoo Finance al <b>{f_p.strftime('%d/%m/%Y')}</b> (consultados {info_p.get('hora')}{extra_sa})" if f_p
+                                 else f"Precios en dólares de Yahoo Finance (consultados {info_p.get('hora')}{extra_sa})")
         except Exception:  # noqa: BLE001
             pass
 
@@ -1225,15 +887,17 @@ def main():
                 with st.expander("Filtro de empresas", expanded=False):
                     filtros = render_filtros_inline(universe, df)
                     lugar_excel = st.container()
-                    st.markdown(escala_valoracion_html(hay_gris) + leyenda_tabla_html(), unsafe_allow_html=True)
+                    st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
 
     # Forzar refresh limpia el cache de Streamlit
     if filtros["forzar_refresh"]:
         st.cache_data.clear()
         st.rerun()
 
-    # Tabla principal
-    render_main_table(df, filtros, fecha, aviso, lugar_excel)
+    # v1.2.47: buscador (por nombre o ticker) y "Cómo leer la tabla" arriba de la tabla; despues, la tabla
+    busqueda = render_buscador()
+    st.markdown(como_leer_html(filtros.get("extras") or []), unsafe_allow_html=True)
+    render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
 
     if noticias_pendientes:
         render_noticias(df, descarga_noticias, lugar_noticias)
