@@ -9,9 +9,10 @@ Columnas por defecto (v1.2.47), en este orden:
   Precio               precio de hoy, en dolares
   Capitalizacion bursatil
   Valoracion           solo la categoria, en letras de color y negrita (el Fair Value ya no va aca: esta en la pagina de la empresa o se suma
-                       desde "Agregar criterios")
+                       desde "Variables a ver en la tabla")
   Puntaje de calidad   caja con el puntaje (0-100) y, abajo, cuantas metricas se pudieron usar (por ahora es el puntaje de precio del screener)
-Columnas opcionales: las que la persona suma desde "Agregar criterios" (ui/criterios.py: Dividend Yield, Fair Value, P/E...).
+Columnas opcionales: las que la persona suma desde "Variables a ver en la tabla" (ui/variables.py; los criterios son los de ui/criterios.py: Dividend Yield,
+Fair Value, P/E...). Desde la v1.2.49 el titulo Empresa lleva un "?" con su explicacion, y ya no hay "Cómo leer la tabla".
 
 Los signos $ se escriben como &#36; para que el markdown no los tome como formulas.
 """
@@ -88,10 +89,10 @@ def escala_valoracion_html(mostrar_gris=False):
             f'{gris}</div>')
 
 # Ayuda de cada titulo de la tabla: se ve al pasar el mouse por el titulo (v1.2.47; antes habia un signo de pregunta al lado de cada uno).
-# clave de columna -> (titulo, texto). Las columnas que se suman desde "Agregar criterios" usan el texto de ui/criterios.py.
+# clave de columna -> (titulo, texto). Las columnas que se suman desde "Variables a ver en la tabla" usan el texto de ui/criterios.py.
+# Empresa (v1.2.49) va sin titulo adelante: es la frase tal cual, con la ultima oracion en azul.
 AYUDA_COLUMNAS = {
-    "nombre": ("Empresa", "Nombre de la empresa y, abajo, la bandera de su país y su ticker (el código con el que cotiza en su mercado de origen). "
-                          "Tocá el nombre para abrir su página con todo el detalle. Arriba de la tabla hay un buscador por nombre o ticker."),
+    "nombre": ("Empresa", "Nombre, país y ticker. :blue[**Tocá el nombre para ver su página con todo el detalle.**]"),
     "sector_txt": ("Sector e industria", "A qué se dedica la empresa: el sector y, abajo, su industria. Es solo información: no cambia la valoración ni el puntaje."),
     "precio_actual": ("Precio", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance cada pocos minutos "
                                 "(puede tener demora); si no responde, queda el de la última actualización de los datos{fecha}. "
@@ -100,7 +101,7 @@ AYUDA_COLUMNAS = {
                                               "M = millón, B = mil millones, T = un billón."),
     "fv_upside": ("Valoración", "Una estimación, no una recomendación: si la empresa cotiza barata, razonable o cara frente a sus propios múltiplos históricos. "
                                 "El Fair Value (el precio que resultaría de esos múltiplos) está en la página de cada empresa; también lo podés sumar a la tabla "
-                                "desde “Agregar criterios”, en el Filtro de empresas."),
+                                "desde “Variables a ver en la tabla”, en el Filtro de empresas."),
     "score_total": ("Puntaje de calidad", "De 0 (más cara) a 100 (más barata). Por ahora es el puntaje de precio del screener; más adelante sumará la "
                                           "calidad del negocio. Abajo, cuántas métricas se pudieron usar para calcularlo."),
 }
@@ -116,28 +117,9 @@ def ayuda_texto(clave, fecha=None):
     else:
         return ""
     texto = texto.replace("{fecha}", f" (datos al {fecha})" if fecha else "")
+    if clave == "nombre":
+        return texto
     return f"**{titulo}.** {texto}"
-
-
-def como_leer_html(extras=(), visibles=None):
-    """"Cómo leer la tabla" (v1.2.48: va dentro de un menú desplegable, cerrado, arriba de la tabla): una línea por cada columna que se ve, en el
-    mismo orden. `extras` son los criterios agregados; `visibles`, las columnas de siempre que se ven (None = todas). La frase de tocar el nombre
-    va en azul (clase tv-tip) para que se note."""
-    textos = {
-        "nombre": "<b>Empresa</b>: el nombre, y abajo la bandera de su país y el ticker. "
-                  '<span class="tv-tip">Tocá el nombre para ver su página con todo el detalle.</span>',
-        "sector_txt": "<b>Sector e industria</b>: a qué se dedica. Es solo información; no cambia la valoración.",
-        "precio_actual": "<b>Precio</b>: lo que cuesta una acción en dólares (US$), en su mercado de origen.",
-        "market_cap": "<b>Capitalización bursátil</b>: lo que vale la empresa entera en la bolsa (M = millón, B = mil millones, T = billón).",
-        "fv_upside": "<b>Valoración</b>: una estimación (no una recomendación) de si cotiza barata, razonable o cara frente a sus propios múltiplos históricos.",
-        "score_total": "<b>Puntaje de calidad</b>: de 0 (más cara) a 100 (más barata); por ahora es el puntaje de precio del screener.",
-    }
-    items = [textos[c[0]] for c in columnas_base(visibles)]
-    for c in extras:
-        items.append(f"<b>{html.escape(c['nombre'])}</b>: {html.escape(c['ayuda'])}")
-    pie = ('Otros datos (Dividend Yield, Fair Value, P/E…) no vienen por defecto: sumalos con <b>Agregar criterios</b>, en el Filtro de empresas. '
-           'El Fair Value y el Dividend Yield contra su mediana también están en la página de cada empresa.')
-    return '<div class="tv-como"><ol>' + "".join(f"<li>{t}</li>" for t in items) + f'</ol><div class="tv-cn">{pie}</div></div>'
 
 
 # Columnas por defecto (clave de orden, titulo, ancho relativo). Los encabezados (botones de Streamlit) y las filas (grilla CSS) usan los mismos anchos.
@@ -146,20 +128,13 @@ COLUMNAS_BASE = [
     ("market_cap", "Capitalización bursátil", 1.6), ("fv_upside", "Valoración", 2.0), ("score_total", "Puntaje de calidad", 1.3),
 ]
 ANCHO_EXTRA = 1.7
-# v1.2.48: en el Filtro se puede sacar cualquier columna menos Empresa. (clave, titulo) de las que se pueden sacar:
+# v1.2.48: se puede sacar cualquier columna menos Empresa (v1.2.49: desde "Variables a ver en la tabla"). (clave, titulo) de las que se pueden sacar:
 OPCIONALES = [(k, t) for k, t, _ in COLUMNAS_BASE if k != "nombre"]
 
 
 def columnas_base(visibles=None):
     """Las columnas de siempre que se ven, en su orden. `visibles`: claves elegidas (None = todas). Empresa se ve siempre."""
     return [c for c in COLUMNAS_BASE if c[0] == "nombre" or visibles is None or c[0] in visibles]
-
-
-def claves_visibles(titulos_elegidos=None):
-    """Pasa los titulos elegidos en el menu "Columnas de la tabla" a claves de columna (None = todas)."""
-    if titulos_elegidos is None:
-        return [k for k, _ in OPCIONALES]
-    return [k for k, t in OPCIONALES if t in set(titulos_elegidos)]
 
 
 def anchos(n_extra=0, visibles=None):
@@ -289,6 +264,7 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .st-key-buscador input{padding-left:44px!important;height:48px;font-size:15.5px;border-radius:14px;background-color:#fff;border:0!important;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);background-repeat:no-repeat;background-position:15px center;background-size:20px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>")}
 .st-key-buscador [data-baseweb='input'],.st-key-buscador [data-baseweb='base-input']{background:transparent!important;border:0!important}
 .st-key-buscador input::placeholder{color:#6b7280;opacity:1}
+}
 [data-testid="stButtonGroup"] button{border:1px solid #cfd8e3;border-radius:18px;background-color:#fff;color:#374151;padding:3px 13px;font-size:13.5px;transition:background .12s,border-color .12s}
 [data-testid="stButtonGroup"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}
 [data-testid="stButtonGroup"] button[aria-pressed="true"],[data-testid="stButtonGroup"] button[data-testid="stBaseButton-pillsActive"]{background:#222d36!important;border-color:#222d36!important;color:#fff!important;font-weight:600}
@@ -303,24 +279,23 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv2-si{margin-top:2px;font-size:12px;font-weight:400;color:#4b5563;line-height:1.25}
 .tv2-ni{font-size:12.5px;color:#6b7280}
 .tv-buscar{margin:6px 0 4px}
-.tv-como{font-size:13px;line-height:1.5;color:#374151;padding:2px 2px 0}
-.tv-como ol{margin:0;padding-left:20px}
-.tv-como li{margin:0 0 3px}
-.tv-como li b{color:#111827}
-.tv-como .tv-cn{margin-top:6px;color:#6b7280;font-size:12.5px}
-.tv-tip{color:#1d4ed8;font-weight:700}
-.tv-ln1,.tv-ln2{display:block}
-/* "Cómo leer la tabla" (v1.2.48): menú desplegable cerrado, a la izquierda; el botón de Excel queda a la derecha de la misma fila */
-.st-key-como_leer{margin:6px 0 4px}
-.st-key-como_leer [data-testid="stExpander"]{background:#fff;border:0!important;border-radius:14px;overflow:visible;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07)}
-.st-key-como_leer [data-testid="stExpander"] details{border:0!important;background:transparent!important}
-.st-key-como_leer [data-testid="stExpander"] summary{padding:0 1rem;min-height:44px;display:flex;align-items:center;background:transparent!important;border-radius:14px}
-.st-key-como_leer [data-testid="stExpander"] summary:hover{background:#f6f8fa!important}
-.st-key-como_leer [data-testid="stExpander"] summary p{font-weight:700;font-size:.98rem;color:#111827}
-.st-key-como_leer [data-testid="stExpanderDetails"]{padding:.6rem 1rem 1rem;border-top:1px solid #eef1f4!important}
 .st-key-fila_excel{margin:0}
-.st-key-fila_excel [data-testid="stHorizontalBlock"]{align-items:flex-start;gap:.75rem}
-.st-key-fila_excel [data-testid="stColumn"]:last-child [data-testid="stVerticalBlock"]{align-items:flex-end;padding-top:10px}
+.st-key-fila_excel{align-items:flex-end;margin:4px 0 0}
+/* "?" al lado del titulo Empresa (v1.2.49): la explicacion sale al pasar el mouse por el titulo */
+.st-key-tvh_nombre button p::after{content:"?";display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:7px;border:1px solid rgba(255,255,255,.6);border-radius:50%;font-size:10px;font-weight:700;line-height:1;vertical-align:1px}
+/* "Variables a ver en la tabla" (v1.2.49): pastillas que se prenden y se apagan; las elegidas llevan tilde y van en negrita */
+.vars-t{font-size:14px;font-weight:700;color:#111827;margin:2px 0 6px}
+.st-key-vars_chips{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
+.st-key-vars_chips>div{width:auto!important;flex:0 0 auto}
+.st-key-vars_chips button{min-height:34px;padding:2px 13px;border-radius:18px;font-size:13.5px;transition:background .12s,border-color .12s}
+.st-key-vars_chips button p{font-size:13.5px;margin:0}
+[class*="st-key-varoff_"] button{background:#fff;border:1px solid #cfd8e3;color:#4b5563;font-weight:400}
+[class*="st-key-varoff_"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}
+[class*="st-key-varon_"] button{background:#e8f0fe;border:1px solid #1d4ed8;color:#1e3a8a}
+[class*="st-key-varon_"] button p{font-weight:700}
+[class*="st-key-varon_"] button:hover{background:#dbe7fd;border-color:#1d4ed8;color:#1e3a8a}
+.st-key-vars_reiniciar{margin:0 0 4px}
+[class*="st-key-fb_"]{margin:0}
 @media (max-width:900px){
 div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_nombre){display:none!important}
 .st-key-orden_movil_caja{display:block}
@@ -344,7 +319,7 @@ div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2-nm{font-size:15px}
 .tv2-l2{white-space:normal}
 .tv-ln1,.tv-ln2{display:inline}
-.st-key-fila_excel [data-testid="stColumn"]:last-child [data-testid="stVerticalBlock"]{align-items:flex-start;padding-top:0}
+.st-key-fila_excel{align-items:flex-start}
 }
 span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!important}
 span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}
@@ -565,7 +540,7 @@ def _fv_chico(row):
 
 def _celda_valoracion_tabla(row):
     """Celda "Valoración" de la tabla (v1.2.47): solo la categoria, en letras de color y negrita. El Fair Value ya no va aca: esta en la
-    pagina de la empresa o se suma a la tabla desde "Agregar criterios". El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
+    pagina de la empresa o se suma a la tabla desde "Variables a ver en la tabla". El "Podría estar" chico se agrega solo si AVISO_PODRIA_EN_TABLA es True."""
     return f'<div class="tv2-vc">{_celda_categoria(row, con_aviso=bool(AVISO_PODRIA_EN_TABLA))}</div>'
 
 

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.48"
+APP_VERSION = "1.2.49"
 
 import streamlit as st
 import pandas as pd
@@ -26,7 +26,7 @@ from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe, leyenda_categorias, COLOR_POR_CATEGORIA, nombre_visible, nombre_corto
 from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion, CATEGORIAS_ORDEN,
                                  MIN_DIAS_ENTRE_COPIAS)
-from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL, metricas_de, partes_sector
+from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL, partes_sector
 from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_fuente
@@ -41,9 +41,11 @@ try:
 except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, escala_valoracion_html, COLUMNAS_BASE, columnas_base, css_encabezado, html_tabla_visual,
-                             como_leer_html, ayuda_texto, anchos as anchos_tabla, _mayusculas, OPCIONALES, claves_visibles)
+                             ayuda_texto, anchos as anchos_tabla, _mayusculas)
 from ui import criterios as _criterios
-from ui.ficha import ficha_html, CSS as CSS_FICHA
+from ui import variables as _variables
+from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
+from ui.quienes import quienes_html, CSS as CSS_QUIENES
 from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas
 
 # ---------------------------------------------------------------------------
@@ -309,6 +311,7 @@ def _num_valido(x) -> bool:
 
 # v1.2.45: al abrir la pagina la tabla va ordenada por capitalizacion bursatil, de mayor a menor (antes: por Valoracion)
 ORDEN_INICIAL = ("market_cap", False)
+MIN_METRICAS = 1       # v1.2.49: ya no hay slider "Métricas mínimas"; queda fijo en 1 (como venia por defecto)
 ORDENES_VALIDOS = ("nombre", "ticker", "sector_txt", "market_cap", "precio_actual", "fv_upside", "categoria", "score_total") + tuple(c["clave"] for c in _criterios.CRITERIOS)
 MKTCAP_OPCIONES = {
     "Sin mínimo": 0,
@@ -327,12 +330,21 @@ def _normalizar(texto) -> str:
     return "".join(ch for ch in t if ch.isalnum())
 
 
-def _reiniciar_criterios():
-    """Boton "Reiniciar criterios": saca todos los criterios agregados (y sus minimos y maximos)."""
-    st.session_state["flt_criterios"] = []
-    for c in _criterios.CRITERIOS:
-        st.session_state.pop(f"crit_{c['clave']}_min", None)
-        st.session_state.pop(f"crit_{c['clave']}_max", None)
+def _alternar_variable(clave):
+    """Pastilla de "Variables a ver en la tabla": la prende o la apaga (Empresa se ve siempre). Al apagarla, sus filtros dejan de aparecer y de valer."""
+    v = _variables.POR_CLAVE.get(clave)
+    if not v or v["fija"]:
+        return
+    sel = _variables.seleccion_valida(st.session_state.get("flt_vars"))
+    sel = [c for c in sel if c != clave] if clave in sel else sel + [clave]
+    st.session_state["flt_vars"] = _variables.seleccion_valida(sel)
+
+
+def _reiniciar_variables():
+    """Boton "Volver a las variables de siempre": deja las variables de siempre y borra los minimos y maximos escritos."""
+    st.session_state["flt_vars"] = list(_variables.DEFECTO)
+    for k in [k for k in list(st.session_state) if str(k).startswith(("crit_", "flt_precio_", "flt_score_"))]:
+        st.session_state.pop(k, None)
 
 
 def agregar_columnas_info(df: pd.DataFrame) -> pd.DataFrame:
@@ -352,8 +364,10 @@ def agregar_columnas_info(df: pd.DataFrame) -> pd.DataFrame:
 def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     """
     Renderiza los filtros (dentro del recuadro "Filtro de empresas") y retorna dict con filtros activos.
-    v1.2.47: todas las selecciones son menus desplegables; el Dividend Yield y el Fair Value ya no son filtros fijos: se suman desde
-    "Agregar criterios" (cada criterio agrega una columna a la tabla y, si se escribe un minimo y/o un maximo, filtra).
+    v1.2.49: arriba de todo va "Variables a ver en la tabla": una pastilla por cada variable (ui/variables.py). Las de siempre vienen elegidas
+    (con tilde y en negrita); al elegir una aparecen abajo sus filtros (Sector e industria, un minimo y un maximo de precio, etc.); una variable que no
+    se elige no se ve en la tabla ni filtra. Ya no estan "Métricas mínimas", "Columnas de la tabla", "Agregar criterios" ni "Actualizar datos"
+    (este ultimo paso al panel ?debug=1).
     """
     leyenda = leyenda_categorias()
     hay_gris = df is not None and not df.empty and "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
@@ -374,90 +388,98 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         if f:
             vals = estado_url.valores(estado_url.decodificar(f), todos_sectores, cats_disponibles, paises_disponibles,
                                       list(MKTCAP_OPCIONES), ORDENES_VALIDOS, todas_industrias, {c["clave"]: c["nombre"] for c in _criterios.CRITERIOS},
-                                      dict(OPCIONALES))
+                                      _variables.CLAVES)
             for k, v in vals.items():
                 st.session_state[k] = v
 
-    # --- Sector, Industria, Valoracion y Pais: menus desplegables (sin seleccion = todos) ---
-    col_sec, col_ind = st.columns(2)
-    with col_sec:
-        sectores_sel = st.multiselect("Sector", todos_sectores, placeholder="Todos los sectores", key="flt_sector")
-    with col_ind:
-        industrias_sel = st.multiselect("Industria", todas_industrias, placeholder="Todas las industrias", key="flt_industria")
-    col_val, col_pais = st.columns(2)
-    with col_val:
-        cats_sel = st.multiselect("Valoración", cats_disponibles, format_func=lambda c: _mayusculas(nombre_corto(c)),
-                                  placeholder="Todas las valoraciones", key="flt_valoracion")
-    cats_nombres = list(cats_sel) or list(cats_disponibles)
-    with col_pais:
-        paises_sel = st.multiselect("País", paises_disponibles, placeholder="Todos los países", key="flt_pais")
+    # --- Variables a ver en la tabla (v1.2.49): arriba de todo ---
+    seleccion = _variables.seleccion_valida(st.session_state.get("flt_vars"))
+    st.session_state["flt_vars"] = seleccion
+    elegidas = set(seleccion)
+    st.markdown('<div class="vars-t">Variables a ver en la tabla</div>', unsafe_allow_html=True)
+    consulta = st.text_input("Buscar variables", key="flt_vars_q", placeholder="Buscá y elegí qué ver", label_visibility="collapsed", max_chars=40)
+    with st.container(key="vars_chips"):
+        for v in _variables.buscar(consulta):
+            on = v["clave"] in elegidas
+            st.button(("✓ " if on else "") + v["nombre"], key=f"{'varon' if on else 'varoff'}_{v['clave']}", help=f"**{v['nombre']}.** {v['ayuda']}",
+                      on_click=_alternar_variable, args=(v["clave"],))
+    if set(seleccion) != set(_variables.DEFECTO):
+        st.button("Volver a las variables de siempre", key="vars_reiniciar", type="tertiary", on_click=_reiniciar_variables)
 
-    # --- Capitalizacion minima y metricas minimas ---
-    col_mkt, col_met = st.columns(2)
-    with col_mkt:
-        mktcap_label = st.selectbox("Capitalización bursátil mínima", list(MKTCAP_OPCIONES.keys()), key="flt_mkt")
-    mktcap_minimo = MKTCAP_OPCIONES[mktcap_label]
-    with col_met:
-        min_metricas = st.slider(
-            "Métricas mínimas",
-            min_value=1,
-            max_value=4,
-            key="flt_met",
-            help="Si subís este número, las empresas con menos métricas se muestran en gris. "
-                 "Con 1 se ve todo (mejor algo que nada).",
-        )
-
-    # --- Columnas de la tabla (v1.2.48): se puede sacar cualquiera menos Empresa (que se ve siempre) ---
-    st.session_state.setdefault("flt_columnas", [t for _, t in OPCIONALES])
-    cols_sel = st.multiselect(
-        "Columnas de la tabla", [t for _, t in OPCIONALES], key="flt_columnas", placeholder="Solo se ve Empresa",
-        help="Sacá las columnas que no quieras ver. Empresa se ve siempre. También se sacan del Excel que descargás.")
-    visibles = claves_visibles(cols_sel)
-    ocultas = [k for k, _ in OPCIONALES if k not in visibles]
-
-    # --- Agregar criterios (v1.2.47): suman una columna a la tabla y, con minimo y/o maximo, filtran ---
-    nombres_sel = st.multiselect(
-        "Agregar criterios", _criterios.NOMBRES, key="flt_criterios",
-        placeholder="Buscá y elegí datos para sumar a la tabla (Dividend Yield, Fair Value, P/E…)",
-        help="Cada criterio que elijas suma una columna a la tabla. Si además escribís un mínimo y/o un máximo, quedan solo las empresas dentro de ese rango.")
-    extras = [c for c in _criterios.CRITERIOS if c["nombre"] in nombres_sel]
+    # --- Filtros de cada variable elegida (aparecen al elegirla; en dos columnas) ---
+    sectores_sel, industrias_sel, paises_sel, cats_sel = [], [], [], []
+    mktcap_label = "Sin mínimo"
+    precio_lim, puntaje_lim = (None, None), (None, None)
     criterios = {}
+    extras = _variables.extras_de(seleccion)
+    pares = st.columns(2)
+    turno = [0]
+
+    def caja(clave, titulo, unidad=""):
+        """Recuadro de los filtros de una variable, en la columna que toca (de izquierda a derecha)."""
+        col = pares[turno[0] % 2]
+        turno[0] += 1
+        with col:
+            c = st.container(border=True, key=f"fb_{clave}")
+        with c:
+            u = f" <span>({html.escape(unidad)})</span>" if unidad else ""
+            st.markdown(f'<div class="crit-t">{html.escape(titulo)}{u}</div>', unsafe_allow_html=True)
+        return c
+
+    def minmax(clave, paso, ph=("Mínimo", "Máximo")):
+        c1, c2 = st.columns(2)
+        mn = c1.number_input(ph[0], value=None, step=float(paso), format="%g", key=f"{clave}_min", placeholder=ph[0], label_visibility="collapsed")
+        mx = c2.number_input(ph[1], value=None, step=float(paso), format="%g", key=f"{clave}_max", placeholder=ph[1], label_visibility="collapsed")
+        return mn, mx
+
+    if "nombre" in elegidas:
+        with caja("nombre", "País"):
+            paises_sel = st.multiselect("País", paises_disponibles, placeholder="Todos los países", key="flt_pais", label_visibility="collapsed")
+    if "sector_txt" in elegidas:
+        with caja("sector_txt", "Sector e industria"):
+            sectores_sel = st.multiselect("Sector", todos_sectores, placeholder="Todos los sectores", key="flt_sector", label_visibility="collapsed")
+            industrias_sel = st.multiselect("Industria", todas_industrias, placeholder="Todas las industrias", key="flt_industria", label_visibility="collapsed")
+    if "precio_actual" in elegidas:
+        with caja("precio_actual", "Precio", "US$"):
+            precio_lim = minmax("flt_precio", 10)
+    if "market_cap" in elegidas:
+        with caja("market_cap", "Capitalización bursátil mínima"):
+            mktcap_label = st.selectbox("Capitalización bursátil mínima", list(MKTCAP_OPCIONES.keys()), key="flt_mkt", label_visibility="collapsed")
+    if "fv_upside" in elegidas:
+        with caja("fv_upside", "Valoración"):
+            cats_sel = st.multiselect("Valoración", cats_disponibles, format_func=lambda c: _mayusculas(nombre_corto(c)),
+                                      placeholder="Todas las valoraciones", key="flt_valoracion", label_visibility="collapsed")
+    if "score_total" in elegidas:
+        with caja("score_total", "Puntaje de calidad", "0 a 100"):
+            puntaje_lim = minmax("flt_score", 5)
     for c in extras:
         k = c["clave"]
-        with st.container(border=True, key=f"crit_{k}"):
-            st.markdown(f'<div class="crit-t">{html.escape(c["nombre"])} <span>({c["unidad"] if c["unidad"] == "%" else "veces"})</span></div>', unsafe_allow_html=True)
-            c1, c2 = st.columns(2)
-            mn = c1.number_input("Mínimo", value=None, step=float(c["paso"]), format="%g", key=f"crit_{k}_min", placeholder="Mínimo", label_visibility="collapsed")
-            mx = c2.number_input("Máximo", value=None, step=float(c["paso"]), format="%g", key=f"crit_{k}_max", placeholder="Máximo", label_visibility="collapsed")
-        criterios[k] = (mn, mx)
-    if extras:
-        st.button("Reiniciar criterios", key="crit_reiniciar", type="tertiary", on_click=_reiniciar_criterios)
+        with caja(f"crit_{k}", c["nombre"], c["unidad"] if c["unidad"] == "%" else "veces"):
+            criterios[k] = minmax(f"crit_{k}", c["paso"])
+    cats_nombres = list(cats_sel) or list(cats_disponibles)
 
-    # --- Actualizar ---
-    forzar_refresh = st.button(
-        "Actualizar datos",
-        help="Vuelve a leer el caché guardado (el caché se actualiza una vez por trimestre desde la PC)",
-    )
+    visibles = _variables.visibles_de(seleccion)
 
     # Texto con los filtros y el orden: viaja en el link de cada empresa para poder volver a la tabla tal cual estaba
     busqueda = st.session_state.get("flt_busqueda", "") or ""
     estado = estado_url.codificar(sectores_sel, todos_sectores, cats_nombres, cats_disponibles, paises_sel, mktcap_label,
-                                  min_metricas, st.session_state.get("sort_col", ORDEN_INICIAL[0]), st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
-                                  busqueda, industrias_sel, todas_industrias, criterios, ocultas)
+                                  st.session_state.get("sort_col", ORDEN_INICIAL[0]), st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
+                                  busqueda, industrias_sel, todas_industrias, criterios, seleccion, precio_lim, puntaje_lim)
     return {
         "estado_url": estado,
         "sectores": list(sectores_sel) or todos_sectores,
         "industrias": list(industrias_sel) or todas_industrias,
         "categorias": cats_nombres,
         "paises": paises_sel,
-        "mktcap_minimo": mktcap_minimo,
-        "min_metricas": min_metricas,
+        "mktcap_minimo": MKTCAP_OPCIONES[mktcap_label],
+        "min_metricas": MIN_METRICAS,
+        "precio": precio_lim,
+        "puntaje": puntaje_lim,
         "criterios": criterios,
         "extras": extras,
         "columnas": visibles,
         "sort_col": st.session_state.get("sort_col", ORDEN_INICIAL[0]),
         "sort_asc": st.session_state.get("sort_asc", ORDEN_INICIAL[1]),
-        "forzar_refresh": forzar_refresh,
     }
 
 
@@ -465,7 +487,7 @@ def render_buscador() -> str:
     """Buscador de arriba de la tabla (v1.2.47): una lupa y "Buscar empresas por nombre o ticker". Busca de las dos formas, sin importar
     mayusculas, tildes ni signos (Enter para buscar). Devuelve el texto escrito."""
     with st.container(key="buscador"):
-        return (st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda", placeholder="Buscar empresas por nombre o ticker",
+        return (st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda", placeholder="Buscar empresa o ticker",
                               label_visibility="collapsed", max_chars=40) or "").strip()
 
 
@@ -493,8 +515,9 @@ def ordenes_movil(extras=(), visibles=None):
 def _cambiar_orden_movil():
     """Al elegir un orden en el selector del celular se guarda como si se hubiera tocado el titulo de la tabla."""
     eleg = st.session_state.get("orden_movil")
-    extras = [c for c in _criterios.CRITERIOS if c["nombre"] in (st.session_state.get("flt_criterios") or [])]
-    visibles = claves_visibles(st.session_state.get("flt_columnas"))
+    seleccion = st.session_state.get("flt_vars")
+    extras = _variables.extras_de(seleccion)
+    visibles = _variables.visibles_de(seleccion)
     for texto, col, asc in ordenes_movil(extras, visibles):
         if texto == eleg:
             st.session_state["sort_col"], st.session_state["sort_asc"] = col, asc
@@ -535,8 +558,8 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
 
 
 def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
-    """Boton de descarga en Excel (v1.2.48: en la misma fila de "Cómo leer la tabla", a la derecha): las empresas y columnas que se ven, con los
-    filtros y el orden elegidos. Si algo falla, no se muestra."""
+    """Boton "Descargar la tabla en Excel" (v1.2.49; arriba de la tabla, a la derecha): las empresas y columnas que se ven, con los filtros y el
+    orden elegidos. Si algo falla, no se muestra."""
     try:
         datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras, visibles)
     except Exception:  # noqa: BLE001
@@ -544,11 +567,11 @@ def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
     dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
     args = dict(data=datos, file_name=f"todocedears_{dia}.xlsx", key="descarga_excel",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
-                help="Baja un archivo .xlsx con las empresas que ves ahora (con los filtros y el orden elegidos). Es información, no una recomendación.")
+                help="Baja un archivo .xlsx con la tabla tal como la ves ahora: las empresas que quedaron con tus filtros, en el orden elegido y con las variables que tenés a la vista. Es información, no una recomendación.")
     try:
-        st.download_button("⬇ Descargar en Excel", type="tertiary", **args)
+        st.download_button("⬇ Descargar la tabla en Excel", type="tertiary", **args)
     except TypeError:       # Streamlit viejo, sin type="tertiary"
-        st.download_button("⬇ Descargar en Excel", **args)
+        st.download_button("⬇ Descargar la tabla en Excel", **args)
 
 
 def _orden_efectivo(sort_col, extras=(), visibles=None):
@@ -569,7 +592,7 @@ def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.D
     df_show = df_show[df_show["sector_macro"].isin(filtros["sectores"])]
     df_show = df_show[df_show["industria"].isin(filtros["industrias"]) | (df_show["industria"] == "")]
     df_show = df_show[
-        (df_show["metricas_usadas"] >= filtros["min_metricas"]) |
+        (df_show["metricas_usadas"] >= filtros.get("min_metricas", MIN_METRICAS)) |
         (df_show["categoria"] == "DATOS INSUFICIENTES")
     ]
     df_show = df_show[df_show["categoria"].isin(filtros["categorias"])]
@@ -580,6 +603,16 @@ def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.D
             df_show["market_cap"].notna() &
             (df_show["market_cap"] >= filtros["mktcap_minimo"])
         ]
+    # Precio y Puntaje de calidad (v1.2.49): minimo y/o maximo; una empresa sin dato queda afuera si hay algun limite
+    for col, (mn, mx) in (("precio_actual", filtros.get("precio") or (None, None)), ("score_total", filtros.get("puntaje") or (None, None))):
+        if mn is not None or mx is not None:
+            v = pd.to_numeric(df_show[col], errors="coerce")
+            m = v.notna()
+            if mn is not None:
+                m &= v >= mn
+            if mx is not None:
+                m &= v <= mx
+            df_show = df_show[m]
     # Criterios agregados (minimo / maximo)
     df_show = _criterios.filtrar(df_show, filtros.get("criterios"))
 
@@ -649,7 +682,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
         return
     extras = filtros.get("extras") or []
     visibles = filtros.get("columnas")
-    # El boton de Excel esta a la derecha de "Cómo leer la tabla" (v1.2.48)
+    # El boton de Excel esta arriba de la tabla, a la derecha (v1.2.49)
     if lugar_excel is not None:
         with lugar_excel:
             _boton_excel(df_show, fecha, aviso, extras, visibles)
@@ -660,7 +693,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
 # PANEL DE DETALLE POR EMPRESA
 # ---------------------------------------------------------------------------
 
-def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
+def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     f = st.query_params.get("f")
     volver = "?" + (f"f={html.escape(str(f), quote=True)}" if f else "")
@@ -669,7 +702,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
     row = df[df["ticker"] == str(ticker_sel).upper()] if ticker_sel else df.iloc[0:0]
     if row.empty:
         st.warning("No encontré esa empresa. Volvé a la tabla y elegí otra.")
-        return
+        return None
     row = row.iloc[0]
     ticker_sel = row.get("ticker", ticker_sel)
     sector = row.get("sector", "")
@@ -677,93 +710,15 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
     # v1.2.47: encabezado (logo, nombre, mercado, ticker, ADR, precio) y todos los datos en mosaicos (ui/ficha.py)
     ficha = (_fichas_datos() or {}).get(str(ticker_sel).upper()) or {}
     cod = None if (ficha.get("mercado_cod") or ficha.get("mercado_nombre")) else _mercado_vivo(str(ticker_sel))
-    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel), ficha, cod), unsafe_allow_html=True)
+    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel), ficha, cod, fecha_datos), unsafe_allow_html=True)
 
-    # Desglose de métricas
-    if sector in SECTOR_CONFIG and row.get("detalle"):
-        st.markdown("---")
-        st.subheader("📊 Desglose de métricas")
-
-        detalle = row.get("detalle", {})
-        if isinstance(detalle, str):
-            import ast
-            detalle = ast.literal_eval(detalle)
-
-        pesos_empresa = metricas_de(row, sector)   # v1.2.44: el PEG aparece solo si es creible para esta empresa
-        metricas_cols = st.columns(len(pesos_empresa))
-
-        METRIC_LABELS = {
-            "ev_ebitda": "EV/EBITDA",
-            "per": "P/E Ratio",
-            "p_fcf": "P/FCF",
-            "p_b": "P/Book",
-            "dividend_yield": "Dividend Yield",
-            "peg": "PEG",
-            "p_ffo": "P/FFO",
-            "p_affo": "P/AFFO",
-            "ps": "P/S",
-        }
-
-        for i, (metrica, peso) in enumerate(pesos_empresa.items()):
-            datos = detalle.get(metrica, {})
-            if isinstance(datos, str):
-                import ast
-                datos = ast.literal_eval(datos)
-
-            actual = datos.get("actual")
-            mediana = datos.get("mediana")
-            score_m = datos.get("score")
-            estado_m = datos.get("estado")
-            motivo_m = datos.get("motivo")
-            fuente_m = datos.get("fuente")
-            referencia_m = datos.get("referencia")
-
-            label = METRIC_LABELS.get(metrica, metrica.upper())
-            suffix = "%" if metrica == "dividend_yield" else ""
-
-            with metricas_cols[i]:
-                st.markdown(f"**{label}**")
-                st.markdown(f"Peso: {peso*100:.0f}%")
-                if metrica == "dividend_yield":
-                    st.metric(
-                        label="Actual",
-                        value=format_metric(actual, suffix="%"),
-                        delta=f"Mediana hist.: {format_metric(mediana, suffix='%')}",
-                        delta_color="normal",
-                    )
-                else:
-                    st.metric(
-                        label="Actual",
-                        value=format_metric(actual),
-                        delta=f"Mediana hist.: {format_metric(mediana)}",
-                        delta_color="inverse",
-                    )
-                if score_m is not None:
-                    color_m = "#15803d" if score_m >= 60 else "#a16207" if score_m >= 40 else "#b91c1c"
-                    st.markdown(
-                        f'Score: <span style="color:{color_m};font-weight:700">{score_m:.0f}/100</span>',
-                        unsafe_allow_html=True,
-                    )
-                else:
-                    st.markdown("Score: —")
-                if estado_m == "ok" and (fuente_m or referencia_m == "sector"):
-                    partes = []
-                    if fuente_m:
-                        partes.append(f"Fuente: {fuente_m}")
-                    if referencia_m == "sector":
-                        partes.append("comparada con la mediana de su sector (falta su historia propia)")
-                    st.caption(" · ".join(partes))
-                if estado_m == "descartada" and motivo_m:
-                    st.caption(f"🚫 No se usa: {motivo_m}. Su peso se reparte entre las otras métricas.")
-                elif estado_m == "sin dato":
-                    st.caption("Sin dato para esta métrica. Su peso se reparte entre las otras.")
-
-        usadas_d, total_d = row.get("metricas_usadas"), row.get("metricas_total")
-        if _num_valido(usadas_d) and int(usadas_d) == 0:
-            st.info(
-                "Ninguna métrica fundamental pudo usarse para esta empresa. "
-                "La categoría se calculó solo con la posición en el rango de 52 semanas."
-            )
+    # v1.2.49: el desglose de metricas pasó a "Estadisticas de la empresa" (ui/ficha.py): valor de hoy, mediana, dibujito, Fair Value y peso de cada una.
+    usadas_d = row.get("metricas_usadas")
+    if sector in SECTOR_CONFIG and row.get("detalle") and _num_valido(usadas_d) and int(usadas_d) == 0:
+        st.info(
+            "Ninguna métrica fundamental pudo usarse para esta empresa. "
+            "La categoría se calculó solo con la posición en el rango de 52 semanas."
+        )
 
     # Aviso trampa de valor si el score es alto
     if row.get("score_total") and row.get("score_total") >= 65:
@@ -772,6 +727,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str):
             "El precio bajo puede reflejar deterioro real del negocio no capturado por los múltiplos históricos. "
             "Investigá los fundamentales antes de tomar una decisión."
         )
+    return texto_fuente(ficha)
 
 
 # ---------------------------------------------------------------------------
@@ -813,6 +769,12 @@ def main():
     st.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
     aviso = texto_aviso_legal()
     fecha = None
+
+    # v1.2.49: pagina "Quiénes somos" (?pagina=quienes): no necesita los datos de las empresas, asi que se muestra al toque
+    if st.query_params.get("pagina") == "quienes":
+        st.markdown(f"<style>{css_fuente()}{CSS_QUIENES}</style>" + quienes_html(), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
+        return
 
     # Noticias: la descarga arranca ya, en segundo plano, mientras se cargan los datos de las empresas
     descarga_noticias = _noticias.iniciar_descarga()
@@ -888,8 +850,8 @@ def main():
     # Pagina de una empresa (se abre al tocar su nombre en la tabla): ?empresa=TICKER
     empresa = st.query_params.get("empresa")
     if empresa:
-        render_pagina_empresa(df, empresa)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
+        fuente_emp = render_pagina_empresa(df, empresa, fecha)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=fuente_emp or texto_fuente()), unsafe_allow_html=True)
         return
 
     # v1.2.45: "Noticias Calientes" y "Filtro de empresas" (antes "Screener") van uno al lado del otro, para ocupar menos pantalla.
@@ -908,28 +870,17 @@ def main():
         if not noticias_pendientes:
             render_noticias(df, None, lugar_noticias)
         # Filtro de empresas: recuadro desplegable, cerrado al abrir la pagina. Adentro: los filtros, la escala de valoracion y
-        # "Cómo leer la tabla". Cerrado, los filtros siguen valiendo: solo se esconden.
+        # las variables a ver en la tabla. Cerrado, los filtros siguen valiendo: solo se esconden.
         with col_filtro:
             with st.container(key="caja_screener"):
                 with st.expander("Filtro de empresas", expanded=False):
                     filtros = render_filtros_inline(universe, df)
                     st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
 
-    # Forzar refresh limpia el cache de Streamlit
-    if filtros["forzar_refresh"]:
-        st.cache_data.clear()
-        st.rerun()
-
-    # v1.2.47: buscador (por nombre o ticker) y "Cómo leer la tabla" arriba de la tabla; despues, la tabla
+    # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()
-    # v1.2.48: "Cómo leer la tabla" es un menú desplegable (cerrado) y el Excel va a la derecha de la misma fila
-    with st.container(key="fila_excel"):
-        col_leer, col_xls = st.columns([5, 1.6], gap="small")
-        with col_leer:
-            with st.container(key="como_leer"):
-                with st.expander("Cómo leer la tabla", expanded=False):
-                    st.markdown(como_leer_html(filtros.get("extras") or [], filtros.get("columnas")), unsafe_allow_html=True)
-        lugar_excel = col_xls.container()
+    # v1.2.49: ya no hay "Cómo leer la tabla" (cada título explica su columna al pasar el mouse); el Excel va arriba de la tabla, a la derecha
+    lugar_excel = st.container(key="fila_excel")
     render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
 
     if noticias_pendientes:
@@ -941,7 +892,7 @@ def main():
     # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
     render_debug_panel()
 
-    st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
+    st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
 
 
 try:
@@ -1033,6 +984,11 @@ def render_debug_panel():
         return
 
     st.divider()
+    # v1.2.49: "Actualizar datos" ya no esta en el Filtro (los datos se refrescan solos: el cache cada 6 horas y los precios cada 5 minutos); queda aca
+    if st.button("Actualizar datos", key="debug_actualizar",
+                 help="Borra la memoria de Streamlit y vuelve a leer el caché guardado (data/cache_datos.json) y los precios. Sirve justo después de subir un caché nuevo."):
+        st.cache_data.clear()
+        st.rerun()
     st.subheader("🔧 Panel de Diagnóstico — yfinance Debug")
     st.caption(
         "Este panel muestra exactamente qué devolvió yfinance para cada ticker. "

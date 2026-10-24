@@ -2,7 +2,7 @@
 Criterios que se pueden sumar a la tabla (v1.2.47), al estilo del "Add Screener Criteria" de Fiscal AI.
 
 La tabla por defecto muestra solo Empresa, Sector e industria, Precio, Capitalizacion bursatil, Valoracion y Puntaje de calidad. En el Filtro de
-empresas, "Agregar criterios" permite elegir otros datos (Dividend Yield, Fair Value, P/E...): cada criterio elegido suma una columna a la tabla
+empresas, "Variables a ver en la tabla" (v1.2.49; antes "Agregar criterios") permite elegir otros datos (Dividend Yield, Fair Value, P/E...): cada criterio elegido suma una columna a la tabla
 y, si se escribe un minimo y/o un maximo, deja solo las empresas dentro de ese rango. Sin minimo ni maximo, solo suma la columna.
 
 Cada criterio sale de una columna que ya existe en los datos (no se calcula nada nuevo):
@@ -41,9 +41,8 @@ CRITERIOS = [
      "ayuda": "Lo que paga por año en dividendos, como porcentaje del precio de hoy. Sin dato o sin dividendo: —. "
               "En la página de cada empresa lo ves comparado con su mediana histórica."},
     {"clave": "fv_dist", "nombre": "Fair Value", "col": "fv_dist", "escala": 100.0, "unidad": "%", "paso": 5.0,
-     "ayuda": "El precio que resultaría de aplicar a la empresa sus propios múltiplos históricos (promedio de los métodos de su sector) y, entre "
-              "paréntesis, cuánto más (+) o menos (−) que el precio de hoy. Es una estimación, no una recomendación. "
-              "Al filtrar, el mínimo y el máximo se refieren a esa diferencia en %."},
+     "ayuda": "El precio que resultaría de aplicar a la empresa sus propios múltiplos históricos y, entre paréntesis, cuánto más (+) o menos (−) "
+              "que el de hoy. Es una estimación, no una recomendación. Al filtrar, el mínimo y el máximo son esa diferencia en %."},
     {"clave": "per_actual", "nombre": "P/E (precio / ganancias)", "col": "per_actual", "escala": 1.0, "unidad": "x", "paso": 1.0,
      "ayuda": "Cuántas veces las ganancias de un año paga el mercado por la empresa. Más bajo = más barata frente a lo que gana."},
     {"clave": "ev_ebitda_actual", "nombre": "EV/EBITDA", "col": "ev_ebitda_actual", "escala": 1.0, "unidad": "x", "paso": 1.0,

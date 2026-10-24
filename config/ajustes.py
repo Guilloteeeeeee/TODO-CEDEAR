@@ -74,19 +74,21 @@ FUENTE_APP = "Inter"
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"
 
-# --- Franja negra de arriba (v1.2.36; links cargados en la v1.2.37; menu rehecho en la v1.2.38) --------------------
+# --- Franja negra de arriba (v1.2.36; links cargados en la v1.2.37; menus rehechos en la v1.2.38 y la v1.2.49) ------------------
 # La franja lleva el nombre TodoCedears a la izquierda (la imagen assets/marca/titulo-todocedears.png; si el archivo no esta,
-# se escribe el nombre en letras blancas). A la derecha van los iconos, "Quiénes somos", "Abrite una cuenta con nosotros"
-# (desplegable) y "Comentarios". Lo que quede vacio ("") no se muestra, salvo "Quiénes somos", que se muestra siempre (sin
-# link queda como texto, sin hacer nada al tocarlo, hasta que se cargue el link).
+# se escribe el nombre en letras blancas). A la derecha van tres menus: "Sobre Nosotros" (Quiénes somos, Nuestras Redes y Contactános),
+# "Comentarios" y el boton "Abrite una cuenta" (con los logos de CUENTAS_MARCA). Lo que quede vacio ("") no se muestra, salvo WhatsApp, que
+# se muestra apagado ("próximamente") hasta que se cargue su link.
 #   youtube / instagram : el link del canal / del perfil
 #   mail                : el mail de contacto (nombre@dominio.com) o un link
-#   whatsapp            : el link de invitacion al WhatsApp de la COMUNIDAD (https://chat.whatsapp.com/...) o un numero
-#                         con codigo de pais. Vacio: no se muestra el icono.
+#   whatsapp            : el link o el numero de WhatsApp de contacto (con codigo de pais; ej. https://wa.me/54911...). Vacio: apagado.
 #   intramed            : tu pagina institucional en Intramed (el icono es assets/marca/intramed.png)
-#   quienes_somos       : el link que quieras abrir (hoy vacio)
+#   quienes_somos       : vacio = la pagina propia "Quiénes somos" (?pagina=quienes, texto en ui/quienes.py). Si pones un link, se abre ese.
 #   comentarios         : si lo dejas vacio (hoy), "Comentarios" despliega un cuadro para escribir cuyo mensaje te llega por mail
 #                         (ver COMENTARIOS_MAIL mas abajo). Si pones un link (ej. un Google Forms), se usa ese link y no el cuadro.
+# ICONOS_EN_BARRA: True vuelve a mostrar, sueltos en la franja, los iconos de un solo color (YouTube, Instagram, mail, WhatsApp, Intramed) que
+# hasta la v1.2.48 estaban ahi. Desde la v1.2.49 estan, a color, adentro del menu "Sobre Nosotros".
+ICONOS_EN_BARRA = False
 ENLACES_MARCA = {
     "youtube": "https://www.youtube.com/@FinanzasparaMedicosArgentina",
     "instagram": "https://www.instagram.com/finanzasparamedicos.argentina/",

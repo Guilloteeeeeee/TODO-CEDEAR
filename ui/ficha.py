@@ -1,36 +1,38 @@
 """
-Ficha de la pagina de una empresa (v1.2.46; formato tipo Fiscal AI desde la v1.2.47).
+Ficha de la pagina de una empresa (v1.2.46; formato tipo Fiscal AI desde la v1.2.47; mosaicos desplegables desde la v1.2.49).
 
-Estructura (los datos y su orden siguen la ficha "Company Overview / Company Statistics" de Fiscal AI; el estilo es el de TodoCedears):
-  1. Encabezado: logo, nombre, mercado donde cotiza y ticker (con ADR si es un certificado de deposito), bandera y pais, y el precio de hoy.
-  2. Resumen de la empresa: la descripcion (de Yahoo Finance, traducida) y, abajo, una lista de datos: nombre, CEO, sitio web, sector, industria,
-     mercado, sede y empleados. A la derecha: el Score de calidad, la Valoracion (con el Fair Value) y el CEDEAR (ratio y precio en pesos).
-  3. Estadisticas de la empresa, en tres columnas: Perfil (capitalizacion, valor de empresa, acciones, ingresos), Valoracion (los multiplos de hoy
-     con su mediana historica) y Crecimiento.
-  4. Rango de 52 semanas, Dividend Yield contra su mediana y como sale el puntaje.
-  5. La linea de precios: el precio actual abajo y arriba el Fair Value de cada metodo (flechas celestes) y el PEG informativo.
-  6. Revision de los metodos del Fair Value (antes era una vista de la tabla): que metodos se usaron, con su peso y su precio, y cuales no y por que.
+Estructura (arriba la banda con el nombre y el precio; abajo, mosaicos que se pueden plegar):
+  1. Encabezado: logo, nombre, mercado donde cotiza y ticker (con ADR si es un certificado de deposito), bandera y pais. A la derecha el precio en
+     dolares y, mas chico y menos llamativo, "Precio en pesos $ X (ratio N : 1)" del CEDEAR y "Dato al dd/mm/aaaa hh:mm".
+  2. "Resumen de la empresa" (desplegable, abierto): la descripcion completa de Yahoo en una banda ancha, la lista de datos (nombre, CEO, sitio web,
+     sector, industria, mercado, sede y empleados) y, al lado, la capitalizacion bursatil, el rango de 52 semanas (barrita con el precio de hoy y los
+     precios extremos) y el Dividend Yield con su dibujito.
+  3. Score de calidad y Valoracion (con un "?" que cuenta, sin detalles del metodo, como se llega a la lectura).
+  4. "Estadisticas de la empresa" (desplegable): Perfil, Crecimiento y Valoracion; cada multiplo con su mediana historica, un dibujito (hoy contra
+     su mediana), el Fair Value que da y su peso.
+  5. "Precio contra el Fair Value de cada metodo" (desplegable): la linea de precios.
+  6. "Revision de los metodos del Fair Value" (desplegable): que metodos se usaron, con su peso y su precio, y cuales no y por que.
+Las fuentes no se nombran en cada dato: hay una sola linea "Fuente" debajo del Aviso (ver texto_fuente y ui/marca.py).
 Los datos de Yahoo (descripcion, CEO, web, mercado, valor de empresa, acciones, ingresos y crecimiento) vienen de data/fichas.json (bajar_fichas.py).
-Si falta alguno, esa fila no se muestra: nunca se inventa un dato.
+Si falta alguno, esa fila no se muestra: nunca se inventa un dato (y desde la v1.2.49 ya no hay un resumen escrito a mano de respaldo).
 
 Linea de precios: el precio actual abajo (punto del color de la categoria) y arriba, una flecha celeste por cada metodo del Fair Value
 (con su nombre y su valor); la flecha azul oscura es el Fair Value promedio. El PEG sale aparte, en gris, "solo informativo": no entra
 al puntaje ni al promedio. La escala es logaritmica (la mitad y el doble del precio quedan a la misma distancia).
 
-No usa JavaScript. Los signos $ se escriben como &#36; para que el markdown no los tome como formulas.
+No usa JavaScript (los desplegables son <details>). Los signos $ se escriben como &#36; para que el markdown no los tome como formulas.
 """
 import ast
 import html
 import math
 from urllib.parse import urlparse
 
-from config.descripciones import descripcion_de
 from config.industrias import industria_de
 from config.sectors import metricas_de, partes_sector
 from data import cedears as _cedears
 from data import fichas as _fichas
 from ui.banderas import bandera_html
-from ui.tabla_visual import (_TEXTO_EN_RELLENO, _celda_dy, _clamp, _mcap, _money, _n, _texto_categoria, _txt, texto_categoria)
+from ui.tabla_visual import (_TEXTO_EN_RELLENO, _celda_dy, _clamp, _mcap, _money, _n, _svg_dy, _texto_categoria, _txt, texto_categoria)
 
 ETIQUETAS_METODO = {"ev_ebitda": "EV/EBITDA", "per": "P/E", "p_fcf": "P/FCF", "p_b": "P/Book", "dividend_yield": "Dividend Yield",
                     "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S"}
@@ -40,12 +42,15 @@ GRIS_PEG = "#94a3b8"
 ALTO_NIVEL = 40            # px por nivel de etiquetas
 ANCHO_ETIQUETA = 15.0      # % del ancho que ocupa una etiqueta (para que no se pisen)
 PEG_RANGO_MAX = 6.0        # el PEG se dibuja si su precio implicito esta entre 1/6 y 6 veces el precio; si no, queda como nota
-CORTE_DESCRIPCION = 430    # letras que se ven de la descripcion antes de "Mostrar mas"
+ABIERTOS = {"resumen"}     # mosaicos que arrancan desplegados (los demas, plegados); se cambia aca
+TEXTO_VALORACION = ("Cómo llegamos a esta lectura: miramos qué tan cara o barata cotiza hoy la empresa frente a cómo cotizó históricamente, "
+                    "con varias medidas a la vez, y lo resumimos en una escala que va de «Muy cara» a «Muy barata». El Fair Value es el precio que "
+                    "resultaría si volviera a cotizar como suele hacerlo. Es una estimación para filtrar, no una recomendación.")
 
 CSS = """
 .fch{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin:14px 0 8px}
-.fch-t{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:14px 16px 16px;min-width:0;position:relative;overflow:hidden}
-.fch-t::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ac,#cbd5e1)}
+.fch-t{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:14px 16px 16px;min-width:0;position:relative}
+.fch-t::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ac,#cbd5e1);border-radius:14px 0 0 14px}
 .fch-h{font-size:11.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#6b7280;margin:0 0 8px;padding-left:4px}
 .fch-h small{text-transform:none;letter-spacing:0;font-weight:500;color:#9ca3af;margin-left:4px}
 .fch-b{padding-left:4px;min-width:0}
@@ -70,8 +75,6 @@ CSS = """
 .fch-sc .num{font-size:72px;line-height:1;font-weight:800;border-radius:16px;padding:16px 22px;min-width:130px;text-align:center;letter-spacing:-2px}
 .fch-sc .sub{font-size:12.5px;color:#4b5563;line-height:1.45}
 .fch-sc .sub b{color:#111827}
-.fch-52 .tv-t2{margin-top:14px}
-.fch-52 .tv-lbls{font-size:12.5px}
 .fch-dy .tv2-dy{text-align:left}
 .fch-dy .tv2-dyn{font-size:26px;font-weight:700;color:#0f172a;line-height:1.1}
 .fch-dy .tv2-dy img{margin:6px 0 0}
@@ -104,7 +107,8 @@ CSS = """
 .fch-hd .tk{font-weight:700;color:#111827}
 .fch-hd .pr{text-align:right}
 .fch-hd .pr .v{font-size:2rem;font-weight:800;color:#0f172a;letter-spacing:-.4px;line-height:1.1}
-.fch-hd .pr .n{font-size:12px;color:#6b7280;margin-top:3px}
+.fch-hd .pr .ars{font-size:12.5px;color:#6b7280;margin-top:4px}
+.fch-hd .pr .n{font-size:11.5px;color:#9ca3af;margin-top:2px}
 .adr{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.4px;color:#1d4ed8;background:#e8f0fe;border-radius:6px;padding:1px 7px}
 .fch-kv{display:grid;grid-template-columns:1fr;margin-top:14px;border-top:1px solid #eef1f4}
 .fch-kv>div{display:flex;justify-content:space-between;gap:16px;padding:8px 2px;border-bottom:1px solid #eef1f4;font-size:14px}
@@ -112,19 +116,6 @@ CSS = """
 .fch-kv .v{color:#111827;text-align:right;min-width:0;overflow-wrap:anywhere}
 .fch-kv .v a{color:#1d4ed8;text-decoration:none}
 .fch-kv .v a:hover{text-decoration:underline}
-.fch-mas{display:block;margin-top:2px}
-.fch-mas summary{cursor:pointer;color:#1d4ed8;font-weight:600;font-size:13.5px;margin:4px 0;list-style:none}
-.fch-mas summary::-webkit-details-marker{display:none}
-.fch-mas[open] summary{display:none}
-.fch-st{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px 36px}
-.fch-st h4{margin:0 0 6px;font-size:13.5px;font-weight:700;color:#111827}
-.fch-st .f{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px solid #eef1f4;font-size:13.5px}
-.fch-st .f .k{color:#4b5563}
-.fch-st .f .v{font-weight:600;color:#111827;text-align:right;white-space:nowrap}
-.fch-st .f .v small{display:block;font-weight:400;font-size:11px;color:#6b7280}
-.fch-st .f .v.neg{color:#b91c1c}
-.fch-st .f .v.pos{color:#15803d}
-.fch-st .nota{font-size:11.5px;color:#9ca3af;margin-top:6px}
 .rev{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:2px}
 .rev th{text-align:left;font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#6b7280;padding:4px 8px 6px 0;border:0!important;border-bottom:1px solid #e5e7eb!important}
 .rev td{padding:7px 8px 7px 0;border:0!important;border-bottom:1px solid #f0f2f5!important;color:#1f2937;vertical-align:top}
@@ -132,10 +123,55 @@ CSS = """
 .rev .no{color:#6b7280}
 .rev td.n,.rev th.n{text-align:right;white-space:nowrap}
 .rev-r{font-size:12.5px;color:#4b5563;margin:8px 0 0;line-height:1.5}
+/* v1.2.49: mosaicos desplegables */
+.fch-t.fch-d{padding:0}
+.fch-d>summary.fch-h{list-style:none;cursor:pointer;margin:0;padding:14px 16px 14px 20px;display:flex;align-items:center;gap:6px;user-select:none}
+.fch-d>summary.fch-h::-webkit-details-marker{display:none}
+.fch-d>summary.fch-h::after{content:"";margin-left:auto;width:8px;height:8px;border-right:2px solid #6b7280;border-bottom:2px solid #6b7280;transform:rotate(45deg);transition:transform .15s;flex:none;margin-right:4px}
+.fch-d[open]>summary.fch-h::after{transform:rotate(-135deg)}
+.fch-d>.fch-b{padding:0 16px 16px 20px}
+.fch-q{position:relative;display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;background:#e5e7eb;color:#4b5563;font-size:11px;font-weight:700;margin-left:6px;cursor:help;text-transform:none;letter-spacing:0;line-height:1}
+.fch-q .fch-qt{display:none;position:absolute;left:-8px;top:24px;width:max-content;max-width:300px;background:#1f2937;color:#fff;font-size:12.5px;font-weight:400;line-height:1.45;padding:9px 11px;border-radius:8px;z-index:30;text-align:left;white-space:normal;box-shadow:0 6px 18px rgba(15,23,42,.25)}
+.fch-q:hover .fch-qt,.fch-q:focus .fch-qt{display:block}
+.fch-desc{font-size:14.5px;line-height:1.6;color:#1f2937;margin:0}
+.fch-res{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px 40px;margin-top:16px}
+.fch-res .fch-kv{margin-top:0}
+.fch-cifras{display:flex;flex-direction:column;gap:18px;min-width:0}
+.fch-cf .fch-k{font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#6b7280;margin-bottom:4px}
+.fch-cf .grande{font-size:26px;font-weight:700;color:#0f172a;line-height:1.1;letter-spacing:-.3px}
+.rng{position:relative;height:8px;border-radius:4px;background:#e5e7eb;margin:30px 8px 4px}
+.rng-m{position:absolute;top:-6px;width:3px;height:20px;background:#0f172a;border-radius:2px;transform:translateX(-50%)}
+.rng-h{position:absolute;bottom:18px;transform:translateX(-50%);white-space:nowrap;font-size:12.5px;font-weight:700;color:#0f172a}
+.rng-x{display:flex;justify-content:space-between;margin-top:8px;font-size:13px;font-weight:600;color:#111827}
+.rng-x small{display:block;font-size:11px;font-weight:400;color:#6b7280}
+.rng-x span:last-child{text-align:right}
+.fch-st2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.2fr);gap:12px 40px}
+.fch-st2 h4{margin:0 0 6px;font-size:13.5px;font-weight:700;color:#111827}
+.fch-st2 .f{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:6px 0;border-bottom:1px solid #eef1f4;font-size:13.5px}
+.fch-st2 .f .k{color:#4b5563}
+.fch-st2 .f .v{font-weight:600;color:#111827;text-align:right;white-space:nowrap}
+.fch-st2 .f .v.neg{color:#b91c1c}
+.fch-st2 .f .v.pos{color:#15803d}
+.fch-st2 .izq>div+div{margin-top:18px}
+.vr{display:grid;grid-template-columns:minmax(72px,1.1fr) minmax(56px,.8fr) minmax(70px,1fr) 108px minmax(90px,1.1fr) 46px;gap:0 10px;align-items:center;padding:7px 0;border-bottom:1px solid #eef1f4;font-size:13.5px}
+.vr.hd{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;padding:2px 0 6px}
+.vr .m{font-weight:600;color:#111827}
+.vr .n{text-align:right;white-space:nowrap}
+.vr .d{line-height:0}
+.vr .d img{display:block}
+.vr .fv small{display:block;font-size:11px;font-weight:600}
+.vr .fv .no,.vr .pe .no{color:#9ca3af}
+.vr .md small{display:block;font-size:11px;color:#6b7280}
+.fch-st2 .nota{font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.45}
 @media (max-width:900px){
 .fch-hd .pr{text-align:left}
+.fch-res{grid-template-columns:1fr}
+.fch-st2{grid-template-columns:1fr}
+.vr{grid-template-columns:1fr 1fr 1fr;grid-template-areas:"m h md" "d fv pe";gap:4px 10px}
+.vr.hd{display:none}
+.vr .m{grid-area:m}.vr .h{grid-area:h}.vr .md{grid-area:md}.vr .d{grid-area:d}.vr .fv{grid-area:fv}.vr .pe{grid-area:pe}
+.vr .n{text-align:left}
 .fch-hd .nm{font-size:1.5rem}
-.fch-st{grid-template-columns:1fr;gap:18px}
 }
 @media (max-width:900px){
 .fch{gap:12px}
@@ -217,9 +253,9 @@ def linea_precios_html(row):
     """Mosaico ancho: precio actual abajo y, arriba, el Fair Value de cada metodo (flechas celestes) y el PEG informativo."""
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
     color = _txt(row.get("color_hex"), "#6e7781")
-    cab = ('<div class="fch-h">Precio contra el Fair Value de cada método</div>')
+    titulo = "Precio contra el Fair Value de cada método"
     if not precio or precio <= 0:
-        return f'<div class="fch-t s12 fch-pl" style="--ac:{AZUL}">{cab}<div class="fch-sub">Sin precio para dibujar la línea.</div></div>'
+        return _plegable("linea", titulo, '<div class="fch-sub">Sin precio para dibujar la línea.</div>', ac=AZUL, cls="s12 fch-pl")
     metodos, peg_info, peg_nota = metodos_fair_value(row)
     items = [{"tipo": "m", "n": et, "v": p, "tit": f"{et}: precio que resulta de su múltiplo histórico (peso {w*100:.0f}%)"} for _, et, p, w in metodos]
     if fv and fv > 0 and metodos:
@@ -228,7 +264,7 @@ def linea_precios_html(row):
         items.append({"tipo": "peg", "n": "PEG (informativo)", "v": peg_info, "tit": "El PEG no entra al puntaje ni al Fair Value: se muestra solo como dato"})
     if not items:
         sin = '<div class="fch-sub">Esta empresa no tiene un Fair Value calculado (faltan datos para sus métodos).</div>'
-        return f'<div class="fch-t s12 fch-pl" style="--ac:{AZUL}">{cab}{sin}</div>'
+        return _plegable("linea", titulo, sin, ac=AZUL, cls="s12 fch-pl")
     valores = [i["v"] for i in items] + [precio]
     lo, hi = math.log(min(valores) / 1.12), math.log(max(valores) * 1.12)
     xs = lambda v: 100.0 * (math.log(v) - lo) / (hi - lo)
@@ -263,11 +299,11 @@ def linea_precios_html(row):
     chip = ""
     if cat:
         chip = f' <small style="color:{texto_categoria(color)};font-weight:600">· {_texto_plano_categoria(cat)}</small>'
-    cab = f'<div class="fch-h">Precio contra el Fair Value de cada método{chip}</div>'
+    titulo = f"Precio contra el Fair Value de cada método{chip}"
     exp = ('<div class="fch-ex">Abajo, el precio de hoy. Arriba, cada flecha es el precio que resultaría de aplicar un método con la mediana histórica '
            'de su múltiplo; la azul oscura es el promedio ponderado (el Fair Value). Escala logarítmica. Es una estimación, no una recomendación.</div>')
-    return (f'<div class="fch-t s12 fch-pl" style="--ac:{AZUL}">{cab}{exp}<div class="pl-wrap"><div class="pl" style="height:{alto}px">'
-            + "".join(partes) + f'</div></div>{ley}{nota}</div>')
+    cuerpo = (f'{exp}<div class="pl-wrap"><div class="pl" style="height:{alto}px">' + "".join(partes) + f'</div></div>{ley}{nota}')
+    return _plegable("linea", titulo, cuerpo, ac=AZUL, cls="s12 fch-pl")
 
 
 def _texto_plano_categoria(cat):
@@ -280,33 +316,16 @@ def _tile(cls, titulo, cuerpo, ac="#cbd5e1", extra=""):
     return f'<div class="fch-t {cls}" style="--ac:{ac}"><div class="fch-h">{titulo}</div><div class="fch-b">{cuerpo}</div>{extra}</div>'
 
 
-def _tile_52s(row):
-    pos = _n(row.get("posicion_52s"))
-    if pos is None:
-        cuerpo = '<div class="fch-sub">Sin datos de rango de 52 semanas.</div>'
-    else:
-        pct = _clamp(pos * 100)
-        cuerpo = (f'<div class="fch-52"><div class="fch-sub" style="margin:0">El precio está al <b>{pct:.0f}%</b> del rango (0% = mínimo, 100% = máximo)</div>'
-                  f'<div class="tv-t2"><div class="tv-d2" style="left:{pct:.0f}%;background:#64748b"></div></div>'
-                  f'<div class="tv-lbls"><span>Mín. {_money(row.get("precio_min_52s"))}</span><span>Máx. {_money(row.get("precio_max_52s"))}</span></div></div>')
-    return _tile("s4", "Rango de 52 semanas", cuerpo, ac="#f59e0b")
+def _plegable(clave, titulo, cuerpo, ac="#cbd5e1", cls="s12"):
+    """Mosaico que se despliega y se pliega (<details>). `clave` decide si arranca abierto (ABIERTOS)."""
+    abierto = " open" if clave in ABIERTOS else ""
+    return (f'<details class="fch-t fch-d {cls}" data-mosaico="{clave}" style="--ac:{ac}"{abierto}>'
+            f'<summary class="fch-h">{titulo}</summary><div class="fch-b">{cuerpo}</div></details>')
 
 
-def _tile_dy(row):
-    return _tile("s4", "Dividend Yield <small>contra su mediana</small>", f'<div class="fch-dy">{_celda_dy(row, grande=True)}</div>', ac="#10b981")
-
-
-def _tile_detalle(row):
-    f, t, c = _n(row.get("score_fundamental")), _n(row.get("score_tecnico")), _n(row.get("score_total"))
-    def n(x):
-        return f"{x:.0f}" if x is not None else "—"
-    cuerpo = (f'<div class="fch-par"><div><div class="fch-k">Fundamental</div><div class="fch-v">{n(f)}</div></div>'
-              f'<div><div class="fch-k">Técnico (52 sem.)</div><div class="fch-v">{n(t)}</div></div>'
-              f'<div><div class="fch-k">Total</div><div class="fch-v">{n(c)}</div></div></div>'
-              '<div class="fch-sub">El total pesa 85% el fundamental (múltiplos contra su historia) y 15% el técnico (posición en el rango de 52 semanas).</div>')
-    return _tile("s4", "Cómo sale el puntaje", cuerpo, ac="#94a3b8")
-
-
+def _ayuda(texto):
+    """Signo de pregunta con una nota que aparece al pasar el mouse (o al tocarlo en el celular). Solo CSS."""
+    return f'<span class="fch-q" tabindex="0">?<span class="fch-qt">{html.escape(texto)}</span></span>'
 
 
 # ---------------------------------------------------------------------------
@@ -329,11 +348,6 @@ def _usd_abrev(x):
     return t
 
 
-def _veces(x):
-    v = _n(x)
-    return "—" if v is None or v <= 0 else f"{v:.1f}x"
-
-
 def _pct_sig(x):
     """0.123 -> '+12.3%' (con color: verde si crece, rojo si cae)."""
     v = _n(x)
@@ -353,28 +367,48 @@ def _dominio(url):
         return None, None
 
 
-def _texto_descripcion(row, ficha):
-    """(texto, nota): la descripcion de Yahoo en castellano; si solo hay la original, en ingles; si no hay nada de Yahoo, el resumen propio."""
+def _texto_descripcion(ficha):
+    """La descripcion de Yahoo en castellano; si solo hay la original, en ingles; si no hay nada, ''. (Desde la v1.2.49 ya no hay un resumen
+    escrito a mano de respaldo: sin dato de Yahoo, el mosaico dice que la descripcion esta pendiente.)"""
     es, en = (ficha or {}).get("descripcion_es"), (ficha or {}).get("descripcion_en")
     if isinstance(es, str) and es.strip():
-        return es.strip(), "Fuente: Yahoo Finance, traducida automáticamente (puede tener errores)."
+        return es.strip()
     if isinstance(en, str) and en.strip():
-        return en.strip(), "Fuente: Yahoo Finance (texto original, en inglés)."
-    d = descripcion_de(row.get("ticker"))
-    return (d, "Resumen general de lo que hace la empresa, sin cifras.") if d else ("", "")
+        return en.strip()
+    return ""
 
 
-def _cortar(texto, corte=CORTE_DESCRIPCION):
-    """(primera parte, resto): se corta en el fin de una oracion cerca de `corte` letras."""
-    if len(texto) <= corte + 60:
-        return texto, ""
-    i = max(texto.rfind(". ", 0, corte + 60), texto.rfind("? ", 0, corte + 60))
-    if i < corte // 2:
-        i = texto.find(" ", corte)
-    return (texto[: i + 1].strip(), texto[i + 1:].strip()) if i > 0 else (texto, "")
+def texto_fuente(ficha=None):
+    """Linea "Fuente" que va debajo del Aviso (v1.2.49). Las fuentes no se nombran en cada dato. Si la descripcion es una traduccion automatica,
+    lo aclara."""
+    t = "Stock Analysis y Yahoo Finance."
+    es = (ficha or {}).get("descripcion_es") if ficha is not None else None
+    if isinstance(es, str) and es.strip():
+        t += " La descripción de la empresa es una traducción automática del texto de Yahoo Finance y puede tener errores."
+    return t
 
 
-def _encabezado(row, mercado, ficha):
+def _fecha_ar(texto):
+    """'2026-10-22' -> '22/10/2026' (si no tiene ese formato, se devuelve igual)."""
+    t = str(texto or "").strip()
+    if len(t) >= 10 and t[4] == "-" and t[7] == "-":
+        return f"{t[8:10]}/{t[5:7]}/{t[0:4]}"
+    return t
+
+
+def _linea_pesos(row, datos):
+    """'Precio en pesos $ 25.394 (ratio 20 : 1)' (chico y gris, debajo del precio en dolares). Sin ratio confirmado no se muestra nada."""
+    d = (datos or {}).get(str(row.get("ticker", "")).upper()) or {}
+    if not d.get("ratio"):
+        return ""
+    ratio = _cedears.ratio_texto(d.get("ratio"))
+    ars = _n(d.get("precio_ars"))
+    if ars:
+        return f'Precio en pesos {_ars(ars)} (ratio {html.escape(ratio)})'
+    return f'Precio en pesos: sin dato por ahora (ratio {html.escape(ratio)})'
+
+
+def _encabezado(row, mercado, ficha, datos=None, fecha_datos=None):
     t = str(row.get("ticker", ""))
     nombre = html.escape(str(row.get("nombre") or t).strip())
     from ui.logos import logo_html
@@ -386,12 +420,15 @@ def _encabezado(row, mercado, ficha):
     p = _n(row.get("precio_actual"))
     if p and p > 0:
         if row.get("precio_en_vivo") == True:  # noqa: E712  (puede ser numpy.bool_)
-            # v1.2.48: sin nombrar de que fuente vino el precio (es un dato interno nuestro): solo la fecha y la hora
+            # v1.2.49: "Dato al dd/mm/aaaa hh:mm" (solo el dia y la hora; sin nombrar la fuente)
             f, h = _txt(row.get("precio_fecha"), ""), _txt(row.get("precio_hora"), "")
-            nota = (f"Dato del {html.escape(f)}" if f else "Precio en vivo") + (f" (consultado {html.escape(h)})" if h else "")
+            nota = "Dato al " + " ".join(x for x in (html.escape(f), html.escape(h)) if x) if (f or h) else "Precio en vivo"
         else:
-            nota = "Precio de la última actualización de los datos"
-        precio = f'<div class="pr"><div class="v">{_money(p)}</div><div class="n">{nota}</div></div>'
+            f = _fecha_ar(fecha_datos)
+            nota = f"Dato al {html.escape(f)}" if f else "Precio de la última actualización de los datos"
+        pesos = _linea_pesos(row, datos)
+        pesos_html = f'<div class="ars">{pesos}</div>' if pesos else ""
+        precio = f'<div class="pr"><div class="v">{_money(p)}</div>{pesos_html}<div class="n">{nota}</div></div>'
     else:
         precio = ""
     return (f'<div class="fch-t s12" style="--ac:#64748b"><div class="fch-hd"><div class="id">{logo_html(t, 56)}<div>'
@@ -402,15 +439,30 @@ def _fila_kv(k, v):
     return f'<div><span class="k">{k}</span><span class="v">{v}</span></div>'
 
 
+def _barra_52s(row):
+    """Rango de 52 semanas: una barrita con una marca en el lugar del precio de hoy (con su valor encima) y, en los extremos, el minimo y el maximo."""
+    lo, hi, p = _n(row.get("precio_min_52s")), _n(row.get("precio_max_52s")), _n(row.get("precio_actual"))
+    pos = _n(row.get("posicion_52s"))
+    if lo is None or hi is None or hi <= lo:
+        return '<div class="fch-sub" style="margin:0">Sin datos de rango de 52 semanas.</div>'
+    if p and p > 0:
+        pct = _clamp((p - lo) / (hi - lo) * 100)
+    elif pos is not None:
+        pct = _clamp(pos * 100)
+    else:
+        pct = 50.0
+    hoy = f"Hoy {_money(p)}" if p and p > 0 else ""
+    marca = (f'<div class="rng-h" style="left:{_clamp(pct, 14, 86):.1f}%">{hoy}</div>' if hoy else "")
+    return (f'<div class="rng" title="Rango de los últimos 12 meses: de su precio más bajo a su precio más alto. La marca es el precio de hoy.">{marca}'
+            f'<div class="rng-m" style="left:{pct:.1f}%"></div></div>'
+            f'<div class="rng-x"><span>{_money(lo)}<small>Mínimo</small></span><span>{_money(hi)}<small>Máximo</small></span></div>')
+
+
 def _tile_resumen(row, ficha, mercado):
     t = str(row.get("ticker", ""))
-    texto, nota = _texto_descripcion(row, ficha)
-    if texto:
-        a, b = _cortar(texto)
-        masa = f'<details class="fch-mas"><summary>Mostrar más</summary>{html.escape(b)}</details>' if b else ""
-        desc = f'<div class="fch-txt">{html.escape(a)}{masa}</div><div class="fch-nota">{html.escape(nota)}</div>'
-    else:
-        desc = '<div class="fch-sub">Descripción pendiente de cargar.</div>'
+    texto = _texto_descripcion(ficha)
+    desc = (f'<p class="fch-desc">{html.escape(texto)}</p>' if texto
+            else '<div class="fch-sub" style="margin:0">Descripción pendiente de cargar.</div>')
     sector, industria = partes_sector(row.get("sector"))
     sector = _txt(row.get("sector_macro"), "") or sector or ""
     industria = _txt(row.get("industria"), "") or industria_de(t) or ""
@@ -433,12 +485,38 @@ def _tile_resumen(row, ficha, mercado):
     emp = _n((ficha or {}).get("empleados"))
     if emp:
         filas.append(_fila_kv("Empleados", f"{emp:,.0f}"))
-    cuerpo = desc + '<div class="fch-kv">' + "".join(filas) + "</div>"
-    return _tile("s7 r3", "Resumen de la empresa", cuerpo, ac="#a78bfa")
+    izq = '<div class="fch-kv">' + "".join(filas) + "</div>"
+    der = ('<div class="fch-cifras">'
+           f'<div class="fch-cf"><div class="fch-k">Capitalización bursátil</div><div class="grande">{_mcap(row.get("market_cap"))}</div></div>'
+           f'<div class="fch-cf"><div class="fch-k">Rango de 52 semanas</div>{_barra_52s(row)}</div>'
+           f'<div class="fch-cf fch-dy"><div class="fch-k">Dividend Yield</div>{_celda_dy(row, grande=True)}</div>'
+           '</div>')
+    return _plegable("resumen", "Resumen de la empresa", desc + f'<div class="fch-res">{izq}{der}</div>', ac="#a78bfa")
+
+
+def _color_por_ratio(ratio):
+    """Color del punto cuando la metrica no tiene puntaje propio: mismos cortes que usa el Dividend Yield (ratio > 1 = mas barata que lo habitual)."""
+    from scoring.engine import get_categoria_label
+    sc = 85 if ratio >= 1.25 else 64 if ratio >= 1.08 else 50 if ratio >= 0.92 else 36 if ratio >= 0.75 else 15
+    return get_categoria_label(sc)[1]
+
+
+def _dibujo_metrica(actual, mediana, score, invertir):
+    """Dibujito de una metrica: la marca del centro es su mediana historica y el punto es hoy; a la derecha = mas barata que lo habitual.
+    Para los multiplos (menos es mas barato) se invierte la relacion; para el Dividend Yield (mas es mas barato) no."""
+    if not actual or not mediana or actual <= 0 or mediana <= 0:
+        return ""
+    from scoring.engine import get_categoria_label
+    ratio = (mediana / actual) if invertir else (actual / mediana)
+    color = get_categoria_label(score)[1] if score is not None else _color_por_ratio(ratio)
+    return _svg_dy(ratio, color, W=108, H=18)
 
 
 def _tile_estadisticas(row, ficha):
+    """Estadisticas de la empresa (v1.2.49: une las estadisticas con el desglose de metricas). Izquierda: Perfil y Crecimiento. Derecha: Valoracion,
+    una fila por multiplo con el valor de hoy, su mediana historica, un dibujito (hoy contra la mediana), el Fair Value que da y su peso."""
     f = ficha or {}
+    precio = _n(row.get("precio_actual"))
     # --- Perfil ---
     perfil = [("Capitalización bursátil", _mcap(row.get("market_cap")))]
     if _n(f.get("ev")):
@@ -447,30 +525,6 @@ def _tile_estadisticas(row, ficha):
         perfil.append(("Acciones en circulación", _abrev(f.get("acciones"))))
     if _n(f.get("ingresos_ttm")):
         perfil.append(("Ingresos (12 meses)", _usd_abrev(f.get("ingresos_ttm"))))
-    # --- Valoracion (los multiplos de hoy, con su mediana historica) ---
-    det = _dict(row.get("detalle"))
-    usadas = set(metricas_de(row, row.get("sector")) or {}) if row.get("sector") else set()
-    val = []
-    for clave, etiqueta, col_a, col_m in (("per", "P/E", "per_actual", "per_mediana"), ("p_b", "P/Book", "p_b_actual", "p_b_mediana"),
-                                           ("ps", "P/S", "ps_actual", "ps_mediana"), ("ev_ebitda", "EV/EBITDA", "ev_ebitda_actual", "ev_ebitda_mediana"),
-                                           ("p_fcf", "P/FCF", "p_fcf_actual", "p_fcf_mediana"), ("p_ffo", "P/FFO", "p_ffo_actual", "p_ffo_mediana"),
-                                           ("peg", "PEG", "peg_actual", "peg_mediana")):
-        a, m = _n(row.get(col_a)), _n(row.get(col_m))
-        if not a or a <= 0:
-            continue
-        d = det.get(clave) if isinstance(det.get(clave), dict) else {}
-        if d.get("estado") == "descartada":
-            continue
-        if clave == "p_ffo" and clave not in usadas:
-            continue            # el P/FFO solo tiene sentido en los REITs
-        info = "" if clave in usadas else " (informativo)"
-        sub = f"<small>mediana {m:.1f}x</small>" if m and m > 0 else ""
-        val.append((etiqueta + info, f"{a:.1f}x{sub}"))
-    dy, dm = _n(row.get("dividend_yield_actual")), _n(row.get("dividend_yield_mediana"))
-    if dy and dy > 0:
-        dyp = dy if dy > 1 else dy * 100
-        dmp = (dm if dm > 1 else dm * 100) if dm and dm > 0 else None
-        val.append(("Dividend Yield", f"{dyp:.2f}%" + (f"<small>mediana {dmp:.2f}%</small>" if dmp else "")))
     # --- Crecimiento ---
     cre = []
     for clave, etiqueta in (("cagr_ingresos_3a", "Ingresos, 3 años (anual compuesto)"), ("cagr_eps_3a", "Ganancia por acción, 3 años (anual compuesto)"),
@@ -479,17 +533,69 @@ def _tile_estadisticas(row, ficha):
         if txt:
             cre.append((etiqueta, f'<span class="v {cls}">{txt}</span>'))
 
-    def col(titulo, filas, nota=""):
+    def col(titulo, filas):
         if not filas:
             return ""
         h = "".join(f'<div class="f"><span class="k">{k}</span>' + (v if v.startswith('<span class="v') else f'<span class="v">{v}</span>') + "</div>" for k, v in filas)
-        return f'<div><h4>{titulo}</h4>{h}{nota}</div>'
+        return f'<div><h4>{titulo}</h4>{h}</div>'
 
-    nota_val = '<div class="nota">Múltiplos de hoy; abajo, su mediana histórica. “Informativo”: no entra al puntaje.</div>'
-    cols = [col("Perfil", perfil), col("Valoración (12 meses)", val, nota_val), col("Crecimiento", cre)]
-    cols = [c for c in cols if c]
-    st = f'<div class="fch-st" style="grid-template-columns:repeat({len(cols)},minmax(0,1fr))">' + "".join(cols) + "</div>"
-    return _tile("s12", "Estadísticas de la empresa <small>en dólares (US$)</small>", st, ac="#3b82f6")
+    # --- Valoracion ---
+    det = _dict(row.get("detalle"))
+    fvd = _dict(row.get("fair_value_detalle"))
+    esperados = (metricas_de(row, row.get("sector")) or {}) if row.get("sector") else {}
+    filas_v, hay_sin_fv = [], False
+    for clave, etiqueta, col_a, col_m in (("per", "P/E", "per_actual", "per_mediana"), ("p_b", "P/Book", "p_b_actual", "p_b_mediana"),
+                                           ("ps", "P/S", "ps_actual", "ps_mediana"), ("ev_ebitda", "EV/EBITDA", "ev_ebitda_actual", "ev_ebitda_mediana"),
+                                           ("p_fcf", "P/FCF", "p_fcf_actual", "p_fcf_mediana"), ("p_ffo", "P/FFO", "p_ffo_actual", "p_ffo_mediana"),
+                                           ("p_affo", "P/AFFO", "p_affo_actual", "p_affo_mediana"), ("peg", "PEG", "peg_actual", "peg_mediana"),
+                                           ("dividend_yield", "Dividend Yield", "dividend_yield_actual", "dividend_yield_mediana")):
+        a, m = _n(row.get(col_a)), _n(row.get(col_m))
+        if not a or a <= 0:
+            continue
+        d = det.get(clave) if isinstance(det.get(clave), dict) else {}
+        if d.get("estado") == "descartada":
+            continue
+        if clave in ("p_ffo", "p_affo") and clave not in esperados:
+            continue            # el P/FFO y el P/AFFO solo tienen sentido en los REITs
+        es_dy = clave == "dividend_yield"
+        if es_dy:                # el caché guarda el rendimiento como fraccion; la pantalla lo muestra en %
+            a = a if a > 1 else a * 100
+            m = (m if m > 1 else m * 100) if m and m > 0 else None
+            hoy = f"{a:.2f}%"
+            med = f"{m:.2f}%" if m else "—"
+        else:
+            hoy = f"{a:.1f}x"
+            med = f"{m:.1f}x" if m and m > 0 else "—"
+        sub = '<small>de su sector</small>' if d.get("referencia") == "sector" else ""
+        dib = _dibujo_metrica(a, m, _n(d.get("score")), invertir=not es_dy)
+        tip = "Marca del centro: su mediana histórica. Punto: hoy. A la derecha, más barata que lo habitual; a la izquierda, más cara."
+        dib_html = f'<span class="d" title="{html.escape(tip)}">{dib}</span>' if dib else '<span class="d"></span>'
+        pm = _n((fvd.get(clave) or {}).get("precio")) if isinstance(fvd.get(clave), dict) else None
+        if pm and pm > 0:
+            extra = ""
+            if precio and precio > 0:
+                v = (pm - precio) / precio
+                colr = "#15803d" if v > 0.05 else "#b91c1c" if v < -0.05 else "#a16207"
+                extra = f'<small style="color:{colr}">{_pct(precio, pm)}</small>'
+            fv_html = f'<span class="n fv"><b>{_money(pm)}</b>{extra}</span>'
+        else:
+            hay_sin_fv = True
+            fv_html = '<span class="n fv"><span class="no" title="No entra al Fair Value de esta empresa">—</span></span>'
+        peso = esperados.get(clave) if clave in esperados else None
+        pe_html = f'<span class="n pe">{peso * 100:.0f}%</span>' if peso else '<span class="n pe"><span class="no" title="No entra al Fair Value de esta empresa">—</span></span>'
+        filas_v.append(f'<div class="vr"><span class="m">{etiqueta}</span><span class="n h">{hoy}</span><span class="n md">{med}{sub}</span>'
+                       f'{dib_html}{fv_html}{pe_html}</div>')
+    val = ""
+    if filas_v:
+        cab = ('<div class="vr hd"><span>Métrica</span><span class="n">Hoy</span><span class="n">Mediana histórica</span><span>Hoy vs. mediana</span>'
+               '<span class="n">Fair Value</span><span class="n">Peso</span></div>')
+        nota = ('<div class="nota">En el dibujito, la marca del centro es la mediana histórica y el punto es hoy: a la derecha, más barata que lo habitual; '
+                'a la izquierda, más cara.' + (' Un “—” en Fair Value y Peso significa que ese dato se muestra pero no entra al cálculo de esta empresa.' if hay_sin_fv else '')
+                + '</div>')
+        val = f'<div><h4>Valoración (12 meses)</h4>{cab}{"".join(filas_v)}{nota}</div>'
+    izq = "".join(c for c in (col("Perfil", perfil), col("Crecimiento", cre)) if c)
+    cuerpo = f'<div class="fch-st2"><div class="izq">{izq}</div>{val}</div>' if val else f'<div class="fch-st2" style="grid-template-columns:1fr"><div class="izq">{izq}</div></div>'
+    return _plegable("estadisticas", "Estadísticas de la empresa", cuerpo, ac="#3b82f6")
 
 
 def _tile_score(row):
@@ -502,7 +608,7 @@ def _tile_score(row):
     cuerpo = (f'<div class="fch-sc"><div class="num" style="background:{color};color:{txt}">{num}</div>'
               f'<div class="sub"><b>De 0 a 100.</b> Por ahora es el puntaje de precio del screener (0 = más cara, 100 = más barata): '
               f'más adelante el Score de calidad sumará la calidad del negocio.{met}</div></div>')
-    return _tile("s5", "Score de calidad", cuerpo, ac=color)
+    return _tile("s6", "Score de calidad", cuerpo, ac=color)
 
 
 def _tile_valoracion(row):
@@ -513,25 +619,7 @@ def _tile_valoracion(row):
         fvt = f'<div class="fch-sub">Fair Value <b>{_money(fv)}</b> ({_pct(precio, fv)} frente al precio de hoy)</div>'
     else:
         fvt = '<div class="fch-sub">Sin Fair Value: faltan datos para calcularlo.</div>'
-    return _tile("s5", "Valoración", f'<div style="text-align:left" class="fch-val">{cat}</div>{fvt}', ac=color)
-
-
-def _tile_cedear(row, datos):
-    d = datos.get(str(row.get("ticker", "")).upper()) or {}
-    ratio = _cedears.ratio_texto(d.get("ratio"))
-    ars = _n(d.get("precio_ars"))
-    precio = _ars(ars) if ars else "—"
-    hora = f' <span style="color:#9ca3af;font-size:12px">({html.escape(str(d["hora"]))})</span>' if ars and d.get("hora") else ""
-    ccl = _n(d.get("ccl"))
-    if ars and ccl:
-        nota = f'<div class="fch-nota">Dólar implícito: {_ars(ccl)}</div>'
-    elif d.get("ratio"):
-        nota = '<div class="fch-nota">Sin precio en pesos por ahora: no se pudo obtener o no pasó el control de coherencia.</div>'
-    else:
-        nota = '<div class="fch-nota">No tenemos el ratio de conversión de este CEDEAR confirmado, por eso no mostramos su precio en pesos.</div>'
-    cuerpo = (f'<div class="fch-par"><div><div class="fch-k">Ratio de conversión</div><div class="fch-v">{ratio}</div></div>'
-              f'<div><div class="fch-k">Precio en pesos</div><div class="fch-v">{precio}{hora}</div></div></div>{nota}')
-    return _tile("s5", "CEDEAR", cuerpo, ac="#38bdf8")
+    return _tile("s6", "Valoración" + _ayuda(TEXTO_VALORACION), f'<div style="text-align:left" class="fch-val">{cat}</div>{fvt}', ac=color)
 
 
 def _motivo_metodo_faltante(row, metrica):
@@ -580,14 +668,15 @@ def _tile_revision(row):
     moneda = f'<div class="fch-nota">Moneda: {html.escape(nota_moneda)}</div>' if isinstance(nota_moneda, str) and nota_moneda.strip() else ""
     resumen = (f'<div class="rev-r"><b>{ok} de {len(esperados)} métodos</b> entraron al Fair Value. Cuando uno no se puede usar, su peso se reparte entre los otros. '
                'El PEG es solo informativo: no entra al puntaje ni al promedio.</div>')
-    return _tile("s12", "Revisión de los métodos del Fair Value", f'<table class="rev">{cab}{"".join(filas)}</table>{resumen}{moneda}', ac="#94a3b8")
+    return _plegable("revision", "Revisión de los métodos del Fair Value", f'<table class="rev">{cab}{"".join(filas)}</table>{resumen}{moneda}', ac="#94a3b8")
 
 
-def ficha_html(row, cedears=None, ficha=None, mercado_codigo=None):
+def ficha_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_datos=None):
     """Todos los mosaicos de la pagina de la empresa. `row` es el dict de la fila; `cedears` el resultado de data.cedears.cargar() (con el precio en
-    pesos si se pudo); `ficha` los datos de Yahoo de la empresa (data/fichas.json); `mercado_codigo` el codigo del mercado pedido a Yahoo en el momento."""
+    pesos si se pudo); `ficha` los datos de Yahoo de la empresa (data/fichas.json); `mercado_codigo` el codigo del mercado pedido a Yahoo en el momento;
+    `fecha_datos` la fecha de los datos del cache (para el "Dato al ..." cuando el precio no es el de hoy)."""
     datos = cedears if cedears is not None else _cedears.cargar()
     mercado, adr = _fichas.mercado_y_adr(row.get("ticker"), ficha, mercado_codigo)
-    mosaicos = [_encabezado(row, mercado, ficha), _tile_resumen(row, ficha, mercado), _tile_score(row), _tile_valoracion(row), _tile_cedear(row, datos),
-                _tile_estadisticas(row, ficha), _tile_52s(row), _tile_dy(row), _tile_detalle(row), linea_precios_html(row), _tile_revision(row)]
+    mosaicos = [_encabezado(row, mercado, ficha, datos, fecha_datos), _tile_resumen(row, ficha, mercado), _tile_score(row), _tile_valoracion(row),
+                _tile_estadisticas(row, ficha), linea_precios_html(row), _tile_revision(row)]
     return '<div class="fch">' + "".join(m for m in mosaicos if m) + "</div>"

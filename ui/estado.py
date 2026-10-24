@@ -1,5 +1,5 @@
 """
-Estado de la tabla en la URL (v1.2.36; criterios agregados en la v1.2.47).
+Estado de la tabla en la URL (v1.2.36; criterios agregados en la v1.2.47; variables elegidas, precio y puntaje en la v1.2.49).
 
 Al tocar una empresa de la tabla, el link lleva a su pagina (?empresa=TICKER) y es una pagina nueva: los filtros y el orden
 elegidos se perderian. Para poder volver a la tabla tal como estaba, cada link lleva ademas un parametro corto "f" con lo que
@@ -10,15 +10,16 @@ import base64
 import json
 
 # Valores de arranque (lo que NO hace falta guardar)
-DEFECTO = {"mc": "Sin mínimo", "met": 1, "ord": "market_cap", "asc": False}   # v1.2.45: orden inicial por capitalizacion bursatil
+DEFECTO = {"mc": "Sin mínimo", "ord": "market_cap", "asc": False}   # v1.2.45: orden inicial por capitalizacion bursatil (v1.2.49: ya no hay "metricas minimas")
 
 
-def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), paises=(), mc="Sin mínimo", met=1,
-              ord_="market_cap", asc=False, q="", industrias_sel=(), industrias_todas=(), criterios=None, ocultas=()) -> str:
+def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), paises=(), mc="Sin mínimo",
+              ord_="market_cap", asc=False, q="", industrias_sel=(), industrias_todas=(), criterios=None, variables=None, precio=None, puntaje=None) -> str:
     """Texto corto (base64 de un JSON chico) con los filtros y el orden. Sin nada elegido devuelve ''.
     Sectores, industrias y categorias se guardan por su posicion en la lista completa (mas corto que el nombre).
     `criterios`: {clave: (minimo, maximo)} de los criterios agregados (v1.2.47); un criterio sin limites tambien se guarda (suma la columna).
-    `ocultas` (v1.2.48): claves de las columnas de la tabla que se sacaron en el Filtro (se guardan solo si hay alguna)."""
+    `variables` (v1.2.49): claves de las variables elegidas en "Variables a ver en la tabla" (se guardan solo si no son las de siempre).
+    `precio` y `puntaje` (v1.2.49): (minimo, maximo) de esos filtros; se guardan solo si hay algun limite."""
     e = {}
     s = [i for i, x in enumerate(sectores_todos) if x in set(sectores_sel)]
     if s and len(s) < len(sectores_todos):
@@ -35,14 +36,22 @@ def codificar(sectores_sel=(), sectores_todos=(), cats_sel=(), cats_todas=(), pa
         e["q"] = q.strip()[:40]
     if criterios:
         e["c"] = {k: [mn, mx] for k, (mn, mx) in criterios.items()}
-    if ocultas:
-        e["h"] = [str(x) for x in ocultas]
-    for k, val in (("mc", mc), ("met", met), ("ord", ord_), ("asc", asc)):
+    if variables is not None and set(variables) != set(_defecto()):
+        e["x"] = [str(x) for x in variables]
+    for clave, lim in (("pr", precio), ("sc", puntaje)):
+        if lim and any(x is not None for x in lim):
+            e[clave] = [lim[0], lim[1]]
+    for k, val in (("mc", mc), ("ord", ord_), ("asc", asc)):
         if val != DEFECTO[k]:
             e[k] = val
     if not e:
         return ""
     return base64.urlsafe_b64encode(json.dumps(e, separators=(",", ":"), ensure_ascii=False).encode()).decode().rstrip("=")
+
+
+def _defecto():
+    from ui.variables import DEFECTO as _d
+    return _d
 
 
 def decodificar(texto) -> dict:
@@ -61,10 +70,10 @@ def _num(x):
     return float(x) if isinstance(x, (int, float)) and not isinstance(x, bool) and x == x else None
 
 
-def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok, industrias_todas=(), criterios_ok=None, columnas_ok=None) -> dict:
+def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok, industrias_todas=(), criterios_ok=None, variables_ok=None) -> dict:
     """Pasa el dict decodificado a valores validos (solo lo que existe hoy). Devuelve las claves de session_state a fijar.
     `criterios_ok`: {clave: nombre que se ve} de los criterios que existen hoy.
-    `columnas_ok` (v1.2.48): {clave: titulo} de las columnas de la tabla que se pueden sacar; se devuelve "flt_columnas" con las que quedan."""
+    `variables_ok` (v1.2.49): claves de las variables que existen hoy; se devuelve "flt_vars" con las elegidas (siempre con Empresa)."""
     out = {}
     try:
         s = [sectores_todos[i] for i in e.get("s", []) if isinstance(i, int) and 0 <= i < len(sectores_todos)]
@@ -81,28 +90,28 @@ def valores(e, sectores_todos, cats_todas, paises_ok, mc_ok, ordenes_ok, industr
             out["flt_pais"] = p
         if e.get("mc") in mc_ok:
             out["flt_mkt"] = e["mc"]
-        if isinstance(e.get("met"), int) and not isinstance(e.get("met"), bool):
-            out["flt_met"] = int(min(4, max(1, e["met"])))
         if e.get("ord") in ordenes_ok:
             out["sort_col"] = e["ord"]
             out["sort_asc"] = bool(e.get("asc", False))
         if isinstance(e.get("q"), str) and e["q"].strip():
             out["flt_busqueda"] = e["q"].strip()[:40]
+        elegidas = None
+        x = e.get("x")
+        if isinstance(x, list) and variables_ok:
+            elegidas = {v for v in x if v in variables_ok}
         c = e.get("c")
         if isinstance(c, dict) and criterios_ok:
-            nombres = []
             for clave, lim in c.items():
                 if clave in criterios_ok:
-                    nombres.append(criterios_ok[clave])
+                    elegidas = (elegidas if elegidas is not None else set(_defecto())) | {clave}     # un criterio con limites implica verlo
                     if isinstance(lim, (list, tuple)) and len(lim) == 2:
                         out[f"crit_{clave}_min"], out[f"crit_{clave}_max"] = _num(lim[0]), _num(lim[1])
-            if nombres:
-                out["flt_criterios"] = nombres
-        h = e.get("h")
-        if isinstance(h, list) and columnas_ok:
-            ocultas = {x for x in h if x in columnas_ok}
-            if ocultas:
-                out["flt_columnas"] = [t for k, t in columnas_ok.items() if k not in ocultas]
+        if elegidas is not None:
+            out["flt_vars"] = [v for v in (variables_ok or []) if v in elegidas or v == "nombre"]
+        for clave, base in (("pr", "flt_precio"), ("sc", "flt_score")):
+            lim = e.get(clave)
+            if isinstance(lim, (list, tuple)) and len(lim) == 2:
+                out[f"{base}_min"], out[f"{base}_max"] = _num(lim[0]), _num(lim[1])
     except Exception:  # noqa: BLE001
         return {}
     return out
