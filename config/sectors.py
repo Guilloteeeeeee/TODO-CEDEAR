@@ -7,7 +7,7 @@ Distribución: 85% fundamental (4 métricas ponderadas) + 15% técnico (rango 52
 # PESOS POR SECTOR
 # Cada sector define sus 4 métricas con peso fundamental.
 # La suma de pesos fundamentales debe ser 1.0.
-# El rango 52 semanas siempre pesa 0.15 sobre el score total.
+# El rango 52 semanas ya no pesa en el score total (v1.2.51; antes 0.15).
 #
 # Métricas disponibles:
 #   ev_ebitda, per, p_fcf, p_b, dividend_yield, p_ffo, p_affo, peg, ps
@@ -145,8 +145,10 @@ SECTOR_CONFIG = {
 }
 
 # Peso del componente técnico (rango 52 semanas) sobre el score total
-TECHNICAL_WEIGHT = 0.15
-FUNDAMENTAL_WEIGHT = 1.0 - TECHNICAL_WEIGHT  # 0.85
+# v1.2.51 (decision de Guille, 25/10/2026): el rango de 52 semanas YA NO entra al puntaje (opcion C de los tres escenarios). Antes pesaba 0.15 y premiaba
+# estar cerca del minimo. El dato sigue en el cache y se muestra (barrita en la tabla y en la pagina de la empresa), pero no mueve la categoria.
+TECHNICAL_WEIGHT = 0.0
+FUNDAMENTAL_WEIGHT = 1.0 - TECHNICAL_WEIGHT  # 1.0
 
 # ---------------------------------------------------------------------------
 # UNIVERSO DE TICKERS

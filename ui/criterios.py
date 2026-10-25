@@ -131,6 +131,14 @@ def celda(c, row):
             return '<span class="tv2-pr" style="color:#9ca3af" title="No paga dividendo o no hay dato">—</span>'
         pct = x if x > 1 else x * 100
         return f'<span class="tv2-pr">{pct:.2f}%</span>'
+    if clave == "posicion_52s":      # v1.2.51: otra vez la barrita con el minimo y el maximo (como en la v1.2.45)
+        pos = _n(row.get("posicion_52s"))
+        if pos is None:
+            return '<span class="tv2-pr" style="color:#9ca3af">—</span>'
+        pct = max(0.0, min(100.0, pos * 100))
+        return (f'<div class="tv-52" title="El precio está al {pct:.0f}% del rango de las últimas 52 semanas (0% = mínimo, 100% = máximo)">'
+                f'<div class="tv-t2"><div class="tv-d2" style="left:{pct:.0f}%;background:#64748b"></div></div>'
+                f'<div class="tv-lbls"><span>{_money(row.get("precio_min_52s"))}</span><span>{_money(row.get("precio_max_52s"))}</span></div></div>')
     x = _n(row.get(c["col"]))
     if x is None or (c["unidad"] == "x" and x <= 0):
         return '<span class="tv2-pr" style="color:#9ca3af">—</span>'

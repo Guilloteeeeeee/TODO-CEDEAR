@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.50"
+APP_VERSION = "1.2.51"
 
 import streamlit as st
 import pandas as pd
@@ -407,7 +407,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     st.session_state["flt_vars"] = seleccion
     elegidas = set(seleccion)
     st.markdown('<div class="vars-t">Variables a ver en la tabla</div>', unsafe_allow_html=True)
-    consulta = st.text_input("Buscar variables", key="flt_vars_q", placeholder="Buscá y elegí qué ver", label_visibility="collapsed", max_chars=40)
+    consulta = st.text_input("Buscar variables", key="flt_vars_q", placeholder="Buscá y elegí qué ver", label_visibility="collapsed")
     for i_g, (titulo_g, vars_g) in enumerate(_variables.agrupar(_variables.buscar(consulta))):
         st.markdown(f'<div class="vars-g">{html.escape(titulo_g)}</div>', unsafe_allow_html=True)
         with st.container(key="vars_chips" if i_g == 0 else "vars_chips_mult"):
@@ -498,9 +498,13 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 def render_buscador() -> str:
     """Buscador de arriba de la tabla (v1.2.47): una lupa y "Buscar empresas por nombre o ticker". Busca de las dos formas, sin importar
     mayusculas, tildes ni signos (Enter para buscar). Devuelve el texto escrito."""
+    # v1.2.51: sin el contador "0/40"; la lupa es el boton que envia la busqueda (Enter tambien)
     with st.container(key="buscador"):
-        return (st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda", placeholder="Buscar empresa o ticker",
-                              label_visibility="collapsed", max_chars=40) or "").strip()
+        with st.form("form_busqueda", border=False, clear_on_submit=False):
+            texto = st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda", placeholder="Buscar empresa o ticker",
+                                  label_visibility="collapsed")
+            st.form_submit_button("Buscar", icon=":material/search:")
+        return (texto or "").strip()
 
 
 # ---------------------------------------------------------------------------
@@ -600,40 +604,43 @@ def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.D
     """Aplica el buscador, los filtros y los criterios agregados, y ordena. Devuelve las empresas que se ven, en el orden de la tabla."""
     df_show = _criterios.agregar_columnas(df)
 
-    # --- Aplicar filtros ---
-    df_show = df_show[df_show["sector_macro"].isin(filtros["sectores"])]
-    df_show = df_show[df_show["industria"].isin(filtros["industrias"]) | (df_show["industria"] == "")]
-    df_show = df_show[
-        (df_show["metricas_usadas"] >= filtros.get("min_metricas", MIN_METRICAS)) |
-        (df_show["categoria"] == "DATOS INSUFICIENTES")
-    ]
-    df_show = df_show[df_show["categoria"].isin(filtros["categorias"])]
-    if filtros["paises"]:
-        df_show = df_show[df_show["pais"].isin(filtros["paises"])]
-    if filtros["mktcap_minimo"] > 0:
-        df_show = df_show[
-            df_show["market_cap"].notna() &
-            (df_show["market_cap"] >= filtros["mktcap_minimo"])
-        ]
-    # Precio y Puntaje de calidad (v1.2.49): minimo y/o maximo; una empresa sin dato queda afuera si hay algun limite
-    for col, (mn, mx) in (("precio_actual", filtros.get("precio") or (None, None)), ("score_total", filtros.get("puntaje") or (None, None))):
-        if mn is not None or mx is not None:
-            v = pd.to_numeric(df_show[col], errors="coerce")
-            m = v.notna()
-            if mn is not None:
-                m &= v >= mn
-            if mx is not None:
-                m &= v <= mx
-            df_show = df_show[m]
-    # Criterios agregados (minimo / maximo)
-    df_show = _criterios.filtrar(df_show, filtros.get("criterios"))
-
-    # Buscador (v1.2.47): por nombre o ticker, sin importar mayusculas, tildes ni signos
+    # v1.2.51: si hay algo escrito en el buscador se busca en TODAS las empresas, aunque algun filtro (sector, categoria, metricas minimas...)
+    # las deje afuera; antes una empresa filtrada "no aparecia" aunque existiera. Sin texto, se aplican los filtros de siempre.
     q = _normalizar(busqueda)
     if q:
         nombres = df_show["nombre"].map(_normalizar)
         tickers = df_show["ticker"].map(_normalizar)
         df_show = df_show[nombres.str.contains(q, regex=False) | tickers.str.contains(q, regex=False)]
+    else:
+        # --- Aplicar filtros ---
+        df_show = df_show[df_show["sector_macro"].isin(filtros["sectores"])]
+        df_show = df_show[df_show["industria"].isin(filtros["industrias"]) | (df_show["industria"] == "")]
+        df_show = df_show[
+            (df_show["metricas_usadas"] >= filtros.get("min_metricas", MIN_METRICAS)) |
+            (df_show["categoria"] == "DATOS INSUFICIENTES")
+        ]
+        df_show = df_show[df_show["categoria"].isin(filtros["categorias"])]
+        if filtros["paises"]:
+            df_show = df_show[df_show["pais"].isin(filtros["paises"])]
+        if filtros["mktcap_minimo"] > 0:
+            df_show = df_show[
+                df_show["market_cap"].notna() &
+                (df_show["market_cap"] >= filtros["mktcap_minimo"])
+            ]
+        # Precio y Puntaje de calidad (v1.2.49): minimo y/o maximo; una empresa sin dato queda afuera si hay algun limite
+        for col, (mn, mx) in (("precio_actual", filtros.get("precio") or (None, None)), ("score_total", filtros.get("puntaje") or (None, None))):
+            if mn is not None or mx is not None:
+                v = pd.to_numeric(df_show[col], errors="coerce")
+                m = v.notna()
+                if mn is not None:
+                    m &= v >= mn
+                if mx is not None:
+                    m &= v <= mx
+                df_show = df_show[m]
+        # Criterios agregados (minimo / maximo)
+        df_show = _criterios.filtrar(df_show, filtros.get("criterios"))
+
+
 
     # --- Calcular columna de upside para ordenamiento ---
     def _fv_upside(row):
@@ -707,9 +714,8 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
 
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
-    f = st.query_params.get("f")
-    volver = "?" + (f"f={html.escape(str(f), quote=True)}" if f else "")
-    st.markdown(f'<a class="emp-vol" href="{volver}" target="_self">← Volver a la tabla</a>', unsafe_allow_html=True)
+    # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
+    st.markdown('<a class="emp-vol" href="?" target="_self">← Volver al inicio</a>', unsafe_allow_html=True)
 
     row = df[df["ticker"] == str(ticker_sel).upper()] if ticker_sel else df.iloc[0:0]
     if row.empty:
@@ -729,7 +735,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     if sector in SECTOR_CONFIG and row.get("detalle") and _num_valido(usadas_d) and int(usadas_d) == 0:
         st.info(
             "Ninguna métrica fundamental pudo usarse para esta empresa. "
-            "La categoría se calculó solo con la posición en el rango de 52 semanas."
+            "Por eso esta empresa no tiene categoría."
         )
 
     # Aviso trampa de valor si el score es alto

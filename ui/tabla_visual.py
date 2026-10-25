@@ -82,7 +82,7 @@ def escala_valoracion_html(mostrar_gris=False):
         tramos.append(f'<div class="esc-s" style="background:{color};color:{txt}" title="Puntaje {rango}">'
                       f'<div>{hd}<b>{html.escape(_mayusculas(principal))}</b></div></div>')
     gris = (f'<div class="esc-gp"><span class="esc-gc" style="background:{CATEGORIA_GRIS[1]}">{html.escape(nombre_visible(CATEGORIA_GRIS[0]))}</span>'
-            f'<span class="esc-gt">sin métricas ni rango de 52 semanas</span></div>') if mostrar_gris else ""
+            f'<span class="esc-gt">sin métricas suficientes</span></div>') if mostrar_gris else ""
     return ('<div class="esc"><div class="esc-t"><b>Escala de valoración</b></div>'
             f'<div class="esc-b">{"".join(tramos)}</div>'
             '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
@@ -272,6 +272,12 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .st-key-buscador{margin:10px 0 4px}
 .st-key-buscador input{padding-left:44px!important;height:48px;font-size:15.5px;border-radius:14px;background-color:#fff;border:0!important;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);background-repeat:no-repeat;background-position:15px center;background-size:20px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>")}
 .st-key-buscador [data-baseweb='input'],.st-key-buscador [data-baseweb='base-input']{background:transparent!important;border:0!important}
+/* v1.2.51: la lupa es un boton (envia la busqueda; Enter tambien) que se apoya sobre el dibujo de la lupa */
+.st-key-buscador{position:relative}.st-key-buscador [data-testid='stForm']{border:0!important;padding:0!important}
+.st-key-buscador [data-testid='stFormSubmitButton']{position:absolute;left:0;top:0;bottom:0;width:46px;z-index:5}
+.st-key-buscador [data-testid='stFormSubmitButton'] button{width:46px;height:100%;min-height:36px;background:transparent!important;border:0!important;box-shadow:none!important;color:transparent!important;padding:0;cursor:pointer}
+.st-key-buscador [data-testid='stFormSubmitButton'] button *{opacity:0}
+.st-key-buscador [data-testid='stElementContainer']{width:100%}
 .st-key-buscador input::placeholder{color:#6b7280;opacity:1}
 }
 [data-testid="stButtonGroup"] button{border:1px solid #cfd8e3;border-radius:18px;background-color:#fff;color:#374151;padding:3px 13px;font-size:13.5px;transition:background .12s,border-color .12s}

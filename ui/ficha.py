@@ -452,6 +452,23 @@ def _barra_52s(row):
             f'<div class="rng-x"><span>{_money(lo)}<small>Mínimo</small></span><span>{_money(hi)}<small>Máximo</small></span></div>')
 
 
+_FOSO_CACHE = {}
+
+
+def _foso_de(ticker):
+    """Foso competitivo de la empresa (data/foso.json, armado con foso_desde_lote.py a partir del Modo lote del DCF) o None si no esta."""
+    import json, os
+    ruta = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "foso.json")
+    try:
+        m = os.path.getmtime(ruta)
+        if _FOSO_CACHE.get("m") != m:
+            with open(ruta, encoding="utf-8") as f:
+                _FOSO_CACHE.update(m=m, d=(json.load(f) or {}).get("empresas", {}))
+        return _FOSO_CACHE["d"].get(str(ticker).upper())
+    except (OSError, ValueError):
+        return None
+
+
 def _tile_resumen(row, ficha, mercado):
     t = str(row.get("ticker", ""))
     texto = _texto_descripcion(ficha)
@@ -469,6 +486,9 @@ def _tile_resumen(row, ficha, mercado):
         filas.append(_fila_kv("Sitio web", f'<a href="{html.escape(url, quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(dom)}</a>'))
     filas.append(_fila_kv("Sector", html.escape(sector) or "—"))
     filas.append(_fila_kv("Industria", html.escape(industria) or "—"))
+    foso = _foso_de(t)      # v1.2.51: foso competitivo (Amplio / Estrecho / Ninguno), solo donde hay dato
+    if foso and foso.get("foso"):
+        filas.append(_fila_kv("Foso competitivo", f'<span title="Ventaja competitiva que se sostiene en el tiempo: retorno sobre el capital por encima del costo del capital, márgenes estables y mejores que los de su sector.">{html.escape(foso["foso"])}</span>'))
     if mercado:
         adr = ' · <span title="ADR: certificado que representa acciones de una empresa extranjera y cotiza en Estados Unidos">ADR</span>' if _fichas.es_adr(t) else ""
         filas.append(_fila_kv("Mercado donde cotiza", html.escape(mercado) + adr))

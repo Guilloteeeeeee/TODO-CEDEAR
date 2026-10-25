@@ -360,6 +360,7 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     uri_titulo = _uri(TITULO)
     izq = (f'<img class="mc-img" src="{uri_titulo}" alt="{html.escape(str(nombre))}">' if uri_titulo
            else f'<div class="mc-t">{_titulo(nombre)}</div>')
+    izq = f'<a class="mc-home" href="?" target="_self" title="Ir al inicio" style="text-decoration:none;color:inherit">{izq}</a>'   # v1.2.51: tocar el titulo lleva al inicio
     e = _enlaces(enlaces)
     iconos = ""
     if ICONOS_EN_BARRA:
@@ -374,8 +375,8 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     menus = _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
     nav = f'<div class="mc-nav">{menus}{iconos}</div>'
     uri = logo_uri()
-    toro = (f'<div class="mc-toro"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}" title="{html.escape(NOMBRE_MARCA)}"></div>'
-            if uri else "")
+    toro = (f'<a class="mc-toro" href="?pagina=quienes" target="_self" title="Quiénes somos"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}"></a>'
+            if uri else "")   # v1.2.51: tocar el toro abre "Quiénes somos"
     datos = f'<div class="mc-datos">Datos al <b>{html.escape(str(datos_al))}</b></div>' if datos_al else ""
     return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}</div></div>{datos}'
 

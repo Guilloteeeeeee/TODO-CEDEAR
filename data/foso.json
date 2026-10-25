@@ -1,0 +1,304 @@
+{
+"empresas": {
+"AAPL": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"MSFT": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"NVDA": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"ORCL": {
+"foso": "Estrecho",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"INTC": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"CSCO": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"AMD": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"ADBE": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"GOOGL": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"META": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"NFLX": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"DIS": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"VZ": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"T": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"AMZN": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"TSLA": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"HD": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"MCD": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"NKE": {
+"foso": "Amplio",
+"etapa": "En declive o dificultades",
+"fecha": "2026-10-24"
+},
+"F": {
+"foso": "Ninguno",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"GM": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"RIVN": {
+"foso": "Ninguno",
+"etapa": "Con pérdidas y creciendo",
+"fecha": "2026-10-24"
+},
+"KO": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"PEP": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"PG": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"WMT": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"COST": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"PM": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"JNJ": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"MRK": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"PFE": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"UNH": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"LLY": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"ABBV": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"MRNA": {
+"foso": "Ninguno",
+"etapa": "Con pérdidas y creciendo",
+"fecha": "2026-10-24"
+},
+"CAT": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"DE": {
+"foso": "Ninguno",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"PCAR": {
+"foso": "Ninguno",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"BA": {
+"foso": "Ninguno",
+"etapa": "Con pérdidas y creciendo",
+"fecha": "2026-10-24"
+},
+"UPS": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"GE": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"DAL": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"AAL": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"LMT": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"XOM": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"CVX": {
+"foso": "Ninguno",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"COP": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"FCX": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"NUE": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"LIN": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"V": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"VRTX": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"ABNB": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"RIO": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"MSI": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"ANET": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"SBUX": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+},
+"ARM": {
+"foso": "Estrecho",
+"etapa": "En crecimiento",
+"fecha": "2026-10-24"
+},
+"ORLY": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-24"
+},
+"CL": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-24"
+}
+}
+}

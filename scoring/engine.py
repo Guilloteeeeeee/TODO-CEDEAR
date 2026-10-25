@@ -265,16 +265,14 @@ def calcular_score(row: dict, sector: str) -> dict:
     resultado["score_tecnico"] = score_tec
 
     if score_fund is None:
-        # Ninguna métrica fundamental usable. Sin etiquetas de "datos insuficientes" (pedido del
-        # usuario): si hay rango de 52 semanas, la categoría sale solo de él. La columna
-        # "Métricas" muestra 0/N para que se vea que es una lectura débil.
-        if score_tec is None or sector not in SECTOR_CONFIG:
+        # Ninguna métrica fundamental usable. Desde la v1.2.51 el rango de 52 semanas no entra al puntaje: sin métricas no hay categoría.
+        if TECHNICAL_WEIGHT <= 0 or score_tec is None or sector not in SECTOR_CONFIG:
             return resultado
         score_total = score_tec
     else:
         resultado["score_fundamental"] = score_fund
         # Score total
-        if score_tec is not None:
+        if score_tec is not None and TECHNICAL_WEIGHT > 0:
             score_total = (score_fund * FUNDAMENTAL_WEIGHT) + (score_tec * TECHNICAL_WEIGHT)
         else:
             # Si no hay dato técnico, el fundamental es el 100%

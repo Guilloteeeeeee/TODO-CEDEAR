@@ -4,7 +4,7 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 
 ## Cómo funciona
 
-**Score total = 85% fundamental + 15% técnico (rango 52 semanas)**
+**Score total = 100% fundamental (desde la v1.2.51 el rango de 52 semanas ya no entra al puntaje; antes pesaba 15%)**
 
 ### Métricas por sector
 
@@ -576,3 +576,10 @@ cedear-screener/
 ├── incorporar_ps.py        # Carga esos datos en el cache y vuelve a puntuar sin descargar nada (v1.2.43)
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
+
+### v1.2.51 (25/10/2026): sin técnico, foso, buscador y navegación
+- **Puntaje = 100 % fundamental (opción C):** el rango de 52 semanas ya no entra al puntaje (`TECHNICAL_WEIGHT = 0` en `config/sectors.py`; antes 0,15 y premiaba estar cerca del mínimo). 39 de 166 empresas cambian de categoría, ninguna más de un escalón. El dato sigue en el caché y se ve como **barrita** (mínimo, máximo y marca del precio) en la tabla (variable "Posición en el rango de 52 semanas") y en la página de cada empresa. `rescorar_cache.py` vuelve a puntuar el caché sin bajar nada.
+- **Los tres escenarios** (hoy con técnico / técnico invertido / sin técnico) quedaron guardados con los datos del 22/10 en `data/escenarios_tecnico_22-10-2026.csv` para medir el **1/12** cuál rindió mejor contra los retornos reales. No se muestran en la app. Con ~40 días no será concluyente; no ajustar nada mirando el resultado.
+- **Foso competitivo** (Amplio / Estrecho / Ninguno) en el resumen de la empresa, sin rótulo extra. Sale del Modo lote del DCF: `foso_desde_lote.py Lote_DCF_*.xlsx` arma `data/foso.json` (hoy 53 de las 166 empresas); para cubrir el resto, correr el Modo lote con las que faltan y volver a correr el script.
+- **Navegación:** tocar el título TodoCedears lleva al inicio; "Volver al inicio" en la página de una empresa (antes volvía con los filtros); tocar el toro abre "Quiénes somos".
+- **Buscador:** sin el contador "0/40"; la lupa es un botón que envía la búsqueda (Enter también); la búsqueda mira TODAS las empresas aunque algún filtro (sector, categoría, métricas mínimas) las dejara afuera.
