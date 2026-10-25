@@ -139,6 +139,50 @@ def bajar_dividendos(ticker, timeout=12.0, obtener=None):
     return analizar_dividendos(*v) if v else {}
 
 
+# --- beta y fecha de resultados ---------------------------------------------------------------------------------------
+def analizar_agenda(info, calendario=None):
+    """{'beta': float, 'resultados': (fecha, fecha_hasta o None)} con lo que Yahoo informe (info['beta'], calendario['Earnings Date'] o info['earningsTimestamp...']).
+    Si Yahoo da un rango de fechas (aun no confirmada) se devuelven las dos. {} si no hay nada."""
+    info = info or {}
+    fechas = []
+    cal = calendario if isinstance(calendario, dict) else {}
+    ed = cal.get("Earnings Date")
+    for f in (ed if isinstance(ed, (list, tuple)) else [ed]):
+        f = _fecha(f)
+        if f:
+            fechas.append(f)
+    if not fechas:
+        for k in ("earningsTimestampStart", "earningsTimestamp", "earningsTimestampEnd"):
+            f = _fecha(info.get(k))
+            if f and f not in fechas:
+                fechas.append(f)
+    fechas = sorted(set(fechas))
+    d = {}
+    beta = _num(info.get("beta"))
+    if beta is not None:
+        d["beta"] = beta
+    if fechas:
+        d["resultados"] = (fechas[0], fechas[-1] if fechas[-1] != fechas[0] else None)
+    return d
+
+
+def bajar_agenda(ticker, timeout=12.0, obtener=None):
+    def _pedir():
+        if obtener is not None:
+            return obtener(ticker)
+        import yfinance as yf
+        tk = yf.Ticker(str(ticker))
+        info = tk.info or {}
+        try:
+            cal = tk.calendar
+        except Exception:  # noqa: BLE001
+            cal = None
+        return info, cal
+
+    v = _con_tope(_pedir, timeout)
+    return analizar_agenda(*v) if v else {}
+
+
 # --- directivos y accionistas -----------------------------------------------------------------------------------------
 def analizar_gobierno(info, tenedores=None, mayores=None):
     """{'directivos': [{nombre, cargo, edad, pago}], 'insiders': %, 'instituciones': %, 'principales': [{nombre, pct}]} (los que Yahoo informe)."""

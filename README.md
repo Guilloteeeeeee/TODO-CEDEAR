@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.54 (25/10/2026): retoques de la página de empresa
+- **Aviso de carga** bien visible (cartel azul con ruedita) mientras se prepara la información de la empresa; se borra solo al terminar.
+- **Solapas** más grandes, en gris con la activa en oscuro y negrita (Streamlit las dibuja como `div role=tab`; los selectores anteriores no las alcanzaban).
+- **Tipografía más grande** (contenido de las solapas, pie, aviso, leyendas). No cambia la tabla principal ni el nombre y el precio de la empresa.
+- **Título TodoCedears** como texto en la fuente condensada (`TITULO_EN_FUENTE_CONDENSADA` en `config/ajustes.py`; `False` vuelve a la imagen).
+- **Resumen:** capitalización, Dividend Yield, rango de 52 semanas (en texto, "US$ mín – US$ máx"), **Beta** y **Fecha de resultados (Earnings Date)** como filas del mismo estilo que EV, acciones, etc. (`yahoo_extra.bajar_agenda`; Yahoo en vivo, la beta también se guarda en `fichas.json`).
+- **Dividendos:** "Últimos pagos" vuelve a ser la lista de antes, dentro del mosaico "Próximo pago" (con la ayuda punteada).
+- **Directivos / Competidores:** la primera columna (nombre) alineada a la derecha.
+
 ### v1.2.53 (25/10/2026): refinamientos de la página de empresa
 - **Carga:** mientras se traen los datos aparece "Aguarde mientras se cargan los datos...".
 - **Resumen en tres mosaicos:** arriba, a todo el ancho, lo que hace la empresa (en castellano, texto justificado) con los links (Sitio web, SEC Filings, Relaciones con inversores, en ese orden; la última es una búsqueda en Google que usa el sitio de la empresa cuando se conoce); abajo a la izquierda los datos cualitativos y a la derecha los cuantitativos (capitalización, Dividend Yield sin mediana, rango de 52 semanas como en la tabla, EV, acciones, ingresos y crecimiento).

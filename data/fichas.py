@@ -105,7 +105,7 @@ def ficha_en_vivo(ticker, timeout=12.0, obtener=None, traducir=True):
          "empleados": info.get("fullTimeEmployees"), "ciudad": info.get("city"), "region": info.get("state"), "pais": info.get("country"),
          "mercado_cod": info.get("exchange"), "mercado_nombre": info.get("fullExchangeName"),
          "ev": _num(info.get("enterpriseValue")), "acciones": _num(info.get("sharesOutstanding")), "ingresos_ttm": _num(info.get("totalRevenue")),
-         "crec_ingresos_trim": _num(info.get("revenueGrowth")), "crec_ganancias_trim": _num(info.get("earningsGrowth"))}
+         "crec_ingresos_trim": _num(info.get("revenueGrowth")), "crec_ganancias_trim": _num(info.get("earningsGrowth")), "beta": _num(info.get("beta"))}
     d = {k: v for k, v in d.items() if v not in (None, "")}
     if traducir and d.get("descripcion_en"):
         try:

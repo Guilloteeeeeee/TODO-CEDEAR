@@ -76,6 +76,14 @@ def css_condensada(nombre: str = None) -> str:
     # v1.2.52 (pedido de Guille): la fuente condensada va en TODA la app, menos el titulo TodoCedears (que es una imagen; si falta, el titulo de texto
     # .mc-t conserva su tipografia). Se excluyen los iconos de Streamlit.
     fam = "'RobotoCond','Roboto Condensed','Arial Narrow',sans-serif"
-    return (_cache["cond"]
-            + ".stApp.stApp.stApp :is(p,li,label,h1,h2,h3,h4,h5,h6,button,input,textarea,select,table,th,td,div,span,a,small,b,strong,summary)"
-              f":not([data-testid='stIconMaterial']):not([class*='material-symbols']):not(.mc-t):not(.mc-t *){{font-family:{fam}!important}}")
+    try:
+        from config.ajustes import TITULO_EN_FUENTE_CONDENSADA as titulo_cond
+    except Exception:  # noqa: BLE001
+        titulo_cond = False
+    excl = "" if titulo_cond else ":not(.mc-t):not(.mc-t *)"
+    css = (_cache["cond"]
+           + ".stApp.stApp.stApp :is(p,li,label,h1,h2,h3,h4,h5,h6,button,input,textarea,select,table,th,td,div,span,a,small,b,strong,summary)"
+             f":not([data-testid='stIconMaterial']):not([class*='material-symbols']){excl}{{font-family:{fam}!important}}")
+    if titulo_cond:      # v1.2.54: el titulo de texto en la condensada: mas grande para que tenga el mismo peso visual que la imagen
+        css += "@media (min-width:821px){.mc-t{font-size:3.1rem!important;font-weight:700!important;letter-spacing:-.5px!important}}"
+    return css

@@ -94,7 +94,7 @@ def bajar_una(t):
         "sector_yahoo": info.get("sector"), "industria_yahoo": info.get("industry"),
         "ev": _num(info.get("enterpriseValue")), "acciones": _num(info.get("sharesOutstanding")),
         "ingresos_ttm": _num(info.get("totalRevenue")),
-        "crec_ingresos_trim": _num(info.get("revenueGrowth")), "crec_ganancias_trim": _num(info.get("earningsGrowth")),
+        "crec_ingresos_trim": _num(info.get("revenueGrowth")), "crec_ganancias_trim": _num(info.get("earningsGrowth")), "beta": _num(info.get("beta")),
     }
     try:
         est = tk.income_stmt

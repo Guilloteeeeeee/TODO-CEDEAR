@@ -108,9 +108,9 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 .mc-toro{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .mc-toro img{width:36px;height:auto;display:block}
 .mc-dev{margin-top:3px}
-.mc-datos{text-align:right;font-size:12.5px;color:#4b5563;margin:6px 4px -18px}
+.mc-datos{text-align:right;font-size:14px;color:#4b5563;margin:6px 4px -18px}
 .mc-datos b{color:#1f2937;font-weight:600}
-.mc-pie{margin:30px 0 10px;padding-top:14px;border-top:1px solid #e3e8ee;text-align:center;font-size:12.5px;color:#4b5563}
+.mc-pie{margin:30px 0 10px;padding-top:14px;border-top:1px solid #e3e8ee;text-align:center;font-size:14.5px;color:#4b5563}
 .mc-pie b{color:#1f2937;font-weight:600}
 .mc-aviso{max-width:900px;margin:0 auto 8px;line-height:1.5;text-align:justify}
 @media (max-width:1180px){.mc-ic{display:none}.mc-it{padding:8px 9px}}
@@ -358,7 +358,11 @@ def _comentarios_menu_html(e, comentarios_mail=None):
 
 def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None):
     """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrí una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
-    uri_titulo = _uri(TITULO)
+    try:
+        from config.ajustes import TITULO_EN_FUENTE_CONDENSADA as _tc
+    except Exception:  # noqa: BLE001
+        _tc = False
+    uri_titulo = None if _tc else _uri(TITULO)
     izq = (f'<img class="mc-img" src="{uri_titulo}" alt="{html.escape(str(nombre))}">' if uri_titulo
            else f'<div class="mc-t">{_titulo(nombre)}</div>')
     izq = f'<a class="mc-home" href="?" target="_self" title="Ir al inicio" style="text-decoration:none;color:inherit">{izq}</a>'   # v1.2.51: tocar el titulo lleva al inicio

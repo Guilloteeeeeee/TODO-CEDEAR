@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.53"
+APP_VERSION = "1.2.54"
 
 import streamlit as st
 import pandas as pd
@@ -259,10 +259,10 @@ def _extras_empresa(ticker: str) -> dict:
     """v1.2.52: lo que piden las solapas de la empresa a Yahoo, todo junto y en paralelo: historial de precios (toda la historia), dividendos, directivos y
     accionistas, y noticias. Lo que no responde queda en None / {} / []: la solapa dice "no disponible"."""
     from concurrent.futures import ThreadPoolExecutor
-    tareas = {"historial": _hp.bajar, "dividendos": _yx.bajar_dividendos, "gobierno": _yx.bajar_gobierno, "noticias": _yx.bajar_noticias}
-    vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": []}
+    tareas = {"historial": _hp.bajar, "dividendos": _yx.bajar_dividendos, "gobierno": _yx.bajar_gobierno, "noticias": _yx.bajar_noticias, "agenda": _yx.bajar_agenda}
+    vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": [], "agenda": {}}
     try:
-        with ThreadPoolExecutor(max_workers=4) as ex:
+        with ThreadPoolExecutor(max_workers=5) as ex:
             fut = {k: ex.submit(f, ticker) for k, f in tareas.items()}
             return {k: (f.result(timeout=40)) for k, f in fut.items()}
     except Exception:  # noqa: BLE001
@@ -822,9 +822,13 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
     st.markdown('<a class="emp-vol" href="?" target="_self">← Volver al Inicio</a>', unsafe_allow_html=True)
+    # v1.2.54: aviso bien visible mientras se prepara la informacion de la empresa (se borra al terminar)
+    cargando = st.empty()
+    cargando.markdown('<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos de la empresa…</div>', unsafe_allow_html=True)
 
     row = df[df["ticker"] == str(ticker_sel).upper()] if ticker_sel else df.iloc[0:0]
     if row.empty:
+        cargando.empty()
         st.warning("No encontré esa empresa. Volvé a la tabla y elegí otra.")
         return None
     row = row.iloc[0]
@@ -853,7 +857,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
     t_res, t_ana, t_gra, t_val, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
     with t_res:
-        st.markdown(_ficha.tab_resumen(rd, ficha, mercado), unsafe_allow_html=True)
+        st.markdown(_ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda")), unsafe_allow_html=True)
     with t_ana:
         st.markdown(_ficha.tab_analisis(rd), unsafe_allow_html=True)
     with t_gra:
@@ -871,6 +875,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         st.markdown(_ficha.tab_accionariado(extra.get("gobierno")), unsafe_allow_html=True)
     with t_not:
         st.markdown(_ficha.tab_noticias(tk, extra.get("noticias")), unsafe_allow_html=True)
+    cargando.empty()
 
     # v1.2.49: el desglose de metricas pasó a "Estadisticas de la empresa" (ui/ficha.py): valor de hoy, mediana, dibujito, Fair Value y peso de cada una.
     usadas_d = row.get("metricas_usadas")

@@ -78,6 +78,8 @@ VISTA_POR_DEFECTO = "clasica"
 FUENTE_APP = "Inter"
 # v1.2.52: fuente condensada (estilo Morningstar) para titulos, tickers y numeros financieros. "" = se apaga y todo queda en Inter.
 FUENTE_NUMEROS = "Roboto Condensed"
+# v1.2.54: True = el titulo TodoCedears se escribe como texto en la fuente condensada (para ver como queda); False = la imagen del titulo.
+TITULO_EN_FUENTE_CONDENSADA = True
 
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"

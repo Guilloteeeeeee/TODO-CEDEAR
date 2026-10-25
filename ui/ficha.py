@@ -199,6 +199,9 @@ CSS = """
 .gf .ym{position:absolute;right:4px;font-size:11px;font-weight:600;color:#475569;background:rgba(255,255,255,.8);padding:0 3px;border-radius:3px}
 .gx{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-top:3px}
 .gf-no{font-size:12.5px;color:#6b7280;padding:6px 0}
+.fch-carga{display:flex;align-items:center;gap:12px;margin:10px 0;padding:14px 18px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:17px;font-weight:600}
+.fch-giro{width:18px;height:18px;border:3px solid #93c5fd;border-top-color:#1d4ed8;border-radius:50%;animation:fchg 0.9s linear infinite;flex:none}
+@keyframes fchg{to{transform:rotate(360deg)}}
 .valrow{display:flex;align-items:center;gap:10px 28px;flex-wrap:wrap}
 .valrow .fch-sub{margin:0;font-size:14px}
 .vr{text-align:center}.vr .n,.vr.hd .n{text-align:center}.vr .m{text-align:left}.vr.hd span:first-child{text-align:left}
@@ -206,25 +209,27 @@ CSS = """
 .fch-2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 40px;align-items:start}
 .fch-2c h4{margin:0 0 6px;font-size:13.5px;font-weight:700;color:#111827}
 .fch-2c .fch-kv{margin-top:0}
-.comp td,.comp th{text-align:center!important}
+.comp td,.comp th{text-align:center!important}.comp th:first-child,.comp td:first-child{text-align:right!important}
 .ceo{display:flex;align-items:center;gap:16px}
 .ceo .ft{width:92px;height:92px;border-radius:50%;background:#e2e8f0;color:#475569;font-size:32px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
 .ceo .nm{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2}.ceo .cg{font-size:14px;color:#4b5563;margin-top:3px}
 .fch-st2 .nota,.fch-nota[title]{cursor:help}
 .cambios8{grid-template-columns:repeat(8,minmax(0,1fr))}
-/* v1.2.52: solapas de la pagina de la empresa (texto gris, la activa en oscuro con raya abajo) */
-[data-baseweb="tab-list"]{gap:6px;border-bottom:1px solid #e5e7eb;flex-wrap:wrap}
-[data-baseweb="tab-list"] button[role="tab"]{padding:10px 14px;background:transparent}
-[data-baseweb="tab-list"] button[role="tab"] p{font-size:18px!important;color:#6b7280!important;font-weight:400;margin:0}
-[data-baseweb="tab-list"] button[role="tab"][aria-selected="true"] p{color:#111827!important;font-weight:600}
-[data-baseweb="tab-list"] button[role="tab"]:hover p{color:#111827!important}
-[data-baseweb="tab-highlight"]{background:#111827!important;height:2px!important}
-[data-baseweb="tab-border"]{display:none}
+/* v1.2.54: solapas de la pagina de la empresa (Streamlit las dibuja como div con role=tab): texto gris, la activa en oscuro, mas grandes */
+[role="tablist"]{gap:4px;border-bottom:1px solid #d9dee5;flex-wrap:wrap}
+[role="tablist"] [role="tab"]{padding:12px 16px;background:transparent}
+[role="tablist"] [role="tab"] p{font-size:18px!important;color:#6b7280!important;font-weight:500!important;margin:0}
+[role="tablist"] [role="tab"][aria-selected="true"] p{color:#111827!important;font-weight:700!important}
+[role="tablist"] [role="tab"]:hover p{color:#111827!important}
+[data-testid="stTabsHighlight"],[data-baseweb="tab-highlight"]{background:#111827!important;height:3px!important}
+[data-testid="stCaptionContainer"],[data-testid="stCaptionContainer"] p{font-size:15px!important}
+[data-testid="stWidgetLabel"] p{font-size:16px!important}
+@media (min-width:901px){.fch>.fch-t:not(:has(.fch-hd)){zoom:1.14}}
 .comp-w{overflow-x:auto}
 .comp{width:100%;border-collapse:collapse;font-size:14px}
 .comp th{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;text-align:right;padding:6px 8px;border-bottom:1px solid #e5e7eb;white-space:nowrap}
 .comp td{text-align:right;padding:8px;border-bottom:1px solid #eef1f4;white-space:nowrap}
-.comp th:first-child,.comp td:first-child{text-align:left}
+.comp th:first-child,.comp td:first-child{text-align:right!important}
 .comp a{color:#1d4ed8;text-decoration:none;font-weight:600}.comp a:hover{text-decoration:underline}
 .comp .tkc{color:#6b7280;font-size:12px;margin-left:4px}
 .nlist{list-style:none;margin:0 0 6px;padding:0}.nlist li{padding:9px 0;border-bottom:1px solid #eef1f4}
@@ -605,7 +610,7 @@ def _links_empresa(row, ficha):
         for u, n, tt in enl) + '</div>'
 
 
-def _tiles_resumen(row, ficha, mercado):
+def _tiles_resumen(row, ficha, mercado, agenda=None):
     """v1.2.52: tres mosaicos. Arriba, a todo el ancho, lo que hace la empresa (con sus links); abajo a la izquierda los datos cualitativos (nombre, CEO,
     sector, industria, foso, mercado, sede, empleados) y abajo a la derecha los cuantitativos (capitalizacion, Dividend Yield, rango de 52 semanas, EV,
     acciones, ingresos y crecimiento)."""
@@ -638,18 +643,25 @@ def _tiles_resumen(row, ficha, mercado):
     if emp:
         filas.append(_fila_kv("Empleados", f"{emp:,.0f}", "Personas empleadas a tiempo completo."))
     cual = '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>"
-    # cuantitativos
+    # cuantitativos (v1.2.54: todos como filas del mismo estilo; el rango de 52 semanas, en texto)
     dd = _dy_datos(row)
     dy_txt = f"{dd[0]:.2f}%" if dd else "—"
-    k = lambda txt, tip: f'<div class="fch-k" title="{html.escape(tip, quote=True)}">{txt}</div>'
-    cifras = ('<div class="fch-cifras">'
-              f'<div class="fch-cf">{k("Capitalización bursátil", "Valor de mercado de la empresa: precio de la acción por la cantidad de acciones en circulación.")}'
-              f'<div class="cf-fila"><span class="num">{_mcap(row.get("market_cap"))}</span></div></div>'
-              f'<div class="fch-cf">{k("Dividend Yield", "Dividendo anual que paga la empresa como porcentaje del precio. El detalle está en las solapas Dividendos y Valuación.")}'
-              f'<div class="cf-fila"><span class="num">{dy_txt}</span></div></div>'
-              f'<div class="fch-cf ancho">{k("Rango de 52 semanas", "Del precio más bajo al más alto de los últimos 12 meses; la raya del centro es el precio medio del rango y la marca, el precio de hoy.")}'
-              f'{barra_52s_html(row) or "<div class=fch-sub>Sin datos.</div>"}</div></div>')
-    cuan = []
+    cuan = [_fila_kv("Capitalización bursátil", _mcap(row.get("market_cap")),
+                     "Valor de mercado de la empresa: precio de la acción por la cantidad de acciones en circulación."),
+            _fila_kv("Dividend Yield", dy_txt, "Dividendo anual que paga la empresa como porcentaje del precio. El detalle está en las solapas Dividendos y Valuación.")]
+    lo, hi = _n(row.get("precio_min_52s")), _n(row.get("precio_max_52s"))
+    if lo and hi and hi > lo:
+        cuan.append(_fila_kv("Rango de 52 semanas", f"{_money(lo)} – {_money(hi)}", "Del precio más bajo al más alto de los últimos 12 meses."))
+    ag = agenda or {}
+    beta = _n(ag.get("beta")) if ag.get("beta") is not None else _n(f.get("beta"))
+    if beta is not None:
+        cuan.append(_fila_kv("Beta", f"{beta:.2f}", "Cuánto se mueve la acción respecto del mercado: 1 se mueve igual; más de 1, más que el mercado; menos de 1, menos."))
+    res = ag.get("resultados")
+    if res and res[0]:
+        f0, f1 = res
+        txt = f"{f0.strftime('%d/%m/%Y')} – {f1.strftime('%d/%m/%Y')}" if f1 else f0.strftime("%d/%m/%Y")
+        cuan.append(_fila_kv("Fecha de resultados (Earnings Date)", txt,
+                             "Día en que la empresa presenta sus resultados trimestrales. Si todavía no la confirmó, es una estimación y puede cambiar."))
     if _n(f.get("ev")):
         cuan.append(_fila_kv("Valor de empresa (EV)", _usd_abrev(f.get("ev")), "Lo que costaría comprar toda la empresa: valor de mercado más deuda, menos caja."))
     if _n(f.get("acciones")):
@@ -661,10 +673,10 @@ def _tiles_resumen(row, ficha, mercado):
         txt, cls = _pct_sig(f.get(clave))
         if txt:
             cuan.append(_fila_kv(etiqueta, f'<span class="{cls}" style="font-weight:600">{txt}</span>'))
-    cuan_h = '<div class="fch-kv" style="margin-top:14px">' + "".join(cuan) + "</div>" if cuan else ""
+    cuan_h = '<div class="fch-kv" style="margin-top:0">' + "".join(cuan) + "</div>"
     return [_tile("s12", "Resumen de la empresa", desc + _links_empresa(row, ficha), ac="#a78bfa"),
             _tile("s6", "Datos de la empresa", cual, ac="#a78bfa"),
-            _tile("s6", "Cifras", cifras + cuan_h, ac="#7c3aed")]
+            _tile("s6", "Cifras", cuan_h, ac="#7c3aed")]
 
 
 def _color_por_ratio(ratio):
@@ -823,8 +835,8 @@ def _env(*partes):
     return '<div class="fch">' + "".join(p for p in partes if p) + "</div>"
 
 
-def tab_resumen(row, ficha, mercado, envolver=True):
-    t = _tiles_resumen(row, ficha, mercado)
+def tab_resumen(row, ficha, mercado, envolver=True, agenda=None):
+    t = _tiles_resumen(row, ficha, mercado, agenda)
     return _env(*t) if envolver else "".join(t)
 
 
@@ -883,7 +895,13 @@ def tab_dividendos(row, div):
              _fila_kv("Monto por acción (último)", _money_dec(div.get("monto")), "Dólares por acción del último pago.")]
     if div.get("tasa_anual"):
         filas.append(_fila_kv("Dividendo anual por acción", _money_dec(div["tasa_anual"]), "Lo que se estima que paga en un año."))
-    izq = _tile("s4", "Próximo pago", '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>", ac="#16a34a")
+    cuerpo_izq = '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>"
+    if div.get("ultimos"):
+        tip = "Fechas y montos de los pagos; si la empresa no anunció el próximo pago, se ve el último."
+        cuerpo_izq += (f'<div class="fch-k" title="{html.escape(tip, quote=True)}" style="margin:14px 0 4px;font-size:11.5px;font-weight:600;letter-spacing:.4px;'
+                       'text-transform:uppercase;color:#6b7280;cursor:help;text-decoration:underline dotted #9ca3af;text-underline-offset:3px;display:inline-block">Últimos pagos</div>'
+                       '<div class="fch-kv" style="margin-top:0">' + "".join(_fila_kv(_fmt_fecha(f), _money_dec(m)) for f, m in div["ultimos"]) + "</div>")
+    izq = _tile("s4", "Próximo pago", cuerpo_izq, ac="#16a34a")
     tr = div.get("trayectoria") or {}
     fil2 = []
     if tr.get("anios_pagando"):
@@ -899,13 +917,7 @@ def tab_dividendos(row, div):
     if not fil2:
         fil2 = [_fila_kv("Historial", "sin datos suficientes")]
     der = _tile("s4", "Trayectoria del dividendo", '<div class="fch-kv" style="margin-top:0">' + "".join(fil2) + "</div>", ac="#16a34a")
-    tiles = [dy, izq, der]
-    if div.get("ultimos"):
-        tip = "Fechas y montos de los pagos; si la empresa no anunció el próximo pago, se ve el último."
-        celdas = "".join(f'<div><div class="k">{_fmt_fecha(f)}</div><div class="v" style="font-size:15px">{_money_dec(m)}</div></div>' for f, m in div["ultimos"])
-        tiles.append(_tile("s12", f'<span title="{html.escape(tip, quote=True)}" style="cursor:help;text-decoration:underline dotted #9ca3af;text-underline-offset:3px">Últimos pagos</span>',
-                           f'<div class="cambios cambios8">{celdas}</div>', ac="#16a34a"))
-    return _env(*tiles)
+    return _env(dy, izq, der)
 
 
 def tab_competidores(row, df):
