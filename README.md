@@ -577,6 +577,18 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.53 (25/10/2026): refinamientos de la página de empresa
+- **Carga:** mientras se traen los datos aparece "Aguarde mientras se cargan los datos...".
+- **Resumen en tres mosaicos:** arriba, a todo el ancho, lo que hace la empresa (en castellano, texto justificado) con los links (Sitio web, SEC Filings, Relaciones con inversores, en ese orden; la última es una búsqueda en Google que usa el sitio de la empresa cuando se conoce); abajo a la izquierda los datos cualitativos y a la derecha los cuantitativos (capitalización, Dividend Yield sin mediana, rango de 52 semanas como en la tabla, EV, acciones, ingresos y crecimiento).
+- **Traducción:** si `deep-translator` no está instalado, la descripción se traduce con MyMemory por oraciones (`ui/traducir.py`); si ninguno anda se ve el original. Lo seguro es correr `bajar_fichas.bat` (guarda `descripcion_es` en `data/fichas.json`).
+- **Gráfico y rendimiento:** los rendimientos de todos los plazos van arriba del gráfico; se sacó la mención a Yahoo del pie del gráfico.
+- **Valuación:** la categoría con su "?" y el Fair Value en una sola línea (sin el título "Valoración"); tabla de múltiplos centrada; las notas del dibujito y del "—" pasaron a ayudas (subrayado punteado) en los encabezados "Hoy vs. mediana" y "Fair Value".
+- **Dividendos:** más compacto (Próximo pago | Trayectoria) y con años pagando, años de aumentos seguidos y crecimiento anual compuesto a 1, 3, 5 y 10 años según la historia disponible (`yahoo_extra.trayectoria_dividendos`; no se cuenta el primer año con pagos ni el año en curso, que pueden estar incompletos). La nota de fechas pasó a una ayuda en "Últimos pagos".
+- **Competidores:** datos centrados, columna "Score de calidad" (hoy es el puntaje del screener) y el encabezado "Comparación contra empresas de la industria de los …, de mayor a menor capitalización."
+- **Directivos y Accionariado** son ahora dos solapas. El CEO va en un mosaico a la izquierda con sus iniciales (Yahoo no da fotos y no se arriesga una foto equivocada); el resto del equipo, a la derecha.
+- **Textos:** se sacaron las notas "Datos de Yahoo Finance" de las solapas (queda "Fuentes: Stock Analysis y Yahoo Finance." en el pie); descripción y aviso justificados.
+- **Encabezado:** logo más grande (72 px), ticker más chico (15,5 px) y línea del precio en pesos del tamaño del ticker, sin negrita.
+
 ### v1.2.52 (25/10/2026): ficha de empresa rediseñada, Quiénes somos, aviso legal y pie
 - **Quiénes somos:** texto nuevo (primera frase en negrita), foto nueva de Guillermo, el toro a la derecha del título, sin el nombre de la marca debajo del título; "← Volver al Inicio". Se sacó el párrafo de "Asesoría Financiera Integral" (no estaba en el texto nuevo; se puede volver a poner en `ui/quienes.py`).
 - **Menú:** "Abrí una cuenta con nosotros"; los logos de Balanz e Inviu tienen el mismo ancho; WhatsApp enlaza a la comunidad (`ENLACES_MARCA["whatsapp"]`).

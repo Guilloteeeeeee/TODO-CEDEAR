@@ -68,15 +68,57 @@ def bajar_intradia(ticker, marco, timeout=12.0, obtener=None):
 
 
 # --- dividendos -------------------------------------------------------------------------------------------------------
+def trayectoria_dividendos(serie, hoy=None):
+    """De los pagos historicos [(fecha, monto)] saca, por anio calendario: cuantos anios hace que paga, cuantos anios seguidos viene aumentando el total anual
+    y el crecimiento anual compuesto (CAGR) a 1, 3, 5 y 10 anios, segun la historia que haya. El anio en curso y el primero (suelen estar incompletos) no entran
+    en las cuentas de crecimiento. Devuelve {} si no hay datos."""
+    from datetime import date
+    hoy = hoy or date.today()
+    tot = {}
+    for f, m in (serie or []):
+        f, m = _fecha(f), _num(m)
+        if f and m and m > 0:
+            tot[f.year] = tot.get(f.year, 0.0) + m
+    if not tot:
+        return {}
+    primero = min(tot)
+    completos = sorted(y for y in tot if primero < y < hoy.year)       # anios enteros (sin el primero ni el actual)
+    # anios seguidos pagando, contando para atras desde el ultimo anio con pagos
+    ultimo = max(tot)
+    seguidos = 0
+    y = ultimo
+    while y in tot:
+        seguidos += 1
+        y -= 1
+    d = {"primer_anio": primero, "anios_pagando": seguidos if ultimo >= hoy.year - 1 else 0, "anios_crece": 0, "cagr": {}}
+    if not completos:
+        return d
+    fin = completos[-1]
+    racha, y = 0, fin
+    while y in tot and (y - 1) in tot and (y - 1) > primero and tot[y] > tot[y - 1] * 1.0005:
+        racha += 1
+        y -= 1
+    # el primer anio con pagos no se compara (puede estar incompleto), asi que la racha cuenta aumentos entre anios completos
+    d["anios_crece"] = racha
+    for n in (1, 3, 5, 10):
+        ini = fin - n
+        if ini in tot and ini > primero and tot[ini] > 0 and tot[fin] > 0:
+            d["cagr"][n] = (tot[fin] / tot[ini]) ** (1.0 / n) - 1
+    d["anio_base"] = fin
+    return d
+
+
 def analizar_dividendos(info, serie):
-    """info: dict `info` de Yahoo; serie: [(fecha, monto)] de pagos pasados. Devuelve {'ex_fecha', 'pago_fecha', 'monto', 'tasa_anual', 'ultimos'}.
-    La fecha de pago y la ex-fecha son las ultimas que informa Yahoo: puede ser ya pasada si la empresa todavia no anuncio la siguiente."""
+    """info: dict `info` de Yahoo; serie: [(fecha, monto)] de pagos pasados. Devuelve {'ex_fecha', 'pago_fecha', 'monto', 'tasa_anual', 'ultimos',
+    'trayectoria'}. La fecha de pago y la ex-fecha son las ultimas que informa Yahoo: puede ser ya pasada si la empresa todavia no anuncio la siguiente."""
     info = info or {}
     ultimos = sorted(((_fecha(f), _num(m)) for f, m in (serie or [])), key=lambda x: (x[0] is None, x[0]), reverse=True)
-    ultimos = [(f, m) for f, m in ultimos if f and m and m > 0][:8]
+    ultimos = [(f, m) for f, m in ultimos if f and m and m > 0]
+    tray = trayectoria_dividendos(serie)
+    ultimos = ultimos[:8]
     monto = _num(info.get("lastDividendValue")) or (ultimos[0][1] if ultimos else None)
     d = {"ex_fecha": _fecha(info.get("exDividendDate")), "pago_fecha": _fecha(info.get("dividendDate")), "monto": monto,
-         "tasa_anual": _num(info.get("dividendRate")), "ultimos": ultimos}
+         "tasa_anual": _num(info.get("dividendRate")), "ultimos": ultimos, "trayectoria": tray}
     return d if (d["monto"] or d["ex_fecha"] or d["tasa_anual"] or ultimos) else {}
 
 

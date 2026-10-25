@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.52"
+APP_VERSION = "1.2.53"
 
 import streamlit as st
 import pandas as pd
@@ -278,12 +278,36 @@ def _intradia(ticker: str, marco: str):
         return None
 
 
-@st.cache_data(ttl=30 * 86400, show_spinner=False)
+@st.cache_data(ttl=6 * 3600, show_spinner=False)
 def _descripcion_es(texto_en: str):
-    """Traduccion al castellano de la descripcion de Yahoo (cuando data/fichas.json solo la trae en ingles). None si el traductor no esta o falla."""
+    """Traduccion al castellano de la descripcion de Yahoo (cuando data/fichas.json solo la trae en ingles). Primero deep-translator (Google); si no esta
+    instalado o falla, MyMemory por oraciones. None si ninguno anda (entonces se muestra el original). v1.2.53."""
     try:
         from bajar_fichas import _traducir
-        return _traducir(texto_en)
+        es = _traducir(texto_en)
+        if es:
+            return es
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        import re as _re
+        from ui import traducir as _tr
+        frases = [f for f in _re.split(r"(?<=[.!?])\s+", texto_en.strip()) if f]
+        trozos, act = [], ""
+        for f in frases:
+            if act and len(act) + len(f) + 1 > 450:
+                trozos.append(act)
+                act = ""
+            act = (act + " " + f).strip()
+        if act:
+            trozos.append(act)
+        trozos = trozos[:6]
+        if not trozos:
+            return None
+        res = _tr.traducir_lista(trozos)
+        if len(res) < max(1, int(len(trozos) * 0.8)):
+            return None
+        return " ".join(res.get(t, t) for t in trozos)
     except Exception:  # noqa: BLE001
         return None
 
@@ -791,7 +815,7 @@ def _render_grafico(tk, pares, rd):
         st.altair_chart(ch, width="stretch")
     except TypeError:
         st.altair_chart(ch, use_container_width=True)
-    st.caption(f"{sufijo} · Yahoo Finance · no es en tiempo real. Podés acercar con la rueda del mouse y arrastrar el gráfico.")
+    st.caption(f"{sufijo} · No es en tiempo real. Podés acercar con la rueda del mouse y arrastrar el gráfico.")
 
 
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
@@ -810,7 +834,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     # v1.2.47: encabezado (logo, nombre, mercado, ticker, ADR, precio) y todos los datos en mosaicos (ui/ficha.py)
     ficha = (_fichas_datos() or {}).get(str(ticker_sel).upper()) or {}
     if not (ficha.get("descripcion_es") or ficha.get("descripcion_en")):
-        with st.spinner("Buscando la descripción de la empresa..."):
+        with st.spinner("Aguarde mientras se cargan los datos..."):
             viva = _ficha_viva(str(ticker_sel).upper())
         if viva:
             ficha = {**viva, **ficha}      # lo que ya estaba en data/fichas.json manda; Yahoo en vivo completa lo que falta
@@ -823,18 +847,18 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     rd = row.to_dict()
     mercado, _adr = _fichas.mercado_y_adr(tk, ficha, cod)
     st.markdown(_ficha.encabezado_html(rd, _datos_cedear(df, ticker_sel), ficha, cod, fecha_datos), unsafe_allow_html=True)
-    with st.spinner("Trayendo datos de Yahoo Finance..."):
+    with st.spinner("Aguarde mientras se cargan los datos..."):
         extra = _extras_empresa(tk)
     pares = extra.get("historial")
-    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Dividendos", "Competidores", "Directivos y accionistas", "Noticias"]
-    t_res, t_ana, t_gra, t_val, t_div, t_com, t_dir, t_not = st.tabs(nombres)
+    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
+    t_res, t_ana, t_gra, t_val, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
     with t_res:
         st.markdown(_ficha.tab_resumen(rd, ficha, mercado), unsafe_allow_html=True)
     with t_ana:
         st.markdown(_ficha.tab_analisis(rd), unsafe_allow_html=True)
     with t_gra:
+        st.markdown(_ficha.tab_grafico_tabla(pares), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)
-        st.markdown(_ficha.tab_grafico_tabla(pares), unsafe_allow_html=True)
     with t_val:
         st.markdown(_ficha.tab_valuacion(rd, ficha), unsafe_allow_html=True)
     with t_div:
@@ -842,7 +866,9 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_com:
         st.markdown(_ficha.tab_competidores(rd, df), unsafe_allow_html=True)
     with t_dir:
-        st.markdown(_ficha.tab_gobierno(extra.get("gobierno")), unsafe_allow_html=True)
+        st.markdown(_ficha.tab_directivos(extra.get("gobierno")), unsafe_allow_html=True)
+    with t_acc:
+        st.markdown(_ficha.tab_accionariado(extra.get("gobierno")), unsafe_allow_html=True)
     with t_not:
         st.markdown(_ficha.tab_noticias(tk, extra.get("noticias")), unsafe_allow_html=True)
 

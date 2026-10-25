@@ -112,7 +112,7 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 .mc-datos b{color:#1f2937;font-weight:600}
 .mc-pie{margin:30px 0 10px;padding-top:14px;border-top:1px solid #e3e8ee;text-align:center;font-size:12.5px;color:#4b5563}
 .mc-pie b{color:#1f2937;font-weight:600}
-.mc-aviso{max-width:900px;margin:0 auto 8px;line-height:1.5}
+.mc-aviso{max-width:900px;margin:0 auto 8px;line-height:1.5;text-align:justify}
 @media (max-width:1180px){.mc-ic{display:none}.mc-it{padding:8px 9px}}
 @media (max-width:820px){
 .mc-in{flex-wrap:wrap;height:auto;gap:2px 12px;padding:8px 16px 6px}
@@ -387,7 +387,7 @@ def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
     y "Powered by Claude AI · versión"."""
     av = f'<div class="mc-aviso"><b>Aviso:</b> {html.escape(str(aviso))}</div>' if aviso else ""
     if fuente:
-        av += f'<div class="mc-aviso"><b>Fuente:</b> {html.escape(str(fuente))}</div>'
+        av += f'<div class="mc-aviso"><b>Fuentes:</b> {html.escape(str(fuente))}</div>'
     dat = f'Datos al <b>{html.escape(str(datos_al))}</b> · ' if datos_al else ""
     if precios:      # v1.2.46: texto ya armado por la app (lleva un <b>); sin precios en vivo no se muestra nada
         dat += f'{precios} · '
