@@ -610,7 +610,11 @@ def filtrar_ordenar(df: pd.DataFrame, filtros: dict, busqueda: str = "") -> pd.D
     if q:
         nombres = df_show["nombre"].map(_normalizar)
         tickers = df_show["ticker"].map(_normalizar)
-        df_show = df_show[nombres.str.contains(q, regex=False) | tickers.str.contains(q, regex=False)]
+        exacto = tickers == q
+        if exacto.any():        # v1.2.51: si lo escrito es justo un ticker ("O", "T", "V"), se muestra esa empresa y no todas las que lo contienen
+            df_show = df_show[exacto]
+        else:
+            df_show = df_show[nombres.str.contains(q, regex=False) | tickers.str.contains(q, regex=False)]
     else:
         # --- Aplicar filtros ---
         df_show = df_show[df_show["sector_macro"].isin(filtros["sectores"])]
