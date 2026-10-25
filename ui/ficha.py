@@ -11,7 +11,7 @@ Estructura (arriba la banda con el nombre y el precio; abajo, mosaicos que se pu
   4. "Estadisticas de la empresa" (desplegable): Perfil, Crecimiento y Valoracion; cada multiplo con su mediana historica, un dibujito (hoy contra
      su mediana), el Fair Value que da y su peso.
   5. "Precio contra el Fair Value de cada metodo" (desplegable): la linea de precios.
-  6. "Revision de los metodos del Fair Value" (desplegable): que metodos se usaron, con su peso y su precio, y cuales no y por que.
+  (v1.2.50: se quito "Revision de los metodos del Fair Value" y la columna "Peso": el metodo y los pesos no se muestran al publico.)
 Las fuentes no se nombran en cada dato: hay una sola linea "Fuente" debajo del Aviso (ver texto_fuente y ui/marca.py).
 Los datos de Yahoo (descripcion, CEO, web, mercado, valor de empresa, acciones, ingresos y crecimiento) vienen de data/fichas.json (bajar_fichas.py).
 Si falta alguno, esa fila no se muestra: nunca se inventa un dato (y desde la v1.2.49 ya no hay un resumen escrito a mano de respaldo).
@@ -35,7 +35,8 @@ from ui.banderas import bandera_html
 from ui.tabla_visual import (_TEXTO_EN_RELLENO, _celda_dy, _clamp, _mcap, _money, _n, _svg_dy, _texto_categoria, _txt, texto_categoria)
 
 ETIQUETAS_METODO = {"ev_ebitda": "EV/EBITDA", "per": "P/E", "p_fcf": "P/FCF", "p_b": "P/Book", "dividend_yield": "Dividend Yield",
-                    "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S"}
+                    "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S", "ev_ventas": "EV/Ventas",
+                    "rend_total": "Rendimiento total"}
 CELESTE = "#38bdf8"
 AZUL = "#1f6aa5"
 GRIS_PEG = "#94a3b8"
@@ -116,13 +117,6 @@ CSS = """
 .fch-kv .v{color:#111827;text-align:right;min-width:0;overflow-wrap:anywhere}
 .fch-kv .v a{color:#1d4ed8;text-decoration:none}
 .fch-kv .v a:hover{text-decoration:underline}
-.rev{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:2px}
-.rev th{text-align:left;font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#6b7280;padding:4px 8px 6px 0;border:0!important;border-bottom:1px solid #e5e7eb!important}
-.rev td{padding:7px 8px 7px 0;border:0!important;border-bottom:1px solid #f0f2f5!important;color:#1f2937;vertical-align:top}
-.rev .ok{font-weight:600}
-.rev .no{color:#6b7280}
-.rev td.n,.rev th.n{text-align:right;white-space:nowrap}
-.rev-r{font-size:12.5px;color:#4b5563;margin:8px 0 0;line-height:1.5}
 /* v1.2.49: mosaicos desplegables */
 .fch-t.fch-d{padding:0}
 .fch-d>summary.fch-h{list-style:none;cursor:pointer;margin:0;padding:14px 16px 14px 20px;display:flex;align-items:center;gap:6px;user-select:none}
@@ -153,23 +147,23 @@ CSS = """
 .fch-st2 .f .v.neg{color:#b91c1c}
 .fch-st2 .f .v.pos{color:#15803d}
 .fch-st2 .izq>div+div{margin-top:18px}
-.vr{display:grid;grid-template-columns:minmax(72px,1.1fr) minmax(56px,.8fr) minmax(70px,1fr) 108px minmax(90px,1.1fr) 46px;gap:0 10px;align-items:center;padding:7px 0;border-bottom:1px solid #eef1f4;font-size:13.5px}
+.vr{display:grid;grid-template-columns:minmax(72px,1.1fr) minmax(56px,.8fr) minmax(70px,1fr) 108px minmax(90px,1.1fr);gap:0 10px;align-items:center;padding:7px 0;border-bottom:1px solid #eef1f4;font-size:13.5px}
 .vr.hd{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;padding:2px 0 6px}
 .vr .m{font-weight:600;color:#111827}
 .vr .n{text-align:right;white-space:nowrap}
 .vr .d{line-height:0}
 .vr .d img{display:block}
 .vr .fv small{display:block;font-size:11px;font-weight:600}
-.vr .fv .no,.vr .pe .no{color:#9ca3af}
+.vr .fv .no{color:#9ca3af}
 .vr .md small{display:block;font-size:11px;color:#6b7280}
 .fch-st2 .nota{font-size:11.5px;color:#6b7280;margin-top:8px;line-height:1.45}
 @media (max-width:900px){
 .fch-hd .pr{text-align:left}
 .fch-res{grid-template-columns:1fr}
 .fch-st2{grid-template-columns:1fr}
-.vr{grid-template-columns:1fr 1fr 1fr;grid-template-areas:"m h md" "d fv pe";gap:4px 10px}
+.vr{grid-template-columns:1fr 1fr 1fr;grid-template-areas:"m h md" "d fv fv";gap:4px 10px}
 .vr.hd{display:none}
-.vr .m{grid-area:m}.vr .h{grid-area:h}.vr .md{grid-area:md}.vr .d{grid-area:d}.vr .fv{grid-area:fv}.vr .pe{grid-area:pe}
+.vr .m{grid-area:m}.vr .h{grid-area:h}.vr .md{grid-area:md}.vr .d{grid-area:d}.vr .fv{grid-area:fv}
 .vr .n{text-align:left}
 .fch-hd .nm{font-size:1.5rem}
 }
@@ -545,19 +539,21 @@ def _tile_estadisticas(row, ficha):
     esperados = (metricas_de(row, row.get("sector")) or {}) if row.get("sector") else {}
     filas_v, hay_sin_fv = [], False
     for clave, etiqueta, col_a, col_m in (("per", "P/E", "per_actual", "per_mediana"), ("p_b", "P/Book", "p_b_actual", "p_b_mediana"),
-                                           ("ps", "P/S", "ps_actual", "ps_mediana"), ("ev_ebitda", "EV/EBITDA", "ev_ebitda_actual", "ev_ebitda_mediana"),
+                                           ("ps", "P/S", "ps_actual", "ps_mediana"), ("ev_ventas", "EV/Ventas", "ev_ventas_actual", "ev_ventas_mediana"),
+                                           ("ev_ebitda", "EV/EBITDA", "ev_ebitda_actual", "ev_ebitda_mediana"),
                                            ("p_fcf", "P/FCF", "p_fcf_actual", "p_fcf_mediana"), ("p_ffo", "P/FFO", "p_ffo_actual", "p_ffo_mediana"),
                                            ("p_affo", "P/AFFO", "p_affo_actual", "p_affo_mediana"), ("peg", "PEG", "peg_actual", "peg_mediana"),
-                                           ("dividend_yield", "Dividend Yield", "dividend_yield_actual", "dividend_yield_mediana")):
+                                           ("dividend_yield", "Dividend Yield", "dividend_yield_actual", "dividend_yield_mediana"),
+                                           ("rend_total", "Rendimiento total", "rend_total_actual", "rend_total_mediana")):
         a, m = _n(row.get(col_a)), _n(row.get(col_m))
         if not a or a <= 0:
             continue
         d = det.get(clave) if isinstance(det.get(clave), dict) else {}
         if d.get("estado") == "descartada":
             continue
-        if clave in ("p_ffo", "p_affo") and clave not in esperados:
-            continue            # el P/FFO y el P/AFFO solo tienen sentido en los REITs
-        es_dy = clave == "dividend_yield"
+        if clave in ("p_ffo", "p_affo", "ev_ventas", "rend_total") and clave not in esperados:
+            continue            # P/FFO y P/AFFO solo tienen sentido en los REITs; EV/Ventas y Rendimiento total solo se muestran si la empresa los usa
+        es_dy = clave in ("dividend_yield", "rend_total")
         if es_dy:                # el caché guarda el rendimiento como fraccion; la pantalla lo muestra en %
             a = a if a > 1 else a * 100
             m = (m if m > 1 else m * 100) if m and m > 0 else None
@@ -581,18 +577,18 @@ def _tile_estadisticas(row, ficha):
         else:
             hay_sin_fv = True
             fv_html = '<span class="n fv"><span class="no" title="No entra al Fair Value de esta empresa">—</span></span>'
-        peso = esperados.get(clave) if clave in esperados else None
-        pe_html = f'<span class="n pe">{peso * 100:.0f}%</span>' if peso else '<span class="n pe"><span class="no" title="No entra al Fair Value de esta empresa">—</span></span>'
         filas_v.append(f'<div class="vr"><span class="m">{etiqueta}</span><span class="n h">{hoy}</span><span class="n md">{med}{sub}</span>'
-                       f'{dib_html}{fv_html}{pe_html}</div>')
+                       f'{dib_html}{fv_html}</div>')
     val = ""
     if filas_v:
         cab = ('<div class="vr hd"><span>Métrica</span><span class="n">Hoy</span><span class="n">Mediana histórica</span><span>Hoy vs. mediana</span>'
-               '<span class="n">Fair Value</span><span class="n">Peso</span></div>')
+               '<span class="n">Fair Value</span></div>')
         nota = ('<div class="nota">En el dibujito, la marca del centro es la mediana histórica y el punto es hoy: a la derecha, más barata que lo habitual; '
-                'a la izquierda, más cara.' + (' Un “—” en Fair Value y Peso significa que ese dato se muestra pero no entra al cálculo de esta empresa.' if hay_sin_fv else '')
+                'a la izquierda, más cara.' + (' Un “—” en Fair Value significa que ese dato se muestra pero no entra al cálculo de esta empresa.' if hay_sin_fv else '')
                 + '</div>')
-        val = f'<div><h4>Valoración (12 meses)</h4>{cab}{"".join(filas_v)}{nota}</div>'
+        nota_moneda = row.get("moneda_nota")      # v1.2.50: antes se mostraba en la "Revisión de los métodos", que se quitó
+        moneda = f'<div class="fch-nota">Moneda: {html.escape(nota_moneda)}</div>' if isinstance(nota_moneda, str) and nota_moneda.strip() else ""
+        val = f'<div><h4>Valoración (12 meses)</h4>{cab}{"".join(filas_v)}{nota}{moneda}</div>'
     izq = "".join(c for c in (col("Perfil", perfil), col("Crecimiento", cre)) if c)
     cuerpo = f'<div class="fch-st2"><div class="izq">{izq}</div>{val}</div>' if val else f'<div class="fch-st2" style="grid-template-columns:1fr"><div class="izq">{izq}</div></div>'
     return _plegable("estadisticas", "Estadísticas de la empresa", cuerpo, ac="#3b82f6")
@@ -622,55 +618,6 @@ def _tile_valoracion(row):
     return _tile("s6", "Valoración" + _ayuda(TEXTO_VALORACION), f'<div style="text-align:left" class="fch-val">{cat}</div>{fvt}', ac=color)
 
 
-def _motivo_metodo_faltante(row, metrica):
-    """Por que un metodo del sector no aporto precio al Fair Value."""
-    descartados = row.get("fair_value_descartados")
-    if isinstance(descartados, dict) and descartados.get(metrica):
-        return str(descartados[metrica])
-    mediana, actual = _n(row.get(f"{metrica}_mediana")), _n(row.get(f"{metrica}_actual"))
-    if metrica == "dividend_yield":
-        div = _n(row.get("annual_dividend"))
-        if not (div and div > 0) and not (actual and actual > 0):
-            return "no paga dividendo"
-    if not mediana or mediana <= 0:
-        return "sin mediana histórica"
-    if metrica != "dividend_yield" and (not actual or actual <= 0):
-        return "sin dato actual"
-    return "sin precio implícito válido"
-
-
-def _tile_revision(row):
-    """Revision de los metodos del Fair Value (v1.2.47; antes era una vista de la tabla): una fila por metodo del sector, con su peso, el precio que
-    resulta y cuanto mas o menos que el precio de hoy, o el motivo por el que no se pudo usar."""
-    esperados = metricas_de(row, row.get("sector")) if row.get("sector") else {}
-    if not esperados:
-        return ""
-    det = _dict(row.get("fair_value_detalle"))
-    precio = _n(row.get("precio_actual"))
-    filas, ok = [], 0
-    for m, peso in esperados.items():
-        et = ETIQUETAS_METODO.get(m, m)
-        d = det.get(m) if isinstance(det.get(m), dict) else None
-        pm = _n(d.get("precio")) if d else None
-        if pm and pm > 0:
-            ok += 1
-            up = ""
-            if precio and precio > 0:
-                v = (pm - precio) / precio
-                col = "#15803d" if v > 0.05 else "#b91c1c" if v < -0.05 else "#a16207"
-                up = f'<span style="color:{col}">{v * 100:+.0f}%</span>'
-            filas.append(f'<tr><td class="ok">✓ {html.escape(et)}</td><td class="n">{peso * 100:.0f}%</td><td class="n ok">{_money(pm)}</td><td class="n">{up}</td><td></td></tr>')
-        else:
-            filas.append(f'<tr><td class="no">✗ {html.escape(et)}</td><td class="n no">{peso * 100:.0f}%</td><td class="n no">—</td><td class="n"></td>'
-                         f'<td class="no"><i>{html.escape(_motivo_metodo_faltante(row, m))}</i></td></tr>')
-    cab = '<tr><th>Método</th><th class="n">Peso</th><th class="n">Precio que resulta</th><th class="n">Contra el precio</th><th>Motivo si no se usó</th></tr>'
-    nota_moneda = row.get("moneda_nota")
-    moneda = f'<div class="fch-nota">Moneda: {html.escape(nota_moneda)}</div>' if isinstance(nota_moneda, str) and nota_moneda.strip() else ""
-    resumen = (f'<div class="rev-r"><b>{ok} de {len(esperados)} métodos</b> entraron al Fair Value. Cuando uno no se puede usar, su peso se reparte entre los otros. '
-               'El PEG es solo informativo: no entra al puntaje ni al promedio.</div>')
-    return _plegable("revision", "Revisión de los métodos del Fair Value", f'<table class="rev">{cab}{"".join(filas)}</table>{resumen}{moneda}', ac="#94a3b8")
-
-
 def ficha_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_datos=None):
     """Todos los mosaicos de la pagina de la empresa. `row` es el dict de la fila; `cedears` el resultado de data.cedears.cargar() (con el precio en
     pesos si se pudo); `ficha` los datos de Yahoo de la empresa (data/fichas.json); `mercado_codigo` el codigo del mercado pedido a Yahoo en el momento;
@@ -678,5 +625,5 @@ def ficha_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_datos=N
     datos = cedears if cedears is not None else _cedears.cargar()
     mercado, adr = _fichas.mercado_y_adr(row.get("ticker"), ficha, mercado_codigo)
     mosaicos = [_encabezado(row, mercado, ficha, datos, fecha_datos), _tile_resumen(row, ficha, mercado), _tile_score(row), _tile_valoracion(row),
-                _tile_estadisticas(row, ficha), linea_precios_html(row), _tile_revision(row)]
+                _tile_estadisticas(row, ficha), linea_precios_html(row)]
     return '<div class="fch">' + "".join(m for m in mosaicos if m) + "</div>"

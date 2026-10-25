@@ -39,7 +39,7 @@ import pandas as pd
 from typing import Optional
 from config.sectors import (
     SECTOR_CONFIG, FUNDAMENTAL_WEIGHT, TECHNICAL_WEIGHT, TICKER_TO_SECTOR, metricas_de, PEG_CONDICIONAL,
-    motivo_descarte, SECTOR_MIN_EMPRESAS, MIN_ANIOS_MEDIANA_PROPIA, METRICAS_EXCLUIDAS,
+    motivo_descarte, SECTOR_MIN_EMPRESAS, MIN_ANIOS_MEDIANA_PROPIA, METRICAS_EXCLUIDAS, factor_historia,
 )
 
 
@@ -97,6 +97,9 @@ MIN_METRICAS = 1
 # Cuántas métricas del sector debe tener disponibles (de 4) para armar el score fundamental
 MIN_METRICAS_DEL_SECTOR = 1
 
+# v1.2.50: métricas que no se completan con la mediana del sector cuando falta la historia propia.
+SIN_RESPALDO_SECTOR = ("dividend_yield",)
+
 
 # ---------------------------------------------------------------------------
 # NORMALIZACIÓN DE MÉTRICAS
@@ -127,7 +130,7 @@ def _score_metrica(actual: Optional[float], mediana: Optional[float],
     if motivo_descarte(metrica, actual, mediana):
         return None
 
-    YIELD_METRICS = {"dividend_yield"}
+    YIELD_METRICS = {"dividend_yield", "rend_total"}     # v1.2.50: el rendimiento total (dividendo + recompras) se lee igual que el dividendo
 
     if metrica in YIELD_METRICS:
         # Mayor yield = mejor = score alto
@@ -137,7 +140,7 @@ def _score_metrica(actual: Optional[float], mediana: Optional[float],
         ratio = mediana / actual  # > 1 si actual < mediana (barata)
 
     # Sigmoide suavizada: score = 100 / (1 + e^(-k*(ratio-1)))
-    # k=4 da una curva que va de ~18 en ratio=0.5 a ~82 en ratio=1.5
+    # k=4 da una curva que va de ~12 en ratio=0.5 a ~88 en ratio=1.5 (corregido en la v1.2.50: el comentario decia ~18 y ~82)
     k = 4.0
     score = 100.0 / (1.0 + np.exp(-k * (ratio - 1.0)))
     return round(float(score), 1)
@@ -213,6 +216,7 @@ def _score_fundamental(row: dict, sector: str) -> tuple[Optional[float], int, in
         score = _score_metrica(actual, mediana, metrica)
 
         if score is not None:
+            peso = peso * factor_historia(row, metrica)    # v1.2.50: con solo 3 años de historia la métrica pesa la mitad
             scores_ponderados.append(score * peso)
             peso_acumulado += peso
             metricas_usadas += 1
@@ -426,6 +430,7 @@ def puntaje_vs_sector(datos: dict, sector: str, ticker: str, pool: dict) -> dict
     if sector not in SECTOR_CONFIG:
         return vacio
     calc = dict(datos)
+    calc["_sin_sustitucion"] = True     # v1.2.50: el puntaje en sombra usa las métricas base (no hay referencia de sector para las nuevas)
     if sector in PEG_CONDICIONAL["sectores"]:
         calc["peg_mediana"] = None      # v1.2.44: el puntaje vs sector no usa el PEG condicional (no hay referencia de sector para el)
     for m in SECTOR_CONFIG[sector]["metrics"]:
@@ -447,10 +452,17 @@ def aplicar_respaldo_sector(datos: dict, sector: str, refs: dict) -> dict:
         return usados
     apto = _apto_respaldo_sector(datos)
     for m in SECTOR_CONFIG[sector]["metrics"]:
+        # v1.2.50: sin respaldo de sector (Dividend Yield): si la mediana propia no sirve (pocos anios o imposible) la metrica queda sin dato
+        # y su peso se reparte entre las demas. Hay que borrarla: el puntaje y el Fair Value leen la mediana tal como esta en la fila.
+        if m in SIN_RESPALDO_SECTOR:
+            if _mediana_propia_valida(datos, m) is None:
+                datos[f"{m}_mediana"] = None
+            continue
         # El PEG lo calcula Yahoo/Stock Analysis como cociente de ratios y no se vio roto por moneda
         # o ADR: se permite siempre. Las demas metricas, solo si el valor actual tambien es confiable.
         if not apto and m != "peg":
             continue
+
         if _mediana_propia_valida(datos, m) is not None or not _actual_valido(datos, m):
             continue
         ref = refs.get(sector, {}).get(m)

@@ -2,11 +2,11 @@
 Marca de la app (v1.2.36; menu rehecho en la v1.2.38; v1.2.45: gris oscuro; v1.2.48: menu "Sobre Nosotros"; v1.2.49: barra reordenada).
 
 Franja gris oscura de punta a punta arriba de todo: el nombre TodoCedears a la izquierda (la imagen del titulo si esta en
-assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas) y, a la derecha (v1.2.49), tres menus desplegables:
+assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas) y, a la derecha, dos menus desplegables (v1.2.50; en la v1.2.49 eran tres):
   - "Sobre Nosotros": Quiénes somos (pagina propia, ?pagina=quienes), "Nuestras Redes" (YouTube, Instagram e Intramed, con sus colores) y
     "Contactános" (Gmail y WhatsApp, con sus colores);
-  - "Comentarios": el cuadro que manda el mensaje por mail;
-  - "Abrite una cuenta": boton destacado con los logos de Balanz e Inviu.
+    y, mas abajo, "Abrite una cuenta con nosotros" (v1.2.50: antes era un boton aparte) con los logos de Balanz e Inviu;
+  - "Comentarios": el cuadro que manda el mensaje por mail.
 Despues va el toro de "Finanzas para Medicos Argentina" chiquito. Los iconos de un solo color que antes estaban sueltos en la franja ya no estan
 (estan, a color, en el menu); se pueden volver a mostrar con ICONOS_EN_BARRA = True en config/ajustes.py. En las pantallas anchas el buscador de
 la tabla se acomoda en el centro de la franja (CSS en ui/tabla_visual.py). Los links se cargan en config/ajustes.py (ENLACES_MARCA y CUENTAS_MARCA):
@@ -105,8 +105,6 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 .mc-co{width:46px;height:46px;border-radius:12px;background:#fff;border:1px solid #e3e8ee;box-shadow:0 1px 3px rgba(15,23,42,.10);display:flex;align-items:center;justify-content:center}
 .mc-co svg{width:28px;height:28px;display:block}
 .mc-co img{width:32px;height:32px;display:block;border-radius:50%}
-.mc-cta{background:#00e85c;color:#06240f!important;border-radius:999px;padding:8px 16px;margin-left:4px}
-a.mc-it.mc-cta:hover,.mc-d[open]>summary.mc-cta,summary.mc-cta:hover{background:#3df08a;color:#06240f!important}
 .mc-toro{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .mc-toro img{width:36px;height:auto;display:block}
 .mc-datos{text-align:right;font-size:12.5px;color:#4b5563;margin:6px 4px -18px}
@@ -120,11 +118,9 @@ a.mc-it.mc-cta:hover,.mc-d[open]>summary.mc-cta,summary.mc-cta:hover{background:
 .mc-izq{order:1;flex:1 1 0}.mc-toro{order:2;width:40px;height:40px}.mc-toro img{width:32px}
 .mc-nav{order:3;flex:1 1 100%;justify-content:center;gap:2px;border-top:1px solid #41464c;padding-top:4px;margin-top:2px}
 .mc-t{font-size:1.7rem}.mc-img{height:36px}.mc-it{font-size:.8rem;padding:6px 8px}.mc-x{display:none}
-.mc-nav{position:relative}.mc-d{position:static}.mc-cta{margin-left:0;padding:6px 12px}
-.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,320px)}
+.mc-nav{position:relative}.mc-d{position:static}.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,320px)}
 }
-@media (max-width:430px){.mc-nav{gap:0}.mc-it{font-size:.76rem;padding:6px 6px}.mc-cta{padding:6px 10px;margin-left:2px}}
-"""
+@media (max-width:430px){.mc-nav{gap:0}.mc-it{font-size:.76rem;padding:6px 6px}}"""
 CSS = CSS.replace("__FONDO__", str(FONDO_PAGINA or "#ffffff"))
 # v1.2.49: en pantallas anchas el buscador de la tabla (.st-key-buscador, que Streamlit dibuja mas abajo) sube a la franja, al medio. La franja mide 80 px.
 # Medidas (calibradas con los menus de arriba): el logo termina cerca de x = 400 y el menu empieza en (ancho - 562). Desde 1440 px el buscador queda en
@@ -324,7 +320,7 @@ def _enlace_color(clave, url):
     return f'<span class="mc-lk" title="{leyenda}: próximamente">{cuerpo}</span>'
 
 
-def _sobre_nosotros_html(e):
+def _sobre_nosotros_html(e, cuentas=None):
     """Menu "Sobre Nosotros" (v1.2.49): Quiénes somos (la pagina propia ?pagina=quienes, o el link de ENLACES_MARCA["quienes_somos"] si se carga uno),
     "Nuestras Redes" (YouTube, Instagram e Intramed, a color) y "Contactános" (Gmail y WhatsApp, a color). Lo que no tiene link no se muestra
     (WhatsApp se muestra apagado hasta que se cargue su link)."""
@@ -340,6 +336,10 @@ def _sobre_nosotros_html(e):
     contacto += _enlace_color("whatsapp", e["whatsapp"])
     if contacto:
         bloques += ['<div class="mc-hr"></div>', '<div class="mc-ps">Contactános</div>', f'<div class="mc-redes">{contacto}</div>']
+    # v1.2.50 (decidido por el dueño): "Abrite una cuenta con nosotros" va DENTRO de este menu, no como boton aparte en la barra.
+    logos = _cuentas_html(cuentas)
+    if logos:
+        bloques += ['<div class="mc-hr"></div>', logos]
     return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Sobre Nosotros ▾</summary><div class="mc-pop">{"".join(bloques)}</div></details>'
 
 
@@ -355,17 +355,8 @@ def _comentarios_menu_html(e, comentarios_mail=None):
     return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Comentarios ▾</summary><div class="mc-pop">{form}</div></details>'
 
 
-def _cuenta_menu_html(cuentas=None):
-    """"Abrite una cuenta" como boton destacado (v1.2.49): separado de "Sobre Nosotros" para que no choquen. Desplegable con los logos de Balanz e Inviu."""
-    logos = _cuentas_html(cuentas)
-    if not logos:
-        return ""
-    return f'<details class="mc-d" name="mcnav"><summary class="mc-it mc-cta">Abrite una cuenta ▾</summary><div class="mc-pop">{logos}</div></details>'
-
-
 def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None):
-    """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros", "Comentarios"
-    y el boton "Abrite una cuenta" (v1.2.49), los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
+    """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrite una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
     uri_titulo = _uri(TITULO)
     izq = (f'<img class="mc-img" src="{uri_titulo}" alt="{html.escape(str(nombre))}">' if uri_titulo
            else f'<div class="mc-t">{_titulo(nombre)}</div>')
@@ -380,7 +371,7 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
                 iconos += _insignia(k, "WhatsApp: próximamente")
         iconos += _icono_img("intramed", "Intramed", e["intramed"], "mc-ib")
     iconos = f'<div class="mc-ic">{iconos}</div>' if iconos else ""
-    menus = _sobre_nosotros_html(e) + _comentarios_menu_html(e, comentarios_mail) + _cuenta_menu_html(cuentas)
+    menus = _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
     nav = f'<div class="mc-nav">{menus}{iconos}</div>'
     uri = logo_uri()
     toro = (f'<div class="mc-toro"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}" title="{html.escape(NOMBRE_MARCA)}"></div>'

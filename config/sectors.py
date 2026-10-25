@@ -11,15 +11,16 @@ Distribución: 85% fundamental (4 métricas ponderadas) + 15% técnico (rango 52
 #
 # Métricas disponibles:
 #   ev_ebitda, per, p_fcf, p_b, dividend_yield, p_ffo, p_affo, peg, ps
+#   (v1.2.50) ev_ventas y rend_total reemplazan a ps y dividend_yield cuando hay dato: ver SUSTITUCIONES
 # ---------------------------------------------------------------------------
 
 SECTOR_CONFIG = {
+    # v1.2.50: el P/B (10 %) sale de Materiales y de Energía (aporta poco fuera de los bancos); su peso se reparte en proporción.
     "Materiales Básicos": {
         "metrics": {
-            "ev_ebitda":       0.35,
-            "p_fcf":           0.30,
-            "dividend_yield":  0.25,
-            "p_b":             0.10,
+            "ev_ebitda":       0.39,
+            "p_fcf":           0.33,
+            "dividend_yield":  0.28,
         },
     },
     "REITs": {
@@ -55,12 +56,14 @@ SECTOR_CONFIG = {
             "dividend_yield":  0.15,
         },
     },
+    # v1.2.50: ningún sector pone más de 30 % en el rendimiento al accionista (antes: Consumo Básico 35 %, Utilities 45 %);
+    # el exceso se reparte en proporción entre las demás métricas.
     "Consumo Básico": {
         "metrics": {
-            "dividend_yield":  0.35,
-            "ev_ebitda":       0.25,
-            "per":             0.25,
-            "p_fcf":           0.15,
+            "dividend_yield":  0.30,
+            "ev_ebitda":       0.27,
+            "per":             0.27,
+            "p_fcf":           0.16,
         },
     },
     "Comunicación": {
@@ -118,10 +121,9 @@ SECTOR_CONFIG = {
     },
     "Energía": {
         "metrics": {
-            "p_fcf":           0.35,
-            "ev_ebitda":       0.30,
-            "dividend_yield":  0.25,
-            "p_b":             0.10,
+            "p_fcf":           0.39,
+            "ev_ebitda":       0.33,
+            "dividend_yield":  0.28,
         },
     },
     "Salud": {
@@ -134,10 +136,10 @@ SECTOR_CONFIG = {
     },
     "Utilities": {
         "metrics": {
-            "dividend_yield":  0.45,
-            "p_fcf":           0.20,
-            "ev_ebitda":       0.20,
-            "per":             0.15,
+            "dividend_yield":  0.30,
+            "p_fcf":           0.25,
+            "ev_ebitda":       0.25,
+            "per":             0.20,
         },
     },
 }
@@ -254,6 +256,8 @@ RANGOS_PLAUSIBLES = {
     "dividend_yield": (0.0005, 0.5),
     "p_ffo":          (3.0, 2000.0),
     "p_affo":         (3.0, 2000.0),
+    "ev_ventas":      (0.05, 500.0),     # v1.2.50
+    "rend_total":     (0.0005, 0.5),     # v1.2.50 (dividendo + recompras netas, como fraccion)
 }
 
 # Un metodo de Fair Value que dice que la empresa vale mas de 3 veces (o menos de 1/3) su precio
@@ -301,6 +305,43 @@ def _num(v):
     return f if f == f and abs(f) != float("inf") else None
 
 
+# v1.2.50 (auditoría del 25/10/2026, decidido por el dueño): en el PUNTAJE y en el Fair Value, dos métricas se reemplazan por una versión
+# mejor cuando la empresa tiene el dato (misma fuente, Stock Analysis, con al menos MIN_ANIOS_MEDIANA_PROPIA años de historia):
+#   P/S            -> EV/Ventas        (incluye la deuda: P/S hace parecer baratas a las endeudadas; Damodaran, cap. 5, p. 57-58)
+#   Dividend Yield -> Rendimiento total (dividendo + recompras netas; Damodaran, p. 39 y 140). No en REITs: ahí emitir acciones es parte del negocio.
+# Si la empresa no tiene el dato nuevo, sigue con la métrica de siempre. La tabla y las columnas siguen mostrando P/S y Dividend Yield.
+SUSTITUCIONES = {"ps": "ev_ventas", "dividend_yield": "rend_total"}
+SUSTITUCION_NO_APLICA = {"REITs": ("dividend_yield",)}
+
+# v1.2.50: con la mediana armada con solo 3 de los 5 años (2 o más años faltan: pérdidas o empresa recién cotizada) la métrica pesa la mitad.
+# No se muestra nada en pantalla. Con menos de 3 años la mediana propia ya no se usa (MIN_ANIOS_MEDIANA_PROPIA).
+FACTOR_HISTORIA_CORTA = 0.5
+ANIOS_HISTORIA_CORTA = 3
+
+
+def factor_historia(row, metrica) -> float:
+    """1,0 salvo que la mediana propia de `metrica` se haya armado con exactamente ANIOS_HISTORIA_CORTA años: entonces FACTOR_HISTORIA_CORTA.
+    Si la fila no trae los años (caché viejo), no se toca el peso."""
+    anios = row.get("anios_historia") if hasattr(row, "get") else None
+    n = anios.get(metrica) if isinstance(anios, dict) else None
+    if n is not None and MIN_ANIOS_MEDIANA_PROPIA <= n <= ANIOS_HISTORIA_CORTA:
+        return FACTOR_HISTORIA_CORTA
+    return 1.0
+
+
+def _metrica_nueva_usable(row, nueva) -> bool:
+    """La métrica sustituta sirve si tiene valor actual y mediana positivos y creíbles, de Stock Analysis y con historia suficiente."""
+    a, m = _num(row.get(f"{nueva}_actual")), _num(row.get(f"{nueva}_mediana"))
+    if a is None or m is None or a <= 0 or m <= 0 or motivo_descarte(nueva, a, m):
+        return False
+    fuentes = row.get("fuentes")
+    if not isinstance(fuentes, dict) or fuentes.get(nueva) != "Stock Analysis":
+        return False
+    anios = row.get("anios_historia")
+    n = anios.get(nueva) if isinstance(anios, dict) else None
+    return n is None or n >= MIN_ANIOS_MEDIANA_PROPIA
+
+
 def peg_creible(row) -> bool:
     """True si el PEG de esta empresa cumple las cuatro condiciones de PEG_CONDICIONAL (no mira el sector)."""
     c = PEG_CONDICIONAL
@@ -322,13 +363,18 @@ def peg_creible(row) -> bool:
 def metricas_de(row, sector) -> dict:
     """
     {metrica: peso} que se usa para ESTA empresa. Casi siempre es SECTOR_CONFIG[sector]["metrics"]; en los sectores de
-    PEG_CONDICIONAL suma el PEG (0,25) cuando es creíble para la empresa. Los pesos siempre suman 1,0.
+    PEG_CONDICIONAL suma el PEG (0,25) cuando es creíble para la empresa, y (v1.2.50) cambia P/S por EV/Ventas y Dividend Yield por
+    Rendimiento total cuando la empresa tiene el dato nuevo. Los pesos siempre suman 1,0.
     """
     base = dict(SECTOR_CONFIG.get(sector, {}).get("metrics", {}))
     if sector in PEG_CONDICIONAL["sectores"] and "peg" not in base and row is not None and peg_creible(row):
         w = PEG_CONDICIONAL["peso"]
         base = {m: round(p * (1.0 - w), 6) for m, p in base.items()}
         base["peg"] = w
+    # v1.2.50: P/S -> EV/Ventas y Dividend Yield -> Rendimiento total, si la empresa tiene el dato nuevo
+    if row is not None and hasattr(row, "get") and not row.get("_sin_sustitucion"):
+        base = {(SUSTITUCIONES[m] if (m in SUSTITUCIONES and m not in SUSTITUCION_NO_APLICA.get(sector, ()) and
+                                      _metrica_nueva_usable(row, SUSTITUCIONES[m])) else m): p for m, p in base.items()}
     return base
 
 

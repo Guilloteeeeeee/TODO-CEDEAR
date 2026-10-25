@@ -34,6 +34,16 @@ DEFECTO = [v["clave"] for v in VARIABLES if v["base"]]          # las que vienen
 CLAVES = [v["clave"] for v in VARIABLES]
 
 
+# v1.2.50: las pastillas se muestran en dos grupos para que no sean una lista de 15: "Datos básicos" y "Múltiplos" (las razones precio/algo).
+CLAVES_MULTIPLOS = ("per_actual", "ev_ebitda_actual", "p_fcf_actual", "p_b_actual", "ps_actual", "peg_actual")
+GRUPOS = (("Datos básicos", lambda v: v["clave"] not in CLAVES_MULTIPLOS), ("Múltiplos", lambda v: v["clave"] in CLAVES_MULTIPLOS))
+
+
+def agrupar(variables):
+    """[(titulo del grupo, [variables])] en el orden de GRUPOS, sin los grupos vacios (el buscador puede dejar uno sin pastillas)."""
+    return [(titulo, [v for v in variables if pertenece(v)]) for titulo, pertenece in GRUPOS if any(pertenece(v) for v in variables)]
+
+
 def normalizar(texto):
     """Minusculas, sin tildes ni signos: 'Posición' -> 'posicion'. Para el buscador de variables."""
     t = unicodedata.normalize("NFKD", str(texto or "")).encode("ascii", "ignore").decode("ascii").casefold()

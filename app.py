@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.49"
+APP_VERSION = "1.2.50"
 
 import streamlit as st
 import pandas as pd
@@ -65,7 +65,7 @@ st.set_page_config(
 
 CACHE_FILE = "data/cache_datos.json"
 TICKERS_FILE = "data/tickers_custom.json"
-CACHE_TTL_HORAS = 6  # Refresca datos cada 6 horas
+CACHE_TTL_HORAS = 6  # v1.2.50: solo vale para la memoria de la app (st.cache_data); el cache en disco se usa SIEMPRE, de cualquier edad (ignorar_ttl=True)
 
 
 def load_custom_tickers() -> dict:
@@ -91,11 +91,21 @@ def load_cache(ignorar_ttl: bool = False) -> tuple[pd.DataFrame | None, datetime
     Carga datos del cache.
     Si ignorar_ttl=True, devuelve el cache aunque esté vencido (fallback cuando yfinance falla).
     """
-    if not os.path.exists(CACHE_FILE):
-        return None, None
+    cache = None
+    if os.path.exists(CACHE_FILE):
+        try:
+            with open(CACHE_FILE) as f:
+                cache = json.load(f)
+        except Exception:
+            cache = None
+    if cache is None:
+        # v1.2.50: cache principal ausente o ilegible -> la copia mas nueva y valida de data/historial (antes la app bajaba todo de Yahoo,
+        # que bloquea a los servidores en la nube, y con otro metodo)
+        from data.cache_seguro import ultimo_historial_valido
+        _, cache = ultimo_historial_valido(os.path.join("data", "historial"))
+        if cache is None:
+            return None, None
     try:
-        with open(CACHE_FILE) as f:
-            cache = json.load(f)
         ts = datetime.fromisoformat(cache["timestamp"])
         horas_pasadas = (datetime.now() - ts).total_seconds() / 3600
         if horas_pasadas > CACHE_TTL_HORAS and not ignorar_ttl:
@@ -398,11 +408,13 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     elegidas = set(seleccion)
     st.markdown('<div class="vars-t">Variables a ver en la tabla</div>', unsafe_allow_html=True)
     consulta = st.text_input("Buscar variables", key="flt_vars_q", placeholder="Buscá y elegí qué ver", label_visibility="collapsed", max_chars=40)
-    with st.container(key="vars_chips"):
-        for v in _variables.buscar(consulta):
-            on = v["clave"] in elegidas
-            st.button(("✓ " if on else "") + v["nombre"], key=f"{'varon' if on else 'varoff'}_{v['clave']}", help=f"**{v['nombre']}.** {v['ayuda']}",
-                      on_click=_alternar_variable, args=(v["clave"],))
+    for i_g, (titulo_g, vars_g) in enumerate(_variables.agrupar(_variables.buscar(consulta))):
+        st.markdown(f'<div class="vars-g">{html.escape(titulo_g)}</div>', unsafe_allow_html=True)
+        with st.container(key="vars_chips" if i_g == 0 else "vars_chips_mult"):
+            for v in vars_g:
+                on = v["clave"] in elegidas
+                st.button(("✓ " if on else "") + v["nombre"], key=f"{'varon' if on else 'varoff'}_{v['clave']}", help=f"**{v['nombre']}.** {v['ayuda']}",
+                          on_click=_alternar_variable, args=(v["clave"],))
     if set(seleccion) != set(_variables.DEFECTO):
         st.button("Volver a las variables de siempre", key="vars_reiniciar", type="tertiary", on_click=_reiniciar_variables)
 

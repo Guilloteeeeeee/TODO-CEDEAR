@@ -6,8 +6,11 @@ __pycache__/
 venv/
 .venv/
 
-# Datos cacheados (no versionar, son datos temporales)
-data/cache_datos.json
+# Datos cacheados: data/cache_datos.json SI se versiona (la app lo lee en la nube; v1.2.50 corrigio esta linea, que decia lo contrario).
+# Solo se ignoran los temporales y lo que el generador rechaza por salir incompleto:
+data/cache_datos.json.tmp
+data/*.tmp
+data/cache_rechazado.json
 
 # Sí versionar el universo de tickers custom
 # data/tickers_custom.json  ← lo incluimos

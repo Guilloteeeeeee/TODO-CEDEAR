@@ -197,6 +197,9 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         "p_ffo_actual": None,
         "p_affo_actual": None,
         "ps_actual": None,
+        "ev_ventas_actual": None,        # v1.2.50: EV / ventas (Stock Analysis)
+        "rend_total_actual": None,       # v1.2.50: dividendo + recompras netas (fraccion, Stock Analysis)
+        "ev_sobre_cap": None,            # v1.2.50: valor de la empresa / valor de mercado (para el puente de deuda del Fair Value)
         "annual_dividend": None,
         # Medianas históricas
         "ev_ebitda_mediana": None,
@@ -208,6 +211,8 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         "p_ffo_mediana": None,
         "p_affo_mediana": None,
         "ps_mediana": None,
+        "ev_ventas_mediana": None,
+        "rend_total_mediana": None,
         # Metadatos
         "error": None,
         "metricas_disponibles": 0,
@@ -295,9 +300,10 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
             pfcf_info = _safe_float(info.get("priceToFreeCashflows"), min_val=0, max_val=2000)
             result["p_fcf_actual"] = pfcf_info
 
-        # P/FFO y P/AFFO para REITs (proxy via P/E)
-        result["p_ffo_actual"] = result["per_actual"]
-        result["p_affo_actual"] = result["per_actual"]
+        # P/FFO y P/AFFO (REITs): v1.2.50 ya NO se aproximan con el P/E (en un REIT el P/E esta deformado por la depreciacion de los
+        # inmuebles, que es justamente lo que el FFO corrige). Solo cuentan si Stock Analysis trae el dato real.
+        result["p_ffo_actual"] = None
+        result["p_affo_actual"] = None
 
         # --- Histórico anual para medianas ---
         time.sleep(REQUEST_DELAY)
@@ -481,9 +487,9 @@ def _enrich_with_history(tk: yf.Ticker, result: dict, info: dict, modo: str = "r
         # (se comparaba contra si mismo y daba siempre 50 puntos); la historia real viene de
         # Stock Analysis y, si no esta, el motor usa la mediana del sector.
         result["peg_mediana"] = None
-        # FFO/AFFO: aproximados con el PER mientras no haya fuente real (Stock Analysis si la tiene)
-        result["p_ffo_mediana"] = result["per_mediana"]
-        result["p_affo_mediana"] = result["per_mediana"]
+        # FFO/AFFO: v1.2.50 sin aproximacion con el PER (ver arriba); la mediana solo llega desde Stock Analysis
+        result["p_ffo_mediana"] = None
+        result["p_affo_mediana"] = None
 
     except Exception as e:
         logger.debug(f"Error en histórico yfinance para {result['ticker']}: {e}")
@@ -802,25 +808,45 @@ def calc_fair_value(result: dict, sector: str) -> dict:
       - fair_value: precio objetivo ponderado en USD (o None si no hay suficientes datos)
       - fair_value_detalle: dict con precio implícito por método y su peso
       - fair_value_metodos: cantidad de métodos con precio calculado
+
+    v1.2.50 (auditoría, decidido por el dueño):
+      - Un método que da menos de 1/3 o más de 3 veces el precio YA NO se descarta: entra al promedio con el precio recortado a ese tope
+        ("topeado"). Antes se descartaba y el puntaje (que sí cuenta esa métrica) y el Fair Value podían contradecirse. Siguen descartándose
+        solo los datos IMPOSIBLES (RANGOS_PLAUSIBLES).
+      - EV/EBITDA y EV/Ventas pasan por la deuda: precio = precio hoy × (1 + k × (mediana/actual − 1)), con k = valor de la empresa / valor de
+        mercado. Con k = 1 (sin deuda ni caja, o sin dato) da lo mismo que antes.
+      - El método de dividendo usa el rendimiento de Stock Analysis (la misma fuente del puntaje), no el dividendo anual de Yahoo.
+      - Con solo 3 años de historia un método pesa la mitad (igual que en el puntaje).
     """
-    from config.sectors import SECTOR_CONFIG, motivo_descarte, FV_RATIO_MIN, FV_RATIO_MAX, metricas_de
+    from config.sectors import SECTOR_CONFIG, motivo_descarte, FV_RATIO_MIN, FV_RATIO_MAX, metricas_de, factor_historia
 
     fv_result = {
         "fair_value": None,
         "fair_value_detalle": {},
         "fair_value_metodos": 0,
-        "fair_value_descartados": {},   # v1.2.11: {metodo: motivo} de lo que NO entra al promedio
+        "fair_value_descartados": {},   # v1.2.11: {metodo: motivo} de lo que NO entra al promedio (solo datos imposibles desde la v1.2.50)
     }
 
     if sector not in SECTOR_CONFIG:
         return fv_result
 
-    config = metricas_de(result, sector)   # v1.2.44: puede traer el PEG si es creible para esta empresa
+    config = metricas_de(result, sector)   # v1.2.44/v1.2.50: puede traer el PEG, EV/Ventas o Rendimiento total
     precio_actual = result.get("precio_actual")
-    shares = None  # no disponible en result; usar proxy cuando sea necesario
+    if precio_actual is not None and precio_actual != precio_actual:
+        precio_actual = None
+
+    # k = valor de la empresa / valor de mercado (puente de deuda). Fuera de 0,2 a 5 es un dato dudoso: se usa 1 (sin ajuste).
+    k = result.get("ev_sobre_cap")
+    try:
+        k = float(k)
+        if not (0.2 <= k <= 5.0):
+            k = 1.0
+    except (TypeError, ValueError):
+        k = 1.0
+    if k != k:
+        k = 1.0
 
     precios_metodos = {}
-
     descartados = fv_result["fair_value_descartados"]
 
     for metrica, peso in config.items():
@@ -836,76 +862,39 @@ def calc_fair_value(result: dict, sector: str) -> dict:
             descartados[metrica] = motivo
             continue
 
+        if not (actual and actual > 0 and precio_actual and precio_actual > 0):
+            continue
+
         precio_implicito = None
 
-        if metrica == "per":
-            # PER_mediana × EPS_actual
-            # EPS = precio / PER_actual (si PER_actual existe); sino intentamos reconstruir
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                eps = precio_actual / actual
-                precio_implicito = mediana * eps
+        if metrica in ("per", "p_fcf", "p_b", "p_ffo", "p_affo"):
+            # multiplo / valor por accion: valor_por_accion = precio / multiplo_hoy; precio = mediana × valor_por_accion
+            precio_implicito = mediana * (precio_actual / actual)
 
-        elif metrica == "ev_ebitda":
-            # Para EV/EBITDA no podemos reconstruir el precio limpiamente sin deuda/caja/shares
-            # Usamos el ratio: precio_implicito = precio_actual * (mediana / actual)
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                precio_implicito = precio_actual * (mediana / actual)
+        elif metrica in ("ev_ebitda", "ev_ventas"):
+            # v1.2.50: multiplo del valor de la EMPRESA. Valor objetivo = valor hoy × mediana/actual; al accionista le queda eso menos la deuda
+            # neta. Por accion: precio × (1 + k × (mediana/actual − 1)).
+            precio_implicito = precio_actual * (1.0 + k * (mediana / actual - 1.0))
 
-        elif metrica == "p_fcf":
-            # P/FCF_mediana × FCF_per_share
-            # FCF/share = precio / P/FCF_actual
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                fcf_per_share = precio_actual / actual
-                precio_implicito = mediana * fcf_per_share
+        elif metrica in ("dividend_yield", "rend_total"):
+            # el rendimiento sube cuando el precio baja: precio = precio hoy × (rendimiento hoy / rendimiento mediano)
+            precio_implicito = precio_actual * (actual / mediana)
 
-        elif metrica == "p_b":
-            # P/B_mediana × Book Value per share
-            # BVPS = precio / P/B_actual
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                bvps = precio_actual / actual
-                precio_implicito = mediana * bvps
+        elif metrica in ("peg", "ps"):
+            # PEG y P/S: el precio implicito es proporcional (P/S es precio / ventas por accion)
+            precio_implicito = precio_actual * (mediana / actual)
 
-        elif metrica == "dividend_yield":
-            # precio = dividendo_anual / DY_mediana
-            annual_div = result.get("annual_dividend")
-            if annual_div and annual_div > 0 and mediana > 0:
-                precio_implicito = annual_div / mediana
-            elif actual and actual > 0 and precio_actual and precio_actual > 0:
-                # Fallback: precio_actual × (actual / mediana)
-                precio_implicito = precio_actual * (actual / mediana)
+        if precio_implicito is None:
+            continue
 
-        elif metrica in ("peg",):
-            # PEG: usamos ratio directo como EV/EBITDA
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                precio_implicito = precio_actual * (mediana / actual)
-
-        elif metrica == "ps":
-            # v1.2.43: P/S = precio / ventas por accion, asi que el precio implicito es proporcional (igual que EV/EBITDA)
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                precio_implicito = precio_actual * (mediana / actual)
-
-        elif metrica in ("p_ffo", "p_affo"):
-            # Similar a P/E para REITs
-            if actual and actual > 0 and precio_actual and precio_actual > 0:
-                ffo_per_share = precio_actual / actual
-                precio_implicito = mediana * ffo_per_share
-
-        # v1.2.11: si un método dice que la empresa vale más de 3 veces (o menos de 1/3) su precio,
-        # no se promedia: es más probable un dato roto que una oportunidad. Se reparte su peso entre
-        # los demás métodos. (El score no se toca: ahí las métricas extremas siguen contando.)
-        if precio_implicito and precio_actual and precio_implicito > 0:
-            ratio_check = precio_implicito / precio_actual
-            if FV_RATIO_MIN <= ratio_check <= FV_RATIO_MAX:
-                precios_metodos[metrica] = {
-                    "precio": round(precio_implicito, 2),
-                    "peso": peso,
-                }
-            else:
-                descartados[metrica] = (
-                    f"precio implícito {ratio_check:.1f}x el precio (fuera de 1/3x–3x)"
-                    if ratio_check > 1 else
-                    f"precio implícito {ratio_check:.2f}x el precio (fuera de 1/3x–3x)"
-                )
+        # v1.2.50: tope en lugar de descarte. Un método que dice 0,05x o 8x el precio entra como 1/3x o 3x.
+        piso, techo = precio_actual * FV_RATIO_MIN, precio_actual * FV_RATIO_MAX
+        peso_ef = peso * factor_historia(result, metrica)
+        entrada = {"precio": round(min(max(precio_implicito, piso), techo), 2), "peso": peso_ef}
+        if precio_implicito < piso or precio_implicito > techo:
+            entrada["topeado"] = "piso" if precio_implicito < piso else "techo"
+            entrada["precio_sin_tope"] = round(precio_implicito, 2)
+        precios_metodos[metrica] = entrada
 
     if not precios_metodos:
         return fv_result

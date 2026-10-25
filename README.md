@@ -10,21 +10,23 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 
 | Sector | Métrica 1 | Métrica 2 | Métrica 3 | Métrica 4 |
 |---|---|---|---|---|
-| Materiales Básicos | EV/EBITDA (35%) | P/FCF (30%) | Div. Yield (25%) | P/B (10%) |
+| Materiales Básicos | EV/EBITDA (39%) | P/FCF (33%) | Div. Yield (28%) | — |
 | REITs | P/FFO (30%) | P/AFFO (30%) | Div. Yield (30%) | EV/EBITDA (10%) |
 | Bancos y seguros | P/B (40%) | PER (35%) | Div. Yield (25%) | — |
 | Pagos y datos | PER (35%) | P/FCF (35%) | EV/EBITDA (20%) | Div. Yield (10%) |
 | Consumo Discrecional | P/FCF (30%) | EV/EBITDA (30%) | PER (25%) | Div. Yield (15%) |
-| Consumo Básico | Div. Yield (35%) | EV/EBITDA (25%) | PER (25%) | P/FCF (15%) |
+| Consumo Básico | Div. Yield (30%) | EV/EBITDA (27%) | PER (27%) | P/FCF (16%) |
 | Comunicación (internet y medios) | PEG (30%) | EV/EBITDA (30%) | Div. Yield (20%) | PER (20%) |
 | Telecomunicaciones | Div. Yield (30%) | EV/EBITDA (30%) | P/FCF (25%) | PER (15%) |
 | Industrial | EV/EBITDA (30%) | PER (30%) | P/FCF (25%) | Div. Yield (15%) |
 | Semiconductores | P/S (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
 | Software y nube | PEG (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
 | Hardware y servicios TI | P/S (40%) | P/FCF (20%) | EV/EBITDA (20%) | PER (20%) |
-| Energía | P/FCF (35%) | EV/EBITDA (30%) | Div. Yield (25%) | P/B (10%) |
+| Energía | P/FCF (39%) | EV/EBITDA (33%) | Div. Yield (28%) | — |
 | Salud | P/FCF (30%) | EV/EBITDA (25%) | PER (25%) | Div. Yield (20%) |
-| Utilities | Div. Yield (45%) | P/FCF (20%) | EV/EBITDA (20%) | PER (15%) |
+| Utilities | Div. Yield (30%) | P/FCF (25%) | EV/EBITDA (25%) | PER (20%) |
+
+*Desde la v1.2.50:* en el puntaje y en el Fair Value, P/S pasa a EV/Ventas y Dividend Yield pasa a Rendimiento total (dividendo + recompras) en las empresas que tienen el dato nuevo (ver la sección de la v1.2.50); en los REITs el Div. Yield sigue siendo el de siempre. Lo que se ve en la tabla (P/S, Dividend Yield) no cambia.
 
 *Semiconductores y Hardware:* los pesos de la fila son los que se usan (desde la v1.2.45 la regla del "PEG creíble" de la v1.2.44 está apagada; ver esa sección).
 
@@ -162,6 +164,20 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 - **Tipografía:** Inter (pensada para pantallas y tablas de números; viene incluida en `assets/fuentes/`, no se baja de internet). Para volver a la de Streamlit: `FUENTE_APP = ""` en `config/ajustes.py`.
 - **Vista de revisión (tabla clásica):** se ensancharon las columnas y la etiqueta de categoría puede ocupar más de una línea.
 - **`probar_roe_bancos.bat`:** igual que `probar_roe_recompras.bat` pero solo para las 22 empresas de Bancos y seguros (2 o 3 minutos). Deja los mismos dos archivos de resultados.
+
+### Auditoría de Opus: Fair Value, métricas, caché y pantallas (v1.2.50, 25/10/2026)
+
+Cambios decididos por el dueño después de la auditoría (todo el texto sigue siendo una estimación, nunca una recomendación):
+
+- **Fair Value (`data/fetcher.py`, `calc_fair_value`):** (1) un método que da menos de 1/3 o más de 3 veces el precio YA NO se descarta: entra al promedio con el precio recortado a ese tope (se descartan solo los datos imposibles, `RANGOS_PLAUSIBLES`); así el Fair Value y el puntaje cuentan las mismas métricas y se achican las contradicciones. (2) EV/EBITDA y EV/Ventas pasan por la deuda: precio × (1 + k × (mediana/actual − 1)), con k = valor de la empresa / valor de mercado = (EV/Ventas) / (P/S) de Stock Analysis; sin k, o con k raro (fuera de 0,2 a 5), se usa k = 1 (la cuenta de antes). (3) El método de dividendo usa el rendimiento de Stock Analysis (la misma fuente del puntaje).
+- **Métricas (`config/sectors.py`):** P/S → **EV/Ventas** y Dividend Yield → **Rendimiento total** (dividendo + recompras netas, `data/stockanalysis.py`, `calcular_rend_total`) cuando la empresa tiene el dato nuevo con 3 años de historia o más; si no, sigue con la métrica de siempre. No se aplica al Dividend Yield de los REITs. P/B sale de Materiales y Energía (10%, repartido en proporción). Ningún sector pone más de 30% en el rendimiento al accionista (Utilities 45 → 30, Consumo Básico 35 → 30; el exceso se reparte en proporción).
+- **P/FFO y P/AFFO (REITs):** ya no se aproximan con el P/E (en un REIT el P/E está deformado por la depreciación). Si Stock Analysis no trae el dato real, la métrica no cuenta y su peso se reparte entre las demás (afectaba a PLD y WELL).
+- **Dividend Yield sin respaldo de sector:** si la empresa no tiene historia propia suficiente (GEV), la métrica no cuenta y su peso se reparte.
+- **Historia corta:** una métrica cuya mediana se armó con solo 3 de los 5 años pesa la mitad (puntaje y Fair Value). No se muestra nada en pantalla.
+- **Caché más seguro:** `generar_cache.py` controla la descarga (95% de las empresas con precio, filas y puntajes contra el caché anterior) antes de reemplazar el bueno, escribe a un archivo temporal y recién después lo reemplaza; si no pasa, guarda lo descargado en `data/cache_rechazado.json` y deja el caché bueno intacto (`--forzar` para saltear el control). Cada fila guarda su `fecha_dato`. `actualizar_ticker.py` guarda igual de seguro. Si el caché principal está roto, la app usa la última copia válida de `data/historial/`. `data/cache_datos.json` SÍ se versiona (el `.gitignore` decía lo contrario).
+- **`incorporar_v150.py`:** carga al caché, sin bajar nada, EV/Ventas, Rendimiento total y los años de historia de cada métrica a partir de `resultados_ps.json` y `resultados_roe_recompras.json` (ya bajados), y vuelve a puntuar. Con `generar_cache.bat` todo se baja junto.
+- **Pantallas:** la ficha ya no muestra el peso de cada métrica ni la "Revisión de los métodos del Fair Value"; "Abrite una cuenta con nosotros" pasó adentro del menú "Sobre Nosotros"; la escala de valoración queda en una sola fila (en el celular, una debajo de otra); la tarjeta del celular rotula el puntaje; las variables de la tabla se agrupan en "Datos básicos" y "Múltiplos".
+- **A decidir el 1/12/2026 con la lista nueva de GuruFocus y los retornos reales:** marcar "historia no comparable" cuando el negocio cambió (ej.: Utilities y la demanda de energía por inteligencia artificial) y sacar el 15% técnico (rango de 52 semanas) de la categoría.
 
 ### Barra con tres menús, "Quiénes somos", variables a elegir, buscador en la franja y ficha plegable (v1.2.49)
 

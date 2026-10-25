@@ -8,7 +8,7 @@ Correr desde la carpeta raiz del proyecto:
 - Descarga y puntua solo los tickers indicados (segundos, no minutos).
 - Reemplaza (o agrega) esas filas en data/cache_datos.json.
 - Quita del cache los tickers que ya no estan en el universo (ej: BK, ahora BNY).
-- Mantiene la fecha original del cache (el resto de los datos no cambia).
+- Mantiene la fecha original del cache (el resto de los datos no cambia). Desde la v1.2.50 cada fila guarda su propia fecha (`fecha_dato`).
 - v1.2.11: al final vuelve a puntuar TODAS las filas con los datos que ya estan guardados
   (sin descargar nada) para que el PEG se compare con la mediana actual de su sector.
 - v1.2.11: --extranjeras usa el control de moneda nuevo (data/moneda.py) en las empresas de
@@ -26,6 +26,8 @@ from data.fetcher import fetch_all_tickers
 from scoring.engine import score_dataframe
 from config.sectors import TICKER_TO_SECTOR
 from data.resumen import resumen_fuentes
+from data.cache_seguro import guardar_seguro, marcar_fecha_dato
+from datetime import datetime
 try:
     from config.ajustes import STOCK_ANALYSIS_MODO
 except Exception:
@@ -79,6 +81,9 @@ def main(tickers):
     referencia = pd.DataFrame(filas) if filas else None
     nuevas = _limpiar(score_dataframe(ok, referencia=referencia).replace({float("nan"): None}).to_dict(orient="records"))
     tickers_ok = {r["ticker"] for r in nuevas}
+    hoy = datetime.now().date().isoformat()
+    for r in nuevas:
+        r["fecha_dato"] = hoy          # v1.2.50: cada fila dice de que dia son sus datos (el resto conserva su fecha)
 
     # Quitar filas reemplazadas y las que ya no pertenecen al universo (ej: BK)
     obsoletos = {r["ticker"] for r in filas if r["ticker"] not in TICKER_TO_SECTOR}
@@ -94,9 +99,10 @@ def main(tickers):
     except Exception as e:  # nunca perder lo descargado por un error de re-puntuacion
         print(f"  ! No se pudo re-puntuar todo el cache ({e}). Se guardan igual las filas nuevas.")
 
+    # v1.2.50: las filas que no se tocaron conservan la fecha del cache (antes no quedaba registro de que se mezclaban dias distintos)
+    marcar_fecha_dato(filas, str(cache.get("timestamp", ""))[:10] or hoy)
     cache["data"] = filas
-    with open(CACHE_PATH, "w") as f:
-        json.dump(cache, f)
+    guardar_seguro(cache, CACHE_PATH)      # temporal + reemplazo: si se corta, el cache bueno queda intacto
 
     # Releer el archivo para confirmar que quedo guardado
     with open(CACHE_PATH) as f:

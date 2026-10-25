@@ -632,6 +632,7 @@ SA_ETIQUETAS = {
     "p_fcf":          (["p/fcf"], []),
     "peg":            (["peg ratio"], []),
     "ps":             (["ps ratio"], []),        # v1.2.43: precio / ventas
+    "ev_ventas":      (["ev/sales"], []),        # v1.2.50: valor de la empresa / ventas (reemplaza al P/S en el puntaje cuando hay dato)
     "p_ffo":          (["price/ffo"], []),
     "p_affo":         (["price/affo"], []),
     "dividend_yield": (["dividend yield"], []),
@@ -653,6 +654,42 @@ def _anio_columna(header) -> Optional[int]:
     if m:
         return int(m.group(1))
     return None
+
+
+def calcular_rend_total(dy_actual, dy_anios, bb_actual, bb_anios):
+    """
+    v1.2.50: Rendimiento total al accionista = Dividend Yield + Buyback Yield / Dilution (recompras netas), por anio fiscal. Todo en % como lo
+    muestra Stock Analysis. Si no hay fila de dividendo se toma 0 (empresas que solo recompran). Devuelve (actual, historia) en FRACCION
+    (0,034 = 3,4 %), con la historia de la mas nueva a la mas vieja. Los anios con total <= 0 (emision neta mayor al dividendo) no cuentan,
+    igual que los multiplos con ganancia negativa. Sin dato de recompras devuelve (None, []).
+    """
+    historia = []
+    for a in sorted(bb_anios or {}, reverse=True)[:MAX_YEARS]:
+        bb = bb_anios[a]
+        if bb is None:
+            continue
+        total = ((dy_anios or {}).get(a) or 0.0) + bb
+        if 0 < total < 50:
+            historia.append(total / 100.0)
+    actual = None
+    if bb_actual is not None:
+        total = (dy_actual or 0.0) + bb_actual
+        if 0 < total < 50:
+            actual = total / 100.0
+    return actual, historia
+
+
+def _actual_y_anios(fila: dict):
+    """(valor actual, {anio: valor}) de una fila de la tabla de Stock Analysis."""
+    actual, por_anio = None, {}
+    for columna, valor in fila.items():
+        if _es_columna_actual(columna):
+            actual = valor
+        else:
+            anio = _anio_columna(columna)
+            if anio is not None:
+                por_anio[anio] = valor
+    return actual, por_anio
 
 
 def extraer_metricas_ratios(tabla: dict) -> dict:
@@ -682,6 +719,14 @@ def extraer_metricas_ratios(tabla: dict) -> dict:
             actual = actual / 100.0 if actual is not None and actual < 50 else None
             serie = [v / 100.0 for v in serie if v < 50]
         salida[metrica] = {"actual": actual, "historia": serie}
+    # v1.2.50: Rendimiento total (dividendo + recompras netas). Se arma con las filas "Dividend Yield" y "Buyback Yield / Dilution".
+    et_bb = _find_label(tabla, "buyback yield")
+    if et_bb:
+        et_dy = _find_label(tabla, "dividend yield")
+        dy_a, dy_anios = _actual_y_anios(tabla[et_dy]) if et_dy else (None, {})
+        bb_a, bb_anios = _actual_y_anios(tabla[et_bb])
+        actual, historia = calcular_rend_total(dy_a, dy_anios, bb_a, bb_anios)
+        salida["rend_total"] = {"actual": actual, "historia": historia}
     return salida
 
 
@@ -781,7 +826,7 @@ def aplicar_stockanalysis(result: dict, datos_sa: Optional[dict] = None, session
         actual, serie = d.get("actual"), d.get("historia") or []
         if actual is None or len(serie) < SA_MIN_PUNTOS:
             continue
-        dec = 4 if metrica == "dividend_yield" else 2
+        dec = 4 if metrica in ("dividend_yield", "rend_total") else 2
         result[f"{metrica}_actual"] = round(float(actual), dec)
         result[f"{metrica}_mediana"] = round(float(np.median(serie)), dec)
         fuentes[metrica] = "Stock Analysis"
@@ -791,6 +836,10 @@ def aplicar_stockanalysis(result: dict, datos_sa: Optional[dict] = None, session
             result["dividend_yield_serie"] = [round(float(x), 4) for x in reversed(serie)]
         tomadas.append(metrica)
     result["anios_historia"] = anios_hist
+    # v1.2.50: valor de la empresa / valor de mercado = (EV/Ventas) / (P/S), los dos de la misma pagina y del mismo dia (para el puente de deuda
+    # del Fair Value). Si falta alguno queda sin dato y el Fair Value no ajusta por deuda.
+    if "ev_ventas" in tomadas and "ps" in tomadas and result.get("ps_actual"):
+        result["ev_sobre_cap"] = round(result["ev_ventas_actual"] / result["ps_actual"], 4)
     # El dividendo anual (para el Fair Value por DY) sale de Yahoo; si falta, se deduce del DY de SA
     if result.get("annual_dividend") is None and "dividend_yield" in tomadas and result.get("precio_actual"):
         result["annual_dividend"] = round(result["dividend_yield_actual"] * result["precio_actual"], 4)

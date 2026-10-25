@@ -244,16 +244,25 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .esc{margin:14px 0 4px}
 .esc-t{display:flex;align-items:baseline;gap:10px;margin-bottom:6px;font-size:14px;color:#111827}
 .esc-t span{font-size:12px;color:#4b5563}
-.esc-b{display:flex;flex-wrap:wrap;gap:2px}
-.esc-s{flex:1 1 150px;padding:10px 12px;text-align:center;line-height:1.25;display:flex;align-items:center;justify-content:center}
+.esc-b{display:flex;flex-wrap:nowrap;gap:2px}
+.esc-s{flex:1 1 0;min-width:0;padding:10px 6px;text-align:center;line-height:1.25;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere}
 .esc-s:first-child{border-radius:8px 0 0 8px}
 .esc-s:last-child{border-radius:0 8px 8px 0}
-.esc-s b{display:block;font-size:14px;font-weight:700}
+.esc-s b{display:block;font-size:13px;font-weight:700}
 .esc-hd{display:block;font-size:11px;font-weight:500;opacity:.9}
 .esc-ej{display:flex;justify-content:space-between;margin-top:4px;font-size:11.5px;font-weight:600;color:#4b5563}
 .esc-gp{margin-top:6px}
 .esc-gc{display:inline-block;color:#fff;font-size:11.5px;font-weight:700;padding:2px 10px;border-radius:10px;margin-right:8px}
 .esc-gt{font-size:12px;color:#4b5563}
+@media (max-width:700px){
+.esc-b{flex-direction:column}
+.esc-s{flex:none;padding:8px 10px}
+.esc-s:first-child{border-radius:8px 8px 0 0}
+.esc-s:last-child{border-radius:0 0 8px 8px}
+.esc-s b{display:inline;font-size:13.5px}
+.esc-hd{display:inline;margin-right:5px}
+.esc-ej{display:none}
+}
 .st-key-descarga_excel button{font-size:13px;color:#4b5563;padding:2px 0;min-height:0}
 .st-key-descarga_excel button:hover{color:#111827;text-decoration:underline}
 .tv-ini{font-family:inherit}
@@ -285,10 +294,11 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .st-key-tvh_nombre button p::after{content:"?";display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:7px;border:1px solid rgba(255,255,255,.6);border-radius:50%;font-size:10px;font-weight:700;line-height:1;vertical-align:1px}
 /* "Variables a ver en la tabla" (v1.2.49): pastillas que se prenden y se apagan; las elegidas llevan tilde y van en negrita */
 .vars-t{font-size:14px;font-weight:700;color:#111827;margin:2px 0 6px}
-.st-key-vars_chips{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
-.st-key-vars_chips>div{width:auto!important;flex:0 0 auto}
-.st-key-vars_chips button{min-height:34px;padding:2px 13px;border-radius:18px;font-size:13.5px;transition:background .12s,border-color .12s}
-.st-key-vars_chips button p{font-size:13.5px;margin:0}
+.st-key-vars_chips,.st-key-vars_chips_mult{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
+.st-key-vars_chips>div,.st-key-vars_chips_mult>div{width:auto!important;flex:0 0 auto}
+.st-key-vars_chips button,.st-key-vars_chips_mult button{min-height:34px;padding:2px 13px;border-radius:18px;font-size:13.5px;transition:background .12s,border-color .12s}
+.st-key-vars_chips button p,.st-key-vars_chips_mult button p{font-size:13.5px;margin:0}
+.vars-g{font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#6b7280;margin:8px 0 0}
 [class*="st-key-varoff_"] button{background:#fff;border:1px solid #cfd8e3;color:#4b5563;font-weight:400}
 [class*="st-key-varoff_"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}
 [class*="st-key-varon_"] button{background:#e8f0fe;border:1px solid #1d4ed8;color:#1e3a8a}
@@ -307,6 +317,7 @@ div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2-r:hover>div,.tv2-r:hover>.tv2-v,.tv2-r>.tv2-v{background:transparent}
 .tv2-r>.c-emp{grid-area:emp}
 .tv2-r>.c-pts{grid-area:pts;align-items:flex-end}
+.tv2-r>.c-pts .tv2-lbl{text-align:right;white-space:nowrap;font-size:10px}
 .tv2-r>.c-sec{grid-area:sec}
 .tv2-r>.c-val{grid-area:val}
 .tv2-r>.c-pre{grid-area:pre}
@@ -730,7 +741,7 @@ def html_tabla_visual(df: pd.DataFrame, estado=None, extras=(), visibles=None) -
         if "fv_upside" in ver:
             celdas.append(f'<div class="tv2-c tv2-v c-val"><span class="tv2-lbl">Valoración</span>{_celda_valoracion_tabla(r)}</div>')
         if "score_total" in ver:
-            celdas.append(f'<div class="tv2-c c-pts">{_celda_puntaje(r)}</div>')
+            celdas.append(f'<div class="tv2-c c-pts"><span class="tv2-lbl">Puntaje de calidad</span>{_celda_puntaje(r)}</div>')
         for c in extras:
             celdas.append(f'<div class="tv2-c c-x"><span class="tv2-lbl">{html.escape(c["nombre"])}</span>{K.celda(c, r)}</div>')
         filas.append('<div class="tv2-r">' + "".join(celdas) + '</div>')
