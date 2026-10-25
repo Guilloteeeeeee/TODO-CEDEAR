@@ -50,18 +50,6 @@ def css_fuente(nombre: str = None) -> str:
 # v1.2.52: tipografia condensada (Roboto Condensed, licencia Apache 2.0, assets/fuentes/LICENCIA-RobotoCondensed.txt) para titulos, tickers y numeros
 # financieros, al estilo de las planillas de Morningstar / Univers Condensed. El texto corrido sigue en Inter. Se apaga con FUENTE_NUMEROS = "".
 # ---------------------------------------------------------------------------
-_SEL_CONDENSADA = (
-    # tabla
-    '[class*="st-key-tvh_"] button p', ".tv2-nm", ".tv2-tk", ".tv2-pr", ".tv2-mc", ".tv2-dyn", ".tv-num", ".tv-vn", ".tv-vh", ".tv2-fvs",
-    ".b52-hoy", ".b52-x",
-    # ficha
-    ".fch-hd .nm", ".fch-hd .tk", ".fch-hd .pr .v", ".fch-h", ".fch-big", ".fch-sc .num", ".fch-st2 h4", ".fch-st2 .f .v", ".vr .n", ".vr .m",
-    ".cf-fila .num", ".cf-fila .med b", ".cambios .v", ".grafico .gt", ".gf .ym", ".fch-val .tv-vn",
-    # Quienes somos
-    ".qs h1", ".qs-p .nm",
-)
-
-
 def css_condensada(nombre: str = None) -> str:
     """CSS de la fuente condensada para titulos y numeros ('' si esta apagada o faltan los archivos). Va DESPUES de css_fuente()."""
     if nombre is None:
@@ -73,7 +61,7 @@ def css_condensada(nombre: str = None) -> str:
         return ""
     if "cond" not in _cache:
         caras = []
-        for peso in (500, 700):
+        for peso in (400, 500, 600, 700):
             try:
                 with open(os.path.join(_DIR, f"roboto-condensed-latin-{peso}.woff2"), "rb") as f:
                     datos = base64.b64encode(f.read()).decode()
@@ -85,5 +73,9 @@ def css_condensada(nombre: str = None) -> str:
         _cache["cond"] = "".join(caras)
     if not _cache["cond"]:
         return ""
-    sel = ",".join(f".stApp.stApp.stApp {s}" for s in _SEL_CONDENSADA)
-    return _cache["cond"] + f"{sel}{{font-family:'RobotoCond','Roboto Condensed','Arial Narrow',sans-serif!important;letter-spacing:.1px}}"
+    # v1.2.52 (pedido de Guille): la fuente condensada va en TODA la app, menos el titulo TodoCedears (que es una imagen; si falta, el titulo de texto
+    # .mc-t conserva su tipografia). Se excluyen los iconos de Streamlit.
+    fam = "'RobotoCond','Roboto Condensed','Arial Narrow',sans-serif"
+    return (_cache["cond"]
+            + ".stApp.stApp.stApp :is(p,li,label,h1,h2,h3,h4,h5,h6,button,input,textarea,select,table,th,td,div,span,a,small,b,strong,summary)"
+              f":not([data-testid='stIconMaterial']):not([class*='material-symbols']):not(.mc-t):not(.mc-t *){{font-family:{fam}!important}}")

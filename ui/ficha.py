@@ -32,7 +32,7 @@ from config.sectors import metricas_de, partes_sector
 from data import cedears as _cedears
 from data import fichas as _fichas
 from ui.banderas import bandera_html
-from ui.tabla_visual import (_TEXTO_EN_RELLENO, _clamp, _dy_datos, _mcap, _money, _n, _svg_dy, _texto_categoria, _txt, barra_52s_html, texto_categoria)
+from ui.tabla_visual import (_TEXTO_EN_RELLENO, _celda_dy, _clamp, _dy_datos, _mcap, _money, _n, _svg_dy, _texto_categoria, _txt, barra_52s_html, texto_categoria)
 
 ETIQUETAS_METODO = {"ev_ebitda": "EV/EBITDA", "per": "P/E", "p_fcf": "P/FCF", "p_b": "P/Book", "dividend_yield": "Dividend Yield",
                     "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S", "ev_ventas": "EV/Ventas",
@@ -43,7 +43,7 @@ GRIS_PEG = "#94a3b8"
 ALTO_NIVEL = 40            # px por nivel de etiquetas
 ANCHO_ETIQUETA = 15.0      # % del ancho que ocupa una etiqueta (para que no se pisen)
 PEG_RANGO_MAX = 6.0        # el PEG se dibuja si su precio implicito esta entre 1/6 y 6 veces el precio; si no, queda como nota
-ABIERTOS = {"resumen"}     # mosaicos que arrancan desplegados (los demas, plegados); se cambia aca
+ABIERTOS = {"resumen", "estadisticas", "linea"}     # mosaicos que arrancan desplegados (los demas, plegados); se cambia aca
 TEXTO_VALORACION = ("Es un modelo basado en múltiplos: compara cuánto cotiza hoy la empresa con lo que solía valer históricamente y lo resume en una escala "
                     "que va de «Significativamente infravalorada» a «Significativamente sobrevalorada». Ejemplo: si suele cotizar a 20 veces su ganancia y hoy "
                     "cotiza a 15, hoy está más barata que lo habitual. El Fair Value es el precio que resultaría si volviera a cotizar como suele hacerlo. "
@@ -198,9 +198,28 @@ CSS = """
 .gf .ym{position:absolute;right:4px;font-size:11px;font-weight:600;color:#475569;background:rgba(255,255,255,.8);padding:0 3px;border-radius:3px}
 .gx{display:flex;justify-content:space-between;font-size:11px;color:#6b7280;margin-top:3px}
 .gf-no{font-size:12.5px;color:#6b7280;padding:6px 0}
+.cambios8{grid-template-columns:repeat(8,minmax(0,1fr))}
+/* v1.2.52: solapas de la pagina de la empresa (texto gris, la activa en oscuro con raya abajo) */
+[data-baseweb="tab-list"]{gap:6px;border-bottom:1px solid #e5e7eb;flex-wrap:wrap}
+[data-baseweb="tab-list"] button[role="tab"]{padding:10px 14px;background:transparent}
+[data-baseweb="tab-list"] button[role="tab"] p{font-size:18px!important;color:#6b7280!important;font-weight:400;margin:0}
+[data-baseweb="tab-list"] button[role="tab"][aria-selected="true"] p{color:#111827!important;font-weight:600}
+[data-baseweb="tab-list"] button[role="tab"]:hover p{color:#111827!important}
+[data-baseweb="tab-highlight"]{background:#111827!important;height:2px!important}
+[data-baseweb="tab-border"]{display:none}
+.comp-w{overflow-x:auto}
+.comp{width:100%;border-collapse:collapse;font-size:14px}
+.comp th{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;text-align:right;padding:6px 8px;border-bottom:1px solid #e5e7eb;white-space:nowrap}
+.comp td{text-align:right;padding:8px;border-bottom:1px solid #eef1f4;white-space:nowrap}
+.comp th:first-child,.comp td:first-child{text-align:left}
+.comp a{color:#1d4ed8;text-decoration:none;font-weight:600}.comp a:hover{text-decoration:underline}
+.comp .tkc{color:#6b7280;font-size:12px;margin-left:4px}
+.nlist{list-style:none;margin:0 0 6px;padding:0}.nlist li{padding:9px 0;border-bottom:1px solid #eef1f4}
+.nlist a{color:#111827;text-decoration:none;font-weight:600;font-size:15px}.nlist a:hover{color:#1d4ed8;text-decoration:underline}
+.nlist .nf{display:block;font-size:12px;color:#6b7280;margin-top:2px}
 @media (max-width:900px){
 .fch-res{grid-template-columns:1fr}
-.cambios{grid-template-columns:repeat(2,minmax(0,1fr))}
+.cambios,.cambios8{grid-template-columns:repeat(4,minmax(0,1fr))}
 .fch{gap:12px}
 .fch>.fch-t{grid-column:span 12!important;grid-row:auto!important}
 .fch-sc .num{font-size:60px}
@@ -571,7 +590,7 @@ def _links_empresa(row, ficha):
         for u, n, tt in enl) + '</div>'
 
 
-def _tile_resumen(row, ficha, mercado, historial=None):
+def _tile_resumen(row, ficha, mercado):
     """v1.2.52: la descripcion ocupa todo el ancho; abajo, a la izquierda los datos de la empresa y a la derecha las cifras (capitalizacion, Dividend
     Yield, rango de 52 semanas y cambios de precio); al final, el grafico de precios."""
     t = str(row.get("ticker", ""))
@@ -602,6 +621,18 @@ def _tile_resumen(row, ficha, mercado, historial=None):
     emp = _n((ficha or {}).get("empleados"))
     if emp:
         filas.append(_fila_kv("Empleados", f"{emp:,.0f}", "Personas empleadas a tiempo completo."))
+    f = ficha or {}
+    if _n(f.get("ev")):
+        filas.append(_fila_kv("Valor de empresa (EV)", _usd_abrev(f.get("ev")), "Lo que costaría comprar toda la empresa: valor de mercado más deuda, menos caja."))
+    if _n(f.get("acciones")):
+        filas.append(_fila_kv("Acciones en circulación", _abrev(f.get("acciones")), "Cantidad de acciones que hay en manos de los inversores."))
+    if _n(f.get("ingresos_ttm")):
+        filas.append(_fila_kv("Ingresos (12 meses)", _usd_abrev(f.get("ingresos_ttm")), "Ventas de los últimos 12 meses."))
+    for clave, etiqueta in (("cagr_ingresos_3a", "Ingresos, 3 años (anual compuesto)"), ("cagr_eps_3a", "Ganancia por acción, 3 años (anual compuesto)"),
+                            ("crec_ingresos_trim", "Ingresos, último trimestre vs año anterior"), ("crec_ganancias_trim", "Ganancias, último trimestre vs año anterior")):
+        txt, cls = _pct_sig(f.get(clave))
+        if txt:
+            filas.append(_fila_kv(etiqueta, f'<span class="{cls}" style="font-weight:600">{txt}</span>'))
     izq = '<div class="fch-kv">' + "".join(filas) + "</div>"
     k = lambda txt, tip: f'<div class="fch-k" title="{html.escape(tip, quote=True)}">{txt}</div>'
     der = ('<div class="fch-cifras">'
@@ -609,9 +640,8 @@ def _tile_resumen(row, ficha, mercado, historial=None):
            f'<div class="cf-fila"><span class="num">{_mcap(row.get("market_cap"))}</span></div></div>'
            f'<div class="fch-cf">{k("Dividend Yield", "Dividendo anual que paga la empresa como porcentaje del precio. Se compara con su mediana histórica.")}{_fila_dy(row)}</div>'
            f'<div class="fch-cf ancho">{k("Rango de 52 semanas", "Del precio más bajo al más alto de los últimos 12 meses, con el precio de hoy marcado.")}{_barra_52s(row)}</div>'
-           f'<div class="fch-cf ancho">{k("Cambio del precio", "Variación del precio de cierre contra el día anterior y contra hace una semana, un mes y un año.")}{_cambios_html(historial)}</div>'
            '</div>')
-    cuerpo = desc + _links_empresa(row, ficha) + f'<div class="fch-res">{izq}{der}</div>' + _grafico_html(historial)
+    cuerpo = desc + _links_empresa(row, ficha) + f'<div class="fch-res">{izq}{der}</div>'
     return _plegable("resumen", "Resumen de la empresa", cuerpo, ac="#a78bfa")
 
 
@@ -752,11 +782,171 @@ def _tile_valoracion(row):
 
 
 def ficha_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_datos=None, historial=None):
-    """Todos los mosaicos de la pagina de la empresa. `row` es el dict de la fila; `cedears` el resultado de data.cedears.cargar() (con el precio en
-    pesos si se pudo); `ficha` los datos de Yahoo de la empresa (data/fichas.json); `mercado_codigo` el codigo del mercado pedido a Yahoo en el momento;
-    `fecha_datos` la fecha de los datos del cache (para el "Dato al ..." cuando el precio no es el de hoy)."""
+    """Compatibilidad (v1.2.52): encabezado + solapas Resumen, Analisis y Valuacion juntas. La pagina usa `encabezado_html` y las `tab_*` por separado."""
     datos = cedears if cedears is not None else _cedears.cargar()
     mercado, adr = _fichas.mercado_y_adr(row.get("ticker"), ficha, mercado_codigo)
-    mosaicos = [_encabezado(row, mercado, ficha, datos, fecha_datos), _tile_resumen(row, ficha, mercado, historial), _tile_score(row), _tile_valoracion(row),
-                _tile_estadisticas(row, ficha), _tile_tamano(row, ficha), linea_precios_html(row)]
+    mosaicos = [_encabezado(row, mercado, ficha, datos, fecha_datos), tab_resumen(row, ficha, mercado, False), tab_analisis(row), tab_valuacion(row, ficha, False)]
     return '<div class="fch">' + "".join(m for m in mosaicos if m) + "</div>"
+
+
+def encabezado_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_datos=None):
+    """La banda de arriba de la pagina de la empresa (logo, nombre, mercado, ticker y precio), fuera de las solapas."""
+    datos = cedears if cedears is not None else _cedears.cargar()
+    mercado, _ = _fichas.mercado_y_adr(row.get("ticker"), ficha, mercado_codigo)
+    return '<div class="fch">' + _encabezado(row, mercado, ficha, datos, fecha_datos) + "</div>"
+
+
+def _env(*partes):
+    return '<div class="fch">' + "".join(p for p in partes if p) + "</div>"
+
+
+def tab_resumen(row, ficha, mercado, envolver=True):
+    t = _tile_resumen(row, ficha, mercado)
+    return _env(t) if envolver else t
+
+
+def tab_analisis(row, envolver=True):
+    """Analisis fundamental: por ahora el puntaje que usa el modelo; el Score de calidad y el resumen fundamental vienen mas adelante."""
+    pend = _tile("s12", "Resumen fundamental", '<div class="fch-sub" style="margin:0">Próximamente: un resumen del negocio y de sus fundamentos, junto con el Score de calidad.</div>', ac="#94a3b8")
+    return (_env(_tile_score(row), pend) if envolver else _tile_score(row) + pend)
+
+
+def tab_valuacion(row, ficha, envolver=True):
+    t = [_tile_valoracion(row), _tile_estadisticas(row, ficha), linea_precios_html(row)]
+    return _env(*t) if envolver else "".join(t)
+
+
+def rendimientos_html(pares):
+    """Tabla de retornos: 1D, 5D, 1M, 3M, YTD, 1A, 5A y MAX (de los cierres de Yahoo). Sin datos: lo dice."""
+    from data import historial_precios as _hp
+    if not pares:
+        return '<div class="fch-sub" style="margin:0">Rendimientos no disponibles por ahora (Yahoo no respondió).</div>'
+    cel = []
+    for m, v in _hp.rendimientos(pares):
+        if v is None:
+            cel.append(f'<div><div class="k">{m}</div><div class="v">—</div></div>')
+        else:
+            cls = "pos" if v > 0.0005 else "neg" if v < -0.0005 else ""
+            txt = f"{v * 100:+.1f}%" if round(v * 100, 1) != 0 else "0.0%"
+            cel.append(f'<div><div class="k">{m}</div><div class="v {cls}">{txt}</div></div>')
+    return '<div class="cambios cambios8">' + "".join(cel) + '</div>'
+
+
+def tab_grafico_tabla(pares):
+    """Parte HTML de la solapa Grafico y rendimiento (el grafico interactivo lo dibuja la app con Altair)."""
+    return _env(_tile("s12", "Rendimiento", rendimientos_html(pares) + '<div class="fch-nota" style="margin-top:8px">Variación del precio de cierre. Cierres diarios de Yahoo Finance: no es en tiempo real.</div>', ac="#0ea5e9"))
+
+
+def _fmt_fecha(f):
+    return f.strftime("%d/%m/%Y") if f else "—"
+
+
+def _money_dec(m):
+    v = _n(m)
+    if v is None:
+        return "—"
+    return f"US&#36;&nbsp;{v:,.2f}" if v >= 0.1 else f"US&#36;&nbsp;{v:,.4f}"
+
+
+def tab_dividendos(row, div):
+    """Dividend Yield contra su mediana (dibujito) y, de Yahoo, la ultima fecha ex-dividendo, la de pago y el monto por accion."""
+    dy = _tile("s12", "Dividend Yield contra su mediana", f'<div class="fch-dy">{_celda_dy(row, grande=True)}</div>', ac="#16a34a")
+    if not div:
+        det = '<div class="fch-sub" style="margin:0">Datos de dividendos no disponibles por ahora (la empresa no paga, o Yahoo no respondió).</div>'
+    else:
+        filas = [_fila_kv("Última fecha ex-dividendo", _fmt_fecha(div.get("ex_fecha")),
+                          "Si comprás la acción antes de esta fecha, cobrás ese dividendo; si comprás desde esa fecha, no."),
+                 _fila_kv("Fecha de pago", _fmt_fecha(div.get("pago_fecha")), "Día en que la empresa deposita el dividendo."),
+                 _fila_kv("Monto por acción (último)", _money_dec(div.get("monto")), "Dólares por acción del último pago.")]
+        if div.get("tasa_anual"):
+            filas.append(_fila_kv("Dividendo anual por acción", _money_dec(div["tasa_anual"]), "Lo que Yahoo estima que paga en un año."))
+        det = '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>"
+        if div.get("ultimos"):
+            det += ('<div class="fch-k" style="margin:14px 0 4px;font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#6b7280">Últimos pagos</div>'
+                    '<div class="fch-kv" style="margin-top:0">' + "".join(_fila_kv(_fmt_fecha(f), _money_dec(m)) for f, m in div["ultimos"]) + "</div>")
+        det += '<div class="fch-nota">Fechas y montos de Yahoo Finance; si la empresa no anunció el próximo pago, se ve el último.</div>'
+    return _env(dy, _tile("s12", "Fechas y montos", det, ac="#16a34a"))
+
+
+def tab_competidores(row, df):
+    """Empresas del screener en la misma industria (o sector) con sus metricas, para comparar. Solo muestra las del universo del screener."""
+    if df is None or len(df) == 0:
+        return _env(_tile("s12", "Competidores", '<div class="fch-sub" style="margin:0">Sin datos.</div>'))
+    t = str(row.get("ticker", ""))
+    ind, sec = _txt(row.get("industria"), ""), _txt(row.get("sector_macro"), "")
+    pares = df[(df["industria"] == ind)] if ind and "industria" in df.columns else df.iloc[0:0]
+    base = f"la industria «{ind}»"
+    if len(pares) < 4 and sec and "sector_macro" in df.columns:
+        pares = df[df["sector_macro"] == sec]
+        base = f"el sector «{sec}»"
+    pares = pares.sort_values("market_cap", ascending=False) if "market_cap" in pares.columns else pares
+    yo = pares[pares["ticker"] == t]
+    otros = pares[pares["ticker"] != t].head(9)
+    import pandas as _pd
+    tabla = _pd.concat([yo, otros])
+    if len(tabla) < 2:
+        return _env(_tile("s12", "Competidores", '<div class="fch-sub" style="margin:0">No hay otras empresas comparables en el screener.</div>', ac="#f59e0b"))
+
+    def ratio(v, suf="x"):
+        v = _n(v)
+        return f"{v:.1f}{suf}" if v and v > 0 else "—"
+
+    def dy(v):
+        v = _n(v)
+        if not v or v <= 0:
+            return "—"
+        return f"{(v if v > 1 else v * 100):.2f}%"
+    filas = []
+    for _, r in tabla.iterrows():
+        tk = str(r.get("ticker"))
+        color = _txt(r.get("color_hex"), "#6e7781")
+        cat = _txt(r.get("categoria"), "")
+        cat_h = f'<span style="color:{texto_categoria(color)};font-weight:700">{_texto_plano_categoria(cat)}</span>' if cat else "—"
+        me = ' style="background:#f1f5f9"' if tk == t else ""
+        filas.append(f'<tr{me}><td><a href="?empresa={html.escape(tk, quote=True)}" target="_self">{html.escape(str(r.get("nombre") or tk))}</a> <span class="tkc">{html.escape(tk)}</span></td>'
+                     f'<td>{_mcap(r.get("market_cap"))}</td><td>{ratio(r.get("per_actual"))}</td><td>{ratio(r.get("ev_ebitda_actual"))}</td>'
+                     f'<td>{ratio(r.get("p_fcf_actual"))}</td><td>{dy(r.get("dividend_yield_actual"))}</td><td>{cat_h}</td></tr>')
+    cab = "<tr><th>Empresa</th><th>Cap. bursátil</th><th>P/E</th><th>EV/EBITDA</th><th>P/FCF</th><th>Dividend Yield</th><th>Valoración</th></tr>"
+    cuerpo = (f'<div class="fch-sub" style="margin:0 0 8px">Empresas del screener en {html.escape(base)}, de mayor a menor capitalización. La tuya está resaltada.</div>'
+              f'<div class="comp-w"><table class="comp">{cab}{"".join(filas)}</table></div>')
+    return _env(_tile("s12", "Competidores", cuerpo, ac="#f59e0b"))
+
+
+def tab_gobierno(g):
+    """Directivos y accionistas (Yahoo Finance)."""
+    if not g:
+        return _env(_tile("s12", "Directivos y accionistas", '<div class="fch-sub" style="margin:0">No disponible por ahora (Yahoo no respondió).</div>', ac="#64748b"))
+    partes = []
+    if g.get("directivos"):
+        fil = "".join(f'<tr><td>{html.escape(d["nombre"])}</td><td>{html.escape(d["cargo"])}</td><td>{int(d["edad"]) if d.get("edad") else "—"}</td>'
+                      f'<td>{_usd_abrev(d["pago"]) if d.get("pago") else "—"}</td></tr>' for d in g["directivos"])
+        partes.append(_tile("s12", "Cúpula directiva", f'<div class="comp-w"><table class="comp"><tr><th>Nombre</th><th>Cargo</th><th>Edad</th><th>Remuneración</th></tr>{fil}</table></div>'
+                                  '<div class="fch-nota">Datos de Yahoo Finance; la remuneración es la del último año informado.</div>', ac="#64748b"))
+    acc = []
+    if g.get("insiders") is not None:
+        acc.append(_fila_kv("En manos de directivos (insiders)", f'{g["insiders"] * 100:.1f}%', "Porcentaje de las acciones que tienen los directivos y miembros del directorio."))
+    if g.get("instituciones") is not None:
+        acc.append(_fila_kv("En manos de instituciones", f'{g["instituciones"] * 100:.1f}%', "Fondos, bancos y otras instituciones."))
+    cuerpo = '<div class="fch-kv" style="margin-top:0">' + "".join(acc) + "</div>" if acc else ""
+    if g.get("principales"):
+        def _pc(p):
+            return f"{p['pct'] * 100:.2f}%" if p.get("pct") is not None else "—"
+        fil = "".join(f'<tr><td>{html.escape(p["nombre"])}</td><td>{_pc(p)}</td></tr>' for p in g["principales"])
+        cuerpo += f'<div class="comp-w" style="margin-top:12px"><table class="comp"><tr><th>Mayores accionistas institucionales</th><th>% de la empresa</th></tr>{fil}</table></div>'
+    if cuerpo:
+        partes.append(_tile("s12", "Accionistas", cuerpo + '<div class="fch-nota">Datos de Yahoo Finance.</div>', ac="#64748b"))
+    return _env(*partes) if partes else _env(_tile("s12", "Directivos y accionistas", '<div class="fch-sub" style="margin:0">Sin datos.</div>'))
+
+
+def tab_noticias(ticker, items):
+    """Noticias de la empresa: titulares de Yahoo Finance y links a CNBC y Yahoo Finance."""
+    t = quote_plus(str(ticker))
+    enl = [(f"https://www.cnbc.com/quotes/{t}?tab=news", "Ver más noticias en CNBC"), (f"https://finance.yahoo.com/quote/{t}/news/", "Ver más noticias en Yahoo Finance")]
+    botones = '<div class="fch-links">' + "".join(f'<a href="{html.escape(u, quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(n)} ↗</a>' for u, n in enl) + "</div>"
+    if items:
+        li = "".join(f'<li><a href="{html.escape(i["link"], quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(i["titulo"])}</a>'
+                     f'<span class="nf">{html.escape(i["fuente"])}{" · " + _fmt_fecha(i["fecha"]) if i.get("fecha") else ""}</span></li>' for i in items)
+        cuerpo = f'<ul class="nlist">{li}</ul><div class="fch-nota">Titulares de Yahoo Finance, en su idioma original.</div>' + botones
+    else:
+        cuerpo = '<div class="fch-sub" style="margin:0 0 10px">No pudimos traer titulares ahora. Mirá las últimas noticias directamente en:</div>' + botones
+    return _env(_tile("s12", "Noticias", cuerpo, ac="#ef4444"))

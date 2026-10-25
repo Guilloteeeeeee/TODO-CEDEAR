@@ -46,7 +46,8 @@ from ui import criterios as _criterios
 from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
 from ui.quienes import quienes_html, CSS as CSS_QUIENES
-from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp
+from ui import ficha as _ficha
+from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -253,12 +254,36 @@ def _ficha_viva(ticker: str) -> dict:
         return {}
 
 
-@st.cache_data(ttl=3600, show_spinner=False)
-def _historial_precios(ticker: str):
-    """v1.2.52: cierres diarios de los ultimos 10 años (Yahoo) para el grafico y los cambios de precio. None si Yahoo no responde (no se guarda
-    el fracaso mas de una hora: Streamlit guarda el None igual, por eso el TTL es corto)."""
+@st.cache_data(ttl=1800, show_spinner=False)
+def _extras_empresa(ticker: str) -> dict:
+    """v1.2.52: lo que piden las solapas de la empresa a Yahoo, todo junto y en paralelo: historial de precios (toda la historia), dividendos, directivos y
+    accionistas, y noticias. Lo que no responde queda en None / {} / []: la solapa dice "no disponible"."""
+    from concurrent.futures import ThreadPoolExecutor
+    tareas = {"historial": _hp.bajar, "dividendos": _yx.bajar_dividendos, "gobierno": _yx.bajar_gobierno, "noticias": _yx.bajar_noticias}
+    vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": []}
     try:
-        return _hp.bajar(ticker)
+        with ThreadPoolExecutor(max_workers=4) as ex:
+            fut = {k: ex.submit(f, ticker) for k, f in tareas.items()}
+            return {k: (f.result(timeout=40)) for k, f in fut.items()}
+    except Exception:  # noqa: BLE001
+        return vacio
+
+
+@st.cache_data(ttl=900, show_spinner=False)
+def _intradia(ticker: str, marco: str):
+    """Cierres cada 5 minutos (1D) o cada 30 minutos (5D). None si Yahoo no responde."""
+    try:
+        return _yx.bajar_intradia(ticker, marco)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+@st.cache_data(ttl=30 * 86400, show_spinner=False)
+def _descripcion_es(texto_en: str):
+    """Traduccion al castellano de la descripcion de Yahoo (cuando data/fichas.json solo la trae en ingles). None si el traductor no esta o falla."""
+    try:
+        from bajar_fichas import _traducir
+        return _traducir(texto_en)
     except Exception:  # noqa: BLE001
         return None
 
@@ -734,6 +759,41 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
 # PANEL DE DETALLE POR EMPRESA
 # ---------------------------------------------------------------------------
 
+def _render_grafico(tk, pares, rd):
+    """Solapa "Grafico y rendimiento": selector 1D, 5D, 1M, 3M, YTD, 1A, 5A y MAX y grafico interactivo (zoom con la rueda, arrastrar y ver el valor al pasar el
+    mouse). 1D y 5D usan datos de cada 5 y 30 minutos; el resto, cierres diarios. Si Yahoo no responde, lo dice."""
+    import altair as alt
+    marcos = list(_hp.MARCOS)
+    try:
+        marco = st.segmented_control("Período", marcos, default="1A", key=f"marco_{tk}", label_visibility="collapsed")
+    except Exception:  # noqa: BLE001
+        marco = st.radio("Período", marcos, index=marcos.index("1A"), horizontal=True, key=f"marco_{tk}", label_visibility="collapsed")
+    marco = marco or "1A"
+    if marco in ("1D", "5D"):
+        pts = _intradia(tk, marco)
+        sufijo = "Cada 5 minutos" if marco == "1D" else "Cada 30 minutos"
+    else:
+        pts = _hp.recortar(pares, marco) if pares else None
+        sufijo = "Cierre diario"
+    if not pts or len(pts) < 2:
+        st.markdown('<div class="fch"><div class="fch-t s12" style="--ac:#94a3b8"><div class="fch-sub" style="margin:0">Gráfico no disponible por ahora para este período (Yahoo no respondió o no hay datos).</div></div></div>', unsafe_allow_html=True)
+        return
+    d = pd.DataFrame(pts, columns=["Fecha", "Precio"])
+    d["Fecha"] = pd.to_datetime(d["Fecha"])
+    sube = d["Precio"].iloc[-1] >= d["Precio"].iloc[0]
+    color = "#15803d" if sube else "#b91c1c"
+    tit = "Fecha y hora" if marco in ("1D", "5D") else "Fecha"
+    ch = (alt.Chart(d).mark_area(clip=True, line={"color": color, "strokeWidth": 2}, color=alt.Gradient(gradient="linear", stops=[alt.GradientStop(color=color, offset=0), alt.GradientStop(color="white", offset=1)], x1=1, x2=1, y1=0, y2=1), opacity=0.18)
+          .encode(x=alt.X("Fecha:T", title=None), y=alt.Y("Precio:Q", scale=alt.Scale(domain=[float(d["Precio"].min()) * 0.99, float(d["Precio"].max()) * 1.01], zero=False, nice=False), title=None),
+                  tooltip=[alt.Tooltip("Fecha:T", title=tit, format="%d/%m/%Y %H:%M" if marco in ("1D", "5D") else "%d/%m/%Y"), alt.Tooltip("Precio:Q", title="Precio (US$)", format=",.2f")])
+          .properties(height=340).interactive())
+    try:
+        st.altair_chart(ch, width="stretch")
+    except TypeError:
+        st.altair_chart(ch, use_container_width=True)
+    st.caption(f"{sufijo} · Yahoo Finance · no es en tiempo real. Podés acercar con la rueda del mouse y arrastrar el gráfico.")
+
+
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
@@ -754,8 +814,37 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
             viva = _ficha_viva(str(ticker_sel).upper())
         if viva:
             ficha = {**viva, **ficha}      # lo que ya estaba en data/fichas.json manda; Yahoo en vivo completa lo que falta
+    if ficha.get("descripcion_en") and not ficha.get("descripcion_es"):
+        es = _descripcion_es(ficha["descripcion_en"])
+        if es:
+            ficha = {**ficha, "descripcion_es": es}
     cod = None if (ficha.get("mercado_cod") or ficha.get("mercado_nombre")) else _mercado_vivo(str(ticker_sel))
-    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel), ficha, cod, fecha_datos, _historial_precios(str(ticker_sel).upper())), unsafe_allow_html=True)
+    tk = str(ticker_sel).upper()
+    rd = row.to_dict()
+    mercado, _adr = _fichas.mercado_y_adr(tk, ficha, cod)
+    st.markdown(_ficha.encabezado_html(rd, _datos_cedear(df, ticker_sel), ficha, cod, fecha_datos), unsafe_allow_html=True)
+    with st.spinner("Trayendo datos de Yahoo Finance..."):
+        extra = _extras_empresa(tk)
+    pares = extra.get("historial")
+    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Dividendos", "Competidores", "Directivos y accionistas", "Noticias"]
+    t_res, t_ana, t_gra, t_val, t_div, t_com, t_dir, t_not = st.tabs(nombres)
+    with t_res:
+        st.markdown(_ficha.tab_resumen(rd, ficha, mercado), unsafe_allow_html=True)
+    with t_ana:
+        st.markdown(_ficha.tab_analisis(rd), unsafe_allow_html=True)
+    with t_gra:
+        _render_grafico(tk, pares, rd)
+        st.markdown(_ficha.tab_grafico_tabla(pares), unsafe_allow_html=True)
+    with t_val:
+        st.markdown(_ficha.tab_valuacion(rd, ficha), unsafe_allow_html=True)
+    with t_div:
+        st.markdown(_ficha.tab_dividendos(rd, extra.get("dividendos")), unsafe_allow_html=True)
+    with t_com:
+        st.markdown(_ficha.tab_competidores(rd, df), unsafe_allow_html=True)
+    with t_dir:
+        st.markdown(_ficha.tab_gobierno(extra.get("gobierno")), unsafe_allow_html=True)
+    with t_not:
+        st.markdown(_ficha.tab_noticias(tk, extra.get("noticias")), unsafe_allow_html=True)
 
     # v1.2.49: el desglose de metricas pasó a "Estadisticas de la empresa" (ui/ficha.py): valor de hoy, mediana, dibujito, Fair Value y peso de cada una.
     usadas_d = row.get("metricas_usadas")

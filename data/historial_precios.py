@@ -10,6 +10,9 @@ import threading
 
 # Cuantos dias hacia atras es cada cambio (se toma el ultimo cierre disponible en esa fecha o antes)
 VENTANAS = (("Día", 1), ("Semana", 7), ("Mes", 30), ("Año", 365))
+# v1.2.52: marcos de tiempo de la solapa "Gráfico y rendimiento". Dias de calendario hacia atras ("YTD" = desde el 1 de enero, "MAX" = toda la historia).
+MARCOS = ("1D", "5D", "1M", "3M", "YTD", "1A", "5A", "MAX")
+_DIAS_MARCO = {"1M": 30, "3M": 91, "1A": 365, "5A": 5 * 365}
 
 
 def _ok(v):
@@ -65,7 +68,7 @@ def reducir(pares, max_puntos=260):
 
 
 def bajar(ticker, timeout=12.0, obtener=None):
-    """Lista de pares (date, cierre) de los ultimos 10 años (diario), o None si Yahoo no respondio. Con tope de tiempo; nunca levanta excepciones.
+    """Lista de pares (date, cierre) de toda la historia disponible (diario), o None si Yahoo no respondio. Con tope de tiempo; nunca levanta excepciones.
     `obtener(ticker)` -> (fechas, cierres) es para las pruebas."""
     res = {}
 
@@ -75,7 +78,7 @@ def bajar(ticker, timeout=12.0, obtener=None):
                 res["v"] = obtener(ticker)
                 return
             import yfinance as yf
-            h = yf.Ticker(str(ticker)).history(period="10y", interval="1d", auto_adjust=False)
+            h = yf.Ticker(str(ticker)).history(period="max", interval="1d", auto_adjust=False)
             if h is None or h.empty or "Close" not in h:
                 res["v"] = None
                 return
@@ -92,3 +95,37 @@ def bajar(ticker, timeout=12.0, obtener=None):
         return None
     pares = limpiar(*v)
     return pares if len(pares) >= 2 else None
+
+
+def rendimientos(pares):
+    """[(marco, variacion o None)] para 1D, 5D, 1M, 3M, YTD, 1A, 5A y MAX, del ultimo cierre contra el de esa fecha (o el primero anterior). 1D es contra el
+    cierre anterior y 5D contra el de hace 5 ruedas. Si la historia no llega hasta esa fecha, None (nunca se inventa)."""
+    if not pares or len(pares) < 2:
+        return [(m, None) for m in MARCOS]
+    uf, uc = pares[-1]
+    res = []
+    for m in MARCOS:
+        base = None
+        if m == "1D":
+            base = pares[-2][1]
+        elif m == "5D":
+            base = pares[-6][1] if len(pares) >= 6 else None
+        elif m == "MAX":
+            base = pares[0][1]
+        else:
+            lim = _dt.date(uf.year - 1, 12, 31) if m == "YTD" else uf - _dt.timedelta(days=_DIAS_MARCO[m])
+            if pares[0][0] <= lim:
+                base = next((c for f, c in reversed(pares) if f <= lim), None)
+        res.append((m, (uc / base - 1.0) if base else None))
+    return res
+
+
+def recortar(pares, marco):
+    """Los pares de `pares` que entran en el marco (para 1M, 3M, YTD, 1A, 5A y MAX; 1D y 5D salen de datos intradia, ver data/yahoo_extra.py)."""
+    if not pares:
+        return []
+    if marco == "MAX":
+        return list(pares)
+    uf = pares[-1][0]
+    lim = _dt.date(uf.year - 1, 12, 31) if marco == "YTD" else uf - _dt.timedelta(days=_DIAS_MARCO.get(marco, 365))
+    return [p for p in pares if p[0] >= lim]

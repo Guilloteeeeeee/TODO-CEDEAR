@@ -216,10 +216,8 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv2 .tv-score{width:auto;min-width:54px;border:0;border-radius:999px;background:#e9edf2;padding:3px 12px 4px;overflow:visible}
 .tv2 .tv-num{font-size:19px;line-height:22px;font-weight:700;color:#1f2937}
 .tv2 .tv-met{background:transparent!important;color:#6b7280;font-size:10.5px;line-height:12px}
-@media (min-width:901px){
-.tv2-r .tv-vn{display:flex;flex-direction:column-reverse;align-items:center}
-.tv2-r .tv-vn .tv-ln1{font-size:11.5px;font-weight:500;color:#6b7280;margin-top:1px}
-.tv2-r .tv-vn .tv-ln2{font-size:15px;font-weight:700}
+/* Valoracion: dos lineas (calificador arriba, estado abajo), las dos de color y en negrita */
+.tv2-r .tv-vn .tv-ln1,.tv2-r .tv-vn .tv-ln2{font-weight:700}
 }
 
 .b52{max-width:190px;margin:0 auto}
