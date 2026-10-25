@@ -202,6 +202,12 @@ CSS = """
 .fch-carga{display:flex;align-items:center;gap:12px;margin:10px 0;padding:14px 18px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:17px;font-weight:600}
 .fch-giro{width:18px;height:18px;border:3px solid #93c5fd;border-top-color:#1d4ed8;border-radius:50%;animation:fchg 0.9s linear infinite;flex:none}
 @keyframes fchg{to{transform:rotate(360deg)}}
+.ddet{margin:0}.ddet>summary{list-style:none;cursor:pointer;display:block}.ddet>summary::-webkit-details-marker{display:none}
+.ddet .pv{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.6;color:#1f2937;text-align:justify;
+-webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 100%);mask-image:linear-gradient(to bottom,#000 45%,transparent 100%)}
+.ddet .vm,.ddet .vl{display:inline-block;margin-top:4px;color:#1d4ed8;font-weight:700;font-size:14px}.ddet .vl{display:none}
+.ddet[open] .pv,.ddet[open] .vm{display:none}.ddet[open] .vl{display:inline-block;margin-top:8px}
+.ddet .full{margin:0}
 .valrow{display:flex;align-items:center;gap:10px 28px;flex-wrap:wrap}
 .valrow .fch-sub{margin:0;font-size:14px}
 .vr{text-align:center}.vr .n,.vr.hd .n{text-align:center}.vr .m{text-align:left}.vr.hd span:first-child{text-align:left}
@@ -211,7 +217,8 @@ CSS = """
 .fch-2c .fch-kv{margin-top:0}
 .comp td,.comp th{text-align:center!important}.comp th:first-child,.comp td:first-child{text-align:right!important}
 .ceo{display:flex;align-items:center;gap:16px}
-.ceo .ft{width:92px;height:92px;border-radius:50%;background:#e2e8f0;color:#475569;font-size:32px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.ceo .ft{position:relative;overflow:hidden;width:92px;height:92px;border-radius:50%;background:#e2e8f0;color:#475569;font-size:32px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.ceo .ft i{position:absolute;inset:0;background-size:cover;background-position:center top}
 .ceo .nm{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2}.ceo .cg{font-size:14px;color:#4b5563;margin-top:3px}
 .fch-st2 .nota,.fch-nota[title]{cursor:help}
 .cambios8{grid-template-columns:repeat(8,minmax(0,1fr))}
@@ -617,14 +624,15 @@ def _tiles_resumen(row, ficha, mercado, agenda=None):
     t = str(row.get("ticker", ""))
     f = ficha or {}
     texto = _texto_descripcion(ficha)
-    desc = (f'<p class="fch-desc">{html.escape(texto)}</p>' if texto
+    desc = (f'<details class="ddet"><summary><div class="pv">{html.escape(texto)}</div><span class="vm">Ver más ▾</span><span class="vl">Ver menos ▴</span></summary>'
+            f'<p class="fch-desc full">{html.escape(texto)}</p></details>' if texto
             else '<div class="fch-sub" style="margin:0">Descripción pendiente de cargar.</div>')
     sector, industria = partes_sector(row.get("sector"))
     sector = _txt(row.get("sector_macro"), "") or sector or ""
     industria = _txt(row.get("industria"), "") or industria_de(t) or ""
     filas = [_fila_kv("Nombre", html.escape(str(row.get("nombre") or t).strip()))]
     if f.get("ceo"):
-        filas.append(_fila_kv("CEO", html.escape(str(f["ceo"])), "Director ejecutivo: quien conduce la empresa día a día."))
+        filas.append(_fila_kv("CEO", html.escape(re.sub(r"\s+", " ", str(f["ceo"]))), "Director ejecutivo: quien conduce la empresa día a día."))
     filas.append(_fila_kv("Sector", html.escape(sector) or "—", "Gran rubro de la economía al que pertenece la empresa."))
     filas.append(_fila_kv("Industria", html.escape(industria) or "—", "Actividad específica dentro de su sector."))
     foso = _foso_de(t)      # v1.2.51: foso competitivo (Amplio / Estrecho / Ninguno), solo donde hay dato
@@ -973,7 +981,7 @@ def _iniciales(nombre):
 
 
 def _sin_honorifico(nombre):
-    return re.sub(r"^(mr|mrs|ms|miss|dr|sir|prof)\.?\s+", "", str(nombre).strip(), flags=re.I)
+    return re.sub(r"\s+", " ", re.sub(r"^(mr|mrs|ms|miss|dr|sir|prof)\.?\s+", "", str(nombre or "").strip(), flags=re.I))
 
 
 def _es_ceo(cargo):
@@ -981,7 +989,15 @@ def _es_ceo(cargo):
     return "chief executive" in c or re.search(r"\bceo\b", c) is not None
 
 
-def tab_directivos(g):
+def nombre_ceo(g):
+    """Nombre del CEO segun la lista de directivos de Yahoo ('' si no figura)."""
+    for d in (g or {}).get("directivos") or []:
+        if _es_ceo(d.get("cargo")):
+            return _sin_honorifico(d.get("nombre"))
+    return ""
+
+
+def tab_directivos(g, foto=None):
     """Directivos (v1.2.53): el CEO en un mosaico grande a la izquierda y el resto del equipo a la derecha. Yahoo no da fotos: el CEO lleva sus iniciales."""
     dirs = (g or {}).get("directivos") or []
     if not dirs:
@@ -995,7 +1011,8 @@ def tab_directivos(g):
             det.append(_fila_kv("Edad", f'{int(ceo["edad"])} años'))
         if ceo.get("pago"):
             det.append(_fila_kv("Remuneración (último año informado)", _usd_abrev(ceo["pago"])))
-        cab = (f'<div class="ceo"><div class="ft" aria-hidden="true">{html.escape(_iniciales(ceo["nombre"]))}</div>'
+        capa = (f'<i style="background-image:url(&quot;{html.escape(foto, quote=True)}&quot;)" title="Foto: Wikipedia"></i>' if foto else "")
+        cab = (f'<div class="ceo"><div class="ft" aria-hidden="true">{html.escape(_iniciales(ceo["nombre"]))}{capa}</div>'
                f'<div><div class="nm">{html.escape(_sin_honorifico(ceo["nombre"]))}</div><div class="cg">{html.escape(ceo.get("cargo") or "CEO")}</div></div></div>')
         tiles.append(_tile("s5", "CEO", cab + ('<div class="fch-kv" style="margin-top:14px">' + "".join(det) + "</div>" if det else ""), ac="#64748b"))
     if resto:

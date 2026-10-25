@@ -112,7 +112,7 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 .mc-datos b{color:#1f2937;font-weight:600}
 .mc-pie{margin:30px 0 10px;padding-top:14px;border-top:1px solid #e3e8ee;text-align:center;font-size:14.5px;color:#4b5563}
 .mc-pie b{color:#1f2937;font-weight:600}
-.mc-aviso{max-width:900px;margin:0 auto 8px;line-height:1.5;text-align:justify}
+.mc-aviso{max-width:none;margin:0 0 8px;line-height:1.5;text-align:justify}
 @media (max-width:1180px){.mc-ic{display:none}.mc-it{padding:8px 9px}}
 @media (max-width:820px){
 .mc-in{flex-wrap:wrap;height:auto;gap:2px 12px;padding:8px 16px 6px}
@@ -389,7 +389,7 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
 def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
     """Final de la pagina (desde la v1.2.41): el aviso legal, la fuente de los datos (v1.2.49, debajo del aviso), la fecha de los datos ("Datos al ...")
     y "Powered by Claude AI · versión"."""
-    av = f'<div class="mc-aviso"><b>Aviso:</b> {html.escape(str(aviso))}</div>' if aviso else ""
+    av = f'<div class="mc-aviso"><b>Aviso legal:</b> {html.escape(str(aviso))}</div>' if aviso else ""
     if fuente:
         av += f'<div class="mc-aviso"><b>Fuentes:</b> {html.escape(str(fuente))}</div>'
     dat = f'Datos al <b>{html.escape(str(datos_al))}</b> · ' if datos_al else ""

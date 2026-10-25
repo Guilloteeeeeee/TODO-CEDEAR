@@ -58,13 +58,14 @@ def _cagr(df, fila, años=3):
         return None
 
 
+ULTIMO_ERROR = [""]
+
+
 def _traducir(texto):
-    """Traduccion al castellano con deep-translator (Google), por partes de hasta ~4000 letras cortadas en fin de oracion; None si no se pudo."""
+    """Traduccion al castellano: primero deep-translator (Google), por partes de hasta ~4000 letras cortadas en fin de oracion; si no esta o falla,
+    el servicio gratuito MyMemory (ui/traducir.py). None si ninguno pudo (el error queda en ULTIMO_ERROR)."""
     try:
         from deep_translator import GoogleTranslator
-    except ImportError:
-        return None
-    try:
         partes, actual = [], ""
         for frase in re.split(r"(?<=[.!?])\s+", texto.strip()):
             if len(actual) + len(frase) + 1 > 4000 and actual:
@@ -74,10 +75,23 @@ def _traducir(texto):
         if actual:
             partes.append(actual)
         tr = GoogleTranslator(source="en", target="es")
-        out = [tr.translate(p) for p in partes]
-        return " ".join(x for x in out if x).strip() or None
-    except Exception:  # noqa: BLE001
-        return None
+        es = " ".join(x for x in (tr.translate(p) for p in partes) if x).strip()
+        if es:
+            return es
+        ULTIMO_ERROR[0] = "Google devolvio texto vacio"
+    except ImportError:
+        ULTIMO_ERROR[0] = "deep-translator no esta instalado"
+    except Exception as e:  # noqa: BLE001
+        ULTIMO_ERROR[0] = f"{type(e).__name__}: {e}"[:200]
+    try:
+        from ui.traducir import traducir_texto_largo
+        es = traducir_texto_largo(texto)
+        if es:
+            return es
+        ULTIMO_ERROR[0] += " | MyMemory tampoco pudo"
+    except Exception as e:  # noqa: BLE001
+        ULTIMO_ERROR[0] += f" | MyMemory: {type(e).__name__}"
+    return None
 
 
 def bajar_una(t):
@@ -117,16 +131,19 @@ def main():
             previo = {}
     datos = dict(previo)
     avisos, ok = [], 0
-    try:
-        from deep_translator import GoogleTranslator  # noqa: F401
-        traductor = True
-    except ImportError:
-        traductor = False
-        avisos.append("deep-translator no esta instalado: las descripciones quedan en ingles (pip install deep-translator)")
+    traductor = True
     print(f"Bajando la ficha de {len(tickers)} empresas (una por una, con pausa)...")
     for i, t in enumerate(tickers, 1):
         if datos.get(t, {}).get("descripcion_en") and datos.get(t, {}).get("mercado_cod"):
             ok += 1
+            if traductor and not datos[t].get("descripcion_es"):      # v1.2.55: completa pero sin traducir -> solo se traduce (no se vuelve a bajar de Yahoo)
+                es = _traducir(datos[t]["descripcion_en"])
+                if es:
+                    datos[t]["descripcion_es"] = es
+                    print(f"  {i:3d}/{len(tickers)} {t:6} traducida")
+                else:
+                    avisos.append(f"{t}: no se pudo traducir la descripcion ({ULTIMO_ERROR[0] or 'sin detalle'})")
+                    print(f"  {i:3d}/{len(tickers)} {t:6} NO se pudo traducir: {ULTIMO_ERROR[0]}")
             continue                      # ya estaba completa (corrida anterior)
         try:
             d = bajar_una(t)
@@ -142,7 +159,7 @@ def main():
             if es:
                 d["descripcion_es"] = es
             else:
-                avisos.append(f"{t}: no se pudo traducir la descripcion")
+                avisos.append(f"{t}: no se pudo traducir la descripcion ({ULTIMO_ERROR[0] or 'sin detalle'})")
         datos[t] = {**datos.get(t, {}), **d}
         ok += 1
         print(f"  {i:3d}/{len(tickers)} {t:6} ok  {datos[t].get('mercado_cod', '?'):4} {(datos[t].get('ceo') or '—')[:28]}")

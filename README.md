@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.55 (25/10/2026): foto del CEO, descripción plegable, traducción y Aviso legal
+- **Descripción de la empresa** en dos renglones con difuminado y "Ver más ▾" / "Ver menos ▴" (`<details>`, sin JavaScript).
+- **Foto del CEO** desde Wikipedia (`data/foto_ceo.py`): solo se usa si la página coincide con el nombre, nombra a la empresa y a un cargo directivo; si no, quedan las iniciales. Probado con datos simulados, **no contra Wikipedia real**.
+- **Traducción:** `bajar_fichas.py` ahora traduce también las empresas ya bajadas que no tenían `descripcion_es` (antes las salteaba), muestra el error real si falla y usa MyMemory como respaldo (`ui/traducir.traducir_texto_largo`). Nuevo `traducir_fichas.bat`.
+- **`data/fichas.json`** del 25/10/2026 (166 empresas, con beta y crecimientos).
+- **Aviso legal:** el título pasa a "Aviso legal:" y el texto ocupa el ancho completo.
+
 ### v1.2.54 (25/10/2026): retoques de la página de empresa
 - **Aviso de carga** bien visible (cartel azul con ruedita) mientras se prepara la información de la empresa; se borra solo al terminar.
 - **Solapas** más grandes, en gris con la activa en oscuro y negrita (Streamlit las dibuja como `div role=tab`; los selectores anteriores no las alcanzaban).

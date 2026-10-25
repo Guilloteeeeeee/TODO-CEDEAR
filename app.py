@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.54"
+APP_VERSION = "1.2.55"
 
 import streamlit as st
 import pandas as pd
@@ -278,6 +278,13 @@ def _intradia(ticker: str, marco: str):
         return None
 
 
+@st.cache_data(ttl=86400, show_spinner=False)
+def _foto_ceo(nombre: str, empresa: str):
+    """v1.2.55: URL de la foto del CEO en Wikipedia (solo si la pagina coincide con el nombre, la empresa y el cargo) o None."""
+    from data import foto_ceo as _fc
+    return _fc.buscar_foto(nombre, empresa)
+
+
 @st.cache_data(ttl=6 * 3600, show_spinner=False)
 def _descripcion_es(texto_en: str):
     """Traduccion al castellano de la descripcion de Yahoo (cuando data/fichas.json solo la trae en ingles). Primero deep-translator (Google); si no esta
@@ -290,24 +297,8 @@ def _descripcion_es(texto_en: str):
     except Exception:  # noqa: BLE001
         pass
     try:
-        import re as _re
-        from ui import traducir as _tr
-        frases = [f for f in _re.split(r"(?<=[.!?])\s+", texto_en.strip()) if f]
-        trozos, act = [], ""
-        for f in frases:
-            if act and len(act) + len(f) + 1 > 450:
-                trozos.append(act)
-                act = ""
-            act = (act + " " + f).strip()
-        if act:
-            trozos.append(act)
-        trozos = trozos[:6]
-        if not trozos:
-            return None
-        res = _tr.traducir_lista(trozos)
-        if len(res) < max(1, int(len(trozos) * 0.8)):
-            return None
-        return " ".join(res.get(t, t) for t in trozos)
+        from ui.traducir import traducir_texto_largo
+        return traducir_texto_largo(texto_en)
     except Exception:  # noqa: BLE001
         return None
 
@@ -870,7 +861,10 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_com:
         st.markdown(_ficha.tab_competidores(rd, df), unsafe_allow_html=True)
     with t_dir:
-        st.markdown(_ficha.tab_directivos(extra.get("gobierno")), unsafe_allow_html=True)
+        gob = extra.get("gobierno")
+        nom_ceo = _ficha.nombre_ceo(gob) or str(ficha.get("ceo") or "")
+        foto = _foto_ceo(nom_ceo, str(rd.get("nombre") or tk)) if nom_ceo else None
+        st.markdown(_ficha.tab_directivos(gob, foto), unsafe_allow_html=True)
     with t_acc:
         st.markdown(_ficha.tab_accionariado(extra.get("gobierno")), unsafe_allow_html=True)
     with t_not:

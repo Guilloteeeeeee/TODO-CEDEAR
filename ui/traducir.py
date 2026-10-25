@@ -87,3 +87,24 @@ def traducir_lista(textos, mail="", pedir=None):
     except Exception:  # noqa: BLE001
         pass
     return out
+
+
+def traducir_texto_largo(texto, mail="", pedir=None, max_trozos=8):
+    """Traduccion de un texto largo (descripcion de una empresa) con el servicio gratuito, por trozos de hasta ~450 letras cortados en fin de oracion.
+    Devuelve el texto en castellano o None si no se pudo traducir al menos el 80 % de los trozos (nunca mezcla idiomas a medias)."""
+    frases = [f for f in re.split(r"(?<=[.!?])\s+", str(texto or "").strip()) if f]
+    trozos, act = [], ""
+    for f in frases:
+        if act and len(act) + len(f) + 1 > 450:
+            trozos.append(act)
+            act = ""
+        act = (act + " " + f).strip()
+    if act:
+        trozos.append(act)
+    trozos = trozos[:max_trozos]
+    if not trozos:
+        return None
+    res = traducir_lista(trozos, mail, pedir)
+    if len(res) < max(1, int(len(trozos) * 0.8)):
+        return None
+    return " ".join(res.get(t, t) for t in trozos)
