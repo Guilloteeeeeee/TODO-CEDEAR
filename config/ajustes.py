@@ -33,9 +33,15 @@ STOCK_ANALYSIS_MODO = "principal"
 # AVISO LEGAL (v1.2.29; desde la v1.2.41 va al final de la pagina, en el pie, y no en una barra fija). Se puede cambiar el texto aca;
 # si se deja vacio ("") la barra no se muestra. Lo redacto el programa como texto base: conviene que lo
 # revise el dueño de la herramienta (por ser asesor registrado) y lo ajuste a lo que corresponda.
-AVISO_LEGAL = ("Herramienta de filtrado inicial, con fines informativos y educativos. No es una recomendación de inversión "
-               "ni una oferta de compra o venta. Los datos pueden tener errores o estar desactualizados: "
-               "investigá cada empresa antes de decidir.")
+AVISO_LEGAL = (
+    "La información de este sitio es de carácter educativo e informativo. No constituye asesoramiento financiero, legal ni impositivo, ni una "
+    "recomendación, oferta o invitación a comprar o vender ningún activo, y no tiene en cuenta tus objetivos, tu situación financiera ni tu perfil de "
+    "riesgo. Las valoraciones, los Fair Value y las categorías son estimaciones hechas con un modelo basado en múltiplos, pensadas para filtrar y "
+    "estudiar empresas: pueden estar equivocadas. Los datos provienen de terceros (Yahoo Finance, Stock Analysis, Rava, CNBC, entre otros) y pueden "
+    "tener errores, omisiones o demoras; verificalos siempre en fuentes oficiales. Invertir implica riesgos, incluida la pérdida del capital, y los "
+    "rendimientos pasados no garantizan resultados futuros. Antes de decidir, hacé tu propio análisis y consultá con un profesional matriculado. "
+    "Finanzas para Médicos Argentina, sus autores y colaboradores no se responsabilizan por las decisiones que se tomen con esta información ni por "
+    "pérdidas o perjuicios de cualquier tipo derivados de su uso.")
 
 import datetime as _dt
 
@@ -77,7 +83,7 @@ NOMBRE_APP = "TodoCedears"
 # --- Franja negra de arriba (v1.2.36; links cargados en la v1.2.37; menus rehechos en la v1.2.38 y la v1.2.49) ------------------
 # La franja lleva el nombre TodoCedears a la izquierda (la imagen assets/marca/titulo-todocedears.png; si el archivo no esta,
 # se escribe el nombre en letras blancas). A la derecha van tres menus: "Sobre Nosotros" (Quiénes somos, Nuestras Redes y Contactános),
-# "Comentarios" y el boton "Abrite una cuenta" (con los logos de CUENTAS_MARCA). Lo que quede vacio ("") no se muestra, salvo WhatsApp, que
+# "Comentarios" y el boton "Abrí una cuenta" (con los logos de CUENTAS_MARCA). Lo que quede vacio ("") no se muestra, salvo WhatsApp, que
 # se muestra apagado ("próximamente") hasta que se cargue su link.
 #   youtube / instagram : el link del canal / del perfil
 #   mail                : el mail de contacto (nombre@dominio.com) o un link
@@ -93,7 +99,7 @@ ENLACES_MARCA = {
     "youtube": "https://www.youtube.com/@FinanzasparaMedicosArgentina",
     "instagram": "https://www.instagram.com/finanzasparamedicos.argentina/",
     "mail": "finanzas.medicos@gmail.com",
-    "whatsapp": "",
+    "whatsapp": "https://chat.whatsapp.com/EKUcDeOKlkyBVJTVG7tsXz",
     "intramed": "https://www.intramed.net/institution/finanzas-para-medicos-argentina",
     "quienes_somos": "",
     "comentarios": "",
@@ -105,7 +111,7 @@ ENLACES_MARCA = {
 # Vacio ("") = no se muestra el cuadro. El mensaje pasa por los servidores de FormSubmit (el cuadro lo avisa).
 COMENTARIOS_MAIL = "finanzas.medicos@gmail.com"
 
-# "Abrite una cuenta con nosotros" (desplegable): una fila por agente. El logo es un archivo de assets/marca/ ("logo") y al
+# "Abrí una cuenta con nosotros" (desplegable): una fila por agente. El logo es un archivo de assets/marca/ ("logo") y al
 # tocarlo abre el link de apertura de cuenta ("url"). "detalle" es un renglon chico opcional debajo del logo (desde la v1.2.39
 # va vacio: el desplegable muestra solo los logos). Datos de referencia, por si se quieren volver a mostrar:
 #   Balanz -> Ap: Guillermo Di Palma · Mat. 2372 · gdipalma@ap.balanz.com

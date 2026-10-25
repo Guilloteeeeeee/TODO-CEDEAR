@@ -62,6 +62,71 @@ def mercado_en_vivo(ticker, timeout=6.0, obtener=None):
     return v if isinstance(v, str) and v.strip() else None
 
 
+def ficha_en_vivo(ticker, timeout=12.0, obtener=None, traducir=True):
+    """v1.2.52: ficha de Yahoo pedida en el momento, para las empresas que no estan en data/fichas.json (mismos campos que arma bajar_fichas.py, sin el
+    crecimiento anual). La descripcion se traduce al castellano si el paquete deep-translator esta instalado; si no, queda en ingles. {} si Yahoo no
+    responde; nunca levanta excepciones. `obtener(ticker)` -> dict `info` de Yahoo, para las pruebas."""
+    res = {}
+
+    def _pedir():
+        try:
+            if obtener is not None:
+                res["v"] = obtener(ticker)
+                return
+            import yfinance as yf
+            res["v"] = yf.Ticker(str(ticker)).info
+        except Exception:  # noqa: BLE001
+            res["v"] = None
+
+    h = threading.Thread(target=_pedir, daemon=True)
+    h.start()
+    h.join(timeout)
+    info = res.get("v")
+    if not isinstance(info, dict) or not (info.get("longBusinessSummary") or info.get("longName") or info.get("shortName")):
+        return {}
+    import re
+
+    def _num(x):
+        try:
+            v = float(x)
+            return v if v == v and abs(v) != float("inf") else None
+        except (TypeError, ValueError):
+            return None
+
+    ceo = None
+    for o in info.get("companyOfficers") or []:
+        t = str(o.get("title") or "").lower()
+        if "chief executive" in t or re.search(r"\bceo\b", t):
+            n = re.sub(r"^(mr|mrs|ms|miss|dr|prof|sir|dame)\.?\s+", "", str(o.get("name") or "").strip(), flags=re.I)
+            if n:
+                ceo = n
+                break
+    d = {"descripcion_en": (info.get("longBusinessSummary") or "").strip() or None, "ceo": ceo, "web": info.get("website"),
+         "empleados": info.get("fullTimeEmployees"), "ciudad": info.get("city"), "region": info.get("state"), "pais": info.get("country"),
+         "mercado_cod": info.get("exchange"), "mercado_nombre": info.get("fullExchangeName"),
+         "ev": _num(info.get("enterpriseValue")), "acciones": _num(info.get("sharesOutstanding")), "ingresos_ttm": _num(info.get("totalRevenue")),
+         "crec_ingresos_trim": _num(info.get("revenueGrowth")), "crec_ganancias_trim": _num(info.get("earningsGrowth"))}
+    d = {k: v for k, v in d.items() if v not in (None, "")}
+    if traducir and d.get("descripcion_en"):
+        try:
+            from deep_translator import GoogleTranslator
+            partes, actual = [], ""
+            for frase in re.split(r"(?<=[.!?])\s+", d["descripcion_en"]):
+                if len(actual) + len(frase) + 1 > 4000 and actual:
+                    partes.append(actual)
+                    actual = ""
+                actual = (actual + " " + frase).strip()
+            if actual:
+                partes.append(actual)
+            tr = GoogleTranslator(source="en", target="es")
+            es = " ".join(x for x in (tr.translate(p) for p in partes) if x).strip()
+            if es:
+                d["descripcion_es"] = es
+        except Exception:  # noqa: BLE001
+            pass
+    return d
+
+
 def mercado_y_adr(ticker, ficha=None, codigo_en_vivo=None):
     """(texto del mercado o None, es_adr) para mostrar en la ficha: 'NYSE', 'Nasdaq'... y, si es ADR, True. El mercado sale de la ficha de
     Yahoo (data/fichas.json) y, si no esta, del codigo pedido en el momento."""

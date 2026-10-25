@@ -19,6 +19,7 @@ Los signos $ se escriben como &#36; para que el markdown no los tome como formul
 import base64
 import html
 import math
+import re
 import statistics
 from urllib.parse import quote
 
@@ -92,7 +93,7 @@ def escala_valoracion_html(mostrar_gris=False):
 # clave de columna -> (titulo, texto). Las columnas que se suman desde "Variables a ver en la tabla" usan el texto de ui/criterios.py.
 # Empresa (v1.2.49) va sin titulo adelante: es la frase tal cual, con la ultima oracion en azul.
 AYUDA_COLUMNAS = {
-    "nombre": ("Empresa", "Nombre, país y ticker. :blue[**Tocá el nombre para ver su página con todo el detalle.**]"),
+    "nombre": ("Empresa", ":blue[**Tocá el nombre para ver su página con todo el detalle.**]"),
     "sector_txt": ("Sector e industria", "A qué se dedica la empresa: el sector y, abajo, su industria. Es solo información: no cambia la valoración ni el puntaje."),
     "precio_actual": ("Precio", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance cada pocos minutos "
                                 "(puede tener demora); si no responde, queda el de la última actualización de los datos{fecha}. "
@@ -159,9 +160,9 @@ CSS = """
 .tv2-r{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2.6fr) minmax(0,1.3fr) minmax(0,1.6fr) minmax(0,2fr) minmax(0,1.3fr);align-items:stretch;border-top:1px solid #f0f2f5}
 .tv2-r:first-child{border-top:0}
 .tv2-r>div{padding:8px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
-.tv2-r>.tv2-v{background:#f8fafc}
+.tv2-r:nth-child(even){background:#f3f6f9}   /* v1.2.52: filas alternadas (antes la columna Valoracion tenia otro tono) */
 .tv2-r:hover>div{background:#f8fafc}
-.tv2-r:hover>.tv2-v{background:#f1f5f9}
+.tv2-r:hover>.tv2-v{background:#eef2f6}
 .tv2-c{align-items:center;text-align:center}
 .tv2-emp{display:flex;align-items:center;gap:10px;min-width:0}
 .tv2-ec{min-width:0;flex:1}
@@ -211,6 +212,21 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv-t2{position:relative;height:8px;border-radius:4px;background:#e5e7eb;margin-top:12px}
 .tv-d2{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-dy{font-weight:700;font-size:15px}
+.b52{max-width:190px;margin:0 auto}
+.b52-top{position:relative;height:15px}
+.b52-hoy{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;font-size:11.5px;font-weight:700;color:#0f172a;line-height:15px}
+.b52-bar{position:relative;height:6px;border-radius:3px;background:#d5dbe3;margin:2px 0 0}
+.b52-mid{position:absolute;left:50%;top:-2px;width:2px;height:10px;background:#9aa4b2;transform:translateX(-50%)}
+.b52-dot{position:absolute;top:-3px;width:12px;height:12px;border-radius:50%;background:#475569;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
+.b52-x{display:grid;grid-template-columns:1fr 1fr 1fr;margin-top:4px;font-size:11px;color:#4b5563;line-height:1.25}
+.b52-x span:nth-child(2){text-align:center}.b52-x span:nth-child(3){text-align:right}
+.b52-x small{display:block;font-size:10.5px;color:#9ca3af}
+.b52.grande{max-width:none}
+.b52.grande .b52-hoy{font-size:13px;height:18px;line-height:18px}.b52.grande .b52-top{height:18px}
+.b52.grande .b52-bar{height:8px;border-radius:4px}.b52.grande .b52-dot{width:16px;height:16px;top:-4px}
+.b52.grande .b52-mid{height:14px;top:-3px}
+.b52.grande .b52-x{font-size:13px;font-weight:600;color:#111827;margin-top:6px}
+.b52.grande .b52-x small{font-size:11px;font-weight:400;color:#6b7280}
 .tv-dy small{font-weight:600;font-size:12px;display:block;margin-top:2px}
 .tv-mc{font-size:14px;font-weight:700;color:#111827}
 .tv-sec{line-height:1.25}
@@ -348,7 +364,19 @@ _BARRA = "#2b2f33"
 _BARRA_VAL = "#1d2023"
 
 
-def css_encabezado(sort_col=None, n_extra=0, visibles=None):
+def _css_flechas(sort_col=None, sort_asc=True):
+    """v1.2.52: flechitas chicas de orden en TODOS los titulos (apagadas: se puede ordenar por cualquiera; la columna activa la lleva prendida y
+    apunta hacia donde se ordena). Se dibujan con CSS, no en el texto del boton."""
+    base = '[class*="st-key-tvh_"] button [data-testid="stMarkdownContainer"]'
+    css = (f'{base}{{display:flex;align-items:center;justify-content:center;gap:5px}}'
+           f'{base}::after{{content:"\\25BE";font-size:9px;line-height:1;opacity:.45}}')
+    if sort_col and re.fullmatch(r"[A-Za-z0-9_]+", str(sort_col)):
+        css += (f'.st-key-tvh_{sort_col} button [data-testid="stMarkdownContainer"]::after'
+                f'{{content:"{chr(92) + ("25B4" if sort_asc else "25BE")}";font-size:10px;opacity:1}}')
+    return css
+
+
+def css_encabezado(sort_col=None, n_extra=0, visibles=None, sort_asc=True):
     """CSS de la fila de titulos (botones de Streamlit con la clave 'tvh_<columna>') y de la grilla de las filas para `n_extra` criterios agregados.
     Gris oscuro neutro con titulos blancos; la columna Valoracion un poco mas oscura. La columna por la que se ordena se reconoce por la flecha.
     v1.2.47: sin los globitos "?" (la explicacion se ve al pasar el mouse por el titulo) y sin "(Cotizacion origen)" debajo de Precio.
@@ -364,10 +392,10 @@ def css_encabezado(sort_col=None, n_extra=0, visibles=None):
         '[class*="st-key-tvh_"] button div,[class*="st-key-tvh_"] button [data-testid="stMarkdownContainer"]{white-space:normal;overflow:visible;text-overflow:clip}'
         '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
         '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
-        f'.st-key-tvh_fv_upside button{{background:{_BARRA_VAL}}}'
         f'{base} [data-testid="stColumn"] [data-testid="stVerticalBlock"]{{gap:0!important}}'
         '[class*="st-key-tvh_"] button{padding-left:3px!important;padding-right:3px!important}'
         'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'
+        + _css_flechas(sort_col, sort_asc)
     )
 
 
@@ -586,15 +614,32 @@ def _celda_puntaje(row):
             f'<div class="tv-num">{num}</div><div class="tv-met" style="background:#64748b">{met}</div></div>')
 
 
-def _celda_52s(row):
+def barra_52s_html(row, grande=False):
+    """v1.2.52: rango de 52 semanas en una barrita gris. Arriba, el precio de hoy (sobre su marca); abajo, el minimo, el precio medio del rango
+    (la raya del centro) y el maximo. `grande`: version de la pagina de la empresa (con los rotulos Minimo / Medio / Maximo). '' si no hay rango."""
+    lo, hi, p = _n(row.get("precio_min_52s")), _n(row.get("precio_max_52s")), _n(row.get("precio_actual"))
     pos = _n(row.get("posicion_52s"))
-    if pos is None:
-        return '<div class="tv-sub">—</div>'
-    pct = _clamp(pos * 100)
-    c = "#64748b"   # un solo color (gris azulado)
-    return (f'<div title="El precio está al {pct:.0f}% del rango de las últimas 52 semanas (0% = mínimo, 100% = máximo)">'
-            f'<div class="tv-t2"><div class="tv-d2" style="left:{pct:.0f}%;background:{c}"></div></div>'
-            f'<div class="tv-lbls"><span>{_money(row.get("precio_min_52s"))}</span><span>{_money(row.get("precio_max_52s"))}</span></div></div>')
+    if lo is None or hi is None or hi <= lo:
+        return ""
+    if p and p > 0:
+        pct = _clamp((p - lo) / (hi - lo) * 100)
+    elif pos is not None:
+        pct = _clamp(pos * 100)
+    else:
+        return ""
+    hoy = _money(p) if p and p > 0 else ""
+    arriba = f'<div class="b52-hoy" style="left:{_clamp(pct, 16, 84):.1f}%">{hoy}</div>' if hoy else ""
+    rot = (lambda t: f"<small>{t}</small>") if grande else (lambda t: "")
+    tip = (f"Rango de los últimos 12 meses: del precio más bajo al más alto; la raya del centro es el precio medio del rango. "
+           f"El precio de hoy está al {pct:.0f}% del rango (0% = mínimo, 100% = máximo).")
+    return (f'<div class="b52{" grande" if grande else ""}" title="{html.escape(tip, quote=True)}"><div class="b52-top">{arriba}</div>'
+            f'<div class="b52-bar"><i class="b52-mid"></i><i class="b52-dot" style="left:{pct:.1f}%"></i></div>'
+            f'<div class="b52-x"><span>{_money(lo)}{rot("Mínimo")}</span><span>{_money((lo + hi) / 2)}{rot("Medio")}</span>'
+            f'<span>{_money(hi)}{rot("Máximo")}</span></div></div>')
+
+
+def _celda_52s(row):
+    return barra_52s_html(row) or '<div class="tv-sub">—</div>'
 
 
 def _color_dy(row, ratio):

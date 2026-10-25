@@ -5,7 +5,7 @@ Franja gris oscura de punta a punta arriba de todo: el nombre TodoCedears a la i
 assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas) y, a la derecha, dos menus desplegables (v1.2.50; en la v1.2.49 eran tres):
   - "Sobre Nosotros": Quiénes somos (pagina propia, ?pagina=quienes), "Nuestras Redes" (YouTube, Instagram e Intramed, con sus colores) y
     "Contactános" (Gmail y WhatsApp, con sus colores);
-    y, mas abajo, "Abrite una cuenta con nosotros" (v1.2.50: antes era un boton aparte) con los logos de Balanz e Inviu;
+    y, mas abajo, "Abrí una cuenta con nosotros" (v1.2.50: antes era un boton aparte) con los logos de Balanz e Inviu;
   - "Comentarios": el cuadro que manda el mensaje por mail.
 Despues va el toro de "Finanzas para Medicos Argentina" chiquito. Los iconos de un solo color que antes estaban sueltos en la franja ya no estan
 (estan, a color, en el menu); se pueden volver a mostrar con ICONOS_EN_BARRA = True en config/ajustes.py. En las pantallas anchas el buscador de
@@ -87,7 +87,7 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 .mc-logos{display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:6px 12px 10px}
 .mc-pop a.mc-acc{display:inline-flex;border-radius:9px;text-decoration:none!important;transition:transform .12s,box-shadow .12s}
 .mc-pop a.mc-acc:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(15,23,42,.25)}
-.mc-acc img{height:40px;width:auto;max-width:100%;display:block;border-radius:9px}
+.mc-acc img{width:96px;height:auto;max-width:100%;display:block;border-radius:9px}   /* v1.2.52: todos los logos del mismo ancho (Inviu no puede quedar mas grande que Balanz) */
 .mc-lg{height:40px;min-width:40px;padding:0 12px;border-radius:9px;background:#eef1f4;display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;color:#334155}
 .mc-fv{display:block;width:40px;height:40px;background:#fff center/72% no-repeat;border-radius:9px;border:1px solid #e3e8ee}
 .mc-form{display:flex;flex-direction:column;gap:8px;margin:0;padding:6px 12px 12px}
@@ -107,6 +107,7 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 .mc-co img{width:32px;height:32px;display:block;border-radius:50%}
 .mc-toro{flex:none;width:44px;height:44px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center}
 .mc-toro img{width:36px;height:auto;display:block}
+.mc-dev{margin-top:3px}
 .mc-datos{text-align:right;font-size:12.5px;color:#4b5563;margin:6px 4px -18px}
 .mc-datos b{color:#1f2937;font-weight:600}
 .mc-pie{margin:30px 0 10px;padding-top:14px;border-top:1px solid #e3e8ee;text-align:center;font-size:12.5px;color:#4b5563}
@@ -234,7 +235,7 @@ def _logo_cuenta(c):
 
 
 def _cuentas_html(cuentas=None):
-    """Logos de "Abrite una cuenta con nosotros" (desplegable propio de la barra desde la v1.2.49, en sus colores sobre fondo claro): cada logo
+    """Logos de "Abrí una cuenta con nosotros" (desplegable propio de la barra desde la v1.2.49, en sus colores sobre fondo claro): cada logo
     abre el link de apertura de cuenta. Solo las que tienen link. Sin ninguna, devuelve ''."""
     filas = []
     for c in (CUENTAS_MARCA if cuentas is None else cuentas):
@@ -246,7 +247,7 @@ def _cuentas_html(cuentas=None):
                      f'title="Abrir cuenta en {html.escape(str(c["nombre"]))}">{_logo_cuenta(c)}{det}</a>')
     if not filas:
         return ""
-    return f'<div class="mc-ps">Abrite una cuenta con nosotros</div><div class="mc-logos">{"".join(filas)}</div>'
+    return f'<div class="mc-ps">Abrí una cuenta con nosotros</div><div class="mc-logos">{"".join(filas)}</div>'
 
 
 _MAIL_OK = re.compile(r"^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$")
@@ -336,7 +337,7 @@ def _sobre_nosotros_html(e, cuentas=None):
     contacto += _enlace_color("whatsapp", e["whatsapp"])
     if contacto:
         bloques += ['<div class="mc-hr"></div>', '<div class="mc-ps">Contactános</div>', f'<div class="mc-redes">{contacto}</div>']
-    # v1.2.50 (decidido por el dueño): "Abrite una cuenta con nosotros" va DENTRO de este menu, no como boton aparte en la barra.
+    # v1.2.50 (decidido por el dueño): "Abrí una cuenta con nosotros" va DENTRO de este menu, no como boton aparte en la barra.
     logos = _cuentas_html(cuentas)
     if logos:
         bloques += ['<div class="mc-hr"></div>', logos]
@@ -356,7 +357,7 @@ def _comentarios_menu_html(e, comentarios_mail=None):
 
 
 def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None):
-    """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrite una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
+    """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrí una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
     uri_titulo = _uri(TITULO)
     izq = (f'<img class="mc-img" src="{uri_titulo}" alt="{html.escape(str(nombre))}">' if uri_titulo
            else f'<div class="mc-t">{_titulo(nombre)}</div>')
@@ -390,4 +391,5 @@ def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
     dat = f'Datos al <b>{html.escape(str(datos_al))}</b> · ' if datos_al else ""
     if precios:      # v1.2.46: texto ya armado por la app (lleva un <b>); sin precios en vivo no se muestra nada
         dat += f'{precios} · '
-    return f'<div class="mc-pie">{av}<div>{dat}Powered by <b>Claude AI</b> · v{html.escape(str(version))}</div></div>'
+    return (f'<div class="mc-pie">{av}<div>{dat}Powered by <b>Claude AI</b> · v{html.escape(str(version))}</div>'
+            f'<div class="mc-dev">Developed by <b>{html.escape(NOMBRE_MARCA)}</b></div></div>')

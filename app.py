@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.51"
+APP_VERSION = "1.2.52"
 
 import streamlit as st
 import pandas as pd
@@ -46,7 +46,7 @@ from ui import criterios as _criterios
 from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
 from ui.quienes import quienes_html, CSS as CSS_QUIENES
-from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas
+from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -240,6 +240,25 @@ def _mercado_vivo(ticker: str):
     """Codigo del mercado segun Yahoo, pedido en el momento (solo si data/fichas.json no trae el de esa empresa). None si no responde."""
     try:
         return _fichas.mercado_en_vivo(ticker)
+    except Exception:  # noqa: BLE001
+        return None
+
+
+@st.cache_data(ttl=86400, show_spinner=False)
+def _ficha_viva(ticker: str) -> dict:
+    """v1.2.52: ficha de Yahoo pedida en el momento, solo para las empresas que no estan en data/fichas.json (o sin descripcion). {} si no responde."""
+    try:
+        return _fichas.ficha_en_vivo(ticker) or {}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _historial_precios(ticker: str):
+    """v1.2.52: cierres diarios de los ultimos 10 años (Yahoo) para el grafico y los cambios de precio. None si Yahoo no responde (no se guarda
+    el fracaso mas de una hora: Streamlit guarda el None igual, por eso el TTL es corto)."""
+    try:
+        return _hp.bajar(ticker)
     except Exception:  # noqa: BLE001
         return None
 
@@ -544,7 +563,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
     """Tabla visual: titulos ordenables (botones, con la explicacion al pasar el mouse) y filas en una sola pieza de HTML con la misma grilla."""
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
-    st.markdown(f"<style>{css_encabezado(sort_col, len(extras), visibles)}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{css_encabezado(sort_col, len(extras), visibles, bool(sort_asc))}</style>", unsafe_allow_html=True)
 
     # Celular: el selector reemplaza a los titulos (la hoja de estilos esconde uno u otro segun el ancho de la pantalla)
     opciones = ordenes_movil(extras, visibles)
@@ -562,8 +581,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
     titulos = [(clave, etiqueta) for clave, etiqueta, _ in columnas_base(visibles)] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
     for contenedor, (clave, etiqueta) in zip(cols, titulos):
         activo = sort_col == clave
-        flecha = (" ▲" if sort_asc else " ▼") if activo else ""
-        if contenedor.button(etiqueta + flecha, key=f"tvh_{clave}", use_container_width=True, help=ayuda_texto(clave, fecha) or None):
+        if contenedor.button(etiqueta, key=f"tvh_{clave}", use_container_width=True, help=ayuda_texto(clave, fecha) or None):
             if activo:
                 st.session_state["sort_asc"] = not sort_asc
             else:
@@ -719,7 +737,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
-    st.markdown('<a class="emp-vol" href="?" target="_self">← Volver al inicio</a>', unsafe_allow_html=True)
+    st.markdown('<a class="emp-vol" href="?" target="_self">← Volver al Inicio</a>', unsafe_allow_html=True)
 
     row = df[df["ticker"] == str(ticker_sel).upper()] if ticker_sel else df.iloc[0:0]
     if row.empty:
@@ -731,8 +749,13 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
 
     # v1.2.47: encabezado (logo, nombre, mercado, ticker, ADR, precio) y todos los datos en mosaicos (ui/ficha.py)
     ficha = (_fichas_datos() or {}).get(str(ticker_sel).upper()) or {}
+    if not (ficha.get("descripcion_es") or ficha.get("descripcion_en")):
+        with st.spinner("Buscando la descripción de la empresa..."):
+            viva = _ficha_viva(str(ticker_sel).upper())
+        if viva:
+            ficha = {**viva, **ficha}      # lo que ya estaba en data/fichas.json manda; Yahoo en vivo completa lo que falta
     cod = None if (ficha.get("mercado_cod") or ficha.get("mercado_nombre")) else _mercado_vivo(str(ticker_sel))
-    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel), ficha, cod, fecha_datos), unsafe_allow_html=True)
+    st.markdown(ficha_html(row.to_dict(), _datos_cedear(df, ticker_sel), ficha, cod, fecha_datos, _historial_precios(str(ticker_sel).upper())), unsafe_allow_html=True)
 
     # v1.2.49: el desglose de metricas pasó a "Estadisticas de la empresa" (ui/ficha.py): valor de hoy, mediana, dibujito, Fair Value y peso de cada una.
     usadas_d = row.get("metricas_usadas")
@@ -742,13 +765,8 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
             "Por eso esta empresa no tiene categoría."
         )
 
-    # Aviso trampa de valor si el score es alto
-    if row.get("score_total") and row.get("score_total") >= 65:
-        st.warning(
-            "⚠️ **Posible trampa de valor:** Una empresa con score alto no garantiza que esté infravalorada. "
-            "El precio bajo puede reflejar deterioro real del negocio no capturado por los múltiplos históricos. "
-            "Investigá los fundamentales antes de tomar una decisión."
-        )
+    # v1.2.52: se saco el aviso "Posible trampa de valor" hasta que exista el Score de calidad final (ver README, "Pendientes"): ahi vuelve,
+    # para empresas con score de calidad bajo y valoracion infravalorada.
     return texto_fuente(ficha)
 
 

@@ -577,6 +577,20 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.52 (25/10/2026): ficha de empresa rediseñada, Quiénes somos, aviso legal y pie
+- **Quiénes somos:** texto nuevo (primera frase en negrita), foto nueva de Guillermo, el toro a la derecha del título, sin el nombre de la marca debajo del título; "← Volver al Inicio". Se sacó el párrafo de "Asesoría Financiera Integral" (no estaba en el texto nuevo; se puede volver a poner en `ui/quienes.py`).
+- **Menú:** "Abrí una cuenta con nosotros"; los logos de Balanz e Inviu tienen el mismo ancho; WhatsApp enlaza a la comunidad (`ENLACES_MARCA["whatsapp"]`).
+- **Resumen de la empresa (mosaico):** la descripción ocupa todo el ancho; abajo, a la izquierda los datos (nombre, CEO, sector, industria, foso, mercado, sede, empleados) y a la derecha capitalización, Dividend Yield (valor, mediana histórica y dibujito, igual que los múltiplos), rango de 52 semanas y cambio del precio (día, semana, mes y año); al final, gráfico básico de 10 años. Cada rótulo explica su tema al pasar el mouse.
+- **Links:** "Relaciones con inversores" (búsqueda en Google: no se inventan direcciones) y "SEC Filings" (EDGAR por ticker; 10-K, o 20-F si es ADR).
+- **Datos en vivo de Yahoo (nuevo, `data/historial_precios.py` y `fichas.ficha_en_vivo`):** el historial de precios (cierres diarios, 10 años, no es tiempo real) se pide al abrir la empresa; si la empresa no está en `data/fichas.json` (o sin descripción) se pide la ficha a Yahoo en el momento (se traduce con `deep-translator` si está). Si Yahoo no responde, la pantalla dice "no disponible": nunca se inventa un dato. **No se pudo probar contra Yahoo real desde el entorno de desarrollo** (probado con datos simulados).
+- **Rango de 52 semanas:** barrita gris con el precio de hoy arriba y mínimo / medio / máximo abajo, más chica, en la tabla y en la ficha (`barra_52s_html`).
+- **Múltiplos de la Empresa** (antes "Estadísticas de la empresa"): solo múltiplos. Perfil (EV, acciones, ingresos) y Crecimiento pasaron a un mosaico plegado "Tamaño y crecimiento"; la capitalización pasó al Resumen.
+- **Encabezado de la empresa:** solo mercado y ticker, más grande. El "Dato al …" salió de debajo del precio y está en el pie.
+- **Pie:** "Datos al … · Powered by Claude AI · vX" y "Developed by Finanzas para Médicos Argentina". **Aviso legal** nuevo (educativo, no es recomendación, datos de terceros, hacer el propio análisis, sin responsabilidad de los autores).
+- **Tabla:** filas alternadas (sin tono propio en Valoración), flechitas de orden chicas en todos los títulos (la activa apunta según el orden), ayuda de Empresa solo con "Tocá el nombre…".
+- **Descripción de Valoración** reescrita (dice que es un modelo basado en múltiplos, sin detalles del método).
+- **Sacado por ahora:** el aviso "Posible trampa de valor". Texto guardado para cuando exista el Score de calidad final (score de calidad bajo + infravalorada): *"Una empresa con score alto no garantiza que esté infravalorada. El precio bajo puede reflejar deterioro real del negocio no capturado por los múltiplos históricos. Investigá los fundamentales antes de tomar una decisión."*
+
 ### v1.2.51 (25/10/2026): sin técnico, foso, buscador y navegación
 - **Puntaje = 100 % fundamental (opción C):** el rango de 52 semanas ya no entra al puntaje (`TECHNICAL_WEIGHT = 0` en `config/sectors.py`; antes 0,15 y premiaba estar cerca del mínimo). 39 de 166 empresas cambian de categoría, ninguna más de un escalón. El dato sigue en el caché y se ve como **barrita** (mínimo, máximo y marca del precio) en la tabla (variable "Posición en el rango de 52 semanas") y en la página de cada empresa. `rescorar_cache.py` vuelve a puntuar el caché sin bajar nada.
 - **Los tres escenarios** (hoy con técnico / técnico invertido / sin técnico) quedaron guardados con los datos del 22/10 en `data/escenarios_tecnico_22-10-2026.csv` para medir el **1/12** cuál rindió mejor contra los retornos reales. No se muestran en la app. Con ~40 días no será concluyente; no ajustar nada mirando el resultado.
