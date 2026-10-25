@@ -589,6 +589,8 @@ cedear-screener/
 - **Pie:** "Datos al … · Powered by Claude AI · vX" y "Developed by Finanzas para Médicos Argentina". **Aviso legal** nuevo (educativo, no es recomendación, datos de terceros, hacer el propio análisis, sin responsabilidad de los autores).
 - **Tabla:** filas alternadas (sin tono propio en Valoración), flechitas de orden chicas en todos los títulos (la activa apunta según el orden), ayuda de Empresa solo con "Tocá el nombre…".
 - **Descripción de Valoración** reescrita (dice que es un modelo basado en múltiplos, sin detalles del método).
+- **Prueba estética:** fuente condensada Roboto Condensed (Apache 2.0, `assets/fuentes/`) para títulos, tickers y números (`FUENTE_NUMEROS` en `config/ajustes.py`; vacío = todo en Inter); puntaje en píldora gris suave; en Valoración el estado va en negrita y de color y el calificador (Significativamente / Moderadamente) más chico y gris debajo (solo escritorio).
+- **Lista maestra del 1/12:** `PENDIENTES_01-12.md`.
 - **Sacado por ahora:** el aviso "Posible trampa de valor". Texto guardado para cuando exista el Score de calidad final (score de calidad bajo + infravalorada): *"Una empresa con score alto no garantiza que esté infravalorada. El precio bajo puede reflejar deterioro real del negocio no capturado por los múltiplos históricos. Investigá los fundamentales antes de tomar una decisión."*
 
 ### v1.2.51 (25/10/2026): sin técnico, foso, buscador y navegación

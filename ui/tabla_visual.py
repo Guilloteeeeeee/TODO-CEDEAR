@@ -212,6 +212,16 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv-t2{position:relative;height:8px;border-radius:4px;background:#e5e7eb;margin-top:12px}
 .tv-d2{position:absolute;top:-3px;width:14px;height:14px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px #94a3b8;transform:translateX(-50%);box-sizing:border-box}
 .tv-dy{font-weight:700;font-size:15px}
+/* v1.2.52 (prueba estetica): puntaje en pildora gris suave; Valoracion = estado en negrita y de color, calificador mas chico y gris debajo */
+.tv2 .tv-score{width:auto;min-width:54px;border:0;border-radius:999px;background:#e9edf2;padding:3px 12px 4px;overflow:visible}
+.tv2 .tv-num{font-size:19px;line-height:22px;font-weight:700;color:#1f2937}
+.tv2 .tv-met{background:transparent!important;color:#6b7280;font-size:10.5px;line-height:12px}
+@media (min-width:901px){
+.tv2-r .tv-vn{display:flex;flex-direction:column-reverse;align-items:center}
+.tv2-r .tv-vn .tv-ln1{font-size:11.5px;font-weight:500;color:#6b7280;margin-top:1px}
+.tv2-r .tv-vn .tv-ln2{font-size:15px;font-weight:700}
+}
+
 .b52{max-width:190px;margin:0 auto}
 .b52-top{position:relative;height:15px}
 .b52-hoy{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap;font-size:11.5px;font-weight:700;color:#0f172a;line-height:15px}

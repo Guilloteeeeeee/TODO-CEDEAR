@@ -29,7 +29,7 @@ from scoring.seguimiento import (cargar_copias, evaluar_copias, proxima_medicion
 from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, etiqueta_sector, PAIS_MANUAL, partes_sector
 from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
-from ui.fuentes import css_fuente
+from ui.fuentes import css_condensada, css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
 from ui import noticias as _noticias
 from ui.cajas import CSS as CSS_CAJAS
@@ -812,7 +812,7 @@ def main():
 
     # v1.2.49: pagina "Quiénes somos" (?pagina=quienes): no necesita los datos de las empresas, asi que se muestra al toque
     if st.query_params.get("pagina") == "quienes":
-        st.markdown(f"<style>{css_fuente()}{CSS_QUIENES}</style>" + quienes_html(), unsafe_allow_html=True)
+        st.markdown(f"<style>{css_fuente()}{css_condensada()}{CSS_QUIENES}</style>" + quienes_html(), unsafe_allow_html=True)
         st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
         return
 
@@ -884,7 +884,7 @@ def main():
         st.stop()
 
     # Estilos de la tabla, de la escala, de la pagina de empresa y de las banderas (una sola vez por pagina)
-    st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}{CSS_FICHA}</style>", unsafe_allow_html=True)
+    st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}{CSS_FICHA}{css_condensada()}</style>", unsafe_allow_html=True)
     st.markdown(css_banderas(), unsafe_allow_html=True)
 
     # Pagina de una empresa (se abre al tocar su nombre en la tabla): ?empresa=TICKER

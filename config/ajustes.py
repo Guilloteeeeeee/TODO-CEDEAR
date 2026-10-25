@@ -76,6 +76,8 @@ VISTA_POR_DEFECTO = "clasica"
 # "Inter": fuente pensada para pantallas y tablas de numeros (viene incluida en assets/fuentes, no se baja de internet).
 # "": usa la tipografia que trae Streamlit (Source Sans).
 FUENTE_APP = "Inter"
+# v1.2.52: fuente condensada (estilo Morningstar) para titulos, tickers y numeros financieros. "" = se apaga y todo queda en Inter.
+FUENTE_NUMEROS = "Roboto Condensed"
 
 # --- Nombre de la app (v1.2.34) --------------------------------------------------------------------
 NOMBRE_APP = "TodoCedears"
