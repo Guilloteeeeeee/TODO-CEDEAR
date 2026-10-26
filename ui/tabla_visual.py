@@ -426,7 +426,7 @@ def _money(x):
     v = _n(x)
     if v is None:
         return "—"
-    return f"US&#36;&nbsp;{v:,.0f}" if abs(v) >= 100 else f"US&#36;&nbsp;{v:,.2f}"
+    return f"US&#36;&nbsp;{v:,.1f}" if abs(v) >= 1 else f"US&#36;&nbsp;{v:,.2f}"      # v1.2.60: un decimal con punto (US$ 192.3)
 
 
 def _mcap(x):

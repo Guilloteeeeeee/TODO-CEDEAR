@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.59"
+APP_VERSION = "1.2.60"
 
 import contextlib
 import streamlit as st
@@ -31,7 +31,7 @@ from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, eti
 from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_condensada, css_fuente
-from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html
+from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav
 from ui import noticias as _noticias
 from ui.cajas import CSS as CSS_CAJAS
 from ui.exportar import excel_bytes
@@ -618,15 +618,42 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     }
 
 
-def render_buscador() -> str:
+# v1.2.60: el buscador tambien se dibuja en paginas que no cargan la hoja de estilos de la tabla (ETFs, Quienes somos): se toman sus reglas de ahi
+CSS_BUSQUEDA = "\n".join(l for l in CSS_VISUAL.splitlines() if l.startswith(".st-key-buscador"))
+
+
+def _ir_a_tabla(tabla):
+    """Botones "Empresas" / "ETFs" de la franja (v1.2.60): cambian de tabla dentro de la misma sesion (cambian la URL, pero la pagina no se recarga)."""
+    st.query_params.clear()
+    if tabla == "etfs":
+        st.query_params["tabla"] = "etfs"
+
+
+def render_nav_tablas():
+    with st.container(key="nav_tablas"):
+        for clave, texto in (("emp", "Empresas"), ("etfs", "ETFs")):
+            args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=("etfs" if clave == "etfs" else "empresas",))
+            try:
+                st.button(texto, type="tertiary", **args)
+            except TypeError:       # Streamlit viejo, sin type="tertiary"
+                st.button(texto, **args)
+
+
+def _enviar_busqueda():
+    """Al buscar desde la pagina de una empresa (o Quienes somos) se vuelve a la tabla de empresas con la busqueda aplicada (v1.2.60)."""
+    if st.query_params.get("tabla") != "etfs" and ("empresa" in st.query_params or "pagina" in st.query_params):
+        st.query_params.clear()
+
+
+def render_buscador(tabla="empresas") -> str:
     """Buscador de arriba de la tabla (v1.2.47): una lupa y "Buscar empresas por nombre o ticker". Busca de las dos formas, sin importar
     mayusculas, tildes ni signos (Enter para buscar). Devuelve el texto escrito."""
     # v1.2.51: sin el contador "0/40"; la lupa es el boton que envia la busqueda (Enter tambien)
     with st.container(key="buscador"):
         with st.form("form_busqueda", border=False, clear_on_submit=False):
-            texto = st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda", placeholder="Buscar empresa o ticker",
-                                  label_visibility="collapsed")
-            st.form_submit_button("Buscar", icon=":material/search:")
+            texto = st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda",
+                                  placeholder="Buscar ETF o ticker" if tabla == "etfs" else "Buscar empresa o ticker", label_visibility="collapsed")
+            st.form_submit_button("Buscar", icon=":material/search:", on_click=_enviar_busqueda)
         return (texto or "").strip()
 
 
@@ -865,7 +892,7 @@ def _render_grafico(tk, pares, rd):
     tit = "Fecha y hora" if marco in ("1D", "5D") else "Fecha"
     ch = (alt.Chart(d).mark_area(clip=True, line={"color": color, "strokeWidth": 2}, color=alt.Gradient(gradient="linear", stops=[alt.GradientStop(color=color, offset=0), alt.GradientStop(color="white", offset=1)], x1=1, x2=1, y1=0, y2=1), opacity=0.18)
           .encode(x=alt.X("Fecha:T", title=None), y=alt.Y("Precio:Q", scale=alt.Scale(domain=[float(d["Precio"].min()) * 0.99, float(d["Precio"].max()) * 1.01], zero=False, nice=False), title=None),
-                  tooltip=[alt.Tooltip("Fecha:T", title=tit, format="%d/%m/%Y %H:%M" if marco in ("1D", "5D") else "%d/%m/%Y"), alt.Tooltip("Precio:Q", title="Precio (US$)", format=",.2f")])
+                  tooltip=[alt.Tooltip("Fecha:T", title=tit, format="%d/%m/%Y %H:%M" if marco in ("1D", "5D") else "%d/%m/%Y"), alt.Tooltip("Precio:Q", title="Precio (US$)", format=",.1f")])
           .properties(height=340).interactive())
     try:
         st.altair_chart(ch, width="stretch")
@@ -1003,7 +1030,13 @@ def main():
     # Franja negra de arriba con el nombre (y los iconos y el menu si estan cargados sus links). El aviso y "Datos al ..." van
     # al final de la pagina (pie_html).
     en_etfs = st.query_params.get("tabla") == "etfs"
-    st.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP, activa="etfs" if en_etfs else "empresas", con_buscador=not (en_etfs or st.query_params.get("empresa") or st.query_params.get("pagina"))), unsafe_allow_html=True)
+    en_quienes = st.query_params.get("pagina") == "quienes"
+    activa = "etfs" if en_etfs else ("" if en_quienes else "empresas")
+    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
+    # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de la home se dibuja mas abajo, con la tabla)
+    render_nav_tablas()
+    if en_etfs or en_quienes or st.query_params.get("empresa"):
+        render_buscador("etfs" if en_etfs else "empresas")
     aviso = texto_aviso_legal()
     fecha = None
 

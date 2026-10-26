@@ -286,12 +286,13 @@ def _dict(x):
 
 
 def _ars(v):
-    """Pesos con formato argentino: $ 12.345 (sin decimales si pasa de 100)."""
+    """Pesos: $ 12.345 (sin decimales desde 100) o $ 85.5 (un decimal con punto)."""
     v = _n(v)
     if v is None:
         return "—"
-    txt = f"{v:,.0f}" if v >= 100 else f"{v:,.2f}"
-    return "&#36;&nbsp;" + txt.replace(",", "X").replace(".", ",").replace("X", ".")
+    if v < 100:                      # v1.2.60: un decimal con punto ($ 85.5); desde 100 sin decimales y con punto de miles ($ 15.050)
+        return f"&#36;&nbsp;{v:.1f}"
+    return "&#36;&nbsp;" + f"{v:,.0f}".replace(",", ".")
 
 
 def _pct(precio, valor):

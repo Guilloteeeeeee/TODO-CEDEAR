@@ -45,7 +45,7 @@ def main(tickers=None):
     tickers = [t.upper() for t in tickers] if tickers else todos
     datos, _ = py.cargar()
     fecha = datetime.datetime.now().strftime("%d/%m/%Y")
-    avisos, seguidos_sin_dato = [], 0
+    avisos, seguidos_sin_dato, fallos_foto = [], 0, 0
     print(f"Bajando los datos de Yahoo de {len(tickers)} empresas (una por una, con pausa; no cierres la ventana)...")
     for i, t in enumerate(tickers, 1):
         t0 = time.time()
@@ -69,6 +69,12 @@ def main(tickers=None):
         util["foto_ceo"] = fc.buscar_foto(ceo, nombres.get(t, t)) if ceo else None
         datos[t] = util
         faltan = [k for k in py.CLAVES if k not in util]
+        motivo = ""
+        if not util["foto_ceo"] and fallos_foto < 3:      # v1.2.60: el motivo de las primeras fotos que no salen (queda tambien en el .txt)
+            fallos_foto += 1
+            motivo = f"sin CEO en Yahoo" if not ceo else fc.diagnostico(ceo, nombres.get(t, t))
+            avisos.append(f"{t}: foto no encontrada ({ceo}): {motivo}")
+            print(f"        motivo foto: {motivo[:300]}")
         print(f"  {i:3d}/{len(tickers)} {t:6} ok  foto={'si' if util['foto_ceo'] else 'no'}" + (f"  (faltan: {', '.join(faltan)})" if faltan else ""))
         if i % 10 == 0:
             _guardar(datos, fecha)

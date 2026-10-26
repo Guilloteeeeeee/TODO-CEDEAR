@@ -55,11 +55,13 @@ CSS = """
 html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"]{overflow-x:hidden}
 [data-testid="stMainBlockContainer"]{padding-top:0!important}
 .mc-band{position:relative;width:100vw;margin-left:calc(50% - 50vw);background:#2b2f33;box-shadow:0 2px 10px rgba(15,23,42,.14)}
-/* v1.2.59: "Empresas" y "ETFs" (links a las dos tablas) al lado del buscador; la activa va subrayada. En pantallas anchas se apoyan sobre la franja, justo despues del buscador */
-.mc-emp{display:flex;align-items:center;gap:2px;flex:none}
-.mc-emp a{color:#cbd5e1!important;font-size:.95rem;font-weight:600;padding:8px 11px;border-radius:8px;text-decoration:none!important;white-space:nowrap}
-.mc-emp a:hover{background:#3b4046;color:#fff!important}
-.mc-emp a.on{color:#fff!important;box-shadow:inset 0 -2px 0 #00e05a;border-radius:8px 8px 0 0}
+/* v1.2.60: "Empresas" y "ETFs" son botones de Streamlit (cambian de tabla dentro de la misma sesion, sin recargar la pagina). Debajo de la franja (celular y
+   pantallas angostas) forman una fila centrada; en pantallas anchas se apoyan sobre la franja, despues del buscador (ver CSS_BUSCADOR). La activa va subrayada. */
+.st-key-nav_tablas{display:flex!important;flex-direction:row!important;justify-content:center;gap:4px!important;margin:8px 0 0}
+.st-key-nav_tablas [data-testid="stElementContainer"]{width:auto!important;flex:0 0 auto}
+.st-key-nav_tablas button{background:transparent!important;border:0!important;box-shadow:none!important;border-radius:8px 8px 0 0;padding:6px 14px;min-height:0;color:#4b5563}
+.st-key-nav_tablas button p{font-size:.95rem;font-weight:600;color:inherit!important;white-space:nowrap}
+.st-key-nav_tablas button:hover{background:#eef1f4!important;color:#111827}
 .mc-in{display:flex;align-items:center;gap:22px;height:80px;padding:0 clamp(16px,3vw,48px);box-sizing:border-box}
 .mc-izq{flex:1;min-width:0;display:flex;align-items:center}
 .mc-t{font-size:2.5rem;font-weight:800;line-height:1;letter-spacing:-1px;color:#fff;white-space:nowrap}
@@ -122,8 +124,7 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 @media (max-width:820px){
 .mc-in{flex-wrap:wrap;height:auto;gap:2px 12px;padding:8px 16px 6px}
 .mc-izq{order:1;flex:1 1 0}.mc-toro{order:2;width:40px;height:40px}.mc-toro img{width:32px}
-.mc-emp{order:3;flex:1 1 100%;justify-content:center;border-top:1px solid #41464c;padding-top:4px;margin-top:2px}
-.mc-nav{order:4;flex:1 1 100%;justify-content:center;gap:2px;padding-top:2px}
+.mc-nav{order:3;flex:1 1 100%;justify-content:center;gap:2px;padding-top:2px}
 .mc-t{font-size:1.7rem}.mc-img{height:36px}.mc-it{font-size:.8rem;padding:6px 8px}.mc-x{display:none}
 .mc-nav{position:relative}.mc-d{position:static}.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,320px)}
 }
@@ -139,7 +140,9 @@ CSS_BUSCADOR = """
 [data-testid="stMainBlockContainer"]{position:relative}
 [data-testid="stMainBlockContainer"] .st-key-buscador{position:absolute;top:20px;left:calc(50% + 330px - 50vw);transform:none;width:var(--sw);margin:0;z-index:60}
 [data-testid="stMainBlockContainer"] .st-key-buscador input{height:40px;font-size:14.5px;border-radius:20px;padding-left:40px!important;background-position:13px center;background-size:18px;box-shadow:none}
-.mc-emp{position:absolute;left:calc(330px + var(--sw) + 12px);top:0;height:80px}
+.st-key-nav_tablas{position:absolute;top:0;height:80px;left:calc(50% + 330px + var(--sw) + 12px - 50vw);margin:0;align-items:center;justify-content:flex-start;z-index:60}
+.st-key-nav_tablas button{color:#cbd5e1;padding:8px 11px}
+.st-key-nav_tablas button:hover{background:#3b4046!important;color:#fff}
 }
 """
 if not ICONOS_EN_BARRA:
@@ -385,10 +388,18 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     toro = (f'<a class="mc-toro" href="?pagina=quienes" target="_self" title="Quiénes somos"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}"></a>'
             if uri else "")   # v1.2.51: tocar el toro abre "Quiénes somos"
     datos = f'<div class="mc-datos">Datos al <b>{html.escape(str(datos_al))}</b></div>' if datos_al else ""
-    tablas = (f'<div class="mc-emp"><a href="?" target="_self"{" class=\"on\"" if activa == "empresas" else ""}>Empresas</a>'
-              f'<a href="?tabla=etfs" target="_self"{" class=\"on\"" if activa == "etfs" else ""}>ETFs</a></div>')
-    sin_b = "" if con_buscador else "<style>.mc-emp{left:330px!important}</style>"      # sin buscador, Empresas y ETFs van pegados al titulo
-    return f'{sin_b}<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{tablas}{nav}{toro}</div></div>{datos}'
+    # v1.2.60: "Empresas" y "ETFs" ya no son links de la franja (recargaban la pagina): son botones de Streamlit (app.py: render_nav_tablas)
+    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}</div></div>{datos}'
+
+
+def css_nav(activa):
+    """Estilo de la tabla activa ("empresas" o "etfs"; vacio = ninguna): letra firme y subrayado verde. Va junto al CSS de la franja."""
+    if activa not in ("empresas", "etfs"):
+        return ""
+    k = "emp" if activa == "empresas" else "etfs"
+    # dentro de la franja negra (pantallas anchas) la letra activa es blanca; abajo, oscura
+    return (f".st-key-nav_{k} button{{color:#111827!important;box-shadow:inset 0 -2px 0 #00e05a!important}}"
+            + ("@media (min-width:1280px){" + f".st-key-nav_{k} button{{color:#fff!important}}" + "}" if not ICONOS_EN_BARRA else ""))
 
 
 def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):

@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.60 (26/10/2026): Empresas / ETFs sin recargar, buscador en todas las páginas, precios con un decimal, fotos del CEO en un paso aparte
+- **Empresas / ETFs:** ya no son links (recargaban toda la página): son botones de Streamlit que cambian de tabla dentro de la misma sesión (la URL cambia, la página no se recarga). Misma ubicación en la barra negra; abajo de la barra en el celular.
+- **Buscador:** ahora está también en la página de ETFs, en la ficha de cada empresa y en Quiénes somos. Desde la ficha, buscar vuelve a la tabla de empresas con la búsqueda aplicada. En ETFs todavía no hay tabla para filtrar.
+- **Precios:** en dólares con un decimal y punto (US$ 192.3; miles con coma: US$ 1,234.5; debajo de 1 dólar, dos decimales). El CEDEAR en pesos sigue como $ 15.050 (desde 100, sin decimales); por debajo de 100, un decimal con punto.
+- **Foto del CEO:** `bajar_paquetes_yahoo` ahora cuenta por qué falla la foto en las tres primeras empresas. Nuevo `bajar_fotos_ceo.bat`: busca las fotos con lo que ya está en `data/paquetes_yahoo.json` (sin volver a Yahoo), con `requests` (certificados de certifi) y el respaldo de siempre; deja el detalle en `resultados_fotos_ceo.txt` y corta si Wikipedia no responde.
+- **Noticias — fuentes nuevas (solo prueba):** `probar_fuentes_noticias.bat [canal ...]` mira si se pueden leer los titulares de otcfinancialmarkets.com y de canales públicos de Telegram (`t.me/s/canal`) y guarda `resultados_fuentes_noticias.txt`. La app todavía no usa esas fuentes.
+
 ### v1.2.59 (26/10/2026): datos de Yahoo guardados en un archivo, barra con Empresas / ETFs, tabla compacta, info en cada solapa
 - **Datos de Yahoo guardados (`bajar_paquetes_yahoo.bat`):** Yahoo no responde seguido desde la nube de Streamlit (Directivos, Accionariado y Estados salían "No disponible"). El script se corre en la PC de Guille (20 a 30 minutos, una empresa por vez con pausa) y guarda dividendos, directivos, accionistas, calendario, estados financieros (con trimestres para el TTM) y la URL de la foto del CEO en `data/paquetes_yahoo.json` (subirlo a GitHub). La app pide primero a Yahoo en vivo y, **lo que no responde, lo completa con ese archivo** y lo avisa con la fecha. No cambia el cache ni los puntajes. Deja `resultados_paquetes_yahoo.txt`.
 - **Barra negra:** después del título van el buscador y los links "Empresas" y "ETFs" (la activa va subrayada; por defecto Empresas), y a la derecha "Sobre Nosotros" y "Comentarios". **La tabla de ETFs todavía no existe:** `?tabla=etfs` muestra un cartel "estamos preparando la tabla".

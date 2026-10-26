@@ -82,12 +82,30 @@ def _consultas(nombre, empresa):
     return list(dict.fromkeys(qs))
 
 
+ULTIMO_ERROR = None     # v1.2.60: ultimo error de red (para saber por que no hay foto: antes se tragaba en silencio)
+_UA = {"User-Agent": "TodoCedears/1.2 (educativo; finanzas.medicos@gmail.com)", "Accept": "application/json"}
+
+
+def _descargar(url):
+    """Texto de la respuesta. Primero con requests (usa los certificados de certifi: en algunas PC con Windows urllib falla por el antivirus o por
+    certificados viejos); si requests no esta o falla, con urllib."""
+    global ULTIMO_ERROR
+    try:
+        import requests
+        r = requests.get(url, headers=_UA, timeout=10)
+        r.raise_for_status()
+        return r.text
+    except Exception as e:  # noqa: BLE001
+        ULTIMO_ERROR = f"requests: {type(e).__name__}: {str(e)[:160]}"
+    req = urllib.request.Request(url, headers=_UA)
+    with urllib.request.urlopen(req, timeout=10) as r:  # noqa: S310 (url fija, https)
+        return r.read(600_000).decode("utf-8", "replace")
+
+
 def _pedir_una(q):
     params = {"action": "query", "format": "json", "generator": "search", "gsrsearch": q, "gsrlimit": "6", "prop": "pageimages|extracts",
               "piprop": "thumbnail", "pithumbsize": "240", "exintro": "1", "explaintext": "1", "exlimit": "6", "redirects": "1"}
-    req = urllib.request.Request(API + "?" + urllib.parse.urlencode(params), headers={"User-Agent": "TodoCedears/1.2 (educativo; finanzas.medicos@gmail.com)"})
-    with urllib.request.urlopen(req, timeout=8) as r:  # noqa: S310 (url fija, https)
-        datos = json.loads(r.read(600_000).decode("utf-8", "replace"))
+    datos = json.loads(_descargar(API + "?" + urllib.parse.urlencode(params)))
     pags = (datos.get("query") or {}).get("pages") or {}
     lista = sorted(pags.values(), key=lambda p: p.get("index", 99))
     return [{"title": p.get("title"), "extract": p.get("extract"), "thumb": (p.get("thumbnail") or {}).get("source")} for p in lista]
@@ -102,7 +120,9 @@ def _pedir(nombre, empresa):
                 if p["title"] not in vistos:
                     vistos.add(p["title"])
                     todas.append(p)
-        except Exception:  # noqa: BLE001
+        except Exception as e:  # noqa: BLE001
+            global ULTIMO_ERROR
+            ULTIMO_ERROR = f"{type(e).__name__}: {str(e)[:160]}"
             continue
         if elegir(todas, nombre, empresa):
             break
@@ -116,7 +136,7 @@ def diagnostico(nombre, empresa, obtener=None):
     except Exception as e:  # noqa: BLE001
         return f"fallo la consulta a Wikipedia: {type(e).__name__}: {e}"
     if not pags:
-        return "Wikipedia no devolvio paginas (sin conexion, bloqueo o busqueda vacia)"
+        return "Wikipedia no devolvio paginas (sin conexion, bloqueo o busqueda vacia)" + (f"; ultimo error de red: {ULTIMO_ERROR}" if ULTIMO_ERROR else "")
     toks = _norm(nombre_limpio(nombre)).split()
     out = []
     for p in pags:
