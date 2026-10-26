@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.56 (26/10/2026): valuación con números grandes, métricas del dividendo y descripciones traducidas
+- **Foto del CEO:** el chequeo era demasiado estricto (Yahoo escribe "Jen-Hsun Huang" y Wikipedia "Jensen Huang"; "Timothy" / "Tim"). Ahora coinciden el apellido y el comienzo del nombre de pila, y la página debe nombrar a la empresa y a un cargo. La foto va en una etiqueta `<img>` (más robusta que un fondo CSS). **Sigue sin probarse contra Wikipedia real.**
+- **Descripciones en castellano:** las 165 descripciones de `data/fichas.json` están traducidas (traducción hecha por Claude, fiel al texto original; los nombres de segmentos y productos quedan como los usa la empresa). El traductor automático de la PC de Guille no logró traducir (ver `traducir_fichas.bat`, que ahora muestra el error real).
+- **Valuación:** mosaico con números grandes (precio de hoy, Fair Value, distancia y categoría con su "?") y dos barras a la misma escala (precio y Fair Value) con la distancia entre ambas.
+- **Dividendos:** payout de ganancias, payout de flujo de caja libre, deuda neta / EBITDA, racha de pagos y aumentos seguidos como números grandes; frecuencia y meses de pago; gráfico del dividendo anual por acción; "Crecimiento del dividendo" a 1, 3, 5 y 10 años. Todo sale de Yahoo (`yahoo_extra.metricas_dividendo`) y se omite si Yahoo no trae el dato.
+
 ### v1.2.55 (25/10/2026): foto del CEO, descripción plegable, traducción y Aviso legal
 - **Descripción de la empresa** en dos renglones con difuminado y "Ver más ▾" / "Ver menos ▴" (`<details>`, sin JavaScript).
 - **Foto del CEO** desde Wikipedia (`data/foto_ceo.py`): solo se usa si la página coincide con el nombre, nombra a la empresa y a un cargo directivo; si no, quedan las iniciales. Probado con datos simulados, **no contra Wikipedia real**.

@@ -41,13 +41,28 @@ def elegir(paginas, nombre, empresa):
         tit = _norm(p.get("title")).split()
         ext = _norm(p.get("extract"))
         thumb = p.get("thumb") or ""
-        if primero in tit and ultimo in tit and emp in ext.split() and _CARGO.search(str(p.get("extract") or "")) and thumb.startswith("https://upload.wikimedia.org/"):
+        if not tit or ultimo not in tit:
+            continue
+        # Yahoo y Wikipedia escriben distinto el nombre de pila (Jen-Hsun / Jensen, Tim / Timothy): alcanza con que compartan el comienzo
+        if _prefijo(primero, tit[0]) < 2:
+            continue
+        if emp in ext.split() and _CARGO.search(str(p.get("extract") or "")) and thumb.startswith("https://upload.wikimedia.org/"):
             return thumb
     return None
 
 
+def _prefijo(a, b):
+    n = 0
+    for x, y in zip(a, b):
+        if x != y:
+            break
+        n += 1
+    return n
+
+
 def _pedir(nombre, empresa):
-    q = f"{nombre_limpio(nombre)} {palabra_empresa(empresa)}"
+    toks = nombre_limpio(nombre).split()
+    q = f"{toks[0]} {toks[-1]} {palabra_empresa(empresa)}" if toks else str(nombre)
     params = {"action": "query", "format": "json", "generator": "search", "gsrsearch": q, "gsrlimit": "5", "prop": "pageimages|extracts",
               "piprop": "thumbnail", "pithumbsize": "240", "exintro": "1", "explaintext": "1", "exlimit": "5", "redirects": "1"}
     req = urllib.request.Request(API + "?" + urllib.parse.urlencode(params), headers={"User-Agent": "TodoCedears/1.2 (educativo; finanzas.medicos@gmail.com)"})

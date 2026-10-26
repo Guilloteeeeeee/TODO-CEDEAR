@@ -90,7 +90,14 @@ def trayectoria_dividendos(serie, hoy=None):
     while y in tot:
         seguidos += 1
         y -= 1
-    d = {"primer_anio": primero, "anios_pagando": seguidos if ultimo >= hoy.year - 1 else 0, "anios_crece": 0, "cagr": {}}
+    d = {"primer_anio": primero, "anios_pagando": seguidos if ultimo >= hoy.year - 1 else 0, "anios_crece": 0, "cagr": {},
+         "anuales": [(y, round(tot[y], 4)) for y in sorted(tot) if y < hoy.year][-20:]}
+    ref = max((y for y in tot if y < hoy.year), default=None)          # ultimo anio completo: de ahi salen la frecuencia y los meses de pago
+    if ref is not None:
+        meses = sorted({_fecha(f).month for f, m in (serie or []) if _fecha(f) and _fecha(f).year == ref and _num(m) and _num(m) > 0})
+        npag = sum(1 for f, m in (serie or []) if _fecha(f) and _fecha(f).year == ref and _num(m) and _num(m) > 0)
+        d["pagos_anio"] = npag
+        d["meses_pago"] = meses
     if not completos:
         return d
     fin = completos[-1]
@@ -108,6 +115,24 @@ def trayectoria_dividendos(serie, hoy=None):
     return d
 
 
+def metricas_dividendo(info):
+    """Del `info` de Yahoo: payout de ganancias (dividendos / ganancias), payout de flujo de caja libre (dividendos / FCF) y deuda neta / EBITDA.
+    Cada una es None si Yahoo no trae lo necesario. Los payout son fracciones (0.47 = 47 %)."""
+    info = info or {}
+    tasa, acc = _num(info.get("dividendRate")), _num(info.get("sharesOutstanding"))
+    eps = _num(info.get("trailingEps"))
+    payout = _num(info.get("payoutRatio"))
+    if payout is None and tasa and eps and eps > 0:
+        payout = tasa / eps
+    fcf = _num(info.get("freeCashflow"))
+    payout_fcf = (tasa * acc) / fcf if (tasa and acc and fcf and fcf > 0) else None
+    deuda, caja, ebitda = _num(info.get("totalDebt")), _num(info.get("totalCash")), _num(info.get("ebitda"))
+    dn_ebitda = (deuda - (caja or 0.0)) / ebitda if (deuda is not None and ebitda and ebitda > 0) else None
+    if payout is not None and payout < 0:
+        payout = None
+    return {"payout_eps": payout, "payout_fcf": payout_fcf, "deuda_neta_ebitda": dn_ebitda}
+
+
 def analizar_dividendos(info, serie):
     """info: dict `info` de Yahoo; serie: [(fecha, monto)] de pagos pasados. Devuelve {'ex_fecha', 'pago_fecha', 'monto', 'tasa_anual', 'ultimos',
     'trayectoria'}. La fecha de pago y la ex-fecha son las ultimas que informa Yahoo: puede ser ya pasada si la empresa todavia no anuncio la siguiente."""
@@ -118,7 +143,7 @@ def analizar_dividendos(info, serie):
     ultimos = ultimos[:8]
     monto = _num(info.get("lastDividendValue")) or (ultimos[0][1] if ultimos else None)
     d = {"ex_fecha": _fecha(info.get("exDividendDate")), "pago_fecha": _fecha(info.get("dividendDate")), "monto": monto,
-         "tasa_anual": _num(info.get("dividendRate")), "ultimos": ultimos, "trayectoria": tray}
+         "tasa_anual": _num(info.get("dividendRate")), "ultimos": ultimos, "trayectoria": tray, "metricas": metricas_dividendo(info)}
     return d if (d["monto"] or d["ex_fecha"] or d["tasa_anual"] or ultimos) else {}
 
 

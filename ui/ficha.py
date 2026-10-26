@@ -202,12 +202,22 @@ CSS = """
 .fch-carga{display:flex;align-items:center;gap:12px;margin:10px 0;padding:14px 18px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:17px;font-weight:600}
 .fch-giro{width:18px;height:18px;border:3px solid #93c5fd;border-top-color:#1d4ed8;border-radius:50%;animation:fchg 0.9s linear infinite;flex:none}
 @keyframes fchg{to{transform:rotate(360deg)}}
+.fch-kv .v{white-space:nowrap}
 .ddet{margin:0}.ddet>summary{list-style:none;cursor:pointer;display:block}.ddet>summary::-webkit-details-marker{display:none}
 .ddet .pv{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.6;color:#1f2937;text-align:justify;
 -webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 100%);mask-image:linear-gradient(to bottom,#000 45%,transparent 100%)}
 .ddet .vm,.ddet .vl{display:inline-block;margin-top:4px;color:#1d4ed8;font-weight:700;font-size:14px}.ddet .vl{display:none}
 .ddet[open] .pv,.ddet[open] .vm{display:none}.ddet[open] .vl{display:inline-block;margin-top:8px}
 .ddet .full{margin:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.stats>div{text-align:center;padding:6px 14px;border-left:1px solid #e5e7eb}.stats>div:first-child{border-left:0}
+.stats .l{font-size:14px;color:#374151}.stats .v{font-size:30px;font-weight:700;color:#0f172a;line-height:1.25;margin-top:2px}
+.stats .v.c{font-size:24px}.stats .n{font-size:13px;color:#9ca3af;margin-top:2px}
+.vbar{position:relative;margin:30px 0 4px;padding-top:34px}
+.vbar .br{position:absolute;top:0;height:26px;border:1px solid #9ca3af;border-bottom:0;text-align:center}
+.vbar .br b{position:absolute;left:50%;top:-24px;transform:translateX(-50%);font-size:16px;white-space:nowrap}
+.vbar .bb{height:34px;border-radius:4px;display:flex;align-items:center;padding:0 12px;color:#fff;font-weight:600;font-size:14px;margin-top:6px;white-space:nowrap;min-width:fit-content}
+.dps{width:100%;height:auto;display:block}
 .valrow{display:flex;align-items:center;gap:10px 28px;flex-wrap:wrap}
 .valrow .fch-sub{margin:0;font-size:14px}
 .vr{text-align:center}.vr .n,.vr.hd .n{text-align:center}.vr .m{text-align:left}.vr.hd span:first-child{text-align:left}
@@ -218,7 +228,7 @@ CSS = """
 .comp td,.comp th{text-align:center!important}.comp th:first-child,.comp td:first-child{text-align:right!important}
 .ceo{display:flex;align-items:center;gap:16px}
 .ceo .ft{position:relative;overflow:hidden;width:92px;height:92px;border-radius:50%;background:#e2e8f0;color:#475569;font-size:32px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
-.ceo .ft i{position:absolute;inset:0;background-size:cover;background-position:center top}
+.ceo .ft img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .ceo .nm{font-size:22px;font-weight:700;color:#0f172a;line-height:1.2}.ceo .cg{font-size:14px;color:#4b5563;margin-top:3px}
 .fch-st2 .nota,.fch-nota[title]{cursor:help}
 .cambios8{grid-template-columns:repeat(8,minmax(0,1fr))}
@@ -812,16 +822,30 @@ def _tile_score(row):
 
 
 def _tile_valoracion(row):
-    """v1.2.52: sin titulo "Valoracion": la categoria con su signo de pregunta (que explica el modelo) y el Fair Value, en una sola linea."""
+    """v1.2.56: numeros grandes (precio de hoy, Fair Value, distancia y categoria con su "?") y, debajo, dos barras a la misma escala: el precio y el Fair Value."""
     color = _txt(row.get("color_hex"), "#6e7781")
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
     cat = _texto_categoria(_txt(row.get("categoria"), "—"), color, True)
-    if precio and fv and precio > 0 and fv > 0:
-        fvt = f'<div class="fch-sub">Fair Value <b>{_money(fv)}</b> ({_pct(precio, fv)} frente al precio de hoy)</div>'
-    else:
-        fvt = '<div class="fch-sub">Sin Fair Value: faltan datos para calcularlo.</div>'
-    cuerpo = f'<div class="valrow"><div class="fch-val">{cat}</div>{_ayuda(TEXTO_VALORACION)}{fvt}</div>'
-    return f'<div class="fch-t s12" style="--ac:{color}"><div class="fch-b">{cuerpo}</div></div>'
+    bloque_cat = f'<div><div class="l">Valoración {_ayuda(TEXTO_VALORACION)}</div><div class="v c">{cat}</div><div class="n">Estimación según el modelo</div></div>'
+    if not (precio and fv and precio > 0 and fv > 0):
+        cuerpo = f'<div class="stats">{bloque_cat}</div><div class="fch-sub" style="margin:10px 0 0">Sin Fair Value: faltan datos para calcularlo.</div>'
+        return f'<div class="fch-t s12" style="--ac:{color}"><div class="fch-b">{cuerpo}</div></div>'
+    dif = (fv - precio) / precio
+    dif_cls = "pos" if dif > 0.0005 else "neg" if dif < -0.0005 else ""
+    dif_txt = f"{dif * 100:+.0f}%" if round(dif * 100) != 0 else "0%"
+    stats = ('<div class="stats">'
+             f'<div><div class="l">Precio de hoy</div><div class="v">{_money(precio)}</div><div class="n">Cotización actual</div></div>'
+             f'<div><div class="l">Fair Value</div><div class="v">{_money(fv)}</div><div class="n">Precio estimado según la mediana histórica</div></div>'
+             f'<div><div class="l">Fair Value vs. precio</div><div class="v {dif_cls}">{dif_txt}</div><div class="n">Distancia entre ambos</div></div>'
+             + bloque_cat + '</div>')
+    M = max(precio, fv) * 1.12
+    wp, wf = precio / M * 100, fv / M * 100
+    lo, hi = min(wp, wf), max(wp, wf)
+    col_dif = "#15803d" if dif > 0.0005 else "#b91c1c" if dif < -0.0005 else "#6b7280"
+    barras = (f'<div class="vbar"><div class="br" style="left:{lo:.2f}%;width:{hi - lo:.2f}%"><b style="color:{col_dif}">{dif_txt}</b></div>'
+              f'<div class="bb" style="width:{wp:.2f}%;background:#4b5563">Precio de hoy · {_money(precio)}</div>'
+              f'<div class="bb" style="width:{wf:.2f}%;background:#2563eb">Fair Value · {_money(fv)}</div></div>')
+    return f'<div class="fch-t s12" style="--ac:{color}"><div class="fch-b">{stats}{barras}</div></div>'
 
 
 def ficha_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_datos=None, historial=None):
@@ -891,6 +915,42 @@ def _money_dec(m):
     return f"US&#36;&nbsp;{v:,.2f}" if v >= 0.1 else f"US&#36;&nbsp;{v:,.4f}"
 
 
+def _svg_dps(anuales):
+    """Dividendo anual por accion (anios completos): area y puntos, en SVG."""
+    pts = [(int(y), float(v)) for y, v in (anuales or []) if v is not None]
+    if len(pts) < 2:
+        return ""
+    W, H, ml, mr, mt, mb = 640, 220, 46, 12, 14, 26
+    y0, y1 = pts[0][0], pts[-1][0]
+    vmax = max(v for _, v in pts) * 1.1 or 1.0
+    X = lambda y: ml + (y - y0) / max(1, (y1 - y0)) * (W - ml - mr)
+    Y = lambda v: mt + (1 - v / vmax) * (H - mt - mb)
+    linea = " ".join(f"{X(y):.1f},{Y(v):.1f}" for y, v in pts)
+    area = f"{X(y0):.1f},{H - mb} " + linea + f" {X(y1):.1f},{H - mb}"
+    grid = ""
+    for k in range(5):
+        v = vmax * k / 4
+        yy = Y(v)
+        grid += f'<line x1="{ml}" y1="{yy:.1f}" x2="{W - mr}" y2="{yy:.1f}" stroke="#e5e7eb" stroke-dasharray="2 3"/><text x="{ml - 6}" y="{yy + 4:.1f}" font-size="11" text-anchor="end" fill="#9ca3af">${v:.2f}</text>'
+    paso = max(1, round((y1 - y0) / 6))
+    ejes = "".join(f'<text x="{X(y):.1f}" y="{H - 8}" font-size="11" text-anchor="middle" fill="#9ca3af">{y}</text>' for y in range(y0, y1 + 1, paso))
+    puntos = "".join(f'<circle cx="{X(y):.1f}" cy="{Y(v):.1f}" r="2.8" fill="#374151"><title>{y}: US$ {v:.2f}</title></circle>' for y, v in pts)
+    return (f'<svg class="dps" viewBox="0 0 {W} {H}" role="img" aria-label="Dividendo anual por acción">{grid}{ejes}'
+            f'<polygon points="{area}" fill="#16a34a" fill-opacity=".10"/><polyline points="{linea}" fill="none" stroke="#16a34a" stroke-width="2"/>{puntos}</svg>')
+
+
+_MESES = ("ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic")
+
+
+def _frecuencia(tray):
+    n = (tray or {}).get("pagos_anio")
+    if not n:
+        return None
+    nombre = {1: "Anual", 2: "Semestral", 4: "Trimestral", 12: "Mensual"}.get(n, f"{n} pagos por año")
+    meses = ", ".join(_MESES[m - 1] for m in (tray.get("meses_pago") or []) if 1 <= m <= 12)
+    return nombre, meses
+
+
 def tab_dividendos(row, div):
     """Dividend Yield contra su mediana (dibujito) y, de Yahoo: ultima fecha ex-dividendo, fecha de pago, monto, anios pagando, anios de aumentos seguidos y
     crecimiento anual compuesto (CAGR) del dividendo. v1.2.53: mas compacto (dos mosaicos lado a lado)."""
@@ -903,6 +963,9 @@ def tab_dividendos(row, div):
              _fila_kv("Monto por acción (último)", _money_dec(div.get("monto")), "Dólares por acción del último pago.")]
     if div.get("tasa_anual"):
         filas.append(_fila_kv("Dividendo anual por acción", _money_dec(div["tasa_anual"]), "Lo que se estima que paga en un año."))
+    fr = _frecuencia(div.get("trayectoria"))
+    if fr:
+        filas.append(_fila_kv("Frecuencia", fr[0] + (f" ({fr[1]})" if fr[1] else ""), "Cada cuánto paga, según los pagos del último año completo."))
     cuerpo_izq = '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>"
     if div.get("ultimos"):
         tip = "Fechas y montos de los pagos; si la empresa no anunció el próximo pago, se ve el último."
@@ -912,20 +975,35 @@ def tab_dividendos(row, div):
     izq = _tile("s4", "Próximo pago", cuerpo_izq, ac="#16a34a")
     tr = div.get("trayectoria") or {}
     fil2 = []
-    if tr.get("anios_pagando"):
-        fil2.append(_fila_kv("Años pagando dividendos", f'{tr["anios_pagando"]}', "Años seguidos con pagos, según el historial que informa la fuente."))
-        fil2.append(_fila_kv("Años de aumentos seguidos", f'{tr.get("anios_crece", 0)}',
-                             "Años consecutivos en que el total pagado en el año fue mayor que el del año anterior. Se cuentan años calendario completos."))
     for n, rot in ((1, "1 año"), (3, "3 años"), (5, "5 años"), (10, "10 años")):
         v = (tr.get("cagr") or {}).get(n)
         if v is not None:
             txt, cls = _pct_sig(v)
-            fil2.append(_fila_kv(f"Crecimiento del dividendo, {rot} (anual compuesto)", f'<span class="{cls}" style="font-weight:600">{txt}</span>',
-                                 "Cuánto creció por año, en promedio, el total de dividendos pagados por acción."))
+            fil2.append(_fila_kv(f"Crecimiento anual, {rot}", f'<span class="{cls}" style="font-weight:600">{txt}</span>',
+                                 "Cuánto creció por año, en promedio (anual compuesto), el total de dividendos pagados por acción en ese plazo."))
     if not fil2:
         fil2 = [_fila_kv("Historial", "sin datos suficientes")]
-    der = _tile("s4", "Trayectoria del dividendo", '<div class="fch-kv" style="margin-top:0">' + "".join(fil2) + "</div>", ac="#16a34a")
-    return _env(dy, izq, der)
+    der = _tile("s4", "Crecimiento del dividendo", '<div class="fch-kv" style="margin-top:0">' + "".join(fil2) + "</div>", ac="#16a34a")
+    tiles = [dy, izq, der]
+    m = div.get("metricas") or {}
+    def _pc(v):
+        return f"{v * 100:.0f}%" if v is not None else "—"
+    bloques = []
+    if m.get("payout_eps") is not None:
+        bloques.append(f'<div><div class="l">Payout de ganancias</div><div class="v">{_pc(m["payout_eps"])}</div><div class="n">Parte de las ganancias que se paga como dividendo</div></div>')
+    if m.get("payout_fcf") is not None:
+        bloques.append(f'<div><div class="l">Payout de flujo de caja</div><div class="v">{_pc(m["payout_fcf"])}</div><div class="n">Parte del flujo de caja libre que se paga como dividendo</div></div>')
+    if m.get("deuda_neta_ebitda") is not None:
+        bloques.append(f'<div><div class="l">Deuda neta / EBITDA</div><div class="v">{m["deuda_neta_ebitda"]:.2f}</div><div class="n">Años de EBITDA que haría falta para pagar la deuda neta</div></div>')
+    if tr.get("anios_pagando"):
+        bloques.append(f'<div><div class="l">Racha de pagos</div><div class="v">{tr["anios_pagando"]} {"año" if tr["anios_pagando"] == 1 else "años"}</div><div class="n">Pagando dividendos, según el historial disponible</div></div>')
+        bloques.append(f'<div><div class="l">Aumentos seguidos</div><div class="v">{tr.get("anios_crece", 0)} {"año" if tr.get("anios_crece", 0) == 1 else "años"}</div><div class="n">Años consecutivos con aumento del total anual</div></div>')
+    if bloques:
+        tiles.append(_tile("s12", "Métricas clave del dividendo", '<div class="stats">' + "".join(bloques) + "</div>", ac="#16a34a"))
+    graf = _svg_dps(tr.get("anuales"))
+    if graf:
+        tiles.append(_tile("s12", "Dividendo anual por acción", graf + '<div class="fch-sub" style="margin:4px 0 0;text-align:center">Total pagado por año calendario, en dólares por acción (años completos).</div>', ac="#16a34a"))
+    return _env(*tiles)
 
 
 def tab_competidores(row, df):
@@ -1011,7 +1089,7 @@ def tab_directivos(g, foto=None):
             det.append(_fila_kv("Edad", f'{int(ceo["edad"])} años'))
         if ceo.get("pago"):
             det.append(_fila_kv("Remuneración (último año informado)", _usd_abrev(ceo["pago"])))
-        capa = (f'<i style="background-image:url(&quot;{html.escape(foto, quote=True)}&quot;)" title="Foto: Wikipedia"></i>' if foto else "")
+        capa = (f'<img src="{html.escape(foto, quote=True)}" alt="" title="Foto: Wikipedia" loading="lazy" referrerpolicy="no-referrer">' if foto else "")
         cab = (f'<div class="ceo"><div class="ft" aria-hidden="true">{html.escape(_iniciales(ceo["nombre"]))}{capa}</div>'
                f'<div><div class="nm">{html.escape(_sin_honorifico(ceo["nombre"]))}</div><div class="cg">{html.escape(ceo.get("cargo") or "CEO")}</div></div></div>')
         tiles.append(_tile("s5", "CEO", cab + ('<div class="fch-kv" style="margin-top:14px">' + "".join(det) + "</div>" if det else ""), ac="#64748b"))
