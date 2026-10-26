@@ -303,6 +303,9 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .st-key-buscador [data-testid='stFormSubmitButton'] button *{opacity:0}
 .st-key-buscador [data-testid='stElementContainer']{width:100%}
 .st-key-buscador input::placeholder{color:#6b7280;opacity:1}
+/* v1.2.64: buscador con sugerencias (un selectbox que se escribe): sin la flechita, con la lupa de fondo; las sugerencias salen debajo */
+.st-key-buscador button[aria-label='Open'],.st-key-buscador [data-baseweb='select'] svg,.st-key-buscador [data-testid='stSelectbox'] svg{display:none!important}
+.st-key-buscador [role='group'],.st-key-buscador [data-baseweb='select']>div{background:transparent!important;border:0!important;box-shadow:none!important}
 }
 [data-testid="stButtonGroup"] button{border:1px solid #cfd8e3;border-radius:18px;background-color:#fff;color:#374151;padding:3px 13px;font-size:13.5px;transition:background .12s,border-color .12s}
 [data-testid="stButtonGroup"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}

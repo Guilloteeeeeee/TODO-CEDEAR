@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.63"
+APP_VERSION = "1.2.64"
 
 import contextlib
 import streamlit as st
@@ -367,6 +367,101 @@ def _descripcion_es(texto_en: str):
         return None
 
 
+# ---------------------------------------------------------------------------
+# ETFs (v1.2.64)
+# ---------------------------------------------------------------------------
+
+@st.cache_data(ttl=300, show_spinner=False)
+def _etfs_lista() -> list:
+    """Los ETFs de data/etfs.csv ([] si el archivo no esta)."""
+    try:
+        from data import etfs as _etfs
+        return _etfs.cargar()
+    except Exception:  # noqa: BLE001
+        return []
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _etfs_guardados():
+    """({TICKER: datos}, fecha) del archivo data/etfs_yahoo.json (lo baja bajar_etfs_yahoo.bat); ({}, None) si no esta."""
+    try:
+        from data import etfs_yahoo as _ey
+        return _ey.cargar()
+    except Exception:  # noqa: BLE001
+        return {}, None
+
+
+@st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
+def _precios_etfs(items: tuple) -> dict:
+    """Precios en dolares de los ETFs: items = ((ticker, simbolo de Yahoo), ...). Un solo pedido a Yahoo. {} si no responde."""
+    try:
+        info = _pv.bajar_usd([s for _, s in items], respaldo=False)
+        usd = info.get("usd") or {}
+        return {t: usd[s] for t, s in items if s in usd}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def _extras_etf(e: dict) -> dict:
+    """Lo que la pagina de un ETF pide a Yahoo: historial de precios y sus datos (NAV, AUM, comision, dividendos, tenencias, noticias), en paralelo.
+    Lo que Yahoo no contesta desde la nube se completa con data/etfs_yahoo.json. Se guarda 30 minutos solo si Yahoo respondio algo."""
+    from concurrent.futures import ThreadPoolExecutor
+    from data import etfs as _etfs, etfs_yahoo as _ey
+    tk = e["ticker"]
+    sim = _etfs.simbolo_yahoo(e)
+    m = _memo_extras()
+    hit = m.get(("etf", tk))
+    if hit and time.time() - hit[0] < 1800:
+        return hit[1]
+    vivo, hist = {}, None
+    try:
+        with ThreadPoolExecutor(max_workers=2) as ex:
+            f_h, f_d = ex.submit(_hp.bajar, sim), ex.submit(_ey.bajar, sim)
+            vivo = f_d.result(timeout=90) or {}
+            hist = f_h.result(timeout=60)
+    except Exception:  # noqa: BLE001
+        pass
+    guardado, fecha_g = _etfs_guardados()
+    datos, usadas = _ey.completar(vivo, guardado.get(tk))
+    res = {"historial": hist, "datos": datos, "simbolo": sim, "archivo": {"fecha": fecha_g, "claves": usadas} if usadas else None}
+    if hist or vivo:
+        if len(m) > 300:
+            m.clear()
+        m[("etf", tk)] = (time.time(), res)
+    return res
+
+
+def _cedear_etf(df: pd.DataFrame, e: dict, precio_usd) -> dict:
+    """{'ratio', 'simbolo', 'precio_ars'...} del CEDEAR de un ETF. El ratio sale de data/etfs.csv (columna ratio): si esta vacio no se inventa nada.
+    El precio en pesos solo se muestra si paso el control de coherencia con el dolar implicito de las demas empresas (ver _pv.elegir_ars)."""
+    ratio = _cedears.leer_ratio(e.get("ratio"))
+    t = e["ticker"]
+    d = {"ratio": ratio, "simbolo": (e.get("simbolo") or t).upper()}
+    if not (ratio and precio_usd and PRECIOS_VIVOS):
+        return d
+    try:
+        datos = _cedears.cargar()
+        info = _precios_usd(_orden_tickers(df))
+        usd = dict(info.get("usd") or {})
+        if not usd:
+            return d
+        simbolos = _cedears.simbolos_yahoo(datos)
+        items = tuple((k, tuple(ss), datos[k].get("simbolo") or k) for k, ss in sorted(simbolos.items()))
+        cand = dict(_precios_ars(items))
+        propios = _cedears.simbolos_yahoo({t: {"simbolo": d["simbolo"]}}).get(t) or [d["simbolo"] + ".BA"]
+        cand.update(_precios_ars(((t, tuple(propios), d["simbolo"]),)))
+        ratios = {k: v.get("ratio") for k, v in datos.items()}
+        ratios[t] = ratio
+        usd[t] = precio_usd
+        buenos, ccl = _pv.elegir_ars(cand, ratios, usd)
+        b = buenos.get(t)
+        if b:
+            d.update({"precio_ars": b["ars"], "ccl": b["ccl"], "fuente_ars": b["fuente"]})
+    except Exception:  # noqa: BLE001
+        pass
+    return d
+
+
 def _datos_cedear(df: pd.DataFrame, ticker: str) -> dict:
     """{TICKER: {'ratio', 'simbolo', 'precio_ars', 'ccl', 'fuente_ars', 'hora'}} para la pagina de la empresa. El precio en pesos solo se
     muestra si paso el control de coherencia (ver _pv.elegir_ars). Nunca levanta excepciones."""
@@ -624,30 +719,65 @@ CSS_BUSQUEDA = "\n".join(l for l in CSS_VISUAL.splitlines() if l.startswith(".st
 CSS_PILLS = "\n".join(l for l in CSS_VISUAL.splitlines() if l.startswith('[data-testid="stButtonGroup"]'))
 
 
-def render_pagina_etfs(busqueda=""):
-    """Tabla de ETFs (v1.2.63): categorias para filtrar (botones), la busqueda de la barra y la tabla. Sin archivo, un cartel."""
+def render_filtro_etfs(etfs) -> list:
+    """Adentro de "Filtro de ETFs" (v1.2.64): las categorias, para quedarse con las que interesan (ninguna elegida = todas). Devuelve las elegidas."""
+    from data import etfs as _etfs
+    st.markdown(f"<style>{CSS_PILLS}</style>" + '<div class="flt-t">Categoría</div>', unsafe_allow_html=True)
+    try:
+        return st.pills("Categoría", _etfs.categorias(etfs), selection_mode="multi", key="etf_cats", label_visibility="collapsed") or []
+    except Exception:  # noqa: BLE001
+        return []
+
+
+def render_tabla_etfs(etfs, sel):
+    """Tabla de ETFs (v1.2.64): ETF (nombre y ticker, con link a su pagina), Precio, Descripcion, Categoria, Gestor, AUM y Comision."""
     from data import etfs as _etfs
     from ui import etfs as _ui_etfs
-    from ui.banderas import css_banderas as _css_b
-    todos = _etfs.cargar()
-    if not todos:
+    if not etfs:
         st.markdown(f"<style>{css_fuente()}{css_condensada()}{CSS_QUIENES}</style>"
                     '<div class="qs" style="text-align:center"><h1 style="margin-bottom:10px">ETFs</h1>'
                     '<p>Estamos preparando la tabla de ETFs. Muy pronto la vas a poder ver acá, igual que la de empresas.</p></div>', unsafe_allow_html=True)
         return
-    cats = _etfs.categorias(todos)
-    sel = []
-    try:
-        st.markdown(f"<style>{css_fuente()}{css_condensada()}{_ui_etfs.CSS}{CSS_PILLS}</style>" + _css_b()
-                    + _ui_etfs.encabezado_html(len(todos), len(_etfs.filtrar(todos, busqueda, st.session_state.get("etf_cats") or ()))), unsafe_allow_html=True)
-        sel = st.pills("Categoría", cats, selection_mode="multi", key="etf_cats", label_visibility="collapsed") or []
-    except Exception:  # noqa: BLE001
-        sel = []
-    st.markdown(_ui_etfs.tabla_html(_etfs.filtrar(todos, busqueda, sel)), unsafe_allow_html=True)
+    mostrados = _etfs.filtrar(etfs, "", sel)
+    guardados, _fecha_g = _etfs_guardados()
+    precios = _precios_etfs(tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs)) if PRECIOS_VIVOS else {}
+    st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
+    st.markdown(_ui_etfs.tabla_html(mostrados, guardados, precios), unsafe_allow_html=True)
+
+
+def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
+    """Pagina de un ETF (?etf=TICKER, v1.2.64): lo mismo que la de una empresa pero con las solapas Resumen, Grafico y Rendimiento y Noticias."""
+    from data import etfs as _etfs
+    from ui import etfs as _ui_etfs
+    st.markdown('<a class="emp-vol" href="?tabla=etfs" target="_self">← Volver a ETFs</a>', unsafe_allow_html=True)
+    e = _etfs.por_ticker(_etfs_lista(), ticker_sel)
+    if not e:
+        st.warning("No encontré ese ETF. Volvé a la tabla y elegí otro.")
+        return
+    cargando = st.empty()
+    cargando.markdown('<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos del ETF…</div>', unsafe_allow_html=True)
+    tk = e["ticker"]
+    extra = _extras_etf(e)
+    d = extra.get("datos") or {}
+    precio = (_precios_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk) or d.get("precio")
+    cedear = _cedear_etf(df, e, precio)
+    st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear), unsafe_allow_html=True)
+    t_res, t_gra, t_not = st.tabs(["Resumen", "Gráfico y Rendimiento", "Noticias"])
+    with t_res:
+        st.markdown(_ui_etfs.con_intro("resumen", _ui_etfs.tab_resumen(e, d, precio, cedear)), unsafe_allow_html=True)
+        arch = extra.get("archivo")
+        if arch:
+            st.caption(f"Algunos datos son de Yahoo guardados el {arch.get('fecha') or 's/d'} (Yahoo no respondió en este momento).")
+    with t_gra:
+        st.markdown(_ui_etfs.con_intro("grafico", _ui_etfs.tab_grafico_etf(extra.get("historial"))), unsafe_allow_html=True)
+        _render_grafico(extra["simbolo"], extra.get("historial"), {})
+    with t_not:
+        st.markdown(_ui_etfs.con_intro("noticias", _ui_etfs.tab_noticias_etf(extra["simbolo"], d.get("noticias"))), unsafe_allow_html=True)
+    cargando.empty()
 
 
 def _ir_a_tabla(tabla):
-    """Botones "Empresas" / "ETFs" de la franja (v1.2.60): cambian de tabla dentro de la misma sesion (cambian la URL, pero la pagina no se recarga)."""
+    """Botones "Empresas" / "Exchange Traded Funds (ETFs)" de la franja (v1.2.60): cambian de tabla dentro de la misma sesion (cambian la URL, pero la pagina no se recarga)."""
     st.query_params.clear()
     if tabla == "etfs":
         st.query_params["tabla"] = "etfs"
@@ -655,7 +785,7 @@ def _ir_a_tabla(tabla):
 
 def render_nav_tablas():
     with st.container(key="nav_tablas"):
-        for clave, texto in (("emp", "Empresas"), ("etfs", "ETFs")):
+        for clave, texto in (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)")):
             args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=("etfs" if clave == "etfs" else "empresas",))
             try:
                 st.button(texto, type="tertiary", **args)
@@ -663,22 +793,52 @@ def render_nav_tablas():
                 st.button(texto, **args)
 
 
-def _enviar_busqueda():
-    """Al buscar desde la pagina de una empresa (o Quienes somos) se vuelve a la tabla de empresas con la busqueda aplicada (v1.2.60)."""
-    if st.query_params.get("tabla") != "etfs" and ("empresa" in st.query_params or "pagina" in st.query_params):
-        st.query_params.clear()
+@st.cache_data(ttl=3600, show_spinner=False)
+def _opciones_busqueda(etfs_firma: tuple) -> list:
+    """[(texto, tipo, ticker)] de todas las empresas y ETFs para el buscador con sugerencias (v1.2.64), ordenadas por ticker."""
+    out = []
+    try:
+        df_c, _ = load_cache(ignorar_ttl=True)
+        if df_c is not None and not df_c.empty:
+            for t, n in zip(df_c["ticker"], df_c["nombre"] if "nombre" in df_c.columns else df_c["ticker"]):
+                n = str(n or "").strip()
+                out.append((f"{t} · {n}" if n and n != t else str(t), "empresa", str(t)))
+    except Exception:  # noqa: BLE001
+        pass
+    for t, n in etfs_firma:
+        out.append((f"{t} · {n} · ETF", "etf", t))
+    vistos, res = set(), []
+    for o in sorted(out, key=lambda x: (x[2], x[1])):
+        if o[0] not in vistos:
+            vistos.add(o[0])
+            res.append(o)
+    return res
 
 
-def render_buscador(tabla="empresas") -> str:
-    """Buscador de arriba de la tabla (v1.2.47): una lupa y "Buscar empresas por nombre o ticker". Busca de las dos formas, sin importar
-    mayusculas, tildes ni signos (Enter para buscar). Devuelve el texto escrito."""
-    # v1.2.51: sin el contador "0/40"; la lupa es el boton que envia la busqueda (Enter tambien)
+def _ir_a_seleccion():
+    """Al elegir una sugerencia del buscador se abre la pagina de esa empresa o de ese ETF, desde cualquier pantalla (v1.2.64)."""
+    destino = (st.session_state.get("_destinos_busqueda") or {}).get(st.session_state.get("flt_busqueda"))
+    st.session_state["flt_busqueda"] = None
+    if not destino:
+        return
+    tipo, t = destino
+    st.query_params.clear()
+    st.query_params["etf" if tipo == "etf" else "empresa"] = t
+
+
+def render_buscador() -> str:
+    """Buscador con sugerencias (v1.2.64): al escribir un ticker o parte del nombre (de una empresa o de un ETF) aparecen las coincidencias; al elegir una se
+    abre su pagina. Funciona igual en todas las pantallas. Devuelve siempre '' (ya no filtra la tabla)."""
+    etfs = _etfs_lista()
+    opciones = _opciones_busqueda(tuple((e["ticker"], e.get("nombre") or e["ticker"]) for e in etfs))
+    st.session_state["_destinos_busqueda"] = {o[0]: (o[1], o[2]) for o in opciones}
     with st.container(key="buscador"):
-        with st.form("form_busqueda", border=False, clear_on_submit=False):
-            texto = st.text_input("Buscar empresas por nombre o ticker", key="flt_busqueda",
-                                  placeholder="Buscar ETF o ticker" if tabla == "etfs" else "Buscar empresa o ticker", label_visibility="collapsed")
-            st.form_submit_button("Buscar", icon=":material/search:", on_click=_enviar_busqueda)
-        return (texto or "").strip()
+        try:
+            st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], index=None, key="flt_busqueda", placeholder="Buscar empresa, ETF o ticker",
+                         label_visibility="collapsed", on_change=_ir_a_seleccion)
+        except Exception:  # noqa: BLE001
+            pass
+    return ""
 
 
 # ---------------------------------------------------------------------------
@@ -1053,27 +1213,22 @@ def main():
 
     # Franja negra de arriba con el nombre (y los iconos y el menu si estan cargados sus links). El aviso y "Datos al ..." van
     # al final de la pagina (pie_html).
-    en_etfs = st.query_params.get("tabla") == "etfs"
+    etf_sel = st.query_params.get("etf")
+    en_etfs = st.query_params.get("tabla") == "etfs" or bool(etf_sel)
+    home_etfs = en_etfs and not etf_sel
     en_quienes = st.query_params.get("pagina") == "quienes"
     activa = "etfs" if en_etfs else ("" if en_quienes else "empresas")
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
-    # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de la home se dibuja mas abajo, con la tabla)
+    # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
     render_nav_tablas()
-    busqueda_top = ""
-    if en_etfs or en_quienes or st.query_params.get("empresa"):
-        busqueda_top = render_buscador("etfs" if en_etfs else "empresas")
+    if en_quienes or etf_sel or st.query_params.get("empresa"):
+        render_buscador()
     aviso = texto_aviso_legal()
     fecha = None
 
     # v1.2.49: pagina "Quiénes somos" (?pagina=quienes): no necesita los datos de las empresas, asi que se muestra al toque
     if st.query_params.get("pagina") == "quienes":
         st.markdown(f"<style>{css_fuente()}{css_condensada()}{CSS_QUIENES}</style>" + quienes_html(), unsafe_allow_html=True)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
-        return
-
-    # v1.2.63: tabla de ETFs (data/etfs.csv, la arma Guille de a poco); el buscador de la barra filtra por ticker, descripcion y categoria
-    if en_etfs:
-        render_pagina_etfs(busqueda_top)
         st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
         return
 
@@ -1153,6 +1308,12 @@ def main():
     st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}{CSS_FICHA}{css_condensada()}</style>", unsafe_allow_html=True)
     st.markdown(css_banderas(), unsafe_allow_html=True)
 
+    # v1.2.64: pagina de un ETF (?etf=TICKER)
+    if etf_sel:
+        render_pagina_etf(df, etf_sel, fecha)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        return
+
     # Pagina de una empresa (se abre al tocar su nombre en la tabla): ?empresa=TICKER
     empresa = st.query_params.get("empresa")
     if empresa:
@@ -1179,12 +1340,22 @@ def main():
         # las variables a ver en la tabla. Cerrado, los filtros siguen valiendo: solo se esconden.
         with col_filtro:
             with st.container(key="caja_screener"):
-                with st.expander("Filtro de empresas", expanded=False):
-                    filtros = render_filtros_inline(universe, df)
-                    st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
+                if home_etfs:
+                    with st.expander("Filtro de ETFs", expanded=False):
+                        sel_etfs = render_filtro_etfs(_etfs_lista())
+                else:
+                    with st.expander("Filtro de Empresas", expanded=False):
+                        filtros = render_filtros_inline(universe, df)
+                        st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()
+    if home_etfs:
+        render_tabla_etfs(_etfs_lista(), sel_etfs)
+        if noticias_pendientes:
+            render_noticias(df, descarga_noticias, lugar_noticias)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        return
     # v1.2.49: ya no hay "Cómo leer la tabla" (cada título explica su columna al pasar el mouse); el Excel va arriba de la tabla, a la derecha
     lugar_excel = st.container(key="fila_excel")
     render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
