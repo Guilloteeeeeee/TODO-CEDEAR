@@ -299,6 +299,7 @@ ESTADOS = {
         ("EBITDA", ["EBITDA", "Normalized EBITDA"], "m"),
         ("Resultado antes de impuestos", ["Pretax Income"], "m"),
         ("Impuesto a las ganancias", ["Tax Provision"], "m"),
+        ("Tasa de impuesto", ["Tax Rate For Calcs"], "pct"),
         ("Resultado neto", ["Net Income", "Net Income Common Stockholders"], "t"),
         ("Ganancia por acción (diluida)", ["Diluted EPS"], "eps"),
         ("Acciones promedio (diluidas)", ["Diluted Average Shares"], "n")]),
@@ -313,35 +314,80 @@ ESTADOS = {
         ("Pasivo corriente", ["Current Liabilities"], "t"),
         ("Deuda total", ["Total Debt"], "m"),
         ("Pasivo total", ["Total Liabilities Net Minority Interest"], "t"),
-        ("Patrimonio neto", ["Stockholders Equity", "Common Stock Equity"], "t")]),
+        ("Patrimonio neto", ["Stockholders Equity", "Common Stock Equity"], "t"),
+        ("Capital invertido (según Yahoo)", ["Invested Capital"], "m")]),
     "flujo": ("cashflow", [
-        ("Flujo de caja operativo", ["Operating Cash Flow", "Cash Flow From Continuing Operating Activities"], "t"),
+        ("Flujo de efectivo operativo", ["Operating Cash Flow", "Cash Flow From Continuing Operating Activities"], "t"),
         ("Inversión en activos fijos (CAPEX)", ["Capital Expenditure"], "m"),
-        ("Flujo de caja libre", ["Free Cash Flow"], "t"),
-        ("Flujo de caja de inversión", ["Investing Cash Flow"], "m"),
-        ("Flujo de caja de financiamiento", ["Financing Cash Flow"], "m"),
+        ("Flujo de efectivo libre", ["Free Cash Flow"], "t"),
+        ("Flujo de efectivo de inversión", ["Investing Cash Flow"], "m"),
+        ("Flujo de efectivo de financiamiento", ["Financing Cash Flow"], "m"),
         ("Recompra de acciones", ["Repurchase Of Capital Stock"], "m"),
         ("Dividendos pagados", ["Cash Dividends Paid", "Common Stock Dividend Paid"], "m")]),
 }
 
 
-def _tabla_estado(df, filas, max_anios=4):
-    """df de yfinance (filas = conceptos, columnas = fechas, la mas nueva primero) -> {'anios': [2022, ...], 'filas': [(rotulo, [valores], tipo)]} (viejo -> nuevo)."""
+_MARCA_TTM = "TTM|"
+
+
+def _col_ttm(q, flujo):
+    """Serie con la columna "ultimos 12 meses" armada con los trimestres de Yahoo (df `q`, columnas = fechas, la mas nueva primero).
+    flujo=True (resultados y flujo de efectivo): suma de los 4 ultimos trimestres (promedio para acciones y tasas); flujo=False (balance): el ultimo trimestre.
+    Devuelve (serie, fecha) o (None, None) si no hay trimestres suficientes (4 seguidos: entre 240 y 300 dias de punta a punta)."""
     try:
-        cols = list(df.columns)[:max_anios]
-        anios = [c.year if hasattr(c, "year") else int(str(c)[:4]) for c in cols]
+        cols = list(q.columns)
+        if not cols or not hasattr(cols[0], "year"):
+            return None, None
+        if not flujo:
+            return q.iloc[:, 0], cols[0]
+        if len(cols) < 4 or not (240 <= (cols[0] - cols[3]).days <= 300):
+            return None, None
+        c4 = q.iloc[:, :4]
+        res = c4.sum(axis=1, min_count=4)
+        prom = [r for r in c4.index if str(r) in ("Diluted Average Shares", "Basic Average Shares", "Tax Rate For Calcs")]
+        for r in prom:
+            res[r] = c4.loc[r].astype(float).mean(skipna=False)
+        return res, cols[0]
+    except Exception:  # noqa: BLE001
+        return None, None
+
+
+def _con_ttm(anual, trimestral, flujo):
+    """Copia del df anual con una columna "TTM|<fecha del ultimo trimestre>" al comienzo (si hay trimestres y son mas nuevos que el ultimo anio fiscal)."""
+    try:
+        if anual is None or trimestral is None:
+            return anual
+        serie, fecha = _col_ttm(trimestral, flujo)
+        if serie is None or (fecha - list(anual.columns)[0]).days < 30:
+            return anual
+        df = anual.copy()
+        df.insert(0, _MARCA_TTM + fecha.strftime("%Y-%m-%d"), serie.reindex(df.index))
+        return df
+    except Exception:  # noqa: BLE001
+        return anual
+
+
+def _tabla_estado(df, filas, max_anios=4):
+    """df de yfinance (filas = conceptos, columnas = fechas) -> {'anios': ['2026 (TTM)', 2025, 2024, ...], 'filas': [(rotulo, [valores], tipo)]}.
+    Desde la v1.2.58 el mas nuevo va primero (a la izquierda); la columna TTM (ultimos 12 meses), si existe, va al comienzo."""
+    try:
+        todas = list(df.columns)
+        ttm = [c for c in todas if isinstance(c, str) and c.startswith(_MARCA_TTM)]
+        anuales = [c for c in todas if not (isinstance(c, str) and c.startswith(_MARCA_TTM))]
+        anuales = sorted(anuales, key=lambda c: c, reverse=True)[:max_anios]
+        cols = ttm[:1] + anuales
+        etiquetas = [(f"{c[len(_MARCA_TTM):len(_MARCA_TTM) + 4]} (TTM)" if c in ttm else (c.year if hasattr(c, "year") else int(str(c)[:4]))) for c in cols]
     except Exception:  # noqa: BLE001
         return {}
-    orden = sorted(range(len(cols)), key=lambda i: anios[i])
     out = []
     for rot, claves, tipo in filas:
         for k in claves:
             if k in df.index:
-                vals = [_num(df.loc[k].iloc[i]) for i in orden]
+                vals = [_num(df.loc[k][c]) for c in cols]
                 if any(v is not None for v in vals):
                     out.append((rot, vals, tipo))
                     break
-    return {"anios": [anios[i] for i in orden], "filas": out} if out else {}
+    return {"anios": etiquetas, "filas": out} if out else {}
 
 
 def _ratio(a, b):
@@ -349,11 +395,15 @@ def _ratio(a, b):
 
 
 def analizar_estados(dfs, moneda=None):
-    """dfs: {'income_stmt': df, 'balance_sheet': df, 'cashflow': df} (los que haya). Devuelve
-    {'moneda', 'resultados', 'balance', 'flujo', 'ratios'} con los ultimos 4 anios fiscales; los ratios se calculan de esas cifras. {} si no hay nada."""
+    """dfs: {'income_stmt', 'balance_sheet', 'cashflow'} anuales y, si hay, 'q_income_stmt', 'q_balance_sheet', 'q_cashflow' (trimestrales, para la columna TTM).
+    Devuelve {'moneda', 'resultados', 'balance', 'flujo', 'ratios'}: la columna TTM y los ultimos 4 anios fiscales (el mas nuevo primero); los ratios se
+    calculan con esas cifras. {} si no hay nada."""
     d = {"moneda": moneda}
+    dfs = dfs or {}
     for clave, (fuente, filas) in ESTADOS.items():
-        df = (dfs or {}).get(fuente)
+        df = dfs.get(fuente)
+        if df is not None:
+            df = _con_ttm(df, dfs.get("q_" + fuente), flujo=(fuente != "balance_sheet"))
         t = _tabla_estado(df, filas) if df is not None else {}
         if t:
             d[clave] = t
@@ -365,14 +415,34 @@ def analizar_estados(dfs, moneda=None):
                 return dict(zip(t["anios"], vals))
         return {}
     ing, bru, ope, net = (serie("resultados", x) for x in ("Ingresos", "Utilidad bruta", "Resultado operativo", "Resultado neto"))
-    fcf, pat, deu, ac, pc = serie("flujo", "Flujo de caja libre"), serie("balance", "Patrimonio neto"), serie("balance", "Deuda total"), serie("balance", "Activo corriente"), serie("balance", "Pasivo corriente")
-    anios = sorted(set(ing) | set(net) | set(pat))
+    imp, ebt, tasa = serie("resultados", "Impuesto a las ganancias"), serie("resultados", "Resultado antes de impuestos"), serie("resultados", "Tasa de impuesto")
+    fcf, pat, deu, ac, pc, cap = (serie("flujo", "Flujo de efectivo libre"), serie("balance", "Patrimonio neto"), serie("balance", "Deuda total"),
+                                  serie("balance", "Activo corriente"), serie("balance", "Pasivo corriente"), serie("balance", "Capital invertido (según Yahoo)"))
+    etiquetas = []
+    for t in (d.get("resultados"), d.get("balance"), d.get("flujo")):
+        for a in (t or {}).get("anios", []):
+            if a not in etiquetas:
+                etiquetas.append(a)
+    # mas nuevo primero: la columna TTM (texto) adelante y despues los anios de mayor a menor
+    anios = sorted([a for a in etiquetas if isinstance(a, str)]) + sorted([a for a in etiquetas if not isinstance(a, str)], reverse=True)
+
+    def roic(a):
+        o, c = ope.get(a), cap.get(a)
+        t = tasa.get(a)
+        if t is None:
+            t = _ratio(imp.get(a), ebt.get(a))
+        if o is None or c in (None, 0) or t is None or not (0 <= t <= 0.6):
+            return None
+        return o * (1 - t) / c
     rat = []
-    for rot, num, den in (("Margen bruto", bru, ing), ("Margen operativo", ope, ing), ("Margen neto", net, ing), ("Margen de flujo de caja libre", fcf, ing),
+    for rot, num, den in (("Margen bruto", bru, ing), ("Margen operativo", ope, ing), ("Margen neto", net, ing), ("Margen de flujo de efectivo libre", fcf, ing),
                           ("Retorno sobre el patrimonio (ROE)", net, pat)):
         vals = [_ratio(num.get(a), den.get(a)) for a in anios]
         if any(v is not None for v in vals):
             rat.append((rot, vals, "pct"))
+    vals = [roic(a) for a in anios]
+    if any(v is not None for v in vals):
+        rat.append(("Retorno sobre el capital invertido (ROIC)", vals, "pct"))
     for rot, num, den in (("Deuda total / Patrimonio", deu, pat), ("Liquidez corriente (activo / pasivo corriente)", ac, pc)):
         vals = [_ratio(num.get(a), den.get(a)) for a in anios]
         if any(v is not None for v in vals):
@@ -416,6 +486,9 @@ def bajar_paquete(ticker, timeout=25.0, ticker_obj=None):
         tarea("inc", lambda: tk.income_stmt),
         tarea("bal", lambda: tk.balance_sheet),
         tarea("cf", lambda: tk.cashflow),
+        tarea("qinc", lambda: tk.quarterly_income_stmt),
+        tarea("qbal", lambda: tk.quarterly_balance_sheet),
+        tarea("qcf", lambda: tk.quarterly_cashflow),
     ]
     for h in hilos:
         h.join(timeout)
@@ -436,7 +509,8 @@ def bajar_paquete(ticker, timeout=25.0, ticker_obj=None):
     except Exception:  # noqa: BLE001
         pass
     try:
-        out["estados"] = analizar_estados({"income_stmt": res.get("inc"), "balance_sheet": res.get("bal"), "cashflow": res.get("cf")}, info.get("financialCurrency"))
+        out["estados"] = analizar_estados({"income_stmt": res.get("inc"), "balance_sheet": res.get("bal"), "cashflow": res.get("cf"),
+                                          "q_income_stmt": res.get("qinc"), "q_balance_sheet": res.get("qbal"), "q_cashflow": res.get("qcf")}, info.get("financialCurrency"))
     except Exception:  # noqa: BLE001
         pass
     return out

@@ -8,6 +8,9 @@ Para cambiar la sombra de los dos recuadros: --sombra-panel (abajo) y .nt en ui/
 """
 
 CSS = """
+/* v1.2.58: pagina de inicio mas compacta: el espacio entre los bloques de arriba (cajas, leyenda, tabla) baja de 16 a 6 px; los bloques "invisibles"
+   (estilos) tambien dejaban su hueco y sumaban unos 100 px de aire */
+[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]{gap:6px!important}
 .st-key-fila_cajas{margin:0 0 2px}
 .st-key-fila_cajas [data-testid="stHorizontalBlock"]{align-items:flex-start}
 .st-key-caja_screener{margin:0}

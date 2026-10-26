@@ -93,7 +93,6 @@ def escala_valoracion_html(mostrar_gris=False):
 # clave de columna -> (titulo, texto). Las columnas que se suman desde "Variables a ver en la tabla" usan el texto de ui/criterios.py.
 # Empresa (v1.2.49) va sin titulo adelante: es la frase tal cual, con la ultima oracion en azul.
 AYUDA_COLUMNAS = {
-    "nombre": ("Empresa", ":blue[**Tocá el nombre para ver su página con todo el detalle.**]"),
     "sector_txt": ("Sector e industria", "A qué se dedica la empresa: el sector y, abajo, su industria. Es solo información: no cambia la valoración ni el puntaje."),
     "precio_actual": ("Precio", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance cada pocos minutos "
                                 "(puede tener demora); si no responde, queda el de la última actualización de los datos{fecha}. "
@@ -318,10 +317,12 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv2-si{margin-top:2px;font-size:12px;font-weight:400;color:#4b5563;line-height:1.25}
 .tv2-ni{font-size:12.5px;color:#6b7280}
 .tv-buscar{margin:6px 0 4px}
-.st-key-fila_excel{margin:0}
-.st-key-fila_excel{align-items:flex-end;margin:4px 0 0}
-/* "?" al lado del titulo Empresa (v1.2.49): la explicacion sale al pasar el mouse por el titulo */
-.st-key-tvh_nombre button p::after{content:"?";display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;margin-left:7px;border:1px solid rgba(255,255,255,.6);border-radius:50%;font-size:10px;font-weight:700;line-height:1;vertical-align:1px}
+/* v1.2.58: la leyenda "Presioná en la empresa..." se ve siempre (recuadro blanco, letra azul) en la misma fila que el Excel; ya no hay "?" en Empresa */
+.st-key-fila_excel{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:flex-start!important;justify-content:space-between;gap:4px 14px!important;margin:0 0 2px!important}
+.st-key-fila_excel .st-key-descarga_excel{margin-top:4px}
+.st-key-fila_excel [data-testid="stMarkdownContainer"]{margin-bottom:0!important}
+.st-key-fila_excel>div{width:auto!important;flex:0 0 auto;min-width:0}
+.tv-ley{display:block;width:fit-content;background:#fff;border-radius:12px;padding:7px 16px;font-size:14.5px;font-weight:700;color:#1d4ed8;line-height:1.3;box-shadow:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.07)}
 /* "Variables a ver en la tabla" (v1.2.49): pastillas que se prenden y se apagan; las elegidas llevan tilde y van en negrita */
 .vars-t{font-size:14px;font-weight:700;color:#111827;margin:2px 0 6px}
 .st-key-vars_chips,.st-key-vars_chips_mult{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
@@ -360,7 +361,6 @@ div[data-testid="stElementContainer"]:has(.tv2){margin-top:0!important}
 .tv2-nm{font-size:15px}
 .tv2-l2{white-space:normal}
 .tv-ln1,.tv-ln2{display:inline}
-.st-key-fila_excel{align-items:flex-start}
 }
 span[data-baseweb="tag"]{background:#e8eef5!important;border-radius:14px!important}
 span[data-baseweb="tag"],span[data-baseweb="tag"] span{color:#1f2937!important}

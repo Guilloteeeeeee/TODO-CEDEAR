@@ -55,8 +55,8 @@ CSS = """
 .fch{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin:14px 0 8px}
 .fch-t{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:14px 16px 16px;min-width:0;position:relative}
 .fch-t::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ac,#cbd5e1);border-radius:14px 0 0 14px}
-.fch-h{font-size:11.5px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#6b7280;margin:0 0 8px;padding-left:4px}
-.fch-h small{text-transform:none;letter-spacing:0;font-weight:500;color:#9ca3af;margin-left:4px}
+.fch-h{font-size:14.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0f172a;margin:0 0 10px;padding-left:4px}
+.fch-h small{text-transform:none;letter-spacing:0;font-weight:500;font-size:12px;color:#9ca3af;margin-left:4px}
 .fch-b{padding-left:4px;min-width:0}
 .s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
 .r2{grid-row:span 2}.r3{grid-row:span 3}
@@ -483,15 +483,15 @@ def _fecha_ar(texto):
 
 
 def _linea_pesos(row, datos):
-    """'Precio en pesos $ 25.394 (ratio 20 : 1)' (chico y gris, debajo del precio en dolares). Sin ratio confirmado no se muestra nada."""
+    """'CEDEAR: $ 25.394 (ratio 20 : 1)' (chico y gris, debajo del precio en dolares). Sin ratio confirmado no se muestra nada."""
     d = (datos or {}).get(str(row.get("ticker", "")).upper()) or {}
     if not d.get("ratio"):
         return ""
     ratio = _cedears.ratio_texto(d.get("ratio"))
     ars = _n(d.get("precio_ars"))
     if ars:
-        return f'Precio en pesos {_ars(ars)} (ratio {html.escape(ratio)})'
-    return f'Precio en pesos: sin dato por ahora (ratio {html.escape(ratio)})'
+        return f'CEDEAR: {_ars(ars)} (ratio {html.escape(ratio)})'
+    return f'CEDEAR: sin precio por ahora (ratio {html.escape(ratio)})'
 
 
 def _encabezado(row, mercado, ficha, datos=None, fecha_datos=None):
@@ -843,7 +843,7 @@ def _tile_valoracion(row):
     color = _txt(row.get("color_hex"), "#6e7781")
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
     cat = _texto_categoria(_txt(row.get("categoria"), "—"), color, True)
-    bloque_cat = f'<div><div class="l">Valoración {_ayuda(TEXTO_VALORACION)}</div><div class="v c">{cat}</div><div class="n">Estimación según el modelo</div></div>'
+    bloque_cat = f'<div><div class="l">Valoración por múltiplos {_ayuda(TEXTO_VALORACION)}</div><div class="v c">{cat}</div></div>'
     if not (precio and fv and precio > 0 and fv > 0):
         cuerpo = f'<div class="stats">{bloque_cat}</div><div class="fch-sub" style="margin:10px 0 0">Sin Fair Value: faltan datos para calcularlo.</div>'
         return f'<div class="fch-t s12" style="--ac:{color}"><div class="fch-b">{cuerpo}</div></div>'
@@ -852,8 +852,8 @@ def _tile_valoracion(row):
     dif_txt = f"{dif * 100:+.0f}%" if round(dif * 100) != 0 else "0%"
     stats = ('<div class="stats">'
              f'<div><div class="l">Precio de hoy</div><div class="v">{_money(precio)}</div><div class="n">Cotización actual</div></div>'
-             f'<div><div class="l">Fair Value</div><div class="v">{_money(fv)}</div><div class="n">Precio estimado según la mediana histórica</div></div>'
-             f'<div><div class="l">Fair Value vs. precio</div><div class="v {dif_cls}">{dif_txt}</div><div class="n">Distancia entre ambos</div></div>'
+             f'<div><div class="l">Fair Value</div><div class="v">{_money(fv)}</div><div class="n">Precio estimado según múltiplos históricos</div></div>'
+             f'<div><div class="l">Fair Value vs. precio</div><div class="v {dif_cls}">{dif_txt}</div></div>'
              + bloque_cat + '</div>')
     M = max(precio, fv) * 1.12
     wp, wf = precio / M * 100, fv / M * 100
@@ -991,7 +991,7 @@ def _tile_recesion(rec):
         nota = "Precio del 9/10/2007 al 9/3/2009 (sin dividendos)"
         if sp is not None:
             nota += f"; el S&P 500 hizo {sp * 100:+.0f}%"
-        bl.append(f'<div><div class="l">Retorno en la recesión</div><div class="v {cls}">{r * 100:+.0f}%</div><div class="n">{nota}</div></div>')
+        bl.append(f'<div><div class="l">Precio de la acción en la recesión</div><div class="v {cls}">{r * 100:+.0f}%</div><div class="n">{nota}</div></div>')
     if not bl:
         return ""
     return _tile("s12", "Comportamiento en la recesión 2007-09", '<div class="stats">' + "".join(bl) + "</div>", ac="#16a34a")
@@ -1144,7 +1144,7 @@ def tab_directivos(g, foto=None):
         fil = "".join(f'<tr><td>{html.escape(_sin_honorifico(d["nombre"]))}</td><td>{html.escape(d["cargo"])}</td><td>{int(d["edad"]) if d.get("edad") else "—"}</td>'
                       f'<td>{_usd_abrev(d["pago"]) if d.get("pago") else "—"}</td></tr>' for d in resto)
         tiles.append(_tile("s7" if ceo else "s12", "Equipo directivo",
-                           f'<div class="comp-w"><table class="comp der"><tr><th>Nombre</th><th>Cargo</th><th>Edad</th><th>Remuneración</th></tr>{fil}</table></div>', ac="#64748b"))
+                           f'<div class="comp-w"><table class="comp"><tr><th>Nombre</th><th>Cargo</th><th>Edad</th><th>Remuneración</th></tr>{fil}</table></div>', ac="#64748b"))
     return _env(*tiles)
 
 
@@ -1197,21 +1197,31 @@ def _tabla_estado_html(t, moneda):
 
 
 def tab_estados(est):
-    """Estados financieros anuales de Yahoo (ultimos 4 anios fiscales): resultados, balance, flujo de caja y ratios calculados con esas cifras."""
+    """Estados financieros de Yahoo: la columna TTM (ultimos 12 meses) y los ultimos 4 anios fiscales, el mas nuevo a la izquierda (v1.2.58):
+    Estado de Resultados, Balance, Estado de Flujo de Efectivo y Ratios Financieros (calculados con esas cifras, con ROIC)."""
+    vacio = _env(_tile("s12", "Estados financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
     if not est:
-        return _env(_tile("s12", "Estados financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
+        return vacio
     moneda = est.get("moneda")
-    nota = ""
     if moneda and moneda != "USD":
-        nota = f'<div class="fch-nota" style="margin:0 0 8px">Cifras en {html.escape(str(moneda))}, la moneda en que la empresa informa (no se convierten a dólares).</div>'
+        nota = f"Cifras en {html.escape(str(moneda))}, la moneda en que la empresa informa (no se convierten a dólares)."
     else:
-        nota = '<div class="fch-nota" style="margin:0 0 8px">Cifras en dólares: T = billones, B = miles de millones, M = millones (años fiscales de la empresa).</div>'
+        nota = "Cifras en dólares: T = billones, B = miles de millones, M = millones."
+    hay_ttm = any(isinstance(a, str) for k in ("resultados", "balance", "flujo") for a in (est.get(k) or {}).get("anios", []))
+    if hay_ttm:
+        nota += " TTM = últimos 12 meses (suma de los 4 últimos trimestres; en el balance, el último trimestre). Los demás son años fiscales de la empresa."
+    else:
+        nota += " Años fiscales de la empresa."
+    nota_roic = ("ROIC = resultado operativo × (1 − tasa de impuesto) ÷ capital invertido (deuda + patrimonio, según Yahoo): cuánto gana la empresa por cada dólar "
+                 "puesto en el negocio. ROE = resultado neto ÷ patrimonio. Con cifras de fin de período, no promedios.")
     tiles = []
-    for clave, titulo, color in (("resultados", "Estado de resultados", "#0ea5e9"), ("balance", "Balance", "#6366f1"), ("flujo", "Flujo de caja", "#14b8a6"),
-                                 ("ratios", "Ratios calculados con estas cifras", "#f59e0b")):
+    for clave, titulo, color in (("resultados", "Estado de Resultados", "#0ea5e9"), ("balance", "Balance", "#6366f1"), ("flujo", "Estado de Flujo de Efectivo", "#14b8a6"),
+                                 ("ratios", "Ratios Financieros", "#f59e0b")):
         if est.get(clave):
-            tiles.append(_tile("s12", titulo, (nota if not tiles else "") + _tabla_estado_html(est[clave], moneda), ac=color))
-    return _env(*tiles) if tiles else _env(_tile("s12", "Estados financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
+            pre = f'<div class="fch-nota" style="margin:0 0 8px">{nota}</div>' if not tiles else ""
+            post = f'<div class="fch-nota" style="margin:8px 0 0">{nota_roic}</div>' if clave == "ratios" else ""
+            tiles.append(_tile("s12", titulo, pre + _tabla_estado_html(est[clave], moneda) + post, ac=color))
+    return _env(*tiles) if tiles else vacio
 
 
 def tab_gobierno(g):

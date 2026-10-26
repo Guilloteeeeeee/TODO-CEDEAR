@@ -37,7 +37,7 @@ AVISO_LEGAL = (
     "La información de este sitio es de carácter educativo e informativo. No constituye asesoramiento financiero, legal ni impositivo, ni una "
     "recomendación, oferta o invitación a comprar o vender ningún activo, y no tiene en cuenta tus objetivos, tu situación financiera ni tu perfil de "
     "riesgo. Las valoraciones, los Fair Value y las categorías son estimaciones hechas con un modelo basado en múltiplos, pensadas para filtrar y "
-    "estudiar empresas: pueden estar equivocadas. Los datos provienen de terceros (Yahoo Finance, Stock Analysis, Rava, CNBC, entre otros) y pueden "
+    "estudiar empresas: pueden estar equivocadas. Los datos provienen de terceros (Yahoo Finance, Stock Analysis, Rava, CNBC, Ámbito, entre otros) y pueden "
     "tener errores, omisiones o demoras; verificalos siempre en fuentes oficiales. Invertir implica riesgos, incluida la pérdida del capital, y los "
     "rendimientos pasados no garantizan resultados futuros. Antes de decidir, hacé tu propio análisis y consultá con un profesional matriculado. "
     "Finanzas para Médicos Argentina, sus autores y colaboradores no se responsabilizan por las decisiones que se tomen con esta información ni por "
@@ -161,6 +161,7 @@ NOTICIAS_ABIERTO = False         # True = el recuadro aparece desplegado; False 
 # Traduccion automatica (v1.2.42): con NOTICIAS_IDIOMA = "en", True traduce al español los titulares de CNBC con el servicio
 # gratuito MyMemory. Es traduccion automatica (puede tener errores); si falla, el titular queda en ingles. Con "es" no hace nada.
 NOTICIAS_TRADUCIR = True         # v1.2.46: encendida - los titulares de CNBC se muestran en español (si la traduccion falla, queda el titular en ingles)
+# v1.2.58: las noticias van en 3 bloques (Locales, Estados Unidos, Resto del mundo), 5 de cada uno. Para cambiar fuentes: definir NOTICIAS_BLOQUES (ver _BLOQUES_DEFECTO en ui/noticias.py).
 NOTICIAS_TRADUCIR_MAIL = ""      # opcional: mail para subir la cuota gratuita de MyMemory de 5.000 a 50.000 caracteres por dia (vacio = COMENTARIOS_MAIL)
 # Por idioma: nombre de la fuente y sus feeds (nombre que se muestra, url del RSS, es_portada). La "portada" solo marca
 # cuales notas estan ahi; no se muestra por separado.

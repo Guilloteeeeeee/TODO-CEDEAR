@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.57"
+APP_VERSION = "1.2.58"
 
 import streamlit as st
 import pandas as pd
@@ -314,11 +314,24 @@ def _intradia(ticker: str, marco: str):
         return None
 
 
-@st.cache_data(ttl=86400, show_spinner=False)
+@st.cache_resource(show_spinner=False)
+def _fotos_memo():
+    return {}
+
+
 def _foto_ceo(nombre: str, empresa: str):
-    """v1.2.55: URL de la foto del CEO en Wikipedia (solo si la pagina coincide con el nombre, la empresa y el cargo) o None."""
+    """URL de la foto del CEO en Wikipedia (solo si la pagina coincide con el nombre, la empresa y el cargo) o None.
+    v1.2.58: solo se guarda en memoria cuando se encontro la foto; si falla (Wikipedia no respondio, un corte) se vuelve a intentar la proxima vez
+    (antes un fallo quedaba guardado un dia entero y la foto no salia)."""
+    memo = _fotos_memo()
+    k = (nombre, empresa)
+    if memo.get(k):
+        return memo[k]
     from data import foto_ceo as _fc
-    return _fc.buscar_foto(nombre, empresa)
+    url = _fc.buscar_foto(nombre, empresa)
+    if url:
+        memo[k] = url
+    return url
 
 
 @st.cache_data(ttl=6 * 3600, show_spinner=False)
@@ -802,6 +815,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
     # El boton de Excel esta arriba de la tabla, a la derecha (v1.2.49)
     if lugar_excel is not None:
         with lugar_excel:
+            st.markdown('<div class="tv-ley">Presioná en la empresa para información detallada.</div>', unsafe_allow_html=True)
             _boton_excel(df_show, fecha, aviso, extras, visibles)
     render_tabla_visual(df_show, filtros.get("estado_url"), fecha, extras, visibles)
 
@@ -905,6 +919,9 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         gob = extra.get("gobierno")
         nom_ceo = _ficha.nombre_ceo(gob) or str(ficha.get("ceo") or "")
         foto = _foto_ceo(nom_ceo, str(rd.get("nombre") or tk)) if nom_ceo else None
+        if st.query_params.get("debug") == "1" and nom_ceo:
+            from data import foto_ceo as _fc
+            st.caption(f"Foto del CEO ({nom_ceo}): " + _fc.diagnostico(nom_ceo, str(rd.get("nombre") or tk)))
         st.markdown(_ficha.tab_directivos(gob, foto), unsafe_allow_html=True)
     with t_acc:
         st.markdown(_ficha.tab_accionariado(extra.get("gobierno")), unsafe_allow_html=True)
@@ -945,10 +962,8 @@ def render_noticias(df, descarga, lugar=None):
         return
     try:
         crudo = _noticias.esperar(descarga)
-        notas, horas = _noticias.ordenar(crudo, list(df["ticker"]))
-        notas = _noticias.traducir_notas(notas)
-        hubo = bool(crudo and crudo.get("feeds_ok"))
-        cuerpo = f"<style>{_noticias.CSS}</style>" + _noticias.noticias_html(notas, horas, hubo_respuesta=hubo)
+        bloques = _noticias.traducir_bloques(_noticias.ordenar_bloques(crudo, list(df["ticker"])))
+        cuerpo = f"<style>{_noticias.CSS}</style>" + _noticias.noticias_bloques_html(bloques)
         (lugar if lugar is not None else st).markdown(cuerpo, unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass

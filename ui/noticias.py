@@ -52,6 +52,18 @@ _FUENTES_DEFECTO = {
         ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
     )},
 }
+# v1.2.58: la caja se divide en tres bloques (Locales, Estados Unidos, Resto del mundo), 5 notas cada uno. Cada bloque tiene su fuente,
+# su idioma y sus feeds (nombre que se muestra, url del RSS, es_portada). Se cambian en config/ajustes.py (NOTICIAS_BLOQUES).
+_BLOQUES_DEFECTO = (
+    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito", "idioma": "es", "traducir": False,
+     "feeds": _FUENTES_DEFECTO["es"]["feeds"]},
+    {"clave": "usa", "titulo": "Estados Unidos", "fuente": "CNBC", "idioma": "en", "traducir": True,
+     "feeds": _FUENTES_DEFECTO["en"]["feeds"]},
+    {"clave": "mundo", "titulo": "Resto del mundo", "fuente": "CNBC", "idioma": "en", "traducir": True,
+     "feeds": (("Mundo", "https://www.cnbc.com/id/100727362/device/rss/rss.html", False),
+               ("Europa", "https://www.cnbc.com/id/19794221/device/rss/rss.html", False),
+               ("Asia", "https://www.cnbc.com/id/19832390/device/rss/rss.html", False))},
+)
 ACTIVAS = bool(_cfg("NOTICIAS_ACTIVAS", True))
 IDIOMA = str(_cfg("NOTICIAS_IDIOMA", "es")).strip().lower()
 _FUENTES = _cfg("NOTICIAS_FUENTES", _FUENTES_DEFECTO)
@@ -66,7 +78,8 @@ HORAS_MAX = int(_cfg("NOTICIAS_HORAS_MAX", 72))
 MINUTOS_CACHE = int(_cfg("NOTICIAS_MINUTOS_CACHE", 15))
 ABIERTO = bool(_cfg("NOTICIAS_ABIERTO", False))
 # Traduccion automatica al español: solo tiene sentido con la fuente en ingles (IDIOMA = "en"). Ver ui/traducir.py.
-TRADUCIR = bool(_cfg("NOTICIAS_TRADUCIR", False)) and IDIOMA == "en"
+TRADUCIR = bool(_cfg("NOTICIAS_TRADUCIR", False))   # v1.2.58: se traducen los bloques que lo pidan (los de fuente en ingles)
+BLOQUES = tuple(_cfg("NOTICIAS_BLOQUES", _BLOQUES_DEFECTO) or _BLOQUES_DEFECTO)
 TRADUCIR_MAIL = str(_cfg("NOTICIAS_TRADUCIR_MAIL", "") or _cfg("COMENTARIOS_MAIL", "") or "")
 TIMEOUT_S = 5
 USER_AGENT = "Mozilla/5.0 (compatible; TodoCedears/1.2; lector de titulares RSS; contacto: finanzas.medicos@gmail.com)"
@@ -149,7 +162,7 @@ def _patron(tickers):
     return _PAT_CACHE[clave]
 
 
-def buscar_menciones(titulo, tickers):
+def buscar_menciones(titulo, tickers, idioma=None):
     """Tickers de las empresas del screener que se nombran en el titular (sin repetir, en orden de aparicion)."""
     pat, formas = _patron(tickers)
     if pat is None or not titulo:
@@ -157,7 +170,7 @@ def buscar_menciones(titulo, tickers):
     out = []
     tset = set(tickers or [])
     for m in pat.finditer(titulo):
-        if IDIOMA == "es" and m.group(1) in _NO_AL_INICIO and m.start() == 0:
+        if (idioma or IDIOMA) == "es" and m.group(1) in _NO_AL_INICIO and m.start() == 0:
             continue
         for t in _CONJUNTAS.get(m.group(1)) or (formas.get(m.group(1)),):
             if t and t in tset and t not in out:
@@ -258,14 +271,11 @@ _POOL = ThreadPoolExecutor(max_workers=4, thread_name_prefix="noticias")
 _FUTURO = {"f": None}
 
 
-def _bajar_todo(descargar=None):
-    descargar = descargar or _descargar
-    feeds = list(FEEDS)
-    with ThreadPoolExecutor(max_workers=max(1, len(feeds))) as ex:
-        bytes_ = list(ex.map(lambda f: descargar(f[1]), feeds))
+def _armar_bloque(feeds, leidos):
+    """Notas de un bloque a partir de los feeds ya leidos ({url: [notas]})."""
     notas, portada, ok = {}, set(), 0
-    for (nombre, _url, es_portada), contenido in zip(feeds, bytes_):
-        lista = leer_feed(contenido)
+    for nombre, url, es_portada in feeds:
+        lista = leidos.get(url) or []
         if lista:
             ok += 1
         for n in lista:
@@ -276,6 +286,21 @@ def _bajar_todo(descargar=None):
             if k not in notas:
                 notas[k] = {**n, "seccion": nombre, "clave": k}
     return {"notas": list(notas.values()), "portada": portada, "feeds_ok": ok, "feeds_total": len(feeds)}
+
+
+def _bajar_todo(descargar=None):
+    """Baja (en paralelo) los feeds de todos los bloques. -> {"bloques": {clave: crudo del bloque}, "feeds_ok": n, "feeds_total": n}."""
+    descargar = descargar or _descargar
+    urls = []
+    for b in BLOQUES:
+        for f in b["feeds"]:
+            if f[1] not in urls:
+                urls.append(f[1])
+    with ThreadPoolExecutor(max_workers=max(1, min(10, len(urls)))) as ex:
+        contenidos = list(ex.map(descargar, urls))
+    leidos = {u: leer_feed(c) for u, c in zip(urls, contenidos)}
+    bloques = {b["clave"]: _armar_bloque(b["feeds"], leidos) for b in BLOQUES}
+    return {"bloques": bloques, "feeds_ok": sum(1 for v in leidos.values() if v), "feeds_total": len(urls)}
 
 
 def _crudo(descargar=None, ahora_ts=None, forzar=False):
@@ -341,7 +366,7 @@ def _sin_repetir_ticker(ordenadas, cantidad):
     return salida
 
 
-def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None):
+def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None):
     """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si no alcanzan `cantidad` notas), orden por
     (menciona empresas del screener, esta en portada, mas reciente) y una sola nota por ticker (v1.2.46: se saltea la repetida y se
     sigue con la que viene). Devuelve (lista, horas_usadas)."""
@@ -359,8 +384,9 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
     for h in ventanas:
         usadas = h
         lim = ahora - timedelta(hours=h)
-        elegibles = [n for n in crudo["notas"] if n["fecha"] is None or lim <= n["fecha"] <= ahora + timedelta(minutes=10)]
-        todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers), "en_portada": n["clave"] in portada, "fuente": FUENTE} for n in elegibles]
+        elegibles = [n for n in crudo["notas"] if (n["fecha"] is None or lim <= n["fecha"] <= ahora + timedelta(minutes=10))
+                     and n["clave"] not in (excluir or ())]
+        todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers, idioma), "en_portada": n["clave"] in portada, "fuente": fuente or FUENTE} for n in elegibles]
         todas.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
         salida = _sin_repetir_ticker(todas, cantidad)
         if len(salida) >= cantidad:
@@ -382,6 +408,41 @@ def traducir_notas(notas, traducir_lista=None):
         return notas
 
 
+def ordenar_bloques(crudo, tickers, ahora=None):
+    """Aplica la regla de `ordenar` a cada bloque (Locales, Estados Unidos, Resto del mundo). Una nota no sale en dos bloques.
+    -> lista de {clave, titulo, fuente, idioma, traducir, notas, horas, respondio}."""
+    vistos, salida = set(), []
+    for b in BLOQUES:
+        cb = ((crudo or {}).get("bloques") or {}).get(b["clave"])
+        notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=vistos)
+        vistos.update(n["clave"] for n in notas)
+        salida.append({"clave": b["clave"], "titulo": b["titulo"], "fuente": b["fuente"], "idioma": b["idioma"],
+                       "traducir": bool(b.get("traducir")), "notas": notas, "horas": horas,
+                       "respondio": bool(cb and cb.get("feeds_ok"))})
+    return salida
+
+
+def traducir_bloques(bloques, traducir_lista=None):
+    """Agrega `titulo_es` a las notas de los bloques que piden traduccion (una sola consulta para todos). Si falla, quedan en su idioma."""
+    if not TRADUCIR or not bloques:
+        return bloques
+    titulos = [n["titulo"] for b in bloques if b.get("traducir") for n in b["notas"]]
+    if not titulos:
+        return bloques
+    try:
+        if traducir_lista is None:
+            from ui.traducir import traducir_lista
+        mapa = traducir_lista(titulos, TRADUCIR_MAIL) or {}
+    except Exception:  # noqa: BLE001
+        return bloques
+    out = []
+    for b in bloques:
+        if b.get("traducir"):
+            b = {**b, "notas": [{**n, "titulo_es": mapa[n["titulo"]]} if n["titulo"] in mapa else n for n in b["notas"]]}
+        out.append(b)
+    return out
+
+
 # ---------------------------------------------------------------------------------------------------------------
 # Dibujo
 # ---------------------------------------------------------------------------------------------------------------
@@ -398,6 +459,9 @@ CSS = """
 .nt li a:hover{text-decoration:underline!important}
 .nt-m{font-size:.76rem;color:#6b7280;white-space:nowrap}
 .nt-e{font-size:.72rem;font-weight:700;color:#065f46;background:#d1fae5;border-radius:999px;padding:1px 8px;white-space:nowrap}
+.nt-b{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#111827;margin:10px 0 2px;padding:6px 0 0;border-top:2px solid #111827;display:flex;gap:8px;align-items:baseline}
+.nt-b small{font-weight:500;letter-spacing:0;text-transform:none;color:#6b7280;font-size:.74rem}
+.nt-b:first-of-type{margin-top:2px;border-top:0;padding-top:0}
 .nt-pie{font-size:.74rem;color:#6b7280;padding:2px 0 10px}
 .nt-vacio{font-size:.86rem;color:#4b5563;padding:2px 0 12px}
 @media (max-width:820px){.nt{padding:2px 12px}.nt li a{flex-basis:100%}}
@@ -447,3 +511,38 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
             f'<ul>{"".join(filas)}</ul>'
             f'<div class="nt-pie">Fuente: {FUENTE}. Primero las que nombran empresas del screener (etiqueta verde), una sola nota por empresa; '
             f'después las de portada y las más recientes. Cada título abre la nota en {FUENTE}.{aviso_trad} Es información, no una recomendación.</div></details>')
+
+
+def _fila(n, fuente, ahora=None):
+    link = html.escape(n["link"], quote=True)
+    meta = " · ".join(x for x in (fuente, hace(n.get("fecha"), ahora)) if x)
+    etiq = ""
+    if n.get("menciona"):
+        etiq = f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
+    es = n.get("titulo_es")
+    tip = f' title="Titular original: {html.escape(n["titulo"], quote=True)}"' if es else ""
+    return (f'<li><a href="{link}" target="_blank" rel="noopener noreferrer"{tip}>{html.escape(es or n["titulo"])}</a>'
+            f'{etiq}<span class="nt-m">{html.escape(meta)}</span></li>')
+
+
+def noticias_bloques_html(bloques, ahora=None, abierto=None):
+    """v1.2.58: recuadro desplegable "Noticias calientes del día" dividido en bloques (Locales, Estados Unidos, Resto del mundo), 5 notas cada uno."""
+    abierto = ABIERTO if abierto is None else abierto
+    atr = " open" if abierto else ""
+    partes = []
+    for b in bloques or []:
+        cab = f'<div class="nt-b">{html.escape(b["titulo"])}<small>{html.escape(b["fuente"])}</small></div>'
+        if b["notas"]:
+            partes.append(cab + f'<ul>{"".join(_fila(n, b["fuente"], ahora) for n in b["notas"])}</ul>')
+        else:
+            motivo = (f'{b["fuente"]} no respondió en este momento' if not b.get("respondio") else f'no hay notas recientes de {b["fuente"]}')
+            partes.append(cab + f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div>')
+    fuentes = []
+    for b in bloques or []:
+        if b["fuente"] not in fuentes:
+            fuentes.append(b["fuente"])
+    hay_es = any(n.get("titulo_es") for b in bloques or [] for n in b["notas"])
+    aviso_trad = (" Los titulares en inglés están traducidos automáticamente: pueden tener errores (al pasar el mouse se ve el original)." if hay_es else "")
+    pie = (f'<div class="nt-pie">Fuentes: {html.escape(" y ".join(fuentes))}. Primero las que nombran empresas del screener (etiqueta verde), '
+           f'una sola nota por empresa; después las de portada y las más recientes. Cada título abre la nota en su fuente.{aviso_trad} Es información, no una recomendación.</div>')
+    return f'<details class="nt"{atr}><summary>Noticias calientes del día</summary>{"".join(partes)}{pie}</details>'
