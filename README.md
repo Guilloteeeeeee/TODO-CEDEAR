@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.61 (26/10/2026): fotos del CEO (filtro más flexible), textos de las solapas
+- **Foto del CEO:** con `resultados_fotos_ceo.txt` de Guille se vio que Wikipedia sí responde y que en 53 empresas la página correcta (nombre, empresa, cargo y foto) era descartada: el filtro exigía una URL exacta de la imagen. Ahora se acepta cualquier imagen servida por Wikipedia/Wikimedia (también `//host/...`). También se sacan los títulos pegados al nombre que manda Yahoo ("Ph.D.", "CPA", "J.D.", "M.B.A., P.Eng."), se acepta la inicial del segundo nombre (Robert **K.** Ortberg → Kelly Ortberg), "president" solo ya no cuenta como cargo (aceptaba a un prócer como CEO de AIG) y las palabras comunes de los nombres de empresas ("American", "Bank", "Group") no alcanzan para dar por buena una página. El diagnóstico muestra la URL cuando la rechaza.
+- **Textos de las solapas** (Resumen, Gráfico y rendimiento, Valuación, Dividendos, Competidores, Noticias) con la redacción pedida por Guille.
+
 ### v1.2.60 (26/10/2026): Empresas / ETFs sin recargar, buscador en todas las páginas, precios con un decimal, fotos del CEO en un paso aparte
 - **Empresas / ETFs:** ya no son links (recargaban toda la página): son botones de Streamlit que cambian de tabla dentro de la misma sesión (la URL cambia, la página no se recarga). Misma ubicación en la barra negra; abajo de la barra en el celular.
 - **Buscador:** ahora está también en la página de ETFs, en la ficha de cada empresa y en Quiénes somos. Desde la ficha, buscar vuelve a la tabla de empresas con la búsqueda aplicada. En ETFs todavía no hay tabla para filtrar.

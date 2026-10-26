@@ -888,16 +888,16 @@ def encabezado_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_da
 
 
 INTROS = {
-    "resumen": "Quién es la empresa y qué hace, dónde cotiza y sus números básicos de un vistazo: tamaño, dividendo, rango de precio del último año y cuándo presenta resultados.",
+    "resumen": "Qué hace la empresa, dónde cotiza y sus números básicos de un vistazo: tamaño, dividendo, rango de precio del último año y cuándo presenta resultados.",
     "analisis": "Los datos que sostienen el puntaje de la empresa: cada métrica de hoy comparada con su propia historia. Es una herramienta para filtrar y estudiar, no una recomendación.",
-    "grafico": "Cómo se movió el precio de la acción y cuánto rindió en distintos plazos. Lo que pasó antes no garantiza lo que pase después.",
-    "valuacion": "Si hoy la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana. Es una estimación, no una recomendación.",
+    "grafico": "Cómo se movió el precio de la acción y cuánto rindió en distintos plazos. Rendimientos pasados no son garantías de resultados futuros.",
+    "valuacion": "Una estimación sobre si la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana.",
     "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
-    "dividendos": "Cuánto paga la empresa a sus accionistas, si lo puede sostener con lo que gana y cómo se comportó el dividendo en la crisis de 2007-09.",
-    "competidores": "Las empresas más grandes del mismo sector que están en el screener, para compararlas lado a lado en valoración y puntaje de calidad.",
+    "dividendos": "Cuánto paga la empresa a sus accionistas en concepto de dividendo y si el mismo es sostenible.",
+    "competidores": "Las empresas del mismo sector que cotizan como CEDEARs, para compararlas lado a lado en valoración y puntaje de calidad.",
     "directivos": "Quiénes conducen la empresa y cuánto cobran. El CEO es el máximo responsable ejecutivo: el que toma las decisiones del día a día.",
     "accionariado": "Quiénes son los dueños: los directivos (insiders) y las instituciones (fondos, bancos). Que los directivos tengan acciones suele alinear sus intereses con los de los demás accionistas.",
-    "noticias": "Los últimos titulares sobre la empresa, en su idioma original, con link a la nota.",
+    "noticias": "Los últimos titulares sobre la empresa, en su idioma original, con link a cada nota.",
 }
 
 
