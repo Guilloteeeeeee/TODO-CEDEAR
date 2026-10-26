@@ -713,12 +713,14 @@ def extraer_metricas_ratios(tabla: dict) -> dict:
                     por_anio[anio] = valor
         anios = sorted(por_anio, reverse=True)[:MAX_YEARS]
         serie = [por_anio[a] for a in anios if por_anio[a] is not None and por_anio[a] > 0]
+        por_anio_pos = {a: v for a, v in por_anio.items() if v is not None and v > 0}       # v1.2.57: valor de cada anio fiscal (para la tabla por anio)
         if actual is not None and actual <= 0:
             actual = None                      # negativo o cero = sin dato (empresa con perdidas, sin dividendo)
         if metrica == "dividend_yield":        # SA lo muestra en porcentaje
             actual = actual / 100.0 if actual is not None and actual < 50 else None
             serie = [v / 100.0 for v in serie if v < 50]
-        salida[metrica] = {"actual": actual, "historia": serie}
+            por_anio_pos = {a: v / 100.0 for a, v in por_anio_pos.items() if v < 50}
+        salida[metrica] = {"actual": actual, "historia": serie, "anios": dict(sorted(por_anio_pos.items(), reverse=True))}
     # v1.2.50: Rendimiento total (dividendo + recompras netas). Se arma con las filas "Dividend Yield" y "Buyback Yield / Dilution".
     et_bb = _find_label(tabla, "buyback yield")
     if et_bb:

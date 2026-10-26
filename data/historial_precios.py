@@ -129,3 +129,43 @@ def recortar(pares, marco):
     uf = pares[-1][0]
     lim = _dt.date(uf.year - 1, 12, 31) if marco == "YTD" else uf - _dt.timedelta(days=_DIAS_MARCO.get(marco, 365))
     return [p for p in pares if p[0] >= lim]
+
+
+# --- recesion 2007-09 (v1.2.57) ---------------------------------------------------------------------------------------
+# Del maximo al minimo del S&P 500 en la crisis (cierres del 9/10/2007 y del 9/3/2009). El retorno es el del PRECIO (sin dividendos), igual que el del S&P.
+def _fecha_rec(a, m, d):
+    import datetime as _d
+    return _d.date(a, m, d)
+
+
+def _cierre_hasta(pares, fecha):
+    """Ultimo cierre en o antes de `fecha`; None si la historia empieza despues (la empresa no cotizaba) o esta vacia."""
+    if not pares or pares[0][0] > fecha:
+        return None
+    ult = None
+    for f, c in pares:
+        if f > fecha:
+            break
+        ult = c
+    return ult
+
+
+def retorno_recesion(pares):
+    """Variacion del precio entre el 9/10/2007 y el 9/3/2009 (fraccion, -0.31 = -31 %), o None si no hay datos de esa epoca."""
+    a, b = _cierre_hasta(pares, _fecha_rec(2007, 10, 9)), _cierre_hasta(pares, _fecha_rec(2009, 3, 9))
+    return (b / a - 1.0) if (a and b and a > 0) else None
+
+
+def dividendo_recesion(anuales):
+    """Comparacion del total de dividendos por accion de 2009 contra 2007: 'aumento', 'igual', 'recorte' o 'no_pagaba'; None si no hay historial."""
+    t = {int(y): float(v) for y, v in (anuales or [])}
+    if not t or min(t) > 2007:
+        return None
+    a, b = t.get(2007, 0.0), t.get(2009, 0.0)
+    if a <= 0:
+        return "no_pagaba"
+    if b > a * 1.005:
+        return "aumento"
+    if b < a * 0.995:
+        return "recorte"
+    return "igual"

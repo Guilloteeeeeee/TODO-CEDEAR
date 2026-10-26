@@ -285,3 +285,158 @@ def bajar_noticias(ticker, timeout=10.0, obtener=None):
 
     v = _con_tope(_pedir, timeout)
     return analizar_noticias(v) if v else []
+
+
+# --- estados financieros ----------------------------------------------------------------------------------------------
+# (rotulo en castellano, [claves de Yahoo en orden de preferencia], tipo) ; tipo: "m" = monto en moneda, "eps" = por accion, "n" = cantidad, "t" = total (negrita)
+ESTADOS = {
+    "resultados": ("income_stmt", [
+        ("Ingresos", ["Total Revenue", "Operating Revenue"], "t"),
+        ("Costo de ventas", ["Cost Of Revenue"], "m"),
+        ("Utilidad bruta", ["Gross Profit"], "t"),
+        ("Gastos operativos", ["Operating Expense", "Total Expenses"], "m"),
+        ("Resultado operativo", ["Operating Income", "Total Operating Income As Reported"], "t"),
+        ("EBITDA", ["EBITDA", "Normalized EBITDA"], "m"),
+        ("Resultado antes de impuestos", ["Pretax Income"], "m"),
+        ("Impuesto a las ganancias", ["Tax Provision"], "m"),
+        ("Resultado neto", ["Net Income", "Net Income Common Stockholders"], "t"),
+        ("Ganancia por acción (diluida)", ["Diluted EPS"], "eps"),
+        ("Acciones promedio (diluidas)", ["Diluted Average Shares"], "n")]),
+    "balance": ("balance_sheet", [
+        ("Caja e inversiones de corto plazo", ["Cash Cash Equivalents And Short Term Investments", "Cash And Cash Equivalents"], "m"),
+        ("Cuentas por cobrar", ["Accounts Receivable", "Receivables"], "m"),
+        ("Inventarios", ["Inventory"], "m"),
+        ("Activo corriente", ["Current Assets"], "t"),
+        ("Propiedad, planta y equipo (neto)", ["Net PPE"], "m"),
+        ("Plusvalía (goodwill)", ["Goodwill"], "m"),
+        ("Activo total", ["Total Assets"], "t"),
+        ("Pasivo corriente", ["Current Liabilities"], "t"),
+        ("Deuda total", ["Total Debt"], "m"),
+        ("Pasivo total", ["Total Liabilities Net Minority Interest"], "t"),
+        ("Patrimonio neto", ["Stockholders Equity", "Common Stock Equity"], "t")]),
+    "flujo": ("cashflow", [
+        ("Flujo de caja operativo", ["Operating Cash Flow", "Cash Flow From Continuing Operating Activities"], "t"),
+        ("Inversión en activos fijos (CAPEX)", ["Capital Expenditure"], "m"),
+        ("Flujo de caja libre", ["Free Cash Flow"], "t"),
+        ("Flujo de caja de inversión", ["Investing Cash Flow"], "m"),
+        ("Flujo de caja de financiamiento", ["Financing Cash Flow"], "m"),
+        ("Recompra de acciones", ["Repurchase Of Capital Stock"], "m"),
+        ("Dividendos pagados", ["Cash Dividends Paid", "Common Stock Dividend Paid"], "m")]),
+}
+
+
+def _tabla_estado(df, filas, max_anios=4):
+    """df de yfinance (filas = conceptos, columnas = fechas, la mas nueva primero) -> {'anios': [2022, ...], 'filas': [(rotulo, [valores], tipo)]} (viejo -> nuevo)."""
+    try:
+        cols = list(df.columns)[:max_anios]
+        anios = [c.year if hasattr(c, "year") else int(str(c)[:4]) for c in cols]
+    except Exception:  # noqa: BLE001
+        return {}
+    orden = sorted(range(len(cols)), key=lambda i: anios[i])
+    out = []
+    for rot, claves, tipo in filas:
+        for k in claves:
+            if k in df.index:
+                vals = [_num(df.loc[k].iloc[i]) for i in orden]
+                if any(v is not None for v in vals):
+                    out.append((rot, vals, tipo))
+                    break
+    return {"anios": [anios[i] for i in orden], "filas": out} if out else {}
+
+
+def _ratio(a, b):
+    return (a / b) if (a is not None and b not in (None, 0)) else None
+
+
+def analizar_estados(dfs, moneda=None):
+    """dfs: {'income_stmt': df, 'balance_sheet': df, 'cashflow': df} (los que haya). Devuelve
+    {'moneda', 'resultados', 'balance', 'flujo', 'ratios'} con los ultimos 4 anios fiscales; los ratios se calculan de esas cifras. {} si no hay nada."""
+    d = {"moneda": moneda}
+    for clave, (fuente, filas) in ESTADOS.items():
+        df = (dfs or {}).get(fuente)
+        t = _tabla_estado(df, filas) if df is not None else {}
+        if t:
+            d[clave] = t
+
+    def serie(clave, rot):
+        t = d.get(clave) or {}
+        for r, vals, _ in t.get("filas", []):
+            if r == rot:
+                return dict(zip(t["anios"], vals))
+        return {}
+    ing, bru, ope, net = (serie("resultados", x) for x in ("Ingresos", "Utilidad bruta", "Resultado operativo", "Resultado neto"))
+    fcf, pat, deu, ac, pc = serie("flujo", "Flujo de caja libre"), serie("balance", "Patrimonio neto"), serie("balance", "Deuda total"), serie("balance", "Activo corriente"), serie("balance", "Pasivo corriente")
+    anios = sorted(set(ing) | set(net) | set(pat))
+    rat = []
+    for rot, num, den in (("Margen bruto", bru, ing), ("Margen operativo", ope, ing), ("Margen neto", net, ing), ("Margen de flujo de caja libre", fcf, ing),
+                          ("Retorno sobre el patrimonio (ROE)", net, pat)):
+        vals = [_ratio(num.get(a), den.get(a)) for a in anios]
+        if any(v is not None for v in vals):
+            rat.append((rot, vals, "pct"))
+    for rot, num, den in (("Deuda total / Patrimonio", deu, pat), ("Liquidez corriente (activo / pasivo corriente)", ac, pc)):
+        vals = [_ratio(num.get(a), den.get(a)) for a in anios]
+        if any(v is not None for v in vals):
+            rat.append((rot, vals, "x"))
+    if rat:
+        d["ratios"] = {"anios": anios, "filas": rat}
+    return d if len(d) > 1 else {}
+
+
+# --- un solo pedido a Yahoo por empresa ---------------------------------------------------------------------------------
+def bajar_paquete(ticker, timeout=25.0, ticker_obj=None):
+    """Todo lo de Yahoo que usan las solapas, con UN solo objeto Ticker y UN solo pedido de `info` (antes cada solapa pedia el suyo en paralelo y Yahoo
+    cortaba algunos con 'demasiados pedidos'). Devuelve {'info_ok', 'dividendos', 'gobierno', 'agenda', 'noticias', 'estados'}; lo que no responde queda vacio."""
+    vacio = {"info_ok": False, "dividendos": {}, "gobierno": {}, "agenda": {}, "noticias": [], "estados": {}}
+    try:
+        if ticker_obj is None:
+            import yfinance as yf
+            ticker_obj = yf.Ticker(str(ticker))
+    except Exception:  # noqa: BLE001
+        return vacio
+    tk = ticker_obj
+    info = _con_tope(lambda: tk.info or {}, timeout)
+    if not info:
+        info = _con_tope(lambda: tk.info or {}, timeout)       # un reintento
+    info = info or {}
+    out = dict(vacio)
+    out["info_ok"] = bool(info)
+    res = {}
+
+    def tarea(nombre, fn):
+        def _r():
+            res[nombre] = _con_tope(fn, timeout)
+        h = threading.Thread(target=_r, daemon=True)
+        h.start()
+        return h
+    hilos = [
+        tarea("serie", lambda: [(i.date(), v) for i, v in tk.dividends.items()]),
+        tarea("tenedores", lambda: [{"nombre": r.get("Holder"), "pct": r.get("pctHeld", r.get("% Out"))} for _, r in tk.institutional_holders.iterrows()]),
+        tarea("calendario", lambda: tk.calendar),
+        tarea("noticias", lambda: tk.news),
+        tarea("inc", lambda: tk.income_stmt),
+        tarea("bal", lambda: tk.balance_sheet),
+        tarea("cf", lambda: tk.cashflow),
+    ]
+    for h in hilos:
+        h.join(timeout)
+    try:
+        out["dividendos"] = analizar_dividendos(info, res.get("serie") or [])
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        out["gobierno"] = analizar_gobierno(info, res.get("tenedores") or [])
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        out["agenda"] = analizar_agenda(info, res.get("calendario"))
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        out["noticias"] = analizar_noticias(res.get("noticias") or [])
+    except Exception:  # noqa: BLE001
+        pass
+    try:
+        out["estados"] = analizar_estados({"income_stmt": res.get("inc"), "balance_sheet": res.get("bal"), "cashflow": res.get("cf")}, info.get("financialCurrency"))
+    except Exception:  # noqa: BLE001
+        pass
+    return out

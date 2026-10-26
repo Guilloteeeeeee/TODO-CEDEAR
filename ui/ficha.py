@@ -98,7 +98,7 @@ CSS = """
 .pl-lb .n{font-size:12px;font-weight:600;color:#1f2937}
 .pl-lb .v{font-size:12px;color:#4b5563}
 .pl-lb.avg .n{color:#1f6aa5}
-.pl-lb.peg .n{color:#64748b;font-style:italic}
+.pl-lb.peg .n{color:#64748b}
 .pl-pt{position:absolute;width:18px;height:18px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 1px #475569,0 1px 3px rgba(15,23,42,.35);transform:translateX(-50%);box-sizing:border-box}
 .pl-pl{position:absolute;transform:translateX(-50%);text-align:center;white-space:nowrap;font-size:12.5px;color:#111827;line-height:1.25}
 .pl-pl b{font-weight:700}
@@ -174,7 +174,8 @@ CSS = """
 /* v1.2.52: encabezado mas simple, resumen en mosaico, links, cambios de precio y grafico */
 .fch-hd .sb{font-size:15.5px;margin-top:6px}
 .fch-hd .tk{font-size:15.5px;font-weight:600;color:#111827}
-.fch-k[title],.fch-kv .k[title],.vr .m[title]{cursor:help;text-decoration:underline dotted #9ca3af;text-underline-offset:3px}
+.fch-k[title],.fch-kv .k[title],.vr .m[title],.hv{cursor:help;border-radius:4px;padding:1px 4px;margin:0 -4px;transition:background .15s}
+.fch-k[title]:hover,.fch-kv .k[title]:hover,.vr .m[title]:hover,.hv:hover,.vr.hd [title]:hover{background:#dbe4ff}
 .fch-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
 .fch-links a{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:#1d4ed8!important;background:#eef4ff;border:1px solid #d4e2fb;border-radius:16px;padding:4px 12px;text-decoration:none!important}
 .fch-links a:hover{background:#e0ebff}
@@ -217,15 +218,17 @@ CSS = """
 .vbar .br{position:absolute;top:0;height:26px;border:1px solid #9ca3af;border-bottom:0;text-align:center}
 .vbar .br b{position:absolute;left:50%;top:-24px;transform:translateX(-50%);font-size:16px;white-space:nowrap}
 .vbar .bb{height:34px;border-radius:4px;display:flex;align-items:center;padding:0 12px;color:#fff;font-weight:600;font-size:14px;margin-top:6px;white-space:nowrap;min-width:fit-content}
-.dps{width:100%;height:auto;display:block}
+.dps{width:100%;height:auto;display:block}.dps .lb,.dps .gu{opacity:0;pointer-events:none}.dps .gu{stroke:#9ca3af;stroke-dasharray:3 3}.dps .pt:hover .lb,.dps .pt:hover .gu{opacity:1}.dps .pt:hover circle:first-of-type{r:5}.dps .lb text{font-family:inherit}
+.vr .y{color:#4b5563}.vscroll{overflow-x:auto}.vwrap{min-width:640px}
+@media (max-width:900px){.vr .y{display:none}}
 .valrow{display:flex;align-items:center;gap:10px 28px;flex-wrap:wrap}
 .valrow .fch-sub{margin:0;font-size:14px}
 .vr{text-align:center}.vr .n,.vr.hd .n{text-align:center}.vr .m{text-align:left}.vr.hd span:first-child{text-align:left}
-.vr .d{justify-self:center}.vr.hd [title]{cursor:help;text-decoration:underline dotted #9ca3af;text-underline-offset:3px}
+.vr .d{justify-self:center}.vr.hd [title]{cursor:help;border-radius:4px;transition:background .15s}
 .fch-2c{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 40px;align-items:start}
 .fch-2c h4{margin:0 0 6px;font-size:13.5px;font-weight:700;color:#111827}
 .fch-2c .fch-kv{margin-top:0}
-.comp td,.comp th{text-align:center!important}.comp th:first-child,.comp td:first-child{text-align:right!important}
+.comp td,.comp th{text-align:center!important}.comp th:first-child,.comp td:first-child{text-align:left!important}.comp.der th:first-child,.comp.der td:first-child{text-align:right!important}
 .ceo{display:flex;align-items:center;gap:16px}
 .ceo .ft{position:relative;overflow:hidden;width:92px;height:92px;border-radius:50%;background:#e2e8f0;color:#475569;font-size:32px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
 .ceo .ft img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
@@ -242,11 +245,12 @@ CSS = """
 [data-testid="stCaptionContainer"],[data-testid="stCaptionContainer"] p{font-size:15px!important}
 [data-testid="stWidgetLabel"] p{font-size:16px!important}
 @media (min-width:901px){.fch>.fch-t:not(:has(.fch-hd)){zoom:1.14}}
+.comp tr.tot td{font-weight:700;color:#111827}
 .comp-w{overflow-x:auto}
 .comp{width:100%;border-collapse:collapse;font-size:14px}
 .comp th{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;text-align:right;padding:6px 8px;border-bottom:1px solid #e5e7eb;white-space:nowrap}
 .comp td{text-align:right;padding:8px;border-bottom:1px solid #eef1f4;white-space:nowrap}
-.comp th:first-child,.comp td:first-child{text-align:right!important}
+.comp th:first-child,.comp td:first-child{text-align:left}
 .comp a{color:#1d4ed8;text-decoration:none;font-weight:600}.comp a:hover{text-decoration:underline}
 .comp .tkc{color:#6b7280;font-size:12px;margin-left:4px}
 .nlist{list-style:none;margin:0 0 6px;padding:0}.nlist li{padding:9px 0;border-bottom:1px solid #eef1f4}
@@ -343,7 +347,7 @@ def linea_precios_html(row):
     if fv and fv > 0 and metodos:
         items.append({"tipo": "avg", "n": "Fair Value promedio", "v": fv, "tit": "Promedio de los métodos, con los pesos de su sector"})
     if peg_info:
-        items.append({"tipo": "peg", "n": "PEG (informativo)", "v": peg_info, "tit": "El PEG no entra al puntaje ni al Fair Value: se muestra solo como dato"})
+        items.append({"tipo": "peg", "n": "PEG", "v": peg_info, "tit": "El PEG no entra al puntaje ni al Fair Value: se muestra solo como dato"})
     if not items:
         sin = '<div class="fch-sub">Esta empresa no tiene un Fair Value calculado (faltan datos para sus métodos).</div>'
         return _plegable("linea", titulo, sin, ac=AZUL, cls="s12 fch-pl")
@@ -745,7 +749,7 @@ def _tile_tamano(row, ficha):
     return _plegable("tamano", "Tamaño y crecimiento", f'<div class="fch-st2" style="grid-template-columns:1fr 1fr">{cuerpo}</div>', ac="#0ea5e9")
 
 
-def _tile_estadisticas(row, ficha):
+def _tile_estadisticas(row, ficha, anuales=None):
     """Multiplos de la Empresa (v1.2.52; antes "Estadisticas de la empresa"): solo los multiplos. Una fila por multiplo con el valor de hoy, su mediana
     historica, un dibujito (hoy contra la mediana) y el Fair Value que da."""
     precio = _n(row.get("precio_actual"))
@@ -793,17 +797,30 @@ def _tile_estadisticas(row, ficha):
         else:
             hay_sin_fv = True
             fv_html = '<span class="n fv"><span class="no" title="No entra al Fair Value de esta empresa">—</span></span>'
-        filas_v.append(f'<div class="vr"><span class="m">{etiqueta}</span><span class="n h">{hoy}</span><span class="n md">{med}{sub}</span>'
-                       f'{dib_html}{fv_html}</div>')
+        xs = (anuales or {}).get(clave) or {}
+        ys = {}
+        for an, v in xs.items():
+            if v is not None and v > 0:
+                v2 = v * 100 if es_dy and v < 1 else v
+                ys[an] = f"{v2:.2f}%" if es_dy else f"{v2:.1f}x"
+        filas_v.append((etiqueta, ys, hoy, f'<span class="n md">{med}{sub}</span>{dib_html}{fv_html}'))
     val = ""
     if filas_v:
         tip_d = "Marca del centro: su mediana histórica. Punto: hoy. A la derecha, más barata que lo habitual; a la izquierda, más cara."
         tip_f = "Precio que resultaría de aplicar la mediana histórica del múltiplo. Un “—” significa que ese dato se muestra pero no entra al cálculo de esta empresa."
-        cab = ('<div class="vr hd"><span>Métrica</span><span class="n">Hoy</span><span class="n">Mediana histórica</span>'
+        anios = sorted({a for _, ys, _, _ in filas_v for a in ys})[-5:]
+        cols = "minmax(72px,1.1fr) " + "".join("minmax(46px,.6fr) " for _ in anios) + "minmax(56px,.8fr) minmax(70px,1fr) 108px minmax(90px,1.1fr)"
+        est = f' style="grid-template-columns:{cols}"'
+        cab_y = "".join(f'<span class="n y">{a}</span>' for a in anios)
+        cab = (f'<div class="vr hd"{est}><span>Métrica</span>{cab_y}<span class="n">Hoy</span><span class="n">Mediana histórica</span>'
                f'<span title="{html.escape(tip_d)}">Hoy vs. mediana</span><span class="n" title="{html.escape(tip_f)}">Fair Value</span></div>')
+        filas_h = []
+        for etiqueta, ys, hoy, resto in filas_v:
+            cel_y = "".join(f'<span class="n y">{ys.get(a, "—")}</span>' for a in anios)
+            filas_h.append(f'<div class="vr"{est}><span class="m">{etiqueta}</span>{cel_y}<span class="n h">{hoy}</span>{resto}</div>')
         nota_moneda = row.get("moneda_nota")      # v1.2.50: antes se mostraba en la "Revisión de los métodos", que se quitó
         moneda = f'<div class="fch-nota">Moneda: {html.escape(nota_moneda)}</div>' if isinstance(nota_moneda, str) and nota_moneda.strip() else ""
-        val = f'<div>{cab}{"".join(filas_v)}{moneda}</div>'
+        val = f'<div class="vscroll"><div class="vwrap">{cab}{"".join(filas_h)}</div>{moneda}</div>'
     cuerpo = f'<div class="fch-st2" style="grid-template-columns:1fr">{val}</div>' if val else '<div class="fch-sub">Sin múltiplos disponibles para esta empresa.</div>'
     return _plegable("estadisticas", "Múltiplos de la Empresa", cuerpo, ac="#3b82f6")
 
@@ -878,8 +895,8 @@ def tab_analisis(row, envolver=True):
     return (_env(_tile_score(row), pend) if envolver else _tile_score(row) + pend)
 
 
-def tab_valuacion(row, ficha, envolver=True):
-    t = [_tile_valoracion(row), _tile_estadisticas(row, ficha), linea_precios_html(row)]
+def tab_valuacion(row, ficha, envolver=True, anuales=None):
+    t = [_tile_valoracion(row), _tile_estadisticas(row, ficha, anuales), linea_precios_html(row)]
     return _env(*t) if envolver else "".join(t)
 
 
@@ -934,7 +951,15 @@ def _svg_dps(anuales):
         grid += f'<line x1="{ml}" y1="{yy:.1f}" x2="{W - mr}" y2="{yy:.1f}" stroke="#e5e7eb" stroke-dasharray="2 3"/><text x="{ml - 6}" y="{yy + 4:.1f}" font-size="11" text-anchor="end" fill="#9ca3af">${v:.2f}</text>'
     paso = max(1, round((y1 - y0) / 6))
     ejes = "".join(f'<text x="{X(y):.1f}" y="{H - 8}" font-size="11" text-anchor="middle" fill="#9ca3af">{y}</text>' for y in range(y0, y1 + 1, paso))
-    puntos = "".join(f'<circle cx="{X(y):.1f}" cy="{Y(v):.1f}" r="2.8" fill="#374151"><title>{y}: US$ {v:.2f}</title></circle>' for y, v in pts)
+    puntos = ""
+    for y, v in pts:
+        cx, cy = X(y), Y(v)
+        ancho = 62
+        tx = min(max(cx, ml + ancho / 2), W - mr - ancho / 2)
+        puntos += (f'<g class="pt"><line x1="{cx:.1f}" y1="{mt}" x2="{cx:.1f}" y2="{H - mb}" class="gu"/>'
+                   f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="3" fill="#374151"/><circle cx="{cx:.1f}" cy="{cy:.1f}" r="16" fill="transparent"><title>{y}: US$ {v:.2f}</title></circle>'
+                   f'<g class="lb"><rect x="{tx - ancho / 2:.1f}" y="{max(0, cy - 34):.1f}" width="{ancho}" height="22" rx="5" fill="#111827"/>'
+                   f'<text x="{tx:.1f}" y="{max(0, cy - 34) + 15:.1f}" font-size="12" font-weight="600" text-anchor="middle" fill="#fff">{y} · ${v:.2f}</text></g></g>')
     return (f'<svg class="dps" viewBox="0 0 {W} {H}" role="img" aria-label="Dividendo anual por acción">{grid}{ejes}'
             f'<polygon points="{area}" fill="#16a34a" fill-opacity=".10"/><polyline points="{linea}" fill="none" stroke="#16a34a" stroke-width="2"/>{puntos}</svg>')
 
@@ -951,12 +976,33 @@ def _frecuencia(tray):
     return nombre, meses
 
 
-def tab_dividendos(row, div):
+def _tile_recesion(rec):
+    """Como le fue a la empresa en la crisis de 2007-09: su dividendo (2009 contra 2007) y el precio (9/10/2007 a 9/3/2009) frente al S&P 500."""
+    rec = rec or {}
+    bl = []
+    d = rec.get("dividendo")
+    if d:
+        txt = {"aumento": "Aumentó", "igual": "Se mantuvo", "recorte": "Recortó", "no_pagaba": "No pagaba"}.get(d)
+        if txt:
+            bl.append(f'<div><div class="l">Dividendo en la recesión</div><div class="v c">{txt}</div><div class="n">Total pagado en 2009 contra el de 2007</div></div>')
+    r, sp = rec.get("retorno"), rec.get("sp")
+    if r is not None:
+        cls = "pos" if r > 0.0005 else "neg" if r < -0.0005 else ""
+        nota = "Precio del 9/10/2007 al 9/3/2009 (sin dividendos)"
+        if sp is not None:
+            nota += f"; el S&P 500 hizo {sp * 100:+.0f}%"
+        bl.append(f'<div><div class="l">Retorno en la recesión</div><div class="v {cls}">{r * 100:+.0f}%</div><div class="n">{nota}</div></div>')
+    if not bl:
+        return ""
+    return _tile("s12", "Comportamiento en la recesión 2007-09", '<div class="stats">' + "".join(bl) + "</div>", ac="#16a34a")
+
+
+def tab_dividendos(row, div, rec=None):
     """Dividend Yield contra su mediana (dibujito) y, de Yahoo: ultima fecha ex-dividendo, fecha de pago, monto, anios pagando, anios de aumentos seguidos y
     crecimiento anual compuesto (CAGR) del dividendo. v1.2.53: mas compacto (dos mosaicos lado a lado)."""
     dy = _tile("s4", "Dividend Yield contra su mediana", f'<div class="fch-dy">{_celda_dy(row, grande=True)}</div>', ac="#16a34a")
     if not div:
-        return _env(dy, _tile("s12", "Fechas y montos", '<div class="fch-sub" style="margin:0">Datos de dividendos no disponibles por ahora (la empresa no paga, o no hubo respuesta).</div>', ac="#16a34a"))
+        return _env(dy, _tile("s12", "Fechas y montos", '<div class="fch-sub" style="margin:0">Datos de dividendos no disponibles por ahora (la empresa no paga, o no hubo respuesta).</div>', ac="#16a34a"), _tile_recesion(rec))
     filas = [_fila_kv("Última fecha ex-dividendo", _fmt_fecha(div.get("ex_fecha")),
                       "Si comprás la acción antes de esta fecha, cobrás ese dividendo; si comprás desde esa fecha, no."),
              _fila_kv("Fecha de pago", _fmt_fecha(div.get("pago_fecha")), "Día en que la empresa deposita el dividendo."),
@@ -969,8 +1015,8 @@ def tab_dividendos(row, div):
     cuerpo_izq = '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>"
     if div.get("ultimos"):
         tip = "Fechas y montos de los pagos; si la empresa no anunció el próximo pago, se ve el último."
-        cuerpo_izq += (f'<div class="fch-k" title="{html.escape(tip, quote=True)}" style="margin:14px 0 4px;font-size:11.5px;font-weight:600;letter-spacing:.4px;'
-                       'text-transform:uppercase;color:#6b7280;cursor:help;text-decoration:underline dotted #9ca3af;text-underline-offset:3px;display:inline-block">Últimos pagos</div>'
+        cuerpo_izq += (f'<div class="hv fch-k" title="{html.escape(tip, quote=True)}" style="margin:14px 0 4px;font-size:11.5px;font-weight:600;letter-spacing:.4px;'
+                       'text-transform:uppercase;color:#6b7280;display:inline-block">Últimos pagos</div>'
                        '<div class="fch-kv" style="margin-top:0">' + "".join(_fila_kv(_fmt_fecha(f), _money_dec(m)) for f, m in div["ultimos"]) + "</div>")
     izq = _tile("s4", "Próximo pago", cuerpo_izq, ac="#16a34a")
     tr = div.get("trayectoria") or {}
@@ -1002,7 +1048,8 @@ def tab_dividendos(row, div):
         tiles.append(_tile("s12", "Métricas clave del dividendo", '<div class="stats">' + "".join(bloques) + "</div>", ac="#16a34a"))
     graf = _svg_dps(tr.get("anuales"))
     if graf:
-        tiles.append(_tile("s12", "Dividendo anual por acción", graf + '<div class="fch-sub" style="margin:4px 0 0;text-align:center">Total pagado por año calendario, en dólares por acción (años completos).</div>', ac="#16a34a"))
+        tiles.append(_tile("s12", "Dividendo anual por acción", graf + '<div class="fch-sub" style="margin:4px 0 0;text-align:center">Total pagado por año calendario, en dólares por acción (años completos). Pasá el mouse por un punto para ver el monto.</div>', ac="#16a34a"))
+    tiles.append(_tile_recesion(rec))
     return _env(*tiles)
 
 
@@ -1097,7 +1144,7 @@ def tab_directivos(g, foto=None):
         fil = "".join(f'<tr><td>{html.escape(_sin_honorifico(d["nombre"]))}</td><td>{html.escape(d["cargo"])}</td><td>{int(d["edad"]) if d.get("edad") else "—"}</td>'
                       f'<td>{_usd_abrev(d["pago"]) if d.get("pago") else "—"}</td></tr>' for d in resto)
         tiles.append(_tile("s7" if ceo else "s12", "Equipo directivo",
-                           f'<div class="comp-w"><table class="comp"><tr><th>Nombre</th><th>Cargo</th><th>Edad</th><th>Remuneración</th></tr>{fil}</table></div>', ac="#64748b"))
+                           f'<div class="comp-w"><table class="comp der"><tr><th>Nombre</th><th>Cargo</th><th>Edad</th><th>Remuneración</th></tr>{fil}</table></div>', ac="#64748b"))
     return _env(*tiles)
 
 
@@ -1118,6 +1165,53 @@ def tab_accionariado(g):
     if not cuerpo:
         return _env(_tile("s12", "Accionariado", '<div class="fch-sub" style="margin:0">No disponible por ahora.</div>', ac="#64748b"))
     return _env(_tile("s12", "Accionariado", cuerpo, ac="#64748b"))
+
+
+def _monto_estado(v, tipo, moneda):
+    if v is None:
+        return "—"
+    if tipo == "pct":
+        return f"{v * 100:.1f}%"
+    if tipo == "x":
+        return f"{v:.2f}x"
+    if tipo == "eps":
+        return f"{v:.2f}"
+    a = abs(v)
+    for lim, suf in ((1e12, "T"), (1e9, "B"), (1e6, "M")):
+        if a >= lim:
+            txt = f"{a / lim:,.2f}{suf}"
+            break
+    else:
+        txt = f"{a:,.0f}"
+    pre = "US&#36; " if (tipo != "n" and (moneda in (None, "", "USD"))) else ""
+    return ("-" if v < 0 else "") + pre + txt
+
+
+def _tabla_estado_html(t, moneda):
+    cab = "<tr><th>Concepto</th>" + "".join(f"<th>{a}</th>" for a in t["anios"]) + "</tr>"
+    filas = ""
+    for rot, vals, tipo in t["filas"]:
+        negrita = ' class="tot"' if tipo == "t" else ""
+        filas += f"<tr{negrita}><td>{html.escape(rot)}</td>" + "".join(f"<td>{_monto_estado(v, tipo, moneda)}</td>" for v in vals) + "</tr>"
+    return f'<div class="comp-w"><table class="comp">{cab}{filas}</table></div>'
+
+
+def tab_estados(est):
+    """Estados financieros anuales de Yahoo (ultimos 4 anios fiscales): resultados, balance, flujo de caja y ratios calculados con esas cifras."""
+    if not est:
+        return _env(_tile("s12", "Estados financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
+    moneda = est.get("moneda")
+    nota = ""
+    if moneda and moneda != "USD":
+        nota = f'<div class="fch-nota" style="margin:0 0 8px">Cifras en {html.escape(str(moneda))}, la moneda en que la empresa informa (no se convierten a dólares).</div>'
+    else:
+        nota = '<div class="fch-nota" style="margin:0 0 8px">Cifras en dólares: T = billones, B = miles de millones, M = millones (años fiscales de la empresa).</div>'
+    tiles = []
+    for clave, titulo, color in (("resultados", "Estado de resultados", "#0ea5e9"), ("balance", "Balance", "#6366f1"), ("flujo", "Flujo de caja", "#14b8a6"),
+                                 ("ratios", "Ratios calculados con estas cifras", "#f59e0b")):
+        if est.get(clave):
+            tiles.append(_tile("s12", titulo, (nota if not tiles else "") + _tabla_estado_html(est[clave], moneda), ac=color))
+    return _env(*tiles) if tiles else _env(_tile("s12", "Estados financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
 
 
 def tab_gobierno(g):

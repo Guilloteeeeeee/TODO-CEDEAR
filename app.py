@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.56"
+APP_VERSION = "1.2.57"
 
 import streamlit as st
 import pandas as pd
@@ -254,19 +254,55 @@ def _ficha_viva(ticker: str) -> dict:
         return {}
 
 
-@st.cache_data(ttl=1800, show_spinner=False)
+@st.cache_resource
+def _memo_extras() -> dict:
+    return {}
+
+
+def _sp500(m):
+    """Historial del S&P 500 (para la recesion 2007-09); se guarda un dia. None si Yahoo no responde."""
+    hit = m.get("^GSPC")
+    if hit and time.time() - hit[0] < 86400:
+        return hit[1]
+    v = _hp.bajar("^GSPC", timeout=25.0)
+    if v:
+        m["^GSPC"] = (time.time(), v)
+    return v
+
+
 def _extras_empresa(ticker: str) -> dict:
-    """v1.2.52: lo que piden las solapas de la empresa a Yahoo, todo junto y en paralelo: historial de precios (toda la historia), dividendos, directivos y
-    accionistas, y noticias. Lo que no responde queda en None / {} / []: la solapa dice "no disponible"."""
+    """v1.2.57: lo que piden las solapas de la empresa a Yahoo. Un solo pedido de datos (`yahoo_extra.bajar_paquete`: antes eran cuatro en paralelo y Yahoo
+    cortaba algunos) mas el historial de precios, en paralelo. Se guarda 30 minutos SOLO si Yahoo respondio algo: un fallo no se guarda, asi que al
+    recargar se vuelve a intentar. Lo que no responde queda vacio y la solapa dice "no disponible"."""
     from concurrent.futures import ThreadPoolExecutor
-    tareas = {"historial": _hp.bajar, "dividendos": _yx.bajar_dividendos, "gobierno": _yx.bajar_gobierno, "noticias": _yx.bajar_noticias, "agenda": _yx.bajar_agenda}
-    vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": [], "agenda": {}}
+    m = _memo_extras()
+    hit = m.get(("emp", ticker))
+    if hit and time.time() - hit[0] < 1800:
+        return hit[1]
+    vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": [], "agenda": {}, "estados": {}, "sp": None}
     try:
-        with ThreadPoolExecutor(max_workers=5) as ex:
-            fut = {k: ex.submit(f, ticker) for k, f in tareas.items()}
-            return {k: (f.result(timeout=40)) for k, f in fut.items()}
+        with ThreadPoolExecutor(max_workers=3) as ex:
+            f_hist, f_paq, f_sp = ex.submit(_hp.bajar, ticker), ex.submit(_yx.bajar_paquete, ticker), ex.submit(_sp500, m)
+            paq = f_paq.result(timeout=90) or {}
+            res = {"historial": f_hist.result(timeout=60), "sp": f_sp.result(timeout=60)}
+        res.update({k: paq.get(k) or vacio[k] for k in ("dividendos", "gobierno", "noticias", "agenda", "estados")})
     except Exception:  # noqa: BLE001
         return vacio
+    if res["historial"] or paq.get("info_ok") or res["gobierno"] or res["dividendos"]:
+        if len(m) > 300:
+            m.clear()
+        m[("emp", ticker)] = (time.time(), res)
+    return res
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _multiplos_anuales_datos() -> dict:
+    """Multiplos de cada anio fiscal (data/multiplos_anuales.json, lo baja bajar_multiplos_anuales.bat). {} si el archivo no esta."""
+    try:
+        from data import multiplos_anuales as _ma
+        return _ma.cargar()[0]
+    except Exception:  # noqa: BLE001
+        return {}
 
 
 @st.cache_data(ttl=900, show_spinner=False)
@@ -845,8 +881,8 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with st.spinner("Aguarde mientras se cargan los datos..."):
         extra = _extras_empresa(tk)
     pares = extra.get("historial")
-    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
-    t_res, t_ana, t_gra, t_val, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
+    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Estados financieros", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
+    t_res, t_ana, t_gra, t_val, t_est, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
     with t_res:
         st.markdown(_ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda")), unsafe_allow_html=True)
     with t_ana:
@@ -855,9 +891,14 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         st.markdown(_ficha.tab_grafico_tabla(pares), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)
     with t_val:
-        st.markdown(_ficha.tab_valuacion(rd, ficha), unsafe_allow_html=True)
+        st.markdown(_ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk)), unsafe_allow_html=True)
+    with t_est:
+        st.markdown(_ficha.tab_estados(extra.get("estados")), unsafe_allow_html=True)
     with t_div:
-        st.markdown(_ficha.tab_dividendos(rd, extra.get("dividendos")), unsafe_allow_html=True)
+        div = extra.get("dividendos") or {}
+        rec = {"retorno": _hp.retorno_recesion(pares), "sp": _hp.retorno_recesion(extra.get("sp")),
+               "dividendo": _hp.dividendo_recesion((div.get("trayectoria") or {}).get("anuales"))}
+        st.markdown(_ficha.tab_dividendos(rd, div, rec), unsafe_allow_html=True)
     with t_com:
         st.markdown(_ficha.tab_competidores(rd, df), unsafe_allow_html=True)
     with t_dir:

@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.57 (26/10/2026): múltiplos por año, estados financieros, dividendo con valor al pasar el mouse
+- **Valuación — múltiplos por año (estilo Morningstar):** tabla con cada múltiplo año por año (hasta ~5 años, es lo que da la fuente), más "Hoy" y "Mediana" con el dibujito. Los datos salen de `data/multiplos_anuales.json`, que se genera con `bajar_multiplos_anuales.bat` (más liviano que `generar_cache.bat`, no cambia ningún puntaje). Si el archivo no está, la tabla simplemente no aparece.
+- **Estados financieros (pestaña nueva):** resultados, balance y flujo de caja, últimos 4 años fiscales, en forma resumida (no las ~80 filas), en la moneda en que la empresa informa; más ratios (márgenes, ROE, deuda/patrimonio, liquidez). Salen de Yahoo en la misma consulta que dividendos y directivos.
+- **Dividendos:** el gráfico de dividendo anual muestra el valor al pasar el mouse por cada punto. Métricas de recesión 2007-09 (precio de la acción vs S&P 500 entre el 9/10/2007 y el 9/3/2009; dividendo 2009 vs 2007). Las ventas de esa época no están disponibles en la fuente.
+- **Directivos y Accionariado:** una sola consulta a Yahoo por empresa (antes eran varias y se bloqueaba); si falla, no se guarda en memoria y se reintenta.
+- **Detalles:** los explicativos ya no llevan línea de puntos y se iluminan al pasar el mouse; PEG en letra normal y sin "(informativo)"; en Competidores el nombre de la empresa queda a la izquierda.
+- **Sigue sin probarse en vivo** (desde el servidor de desarrollo no se llega a Yahoo ni a Wikipedia): foto del CEO, directivos, accionariado, estados y recesión se probaron con datos simulados.
+- **En espera:** análisis fundamental automático en cada earning (falta el prompt y definir la clave de API).
+
 ### v1.2.56 (26/10/2026): valuación con números grandes, métricas del dividendo y descripciones traducidas
 - **Foto del CEO:** el chequeo era demasiado estricto (Yahoo escribe "Jen-Hsun Huang" y Wikipedia "Jensen Huang"; "Timothy" / "Tim"). Ahora coinciden el apellido y el comienzo del nombre de pila, y la página debe nombrar a la empresa y a un cargo. La foto va en una etiqueta `<img>` (más robusta que un fondo CSS). **Sigue sin probarse contra Wikipedia real.**
 - **Descripciones en castellano:** las 165 descripciones de `data/fichas.json` están traducidas (traducción hecha por Claude, fiel al texto original; los nombres de segmentos y productos quedan como los usa la empresa). El traductor automático de la PC de Guille no logró traducir (ver `traducir_fichas.bat`, que ahora muestra el error real).
