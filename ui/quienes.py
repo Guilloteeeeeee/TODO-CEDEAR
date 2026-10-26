@@ -19,7 +19,7 @@ PARRAFOS = [
 # v1.2.52: la primera frase va en negrita (texto nuevo de Guille: "para profesionales de la salud", "hecha por médicos").
 PRIMERA = ("Somos Finanzas para Médicos Argentina, la primera comunidad de educación financiera para profesionales de la salud de nuestro país, "
            "hecha por médicos")
-CIERRE = "El futuro financiero que te merecés."
+CIERRE = "Construí el futuro financiero que te merecés. Contás con nosotros."
 # Cada persona: nombre, foto (archivo de assets/marca/), iniciales (si no esta la foto) y las lineas de abajo.
 # Ojo: el original decia "Agente Productor avalado por la Comisión Nacional de Valores"; la CNV no "avala" a las personas: las registra. Se escribio
 # "registrado en la CNV" (se puede volver a la frase original editando la linea).

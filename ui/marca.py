@@ -54,7 +54,12 @@ CSS = """
 [data-testid="stHeader"],[data-testid="stToolbar"],[data-testid="stDecoration"]{display:none!important}
 html,body,[data-testid="stAppViewContainer"],[data-testid="stMain"]{overflow-x:hidden}
 [data-testid="stMainBlockContainer"]{padding-top:0!important}
-.mc-band{width:100vw;margin-left:calc(50% - 50vw);background:#2b2f33;box-shadow:0 2px 10px rgba(15,23,42,.14)}
+.mc-band{position:relative;width:100vw;margin-left:calc(50% - 50vw);background:#2b2f33;box-shadow:0 2px 10px rgba(15,23,42,.14)}
+/* v1.2.59: "Empresas" y "ETFs" (links a las dos tablas) al lado del buscador; la activa va subrayada. En pantallas anchas se apoyan sobre la franja, justo despues del buscador */
+.mc-emp{display:flex;align-items:center;gap:2px;flex:none}
+.mc-emp a{color:#cbd5e1!important;font-size:.95rem;font-weight:600;padding:8px 11px;border-radius:8px;text-decoration:none!important;white-space:nowrap}
+.mc-emp a:hover{background:#3b4046;color:#fff!important}
+.mc-emp a.on{color:#fff!important;box-shadow:inset 0 -2px 0 #00e05a;border-radius:8px 8px 0 0}
 .mc-in{display:flex;align-items:center;gap:22px;height:80px;padding:0 clamp(16px,3vw,48px);box-sizing:border-box}
 .mc-izq{flex:1;min-width:0;display:flex;align-items:center}
 .mc-t{font-size:2.5rem;font-weight:800;line-height:1;letter-spacing:-1px;color:#fff;white-space:nowrap}
@@ -117,7 +122,8 @@ a.mc-it:hover,.mc-d[open]>summary.mc-it,summary.mc-it:hover{background:#3b4046;c
 @media (max-width:820px){
 .mc-in{flex-wrap:wrap;height:auto;gap:2px 12px;padding:8px 16px 6px}
 .mc-izq{order:1;flex:1 1 0}.mc-toro{order:2;width:40px;height:40px}.mc-toro img{width:32px}
-.mc-nav{order:3;flex:1 1 100%;justify-content:center;gap:2px;border-top:1px solid #41464c;padding-top:4px;margin-top:2px}
+.mc-emp{order:3;flex:1 1 100%;justify-content:center;border-top:1px solid #41464c;padding-top:4px;margin-top:2px}
+.mc-nav{order:4;flex:1 1 100%;justify-content:center;gap:2px;padding-top:2px}
 .mc-t{font-size:1.7rem}.mc-img{height:36px}.mc-it{font-size:.8rem;padding:6px 8px}.mc-x{display:none}
 .mc-nav{position:relative}.mc-d{position:static}.mc-pop{right:auto;left:50%;transform:translateX(-50%);width:min(92vw,320px)}
 }
@@ -128,16 +134,12 @@ CSS = CSS.replace("__FONDO__", str(FONDO_PAGINA or "#ffffff"))
 # el centro exacto de la pantalla; entre 1280 y 1439 px se centra en el hueco que queda entre el logo y los menus. Por debajo de 1280 px (y en el celular)
 # queda debajo de la franja, como antes. Con ICONOS_EN_BARRA = True el menu es mas ancho y el buscador no sube.
 CSS_BUSCADOR = """
-@media (min-width:1280px) and (max-width:1439px){
-[data-testid="stMainBlockContainer"]{position:relative}
-[data-testid="stMainBlockContainer"] .st-key-buscador{position:absolute;top:20px;left:calc(50% - 81px);transform:translateX(-50%);width:clamp(200px,calc(100vw - 1018px),330px);margin:0;z-index:60}
-}
-@media (min-width:1440px){
-[data-testid="stMainBlockContainer"]{position:relative}
-[data-testid="stMainBlockContainer"] .st-key-buscador{position:absolute;top:20px;left:50%;transform:translateX(-50%);width:clamp(220px,calc(100vw - 1180px),440px);margin:0;z-index:60}
-}
 @media (min-width:1280px){
+:root{--sw:clamp(180px,calc(100vw - 1130px),360px)}
+[data-testid="stMainBlockContainer"]{position:relative}
+[data-testid="stMainBlockContainer"] .st-key-buscador{position:absolute;top:20px;left:calc(50% + 330px - 50vw);transform:none;width:var(--sw);margin:0;z-index:60}
 [data-testid="stMainBlockContainer"] .st-key-buscador input{height:40px;font-size:14.5px;border-radius:20px;padding-left:40px!important;background-position:13px center;background-size:18px;box-shadow:none}
+.mc-emp{position:absolute;left:calc(330px + var(--sw) + 12px);top:0;height:80px}
 }
 """
 if not ICONOS_EN_BARRA:
@@ -356,7 +358,7 @@ def _comentarios_menu_html(e, comentarios_mail=None):
     return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Comentarios ▾</summary><div class="mc-pop">{form}</div></details>'
 
 
-def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None):
+def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None, activa="empresas", con_buscador=True):
     """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrí una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
     try:
         from config.ajustes import TITULO_EN_FUENTE_CONDENSADA as _tc
@@ -383,7 +385,10 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     toro = (f'<a class="mc-toro" href="?pagina=quienes" target="_self" title="Quiénes somos"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}"></a>'
             if uri else "")   # v1.2.51: tocar el toro abre "Quiénes somos"
     datos = f'<div class="mc-datos">Datos al <b>{html.escape(str(datos_al))}</b></div>' if datos_al else ""
-    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}</div></div>{datos}'
+    tablas = (f'<div class="mc-emp"><a href="?" target="_self"{" class=\"on\"" if activa == "empresas" else ""}>Empresas</a>'
+              f'<a href="?tabla=etfs" target="_self"{" class=\"on\"" if activa == "etfs" else ""}>ETFs</a></div>')
+    sin_b = "" if con_buscador else "<style>.mc-emp{left:330px!important}</style>"      # sin buscador, Empresas y ETFs van pegados al titulo
+    return f'{sin_b}<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{tablas}{nav}{toro}</div></div>{datos}'
 
 
 def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):

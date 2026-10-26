@@ -51,11 +51,17 @@ TEXTO_VALORACION = ("Es un modelo basado en múltiplos: compara cuánto cotiza h
                     "Ojo: estar barata contra su propia historia no significa que sea un buen negocio. Es una estimación para filtrar y estudiar, no una "
                     "recomendación: investigá la empresa antes de decidir.")
 
+# Mensaje "Aguarde mientras se cargan los datos..." (pagina de la empresa y, desde la v1.2.59, tambien el inicio)
+CSS_CARGA = (".fch-carga{display:flex;align-items:center;gap:12px;margin:10px 0;padding:14px 18px;border-radius:12px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:17px;font-weight:600}"
+             ".fch-giro{width:18px;height:18px;border:3px solid #93c5fd;border-top-color:#1d4ed8;border-radius:50%;animation:fchg 0.9s linear infinite;flex:none}"
+             "@keyframes fchg{to{transform:rotate(360deg)}}")
+
 CSS = """
 .fch{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;margin:14px 0 8px}
 .fch-t{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:14px 16px 16px;min-width:0;position:relative}
 .fch-t::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--ac,#cbd5e1);border-radius:14px 0 0 14px}
 .fch-h{font-size:14.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0f172a;margin:0 0 10px;padding-left:4px}
+.fch-intro{font-size:14px;line-height:1.5;color:#4b5563;margin:2px 4px 12px}
 .fch-h small{text-transform:none;letter-spacing:0;font-weight:500;font-size:12px;color:#9ca3af;margin-left:4px}
 .fch-b{padding-left:4px;min-width:0}
 .s3{grid-column:span 3}.s4{grid-column:span 4}.s5{grid-column:span 5}.s6{grid-column:span 6}.s7{grid-column:span 7}.s8{grid-column:span 8}.s12{grid-column:span 12}
@@ -207,7 +213,7 @@ CSS = """
 .ddet{margin:0}.ddet>summary{list-style:none;cursor:pointer;display:block}.ddet>summary::-webkit-details-marker{display:none}
 .ddet .pv{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:14.5px;line-height:1.6;color:#1f2937;text-align:justify;
 -webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent 100%);mask-image:linear-gradient(to bottom,#000 45%,transparent 100%)}
-.ddet .vm,.ddet .vl{display:inline-block;margin-top:4px;color:#1d4ed8;font-weight:700;font-size:14px}.ddet .vl{display:none}
+.ddet .vm,.ddet .vl{display:inline-block;margin-top:4px;color:#111827;font-weight:700;font-size:14px}.ddet .vl{display:none}
 .ddet[open] .pv,.ddet[open] .vm{display:none}.ddet[open] .vl{display:inline-block;margin-top:8px}
 .ddet .full{margin:0}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
@@ -386,7 +392,7 @@ def linea_precios_html(row):
     if cat:
         chip = f' <small style="color:{texto_categoria(color)};font-weight:600">· {_texto_plano_categoria(cat)}</small>'
     titulo = f"Precio contra el Fair Value de cada método{chip}"
-    exp = ('<div class="fch-ex">Abajo, el precio de hoy. Arriba, cada flecha es el precio que resultaría de aplicar un método con la mediana histórica '
+    exp = ('<div class="fch-ex">Cada flecha es el precio que resultaría de aplicar un método con la mediana histórica '
            'de su múltiplo; la azul oscura es el promedio ponderado (el Fair Value). Escala logarítmica. Es una estimación, no una recomendación.</div>')
     cuerpo = (f'{exp}<div class="pl-wrap"><div class="pl" style="height:{alto}px">' + "".join(partes) + f'</div></div>{ley}{nota}')
     return _plegable("linea", titulo, cuerpo, ac=AZUL, cls="s12 fch-pl")
@@ -487,11 +493,11 @@ def _linea_pesos(row, datos):
     d = (datos or {}).get(str(row.get("ticker", "")).upper()) or {}
     if not d.get("ratio"):
         return ""
-    ratio = _cedears.ratio_texto(d.get("ratio"))
+    ratio = _cedears.ratio_texto(d.get("ratio")).replace(" : ", ":")      # v1.2.59: "24:1" (antes "24 : 1")
     ars = _n(d.get("precio_ars"))
     if ars:
-        return f'CEDEAR: {_ars(ars)} (ratio {html.escape(ratio)})'
-    return f'CEDEAR: sin precio por ahora (ratio {html.escape(ratio)})'
+        return f'CEDEAR: {_ars(ars)} (Ratio {html.escape(ratio)})'
+    return f'CEDEAR: sin precio por ahora (Ratio {html.escape(ratio)})'
 
 
 def _encabezado(row, mercado, ficha, datos=None, fecha_datos=None):
@@ -651,7 +657,7 @@ def _tiles_resumen(row, ficha, mercado, agenda=None):
     filas.append(_fila_kv("Industria", html.escape(industria) or "—", "Actividad específica dentro de su sector."))
     foso = _foso_de(t)      # v1.2.51: foso competitivo (Amplio / Estrecho / Ninguno), solo donde hay dato
     if foso and foso.get("foso"):
-        filas.append(_fila_kv("Foso competitivo", html.escape(foso["foso"]),
+        filas.append(_fila_kv("Foso competitivo", "<b>" + html.escape(foso["foso"]) + "</b>",
                               "Ventaja competitiva que se sostiene en el tiempo: retorno sobre el capital por encima del costo del capital, márgenes estables y mejores que los de su sector."))
     if mercado:
         adr = ' · <span title="ADR: certificado que representa acciones de una empresa extranjera y cotiza en Estados Unidos">ADR</span>' if _fichas.es_adr(t) else ""
@@ -843,7 +849,7 @@ def _tile_valoracion(row):
     color = _txt(row.get("color_hex"), "#6e7781")
     precio, fv = _n(row.get("precio_actual")), _n(row.get("fair_value"))
     cat = _texto_categoria(_txt(row.get("categoria"), "—"), color, True)
-    bloque_cat = f'<div><div class="l">Valoración por múltiplos {_ayuda(TEXTO_VALORACION)}</div><div class="v c">{cat}</div></div>'
+    bloque_cat = f'<div><div class="l">Valoración por Múltiplos {_ayuda(TEXTO_VALORACION)}</div><div class="v c">{cat}</div></div>'
     if not (precio and fv and precio > 0 and fv > 0):
         cuerpo = f'<div class="stats">{bloque_cat}</div><div class="fch-sub" style="margin:10px 0 0">Sin Fair Value: faltan datos para calcularlo.</div>'
         return f'<div class="fch-t s12" style="--ac:{color}"><div class="fch-b">{cuerpo}</div></div>'
@@ -878,6 +884,26 @@ def encabezado_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_da
     datos = cedears if cedears is not None else _cedears.cargar()
     mercado, _ = _fichas.mercado_y_adr(row.get("ticker"), ficha, mercado_codigo)
     return '<div class="fch">' + _encabezado(row, mercado, ficha, datos, fecha_datos) + "</div>"
+
+
+INTROS = {
+    "resumen": "Quién es la empresa y qué hace, dónde cotiza y sus números básicos de un vistazo: tamaño, dividendo, rango de precio del último año y cuándo presenta resultados.",
+    "analisis": "Los datos que sostienen el puntaje de la empresa: cada métrica de hoy comparada con su propia historia. Es una herramienta para filtrar y estudiar, no una recomendación.",
+    "grafico": "Cómo se movió el precio de la acción y cuánto rindió en distintos plazos. Lo que pasó antes no garantiza lo que pase después.",
+    "valuacion": "Si hoy la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana. Es una estimación, no una recomendación.",
+    "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
+    "dividendos": "Cuánto paga la empresa a sus accionistas, si lo puede sostener con lo que gana y cómo se comportó el dividendo en la crisis de 2007-09.",
+    "competidores": "Las empresas más grandes del mismo sector que están en el screener, para compararlas lado a lado en valoración y puntaje de calidad.",
+    "directivos": "Quiénes conducen la empresa y cuánto cobran. El CEO es el máximo responsable ejecutivo: el que toma las decisiones del día a día.",
+    "accionariado": "Quiénes son los dueños: los directivos (insiders) y las instituciones (fondos, bancos). Que los directivos tengan acciones suele alinear sus intereses con los de los demás accionistas.",
+    "noticias": "Los últimos titulares sobre la empresa, en su idioma original, con link a la nota.",
+}
+
+
+def con_intro(clave, cuerpo):
+    """Antepone a una solapa su explicacion corta (breve y educativa)."""
+    t = INTROS.get(clave)
+    return (f'<div class="fch-intro">{html.escape(t)}</div>' if t else "") + cuerpo
 
 
 def _env(*partes):
@@ -977,24 +1003,14 @@ def _frecuencia(tray):
 
 
 def _tile_recesion(rec):
-    """Como le fue a la empresa en la crisis de 2007-09: su dividendo (2009 contra 2007) y el precio (9/10/2007 a 9/3/2009) frente al S&P 500."""
+    """Como se comporto el dividendo de la empresa en la crisis de 2007-09 (total pagado en 2009 contra el de 2007). Sin dato: no se muestra."""
     rec = rec or {}
-    bl = []
     d = rec.get("dividendo")
-    if d:
-        txt = {"aumento": "Aumentó", "igual": "Se mantuvo", "recorte": "Recortó", "no_pagaba": "No pagaba"}.get(d)
-        if txt:
-            bl.append(f'<div><div class="l">Dividendo en la recesión</div><div class="v c">{txt}</div><div class="n">Total pagado en 2009 contra el de 2007</div></div>')
-    r, sp = rec.get("retorno"), rec.get("sp")
-    if r is not None:
-        cls = "pos" if r > 0.0005 else "neg" if r < -0.0005 else ""
-        nota = "Precio del 9/10/2007 al 9/3/2009 (sin dividendos)"
-        if sp is not None:
-            nota += f"; el S&P 500 hizo {sp * 100:+.0f}%"
-        bl.append(f'<div><div class="l">Precio de la acción en la recesión</div><div class="v {cls}">{r * 100:+.0f}%</div><div class="n">{nota}</div></div>')
-    if not bl:
+    txt = {"aumento": "Aumentó", "igual": "Se mantuvo", "recorte": "Recortó", "no_pagaba": "No pagaba"}.get(d)
+    if not txt:
         return ""
-    return _tile("s12", "Comportamiento en la recesión 2007-09", '<div class="stats">' + "".join(bl) + "</div>", ac="#16a34a")
+    bl = f'<div><div class="l">Dividendo en la recesión</div><div class="v c">{txt}</div><div class="n">Total pagado en 2009 contra el de 2007</div></div>'
+    return _tile("s12", "Comportamiento en la recesión 2007-09", '<div class="stats">' + bl + "</div>", ac="#16a34a")
 
 
 def tab_dividendos(row, div, rec=None):
@@ -1187,19 +1203,64 @@ def _monto_estado(v, tipo, moneda):
     return ("-" if v < 0 else "") + pre + txt
 
 
+AYUDA_ESTADOS = {
+    "Ingresos": "Lo que la empresa vendió en el período, antes de descontar ningún costo.",
+    "Costo de ventas": "Lo que le costó producir o comprar lo que vendió.",
+    "Utilidad bruta": "Ingresos menos costo de ventas: lo que queda para pagar el resto de los gastos.",
+    "Gastos operativos": "Los gastos de funcionar: sueldos, marketing, investigación y administración.",
+    "Resultado operativo": "La ganancia del negocio en sí, antes de intereses e impuestos.",
+    "EBITDA": "Ganancia operativa antes de depreciaciones y amortizaciones: una forma de ver cuánto genera el negocio sin efectos contables.",
+    "Resultado antes de impuestos": "Ganancia una vez descontados los intereses y antes de pagar impuestos.",
+    "Impuesto a las ganancias": "Lo que la empresa pagó (o provisionó) de impuesto sobre sus ganancias.",
+    "Tasa de impuesto": "Impuesto ÷ resultado antes de impuestos: qué porcentaje de la ganancia se va en impuestos.",
+    "Resultado neto": "La ganancia final: lo que queda para los accionistas después de todo.",
+    "Ganancia por acción (diluida)": "Resultado neto ÷ cantidad de acciones, contando también las que podrían crearse (opciones, bonos convertibles).",
+    "Acciones promedio (diluidas)": "Cantidad promedio de acciones. Si baja año tras año, la empresa está recomprando sus acciones.",
+    "Caja e inversiones de corto plazo": "Efectivo y colocaciones que se pueden convertir en efectivo rápido.",
+    "Cuentas por cobrar": "Lo que los clientes le deben a la empresa por ventas ya hechas.",
+    "Inventarios": "Mercadería y materiales guardados para vender o producir.",
+    "Activo corriente": "Lo que la empresa tiene y puede convertir en efectivo en menos de un año.",
+    "Propiedad, planta y equipo (neto)": "Terrenos, fábricas, edificios y maquinaria, ya descontado el desgaste.",
+    "Plusvalía (goodwill)": "Lo que pagó de más, sobre el valor contable, al comprar otras empresas.",
+    "Activo total": "Todo lo que la empresa tiene: efectivo, inventarios, equipos, inversiones y demás.",
+    "Pasivo corriente": "Deudas y obligaciones que vencen en menos de un año.",
+    "Deuda total": "Todo lo que la empresa debe a bancos y tenedores de bonos, de corto y largo plazo.",
+    "Pasivo total": "Todo lo que la empresa debe: deuda financiera más proveedores, impuestos y otras obligaciones.",
+    "Patrimonio neto": "Activos menos pasivos: lo que les pertenece a los accionistas.",
+    "Capital invertido (según Yahoo)": "El dinero que está puesto en el negocio (deuda más patrimonio, según el cálculo de Yahoo).",
+    "Flujo de efectivo operativo": "El efectivo que genera el negocio con su actividad habitual. Es más difícil de maquillar que la ganancia contable.",
+    "Inversión en activos fijos (CAPEX)": "Dinero gastado en fábricas, equipos y tecnología. Se ve negativo porque es una salida de efectivo.",
+    "Flujo de efectivo libre": "Efectivo operativo menos CAPEX: lo que le queda a la empresa para dividendos, recompras o pagar deuda.",
+    "Flujo de efectivo de inversión": "Efectivo usado en comprar o vender inversiones y activos. Suele ser negativo si la empresa está invirtiendo.",
+    "Flujo de efectivo de financiamiento": "Efectivo por emitir o pagar deuda, recomprar acciones y pagar dividendos. Negativo suele significar que devuelve dinero a inversores y acreedores.",
+    "Recompra de acciones": "Dinero que la empresa usó para comprar sus propias acciones.",
+    "Dividendos pagados": "Dinero que la empresa pagó a sus accionistas como dividendo.",
+    "Margen bruto": "Utilidad bruta ÷ ingresos. Ejemplo: 45% significa que de cada $100 vendidos quedan $45 después del costo de ventas.",
+    "Margen operativo": "Resultado operativo ÷ ingresos: cuánto queda de cada $100 vendidos después de todos los gastos del negocio.",
+    "Margen neto": "Resultado neto ÷ ingresos: cuánto de cada $100 vendidos termina como ganancia final.",
+    "Margen de flujo de efectivo libre": "Flujo de efectivo libre ÷ ingresos: cuánto de cada $100 vendidos queda en efectivo libre.",
+    "Retorno sobre el patrimonio (ROE)": "Resultado neto ÷ patrimonio: qué ganancia genera la empresa con el dinero de los accionistas.",
+    "Retorno sobre el capital invertido (ROIC)": "Ganancia operativa después de impuestos ÷ capital invertido: qué rinde cada dólar puesto en el negocio, venga de deuda o de accionistas.",
+    "Deuda total / Patrimonio": "Cuánta deuda tiene por cada dólar de patrimonio. Más alto significa más apalancada.",
+    "Liquidez corriente (activo / pasivo corriente)": "Activo corriente ÷ pasivo corriente. Por encima de 1 indica que puede cubrir lo que vence en el año.",
+}
+
+
 def _tabla_estado_html(t, moneda):
     cab = "<tr><th>Concepto</th>" + "".join(f"<th>{a}</th>" for a in t["anios"]) + "</tr>"
     filas = ""
     for rot, vals, tipo in t["filas"]:
         negrita = ' class="tot"' if tipo == "t" else ""
-        filas += f"<tr{negrita}><td>{html.escape(rot)}</td>" + "".join(f"<td>{_monto_estado(v, tipo, moneda)}</td>" for v in vals) + "</tr>"
+        tip = AYUDA_ESTADOS.get(rot)
+        nom = f'<span class="hv" title="{html.escape(tip, quote=True)}">{html.escape(rot)}</span>' if tip else html.escape(rot)
+        filas += f"<tr{negrita}><td>{nom}</td>" + "".join(f"<td>{_monto_estado(v, tipo, moneda)}</td>" for v in vals) + "</tr>"
     return f'<div class="comp-w"><table class="comp">{cab}{filas}</table></div>'
 
 
 def tab_estados(est):
     """Estados financieros de Yahoo: la columna TTM (ultimos 12 meses) y los ultimos 4 anios fiscales, el mas nuevo a la izquierda (v1.2.58):
     Estado de Resultados, Balance, Estado de Flujo de Efectivo y Ratios Financieros (calculados con esas cifras, con ROIC)."""
-    vacio = _env(_tile("s12", "Estados financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
+    vacio = _env(_tile("s12", "Estados Financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
     if not est:
         return vacio
     moneda = est.get("moneda")

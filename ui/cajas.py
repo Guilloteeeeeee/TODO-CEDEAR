@@ -18,7 +18,7 @@ CSS = """
 .st-key-caja_screener [data-testid="stExpander"] details{border:0!important;background:transparent!important}
 .st-key-caja_screener [data-testid="stExpander"] summary{padding:0 1rem;min-height:48px;display:flex;align-items:center;background:transparent!important;border-radius:14px}
 .st-key-caja_screener [data-testid="stExpander"] summary:hover{background:#f6f8fa!important}
-.st-key-caja_screener [data-testid="stExpander"] summary p{font-weight:700;font-size:1.02rem;color:#111827}
+.st-key-caja_screener [data-testid="stExpander"] summary p{font-weight:700;font-size:1.02rem;color:#1d4ed8}
 .st-key-caja_screener [data-testid="stExpanderDetails"]{padding:.5rem 1rem 1rem;border-top:1px solid #eef1f4!important}
 .st-key-caja_screener [data-testid="stExpander"] .flt-t{margin-top:.2rem}
 @media (min-width:821px){

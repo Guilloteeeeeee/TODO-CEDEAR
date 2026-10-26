@@ -448,7 +448,7 @@ def traducir_bloques(bloques, traducir_lista=None):
 # ---------------------------------------------------------------------------------------------------------------
 CSS = """
 .nt{margin:0;border:0;border-radius:14px;background:#fff;padding:0 16px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07)}
-.nt>summary{cursor:pointer;list-style:none;padding:0;min-height:48px;box-sizing:border-box;align-items:center!important;font-weight:700;font-size:1.02rem;color:#111827;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.nt>summary{cursor:pointer;list-style:none;padding:0;min-height:48px;box-sizing:border-box;align-items:center!important;font-weight:700;font-size:1.02rem;color:#1d4ed8;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .nt>summary::-webkit-details-marker{display:none}
 .nt>summary::before{content:"▸";color:#6b7280;font-size:.85rem}
 .nt[open]>summary::before{content:"▾"}

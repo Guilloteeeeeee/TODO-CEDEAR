@@ -93,7 +93,7 @@ def escala_valoracion_html(mostrar_gris=False):
 # clave de columna -> (titulo, texto). Las columnas que se suman desde "Variables a ver en la tabla" usan el texto de ui/criterios.py.
 # Empresa (v1.2.49) va sin titulo adelante: es la frase tal cual, con la ultima oracion en azul.
 AYUDA_COLUMNAS = {
-    "sector_txt": ("Sector e industria", "A qué se dedica la empresa: el sector y, abajo, su industria. Es solo información: no cambia la valoración ni el puntaje."),
+    "sector_txt": ("Sector e Industria", "A qué se dedica la empresa: su sector y su industria. Es solo información: no cambia la valoración ni el puntaje."),
     "precio_actual": ("Precio", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance cada pocos minutos "
                                 "(puede tener demora); si no responde, queda el de la última actualización de los datos{fecha}. "
                                 "No es el precio del CEDEAR en pesos: ese está en la página de cada empresa."),
@@ -124,8 +124,8 @@ def ayuda_texto(clave, fecha=None):
 
 # Columnas por defecto (clave de orden, titulo, ancho relativo). Los encabezados (botones de Streamlit) y las filas (grilla CSS) usan los mismos anchos.
 COLUMNAS_BASE = [
-    ("nombre", "Empresa", 3.0), ("sector_txt", "Sector e industria", 2.6), ("precio_actual", "Precio", 1.3),
-    ("market_cap", "Capitalización bursátil", 1.6), ("fv_upside", "Valoración", 2.0), ("score_total", "Puntaje de calidad", 1.3),
+    ("nombre", "Empresa", 3.2), ("sector_txt", "Sector e Industria", 2.5), ("precio_actual", "Precio", 1.1),
+    ("market_cap", "Capitalización bursátil", 1.5), ("fv_upside", "Valoración", 2.4), ("score_total", "Puntaje de calidad", 1.2),
 ]
 ANCHO_EXTRA = 1.7
 # v1.2.48: se puede sacar cualquier columna menos Empresa (v1.2.49: desde "Variables a ver en la tabla"). (clave, titulo) de las que se pueden sacar:
@@ -158,14 +158,15 @@ CSS = """
 .tv2{border:0;border-radius:0 0 14px 14px;background:#fff;color:#1f2328;overflow:hidden;font-family:inherit;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07)}
 .tv2-r{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2.6fr) minmax(0,1.3fr) minmax(0,1.6fr) minmax(0,2fr) minmax(0,1.3fr);align-items:stretch;border-top:1px solid #f0f2f5}
 .tv2-r:first-child{border-top:0}
-.tv2-r>div{padding:8px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.tv2-r>div{padding:5px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
 .tv2-r:nth-child(even){background:#f3f6f9}   /* v1.2.52: filas alternadas (antes la columna Valoracion tenia otro tono) */
 .tv2-r:hover>div{background:#f8fafc}
 .tv2-r:hover>.tv2-v{background:#eef2f6}
 .tv2-c{align-items:center;text-align:center}
 .tv2-emp{display:flex;align-items:center;gap:10px;min-width:0}
 .tv2-ec{min-width:0;flex:1}
-.tv2-l1{display:flex;align-items:baseline;gap:5px;min-width:0}
+.tv2-l1{display:flex;align-items:center;gap:6px;min-width:0}
+.tv2-pt{flex:none;color:#9ca3af;font-weight:400;margin:0 1px}
 .tv2-nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;font-weight:700;color:#111827;text-decoration:underline;text-decoration-color:rgba(75,85,99,.4);text-decoration-thickness:1px;text-underline-offset:3px}
 .tv2-tk{flex:none;font-size:12.5px;font-weight:400;color:#4b5563;letter-spacing:.3px}
 .tv2-mc{font-size:14px;font-weight:400;color:#111827;white-space:nowrap}
@@ -313,16 +314,17 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .st-key-orden_movil_caja{display:none}
 .tv2-lbl{display:none}
 .tv2-bd{display:flex;align-items:center;gap:6px;margin-top:2px;font-size:12px;color:#4b5563;white-space:nowrap}
-.tv2-sc{font-size:13.5px;font-weight:400;color:#111827;line-height:1.25}
-.tv2-si{margin-top:2px;font-size:12px;font-weight:400;color:#4b5563;line-height:1.25}
+.tv2-sc{font-size:13.5px;font-weight:400;color:#111827;line-height:1.25;overflow-wrap:break-word;word-break:normal;hyphens:none}
+.tv2-sc .tv2-pt{margin:0 6px}
+.tv2-si{font-size:12.5px;font-weight:400;color:#4b5563}
 .tv2-ni{font-size:12.5px;color:#6b7280}
 .tv-buscar{margin:6px 0 4px}
-/* v1.2.58: la leyenda "Presioná en la empresa..." se ve siempre (recuadro blanco, letra azul) en la misma fila que el Excel; ya no hay "?" en Empresa */
+/* v1.2.58: la leyenda "Presioná en la empresa..." se ve siempre (mismo estilo que el link del Excel) en la misma fila que el Excel; ya no hay "?" en Empresa */
 .st-key-fila_excel{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:flex-start!important;justify-content:space-between;gap:4px 14px!important;margin:0 0 2px!important}
-.st-key-fila_excel .st-key-descarga_excel{margin-top:4px}
+.st-key-fila_excel .st-key-descarga_excel{margin-top:0}
 .st-key-fila_excel [data-testid="stMarkdownContainer"]{margin-bottom:0!important}
 .st-key-fila_excel>div{width:auto!important;flex:0 0 auto;min-width:0}
-.tv-ley{display:block;width:fit-content;background:#fff;border-radius:12px;padding:7px 16px;font-size:14.5px;font-weight:700;color:#1d4ed8;line-height:1.3;box-shadow:0 1px 2px rgba(15,23,42,.05),0 4px 12px rgba(15,23,42,.07)}
+.tv-ley{display:block;width:fit-content;font-size:13px;font-weight:400;color:#4b5563;padding:2px 0 0;line-height:1.5}
 /* "Variables a ver en la tabla" (v1.2.49): pastillas que se prenden y se apagan; las elegidas llevan tilde y van en negrita */
 .vars-t{font-size:14px;font-weight:700;color:#111827;margin:2px 0 6px}
 .st-key-vars_chips,.st-key-vars_chips_mult{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
@@ -456,16 +458,16 @@ def _href_empresa(ticker, estado=None):
 
 
 def _celda_empresa(row, estado=None):
-    """Logo y nombre en negrita (todo es un link a la pagina de la empresa); abajo, la bandera del pais y el ticker."""
+    """v1.2.59: una sola linea: logo chico, nombre en negrita, punto, ticker y la bandera del pais al lado del ticker (todo es un link a la pagina de la empresa)."""
     t = _txt(row.get("ticker"), "—")
     nombre = html.escape(_nombre_limpio(row.get("nombre"), t))
     pais = row.get("pais")
     bandera = bandera_html(pais, chica=True) if isinstance(pais, str) and pais else ""
     href = html.escape(_href_empresa(t, estado), quote=True)
     ttl = f'Ver la página de {nombre}'
-    return (f'<div class="tv2-emp"><a class="tv2-lg" href="{href}" target="_self" title="{ttl}">{logo_html(t, 32)}</a><div class="tv2-ec">'
-            f'<a class="tv2-l1" href="{href}" target="_self" title="{ttl}"><span class="tv2-nm">{nombre}</span></a>'
-            f'<a class="tv2-bd" href="{href}" target="_self" title="{ttl}">{bandera}<span class="tv2-tk">{html.escape(t)}</span></a></div></div>')
+    return (f'<div class="tv2-emp"><a class="tv2-lg" href="{href}" target="_self" title="{ttl}">{logo_html(t, 26)}</a><div class="tv2-ec">'
+            f'<a class="tv2-l1" href="{href}" target="_self" title="{ttl}"><span class="tv2-nm">{nombre}</span><span class="tv2-pt">·</span>'
+            f'<span class="tv2-tk">{html.escape(t)}</span>{bandera}</a></div></div>')
 
 
 def sector_industria(row):
@@ -484,8 +486,8 @@ def _celda_sector(row):
     sector, industria = sector_industria(row)
     if not sector:
         return '<span class="tv2-ni">—</span>'
-    ind = f'<div class="tv2-si">{html.escape(industria)}</div>' if industria else ""
-    return f'<div class="tv2-sc">{html.escape(sector)}</div>{ind}'
+    ind = f'<span class="tv2-pt">·</span><span class="tv2-si">{html.escape(industria)}</span>' if industria else ""
+    return f'<div class="tv2-sc">{html.escape(sector)}{ind}</div>'
 
 
 def _celda_mcap(row):

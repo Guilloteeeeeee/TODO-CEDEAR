@@ -2,9 +2,9 @@
 "Variables a ver en la tabla" (v1.2.49): el control que va arriba de todo en el Filtro de empresas.
 
 Reemplaza a "Columnas de la tabla" y a "Agregar criterios" (v1.2.47 y v1.2.48): ahora hay UNA sola lista con todas las variables que se pueden ver en la
-tabla. Las de siempre (Empresa, Sector e industria, Precio, Capitalizacion bursatil, Valoracion y Puntaje de calidad) vienen elegidas; las demas
+tabla. Las de siempre (Empresa, Sector e Industria, Precio, Capitalizacion bursatil, Valoracion y Puntaje de calidad) vienen elegidas; las demas
 (Dividend Yield, Fair Value, P/E...) se suman. Cada una es una pastilla que se prende y se apaga; al pasar el mouse se ve una explicacion corta, y al
-prenderla aparecen abajo sus filtros (Sector e industria, un minimo y un maximo de precio, etc.). Empresa se ve siempre.
+prenderla aparecen abajo sus filtros (Sector e Industria, un minimo y un maximo de precio, etc.). Empresa se ve siempre.
 
 Este modulo solo sabe de la lista (nombres, ayudas, orden y que columnas o criterios representa cada una); la pantalla la dibuja app.py.
 """

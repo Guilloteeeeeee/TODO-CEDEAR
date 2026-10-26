@@ -1,7 +1,7 @@
 """
 Criterios que se pueden sumar a la tabla (v1.2.47), al estilo del "Add Screener Criteria" de Fiscal AI.
 
-La tabla por defecto muestra solo Empresa, Sector e industria, Precio, Capitalizacion bursatil, Valoracion y Puntaje de calidad. En el Filtro de
+La tabla por defecto muestra solo Empresa, Sector e Industria, Precio, Capitalizacion bursatil, Valoracion y Puntaje de calidad. En el Filtro de
 empresas, "Variables a ver en la tabla" (v1.2.49; antes "Agregar criterios") permite elegir otros datos (Dividend Yield, Fair Value, P/E...): cada criterio elegido suma una columna a la tabla
 y, si se escribe un minimo y/o un maximo, deja solo las empresas dentro de ese rango. Sin minimo ni maximo, solo suma la columna.
 

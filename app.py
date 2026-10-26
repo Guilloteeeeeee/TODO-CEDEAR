@@ -6,8 +6,9 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.58"
+APP_VERSION = "1.2.59"
 
+import contextlib
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -47,7 +48,7 @@ from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
 from ui.quienes import quienes_html, CSS as CSS_QUIENES
 from ui import ficha as _ficha
-from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx
+from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx, paquetes_yahoo as _py
 
 # ---------------------------------------------------------------------------
 # CONFIGURACIÓN DE PÁGINA
@@ -282,17 +283,31 @@ def _extras_empresa(ticker: str) -> dict:
     vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": [], "agenda": {}, "estados": {}, "sp": None}
     try:
         with ThreadPoolExecutor(max_workers=3) as ex:
-            f_hist, f_paq, f_sp = ex.submit(_hp.bajar, ticker), ex.submit(_yx.bajar_paquete, ticker), ex.submit(_sp500, m)
+            f_hist, f_paq = ex.submit(_hp.bajar, ticker), ex.submit(_yx.bajar_paquete, ticker)
             paq = f_paq.result(timeout=90) or {}
-            res = {"historial": f_hist.result(timeout=60), "sp": f_sp.result(timeout=60)}
+            res = {"historial": f_hist.result(timeout=60), "sp": None}
         res.update({k: paq.get(k) or vacio[k] for k in ("dividendos", "gobierno", "noticias", "agenda", "estados")})
     except Exception:  # noqa: BLE001
-        return vacio
+        res = dict(vacio)
+        paq = {}
+    # v1.2.59: lo que Yahoo no contesto desde la nube se completa con el archivo data/paquetes_yahoo.json (lo baja bajar_paquetes_yahoo.bat)
+    guardado, fecha_g = _paquetes_guardados()
+    res, usadas = _py.completar(res, guardado.get(ticker.upper()))
+    res["archivo"] = {"fecha": fecha_g, "claves": usadas, "foto": (guardado.get(ticker.upper()) or {}).get("foto_ceo")} if usadas or guardado.get(ticker.upper()) else None
     if res["historial"] or paq.get("info_ok") or res["gobierno"] or res["dividendos"]:
         if len(m) > 300:
             m.clear()
         m[("emp", ticker)] = (time.time(), res)
     return res
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _paquetes_guardados():
+    """({TICKER: datos}, fecha) del archivo data/paquetes_yahoo.json; ({}, None) si no esta."""
+    try:
+        return _py.cargar()
+    except Exception:  # noqa: BLE001
+        return {}, None
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -483,7 +498,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     """
     Renderiza los filtros (dentro del recuadro "Filtro de empresas") y retorna dict con filtros activos.
     v1.2.49: arriba de todo va "Variables a ver en la tabla": una pastilla por cada variable (ui/variables.py). Las de siempre vienen elegidas
-    (con tilde y en negrita); al elegir una aparecen abajo sus filtros (Sector e industria, un minimo y un maximo de precio, etc.); una variable que no
+    (con tilde y en negrita); al elegir una aparecen abajo sus filtros (Sector e Industria, un minimo y un maximo de precio, etc.); una variable que no
     se elige no se ve en la tabla ni filtra. Ya no estan "Métricas mínimas", "Columnas de la tabla", "Agregar criterios" ni "Actualizar datos"
     (este ultimo paso al panel ?debug=1).
     """
@@ -556,7 +571,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
         with caja("nombre", "País"):
             paises_sel = st.multiselect("País", paises_disponibles, placeholder="Todos los países", key="flt_pais", label_visibility="collapsed")
     if "sector_txt" in elegidas:
-        with caja("sector_txt", "Sector e industria"):
+        with caja("sector_txt", "Sector e Industria"):
             sectores_sel = st.multiselect("Sector", todos_sectores, placeholder="Todos los sectores", key="flt_sector", label_visibility="collapsed")
             industrias_sel = st.multiselect("Industria", todas_industrias, placeholder="Todas las industrias", key="flt_industria", label_visibility="collapsed")
     if "precio_actual" in elegidas:
@@ -627,7 +642,7 @@ def ordenes_movil(extras=(), visibles=None):
         ("Valoración: de más barata a más cara", "fv_upside", False), ("Valoración: de más cara a más barata", "fv_upside", True),
         ("Puntaje de calidad: de mayor a menor", "score_total", False), ("Puntaje de calidad: de menor a mayor", "score_total", True),
         ("Empresa: de la A a la Z", "nombre", True), ("Empresa: de la Z a la A", "nombre", False),
-        ("Sector e industria: de la A a la Z", "sector_txt", True), ("Sector e industria: de la Z a la A", "sector_txt", False),
+        ("Sector e Industria: de la A a la Z", "sector_txt", True), ("Sector e Industria: de la Z a la A", "sector_txt", False),
         ("Precio: de mayor a menor", "precio_actual", False), ("Precio: de menor a mayor", "precio_actual", True),
     ]
     o = [x for x in o if x[1] == "nombre" or visibles is None or x[1] in visibles]
@@ -859,6 +874,13 @@ def _render_grafico(tk, pares, rd):
     st.caption(f"{sufijo} · No es en tiempo real. Podés acercar con la rueda del mouse y arrastrar el gráfico.")
 
 
+def _nota_archivo(extra, clave):
+    """Si el dato no vino de Yahoo en vivo sino del archivo guardado (data/paquetes_yahoo.json), lo dice con la fecha."""
+    arch = (extra or {}).get("archivo") or {}
+    if clave in (arch.get("claves") or []):
+        st.caption(f"Datos de Yahoo guardados el {arch.get('fecha') or 's/d'} (Yahoo no respondió en este momento).")
+
+
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
@@ -895,38 +917,42 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with st.spinner("Aguarde mientras se cargan los datos..."):
         extra = _extras_empresa(tk)
     pares = extra.get("historial")
-    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Estados financieros", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
+    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Estados Financieros", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
     t_res, t_ana, t_gra, t_val, t_est, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
     with t_res:
-        st.markdown(_ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda")), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
-        st.markdown(_ficha.tab_analisis(rd), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd)), unsafe_allow_html=True)
     with t_gra:
-        st.markdown(_ficha.tab_grafico_tabla(pares), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
+        st.markdown(_ficha.con_intro("grafico", _ficha.tab_grafico_tabla(pares)), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)
     with t_val:
-        st.markdown(_ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk)), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("valuacion", _ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk))), unsafe_allow_html=True)
     with t_est:
-        st.markdown(_ficha.tab_estados(extra.get("estados")), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("estados", _ficha.tab_estados(extra.get("estados"))), unsafe_allow_html=True)
+        _nota_archivo(extra, "estados")
     with t_div:
         div = extra.get("dividendos") or {}
-        rec = {"retorno": _hp.retorno_recesion(pares), "sp": _hp.retorno_recesion(extra.get("sp")),
-               "dividendo": _hp.dividendo_recesion((div.get("trayectoria") or {}).get("anuales"))}
-        st.markdown(_ficha.tab_dividendos(rd, div, rec), unsafe_allow_html=True)
+        rec = {"dividendo": _hp.dividendo_recesion((div.get("trayectoria") or {}).get("anuales"))}
+        st.markdown(_ficha.con_intro("dividendos", _ficha.tab_dividendos(rd, div, rec)), unsafe_allow_html=True)
+        _nota_archivo(extra, "dividendos")
     with t_com:
-        st.markdown(_ficha.tab_competidores(rd, df), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("competidores", _ficha.tab_competidores(rd, df)), unsafe_allow_html=True)
     with t_dir:
         gob = extra.get("gobierno")
         nom_ceo = _ficha.nombre_ceo(gob) or str(ficha.get("ceo") or "")
-        foto = _foto_ceo(nom_ceo, str(rd.get("nombre") or tk)) if nom_ceo else None
+        arch = extra.get("archivo") or {}
+        foto = arch.get("foto") or (_foto_ceo(nom_ceo, str(rd.get("nombre") or tk)) if nom_ceo else None)
         if st.query_params.get("debug") == "1" and nom_ceo:
             from data import foto_ceo as _fc
             st.caption(f"Foto del CEO ({nom_ceo}): " + _fc.diagnostico(nom_ceo, str(rd.get("nombre") or tk)))
-        st.markdown(_ficha.tab_directivos(gob, foto), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("directivos", _ficha.tab_directivos(gob, foto)), unsafe_allow_html=True)
+        _nota_archivo(extra, "gobierno")
     with t_acc:
-        st.markdown(_ficha.tab_accionariado(extra.get("gobierno")), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("accionariado", _ficha.tab_accionariado(extra.get("gobierno"))), unsafe_allow_html=True)
+        _nota_archivo(extra, "gobierno")
     with t_not:
-        st.markdown(_ficha.tab_noticias(tk, extra.get("noticias")), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("noticias", _ficha.tab_noticias(tk, extra.get("noticias"))), unsafe_allow_html=True)
     cargando.empty()
 
     # v1.2.49: el desglose de metricas pasó a "Estadisticas de la empresa" (ui/ficha.py): valor de hoy, mediana, dibujito, Fair Value y peso de cada una.
@@ -976,7 +1002,8 @@ def main():
 
     # Franja negra de arriba con el nombre (y los iconos y el menu si estan cargados sus links). El aviso y "Datos al ..." van
     # al final de la pagina (pie_html).
-    st.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
+    en_etfs = st.query_params.get("tabla") == "etfs"
+    st.markdown(f"<style>{CSS_MARCA}</style>" + encabezado_html(NOMBRE_APP, activa="etfs" if en_etfs else "empresas", con_buscador=not (en_etfs or st.query_params.get("empresa") or st.query_params.get("pagina"))), unsafe_allow_html=True)
     aviso = texto_aviso_legal()
     fecha = None
 
@@ -986,11 +1013,23 @@ def main():
         st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
         return
 
+    # v1.2.59: tabla de ETFs (todavia no esta: la barra ya tiene el link)
+    if en_etfs:
+        st.markdown(f"<style>{css_fuente()}{css_condensada()}{CSS_QUIENES}</style>"
+                    '<div class="qs" style="text-align:center"><h1 style="margin-bottom:10px">ETFs</h1>'
+                    '<p>Estamos preparando la tabla de ETFs. Muy pronto la vas a poder ver acá, igual que la de empresas.</p></div>', unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
+        return
+
     # Noticias: la descarga arranca ya, en segundo plano, mientras se cargan los datos de las empresas
     descarga_noticias = _noticias.iniciar_descarga()
 
+    # v1.2.59: mismo aviso que la pagina de la empresa ("Aguarde mientras se cargan los datos...") mientras se cargan los datos y los precios
+    cargando_inicio = st.empty()
+    cargando_inicio.markdown(f"<style>{_ficha.CSS_CARGA}</style>" + '<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos…</div>', unsafe_allow_html=True)
+
     # Cargar datos
-    with st.spinner("Cargando datos..."):
+    with contextlib.nullcontext():
         try:
             df, fuente = get_scored_data(universe_key)
             if fuente.startswith("cache_vencido"):
@@ -1036,7 +1075,7 @@ def main():
     texto_precios = None
     if PRECIOS_VIVOS and df is not None and not df.empty:
         try:
-            with st.spinner("Actualizando precios..."):
+            with contextlib.nullcontext():
                 info_p = _precios_usd(_orden_tickers(df))
             df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"))
             if n_p:
@@ -1048,6 +1087,7 @@ def main():
         except Exception:  # noqa: BLE001
             pass
 
+    cargando_inicio.empty()
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
         st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
