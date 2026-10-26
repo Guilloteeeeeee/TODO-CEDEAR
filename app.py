@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.62"
+APP_VERSION = "1.2.63"
 
 import contextlib
 import streamlit as st
@@ -621,6 +621,30 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
 # v1.2.60: el buscador tambien se dibuja en paginas que no cargan la hoja de estilos de la tabla (ETFs, Quienes somos): se toman sus reglas de ahi
 CSS_BUSQUEDA = "\n".join(l for l in CSS_VISUAL.splitlines() if l.startswith(".st-key-buscador"))
 
+CSS_PILLS = "\n".join(l for l in CSS_VISUAL.splitlines() if l.startswith('[data-testid="stButtonGroup"]'))
+
+
+def render_pagina_etfs(busqueda=""):
+    """Tabla de ETFs (v1.2.63): categorias para filtrar (botones), la busqueda de la barra y la tabla. Sin archivo, un cartel."""
+    from data import etfs as _etfs
+    from ui import etfs as _ui_etfs
+    from ui.banderas import css_banderas as _css_b
+    todos = _etfs.cargar()
+    if not todos:
+        st.markdown(f"<style>{css_fuente()}{css_condensada()}{CSS_QUIENES}</style>"
+                    '<div class="qs" style="text-align:center"><h1 style="margin-bottom:10px">ETFs</h1>'
+                    '<p>Estamos preparando la tabla de ETFs. Muy pronto la vas a poder ver acá, igual que la de empresas.</p></div>', unsafe_allow_html=True)
+        return
+    cats = _etfs.categorias(todos)
+    sel = []
+    try:
+        st.markdown(f"<style>{css_fuente()}{css_condensada()}{_ui_etfs.CSS}{CSS_PILLS}</style>" + _css_b()
+                    + _ui_etfs.encabezado_html(len(todos), len(_etfs.filtrar(todos, busqueda, st.session_state.get("etf_cats") or ()))), unsafe_allow_html=True)
+        sel = st.pills("Categoría", cats, selection_mode="multi", key="etf_cats", label_visibility="collapsed") or []
+    except Exception:  # noqa: BLE001
+        sel = []
+    st.markdown(_ui_etfs.tabla_html(_etfs.filtrar(todos, busqueda, sel)), unsafe_allow_html=True)
+
 
 def _ir_a_tabla(tabla):
     """Botones "Empresas" / "ETFs" de la franja (v1.2.60): cambian de tabla dentro de la misma sesion (cambian la URL, pero la pagina no se recarga)."""
@@ -1035,8 +1059,9 @@ def main():
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
     # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de la home se dibuja mas abajo, con la tabla)
     render_nav_tablas()
+    busqueda_top = ""
     if en_etfs or en_quienes or st.query_params.get("empresa"):
-        render_buscador("etfs" if en_etfs else "empresas")
+        busqueda_top = render_buscador("etfs" if en_etfs else "empresas")
     aviso = texto_aviso_legal()
     fecha = None
 
@@ -1046,11 +1071,9 @@ def main():
         st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
         return
 
-    # v1.2.59: tabla de ETFs (todavia no esta: la barra ya tiene el link)
+    # v1.2.63: tabla de ETFs (data/etfs.csv, la arma Guille de a poco); el buscador de la barra filtra por ticker, descripcion y categoria
     if en_etfs:
-        st.markdown(f"<style>{css_fuente()}{css_condensada()}{CSS_QUIENES}</style>"
-                    '<div class="qs" style="text-align:center"><h1 style="margin-bottom:10px">ETFs</h1>'
-                    '<p>Estamos preparando la tabla de ETFs. Muy pronto la vas a poder ver acá, igual que la de empresas.</p></div>', unsafe_allow_html=True)
+        render_pagina_etfs(busqueda_top)
         st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
         return
 

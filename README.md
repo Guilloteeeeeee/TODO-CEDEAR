@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.63 (26/10/2026): tabla de ETFs
+- **ETFs (`?tabla=etfs`, botón "ETFs" de la barra):** tabla con 56 ETFs: los del PDF "Ideas de Inversión · Especial ETFs · Agosto–Septiembre 2026" de Finanzas para Médicos Argentina (51) y los 5 nuevos CEDEARs de ETF (BBCA, BBAX, GSG, CORN, SOYB). Columnas: ETF (con bandera cuando corresponde), Descripción, Categoría y Perfil orientativo (Todos / Mod y Agr / Agr, con los colores del PDF; los 5 nuevos quedan sin perfil hasta que Guille lo defina). SGOV y SCHD llevan la etiqueta "Solo por mesa del broker" (no tienen CEDEAR). La lupa de la barra filtra por ticker, descripción y categoría (sin importar mayúsculas ni tildes) y los botones de categoría filtran por grupo.
+- **Cómo se completa:** los datos están en `data/etfs.csv` (una fila por ETF, separado con `;`, se abre y se guarda con Excel o con el Bloc de notas; también se lee con `,`). Columnas: ticker, descripcion, categoria, pais (para la bandera), perfil, acceso, nuevo, etiqueta. Para agregar un ETF, agregar una fila; no hay que tocar código.
+- **Cambios de redacción respecto del PDF:** "Real State" → "Real Estate (inmobiliario)", "dividendendos" → "dividendos", "incluídos" → "incluidos", "se piensan están subvaluadas" → "se cree que están subvaluadas", "se esperan que aumentan" → "se espera que aumenten", "Petroleo" → "Petróleo" y, en EEM, se sacó "y Rusia" (Rusia ya no integra el índice de emergentes desde 2022).
+- **Pendiente de confirmar:** en el PDF el ETF de Uranio figura con el ticker "XLY" (el mismo del sector Consumo Discrecional): no se cargó hasta saber cuál es.
+- **Datos de Yahoo guardados:** `data/paquetes_yahoo.json` (26/10/2026, 166 empresas) ya está subido; sin fotos de CEO todavía (se agregan con `bajar_fotos_ceo.bat`).
+
 ### v1.2.62 (26/10/2026): directivos y accionistas se completan con el archivo aunque Yahoo conteste a medias
 - **Directivos / Accionariado:** desde la nube Yahoo a veces contesta a medias (CAT, PM...: trae algún dato pero no la lista de directivos). Como la respuesta no estaba vacía, el archivo `data/paquetes_yahoo.json` no se usaba y la solapa decía "No disponible". Ahora cada campo vacío de "gobierno" (directivos, insiders, instituciones, mayores accionistas) se completa con el del archivo; lo que Yahoo sí contestó se respeta. Además, a la fecha del 26/10 `data/paquetes_yahoo.json` todavía no está subido a GitHub: sin ese archivo no hay nada que completar.
 

@@ -1,0 +1,57 @@
+﻿ticker;descripcion;categoria;pais;perfil;acceso;nuevo;etiqueta
+SPY;Empresas del índice S&P 500. Las 500 empresas más importantes de EEUU.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+IVV;Ídem al anterior aunque más barato y con más activos bajo gestión (es más grande).;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+QQQ;Empresas del índice Nasdaq. Las 100 empresas tecnológicas más importantes de EEUU.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+DIA;Empresas del índice Dow Jones Industrial. Las 30 empresas industriales más importantes de EEUU.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+SPHQ;Invierte en acciones de alta calidad según análisis fundamental, como retorno sobre el capital invertido y la deuda.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+ESGU;Exposición a acciones de gran y mediana capitalización con prácticas ambientales, sociales y de gobierno corporativo (ESG) favorables.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+RSP;Replica al índice S&P 500 Equal Weight. A diferencia de este, IVV y SPY ponderan más a las empresas más grandes, mientras RSP las pondera por igual.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+IJH;Empresas de pequeña y mediana capitalización de EEUU.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+IVE;Inversión en Valor. Busca empresas grandes que se cree que están subvaluadas por el mercado.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+VIG;Empresas que tienen un historial de aumento de dividendos a lo largo del tiempo.;Solo EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+IVW;Inversión en Crecimiento. Busca empresas grandes cuyas ganancias se espera que aumenten a una tasa superior al promedio del mercado.;Solo EE.UU.;Estados Unidos;Agr;CEDEAR;;
+IWM;Empresas del índice Russell 2000. Incluye 2000 empresas de pequeña capitalización de EEUU.;Solo EE.UU.;Estados Unidos;Agr;CEDEAR;;
+ACWI;Replica al índice MSCI All World. Empresas de todo el mundo de mediana y gran capitalización, incluidos países desarrollados y emergentes.;Internacionales con EE.UU.;;Mod y Agr;CEDEAR;;
+IWDA;Empresas de países desarrollados.;Internacionales con EE.UU.;;Mod y Agr;CEDEAR;;
+VEA;Empresas de mercados desarrollados no estadounidenses. Incluye acciones de Europa, Canadá y la región del Pacífico.;Internacionales sin EE.UU.;;Mod y Agr;CEDEAR;;
+EFA;Empresas de mercados desarrollados no estadounidenses ni canadienses. Incluye acciones de Europa y la región del Pacífico.;Internacionales sin EE.UU.;;Mod y Agr;CEDEAR;;
+IEUR;Empresas de Europa.;Internacionales sin EE.UU.;;Mod y Agr;CEDEAR;;
+EEM;Empresas grandes y medianas de Mercados Emergentes como China y Brasil.;Internacionales sin EE.UU.;;Mod y Agr;CEDEAR;;
+IEMG;Como el anterior pero incluye además empresas de pequeña capitalización y es muchísimo más barato.;Internacionales sin EE.UU.;;Mod y Agr;CEDEAR;;
+EWJ;Replica el comportamiento del mercado japonés.;Internacionales sin EE.UU.;Japón;Mod y Agr;CEDEAR;;
+ILF;Las 40 empresas más grandes de Latinoamérica.;Internacionales sin EE.UU.;;Agr;CEDEAR;;
+EWZ;Replica el comportamiento del mercado brasileño.;Internacionales sin EE.UU.;Brasil;Agr;CEDEAR;;
+FXI;Replica el comportamiento del mercado chino.;Internacionales sin EE.UU.;China;Agr;CEDEAR;;
+EWY;Replica el comportamiento del mercado surcoreano.;Internacionales sin EE.UU.;Corea del Sur;Agr;CEDEAR;;
+BBCA;JPMorgan BetaBuilders Canada ETF;Internacionales sin EE.UU.;Canadá;;CEDEAR;Sí;Mercados internacionales
+BBAX;JPMorgan BetaBuilders Developed Asia Pacific ex-Japan ETF;Internacionales sin EE.UU.;;;CEDEAR;Sí;Mercados internacionales
+XLB;Empresas del sector de Materiales Básicos (químicos, metales, minería, papel, forestal y construcción).;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLRE;Empresas del sector Real Estate (inmobiliario).;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLF;Empresas del sector Financiero.;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLY;Empresas del sector Consumo Discrecional.;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLC;Empresas del sector Comunicaciones.;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLI;Empresas del sector Industrial.;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLK;Empresas del sector Tecnología.;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLE;Empresas del sector Energía.;Sectoriales de EE.UU.;Estados Unidos;Mod y Agr;CEDEAR;;
+XLP;Empresas del sector Consumo Defensivo.;Sectoriales de EE.UU.;Estados Unidos;Todos;CEDEAR;;
+XLV;Empresas del sector Salud.;Sectoriales de EE.UU.;Estados Unidos;Todos;CEDEAR;;
+XLU;Empresas del sector Servicios Públicos.;Sectoriales de EE.UU.;Estados Unidos;Todos;CEDEAR;;
+GLD;Replica el comportamiento del precio del Oro.;Commodities;;Todos;CEDEAR;;
+SLV;Replica el comportamiento del precio de la Plata.;Commodities;;Todos;CEDEAR;;
+USO;Replica el comportamiento del precio del Petróleo.;Commodities;;Mod y Agr;CEDEAR;;
+XME;Empresas estadounidenses especialistas en extracción y procesamiento de Minerales y Metales.;Commodities;Estados Unidos;Mod y Agr;CEDEAR;;
+GDX;Empresas internacionales especialistas en extracción y procesamiento de Oro.;Commodities;;Mod y Agr;CEDEAR;;
+COPX;Empresas internacionales especialistas en extracción y procesamiento de Cobre.;Commodities;;Mod y Agr;CEDEAR;;
+GSG;iShares S&P GSCI Commodity-Indexed Trust;Commodities;;;CEDEAR;Sí;Commodities diversificados
+CORN;Teucrium Corn Fund;Commodities;;;CEDEAR;Sí;Agro
+SOYB;Teucrium Soybean Fund;Commodities;;;CEDEAR;Sí;Agro
+SMH;Empresas internacionales de Semiconductores.;Especializados;;Agr;CEDEAR;;
+ARKK;Replica al fondo de inversión ARK Innovation, dirigido por K. Wood y enfocado en empresas de tecnología emergente.;Especializados;;Agr;CEDEAR;;
+CIBR;Empresas de Ciberseguridad del Nasdaq.;Especializados;;Agr;CEDEAR;;
+IBB;Acciones de Biotecnología del Nasdaq.;Especializados;;Agr;CEDEAR;;
+ICLN;Empresas internacionales de Energía limpia y Renovable.;Especializados;;Agr;CEDEAR;;
+ITA;Empresas estadounidenses del sector Aeroespacial y Defensa.;Especializados;Estados Unidos;Agr;CEDEAR;;
+IBIT;Replica el comportamiento del precio del Bitcoin.;Criptomonedas;;Agr;CEDEAR;;
+ETHA;Replica el comportamiento del precio de Ethereum.;Criptomonedas;;Agr;CEDEAR;;
+SGOV;Replica el comportamiento de los bonos estadounidenses de muy corto plazo.;ETFs del exterior;Estados Unidos;Todos;Solo por mesa del broker;;
+SCHD;Empresas de alta calidad estadounidenses con dividendos elevados y consistentes.;ETFs del exterior;Estados Unidos;Mod y Agr;Solo por mesa del broker;;
