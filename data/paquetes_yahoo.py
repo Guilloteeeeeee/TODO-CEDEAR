@@ -53,13 +53,33 @@ def cargar(ruta=None):
         return {}, None
 
 
+def _vacio(v):
+    return v is None or (isinstance(v, (str, list, tuple, dict, set)) and len(v) == 0)
+
+
 def completar(vivo, guardado):
     """Mezcla lo que respondio Yahoo en vivo con lo guardado: para cada dato que vino vacio se usa el del archivo.
+    v1.2.62: el "gobierno" (directivos y accionistas) tambien por dentro. Yahoo desde la nube a veces contesta a medias (por ejemplo los accionistas pero no la lista de directivos: CAT, PM...):
+    el diccionario "gobierno" de la nube no estaba vacio y el archivo no se usaba; ahora cada campo vacio se completa con el del archivo.
     Devuelve (resultado, [claves tomadas del archivo])."""
     res = dict(vivo)
     usadas = []
     for k in CLAVES:
-        if not res.get(k) and (guardado or {}).get(k):
-            res[k] = guardado[k]
+        g = (guardado or {}).get(k)
+        if not g:
+            continue
+        v = res.get(k)
+        if not v:
+            res[k] = g
             usadas.append(k)
+        elif k == "gobierno" and isinstance(v, dict) and isinstance(g, dict):       # solo este: es el que Yahoo contesta a medias
+            nuevo = dict(v)
+            tomo = False
+            for sub, sv in g.items():
+                if _vacio(nuevo.get(sub)) and not _vacio(sv):
+                    nuevo[sub] = sv
+                    tomo = True
+            if tomo:
+                res[k] = nuevo
+                usadas.append(k)
     return res, usadas
