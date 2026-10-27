@@ -133,6 +133,10 @@ ICONOS = {
                         '<path d="M28.5 30v-3.5a3.5 3.5 0 0 1 7 0V30" fill="none" stroke="#1e40af" stroke-width="2.6"/>', "Ciberseguridad"),
     "idea": _insignia("#be185d", '<circle cx="32" cy="27" r="13" fill="#fff"/><path d="M26 38h12v5a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3z" fill="#fff"/><rect x="27.5" y="48" width="9" height="3.4" rx="1.7" fill="#fff"/>'
                     '<path d="M28 27l4 4 4-4" fill="none" stroke="#be185d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>', "Innovacion"),
+    # --- apalancados e inversos
+    "apalancado": _insignia("#b91c1c", '<path d="M13 41L26 28l8 8 16-17" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>'
+                            '<polygon points="52,14 52,28 38,14" fill="#fff"/><text x="21" y="55" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">3x</text>', "Apalancado 3x"),
+    "inverso": _insignia("#334155", '<path d="M32 13v30" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/><polygon points="18,38 46,38 32,53" fill="#fff"/>', "Inverso"),
 }
 
 # Para los que se cargan con otro nombre (compatibilidad con los dibujos de Bitcoin y Ethereum, que viven en ui/etfs.py)

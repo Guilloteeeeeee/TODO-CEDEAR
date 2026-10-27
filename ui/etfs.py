@@ -24,7 +24,7 @@ TIPS = {
     "ETF": INTRO,
     "Precio": "Precio de una unidad del ETF en dólares, en su mercado de origen (no en tiempo real).",
     "Descripción": "Qué replica o en qué invierte el ETF.",
-    "Categoría": "Grupo al que pertenece (Solo USA, Internacionales, Sectoriales, Commodities...).",
+    "Categoría": "Grupo al que pertenece (USA, Internacionales, Sectores, Temáticos, Minería, Materias Primas, Apalancados...).",
     "Gestor": "Empresa que administra el ETF (la que lo crea y lo mantiene).",
     "AUM": "Activos bajo gestión: cuánto dinero tiene invertido el ETF en total. Más grande suele significar más liquidez y más permanencia en el tiempo. B = mil millones, M = millón.",
     "Comisión": "Lo que cobra el ETF por año, como porcentaje de lo invertido (expense ratio). Ya está descontada del precio; no se paga aparte.",

@@ -8,7 +8,7 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 - [ ] Actualización trimestral: `generar_cache.bat` (valida antes de reemplazar; si sale rota guarda `data/cache_rechazado.json`) y `bajar_fichas.bat` (sin `data/fichas.json` la ficha depende de Yahoo en vivo).
 - [ ] Confirmar que en `data/historial` están `cache_2026-10-22.json` (re-puntuado) y el de hoy.
 - [ ] Correr el Modo lote del DCF para las empresas que faltan y luego `python foso_desde_lote.py Lote_DCF_*.xlsx` (hoy `data/foso.json` cubre 53 de 166).
-- [ ] **Pendientes de la PC (v1.2.68):** `bajar_etfs_yahoo.bat` (datos, Composición y descripción traducida de los ETFs → `data/etfs_yahoo.json`); `bajar_paquetes_yahoo.bat` de nuevo (agrega intereses y deuda de corto/largo plazo a los estados → `data/paquetes_yahoo.json`); Modo lote del DCF con los 4 bloques de la lista de foso; `probar_fuentes_noticias.bat`; después `generar_analisis_fundamental.bat` (necesita clave de API; primero revisar con `--bloque KO` y probar con 2 o 3 empresas).
+- [ ] **Pendientes de la PC (v1.2.69):** `bajar_etfs_yahoo.bat` (datos, Composición y descripción traducida de los ETFs → `data/etfs_yahoo.json`); `bajar_paquetes_yahoo.bat` de nuevo (agrega intereses y deuda de corto/largo plazo a los estados → `data/paquetes_yahoo.json`); Modo lote del DCF con los 4 bloques de la lista de foso; `probar_fuentes_noticias.bat`. El Análisis Fundamental ya no usa API: el texto lo redacta Claude en la sesión y se carga con `generar_analisis_fundamental.py --agregar` (tras tu OK al ejemplo de TJX).
 - [ ] Pedirle una lista NUEVA de GuruFocus (la del 23/10 es `gurufocus_23-10-2026.txt`, 163 empresas).
 
 ## B. Balance principal (fijar la regla ANTES de ver números)

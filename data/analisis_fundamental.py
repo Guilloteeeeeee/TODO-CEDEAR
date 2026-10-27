@@ -1,17 +1,19 @@
-"""Análisis Fundamental automático (v1.2.68): una visión general de cada empresa con Resumen, Desarrollo (incluida la Tesis de inversión) y Conclusión.
+"""Análisis Fundamental (v1.2.69): una visión general de cada empresa, al estilo del análisis de TJX: Resumen, parte cualitativa (negocio, foso, competidores, caso bajista),
+una tabla por año para cada punto de los números con su lectura crítica, puntos fuertes y débiles, tesis de inversión y conclusión.
 
-Cómo funciona (nada se calcula ni se revisa a mano):
-  1. `bloque_datos()` arma, con los estados financieros que ya baja `bajar_paquetes_yahoo.py` (último año móvil TTM + 4 años fiscales), la descripción del negocio y
-     el foso/etapa, un bloque de texto con las cifras, los ratios y las variaciones YA calculados por el código. Si un dato no está, dice "no disponible".
-  2. `generar_analisis_fundamental.py` manda ese bloque junto con `data/prompt_analisis_fundamental.txt` a la API de Claude (hace falta una clave, ver el .bat) y
-     guarda lo que contesta en `data/analisis_fundamental.json`.
-  3. La solapa "Análisis Fundamental" de la ficha muestra lo guardado (`para_ficha()`), con la fecha y la aclaración de que es un texto generado con IA, informativo y
-     sin recomendación. Si la empresa no tiene análisis, la solapa dice "Próximamente".
-No hay puntaje, ni PASA / NO PASA, ni filtros de exclusión (decisión de Guille del 27/10/2026): el texto es una lectura de conjunto para decidir si vale la pena seguir
-investigando. Las funciones de este módulo no tocan la red."""
+Cómo funciona:
+  1. Las TABLAS las arma el código (`data/af_tablas.py`) con los estados financieros de Yahoo que ya guarda `data/paquetes_yahoo.json`. Nada se tipea a mano.
+  2. El TEXTO (resumen, lectura de cada punto, tesis...) lo redacta una persona o un asistente de IA a partir de `bloque_datos()` y las reglas de
+     `data/prompt_analisis_fundamental.txt`, y se guarda en `data/analisis_fundamental.json` con `generar_analisis_fundamental.py --agregar archivo.json`
+     (que valida el formato). Ya no hace falta ninguna clave ni pago: el archivo del texto puede venir de cualquier chat.
+  3. La solapa "Análisis Fundamental" de la ficha muestra el texto junto con las tablas calculadas, la fecha y la aclaración de que es información, no una recomendación.
+No hay PASA / NO PASA ni filtros de exclusión (decisión de Guille del 27/10/2026); cada punto lleva una etiqueta informativa (Favorable / Mixto / A vigilar /
+Informativo) y una síntesis de una línea. Las funciones de este módulo no tocan la red."""
 import json
 import os
 import re
+
+from data import af_tablas as T
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RUTA = os.path.join(AQUI, "analisis_fundamental.json")
@@ -143,7 +145,7 @@ def alertas(estados, moneda=None):
     return av
 
 
-def bloque_datos(ticker, nombre="", sector="", industria="", pais="", descripcion="", estados=None, foso=None, etapa=None, moneda=None):
+def bloque_datos(ticker, nombre="", sector="", industria="", pais="", descripcion="", estados=None, foso=None, etapa=None, moneda=None, extra=None):
     """Texto con todo lo que ve el modelo sobre la empresa. Nada se inventa: lo que falta dice 'no disponible'."""
     est = estados or {}
     moneda = moneda or est.get("moneda")
@@ -158,20 +160,45 @@ def bloque_datos(ticker, nombre="", sector="", industria="", pais="", descripcio
     if not any(est.get(k) for k in ("resultados", "balance", "flujo")):
         L.append("ESTADOS FINANCIEROS: no disponibles. No hagas análisis numérico; limitate a lo cualitativo y decilo en el resumen.")
         return "\n".join(L)
-    L.append(f"ESTADOS FINANCIEROS (montos en millones de {moneda or 'la moneda de reporte'}; ganancia por acción en unidades; acciones en millones). TTM = últimos 12 meses.")
-    for clave, nom in (("resultados", "Resultados"), ("balance", "Balance"), ("flujo", "Flujo de efectivo")):
-        L += _tabla(est.get(clave), nom)
-        L.append("")
-    L += _tabla(est.get("ratios"), "Ratios calculados")
-    L.append("")
-    L.append("VARIACIONES Y COMPARACIONES CALCULADAS:")
-    L += derivados(est)
+    L.append("LOS NÚMEROS, punto por punto (son las mismas tablas que va a ver el lector; las cifras y los CAGR ya están calculados, usalos tal cual):")
+    L.append(T.bloque_texto(est))
+    L += _bloque_extra(extra)
     av = alertas(est, moneda)
     if av:
         L.append("")
         L.append("AVISOS DE DATOS:")
         L += [f"- {a}" for a in av]
     return "\n".join(L)
+
+
+def _bloque_extra(extra):
+    """Líneas con dividendos y gerencia (de paquetes_yahoo.json: 'dividendos' y 'gobierno'), si están. Sin datos no agrega nada."""
+    ex = extra or {}
+    out = []
+    dv = ex.get("dividendos") or {}
+    if dv.get("tasa_anual") is not None:
+        tr = dv.get("trayectoria") or {}
+        cg = tr.get("cagr") or {}
+        tasa = _es("%.2f" % float(dv["tasa_anual"]))
+        partes = [f"dividendo anual actual {tasa} por acción"]
+        if tr.get("anios_pagando"):
+            partes.append(f"paga desde {tr.get('primer_anio')} ({tr['anios_pagando']} años)")
+        for k, r in ((3, "3 años"), (10, "10 años")):
+            v = cg.get(k, cg.get(str(k)))
+            if v is not None:
+                partes.append(f"crecimiento anual compuesto del dividendo a {r}: {_fmt(v, 'pct')}")
+        out += ["", "DIVIDENDOS (Yahoo): " + "; ".join(partes) + "."]
+    gb = (ex.get("gobierno") or {}).get("directivos") or []
+    if gb:
+        out += ["", "EQUIPO DIRECTIVO (Yahoo; edad y pago anual en dólares si figuran):"]
+        for d in gb[:5]:
+            edad = ", %d años" % int(d["edad"]) if d.get("edad") else ""
+            pago = ", pago %s M" % _es("%.1f" % (d["pago"] / 1e6)) if d.get("pago") else ""
+            out.append(f"- {d.get('nombre', '').strip()} — {d.get('cargo', '')}{edad}{pago}")
+    ag = (ex.get("agenda") or {}).get("resultados")
+    if ag and ag[0]:
+        out += ["", f"PRÓXIMOS RESULTADOS (Yahoo): {str(ag[0]).replace('d:', '')}."]
+    return out
 
 
 def armar_prompt(bloque, ruta=None):
@@ -181,9 +208,77 @@ def armar_prompt(bloque, ruta=None):
 
 # --- respuesta del modelo -----------------------------------------------------------------------------------------------------
 
-def parsear_respuesta(texto):
-    """Diccionario {'resumen', 'desarrollo': [{'titulo','texto'}], 'conclusion', 'riesgo_ia'} a partir de lo que contestó el modelo, o None si no es utilizable
-    (sin JSON, sin resumen o sin conclusión, o sin ningún apartado del desarrollo)."""
+def _txt(x):
+    return str(x or "").strip()
+
+
+def _lista(x):
+    return [_txt(i) for i in (x if isinstance(x, list) else []) if _txt(i)]
+
+
+def validar(d, estados=None):
+    """(análisis limpio | None, [problemas]). Esquema:
+      resumen, tesis, conclusion: texto; riesgo_ia: muy alto|alto|moderado|bajo|muy bajo
+      cualitativo: [{titulo, texto}]            (El negocio, Ventaja competitiva, Competidores, Gerencia, Caso bajista...)
+      puntos: {clave: {etiqueta, sintesis, lectura, conclusion}}      (claves de data/af_tablas.PUNTOS; etiqueta: Favorable|Mixto|A vigilar|Informativo)
+      fortalezas, debilidades: [texto]          (las debilidades, de la más a la menos importante)
+      fuentes: [texto]
+    Si se pasan los estados, cada punto con tabla tiene que tener su lectura (los que no tienen datos se omiten solos)."""
+    pr = []
+    if not isinstance(d, dict):
+        return None, ["no es un objeto JSON"]
+    out = {k: _txt(d.get(k)) for k in ("resumen", "tesis", "conclusion")}
+    out["conclusion"] = out["conclusion"] or _txt(d.get("conclusión"))
+    for k in ("resumen", "tesis", "conclusion"):
+        if not out[k]:
+            pr.append(f"falta '{k}'")
+    r = _txt(d.get("riesgo_ia")).lower()
+    out["riesgo_ia"] = r if r in RIESGOS_IA else ""
+    if not out["riesgo_ia"]:
+        pr.append("'riesgo_ia' tiene que ser: " + " | ".join(RIESGOS_IA))
+    out["cualitativo"] = [{"titulo": _txt(x.get("titulo")), "texto": _txt(x.get("texto"))} for x in (d.get("cualitativo") or [])
+                          if isinstance(x, dict) and _txt(x.get("titulo")) and _txt(x.get("texto"))]
+    if len(out["cualitativo"]) < 3:
+        pr.append("'cualitativo' necesita al menos 3 apartados (negocio, competidores, caso bajista...)")
+    pts = {}
+    for c, x in (d.get("puntos") or {}).items():
+        if c not in T.CLAVES:
+            pr.append(f"punto desconocido '{c}'")
+            continue
+        if not isinstance(x, dict):
+            pr.append(f"punto '{c}' mal formado")
+            continue
+        et = _txt(x.get("etiqueta"))
+        if et not in T.ETIQUETAS:
+            pr.append(f"punto '{c}': etiqueta '{et}' (tiene que ser: {' | '.join(T.ETIQUETAS)})")
+        p = {"etiqueta": et, "sintesis": _txt(x.get("sintesis")), "lectura": _txt(x.get("lectura")), "conclusion": _txt(x.get("conclusion"))}
+        for k in ("sintesis", "lectura", "conclusion"):
+            if not p[k]:
+                pr.append(f"punto '{c}': falta '{k}'")
+        pts[c] = p
+    out["puntos"] = pts
+    if estados is not None:
+        for c in T.todas(estados):
+            if c not in pts:
+                pr.append(f"falta el punto '{c}' (tiene datos)")
+        for c in pts:
+            if c not in T.todas(estados):
+                pr.append(f"el punto '{c}' no tiene datos y se descarta")
+                out["puntos"].pop(c, None)
+        pr = [x for x in pr if not x.endswith("se descarta")]
+    elif not pts:
+        pr.append("'puntos' vacío")
+    out["fortalezas"], out["debilidades"] = _lista(d.get("fortalezas")), _lista(d.get("debilidades"))
+    if len(out["fortalezas"]) < 2:
+        pr.append("'fortalezas' necesita al menos 2")
+    if len(out["debilidades"]) < 2:
+        pr.append("'debilidades' necesita al menos 2")
+    out["fuentes"] = _lista(d.get("fuentes"))
+    return (None if pr else out), pr
+
+
+def parsear_respuesta(texto, estados=None):
+    """Análisis validado a partir del texto (JSON, con o sin ```), o None si no sirve. Para ver los problemas: `validar(json.loads(...))`."""
     if not isinstance(texto, str):
         return None
     t = re.sub(r"^```(?:json)?\s*|\s*```$", "", texto.strip())
@@ -194,18 +289,7 @@ def parsear_respuesta(texto):
         d = json.loads(t[i:j + 1])
     except ValueError:
         return None
-    if not isinstance(d, dict):
-        return None
-    resumen = str(d.get("resumen") or "").strip()
-    concl = str(d.get("conclusion") or d.get("conclusión") or "").strip()
-    sec = []
-    for x in d.get("desarrollo") or []:
-        if isinstance(x, dict) and str(x.get("titulo") or "").strip() and str(x.get("texto") or "").strip():
-            sec.append({"titulo": str(x["titulo"]).strip(), "texto": str(x["texto"]).strip()})
-    if not resumen or not concl or not sec:
-        return None
-    riesgo = str(d.get("riesgo_ia") or "").strip().lower()
-    return {"resumen": resumen, "desarrollo": sec, "conclusion": concl, "riesgo_ia": riesgo if riesgo in RIESGOS_IA else ""}
+    return validar(d, estados)[0]
 
 
 # --- archivo ------------------------------------------------------------------------------------------------------------------
