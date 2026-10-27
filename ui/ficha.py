@@ -530,6 +530,14 @@ def _barra_52s(row):
 
 _FOSO_CACHE = {}
 
+ETAPAS_TIP = {
+    "En crecimiento": "Está expandiendo ventas y ganancias a buen ritmo.",
+    "Madura": "Negocio estable y consolidado: crece poco y suele repartir buena parte de sus ganancias.",
+    "Cíclica o de materias primas": "Sus resultados suben y bajan con el ciclo económico o con el precio de lo que vende.",
+    "En declive o dificultades": "Sus ventas o ganancias vienen cayendo o enfrenta problemas importantes.",
+    "Con pérdidas y creciendo": "Todavía no gana plata, pero sus ventas crecen.",
+}
+
 
 def _foso_de(ticker):
     """Foso competitivo de la empresa (data/foso.json, armado con foso_desde_lote.py a partir del Modo lote del DCF) o None si no esta."""
@@ -660,6 +668,9 @@ def _tiles_resumen(row, ficha, mercado, agenda=None):
     if foso and foso.get("foso"):
         filas.append(_fila_kv("Foso competitivo", "<b>" + html.escape(foso["foso"]) + "</b>",
                               "Ventaja competitiva que se sostiene en el tiempo: retorno sobre el capital por encima del costo del capital, márgenes estables y mejores que los de su sector."))
+    if foso and foso.get("etapa"):      # v1.2.65: etapa de la empresa (del mismo archivo del foso)
+        et = str(foso["etapa"])
+        filas.append(_fila_kv("Etapa de la empresa", "<b>" + html.escape(et) + "</b>", ETAPAS_TIP.get(et, "Momento del negocio en el que se encuentra la empresa.")))
     if mercado:
         adr = ' · <span title="ADR: certificado que representa acciones de una empresa extranjera y cotiza en Estados Unidos">ADR</span>' if _fichas.es_adr(t) else ""
         filas.append(_fila_kv("Mercado donde cotiza", html.escape(mercado) + adr, "Bolsa donde se negocia la acción original."))
