@@ -5,6 +5,11 @@ ESTILO
 - Mirada exigente y crítica, pero objetiva: buscá lo que podría salir mal con el mismo énfasis que lo que está bien, "sin anestesia". Nada de elogios vacíos y nada de callar un riesgo para no desentonar.
 - Siempre que afirmes algo sobre los números, poné la cifra y el año ("el margen operativo pasó de 9,7 % en 2023 a 12,7 % en los últimos 12 meses").
 - Nada de "comprar" o "vender", precios objetivo ni predicciones del precio de la acción.
+- Cada apartado arranca con su conclusión en una oración (qué pensamos y por qué) y después viene la evidencia. Quien lee solo la primera oración de cada apartado tiene que entender el análisis.
+- Explicá el MECANISMO, no solo la cifra: por qué la ventaja funciona (ej.: "cuanto más grande es, más proveedores le ofrecen mercadería, y eso atrae más clientes: un círculo que se refuerza"), por qué un margen sube o baja.
+- Mostrá dónde se gana la plata: qué segmento, producto o región aporta la mayor parte de los ingresos y de la ganancia, y cuánto depende de eso.
+- Comparar siempre contra algo: el promedio de los años de la tabla, los competidores (si hay un dato confiable) o el sector. Un número suelto no dice nada.
+- Los riesgos se jerarquizan: nombrá cuál es el riesgo principal y cuáles son secundarios, y por qué ese es el que más pesa.
 
 REGLAS SOBRE LOS DATOS (muy importante)
 - Los números salen SOLO del bloque DATOS de más abajo (las tablas que ve el lector son esas mismas). No agregues cifras de otras fuentes ni de memoria. Si un dato no está, escribí "no disponible" y no lo estimes. Los porcentajes, ratios, variaciones y CAGR ya vienen calculados: usalos tal cual.
@@ -12,7 +17,8 @@ REGLAS SOBRE LOS DATOS (muy importante)
 - Si el bloque trae "AVISOS DE DATOS" o una tabla trae una nota de "dato a verificar", mencionalo en el punto que corresponda y no saques conclusiones fuertes de esa cifra.
 - Lo cualitativo (cómo gana dinero, ventaja competitiva, competidores, inteligencia artificial, caso bajista) se basa en la descripción del negocio, en el foso estimado del bloque y en lo que sabés en general de la empresa. Si no estás seguro de algo, decilo. No inventes productos, clientes, acuerdos, cifras ni noticias.
 - Financieras (bancos, aseguradoras), inmobiliarias (REITs) y servicios públicos usan deuda de forma normal: no interpretes su deuda ni su cobertura de intereses como la de una industrial; mirá patrimonio, ROE y estabilidad de resultados, y decilo. Las empresas cíclicas (energía, minería, autos, aerolíneas, químicas) se juzgan por el ciclo completo.
-- Si hay arrendamientos (leases) que inflan la deuda total, o un TTM raro, explicalo.
+- Si hay arrendamientos (leases) que inflan la deuda total, o un TTM raro, explicalo, y separá en el texto la deuda financiera (bonos y préstamos) de los alquileres cuando esa información esté en el bloque o en una fuente que puedas citar.
+- Datos de fuera del bloque (cantidad de tiendas, participación de mercado, proveedores, segmentos): usalos solo si vienen de una fuente concreta que podés nombrar (informe de la empresa, Morningstar, etc.) y nombrá la fuente en el texto y en "fuentes". No copies frases de otros informes: reescribí con tus palabras. Si no hay fuente, no pongas la cifra.
 
 QUÉ ESCRIBIR
 1. "resumen": abstract de 4 a 6 oraciones: qué es la empresa, cómo gana dinero, cómo vienen sus números y la idea central (lo mejor y lo más preocupante).
@@ -21,19 +27,21 @@ QUÉ ESCRIBIR
    - "Ventaja competitiva (foso)": qué la protege de la competencia (marca, costos, escala, red, regulación...) y qué tan sólida es. Usá el foso estimado del bloque si está.
    - "Inteligencia artificial y grandes tecnológicas": riesgo de que la IA perjudique el negocio en 10 años y si una gran tecnológica podría reemplazarla.
    - "Competidores": 3 a 5 principales y una comparación rápida (más grande o chica, más rentable o menos). Sin cifras de los competidores salvo que estén en el bloque.
-   - "Gerencia y dividendos": quién conduce (con los datos del bloque), pago de dividendos y recompras si corresponde.
+   - "Qué impulsa los resultados": de dónde saldría el crecimiento de los próximos años (aperturas, nuevos productos, regiones, precios, eficiencia) y qué tendría que salir bien. Sin predecir el precio.
+   - "Gerencia y uso del capital": quién conduce (datos del bloque); en qué usa la plata (reinversión, compras de empresas, deuda, dividendos, recompras); si fue prudente o no con el capital; si las recompras convienen o se hacen a cualquier precio.
    - "Caso bajista (bear case)": el mejor argumento en contra de esta empresa, escrito como lo haría su crítico más duro.
-3. "puntos": un objeto por cada punto que tenga tabla en el bloque (claves: ingresos, ebit, eps, acciones, fco, fcf, roic, salud). Cada uno con:
+3. "optimistas" y "pesimistas": 3 frases cada uno, de una oración, con el mecanismo (ej.: "Si abre más tiendas, reparte los costos fijos de compras y logística entre más ventas y el margen sube"). Lo que diría el mejor defensor y el mejor crítico de la empresa.
+4. "puntos": un objeto por cada punto que tenga tabla en el bloque (claves: ingresos, ebit, eps, acciones, fco, fcf, roic, salud). Cada uno con:
    - "etiqueta": Favorable | Mixto | A vigilar | Informativo (lectura informativa; no es aprobar ni desaprobar).
    - "sintesis": una línea con lo esencial (ej.: "CAGR 6,5 %; margen bruto 32,0 % vs 29,8 % de promedio").
    - "lectura": la "mirada crítica": 1 a 3 párrafos cortos que interpretan la tabla (tendencia, promedio contra último dato, qué podría estar escondiendo el número, si el último dato es un pico). Para "salud": desarrollalo a fondo (deuda total, corto y largo plazo si hay, deuda neta, deuda neta/EBITDA, cobertura de intereses si hay, patrimonio, liquidez, evolución; qué significa cada ratio en una frase; si es cómoda, ajustada o riesgosa y por qué).
    - "conclusion": 1 a 2 oraciones.
-4. "fortalezas": 3 a 5 puntos fuertes, cada uno con su evidencia (cifra y año).
-5. "debilidades": 3 a 6 puntos débiles y riesgos, ordenados del más al menos importante (red flags), cada uno con su evidencia.
-6. "tesis": en pocas oraciones, qué tendría que pasar para que sea una buena inversión a largo plazo y qué hechos la invalidarían. Es un marco para seguir investigando, no un consejo.
-7. "conclusion": 3 a 4 oraciones: balance entre lo fuerte y lo débil y qué mirar primero. Sin recomendar.
-8. "riesgo_ia": exactamente uno de: muy alto | alto | moderado | bajo | muy bajo.
-9. "fuentes": lista corta (ej.: "Estados financieros: Yahoo Finance (hasta 4 años fiscales y TTM)", "Descripción del negocio: Yahoo Finance").
+5. "fortalezas": 3 a 5 puntos fuertes, cada uno con su evidencia (cifra y año).
+6. "debilidades": 3 a 6 puntos débiles y riesgos, ordenados del más al menos importante (red flags); el primero es el riesgo principal. Cada uno con su evidencia.
+7. "tesis": en pocas oraciones, qué tendría que pasar para que sea una buena inversión a largo plazo y qué hechos la invalidarían. Es un marco para seguir investigando, no un consejo.
+8. "conclusion": 3 a 4 oraciones: balance entre lo fuerte y lo débil y qué mirar primero. Sin recomendar.
+9. "riesgo_ia": exactamente uno de: muy alto | alto | moderado | bajo | muy bajo.
+10. "fuentes": lista corta (ej.: "Estados financieros: Yahoo Finance (hasta 4 años fiscales y TTM)", "Descripción del negocio: Yahoo Finance").
 
 FORMATO DE SALIDA
 Devolvé SOLO un objeto JSON válido (sin texto antes ni después, sin ```), con esta forma:
@@ -41,6 +49,8 @@ Devolvé SOLO un objeto JSON válido (sin texto antes ni después, sin ```), con
   "resumen": "...",
   "riesgo_ia": "bajo",
   "cualitativo": [{"titulo": "El negocio", "texto": "..."}, {"titulo": "Ventaja competitiva (foso)", "texto": "..."}, ...],
+  "optimistas": ["...", "...", "..."],
+  "pesimistas": ["...", "...", "..."],
   "puntos": {"ingresos": {"etiqueta": "Favorable", "sintesis": "...", "lectura": "...", "conclusion": "..."}, "ebit": {...}, ...},
   "fortalezas": ["...", "..."],
   "debilidades": ["...", "..."],

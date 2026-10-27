@@ -995,6 +995,10 @@ def tiles_analisis(af, estados=None):
     ia = (f'<div class="af-ia" title="Qué tan probable es que la inteligencia artificial perjudique el negocio dentro de 10 años, según el análisis.">'
           f'Riesgo de la inteligencia artificial a 10 años: <b>{html.escape(af["riesgo_ia"].capitalize())}</b></div>') if af.get("riesgo_ia") else ""
     t = [_tile("s12", "Resumen", _CSS_AF + f'<div class="af">{ia}{_texto_af(af.get("resumen"))}</div>', ac="#0ea5e9")]
+    if af.get("optimistas") and af.get("pesimistas"):
+        li = lambda L: '<div class="af"><ul>' + "".join(f"<li>{html.escape(x)}</li>" for x in L) + "</ul></div>"  # noqa: E731
+        t.append(_tile("s6", "Lo que dirían los optimistas", li(af["optimistas"]), ac="#16a34a"))
+        t.append(_tile("s6", "Lo que dirían los pesimistas", li(af["pesimistas"]), ac="#dc2626"))
     pts = af["puntos"]
     mostrados = [(c, tit) for c, tit in T.PUNTOS if c in pts]
     if mostrados:

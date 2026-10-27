@@ -9,11 +9,11 @@
    "cualitativo": [
     {
      "titulo": "El negocio",
-     "texto": "TJX compra a las marcas y a otros minoristas mercadería sobrante, de temporadas anteriores o de producción excedente, y la revende en sus tiendas a precios más bajos que los de una tienda tradicional. Según la descripción de Yahoo, vende indumentaria familiar y calzado, accesorios, belleza, decoración y muebles para el hogar, artículos de cocina, alimentos gourmet y para mascotas. Los ingresos vienen de la venta directa en tiendas y sitios de comercio electrónico.\n\nNo es un negocio indispensable: la ropa y la decoración son gastos que la gente recorta cuando aprieta el bolsillo. Pero el modelo \"off-price\" suele resistir mejor las malas épocas que una tienda tradicional, porque cuando el consumidor busca ahorrar, un lugar con marcas a menos precio se vuelve más atractivo. Eso es una impresión general del sector, no un dato de las tablas."
+     "texto": "TJX compra a las marcas y a otros minoristas mercadería sobrante, de temporadas anteriores o de producción excedente, y la revende en sus tiendas a precios más bajos que los de una tienda tradicional. Según la descripción de Yahoo, vende indumentaria familiar y calzado, accesorios, belleza, decoración y muebles para el hogar, artículos de cocina, alimentos gourmet y para mascotas. Los ingresos vienen de la venta directa en tiendas y sitios de comercio electrónico.\n\nNo es un negocio indispensable: la ropa y la decoración son gastos que la gente recorta cuando aprieta el bolsillo. Pero el modelo \"off-price\" suele resistir mejor las malas épocas que una tienda tradicional, porque cuando el consumidor busca ahorrar, un lugar con marcas a menos precio se vuelve más atractivo. Eso es una impresión general del sector, no un dato de las tablas.\n\nDónde se gana la plata: según Morningstar, Marmaxx (TJ Maxx, Marshalls y Sierra) aporta cerca del 61 % de los ingresos y, junto con Canadá, más del 80 % de la ganancia operativa. HomeGoods es la línea con más recorrido de crecimiento, y las ventas por internet son solo alrededor del 2 % del total: el negocio se hace en las tiendas."
     },
     {
      "titulo": "Ventaja competitiva (foso)",
-     "texto": "Todavía no hay un foso estimado cargado para TJX, así que esta es una lectura cualitativa general: su principal ventaja es la escala. Al ser tan grande, tiene acceso a una enorme cantidad de proveedores y puede comprar mucha mercadería oportunista, algo que un competidor chico no puede replicar fácilmente. Además, la experiencia de \"cacería de ofertas\" (nunca se sabe qué vas a encontrar) hace que el cliente vuelva seguido.\n\nEl margen bruto subió de 27,6 % en 2023 a 32,0 % en los últimos 12 meses, y eso es coherente con una empresa con poder de compra, aunque no prueba por sí solo un foso: pudo haber ayudado la baja de costos de fletes y otros factores puntuales."
+     "texto": "Conclusión: la ventaja es de costo y de escala, y parece sólida en EE.UU. La app todavía no tiene un foso estimado para TJX; Morningstar lo califica como \"amplio\".\n\nCómo funciona: marcas y tiendas se quedan con mercadería sobrante (por errores de pronóstico, cambios de temporada o pedidos cancelados) y necesitan un lugar discreto donde venderla sin ensuciar su precio. TJX es ese lugar: compra rápido, en volumen y con compradores que deciden sobre la marcha. Como tiene más proveedores (unos 21.000, contra unos 7.000 de Ross y unos 1.000 de Burlington, según Morningstar), le ofrecen más oportunidades, la tienda siempre tiene novedades y el cliente vuelve: un círculo que se refuerza solo. Por eso puede vender entre 20 % y 60 % más barato que una tienda por departamentos y aun así ganar plata.\n\nLos números que acompañan: el margen bruto subió de 27,6 % en 2023 a 32,0 % en los últimos 12 meses y el ROIC ronda el 44 % (tablas de abajo). Eso es coherente con la ventaja, aunque por sí solo no la prueba. El punto débil del foso: fuera de EE.UU. es más difícil de replicar, porque los ciclos de moda y las relaciones con proveedores cambian de un país a otro."
     },
     {
      "titulo": "Inteligencia artificial y grandes tecnológicas",
@@ -21,11 +21,15 @@
     },
     {
      "titulo": "Competidores",
-     "texto": "- Ross Stores y Burlington: los competidores directos del modelo off-price; más chicos que TJX y, en general, con menos margen. La comparación detallada no está en los datos de este análisis.\n- Walmart, Target y Amazon: compiten por el mismo bolsillo del consumidor en ropa y hogar, con más escala total pero un modelo distinto.\n- Tiendas por departamentos tradicionales (como Macy's o Kohl's): pierden clientes a manos del off-price, aunque también son proveedores y competidores a la vez.\n\nSin cifras de los competidores en el bloque de datos, la comparación es cualitativa."
+     "texto": "- Ross Stores y Burlington: los competidores directos. En el mercado off-price de ropa de EE.UU., según Morningstar (datos de 2023), Marmaxx tenía cerca del 49 % de las ventas, Ross el 30 %, Burlington el 14 % y Nordstrom Rack el 7 %: un mercado muy concentrado, donde TJX es el líder claro.\n- Walmart, Target y Amazon: compiten por el mismo bolsillo con más escala total pero otro modelo (precios bajos todos los días, no \"caza del tesoro\").\n- Tiendas por departamentos (como Macy's o Kohl's): pierden clientes frente al off-price y trabajan con márgenes operativos de un dígito medio, contra más de 11 % de TJX."
     },
     {
-     "titulo": "Gerencia y dividendos",
-     "texto": "El CEO es Ernie Herrman (64 años; pago anual de 10,7 M según Yahoo) y la presidenta ejecutiva del directorio es Carol Meyrowitz (71 años), ambas figuras con larga trayectoria en la empresa. La edad de la cúpula plantea una pregunta de sucesión que vale la pena seguir.\n\nTJX paga dividendos desde 1987 (40 años), hoy 1,92 por acción por año. El dividendo creció 13,0 % por año en los últimos 3 años y 15,2 % por año en los últimos 10. Además recompra acciones todos los años: en 2025, sumando dividendos y recompras, devolvió a los accionistas el equivalente al 99 % del flujo libre de ese año."
+     "titulo": "Qué impulsa los resultados",
+     "texto": "Los tres motores son: más tiendas (el plan de largo plazo es llegar a unas 7.500, según Morningstar), ventas algo mayores en las tiendas existentes y mejoras de eficiencia que diluyan los gastos fijos. HomeGoods y las cadenas internacionales son donde hay más espacio para crecer.\n\nLo que tiene que salir bien: que siga habiendo suficiente mercadería de calidad a buen precio, que los costos de personal y de pérdidas por robo no sigan subiendo, y que las tiendas nuevas rindan como las actuales."
+    },
+    {
+     "titulo": "Gerencia y uso del capital",
+     "texto": "El CEO es Ernie Herrman (64 años; pago anual de 10,7 M según Yahoo) y la presidenta ejecutiva del directorio es Carol Meyrowitz (71 años). La edad de la cúpula plantea una pregunta de sucesión que vale la pena seguir.\n\nUso del capital: la prioridad es reinvertir en tiendas, remodelaciones y logística (el CAPEX equivale a 36 % de la ganancia neta en los últimos 12 meses); después devuelve el resto. Paga dividendos desde 1987 (40 años): hoy 1,92 por acción por año, con un crecimiento de 13,0 % anual en 3 años y 15,2 % anual en 10. Además recompra acciones todos los años; sumando dividendos y recompras, en 2025 devolvió el 99 % del flujo libre. Morningstar destaca que evitó grandes compras de empresas (la más relevante fue Sierra Trading Post, en 2012) y que a veces recompró acciones por encima de lo que consideraba su valor justo: la recompra sistemática es buena si el precio es razonable, y poco eficiente si no lo es."
     },
     {
      "titulo": "Caso bajista (bear case)",
@@ -76,10 +80,10 @@
      "conclusion": "Retornos muy altos y estables: el negocio genera mucho valor por cada dólar invertido, con la salvedad de que el ROE se ve inflado."
     },
     "salud": {
-     "etiqueta": "Mixto",
-     "sintesis": "Deuda neta/EBITDA 0,88x; patrimonio 6.364 M → 10.651 M; sin dato de intereses",
-     "lectura": "Deuda total: 12.744 M (2023), 12.542 M (2024), 12.778 M (2025), 13.489 M (2026) y 14.317 M en los últimos 12 meses. La caja está entre 5.335 M y 6.230 M. La deuda neta (deuda menos caja) pasó de 7.267 M a 8.313 M, pero la deuda neta sobre EBITDA (cuántos años de ganancia operativa harían falta para pagarla) bajó de 1,30x a 0,88x porque el EBITDA creció más rápido que la deuda. El patrimonio casi se duplicó (de 6.364 M a 10.651 M) y la deuda total sobre patrimonio mejoró de 2,00x a 1,34x.\n\nPor qué la deuda parece alta: en el comercio minorista con muchas tiendas alquiladas, una parte grande de la deuda total que informa Yahoo son los arrendamientos (leases) de locales, y no bonos o préstamos bancarios. Hay que confirmarlo en el balance de la empresa; con los datos de este análisis no se puede separar. La parte financiera (bonos y préstamos) suele ser mucho menor y la caja la cubre.\n\nLo que se ve mal: el activo total sobre patrimonio es de 3,48x, todavía alto (aunque viene bajando desde 4,45x). La liquidez corriente es de 1,15x, ajustada: depende de rotar el inventario. Los alquileres son un compromiso fijo que, en una recesión, amplifica la caída del margen.\n\nDato faltante: el gasto por intereses no está en los datos guardados, así que no se puede calcular la cobertura de intereses (cuántas veces el resultado operativo paga los intereses). Se completa al volver a bajar los datos de Yahoo.",
-     "conclusion": "Solvencia cómoda en términos de ganancias (deuda neta/EBITDA por debajo de 1x y mejorando), con la salvedad de que gran parte de la deuda son alquileres fijos y de que falta el dato de intereses."
+     "etiqueta": "Favorable",
+     "sintesis": "Con alquileres, deuda neta/EBITDA 0,88x; sin alquileres, caja neta (Morningstar); falta dato de intereses",
+     "lectura": "Deuda total: 12.744 M (2023), 12.542 M (2024), 12.778 M (2025), 13.489 M (2026) y 14.317 M en los últimos 12 meses. La caja está entre 5.335 M y 6.230 M. La deuda neta (deuda menos caja) pasó de 7.267 M a 8.313 M, pero la deuda neta sobre EBITDA (cuántos años de ganancia operativa harían falta para pagarla) bajó de 1,30x a 0,88x porque el EBITDA creció más rápido que la deuda. El patrimonio casi se duplicó (de 6.364 M a 10.651 M) y la deuda total sobre patrimonio mejoró de 2,00x a 1,34x.\n\nPor qué la deuda parece alta: la deuda total de Yahoo incluye los arrendamientos (leases) de los locales, que en una cadena con miles de tiendas son la mayor parte. Según Morningstar, al cierre del año fiscal 2026 la deuda financiera (bonos y préstamos) era de unos 2.900 M contra 6.200 M de caja: caja neta, y una deuda sobre EBITDA de apenas 0,3x (dato de esa fuente, no de las tablas de Yahoo). En otras palabras, el problema de leverage es contable y no financiero.\n\nLo que se ve mal: el activo total sobre patrimonio es de 3,48x, todavía alto (aunque viene bajando desde 4,45x). La liquidez corriente es de 1,15x, ajustada: depende de rotar el inventario. Los alquileres son un compromiso fijo que, en una recesión, amplifica la caída del margen.\n\nDato faltante: el gasto por intereses no está en los datos guardados, así que no se puede calcular la cobertura de intereses (cuántas veces el resultado operativo paga los intereses). Se completa al volver a bajar los datos de Yahoo.",
+     "conclusion": "Solvencia muy cómoda: caja neta si se excluyen los alquileres y deuda neta/EBITDA de 0,88x incluyéndolos, con la salvedad de que los alquileres son un costo fijo y de que falta el dato de intereses."
     }
    },
    "fortalezas": [
@@ -90,16 +94,27 @@
     "Balance cada vez más sólido: el patrimonio pasó de 6.364 M a 10.651 M y la deuda neta/EBITDA bajó de 1,30x a 0,88x."
    ],
    "debilidades": [
+    "Riesgo principal: que haya menos mercadería de marca sobrante para comprar. Si marcas y tiendas planifican mejor, TJX pierde la materia prima de su ventaja de costo (riesgo que Morningstar señala como el más importante); no se ve en las tablas, pero afectaría directamente el margen bruto de 32,0 %.",
     "El margen operativo (12,7 %) y el margen bruto (32,0 %) están en máximos de la serie: si se normalizan, la ganancia por acción pierde parte de su crecimiento.",
     "Crecimiento de ventas de solo 6,5 % anual: la ganancia por acción (17,9 % anual) sube mucho más que el negocio, con ayuda de márgenes y recompras que no se repiten para siempre.",
     "Consumo discrecional con arrendamientos fijos: en una recesión fuerte, el costo fijo de las tiendas amplifica la caída del margen.",
     "Devuelve casi todo el flujo libre a los accionistas (99 % en 2025, 81 % en los últimos 12 meses) y el CAPEX consume 36 % de la ganancia neta: poco margen de maniobra si el flujo cayera.",
-    "Balance apalancado en términos contables: activo/patrimonio de 3,48x y liquidez corriente de 1,15x; falta el dato de intereses para completar el análisis de deuda.",
-    "Sucesión de la cúpula: el CEO tiene 64 años y la presidenta ejecutiva 71."
+    "Costos de personal y pérdidas por robo altos y persistentes, y expansión internacional que puede rendir menos que la de EE.UU."
+   ],
+   "optimistas": [
+    "Si la cadena pasa de unas 5.000 a 7.500 tiendas (el objetivo que la propia empresa elevó, según Morningstar), reparte los costos fijos de compras y logística entre más ventas y el margen operativo puede seguir subiendo.",
+    "Si cierran más tiendas por departamentos tradicionales, parte de ese gasto se desplaza a TJX, que ya capta cerca de la mitad de las ventas off-price de EE.UU. con su cadena Marmaxx (según Morningstar, datos de 2023).",
+    "Si los clientes de ingresos altos que se acostumbraron a comprar barato siguen haciéndolo, el ticket promedio sube y las ventas crecen más que las tiendas."
+   ],
+   "pesimistas": [
+    "Si marcas y tiendas aprenden a producir y planificar mejor, sobra menos mercadería para vender a descuento: sin ese excedente de buena calidad, el modelo pierde su ventaja de costo (para Morningstar, el riesgo más importante).",
+    "Si los sueldos y el robo en tiendas se quedan en niveles altos de forma permanente, el costo base sube y el margen operativo, hoy en 12,7 %, deja de poder mejorar.",
+    "Si la expansión en otros países no logra replicar la marca y el acceso a proveedores que TJX tiene en EE.UU., el crecimiento sale con menos rentabilidad que el negocio actual."
    ],
    "fuentes": [
     "Estados financieros: Yahoo Finance (hasta 4 años fiscales completos y últimos 12 meses). Las tablas y los porcentajes los calcula el programa.",
     "Descripción del negocio, dividendos y equipo directivo: Yahoo Finance.",
+    "Datos de segmentos, proveedores, participación de mercado, plan de tiendas y deuda financiera sin alquileres: informe de Morningstar sobre TJX (26/10/2026), aportado por Guille; reescritos con palabras propias.",
     "Lectura cualitativa (modelo de negocio, competencia, riesgos): criterio general del analista; no proviene de las tablas."
    ],
    "fecha": "27/10/2026",

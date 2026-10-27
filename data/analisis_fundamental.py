@@ -221,6 +221,7 @@ def validar(d, estados=None):
       resumen, tesis, conclusion: texto; riesgo_ia: muy alto|alto|moderado|bajo|muy bajo
       cualitativo: [{titulo, texto}]            (El negocio, Ventaja competitiva, Competidores, Gerencia, Caso bajista...)
       puntos: {clave: {etiqueta, sintesis, lectura, conclusion}}      (claves de data/af_tablas.PUNTOS; etiqueta: Favorable|Mixto|A vigilar|Informativo)
+      optimistas, pesimistas: [texto]           (lo que dirían los que están a favor y en contra; 3 de cada uno, una oración con el mecanismo)
       fortalezas, debilidades: [texto]          (las debilidades, de la más a la menos importante)
       fuentes: [texto]
     Si se pasan los estados, cada punto con tabla tiene que tener su lectura (los que no tienen datos se omiten solos)."""
@@ -273,6 +274,9 @@ def validar(d, estados=None):
         pr.append("'fortalezas' necesita al menos 2")
     if len(out["debilidades"]) < 2:
         pr.append("'debilidades' necesita al menos 2")
+    out["optimistas"], out["pesimistas"] = _lista(d.get("optimistas")), _lista(d.get("pesimistas"))
+    if len(out["optimistas"]) < 2 or len(out["pesimistas"]) < 2:
+        pr.append("'optimistas' y 'pesimistas' necesitan al menos 2 cada uno (lo ideal: 3)")
     out["fuentes"] = _lista(d.get("fuentes"))
     return (None if pr else out), pr
 
