@@ -577,11 +577,21 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.67 (27/10/2026): tabla de ETFs igual a la de Empresas, íconos propios, solapa Composición, buscador que filtra
+- **Tabla de ETFs:** títulos grises centrados y **ordenables** (ETF, Precio, Descripción, Categoría, Gestor, AUM, Comisión; flechita en la columna activa; los que no tienen el dato quedan al final; en el celular, selector "Ordenar por"), filas alternadas y celdas centradas, como Empresas. Sin orden elegido se ve el orden de `data/etfs.csv`. Se sacó el texto de introducción: lo que decía ("Un ETF es una canasta de activos...") sale al pasar el mouse por el título "ETF", y cada columna explica la suya.
+- **Leyenda y Excel:** "Presioná en el ETF para información detallada." y "⬇ Descargar tabla en Excel" arriba de la tabla de ETFs (`ui/exportar.py: excel_etfs_bytes`, con los ETFs que se ven y en el orden elegido); el botón de Empresas pasa a decir igual ("Descargar tabla en Excel").
+- **Empresas:** el título de la columna es "Cap. Bursátil" para que entre en una línea (el tooltip y el Excel siguen con el nombre completo).
+- **Íconos de los ETFs** (`ui/etf_iconos.py`): 52 dibujos propios en SVG, estilo Bitcoin (círculo de color con un dibujo blanco): banderas dibujadas para EWJ, EWZ, FXI, EWY y BBCA; globos de colores para los internacionales; lingotes de oro, plata y cobre, átomo, maíz, soja, barril, escudo, chip, etc. La columna `icono` del CSV pasa a ser `svg:<nombre>`; si falta, se ven las iniciales.
+- **Solapa "Composición"** (entre Resumen y Gráfico): principales tenencias, por sector y por tipo de activo (barras de un color distinto cada una) y por país (gráfico de torta). Yahoo no informa el país: hoy se muestra solo para los ETFs de un único país (columna nueva `pais` del CSV: Japón, Brasil, China, Corea del Sur y Canadá, 100 % por definición del índice); para el resto dice que todavía no hay desglose, y para oro, plata, petróleo, materias primas y cripto dice "No aplica". Si algún día el archivo de Yahoo trae la clave `paises` (lista de `{nombre, pct}`), la torta se arma sola.
+- **Resumen del ETF:** se sacó la leyenda del "Ejemplo" de la comisión, "Dividendos" ya no va en negrita y se dejó de decir "cuota" (ahora "unidad"). "Qué tiene adentro" pasó a la solapa Composición.
+- **Buscador de la franja:** `filter_mode="contains"`: al escribir quedan solo las opciones que contienen lo escrito (antes, el modo por defecto también dejaba las que tenían las letras sueltas y en orden). En Streamlit viejo sin esa opción cae al modo anterior.
+- **IWDA sí tiene CEDEAR:** la nota de BYMA ("Nuevo CEDEAR de ETF habilitado en BYMA") y la ficha de Banco Comafi confirman ratio 24:1 (ISIN AR0352918277, código de Caja de Valores 8704). No figura en el PDF del 16/09/2026, por eso se agregó a mano en `data/byma_cedears.json` con su fuente.
+
 ### v1.2.66 (27/10/2026): lista oficial de BYMA guardada, ratios controlados, SGOV y SCHD fuera
 - **Lista oficial de CEDEARs de BYMA:** `data/byma_cedears.json` guarda los 445 CEDEARs del PDF "CEDEARs Negociables en BYMA" (actualizado el 16/09/2026): símbolo, nombre, mercado y ratio; para los 59 de la planilla de nuevos CEDEARs (19/08) también ISIN, mercado de origen y monto máximo. `data/byma.py` lo lee (`cargar`, `ratio_oficial`, `controlar`). Es la base para ir sumando a la app los instrumentos que faltan (hoy hay 166 empresas y 55 ETFs; en BYMA hay 445 CEDEARs).
 - **Control de ratios:** los 162 símbolos de `data/cedears.csv` que figuran en el PDF coinciden ratio por ratio. BNY y MRSH figuran en el PDF como BK y MMC (mismo ratio); NU no figura; HWM figura 1:1 pero el precio en pesos no es compatible con ese ratio, por eso sigue sin dato. Los 54 ratios de ETF (los 53 que había cargado más IVV) coinciden con el PDF.
 - **IVV:** el PDF oficial dice 692:1 (el "IVW 692:1" de Rankia era un error de ticker). Cargado.
-- **IWDA:** no figura en la lista de BYMA ni en la planilla. Queda marcado "Solo por mesa del broker" (sin CEDEAR) hasta que Guille decida si se saca.
+- **IWDA:** no figura en el PDF del 16/09 ni en la planilla; en la v1.2.67 se confirmó por la nota de BYMA y la ficha de Comafi (ver arriba).
 - **SGOV y SCHD** sacados (no tienen CEDEAR): quedan 55 ETFs y se va la categoría "ETFs del exterior".
 - Erratas del PDF anotadas en el JSON: XLU repetido (una fila con el nombre de CIBR), y ratios con formato de hora ("10:01", "5:01", "01:01").
 - La **etapa** se ve en negrita igual que el foso (desde la v1.2.65).

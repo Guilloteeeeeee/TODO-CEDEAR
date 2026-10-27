@@ -5,25 +5,29 @@ import datetime as _dt
 import html
 from urllib.parse import quote, quote_plus
 
+from ui import etf_iconos as _ic
 from ui import ficha as F
+from ui.banderas import bandera_html
 from ui.tabla_visual import _money, _n, barra_52s_html
 
 INTRO = ("Un ETF es una canasta de activos (acciones, bonos o materias primas) que se compra como si fuera una sola acción. "
-         "Pasá el mouse por los títulos de cada columna para ver qué significan. Es información educativa, no una recomendación.")
+         "Es información educativa, no una recomendación.")        # v1.2.67: ya no es un texto fijo: sale al pasar el mouse por el título "ETF"
 
 INTROS = {
-    "resumen": "Qué es el ETF, qué tiene adentro, cuánto cuesta (comisión), si paga dividendos o los reinvierte, y dónde cotiza, con el link a su sitio oficial.",
+    "resumen": "Qué es el ETF, cuánto cuesta (comisión), si paga dividendos o los reinvierte, y dónde cotiza, con el link a su sitio oficial.",
+    "composicion": "Qué tiene adentro el ETF: sus principales tenencias y cómo se reparte por sector, por tipo de activo y por país.",
     "grafico": "Cómo se movió el precio del ETF y cuánto rindió en distintos plazos. Rendimientos pasados no son garantías de resultados futuros.",
     "noticias": "Los últimos titulares sobre el ETF, en su idioma original, con link a cada nota.",
 }
 
 TIPS = {
-    "Precio": "Precio de una cuota del ETF en dólares, en su mercado de origen (no en tiempo real).",
+    "ETF": INTRO,
+    "Precio": "Precio de una unidad del ETF en dólares, en su mercado de origen (no en tiempo real).",
     "Descripción": "Qué replica o en qué invierte el ETF.",
     "Categoría": "Grupo al que pertenece (Solo USA, Internacionales, Sectoriales, Commodities...).",
     "Gestor": "Empresa que administra el ETF (la que lo crea y lo mantiene).",
     "AUM": "Activos bajo gestión: cuánto dinero tiene invertido el ETF en total. Más grande suele significar más liquidez y más permanencia en el tiempo. B = mil millones, M = millón.",
-    "Comisión": "Lo que cobra el ETF por año, como porcentaje de lo invertido (expense ratio). Ya está descontada del precio de la cuota; no se paga aparte.",
+    "Comisión": "Lo que cobra el ETF por año, como porcentaje de lo invertido (expense ratio). Ya está descontada del precio; no se paga aparte.",
 }
 
 # Sitio de cada gestor (pagina de ETFs). Solo se usa cuando el ETF no tiene su link propio en la columna "web" de data/etfs.csv.
@@ -45,37 +49,45 @@ GESTORES_WEB = {
 
 CSS = """
 .etf{max-width:1280px;margin:6px auto 0}
-.etf-s{font-size:14px;color:#4b5563;line-height:1.5;margin:6px 2px 4px}
 .etf-n{font-size:13px;color:#6b7280;margin:2px 2px 8px}
-.etf-t{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);overflow:hidden}
-.etf-r{display:grid;grid-template-columns:minmax(190px,2.1fr) minmax(88px,.8fr) minmax(0,3.2fr) minmax(110px,1.1fr) minmax(120px,1.2fr) minmax(82px,.8fr) minmax(74px,.7fr);gap:14px;align-items:center;padding:11px 18px;border-top:1px solid #eef1f4}
+.etf-t{background:#fff;border-radius:0 0 14px 14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07);overflow:hidden}
+.etf-r{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr) minmax(0,3.2fr) minmax(0,1.4fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);align-items:stretch;border-top:1px solid #f0f2f5}
 .etf-r:first-child{border-top:0}
-.etf-hd{background:#2b2f33;color:#fff;font-size:13.5px;font-weight:700;padding:11px 18px}
-.etf-hd [title]{cursor:help}
-.etf-hd .num,.etf-r .num{text-align:right}
-.etf-nm{font-size:15px;font-weight:700;line-height:1.3}
-.etf-nm a{color:#111827;text-decoration:none}
-.etf-nm a:hover{text-decoration:underline;color:#1d4ed8}
-.etf-tk{font-size:13px;font-weight:700;color:#6b7280;margin-top:2px}
+.etf-r>div{padding:8px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
+.etf-r:nth-child(even){background:#f3f6f9}
+.etf-r:hover>div{background:#f8fafc}
+.etf-r>.ctr{align-items:center;text-align:center}
+.etf-nm{font-size:14.5px;font-weight:700;line-height:1.3}
+.etf-nm a{color:#111827;text-decoration:underline;text-decoration-color:rgba(75,85,99,.4);text-decoration-thickness:1px;text-underline-offset:2px}
+.etf-nm a:hover{color:#1d4ed8;text-decoration-color:#1d4ed8}
+.etf-tk{font-size:12.5px;font-weight:600;color:#4b5563;margin-top:1px;letter-spacing:.3px}
 .etf-d{font-size:13.5px;color:#1f2937;line-height:1.45}
-.etf-c,.etf-g{font-size:13.5px;color:#4b5563}
+.etf-c,.etf-g{font-size:13.5px;color:#374151}
 .etf-pr{font-size:14.5px;font-weight:700;color:#111827;white-space:nowrap}
 .etf-v{font-size:14px;color:#111827;white-space:nowrap}
 .etf-nd{color:#9ca3af;font-weight:500}
-.etf-tg{display:inline-block;font-size:11.5px;font-weight:700;border-radius:10px;padding:1px 8px;margin:3px 4px 0 0;white-space:nowrap}
+.etf-tg{display:inline-block;font-size:11.5px;font-weight:700;border-radius:10px;padding:1px 8px;margin:3px 4px 0 0;white-space:nowrap;width:fit-content}
 .etf-nv{background:#dcfce7;color:#166534}
 .etf-bk{background:#fef3c7;color:#92400e}
 .etf-et{background:#eef1f4;color:#4b5563;font-weight:600}
 .etf-vacio{padding:26px;text-align:center;color:#6b7280}
 .etf-lab{display:none}
+div[data-testid="stElementContainer"]:has(.etf-t){margin-top:-1rem}
 @media (max-width:900px){
-.etf-hd{display:none}
-.etf-r{grid-template-columns:1fr 1fr;gap:6px 14px;padding:12px 14px}
-.etf-r>div:nth-child(1){grid-column:1 / -1}
-.etf-r>div:nth-child(3){grid-column:1 / -1}
-.etf-r>div:nth-child(2),.etf-r .num{text-align:left}
+div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_e_nombre){display:none!important}
+.st-key-orden_movil_caja{display:block}
+div[data-testid="stElementContainer"]:has(.etf-t){margin-top:0!important}
+.etf-t{border-radius:14px}
+.etf-r{grid-template-columns:1fr 1fr;gap:4px 14px;padding:10px 8px}
+.etf-r>div{padding:3px 6px}
+.etf-r>div:nth-child(1),.etf-r>div:nth-child(3){grid-column:1 / -1}
+.etf-r>.ctr{align-items:flex-start;text-align:left}
 .etf-lab{display:block;font-size:11.5px;color:#9ca3af;font-weight:600}
 }
+/* v1.2.67: caja de arriba de la tabla (leyenda + Excel), igual que la de Empresas */
+.st-key-fila_excel{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:flex-start!important;justify-content:space-between;gap:4px 14px!important;margin:0 0 2px!important}
+.st-key-fila_excel [data-testid="stMarkdownContainer"]{margin-bottom:0!important}
+.st-key-fila_excel>div{width:auto!important;flex:0 0 auto;min-width:0}
 /* pagina de cada ETF */
 .etf-ico{width:72px;height:72px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:42px;line-height:1;flex:none;overflow:hidden}
 .etf-ico svg{width:72px;height:72px;display:block}
@@ -85,7 +97,13 @@ CSS = """
 .etf-hold .bar i{display:block;height:100%;background:#0ea5e9;border-radius:4px}
 .etf-hold .nm{color:#1f2937;min-width:0;overflow-wrap:anywhere}.etf-hold .nm b{color:#111827}
 .etf-hold .pc{text-align:right;font-weight:700;color:#111827}
-.etf-ej{font-size:13px;color:#4b5563;line-height:1.5;margin-top:10px;background:#f8fafc;border-radius:10px;padding:9px 12px}
+.etf-torta{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.etf-torta .pie{width:190px;height:190px;border-radius:50%;flex:none;box-shadow:0 0 0 3px #fff,0 1px 6px rgba(15,23,42,.18)}
+.etf-torta .lgs{flex:1 1 220px;min-width:0;display:grid;gap:6px}
+.etf-torta .lg{display:grid;grid-template-columns:14px minmax(0,1fr) auto;gap:9px;align-items:center;font-size:13.5px}
+.etf-torta .lg i{width:14px;height:14px;border-radius:4px;display:block}
+.etf-torta .lg .pc{font-weight:700;color:#111827}
+.etf-nota{font-size:12.5px;color:#6b7280;line-height:1.45;margin-top:10px}
 .etf-2c{display:grid;grid-template-columns:1fr 1fr;gap:22px}
 @media (max-width:760px){.etf-2c{grid-template-columns:1fr}}
 """
@@ -136,16 +154,24 @@ _SVG = {
 
 
 def icono_html(e):
-    """Lo que representa el ETF: un dibujo (Bitcoin, Ethereum) o un emoji. Sin dato, las iniciales."""
+    """Lo que representa el ETF: un dibujo propio (ui/etf_iconos.py: bandera, globo, lingotes...) o, si falta, las iniciales del ticker. Los emojis de
+    versiones anteriores se siguen mostrando si alguien los deja en la columna `icono`."""
     ic = str(e.get("icono") or "").strip()
-    if ic.startswith("svg:") and ic[4:] in _SVG:
-        return f'<div class="etf-ico">{_SVG[ic[4:]]}</div>'
-    if ic:
+    if ic.startswith("svg:"):
+        dib = _SVG.get(ic[4:]) or _ic.icono(ic[4:])
+        if dib:
+            return f'<div class="etf-ico">{dib}</div>'
+    elif ic:
         return f'<div class="etf-ico">{html.escape(ic)}</div>'
     return f'<div class="etf-ico" style="font-size:24px;font-weight:800;color:#475569">{html.escape(e["ticker"][:3])}</div>'
 
 
 # --- tabla -------------------------------------------------------------------------------------------------------------
+
+COLUMNAS = [("nombre", "ETF", 2.3), ("precio", "Precio", 1.0), ("descripcion", "Descripción", 3.2), ("categoria", "Categoría", 1.4),
+            ("gestor", "Gestor", 1.5), ("aum", "AUM", 1.0), ("comision", "Comisión", 1.0)]
+TEXTO = ("nombre", "descripcion", "categoria", "gestor")        # al tocar el título por primera vez: de la A a la Z (el resto, de mayor a menor)
+
 
 def _fila(e, d, precio):
     tk = e["ticker"]
@@ -164,28 +190,84 @@ def _fila(e, d, precio):
     lab = lambda t: f'<span class="etf-lab">{t}</span>'   # noqa: E731
     return (f'<div class="etf-r"><div><div class="etf-nm"><a href="?etf={quote(tk, safe="")}" target="_self">{nombre}</a></div>'
             f'<div class="etf-tk">{html.escape(tk)}</div>{tags}</div>'
-            f'<div class="etf-pr num">{lab("Precio")}{p}</div>'
+            f'<div class="etf-pr ctr">{lab("Precio")}{p}</div>'
             f'<div class="etf-d">{html.escape(e.get("descripcion") or "")}</div>'
-            f'<div class="etf-c">{lab("Categoría")}{html.escape(e.get("categoria") or "")}</div>'
-            f'<div class="etf-g">{lab("Gestor")}{g}</div>'
-            f'<div class="etf-v num">{lab("AUM")}{aum_texto((d or {}).get("aum"))}</div>'
-            f'<div class="etf-v num">{lab("Comisión")}{comision_texto((d or {}).get("comision"))}</div></div>')
+            f'<div class="etf-c ctr">{lab("Categoría")}{html.escape(e.get("categoria") or "")}</div>'
+            f'<div class="etf-g ctr">{lab("Gestor")}{g}</div>'
+            f'<div class="etf-v ctr">{lab("AUM")}{aum_texto((d or {}).get("aum"))}</div>'
+            f'<div class="etf-v ctr">{lab("Comisión")}{comision_texto((d or {}).get("comision"))}</div></div>')
 
 
 def tabla_html(etfs, datos=None, precios=None):
+    """Las filas de la tabla (los títulos son botones de Streamlit, ver app.render_tabla_etfs, para que se pueda ordenar)."""
     datos, precios = datos or {}, precios or {}
     if not etfs:
         return '<div class="etf"><div class="etf-t"><div class="etf-vacio">No hay ETFs que coincidan con el filtro.</div></div></div>'
-    def th(t, cls=""):
-        return f'<div class="{cls}" title="{html.escape(TIPS.get(t, ""), quote=True)}">{t}</div>'
-    cab = ('<div class="etf-r etf-hd"><div>ETF</div>' + th("Precio", "num") + th("Descripción") + th("Categoría") + th("Gestor") + th("AUM", "num") + th("Comisión", "num") + "</div>")
     filas = "".join(_fila(e, datos.get(e["ticker"]), precios.get(e["ticker"]) or (datos.get(e["ticker"]) or {}).get("precio")) for e in etfs)
-    return f'<div class="etf"><div class="etf-t">{cab}{filas}</div></div>'
+    return f'<div class="etf"><div class="etf-t">{filas}</div></div>'
+
+
+def valor_orden(e, d, precio, col):
+    """Valor por el que se ordena el ETF en la columna `col` (texto sin tildes ni mayúsculas, o número); None si no hay dato."""
+    from data.etfs import norm
+    d = d or {}
+    if col == "nombre":
+        return norm(e.get("nombre") or e["ticker"])
+    if col == "descripcion":
+        return norm(e.get("descripcion")) or None
+    if col == "categoria":
+        return norm(e.get("categoria")) or None
+    if col == "gestor":
+        return norm(e.get("gestor") or d.get("gestor")) or None
+    if col == "precio":
+        return _n(precio) or _n(d.get("precio"))
+    if col == "aum":
+        return _n(d.get("aum"))
+    if col == "comision":
+        return _n(d.get("comision"))
+    return None
+
+
+def ordenar(etfs, datos, precios, col, asc):
+    """ETFs ordenados por `col` (los que no tienen el dato quedan siempre al final). Sin columna: el orden del archivo."""
+    if not col or col not in {c for c, _, _ in COLUMNAS}:
+        return list(etfs)
+    datos, precios = datos or {}, precios or {}
+    con, sin = [], []
+    for e in etfs:
+        v = valor_orden(e, datos.get(e["ticker"]), precios.get(e["ticker"]), col)
+        (sin if v is None else con).append((v, e))
+    con.sort(key=lambda x: x[0], reverse=not asc)
+    return [e for _, e in con] + [e for _, e in sin]
+
+
+def opciones_orden():
+    """Opciones del selector "Ordenar por" del celular: (texto, columna, ascendente)."""
+    o = []
+    for col, titulo, _ in COLUMNAS:
+        if col in TEXTO:
+            o += [(f"{titulo}: de la A a la Z", col, True), (f"{titulo}: de la Z a la A", col, False)]
+        elif col == "comision":
+            o += [(f"{titulo}: de menor a mayor", col, True), (f"{titulo}: de mayor a menor", col, False)]
+        else:
+            o += [(f"{titulo}: de mayor a menor", col, False), (f"{titulo}: de menor a mayor", col, True)]
+    return o
+
+
+def css_cabecera(sort_col=None, asc=True):
+    """Estilo de la fila de títulos (botones con la clave 'tvh_e_<columna>', los mismos botones grises de la tabla de Empresas, centrados y con flechitas)."""
+    from ui import tabla_visual as TV
+    base = 'div[data-testid="stHorizontalBlock"]:has(.st-key-tvh_e_nombre)'
+    return (TV.css_encabezado(f"e_{sort_col}" if sort_col else None, 0, None, asc)
+            + f'{base}{{gap:0!important;background:{TV._BARRA};border:1px solid {TV._BARRA};border-radius:14px 14px 0 0;align-items:stretch!important}}'
+            f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
+            f'{base} [data-testid="stElementContainer"]{{width:100%}}'
+            f'{base} [data-testid="stColumn"] [data-testid="stVerticalBlock"]{{gap:0!important}}')
 
 
 def encabezado_html(total, mostrados):
     n = (f"{total} ETFs" if mostrados == total else f"{mostrados} de {total} ETFs")
-    return f'<div class="etf"><div class="etf-s">{html.escape(INTRO)}</div><div class="etf-n">{n}</div></div>'
+    return f'<div class="etf"><div class="etf-n">{n}</div></div>'
 
 
 # --- pagina del ETF ---------------------------------------------------------------------------------------------------------
@@ -196,7 +278,7 @@ def tipo_distribucion(e, d):
     d = d or {}
     c = str(e.get("distribucion") or "").strip().lower()
     if c.startswith("acum"):
-        return "Acumulación", "El ETF reinvierte dentro del fondo los dividendos que cobra: no te paga nada en efectivo y el valor de la cuota los incluye."
+        return "Acumulación", "El ETF reinvierte dentro del fondo los dividendos que cobra: no te paga nada en efectivo y el valor del ETF los incluye."
     if c.startswith("distr"):
         return "Distribución", "El ETF te paga en efectivo los dividendos que cobra de las empresas o bonos que tiene."
     div = d.get("dividendos") or {}
@@ -227,17 +309,45 @@ def _links_etf(e, d):
         f'<a href="{html.escape(u, quote=True)}" target="_blank" rel="noopener noreferrer" title="{html.escape(t, quote=True)}">{html.escape(n)} ↗</a>' for u, n, t in enl) + "</div>"
 
 
+COLORES = ["#2563eb", "#16a34a", "#f59e0b", "#dc2626", "#7c3aed", "#0891b2", "#db2777", "#65a30d", "#ea580c", "#475569", "#0d9488", "#a16207"]
+
+
 def _barras(items, vacio):
+    """Barras horizontales, cada una de un color distinto (v1.2.67)."""
     if not items:
         return f'<div class="fch-sub" style="margin:0">{html.escape(vacio)}</div>'
     tope = max(i["pct"] for i in items) or 1
     out = []
-    for i in items:
+    for k, i in enumerate(items):
         nom = html.escape(i["nombre"] or "")
         if i.get("simbolo"):
             nom = f'<b>{html.escape(i["simbolo"])}</b> · {nom}' if nom else f'<b>{html.escape(i["simbolo"])}</b>'
-        out.append(f'<div class="nm">{nom}</div><div class="pc">{i["pct"]:.1f}%</div><div class="bar"><i style="width:{max(2.0, i["pct"] / tope * 100):.0f}%"></i></div>')
+        col = COLORES[k % len(COLORES)]
+        out.append(f'<div class="nm">{nom}</div><div class="pc">{i["pct"]:.1f}%</div>'
+                   f'<div class="bar"><i style="width:{max(2.0, i["pct"] / tope * 100):.0f}%;background:{col}"></i></div>')
     return '<div class="etf-hold">' + "".join(out) + "</div>"
+
+
+def torta_html(items):
+    """Gráfico de torta (círculo dividido en porciones, cada una de un color) con su lista al costado. items: [{'nombre', 'pct'}] (pct en %)."""
+    items = [i for i in items if _n(i.get("pct")) and i["pct"] > 0]
+    if not items:
+        return ""
+    tot = sum(i["pct"] for i in items)
+    if tot < 99.5:
+        items = items + [{"nombre": "Otros / sin clasificar", "pct": 100 - tot, "_gris": True}]
+        tot = 100.0
+    ini, tramos, filas = 0.0, [], []
+    for k, i in enumerate(items):
+        col = "#cbd5e1" if i.get("_gris") else COLORES[k % len(COLORES)]
+        fin = ini + i["pct"] / tot * 100
+        tramos.append(f"{col} {ini:.2f}% {fin:.2f}%")
+        ini = fin
+        bnd = bandera_html(i["nombre"], chica=True) if not i.get("_gris") else ""
+        bnd = "" if bnd in ("—", html.escape(i["nombre"])) else bnd + " "
+        filas.append(f'<div class="lg"><i style="background:{col}"></i><span class="nm">{bnd}{html.escape(i["nombre"])}</span><span class="pc">{i["pct"]:.1f}%</span></div>')
+    return (f'<div class="etf-torta"><div class="pie" role="img" aria-label="Gráfico de torta por país" style="background:conic-gradient({", ".join(tramos)})"></div>'
+            f'<div class="lgs">{"".join(filas)}</div></div>')
 
 
 def encabezado_etf(e, d, precio, cedear):
@@ -298,47 +408,73 @@ def tab_resumen(e, d, precio, cedear=None):
     # --- cifras ---
     p = _n(precio) or _n(d.get("precio"))
     nav = _n(d.get("nav"))
-    c = [k("Precio", _usd(p), "Precio al que cotiza una cuota del ETF en el mercado.")]
-    c.append(k("NAV (valor de la cuota)", _usd(nav), "Net Asset Value: lo que valen realmente los activos que tiene el ETF, dividido por la cantidad de cuotas. El precio de mercado suele estar muy cerca."))
+    c = [k("Precio", _usd(p), "Precio al que cotiza una unidad del ETF en el mercado.")]
+    c.append(k("NAV (valor por unidad)", _usd(nav), "Net Asset Value: lo que valen realmente los activos que tiene el ETF, dividido por la cantidad de unidades emitidas. El precio de mercado suele estar muy cerca."))
     if p and nav and nav > 0:
         dif = (p / nav - 1) * 100
-        c.append(k("Precio vs NAV", f"{dif:+.2f}%", "Si es positivo, la cuota cotiza con prima (más cara que sus activos); si es negativo, con descuento. En los ETFs grandes suele ser mínimo."))
+        c.append(k("Precio vs NAV", f"{dif:+.2f}%", "Si es positivo, el ETF cotiza con prima (más caro que sus activos); si es negativo, con descuento. En los ETFs grandes suele ser mínimo."))
     c.append(k("AUM (patrimonio)", aum_texto(d.get("aum")), "Activos bajo gestión: el dinero total que tiene invertido el ETF."))
     com = _n(d.get("comision"))
-    c.append(k("Comisión anual", comision_texto(com), "Lo que cobra el ETF por año (expense ratio), como porcentaje de lo invertido. Ya está descontada del precio de la cuota."))
+    c.append(k("Comisión anual", comision_texto(com), "Lo que cobra el ETF por año (expense ratio), como porcentaje de lo invertido. Ya está descontada del precio; no se paga aparte."))
     tipo, tipo_tip = tipo_distribucion(e, d)
-    c.append(k("Dividendos", f"<b>{html.escape(tipo)}</b>" if tipo else "—", tipo_tip or "Si el ETF paga los dividendos en efectivo (distribución) o los reinvierte (acumulación)."))
+    c.append(k("Dividendos", html.escape(tipo) if tipo else "—", tipo_tip or "Si el ETF paga los dividendos en efectivo (distribución) o los reinvierte (acumulación)."))
     div = d.get("dividendos") or {}
     if tipo == "Distribución":
         if _n(d.get("rendimiento")):
             c.append(k("Rendimiento por dividendo", _pct(d["rendimiento"]), "Dividendos pagados en el último año como porcentaje del precio actual."))
         if _n(d.get("dividendo_anual")) or _n(div.get("total_12m")):
-            c.append(k("Dividendo anual por cuota", _usd(d.get("dividendo_anual") or div.get("total_12m")), "Suma de lo pagado en los últimos 12 meses por cada cuota."))
+            c.append(k("Dividendo anual por unidad", _usd(d.get("dividendo_anual") or div.get("total_12m")), "Suma de lo pagado en los últimos 12 meses por cada unidad del ETF."))
         if div.get("frecuencia"):
             c.append(k("Frecuencia de pago", html.escape(div["frecuencia"]), "Cada cuánto paga: mensual, trimestral, semestral o anual."))
         if div.get("ultimo") and div["ultimo"].get("fecha"):
             u = div["ultimo"]
-            c.append(k("Último pago", f'{_usd(u.get("monto"))} · {_fecha(u["fecha"])}', "Monto por cuota y fecha del último dividendo."))
+            c.append(k("Último pago", f'{_usd(u.get("monto"))} · {_fecha(u["fecha"])}', "Monto por unidad y fecha del último dividendo."))
     lo, hi = _n(d.get("min_52s")), _n(d.get("max_52s"))
     if lo and hi and hi > lo:
         c.append(k("Rango de 52 semanas", f"{_money(lo)} – {_money(hi)}", "Del precio más bajo al más alto de los últimos 12 meses."))
     if _n(d.get("beta")):
         c.append(k("Beta (3 años)", f"{d['beta']:.2f}", "Cuánto se mueve el ETF respecto del mercado: 1 se mueve igual; más de 1, más que el mercado; menos de 1, menos."))
     cuerpo = '<div class="fch-kv" style="margin-top:0">' + "".join(c) + "</div>"
-    if com is not None and com >= 0:
-        cuerpo += (f'<div class="etf-ej"><b>Ejemplo:</b> con US&#36;&nbsp;10,000 invertidos, una comisión de {comision_texto(com)} anual equivale a unos '
-                   f'US&#36;&nbsp;{10000 * com / 100:,.1f} por año. Se descuenta sola del valor de la cuota.</div>')
     cifras = F._tile("s6", "Cifras", cuerpo, ac="#0369a1")
-    # --- adentro ---
+    return F._env(arriba, datos_h, cifras)
+
+
+# ETFs que no tienen empresas adentro (oro, plata, petroleo, materias primas, bitcoin, ether): no hay desglose por pais
+SIN_PAISES = {"IBIT", "ETHA", "GLD", "SLV", "USO", "GSG", "CORN", "SOYB"}
+
+
+def paises_de(e, d):
+    """(lista [{'nombre','pct'}], nota). Primero el desglose que traiga el archivo de Yahoo (clave 'paises', si algún día se carga); si el índice es de un
+    único país (columna `pais` del CSV), 100 % ese país por definición; si no, vacío (no se inventa nada)."""
+    d = d or {}
+    if d.get("paises"):
+        return d["paises"], ""
+    if e.get("pais"):
+        return [{"nombre": e["pais"], "pct": 100.0}], "Por definición del índice: este ETF invierte solo en empresas de ese país."
+    return [], ""
+
+
+def tab_composicion(e, d):
+    """Solapa "Composición" (v1.2.67): principales tenencias, por sector y por tipo de activo (barras de colores) y por país (gráfico de torta)."""
+    d = d or {}
     hold = d.get("holdings") or []
     sect = d.get("sectores") or []
     act = d.get("activos") or []
-    izq = "<h4 style='margin:0 0 8px;font-size:14px'>Principales tenencias</h4>" + _barras(hold, "Yahoo no informó las tenencias de este ETF todavía.")
-    der = "<h4 style='margin:0 0 8px;font-size:14px'>Por sector</h4>" + _barras(sect, "Sin desglose por sector.")
+    ten = F._tile("s6", "Principales tenencias", _barras(hold, "Yahoo no informó las tenencias de este ETF (los ETFs de oro, plata, petróleo o criptomonedas no tienen empresas adentro)."), ac="#0ea5e9")
+    sec = F._tile("s6", "Por sector", _barras(sect, "Sin desglose por sector."), ac="#16a34a")
+    piezas = [ten, sec]
     if act:
-        der += "<h4 style='margin:14px 0 8px;font-size:14px'>Por tipo de activo</h4>" + _barras(act, "")
-    adentro = F._tile("s12", "Qué tiene adentro", f'<div class="etf-2c"><div>{izq}</div><div>{der}</div></div>', ac="#0ea5e9")
-    return F._env(arriba, datos_h, cifras, adentro)
+        piezas.append(F._tile("s6", "Por tipo de activo", _barras(act, ""), ac="#f59e0b"))
+    paises, nota = paises_de(e, d)
+    if paises:
+        cuerpo = torta_html(paises) + (f'<div class="etf-nota">{html.escape(nota)}</div>' if nota else "")
+    elif e["ticker"] in SIN_PAISES:
+        cuerpo = '<div class="fch-sub" style="margin:0">No aplica: este ETF no tiene empresas adentro, así que no se reparte por país.</div>'
+    else:
+        cuerpo = ('<div class="fch-sub" style="margin:0">Todavía no tenemos el desglose por país de este ETF: Yahoo Finance no lo informa. '
+                  'En cuanto se cargue, se muestra acá como un gráfico de torta.</div>')
+    piezas.append(F._tile("s6" if act else "s12", "Por país", cuerpo, ac="#7c3aed"))
+    return F._env(*piezas)
 
 
 def tab_grafico_etf(pares):

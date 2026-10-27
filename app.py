@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.66"
+APP_VERSION = "1.2.67"
 
 import contextlib
 import streamlit as st
@@ -729,8 +729,36 @@ def render_filtro_etfs(etfs) -> list:
         return []
 
 
+def _cambiar_orden_etfs():
+    """Al elegir un orden en el selector del celular se guarda como si se hubiera tocado el título de la tabla."""
+    from ui import etfs as _ui_etfs
+    eleg = st.session_state.get("etf_orden_movil")
+    for texto, col, asc in _ui_etfs.opciones_orden():
+        if texto == eleg:
+            st.session_state["etf_sort_col"], st.session_state["etf_sort_asc"] = col, asc
+            return
+
+
+def _boton_excel_etfs(mostrados, guardados, precios, fecha):
+    """Botón "Descargar tabla en Excel" de la tabla de ETFs (v1.2.67): los ETFs que se ven, en el orden elegido. Si algo falla, no se muestra."""
+    from ui.exportar import excel_etfs_bytes
+    try:
+        datos = excel_etfs_bytes(mostrados, guardados, precios, fecha, texto_aviso_legal(), APP_VERSION)
+    except Exception:  # noqa: BLE001
+        return
+    dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
+    args = dict(data=datos, file_name=f"todocedears_etfs_{dia}.xlsx", key="descarga_excel",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
+                help="Baja un archivo .xlsx con la tabla tal como la ves ahora: los ETFs que quedaron con tu filtro y en el orden elegido. Es información, no una recomendación.")
+    try:
+        st.download_button("⬇ Descargar tabla en Excel", type="tertiary", **args)
+    except TypeError:       # Streamlit viejo, sin type="tertiary"
+        st.download_button("⬇ Descargar tabla en Excel", **args)
+
+
 def render_tabla_etfs(etfs, sel):
-    """Tabla de ETFs (v1.2.64): ETF (nombre y ticker, con link a su pagina), Precio, Descripcion, Categoria, Gestor, AUM y Comision."""
+    """Tabla de ETFs (v1.2.64; v1.2.67 igual a la de Empresas): títulos centrados y ordenables, leyenda y botón de Excel arriba. Columnas: ETF (nombre y
+    ticker, con link a su página), Precio, Descripción, Categoría, Gestor, AUM y Comisión."""
     from data import etfs as _etfs
     from ui import etfs as _ui_etfs
     if not etfs:
@@ -738,10 +766,33 @@ def render_tabla_etfs(etfs, sel):
                     '<div class="qs" style="text-align:center"><h1 style="margin-bottom:10px">ETFs</h1>'
                     '<p>Estamos preparando la tabla de ETFs. Muy pronto la vas a poder ver acá, igual que la de empresas.</p></div>', unsafe_allow_html=True)
         return
-    mostrados = _etfs.filtrar(etfs, "", sel)
-    guardados, _fecha_g = _etfs_guardados()
+    guardados, fecha_g = _etfs_guardados()
     precios = _precios_etfs(tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs)) if PRECIOS_VIVOS else {}
-    st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
+    sort_col = st.session_state.get("etf_sort_col")
+    sort_asc = bool(st.session_state.get("etf_sort_asc", True))
+    mostrados = _ui_etfs.ordenar(_etfs.filtrar(etfs, "", sel), guardados, precios, sort_col, sort_asc)
+    st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
+    with st.container(key="fila_excel"):
+        st.markdown('<div class="tv-ley">Presioná en el ETF para información detallada.</div>', unsafe_allow_html=True)
+        _boton_excel_etfs(mostrados, guardados, precios, fecha_g)
+    # Celular: el selector reemplaza a los títulos
+    opciones = _ui_etfs.opciones_orden()
+    actual = next((t for t, c, a in opciones if c == sort_col and a == sort_asc), None)
+    if actual:
+        st.session_state["etf_orden_movil"] = actual
+    else:
+        st.session_state.pop("etf_orden_movil", None)
+    with st.container(key="orden_movil_caja"):
+        st.selectbox("Ordenar por", [t for t, _, _ in opciones], index=None, placeholder="Ordenar por…", key="etf_orden_movil", on_change=_cambiar_orden_etfs)
+    cols = st.columns([w for _, _, w in _ui_etfs.COLUMNAS], gap="small")
+    for contenedor, (clave, titulo, _) in zip(cols, _ui_etfs.COLUMNAS):
+        if contenedor.button(titulo, key=f"tvh_e_{clave}", use_container_width=True, help=_ui_etfs.TIPS.get(titulo) or None):
+            if sort_col == clave:
+                st.session_state["etf_sort_asc"] = not sort_asc
+            else:
+                st.session_state["etf_sort_col"] = clave
+                st.session_state["etf_sort_asc"] = clave in _ui_etfs.TEXTO or clave == "comision"
+            st.rerun()
     st.markdown(_ui_etfs.tabla_html(mostrados, guardados, precios), unsafe_allow_html=True)
 
 
@@ -762,12 +813,14 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     precio = (_precios_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk) or d.get("precio")
     cedear = _cedear_etf(df, e, precio)
     st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear), unsafe_allow_html=True)
-    t_res, t_gra, t_not = st.tabs(["Resumen", "Gráfico y Rendimiento", "Noticias"])
+    t_res, t_com, t_gra, t_not = st.tabs(["Resumen", "Composición", "Gráfico y Rendimiento", "Noticias"])
     with t_res:
         st.markdown(_ui_etfs.con_intro("resumen", _ui_etfs.tab_resumen(e, d, precio, cedear)), unsafe_allow_html=True)
         arch = extra.get("archivo")
         if arch:
             st.caption(f"Algunos datos son de Yahoo guardados el {arch.get('fecha') or 's/d'} (Yahoo no respondió en este momento).")
+    with t_com:
+        st.markdown(_ui_etfs.con_intro("composicion", _ui_etfs.tab_composicion(e, d)), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ui_etfs.con_intro("grafico", _ui_etfs.tab_grafico_etf(extra.get("historial"))), unsafe_allow_html=True)
         _render_grafico(extra["simbolo"], extra.get("historial"), {})
@@ -834,8 +887,12 @@ def render_buscador() -> str:
     st.session_state["_destinos_busqueda"] = {o[0]: (o[1], o[2]) for o in opciones}
     with st.container(key="buscador"):
         try:
-            st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], index=None, key="flt_busqueda", placeholder="Buscar empresa, ETF o ticker",
-                         label_visibility="collapsed", on_change=_ir_a_seleccion)
+            args = dict(index=None, key="flt_busqueda", placeholder="Buscar empresa, ETF o ticker", label_visibility="collapsed", on_change=_ir_a_seleccion)
+            try:
+                # v1.2.67: "contains" = solo quedan las opciones que tienen lo escrito (antes, el modo por defecto dejaba también las que tenían las letras sueltas)
+                st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], filter_mode="contains", **args)
+            except TypeError:       # Streamlit viejo, sin filter_mode
+                st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], **args)
         except Exception:  # noqa: BLE001
             pass
     return ""
@@ -893,7 +950,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
         st.selectbox("Ordenar por", [t for t, _, _ in opciones], key="orden_movil", on_change=_cambiar_orden_movil)
 
     cols = st.columns(anchos_tabla(len(extras), visibles), gap="small")
-    titulos = [(clave, etiqueta) for clave, etiqueta, _ in columnas_base(visibles)] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
+    titulos = [(clave, "Cap. Bursátil" if clave == "market_cap" else etiqueta) for clave, etiqueta, _ in columnas_base(visibles)] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
     for contenedor, (clave, etiqueta) in zip(cols, titulos):
         activo = sort_col == clave
         if contenedor.button(etiqueta, key=f"tvh_{clave}", use_container_width=True, help=ayuda_texto(clave, fecha) or None):
@@ -907,7 +964,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
 
 
 def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
-    """Boton "Descargar la tabla en Excel" (v1.2.49; arriba de la tabla, a la derecha): las empresas y columnas que se ven, con los filtros y el
+    """Boton "Descargar tabla en Excel" (v1.2.49; arriba de la tabla, a la derecha): las empresas y columnas que se ven, con los filtros y el
     orden elegidos. Si algo falla, no se muestra."""
     try:
         datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras, visibles)
@@ -918,9 +975,9 @@ def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
                 help="Baja un archivo .xlsx con la tabla tal como la ves ahora: las empresas que quedaron con tus filtros, en el orden elegido y con las variables que tenés a la vista. Es información, no una recomendación.")
     try:
-        st.download_button("⬇ Descargar la tabla en Excel", type="tertiary", **args)
+        st.download_button("⬇ Descargar tabla en Excel", type="tertiary", **args)
     except TypeError:       # Streamlit viejo, sin type="tertiary"
-        st.download_button("⬇ Descargar la tabla en Excel", **args)
+        st.download_button("⬇ Descargar tabla en Excel", **args)
 
 
 def _orden_efectivo(sort_col, extras=(), visibles=None):

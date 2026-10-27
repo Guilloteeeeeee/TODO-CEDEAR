@@ -144,3 +144,69 @@ def excel_bytes(df, fecha_datos=None, aviso="", version="", extras=(), visibles=
     buf = io.BytesIO()
     wb.save(buf)
     return buf.getvalue()
+
+
+# --- ETFs (v1.2.67) -----------------------------------------------------------------------------------------------------------
+COLUMNAS_ETF = [("ETF", 40, None), ("Ticker", 9, None), ("Descripción", 60, None), ("Categoría", 24, None), ("Gestor", 26, None), ("Mercado", 16, None),
+                ("Precio (USD)", 14, "#,##0.00"), ("AUM (USD)", 18, "#,##0"), ("Comisión anual (%)", 14, "0.000"), ("Dividendos", 16, None), ("Ratio del CEDEAR", 14, None)]
+
+
+def filas_etfs(etfs, datos=None, precios=None):
+    """Una fila por ETF, en el orden recibido, con los mismos valores que muestra la tabla de la pantalla (vacío donde no hay dato)."""
+    from ui import etfs as UE
+    datos, precios = datos or {}, precios or {}
+    out = []
+    for e in etfs:
+        d = datos.get(e["ticker"]) or {}
+        precio = _n(precios.get(e["ticker"])) or _n(d.get("precio"))
+        tipo = UE.tipo_distribucion(e, d)[0] or ""
+        acc = str(e.get("acceso") or "").strip()
+        ratio = e.get("ratio") or ""
+        out.append([e.get("nombre") or e["ticker"], e["ticker"], e.get("descripcion") or "", e.get("categoria") or "", e.get("gestor") or d.get("gestor") or "",
+                    e.get("mercado") or d.get("mercado") or "", precio, _n(d.get("aum")), _n(d.get("comision")), tipo,
+                    "Sin CEDEAR (solo por mesa del broker)" if acc and acc.lower() != "cedear" else (f"{ratio}:1" if str(ratio).strip().isdigit() else str(ratio))])
+    return out
+
+
+def excel_etfs_bytes(etfs, datos=None, precios=None, fecha_datos=None, aviso="", version=""):
+    """Contenido del .xlsx (bytes) con la tabla de ETFs tal como se ve (filtros y orden elegidos). Misma forma que el de Empresas."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Alignment, Font, PatternFill
+    from openpyxl.utils import get_column_letter
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "ETFs"
+    ws.append([c[0] for c in COLUMNAS_ETF])
+    for fila in filas_etfs(etfs, datos, precios):
+        ws.append(fila)
+    relleno = PatternFill("solid", fgColor="222D36")
+    for j, (_titulo, ancho, fmt) in enumerate(COLUMNAS_ETF, start=1):
+        c = ws.cell(row=1, column=j)
+        c.font, c.fill = Font(bold=True, color="FFFFFF"), relleno
+        c.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
+        ws.column_dimensions[get_column_letter(j)].width = ancho
+        if fmt:
+            for i in range(2, ws.max_row + 1):
+                ws.cell(row=i, column=j).number_format = fmt
+    ws.row_dimensions[1].height = 34
+    ws.freeze_panes = "C2"
+    if ws.max_row > 1:
+        ws.auto_filter.ref = f"A1:{get_column_letter(len(COLUMNAS_ETF))}{ws.max_row}"
+    av = wb.create_sheet("Aviso")
+    av.column_dimensions["A"].width = 120
+    av["A1"] = "TodoCedears · ETFs"
+    av["A1"].font = Font(bold=True, size=14)
+    av["A2"] = f"Datos al {fecha_datos}" if fecha_datos else "Fecha de los datos no disponible"
+    av["A3"] = f"Versión {version}" if version else ""
+    av["A5"] = "Aviso:"
+    av["A5"].font = Font(bold=True)
+    av["A6"] = aviso or ""
+    av["A6"].alignment = Alignment(wrap_text=True, vertical="top")
+    av.row_dimensions[6].height = 60
+    av["A8"] = "Información educativa: no es una recomendación de inversión. Un valor vacío significa que no hay dato (no se inventa nada)."
+    av["A8"].alignment = Alignment(wrap_text=True, vertical="top")
+    av.row_dimensions[8].height = 34
+    buf = io.BytesIO()
+    wb.save(buf)
+    return buf.getvalue()

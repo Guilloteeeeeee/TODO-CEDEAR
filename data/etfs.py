@@ -4,7 +4,9 @@ Columnas: ticker; nombre (completo); gestor (empresa que lo administra); mercado
 "svg:bitcoin" / "svg:ethereum"); categoria; descripcion; acceso (CEDEAR o "Solo por mesa del broker"); nuevo (Si, opcional); etiqueta (opcional);
 perfil (ya no se muestra; se guarda por las dudas); distribucion (vacio = se deduce de los dividendos de Yahoo; o "Acumulacion" / "Distribucion");
 ratio (del CEDEAR, ej. 20 = 20 CEDEARs por 1 cuota; vacio = sin confirmar); simbolo (el de BYMA, si es distinto del ticker); web (sitio oficial del ETF,
-si se conoce); yahoo (simbolo de Yahoo si es distinto del ticker, ej. IWDA.L)."""
+si se conoce); yahoo (simbolo de Yahoo si es distinto del ticker, ej. IWDA.L); pais (solo si el indice es de un unico pais, ej. Japon: la torta
+de paises sale de ahi).
+v1.2.67: icono pasa a ser "svg:<nombre>" (ver ui/etf_iconos.py: dibujos propios y banderas), ya no emojis."""
 import csv
 import io
 import os
@@ -12,7 +14,7 @@ import re
 import unicodedata
 
 RUTA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "etfs.csv")
-CAMPOS = ("ticker", "nombre", "gestor", "mercado", "icono", "categoria", "descripcion", "acceso", "nuevo", "etiqueta", "perfil", "distribucion", "ratio", "simbolo", "web", "yahoo")
+CAMPOS = ("ticker", "nombre", "gestor", "mercado", "icono", "categoria", "descripcion", "acceso", "nuevo", "etiqueta", "perfil", "distribucion", "ratio", "simbolo", "web", "yahoo", "pais")
 
 
 def norm(s):

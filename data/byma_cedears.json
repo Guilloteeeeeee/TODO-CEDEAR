@@ -5,7 +5,8 @@
  "notas": [
   "El PDF trae la fila XLU repetida: una con el nombre de CIBR (error del PDF); vale Utilities Select Sector SPDR Fund 15:1 (el Excel tambien dice 15:1).",
   "Ratios con formato de hora en el PDF (\"10:01\", \"5:01\", \"01:01\") se leen como 10:1, 5:1 y 1:1 (coinciden con el Excel).",
-  "En el PDF BNY Mellon figura como BK y Marsh McLennan como MMC; en BYMA hoy se operan como BNY y MRSH (Rava)."
+  "En el PDF BNY Mellon figura como BK y Marsh McLennan como MMC; en BYMA hoy se operan como BNY y MRSH (Rava).",
+  "IWDA no figura en el PDF del 16/09/2026 pero si en la nota de BYMA y en la ficha de Comafi (ratio 24:1, ISIN AR0352918277): se agrego a mano con su fuente."
  ],
  "cedears": {
   "AABA": {
@@ -2645,6 +2646,19 @@
    "nombre": "Zoom Video Communications Inc.",
    "mercado": "NASDAQ",
    "ratio": "47:1"
+  },
+  "IWDA": {
+   "nombre": "iShares Core MSCI World UCITS ETF",
+   "mercado": "LONDON STOCK EXCHANGE",
+   "ratio": "24:1",
+   "tipo": "ETF",
+   "ticker_origen": "IWDA LN",
+   "isin_cedear": "AR0352918277",
+   "isin_subyacente": "IE00B4L5Y983",
+   "codigo_caja_valores": 8704,
+   "monto_maximo": 3720000,
+   "alcance": "Calificado y No Calificado",
+   "fuente": "Nota de BYMA \"Nuevo CEDEAR de ETF habilitado en BYMA\" y ficha de Banco Comafi (emisor); no figura en el PDF del 16/09/2026"
   }
  }
 }
