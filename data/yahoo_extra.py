@@ -297,6 +297,7 @@ ESTADOS = {
         ("Gastos operativos", ["Operating Expense", "Total Expenses"], "m"),
         ("Resultado operativo", ["Operating Income", "Total Operating Income As Reported"], "t"),
         ("EBITDA", ["EBITDA", "Normalized EBITDA"], "m"),
+        ("Gasto por intereses", ["Interest Expense", "Interest Expense Non Operating"], "m"),
         ("Resultado antes de impuestos", ["Pretax Income"], "m"),
         ("Impuesto a las ganancias", ["Tax Provision"], "m"),
         ("Tasa de impuesto", ["Tax Rate For Calcs"], "pct"),
@@ -312,7 +313,10 @@ ESTADOS = {
         ("Plusvalía (goodwill)", ["Goodwill"], "m"),
         ("Activo total", ["Total Assets"], "t"),
         ("Pasivo corriente", ["Current Liabilities"], "t"),
+        ("Deuda de corto plazo", ["Current Debt And Capital Lease Obligation", "Current Debt"], "m"),
+        ("Deuda de largo plazo", ["Long Term Debt And Capital Lease Obligation", "Long Term Debt"], "m"),
         ("Deuda total", ["Total Debt"], "m"),
+        ("Deuda neta", ["Net Debt"], "m"),
         ("Pasivo total", ["Total Liabilities Net Minority Interest"], "t"),
         ("Patrimonio neto", ["Stockholders Equity", "Common Stock Equity"], "t"),
         ("Capital invertido (según Yahoo)", ["Invested Capital"], "m")]),
@@ -444,6 +448,16 @@ def analizar_estados(dfs, moneda=None):
     if any(v is not None for v in vals):
         rat.append(("Retorno sobre el capital invertido (ROIC)", vals, "pct"))
     for rot, num, den in (("Deuda total / Patrimonio", deu, pat), ("Liquidez corriente (activo / pasivo corriente)", ac, pc)):
+        vals = [_ratio(num.get(a), den.get(a)) for a in anios]
+        if any(v is not None for v in vals):
+            rat.append((rot, vals, "x"))
+    # v1.2.68: intereses y deuda (claves para el Analisis Fundamental). Solo se calculan si Yahoo trae las dos cifras de cada cociente.
+    ebitda, intereses = serie("resultados", "EBITDA"), serie("resultados", "Gasto por intereses")
+    deu_cp, deu_lp, deu_neta, caja = (serie("balance", "Deuda de corto plazo"), serie("balance", "Deuda de largo plazo"), serie("balance", "Deuda neta"),
+                                      serie("balance", "Caja e inversiones de corto plazo"))
+    abs_ = lambda dic: {k: (abs(v) if v is not None else None) for k, v in dic.items()}  # noqa: E731
+    for rot, num, den in (("Cobertura de intereses (resultado operativo / intereses)", ope, abs_(intereses)), ("Deuda neta / EBITDA", deu_neta, ebitda),
+                          ("Deuda de largo plazo / Patrimonio", deu_lp, pat), ("Caja / deuda de corto plazo", caja, deu_cp)):
         vals = [_ratio(num.get(a), den.get(a)) for a in anios]
         if any(v is not None for v in vals):
             rat.append((rot, vals, "x"))

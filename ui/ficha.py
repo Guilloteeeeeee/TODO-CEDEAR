@@ -900,8 +900,8 @@ def encabezado_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_da
 
 INTROS = {
     "resumen": "Qué hace la empresa, dónde cotiza y sus números básicos de un vistazo: tamaño, dividendo, rango de precio del último año y cuándo presenta resultados.",
-    "analisis": "Los datos que sostienen el puntaje de la empresa: cada métrica de hoy comparada con su propia historia. Es una herramienta para filtrar y estudiar, no una recomendación.",
-    "grafico": "Cómo se movió el precio de la acción y cuánto rindió en distintos plazos. Rendimientos pasados no son garantías de resultados futuros.",
+    "analisis": "Una visión general de la empresa: resumen, desarrollo con sus puntos fuertes, débiles y la tesis de inversión, y conclusión. Texto automático con inteligencia artificial, informativo: no es una recomendación.",
+    "grafico": "Cómo se movió el precio de la acción, cuánto rindió en distintos plazos y qué dicen los indicadores técnicos (rango de 52 semanas, promedios móviles, RSI, MACD y riesgo). Es información sobre el pasado del precio, no una señal de compra o venta.",
     "valuacion": "Una estimación sobre si la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana.",
     "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
     "dividendos": "Cuánto paga la empresa a sus accionistas en concepto de dividendo y si el mismo es sostenible.",
@@ -927,10 +927,56 @@ def tab_resumen(row, ficha, mercado, envolver=True, agenda=None):
     return _env(*t) if envolver else "".join(t)
 
 
-def tab_analisis(row, envolver=True):
-    """Analisis fundamental: por ahora el puntaje que usa el modelo; el Score de calidad y el resumen fundamental vienen mas adelante."""
-    pend = _tile("s12", "Resumen fundamental", '<div class="fch-sub" style="margin:0">Próximamente: un resumen del negocio y de sus fundamentos, junto con el Score de calidad.</div>', ac="#94a3b8")
-    return (_env(_tile_score(row), pend) if envolver else _tile_score(row) + pend)
+def _texto_af(txt):
+    """Texto del análisis: párrafos separados por línea en blanco; las líneas que empiezan con "- " forman una lista."""
+    out, lista = [], []
+
+    def cerrar():
+        if lista:
+            out.append("<ul>" + "".join(f"<li>{x}</li>" for x in lista) + "</ul>")
+            lista.clear()
+    for linea in str(txt or "").replace("\r", "").split("\n"):
+        l = linea.strip()
+        if l.startswith(("- ", "• ", "* ")):
+            lista.append(html.escape(l[2:].strip()))
+        elif not l:
+            cerrar()
+        else:
+            cerrar()
+            out.append(f"<p>{html.escape(l)}</p>")
+    cerrar()
+    return "".join(out)
+
+
+_CSS_AF = ('<style>.af p{margin:0 0 .7em;line-height:1.55}.af ul{margin:0 0 .7em 1.1em;padding:0}.af li{margin:0 0 .35em;line-height:1.5}'
+           '.af h4{margin:.9em 0 .35em;font-size:1rem;font-weight:700}.af h4:first-child{margin-top:0}.af-ia{display:inline-block;margin:0 0 .6em;padding:2px 10px;'
+           'border-radius:999px;background:#eef2f7;font-size:.82rem}.af-pie{font-size:.8rem;opacity:.75;line-height:1.45}</style>')
+
+
+def tiles_analisis(af):
+    """Resumen, Desarrollo (incluye la Tesis de inversión) y Conclusión del Análisis Fundamental automático (data/analisis_fundamental.py)."""
+    ia = (f'<div class="af-ia" title="Qué tan probable es que la inteligencia artificial perjudique el negocio dentro de 10 años, según el análisis.">'
+          f'Riesgo de la inteligencia artificial a 10 años: <b>{html.escape(af["riesgo_ia"].capitalize())}</b></div>') if af.get("riesgo_ia") else ""
+    res = _tile("s12", "Resumen", _CSS_AF + f'<div class="af">{ia}{_texto_af(af.get("resumen"))}</div>', ac="#0ea5e9")
+    cuerpo = "".join(f"<h4>{html.escape(x['titulo'])}</h4>{_texto_af(x['texto'])}" for x in af.get("desarrollo") or [])
+    des = _tile("s12", "Desarrollo y tesis de inversión", f'<div class="af">{cuerpo}</div>', ac="#8b5cf6")
+    con = _tile("s12", "Conclusión", f'<div class="af">{_texto_af(af.get("conclusion"))}</div>', ac="#16a34a")
+    modelo = html.escape(str(af.get("modelo") or ""))
+    pie = ('<div class="fch-sub af-pie" style="margin:4px 0 0">Texto generado automáticamente con inteligencia artificial'
+           + (f" ({modelo})" if modelo else "") + (f", el {html.escape(str(af['fecha']))}" if af.get("fecha") else "")
+           + ', a partir de los estados financieros de Yahoo Finance y la descripción del negocio. Puede contener errores o quedar desactualizado: '
+           'verificá siempre con los documentos oficiales de la empresa. Es información con fines educativos, no una recomendación de inversión.</div>')
+    return [res, des, con, pie]
+
+
+def tab_analisis(row, envolver=True, af=None):
+    """Análisis Fundamental: Resumen, Desarrollo / Tesis de inversión y Conclusión (texto automático, ver data/analisis_fundamental.py); al final, el puntaje actual del
+    modelo. El Score de calidad llega más adelante. Sin análisis guardado para la empresa: 'Próximamente'."""
+    if af and af.get("resumen"):
+        t = tiles_analisis(af) + [_tile_score(row)]
+    else:
+        t = [_tile_score(row), _tile("s12", "Resumen fundamental", '<div class="fch-sub" style="margin:0">Próximamente: un resumen del negocio y de sus fundamentos, con sus puntos fuertes, débiles y la tesis de inversión.</div>', ac="#94a3b8")]
+    return _env(*t) if envolver else "".join(t)
 
 
 def tab_valuacion(row, ficha, envolver=True, anuales=None):

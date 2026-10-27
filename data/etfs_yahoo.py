@@ -168,6 +168,30 @@ def bajar(simbolo, timeout=20.0, ticker_obj=None):
     return out
 
 
+def traducir_es(texto):
+    """Descripcion de Yahoo (en ingles) al castellano con deep-translator (Google), por partes cortadas en fin de oracion. None si no se puede
+    (no esta instalado, sin internet...): en ese caso la pantalla muestra el texto original en ingles, avisando que esta en ingles."""
+    import re
+    texto = str(texto or "").strip()
+    if not texto:
+        return None
+    try:
+        from deep_translator import GoogleTranslator
+        partes, actual = [], ""
+        for frase in re.split(r"(?<=[.!?])\s+", texto):
+            if len(actual) + len(frase) + 1 > 4000 and actual:
+                partes.append(actual)
+                actual = ""
+            actual = (actual + " " + frase).strip()
+        if actual:
+            partes.append(actual)
+        tr = GoogleTranslator(source="en", target="es")
+        es = " ".join(x for x in (tr.translate(p) for p in partes) if x).strip()
+        return es or None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 # --- archivo ------------------------------------------------------------------------------------------------------------
 
 def a_json(o):

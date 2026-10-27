@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.67"
+APP_VERSION = "1.2.68"
 
 import contextlib
 import streamlit as st
@@ -48,6 +48,7 @@ from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
 from ui.quienes import quienes_html, CSS as CSS_QUIENES
 from ui import ficha as _ficha
+from ui import tecnico as _tecnico
 from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx, paquetes_yahoo as _py
 
 # ---------------------------------------------------------------------------
@@ -318,6 +319,16 @@ def _multiplos_anuales_datos() -> dict:
         return _ma.cargar()[0]
     except Exception:  # noqa: BLE001
         return {}
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _af_para_ficha(ticker: str):
+    """Análisis Fundamental automático de la empresa (data/analisis_fundamental.json, lo arma generar_analisis_fundamental.py). None si no tiene."""
+    try:
+        from data import analisis_fundamental as _af
+        return _af.para_ficha(ticker)
+    except Exception:  # noqa: BLE001
+        return None
 
 
 @st.cache_data(ttl=900, show_spinner=False)
@@ -813,7 +824,7 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     precio = (_precios_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk) or d.get("precio")
     cedear = _cedear_etf(df, e, precio)
     st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear), unsafe_allow_html=True)
-    t_res, t_com, t_gra, t_not = st.tabs(["Resumen", "Composición", "Gráfico y Rendimiento", "Noticias"])
+    t_res, t_com, t_gra, t_not = st.tabs(["Resumen", "Composición", "Análisis Técnico y Rendimiento", "Noticias"])
     with t_res:
         st.markdown(_ui_etfs.con_intro("resumen", _ui_etfs.tab_resumen(e, d, precio, cedear)), unsafe_allow_html=True)
         arch = extra.get("archivo")
@@ -824,6 +835,7 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_gra:
         st.markdown(_ui_etfs.con_intro("grafico", _ui_etfs.tab_grafico_etf(extra.get("historial"))), unsafe_allow_html=True)
         _render_grafico(extra["simbolo"], extra.get("historial"), {})
+        st.markdown(_tecnico.tab_tecnico_html(extra.get("historial")), unsafe_allow_html=True)
     with t_not:
         st.markdown(_ui_etfs.con_intro("noticias", _ui_etfs.tab_noticias_etf(extra["simbolo"], d.get("noticias"))), unsafe_allow_html=True)
     cargando.empty()
@@ -1108,7 +1120,7 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
 # ---------------------------------------------------------------------------
 
 def _render_grafico(tk, pares, rd):
-    """Solapa "Grafico y rendimiento": selector 1D, 5D, 1M, 3M, YTD, 1A, 5A y MAX y grafico interactivo (zoom con la rueda, arrastrar y ver el valor al pasar el
+    """Solapa "Análisis Técnico y Rendimiento" (parte del gráfico): selector 1D, 5D, 1M, 3M, YTD, 1A, 5A y MAX y grafico interactivo (zoom con la rueda, arrastrar y ver el valor al pasar el
     mouse). 1D y 5D usan datos de cada 5 y 30 minutos; el resto, cierres diarios. Si Yahoo no responde, lo dice."""
     import altair as alt
     marcos = list(_hp.MARCOS)
@@ -1185,15 +1197,16 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with st.spinner("Aguarde mientras se cargan los datos..."):
         extra = _extras_empresa(tk)
     pares = extra.get("historial")
-    nombres = ["Resumen", "Análisis fundamental", "Gráfico y rendimiento", "Valuación", "Estados Financieros", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
+    nombres = ["Resumen", "Análisis Fundamental", "Análisis Técnico y Rendimiento", "Valuación", "Estados Financieros", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
     t_res, t_ana, t_gra, t_val, t_est, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
     with t_res:
         st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
-        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd)), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_para_ficha(tk))), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ficha.con_intro("grafico", _ficha.tab_grafico_tabla(pares)), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)
+        st.markdown(_tecnico.tab_tecnico_html(pares), unsafe_allow_html=True)
     with t_val:
         st.markdown(_ficha.con_intro("valuacion", _ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk))), unsafe_allow_html=True)
     with t_est:

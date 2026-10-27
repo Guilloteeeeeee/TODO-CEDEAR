@@ -16,7 +16,7 @@ INTRO = ("Un ETF es una canasta de activos (acciones, bonos o materias primas) q
 INTROS = {
     "resumen": "Qué es el ETF, cuánto cuesta (comisión), si paga dividendos o los reinvierte, y dónde cotiza, con el link a su sitio oficial.",
     "composicion": "Qué tiene adentro el ETF: sus principales tenencias y cómo se reparte por sector, por tipo de activo y por país.",
-    "grafico": "Cómo se movió el precio del ETF y cuánto rindió en distintos plazos. Rendimientos pasados no son garantías de resultados futuros.",
+    "grafico": "Cómo se movió el precio del ETF, cuánto rindió en distintos plazos y qué dicen los indicadores técnicos (rango de 52 semanas, promedios móviles, RSI, MACD y riesgo). Es información sobre el pasado del precio, no una señal de compra o venta.",
     "noticias": "Los últimos titulares sobre el ETF, en su idioma original, con link a cada nota.",
 }
 
@@ -177,8 +177,6 @@ def _fila(e, d, precio):
     tk = e["ticker"]
     nombre = html.escape(e.get("nombre") or tk)
     tags = ""
-    if e.get("nuevo"):
-        tags += '<span class="etf-tg etf-nv" title="CEDEAR de ETF nuevo">Nuevo</span>'
     if e.get("etiqueta"):
         tags += f'<span class="etf-tg etf-et">{html.escape(e["etiqueta"])}</span>'
     if e.get("acceso") and e["acceso"].strip().lower() != "cedear":
@@ -380,10 +378,30 @@ def cedear_linea(e, cedear):
     return f"CEDEAR: {F._ars(ars)} (Ratio {html.escape(r)})" if ars else f"CEDEAR: sin precio por ahora (Ratio {html.escape(r)})"
 
 
+def descripcion_html(e, d):
+    """Texto de "Qué es este ETF": la frase corta del CSV (si es una explicación y no solo el nombre) y la descripción que da Yahoo, traducida al
+    castellano por bajar_etfs_yahoo.py (si no se pudo traducir se muestra en inglés, avisándolo)."""
+    from data.etfs import norm
+    d = d or {}
+    corta = str(e.get("descripcion") or "").strip()
+    nombre = str(e.get("nombre") or "").strip()
+    if norm(corta) == norm(nombre):
+        corta = ""
+    out = f'<p class="fch-desc" style="margin:0 0 6px">{html.escape(corta)}</p>' if corta else ""
+    largo = str(d.get("resumen_es") or "").strip()
+    en = False
+    if not largo and d.get("resumen_en"):
+        largo, en = str(d["resumen_en"]).strip(), True
+    if largo:
+        out += f'<p class="fch-desc" style="margin:0 0 4px">{html.escape(largo)}</p>'
+        out += ('<div class="etf-nota">Descripción de Yahoo Finance' + (" (en inglés: todavía no se tradujo)." if en else ", traducida al castellano.") + '</div>')
+    return out
+
+
 def tab_resumen(e, d, precio, cedear=None):
     d = d or {}
     tk = e["ticker"]
-    desc = (f'<p class="fch-desc" style="margin:0 0 4px">{html.escape(e.get("descripcion") or "")}</p>' if e.get("descripcion") else "")
+    desc = descripcion_html(e, d)
     if e.get("etiqueta"):
         desc += f'<div style="margin:4px 0 0"><span class="etf-tg etf-et">{html.escape(e["etiqueta"])}</span></div>'
     arriba = F._tile("s12", "Qué es este ETF", desc + _links_etf(e, d), ac="#0ea5e9")
@@ -402,8 +420,6 @@ def tab_resumen(e, d, precio, cedear=None):
     if acc:
         filas.append(k("Cómo se compra desde Argentina", "CEDEAR" if acc.lower() == "cedear" else html.escape(acc),
                        "CEDEAR: se compra en pesos en el mercado local. Mesa del broker: hay que pedirlo al broker, no tiene CEDEAR."))
-    if e.get("nuevo"):
-        filas.append(k("Novedad", "CEDEAR nuevo"))
     datos_h = F._tile("s6", "Datos del ETF", '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>", ac="#0ea5e9")
     # --- cifras ---
     p = _n(precio) or _n(d.get("precio"))

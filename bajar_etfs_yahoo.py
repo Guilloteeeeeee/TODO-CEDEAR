@@ -1,5 +1,5 @@
 """
-Baja de Yahoo Finance, para cada ETF de data/etfs.csv, los datos de su pagina: precio, NAV, patrimonio (AUM), comision, dividendo y frecuencia, principales
+Baja de Yahoo Finance, para cada ETF de data/etfs.csv, los datos de su pagina: precio, NAV, patrimonio (AUM), comision, dividendo y frecuencia, descripcion (traducida al castellano), principales
 tenencias, sectores y noticias. Todo se guarda en data/etfs_yahoo.json. NO cambia nada mas.
 La app usa este archivo cuando Yahoo no responde desde la nube (pasa seguido: Yahoo limita los pedidos de las IP compartidas).
 
@@ -54,6 +54,12 @@ def main(tickers=None):
             time.sleep(PAUSA_S * 3)
             continue
         seguidos = 0
+        if d.get("resumen_en") and not d.get("resumen_es"):
+            es = ey.traducir_es(d["resumen_en"])
+            if es:
+                d["resumen_es"] = es
+            else:
+                avisos.append(f"{t}: la descripcion quedo en ingles (no se pudo traducir; probá 'pip install deep-translator')")
         datos[t] = d
         faltan = [k for k in ("nav", "aum", "comision", "rendimiento", "holdings", "mercado") if k not in d]
         print(f"  {i:3d}/{len(elegidos)} {t:6} ok" + (f"  (faltan: {', '.join(faltan)})" if faltan else ""))
