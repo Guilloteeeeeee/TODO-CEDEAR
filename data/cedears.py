@@ -7,6 +7,9 @@ Se leen de data/cedears.csv (separador coma o punto y coma). Columnas:
               y DIS -> DISN). Con ".BA" al final es el simbolo que usa Yahoo Finance para el precio en pesos.
     ratio     cuantos CEDEARs equivalen a una accion: "20" o "20:1" (si es al reves, "1:4": un CEDEAR equivale a 4 acciones)
 Fuente de los ratios: tabla oficial de BYMA, tal como la publica Rankia (actualizada el 20/10/2026; BYMA la actualizo en septiembre de 2026).
+Control del 27/10/2026 contra el PDF oficial de BYMA "CEDEARs Negociables" (16/09/2026, guardado en data/byma_cedears.json): los 162 simbolos de este archivo que
+figuran en el PDF coinciden ratio por ratio (BAC y ROST 4:1 incluidos). BNY y MRSH figuran en el PDF como BK y MMC (mismo ratio, 2:1 y 16:1); NU no figura en el PDF.
+HWM: el PDF dice 1:1 pero el precio en pesos no es compatible con ese ratio, por eso sigue sin dato.
 Correcciones del 24/10/2026, hechas con el precio en pesos de Rava y el dolar que implica (probar_cedears.py): BAC y ROST figuraban 41:1 en la
 tabla de Rankia y el mercado dice 4:1 (con 4:1 el dolar implicito da 1.657 y 1.650; con 41:1 darian 16.980 y 16.910); en BYMA los simbolos de BNY y MRSH
 son BNY y MRSH (la tabla traia BK y MMC). HWM se saco: la tabla dice 1:1 pero el precio en pesos de Yahoo no es compatible con ese ratio y
