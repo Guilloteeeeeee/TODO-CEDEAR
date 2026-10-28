@@ -136,9 +136,10 @@ CSS = CSS.replace("__FONDO__", str(FONDO_PAGINA or "#ffffff"))
 # queda debajo de la franja, como antes. Con ICONOS_EN_BARRA = True el menu es mas ancho y el buscador no sube.
 CSS_BUSCADOR = """
 @media (min-width:1280px){
-:root{--sw:clamp(180px,calc(100vw - 1130px),360px)}
+:root{--sw:clamp(150px,calc(100vw - 1130px),180px)}      /* v1.2.77: buscador corto (unos 15 caracteres) */
 [data-testid="stMainBlockContainer"]{position:relative}
 [data-testid="stMainBlockContainer"] .st-key-buscador{position:absolute;top:20px;left:calc(50% + 330px - 50vw);transform:none;width:var(--sw);margin:0;z-index:60}
+div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!important}      /* la lista de sugerencias es más ancha que la caja */
 [data-testid="stMainBlockContainer"] .st-key-buscador input{height:40px;font-size:14.5px;border-radius:20px;padding-left:40px!important;background-position:13px center;background-size:18px;box-shadow:none}
 .st-key-nav_tablas{position:absolute;top:0;height:80px;left:calc(50% + 330px + var(--sw) + 12px - 50vw);margin:0;align-items:center;justify-content:flex-start;z-index:60}
 .st-key-nav_tablas button{color:#cbd5e1;padding:8px 11px}
@@ -384,8 +385,7 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
                 iconos += _insignia(k, "WhatsApp: próximamente")
         iconos += _icono_img("intramed", "Intramed", e["intramed"], "mc-ib")
     iconos = f'<div class="mc-ic">{iconos}</div>' if iconos else ""
-    cartera = '<a class="mc-it mc-cart" href="?pagina=cartera" target="_self">Evaluá tu Cartera</a>'      # v1.2.76: al lado de "Sobre Nosotros"
-    menus = cartera + _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
+    menus = _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
     nav = f'<div class="mc-nav">{menus}{iconos}</div>'
     uri = logo_uri()
     toro = (f'<a class="mc-toro" href="?pagina=quienes" target="_self" title="Quiénes somos"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}"></a>'

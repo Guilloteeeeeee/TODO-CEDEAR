@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.77 (28/10/2026): barra naranja "Evaluá tu Cartera", buscador corto, "Volver a Empresas"
+
+- **Evaluá tu Cartera** sale de la franja negra y pasa a ser una barra naranja de punta a punta, en el mismo formato que Noticias, Calendario y Filtro (en el inicio de Empresas y en el de ETFs; cerrada al abrir). Adentro, los datos se cargan en 3 tarjetas: 1) edad y perfil, 2) moneda, 3) Excel/CSV o texto. La página `?pagina=cartera` sigue existiendo.
+- Buscador de la franja: más corto (unos 15 caracteres) y con la lista de sugerencias más ancha.
+- "← Volver al Inicio" de la página de empresa pasa a "← Volver a Empresas".
+
 ### v1.2.76 (28/10/2026): Evaluá tu Cartera más visual y con conversión de moneda, menú junto a Sobre Nosotros, páginas más compactas, conclusión en color
 
 - **Evaluá tu Cartera** (antes "Tu Cartera") pasa a la franja negra, al lado de "Sobre Nosotros". La evaluación se ve con tarjetas: torta de la cartera, barras de pesos con indicador (en línea / te pasás / te faltan), barra apilada por país y por tipo de empresa, y los ajustes en pasos numerados (`ui/cartera_visual.py`).

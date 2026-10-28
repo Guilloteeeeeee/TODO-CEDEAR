@@ -54,6 +54,29 @@ CSS = """
 """
 
 
+CSS_ENTRADA = """
+/* barra naranja de punta a punta (v1.2.77): mismo formato que Noticias, Calendario y Filtro, pero de color */
+.st-key-caja_cart{margin:2px 0 0}
+.st-key-caja_cart [data-testid="stExpander"]{background:#fff;border:0!important;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.10)}
+.st-key-caja_cart [data-testid="stExpander"] details{border:0!important;background:transparent!important}
+.st-key-caja_cart [data-testid="stExpander"] summary{padding:0 1.1rem;min-height:50px;display:flex;align-items:center;background:linear-gradient(90deg,#ea580c 0%,#f59e0b 100%)!important;border-radius:0}
+.st-key-caja_cart [data-testid="stExpander"] summary:hover{filter:brightness(1.06)}
+.st-key-caja_cart [data-testid="stExpander"] summary p{font-weight:800;font-size:1.04rem;color:#fff!important}
+.st-key-caja_cart [data-testid="stExpander"] summary svg,.st-key-caja_cart [data-testid="stExpanderIcon"]{color:#fff!important;fill:#fff!important}
+.st-key-caja_cart [data-testid="stExpanderDetails"]{padding:1rem 1.1rem 1rem;background:#fff}
+/* tarjetas de entrada de datos */
+.st-key-cr_p1,.st-key-cr_p2,.st-key-cr_p3{background:linear-gradient(180deg,#fffaf3 0%,#fff 60%);border:1px solid #fde7c8;border-radius:16px;padding:14px 18px 12px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.cv-paso{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.02rem;color:#0f172a;margin:0 0 6px}
+.cv-paso span{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#ea580c,#f59e0b);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.cv-ayuda{color:#64748b;font-size:.86rem;line-height:1.45;margin:2px 0 8px}
+.cv-cols{display:inline-block;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:8px;padding:1px 8px;font-weight:700;font-size:.82rem;margin:0 2px}
+.st-key-cr_p3 [data-testid="stFileUploaderDropzone"]{border:2px dashed #fb923c;background:#fff7ed;border-radius:14px}
+.st-key-cr_p3 [data-testid="stFileUploaderDropzone"]:hover{background:#ffedd5}
+.st-key-cr_p1 [data-testid="stNumberInput"] input{font-size:1.1rem;font-weight:700}
+@media (max-width:640px){.st-key-cr_p1,.st-key-cr_p2,.st-key-cr_p3{padding:12px 12px 10px}}
+"""
+
+
 def _md(t):
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t), quote=False))
 

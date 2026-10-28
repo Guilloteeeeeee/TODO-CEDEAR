@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.76"
+APP_VERSION = "1.2.77"
 
 import contextlib
 import streamlit as st
@@ -34,6 +34,7 @@ from ui.fuentes import css_condensada, css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav
 from ui import noticias as _noticias, calendario as _calendario
 from data import tecnicos as _tecnicos
+from ui import cartera_visual as _cartera_visual
 from ui.cajas import CSS as CSS_CAJAS
 from ui.exportar import excel_bytes
 from ui import estado as estado_url
@@ -954,7 +955,7 @@ def render_buscador() -> str:
     st.session_state["_destinos_busqueda"] = {o[0]: (o[1], o[2]) for o in opciones}
     with st.container(key="buscador"):
         try:
-            args = dict(index=None, key="flt_busqueda", placeholder="Buscar empresa, ETF o ticker", label_visibility="collapsed", on_change=_ir_a_seleccion)
+            args = dict(index=None, key="flt_busqueda", placeholder="Empresa o ETF", label_visibility="collapsed", on_change=_ir_a_seleccion)
             try:
                 # v1.2.67: "contains" = solo quedan las opciones que tienen lo escrito (antes, el modo por defecto dejaba también las que tenían las letras sueltas)
                 st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], filter_mode="contains", **args)
@@ -1219,7 +1220,7 @@ def _nota_archivo(extra, clave):
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
-    st.markdown('<a class="emp-vol" href="?" target="_self">← Volver al Inicio</a>', unsafe_allow_html=True)
+    st.markdown('<a class="emp-vol" href="?" target="_self">← Volver a Empresas</a>', unsafe_allow_html=True)
     # v1.2.54: aviso bien visible mientras se prepara la informacion de la empresa (se borra al terminar)
     cargando = st.empty()
     cargando.markdown('<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos de la empresa…</div>', unsafe_allow_html=True)
@@ -1369,35 +1370,57 @@ def _ccl_hoy(df):
         return None
 
 
-def render_cartera(df):
-    """v1.2.73: "Evaluá tu Cartera": edad + perfil + Excel/CSV (o texto) -> evaluación en 4 bloques (pesos, geografía, sectores, conclusiones y ajustes).
-    v1.2.76: diseño con tarjetas y gráficos (ui/cartera_visual.py) y conversión automática de moneda (columna Moneda + dólar CCL). No se guarda nada."""
+def render_cartera(df, pagina=True):
+    """"Evaluá tu Cartera": edad + perfil + Excel/CSV (o texto) -> evaluación en 4 bloques (pesos, geografía, sectores, conclusiones y ajustes).
+    v1.2.77: va en una barra naranja de punta a punta (Empresas y ETFs); los datos se cargan en 3 tarjetas con pasos. `pagina=True`: la página propia ?pagina=cartera."""
     from ui import cartera as C
     from ui import cartera_visual as CV
-    st.markdown(f"<style>{C.CSS}{CV.CSS}</style>", unsafe_allow_html=True)
-    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Cartera</h1><p class="cr-i">Contanos tu edad y tu perfil de inversor, <b>subí tu cartera en un Excel</b> '
+    st.markdown(f"<style>{C.CSS}{CV.CSS}{CV.CSS_ENTRADA}</style>", unsafe_allow_html=True)
+    titulo = "<h1>Evaluá tu Cartera</h1>" if pagina else ""
+    st.markdown(f'<div class="cr{" cr-top" if pagina else ""}">{titulo}<p class="cr-i">Contanos tu edad y tu perfil, <b>subí tu cartera en un Excel</b> '
                 'y te devolvemos una evaluación: los pesos de tu cartera, su diversificación geográfica y sectorial, y qué ajustaría. '
                 'Reconocemos acciones y CEDEARs, ETFs, bonos y letras argentinas, obligaciones negociables, efectivo y cripto. Es información general: no es una recomendación '
                 'personalizada y no guardamos tu cartera.</p></div>', unsafe_allow_html=True)
-    c1, c2 = st.columns(2)
-    with c1:
-        edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
-    with c2:
-        perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
-    st.markdown("**Subí tu cartera en Excel** (o CSV). Columnas: **Ticker**, **Monto** (valor actual de cada tenencia), **Moneda** (USD o ARS; opcional) y, "
-                "solo para bonos, obligaciones negociables, fondos o efectivo, **Tipo**. Todo se pasa a dólares automáticamente.")
-    try:
-        st.download_button("Descargar Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
-                           mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla")
-    except Exception:  # noqa: BLE001
-        pass
-    arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo")
-    with st.expander("O pegala como texto"):
-        texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=140, key="cr_texto", label_visibility="collapsed",
-                             placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
-    m1, m2 = st.columns(2)
-    with m1:
-        base = st.radio("Los montos sin moneda están en", ["Dólares", "Pesos"], horizontal=True, key="cr_base")
+    ayuda_perfil = {"Conservador": "Prioriza cuidar el capital y tolera pocos vaivenes.",
+                    "Moderado": "Busca un equilibrio entre cuidar el capital y hacerlo crecer.",
+                    "Agresivo": "Acepta más vaivenes a cambio de más potencial de crecimiento."}
+    f1, f2 = st.columns([3, 2], gap="medium")
+    with f1:
+        with st.container(key="cr_p1"):
+            st.markdown('<div class="cv-paso"><span>1</span>Tu edad y tu perfil de inversor</div>', unsafe_allow_html=True)
+            e1, e2 = st.columns([1, 2])
+            with e1:
+                edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
+            with e2:
+                try:
+                    perfil = st.segmented_control("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], default="Moderado", key="cr_perfil") or "Moderado"
+                except Exception:  # noqa: BLE001
+                    perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
+            st.markdown(f'<div class="cv-ayuda">{ayuda_perfil[perfil]}</div>', unsafe_allow_html=True)
+    with f2:
+        with st.container(key="cr_p2"):
+            st.markdown('<div class="cv-paso"><span>2</span>Moneda de tus montos</div>', unsafe_allow_html=True)
+            base = st.radio("Los montos sin moneda están en", ["Dólares", "Pesos"], horizontal=True, key="cr_base")
+            lugar_tc = st.container()
+            st.markdown('<div class="cv-ayuda">Todo se pasa a dólares automáticamente. Si tu Excel trae una columna <span class="cv-cols">Moneda</span> (USD o ARS), se usa esa.</div>', unsafe_allow_html=True)
+    with st.container(key="cr_p3"):
+        st.markdown('<div class="cv-paso"><span>3</span>Subí tu cartera en Excel</div>', unsafe_allow_html=True)
+        st.markdown('<div class="cv-ayuda">Columnas: <span class="cv-cols">Ticker</span><span class="cv-cols">Monto</span> y, si querés, <span class="cv-cols">Moneda</span> y <span class="cv-cols">Tipo</span> '
+                    '(el Tipo solo hace falta para bonos, obligaciones negociables, fondos o efectivo).</div>', unsafe_allow_html=True)
+        t_arch, t_txt = st.tabs(["📎 Excel o CSV", "✍️ Pegar como texto"])
+        with t_arch:
+            u1, u2 = st.columns([3, 1], gap="medium")
+            with u1:
+                arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo", label_visibility="collapsed")
+            with u2:
+                try:
+                    st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
+                                       mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
+                except Exception:  # noqa: BLE001
+                    pass
+        with t_txt:
+            texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=130, key="cr_texto", label_visibility="collapsed",
+                                 placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
     if arch is None and not (texto or "").strip():
         return
     if edad is None:
@@ -1416,7 +1439,7 @@ def render_cartera(df):
     tc = None
     if hay_pesos:
         auto = _ccl_hoy(df)
-        with m2:
+        with lugar_tc:
             tc = st.number_input("Dólar para convertir (pesos por dólar)", min_value=1.0, value=round(auto, 2) if auto else None, step=1.0, key="cr_tc",
                                  help="Por defecto, el dólar CCL implícito de los CEDEARs de hoy. Podés cambiarlo." if auto else "No pudimos calcular el CCL ahora: escribilo vos.")
         if not tc:
@@ -1453,6 +1476,13 @@ def render_cartera(df):
         st.caption("El informe se arma en el momento y se baja a tu dispositivo: no guardamos tu cartera ni el informe.")
     except Exception:  # noqa: BLE001
         pass
+
+
+def render_barra_cartera(df):
+    """Barra naranja "Evaluá tu Cartera" de punta a punta (v1.2.77), en el inicio de Empresas y de ETFs. Cerrada al abrir la página."""
+    with st.container(key="caja_cart"):
+        with st.expander("Evaluá tu Cartera · subí tu Excel y recibí una evaluación", expanded=False):
+            render_cartera(df, pagina=False)
 
 
 def main():
@@ -1616,6 +1646,10 @@ def main():
                     with st.expander("Filtro de Empresas", expanded=False):
                         filtros = render_filtros_inline(universe, df)
                         st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
+
+    # v1.2.77: barra "Evaluá tu Cartera" de punta a punta (Empresas y ETFs)
+    st.markdown(f"<style>{_cartera_visual.CSS_ENTRADA}</style>", unsafe_allow_html=True)
+    render_barra_cartera(df)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()
