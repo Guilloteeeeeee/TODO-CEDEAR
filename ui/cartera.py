@@ -48,7 +48,7 @@ def numero(x):
     elif "," in t:
         partes = t.split(",")
         t = t.replace(",", ".") if len(partes) == 2 and len(partes[1]) != 3 else t.replace(",", "")
-    elif t.count(".") > 1 or (t.count(".") == 1 and len(t.split(".")[1]) == 3 and len(t.split(".")[0]) <= 3 and False):
+    elif t.count(".") > 1 or (t.count(".") == 1 and re.fullmatch(r"-?[1-9]\d{0,2}\.\d{3}", t)):      # 1.500 = mil quinientos (punto de miles); 0.125 o 1.5 son decimales
         t = t.replace(".", "")
     try:
         return float(t)
@@ -56,47 +56,145 @@ def numero(x):
         return None
 
 
-def _columnas(cols):
-    """(ticker, monto, tipo, cantidad, precio, moneda): indices de las columnas segun los encabezados (None si no hay). Los Excel de los brokers suelen traer Cantidad y Precio en lugar de Monto."""
-    n = [norm(c) for c in cols]
+# Palabras que identifican cada columna (se comparan contra el encabezado sin tildes ni mayusculas). Van por PRIORIDAD: se prueba la primera palabra en todas las columnas, despues la segunda...
+_K_TICKER = ("ticker", "simbolo", "especie", "codigo", "nemonico", "symbol", "activo", "instrumento", "papel", "descripcion", "denominacion", "nombre", "name")
+_K_MONTO = ("valuacion", "valorizado", "valorizacion", "valor actual", "valor de mercado", "valor mercado", "market value", "monto", "importe", "tenencia valorizada", "total", "valor",
+            "tenencia", "saldo", "position value")
+_K_MONTO_MAL = ("precio", "variacion", "resultado", "ganancia", "perdida", "rendimiento", "costo", "compra", "ppc", "inicial", "diario", "dia", "%", "pnl", "p l", "tna", "tir",
+                "cantidad", "nominal", "disponible", "cotiz")
+_K_TIPO = ("tipo", "clase", "categoria", "rubro", "panel", "mercado", "asset class")
+_K_CANT = ("cantidad", "nominales", "cant", "tenencia", "quantity", "unidades", "titulos")
+_K_PRECIO = ("ultimo", "precio actual", "precio", "cotizacion", "price", "last")
+_K_PRECIO_MAL = ("compra", "ppc", "costo", "promedio", "variacion", "cierre anterior", "apertura")
+_K_MONEDA = ("moneda", "divisa", "currency")
+_K_PESO = ("peso", "ponderacion", "% de la cartera", "% cartera", "participacion", "porcentaje")
 
-    def buscar(claves, excluir=()):
+
+def _buscar(n, claves, excluir=(), usados=()):
+    for k in claves:
         for i, c in enumerate(n):
-            if any(k in c for k in claves) and not any(x in c for x in excluir):
+            if i in usados or not c:
+                continue
+            if (k in c if " " in k or len(k) > 3 else k in c.split()) and not any((x in c.split()) if (len(x) <= 3 and x.isalpha()) else (x in c) for x in excluir):
                 return i
-        return None
-    return (buscar(("ticker", "simbolo", "especie", "activo", "instrumento", "nombre")),
-            buscar(("monto", "valor", "importe", "total", "tenencia", "valuacion", "valorizado", "peso", "%")),
-            buscar(("tipo", "clase", "categoria")),
-            buscar(("cantidad", "nominales", "cant")), buscar(("precio", "cotizacion", "ultimo"), excluir=("compra", "ppc", "costo")),
-            buscar(("moneda", "divisa")))
+    return None
+
+
+def _columnas(cols):
+    """Devuelve un diccionario con los indices de las columnas segun los encabezados (None si no hay): ticker, monto (lista de (indice, moneda del encabezado)),
+    tipo, cantidad, precio, moneda, peso. Los Excel de los brokers traen nombres muy distintos (Especie, Símbolo, Valuación, Total valorizado, Nominales...)."""
+    n = [norm(c) for c in cols]
+    it = _buscar(n, _K_TICKER)
+    # columnas de monto: puede haber una en pesos y otra en dolares (Balanz, IOL); se guardan todas, en orden de prioridad
+    montos = []
+    for k in _K_MONTO:
+        for i, c in enumerate(n):
+            if i == it or any(i == m[0] for m in montos) or not c:
+                continue
+            if (k in c) and not any((x in c.split()) if (len(x) <= 3 and x.isalpha()) else (x in c) for x in _K_MONTO_MAL):
+                montos.append((i, _moneda_encabezado(cols[i])))
+    ic = _buscar(n, _K_CANT, usados=(it,))
+    ip = _buscar(n, _K_PRECIO, excluir=_K_PRECIO_MAL, usados=(it, ic))
+    # "Tenencia" a secas es ambiguo: si ya hay una columna de monto mas clara, es la cantidad
+    solo = [m for m in montos if m[0] != ic]
+    montos = solo if solo else ([] if (ic is not None and ip is not None) else montos)
+    montos.sort(key=lambda m: {"usd": 0, None: 1, "ars": 2}[m[1]])        # si el archivo trae pesos y dolares, se prefiere dolares (no hace falta convertir)
+    ipeso = _buscar(n, _K_PESO, usados=(it,))
+    if not montos and ipeso is not None and not (ic is not None and ip is not None):
+        montos = [(ipeso, None)]                                            # archivo con solo porcentajes de cada posicion
+    return {"ticker": it, "monto": montos, "tipo": _buscar(n, _K_TIPO, usados=(it,)), "cantidad": ic, "precio": ip,
+            "moneda": _buscar(n, _K_MONEDA, usados=(it,)), "peso": ipeso}
+
+
+def _moneda_encabezado(txt):
+    """Moneda que dice el encabezado de una columna de monto ('Valuación USD', 'Total en pesos', 'Valorizado ($)'); None si no dice."""
+    t = norm(txt)
+    if re.search(r"\b(usd|u s|us|dolar|dolares|dollar|dollars|mep|ccl|usdt)\b", t) or "u$s" in str(txt).lower() or "us$" in str(txt).lower():
+        return "usd"
+    if re.search(r"\b(ars|peso|pesos|arg)\b", t) or "($)" in str(txt) or re.search(r"(^|\s)\$(\s|$)", str(txt)):
+        return "ars"
+    return None
+
+
+def _puntaje_encabezado(fila):
+    c = _columnas(fila)
+    if c["ticker"] is None:
+        return 0
+    if c["monto"]:
+        return 3 + (1 if c["tipo"] is not None else 0) + (1 if c["moneda"] is not None else 0)
+    if c["cantidad"] is not None and c["precio"] is not None:
+        return 3
+    return 0
+
+
+_TOTALES = re.compile(r"^(sub ?total|total|totales|suma|saldo total|resumen|valor total|total general|cartera|patrimonio|disponible)\b")
+
+
+def _ticker_limpio(txt):
+    """'AAPL - Apple Inc' -> 'AAPL'; 'AAPL.BA' queda igual; 'ON YPF' queda igual."""
+    t = str(txt or "").strip()
+    m = re.match(r"^([A-Za-z0-9.]{2,10})\s*(?:[-–—:(]\s+|\()", t)
+    if m and not re.match(r"^(ON|FCI|BONO|LETRA|PLAZO)$", m.group(1), re.I):
+        return m.group(1)
+    return t
+
+
+def _es_numerica(col, filas):
+    v = [numero(f[col]) for f in filas if col < len(f) and str(f[col] or "").strip()]
+    return len(v) >= 1 and sum(x is not None for x in v) / len(v) >= 0.7
 
 
 def leer_tabla(filas):
-    """`filas`: lista de listas (la primera puede ser el encabezado). Devuelve [{'ticker', 'monto', 'tipo'}] con monto > 0.
-    Si no hay columna de monto pero sí Cantidad y Precio, el monto es cantidad × precio."""
+    """`filas`: lista de listas. Se adapta a lo que venga: el encabezado puede estar en cualquiera de las primeras 30 filas (se saltean títulos y datos de la cuenta),
+    las columnas se reconocen por sus nombres (Símbolo, Especie, Valuación, Total valorizado, Cantidad × Precio…), puede haber una columna de monto en pesos y otra en dólares,
+    se ignoran las filas de totales y los títulos de grupo ("Acciones", "Bonos"…) se usan como Tipo. Sin encabezado: primera columna = ticker, primera columna con números = monto.
+    Devuelve [{'ticker', 'monto', 'tipo', 'moneda'}] con monto > 0."""
     filas = [list(f) for f in filas if f and any(str(c or "").strip() for c in f)]
     if not filas:
         return []
-    it, im, ity, ic, ip, imo = _columnas(filas[0])
-    con_encabezado = it is not None and (im is not None or (ic is not None and ip is not None))
-    datos = filas[1:] if con_encabezado else filas
-    if not con_encabezado:
-        it, im, ity, ic, ip, imo = 0, 1, (2 if any(len(f) > 2 for f in filas) else None), None, None, None
-    out = []
+    mejor, mejor_p = None, 0
+    for i, f in enumerate(filas[:30]):
+        p = _puntaje_encabezado(f)
+        if p > mejor_p:
+            mejor, mejor_p = i, p
+    if mejor is not None:
+        c = _columnas(filas[mejor])
+        datos = filas[mejor + 1:]
+    else:           # sin encabezado: ticker = primera columna, monto = primera columna que tenga numeros
+        ancho = max(len(f) for f in filas)
+        im = next((j for j in range(1, ancho) if _es_numerica(j, filas)), 1)
+        c = {"ticker": 0, "monto": [(im, None)], "tipo": next((j for j in range(1, ancho) if j != im and not _es_numerica(j, filas)), None), "cantidad": None, "precio": None,
+             "moneda": None, "peso": None}
+        datos = filas
+    it = c["ticker"]
+    out, seccion = [], ""
     for f in datos:
         if it >= len(f):
             continue
         tk = str(f[it] or "").strip()
-        m = numero(f[im]) if im is not None and im < len(f) else None
-        if m is None and ic is not None and ip is not None and max(ic, ip) < len(f):
-            c_, p_ = numero(f[ic]), numero(f[ip])
-            m = c_ * p_ if c_ and p_ else None
-        if not tk or m is None or m <= 0:
+        if not tk:
             continue
-        tipo = str(f[ity] or "").strip() if ity is not None and ity < len(f) else ""
-        mo = moneda_de(f[imo]) if imo is not None and imo < len(f) else None
-        out.append({"ticker": tk, "monto": m, "tipo": tipo, "moneda": mo})
+        if _TOTALES.match(norm(tk)):
+            continue
+        m, mo_enc = None, None
+        for im, mon in c["monto"]:
+            v = numero(f[im]) if im < len(f) else None
+            if v is not None and v > 0:
+                m, mo_enc = v, mon
+                break
+        if m is None and c["cantidad"] is not None and c["precio"] is not None and max(c["cantidad"], c["precio"]) < len(f):
+            c_, p_ = numero(f[c["cantidad"]]), numero(f[c["precio"]])
+            m = c_ * p_ if c_ and p_ and c_ > 0 and p_ > 0 else None
+        if m is None:
+            # fila de titulo de grupo ("Acciones", "Bonos", "CEDEARs"): sin ningun numero en la fila
+            if not any(numero(x) is not None for j, x in enumerate(f) if j != it and str(x or "").strip()) and len(tk) <= 40:
+                seccion = tk
+            continue
+        tipo = str(f[c["tipo"]] or "").strip() if c["tipo"] is not None and c["tipo"] < len(f) else ""
+        if not tipo and seccion:
+            tipo = seccion
+        mo = mo_enc or (moneda_de(f[c["moneda"]]) if c["moneda"] is not None and c["moneda"] < len(f) else None)
+        out.append({"ticker": _ticker_limpio(tk), "monto": m, "tipo": tipo, "moneda": mo})
     return out
 
 
@@ -146,20 +244,63 @@ def leer_texto(texto):
     return leer_tabla(filas)
 
 
-def leer_archivo(nombre, datos):
-    """Posiciones desde un .xlsx / .xls / .csv (bytes). Lanza ValueError con un mensaje claro si no se puede leer."""
+def _filas_csv(datos):
+    """Filas de un .csv / .txt: detecta la codificacion (UTF-8 o Windows) y el separador (; , tab |) mirando las primeras lineas."""
+    import csv
+    if isinstance(datos, (bytes, bytearray)):
+        try:
+            txt = bytes(datos).decode("utf-8-sig")
+        except UnicodeDecodeError:
+            txt = bytes(datos).decode("cp1252", "replace")
+    else:
+        txt = str(datos)
+    lineas = [l for l in txt.splitlines() if l.strip()][:40]
+    mejor, mejor_p = ",", -1
+    for d in (";", "\t", "|", ","):
+        cuentas = [l.count(d) for l in lineas]
+        if not any(cuentas):
+            continue
+        moda = max(set(c for c in cuentas if c), key=lambda c: cuentas.count(c))
+        p = cuentas.count(moda) * 10 + (1 if d == ";" else 0)
+        if p > mejor_p:
+            mejor, mejor_p = d, p
+    return [list(r) for r in csv.reader(io.StringIO(txt), delimiter=mejor)]
+
+
+def leer_archivo_info(nombre, datos):
+    """(posiciones, nota) desde un .xlsx / .xlsm / .xls / .csv / .txt (bytes). Si el Excel tiene varias hojas usa la que tenga más posiciones y lo avisa en `nota`.
+    Lanza ValueError con un mensaje claro si no se puede leer."""
     import pandas as pd
     n = str(nombre or "").lower()
+    if n.endswith((".csv", ".txt", ".tsv")):
+        try:
+            return leer_tabla(_filas_csv(datos)), ""
+        except Exception as e:  # noqa: BLE001
+            raise ValueError("No pude leer el archivo. Probá con el Excel de ejemplo (botón de arriba) o guardalo como .csv.") from e
     try:
-        if n.endswith(".csv") or n.endswith(".txt"):
-            txt = datos.decode("utf-8-sig", "replace") if isinstance(datos, (bytes, bytearray)) else str(datos)
-            sep = ";" if txt.count(";") > txt.count(",") else ","
-            df = pd.read_csv(io.StringIO(txt), sep=sep, header=None, dtype=str, keep_default_na=False)
-        else:
-            df = pd.read_excel(io.BytesIO(datos), header=None, dtype=str, keep_default_na=False)
+        hojas = pd.read_excel(io.BytesIO(datos), header=None, dtype=str, keep_default_na=False, sheet_name=None)
+    except ImportError as e:
+        raise ValueError("Ese formato de Excel viejo (.xls) no se puede leer acá: guardalo como .xlsx o .csv y subilo de nuevo.") from e
     except Exception as e:  # noqa: BLE001
-        raise ValueError("No pude leer el archivo. Probá con el Excel de ejemplo (botón de arriba) o con un .csv.") from e
-    return leer_tabla(df.values.tolist())
+        raise ValueError("No pude leer el archivo. Probá con el Excel de ejemplo (botón de arriba) o guardalo como .xlsx o .csv.") from e
+    mejor, mejor_n, mejor_t = None, 0, 0.0
+    for nom, df in hojas.items():
+        try:
+            pos = leer_tabla(df.values.tolist())
+        except Exception:  # noqa: BLE001
+            continue
+        t = sum(p["monto"] for p in pos)
+        if len(pos) > mejor_n or (len(pos) == mejor_n and t > mejor_t):
+            mejor, mejor_n, mejor_t = (nom, pos), len(pos), t
+    if mejor is None:
+        return [], ""
+    nota = f"Tu archivo tiene {len(hojas)} hojas: usé «{mejor[0]}», que es la que tiene más posiciones." if len(hojas) > 1 else ""
+    return mejor[1], nota
+
+
+def leer_archivo(nombre, datos):
+    """Posiciones desde un .xlsx / .xls / .csv (bytes). Lanza ValueError con un mensaje claro si no se puede leer."""
+    return leer_archivo_info(nombre, datos)[0]
 
 
 def plantilla_excel():

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.80"
+APP_VERSION = "1.2.81"
 
 import contextlib
 import streamlit as st
@@ -1396,14 +1396,14 @@ def render_cartera(df, pagina=True):
         lugar_tc = st.container()
         u1, u2 = st.columns([3, 1], gap="medium")
         with u1:
-            arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo", label_visibility="collapsed")
+            arch = st.file_uploader("Tu cartera (Excel o .csv)", type=["xlsx", "xlsm", "xls", "csv", "tsv", "txt"], key="cr_archivo", label_visibility="collapsed")
         with u2:
             try:
                 st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
                                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
             except Exception:  # noqa: BLE001
                 pass
-        st.markdown('<div class="cv-ayuda">Columnas: <span class="cv-cols">Ticker</span><span class="cv-cols">Monto</span> (opcional: <span class="cv-cols">Moneda</span> y <span class="cv-cols">Tipo</span>).</div>', unsafe_allow_html=True)
+        st.markdown('<div class="cv-ayuda">Subí el Excel de tu broker tal como lo bajás: busco solas las columnas (<span class="cv-cols">ticker</span> y <span class="cv-cols">monto</span>, o <span class="cv-cols">cantidad</span> y <span class="cv-cols">precio</span>). Si no se entiende, usá el de ejemplo.</div>', unsafe_allow_html=True)
         with st.expander("¿No tenés Excel? Pegá tu cartera como texto", expanded=False):
             texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=120, key="cr_texto", label_visibility="collapsed",
                                  placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
@@ -1413,13 +1413,15 @@ def render_cartera(df, pagina=True):
         st.info("Poné tu edad para ver la evaluación.")
         return
     try:
-        pos = C.leer_archivo(arch.name, arch.getvalue()) if arch is not None else C.leer_texto(texto)
+        pos, nota_hoja = C.leer_archivo_info(arch.name, arch.getvalue()) if arch is not None else (C.leer_texto(texto), "")
     except ValueError as e:
         st.error(str(e))
         return
     if not pos:
-        st.warning("No encontré posiciones con monto. Revisá que haya una columna de ticker y una de monto (mirá el Excel de ejemplo).")
+        st.warning("No encontré posiciones en ese archivo. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo o pegá tu cartera como texto.")
         return
+    if nota_hoja:
+        st.caption(nota_hoja)
     base_k = "ars" if base == "Pesos" else "usd"
     hay_pesos = any((p.get("moneda") or base_k) == "ars" for p in pos)
     tc = None

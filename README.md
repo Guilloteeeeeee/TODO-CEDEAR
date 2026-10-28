@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.81 (28/10/2026): Tu Cartera lee casi cualquier Excel/CSV y la barra pasa a rosa
+- **Lector adaptable** (`ui/cartera.py: leer_tabla`, `leer_archivo_info`): ya no hace falta el formato de ejemplo. Busca el encabezado en las primeras 30 filas (se saltean títulos y datos de la cuenta), reconoce columnas por sus nombres (Ticker/Símbolo/Especie/Instrumento/Descripción; Monto/Valuación/Valorizado/Importe/Total…; Cantidad/Nominales × Precio/Último; Moneda; Tipo/Rubro), ignora precios de compra, resultados y variaciones, se saltea las filas de Total, usa los títulos de grupo ("Acciones", "Bonos") como Tipo, prefiere la columna en dólares si hay una en pesos y otra en dólares, limpia "AAPL - Apple Inc" a "AAPL", acepta solo porcentajes y archivos sin encabezado (ticker = primera columna, monto = primera columna numérica). `1.500` se lee como 1500 (punto de miles).
+- Varias hojas: usa la que tiene más posiciones y lo avisa en pantalla. CSV: detecta codificación (UTF-8 / Windows) y separador (; , tab |). Se aceptan .xlsx, .xlsm, .xls (con `xlrd` en requirements), .csv, .tsv y .txt. Si no entiende el archivo, el mensaje dice qué necesita.
+- Límite honesto: se probó con estructuras simuladas de brokers, no con archivos reales de cada uno; si un archivo trae algo muy raro, queda el Excel de ejemplo o pegar texto.
+- Barra "Evaluá tu Cartera" en rosa suave con letras blancas; la tarjeta, los pasos, las etiquetas y la zona de carga siguen el mismo rosa.
+- Tests: `test_v181.py` (17 chequeos) y los de cartera anteriores.
+
 ### v1.2.80 (28/10/2026): la conclusión del resumen es una foto del momento actual
 - La "Conclusión:" del resumen del análisis ya no especula con el peor escenario ("si los clientes frenan…"): es una sola oración que retrata la empresa y su momento (calidad, foso, números), y si la empresa es mala lo dice con crudeza. El bear case y el bull case siguen más abajo (debilidades, fortalezas y Qué vigilar). El validador rechaza las hipótesis ("si pasa X…") en esa oración. Reescritas las conclusiones de los 4 ejemplos (también el cierre de la sección Conclusión).
 
