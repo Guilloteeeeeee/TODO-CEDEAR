@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.70 (28/10/2026): Análisis Fundamental en formato único, estilo Pat Dorsey
+
+- **Mismo formato para todas las empresas**: Resumen (abstract con la conclusión al final y la "Calidad del negocio" en color: Excelente / Muy buena / Buena / Regular / Pobre, con la escala de colores de la Valoración), Los números de un vistazo (una tabla armada por el programa), El negocio, La ventaja competitiva (foso), Los números, Deuda y solidez financiera, Gerencia y uso del capital, Puntos fuertes y débiles, Qué vigilar (reemplaza a "Tesis de inversión"), Conclusión (con el color de la calidad) y Fuentes.
+- **Fuentes idénticas en todos los análisis** (las pone el código, `AF.FUENTES`): Yahoo Finance para estados, descripción, dividendos y directivos; foso y etapa estimados por TodoCedears; texto redactado con IA sin cifras de otras fuentes. Se eliminaron las cifras de Morningstar del ejemplo de TJX.
+- **Perfiles automáticos** (`data/af_perfiles.py`): el programa elige solo el tipo de empresa (banco, seguros, mercados/gestoras, pagos y datos, REIT, utilities, energía, materiales, joven o con pérdidas, software, hardware, salud, consumo, general) más las capas "compounder" y "cíclica". El formato no cambia; cambian las filas de la tabla, el título de la sección de deuda y la guía de análisis (tomada de las listas de Dorsey) que recibe quien redacta.
+- Prompt reescrito (`data/prompt_analisis_fundamental.txt`): voseo, sin analogías médicas, pocas cifras pero con su año, postura clara sobre la calidad sin recomendar.
+- Validador v3 (`AF.validar`): exige calidad, veredicto, secciones, fortalezas, debilidades, "qué vigilar" y conclusión; rechaza menciones a Morningstar, "precio objetivo" o jerga interna.
+- Ejemplos escritos: TJX, NVDA, JPM (banco) y O (REIT). `data/foso.json` pasó de 60 a 116 empresas (Modo lote del DCF).
+
 ### v1.2.69 (27/10/2026): categorías de ETFs nuevas (con apalancados e inversos) y Análisis Fundamental estilo TJX
 - **Categorías de ETFs** (`data/etfs.csv`, en este orden): USA, Internacionales con USA, Internacionales no USA, USA según Sectores, Temáticos, Minería, Materias Primas, Criptomonedas, **Apalancados** e **Inversos**. "Commodities" se partió en **Minería** (XME, GDX, COPX, URA) y **Materias Primas** (GLD, SLV, USO, GSG, CORN, SOYB); "Especializados" pasó a **Temáticos**. Los nombres se cambian en la columna `categoria` del CSV (el orden de los filtros es el orden de aparición).
 - **4 ETFs nuevos** (BYMA tiene CEDEAR de los cuatro): **TQQQ** y **SPXL** (apalancados 3x, ratio 25:1) y **SH** y **PSQ** (inversos -1x, ratio 8:1). Cada descripción advierte que se rebalancean todos los días y que en plazos largos el resultado puede alejarse mucho del índice. Íconos nuevos "apalancado" (flecha con 3x) e "inverso" (flecha hacia abajo). Ahora son 59 ETFs.

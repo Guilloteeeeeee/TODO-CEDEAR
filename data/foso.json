@@ -299,6 +299,286 @@
 "foso": "Amplio",
 "etapa": "Madura",
 "fecha": "2026-10-24"
+},
+"BABA": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"BKNG": {
+"foso": "Ninguno",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"MELI": {
+"foso": "Estrecho",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"PDD": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"SIEGY": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"UBER": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"UNP": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"AEM": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"BHP": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"ECL": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"NEM": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"SCCO": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"SHW": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"VALE": {
+"foso": "Estrecho",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"COIN": {
+"foso": "Ninguno",
+"etapa": "En declive o dificultades",
+"fecha": "2026-10-28"
+},
+"FISV": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"MA": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"MRSH": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"PYPL": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"SPGI": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"ABT": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"AMGN": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"AZN": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"BMY": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"CVS": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"DHR": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"GILD": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"GSK": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"ISRG": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"MDT": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"NVO": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"NVS": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"TMO": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"ADI": {
+"foso": "Ninguno",
+"etapa": "En declive o dificultades",
+"fecha": "2026-10-28"
+},
+"AMAT": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"ASML": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"AVGO": {
+"foso": "Estrecho",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"KLAC": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"LRCX": {
+"foso": "Amplio",
+"etapa": "Cíclica o de materias primas",
+"fecha": "2026-10-28"
+},
+"MRVL": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"MU": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"QCOM": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"TSM": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"TXN": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"CRM": {
+"foso": "Ninguno",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"CRWD": {
+"foso": "Ninguno",
+"etapa": "Con pérdidas y creciendo",
+"fecha": "2026-10-28"
+},
+"NOW": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"PANW": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"PLTR": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"SAP": {
+"foso": "Estrecho",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"SHOP": {
+"foso": "Amplio",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"SNOW": {
+"foso": "Ninguno",
+"etapa": "Con pérdidas y creciendo",
+"fecha": "2026-10-28"
+},
+"TMUS": {
+"foso": "Amplio",
+"etapa": "Madura",
+"fecha": "2026-10-28"
+},
+"CEG": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"TLN": {
+"foso": "Ninguno",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
+},
+"VST": {
+"foso": "Estrecho",
+"etapa": "En crecimiento",
+"fecha": "2026-10-28"
 }
 }
 }

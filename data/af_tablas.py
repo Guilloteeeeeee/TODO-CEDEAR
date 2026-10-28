@@ -238,11 +238,13 @@ def moneda(estados):
 
 # --- salidas -------------------------------------------------------------------------------------------------------------------
 
-def bloque_texto(estados):
-    """Las mismas tablas en texto plano, para redactar la lectura de cada punto con los números que va a ver el lector."""
+def bloque_texto(estados, claves=None):
+    """Las tablas por punto en texto plano, para redactar con los números exactos. `claves` limita los puntos (por ejemplo, un banco no usa EBIT ni flujo de caja)."""
     mon = moneda(estados)
     L = [f"(Montos en millones{' de ' + mon if mon else ''}; TTM = últimos 12 meses; \"–\" = dato no disponible)"]
     for c, t in todas(estados).items():
+        if claves is not None and c not in claves:
+            continue
         L += ["", f"[{c}] {t['titulo']}", " | ".join(t["cols"])]
         L += [" | ".join(f) for f in t["filas"]]
         L += ["  · " + x for x in t["stats"]]

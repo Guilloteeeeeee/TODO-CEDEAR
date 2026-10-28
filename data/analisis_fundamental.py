@@ -1,26 +1,36 @@
-"""Análisis Fundamental (v1.2.69): una visión general de cada empresa, al estilo del análisis de TJX: Resumen, parte cualitativa (negocio, foso, competidores, caso bajista),
-una tabla por año para cada punto de los números con su lectura crítica, puntos fuertes y débiles, tesis de inversión y conclusión.
+"""Análisis Fundamental (v1.2.70): un informe breve de cada empresa, escrito al estilo de Pat Dorsey ("Las cinco reglas para invertir en acciones con éxito"): Resumen con
+conclusión primero, los números de un vistazo, el negocio, el foso, los números, la deuda, la gerencia, puntos fuertes y débiles, qué vigilar y conclusión.
+
+El FORMATO es el mismo para todas las empresas. Lo que cambia según el tipo de negocio (banco, seguro, inmobiliaria, servicios públicos, empresa joven, software...) lo elige
+el programa solo (data/af_perfiles.py): qué filas lleva la tabla de números, cómo se llama la sección de deuda y qué guía de análisis recibe quien redacta.
 
 Cómo funciona:
-  1. Las TABLAS las arma el código (`data/af_tablas.py`) con los estados financieros de Yahoo que ya guarda `data/paquetes_yahoo.json`. Nada se tipea a mano.
-  2. El TEXTO (resumen, lectura de cada punto, tesis...) lo redacta una persona o un asistente de IA a partir de `bloque_datos()` y las reglas de
-     `data/prompt_analisis_fundamental.txt`, y se guarda en `data/analisis_fundamental.json` con `generar_analisis_fundamental.py --agregar archivo.json`
-     (que valida el formato). Ya no hace falta ninguna clave ni pago: el archivo del texto puede venir de cualquier chat.
-  3. La solapa "Análisis Fundamental" de la ficha muestra el texto junto con las tablas calculadas, la fecha y la aclaración de que es información, no una recomendación.
-No hay PASA / NO PASA ni filtros de exclusión (decisión de Guille del 27/10/2026); cada punto lleva una etiqueta informativa (Favorable / Mixto / A vigilar /
-Informativo) y una síntesis de una línea. Las funciones de este módulo no tocan la red."""
+  1. La TABLA de números la arma el código con los estados financieros de Yahoo que ya guarda `data/paquetes_yahoo.json`. Nada se tipea a mano.
+  2. El TEXTO lo redacta una persona o un asistente de IA a partir de `bloque_datos()` y las reglas de `data/prompt_analisis_fundamental.txt`, y se guarda en
+     `data/analisis_fundamental.json` con `generar_analisis_fundamental.py --agregar archivo.json` (que valida el formato). No hace falta ninguna clave ni pago.
+  3. La solapa "Análisis Fundamental" de la ficha muestra el texto, la tabla, el color de la calidad (escala de la valoración) y la aclaración de que es información,
+     no una recomendación. Las FUENTES son siempre las mismas y las pone el código (FUENTES).
+Las funciones de este módulo no tocan la red."""
 import json
 import os
 import re
 
+from data import af_perfiles as AP
 from data import af_tablas as T
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 RUTA = os.path.join(AQUI, "analisis_fundamental.json")
 RUTA_PROMPT = os.path.join(AQUI, "prompt_analisis_fundamental.txt")
 RIESGOS_IA = ("muy alto", "alto", "moderado", "bajo", "muy bajo")
-TITULOS = ("El negocio", "Crecimiento y márgenes", "Ganancias por acción y acciones en circulación", "Caja y retorno sobre el capital", "Salud financiera",
-           "Competidores", "Puntos fuertes", "Puntos débiles y riesgos", "Tesis de inversión")
+# Calidad del negocio -> color (misma escala de colores que la Valoración, de verde a rojo)
+CALIDADES = {"Excelente": "#15803d", "Muy buena": "#82b93f", "Buena": "#eab308", "Regular": "#f97316", "Pobre": "#dc2626"}
+# Secciones de texto, en este orden: (clave, título). El título de "balance" depende del perfil (AP.titulo_balance).
+SECCIONES = (("negocio", "El negocio"), ("foso", "La ventaja competitiva (foso)"), ("numeros", "Los números"), ("balance", "Deuda y solidez financiera"),
+             ("gerencia", "Gerencia y uso del capital"))
+# Fuentes: las mismas para TODOS los análisis (decisión de Guille del 28/10/2026). Las pone el código; el texto no lleva fuentes propias.
+FUENTES = ("Estados financieros (hasta 4 años fiscales y últimos 12 meses), descripción del negocio, dividendos y equipo directivo: Yahoo Finance.",
+           "Ventaja competitiva (foso) y etapa de la empresa: estimación propia de TodoCedears.",
+           "Texto: redactado con inteligencia artificial a partir de esos datos y del conocimiento general sobre la empresa, sin cifras de otras fuentes.")
 
 
 # --- formato de números (castellano: punto de miles, coma decimal) -----------------------------------------------------------
@@ -122,15 +132,16 @@ def derivados(estados):
     return out
 
 
-def alertas(estados, moneda=None):
+def alertas(estados, moneda=None, perfil=None):
     """AVISOS DE DATOS: cosas raras o faltantes que el análisis tiene que mencionar como 'dato a verificar' en vez de apoyarse en ellas."""
     est = estados or {}
     av = []
     if moneda and str(moneda).upper() != "USD":
         av.append(f"Los estados financieros están en {moneda}, no en dólares: las cifras de este bloque están en esa moneda.")
-    if not _serie(est, "resultados", "Gasto por intereses"):
+    financiera = perfil in ("banco", "seguros", "mercados")
+    if not financiera and not _serie(est, "resultados", "Gasto por intereses"):
         av.append("Gasto por intereses: no disponible en los datos guardados (se carga al volver a bajar los datos de Yahoo). No calcules la cobertura de intereses.")
-    if not _serie(est, "balance", "Deuda de largo plazo") and not _serie(est, "balance", "Deuda de corto plazo"):
+    if not financiera and not _serie(est, "balance", "Deuda de largo plazo") and not _serie(est, "balance", "Deuda de corto plazo"):
         av.append("No hay separación de deuda de corto y largo plazo en los datos guardados: usá solo la deuda total.")
     for clave, rot in (("flujo", "Flujo de efectivo operativo"), ("flujo", "Flujo de efectivo libre"), ("resultados", "Ingresos")):
         s = _serie(est, clave, rot)
@@ -145,14 +156,24 @@ def alertas(estados, moneda=None):
     return av
 
 
-def bloque_datos(ticker, nombre="", sector="", industria="", pais="", descripcion="", estados=None, foso=None, etapa=None, moneda=None, extra=None):
-    """Texto con todo lo que ve el modelo sobre la empresa. Nada se inventa: lo que falta dice 'no disponible'."""
+def perfil_de(sector, industria, etapa, estados, foso=None, ticker=None, sector_app=None):
+    """(perfil, capas) de la empresa (ver data/af_perfiles.py). `sector` e `industria` son los de Yahoo (en inglés)."""
+    p = AP.perfil(sector, industria, etapa, estados, ticker, sector_app)
+    return p, AP.capas(p, etapa, foso, estados)
+
+
+def bloque_datos(ticker, nombre="", sector="", industria="", pais="", descripcion="", estados=None, foso=None, etapa=None, moneda=None, extra=None, sector_app=""):
+    """Texto con todo lo que ve quien redacta. Nada se inventa: lo que falta dice 'no disponible'."""
     est = estados or {}
     moneda = moneda or est.get("moneda")
+    perfil, capas = perfil_de(sector, industria, etapa, est, foso, ticker, sector_app)
     L = [f"EMPRESA: {nombre or ticker} ({ticker})"]
-    L.append("Sector / industria: " + (" / ".join(x for x in (sector, industria) if x) or "no disponible") + (f" · País: {pais}" if pais else ""))
-    if foso or etapa:
-        L.append("Ventaja competitiva (foso) estimada: " + (foso or "no disponible") + " · Etapa de la empresa: " + (etapa or "no disponible"))
+    L.append("Sector / industria: " + (sector_app + " (Yahoo: " if sector_app else "(") + (" / ".join(x for x in (sector, industria) if x) or "no disponible") + ")" + (f" · País: {pais}" if pais else ""))
+    L.append("Ventaja competitiva (foso) estimada: " + (foso or "no disponible") + " · Etapa de la empresa: " + (etapa or "no disponible"))
+    L.append(f"PERFIL DE ANÁLISIS (elegido por el programa): {AP.NOMBRE_PERFIL[perfil]}" + (" + " + " + ".join(capas) if capas else "") + f" · título de la sección de deuda: \"{AP.titulo_balance(perfil)}\"")
+    L.append("")
+    L.append("GUÍA PARA ESTE TIPO DE EMPRESA (qué mirar y qué no):")
+    L.append(AP.guia(perfil, capas))
     L.append("")
     L.append("DESCRIPCIÓN DEL NEGOCIO (Yahoo Finance):")
     L.append((descripcion or "no disponible").strip())
@@ -160,10 +181,13 @@ def bloque_datos(ticker, nombre="", sector="", industria="", pais="", descripcio
     if not any(est.get(k) for k in ("resultados", "balance", "flujo")):
         L.append("ESTADOS FINANCIEROS: no disponibles. No hagas análisis numérico; limitate a lo cualitativo y decilo en el resumen.")
         return "\n".join(L)
-    L.append("LOS NÚMEROS, punto por punto (son las mismas tablas que va a ver el lector; las cifras y los CAGR ya están calculados, usalos tal cual):")
-    L.append(T.bloque_texto(est))
+    L.append("LA TABLA 'LOS NÚMEROS DE UN VISTAZO' QUE VA A VER EL LECTOR (usá estas cifras tal cual):")
+    L.append(AP.vistazo_texto(est, perfil))
+    L.append("")
+    L.append("DETALLE PARA TU ANÁLISIS (las cifras y los CAGR ya están calculados, usalos tal cual; el lector ve el detalle completo en otra solapa):")
+    L.append(T.bloque_texto(est, AP.CLAVES_DETALLE.get(perfil)))
     L += _bloque_extra(extra)
-    av = alertas(est, moneda)
+    av = alertas(est, moneda, perfil)
     if av:
         L.append("")
         L.append("AVISOS DE DATOS:")
@@ -217,67 +241,52 @@ def _lista(x):
 
 
 def validar(d, estados=None):
-    """(análisis limpio | None, [problemas]). Esquema:
-      resumen, tesis, conclusion: texto; riesgo_ia: muy alto|alto|moderado|bajo|muy bajo
-      cualitativo: [{titulo, texto}]            (El negocio, Ventaja competitiva, Competidores, Gerencia, Caso bajista...)
-      puntos: {clave: {etiqueta, sintesis, lectura, conclusion}}      (claves de data/af_tablas.PUNTOS; etiqueta: Favorable|Mixto|A vigilar|Informativo)
-      optimistas, pesimistas: [texto]           (lo que dirían los que están a favor y en contra; 3 de cada uno, una oración con el mecanismo)
-      fortalezas, debilidades: [texto]          (las debilidades, de la más a la menos importante)
-      fuentes: [texto]
-    Si se pasan los estados, cada punto con tabla tiene que tener su lectura (los que no tienen datos se omiten solos)."""
+    """(análisis limpio | None, [problemas]). Esquema v3 (el mismo para todas las empresas):
+      resumen: abstract de la empresa que TERMINA con su conclusión (postura sin recomendar)
+      calidad: Excelente | Muy buena | Buena | Regular | Pobre      (calidad del NEGOCIO; decide el color)
+      veredicto: frase corta con la postura (ej.: "Excelente empresa; conviene mirarla a precios adecuados")
+      riesgo_ia: muy alto | alto | moderado | bajo | muy bajo
+      negocio, foso, numeros, balance, gerencia: texto (párrafos separados por una línea en blanco)
+      fortalezas, debilidades: listas (las debilidades, de la más a la menos importante)
+      vigilar: lista de 3 a 4 hechos a seguir (qué confirmaría y qué invalidaría el caso); conclusion: 3 a 4 oraciones
+      perfil, capas, ticker: los pone el programa (si vienen, se validan)"""
     pr = []
     if not isinstance(d, dict):
         return None, ["no es un objeto JSON"]
-    out = {k: _txt(d.get(k)) for k in ("resumen", "tesis", "conclusion")}
+    out = {k: _txt(d.get(k)) for k in ("resumen", "veredicto", "conclusion")}
     out["conclusion"] = out["conclusion"] or _txt(d.get("conclusión"))
-    for k in ("resumen", "tesis", "conclusion"):
+    for k in ("resumen", "veredicto", "conclusion"):
         if not out[k]:
             pr.append(f"falta '{k}'")
+    cal = _txt(d.get("calidad")).capitalize()
+    out["calidad"] = cal if cal in CALIDADES else ""
+    if not out["calidad"]:
+        pr.append("'calidad' tiene que ser: " + " | ".join(CALIDADES))
     r = _txt(d.get("riesgo_ia")).lower()
     out["riesgo_ia"] = r if r in RIESGOS_IA else ""
     if not out["riesgo_ia"]:
         pr.append("'riesgo_ia' tiene que ser: " + " | ".join(RIESGOS_IA))
-    out["cualitativo"] = [{"titulo": _txt(x.get("titulo")), "texto": _txt(x.get("texto"))} for x in (d.get("cualitativo") or [])
-                          if isinstance(x, dict) and _txt(x.get("titulo")) and _txt(x.get("texto"))]
-    if len(out["cualitativo"]) < 3:
-        pr.append("'cualitativo' necesita al menos 3 apartados (negocio, competidores, caso bajista...)")
-    pts = {}
-    for c, x in (d.get("puntos") or {}).items():
-        if c not in T.CLAVES:
-            pr.append(f"punto desconocido '{c}'")
-            continue
-        if not isinstance(x, dict):
-            pr.append(f"punto '{c}' mal formado")
-            continue
-        et = _txt(x.get("etiqueta"))
-        if et not in T.ETIQUETAS:
-            pr.append(f"punto '{c}': etiqueta '{et}' (tiene que ser: {' | '.join(T.ETIQUETAS)})")
-        p = {"etiqueta": et, "sintesis": _txt(x.get("sintesis")), "lectura": _txt(x.get("lectura")), "conclusion": _txt(x.get("conclusion"))}
-        for k in ("sintesis", "lectura", "conclusion"):
-            if not p[k]:
-                pr.append(f"punto '{c}': falta '{k}'")
-        pts[c] = p
-    out["puntos"] = pts
-    if estados is not None:
-        for c in T.todas(estados):
-            if c not in pts:
-                pr.append(f"falta el punto '{c}' (tiene datos)")
-        for c in pts:
-            if c not in T.todas(estados):
-                pr.append(f"el punto '{c}' no tiene datos y se descarta")
-                out["puntos"].pop(c, None)
-        pr = [x for x in pr if not x.endswith("se descarta")]
-    elif not pts:
-        pr.append("'puntos' vacío")
-    out["fortalezas"], out["debilidades"] = _lista(d.get("fortalezas")), _lista(d.get("debilidades"))
+    for c, _ in SECCIONES:
+        out[c] = _txt(d.get(c))
+        if len(out[c]) < 80:
+            pr.append(f"falta '{c}' (o es demasiado corto)")
+    if len(out["veredicto"]) > 140:
+        pr.append("'veredicto' tiene que ser una frase corta (hasta 140 caracteres)")
+    out["fortalezas"], out["debilidades"], out["vigilar"] = _lista(d.get("fortalezas")), _lista(d.get("debilidades")), _lista(d.get("vigilar"))
     if len(out["fortalezas"]) < 2:
         pr.append("'fortalezas' necesita al menos 2")
     if len(out["debilidades"]) < 2:
         pr.append("'debilidades' necesita al menos 2")
-    out["optimistas"], out["pesimistas"] = _lista(d.get("optimistas")), _lista(d.get("pesimistas"))
-    if len(out["optimistas"]) < 2 or len(out["pesimistas"]) < 2:
-        pr.append("'optimistas' y 'pesimistas' necesitan al menos 2 cada uno (lo ideal: 3)")
-    out["fuentes"] = _lista(d.get("fuentes"))
+    if not 2 <= len(out["vigilar"]) <= 5:
+        pr.append("'vigilar' necesita de 2 a 5 puntos (lo ideal: 3 o 4)")
+    prohibidas = [w for w in ("Morningstar", "recomendamos comprar", "te recomendamos", "precio objetivo", "bloque", "datos guardados") if w.lower() in " ".join(str(x) for x in d.values()).lower()]
+    if prohibidas:
+        pr.append("el texto menciona algo que no corresponde: " + ", ".join(prohibidas))
+    pf = _txt(d.get("perfil"))
+    out["perfil"] = pf if pf in AP.PERFILES else "general"
+    out["capas"] = [c for c in _lista(d.get("capas")) if c in ("compounder", "ciclica")]
+    if _txt(d.get("ticker")):
+        out["ticker"] = _txt(d.get("ticker")).upper()
     return (None if pr else out), pr
 
 
@@ -322,4 +331,5 @@ def para_ficha(ticker, ruta=None):
         return None
     d = dict(d)
     d.setdefault("fecha", fecha)
+    d.setdefault("ticker", str(ticker).upper())
     return d

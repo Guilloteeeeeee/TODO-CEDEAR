@@ -50,9 +50,19 @@ def armar(ticker, nombre="", sector="", paquetes=None, fichas=None, foso=None):
     f = fichas.get(ticker, {})
     p = paquetes.get(ticker) or {}
     fo = foso.get(ticker) or {}
-    return AF.bloque_datos(ticker, nombre or ticker, sector or f.get("sector_yahoo", ""), f.get("industria_yahoo", ""), f.get("pais", ""),
+    return AF.bloque_datos(ticker, nombre or ticker, f.get("sector_yahoo", ""), f.get("industria_yahoo", ""), f.get("pais", ""),
                            f.get("descripcion_es") or f.get("descripcion_en") or "", p.get("estados") or {}, fo.get("foso"), fo.get("etapa"),
-                           extra={k: p.get(k) for k in ("dividendos", "gobierno", "agenda")})
+                           extra={k: p.get(k) for k in ("dividendos", "gobierno", "agenda")}, sector_app=sector)
+
+
+def perfil_de(ticker, paquetes=None, fichas=None, foso=None):
+    """(perfil, capas) que el programa elige para la empresa (mismos datos que usa armar())."""
+    sector_app = {t: s for t, _n, s in _lista_empresas()}.get(ticker, "")
+    paquetes = paquetes if paquetes is not None else py.cargar()[0]
+    fichas = fichas if fichas is not None else fi.cargar()[0]
+    foso = foso if foso is not None else _foso()
+    f, fo = fichas.get(ticker, {}), foso.get(ticker) or {}
+    return AF.perfil_de(f.get("sector_yahoo", ""), f.get("industria_yahoo", ""), fo.get("etapa"), (paquetes.get(ticker) or {}).get("estados") or {}, fo.get("foso"), ticker, sector_app)
 
 
 def agregar(archivos, modelo="Claude"):
@@ -71,6 +81,9 @@ def agregar(archivos, modelo="Claude"):
         for t, d in items.items():
             t = str(t).upper()
             res, problemas = AF.validar(d, (paquetes.get(t) or {}).get("estados") or {})
+            if res is not None:
+                res["perfil"], res["capas"] = perfil_de(t, paquetes)
+                res["ticker"] = t
             if res is None:
                 mal.append(f"{t} ({os.path.basename(ruta)}): " + "; ".join(problemas))
                 continue
