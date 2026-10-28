@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.75 (28/10/2026): Tu Cartera con 4 bloques, renta fija argentina, membrete con los autores
+
+- La devolución de Tu Cartera ahora son 4 bloques: **Pesos**, **Diversificación geográfica**, **Diversificación sectorial** y **Conclusiones y qué ajustaría** (con los ajustes ordenados). Se sacó "qué dice el screener". La geografía también ubica ETFs (por país o categoría) y acciones argentinas.
+- Reconoce renta fija argentina por formato de ticker (Bonares y Globales, LECAP/BONCAP, LECER, Boncer, Discount/Par/Cuasipar, duales, dólar linked, Bonte, Provincia de Buenos Aires y Córdoba), acciones argentinas del panel líder (con su sector) y, por la columna Tipo o el nombre, obligaciones negociables, fondos, cauciones y cuentas remuneradas. Lo que no reconoce se lista y se pide el Tipo. Los Excel de brokers con Cantidad y Precio (sin Monto) también se leen.
+- Membrete del informe: Finanzas para Médicos Argentina · Guillermo Di Palma AP 2372 y María Laura García.
+
 ### v1.2.74 (28/10/2026): carteras por edad completas, informe descargable, composición de ETFs con links, calendario por ticker, dividendos por defecto
 
 - **Tu Cartera:** rangos <30, 30-39, 40-49, 50-59, 60-69 y 70+ (los de 30-39, 60-69 y 70+ con las tablas que pasó Guille; en 70+ la mitad es efectivo, cuentas remuneradas y cauciones). Botón "Descargar informe en PDF" con el membrete de Finanzas para Médicos Argentina (logo, nombre, fecha, cartera cargada, devolución y aviso legal); se arma en memoria y no se guarda nada (`ui/cartera_informe.py`, usa reportlab; sin reportlab baja un HTML imprimible).

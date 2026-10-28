@@ -12,6 +12,7 @@ from ui.cartera import CLASES, devolucion
 _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
 NOMBRE = "Finanzas para Médicos Argentina"
+AUTORES = "Guillermo Di Palma AP 2372 y María Laura García"
 TITULO = "Informe de orientación de cartera"
 NOTA_PRIVACIDAD = "Este informe se armó en el momento con los datos que cargaste. No guardamos tu cartera ni este informe: solo existe en tu dispositivo."
 
@@ -62,7 +63,7 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None):
     doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=16 * mm, bottomMargin=20 * mm, title=f"{TITULO} - {NOMBRE}", author=NOMBRE)
     ancho = A4[0] - 36 * mm
     # --- membrete
-    marca = [Paragraph(NOMBRE, st["marca"]), Paragraph("Educación financiera para profesionales de la salud", st["sub"])]
+    marca = [Paragraph(NOMBRE, st["marca"]), Paragraph(AUTORES, st["sub"])]
     if os.path.exists(LOGO):
         cab = Table([[Image(LOGO, 15 * mm, 15 * mm), marca, Paragraph(f"Fecha: {_fecha(hoy)}", ParagraphStyle("d", parent=st["sub"], alignment=2))]],
                     colWidths=[19 * mm, ancho - 19 * mm - 40 * mm, 40 * mm])
@@ -113,7 +114,7 @@ def html_informe(res, edad, perfil, aviso="", hoy=None):
             ".mb{display:flex;align-items:center;gap:14px;border-bottom:3px solid #15803d;padding-bottom:8px}.mb b{font-size:20px}.mb small{display:block;color:#64748b}"
             "h1{font-size:22px;margin:16px 0 2px}h4{color:#1e3a8a;margin:14px 0 4px}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #e5e9f0;padding:4px 6px;text-align:left}"
             ".q{color:#64748b;font-size:11.5px;margin-top:12px}</style></head><body>"
-            f"<div class='mb'>{logo}<div><b>{html.escape(NOMBRE)}</b><small>Educación financiera para profesionales de la salud</small></div><div style='margin-left:auto;color:#64748b'>Fecha: {_fecha(hoy)}</div></div>"
+            f"<div class='mb'>{logo}<div><b>{html.escape(NOMBRE)}</b><small>{html.escape(AUTORES)}</small></div><div style='margin-left:auto;color:#64748b'>Fecha: {_fecha(hoy)}</div></div>"
             f"<h1>{html.escape(TITULO)}</h1><div style='color:#64748b'>Persona de {int(edad)} años{perfil_txt}</div>"
             f"<h4>Tu cartera tal como la cargaste</h4><table><tr><th>Activo</th><th>Tipo</th><th style='text-align:right'>% de la cartera</th></tr>{filas}</table>"
             + devolucion_html(devolucion(res, edad, perfil)) +

@@ -57,32 +57,40 @@ def numero(x):
 
 
 def _columnas(cols):
-    """(indice del ticker, del monto, del tipo) segun los encabezados; None si no se reconocen."""
+    """(ticker, monto, tipo, cantidad, precio): indices de las columnas segun los encabezados (None si no hay). Los Excel de los brokers suelen traer Cantidad y Precio en lugar de Monto."""
     n = [norm(c) for c in cols]
 
-    def buscar(claves):
+    def buscar(claves, excluir=()):
         for i, c in enumerate(n):
-            if any(k in c for k in claves):
+            if any(k in c for k in claves) and not any(x in c for x in excluir):
                 return i
         return None
-    return (buscar(("ticker", "simbolo", "especie", "activo", "instrumento", "nombre")), buscar(("monto", "valor", "importe", "total", "tenencia", "valuacion", "valorizado", "peso", "%")),
-            buscar(("tipo", "clase", "categoria")))
+    return (buscar(("ticker", "simbolo", "especie", "activo", "instrumento", "nombre")),
+            buscar(("monto", "valor", "importe", "total", "tenencia", "valuacion", "valorizado", "peso", "%")),
+            buscar(("tipo", "clase", "categoria")),
+            buscar(("cantidad", "nominales", "cant")), buscar(("precio", "cotizacion", "ultimo"), excluir=("compra", "ppc", "costo")))
 
 
 def leer_tabla(filas):
-    """`filas`: lista de listas (la primera puede ser el encabezado). Devuelve [{'ticker', 'monto', 'tipo'}] con monto > 0."""
+    """`filas`: lista de listas (la primera puede ser el encabezado). Devuelve [{'ticker', 'monto', 'tipo'}] con monto > 0.
+    Si no hay columna de monto pero sí Cantidad y Precio, el monto es cantidad × precio."""
     filas = [list(f) for f in filas if f and any(str(c or "").strip() for c in f)]
     if not filas:
         return []
-    it, im, ity = _columnas(filas[0])
-    datos = filas[1:] if (it is not None and im is not None) else filas
-    if it is None or im is None:
-        it, im, ity = 0, 1, (2 if any(len(f) > 2 for f in filas) else None)
+    it, im, ity, ic, ip = _columnas(filas[0])
+    con_encabezado = it is not None and (im is not None or (ic is not None and ip is not None))
+    datos = filas[1:] if con_encabezado else filas
+    if not con_encabezado:
+        it, im, ity, ic, ip = 0, 1, (2 if any(len(f) > 2 for f in filas) else None), None, None
     out = []
     for f in datos:
-        if max(it, im) >= len(f):
+        if it >= len(f):
             continue
-        tk, m = str(f[it] or "").strip(), numero(f[im])
+        tk = str(f[it] or "").strip()
+        m = numero(f[im]) if im is not None and im < len(f) else None
+        if m is None and ic is not None and ip is not None and max(ic, ip) < len(f):
+            c_, p_ = numero(f[ic]), numero(f[ip])
+            m = c_ * p_ if c_ and p_ else None
         if not tk or m is None or m <= 0:
             continue
         tipo = str(f[ity] or "").strip() if ity is not None and ity < len(f) else ""
@@ -148,7 +156,7 @@ def plantilla_excel():
 # --- clasificacion ----------------------------------------------------------------------------------------------------------------
 
 def clase_de_tipo(tipo):
-    """Clase ('rf', 'rv', 'oro', 'cripto', 'efectivo') a partir de lo que escribió la persona en 'Tipo'; None si no se entiende."""
+    """Clase ('rf', 'rv', 'oro', 'cripto', 'efectivo') a partir de lo que escribió la persona en 'Tipo' (o lo que trae el Excel del broker); None si no se entiende."""
     t = norm(tipo)
     if not t:
         return None
@@ -156,34 +164,62 @@ def clase_de_tipo(tipo):
         return "cripto"
     if re.search(r"\b(oro|gold)\b", t):
         return "oro"
-    if any(k in t for k in ("efectivo", "cash", "liquidez", "dolar", "peso", "plazo fijo", "money market", "caja")):
+    if any(k in t for k in ("efectivo", "cash", "liquidez", "plazo fijo", "money market", "caucion", "cuenta remunerada", "cuentas remuneradas", "billetera")):
         return "efectivo"
-    if any(k in t for k in ("renta fija", "bono", "sobera", "corpor", "obligacion", "letra", "lecap", "tesoro", "treasury", "on ")) or t in ("rf", "on"):
+    if (any(k in t for k in ("renta fija", "bono", "sobera", "corpor", "obligacion", "letra", "lecap", "boncap", "boncer", "lecer", "tesoro", "treasury", "titulo publico",
+                             "titulos publicos", "dolar linked", "dollar linked", "bonar"))
+            or re.search(r"\b(rf|on|ons|cer)\b", t)):
         return "rf"
-    if any(k in t for k in ("accion", "cedear", "etf", "renta variable", "rv", "fondo")):
+    if any(k in t for k in ("accion", "cedear", "etf", "renta variable")) or re.search(r"\brv\b", t):
         return "rv"
-    return None
+    if re.search(r"\b(dolar|dolares|peso|pesos|caja)\b", t):
+        return "efectivo"
+    return None          # por ejemplo "FCI" a secas: depende de en que invierta, asi que se pide aclararlo
+
+
+# Renta fija argentina por formato de ticker (BYMA). No es una lista completa: lo que no se reconoce se pide en la columna Tipo.
+_RF_AR = (
+    r"^(AL|GD|AE)\d{2}[DC]?$",                        # Bonares y Globales: AL29, AL30, AL35, AE38, AL41, GD29, GD30, GD35, GD38, GD41, GD46 (y sus versiones D / C)
+    r"^[ST]\d{1,2}[A-Z]\d[DC]?$",                     # Letras y Bonos capitalizables (LECAP / BONCAP): S31G6, S30S6, T15E7...
+    r"^X\d{2}[A-Z]\d$",                               # Letras ajustadas por CER (LECER)
+    r"^TZX[A-Z0-9]{2,3}[DC]?$", r"^TX\d{2}[DC]?$",      # Bonos ajustados por CER (Boncer): TZX26, TZXD6, TX26, TX28
+    r"^(DICP|PARP|CUAP|DIP0|PAP0|CUAP)[DC]?$",          # Discount, Par y Cuasipar
+    r"^TT[A-Z]\d{2}[DC]?$", r"^TV\d{2}[DC]?$", r"^TY\d{2}P$",   # Duales, dolar linked y Bonte
+    r"^BPO[A-Z]\d[DC]?$", r"^CO\d{2}[DC]?$",           # Provincia de Buenos Aires (BPOA7...) y Cordoba (CO26...)
+)
+# Acciones argentinas mas comunes (panel lider y algunas del general) -> sector de la app, para poder evaluar la diversificacion. Pais: Argentina.
+ACCIONES_AR = {"GGAL": "Bancos y seguros", "BMA": "Bancos y seguros", "BBAR": "Bancos y seguros", "SUPV": "Bancos y seguros", "BYMA": "Bancos y seguros",
+               "YPFD": "Energía", "TGSU2": "Energía", "TGNO4": "Energía", "PAMP": "Utilities", "CEPU": "Utilities", "EDN": "Utilities", "TRAN": "Utilities",
+               "ALUA": "Materiales Básicos", "TXAR": "Materiales Básicos", "LOMA": "Materiales Básicos", "TECO2": "Telecomunicaciones", "IRSA": "REITs",
+               "CRES": None, "COME": None, "VALO": None, "MIRG": None, "AGRO": None, "CVH": None, "HARG": None, "METR": None, "BHIP": None}
+
+
+def _es_rf_ar(tk):
+    return any(re.match(p, tk) for p in _RF_AR)
 
 
 def clasificar(pos, empresas, etfs):
     """Agrega a la posicion: 'clase' (o None), 'fuente' ('empresa' | 'etf' | 'tipo' | 'regla'), 'info' (datos de la empresa si es una de la lista).
     `empresas`: {CLAVE_TICKER: {nombre, sector, pais, categoria}}; `etfs`: {CLAVE_TICKER: {categoria, ...}}."""
-    tk = clave_tk(pos["ticker"])
+    tk = clave_tk(re.sub(r"\.BA$", "", str(pos["ticker"]).strip(), flags=re.I))
     pos = dict(pos)
     pos["clase"], pos["fuente"], pos["info"] = None, None, None
     por_tipo = clase_de_tipo(pos.get("tipo"))
+    nom = norm(pos["ticker"])
     if tk in empresas and por_tipo in (None, "rv"):
         pos.update(clase="rv", fuente="empresa", info=empresas[tk], ticker=str(pos["ticker"]).upper())
     elif tk in etfs and por_tipo in (None, "rv", "oro", "cripto"):
         cat = norm(etfs[tk].get("categoria"))
         clase = "oro" if tk in ("GLD", "IAU", "GLDM") else "cripto" if "cripto" in cat else "otros" if "materias primas" in cat else "rv"
         pos.update(clase=clase, fuente="etf", ticker=str(pos["ticker"]).upper())
+    elif tk in ACCIONES_AR and por_tipo in (None, "rv"):
+        pos.update(clase="rv", fuente="empresa", info={"nombre": tk, "sector": ACCIONES_AR[tk], "pais": "Argentina", "categoria": None}, ticker=str(pos["ticker"]).upper())
     elif por_tipo:
         pos.update(clase=por_tipo, fuente="tipo")
-    elif (" " in norm(pos["ticker"]) or len(norm(pos["ticker"])) >= 5 or norm(pos["ticker"]) in ("oro", "cash", "on")) and clase_de_tipo(pos["ticker"]):      # el nombre mismo lo dice: "Dólares", "ON YPF", "Bono AL30", "Plazo fijo"
-        pos.update(clase=clase_de_tipo(pos["ticker"]), fuente="tipo")
-    elif re.match(r"^(AL|GD|AE)\d{2}[DC]?$", tk):
+    elif _es_rf_ar(tk):
         pos.update(clase="rf", fuente="regla")
+    elif (" " in nom or len(nom) >= 5 or nom in ("oro", "cash", "on")) and clase_de_tipo(pos["ticker"]):      # el nombre mismo lo dice: "Dólares", "ON YPF", "Bono AL30", "Plazo fijo", "Caución"
+        pos.update(clase=clase_de_tipo(pos["ticker"]), fuente="tipo")
     elif tk in ("BTC", "ETH", "BTCUSD", "ETHUSD", "BITCOIN", "ETHEREUM"):
         pos.update(clase="cripto", fuente="regla")
     return pos
@@ -202,6 +238,17 @@ def valoracion(categoria):
 # --- analisis ---------------------------------------------------------------------------------------------------------------------
 
 UMBRAL = 5.0          # puntos de diferencia a partir de los cuales se avisa (la devolución es una orientación, no un cálculo fino)
+_CAT_ETF_GEO = {"usa": "usa", "usa segun sectores": "usa", "internacionales no usa": "fuera_sd", "internacionales con usa": "global"}
+
+
+def _geo_de(p, etfs):
+    """Bucket geográfico de una posición de renta variable: 'usa' | 'desarrollados' | 'emergentes' | 'fuera_sd' (fuera de EE.UU., sin detalle) | 'global' (mezcla) | None."""
+    if p["fuente"] == "empresa":
+        return region(p["info"].get("pais"))
+    if p["fuente"] == "etf":
+        e = etfs.get(clave_tk(p["ticker"])) or {}
+        return region(e.get("pais")) if e.get("pais") else _CAT_ETF_GEO.get(norm(e.get("categoria")))
+    return None
 
 
 def analizar(posiciones, edad, perfil, empresas, etfs):
@@ -218,41 +265,37 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
     peso = {k: 0.0 for k in CLASES}
     for p in ok:
         peso[p["clase"]] += p["monto"] / total * 100
-    # comparacion: el efectivo cuenta como renta fija (liquidez), las otras materias primas no se comparan
     nombre_rango, carts = ref
     sep_efectivo = carts.get("efectivo", 0) > 0          # solo la cartera de 70+ tiene efectivo propio (cuentas remuneradas y cauciones)
     cmp_real = {"rf": peso["rf"] + (0 if sep_efectivo else peso["efectivo"]), "rv": peso["rv"], "oro": peso["oro"], "cripto": peso["cripto"]}
     if sep_efectivo:
         cmp_real["efectivo"] = peso["efectivo"]
     desvio = {k: cmp_real[k] - carts.get(k, 0) for k in cmp_real}
-    emp = [p for p in ok if p["fuente"] == "empresa"]
-    rv_total = sum(p["monto"] for p in ok if p["clase"] == "rv")
-    emp_total = sum(p["monto"] for p in emp)
-    geo = {"usa": 0.0, "desarrollados": 0.0, "emergentes": 0.0}
+    rv = [p for p in ok if p["clase"] == "rv"]
+    rv_total = sum(p["monto"] for p in rv)
+    emp = [p for p in rv if p["fuente"] == "empresa"]
+    geo = {k: 0.0 for k in ("usa", "desarrollados", "emergentes", "fuera_sd", "global")}
+    for p in rv:
+        g = _geo_de(p, etfs)
+        if g:
+            geo[g] += p["monto"]
+    geo_tot = sum(geo.values())
     sup = {"ciclico": 0.0, "sensible": 0.0, "defensivo": 0.0}
     sect = {}
     for p in emp:
-        g = region(p["info"].get("pais"))
-        if g:
-            geo[g] += p["monto"]
         s = p["info"].get("sector")
         if SUPERSECTOR_DE.get(s):
             sup[SUPERSECTOR_DE[s]] += p["monto"]
             sect[s] = sect.get(s, 0.0) + p["monto"]
-    gt, st_ = sum(geo.values()), sum(sup.values())
+    st_ = sum(sup.values())
     por_pos = sorted(ok, key=lambda p: -p["monto"])
-    val = {"infravalorada": [], "bien valuada": [], "sobrevalorada": []}
-    for p in emp:
-        v = valoracion(p["info"].get("categoria"))
-        if v:
-            val[v].append(p)
     return {
-        "rango": nombre_rango, "efectivo_propio": sep_efectivo, "total": total, "peso": peso, "desvio": desvio,
-        "rv_empresas_pct": (emp_total / rv_total * 100) if rv_total else 0.0, "n_empresas": len(emp), "rv_total": rv_total,
-        "geo": {k: v / gt * 100 for k, v in geo.items()} if gt else None, "super": {k: v / st_ * 100 for k, v in sup.items()} if st_ else None,
+        "rango": nombre_rango, "efectivo_propio": sep_efectivo, "total": total, "peso": peso, "desvio": desvio, "rv_total": rv_total, "n_empresas": len(emp),
+        "geo": ({k: v / rv_total * 100 for k, v in geo.items()} if rv_total and geo_tot else None), "geo_ubicado_pct": (geo_tot / rv_total * 100) if rv_total else 0.0,
+        "super": {k: v / st_ * 100 for k, v in sup.items()} if st_ else None, "sector_ubicado_pct": (st_ / rv_total * 100) if rv_total else 0.0,
         "sector_top": (max(sect.items(), key=lambda kv: kv[1])[0], max(sect.values()) / st_ * 100) if sect and st_ else None,
         "posiciones": [{"ticker": p["ticker"], "pct": p["monto"] / total * 100, "clase": p["clase"]} for p in por_pos],
-        "valoracion": val, "sin_clasificar": sin, "pct_sin_clasificar": (sum(p["monto"] for p in sin) / (total + sum(p["monto"] for p in sin)) * 100) if sin else 0.0,
+        "sin_clasificar": sin, "pct_sin_clasificar": (sum(p["monto"] for p in sin) / (total + sum(p["monto"] for p in sin)) * 100) if sin else 0.0,
     }
 
 
@@ -260,103 +303,136 @@ def _pts(x):
     return f"{abs(x):.0f}"
 
 
+_NOMBRE_CLASE = {"rv": "renta variable", "oro": "oro", "cripto": "criptoactivos", "efectivo": "efectivo, cuentas remuneradas y cauciones"}
+
+
 def devolucion(res, edad, perfil):
-    """[(titulo, [frases])] con la orientación, en castellano simple. Sin recomendaciones de compra o venta y sin las carteras de referencia."""
+    """[(titulo, [frases])] con la evaluación en 4 bloques (pesos, diversificación geográfica, diversificación sectorial, conclusiones y qué ajustaría), en castellano simple.
+    Sin recomendaciones de compra o venta de activos puntuales y SIN las carteras de referencia."""
     sec = []
     if not res or not res.get("total"):
         return sec
-    pe = res["peso"]
+    pe, d = res["peso"], res["desvio"]
+    ef = res.get("efectivo_propio")
+    nombres = dict(_NOMBRE_CLASE, rf="renta fija" if ef else "renta fija (con el efectivo)")
+    claves = ("rv", "rf", "efectivo", "oro", "cripto") if ef else ("rv", "rf", "oro", "cripto")
+    ajustes, hallazgos = [], []          # lo que alimenta el cuarto bloque
+    # ---------------- 1. Pesos
     comp = [f"{CLASES[k]} {pe[k]:.0f} %" for k in ("rv", "rf", "oro", "cripto", "efectivo", "otros") if pe[k] >= 0.5]
     perf = f", perfil {perfil.lower()}" if perfil and any(len(c[3]) > 1 for c in CM.RANGOS if c[0] <= int(edad) <= c[1]) else ""
-    sec.append(("Tu cartera de un vistazo", [f"Para una persona de {int(edad)} años{perf}, tu cartera está repartida así: " + ", ".join(comp) + "."]))
-    # --- peso de cada tipo de activo
-    f = []
-    d = res["desvio"]
-    ef = res.get("efectivo_propio")
-    nombres = {"rv": "renta variable", "rf": "renta fija" if ef else "renta fija (con el efectivo)", "oro": "oro", "cripto": "criptoactivos", "efectivo": "efectivo, cuentas remuneradas y cauciones"}
-    claves = ("rv", "rf", "efectivo", "oro", "cripto") if ef else ("rv", "rf", "oro", "cripto")
-    for k in claves:
-        if d[k] > UMBRAL:
-            f.append(f"**{nombres[k].capitalize()}: te pasás unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
-        elif d[k] < -UMBRAL:
-            f.append(f"**{nombres[k].capitalize()}: te faltan unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
-    if not f:
+    f = [f"Para una persona de {int(edad)} años{perf}, tu cartera está repartida así: " + ", ".join(comp) + "."]
+    pasa = sorted((k for k in claves if d[k] > UMBRAL), key=lambda k: -d[k])
+    falta = sorted((k for k in claves if d[k] < -UMBRAL), key=lambda k: d[k])
+    for k in pasa:
+        f.append(f"**{nombres[k].capitalize()}: te pasás unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
+    for k in falta:
+        f.append(f"**{nombres[k].capitalize()}: te faltan unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
+    if not pasa and not falta:
         f.append("**En los grandes grupos (renta variable, renta fija, oro, criptoactivos y efectivo) estás en línea** con lo que suele ser razonable para tu edad y tu perfil.")
+        hallazgos.append("Los pesos por tipo de activo están en línea con tu edad y tu perfil.")
     else:
-        pasa = sorted((k for k in claves if d[k] > UMBRAL), key=lambda k: -d[k])
-        falta = sorted((k for k in claves if d[k] < -UMBRAL), key=lambda k: d[k])
+        hallazgos.append("Pesos: " + "; ".join([f"te pasás en {nombres[k]}" for k in pasa] + [f"te falta {nombres[k]}" for k in falta]) + ".")
         if pasa and falta:
-            f.append(f"Una orientación: si quisieras acercarte, el ajuste iría de **{nombres[pasa[0]]}** hacia **{nombres[falta[0]]}**; hacerlo de a poco y por partes evita decidir todo en un mismo día.")
+            ajustes.append(f"Mover peso de **{nombres[pasa[0]]}** hacia **{nombres[falta[0]]}**, de a poco y por partes (así no se decide todo en un mismo día).")
         elif pasa:
-            f.append(f"Una orientación: si quisieras acercarte, bajar el peso de **{nombres[pasa[0]]}** (y mandar esa parte a lo que más te falta).")
-        elif falta:
-            f.append(f"Una orientación: si quisieras acercarte, subir de a poco el peso de **{nombres[falta[0]]}** (con lo que se libere de lo que más pesa).")
+            dest = min((k for k in claves if k != pasa[0]), key=lambda k: d[k])
+            ajustes.append(f"Bajar el peso de **{nombres[pasa[0]]}** y mandar esa parte a **{nombres[dest]}**.")
+        else:
+            orig = max((k for k in claves if k != falta[0]), key=lambda k: d[k])
+            ajustes.append(f"Subir de a poco el peso de **{nombres[falta[0]]}**, con lo que se libere de **{nombres[orig]}**.")
     if pe["cripto"] > 10:
         f.append("Los criptoactivos son muy volátiles: con más de un 10 % de la cartera, una caída fuerte se siente mucho en el total.")
     if pe["efectivo"] > 20 and not ef:
         f.append(f"Tenés {pe['efectivo']:.0f} % en efectivo: es seguridad, pero sin rendimiento propio; conviene que sea una decisión y no un descuido.")
     if pe["otros"] >= 5:
         f.append(f"Tenés {pe['otros']:.0f} % en otras materias primas (petróleo, granos…): no son ni renta fija ni variable típica y no las comparé con tu edad y perfil.")
-    sec.append(("Cuánto pesa cada tipo de activo", f))
-    # --- renta variable por dentro
-    f = []
-    if res["n_empresas"] and res["geo"]:
-        g = res["geo"]
-        f.append(f"De tu renta variable, **{res['rv_empresas_pct']:.0f} %** está en empresas individuales de la lista de TodoCedears ({res['n_empresas']}); el resto son ETFs u otros activos, que no abrí por dentro.")
-        if g["usa"] > CM.GEOGRAFIA["usa"] + 12:
-            f.append(f"**Geografía:** {g['usa']:.0f} % de tus empresas son de Estados Unidos: está muy concentrado ahí. Hay margen para diversificar hacia otros países desarrollados y, en menor medida, emergentes.")
-        elif g["usa"] < CM.GEOGRAFIA["usa"] - 25:
-            f.append(f"**Geografía:** solo {g['usa']:.0f} % de tus empresas son de Estados Unidos, el mercado más grande y profundo; revisá si la diferencia es una decisión tuya.")
-        else:
-            f.append(f"**Geografía:** {g['usa']:.0f} % Estados Unidos, {g['desarrollados']:.0f} % otros países desarrollados y {g['emergentes']:.0f} % emergentes: razonablemente repartido.")
-        if g["emergentes"] > CM.GEOGRAFIA["emergentes"] + 12:
-            f.append(f"Los emergentes pesan {g['emergentes']:.0f} % de tus empresas: más riesgo y más volatilidad que lo habitual.")
-        if res["super"]:
-            s = res["super"]
-            if s["defensivo"] < CM.SUPERSECTOR["defensivo"] - 20:
-                f.append(f"**Tipo de empresa:** solo {s['defensivo']:.0f} % es defensivo (consumo básico, salud, servicios públicos), las que mejor aguantan cuando la economía se enfría. "
-                         f"Hoy tenés {s['sensible']:.0f} % sensible (tecnología, industria, energía, comunicación) y {s['ciclico']:.0f} % cíclico (financieras, consumo discrecional, materiales, inmobiliarias): una cartera que depende bastante del ciclo económico.")
-            elif s["defensivo"] > CM.SUPERSECTOR["defensivo"] + 20:
-                f.append(f"**Tipo de empresa:** {s['defensivo']:.0f} % es defensivo: aguanta bien las caídas, pero puede quedarse atrás cuando el mercado sube con fuerza. Tenés {s['sensible']:.0f} % sensible y {s['ciclico']:.0f} % cíclico.")
-            else:
-                f.append(f"**Tipo de empresa:** {s['defensivo']:.0f} % defensivo, {s['sensible']:.0f} % sensible y {s['ciclico']:.0f} % cíclico: equilibrado.")
-        if res["sector_top"] and res["sector_top"][1] > 40:
-            f.append(f"**Un solo sector pesa mucho:** {res['sector_top'][0]} es el {res['sector_top'][1]:.0f} % de tus empresas.")
-    elif pe["rv"] > 0:
-        f.append("Tu renta variable no tiene empresas de la lista de TodoCedears (o son solo ETFs), así que no pude abrirla por país ni por tipo de empresa.")
-    if f:
-        sec.append(("Tu renta variable por dentro", f))
-    # --- concentracion
-    f = []
     ps = res["posiciones"]
     if ps and ps[0]["pct"] > 15:
         f.append(f"**Tu mayor posición, {ps[0]['ticker']}, pesa {ps[0]['pct']:.0f} %** de la cartera: si le va mal, se nota mucho en el total.")
+        hallazgos.append(f"{ps[0]['ticker']} pesa {ps[0]['pct']:.0f} % de la cartera.")
+        ajustes.append(f"Evitar que una sola posición ({ps[0]['ticker']}) pese tanto: por encima de 15 % la cartera depende demasiado de ella.")
     top3 = sum(p["pct"] for p in ps[:3])
     if len(ps) >= 4 and top3 > 50:
         f.append(f"Tus 3 posiciones más grandes suman {top3:.0f} %: la cartera depende de pocas ideas.")
     if len(ps) < 5:
         f.append(f"Tenés {len(ps)} posiciones: con tan pocas, cada una pesa mucho.")
-    if not f:
-        f.append("No veo una posición que domine la cartera: la concentración está razonablemente repartida.")
-    sec.append(("Concentración", f))
-    # --- que dice el screener
-    v = res["valoracion"]
-    if any(v.values()):
-        f = [f"De las empresas que tenés, hoy el screener (por múltiplos) muestra: **{len(v['infravalorada'])} con precio por debajo de su valor estimado**, {len(v['bien valuada'])} razonables y **{len(v['sobrevalorada'])} por encima**. Es información, no una señal de compra o venta."]
-        if v["sobrevalorada"]:
-            gr = sorted(v["sobrevalorada"], key=lambda p: -p["monto"])[:3]
-            f.append("Las de mayor peso con precio por encima de su valor estimado: " + ", ".join(p["ticker"] for p in gr) + ". Mirá su página para ver los números.")
-        sec.append(("Qué dice el screener de tus empresas", f))
+        hallazgos.append(f"Pocas posiciones ({len(ps)}).")
     if res["sin_clasificar"]:
-        nombres_ = ", ".join(dict.fromkeys(str(p["ticker"]) for p in res["sin_clasificar"]))
-        sec.append(("Lo que no pude clasificar", [f"No pude ubicar: {nombres_} ({res['pct_sin_clasificar']:.0f} % del total). Quedaron afuera del cálculo. Si son bonos, obligaciones negociables o efectivo, completá la columna Tipo del Excel."]))
+        n_ = ", ".join(dict.fromkeys(str(p["ticker"]) for p in res["sin_clasificar"]))
+        f.append(f"No pude ubicar: {n_} ({res['pct_sin_clasificar']:.0f} % del total). Quedaron afuera del cálculo; si son bonos, obligaciones negociables, fondos o efectivo, completá la columna **Tipo** del Excel.")
+    sec.append(("Pesos", f))
+    # ---------------- 2. Diversificación geográfica
+    g = res.get("geo")
+    f = []
+    if pe["rv"] < 1:
+        f.append("No tenés renta variable, así que no hay geografía de acciones para evaluar.")
+    elif not g:
+        f.append("No pude ubicar por país ninguna de tus posiciones de renta variable (hace falta que sean empresas de la lista de TodoCedears o ETFs de la lista).")
+    else:
+        ub = res["geo_ubicado_pct"]
+        partes = [(k, t) for k, t in (("usa", "Estados Unidos"), ("desarrollados", "otros países desarrollados"), ("emergentes", "emergentes"),
+                                      ("fuera_sd", "internacional fuera de EE.UU. (sin detalle)"), ("global", "global (mezcla)")) if g[k] >= 0.5]
+        f.append("Sobre tu renta variable, esto es lo que pude ubicar por país: " + ", ".join(f"{t} {g[k]:.0f} %" for k, t in partes) + f" (sin ubicar: {100 - ub:.0f} %).")
+        base = g["usa"] + g["desarrollados"] + g["emergentes"] + g["fuera_sd"]
+        if base > 0:
+            usa, emer = g["usa"] / base * 100, g["emergentes"] / base * 100
+            if usa > CM.GEOGRAFIA["usa"] + 12:
+                f.append(f"**Muy concentrada en Estados Unidos ({usa:.0f} %).** Es el mercado más grande, pero todo depende de una sola economía y de una sola moneda.")
+                hallazgos.append("Geografía muy concentrada en Estados Unidos.")
+                ajustes.append("Sumar otros países desarrollados (Europa, Japón, Canadá) y, en menor medida, emergentes, para depender menos de Estados Unidos.")
+            elif usa < CM.GEOGRAFIA["usa"] - 25:
+                f.append(f"**Poco Estados Unidos ({usa:.0f} %)**, el mercado más grande y profundo: revisá si es una decisión tuya.")
+                hallazgos.append("Poco peso en Estados Unidos.")
+            else:
+                f.append(f"**Reparto razonable:** Estados Unidos {usa:.0f} % de lo ubicado, sin una concentración excesiva.")
+                hallazgos.append("Geografía razonablemente repartida.")
+            if emer > CM.GEOGRAFIA["emergentes"] + 12:
+                f.append(f"**Los emergentes pesan {emer:.0f} %** de lo ubicado: más riesgo y más volatilidad que lo habitual.")
+                hallazgos.append("Mucho peso en mercados emergentes.")
+                ajustes.append("Bajar el peso de los mercados emergentes hacia desarrollados.")
+        if ub < 60:
+            f.append("Ojo: menos de 60 % de tu renta variable pudo ubicarse por país, así que esta lectura es parcial.")
+    sec.append(("Diversificación geográfica", f))
+    # ---------------- 3. Diversificación sectorial
+    f = []
+    s = res.get("super")
+    if pe["rv"] < 1:
+        f.append("No tenés renta variable, así que no hay sectores de acciones para evaluar.")
+    elif not s:
+        f.append("No pude ubicar por sector ninguna posición (hace falta que sean empresas de la lista de TodoCedears; los ETFs no se abren por dentro).")
+    else:
+        f.append(f"Sobre las empresas que pude ubicar ({res['sector_ubicado_pct']:.0f} % de tu renta variable): **{s['defensivo']:.0f} % defensivas** (consumo básico, salud, servicios públicos), "
+                 f"**{s['sensible']:.0f} % sensibles** (tecnología, industria, energía, comunicación) y **{s['ciclico']:.0f} % cíclicas** (bancos y seguros, consumo discrecional, materiales, inmobiliarias).")
+        if s["defensivo"] < CM.SUPERSECTOR["defensivo"] - 20:
+            f.append("Hay poco de lo defensivo, que es lo que mejor aguanta cuando la economía se enfría: la cartera depende bastante del ciclo económico.")
+            hallazgos.append("Poco peso en sectores defensivos.")
+            ajustes.append("Sumar empresas defensivas (consumo básico, salud, servicios públicos) para equilibrar el ciclo.")
+        elif s["defensivo"] > CM.SUPERSECTOR["defensivo"] + 20:
+            f.append("Hay mucho de lo defensivo: aguanta bien las caídas, pero puede quedarse atrás cuando el mercado sube con fuerza.")
+            hallazgos.append("Mucho peso en sectores defensivos.")
+        else:
+            f.append("El equilibrio entre defensivas, sensibles y cíclicas es razonable.")
+            hallazgos.append("Equilibrio sectorial razonable.")
+        if res["sector_top"] and res["sector_top"][1] > 40:
+            f.append(f"**Un solo sector pesa demasiado:** {res['sector_top'][0]} es el {res['sector_top'][1]:.0f} % de tus empresas.")
+            hallazgos.append(f"{res['sector_top'][0]} concentra {res['sector_top'][1]:.0f} % de las empresas.")
+            ajustes.append(f"Repartir el peso de {res['sector_top'][0]} en otros sectores.")
+    sec.append(("Diversificación sectorial", f))
+    # ---------------- 4. Conclusiones y qué ajustaría
+    f = ["**Conclusión:** " + (" ".join(hallazgos) if hallazgos else "no encontré desvíos importantes.")]
+    if ajustes:
+        f.append("**Qué ajustaría, en este orden:**")
+        f += [f"{n}. {a}" for n, a in enumerate(ajustes, 1)]
+    else:
+        f.append("**Qué ajustaría:** por ahora nada importante; revisala una o dos veces al año para que los pesos no se vayan corriendo.")
+    sec.append(("Conclusiones y qué ajustaría", f))
     return sec
 
 
 def devolucion_html(secciones):
     out = []
     for titulo, frases in secciones:
-        li = "".join(f"<li>{_negrita(html.escape(x))}</li>" for x in frases)
+        li = "".join(f'<li class="cr-n">{_negrita(html.escape(x))}</li>' if re.match(r"^\d+\. ", x) else f"<li>{_negrita(html.escape(x))}</li>" for x in frases)
         out.append(f'<div class="cr-s"><h4>{html.escape(titulo)}</h4><ul>{li}</ul></div>')
     return "".join(out)
 
@@ -370,5 +446,6 @@ CSS = """
 .cr h1{font-size:1.5rem;margin:.2em 0 .3em}.cr .cr-i{color:#475569;font-size:.95rem;line-height:1.55;margin:0 0 .8em}
 .cr-s{background:#fff;border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.07);padding:12px 18px 8px;margin:0 0 12px}
 .cr-s h4{margin:.2em 0 .4em;font-size:1rem;color:#1e3a8a}.cr-s ul{margin:0 0 .6em 1.1em;padding:0}.cr-s li{margin:0 0 .45em;line-height:1.55;font-size:.95rem;text-align:justify}
+.cr-s li.cr-n{list-style:none;margin-left:-.4em}
 .cr-av{background:#f8fafc;border:1px solid #e5e9f0;border-radius:12px;padding:10px 14px;color:#64748b;font-size:.82rem;line-height:1.5;margin-top:8px}
 """

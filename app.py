@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.74"
+APP_VERSION = "1.2.75"
 
 import contextlib
 import streamlit as st
@@ -1355,8 +1355,8 @@ def render_cartera(df):
     from ui import cartera as C
     st.markdown(f"<style>{C.CSS}</style>", unsafe_allow_html=True)
     st.markdown('<div class="cr"><h1>Tu Cartera</h1><p class="cr-i">Contanos tu edad y tu perfil de inversor, <b>subí tu cartera en un Excel</b> '
-                'y te devolvemos una orientación: en qué tipo de activo te estás pasando o te falta peso, cómo está repartida tu renta variable '
-                'y qué dice el screener de las empresas que tenés. Es información general: no es una recomendación personalizada y '
+                'y te devolvemos una evaluación: los pesos de tu cartera, su diversificación geográfica y sectorial, y qué ajustaría. '
+                'Reconocemos acciones y CEDEARs, ETFs, bonos y letras argentinas, obligaciones negociables, efectivo y cripto. Es información general: no es una recomendación personalizada y '
                 'no guardamos tu cartera.</p></div>', unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     with c1:
