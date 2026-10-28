@@ -91,6 +91,7 @@ div[data-testid="stElementContainer"]:has(.etf-t){margin-top:0!important}
 /* pagina de cada ETF */
 .etf-ico{width:72px;height:72px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:42px;line-height:1;flex:none;overflow:hidden}
 .etf-ico svg{width:72px;height:72px;display:block}
+.etf-gl{background:#fff;border:1px solid #e5e9f0}
 .etf-pill{display:inline-block;font-size:12px;font-weight:700;border-radius:10px;padding:2px 9px;background:#eef1f4;color:#4b5563}
 .etf-hold{display:grid;grid-template-columns:minmax(0,1fr) 62px;gap:4px 10px;align-items:center;font-size:13.5px}
 .etf-hold .bar{height:7px;background:#eef1f4;border-radius:4px;overflow:hidden;grid-column:1 / -1;margin:-2px 0 6px}
@@ -153,7 +154,36 @@ _SVG = {
 }
 
 
+# v1.2.73: el icono de cada ETF es el logo de la empresa que lo diseña (gestor); el dominio se usa para pedir el logo en linea (igual que los logos de las empresas)
+DOMINIO_GESTOR = {
+    "BlackRock (iShares)": "ishares.com", "State Street (SPDR)": "ssga.com", "Invesco": "invesco.com", "ProShares": "proshares.com", "Vanguard": "vanguard.com",
+    "J.P. Morgan Asset Management": "jpmorgan.com", "VanEck": "vaneck.com", "Global X": "globalxetfs.com", "Teucrium": "teucrium.com", "ARK Invest": "ark-invest.com",
+    "First Trust": "ftportfolios.com", "World Gold Trust Services (SPDR)": "spdrgoldshares.com", "United States Commodity Funds (USCF)": "uscfinvestments.com",
+    "Direxion": "direxion.com",
+}
+
+
+def logo_gestor_url(e):
+    """Direccion del logo del gestor del ETF (favicon en linea), o None si no se conoce el gestor o los logos en linea estan apagados."""
+    try:
+        from config.ajustes import LOGOS_EN_LINEA
+    except Exception:  # noqa: BLE001
+        LOGOS_EN_LINEA = "google"
+    dom = DOMINIO_GESTOR.get(str((e or {}).get("gestor") or "").strip())
+    return f"https://www.google.com/s2/favicons?domain={dom}&sz=128" if dom and LOGOS_EN_LINEA == "google" else None
+
+
 def icono_html(e):
+    """El logo del gestor (BlackRock/iShares, State Street/SPDR, Vanguard...). Si no se conoce, el dibujo propio (ui/etf_iconos.py) o las iniciales del ticker."""
+    src = logo_gestor_url(e)
+    if src:
+        g = html.escape(str(e.get("gestor") or ""), quote=True)
+        return (f'<div class="etf-ico etf-gl" title="{g}"><img src="{src}" alt="{g}" loading="lazy" '
+                'style="width:60%;height:60%;object-fit:contain;display:block"></div>')
+    return _icono_dibujo(e)
+
+
+def _icono_dibujo(e):
     """Lo que representa el ETF: un dibujo propio (ui/etf_iconos.py: bandera, globo, lingotes...) o, si falta, las iniciales del ticker. Los emojis de
     versiones anteriores se siguen mostrando si alguien los deja en la columna `icono`."""
     ic = str(e.get("icono") or "").strip()

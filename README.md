@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.73 (28/10/2026): "Tu Cartera", logo del gestor en los ETFs, textos categóricos sin "modelo"
+
+- **Tu Cartera** (botón nuevo junto a Empresas y ETFs, `?pagina=cartera`): la persona pone su edad y su perfil, sube su cartera en Excel o CSV (hay un Excel de ejemplo para descargar; también se puede pegar como texto) y recibe una orientación: en qué tipo de activo se pasa o le falta peso, cómo está su renta variable por geografía y por tipo de empresa (cíclico / sensible / defensivo), concentración y qué dice el screener de sus empresas. No se muestran las carteras de referencia (están en `data/carteras_modelo.py`, uso interno) y no se guarda nada. Lógica en `ui/cartera.py`; sin IA paga.
+- ETFs: el icono es el logo de la empresa que los diseña (gestor), por favicon como los logos de empresas (`ui/etfs.py: DOMINIO_GESTOR`).
+- Análisis fundamental: la conclusión del Resumen va sin color, en frase categórica; "Calidad y precio hoy" usa el precio y el Fair Value reales (calculados por código) y ya no dice "modelo" sino "por múltiplos".
+
 ### v1.2.72 (28/10/2026): Calendario de Resultados en la fila, conclusión en color de letra, "Ideal para inversores que…", filtros técnicos
 
 - **Calendario de Resultados** (título con R mayúscula): ahora va **entre Noticias y Filtro, los tres en la misma fila** (el que se abre se ensancha), y muestra los **próximos 60 días**. Adentro dice "Próximos 60 días · N empresas".

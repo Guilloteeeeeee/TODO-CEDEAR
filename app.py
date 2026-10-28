@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.72"
+APP_VERSION = "1.2.73"
 
 import contextlib
 import streamlit as st
@@ -899,12 +899,14 @@ def _ir_a_tabla(tabla):
     st.query_params.clear()
     if tabla == "etfs":
         st.query_params["tabla"] = "etfs"
+    elif tabla == "cartera":
+        st.query_params["pagina"] = "cartera"
 
 
 def render_nav_tablas():
     with st.container(key="nav_tablas"):
-        for clave, texto in (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)")):
-            args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=("etfs" if clave == "etfs" else "empresas",))
+        for clave, texto in (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)"), ("cart", "Tu Cartera")):
+            args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=({"etfs": "etfs", "cart": "cartera"}.get(clave, "empresas"),))
             try:
                 st.button(texto, type="tertiary", **args)
             except TypeError:       # Streamlit viejo, sin type="tertiary"
@@ -1345,6 +1347,60 @@ def render_calendario(df, lugar=None):
         pass
 
 
+def render_cartera(df):
+    """v1.2.73: "Tu Cartera": edad + perfil + Excel/CSV (o texto) -> orientación sobre dónde se pasa o falta peso. No se guarda nada. Ver ui/cartera.py."""
+    from ui import cartera as C
+    st.markdown(f"<style>{C.CSS}</style>", unsafe_allow_html=True)
+    st.markdown('<div class="cr"><h1>Tu Cartera</h1><p class="cr-i">Contanos tu edad y tu perfil de inversor, <b>subí tu cartera en un Excel</b> '
+                'y te devolvemos una orientación: en qué tipo de activo te estás pasando o te falta peso, cómo está repartida tu renta variable '
+                'y qué dice el screener de las empresas que tenés. Es información general: no es una recomendación personalizada y '
+                'no guardamos tu cartera.</p></div>', unsafe_allow_html=True)
+    c1, c2 = st.columns(2)
+    with c1:
+        edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
+    with c2:
+        perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
+    st.markdown("**Subí tu cartera en Excel** (o CSV). Columnas: **Ticker**, **Monto** (valor actual de cada tenencia, todos en la misma moneda) y, "
+                "solo para bonos, obligaciones negociables o efectivo, **Tipo**.")
+    try:
+        st.download_button("Descargar Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
+                           mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla")
+    except Exception:  # noqa: BLE001
+        pass
+    arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo")
+    with st.expander("O pegala como texto"):
+        texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=140, key="cr_texto", label_visibility="collapsed",
+                             placeholder="AAPL 1500\nSPY 3000\nAL30 2000 (tipo: renta fija)\nBTC 300")
+    if arch is None and not (texto or "").strip():
+        return
+    if edad is None:
+        st.info("Poné tu edad para ver la devolución.")
+        return
+    try:
+        pos = C.leer_archivo(arch.name, arch.getvalue()) if arch is not None else C.leer_texto(texto)
+    except ValueError as e:
+        st.error(str(e))
+        return
+    if not pos:
+        st.warning("No encontré posiciones con monto. Revisá que haya una columna de ticker y una de monto (mirá el Excel de ejemplo).")
+        return
+    empresas = {}
+    for _, r in df.iterrows():
+        empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria")}
+    try:
+        etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
+    except Exception:  # noqa: BLE001
+        etfs = {}
+    res = C.analizar(pos, edad, perfil, empresas, etfs)
+    if not res or not res.get("total"):
+        st.warning("No pude clasificar ninguna posición. Completá la columna Tipo (Renta fija, Oro, Cripto, Efectivo…) o revisá los tickers.")
+        return
+    st.markdown('<div class="cr">' + C.devolucion_html(C.devolucion(res, edad, perfil))
+                + '<div class="cr-av">Orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. '
+                'No es una recomendación de compra o venta ni un consejo personalizado: cada situación (objetivos, plazos, impuestos, otros ingresos) es distinta. '
+                'Tu cartera se procesa en el momento y no se guarda.</div></div>', unsafe_allow_html=True)
+
+
 def main():
     # Cargar universo de tickers
     universe = load_custom_tickers()
@@ -1356,7 +1412,8 @@ def main():
     en_etfs = st.query_params.get("tabla") == "etfs" or bool(etf_sel)
     home_etfs = en_etfs and not etf_sel
     en_quienes = st.query_params.get("pagina") == "quienes"
-    activa = "etfs" if en_etfs else ("" if en_quienes else "empresas")
+    en_cartera = st.query_params.get("pagina") == "cartera"
+    activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if en_quienes else "empresas"))
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
     # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
@@ -1454,6 +1511,12 @@ def main():
     # Estilos de la tabla, de la escala, de la pagina de empresa y de las banderas (una sola vez por pagina)
     st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}{CSS_FICHA}{css_condensada()}</style>", unsafe_allow_html=True)
     st.markdown(css_banderas(), unsafe_allow_html=True)
+
+    # v1.2.73: "Tu Cartera" (?pagina=cartera)
+    if en_cartera:
+        render_cartera(df)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        return
 
     # v1.2.64: pagina de un ETF (?etf=TICKER)
     if etf_sel:

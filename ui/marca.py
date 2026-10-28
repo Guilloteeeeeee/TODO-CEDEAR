@@ -394,9 +394,9 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
 
 def css_nav(activa):
     """Estilo de la tabla activa ("empresas" o "etfs"; vacio = ninguna): letra firme y subrayado verde. Va junto al CSS de la franja."""
-    if activa not in ("empresas", "etfs"):
+    if activa not in ("empresas", "etfs", "cartera"):
         return ""
-    k = "emp" if activa == "empresas" else "etfs"
+    k = {"empresas": "emp", "etfs": "etfs", "cartera": "cart"}[activa]
     # dentro de la franja negra (pantallas anchas) la letra activa es blanca; abajo, oscura
     return (f".st-key-nav_{k} button{{color:#111827!important;box-shadow:inset 0 -2px 0 #00e05a!important}}"
             + ("@media (min-width:1280px){" + f".st-key-nav_{k} button{{color:#fff!important}}" + "}" if not ICONOS_EN_BARRA else ""))

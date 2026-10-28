@@ -31,20 +31,37 @@ SECCIONES = (("negocio", "El negocio"), ("foso", "La ventaja competitiva (foso)"
              ("gerencia", "Gerencia y uso del capital"))
 # Calidad + valoración del modelo hoy -> una frase armada por el código (siempre vigente: el texto del informe habla de la calidad y no del precio, que cambia a diario)
 _CRUCE = {
-    ("alta", "barata"): "Calidad alta con el precio por debajo del valor estimado por el modelo: es la combinación que más interesa investigar a fondo.",
-    ("alta", "justa"): "Calidad alta a un precio razonable según el modelo: una empresa para seguir de cerca.",
-    ("alta", "cara"): "Calidad alta, pero el precio ya la refleja según el modelo: conviene esperar un precio más adecuado.",
-    ("media", "barata"): "Calidad media con un precio atractivo según el modelo: el descuento compensa parte de sus límites, pero hay que revisar bien sus riesgos.",
-    ("media", "justa"): "Calidad media a un precio razonable: nada sobresale, así que conviene exigir un margen de seguridad mayor.",
-    ("media", "cara"): "Calidad media y precio exigente según el modelo: lo que ofrece no justifica lo que cuesta hoy.",
+    ("alta", "barata"): "Calidad alta y precio por debajo de su Fair Value: puede ser una inversión que vale la pena analizar a fondo.",
+    ("alta", "justa"): "Calidad alta a un precio razonable: una buena empresa que vale la pena tener en seguimiento.",
+    ("alta", "cara"): "Calidad alta, pero el precio ya está por encima de su Fair Value: buena empresa a un precio exigente; mejor esperar una mejor oportunidad.",
+    ("media", "barata"): "Calidad media con el precio por debajo de su Fair Value: el descuento compensa parte de sus límites, pero hay que revisar bien sus riesgos.",
+    ("media", "justa"): "Calidad media a un precio razonable: nada sobresale, así que no hay apuro.",
+    ("media", "cara"): "Calidad media y precio por encima de su Fair Value: lo que ofrece no justifica lo que cuesta hoy.",
     ("baja", "barata"): "Precio bajo, pero calidad débil: puede estar barata por una buena razón. Cuidado con las trampas de valor.",
     ("baja", "justa"): "Calidad débil a un precio razonable: no hay un motivo claro para elegirla.",
-    ("baja", "cara"): "Calidad débil y precio alto según el modelo: la combinación menos atractiva.",
+    ("baja", "cara"): "Calidad débil y precio por encima de su Fair Value: la peor combinación.",
 }
 
 
+def precio_vs_fv(precio, fair_value):
+    """Frase con el precio de hoy contra el Fair Value estimado por múltiplos (con las cifras), o '' si falta alguno."""
+    try:
+        p, f = float(precio), float(fair_value)
+    except (TypeError, ValueError):
+        return ""
+    if not (p > 0 and f > 0) or p != p or f != f:
+        return ""
+    d = (f - p) / p * 100
+    fmt = lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    if abs(d) <= 0.5:
+        return f"Hoy cotiza a US$ {fmt(p)}, en línea con su Fair Value estimado por múltiplos (US$ {fmt(f)})."
+    if d > 0:
+        return f"Hoy cotiza a US$ {fmt(p)}, por debajo de su Fair Value estimado por múltiplos (US$ {fmt(f)}): el Fair Value está {abs(d):.0f} % por encima del precio."
+    return f"Hoy cotiza a US$ {fmt(p)}, por encima de su Fair Value estimado por múltiplos (US$ {fmt(f)}): el precio está {(p - f) / f * 100:.0f} % por encima del Fair Value."
+
+
 def cruce(calidad, categoria):
-    """Frase que combina la calidad del informe con la valoración del modelo hoy (categoría de la app), o '' si falta algún dato."""
+    """Frase que combina la calidad del informe con la valoración de hoy (categoría de la app, por múltiplos), o '' si falta algún dato."""
     c = str(categoria or "").upper()
     if calidad not in CALIDADES or not c:
         return ""
@@ -325,7 +342,7 @@ def validar(d, estados=None):
         if len(x) > 220:
             pr.append("cada idea de 'ideal_para' / 'menos_ideal' tiene que ser corta (hasta 220 caracteres)")
             break
-    prohibidas = [w for w in ("Morningstar", "recomendamos comprar", "te recomendamos", "precio objetivo", "bloque", "datos guardados") if w.lower() in " ".join(str(x) for x in d.values()).lower()]
+    prohibidas = [w for w in ("Morningstar", "recomendamos comprar", "te recomendamos", "precio objetivo", "bloque", "datos guardados", "lo único que no sabemos", "según el modelo") if w.lower() in " ".join(str(x) for x in d.values()).lower()]
     if prohibidas:
         pr.append("el texto menciona algo que no corresponde: " + ", ".join(prohibidas))
     pf = _txt(d.get("perfil"))
