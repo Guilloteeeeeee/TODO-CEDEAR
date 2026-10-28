@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.80 (28/10/2026): la conclusión del resumen es una foto del momento actual
+- La "Conclusión:" del resumen del análisis ya no especula con el peor escenario ("si los clientes frenan…"): es una sola oración que retrata la empresa y su momento (calidad, foso, números), y si la empresa es mala lo dice con crudeza. El bear case y el bull case siguen más abajo (debilidades, fortalezas y Qué vigilar). El validador rechaza las hipótesis ("si pasa X…") en esa oración. Reescritas las conclusiones de los 4 ejemplos (también el cierre de la sección Conclusión).
+
 ### v1.2.79 (28/10/2026): calendario económico, pantalla de cartera simple, regla de 3 a 5 % por empresa, conclusión corta
 - **Calendario económico**: el recuadro "Calendario" (entre Noticias y el Filtro) tiene dos solapas: "Resultados de empresas" (como antes) y "Economía", con solo el evento y la fecha de los próximos 60 días. Las fechas son las de los calendarios oficiales de la Reserva Federal (decisión de tasas), el BLS (inflación IPC y empleo de EE.UU.), el BEA (PIB y inflación PCE de EE.UU.) y el INDEC (inflación, actividad, comercio exterior, PIB y desempleo de Argentina). Se guardan en `data/calendario_economico.json` (no es una conexión en vivo: hay que actualizar el archivo; el INDEC publica su calendario por semestre, así que el de 2027 se carga cuando salga). Ya cargado: Fed, BLS y BEA hasta diciembre de 2027 e INDEC hasta diciembre de 2026.
 - "Noticias Calientes del día" con mayúscula.

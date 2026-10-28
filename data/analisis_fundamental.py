@@ -357,10 +357,12 @@ def validar(d, estados=None):
     if not 1 <= len(out["clientes"]) <= 8:
         pr.append("'clientes' necesita de 1 a 8 principales clientes (\"Nombre (TICKER)\" si cotiza, o una descripción corta; si no hay un cliente dominante, decilo)")
     cn = re.sub(r"^\*{0,2}Conclusión:\s*", "", rs[rs.rfind("Conclusión:"):].replace("**", "")).strip() if "Conclusión:" in rs else ""
-    if cn and len(cn.split()) < 22:
-        pr.append("la oración \"Conclusión:\" del resumen tiene que cerrar la idea: si nombra un riesgo, decí qué pasaría con la empresa si ocurre (impacto en ingresos, márgenes, caja...)")
+    if cn and len(cn.split()) < 10:
+        pr.append("la oración \"Conclusión:\" del resumen es muy corta: tiene que ser una foto de la empresa y de su momento actual (calidad, foso y cómo vienen sus números)")
+    if cn and re.search(r"\bsi (?!bien)", cn.lower()):
+        pr.append("la oración \"Conclusión:\" del resumen es una foto del momento actual: sin hipótesis (\"si pasa X...\"); el peor escenario va en las debilidades y en 'vigilar'")
     if cn and len(cn.split()) > 45:
-        pr.append("la oración \"Conclusión:\" del resumen es solo una conclusión: una oración de hasta 45 palabras (calidad, puntos fuertes, riesgo y su consecuencia en una frase corta, sin explicar el porqué)")
+        pr.append("la oración \"Conclusión:\" del resumen es solo una conclusión: una oración de hasta 45 palabras (foto de la empresa y de su momento actual, sin hipótesis)")
     out["ideal_para"], out["menos_ideal"] = _lista(d.get("ideal_para")), _lista(d.get("menos_ideal"))
     if not 2 <= len(out["ideal_para"]) <= 4:
         pr.append("'ideal_para' necesita de 2 a 4 ideas (cada una sigue la frase \"Ideal para inversores que...\")")
