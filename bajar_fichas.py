@@ -62,36 +62,13 @@ ULTIMO_ERROR = [""]
 
 
 def _traducir(texto):
-    """Traduccion al castellano: primero deep-translator (Google), por partes de hasta ~4000 letras cortadas en fin de oracion; si no esta o falla,
-    el servicio gratuito MyMemory (ui/traducir.py). None si ninguno pudo (el error queda en ULTIMO_ERROR)."""
-    try:
-        from deep_translator import GoogleTranslator
-        partes, actual = [], ""
-        for frase in re.split(r"(?<=[.!?])\s+", texto.strip()):
-            if len(actual) + len(frase) + 1 > 4000 and actual:
-                partes.append(actual)
-                actual = ""
-            actual = (actual + " " + frase).strip()
-        if actual:
-            partes.append(actual)
-        tr = GoogleTranslator(source="en", target="es")
-        es = " ".join(x for x in (tr.translate(p) for p in partes) if x).strip()
-        if es:
-            return es
-        ULTIMO_ERROR[0] = "Google devolvio texto vacio"
-    except ImportError:
-        ULTIMO_ERROR[0] = "deep-translator no esta instalado"
-    except Exception as e:  # noqa: BLE001
-        ULTIMO_ERROR[0] = f"{type(e).__name__}: {e}"[:200]
-    try:
-        from ui.traducir import traducir_texto_largo
-        es = traducir_texto_largo(texto)
-        if es:
-            return es
-        ULTIMO_ERROR[0] += " | MyMemory tampoco pudo"
-    except Exception as e:  # noqa: BLE001
-        ULTIMO_ERROR[0] += f" | MyMemory: {type(e).__name__}"
-    return None
+    """Traduccion al castellano sin instalar nada (data/traduccion.py: Google gratuito, luego MyMemory, luego deep-translator si esta). None si ninguno pudo
+    (el motivo queda en ULTIMO_ERROR)."""
+    from data import traduccion
+    es = traduccion.traducir(texto)
+    if not es:
+        ULTIMO_ERROR[0] = traduccion.ULTIMO_ERROR[0] or "no se pudo traducir"
+    return es
 
 
 def bajar_una(t):

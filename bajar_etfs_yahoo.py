@@ -59,7 +59,8 @@ def main(tickers=None):
             if es:
                 d["resumen_es"] = es
             else:
-                avisos.append(f"{t}: la descripcion quedo en ingles (no se pudo traducir; probá 'pip install deep-translator')")
+                from data import traduccion as _tr
+                avisos.append(f"{t}: la descripcion quedo en ingles (no se pudo traducir: {_tr.ULTIMO_ERROR[0] or 'sin detalle'})")
         datos[t] = d
         faltan = [k for k in ("nav", "aum", "comision", "rendimiento", "holdings", "mercado") if k not in d]
         print(f"  {i:3d}/{len(elegidos)} {t:6} ok" + (f"  (faltan: {', '.join(faltan)})" if faltan else ""))

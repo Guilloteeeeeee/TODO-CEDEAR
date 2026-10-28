@@ -27,6 +27,30 @@ CALIDADES = {"Excelente": "#15803d", "Muy buena": "#82b93f", "Buena": "#eab308",
 # Secciones de texto, en este orden: (clave, título). El título de "balance" depende del perfil (AP.titulo_balance).
 SECCIONES = (("negocio", "El negocio"), ("foso", "La ventaja competitiva (foso)"), ("numeros", "Los números"), ("balance", "Deuda y solidez financiera"),
              ("gerencia", "Gerencia y uso del capital"))
+# Calidad + valoración del modelo hoy -> una frase armada por el código (siempre vigente: el texto del informe habla de la calidad y no del precio, que cambia a diario)
+_CRUCE = {
+    ("alta", "barata"): "Calidad alta con el precio por debajo del valor estimado por el modelo: es la combinación que más interesa investigar a fondo.",
+    ("alta", "justa"): "Calidad alta a un precio razonable según el modelo: una empresa para seguir de cerca.",
+    ("alta", "cara"): "Calidad alta, pero el precio ya la refleja según el modelo: conviene esperar un precio más adecuado.",
+    ("media", "barata"): "Calidad media con un precio atractivo según el modelo: el descuento compensa parte de sus límites, pero hay que revisar bien sus riesgos.",
+    ("media", "justa"): "Calidad media a un precio razonable: nada sobresale, así que conviene exigir un margen de seguridad mayor.",
+    ("media", "cara"): "Calidad media y precio exigente según el modelo: lo que ofrece no justifica lo que cuesta hoy.",
+    ("baja", "barata"): "Precio bajo, pero calidad débil: puede estar barata por una buena razón. Cuidado con las trampas de valor.",
+    ("baja", "justa"): "Calidad débil a un precio razonable: no hay un motivo claro para elegirla.",
+    ("baja", "cara"): "Calidad débil y precio alto según el modelo: la combinación menos atractiva.",
+}
+
+
+def cruce(calidad, categoria):
+    """Frase que combina la calidad del informe con la valoración del modelo hoy (categoría de la app), o '' si falta algún dato."""
+    c = str(categoria or "").upper()
+    if calidad not in CALIDADES or not c:
+        return ""
+    v = "barata" if "INFRAVALORADA" in c else "cara" if "SOBREVALORADA" in c else "justa" if "BIEN VALUADA" in c else ""
+    q = "alta" if calidad in ("Excelente", "Muy buena") else "media" if calidad == "Buena" else "baja"
+    return _CRUCE.get((q, v), "")
+
+
 # Fuentes: las mismas para TODOS los análisis (decisión de Guille del 28/10/2026). Las pone el código; el texto no lleva fuentes propias.
 FUENTES = ("Estados financieros (hasta 4 años fiscales y últimos 12 meses), descripción del negocio, dividendos y equipo directivo: Yahoo Finance.",
            "Ventaja competitiva (foso) y etapa de la empresa: estimación propia de TodoCedears.",
@@ -258,6 +282,16 @@ def validar(d, estados=None):
     for k in ("resumen", "veredicto", "conclusion"):
         if not out[k]:
             pr.append(f"falta '{k}'")
+    rs = out["resumen"]
+    if rs:
+        if "Conclusión:" not in rs:
+            pr.append("el 'resumen' tiene que terminar con \"Conclusión: ...\" (una oración que se la juega sobre la calidad)")
+        if "foso" not in rs.lower():
+            pr.append("el 'resumen' tiene que nombrar el foso (Amplio, Estrecho o sin foso)")
+        if "inteligencia artificial" not in rs.lower():
+            pr.append("el 'resumen' tiene que decir, con palabras claras, el riesgo de que la inteligencia artificial perjudique el negocio en 10 años")
+        if rs.count("**") < 4:
+            pr.append("el 'resumen' tiene que resaltar en **negrita** lo más importante (al menos 2 frases)")
     cal = _txt(d.get("calidad")).capitalize()
     out["calidad"] = cal if cal in CALIDADES else ""
     if not out["calidad"]:

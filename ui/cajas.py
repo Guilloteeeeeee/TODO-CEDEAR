@@ -26,3 +26,8 @@ CSS = """
 .st-key-fila_cajas [data-testid="stHorizontalBlock"]:has(.st-key-caja_screener)>[data-testid="stColumn"]:has(details[open]){flex:1.7 1 0!important}
 }
 """
+
+
+# v1.2.71: el recuadro "Calendario de resultados" (ancho completo, debajo de las dos cajas) usa el mismo estilo que el Filtro de empresas
+CSS += "\n".join(l.replace(".st-key-caja_screener", ".st-key-caja_cal") for l in CSS.splitlines()
+                 if l.startswith(".st-key-caja_screener"))

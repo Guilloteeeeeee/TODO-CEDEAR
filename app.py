@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.70"
+APP_VERSION = "1.2.71"
 
 import contextlib
 import streamlit as st
@@ -32,7 +32,7 @@ from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_condensada, css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav
-from ui import noticias as _noticias
+from ui import noticias as _noticias, calendario as _calendario
 from ui.cajas import CSS as CSS_CAJAS
 from ui.exportar import excel_bytes
 from ui import estado as estado_url
@@ -46,6 +46,7 @@ from ui.tabla_visual import (CSS as CSS_VISUAL, escala_valoracion_html, COLUMNAS
 from ui import criterios as _criterios
 from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
+from ui.flecha import poner_flecha, CSS_OCULTAR as CSS_FLECHA
 from ui.quienes import quienes_html, CSS as CSS_QUIENES
 from ui import ficha as _ficha
 from ui import tecnico as _tecnico
@@ -1276,6 +1277,21 @@ def render_noticias(df, descarga, lugar=None):
         pass
 
 
+def render_calendario(df):
+    """Recuadro "Calendario de resultados": proximos 30 dias agrupados por dia (ui/calendario.py). Nunca rompe la pagina."""
+    try:
+        paquetes, _ = _paquetes_guardados()
+        tickers = list(df["ticker"])
+        grupos = _calendario.proximos(paquetes, tickers=tickers)
+        nombres = dict(zip(df["ticker"], df["nombre"])) if "nombre" in df.columns else {}
+        n = sum(len(v) for _, v in grupos)
+        with st.container(key="caja_cal"):
+            with st.expander(f"Calendario de resultados · próximos 30 días ({n})", expanded=False):
+                st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres), unsafe_allow_html=True)
+    except Exception:  # noqa: BLE001
+        pass
+
+
 def main():
     # Cargar universo de tickers
     universe = load_custom_tickers()
@@ -1288,7 +1304,8 @@ def main():
     home_etfs = en_etfs and not etf_sel
     en_quienes = st.query_params.get("pagina") == "quienes"
     activa = "etfs" if en_etfs else ("" if en_quienes else "empresas")
-    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
+    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
+    poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
     # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
     render_nav_tablas()
     if en_quienes or etf_sel or st.query_params.get("empresa"):
@@ -1417,6 +1434,10 @@ def main():
                     with st.expander("Filtro de Empresas", expanded=False):
                         filtros = render_filtros_inline(universe, df)
                         st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
+
+    # v1.2.71: calendario de resultados (proximos 30 dias), debajo de las cajas; solo en la home de empresas
+    if not home_etfs:
+        render_calendario(df)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()

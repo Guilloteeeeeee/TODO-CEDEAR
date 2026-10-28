@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.71 (28/10/2026): Análisis en 2 columnas con Score, flecha "hay más abajo", Calendario de resultados, noticias con color y traducción sin instalar nada
+
+- **Análisis Fundamental (formato v3.1)**: el Resumen ahora son dos placas: a la izquierda el texto (con lo más importante en **negrita**, el foso nombrado con palabras y una frase que explica el riesgo de la IA, y cierra con "Conclusión: …" firme) y a la derecha el **Score de calidad** (0 a 100, en color, número en blanco; por ahora es el puntaje del modelo). Se sacó "Los números de un vistazo" (está en Estados Financieros). Orden: Resumen → El negocio → La ventaja competitiva → Puntos fuertes | Puntos débiles → **Entendiendo los números** (Los números, Deuda y solidez, Gerencia y uso del capital) → Qué vigilar → Conclusión (coloreada por calidad) → Fuentes. Texto justificado, con la misma letra que el resto de la app.
+- **Conclusión que no se contradice con la valoración**: el texto escrito habla solo de la calidad del negocio; la línea "Calidad y precio hoy" la arma el código cruzando la calidad con la categoría de valoración vigente (`AF.cruce`), así nunca queda vieja. NVDA ahora es "Excelente".
+- **Flecha ⌄** (`ui/flecha.py`): en todas las páginas, abajo al centro, aparece mientras quede contenido para ver; al tocarla baja casi una pantalla.
+- **Calendario de resultados** (`ui/calendario.py`): recuadro en la home de empresas, "Próximos 30 días" agrupado por día (Hoy / Mañana), con logo, ticker (link a la ficha) y si reporta **antes de la apertura / después del cierre**. Las fechas salen de `agenda.resultados` de `paquetes_yahoo.json`. El horario se captura al correr `bajar_paquetes_yahoo.bat` (`yahoo_extra.momento_resultados`, a partir de la hora que informa Yahoo; si Yahoo no confirmó el horario no se muestra). Hasta entonces el recuadro lo avisa una sola vez.
+- **Noticias**: Locales, Estados Unidos y Resto del mundo tienen cada una su color (celeste, azul, violeta) con borde de color en los titulares, para distinguirlas de los títulos.
+- **Traducción sin instalar nada** (`data/traduccion.py`, solo librería estándar): prueba Google y MyMemory (y deep-translator si ya estuviera). Si falla, el aviso de `bajar_etfs_yahoo` ahora dice el motivo real.
+- Pendiente: filtros técnicos para empresas y ETFs (a definir qué parámetros), Score de calidad definitivo.
+
 ### v1.2.70 (28/10/2026): Análisis Fundamental en formato único, estilo Pat Dorsey
 
 - **Mismo formato para todas las empresas**: Resumen (abstract con la conclusión al final y la "Calidad del negocio" en color: Excelente / Muy buena / Buena / Regular / Pobre, con la escala de colores de la Valoración), Los números de un vistazo (una tabla armada por el programa), El negocio, La ventaja competitiva (foso), Los números, Deuda y solidez financiera, Gerencia y uso del capital, Puntos fuertes y débiles, Qué vigilar (reemplaza a "Tesis de inversión"), Conclusión (con el color de la calidad) y Fuentes.

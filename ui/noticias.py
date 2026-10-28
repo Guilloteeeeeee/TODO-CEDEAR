@@ -462,6 +462,10 @@ CSS = """
 .nt-b{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#111827;margin:10px 0 2px;padding:6px 0 0;border-top:2px solid #111827;display:flex;gap:8px;align-items:baseline}
 .nt-b small{font-weight:500;letter-spacing:0;text-transform:none;color:#6b7280;font-size:.74rem}
 .nt-b:first-of-type{margin-top:2px;border-top:0;padding-top:0}
+.nt-b{border-top:0!important;margin:12px 0 4px!important;padding:6px 10px!important;border-radius:8px;color:var(--ntc,#111827)!important;background:var(--ntf,#f3f4f6);border-left:5px solid var(--ntc,#111827)}
+.nt-b:first-of-type{margin-top:6px!important}
+.nt-locales{--ntc:#0369a1;--ntf:#e0f2fe}.nt-usa{--ntc:#1e3a8a;--ntf:#e0e7ff}.nt-mundo{--ntc:#6d28d9;--ntf:#ede9fe}
+.nt-ul-locales li{border-left:3px solid #7dd3fc;padding-left:10px}.nt-ul-usa li{border-left:3px solid #a5b4fc;padding-left:10px}.nt-ul-mundo li{border-left:3px solid #c4b5fd;padding-left:10px}
 .nt-pie{font-size:.74rem;color:#6b7280;padding:2px 0 10px}
 .nt-vacio{font-size:.86rem;color:#4b5563;padding:2px 0 12px}
 @media (max-width:820px){.nt{padding:2px 12px}.nt li a{flex-basis:100%}}
@@ -531,9 +535,10 @@ def noticias_bloques_html(bloques, ahora=None, abierto=None):
     atr = " open" if abierto else ""
     partes = []
     for b in bloques or []:
-        cab = f'<div class="nt-b">{html.escape(b["titulo"])}<small>{html.escape(b["fuente"])}</small></div>'
+        k = re.sub(r"[^a-z]", "", str(b.get("clave") or "").lower())
+        cab = f'<div class="nt-b nt-{k}">{html.escape(b["titulo"])}<small>{html.escape(b["fuente"])}</small></div>'
         if b["notas"]:
-            partes.append(cab + f'<ul>{"".join(_fila(n, b["fuente"], ahora) for n in b["notas"])}</ul>')
+            partes.append(cab + f'<ul class="nt-ul-{k}">{"".join(_fila(n, b["fuente"], ahora) for n in b["notas"])}</ul>')
         else:
             motivo = (f'{b["fuente"]} no respondió en este momento' if not b.get("respondio") else f'no hay notas recientes de {b["fuente"]}')
             partes.append(cab + f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div>')

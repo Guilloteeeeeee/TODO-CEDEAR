@@ -900,7 +900,7 @@ def encabezado_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_da
 
 INTROS = {
     "resumen": "Qué hace la empresa, dónde cotiza y sus números básicos de un vistazo: tamaño, dividendo, rango de precio del último año y cuándo presenta resultados.",
-    "analisis": "Un informe breve de la empresa: resumen con su conclusión, los números de un vistazo, el negocio y su ventaja, la deuda, la gerencia, puntos fuertes y débiles, qué vigilar y conclusión. La tabla la calcula el programa; el texto es de inteligencia artificial. Informativo: no es una recomendación.",
+    "analisis": "Un informe breve de la empresa: resumen con su conclusión y el Score, el negocio y su ventaja, puntos fuertes y débiles, cómo entender los números (deuda y gerencia incluidas), qué vigilar y conclusión. La tabla la calcula el programa; el texto es de inteligencia artificial. Informativo: no es una recomendación.",
     "grafico": "Cómo se movió el precio de la acción, cuánto rindió en distintos plazos y qué dicen los indicadores técnicos (rango de 52 semanas, promedios móviles, RSI, MACD y riesgo). Es información sobre el pasado del precio, no una señal de compra o venta.",
     "valuacion": "Una estimación sobre si la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana.",
     "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
@@ -927,8 +927,13 @@ def tab_resumen(row, ficha, mercado, envolver=True, agenda=None):
     return _env(*t) if envolver else "".join(t)
 
 
+def _negrita(txt):
+    """Escapa el texto y convierte **frase** en negrita (el único formato que admiten los textos del análisis)."""
+    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(txt or "")))
+
+
 def _texto_af(txt):
-    """Texto del análisis: párrafos separados por línea en blanco; las líneas que empiezan con "- " forman una lista."""
+    """Texto del análisis: párrafos separados por línea en blanco; las líneas que empiezan con "- " forman una lista; **así** = negrita."""
     out, lista = [], []
 
     def cerrar():
@@ -938,18 +943,23 @@ def _texto_af(txt):
     for linea in str(txt or "").replace("\r", "").split("\n"):
         l = linea.strip()
         if l.startswith(("- ", "• ", "* ")):
-            lista.append(html.escape(l[2:].strip()))
+            lista.append(_negrita(l[2:].strip()))
         elif not l:
             cerrar()
         else:
             cerrar()
-            out.append(f"<p>{html.escape(l)}</p>")
+            out.append(f"<p>{_negrita(l)}</p>")
     cerrar()
     return "".join(out)
 
 
-_CSS_AF = ('<style>.af p{margin:0 0 .7em;line-height:1.55}.af ul{margin:0 0 .7em 1.1em;padding:0}.af li{margin:0 0 .35em;line-height:1.5}'
-           '.af h4{margin:.9em 0 .35em;font-size:1rem;font-weight:700}.af h4:first-child{margin-top:0}.af-ia{display:inline-block;margin:0 0 .6em;padding:2px 10px;'
+_CSS_AF = ('<style>.af p{margin:0 0 .75em;font-size:14.5px;line-height:1.6;color:#1f2937;text-align:justify}.af ul,.af ol{margin:0 0 .7em 1.1em;padding:0}'
+           '.af li{margin:0 0 .4em;font-size:14.5px;line-height:1.55;color:#1f2937;text-align:justify}.af b{font-weight:700;color:#0f172a}'
+           '.af h4{margin:1.1em 0 .4em;font-size:14.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0f172a}.af h4:first-child{margin-top:0}'
+           '.af-rs{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}.af-rs>.af-rt{flex:1 1 420px;min-width:0}.af-rs>.af-sc{flex:0 0 190px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}'
+           '.af-sc .num{font-size:64px;line-height:1;font-weight:800;border-radius:16px;padding:16px 22px;min-width:130px;letter-spacing:-2px}.af-sc .l{font-size:12.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#0f172a}'
+           '.af-sc .s{font-size:12px;color:#4b5563;line-height:1.4}.af-cx{margin:.8em 0 0;padding:12px 14px;border-radius:12px;line-height:1.6}.af-cx p{margin:0 0 .5em}.af-cx p:last-child{margin:0}'
+           '.af-ia{display:inline-block;margin:0 0 .6em;padding:2px 10px;'
            'border-radius:999px;background:#eef2f7;font-size:.82rem}.af-pie{font-size:.8rem;opacity:.75;line-height:1.45}'
            '.af-tw{overflow-x:auto;margin:0 0 .6em}.af-tb{border-collapse:collapse;width:100%;font-size:.84rem;white-space:nowrap}'
            '.af-tb th{text-align:right;font-weight:600;padding:5px 9px;border-bottom:2px solid #cbd5e1;background:#f8fafc}.af-tb th:first-child{text-align:left}'
@@ -973,7 +983,7 @@ def _chip_af(et):
 
 def _pie_af(af):
     modelo = html.escape(str(af.get("modelo") or ""))
-    return ('<div class="fch-sub af-pie" style="margin:4px 0 0">Informe redactado con inteligencia artificial'
+    return ('<div class="fch-sub af-pie" style="margin:4px 4px 0;grid-column:1/-1">Informe redactado con inteligencia artificial'
             + (f" ({modelo})" if modelo else "") + (f", el {html.escape(str(af['fecha']))}" if af.get("fecha") else "")
             + ', a partir de los datos de Yahoo Finance (la tabla la calcula el programa). Puede contener errores o quedar desactualizado: verificá siempre con los documentos '
             'oficiales de la empresa. Es información con fines educativos, no una recomendación de inversión.</div>')
@@ -991,13 +1001,23 @@ def _tiles_analisis_v1(af):
 
 def _lista_af(items, ordenada=False):
     tag = "ol" if ordenada else "ul"
-    return f'<div class="af"><{tag}>' + "".join(f"<li>{html.escape(x)}</li>" for x in items) + f"</{tag}></div>"
+    return f'<div class="af"><{tag}>' + "".join(f"<li>{_negrita(x)}</li>" for x in items) + f"</{tag}></div>"
 
 
-def tiles_analisis(af, estados=None):
-    """Análisis Fundamental v3 (data/analisis_fundamental.py), igual para todas las empresas: Resumen con la calidad y el veredicto, los números de un vistazo (tabla armada
-    por el código según el perfil), el negocio, el foso, los números, la deuda, la gerencia, puntos fuertes y débiles, qué vigilar, conclusión (con el color de la calidad),
-    fuentes (siempre las mismas) y aclaración. Sin 'calidad' en el análisis guardado (formato viejo), usa el formato anterior."""
+def _score_af(row):
+    """Columna derecha del Resumen: Score (por ahora, el puntaje del modelo) en color con el número en blanco o negro según el fondo."""
+    color = _txt((row or {}).get("color_hex"), "#6e7781")
+    sc = _n((row or {}).get("score_total"))
+    num = f"{sc:.0f}" if sc is not None else "—"
+    txt = _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
+    return (f'<div class="af-sc"><div class="l">Score de calidad</div><div class="num" style="background:{color};color:{txt}">{num}</div>'
+            '<div class="s"><b>De 0 a 100.</b> Por ahora es el puntaje del modelo (0 = más cara, 100 = más barata); luego sumará la calidad del negocio.</div></div>')
+
+
+def tiles_analisis(af, estados=None, row=None):
+    """Análisis Fundamental v3 (data/analisis_fundamental.py), igual para todas las empresas: Resumen (texto a la izquierda, Score a la derecha), el negocio, el foso,
+    puntos fuertes y débiles, "Entendiendo los números" (números, deuda y gerencia), qué vigilar, conclusión (con el color de la calidad y una frase que la cruza con la
+    valoración de hoy), fuentes (siempre las mismas) y aclaración. Sin 'calidad' en el análisis (formato viejo) usa el formato anterior."""
     from data import af_perfiles as AP
     from data import analisis_fundamental as AF
     cal = af.get("calidad")
@@ -1006,33 +1026,32 @@ def tiles_analisis(af, estados=None):
     color = AF.CALIDADES[cal]
     txt_color = _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
     perfil = af.get("perfil") if af.get("perfil") in AP.PERFILES else "general"
-    foso = _foso_de(af.get("ticker")) if af.get("ticker") else None
-    chips = ""
-    if foso and foso.get("foso"):
-        chips += f'<span class="af-ia" title="Ventaja competitiva estimada (ver la solapa Resumen).">Foso: <b>{html.escape(str(foso["foso"]))}</b></span> '
-    if af.get("riesgo_ia"):
-        chips += (f'<span class="af-ia" title="Qué tan probable es que la inteligencia artificial perjudique el negocio dentro de 10 años, según el análisis.">'
-                  f'Riesgo de la IA a 10 años: <b>{html.escape(af["riesgo_ia"].capitalize())}</b></span>')
     cabeza = (f'<div class="af-vd" style="--cc:{color}"><span class="af-cal" style="background:{color};color:{txt_color}">Calidad del negocio: {html.escape(cal)}</span>'
               f'<span class="af-vt">{html.escape(af.get("veredicto", ""))}</span></div>')
-    t = [_tile("s12", "Resumen", _CSS_AF + f'<div class="af">{cabeza}{_texto_af(af.get("resumen"))}<div>{chips}</div></div>', ac=color)]
-    vz = AP.vistazo(estados, perfil) if estados else None
-    if vz:
-        t.append(_tile("s12", "Los números de un vistazo", AP.vistazo_html(vz) + '<div class="fch-sub af-pie" style="margin:4px 0 0">Montos en millones; TTM = últimos 12 meses. '
-                       'El detalle completo está en la solapa Estados Financieros.</div>', ac="#0ea5e9"))
+    resumen = re.sub(r"(?<!\*)Conclusión:", "**Conclusión:**", str(af.get("resumen") or ""))
+    texto = f'<div class="af-rt">{cabeza}{_texto_af(resumen)}</div>'
+    cuerpo = f'<div class="af"><div class="af-rs">{texto}{_score_af(row) if row is not None else ""}</div></div>'
+    t = [_tile("s12", "Resumen", _CSS_AF + cuerpo, ac=color)]
     titulos = dict(AF.SECCIONES)
     titulos["balance"] = AP.titulo_balance(perfil)
-    for clave, _ in AF.SECCIONES:
+    for clave in ("negocio", "foso"):
         if af.get(clave):
-            t.append(_tile("s12", html.escape(titulos[clave]), f'<div class="af">{_texto_af(af[clave])}</div>', ac="#8b5cf6" if clave in ("negocio", "foso") else "#0ea5e9"))
+            t.append(_tile("s12", html.escape(titulos[clave]), f'<div class="af">{_texto_af(af[clave])}</div>', ac="#8b5cf6"))
     if af.get("fortalezas"):
         t.append(_tile("s6", "Puntos fuertes", _lista_af(af["fortalezas"]), ac="#16a34a"))
     if af.get("debilidades"):
         t.append(_tile("s6", "Puntos débiles y riesgos", _lista_af(af["debilidades"], True) + '<div class="fch-sub af-pie" style="margin:0">Del más al menos importante.</div>', ac="#dc2626"))
+    nums = "".join(f"<h4>{html.escape(titulos[c])}</h4>{_texto_af(af[c])}" for c in ("numeros", "balance", "gerencia") if af.get(c))
+    if nums:
+        t.append(_tile("s12", "Entendiendo los números", f'<div class="af">{nums}</div>', ac="#0ea5e9"))
     if af.get("vigilar"):
         t.append(_tile("s12", "Qué vigilar", _lista_af(af["vigilar"]), ac="#f59e0b"))
-    t.append(_tile("s12", "Conclusión", f'<div class="af"><div class="af-cc" style="background:{color}1f;border-left:5px solid {color}">'
-                   f'<p style="margin:0 0 .5em"><b>{html.escape(af.get("veredicto", ""))}</b></p>{_texto_af(af.get("conclusion"))}</div></div>', ac=color))
+    cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
+    est = f' style="color:{txt_color}"'
+    cr_html = (f'<p{est[:-1]};margin-top:.7em;padding-top:.6em;border-top:1px solid {txt_color}66"><b{est}>Calidad y precio hoy:</b> {html.escape(cr)}</p>') if cr else ""
+    conc = _texto_af(af.get("conclusion")).replace("<p>", f"<p{est}>").replace("<b>", f"<b{est}>")
+    t.append(_tile("s12", "Conclusión", f'<div class="af"><div class="af-cx" style="background:{color};color:{txt_color}">'
+                   f'<p{est[:-1]};font-size:16px"><b{est}>{html.escape(af.get("veredicto", ""))}</b></p>{conc}{cr_html}</div></div>', ac=color))
     t.append(_tile("s12", "Fuentes", '<div class="af"><ul class="af-st" style="margin-left:1.1em">' + "".join(f"<li>{html.escape(x)}</li>" for x in AF.FUENTES) + "</ul></div>", ac="#94a3b8"))
     t.append(_pie_af(af))
     return t
@@ -1042,7 +1061,7 @@ def tab_analisis(row, envolver=True, af=None, estados=None):
     """Análisis Fundamental: Resumen, parte cualitativa, los números punto por punto, fortalezas/debilidades, tesis y conclusión (ver data/analisis_fundamental.py); al final,
     el puntaje actual del modelo (el Score de calidad llega más adelante). Sin análisis guardado para la empresa: 'Próximamente'."""
     if af and af.get("resumen"):
-        t = tiles_analisis(af, estados) + [_tile_score(row)]
+        t = tiles_analisis(af, estados, row)
     else:
         t = [_tile_score(row), _tile("s12", "Resumen fundamental", '<div class="fch-sub" style="margin:0">Próximamente: un resumen del negocio y de sus fundamentos, con sus puntos fuertes, débiles y la tesis de inversión.</div>', ac="#94a3b8")]
     return _env(*t) if envolver else "".join(t)

@@ -165,6 +165,39 @@ def bajar_dividendos(ticker, timeout=12.0, obtener=None):
 
 
 # --- beta y fecha de resultados ---------------------------------------------------------------------------------------
+def _ny_offset_horas(utc):
+    """Diferencia (en horas) entre Nueva York y UTC en ese momento: -4 con horario de verano (2do domingo de marzo al 1ro de noviembre), -5 el resto. Sin depender de tzdata."""
+    y = utc.year
+
+    def domingo(mes, n):
+        d = _dt.date(y, mes, 1)
+        d += _dt.timedelta(days=(6 - d.weekday()) % 7 + 7 * (n - 1))
+        return d
+    ini = _dt.datetime.combine(domingo(3, 2), _dt.time(7))       # 2:00 hora local = 7:00 UTC
+    fin = _dt.datetime.combine(domingo(11, 1), _dt.time(6))      # 2:00 hora local de verano = 6:00 UTC
+    u = utc.replace(tzinfo=None)
+    return -4 if ini <= u < fin else -5
+
+
+def momento_resultados(ts):
+    """'antes' / 'despues' de la apertura segun la hora (Nueva York) del numero de Unix que informa Yahoo; None si no se puede saber
+    (hora de mediodia = Yahoo todavia no confirmo el horario). Antes: hasta las 10:00. Despues: desde las 16:00."""
+    try:
+        v = float(ts)
+        if v <= 0:
+            return None
+        u = _dt.datetime.fromtimestamp(v, _dt.timezone.utc)
+        h = u + _dt.timedelta(hours=_ny_offset_horas(u))
+        hh = h.hour + h.minute / 60.0
+        if hh < 10:
+            return "antes"
+        if hh >= 16:
+            return "despues"
+    except (TypeError, ValueError, OSError, OverflowError):
+        pass
+    return None
+
+
 def analizar_agenda(info, calendario=None):
     """{'beta': float, 'resultados': (fecha, fecha_hasta o None)} con lo que Yahoo informe (info['beta'], calendario['Earnings Date'] o info['earningsTimestamp...']).
     Si Yahoo da un rango de fechas (aun no confirmada) se devuelven las dos. {} si no hay nada."""
@@ -188,6 +221,13 @@ def analizar_agenda(info, calendario=None):
         d["beta"] = beta
     if fechas:
         d["resultados"] = (fechas[0], fechas[-1] if fechas[-1] != fechas[0] else None)
+        # v1.2.71: antes o despues de la apertura (solo si Yahoo da un unico dia y una hora concreta)
+        if len(fechas) == 1:
+            for k in ("earningsTimestamp", "earningsTimestampStart"):
+                m = momento_resultados(info.get(k))
+                if m and _fecha(info.get(k)) in (fechas[0], fechas[0] - _dt.timedelta(days=1), fechas[0] + _dt.timedelta(days=1)):
+                    d["momento"] = m
+                    break
     return d
 
 
