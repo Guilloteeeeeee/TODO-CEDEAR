@@ -3,12 +3,20 @@ Orden: (1) el traductor gratuito de Google (el mismo que usaba deep-translator),
 Devuelve el texto en castellano o None; el motivo del último fallo queda en ULTIMO_ERROR para mostrarlo en el resumen de la corrida."""
 import json
 import re
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
 
 ULTIMO_ERROR = [""]
 URL_GOOGLE = "https://translate.googleapis.com/translate_a/single"
 TOPE = 1800          # letras por pedido (con POST no hay problema de largo de URL)
+# v1.2.72: Google contesta "429 Too Many Requests" si se le piden muchas traducciones seguidas (pasó con los ETFs, a partir del 50.º): pausa entre pedidos y,
+# si igual rechaza, se espera cada vez más antes de reintentar.
+PAUSA_ENTRE_PEDIDOS = 1.5
+ESPERAS_429 = (10, 30, 60)
+_ultimo = [0.0]
+_dormir = time.sleep          # se cambia en las pruebas
 
 
 def _partes(texto, tope=TOPE):
@@ -30,13 +38,31 @@ def _partes(texto, tope=TOPE):
     return [p for p in partes if p]
 
 
-def _google(parte, origen="en", destino="es", timeout=15):
+def _google_una_vez(parte, origen, destino, timeout):
     q = urllib.parse.urlencode({"client": "gtx", "sl": origen, "tl": destino, "dt": "t"})
     req = urllib.request.Request(URL_GOOGLE + "?" + q, data=urllib.parse.urlencode({"q": parte}).encode("utf-8"),
                                  headers={"User-Agent": "Mozilla/5.0 (compatible; TodoCedears/1.2)", "Content-Type": "application/x-www-form-urlencoded"})
     with urllib.request.urlopen(req, timeout=timeout) as r:  # noqa: S310 (url fija, https)
         j = json.loads(r.read(500_000).decode("utf-8", "replace"))
     return "".join(seg[0] for seg in (j[0] or []) if seg and isinstance(seg[0], str)).strip()
+
+
+def _google(parte, origen="en", destino="es", timeout=15):
+    """Traduce una parte con Google, con pausa entre pedidos y reintentos con espera creciente si contesta 429 (demasiados pedidos)."""
+    for espera in (0,) + tuple(ESPERAS_429):
+        if espera:
+            _dormir(espera)
+        falta = PAUSA_ENTRE_PEDIDOS - (time.time() - _ultimo[0])
+        if falta > 0:
+            _dormir(falta)
+        _ultimo[0] = time.time()
+        try:
+            return _google_una_vez(parte, origen, destino, timeout)
+        except urllib.error.HTTPError as e:
+            if e.code != 429:
+                raise
+            ULTIMO_ERROR[0] = "Google: 429 demasiados pedidos (se espera y se reintenta)"
+    raise urllib.error.HTTPError(URL_GOOGLE, 429, "Too Many Requests (siguio rechazando despues de esperar)", None, None)
 
 
 def traducir(texto, origen="en", destino="es"):

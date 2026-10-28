@@ -330,10 +330,10 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv-ley{display:block;width:fit-content;font-size:13px;font-weight:400;color:#4b5563;padding:2px 0 0;line-height:1.5}
 /* "Variables a ver en la tabla" (v1.2.49): pastillas que se prenden y se apagan; las elegidas llevan tilde y van en negrita */
 .vars-t{font-size:14px;font-weight:700;color:#111827;margin:2px 0 6px}
-.st-key-vars_chips,.st-key-vars_chips_mult{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
-.st-key-vars_chips>div,.st-key-vars_chips_mult>div{width:auto!important;flex:0 0 auto}
-.st-key-vars_chips button,.st-key-vars_chips_mult button{min-height:34px;padding:2px 13px;border-radius:18px;font-size:13.5px;transition:background .12s,border-color .12s}
-.st-key-vars_chips button p,.st-key-vars_chips_mult button p{font-size:13.5px;margin:0}
+.st-key-vars_chips,.st-key-vars_chips_mult,.st-key-vars_chips_tec{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
+.st-key-vars_chips>div,.st-key-vars_chips_mult>div,.st-key-vars_chips_tec>div{width:auto!important;flex:0 0 auto}
+.st-key-vars_chips button,.st-key-vars_chips_mult button,.st-key-vars_chips_tec button{min-height:34px;padding:2px 13px;border-radius:18px;font-size:13.5px;transition:background .12s,border-color .12s}
+.st-key-vars_chips button p,.st-key-vars_chips_mult button p,.st-key-vars_chips_tec button p{font-size:13.5px;margin:0}
 .vars-g{font-size:11.5px;font-weight:600;letter-spacing:.4px;text-transform:uppercase;color:#6b7280;margin:8px 0 0}
 [class*="st-key-varoff_"] button{background:#fff;border:1px solid #cfd8e3;color:#4b5563;font-weight:400}
 [class*="st-key-varoff_"] button:hover{background:#eef3f8;border-color:#9fb3c8;color:#222d36}

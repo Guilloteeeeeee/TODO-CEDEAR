@@ -1,4 +1,4 @@
-"""Calendario de resultados (v1.2.71): "Proximos 30 dias" agrupado por dia, con logo, ticker y, si Yahoo lo informa, si la empresa reporta
+"""Calendario de resultados (v1.2.71): "Proximos 60 dias" agrupado por dia, con logo, ticker y, si Yahoo lo informa, si la empresa reporta
 ANTES o DESPUES de la apertura del mercado. Sale de `agenda.resultados` de data/paquetes_yahoo.json (lo baja bajar_paquetes_yahoo.bat).
 Es informacion, no una recomendacion: las fechas las confirma cada empresa y pueden cambiar."""
 import datetime
@@ -7,7 +7,7 @@ from urllib.parse import quote
 
 from ui.logos import logo_html
 
-DIAS = 30
+DIAS = 60
 _SEM = ("lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo")
 _MES = ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre")
 
@@ -50,7 +50,7 @@ CSS = """
 .cal-m.despues{background:#e0e7ff;color:#3730a3}
 .cal-m.nd{background:#f1f5f9;color:#64748b;font-weight:600}
 .cal-e{font-size:.68rem;color:#94a3b8}
-.cal-v{color:#64748b;font-size:.9rem;padding:.4rem 0}
+.cal-h{font-size:.85rem;color:#475569}.cal-v{color:#64748b;font-size:.9rem;padding:.4rem 0}
 .cal-p{color:#94a3b8;font-size:.74rem;margin-top:.8rem;line-height:1.4}
 """
 
@@ -67,12 +67,13 @@ def _titulo_dia(f, hoy):
     return base
 
 
-def calendario_html(grupos, hoy=None, nombres=None):
+def calendario_html(grupos, hoy=None, nombres=None, cantidad=None):
     hoy = hoy or datetime.date.today()
     if not grupos:
         return (f'<div class="cal"><div class="cal-v">No hay resultados cargados para los próximos {DIAS} días.</div></div>')
     hay_hora = any(m for _, its in grupos for _, m, _e in its)         # mientras Yahoo no informe el horario, no se repite "a confirmar" en cada empresa
-    out = ['<div class="cal">']
+    n = cantidad if cantidad is not None else sum(len(v) for _, v in grupos)
+    out = [f'<div class="cal"><div class="cal-h">Próximos {DIAS} días · <b>{n}</b> empresas</div>']
     for f, items in grupos:
         out.append(f'<div class="cal-d{" hoy" if f == hoy else ""}">{html.escape(_titulo_dia(f, hoy))}<span class="cal-n">{len(items)}</span></div><div class="cal-g">')
         for t, momento, estimada in items:

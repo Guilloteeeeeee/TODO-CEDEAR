@@ -24,6 +24,8 @@ RUTA_PROMPT = os.path.join(AQUI, "prompt_analisis_fundamental.txt")
 RIESGOS_IA = ("muy alto", "alto", "moderado", "bajo", "muy bajo")
 # Calidad del negocio -> color (misma escala de colores que la Valoración, de verde a rojo)
 CALIDADES = {"Excelente": "#15803d", "Muy buena": "#82b93f", "Buena": "#eab308", "Regular": "#f97316", "Pobre": "#dc2626"}
+# Color de las LETRAS de la conclusión (versión más oscura de cada color de arriba, para que se lea sobre fondo blanco); la gente asocia el color con la calidad
+CALIDADES_TEXTO = {"Excelente": "#15803d", "Muy buena": "#4d7c0f", "Buena": "#a16207", "Regular": "#c2410c", "Pobre": "#b91c1c"}
 # Secciones de texto, en este orden: (clave, título). El título de "balance" depende del perfil (AP.titulo_balance).
 SECCIONES = (("negocio", "El negocio"), ("foso", "La ventaja competitiva (foso)"), ("numeros", "Los números"), ("balance", "Deuda y solidez financiera"),
              ("gerencia", "Gerencia y uso del capital"))
@@ -272,6 +274,7 @@ def validar(d, estados=None):
       riesgo_ia: muy alto | alto | moderado | bajo | muy bajo
       negocio, foso, numeros, balance, gerencia: texto (párrafos separados por una línea en blanco)
       fortalezas, debilidades: listas (las debilidades, de la más a la menos importante)
+      ideal_para (2 a 4) y menos_ideal (1 a 3): perfiles de inversor a los que les encaja / no les encaja (siguen "Ideal para inversores que..."), sin recomendar
       vigilar: lista de 3 a 4 hechos a seguir (qué confirmaría y qué invalidaría el caso); conclusion: 3 a 4 oraciones
       perfil, capas, ticker: los pone el programa (si vienen, se validan)"""
     pr = []
@@ -279,7 +282,7 @@ def validar(d, estados=None):
         return None, ["no es un objeto JSON"]
     out = {k: _txt(d.get(k)) for k in ("resumen", "veredicto", "conclusion")}
     out["conclusion"] = out["conclusion"] or _txt(d.get("conclusión"))
-    for k in ("resumen", "veredicto", "conclusion"):
+    for k in ("resumen", "conclusion"):                      # v1.2.72: el veredicto ya no se muestra (queda como dato opcional)
         if not out[k]:
             pr.append(f"falta '{k}'")
     rs = out["resumen"]
@@ -313,6 +316,15 @@ def validar(d, estados=None):
         pr.append("'debilidades' necesita al menos 2")
     if not 2 <= len(out["vigilar"]) <= 5:
         pr.append("'vigilar' necesita de 2 a 5 puntos (lo ideal: 3 o 4)")
+    out["ideal_para"], out["menos_ideal"] = _lista(d.get("ideal_para")), _lista(d.get("menos_ideal"))
+    if not 2 <= len(out["ideal_para"]) <= 4:
+        pr.append("'ideal_para' necesita de 2 a 4 ideas (cada una sigue la frase \"Ideal para inversores que...\")")
+    if not 1 <= len(out["menos_ideal"]) <= 3:
+        pr.append("'menos_ideal' necesita de 1 a 3 ideas (cada una sigue la frase \"Menos adecuada para inversores que...\")")
+    for x in out["ideal_para"] + out["menos_ideal"]:
+        if len(x) > 220:
+            pr.append("cada idea de 'ideal_para' / 'menos_ideal' tiene que ser corta (hasta 220 caracteres)")
+            break
     prohibidas = [w for w in ("Morningstar", "recomendamos comprar", "te recomendamos", "precio objetivo", "bloque", "datos guardados") if w.lower() in " ".join(str(x) for x in d.values()).lower()]
     if prohibidas:
         pr.append("el texto menciona algo que no corresponde: " + ", ".join(prohibidas))

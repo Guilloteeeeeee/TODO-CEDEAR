@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.71"
+APP_VERSION = "1.2.72"
 
 import contextlib
 import streamlit as st
@@ -33,6 +33,7 @@ from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_condensada, css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav
 from ui import noticias as _noticias, calendario as _calendario
+from data import tecnicos as _tecnicos
 from ui.cajas import CSS as CSS_CAJAS
 from ui.exportar import excel_bytes
 from ui import estado as estado_url
@@ -308,6 +309,15 @@ def _paquetes_guardados():
     """({TICKER: datos}, fecha) del archivo data/paquetes_yahoo.json; ({}, None) si no esta."""
     try:
         return _py.cargar()
+    except Exception:  # noqa: BLE001
+        return {}, None
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _tecnicos_guardados():
+    """({TICKER: {rsi, vs50, ...}}, fecha) de data/tecnicos.json (lo baja bajar_tecnicos.bat); ({}, None) si no esta."""
+    try:
+        return _tecnicos.cargar()
     except Exception:  # noqa: BLE001
         return {}, None
 
@@ -640,7 +650,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     consulta = st.text_input("Buscar variables", key="flt_vars_q", placeholder="Buscá y elegí qué ver", label_visibility="collapsed")
     for i_g, (titulo_g, vars_g) in enumerate(_variables.agrupar(_variables.buscar(consulta))):
         st.markdown(f'<div class="vars-g">{html.escape(titulo_g)}</div>', unsafe_allow_html=True)
-        with st.container(key="vars_chips" if i_g == 0 else "vars_chips_mult"):
+        with st.container(key="vars_chips" if i_g == 0 else ("vars_chips_mult" if i_g == 1 else "vars_chips_tec")):
             for v in vars_g:
                 on = v["clave"] in elegidas
                 st.button(("✓ " if on else "") + v["nombre"], key=f"{'varon' if on else 'varoff'}_{v['clave']}", help=f"**{v['nombre']}.** {v['ayuda']}",
@@ -696,7 +706,7 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
             puntaje_lim = minmax("flt_score", 5)
     for c in extras:
         k = c["clave"]
-        with caja(f"crit_{k}", c["nombre"], c["unidad"] if c["unidad"] == "%" else "veces"):
+        with caja(f"crit_{k}", c["nombre"], c["unidad"] if c["unidad"] == "%" else ("0 a 100" if c["unidad"] == "pts" else "veces")):
             criterios[k] = minmax(f"crit_{k}", c["paso"])
     cats_nombres = list(cats_sel) or list(cats_disponibles)
 
@@ -736,9 +746,51 @@ def render_filtro_etfs(etfs) -> list:
     from data import etfs as _etfs
     st.markdown(f"<style>{CSS_PILLS}</style>" + '<div class="flt-t">Categoría</div>', unsafe_allow_html=True)
     try:
-        return st.pills("Categoría", _etfs.categorias(etfs), selection_mode="multi", key="etf_cats", label_visibility="collapsed") or []
+        cats = st.pills("Categoría", _etfs.categorias(etfs), selection_mode="multi", key="etf_cats", label_visibility="collapsed") or []
     except Exception:  # noqa: BLE001
-        return []
+        cats = []
+    # v1.2.72: parametros tecnicos (minimo y/o maximo). Los valores quedan en session_state (etf_tec_<clave>_min / _max) y los usa render_tabla_etfs.
+    datos, fecha_t = _tecnicos_guardados()
+    st.markdown('<div class="flt-t" style="margin-top:.8rem">Parámetros técnicos <span style="font-weight:400;color:#64748b">(informativos; no son señales de compra ni de venta)</span></div>', unsafe_allow_html=True)
+    if not datos:
+        st.caption("Todavía no hay datos técnicos cargados: se completan al correr bajar_tecnicos.bat.")
+        return cats
+    cols = st.columns(2)
+    for i, c in enumerate(_criterios.TECNICOS):
+        with cols[i % 2]:
+            u = "0 a 100" if c["unidad"] == "pts" else ("%" if c["unidad"] == "%" else "veces")
+            st.markdown(f'<div class="crit-t">{html.escape(c["nombre"])} <span>({u})</span></div>', unsafe_allow_html=True)
+            a, b = st.columns(2)
+            a.number_input("Mínimo", value=None, step=float(c["paso"]), format="%g", key=f"etf_tec_{c['clave']}_min", placeholder="Mínimo", label_visibility="collapsed", help=c["ayuda"])
+            b.number_input("Máximo", value=None, step=float(c["paso"]), format="%g", key=f"etf_tec_{c['clave']}_max", placeholder="Máximo", label_visibility="collapsed", help=c["ayuda"])
+    if fecha_t:
+        st.caption(f"Datos técnicos al {fecha_t}.")
+    return cats
+
+
+def _filtrar_etfs_tecnicos(etfs):
+    """Deja los ETFs que cumplen los minimos y maximos de los parametros tecnicos elegidos (los que no tienen el dato quedan afuera si hay un limite)."""
+    datos, _ = _tecnicos_guardados()
+    activos = {}
+    for c in _criterios.TECNICOS:
+        mn, mx = st.session_state.get(f"etf_tec_{c['clave']}_min"), st.session_state.get(f"etf_tec_{c['clave']}_max")
+        if mn is not None or mx is not None:
+            activos[c["clave"]] = (c, mn, mx)
+    if not activos:
+        return etfs
+    out = []
+    for e in etfs:
+        d = datos.get(str(e["ticker"]).upper()) or {}
+        ok = True
+        for _, (c, mn, mx) in activos.items():
+            v = d.get(c["clave"][4:])
+            v = None if v is None else v * c["escala"]
+            if v is None or (mn is not None and v < mn) or (mx is not None and v > mx):
+                ok = False
+                break
+        if ok:
+            out.append(e)
+    return out
 
 
 def _cambiar_orden_etfs():
@@ -782,7 +834,7 @@ def render_tabla_etfs(etfs, sel):
     precios = _precios_etfs(tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs)) if PRECIOS_VIVOS else {}
     sort_col = st.session_state.get("etf_sort_col")
     sort_asc = bool(st.session_state.get("etf_sort_asc", True))
-    mostrados = _ui_etfs.ordenar(_etfs.filtrar(etfs, "", sel), guardados, precios, sort_col, sort_asc)
+    mostrados = _ui_etfs.ordenar(_filtrar_etfs_tecnicos(_etfs.filtrar(etfs, "", sel)), guardados, precios, sort_col, sort_asc)
     st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
     with st.container(key="fila_excel"):
         st.markdown('<div class="tv-ley">Presioná en el ETF para información detallada.</div>', unsafe_allow_html=True)
@@ -1277,17 +1329,18 @@ def render_noticias(df, descarga, lugar=None):
         pass
 
 
-def render_calendario(df):
-    """Recuadro "Calendario de resultados": proximos 30 dias agrupados por dia (ui/calendario.py). Nunca rompe la pagina."""
+def render_calendario(df, lugar=None):
+    """Recuadro "Calendario de Resultados": proximos 60 dias agrupados por dia (ui/calendario.py). Va entre Noticias y el Filtro, en la misma fila. Nunca rompe la pagina."""
     try:
         paquetes, _ = _paquetes_guardados()
         tickers = list(df["ticker"])
         grupos = _calendario.proximos(paquetes, tickers=tickers)
         nombres = dict(zip(df["ticker"], df["nombre"])) if "nombre" in df.columns else {}
         n = sum(len(v) for _, v in grupos)
-        with st.container(key="caja_cal"):
-            with st.expander(f"Calendario de resultados · próximos 30 días ({n})", expanded=False):
-                st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres), unsafe_allow_html=True)
+        with (lugar if lugar is not None else st.container()):
+            with st.container(key="caja_cal"):
+                with st.expander("Calendario de Resultados", expanded=False):
+                    st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass
 
@@ -1385,6 +1438,13 @@ def main():
         except Exception:  # noqa: BLE001
             pass
 
+    # v1.2.72: parametros tecnicos (RSI, promedios, rendimientos...) de data/tecnicos.json; sin el archivo las columnas quedan vacias
+    if df is not None and not df.empty:
+        try:
+            df = _tecnicos.agregar_columnas(df, _tecnicos_guardados()[0])
+        except Exception:  # noqa: BLE001
+            pass
+
     cargando_inicio.empty()
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
@@ -1416,7 +1476,12 @@ def main():
     hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     noticias_pendientes = descarga_noticias is not None
     with st.container(key="fila_cajas"):
-        if _noticias.ACTIVAS:
+        if _noticias.ACTIVAS and not home_etfs:
+            # v1.2.72: Noticias | Calendario de Resultados | Filtro, los tres en la misma fila
+            col_noticias, col_cal, col_filtro = st.columns(3, gap="medium")
+            lugar_noticias = col_noticias.empty()
+            render_calendario(df, col_cal)
+        elif _noticias.ACTIVAS:
             col_noticias, col_filtro = st.columns(2, gap="medium")
             lugar_noticias = col_noticias.empty()
         else:
@@ -1434,10 +1499,6 @@ def main():
                     with st.expander("Filtro de Empresas", expanded=False):
                         filtros = render_filtros_inline(universe, df)
                         st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
-
-    # v1.2.71: calendario de resultados (proximos 30 dias), debajo de las cajas; solo en la home de empresas
-    if not home_etfs:
-        render_calendario(df)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()

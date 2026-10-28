@@ -958,7 +958,7 @@ _CSS_AF = ('<style>.af p{margin:0 0 .75em;font-size:14.5px;line-height:1.6;color
            '.af h4{margin:1.1em 0 .4em;font-size:14.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0f172a}.af h4:first-child{margin-top:0}'
            '.af-rs{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}.af-rs>.af-rt{flex:1 1 420px;min-width:0}.af-rs>.af-sc{flex:0 0 190px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}'
            '.af-sc .num{font-size:64px;line-height:1;font-weight:800;border-radius:16px;padding:16px 22px;min-width:130px;letter-spacing:-2px}.af-sc .l{font-size:12.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#0f172a}'
-           '.af-sc .s{font-size:12px;color:#4b5563;line-height:1.4}.af-cx{margin:.8em 0 0;padding:12px 14px;border-radius:12px;line-height:1.6}.af-cx p{margin:0 0 .5em}.af-cx p:last-child{margin:0}'
+           '.af-sc .s{font-size:12px;color:#4b5563;line-height:1.4}.af-cn{margin:.2em 0 0!important;font-size:15.5px!important;line-height:1.55!important}.af-id{margin:.9em 0 .3em}.af-id ul{margin:.3em 0 .2em 1.1em}.af-id li{margin:0 0 .3em;font-size:14.5px;line-height:1.55;text-align:justify}.af-no b{color:#475569}.af-cp{margin:.9em 0 0!important;padding-top:.6em;border-top:1px solid #e5e9f0}.af-cx{margin:.8em 0 0;padding:12px 14px;border-radius:12px;line-height:1.6}.af-cx p{margin:0 0 .5em}.af-cx p:last-child{margin:0}'
            '.af-ia{display:inline-block;margin:0 0 .6em;padding:2px 10px;'
            'border-radius:999px;background:#eef2f7;font-size:.82rem}.af-pie{font-size:.8rem;opacity:.75;line-height:1.45}'
            '.af-tw{overflow-x:auto;margin:0 0 .6em}.af-tb{border-collapse:collapse;width:100%;font-size:.84rem;white-space:nowrap}'
@@ -1026,10 +1026,16 @@ def tiles_analisis(af, estados=None, row=None):
     color = AF.CALIDADES[cal]
     txt_color = _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
     perfil = af.get("perfil") if af.get("perfil") in AP.PERFILES else "general"
-    cabeza = (f'<div class="af-vd" style="--cc:{color}"><span class="af-cal" style="background:{color};color:{txt_color}">Calidad del negocio: {html.escape(cal)}</span>'
-              f'<span class="af-vt">{html.escape(af.get("veredicto", ""))}</span></div>')
-    resumen = re.sub(r"(?<!\*)Conclusión:", "**Conclusión:**", str(af.get("resumen") or ""))
-    texto = f'<div class="af-rt">{cabeza}{_texto_af(resumen)}</div>'
+    # v1.2.72: sin pastilla ni veredicto arriba; la oración "Conclusión: ..." cierra el Resumen con las LETRAS del color de la calidad
+    col_txt = AF.CALIDADES_TEXTO.get(cal, color)
+    crudo = str(af.get("resumen") or "")
+    m = list(re.finditer(r"\*{0,2}Conclusión:", crudo))
+    if m:
+        cuerpo_res, concl = crudo[:m[-1].start()].rstrip(), crudo[m[-1].start():].replace("**", "").strip()
+    else:
+        cuerpo_res, concl = crudo, ""
+    concl_html = f'<p class="af-cn" style="color:{col_txt}"><b style="color:{col_txt}">{html.escape(concl)}</b></p>' if concl else ""
+    texto = f'<div class="af-rt">{_texto_af(cuerpo_res)}{concl_html}</div>'
     cuerpo = f'<div class="af"><div class="af-rs">{texto}{_score_af(row) if row is not None else ""}</div></div>'
     t = [_tile("s12", "Resumen", _CSS_AF + cuerpo, ac=color)]
     titulos = dict(AF.SECCIONES)
@@ -1040,18 +1046,20 @@ def tiles_analisis(af, estados=None, row=None):
     if af.get("fortalezas"):
         t.append(_tile("s6", "Puntos fuertes", _lista_af(af["fortalezas"]), ac="#16a34a"))
     if af.get("debilidades"):
-        t.append(_tile("s6", "Puntos débiles y riesgos", _lista_af(af["debilidades"], True) + '<div class="fch-sub af-pie" style="margin:0">Del más al menos importante.</div>', ac="#dc2626"))
+        t.append(_tile("s6", "Puntos débiles y riesgos", _lista_af(af["debilidades"], True), ac="#dc2626"))
     nums = "".join(f"<h4>{html.escape(titulos[c])}</h4>{_texto_af(af[c])}" for c in ("numeros", "balance", "gerencia") if af.get(c))
     if nums:
         t.append(_tile("s12", "Entendiendo los números", f'<div class="af">{nums}</div>', ac="#0ea5e9"))
     if af.get("vigilar"):
         t.append(_tile("s12", "Qué vigilar", _lista_af(af["vigilar"]), ac="#f59e0b"))
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
-    est = f' style="color:{txt_color}"'
-    cr_html = (f'<p{est[:-1]};margin-top:.7em;padding-top:.6em;border-top:1px solid {txt_color}66"><b{est}>Calidad y precio hoy:</b> {html.escape(cr)}</p>') if cr else ""
-    conc = _texto_af(af.get("conclusion")).replace("<p>", f"<p{est}>").replace("<b>", f"<b{est}>")
-    t.append(_tile("s12", "Conclusión", f'<div class="af"><div class="af-cx" style="background:{color};color:{txt_color}">'
-                   f'<p{est[:-1]};font-size:16px"><b{est}>{html.escape(af.get("veredicto", ""))}</b></p>{conc}{cr_html}</div></div>', ac=color))
+    cr_html = (f'<p class="af-cp"><b style="color:{col_txt}">Calidad y precio hoy:</b> {html.escape(cr)}</p>') if cr else ""
+    ideal = ""
+    if af.get("ideal_para"):
+        ideal += '<div class="af-id"><b>Ideal para inversores que…</b><ul>' + "".join(f"<li>{_negrita(x)}</li>" for x in af["ideal_para"]) + "</ul></div>"
+    if af.get("menos_ideal"):
+        ideal += '<div class="af-id af-no"><b>Menos adecuada para inversores que…</b><ul>' + "".join(f"<li>{_negrita(x)}</li>" for x in af["menos_ideal"]) + "</ul></div>"
+    t.append(_tile("s12", "Conclusión", f'<div class="af">{_texto_af(af.get("conclusion"))}{ideal}{cr_html}</div>', ac="#64748b"))
     t.append(_tile("s12", "Fuentes", '<div class="af"><ul class="af-st" style="margin-left:1.1em">' + "".join(f"<li>{html.escape(x)}</li>" for x in AF.FUENTES) + "</ul></div>", ac="#94a3b8"))
     t.append(_pie_af(af))
     return t

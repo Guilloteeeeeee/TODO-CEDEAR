@@ -38,9 +38,9 @@ LOS DATOS (muy importante)
 - Si no hay estados financieros, escribí igual los apartados cualitativos, decí en "los números" que no hay datos y no inventes ninguno; la calidad queda como máximo "Buena".
 
 QUÉ ESCRIBIR (un objeto JSON, siempre con estas claves y en este orden de ideas)
-1. "resumen": el abstract. Un solo bloque de 6 a 8 oraciones, en prosa fluida, que cuenta: qué es la empresa y cómo gana plata; qué la distingue, nombrando el foso en palabras ("tiene un foso amplio", "tiene un foso estrecho", "no tiene un foso demostrable"); cómo vienen sus números (una o dos cifras clave con el año); el riesgo principal; el riesgo de la inteligencia artificial dicho en una oración que se entienda sola ("El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es bajo, porque ..."); y TERMINA con una oración que empiece exactamente con "Conclusión:" y se la juegue sobre la calidad. Resaltá en **negrita** lo más importante: la calidad, el foso, el riesgo principal y la conclusión (al menos 4 frases cortas en negrita; las marcas son dos asteriscos antes y después). Que se entienda solo, sin leer lo demás. 120 a 180 palabras.
+1. "resumen": el abstract. Un solo bloque de 6 a 8 oraciones, en prosa fluida, que cuenta: qué es la empresa y cómo gana plata; qué la distingue, nombrando el foso en palabras ("tiene un foso amplio", "tiene un foso estrecho", "no tiene un foso demostrable"); cómo vienen sus números (una o dos cifras clave con el año); el riesgo principal; el riesgo de la inteligencia artificial dicho en una oración que se entienda sola ("El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es bajo, porque ..."); y TERMINA con una oración que empiece exactamente con "Conclusión:", se la juegue sobre la calidad y dé ganas de leerla: una sola oración, concreta, con lo mejor de la empresa y la única duda que queda (ej.: "Conclusión: es una empresa excelente, con foso amplio, retornos extraordinarios y balance sobrado; lo único que no sabemos es cuánto dura el ritmo actual de gasto."). Esa oración se muestra en color según la calidad, así que tiene que ser coherente con "calidad". NO la escribas entre asteriscos. Resaltá en **negrita** lo más importante: la calidad, el foso, el riesgo principal y la conclusión (al menos 4 frases cortas en negrita; las marcas son dos asteriscos antes y después). Que se entienda solo, sin leer lo demás. 120 a 180 palabras.
 2. "calidad": Excelente | Muy buena | Buena | Regular | Pobre.
-3. "veredicto": la postura en una frase corta (hasta 140 caracteres), coherente con "calidad" y con la última oración del resumen. Ej.: "Excelente empresa; conviene mirarla a precios adecuados".
+3. "veredicto": opcional y ya no se muestra; si lo ponés, una frase corta (hasta 140 caracteres) igual a la idea de la "Conclusión:" del resumen.
 4. "riesgo_ia": muy alto | alto | moderado | bajo | muy bajo. Qué tan probable es que la inteligencia artificial o una gran tecnológica perjudique el negocio dentro de 10 años. Tiene que coincidir con lo que dice el resumen; el motivo, en una frase, va en el resumen y, si hace falta, en "foso".
 (Todos los textos: resaltá en **negrita** de 2 a 4 ideas o cifras clave por apartado, nunca frases enteras largas.)
 5. "negocio" (120 a 200 palabras): cómo gana dinero, de dónde vienen los ingresos y la ganancia (qué segmento, producto o región pesa más), si es algo indispensable dentro de 10 años, y qué impulsaría su crecimiento (sin predecir precios).
@@ -51,15 +51,17 @@ QUÉ ESCRIBIR (un objeto JSON, siempre con estas claves y en este orden de ideas
 10. "fortalezas": 3 a 5 puntos, una o dos oraciones cada uno, con su evidencia (cifra y año cuando la haya).
 11. "debilidades": 3 a 5 puntos de MAYOR a MENOR importancia: el primero es el riesgo principal. Incluí el mejor argumento del crítico más duro de la empresa. Con evidencia.
 12. "vigilar": 3 o 4 hechos concretos a seguir, cada uno en una oración con la forma "Si pasa X, se confirma / se debilita Y". Es el marco para seguir investigando, no un consejo.
-13. "conclusion": 3 a 4 oraciones firmes: balance entre lo fuerte y lo débil, la postura sobre la calidad (la misma del veredicto) y qué mirar primero. Sin recomendar y sin hablar del precio de hoy.
+13. "conclusion": 3 a 4 oraciones firmes: balance entre lo fuerte y lo débil, la postura sobre la calidad (la misma de la "Conclusión:" del resumen) y qué mirar primero. Sin recomendar y sin hablar del precio de hoy. Se muestra abajo de todo, sin color de fondo.
+14. "ideal_para": 2 a 4 ideas, cada una continúa la frase "Ideal para inversores que…" y describe un perfil al que le encaja la empresa (ej.: "buscan equilibrar la parte defensiva de la cartera", "quieren ingresos regulares", "buscan crecimiento y toleran ciclos"), apoyadas en lo que muestran los números y el negocio. Escribilas empezando con el verbo en tercera persona ("buscan…", "valoran…", "quieren…"), sin el "inversores que". Dan ideas, no recomiendan comprar, y no hablan del precio de hoy.
+15. "menos_ideal": 1 a 3 ideas que continúan "Menos adecuada para inversores que…" (mismo estilo): a quién NO le encaja y por qué (la cruda verdad).
 
 FORMATO DE SALIDA
 Devolvé SOLO un objeto JSON válido (sin texto antes ni después, sin ```), con esta forma:
 {
-  "resumen": "... **foso amplio** ... Conclusión: **...**", "calidad": "Excelente", "veredicto": "...", "riesgo_ia": "bajo",
+  "resumen": "... **foso amplio** ... Conclusión: **...**", "calidad": "Excelente", "riesgo_ia": "bajo",
   "negocio": "...", "foso": "...", "numeros": "...", "balance": "...", "gerencia": "...",
   "fortalezas": ["...", "..."], "debilidades": ["...", "..."], "vigilar": ["...", "..."],
-  "conclusion": "..."
+  "conclusion": "...", "ideal_para": ["...", "..."], "menos_ideal": ["..."]
 }
 - Los textos pueden tener varios párrafos separados por una línea en blanco. Sin emojis ni tablas dentro de los textos.
 - No agregues claves de fuentes: las fuentes las pone el programa y son iguales para todos.

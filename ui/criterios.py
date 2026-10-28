@@ -58,6 +58,30 @@ CRITERIOS = [
     {"clave": "posicion_52s", "nombre": "Posición en el rango de 52 semanas", "col": "posicion_52s", "escala": 100.0, "unidad": "%", "paso": 10.0,
      "ayuda": "Dónde está el precio entre el mínimo (0 %) y el máximo (100 %) de las últimas 52 semanas."},
 ]
+# v1.2.72: parametros tecnicos (informativos, no entran al puntaje). Salen de data/tecnicos.json (lo baja bajar_tecnicos.bat) y se agregan al df como columnas tec_*.
+_TEC = "Es un dato técnico: informa, no es una señal de compra ni de venta. "
+TECNICOS = [
+    {"clave": "tec_rsi", "nombre": "RSI (14 ruedas)", "col": "tec_rsi", "escala": 1.0, "unidad": "pts", "paso": 5.0,
+     "ayuda": _TEC + "Mide de 0 a 100 qué tan fuerte subió o bajó el precio en las últimas 14 ruedas. Por encima de 70 se suele decir que subió mucho y rápido; por debajo de 30, que bajó mucho y rápido."},
+    {"clave": "tec_vs50", "nombre": "Precio vs. promedio de 50 ruedas", "col": "tec_vs50", "escala": 100.0, "unidad": "%", "paso": 5.0,
+     "ayuda": _TEC + "Cuánto más arriba (+) o más abajo (−) está el precio de hoy respecto del promedio de sus últimos 50 cierres (más o menos 2 meses y medio)."},
+    {"clave": "tec_vs200", "nombre": "Precio vs. promedio de 200 ruedas", "col": "tec_vs200", "escala": 100.0, "unidad": "%", "paso": 5.0,
+     "ayuda": _TEC + "Cuánto más arriba (+) o más abajo (−) está el precio de hoy respecto del promedio de sus últimos 200 cierres (casi un año): la tendencia de largo plazo."},
+    {"clave": "tec_dist_max", "nombre": "Distancia al máximo de 52 semanas", "col": "tec_dist_max", "escala": 100.0, "unidad": "%", "paso": 5.0,
+     "ayuda": _TEC + "Cuánto está por debajo del precio más alto del último año. 0 % = en su máximo; −20 % = 20 % abajo del máximo."},
+    {"clave": "tec_r1m", "nombre": "Rendimiento 1 mes", "col": "tec_r1m", "escala": 100.0, "unidad": "%", "paso": 5.0,
+     "ayuda": _TEC + "Cuánto subió o bajó el precio en el último mes (sin contar dividendos)."},
+    {"clave": "tec_r3m", "nombre": "Rendimiento 3 meses", "col": "tec_r3m", "escala": 100.0, "unidad": "%", "paso": 5.0,
+     "ayuda": _TEC + "Cuánto subió o bajó el precio en los últimos 3 meses (sin contar dividendos)."},
+    {"clave": "tec_rytd", "nombre": "Rendimiento en el año", "col": "tec_rytd", "escala": 100.0, "unidad": "%", "paso": 5.0,
+     "ayuda": _TEC + "Cuánto subió o bajó el precio desde el último cierre del año pasado (sin contar dividendos)."},
+    {"clave": "tec_r1a", "nombre": "Rendimiento 1 año", "col": "tec_r1a", "escala": 100.0, "unidad": "%", "paso": 10.0,
+     "ayuda": _TEC + "Cuánto subió o bajó el precio en los últimos 12 meses (sin contar dividendos)."},
+    {"clave": "tec_volrel", "nombre": "Volumen relativo", "col": "tec_volrel", "escala": 1.0, "unidad": "x", "paso": 0.5,
+     "ayuda": _TEC + "El volumen operado de los últimos 5 días dividido el promedio de los últimos 3 meses. 1x = lo normal; 2x = se opera el doble que de costumbre."},
+]
+CRITERIOS = CRITERIOS + TECNICOS
+CLAVES_TECNICOS = tuple(c["clave"] for c in TECNICOS)
 POR_CLAVE = {c["clave"]: c for c in CRITERIOS}
 POR_NOMBRE = {c["nombre"]: c for c in CRITERIOS}
 NOMBRES = [c["nombre"] for c in CRITERIOS]
@@ -110,7 +134,11 @@ def fmt_valor(c, v):
     """Texto de un valor para mostrar (en las unidades del criterio)."""
     if v is None or (isinstance(v, float) and math.isnan(v)):
         return "—"
+    if c["unidad"] == "pts":
+        return f"{v:.0f}"
     if c["unidad"] == "%":
+        if c["clave"] in CLAVES_TECNICOS:
+            return f"{v:+.0f}%" if round(v) else "0%"
         return f"{v:.2f}%" if c["clave"] == "dividend_yield_actual" else f"{v:.0f}%"
     return f"{v:.1f}x"
 

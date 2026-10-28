@@ -36,7 +36,15 @@
    "capas": [],
    "ticker": "TJX",
    "fecha": "28/10/2026",
-   "modelo": "Claude"
+   "modelo": "Claude",
+   "ideal_para": [
+    "buscan crecimiento ordenado y retornos altos en un negocio simple de entender, sin apostar a una tecnología.",
+    "quieren sumar una empresa de consumo que gana por comprar bien y vender barato, no por una moda.",
+    "valoran una empresa con balance cómodo que devuelve caja con dividendos y recompras sin diluir a los accionistas."
+   ],
+   "menos_ideal": [
+    "necesitan una barrera que retenga al cliente (marca, patente o costo de cambio): acá el cliente se puede ir sin pagar nada."
+   ]
   },
   "NVDA": {
    "resumen": "NVIDIA diseña los chips (GPU) y los sistemas que hoy mueven la inteligencia artificial en los centros de datos, y también los que usan los videojuegos, las estaciones de trabajo y los autos. No fabrica sus chips: los diseña y los produce un tercero. Tiene un **foso amplio**: su ventaja no es solo el chip, sino todo lo que lo rodea, el software con el que los programadores ya aprendieron a trabajar, las redes y los sistemas completos, algo que cuesta mucho abandonar. El salto de los números es inusual: los ingresos pasaron de 26.974 M en 2023 a 302.969 M en los últimos 12 meses, con un margen operativo de 65,2 % y un retorno sobre el capital de 63,3 %, y tiene más caja que deuda. El riesgo principal es que estos resultados dependen del **gasto de unos pocos clientes enormes**, que además diseñan sus propios chips. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la inteligencia artificial es justamente su mercado. Conclusión: **es una empresa excelente, con foso amplio, retornos extraordinarios y balance sobrado; lo único que no sabemos es cuánto dura el ritmo actual de gasto.**",
@@ -75,7 +83,16 @@
    ],
    "ticker": "NVDA",
    "fecha": "28/10/2026",
-   "modelo": "Claude"
+   "modelo": "Claude",
+   "ideal_para": [
+    "buscan exposición al crecimiento de la inteligencia artificial a través de una empresa con foso amplio y más caja que deuda.",
+    "tienen horizonte largo y pueden seguir de cerca el ciclo de gasto de los grandes clientes de centros de datos.",
+    "aceptan que los resultados de hoy son de pico y que la empresa puede moverse con fuerza."
+   ],
+   "menos_ideal": [
+    "buscan equilibrar la parte defensiva de la cartera: sus resultados dependen de unos pocos clientes y de un ciclo de inversión.",
+    "quieren ingresos por dividendos: el que paga es chico."
+   ]
   },
   "JPM": {
    "resumen": "JPMorgan Chase es el mayor banco de Estados Unidos y hace casi todo lo que hace un banco: recibe depósitos y presta a familias y empresas, financia y asesora a grandes compañías, opera en los mercados y administra patrimonios. Tiene un **foso estrecho, de los más sólidos de la banca**: sus clientes no cambian fácil de banco, y su escala le permite invertir en tecnología y financiarse más barato que casi cualquier competidor. Los números acompañan: la ganancia por acción pasó de 12,09 en 2022 a 20,02 en 2025 (y 23,84 en los últimos 12 meses), con un retorno sobre el patrimonio (ROE) de **15,7 % en 2025**, por encima del 12 % que suele pedirse a un banco. El riesgo central es el de todo banco: un ciclo de créditos malos puede borrar años de ganancias, y **de eso no tenemos datos**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: puede bajar sus costos, pero también acercar competidores digitales. Conclusión: **es un banco de primera línea con ventajas reales y buenos retornos; su gran incógnita es la calidad de sus préstamos, que acá no podemos medir.**",
@@ -112,7 +129,15 @@
    "capas": [],
    "ticker": "JPM",
    "fecha": "28/10/2026",
-   "modelo": "Claude"
+   "modelo": "Claude",
+   "ideal_para": [
+    "quieren un banco líder y diversificado (banca personal, empresas, mercados y patrimonios) para la parte financiera de su cartera.",
+    "valoran un ROE sostenido por encima del 12 % que se le pide a un banco.",
+    "aceptan seguir de cerca el ciclo de crédito y las tasas de interés."
+   ],
+   "menos_ideal": [
+    "buscan estabilidad total: la ganancia de un banco sube y baja con el crédito y las tasas, y acá no hay datos de morosidad para evaluarlo."
+   ]
   },
   "O": {
    "resumen": "Realty Income es una de las mayores inmobiliarias de alquiler del mundo: compra locales comerciales y los alquila a empresas grandes con contratos largos, donde el inquilino se hace cargo de buena parte de los gastos. Según Yahoo, tiene más de 15.500 propiedades en Estados Unidos y Europa y paga dividendos todos los meses. Tiene un **foso estrecho, de escala y costo de capital**: por su tamaño consigue financiamiento más barato que las inmobiliarias chicas. Los ingresos crecieron 19,8 % por año entre 2022 y 2025 y el flujo operativo cubre con holgura el dividendo, pero ese crecimiento se financió con deuda y acciones nuevas (**51 % más de acciones desde 2022**), y la ganancia por acción no creció: 1,42 en 2022 y 1,37 en los últimos 12 meses. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: alquila propiedades físicas, y lo que más la afecta es el comercio online. Conclusión: **es una buena empresa de ingresos estables, pero no crea valor por acción: crece comprando con deuda y acciones nuevas, y el retorno sobre ese capital es bajo.**",
@@ -149,7 +174,16 @@
    "capas": [],
    "ticker": "O",
    "fecha": "28/10/2026",
-   "modelo": "Claude"
+   "modelo": "Claude",
+   "ideal_para": [
+    "priorizan un ingreso regular antes que el crecimiento: el flujo operativo cubre con holgura el dividendo.",
+    "prefieren un negocio de alquileres fácil de entender y con ingresos que vienen creciendo.",
+    "aceptan un retorno bajo sobre el capital a cambio de estabilidad."
+   ],
+   "menos_ideal": [
+    "buscan crecimiento de la ganancia por acción: acá no crece porque la empresa emite acciones nuevas.",
+    "necesitan retornos altos sobre el capital invertido: el ROIC es de 3,6 %."
+   ]
   }
  }
 }

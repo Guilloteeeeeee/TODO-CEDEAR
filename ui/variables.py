@@ -36,7 +36,9 @@ CLAVES = [v["clave"] for v in VARIABLES]
 
 # v1.2.50: las pastillas se muestran en dos grupos para que no sean una lista de 15: "Datos básicos" y "Múltiplos" (las razones precio/algo).
 CLAVES_MULTIPLOS = ("per_actual", "ev_ebitda_actual", "p_fcf_actual", "p_b_actual", "ps_actual", "peg_actual")
-GRUPOS = (("Datos básicos", lambda v: v["clave"] not in CLAVES_MULTIPLOS), ("Múltiplos", lambda v: v["clave"] in CLAVES_MULTIPLOS))
+GRUPOS = (("Datos básicos", lambda v: v["clave"] not in CLAVES_MULTIPLOS and v["clave"] not in _criterios.CLAVES_TECNICOS),
+          ("Múltiplos", lambda v: v["clave"] in CLAVES_MULTIPLOS),
+          ("Parámetros técnicos", lambda v: v["clave"] in _criterios.CLAVES_TECNICOS))       # v1.2.72
 
 
 def agrupar(variables):
