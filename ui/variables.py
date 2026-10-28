@@ -30,7 +30,7 @@ VARIABLES = (
     + [{"clave": c["clave"], "nombre": c["nombre"], "ayuda": c["ayuda"], "base": False, "fija": False} for c in _criterios.CRITERIOS]
 )
 POR_CLAVE = {v["clave"]: v for v in VARIABLES}
-DEFECTO = [v["clave"] for v in VARIABLES if v["base"]]          # las que vienen elegidas
+DEFECTO = [v["clave"] for v in VARIABLES if v["base"] or v["clave"] == "dividend_yield_actual"]          # las que vienen elegidas (desde la v1.2.74 tambien Dividend Yield)
 CLAVES = [v["clave"] for v in VARIABLES]
 
 

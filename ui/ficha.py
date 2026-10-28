@@ -700,7 +700,8 @@ def _tiles_resumen(row, ficha, mercado, agenda=None):
     if res and res[0]:
         f0, f1 = res
         txt = f"{f0.strftime('%d/%m/%Y')} – {f1.strftime('%d/%m/%Y')}" if f1 else f0.strftime("%d/%m/%Y")
-        cuan.append(_fila_kv("Fecha de resultados (Earnings Date)", txt,
+        mom = {"antes": " · antes de la apertura", "despues": " · después del cierre"}.get(ag.get("momento"), "")
+        cuan.append(_fila_kv("Fecha de resultados (Earnings Date)", txt + mom,
                              "Día en que la empresa presenta sus resultados trimestrales. Si todavía no la confirmó, es una estimación y puede cambiar."))
     if _n(f.get("ev")):
         cuan.append(_fila_kv("Valor de empresa (EV)", _usd_abrev(f.get("ev")), "Lo que costaría comprar toda la empresa: valor de mercado más deuda, menos caja."))

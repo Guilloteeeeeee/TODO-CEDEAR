@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.74 (28/10/2026): carteras por edad completas, informe descargable, composición de ETFs con links, calendario por ticker, dividendos por defecto
+
+- **Tu Cartera:** rangos <30, 30-39, 40-49, 50-59, 60-69 y 70+ (los de 30-39, 60-69 y 70+ con las tablas que pasó Guille; en 70+ la mitad es efectivo, cuentas remuneradas y cauciones). Botón "Descargar informe en PDF" con el membrete de Finanzas para Médicos Argentina (logo, nombre, fecha, cartera cargada, devolución y aviso legal); se arma en memoria y no se guarda nada (`ui/cartera_informe.py`, usa reportlab; sin reportlab baja un HTML imprimible).
+- ETFs: en "Composición", las tenencias que están en TodoCedears son un link a la página de esa empresa.
+- Calendario de Resultados: buscador por ticker (fecha, días que faltan y antes/después de la apertura). El Resumen de la empresa suma el horario a la fecha de resultados.
+- Tabla: Dividend Yield viene elegido por defecto.
+
 ### v1.2.73 (28/10/2026): "Tu Cartera", logo del gestor en los ETFs, textos categóricos sin "modelo"
 
 - **Tu Cartera** (botón nuevo junto a Empresas y ETFs, `?pagina=cartera`): la persona pone su edad y su perfil, sube su cartera en Excel o CSV (hay un Excel de ejemplo para descargar; también se puede pegar como texto) y recibe una orientación: en qué tipo de activo se pasa o le falta peso, cómo está su renta variable por geografía y por tipo de empresa (cíclico / sensible / defensivo), concentración y qué dice el screener de sus empresas. No se muestran las carteras de referencia (están en `data/carteras_modelo.py`, uso interno) y no se guarda nada. Lógica en `ui/cartera.py`; sin IA paga.

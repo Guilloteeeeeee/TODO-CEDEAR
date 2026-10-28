@@ -85,3 +85,25 @@ def calendario_html(grupos, hoy=None, nombres=None, cantidad=None):
         out.append("</div>")
     out.append(f'<div class="cal-p">{"" if hay_hora else "Todavía no hay horarios (antes o después de la apertura) cargados: se completan al actualizar los datos. "}Fechas informadas por Yahoo Finance; cada empresa las confirma y pueden cambiar. Información, no una recomendación.</div></div>')
     return "".join(out)
+
+
+def buscar_ticker(paquetes, ticker, hoy=None):
+    """Texto con cuándo presenta resultados la empresa `ticker` (de agenda.resultados), o '' si no hay dato. Es información: la fecha la confirma la empresa."""
+    hoy = hoy or datetime.date.today()
+    t = str(ticker or "").strip().upper()
+    if not t:
+        return ""
+    ag = ((paquetes or {}).get(t) or {}).get("agenda") or {}
+    res = ag.get("resultados")
+    if not res or not isinstance(res, (list, tuple)) or not isinstance(res[0], datetime.date):
+        return f"{t}: todavía no tenemos fecha de resultados informada por Yahoo Finance."
+    f0 = res[0]
+    f1 = res[1] if len(res) > 1 and isinstance(res[1], datetime.date) else None
+    if f1:
+        cuando = f"entre el {f0.strftime('%d/%m/%Y')} y el {f1.strftime('%d/%m/%Y')} (fecha estimada, todavía sin confirmar)"
+    else:
+        dias = (f0 - hoy).days
+        faltan = "hoy" if dias == 0 else "mañana" if dias == 1 else f"en {dias} días" if dias > 1 else f"hace {-dias} días"
+        cuando = f"el {_SEM[f0.weekday()]} {f0.strftime('%d/%m/%Y')} ({faltan})"
+    mom = {"antes": ", antes de la apertura del mercado", "despues": ", después del cierre del mercado"}.get(ag.get("momento"), "")
+    return f"{t} presenta resultados {cuando}{mom}."

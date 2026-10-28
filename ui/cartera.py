@@ -219,9 +219,12 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
     for p in ok:
         peso[p["clase"]] += p["monto"] / total * 100
     # comparacion: el efectivo cuenta como renta fija (liquidez), las otras materias primas no se comparan
-    cmp_real = {"rf": peso["rf"] + peso["efectivo"], "rv": peso["rv"], "oro": peso["oro"], "cripto": peso["cripto"]}
     nombre_rango, carts = ref
-    desvio = {k: cmp_real[k] - carts[k] for k in cmp_real}
+    sep_efectivo = carts.get("efectivo", 0) > 0          # solo la cartera de 70+ tiene efectivo propio (cuentas remuneradas y cauciones)
+    cmp_real = {"rf": peso["rf"] + (0 if sep_efectivo else peso["efectivo"]), "rv": peso["rv"], "oro": peso["oro"], "cripto": peso["cripto"]}
+    if sep_efectivo:
+        cmp_real["efectivo"] = peso["efectivo"]
+    desvio = {k: cmp_real[k] - carts.get(k, 0) for k in cmp_real}
     emp = [p for p in ok if p["fuente"] == "empresa"]
     rv_total = sum(p["monto"] for p in ok if p["clase"] == "rv")
     emp_total = sum(p["monto"] for p in emp)
@@ -244,7 +247,7 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
         if v:
             val[v].append(p)
     return {
-        "rango": nombre_rango, "total": total, "peso": peso, "desvio": desvio,
+        "rango": nombre_rango, "efectivo_propio": sep_efectivo, "total": total, "peso": peso, "desvio": desvio,
         "rv_empresas_pct": (emp_total / rv_total * 100) if rv_total else 0.0, "n_empresas": len(emp), "rv_total": rv_total,
         "geo": {k: v / gt * 100 for k, v in geo.items()} if gt else None, "super": {k: v / st_ * 100 for k, v in sup.items()} if st_ else None,
         "sector_top": (max(sect.items(), key=lambda kv: kv[1])[0], max(sect.values()) / st_ * 100) if sect and st_ else None,
@@ -269,17 +272,19 @@ def devolucion(res, edad, perfil):
     # --- peso de cada tipo de activo
     f = []
     d = res["desvio"]
-    nombres = {"rv": "renta variable", "rf": "renta fija (con el efectivo)", "oro": "oro", "cripto": "criptoactivos"}
-    for k in ("rv", "rf", "oro", "cripto"):
+    ef = res.get("efectivo_propio")
+    nombres = {"rv": "renta variable", "rf": "renta fija" if ef else "renta fija (con el efectivo)", "oro": "oro", "cripto": "criptoactivos", "efectivo": "efectivo, cuentas remuneradas y cauciones"}
+    claves = ("rv", "rf", "efectivo", "oro", "cripto") if ef else ("rv", "rf", "oro", "cripto")
+    for k in claves:
         if d[k] > UMBRAL:
             f.append(f"**{nombres[k].capitalize()}: te pasás unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
         elif d[k] < -UMBRAL:
             f.append(f"**{nombres[k].capitalize()}: te faltan unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
     if not f:
-        f.append("**En los grandes grupos (renta variable, renta fija, oro y criptoactivos) estás en línea** con lo que suele ser razonable para tu edad y tu perfil.")
+        f.append("**En los grandes grupos (renta variable, renta fija, oro, criptoactivos y efectivo) estás en línea** con lo que suele ser razonable para tu edad y tu perfil.")
     else:
-        pasa = [k for k in ("rv", "rf", "oro", "cripto") if d[k] > UMBRAL]
-        falta = [k for k in ("rv", "rf", "oro", "cripto") if d[k] < -UMBRAL]
+        pasa = sorted((k for k in claves if d[k] > UMBRAL), key=lambda k: -d[k])
+        falta = sorted((k for k in claves if d[k] < -UMBRAL), key=lambda k: d[k])
         if pasa and falta:
             f.append(f"Una orientación: si quisieras acercarte, el ajuste iría de **{nombres[pasa[0]]}** hacia **{nombres[falta[0]]}**; hacerlo de a poco y por partes evita decidir todo en un mismo día.")
         elif pasa:
@@ -288,7 +293,7 @@ def devolucion(res, edad, perfil):
             f.append(f"Una orientación: si quisieras acercarte, subir de a poco el peso de **{nombres[falta[0]]}** (con lo que se libere de lo que más pesa).")
     if pe["cripto"] > 10:
         f.append("Los criptoactivos son muy volátiles: con más de un 10 % de la cartera, una caída fuerte se siente mucho en el total.")
-    if pe["efectivo"] > 20:
+    if pe["efectivo"] > 20 and not ef:
         f.append(f"Tenés {pe['efectivo']:.0f} % en efectivo: es seguridad, pero sin rendimiento propio; conviene que sea una decisión y no un descuido.")
     if pe["otros"] >= 5:
         f.append(f"Tenés {pe['otros']:.0f} % en otras materias primas (petróleo, granos…): no son ni renta fija ni variable típica y no las comparé con tu edad y perfil.")

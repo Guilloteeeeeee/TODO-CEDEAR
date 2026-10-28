@@ -98,6 +98,7 @@ div[data-testid="stElementContainer"]:has(.etf-t){margin-top:0!important}
 .etf-hold .bar i{display:block;height:100%;background:#0ea5e9;border-radius:4px}
 .etf-hold .nm{color:#1f2937;min-width:0;overflow-wrap:anywhere}.etf-hold .nm b{color:#111827}
 .etf-hold .pc{text-align:right;font-weight:700;color:#111827}
+.etf-hold .etf-lk{font-weight:700;color:#1d4ed8!important;text-decoration:underline;text-underline-offset:2px}.etf-hold .etf-lk:hover{color:#1e3a8a!important}
 .etf-torta{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
 .etf-torta .pie{width:190px;height:190px;border-radius:50%;flex:none;box-shadow:0 0 0 3px #fff,0 1px 6px rgba(15,23,42,.18)}
 .etf-torta .lgs{flex:1 1 220px;min-width:0;display:grid;gap:6px}
@@ -340,7 +341,7 @@ def _links_etf(e, d):
 COLORES = ["#2563eb", "#16a34a", "#f59e0b", "#dc2626", "#7c3aed", "#0891b2", "#db2777", "#65a30d", "#ea580c", "#475569", "#0d9488", "#a16207"]
 
 
-def _barras(items, vacio):
+def _barras(items, vacio, universo=None):
     """Barras horizontales, cada una de un color distinto (v1.2.67)."""
     if not items:
         return f'<div class="fch-sub" style="margin:0">{html.escape(vacio)}</div>'
@@ -349,7 +350,12 @@ def _barras(items, vacio):
     for k, i in enumerate(items):
         nom = html.escape(i["nombre"] or "")
         if i.get("simbolo"):
-            nom = f'<b>{html.escape(i["simbolo"])}</b> · {nom}' if nom else f'<b>{html.escape(i["simbolo"])}</b>'
+            sim = html.escape(i["simbolo"])
+            if universo and str(i["simbolo"]).upper() in universo:       # v1.2.74: la empresa esta en TodoCedears: se abre su pagina
+                sim = f'<a class="etf-lk" href="?empresa={quote(str(i["simbolo"]).upper(), safe="")}" target="_self" title="Ver la página de {nom or sim}">{sim}</a>'
+            else:
+                sim = f"<b>{sim}</b>"
+            nom = f'{sim} · {nom}' if nom else sim
         col = COLORES[k % len(COLORES)]
         out.append(f'<div class="nm">{nom}</div><div class="pc">{i["pct"]:.1f}%</div>'
                    f'<div class="bar"><i style="width:{max(2.0, i["pct"] / tope * 100):.0f}%;background:{col}"></i></div>')
@@ -500,13 +506,13 @@ def paises_de(e, d):
     return [], ""
 
 
-def tab_composicion(e, d):
+def tab_composicion(e, d, universo=None):
     """Solapa "Composición" (v1.2.67): principales tenencias, por sector y por tipo de activo (barras de colores) y por país (gráfico de torta)."""
     d = d or {}
     hold = d.get("holdings") or []
     sect = d.get("sectores") or []
     act = d.get("activos") or []
-    ten = F._tile("s6", "Principales tenencias", _barras(hold, "Yahoo no informó las tenencias de este ETF (los ETFs de oro, plata, petróleo o criptomonedas no tienen empresas adentro)."), ac="#0ea5e9")
+    ten = F._tile("s6", "Principales tenencias", _barras(hold, universo=universo, vacio="Yahoo no informó las tenencias de este ETF (los ETFs de oro, plata, petróleo o criptomonedas no tienen empresas adentro)."), ac="#0ea5e9")
     sec = F._tile("s6", "Por sector", _barras(sect, "Sin desglose por sector."), ac="#16a34a")
     piezas = [ten, sec]
     if act:

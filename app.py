@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.73"
+APP_VERSION = "1.2.74"
 
 import contextlib
 import streamlit as st
@@ -884,7 +884,7 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         if arch:
             st.caption(f"Algunos datos son de Yahoo guardados el {arch.get('fecha') or 's/d'} (Yahoo no respondió en este momento).")
     with t_com:
-        st.markdown(_ui_etfs.con_intro("composicion", _ui_etfs.tab_composicion(e, d)), unsafe_allow_html=True)
+        st.markdown(_ui_etfs.con_intro("composicion", _ui_etfs.tab_composicion(e, d, universo={str(t).upper() for t in df["ticker"]})), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ui_etfs.con_intro("grafico", _ui_etfs.tab_grafico_etf(extra.get("historial"))), unsafe_allow_html=True)
         _render_grafico(extra["simbolo"], extra.get("historial"), {})
@@ -1342,6 +1342,9 @@ def render_calendario(df, lugar=None):
         with (lugar if lugar is not None else st.container()):
             with st.container(key="caja_cal"):
                 with st.expander("Calendario de Resultados", expanded=False):
+                    tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
+                    if (tk or "").strip():
+                        st.markdown(f"<style>{_calendario.CSS}</style><div class=\"cal\"><div class=\"cal-h\"><b>{html.escape(_calendario.buscar_ticker(paquetes, tk))}</b></div></div>", unsafe_allow_html=True)
                     st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass
@@ -1399,6 +1402,18 @@ def render_cartera(df):
                 + '<div class="cr-av">Orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. '
                 'No es una recomendación de compra o venta ni un consejo personalizado: cada situación (objetivos, plazos, impuestos, otros ingresos) es distinta. '
                 'Tu cartera se procesa en el momento y no se guarda.</div></div>', unsafe_allow_html=True)
+    # v1.2.74: informe descargable con el membrete de Finanzas para Médicos Argentina (se arma en memoria y se baja al dispositivo)
+    try:
+        from ui import cartera_informe as CI
+        av = texto_aviso_legal()
+        try:
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
+        except ImportError:
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
+        st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe")
+        st.caption("El informe se arma en el momento y se baja a tu dispositivo: no guardamos tu cartera ni el informe.")
+    except Exception:  # noqa: BLE001
+        pass
 
 
 def main():
