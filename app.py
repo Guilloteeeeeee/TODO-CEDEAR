@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.77"
+APP_VERSION = "1.2.78"
 
 import contextlib
 import streamlit as st
@@ -1258,7 +1258,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_res:
         st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
-        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_para_ficha(tk), estados=extra.get("estados"))), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_para_ficha(tk), estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]})), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ficha.con_intro("grafico", _ficha.tab_grafico_tabla(pares)), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)
@@ -1481,7 +1481,7 @@ def render_cartera(df, pagina=True):
 def render_barra_cartera(df):
     """Barra naranja "Evaluá tu Cartera" de punta a punta (v1.2.77), en el inicio de Empresas y de ETFs. Cerrada al abrir la página."""
     with st.container(key="caja_cart"):
-        with st.expander("Evaluá tu Cartera · subí tu Excel y recibí una evaluación", expanded=False):
+        with st.expander("Evaluá tu Cartera de Inversiones: subí tu Excel y recibí una evaluación gratuita.", expanded=False):
             render_cartera(df, pagina=False)
 
 

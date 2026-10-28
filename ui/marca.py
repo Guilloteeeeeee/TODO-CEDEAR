@@ -145,7 +145,9 @@ div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!im
 .st-key-nav_tablas button{color:#cbd5e1;padding:8px 11px}
 .st-key-nav_tablas button:hover{background:#3b4046!important;color:#fff}
 /* v1.2.76: en las paginas de empresa, ETF y cartera el contenido sube (los elementos vacios de Streamlit dejaban ~90 px de aire bajo la franja) */
-[data-testid="stElementContainer"]:has(.emp-vol),[data-testid="stElementContainer"]:has(.cr-top){margin-top:-74px}
+[data-testid="stElementContainer"]:has(.emp-vol),[data-testid="stElementContainer"]:has(.cr-top){margin-top:-86px}
+/* v1.2.78: la tarjeta de la empresa/ETF sube mas todavia (el "Volver" queda pegado a la franja y la tarjeta pegada al "Volver") */
+[data-testid="stElementContainer"]:has(.emp-vol){margin-bottom:-26px}
 }
 """
 if not ICONOS_EN_BARRA:

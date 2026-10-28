@@ -1,5 +1,5 @@
 """Flecha "hay más abajo" (v1.2.71), en TODAS las páginas de la app: un triángulo chico que rebota abajo y al centro de la pantalla mientras falta contenido
-por ver, y desaparece cuando se llega al final. Al tocarlo baja casi una pantalla. Streamlit no deja poner JavaScript en st.markdown, así que se carga con un
+por ver, y desaparece cuando se llega al final. v1.2.78: solo se ve al principio de la página (al leer hacia abajo ya no tapa el texto: se veía como un recuadro). Al tocarlo baja casi una pantalla. Streamlit no deja poner JavaScript en st.markdown, así que se carga con un
 componente de altura 0 que le pone el script y el estilo a la página (solo si no estaban). Si algo falla (otro navegador, otra versión de Streamlit), no pasa
 nada: la flecha simplemente no aparece."""
 import streamlit.components.v1 as components
@@ -15,9 +15,9 @@ _JS = r"""
     if(d.getElementById('tc-flecha-js')) return;
     var s=d.createElement('script'); s.id='tc-flecha-js';
     s.textContent='('+function(){
-      var css='#tc-flecha{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;width:44px;height:44px;border-radius:50%;'
-        +'border:1px solid #cbd5e1;background:rgba(255,255,255,.94);box-shadow:0 4px 14px rgba(15,23,42,.22);cursor:pointer;display:none;align-items:center;justify-content:center;padding:0}'
-        +'#tc-flecha.on{display:flex;animation:tcrebote 1.6s ease-in-out infinite}#tc-flecha svg{width:22px;height:22px;stroke:#0f172a;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}'
+      var css='#tc-flecha{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;width:38px;height:38px;border-radius:50%;'
+        +'border:0;background:rgba(15,23,42,.72);box-shadow:none;cursor:pointer;-webkit-tap-highlight-color:transparent;display:none;align-items:center;justify-content:center;padding:0}'
+        +'#tc-flecha.on{display:flex;animation:tcrebote 1.6s ease-in-out infinite}#tc-flecha svg{width:20px;height:20px;stroke:#fff;stroke-width:3;fill:none;stroke-linecap:round;stroke-linejoin:round}'
         +'@keyframes tcrebote{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)}}'
         +'@media (prefers-reduced-motion:reduce){#tc-flecha.on{animation:none}}';
       var st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
@@ -25,7 +25,8 @@ _JS = r"""
       b.innerHTML='<svg viewBox="0 0 24 24"><polyline points="5 9 12 16 19 9"></polyline></svg>'; document.body.appendChild(b);
       function cont(){ return document.querySelector('[data-testid="stMain"]')||document.querySelector('section.main')||document.scrollingElement||document.documentElement; }
       function falta(){ var c=cont(); return c.scrollHeight-c.scrollTop-c.clientHeight; }
-      function ver(){ try{ b.classList.toggle('on', falta()>120); }catch(e){} }
+      function arriba(){ var c=cont(); return c.scrollTop<250; }
+      function ver(){ try{ b.classList.toggle('on', falta()>120 && arriba()); }catch(e){} }
       b.addEventListener('click',function(){ var c=cont(); c.scrollBy({top:Math.round(c.clientHeight*0.85),behavior:'smooth'}); });
       document.addEventListener('scroll',ver,true); window.addEventListener('resize',ver); setInterval(ver,700); ver();
     }.toString()+')();';

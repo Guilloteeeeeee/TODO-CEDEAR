@@ -8,6 +8,7 @@ Uso (desde la carpeta del proyecto):
     python generar_analisis_fundamental.py --agregar a.json  valida el/los archivo(s) JSON con el análisis ({"KO": {...}} o un análisis suelto con "ticker") y los suma a
                                                              data/analisis_fundamental.json (si algo no cumple el formato, lo dice y NO guarda ese)
     python generar_analisis_fundamental.py --estado          cuántas empresas tienen análisis y cuáles faltan
+    python af_pendientes.py                                  cuáles hay que RENOVAR (publicaron resultados nuevos) y por qué (ver ese archivo)
 """
 import datetime
 import json
@@ -88,6 +89,8 @@ def agregar(archivos, modelo="Claude"):
                 mal.append(f"{t} ({os.path.basename(ruta)}): " + "; ".join(problemas))
                 continue
             res.update({"fecha": hoy, "modelo": modelo})
+            import af_pendientes  # firma de los estados con los que se escribió (así se sabe cuándo Yahoo trae un trimestre nuevo y hay que renovarlo)
+            res["base"] = af_pendientes.firma((paquetes.get(t) or {}).get("estados"))
             datos[t] = res
             ok.append(t)
     if ok:

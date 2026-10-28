@@ -59,10 +59,10 @@ CSS_ENTRADA = """
 .st-key-caja_cart{margin:2px 0 0}
 .st-key-caja_cart [data-testid="stExpander"]{background:#fff;border:0!important;border-radius:14px;overflow:hidden;box-shadow:0 1px 2px rgba(15,23,42,.05),0 6px 18px rgba(15,23,42,.10)}
 .st-key-caja_cart [data-testid="stExpander"] details{border:0!important;background:transparent!important}
-.st-key-caja_cart [data-testid="stExpander"] summary{padding:0 1.1rem;min-height:50px;display:flex;align-items:center;background:linear-gradient(90deg,#ea580c 0%,#f59e0b 100%)!important;border-radius:0}
-.st-key-caja_cart [data-testid="stExpander"] summary:hover{filter:brightness(1.06)}
-.st-key-caja_cart [data-testid="stExpander"] summary p{font-weight:800;font-size:1.04rem;color:#fff!important}
-.st-key-caja_cart [data-testid="stExpander"] summary svg,.st-key-caja_cart [data-testid="stExpanderIcon"]{color:#fff!important;fill:#fff!important}
+.st-key-caja_cart [data-testid="stExpander"] summary{padding:0 1.1rem;min-height:50px;display:flex;align-items:center;background:linear-gradient(90deg,#fdba74 0%,#fde68a 100%)!important;border-radius:0}
+.st-key-caja_cart [data-testid="stExpander"] summary:hover{filter:brightness(1.04) saturate(1.1)}
+.st-key-caja_cart [data-testid="stExpander"] summary p{font-weight:800;font-size:1.04rem;color:#7c2d12!important}
+.st-key-caja_cart [data-testid="stExpander"] summary svg,.st-key-caja_cart [data-testid="stExpanderIcon"]{color:#7c2d12!important;fill:#7c2d12!important}
 .st-key-caja_cart [data-testid="stExpanderDetails"]{padding:1rem 1.1rem 1rem;background:#fff}
 /* tarjetas de entrada de datos */
 .st-key-cr_p1,.st-key-cr_p2,.st-key-cr_p3{background:linear-gradient(180deg,#fffaf3 0%,#fff 60%);border:1px solid #fde7c8;border-radius:16px;padding:14px 18px 12px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
@@ -86,8 +86,15 @@ def _card(icono, titulo, cuerpo, ac="#2563eb", bg="#eff6ff", extra_cls="", pie="
             f'{f"<small>{pie}</small>" if pie else ""}</div>{cuerpo}</div>')
 
 
+def _may(x):
+    """Primera letra en mayúscula (v1.2.78: las listas con puntitos empiezan siempre con mayúscula)."""
+    t = str(x or "")
+    i = 2 if t.startswith("**") else 0
+    return t[:i] + t[i:i + 1].upper() + t[i + 1:]
+
+
 def _lista(frases):
-    li = "".join(f'<li class="{nivel(x)}"><span class="cv-b">{ICONO[nivel(x)]}</span><div>{_md(x)}</div></li>' for x in frases)
+    li = "".join(f'<li class="{nivel(x)}"><span class="cv-b">{ICONO[nivel(x)]}</span><div>{_md(_may(x))}</div></li>' for x in frases)
     return f'<ul class="cv-n">{li}</ul>' if li else ""
 
 

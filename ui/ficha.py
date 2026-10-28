@@ -242,9 +242,9 @@ CSS = """
 .fch-st2 .nota,.fch-nota[title]{cursor:help}
 .cambios8{grid-template-columns:repeat(8,minmax(0,1fr))}
 /* v1.2.54: solapas de la pagina de la empresa (Streamlit las dibuja como div con role=tab): texto gris, la activa en oscuro, mas grandes */
-[role="tablist"]{gap:4px;border-bottom:1px solid #d9dee5;flex-wrap:wrap}
-[role="tablist"] [role="tab"]{padding:12px 16px;background:transparent}
-[role="tablist"] [role="tab"] p{font-size:18px!important;color:#6b7280!important;font-weight:500!important;margin:0}
+[role="tablist"]{gap:2px;border-bottom:1px solid #d9dee5;flex-wrap:nowrap!important}
+[role="tablist"] [role="tab"]{padding:12px clamp(5px,.7vw,13px);background:transparent;flex:0 0 auto;white-space:nowrap}
+[role="tablist"] [role="tab"] p{font-size:clamp(11px,1.15vw,17px)!important;white-space:nowrap;color:#6b7280!important;font-weight:500!important;margin:0}
 [role="tablist"] [role="tab"][aria-selected="true"] p{color:#111827!important;font-weight:700!important}
 [role="tablist"] [role="tab"]:hover p{color:#111827!important}
 [data-testid="stTabsHighlight"],[data-baseweb="tab-highlight"]{background:#111827!important;height:3px!important}
@@ -933,6 +933,39 @@ def _negrita(txt):
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(txt or "")))
 
 
+def _cap(txt):
+    """Primera letra en mayúscula (las listas con puntitos del análisis empiezan siempre con mayúscula), sin tocar el resto."""
+    t = str(txt or "").lstrip()
+    i = 2 if t.startswith("**") else 0
+    return t[:i] + t[i:i + 1].upper() + t[i + 1:]
+
+
+def _vigilar_af(items):
+    """Qué vigilar: "INDICADOR: por qué importa..." -> el indicador en negrita y mayúsculas (qué mirar) y, después de los dos puntos, el porqué."""
+    li = []
+    for x in items:
+        m = re.match(r"^\s*([^:]{3,60}):\s+(.*)$", str(x), re.S)
+        li.append(f'<li><b class="af-vg">{html.escape(m.group(1).strip().upper())}:</b> {_negrita(m.group(2))}</li>' if m else f"<li>{_negrita(x)}</li>")
+    return '<div class="af"><ul class="af-vl">' + "".join(li) + "</ul></div>"
+
+
+def _clientes_af(clientes, universo=None):
+    """Línea "Principales clientes" al final de El negocio. Cada ticker entre paréntesis que está en la app, por ejemplo "Microsoft (MSFT)", lleva link a su página."""
+    if not clientes:
+        return ""
+
+    def una(c):
+        txt, out, pos = str(c).strip(), "", 0
+        for m in re.finditer(r"\(([A-Z]{1,5}(?:[.\-][A-Z]{1,2})?)\)", txt):
+            out += html.escape(txt[pos:m.start()])
+            tk = m.group(1)
+            out += f'(<a class="af-lk" href="?empresa={html.escape(tk)}" target="_self">{tk}</a>)' if (universo and tk in universo) else html.escape(m.group(0))
+            pos = m.end()
+        return out + html.escape(txt[pos:])
+
+    return '<p class="af-cl"><b>Principales clientes:</b> ' + " · ".join(una(c) for c in clientes) + "</p>"
+
+
 def _texto_af(txt):
     """Texto del análisis: párrafos separados por línea en blanco; las líneas que empiezan con "- " forman una lista; **así** = negrita."""
     out, lista = [], []
@@ -973,7 +1006,8 @@ _CSS_AF = ('<style>.af p{margin:0 0 .75em;font-size:14.5px;line-height:1.6;color
            '.af-vd{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0 0 .8em}.af-cal{display:inline-block;padding:3px 12px;border-radius:999px;font-weight:700;font-size:.86rem}'
            '.af-vt{font-weight:700;font-size:1rem;line-height:1.35}.af-vz th:first-child,.af-vz td:first-child{text-align:left;font-weight:600}'
            '.af-vz tbody th{text-align:left;font-weight:600;padding:5px 9px;border-bottom:1px solid #e2e8f0;background:transparent}'
-           '.af ol{margin:0 0 .7em 1.2em;padding:0}</style>')
+           '.af ol{margin:0 0 .7em 1.2em;padding:0}.af-vg{font-size:.92em;letter-spacing:.2px;color:#92400e}.af-vl{list-style:none;margin-left:0!important}.af-vl li{padding-left:0}'
+           '.af .af-cl{margin:.9em 0 0;padding-top:.6em;border-top:1px dashed #d1d5db}.af-lk{color:#1d4ed8;font-weight:600;text-decoration:none}.af-lk:hover{text-decoration:underline}</style>')
 
 _CH_AF = {"Favorable": "f", "Mixto": "m", "A vigilar": "v", "Informativo": "i"}
 
@@ -1015,7 +1049,7 @@ def _score_af(row):
             '<div class="s"><b>De 0 a 100.</b> Por ahora mide el precio contra el valor estimado por múltiplos (0 = más cara, 100 = más barata); luego sumará la calidad del negocio.</div></div>')
 
 
-def tiles_analisis(af, estados=None, row=None):
+def tiles_analisis(af, estados=None, row=None, universo=None):
     """Análisis Fundamental v3 (data/analisis_fundamental.py), igual para todas las empresas: Resumen (texto a la izquierda, Score a la derecha), el negocio, el foso,
     puntos fuertes y débiles, "Entendiendo los números" (números, deuda y gerencia), qué vigilar, conclusión (con el color de la calidad y una frase que la cruza con la
     valoración de hoy), fuentes (siempre las mismas) y aclaración. Sin 'calidad' en el análisis (formato viejo) usa el formato anterior."""
@@ -1048,7 +1082,8 @@ def tiles_analisis(af, estados=None, row=None):
     titulos["balance"] = AP.titulo_balance(perfil)
     for clave in ("negocio", "foso"):
         if af.get(clave):
-            t.append(_tile("s12", html.escape(titulos[clave]), f'<div class="af">{_texto_af(af[clave])}</div>', ac="#8b5cf6"))
+            extra_cl = _clientes_af(af.get("clientes"), universo) if clave == "negocio" else ""
+            t.append(_tile("s12", html.escape(titulos[clave]), f'<div class="af">{_texto_af(af[clave])}{extra_cl}</div>', ac="#8b5cf6"))
     if af.get("fortalezas"):
         t.append(_tile("s6", "Puntos fuertes", _lista_af(af["fortalezas"]), ac="#16a34a"))
     if af.get("debilidades"):
@@ -1057,26 +1092,32 @@ def tiles_analisis(af, estados=None, row=None):
     if nums:
         t.append(_tile("s12", "Entendiendo los números", f'<div class="af">{nums}</div>', ac="#0ea5e9"))
     if af.get("vigilar"):
-        t.append(_tile("s12", "Qué vigilar", _lista_af(af["vigilar"]), ac="#f59e0b"))
+        t.append(_tile("s12", "Qué vigilar", _vigilar_af(af["vigilar"]), ac="#f59e0b"))
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
     pv = AF.precio_vs_fv((row or {}).get("precio_actual"), (row or {}).get("fair_value")) if row is not None else ""
-    cr_html = (f'<p class="af-cp"><b>Calidad y precio hoy:</b> {html.escape((pv + " " + cr).strip())}</p>') if (cr or pv) else ""
+    cr_html = (f'<p class="af-cp"><b>Calidad y PRECIO hoy:</b> {html.escape((pv + " " + cr).strip())}</p>') if (cr or pv) else ""
     ideal = ""
     if af.get("ideal_para"):
-        ideal += '<div class="af-id"><b>Ideal para inversores que…</b><ul>' + "".join(f"<li>{_negrita(x)}</li>" for x in af["ideal_para"]) + "</ul></div>"
+        ideal += '<div class="af-id"><b>Ideal para inversores que…</b><ul>' + "".join(f"<li>{_negrita(_cap(x))}</li>" for x in af["ideal_para"]) + "</ul></div>"
     if af.get("menos_ideal"):
-        ideal += '<div class="af-id af-no"><b>Menos adecuada para inversores que…</b><ul>' + "".join(f"<li>{_negrita(x)}</li>" for x in af["menos_ideal"]) + "</ul></div>"
+        ideal += '<div class="af-id af-no"><b>Menos adecuada para inversores que…</b><ul>' + "".join(f"<li>{_negrita(_cap(x))}</li>" for x in af["menos_ideal"]) + "</ul></div>"
     t.append(_tile("s12", "Conclusión", f'<div class="af">{_texto_af(af.get("conclusion"))}{ideal}{cr_html}</div>', ac="#64748b"))
-    t.append(_tile("s12", "Fuentes", '<div class="af"><ul class="af-st" style="margin-left:1.1em">' + "".join(f"<li>{html.escape(x)}</li>" for x in AF.FUENTES) + "</ul></div>", ac="#94a3b8"))
+    tk_sec = af.get("ticker") or (row or {}).get("ticker") or ""
+    lsec = AF.link_sec(tk_sec)
+    fu = []
+    for i, x in enumerate(AF.FUENTES):
+        extra_l = f' <a class="af-lk" href="{html.escape(lsec)}" target="_blank" rel="noopener">Ver los informes en la SEC ↗</a>' if (i == AF.FUENTE_SEC and lsec) else ""
+        fu.append(f"<li>{html.escape(x)}{extra_l}</li>")
+    t.append(_tile("s12", "Fuentes", '<div class="af"><ul class="af-st" style="margin-left:1.1em">' + "".join(fu) + "</ul></div>", ac="#94a3b8"))
     t.append(_pie_af(af))
     return t
 
 
-def tab_analisis(row, envolver=True, af=None, estados=None):
+def tab_analisis(row, envolver=True, af=None, estados=None, universo=None):
     """Análisis Fundamental: Resumen, parte cualitativa, los números punto por punto, fortalezas/debilidades, tesis y conclusión (ver data/analisis_fundamental.py); al final,
     el puntaje actual del modelo (el Score de calidad llega más adelante). Sin análisis guardado para la empresa: 'Próximamente'."""
     if af and af.get("resumen"):
-        t = tiles_analisis(af, estados, row)
+        t = tiles_analisis(af, estados, row, universo)
     else:
         t = [_tile_score(row), _tile("s12", "Resumen fundamental", '<div class="fch-sub" style="margin:0">Próximamente: un resumen del negocio y de sus fundamentos, con sus puntos fuertes, débiles y la tesis de inversión.</div>', ac="#94a3b8")]
     return _env(*t) if envolver else "".join(t)

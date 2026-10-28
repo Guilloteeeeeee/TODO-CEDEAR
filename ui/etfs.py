@@ -48,7 +48,7 @@ GESTORES_WEB = {
 }
 
 CSS = """
-.etf{max-width:1280px;margin:6px auto 0}
+.etf{max-width:none;margin:6px 0 0}
 .etf-n{font-size:13px;color:#6b7280;margin:2px 2px 8px}
 .etf-t{background:#fff;border-radius:0 0 14px 14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07);overflow:hidden}
 .etf-r{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr) minmax(0,3.2fr) minmax(0,1.4fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);align-items:stretch;border-top:1px solid #f0f2f5}
@@ -295,8 +295,8 @@ def css_cabecera(sort_col=None, asc=True):
 
 
 def encabezado_html(total, mostrados):
-    n = (f"{total} ETFs" if mostrados == total else f"{mostrados} de {total} ETFs")
-    return f'<div class="etf"><div class="etf-n">{n}</div></div>'
+    """v1.2.78: ya no se muestra la cantidad de ETFs (sacado a pedido de Guille); la tabla va de punta a punta."""
+    return ""
 
 
 # --- pagina del ETF ---------------------------------------------------------------------------------------------------------

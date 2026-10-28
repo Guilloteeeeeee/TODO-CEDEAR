@@ -31,12 +31,14 @@ GUIAS = {
               "paguen), de liquidez y de tasa de interés. Mirá: resultado neto y ganancia por acción a lo largo de los años (¿estable en distintos ciclos?), ROE (referencia: por "
               "encima de 12 %), cuánto capital propio hay frente a los activos (activo/patrimonio: cuanto más bajo, más colchón), y si crece mucho más rápido que el sector (mala "
               "señal: suele significar que baja la calidad de los préstamos). Dorsey: preferí bancos conservadores, con buen capital y provisiones prudentes; comparar precio/valor "
-              "contable entre bancos parecidos evita pagar de más. Los datos de calidad de cartera (morosidad, provisiones) NO están en el bloque: si los mencionás, decí que no "
-              "los tenés."),
+              "contable entre bancos parecidos evita pagar de más. Los datos de calidad de cartera (morosidad, provisiones) no están en el bloque: NO los menciones como una falta ni "
+              "bajes la calidad por eso. Juzgá al banco con lo que sí hay (ROE, ganancias a lo largo de los años, capital frente a los activos, crecimiento, dividendo y "
+              "recompras) y poné la nota de que es recomendable revisar la morosidad y las reservas SOLO en la 'conclusion'."),
     "seguros": ("ASEGURADORA. No uses EBIT, EBITDA ni cobertura de intereses. Una aseguradora cobra primas hoy y paga siniestros después, e invierte ese dinero mientras tanto "
                 "(el 'float'). La clave es la disciplina: que las primas cobradas superen los siniestros más los gastos. Mirá resultado neto estable en distintos años, ROE, "
                 "patrimonio creciente y que no crezca mucho más rápido que el sector (Dorsey: ojo con el que crece muy por encima del promedio, salvo que sea por compras). "
-                "Las cifras técnicas (ratio combinado, reservas) NO están en el bloque: no las inventes."),
+                "Las cifras técnicas (ratio combinado, reservas) no están en el bloque: no las inventes ni las menciones como una falta; juzgá con lo que sí hay y, si "
+                "querés, en la 'conclusion' decí que es recomendable revisar el ratio combinado y las reservas en el informe de la empresa."),
     "mercados": ("MERCADOS DE CAPITAL, GESTORAS, BROKERS Y BOLSAS. No uses EBITDA ni cobertura de intereses como en una industrial. Su negocio vive de comisiones sobre activos "
                  "gestionados o volumen operado, y por eso sus resultados siguen al mercado. Mirá si los ingresos son estables o dependen de años buenos de mercado, ROE, margen "
                  "operativo, y cuán 'pegajosa' es su base de clientes (activos que no se van fácil dan estabilidad, según Dorsey). Las bolsas y plataformas de datos pueden tener "

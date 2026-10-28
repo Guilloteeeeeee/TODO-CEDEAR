@@ -72,8 +72,23 @@ def cruce(calidad, categoria):
 
 # Fuentes: las mismas para TODOS los análisis (decisión de Guille del 28/10/2026). Las pone el código; el texto no lleva fuentes propias.
 FUENTES = ("Estados financieros (hasta 4 años fiscales y últimos 12 meses), descripción del negocio, dividendos y equipo directivo: Yahoo Finance.",
-           "Ventaja competitiva (foso) y etapa de la empresa: estimación propia de TodoCedears.",
-           "Texto: redactado con inteligencia artificial a partir de esos datos y del conocimiento general sobre la empresa, sin cifras de otras fuentes.")
+           "Base oficial de esas cifras: los informes que la empresa presenta ante la SEC, el 10-K (anual) y el 10-Q (trimestral); las empresas extranjeras presentan el 20-F y el 6-K. "
+           "Si una cifra no coincide, manda el informe de la empresa.",
+           "Ventaja competitiva (foso) y etapa de la empresa: estimación propia de TodoCedears.")
+# Lugar de la lista donde va el link a los informes de la SEC (la línea de la base oficial)
+FUENTE_SEC = 1
+
+
+def link_sec(ticker):
+    """Búsqueda de los informes de la empresa (10-K, 10-Q, 20-F, 6-K...) en EDGAR, el sitio oficial de la SEC."""
+    t = re.sub(r"[^A-Za-z0-9.\-]", "", str(ticker or ""))
+    return f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK={t}&owner=include&count=40" if t else ""
+
+
+# Frases que NO pueden aparecer fuera de la conclusión: la calidad se juzga con los datos que hay; si falta un dato importante, solo se dice en la conclusión
+# ("es recomendable investigar ...").
+_FALTA_DATO = ("no hay datos", "no tenemos datos", "no tenemos los datos", "no contamos con datos", "sin datos para", "no se puede evaluar", "no se puede medir", "no se puede juzgar",
+               "no se puede analizar", "de eso no tenemos", "no hay información", "no tenemos información", "no disponemos de")
 
 
 # --- formato de números (castellano: punto de miles, coma decimal) -----------------------------------------------------------
@@ -292,7 +307,8 @@ def validar(d, estados=None):
       negocio, foso, numeros, balance, gerencia: texto (párrafos separados por una línea en blanco)
       fortalezas, debilidades: listas (las debilidades, de la más a la menos importante)
       ideal_para (2 a 4) y menos_ideal (1 a 3): perfiles de inversor a los que les encaja / no les encaja (siguen "Ideal para inversores que..."), sin recomendar
-      vigilar: lista de 3 a 4 hechos a seguir (qué confirmaría y qué invalidaría el caso); conclusion: 3 a 4 oraciones
+      vigilar: lista de 3 a 4 puntos con la forma "INDICADOR: por qué importa y qué señal mirar" (qué mirar, y después de los dos puntos el porqué); conclusion: 3 a 4 oraciones
+      clientes: lista de 1 a 8 principales clientes ("Nombre (TICKER)" si cotiza y está en la app, o una descripción corta); se muestran con links al final de "El negocio"
       perfil, capas, ticker: los pone el programa (si vienen, se validan)"""
     pr = []
     if not isinstance(d, dict):
@@ -333,6 +349,16 @@ def validar(d, estados=None):
         pr.append("'debilidades' necesita al menos 2")
     if not 2 <= len(out["vigilar"]) <= 5:
         pr.append("'vigilar' necesita de 2 a 5 puntos (lo ideal: 3 o 4)")
+    for x in out["vigilar"]:
+        if not re.match(r"^[^:]{3,60}:\s+\S", x):
+            pr.append("cada punto de 'vigilar' tiene que tener la forma \"INDICADOR: por qué importa y qué señal mirar\" (qué mirar, dos puntos y el porqué)")
+            break
+    out["clientes"] = _lista(d.get("clientes"))
+    if not 1 <= len(out["clientes"]) <= 8:
+        pr.append("'clientes' necesita de 1 a 8 principales clientes (\"Nombre (TICKER)\" si cotiza, o una descripción corta; si no hay un cliente dominante, decilo)")
+    cn = re.sub(r"^\*{0,2}Conclusión:\s*", "", rs[rs.rfind("Conclusión:"):].replace("**", "")).strip() if "Conclusión:" in rs else ""
+    if cn and len(cn.split()) < 22:
+        pr.append("la oración \"Conclusión:\" del resumen tiene que cerrar la idea: si nombra un riesgo, decí qué pasaría con la empresa si ocurre (impacto en ingresos, márgenes, caja...)")
     out["ideal_para"], out["menos_ideal"] = _lista(d.get("ideal_para")), _lista(d.get("menos_ideal"))
     if not 2 <= len(out["ideal_para"]) <= 4:
         pr.append("'ideal_para' necesita de 2 a 4 ideas (cada una sigue la frase \"Ideal para inversores que...\")")
@@ -342,6 +368,10 @@ def validar(d, estados=None):
         if len(x) > 220:
             pr.append("cada idea de 'ideal_para' / 'menos_ideal' tiene que ser corta (hasta 220 caracteres)")
             break
+    sin_conclusion = " ".join(str(v) for k, v in d.items() if k not in ("conclusion", "conclusión")).lower()
+    falta = [w for w in _FALTA_DATO if w in sin_conclusion]
+    if falta:
+        pr.append("no digas que faltan datos fuera de la 'conclusion' (" + ", ".join(falta) + "): juzgá con los datos que hay; si falta uno importante, en la 'conclusion' escribí que es recomendable investigarlo")
     prohibidas = [w for w in ("Morningstar", "recomendamos comprar", "te recomendamos", "precio objetivo", "bloque", "datos guardados", "lo único que no sabemos", "según el modelo") if w.lower() in " ".join(str(x) for x in d.values()).lower()]
     if prohibidas:
         pr.append("el texto menciona algo que no corresponde: " + ", ".join(prohibidas))
