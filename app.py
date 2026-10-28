@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.78"
+APP_VERSION = "1.2.79"
 
 import contextlib
 import streamlit as st
@@ -1333,7 +1333,7 @@ def render_noticias(df, descarga, lugar=None):
 
 
 def render_calendario(df, lugar=None):
-    """Recuadro "Calendario de Resultados": proximos 60 dias agrupados por dia (ui/calendario.py). Va entre Noticias y el Filtro, en la misma fila. Nunca rompe la pagina."""
+    """Recuadro "Calendario" (v1.2.79: solapas Resultados de empresas y Economía): proximos 60 dias agrupados por dia (ui/calendario.py). Va entre Noticias y el Filtro, en la misma fila. Nunca rompe la pagina."""
     try:
         paquetes, _ = _paquetes_guardados()
         tickers = list(df["ticker"])
@@ -1342,11 +1342,16 @@ def render_calendario(df, lugar=None):
         n = sum(len(v) for _, v in grupos)
         with (lugar if lugar is not None else st.container()):
             with st.container(key="caja_cal"):
-                with st.expander("Calendario de Resultados", expanded=False):
-                    tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
-                    if (tk or "").strip():
-                        st.markdown(f"<style>{_calendario.CSS}</style><div class=\"cal\"><div class=\"cal-h\"><b>{html.escape(_calendario.buscar_ticker(paquetes, tk))}</b></div></div>", unsafe_allow_html=True)
-                    st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
+                with st.expander("Calendario", expanded=False):
+                    t_res, t_eco = st.tabs(["Resultados de empresas", "Economía"])
+                    with t_res:
+                        tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
+                        if (tk or "").strip():
+                            st.markdown(f"<style>{_calendario.CSS}</style><div class=\"cal\"><div class=\"cal-h\"><b>{html.escape(_calendario.buscar_ticker(paquetes, tk))}</b></div></div>", unsafe_allow_html=True)
+                        st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
+                    with t_eco:
+                        eventos, fuentes_eco = _calendario.cargar_economico()
+                        st.markdown(f"<style>{_calendario.CSS_ECO}</style>" + _calendario.economico_html(_calendario.economicos(eventos), fuentes_eco), unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass
 
@@ -1372,54 +1377,35 @@ def _ccl_hoy(df):
 
 def render_cartera(df, pagina=True):
     """"Evaluá tu Cartera": edad + perfil + Excel/CSV (o texto) -> evaluación en 4 bloques (pesos, geografía, sectores, conclusiones y ajustes).
-    v1.2.77: va en una barra naranja de punta a punta (Empresas y ETFs); los datos se cargan en 3 tarjetas con pasos. `pagina=True`: la página propia ?pagina=cartera."""
+    v1.2.79: pantalla exclusiva (?pagina=cartera, se llega con la barra naranja del inicio) y carga mínima: una sola tarjeta con edad, perfil, moneda y el Excel."""
     from ui import cartera as C
     from ui import cartera_visual as CV
     st.markdown(f"<style>{C.CSS}{CV.CSS}{CV.CSS_ENTRADA}</style>", unsafe_allow_html=True)
-    titulo = "<h1>Evaluá tu Cartera</h1>" if pagina else ""
-    st.markdown(f'<div class="cr{" cr-top" if pagina else ""}">{titulo}<p class="cr-i">Contanos tu edad y tu perfil, <b>subí tu cartera en un Excel</b> '
-                'y te devolvemos una evaluación: los pesos de tu cartera, su diversificación geográfica y sectorial, y qué ajustaría. '
-                'Reconocemos acciones y CEDEARs, ETFs, bonos y letras argentinas, obligaciones negociables, efectivo y cripto. Es información general: no es una recomendación '
-                'personalizada y no guardamos tu cartera.</p></div>', unsafe_allow_html=True)
-    ayuda_perfil = {"Conservador": "Prioriza cuidar el capital y tolera pocos vaivenes.",
-                    "Moderado": "Busca un equilibrio entre cuidar el capital y hacerlo crecer.",
-                    "Agresivo": "Acepta más vaivenes a cambio de más potencial de crecimiento."}
-    f1, f2 = st.columns([3, 2], gap="medium")
-    with f1:
-        with st.container(key="cr_p1"):
-            st.markdown('<div class="cv-paso"><span>1</span>Tu edad y tu perfil de inversor</div>', unsafe_allow_html=True)
-            e1, e2 = st.columns([1, 2])
-            with e1:
-                edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
-            with e2:
-                try:
-                    perfil = st.segmented_control("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], default="Moderado", key="cr_perfil") or "Moderado"
-                except Exception:  # noqa: BLE001
-                    perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
-            st.markdown(f'<div class="cv-ayuda">{ayuda_perfil[perfil]}</div>', unsafe_allow_html=True)
-    with f2:
-        with st.container(key="cr_p2"):
-            st.markdown('<div class="cv-paso"><span>2</span>Moneda de tus montos</div>', unsafe_allow_html=True)
-            base = st.radio("Los montos sin moneda están en", ["Dólares", "Pesos"], horizontal=True, key="cr_base")
-            lugar_tc = st.container()
-            st.markdown('<div class="cv-ayuda">Todo se pasa a dólares automáticamente. Si tu Excel trae una columna <span class="cv-cols">Moneda</span> (USD o ARS), se usa esa.</div>', unsafe_allow_html=True)
-    with st.container(key="cr_p3"):
-        st.markdown('<div class="cv-paso"><span>3</span>Subí tu cartera en Excel</div>', unsafe_allow_html=True)
-        st.markdown('<div class="cv-ayuda">Columnas: <span class="cv-cols">Ticker</span><span class="cv-cols">Monto</span> y, si querés, <span class="cv-cols">Moneda</span> y <span class="cv-cols">Tipo</span> '
-                    '(el Tipo solo hace falta para bonos, obligaciones negociables, fondos o efectivo).</div>', unsafe_allow_html=True)
-        t_arch, t_txt = st.tabs(["📎 Excel o CSV", "✍️ Pegar como texto"])
-        with t_arch:
-            u1, u2 = st.columns([3, 1], gap="medium")
-            with u1:
-                arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo", label_visibility="collapsed")
-            with u2:
-                try:
-                    st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
-                                       mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
-                except Exception:  # noqa: BLE001
-                    pass
-        with t_txt:
-            texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=130, key="cr_texto", label_visibility="collapsed",
+    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Cartera</h1><p class="cr-i">Subí tu Excel y recibí una evaluación gratuita. No guardamos tu cartera.</p></div>', unsafe_allow_html=True)
+    with st.container(key="cr_p1"):
+        e1, e2, e3 = st.columns([1, 2, 1.3], gap="medium")
+        with e1:
+            edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
+        with e2:
+            try:
+                perfil = st.segmented_control("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], default="Moderado", key="cr_perfil") or "Moderado"
+            except Exception:  # noqa: BLE001
+                perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
+        with e3:
+            base = st.radio("Montos en", ["Dólares", "Pesos"], horizontal=True, key="cr_base")
+        lugar_tc = st.container()
+        u1, u2 = st.columns([3, 1], gap="medium")
+        with u1:
+            arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo", label_visibility="collapsed")
+        with u2:
+            try:
+                st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
+                                   mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
+            except Exception:  # noqa: BLE001
+                pass
+        st.markdown('<div class="cv-ayuda">Columnas: <span class="cv-cols">Ticker</span><span class="cv-cols">Monto</span> (opcional: <span class="cv-cols">Moneda</span> y <span class="cv-cols">Tipo</span>).</div>', unsafe_allow_html=True)
+        with st.expander("¿No tenés Excel? Pegá tu cartera como texto", expanded=False):
+            texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=120, key="cr_texto", label_visibility="collapsed",
                                  placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
     if arch is None and not (texto or "").strip():
         return
@@ -1479,10 +1465,9 @@ def render_cartera(df, pagina=True):
 
 
 def render_barra_cartera(df):
-    """Barra naranja "Evaluá tu Cartera" de punta a punta (v1.2.77), en el inicio de Empresas y de ETFs. Cerrada al abrir la página."""
+    """Barra naranja "Evaluá tu Cartera de Inversiones" de punta a punta (v1.2.77), en el inicio de Empresas y de ETFs. v1.2.79: un click lleva a su pantalla exclusiva (?pagina=cartera)."""
     with st.container(key="caja_cart"):
-        with st.expander("Evaluá tu Cartera de Inversiones: subí tu Excel y recibí una evaluación gratuita.", expanded=False):
-            render_cartera(df, pagina=False)
+        st.markdown('<a class="cr-barra" href="?pagina=cartera" target="_self"><span>Evaluá tu Cartera de Inversiones: subí tu Excel y recibí una evaluación gratuita.</span><b>→</b></a>', unsafe_allow_html=True)
 
 
 def main():

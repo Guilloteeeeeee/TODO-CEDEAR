@@ -359,6 +359,8 @@ def validar(d, estados=None):
     cn = re.sub(r"^\*{0,2}Conclusión:\s*", "", rs[rs.rfind("Conclusión:"):].replace("**", "")).strip() if "Conclusión:" in rs else ""
     if cn and len(cn.split()) < 22:
         pr.append("la oración \"Conclusión:\" del resumen tiene que cerrar la idea: si nombra un riesgo, decí qué pasaría con la empresa si ocurre (impacto en ingresos, márgenes, caja...)")
+    if cn and len(cn.split()) > 45:
+        pr.append("la oración \"Conclusión:\" del resumen es solo una conclusión: una oración de hasta 45 palabras (calidad, puntos fuertes, riesgo y su consecuencia en una frase corta, sin explicar el porqué)")
     out["ideal_para"], out["menos_ideal"] = _lista(d.get("ideal_para")), _lista(d.get("menos_ideal"))
     if not 2 <= len(out["ideal_para"]) <= 4:
         pr.append("'ideal_para' necesita de 2 a 4 ideas (cada una sigue la frase \"Ideal para inversores que...\")")

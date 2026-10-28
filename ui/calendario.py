@@ -3,6 +3,8 @@ ANTES o DESPUES de la apertura del mercado. Sale de `agenda.resultados` de data/
 Es informacion, no una recomendacion: las fechas las confirma cada empresa y pueden cambiar."""
 import datetime
 import html
+import json
+import os
 from urllib.parse import quote
 
 from ui.logos import logo_html
@@ -107,3 +109,57 @@ def buscar_ticker(paquetes, ticker, hoy=None):
         cuando = f"el {_SEM[f0.weekday()]} {f0.strftime('%d/%m/%Y')} ({faltan})"
     mom = {"antes": ", antes de la apertura del mercado", "despues": ", después del cierre del mercado"}.get(ag.get("momento"), "")
     return f"{t} presenta resultados {cuando}{mom}."
+
+
+# --- Calendario económico (v1.2.79): solo el evento y la fecha ------------------------------------------------------------------
+# Las fechas salen de data/calendario_economico.json: calendarios oficiales de la Reserva Federal, el BLS y el BEA (EE.UU.) y el INDEC (Argentina).
+# No es una conexión en vivo: se actualiza cargando el archivo (el calendario del INDEC se publica por semestre).
+RUTA_ECO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "calendario_economico.json")
+
+CSS_ECO = """
+.eco{font-family:inherit;color:#1f2937}
+.eco-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1e3a8a}
+.eco-d.hoy{color:#15803d}
+.eco-i{display:flex;align-items:baseline;gap:8px;padding:3px 0 3px 4px;font-size:.9rem;line-height:1.35}
+.eco-p{flex:none;min-width:62px;text-align:center;font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;background:#e0e7ff;color:#3730a3;white-space:nowrap}
+.eco-p.ar{background:#dbeafe;color:#1e40af}
+.eco-v{color:#64748b;font-size:.9rem;padding:.4rem 0}
+.eco-n{color:#94a3b8;font-size:.74rem;margin-top:.8rem;line-height:1.4}
+"""
+
+
+def cargar_economico(ruta=None):
+    """([{'f': date, 'e': evento, 'p': país}], texto de fuentes). ([], '') si el archivo no está o no se puede leer."""
+    try:
+        with open(ruta or RUTA_ECO, encoding="utf-8") as f:
+            j = json.load(f)
+        ev = []
+        for x in j.get("eventos") or []:
+            ev.append({"f": datetime.date.fromisoformat(str(x["f"])), "e": str(x["e"]), "p": str(x.get("p") or "")})
+        return ev, " · ".join(j.get("fuentes") or [])
+    except Exception:  # noqa: BLE001
+        return [], ""
+
+
+def economicos(eventos, hoy=None, dias=DIAS):
+    """[(fecha, [(evento, país)])] entre hoy y hoy+dias."""
+    hoy = hoy or datetime.date.today()
+    tope = hoy + datetime.timedelta(days=dias)
+    por_dia = {}
+    for x in eventos or []:
+        if hoy <= x["f"] <= tope:
+            por_dia.setdefault(x["f"], []).append((x["e"], x["p"]))
+    return [(f, v) for f, v in sorted(por_dia.items())]
+
+
+def economico_html(grupos, fuentes="", hoy=None):
+    hoy = hoy or datetime.date.today()
+    if not grupos:
+        return f'<div class="eco"><div class="eco-v">No hay eventos cargados para los próximos {DIAS} días.</div></div>'
+    out = ['<div class="eco">']
+    for f, items in grupos:
+        out.append(f'<div class="eco-d{" hoy" if f == hoy else ""}">{html.escape(_titulo_dia(f, hoy))}</div>')
+        for e, p in items:
+            out.append(f'<div class="eco-i"><span class="eco-p{" ar" if p == "Argentina" else ""}">{html.escape(p)}</span><span>{html.escape(e)}</span></div>')
+    out.append(f'<div class="eco-n">Fechas de los calendarios oficiales ({html.escape(fuentes)}). Pueden cambiar.</div></div>' if fuentes else "</div>")
+    return "".join(out)

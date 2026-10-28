@@ -271,6 +271,7 @@ def valoracion(categoria):
 
 # --- analisis ---------------------------------------------------------------------------------------------------------------------
 
+PESO_MIN, PESO_MAX = 3.0, 5.0      # regla de Guille: cada empresa (acción o CEDEAR) entre 3 % y 5 % de la cartera
 UMBRAL = 5.0          # puntos de diferencia a partir de los cuales se avisa (la devolución es una orientación, no un cálculo fino)
 _CAT_ETF_GEO = {"usa": "usa", "usa segun sectores": "usa", "internacionales no usa": "fuera_sd", "internacionales con usa": "global"}
 
@@ -329,7 +330,7 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
         "super": {k: v / st_ * 100 for k, v in sup.items()} if st_ else None, "sector_ubicado_pct": (st_ / rv_total * 100) if rv_total else 0.0,
         "sectores": sorted(((k, v / st_ * 100) for k, v in sect.items()), key=lambda kv: -kv[1]) if st_ else [],
         "sector_top": (max(sect.items(), key=lambda kv: kv[1])[0], max(sect.values()) / st_ * 100) if sect and st_ else None,
-        "posiciones": [{"ticker": p["ticker"], "pct": p["monto"] / total * 100, "clase": p["clase"]} for p in por_pos],
+        "posiciones": [{"ticker": p["ticker"], "pct": p["monto"] / total * 100, "clase": p["clase"], "fuente": p.get("fuente")} for p in por_pos],
         "sin_clasificar": sin, "pct_sin_clasificar": (sum(p["monto"] for p in sin) / (total + sum(p["monto"] for p in sin)) * 100) if sin else 0.0,
     }
 
@@ -382,10 +383,27 @@ def devolucion(res, edad, perfil):
     if pe["otros"] >= 5:
         f.append(f"Tenés {pe['otros']:.0f} % en otras materias primas (petróleo, granos…): no son ni renta fija ni variable típica y no las comparé con tu edad y perfil.")
     ps = res["posiciones"]
-    if ps and ps[0]["pct"] > 15:
+    # v1.2.79 (regla de Guille): cada empresa (acción o CEDEAR) debería pesar entre 3 % y 5 % de la cartera. ETFs, bonos, fondos, oro y efectivo no entran en esta regla.
+    emp_ps = [p for p in ps if p.get("clase") == "rv" and p.get("fuente") in ("empresa", "regla")]
+    arriba = [p for p in emp_ps if p["pct"] > PESO_MAX + 0.05]
+    abajo = [p for p in emp_ps if p["pct"] < PESO_MIN - 0.05]
+    en_rango = len(emp_ps) - len(arriba) - len(abajo)
+    if emp_ps:
+        def _lista_tk(lst, n=4):
+            t = ", ".join(f"{p['ticker']} {p['pct']:.0f} %" for p in lst[:n])
+            return t + (f" y {len(lst) - n} más" if len(lst) > n else "")
+        if arriba:
+            f.append(f"**Por empresa, lo habitual es entre {PESO_MIN:.0f} y {PESO_MAX:.0f} % de la cartera.** Pasan de {PESO_MAX:.0f} %: {_lista_tk(arriba)}.")
+            hallazgos.append(f"{len(arriba)} empresa(s) pasan de {PESO_MAX:.0f} % de la cartera.")
+            ajustes.append(f"Llevar de a poco las empresas que pasan de {PESO_MAX:.0f} % ({', '.join(p['ticker'] for p in arriba[:3])}{'…' if len(arriba) > 3 else ''}) hacia el rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} %.")
+        if len(abajo) >= 2:
+            f.append(f"Pesan menos de {PESO_MIN:.0f} % (casi no mueven tu cartera): {_lista_tk(abajo)}.")
+            hallazgos.append(f"{len(abajo)} empresas pesan menos de {PESO_MIN:.0f} %.")
+            ajustes.append(f"Con las empresas que pesan menos de {PESO_MIN:.0f} %, decidir si valen la pena: o se las sube al rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} %, o se las deja de lado.")
+        if not arriba and len(abajo) < 2:
+            f.append(f"**Las empresas están dentro de lo habitual** ({PESO_MIN:.0f} a {PESO_MAX:.0f} % de la cartera cada una): {en_rango} de {len(emp_ps)}.")
+    if ps and ps[0]["pct"] > 15 and ps[0].get("clase") == "rv" and ps[0].get("fuente") in ("empresa", "regla"):
         f.append(f"**Tu mayor posición, {ps[0]['ticker']}, pesa {ps[0]['pct']:.0f} %** de la cartera: si le va mal, se nota mucho en el total.")
-        hallazgos.append(f"{ps[0]['ticker']} pesa {ps[0]['pct']:.0f} % de la cartera.")
-        ajustes.append(f"Evitar que una sola posición ({ps[0]['ticker']}) pese tanto: por encima de 15 % la cartera depende demasiado de ella.")
     top3 = sum(p["pct"] for p in ps[:3])
     if len(ps) >= 4 and top3 > 50:
         f.append(f"Tus 3 posiciones más grandes suman {top3:.0f} %: la cartera depende de pocas ideas.")
@@ -464,9 +482,9 @@ def devolucion(res, edad, perfil):
     return sec
 
 
-_WARN = ("te pasás", "te faltan", "muy concentrada", "poco estados", "los emergentes pesan", "hay poco", "hay mucho", "un solo sector", "tu mayor posición", "posiciones más grandes",
+_WARN = ("pasan de", "pesan menos de", "te pasás", "te faltan", "muy concentrada", "poco estados", "los emergentes pesan", "hay poco", "hay mucho", "un solo sector", "tu mayor posición", "posiciones más grandes",
          "tenés ", "no pude ubicar", "ojo:", "volátiles", "no tenés renta variable", "no pude ubicar por")
-_OK = ("estás en línea", "reparto razonable", "es razonable", "razonablemente")
+_OK = ("están dentro de lo habitual", "estás en línea", "reparto razonable", "es razonable", "razonablemente")
 
 
 def nivel(frase):

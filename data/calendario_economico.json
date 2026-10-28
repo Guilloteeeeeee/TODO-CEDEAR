@@ -1,0 +1,351 @@
+{
+ "cargado": "28/10/2026",
+ "fuentes": [
+  "Reserva Federal (FOMC)",
+  "BLS (Oficina de Estadísticas Laborales de EE.UU.)",
+  "BEA (Oficina de Análisis Económico de EE.UU.)",
+  "INDEC (calendario del 2.º semestre de 2026)"
+ ],
+ "eventos": [
+  {
+   "f": "2026-10-19",
+   "e": "Comercio exterior de Argentina (balanza de septiembre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-10-21",
+   "e": "Actividad económica de Argentina (EMAE de agosto)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-10-28",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-10-29",
+   "e": "Inflación PCE de EE.UU. (septiembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-10-29",
+   "e": "PIB de EE.UU. (3.er trimestre de 2026, 1.ª estimación)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-11-06",
+   "e": "Empleo de EE.UU. (informe de octubre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-11-10",
+   "e": "Inflación de EE.UU. (IPC de octubre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-11-12",
+   "e": "Inflación de Argentina (IPC de octubre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-11-19",
+   "e": "Comercio exterior de Argentina (balanza de octubre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-11-24",
+   "e": "Actividad económica de Argentina (EMAE de septiembre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-11-25",
+   "e": "Inflación PCE de EE.UU. (octubre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-12-04",
+   "e": "Empleo de EE.UU. (informe de noviembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-12-09",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-12-10",
+   "e": "Inflación de EE.UU. (IPC de noviembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2026-12-15",
+   "e": "Inflación de Argentina (IPC de noviembre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-12-16",
+   "e": "PIB de Argentina (3.er trimestre de 2026)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-12-18",
+   "e": "Comercio exterior de Argentina (balanza de noviembre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-12-18",
+   "e": "Desempleo de Argentina (3.er trimestre de 2026)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-12-21",
+   "e": "Actividad económica de Argentina (EMAE de octubre)",
+   "p": "Argentina"
+  },
+  {
+   "f": "2026-12-23",
+   "e": "Inflación PCE de EE.UU. (noviembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-01-08",
+   "e": "Empleo de EE.UU. (informe de diciembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-01-13",
+   "e": "Inflación de EE.UU. (IPC de diciembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-01-27",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-01-28",
+   "e": "Inflación PCE de EE.UU. (diciembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-01-28",
+   "e": "PIB de EE.UU. (4.º trimestre de 2026, 1.ª estimación)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-02-05",
+   "e": "Empleo de EE.UU. (informe de enero)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-02-11",
+   "e": "Inflación de EE.UU. (IPC de enero)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-02-25",
+   "e": "Inflación PCE de EE.UU. (enero)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-03-05",
+   "e": "Empleo de EE.UU. (informe de febrero)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-03-10",
+   "e": "Inflación de EE.UU. (IPC de febrero)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-03-17",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-03-31",
+   "e": "Inflación PCE de EE.UU. (febrero)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-04-02",
+   "e": "Empleo de EE.UU. (informe de marzo)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-04-13",
+   "e": "Inflación de EE.UU. (IPC de marzo)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-04-28",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-04-29",
+   "e": "Inflación PCE de EE.UU. (marzo)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-04-29",
+   "e": "PIB de EE.UU. (1.er trimestre de 2027, 1.ª estimación)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-05-07",
+   "e": "Empleo de EE.UU. (informe de abril)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-05-12",
+   "e": "Inflación de EE.UU. (IPC de abril)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-05-27",
+   "e": "Inflación PCE de EE.UU. (abril)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-06-04",
+   "e": "Empleo de EE.UU. (informe de mayo)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-06-09",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-06-10",
+   "e": "Inflación de EE.UU. (IPC de mayo)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-06-25",
+   "e": "Inflación PCE de EE.UU. (mayo)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-07-02",
+   "e": "Empleo de EE.UU. (informe de junio)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-07-14",
+   "e": "Inflación de EE.UU. (IPC de junio)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-07-28",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-07-29",
+   "e": "Inflación PCE de EE.UU. (junio)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-07-29",
+   "e": "PIB de EE.UU. (2.º trimestre de 2027, 1.ª estimación)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-08-06",
+   "e": "Empleo de EE.UU. (informe de julio)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-08-11",
+   "e": "Inflación de EE.UU. (IPC de julio)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-08-25",
+   "e": "Inflación PCE de EE.UU. (julio)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-09-03",
+   "e": "Empleo de EE.UU. (informe de agosto)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-09-14",
+   "e": "Inflación de EE.UU. (IPC de agosto)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-09-15",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-09-30",
+   "e": "Inflación PCE de EE.UU. (agosto)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-10-08",
+   "e": "Empleo de EE.UU. (informe de septiembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-10-14",
+   "e": "Inflación de EE.UU. (IPC de septiembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-10-27",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-10-28",
+   "e": "Inflación PCE de EE.UU. (septiembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-10-28",
+   "e": "PIB de EE.UU. (3.er trimestre de 2027, 1.ª estimación)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-11-05",
+   "e": "Empleo de EE.UU. (informe de octubre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-11-10",
+   "e": "Inflación de EE.UU. (IPC de octubre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-11-24",
+   "e": "Inflación PCE de EE.UU. (octubre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-12-03",
+   "e": "Empleo de EE.UU. (informe de noviembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-12-08",
+   "e": "Reserva Federal (Fed): decisión de tasas",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-12-10",
+   "e": "Inflación de EE.UU. (IPC de noviembre)",
+   "p": "EE.UU."
+  },
+  {
+   "f": "2027-12-22",
+   "e": "Inflación PCE de EE.UU. (noviembre)",
+   "p": "EE.UU."
+  }
+ ]
+}

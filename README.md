@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.79 (28/10/2026): calendario económico, pantalla de cartera simple, regla de 3 a 5 % por empresa, conclusión corta
+- **Calendario económico**: el recuadro "Calendario" (entre Noticias y el Filtro) tiene dos solapas: "Resultados de empresas" (como antes) y "Economía", con solo el evento y la fecha de los próximos 60 días. Las fechas son las de los calendarios oficiales de la Reserva Federal (decisión de tasas), el BLS (inflación IPC y empleo de EE.UU.), el BEA (PIB y inflación PCE de EE.UU.) y el INDEC (inflación, actividad, comercio exterior, PIB y desempleo de Argentina). Se guardan en `data/calendario_economico.json` (no es una conexión en vivo: hay que actualizar el archivo; el INDEC publica su calendario por semestre, así que el de 2027 se carga cuando salga). Ya cargado: Fed, BLS y BEA hasta diciembre de 2027 e INDEC hasta diciembre de 2026.
+- "Noticias Calientes del día" con mayúscula.
+- **Evaluá tu Cartera**: la barra naranja es un click que abre su propia pantalla (`?pagina=cartera`). La pantalla tiene una sola tarjeta: edad, perfil, moneda de los montos y el Excel (con el "Excel de ejemplo" y, aparte, pegar como texto). Sin pasos ni explicaciones.
+- **Regla de 3 a 5 % por empresa** en la evaluación: cada acción o CEDEAR debería pesar entre 3 % y 5 % de la cartera; la devolución lista las que pasan de 5 % y las que pesan menos de 3 %, y agrega el ajuste. Los ETFs, bonos, fondos, oro y efectivo no entran en esta regla.
+- **Conclusión del resumen del análisis**: una sola oración (hasta 45 palabras) que cierra la idea (riesgo + consecuencia) sin explicar el porqué. Cambiados el prompt, el validador y los 4 ejemplos.
+
 ### v1.2.78 (28/10/2026): análisis sin "faltan datos", cierre de la idea, Qué vigilar con porqué, clientes, fuentes con 10-K/10-Q, detector de renovación
 - **Pantalla**: la barra "Evaluá tu Cartera de Inversiones: subí tu Excel y recibí una evaluación gratuita." es más clara (durazno a amarillo suave, letra marrón); la tabla de ETFs va de punta a punta y ya no dice "59 ETFs"; la tarjeta de la empresa/ETF sube más; las solapas de la empresa van siempre en una sola línea (el tamaño de letra se ajusta al ancho de la pantalla).
 - **Recuadro gris al bajar**: era la flechita de "hay más abajo", que al leer quedaba como una caja con sombra encima del texto. Ahora es chica, oscura y se ve solo al comienzo de la página.

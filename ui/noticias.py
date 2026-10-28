@@ -494,7 +494,7 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
     if not notas:
         motivo = (f"{FUENTE} no respondió en este momento" if not hubo_respuesta
                   else f"no hay notas recientes de {FUENTE}")
-        return (f'<details class="nt"{atr}><summary>Noticias calientes del día</summary>'
+        return (f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>'
                 f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div></details>')
     filas = []
     for n in notas:
@@ -511,7 +511,7 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
     hay_es = any(n.get("titulo_es") for n in notas)
     aviso_trad = (" Los titulares están traducidos automáticamente del inglés: pueden tener errores (al pasar el mouse se ve el original)."
                   if hay_es else (" Los titulares salen en inglés porque la traducción no estuvo disponible." if IDIOMA == "en" else ""))
-    return (f'<details class="nt"{atr}><summary>Noticias calientes del día</summary>'
+    return (f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>'
             f'<ul>{"".join(filas)}</ul>'
             f'<div class="nt-pie">Fuente: {FUENTE}. Primero las que nombran empresas del screener (etiqueta verde), una sola nota por empresa; '
             f'después las de portada y las más recientes. Cada título abre la nota en {FUENTE}.{aviso_trad} Es información, no una recomendación.</div></details>')
@@ -550,4 +550,4 @@ def noticias_bloques_html(bloques, ahora=None, abierto=None):
     aviso_trad = (" Los titulares en inglés están traducidos automáticamente: pueden tener errores (al pasar el mouse se ve el original)." if hay_es else "")
     pie = (f'<div class="nt-pie">Fuentes: {html.escape(" y ".join(fuentes))}. Primero las que nombran empresas del screener (etiqueta verde), '
            f'una sola nota por empresa; después las de portada y las más recientes. Cada título abre la nota en su fuente.{aviso_trad} Es información, no una recomendación.</div>')
-    return f'<details class="nt"{atr}><summary>Noticias calientes del día</summary>{"".join(partes)}{pie}</details>'
+    return f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>{"".join(partes)}{pie}</details>'
