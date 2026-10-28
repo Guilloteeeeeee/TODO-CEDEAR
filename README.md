@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.76 (28/10/2026): Evaluá tu Cartera más visual y con conversión de moneda, menú junto a Sobre Nosotros, páginas más compactas, conclusión en color
+
+- **Evaluá tu Cartera** (antes "Tu Cartera") pasa a la franja negra, al lado de "Sobre Nosotros". La evaluación se ve con tarjetas: torta de la cartera, barras de pesos con indicador (en línea / te pasás / te faltan), barra apilada por país y por tipo de empresa, y los ajustes en pasos numerados (`ui/cartera_visual.py`).
+- **Moneda:** columna opcional "Moneda" (USD / ARS) en el Excel, selector para los montos sin moneda y conversión automática a dólares con el CCL implícito de los CEDEARs de hoy (editable; si no se puede calcular, se escribe). El informe PDF y los porcentajes salen ya convertidos.
+- Páginas de empresa, ETF y cartera: el contenido sube ~75 px (el "Volver" queda justo debajo de la franja en pantallas anchas).
+- Análisis Fundamental: en el Resumen, "Conclusión:" va en negro y la oración, en el color de la calidad y con mayúscula inicial.
+
 ### v1.2.75 (28/10/2026): Tu Cartera con 4 bloques, renta fija argentina, membrete con los autores
 
 - La devolución de Tu Cartera ahora son 4 bloques: **Pesos**, **Diversificación geográfica**, **Diversificación sectorial** y **Conclusiones y qué ajustaría** (con los ajustes ordenados). Se sacó "qué dice el screener". La geografía también ubica ETFs (por país o categoría) y acciones argentinas.

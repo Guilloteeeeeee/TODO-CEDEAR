@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.75"
+APP_VERSION = "1.2.76"
 
 import contextlib
 import streamlit as st
@@ -905,8 +905,8 @@ def _ir_a_tabla(tabla):
 
 def render_nav_tablas():
     with st.container(key="nav_tablas"):
-        for clave, texto in (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)"), ("cart", "Tu Cartera")):
-            args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=({"etfs": "etfs", "cart": "cartera"}.get(clave, "empresas"),))
+        for clave, texto in (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)")):
+            args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=({"etfs": "etfs"}.get(clave, "empresas"),))
             try:
                 st.button(texto, type="tertiary", **args)
             except TypeError:       # Streamlit viejo, sin type="tertiary"
@@ -1350,21 +1350,42 @@ def render_calendario(df, lugar=None):
         pass
 
 
+def _ccl_hoy(df):
+    """Dólar CCL implícito de los CEDEARs (mediana de pesos × ratio / dólares, con el control de coherencia de _pv.elegir_ars), o None si no hay precios. Nunca levanta excepciones."""
+    try:
+        if not PRECIOS_VIVOS:
+            return None
+        datos = _cedears.cargar()
+        info = _precios_usd(_orden_tickers(df))
+        usd = info.get("usd") or {}
+        if not usd:
+            return None
+        simbolos = _cedears.simbolos_yahoo(datos)
+        items = tuple((t, tuple(ss), datos[t].get("simbolo") or t) for t, ss in sorted(simbolos.items()))
+        cand = _precios_ars(items)
+        _b, ccl = _pv.elegir_ars(cand, {t: v.get("ratio") for t, v in datos.items()}, usd)
+        return float(ccl) if ccl else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def render_cartera(df):
-    """v1.2.73: "Tu Cartera": edad + perfil + Excel/CSV (o texto) -> orientación sobre dónde se pasa o falta peso. No se guarda nada. Ver ui/cartera.py."""
+    """v1.2.73: "Evaluá tu Cartera": edad + perfil + Excel/CSV (o texto) -> evaluación en 4 bloques (pesos, geografía, sectores, conclusiones y ajustes).
+    v1.2.76: diseño con tarjetas y gráficos (ui/cartera_visual.py) y conversión automática de moneda (columna Moneda + dólar CCL). No se guarda nada."""
     from ui import cartera as C
-    st.markdown(f"<style>{C.CSS}</style>", unsafe_allow_html=True)
-    st.markdown('<div class="cr"><h1>Tu Cartera</h1><p class="cr-i">Contanos tu edad y tu perfil de inversor, <b>subí tu cartera en un Excel</b> '
+    from ui import cartera_visual as CV
+    st.markdown(f"<style>{C.CSS}{CV.CSS}</style>", unsafe_allow_html=True)
+    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Cartera</h1><p class="cr-i">Contanos tu edad y tu perfil de inversor, <b>subí tu cartera en un Excel</b> '
                 'y te devolvemos una evaluación: los pesos de tu cartera, su diversificación geográfica y sectorial, y qué ajustaría. '
-                'Reconocemos acciones y CEDEARs, ETFs, bonos y letras argentinas, obligaciones negociables, efectivo y cripto. Es información general: no es una recomendación personalizada y '
-                'no guardamos tu cartera.</p></div>', unsafe_allow_html=True)
+                'Reconocemos acciones y CEDEARs, ETFs, bonos y letras argentinas, obligaciones negociables, efectivo y cripto. Es información general: no es una recomendación '
+                'personalizada y no guardamos tu cartera.</p></div>', unsafe_allow_html=True)
     c1, c2 = st.columns(2)
     with c1:
         edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
     with c2:
         perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
-    st.markdown("**Subí tu cartera en Excel** (o CSV). Columnas: **Ticker**, **Monto** (valor actual de cada tenencia, todos en la misma moneda) y, "
-                "solo para bonos, obligaciones negociables o efectivo, **Tipo**.")
+    st.markdown("**Subí tu cartera en Excel** (o CSV). Columnas: **Ticker**, **Monto** (valor actual de cada tenencia), **Moneda** (USD o ARS; opcional) y, "
+                "solo para bonos, obligaciones negociables, fondos o efectivo, **Tipo**. Todo se pasa a dólares automáticamente.")
     try:
         st.download_button("Descargar Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla")
@@ -1373,11 +1394,14 @@ def render_cartera(df):
     arch = st.file_uploader("Tu cartera (.xlsx o .csv)", type=["xlsx", "xls", "csv"], key="cr_archivo")
     with st.expander("O pegala como texto"):
         texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=140, key="cr_texto", label_visibility="collapsed",
-                             placeholder="AAPL 1500\nSPY 3000\nAL30 2000 (tipo: renta fija)\nBTC 300")
+                             placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
+    m1, m2 = st.columns(2)
+    with m1:
+        base = st.radio("Los montos sin moneda están en", ["Dólares", "Pesos"], horizontal=True, key="cr_base")
     if arch is None and not (texto or "").strip():
         return
     if edad is None:
-        st.info("Poné tu edad para ver la devolución.")
+        st.info("Poné tu edad para ver la evaluación.")
         return
     try:
         pos = C.leer_archivo(arch.name, arch.getvalue()) if arch is not None else C.leer_texto(texto)
@@ -1387,6 +1411,18 @@ def render_cartera(df):
     if not pos:
         st.warning("No encontré posiciones con monto. Revisá que haya una columna de ticker y una de monto (mirá el Excel de ejemplo).")
         return
+    base_k = "ars" if base == "Pesos" else "usd"
+    hay_pesos = any((p.get("moneda") or base_k) == "ars" for p in pos)
+    tc = None
+    if hay_pesos:
+        auto = _ccl_hoy(df)
+        with m2:
+            tc = st.number_input("Dólar para convertir (pesos por dólar)", min_value=1.0, value=round(auto, 2) if auto else None, step=1.0, key="cr_tc",
+                                 help="Por defecto, el dólar CCL implícito de los CEDEARs de hoy. Podés cambiarlo." if auto else "No pudimos calcular el CCL ahora: escribilo vos.")
+        if not tc:
+            st.info("Hay montos en pesos: poné el dólar con el que querés convertirlos (por ejemplo, el CCL de hoy).")
+            return
+    pos, n_conv, _falta = C.convertir(pos, base_k, tc)
     empresas = {}
     for _, r in df.iterrows():
         empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria")}
@@ -1398,8 +1434,11 @@ def render_cartera(df):
     if not res or not res.get("total"):
         st.warning("No pude clasificar ninguna posición. Completá la columna Tipo (Renta fija, Oro, Cripto, Efectivo…) o revisá los tickers.")
         return
-    st.markdown('<div class="cr">' + C.devolucion_html(C.devolucion(res, edad, perfil))
-                + '<div class="cr-av">Orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. '
+    if n_conv:
+        tc_txt = f"{tc:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+        st.caption(f"Pasamos a dólares {n_conv} posición(es) en pesos, a $ {tc_txt} por dólar.")
+    st.markdown(CV.visual_html(res, edad, perfil)
+                + '<div class="cr"><div class="cr-av">Orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. '
                 'No es una recomendación de compra o venta ni un consejo personalizado: cada situación (objetivos, plazos, impuestos, otros ingresos) es distinta. '
                 'Tu cartera se procesa en el momento y no se guarda.</div></div>', unsafe_allow_html=True)
     # v1.2.74: informe descargable con el membrete de Finanzas para Médicos Argentina (se arma en memoria y se baja al dispositivo)

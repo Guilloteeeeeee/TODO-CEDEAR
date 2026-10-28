@@ -1027,14 +1027,20 @@ def tiles_analisis(af, estados=None, row=None):
     color = AF.CALIDADES[cal]
     txt_color = _TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")
     perfil = af.get("perfil") if af.get("perfil") in AP.PERFILES else "general"
-    # v1.2.73: sin pastilla ni veredicto arriba, y la oración "Conclusión: ..." cierra el Resumen en negrita y SIN color
+    # v1.2.73: sin pastilla ni veredicto arriba, y la oración "Conclusión: ..." cierra el Resumen (v1.2.76: la oración va en el color de la calidad)
     crudo = str(af.get("resumen") or "")
     m = list(re.finditer(r"\*{0,2}Conclusión:", crudo))
     if m:
         cuerpo_res, concl = crudo[:m[-1].start()].rstrip(), crudo[m[-1].start():].replace("**", "").strip()
     else:
         cuerpo_res, concl = crudo, ""
-    concl_html = f'<p class="af-cn"><b>{html.escape(concl)}</b></p>' if concl else ""
+    # v1.2.76: la palabra "Conclusión:" va en negro y la oración, en el color de la calidad (la gente asocia el color con la conclusión) y con mayúscula inicial
+    if concl:
+        frase = re.sub(r"^Conclusión:\s*", "", concl).strip()
+        frase = frase[:1].upper() + frase[1:]
+        concl_html = f'<p class="af-cn"><b>Conclusión:</b> <b class="af-cf" style="color:{AF.CALIDADES_TEXTO.get(cal, "#111827")}">{html.escape(frase)}</b></p>'
+    else:
+        concl_html = ""
     texto = f'<div class="af-rt">{_texto_af(cuerpo_res)}{concl_html}</div>'
     cuerpo = f'<div class="af"><div class="af-rs">{texto}{_score_af(row) if row is not None else ""}</div></div>'
     t = [_tile("s12", "Resumen", _CSS_AF + cuerpo, ac=color)]

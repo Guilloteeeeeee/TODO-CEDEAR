@@ -143,6 +143,8 @@ CSS_BUSCADOR = """
 .st-key-nav_tablas{position:absolute;top:0;height:80px;left:calc(50% + 330px + var(--sw) + 12px - 50vw);margin:0;align-items:center;justify-content:flex-start;z-index:60}
 .st-key-nav_tablas button{color:#cbd5e1;padding:8px 11px}
 .st-key-nav_tablas button:hover{background:#3b4046!important;color:#fff}
+/* v1.2.76: en las paginas de empresa, ETF y cartera el contenido sube (los elementos vacios de Streamlit dejaban ~90 px de aire bajo la franja) */
+[data-testid="stElementContainer"]:has(.emp-vol),[data-testid="stElementContainer"]:has(.cr-top){margin-top:-74px}
 }
 """
 if not ICONOS_EN_BARRA:
@@ -382,7 +384,8 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
                 iconos += _insignia(k, "WhatsApp: próximamente")
         iconos += _icono_img("intramed", "Intramed", e["intramed"], "mc-ib")
     iconos = f'<div class="mc-ic">{iconos}</div>' if iconos else ""
-    menus = _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
+    cartera = '<a class="mc-it mc-cart" href="?pagina=cartera" target="_self">Evaluá tu Cartera</a>'      # v1.2.76: al lado de "Sobre Nosotros"
+    menus = cartera + _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
     nav = f'<div class="mc-nav">{menus}{iconos}</div>'
     uri = logo_uri()
     toro = (f'<a class="mc-toro" href="?pagina=quienes" target="_self" title="Quiénes somos"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}"></a>'
@@ -394,9 +397,11 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
 
 def css_nav(activa):
     """Estilo de la tabla activa ("empresas" o "etfs"; vacio = ninguna): letra firme y subrayado verde. Va junto al CSS de la franja."""
-    if activa not in ("empresas", "etfs", "cartera"):
+    if activa == "cartera":
+        return "a.mc-cart{box-shadow:inset 0 -2px 0 #00e05a;color:#fff!important}"
+    if activa not in ("empresas", "etfs"):
         return ""
-    k = {"empresas": "emp", "etfs": "etfs", "cartera": "cart"}[activa]
+    k = {"empresas": "emp", "etfs": "etfs"}[activa]
     # dentro de la franja negra (pantallas anchas) la letra activa es blanca; abajo, oscura
     return (f".st-key-nav_{k} button{{color:#111827!important;box-shadow:inset 0 -2px 0 #00e05a!important}}"
             + ("@media (min-width:1280px){" + f".st-key-nav_{k} button{{color:#fff!important}}" + "}" if not ICONOS_EN_BARRA else ""))

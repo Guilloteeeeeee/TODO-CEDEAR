@@ -57,7 +57,7 @@ def numero(x):
 
 
 def _columnas(cols):
-    """(ticker, monto, tipo, cantidad, precio): indices de las columnas segun los encabezados (None si no hay). Los Excel de los brokers suelen traer Cantidad y Precio en lugar de Monto."""
+    """(ticker, monto, tipo, cantidad, precio, moneda): indices de las columnas segun los encabezados (None si no hay). Los Excel de los brokers suelen traer Cantidad y Precio en lugar de Monto."""
     n = [norm(c) for c in cols]
 
     def buscar(claves, excluir=()):
@@ -68,7 +68,8 @@ def _columnas(cols):
     return (buscar(("ticker", "simbolo", "especie", "activo", "instrumento", "nombre")),
             buscar(("monto", "valor", "importe", "total", "tenencia", "valuacion", "valorizado", "peso", "%")),
             buscar(("tipo", "clase", "categoria")),
-            buscar(("cantidad", "nominales", "cant")), buscar(("precio", "cotizacion", "ultimo"), excluir=("compra", "ppc", "costo")))
+            buscar(("cantidad", "nominales", "cant")), buscar(("precio", "cotizacion", "ultimo"), excluir=("compra", "ppc", "costo")),
+            buscar(("moneda", "divisa")))
 
 
 def leer_tabla(filas):
@@ -77,11 +78,11 @@ def leer_tabla(filas):
     filas = [list(f) for f in filas if f and any(str(c or "").strip() for c in f)]
     if not filas:
         return []
-    it, im, ity, ic, ip = _columnas(filas[0])
+    it, im, ity, ic, ip, imo = _columnas(filas[0])
     con_encabezado = it is not None and (im is not None or (ic is not None and ip is not None))
     datos = filas[1:] if con_encabezado else filas
     if not con_encabezado:
-        it, im, ity, ic, ip = 0, 1, (2 if any(len(f) > 2 for f in filas) else None), None, None
+        it, im, ity, ic, ip, imo = 0, 1, (2 if any(len(f) > 2 for f in filas) else None), None, None, None
     out = []
     for f in datos:
         if it >= len(f):
@@ -94,8 +95,40 @@ def leer_tabla(filas):
         if not tk or m is None or m <= 0:
             continue
         tipo = str(f[ity] or "").strip() if ity is not None and ity < len(f) else ""
-        out.append({"ticker": tk, "monto": m, "tipo": tipo})
+        mo = moneda_de(f[imo]) if imo is not None and imo < len(f) else None
+        out.append({"ticker": tk, "monto": m, "tipo": tipo, "moneda": mo})
     return out
+
+
+def moneda_de(txt):
+    """'usd' | 'ars' | None según lo escrito en la columna Moneda (USD, U$S, dólares, MEP, CCL, ARS, $, pesos...)."""
+    if str(txt).strip() == "$":
+        return "ars"
+    t = norm(txt)
+    if not t:
+        return None
+    if re.search(r"\b(usd|u s|us|u\$s|dolar|dolares|dollar|dollars|mep|ccl|cable|usdt)\b", t) or "us$" in str(txt).lower() or "u$s" in str(txt).lower():
+        return "usd"
+    if re.search(r"\b(ars|peso|pesos|pesos argentinos|arg)\b", t) or str(txt).strip() == "$":
+        return "ars"
+    return None
+
+
+def convertir(posiciones, base, tc):
+    """Pasa todos los montos a dólares. `base`: moneda de los montos sin Moneda ('usd' o 'ars'); `tc`: pesos por dólar (necesario si hay algo en pesos).
+    Devuelve (posiciones en dólares, cantidad convertida desde pesos, True si faltó el tipo de cambio)."""
+    out, n, falta = [], 0, False
+    for p in posiciones:
+        q = dict(p)
+        mon = p.get("moneda") or base
+        if mon == "ars":
+            if tc and tc > 0:
+                q["monto"] = p["monto"] / tc
+                n += 1
+            else:
+                falta = True
+        out.append(q)
+    return out, n, falta
 
 
 def leer_texto(texto):
@@ -136,18 +169,19 @@ def plantilla_excel():
     wb = Workbook()
     ws = wb.active
     ws.title = "Cartera"
-    ws.append(["Ticker", "Monto", "Tipo (opcional)"])
-    for r in (("AAPL", 1500, ""), ("KO", 800, ""), ("SPY", 3000, ""), ("AL30", 2000, "Renta fija soberana"), ("ON YPF", 1000, "Renta fija corporativa"),
-              ("GLD", 500, "Oro"), ("BTC", 300, "Cripto"), ("Dólares", 700, "Efectivo")):
+    ws.append(["Ticker", "Monto", "Moneda (opcional)", "Tipo (opcional)"])
+    for r in (("AAPL", 1500, "USD", ""), ("KO", 800, "USD", ""), ("SPY", 3000, "USD", ""), ("AL30", 2000000, "ARS", "Renta fija soberana"), ("ON YPF", 1000, "USD", "Renta fija corporativa"),
+              ("GLD", 500, "USD", "Oro"), ("BTC", 300, "USD", "Cripto"), ("Caución", 500000, "ARS", "Efectivo")):
         ws.append(list(r))
     ws.append([])
-    ws.append(["Montos: el valor actual de cada tenencia, todos en la misma moneda (dólares o pesos). El Tipo solo hace falta para lo que no es una empresa o ETF "
-               "de la lista (bonos, obligaciones negociables, efectivo)."])
+    ws.append(["Monto: el valor actual de cada tenencia. Moneda: USD o ARS (si la dejás vacía se usa la que elijas en la página); todo se pasa a dólares automáticamente con el dólar CCL. "
+               "Tipo: solo hace falta para lo que no es una empresa o ETF de la lista (bonos, obligaciones negociables, fondos, efectivo)."])
     for c in ws[1]:
         c.font = Font(bold=True)
     ws.column_dimensions["A"].width = 14
     ws.column_dimensions["B"].width = 12
-    ws.column_dimensions["C"].width = 26
+    ws.column_dimensions["C"].width = 18
+    ws.column_dimensions["D"].width = 26
     b = io.BytesIO()
     wb.save(b)
     return b.getvalue()
@@ -293,6 +327,7 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
         "rango": nombre_rango, "efectivo_propio": sep_efectivo, "total": total, "peso": peso, "desvio": desvio, "rv_total": rv_total, "n_empresas": len(emp),
         "geo": ({k: v / rv_total * 100 for k, v in geo.items()} if rv_total and geo_tot else None), "geo_ubicado_pct": (geo_tot / rv_total * 100) if rv_total else 0.0,
         "super": {k: v / st_ * 100 for k, v in sup.items()} if st_ else None, "sector_ubicado_pct": (st_ / rv_total * 100) if rv_total else 0.0,
+        "sectores": sorted(((k, v / st_ * 100) for k, v in sect.items()), key=lambda kv: -kv[1]) if st_ else [],
         "sector_top": (max(sect.items(), key=lambda kv: kv[1])[0], max(sect.values()) / st_ * 100) if sect and st_ else None,
         "posiciones": [{"ticker": p["ticker"], "pct": p["monto"] / total * 100, "clase": p["clase"]} for p in por_pos],
         "sin_clasificar": sin, "pct_sin_clasificar": (sum(p["monto"] for p in sin) / (total + sum(p["monto"] for p in sin)) * 100) if sin else 0.0,
@@ -427,6 +462,21 @@ def devolucion(res, edad, perfil):
         f.append("**Qué ajustaría:** por ahora nada importante; revisala una o dos veces al año para que los pesos no se vayan corriendo.")
     sec.append(("Conclusiones y qué ajustaría", f))
     return sec
+
+
+_WARN = ("te pasás", "te faltan", "muy concentrada", "poco estados", "los emergentes pesan", "hay poco", "hay mucho", "un solo sector", "tu mayor posición", "posiciones más grandes",
+         "tenés ", "no pude ubicar", "ojo:", "volátiles", "no tenés renta variable", "no pude ubicar por")
+_OK = ("estás en línea", "reparto razonable", "es razonable", "razonablemente")
+
+
+def nivel(frase):
+    """'ok' | 'warn' | 'info' según la frase (para los iconos y colores de la pantalla)."""
+    t = str(frase).lower()
+    if any(k in t for k in _OK):
+        return "ok"
+    if any(k in t for k in _WARN) and not t.startswith("para una persona"):
+        return "warn"
+    return "info"
 
 
 def devolucion_html(secciones):
