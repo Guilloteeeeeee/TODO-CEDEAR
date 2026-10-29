@@ -7427,6 +7427,194 @@
      "2022"
     ]
    }
+  },
+  "KLAC": {
+   "resumen": "KLA es una empresa estadounidense que fabrica los equipos que inspeccionan y miden las obleas, máscaras y chips durante su fabricación, para detectar defectos y controlar que cada paso salga bien. Opera tres segmentos: control de procesos de semiconductores, procesos especializados y inspección de placas de circuito y componentes. Gana plata vendiendo máquinas muy caras a los fabricantes de chips y, después, cobrando servicios y repuestos sobre esas máquinas. Tiene un **foso amplio, de tecnología, base instalada y datos de proceso**: sus equipos están integrados a las líneas de fabricación, los fabricantes confían en ellos para decidir si una oblea sirve, y reemplazarlos exige recalificar toda la línea. Los números son de primer nivel: el margen operativo fue de **41,7 %** en el ejercicio 2026, el ROIC de **39,9 %** y el flujo libre de **3.767 M** (27,7 % de los ingresos), y se mantuvo con márgenes de 37,1 % y ROIC de 31,5 % incluso en el año malo (2024), cuando los ingresos cayeron 6,5 %. Hay 5,8 % menos acciones que en 2023 y el dividendo crece 16,3 % por año en 3 años. Su punto débil es que depende de las inversiones en plantas de los fabricantes de chips, que son cíclicas y concentradas en pocos clientes grandes, y que el patrimonio es chico (6.350 M) porque devuelve más capital del que retiene. El 22/10 los semiconductores cayeron 6,7 %, una muestra de lo sensible que es el sector. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad excelente, con foso amplio, margen operativo de 41,7 % y ROIC de 39,9 %, aunque cíclica y dependiente de pocos clientes grandes.**",
+   "veredicto": "Excelente: foso amplio, margen operativo de 41,7 % y ROIC de 39,9 %, aunque cíclica y dependiente de pocos clientes grandes",
+   "conclusion": "KLA es una empresa de calidad excelente: tiene un foso amplio de tecnología y base instalada, margen operativo de 41,7 %, ROIC de 39,9 %, flujo libre de 3.767 M y dividendo creciente, pero depende del ciclo de inversión de pocos fabricantes de chips y su patrimonio es chico. Vale la pena seguirla de cerca. Es recomendable investigar la concentración de clientes y las restricciones a la exportación en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga por encima de 37 % en el ciclo.",
+   "calidad": "Excelente",
+   "riesgo_ia": "bajo",
+   "negocio": "KLA ofrece soluciones de control de procesos y de habilitación de procesos para la fabricación de obleas, máscaras, químicos y materiales, circuitos integrados, chips encapsulados y placas de circuito impreso. Opera tres segmentos: **Semiconductor Process Control**, **Specialty Semiconductor Process** y **PCB and Component Inspection**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de equipos con ciclo: **los ingresos cayeron 6,5 % en 2024, subieron 23,9 % en 2025 y 11,7 % en 2026, hasta 13.579 M** (el ejercicio cierra a mediados de año).\n\n**A quién le vende.** A fabricantes de chips y de placas de circuito, con una concentración alta en pocos clientes grandes (dato público a verificar).",
+   "foso": "La ventaja de KLA **es de tecnología, base instalada y datos de proceso, y es amplia**. Detectar un defecto microscópico en una oblea exige óptica, algoritmos y bases de datos de defectos acumuladas durante décadas, y una fábrica de chips que ya calificó sus equipos para producir no los cambia sin parar su línea. Eso explica un margen bruto de 59,8 % a 61,3 % y un ROIC de 31,5 % a 41,5 %, y los servicios sobre la base instalada suavizan el ciclo.\n\nCompite con Applied Materials, Lam Research, Hitachi High-Tech y fabricantes más chicos de inspección. Es frágil en el ciclo de inversión de los fabricantes de chips, en las restricciones a la exportación hacia China (dato público) y en que pocos clientes concentran las compras. La inteligencia artificial no la amenaza de forma directa; la demanda de chips avanzados es parte del impulso.",
+   "numeros": "Los números de KLA cuentan **un negocio de márgenes muy altos que aguantó el año malo**. Los ingresos fueron de 10.496 M, 9.812 M, 12.156 M y 13.579 M. El EBIT fue de 3.995 M, 3.636 M, 5.014 M y 5.661 M, con margen operativo de 38,1 %, 37,1 %, 41,2 % y 41,7 %. La ganancia neta fue de 3.387 M, 2.762 M, 4.062 M y 4.831 M. La ganancia por acción fue de 2,42, 2,03, 3,04 y **3,66**; Yahoo parece expresarla tras un split de acciones (dato público a verificar).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.328 M, 3.031 M, 3.747 M y **3.767 M**, con inversiones livianas (376 M). El ROIC fue de 40,5 %, 31,5 %, 41,5 % y 39,9 %. El ROE de 76,1 % no sirve para comparar porque el patrimonio es chico.\n\nLa mirada crítica: el flujo libre casi no creció en 2026 (+0,5 %) aunque las ganancias subieron 18,9 %, y el margen de flujo libre bajó de 30,8 % a 27,7 %.",
+   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 6.152 M y la caja de 4.902 M; Yahoo informa una deuda neta de 4.238 M, que no coincide con la resta simple (1.250 M), probablemente por inversiones de corto plazo que no cuenta como caja. Con ese dato, la deuda neta/EBITDA es de 0,67x, que multiplicado por 12 son unos 8 meses de EBITDA. Los intereses se cubren 19,9 veces con el EBIT.\n\nEl patrimonio neto es de 6.350 M, chico para una empresa de este tamaño porque devuelve más capital del que retiene; la deuda equivale a 0,97 veces el patrimonio. El patrimonio subió de 2.920 M a 6.350 M desde 2023.",
+   "gerencia": "La conduce Rick Wallace, presidente y CEO (65 años, pago de 6,5 M según Yahoo), con Bren Higgins como director financiero (55 años, pago de 2,8 M). Wallace lleva años al frente y es parte de la empresa desde 1988, dato público; a los 65 años, la sucesión es una variable a seguir.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras**: paga un dividendo de 0,92 por acción (pagado desde 2005; sube 16,3 % por año en 3 años; 1.058 M en 2026, 28 % del flujo libre) y recompró 1.312 M en 2023, 1.736 M, 2.150 M y 2.290 M. **Las acciones bajaron de 1.402 M a 1.320 M, un 5,8 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 41,7 % y ROIC de 39,9 %.",
+    "Aguantó el año malo (2024) con ROIC de 31,5 %.",
+    "Flujo libre de 3.767 M, 27,7 % de los ingresos.",
+    "Dividendo creciendo 16,3 % por año y 5,8 % menos acciones.",
+    "Base instalada con servicios que suavizan el ciclo."
+   ],
+   "debilidades": [
+    "Depende de las inversiones cíclicas de los fabricantes de chips.",
+    "Pocos clientes grandes: el crítico más duro diría que un recorte de uno solo golpea los ingresos.",
+    "Patrimonio chico (6.350 M).",
+    "Flujo libre que casi no creció en 2026.",
+    "Restricciones a la exportación hacia China (dato público)."
+   ],
+   "vigilar": [
+    "Ingresos: hoy 13.579 M, +11,7 %; el cambio de ritmo anticipa el ciclo.",
+    "Margen operativo: hoy 41,7 %; si baja, el mix o la competencia pesan.",
+    "Margen de flujo libre: hoy 27,7 %; si sigue bajando, las ganancias no se convierten en caja.",
+    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe."
+   ],
+   "clientes": [
+    "Fabricantes de chips",
+    "Fabricantes de máscaras y obleas",
+    "Fabricantes de placas de circuito impreso"
+   ],
+   "ideal_para": [
+    "Buscan un líder de equipos de semiconductores con márgenes muy altos.",
+    "Valoran el dividendo creciente y las recompras.",
+    "Aceptan el ciclo de inversión de la industria."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables año a año.",
+    "No toleran la dependencia de pocos clientes grandes."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder",
+    "ciclica"
+   ],
+   "ticker": "KLAC",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 13579476000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "CRWD": {
+   "resumen": "CrowdStrike es una empresa estadounidense de ciberseguridad en la nube: su plataforma protege los dispositivos de una empresa (computadoras, servidores), las cargas de trabajo en la nube, las identidades y los datos, mediante una suscripción de software que se cobra por año. Gana plata con contratos recurrentes que los clientes renuevan cada año. Tiene un **foso débil a estrecho, de datos de la plataforma y costos de cambio**: cuantos más dispositivos protege, más datos de amenazas junta para detectar ataques nuevos, y cambiar de plataforma de seguridad implica reinstalar agentes y reentrenar al personal. Los números son de una empresa que crece rápido y es rentable en caja pero no en la contabilidad: los ingresos pasaron de 2.241 M en el ejercicio 2023 a **5.396 M** en los últimos 12 meses, con margen bruto de **75,2 %** y flujo libre de **1.523 M** (28,2 % de los ingresos). Pero el EBIT es negativo en todos los años (-119 M en los últimos 12 meses), el ROIC es de **-1,3 %** y las acciones aumentaron **10,2 %**. La diferencia entre el flujo libre positivo y el EBIT negativo se explica en gran parte por la compensación en acciones y por cobros adelantados de suscripciones (Yahoo no lo detalla). Tiene más caja (5.014 M) que deuda (820 M). Su punto débil es que hay que confiar en el flujo de caja, no en la ganancia, y que un error técnico propio puede afectar a todos sus clientes a la vez (dato público: incidente de julio de 2024). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: ayuda a defender, pero también a atacar y a nuevos competidores. Conclusión: **empresa de calidad regular: crecimiento de 20 % por año, margen bruto de 75 % y caja neta de 4.194 M, pero con EBIT negativo, ROIC de -1,3 % y 10,2 % más acciones.**",
+   "veredicto": "Regular: crecimiento fuerte, margen bruto de 75 % y caja neta de 4.194 M, con EBIT negativo, ROIC de -1,3 % y 10,2 % más acciones",
+   "conclusion": "CrowdStrike es una empresa de calidad regular: tiene un foso débil a estrecho de datos y costos de cambio, ingresos que crecen cerca de 20 % por año, margen bruto de 75 %, flujo libre de 1.523 M y caja neta de 4.194 M, pero su EBIT es negativo, el ROIC es de -1,3 % y las acciones aumentaron 10,2 %. Hay que seguirla de cerca. Es recomendable investigar la compensación en acciones y la retención de clientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo pase a positivo sin frenar el crecimiento.",
+   "calidad": "Regular",
+   "riesgo_ia": "moderado",
+   "negocio": "CrowdStrike provee soluciones de ciberseguridad en Estados Unidos y a nivel internacional. Su plataforma unificada brinda protección entregada desde la nube para puntos finales, cargas de trabajo en la nube, identidad y datos, mediante un modelo de software como servicio basado en suscripciones. Yahoo no informa cuánto aporta cada módulo, y no lo vamos a inventar.\n\nEs un negocio de suscripciones en fuerte crecimiento: **los ingresos subieron 36,3 % en 2024, 29,4 % en 2025 y 21,7 % en 2026, hasta 4.812 M** (el ejercicio cierra a fines de enero), y llegan a 5.396 M en los últimos 12 meses. El ritmo se desacelera.\n\n**A quién le vende.** A empresas de todos los tamaños y a organismos públicos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de CrowdStrike **es de datos de la plataforma y costos de cambio, y es débil a estrecha**. Cada dispositivo protegido le aporta información sobre ataques, que mejora la detección para todos los clientes, y los clientes que instalaron su agente en miles de equipos y armaron sus procesos de respuesta no lo cambian fácilmente. Se ve en el margen bruto estable de 75 % y en los ingresos que crecen más de 20 %.\n\nPero el foso no se traduce todavía en ganancias contables: el margen operativo es de -2,2 % y el ROIC de -1,3 %. Compite con Microsoft, Palo Alto Networks, SentinelOne, Zscaler y otras. Es frágil en la competencia de plataformas integradas de grandes empresas, en la presión de precios y en el riesgo de una falla técnica propia. La inteligencia artificial puede reforzar la defensa, pero también acelera los ataques y favorece a competidores con más datos.",
+   "numeros": "Los números de CrowdStrike cuentan **un crecimiento fuerte con rentabilidad contable todavía ausente**. Los ingresos fueron de 2.241 M, 3.056 M, 3.954 M y 4.812 M, y de 5.396 M en los últimos 12 meses. El margen bruto fue de 73,2 %, 75,2 %, 75,0 %, 74,7 % y 75,2 %. El EBIT fue de -190 M, -19 M, -116 M y -293 M, y de -119 M (margen operativo de -2,2 %). La ganancia neta fue de -183 M, 72 M, -15 M y -163 M, y de 58 M. La ganancia por acción fue de -0,20, 0,09, -0,02, -0,16 y 0,04.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 675 M, 929 M, 1.068 M y 1.241 M, y de **1.523 M** en los últimos 12 meses (28,2 % de los ingresos). El flujo operativo de 2.017 M contrasta con una ganancia de 58 M.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (58 M) es positiva a pesar del EBIT negativo, probablemente por los intereses que cobra sobre su caja. El flujo libre no resta la compensación en acciones, que diluye al accionista: las acciones aumentaron de 933 M a 1.028 M.",
+   "balance": "**Balance de caja neta, sin riesgo de deuda.** La caja es de 5.014 M y la deuda total de 820 M, de modo que la deuda neta es de -4.194 M: tiene más plata que deudas. El patrimonio neto es de 5.102 M y la deuda equivale a 0,16 veces el patrimonio. La cobertura de intereses no es calculable con un EBIT negativo.\n\nLa caja creció de 2.705 M en 2023 a 5.014 M. Por la regla de las empresas con pérdidas: no quema caja, genera 1.523 M por año, así que el tiempo de aguante no es un problema.",
+   "gerencia": "La conduce George Kurtz, cofundador, presidente y CEO (54 años, pago de 5,5 M según Yahoo), con Burt Podbere como director financiero (59 años, pago de 1,5 M) y Michael Sentonas como presidente (51 años). El cofundador sigue al frente desde 2011, dato público.\n\nEn lo que importa, **el uso del capital es de reinversión: no paga dividendo y Yahoo no informa recompras**. **Las acciones subieron de 933 M a 1.028 M, un 10,2 % más**, por la compensación en acciones. Las inversiones suben: 266 M en 2023 y 494 M en los últimos 12 meses.",
+   "fortalezas": [
+    "Ingresos de 5.396 M, creciendo más de 20 % por año.",
+    "Margen bruto de 75,2 %, estable.",
+    "Flujo libre de 1.523 M, 28,2 % de los ingresos.",
+    "Más caja (5.014 M) que deuda (820 M).",
+    "Ingresos recurrentes por suscripción."
+   ],
+   "debilidades": [
+    "EBIT negativo todos los años: -119 M en los últimos 12 meses.",
+    "ROIC de -1,3 %: el crítico más duro diría que el flujo libre es posible por pagar con acciones.",
+    "10,2 % más acciones desde 2023.",
+    "Crecimiento que se desacelera (de 36,3 % a 21,7 %).",
+    "Competencia de plataformas integradas de grandes empresas."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy -2,2 %; tiene que pasar a positivo de forma sostenida.",
+    "Cantidad de acciones: hoy 1.028 M; si siguen subiendo, la dilución se acumula.",
+    "Crecimiento de ingresos: hoy +21,7 %; si baja de 15 %, el negocio cambia de etapa.",
+    "Fallas técnicas propias: Yahoo no las informa, hay que buscarlas en el informe."
+   ],
+   "clientes": [
+    "Empresas de todos los tamaños",
+    "Organismos públicos",
+    "Equipos de seguridad informática"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de ciberseguridad en crecimiento.",
+    "Valoran la caja neta y el flujo libre.",
+    "Aceptan que la ganancia contable todavía no aparece."
+   ],
+   "menos_ideal": [
+    "Buscan ganancias contables y dividendo.",
+    "No toleran la dilución por acciones de compensación."
+   ],
+   "perfil": "joven",
+   "capas": [],
+   "ticker": "CRWD",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 5396145000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "SAP": {
+   "resumen": "SAP es una empresa alemana de software empresarial: vende aplicaciones para que las compañías manejen sus finanzas, compras, producción, cadena de suministro, recursos humanos y relaciones con clientes, entre ellas S/4HANA y SuccessFactors, con funciones de inteligencia artificial integradas. Gana plata con suscripciones en la nube, licencias y mantenimiento, con contratos de varios años. Tiene un **foso estrecho, de costos de cambio y de integración**: el software de gestión de una gran empresa está conectado a todo lo demás, y cambiarlo lleva años, cuesta mucho y arriesga parar la operación. Los datos están en euros. Los números muestran una mejora clara: los ingresos pasaron de 29.519 M en 2022 a **39.387 M** en los últimos 12 meses, el margen operativo subió de 20,5 % a **27,1 %**, el ROIC de 8,0 % a **16,7 %** y el flujo libre llegó a **9.182 M** (23,3 % de los ingresos). Paga dividendo desde 1999 y las recompras se aceleraron a 4.124 M en los últimos 12 meses. La ganancia neta sube y baja demasiado (de 6.139 M en 2023 a 3.124 M en 2024 y 7.161 M en 2025) por resultados no operativos que Yahoo no explica, dato a verificar. Tiene más caja (10.997 M) que deuda (10.588 M). Su punto débil es la competencia de software en la nube y de nuevos agentes de inteligencia artificial que podrían cambiar cómo se usa el software de gestión. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**. Conclusión: **empresa de muy buena calidad, con foso estrecho, margen operativo de 27,1 % y flujo libre de 9.182 M, aunque con ganancias netas irregulares y el desafío de la inteligencia artificial.**",
+   "veredicto": "Muy buena: foso estrecho, margen operativo de 27,1 % y flujo libre de 9.182 M (en euros), con ganancias netas irregulares",
+   "conclusion": "SAP es una empresa de muy buena calidad: tiene un foso estrecho de costos de cambio, margen operativo de 27,1 %, ROIC de 16,7 %, flujo libre de 9.182 M (en euros) y dividendo desde 1999, pero la ganancia neta es irregular y la inteligencia artificial puede cambiar la forma de usar el software de gestión. Vale la pena seguirla de cerca. Es recomendable investigar el crecimiento de la nube y los resultados no operativos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga mientras migra a la nube.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "moderado",
+   "negocio": "SAP provee aplicaciones empresariales y soluciones de negocios en todo el mundo. Ofrece SAP Business AI; SAP S/4HANA, con capacidades de software para finanzas, gestión de riesgos y de proyectos, compras, manufactura, cadena de suministro y gestión de activos; y soluciones SuccessFactors para recursos humanos, entre otras. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar. **Las cifras de SAP están en euros.**\n\nEs un negocio de software maduro con buen crecimiento: **los ingresos subieron 5,7 % en 2023, 9,5 % en 2024 y 7,7 % en 2025, hasta 36.800 M de euros**, y llegan a 39.387 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes y medianas empresas de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de SAP **es de costos de cambio e integración, y es estrecha**. Una gran empresa que maneja sus finanzas, compras, producción y recursos humanos con SAP tiene miles de procesos conectados, personal entrenado y datos acumulados durante años, y cambiar de sistema es un proyecto de años con riesgo de parar la operación. Se ve en el margen bruto estable de 72 % a 73 % y en el margen operativo que sube a 27,1 %.\n\nCompite con Oracle, Microsoft Dynamics, Workday, Salesforce y proveedores especializados. Es frágil en la migración de clientes a la nube (donde pueden elegir otros proveedores), en la competencia de grandes empresas de software y en que la inteligencia artificial puede cambiar la forma en que se usa el software de gestión, con agentes que automatizan tareas y reducen el número de usuarios por contrato. Por eso el riesgo es moderado.",
+   "numeros": "Los números de SAP, en euros, cuentan **un negocio que crece y gana más margen, con ganancias netas irregulares**. Los ingresos fueron de 29.519 M, 31.207 M, 34.176 M y 36.800 M, y de 39.387 M en los últimos 12 meses. El EBIT fue de 6.051 M, 6.014 M, 7.808 M y 9.620 M, y de 10.673 M (margen operativo de 27,1 %). La ganancia neta fue de 2.284 M, 6.139 M, 3.124 M y 7.161 M, y de 8.041 M. La ganancia por acción fue de 1,95, 5,17, 2,65, 6,10 y **7,04**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 4.770 M, 5.461 M, 4.410 M y 8.417 M, y de **9.182 M** en los últimos 12 meses. El ROIC fue de 8,0 %, 8,1 %, 9,5 %, 13,6 % y 16,7 %, y el ROE de 17,5 %.\n\nLa mirada crítica: la ganancia neta no sigue al EBIT (en 2023 fue casi igual al EBIT y en 2024 fue menos de la mitad), señal de resultados no operativos que Yahoo no detalla (por ejemplo, ventas de participaciones o costos de reestructuración, dato a verificar). Es más fiable mirar el EBIT y el flujo libre.",
+   "balance": "**Balance equilibrado: caja y deuda similares.** La caja es de 10.997 M y la deuda total de 10.588 M, de modo que tiene algo más de plata que deudas (unos 409 M de caja neta, cálculo propio con los datos de Yahoo). El patrimonio neto es de 45.948 M y la deuda equivale a 0,23 veces el patrimonio. Los intereses se cubren casi 20 veces con el EBIT.\n\nLa deuda total bajó de 13.085 M en 2022 a 10.588 M, con un patrimonio que subió de 40.186 M a 45.948 M. Parte de ese patrimonio es plusvalía de compras anteriores, por eso el ROIC fue bajo durante años.",
+   "gerencia": "La conduce Christian Klein, CEO y miembro del directorio ejecutivo (45 años, pago de 5,9 M según Yahoo), con Dominik Asam como director financiero (56 años, pago de 2,8 M). Klein condujo el giro hacia la nube y la reestructuración de 2024, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras crecientes**: paga un dividendo de 2,93 por acción (pagado desde 1999, en la moneda que informa Yahoo; 10 años de crecimiento a 8,3 % por año, pero -0,4 % en los últimos 3; 2.883 M en los últimos 12 meses, 31 % del flujo libre) y recompró 1.500 M en 2022, 949 M, 2.106 M, 1.937 M y 4.124 M en los últimos 12 meses. **Las acciones bajaron de 1.175 M a 1.164 M, un 0,9 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 27,1 %, subiendo desde 20,5 %.",
+    "ROIC de 16,7 %, duplicado en tres años.",
+    "Flujo libre de 9.182 M, 23,3 % de los ingresos.",
+    "Dividendo pagado desde 1999 y recompras de 4.124 M.",
+    "Costos de cambio altos en sus clientes."
+   ],
+   "debilidades": [
+    "Ganancia neta irregular.",
+    "Crecimiento de ingresos de 7 % a 10 % por año, moderado.",
+    "Los agentes de inteligencia artificial pueden cambiar cómo se usa el software de gestión: el crítico más duro diría que la base instalada es menos segura de lo que parece.",
+    "Dividendo con crecimiento de -0,4 % por año en 3 años.",
+    "Competencia de Oracle, Microsoft y Workday."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 27,1 %; si baja, la migración a la nube cuesta más.",
+    "Ingresos de la nube: Yahoo no los informa, hay que buscarlos en el informe.",
+    "Ganancia neta contra EBIT: hoy 8.041 M contra 10.673 M; hay que entender qué es no operativo.",
+    "Cantidad de contratos y usuarios: define si la inteligencia artificial la afecta."
+   ],
+   "clientes": [
+    "Grandes empresas multinacionales",
+    "Medianas empresas industriales y de servicios",
+    "Organismos públicos"
+   ],
+   "ideal_para": [
+    "Buscan software empresarial con costos de cambio altos.",
+    "Valoran la mejora de márgenes y el dividendo.",
+    "Aceptan analizar cifras en euros."
+   ],
+   "menos_ideal": [
+    "Buscan ganancias netas estables.",
+    "No toleran el desafío de los agentes de inteligencia artificial."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "SAP",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 39387000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
