@@ -8175,6 +8175,194 @@
      "2023"
     ]
    }
+  },
+  "DELL": {
+   "resumen": "Dell es una empresa estadounidense de hardware: fabrica y vende servidores, almacenamiento y redes para centros de datos (segmento ISG), y computadoras, monitores y accesorios para empresas y consumidores (segmento CSG), con servicios de soporte y financiamiento. Gana plata vendiendo equipos con márgenes bajos pero a escala enorme, comprando componentes de forma eficiente y entregando directo al cliente. Tiene un **foso débil, de escala, cadena de suministro y relaciones con clientes empresariales**: es de los mayores compradores de componentes del mundo y vende a la mayoría de las grandes empresas, pero el hardware es un producto comparable y sus competidores pueden copiar la mayoría de sus ventajas. Los números cambiaron mucho en el último año: los ingresos pasaron de 95.567 M en el ejercicio 2025 a 113.538 M en 2026 y a **151.197 M** en los últimos 12 meses, impulsados probablemente por servidores de inteligencia artificial (dato a verificar). El margen operativo subió de 7,0 % a **9,6 %** pero el margen bruto bajó de 23,8 % a **19,8 %**, porque esos servidores dejan menos margen. El flujo libre es de **8.560 M** (5,7 % de los ingresos), pero fue de solo 562 M y 1.869 M en dos de los últimos cuatro años. Tiene patrimonio negativo (-1.427 M), la deuda total es de 34.466 M (en parte de su brazo financiero) y devolvió 10.672 M entre recompras y dividendos, 125 % del flujo libre. Las acciones bajaron **11,8 %**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: es la principal fuente de demanda, aunque el 22/10 los semiconductores cayeron 6,7 %. Conclusión: **empresa de calidad regular: ventas en fuerte alza y flujo libre de 8.560 M, pero con margen bruto en baja, patrimonio negativo, deuda de 34.466 M y retornos mayores que el flujo libre.**",
+   "veredicto": "Regular: ventas en fuerte alza y flujo libre de 8.560 M, con margen bruto en baja, patrimonio negativo y retornos mayores que el flujo libre",
+   "conclusion": "Dell es una empresa de calidad regular: tiene ventas en fuerte alza, flujo libre de 8.560 M, ROIC de 36,1 % y 11,8 % menos acciones, pero el margen bruto bajó a 19,8 %, el patrimonio es negativo, la deuda llega a 34.466 M y las recompras más el dividendo superaron al flujo libre. Hay que seguirla de cerca. Es recomendable investigar la cartera de pedidos de servidores de inteligencia artificial y la deuda del brazo financiero en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen bruto deje de bajar.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Dell diseña, desarrolla, fabrica, comercializa, vende y brinda soporte a soluciones, productos y servicios integrales en América, Europa, Medio Oriente, Asia y a nivel internacional. Opera dos segmentos: **Infrastructure Solutions Group (ISG)**, que ofrece soluciones de almacenamiento y servidores, y **Client Solutions Group (CSG)**, con computadoras y accesorios. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de hardware cíclico: **los ingresos cayeron 13,6 % en 2024, subieron 8,1 % en 2025 y 18,8 % en 2026, hasta 113.538 M** (el ejercicio cierra a fines de enero), y saltan a 151.197 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas, organismos públicos y consumidores de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque algunos pedidos de servidores de inteligencia artificial son muy grandes (dato a verificar).",
+   "foso": "La ventaja de Dell **es de escala y cadena de suministro, y es débil**. Comprar millones de componentes por año le da poder de negociación, y su red de ventas y servicio llega a casi todas las grandes empresas del mundo. Eso le permite mantener un margen operativo de 5,6 % a 9,6 % en un negocio donde otros pierden plata.\n\nPero el hardware es comparable: el cliente puede comprar el mismo servidor a Hewlett Packard Enterprise, Supermicro, Lenovo, Cisco o directo a fabricantes taiwaneses. El margen bruto cayó de 23,8 % a 19,8 % en los últimos 12 meses, señal de que el crecimiento actual viene con menor rentabilidad por dólar vendido. Es frágil en la concentración de pedidos de servidores de inteligencia artificial, en el ciclo de computadoras y en la dependencia de pocos proveedores de chips. La inteligencia artificial hoy impulsa la demanda.",
+   "numeros": "Los números de Dell cuentan **un salto fuerte de ingresos con margen bruto en baja**. Los ingresos fueron de 102.301 M, 88.425 M, 95.567 M y 113.538 M, y de 151.197 M en los últimos 12 meses. El EBIT fue de 5.771 M, 5.933 M, 6.656 M y 8.446 M, y de **14.547 M** (margen operativo de 9,6 %). La ganancia neta fue de 2.442 M, 3.388 M, 4.592 M y 5.936 M, y de 11.378 M. La ganancia por acción fue de 3,24, 4,55, 6,38, 8,68 y **17,23**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 562 M, 5.920 M, 1.869 M y 8.552 M, y de **8.560 M** en los últimos 12 meses (5,7 % de los ingresos). Las inversiones subieron de 2.633 M a 3.592 M. El ROIC fue de 16,4 %, 20,6 %, 26,1 %, 23,8 % y 36,1 %. El ROE no sirve porque el patrimonio es negativo.\n\nLa mirada crítica: el flujo libre fluctúa mucho por el capital de trabajo (cobros y pagos a proveedores): fue de 562 M en 2023 y de 8.552 M en 2026. Los números de los últimos 12 meses reflejan un pico de ventas de servidores que puede no repetirse.",
+   "balance": "**Deuda alta, patrimonio negativo y mucha de la deuda pertenece al brazo financiero.** La deuda total es de 34.466 M y la caja de 11.569 M; la deuda neta es de 22.897 M y la deuda neta/EBITDA es de 1,24x, que multiplicado por 12 son unos 15 meses de EBITDA. Esa deuda incluye la del brazo financiero que presta a clientes, por lo que no es comparable con una empresa industrial pura. En 2026 los intereses se cubrían 5,4 veces con el EBIT.\n\nEl patrimonio neto es negativo (-1.427 M) por años de recompras mayores a las ganancias retenidas, aunque mejoró desde -3.122 M en 2023. El ratio corriente (0,96x) indica que Dell cobra rápido y paga a proveedores con plazo.",
+   "gerencia": "La conduce Michael Dell, presidente y CEO (60 años, pago de 3,4 M según Yahoo), fundador y principal accionista (dato público), con David Kennedy como director financiero (47 años, pago de 1,1 M) y Jeff Clarke como director de operaciones y vicepresidente del directorio (62 años, pago de 4,0 M).\n\nEn lo que importa, **el uso del capital es de recompras fuertes y dividendo reciente**: paga un dividendo de 2,52 por acción desde 2022 (1.566 M en los últimos 12 meses) y recompró 3.281 M en 2023, 2.452 M, 3.165 M, 6.404 M y 9.106 M en los últimos 12 meses. **Las acciones bajaron de 753 M a 664 M, un 11,8 % menos.** Recompras más dividendos (10.672 M) superaron al flujo libre (8.560 M).",
+   "fortalezas": [
+    "Ingresos de 151.197 M en los últimos 12 meses, en fuerte alza.",
+    "Flujo libre de 8.560 M.",
+    "11,8 % menos acciones desde 2023.",
+    "ROIC de 36,1 % en los últimos 12 meses.",
+    "Escala de compras y red de ventas empresarial."
+   ],
+   "debilidades": [
+    "Margen bruto bajó de 23,8 % a 19,8 %.",
+    "Patrimonio negativo (-1.427 M).",
+    "Deuda total de 34.466 M, con parte del brazo financiero: el crítico más duro diría que devuelve más capital del que genera.",
+    "Flujo libre muy irregular.",
+    "Depende del ciclo de servidores de inteligencia artificial."
+   ],
+   "vigilar": [
+    "Margen bruto: hoy 19,8 %; si sigue bajando, los servidores de inteligencia artificial dejan poco.",
+    "Flujo libre: hoy 8.560 M; tiene que cubrir recompras y dividendo.",
+    "Deuda total: hoy 34.466 M; no debería seguir subiendo.",
+    "Pedidos de servidores: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Empresas y operadores de centros de datos",
+    "Organismos públicos",
+    "Consumidores y empresas que compran computadoras"
+   ],
+   "ideal_para": [
+    "Buscan exposición al hardware de infraestructura de inteligencia artificial.",
+    "Valoran las recompras y el flujo libre.",
+    "Aceptan márgenes finos y balance apalancado."
+   ],
+   "menos_ideal": [
+    "Buscan un foso claro.",
+    "No toleran el ciclo del hardware ni el patrimonio negativo."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "DELL",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 151197000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "MSI": {
+   "resumen": "Motorola Solutions es una empresa estadounidense que provee soluciones de seguridad pública, gubernamental, de defensa y de seguridad empresarial: radios y redes de comunicación de misión crítica para policías, bomberos y emergencias, cámaras de video, control de accesos, software de despacho y análisis, y servicios gestionados. Opera dos segmentos: Products and Systems Integration, y Software and Services. Gana plata vendiendo equipos y sistemas, y cada vez más software y servicios recurrentes con contratos de varios años. Tiene un **foso amplio, de estándares, base instalada y relaciones con el sector público**: sus radios y redes son parte de los sistemas de emergencia de miles de ciudades, que no pueden fallar, y reemplazarlos exige capacitación, integración y licitaciones largas. Los números son de primer nivel: los ingresos pasaron de 9.112 M en 2022 a **12.236 M** en los últimos 12 meses (creciendo cerca de 8 % por año), el margen bruto subió de 46,4 % a 52,0 %, el margen operativo es de **25,2 %**, el ROIC de **20,5 %** y el flujo libre de **2.677 M** (21,9 % de los ingresos). Hay 2,3 % menos acciones y el dividendo crece 11,3 % por año en 3 años. Su punto débil es la deuda (9.619 M, 2,22x EBITDA) que subió por una compra y que depende de presupuestos públicos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso amplio, margen operativo de 25,2 %, flujo libre de 2.677 M y dividendo creciente, aunque con deuda de 2,22x EBITDA y dependencia de presupuestos públicos.**",
+   "veredicto": "Muy buena: foso amplio, margen operativo de 25,2 % y flujo libre de 2.677 M, con deuda de 2,22x EBITDA y presupuestos públicos como riesgo",
+   "conclusion": "Motorola Solutions es una empresa de muy buena calidad: tiene un foso amplio de base instalada y relaciones con el sector público, margen operativo de 25,2 %, flujo libre de 2.677 M y dividendo creciente, pero la deuda subió a 9.619 M (2,22x EBITDA) y depende de presupuestos públicos. Vale la pena seguirla de cerca. Es recomendable investigar la compra reciente y la cartera de pedidos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda baje y el margen operativo se sostenga.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Motorola Solutions provee soluciones de seguridad pública, gubernamental, de defensa y de seguridad empresarial en Estados Unidos, Reino Unido, Canadá y a nivel internacional. Opera dos segmentos: **Products and Systems Integration**, con infraestructura, dispositivos, accesorios e integración de sistemas, y **Software and Services**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio estable con crecimiento sostenido: **los ingresos subieron 9,5 % en 2023, 8,4 % en 2024 y 8,0 % en 2025, hasta 11.682 M**, y llegan a 12.236 M en los últimos 12 meses.\n\n**A quién le vende.** A policías, bomberos, servicios de emergencia, gobiernos y empresas. **Ningún cliente pesa de forma decisiva**, aunque dependen de presupuestos públicos.",
+   "foso": "La ventaja de Motorola Solutions **es de estándares, base instalada y relaciones con el sector público, y es amplia**. Sus radios y redes de comunicación forman parte de los sistemas de emergencia de miles de ciudades, que no pueden fallar, y cambiarlos implica capacitar a miles de agentes, rediseñar la red y pasar licitaciones largas. Se ve en el margen bruto que subió de 46,4 % a 52,0 % y en el margen operativo de 25,2 %.\n\nCompite con Hytera, Hexagon, Axon (cámaras corporales), Cisco y proveedores locales de comunicaciones. Es frágil en los presupuestos de los gobiernos, en los ciclos de licitaciones y en que la deuda subió por compras recientes. La inteligencia artificial no la amenaza de forma directa; la usa en análisis de video y despacho.",
+   "numeros": "Los números de Motorola Solutions cuentan **un negocio que crece al 8 % con márgenes que suben**. Los ingresos fueron de 9.112 M, 9.978 M, 10.817 M y 11.682 M, y de 12.236 M en los últimos 12 meses. El EBIT fue de 1.743 M, 2.359 M, 2.689 M y 2.959 M, y de **3.079 M** (margen operativo de 25,2 %). La ganancia neta fue de 1.363 M, 1.709 M, 1.577 M y 2.154 M, y de 2.134 M. La ganancia por acción fue de 7,93, 9,93, 9,23, 12,75 y **12,70**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 1.567 M, 1.791 M, 2.134 M y 2.572 M, y de **2.677 M** en los últimos 12 meses (21,9 % de los ingresos). El ROIC fue de 25,6 %, 28,0 %, 28,0 %, 19,6 % y 20,5 %. El ROE de 79,9 % no sirve para comparar porque el patrimonio es chico (2.672 M).\n\nLa mirada crítica: el ROIC bajó de 28,0 % a 19,6 % cuando el capital invertido subió de 7.700 M a 11.572 M por una compra de empresas (a verificar en el informe). La ganancia neta de 2024 (1.577 M) fue menor que la de 2023 por cargos que Yahoo no detalla.",
+   "balance": "**Deuda moderada y bien cubierta, pero más alta que antes.** La deuda total es de 9.619 M y la caja de 710 M; la deuda neta es de 8.322 M y la deuda neta/EBITDA es de 2,22x, que multiplicado por 12 son unos 27 meses de EBITDA. Los intereses se cubren 7,0 veces con el EBIT.\n\nEl patrimonio neto es de 2.672 M, chico para el tamaño de la empresa por años de recompras y dividendos mayores que las ganancias retenidas. La deuda total subió de 6.551 M a 9.619 M en 2025, un movimiento que coincide con la compra de otra empresa.",
+   "gerencia": "La conduce Greg Brown, presidente del directorio y CEO (65 años, pago de 6,4 M según Yahoo), con Jason Winkler como director financiero (51 años, pago de 2,5 M). Brown lidera la empresa desde 2008, dato público; a los 65 años, la sucesión es una variable a seguir.\n\nEn lo que importa, **el uso del capital es de dividendo creciente, recompras y compras de empresas**: paga un dividendo de 4,84 por acción (sube 11,3 % por año en 3 años; 766 M en los últimos 12 meses, 29 % del flujo libre) y recompró 836 M en 2022, 804 M, 247 M, 1.154 M y 1.032 M en los últimos 12 meses. **Las acciones bajaron de 172 M a 168 M, un 2,3 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 25,2 %, subiendo desde 19,1 %.",
+    "Flujo libre de 2.677 M, 21,9 % de los ingresos.",
+    "Ingresos creciendo cerca de 8 % por año.",
+    "Dividendo creciendo 11,3 % por año en 3 años.",
+    "Base instalada de radios y redes de emergencia."
+   ],
+   "debilidades": [
+    "Deuda total de 9.619 M, 2,22x EBITDA.",
+    "Patrimonio chico (2.672 M).",
+    "Depende de presupuestos públicos: el crítico más duro diría que un recorte de gasto la golpea.",
+    "ROIC bajó de 28,0 % a 20,5 % tras la compra reciente.",
+    "Ganancia neta que fluctúa por cargos no detallados."
+   ],
+   "vigilar": [
+    "Deuda neta: hoy 8.322 M; tiene que bajar con el flujo libre.",
+    "Margen operativo: hoy 25,2 %; si baja, la compra reciente pesa.",
+    "Ingresos: hoy +8 %; depende de presupuestos públicos.",
+    "ROIC: hoy 20,5 %; tiene que volver hacia 25 %."
+   ],
+   "clientes": [
+    "Policías, bomberos y servicios de emergencia",
+    "Gobiernos y organismos de defensa",
+    "Empresas con necesidades de seguridad"
+   ],
+   "ideal_para": [
+    "Buscan un negocio estable ligado a seguridad pública.",
+    "Valoran el dividendo creciente y los márgenes altos.",
+    "Aceptan deuda moderada."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento muy rápido.",
+    "No toleran la dependencia de presupuestos públicos."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "MSI",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 12236000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "INFY": {
+   "resumen": "Infosys es una de las mayores empresas de servicios de tecnología de la India: presta consultoría, desarrollo y mantenimiento de software, tercerización de procesos, ingeniería, ciberseguridad y servicios digitales, incluida la inteligencia artificial aplicada (Infosys Topaz), a grandes empresas de todo el mundo, sobre todo de Estados Unidos y Europa. Gana plata cobrando por proyectos y por contratos de servicios gestionados a varios años, con profesionales ubicados en gran parte en la India. Tiene un **foso estrecho, de escala, relaciones con grandes clientes y costos laborales bajos**: trabaja con cientos de grandes empresas, conoce sus sistemas y puede mover miles de ingenieros a un proyecto con un costo por hora menor que el de sus competidores occidentales. Los números son estables y rentables: los ingresos fueron de 20.366 M en los últimos 12 meses, el margen operativo de **20,4 %** se mantiene desde 2023, el ROIC es de **29,4 %** y el flujo libre de **3.631 M** (17,8 % de los ingresos). Tiene más caja (3.980 M) que deuda (890 M) y paga dividendo desde 1999. Pero el crecimiento es bajo (1,9 %, 3,9 % y 4,6 % por año), las acciones bajaron solo 2,8 % y su ganancia por acción casi no se movió (de 0,71 a 0,81). El punto débil es que su negocio se basa en horas de personas. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **alto**, porque puede automatizar programación, pruebas y mantenimiento, aunque Infosys también la vende. Conclusión: **empresa de buena calidad, con ROIC de 29,4 %, margen operativo estable de 20,4 % y caja neta de 3.090 M, pero con crecimiento bajo y un modelo de horas de personas expuesto a la inteligencia artificial.**",
+   "veredicto": "Buena: ROIC de 29,4 %, margen operativo de 20,4 % y caja neta de 3.090 M, con crecimiento bajo y expuesta a la inteligencia artificial",
+   "conclusion": "Infosys es una empresa de buena calidad: tiene un foso estrecho de escala y costos, ROIC de 29,4 %, margen operativo estable de 20,4 %, caja neta de 3.090 M y dividendo desde 1999, pero el crecimiento es de 2 % a 5 % por año y su modelo de horas de personas está expuesto a la inteligencia artificial. Hay que seguirla de cerca. Es recomendable investigar los contratos nuevos y la composición de ingresos por región en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo con el margen operativo estable.",
+   "calidad": "Buena",
+   "riesgo_ia": "alto",
+   "negocio": "Infosys provee servicios de consultoría, tecnología, tercerización y servicios digitales en todo el mundo. Ofrece servicios de análisis, como inteligencia artificial aplicada y generativa, servicios de sustentabilidad e Infosys Topaz, un conjunto de servicios, soluciones y plataformas con la inteligencia artificial como prioridad; también blockchain, Internet de las cosas, ingeniería y ciberseguridad. Yahoo informa segmentos por industria (por ejemplo comunicaciones, medios y tecnología, y consumo, logística y comercio), pero no cuánto aporta cada uno, y no lo vamos a inventar.\n\nEs un negocio de servicios con crecimiento lento: **los ingresos subieron 1,9 % en 2024, 3,9 % en 2025 y 4,6 % en 2026, hasta 20.158 M** (el ejercicio cierra a fines de marzo), y llegan a 20.366 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes empresas de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque Estados Unidos y Europa concentran las ventas (dato público a verificar).",
+   "foso": "La ventaja de Infosys **es de escala, relaciones y costos laborales, y es estrecha**. Una gran empresa que le confía el mantenimiento de sus sistemas la tiene dentro de sus procesos, y Infosys puede asignar a miles de ingenieros ubicados en la India con un costo por hora menor al de los competidores occidentales. Se ve en el margen operativo estable de 20 % a 21 % y en el ROIC de 26 % a 31 %.\n\nPero el margen bruto es de 30 %, bajo, y el negocio depende de vender horas de personas. Compite con Accenture, Tata Consultancy Services, Wipro, HCL, Cognizant e IBM. Es frágil en la demanda de tecnología de sus clientes, en el costo de los profesionales en la India, en las restricciones migratorias y, sobre todo, en la inteligencia artificial, que puede reducir las horas necesarias para programar y mantener sistemas. Por eso el riesgo es alto.",
+   "numeros": "Los números de Infosys cuentan **un negocio estable, rentable y de crecimiento bajo**. Los ingresos fueron de 18.212 M, 18.562 M, 19.277 M y 20.158 M, y de 20.366 M en los últimos 12 meses. El EBIT fue de 3.825 M, 3.849 M, 4.077 M y 4.089 M, y de 4.155 M (margen operativo de 20,4 %). La ganancia neta fue de 2.981 M, 3.167 M, 3.158 M y 3.313 M, y de 3.302 M. La ganancia por acción fue de 0,71, 0,76, 0,76, 0,80 y **0,81**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.534 M, 2.882 M, 4.088 M y 3.733 M, y de **3.631 M** en los últimos 12 meses (17,8 % de los ingresos). El ROIC fue de 30,2 %, 26,6 %, 25,9 %, 30,8 % y 29,4 %, y el ROE de 32,0 %.\n\nLa mirada crítica: la ganancia por acción creció solo 14 % en tres años, y los dividendos pagados (2.133 M en 2026) absorben 57 % del flujo libre. El margen operativo no mejora, y el flujo libre de 2025 (4.088 M) fue un pico que no se repitió.",
+   "balance": "**Balance de caja neta, sin riesgo de deuda.** La caja es de 3.980 M y la deuda total de 890 M (probablemente arrendamientos), de modo que la deuda neta es de -3.090 M: tiene más plata que deudas. El patrimonio neto es de 10.333 M y la deuda equivale a 0,09 veces el patrimonio. Los intereses se cubren 86 veces con el EBIT.\n\nLa caja subió de 2.359 M en 2023 a 3.980 M, mientras pagó dividendos y recompras. Es un balance muy cómodo.",
+   "gerencia": "La conduce Salil Parekh, director gerente y CEO (61 años, pago de 8,8 M según Yahoo), en el cargo desde 2018, dato público. El cofundador Nandan Nilekani (69 años) es el presidente no ejecutivo del directorio. Yahoo no informa quién es el director financiero entre los directivos que lista.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras irregulares**: paga un dividendo de 0,52 por acción (pagado desde 1999; sube 7,9 % por año en 3 años; 2.140 M en los últimos 12 meses, 59 % del flujo libre) y recompró 1.398 M en 2023, nada en 2024 y 2025, y 2.006 M en 2026. **Las acciones bajaron de 4.188 M a 4.070 M, un 2,8 % menos.**",
+   "fortalezas": [
+    "ROIC de 29,4 % y margen operativo estable de 20,4 %.",
+    "Más caja (3.980 M) que deuda (890 M).",
+    "Flujo libre de 3.631 M, 17,8 % de los ingresos.",
+    "Dividendo pagado desde 1999 y creciendo 7,9 % por año.",
+    "Escala y costos laborales bajos."
+   ],
+   "debilidades": [
+    "Crecimiento de solo 2 % a 5 % por año.",
+    "Ganancia por acción casi sin movimiento (0,71 a 0,81).",
+    "Modelo de horas de personas: el crítico más duro diría que la inteligencia artificial erosiona su base.",
+    "Dividendo que absorbe casi 60 % del flujo libre.",
+    "Margen bruto bajo (30 %)."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +4,6 %; si bajan de 3 %, la inteligencia artificial reduce la demanda.",
+    "Margen operativo: hoy 20,4 %; si baja, la presión de precios aumenta.",
+    "Recompras: irregulares; definen cuánto baja la cantidad de acciones.",
+    "Flujo libre: hoy 3.631 M; tiene que cubrir el dividendo de 2.140 M."
+   ],
+   "clientes": [
+    "Grandes empresas de Estados Unidos y Europa",
+    "Bancos, aseguradoras y empresas de comercio",
+    "Empresas de comunicaciones y tecnología"
+   ],
+   "ideal_para": [
+    "Buscan una consultora de tecnología con caja neta y dividendo.",
+    "Valoran la estabilidad de márgenes y el ROIC alto.",
+    "Aceptan crecimiento bajo."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento rápido.",
+    "No toleran el riesgo de la inteligencia artificial sobre servicios basados en personas."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "INFY",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 20366000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
   }
  }
 }
