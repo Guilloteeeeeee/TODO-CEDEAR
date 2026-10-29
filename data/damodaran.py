@@ -9,7 +9,7 @@ from functools import lru_cache
 
 FUENTE = "Damodaran, ene-2026 (empresas de EE.UU.)"
 _DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "damodaran")
-ARCHIVOS = ("margin", "pbvdata", "pedata", "vebitda", "psdata", "wacc", "betas", "capex")
+ARCHIVOS = ("margin", "pbvdata", "pedata", "vebitda", "psdata", "wacc", "betas", "capex", "fundgrEB")
 
 
 def _num(x):
@@ -67,3 +67,11 @@ def valores(ticker):
     """Dict de planillas de la industria de Damodaran de esa empresa (o None)."""
     ind = industria_de(ticker)
     return ({"industria": ind, **cargar()[ind]} if ind and ind in cargar() else None)
+
+
+@lru_cache(maxsize=1)
+def primas_pais():
+    """Primas de riesgo por país (Damodaran, actualización de julio 2026): {'fuente','erp_maduro','erp_eeuu','paises':{país: {region, rating_moodys, spread_default, erp_total, crp}}}. Para el DCF; no se muestra todavía."""
+    import json
+    with open(os.path.join(_DIR, "erp_paises.json"), encoding="utf-8") as f:
+        return json.load(f)

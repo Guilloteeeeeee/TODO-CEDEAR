@@ -581,6 +581,7 @@ cedear-screener/
 
 - Se guardaron en `data/damodaran/` las planillas de Damodaran (EE.UU., enero 2026) que Guille copió de su página: márgenes, P/B y ROE, PER, EV/EBITDA, P/S, costo de capital y betas, capex.
 - `data/damodaran.py` las lee (96 filas: 94 industrias + 2 totales) y `data/damodaran_mapa.py` propone la industria de Damodaran de cada una de las 166 empresas. **No se muestra en pantalla hasta que Guille apruebe esa tabla.**
+- Se sumaron `fundgrEB` (ROC, tasa de reinversión y crecimiento esperado del EBIT por industria) y las primas de riesgo por país de julio 2026 (`erp_paises.json`, 178 países; ERP maduro 4,20 %, ERP EE.UU. 4,42 %) para el DCF. Tampoco se muestran todavía.
 - La fuente a citar será «Damodaran, ene-2026 (empresas de EE.UU.)»; se actualiza una vez por año.
 
 ### v1.2.87 (29/10/2026): informe con «por qué», botón de confirmar, noticias locales y menú
