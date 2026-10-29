@@ -433,7 +433,7 @@ def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
 # el resto (Filtro, Noticias, Calendario Financiero, Nuestras Redes, Contactános, Abrí una cuenta, Comentarios) abre un panel hacia el centro de la pagina: un grupo de
 # radios escondidos (name mn-sec) dice cual esta abierto. Filtro, Noticias y Calendario son widgets de Streamlit (contenedores con clave fly_*, en app.py);
 # lo demas es HTML (menu_flyouts_html). La tecla ESC lo cierra todo (script en app.py, SCRIPT_ESC).
-SECCIONES = ("filtro", "noticias", "cal", "redes", "contacto", "cuentas", "comentarios")
+SECCIONES = ("filtro", "noticias", "cal", "quienes", "redes", "contacto", "cuentas", "comentarios")
 
 SCRIPT_ESC = ("(function(){if(window.__mcEsc)return;window.__mcEsc=1;document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;"
               "var n=document.getElementById('sec-none');if(n)n.checked=true;var c=document.getElementById('mc-menu');if(c)c.checked=false;});"
@@ -455,7 +455,7 @@ def _fly_selectores(k, clase):
 
 
 _FLY_CLASES = {"filtro": ".st-key-fly_filtro", "noticias": ".st-key-fly_noticias", "cal": ".st-key-fly_cal",
-               "redes": ".fly-redes", "contacto": ".fly-contacto", "cuentas": ".fly-cuentas", "comentarios": ".fly-comentarios"}
+               "quienes": ".fly-quienes", "redes": ".fly-redes", "contacto": ".fly-contacto", "cuentas": ".fly-cuentas", "comentarios": ".fly-comentarios"}
 _TODOS_FLY = ",".join(_FLY_CLASES.values())
 _VISIBLE_FLY = ",".join(_fly_selectores(k, c) for k, c in _FLY_CLASES.items())
 _ACTIVO_FLY = ",".join(f"body:has(#mc-menu:checked):has(#sec-{k}:checked) label[for=sec-{k}]" for k in SECCIONES)
@@ -551,24 +551,24 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
         arriba = (_it_href("?menu=1", filtro, chica="en el inicio") + _it_href("?menu=1", "Noticias Calientes del día", chica="en el inicio")
                   + _it_href("?menu=1", "Calendario Financiero", chica="en el inicio"))
     arriba += _it_href("?pagina=cartera", "Evaluá tu Portfolio", clase="mn-it mn-rosa") + _it_href("?pagina=ideas", "Ideas de inversión")
+    # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
+    # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
     if e["quienes_somos"]:
-        qs = f'<a class="mn-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Quiénes somos</span><span class="mn-ar">›</span></a>'
+        medio = f'<a class="mn-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Quiénes somos</span><span class="mn-ar">›</span></a>'
     else:
-        qs = _it_href("?pagina=quienes", "Quiénes somos")
-    medio = qs
+        medio = _it_sec("quienes", "Quiénes somos")
     if any(e[k] for k in ("youtube", "instagram", "intramed")):
         medio += _it_sec("redes", "Nuestras Redes")
-    if e["mail"] or e["whatsapp"]:
-        medio += _it_sec("contacto", "Contactános")
     if _cuentas_html(cuentas):
         medio += _it_sec("cuentas", "Abrí una cuenta con nosotros")
-    abajo = ""
+    if e["mail"] or e["whatsapp"]:
+        medio += _it_sec("contacto", "Contactános")
     if e["comentarios"]:
-        abajo = f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Comentarios</span><span class="mn-ar">›</span></a>'
+        medio += f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Comentarios</span><span class="mn-ar">›</span></a>'
     elif _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail):
-        abajo = _it_sec("comentarios", "Comentarios")
+        medio += _it_sec("comentarios", "Comentarios")
     ver = f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b></div>' if version else ""
-    return f'<div>{arriba}</div><div class="mn-sep"></div><div>{medio}</div>' + (f'<div class="mn-sep2"></div><div>{abajo}</div>' if abajo else "") + ver
+    return f'<div>{arriba}</div><div class="mn-sep"></div><div>{medio}</div>' + ver
 
 
 def menu_flyouts_html(enlaces=None, cuentas=None, comentarios_mail=None):
@@ -577,19 +577,26 @@ def menu_flyouts_html(enlaces=None, cuentas=None, comentarios_mail=None):
     out = ""
     redes = "".join(_enlace_color(k, e[k]) for k in ("youtube", "instagram", "intramed") if e[k])
     if redes:
-        out += f'<div class="fly fly-redes">{fly_cabecera_html("Nuestras Redes")}<div class="mc-pop mn-pop"><div class="mc-redes">{redes}</div></div></div>'
+        out += f'<div class="fly fly-c fly-redes">{fly_cabecera_html("Nuestras Redes")}<div class="mc-pop mn-pop"><div class="mc-redes">{redes}</div></div></div>'
     contacto = (_enlace_color("mail", e["mail"]) if e["mail"] else "") + _enlace_color("whatsapp", e["whatsapp"])
     if contacto and (e["mail"] or e["whatsapp"]):
-        out += f'<div class="fly fly-contacto">{fly_cabecera_html("Contactános")}<div class="mc-pop mn-pop"><div class="mc-redes">{contacto}</div></div></div>'
+        out += f'<div class="fly fly-c fly-contacto">{fly_cabecera_html("Contactános")}<div class="mc-pop mn-pop"><div class="mc-redes">{contacto}</div></div></div>'
     logos = _cuentas_html(cuentas)
     if logos:
-        out += f'<div class="fly fly-cuentas">{fly_cabecera_html("Abrí una cuenta con nosotros")}<div class="mc-pop mn-pop">{logos.replace(chr(10), "")}</div></div>'
+        out += f'<div class="fly fly-c fly-cuentas">{fly_cabecera_html("Abrí una cuenta con nosotros")}<div class="mc-pop mn-pop">{logos.replace(chr(10), "")}</div></div>'
     form = "" if e["comentarios"] else _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
     if form:
-        out += f'<div class="fly fly-comentarios">{fly_cabecera_html("Comentarios")}<div class="mc-pop mn-pop">{form}</div></div>'
+        out += f'<div class="fly fly-c fly-comentarios">{fly_cabecera_html("Comentarios")}<div class="mc-pop mn-pop">{form}</div></div>'
     return out
 
 
 CSS += """
 .mn-pop{position:static!important;width:auto!important;box-shadow:none!important;border:0!important;padding:0!important;background:transparent!important}
+"""
+
+# v1.2.85: los paneles de HTML (Quiénes somos, Nuestras Redes, Abrí una cuenta, Contactános, Comentarios) miden lo que mide su contenido (antes ocupaban toda la altura de la pantalla)
+CSS += """
+.fly.fly-c{bottom:auto;height:auto;max-height:100vh;max-height:100dvh;width:min(360px,calc(100vw - min(94vw,430px) - 12px));top:64px;max-height:calc(100dvh - 64px);padding-bottom:18px!important;border-radius:14px 0 0 14px}
+.fly.fly-c.fly-q{width:min(560px,calc(100vw - min(94vw,430px) - 12px))}
+@media (max-width:900px){.fly.fly-c{top:0;bottom:0;height:100dvh;max-height:none;width:100vw;border-radius:0}}
 """

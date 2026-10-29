@@ -40,23 +40,21 @@ def proximos(paquetes, hoy=None, dias=DIAS, tickers=None):
 
 CSS = """
 .cal{font-family:inherit;color:#1f2937}
-.cal-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1e3a8a;display:flex;align-items:center;gap:.5rem}
-.cal-d .cal-n{font-weight:600;font-size:.74rem;color:#64748b;background:#eef2ff;border-radius:999px;padding:1px 8px}
-.cal-d.hoy{color:#15803d}
+.cal-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1f2937;display:flex;align-items:center;gap:.5rem}
+.cal-d .cal-n{font-weight:600;font-size:.74rem;color:#64748b;background:#f1f5f9;border-radius:999px;padding:1px 8px}
+.cal-d.hoy{color:#fff;background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);border-radius:10px;padding:5px 10px;text-shadow:0 1px 2px rgba(120,20,60,.30)}
+.cal-d.hoy .cal-n{background:rgba(255,255,255,.28);color:#fff}
 .cal-g{display:flex;flex-wrap:wrap;gap:6px}
 .cal-i{display:flex;align-items:center;gap:7px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:10px;padding:5px 10px 5px 6px;text-decoration:none!important;color:#1f2937!important}
 .cal-i:hover{background:#eef2ff;border-color:#c7d2fe}
 .cal-i b{font-size:.86rem}
-.cal-m{font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;white-space:nowrap}
-.cal-m.antes{background:#fef3c7;color:#92400e}
-.cal-m.despues{background:#e0e7ff;color:#3730a3}
-.cal-m.nd{background:#f1f5f9;color:#64748b;font-weight:600}
+.cal-m{font-size:.74rem;font-weight:400;color:#6b7280;white-space:nowrap}
 .cal-e{font-size:.68rem;color:#94a3b8}
 .cal-h{font-size:.85rem;color:#475569}.cal-v{color:#64748b;font-size:.9rem;padding:.4rem 0}
 .cal-p{color:#94a3b8;font-size:.74rem;margin-top:.8rem;line-height:1.4}
 """
 
-_ETQ = {"antes": "☀ Antes de la apertura", "despues": "☾ Después del cierre"}
+_ETQ = {"antes": "Antes de la apertura", "despues": "Después del cierre"}
 
 
 def _titulo_dia(f, hoy):
@@ -118,11 +116,11 @@ RUTA_ECO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data"
 
 CSS_ECO = """
 .eco{font-family:inherit;color:#1f2937}
-.eco-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1e3a8a}
-.eco-d.hoy{color:#15803d}
+.eco-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1f2937}
+.eco-d.hoy{color:#fff;background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);border-radius:10px;padding:5px 10px;text-shadow:0 1px 2px rgba(120,20,60,.30)}
 .eco-i{display:flex;align-items:baseline;gap:8px;padding:3px 0 3px 4px;font-size:.9rem;line-height:1.35}
-.eco-p{flex:none;min-width:62px;text-align:center;font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;background:#e0e7ff;color:#3730a3;white-space:nowrap}
-.eco-p.ar{background:#dbeafe;color:#1e40af}
+.eco-p{flex:none;min-width:62px;text-align:center;font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;background:#1e3a8a;color:#fff;white-space:nowrap}
+.eco-p.ar{background:#9fd0f2;color:#0b3a5c}
 .eco-v{color:#64748b;font-size:.9rem;padding:.4rem 0}
 .eco-n{color:#94a3b8;font-size:.74rem;margin-top:.8rem;line-height:1.4}
 """

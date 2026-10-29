@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.84"
+APP_VERSION = "1.2.85"
 
 import re
 import contextlib
@@ -50,7 +50,7 @@ from ui import criterios as _criterios
 from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
 from ui.flecha import poner_flecha, CSS_OCULTAR as CSS_FLECHA
-from ui.quienes import quienes_html, CSS as CSS_QUIENES
+from ui.quienes import quienes_html, quienes_panel_html, CSS as CSS_QUIENES
 from ui import ficha as _ficha
 from ui import tecnico as _tecnico
 from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx, paquetes_yahoo as _py
@@ -926,7 +926,7 @@ def render_menu_estatico(caja, home=False, filtro="Filtro de Empresas"):
     (Nuestras Redes, Contactános, Abrí una cuenta, Comentarios). Los paneles con widgets (Filtro, Noticias, Calendario Financiero) se arman en main() cuando hay datos."""
     with caja:
         st.markdown(menu_cabecera_html() + menu_lista_html(home, filtro=filtro, version=APP_VERSION), unsafe_allow_html=True)
-    st.markdown(menu_flyouts_html(), unsafe_allow_html=True)
+    st.markdown(menu_flyouts_html() + quienes_panel_html(), unsafe_allow_html=True)
 
 
 def poner_esc():
@@ -943,25 +943,36 @@ def poner_esc():
 
 @st.cache_data(ttl=3600, show_spinner=False)
 def _opciones_busqueda(etfs_firma: tuple) -> list:
-    """[(texto, tipo, ticker)] de todas las empresas y ETFs para el buscador con sugerencias (v1.2.64), ordenadas por ticker."""
-    out = []
+    """[(texto, tipo, ticker)] de todas las empresas y ETFs para el buscador con sugerencias (v1.2.64). v1.2.85: el buscador filtra "por el comienzo": cada empresa figura
+    dos veces, "TICKER · Nombre" (primero, ordenadas por largo de ticker) y "Nombre · TICKER" (después, de la A a la Z), así al escribir una letra quedan solo las que
+    EMPIEZAN con esa letra (ya sea por el ticker o por el nombre) y cada letra nueva achica la lista."""
+    items = []
     try:
         df_c, _ = load_cache(ignorar_ttl=True)
         if df_c is not None and not df_c.empty:
             for t, n in zip(df_c["ticker"], df_c["nombre"] if "nombre" in df_c.columns else df_c["ticker"]):
                 n = str(n or "").strip()
-                out.append((f"{t} · {n}" if n and n != t else str(t), "empresa", str(t)))
+                items.append((str(t), n if n and n != t else "", "empresa"))
     except Exception:  # noqa: BLE001
         pass
     for t, n in etfs_firma:
-        out.append((f"{t} · {n} · ETF", "etf", t))
-    vistos, res = set(), []
-    # v1.2.84: los tickers cortos van primero (al escribir "O" aparece Realty Income arriba y no 80 empresas que tienen una o en el nombre)
-    for o in sorted(out, key=lambda x: (len(x[2]), x[2], x[1])):
-        if o[0] not in vistos:
-            vistos.add(o[0])
-            res.append(o)
-    return res
+        n = str(n or "").strip()
+        items.append((str(t), n if n and n != t else "", "etf"))
+    por_ticker, por_nombre, vistos = [], [], set()
+    sufijo = {"empresa": "", "etf": " · ETF"}
+    for t, n, tipo in sorted(items, key=lambda x: (len(x[0]), x[0], x[2])):
+        txt = (f"{t} · {n}" if n else t) + sufijo[tipo]
+        if txt not in vistos:
+            vistos.add(txt)
+            por_ticker.append((txt, tipo, t))
+    for t, n, tipo in sorted(items, key=lambda x: (x[1].lower() or x[0].lower(), x[0])):
+        if not n:
+            continue
+        txt = f"{n} · {t}" + sufijo[tipo]
+        if txt not in vistos:
+            vistos.add(txt)
+            por_nombre.append((txt, tipo, t))
+    return por_ticker + por_nombre
 
 
 def _ir_a_seleccion():
@@ -985,8 +996,8 @@ def render_buscador() -> str:
         try:
             args = dict(index=None, key="flt_busqueda", placeholder="Empresa o ETF", label_visibility="collapsed", on_change=_ir_a_seleccion)
             try:
-                # v1.2.67: "contains" = solo quedan las opciones que tienen lo escrito (antes, el modo por defecto dejaba también las que tenían las letras sueltas)
-                st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], filter_mode="contains", **args)
+                # v1.2.85: "prefix" = solo quedan las opciones que EMPIEZAN con lo escrito (el ticker o el nombre); cada letra nueva achica la lista
+                st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], filter_mode="prefix", **args)
             except TypeError:       # Streamlit viejo, sin filter_mode
                 st.selectbox("Buscar empresa, ETF o ticker", [o[0] for o in opciones], **args)
         except Exception:  # noqa: BLE001
@@ -1371,7 +1382,7 @@ def render_calendario(df, lugar=None, directo=False):
         nombres = dict(zip(df["ticker"], df["nombre"])) if "nombre" in df.columns else {}
         n = sum(len(v) for _, v in grupos)
         with (lugar if lugar is not None else st.container()):
-            t_res, t_eco = st.tabs(["Próximos resultados empresariales", "Próximos eventos financieros"])
+            t_res, t_eco = st.tabs(["Próximos Resultados Empresariales", "Próximos Eventos Financieros"])
             with t_res:
                 tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
                 if (tk or "").strip():

@@ -9,7 +9,7 @@ import unicodedata
 
 from data import carteras_modelo as CM
 
-CLASES = {"rf": "Renta fija", "rv": "Renta variable", "oro": "Oro", "cripto": "Criptoactivos", "efectivo": "Efectivo y liquidez", "otros": "Otras materias primas"}
+CLASES = {"rf": "Renta fija", "rv": "Renta variable", "oro": "Oro", "cripto": "Criptoactivos", "efectivo": "Liquidez", "otros": "Otras materias primas"}
 
 SUPERSECTOR_DE = {   # sector de la app -> supersector (estructura Cíclico / Sensible / Defensivo)
     "Materiales Básicos": "ciclico", "REITs": "ciclico", "Bancos y seguros": "ciclico", "Pagos y datos": "ciclico", "Consumo Discrecional": "ciclico",
@@ -680,7 +680,11 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
         peso[p["clase"]] += p["monto"] / total * 100
     nombre_rango, carts = ref
     sep_efectivo = carts.get("efectivo", 0) > 0          # solo la cartera de 70+ tiene efectivo propio (cuentas remuneradas y cauciones)
-    cmp_real = {"rf": peso["rf"] + (0 if sep_efectivo else peso["efectivo"]), "rv": peso["rv"], "oro": peso["oro"], "cripto": peso["cripto"]}
+    # v1.2.85: el efectivo es LIQUIDEZ, no renta fija: nunca se suma a la renta fija. Cuando la referencia no tiene liquidez propia, lo invertido (renta variable, renta fija,
+    # oro y criptoactivos) se compara sobre lo que queda sin la liquidez; la liquidez se evalúa aparte (10 a 15 % está bien tolerado).
+    liq = peso["efectivo"]
+    base = 100.0 if sep_efectivo else max(100.0 - liq, 1.0)
+    cmp_real = {k: peso[k] / base * 100 for k in ("rf", "rv", "oro", "cripto")}
     if sep_efectivo:
         cmp_real["efectivo"] = peso["efectivo"]
     desvio = {k: cmp_real[k] - carts.get(k, 0) for k in cmp_real}
@@ -703,7 +707,7 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
     st_ = sum(sup.values())
     por_pos = sorted(ok, key=lambda p: -p["monto"])
     return {
-        "rango": nombre_rango, "efectivo_propio": sep_efectivo, "total": total, "peso": peso, "desvio": desvio, "rv_total": rv_total, "n_empresas": len(emp),
+        "rango": nombre_rango, "efectivo_propio": sep_efectivo, "liquidez": liq, "total": total, "peso": peso, "desvio": desvio, "rv_total": rv_total, "n_empresas": len(emp),
         "geo": ({k: v / rv_total * 100 for k, v in geo.items()} if rv_total and geo_tot else None), "geo_ubicado_pct": (geo_tot / rv_total * 100) if rv_total else 0.0,
         "super": {k: v / st_ * 100 for k, v in sup.items()} if st_ else None, "sector_ubicado_pct": (st_ / rv_total * 100) if rv_total else 0.0,
         "sectores": sorted(((k, v / st_ * 100) for k, v in sect.items()), key=lambda kv: -kv[1]) if st_ else [],
@@ -717,7 +721,8 @@ def _pts(x):
     return f"{abs(x):.0f}"
 
 
-_NOMBRE_CLASE = {"rv": "renta variable", "oro": "oro", "cripto": "criptoactivos", "efectivo": "efectivo, cuentas remuneradas y cauciones"}
+LIQ_MIN, LIQ_MAX = 10.0, 15.0      # v1.2.85 (regla de Guille): una liquidez de 10 a 15 % de la cartera está muy bien tolerada
+_NOMBRE_CLASE = {"rv": "renta variable", "oro": "oro", "cripto": "criptoactivos", "efectivo": "liquidez (cuentas remuneradas y cauciones)"}
 
 
 def devolucion(res, edad, perfil):
@@ -728,7 +733,7 @@ def devolucion(res, edad, perfil):
         return sec
     pe, d = res["peso"], res["desvio"]
     ef = res.get("efectivo_propio")
-    nombres = dict(_NOMBRE_CLASE, rf="renta fija" if ef else "renta fija (con el efectivo)")
+    nombres = dict(_NOMBRE_CLASE, rf="renta fija")
     claves = ("rv", "rf", "efectivo", "oro", "cripto") if ef else ("rv", "rf", "oro", "cripto")
     ajustes, hallazgos = [], []          # lo que alimenta el cuarto bloque
     # ---------------- 1. Pesos
@@ -742,7 +747,7 @@ def devolucion(res, edad, perfil):
     for k in falta:
         f.append(f"**{nombres[k].capitalize()}: te faltan unos {_pts(d[k])} puntos** respecto de lo que suele ser razonable para tu edad y tu perfil.")
     if not pasa and not falta:
-        f.append("**En los grandes grupos (renta variable, renta fija, oro, criptoactivos y efectivo) estás en línea** con lo que suele ser razonable para tu edad y tu perfil.")
+        f.append("**En los grandes grupos (renta variable, renta fija, oro y criptoactivos) estás en línea** con lo que suele ser razonable para tu edad y tu perfil.")
         hallazgos.append("Los pesos por tipo de activo están en línea con tu edad y tu perfil.")
     else:
         hallazgos.append("Pesos: " + "; ".join([f"te pasás en {nombres[k]}" for k in pasa] + [f"te falta {nombres[k]}" for k in falta]) + ".")
@@ -756,8 +761,17 @@ def devolucion(res, edad, perfil):
             ajustes.append(f"Subir de a poco el peso de **{nombres[falta[0]]}**, con lo que se libere de **{nombres[orig]}**.")
     if pe["cripto"] > 10:
         f.append("Los criptoactivos son muy volátiles: con más de un 10 % de la cartera, una caída fuerte se siente mucho en el total.")
-    if pe["efectivo"] > 20 and not ef:
-        f.append(f"Tenés {pe['efectivo']:.0f} % en efectivo: es seguridad, pero sin rendimiento propio; conviene que sea una decisión y no un descuido.")
+    liq = pe["efectivo"]
+    if not ef and liq >= 0.5:
+        if liq > LIQ_MAX:
+            f.append(f"**Liquidez: tenés {liq:.0f} %, te pasás unos {liq - LIQ_MAX:.0f} puntos del 15 %.** La liquidez (efectivo, cuentas remuneradas, cauciones) es seguridad, pero sin rendimiento propio; "
+                     f"una liquidez de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} % está muy bien tolerada y conviene que lo de más sea una decisión y no un descuido.")
+            hallazgos.append(f"Liquidez alta ({liq:.0f} %).")
+            ajustes.append(f"Llevar la liquidez de a poco hacia el rango de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} %, repartiendo el excedente entre los grupos donde te faltan puntos.")
+        elif liq >= LIQ_MIN:
+            f.append(f"**Liquidez: tenés {liq:.0f} %, dentro del rango de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} %** que está muy bien tolerado (te da margen para imprevistos y oportunidades).")
+        else:
+            f.append(f"Liquidez: tenés {liq:.0f} %. Una liquidez de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} % de la cartera está muy bien tolerada: te da margen para imprevistos y oportunidades, sin dejar demasiado plata quieta.")
     if pe["otros"] >= 5:
         f.append(f"Tenés {pe['otros']:.0f} % en otras materias primas (petróleo, granos…): no son ni renta fija ni variable típica y no las comparé con tu edad y perfil.")
     ps = res["posiciones"]

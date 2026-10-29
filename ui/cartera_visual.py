@@ -3,7 +3,7 @@ Toma los resultados de ui/cartera.py (los mismos que usa el informe PDF) y solo 
 import html
 import re
 
-from ui.cartera import CLASES, devolucion, nivel
+from ui.cartera import CLASES, LIQ_MAX, LIQ_MIN, devolucion, nivel
 
 COL_CLASE = {"rv": "#2563eb", "rf": "#7c3aed", "efectivo": "#14b8a6", "oro": "#f59e0b", "cripto": "#ec4899", "otros": "#94a3b8"}
 COL_GEO = {"usa": "#2563eb", "desarrollados": "#0ea5e9", "emergentes": "#f97316", "fuera_sd": "#8b5cf6", "global": "#14b8a6", "sin": "#cbd5e1"}
@@ -144,15 +144,22 @@ def visual_html(res, edad, perfil):
     out.append(_card("🧭", "Tu cartera de un vistazo", cuerpo, "#2563eb", "#eff6ff", pie=f"{html.escape(res['rango'])}"))
     # --- 2. Pesos
     filas = []
-    base = [("rv", "Renta variable"), ("rf", "Renta fija")] + ([("efectivo", "Efectivo y cauciones")] if ef else []) + [("oro", "Oro"), ("cripto", "Criptoactivos")]
+    base = [("rv", "Renta variable"), ("rf", "Renta fija")] + [("efectivo", "Liquidez")] + [("oro", "Oro"), ("cripto", "Criptoactivos")]
     for k, nom in base:
-        real = pe[k] + (pe["efectivo"] if (k == "rf" and not ef) else 0)
-        if k == "rf" and not ef:
-            nom = "Renta fija (con efectivo)"
-        if real < 0.5 and abs(d.get(k, 0)) <= 5:
-            continue
+        real = pe[k]
+        if k == "efectivo" and not ef:
+            if real < 0.5:
+                continue
+            chip = (f'<span class="cv-chip mas">Te pasás {real - LIQ_MAX:.0f} pts</span>' if real > LIQ_MAX
+                    else '<span class="cv-chip ok">En línea (10 a 15 % es lo tolerado)</span>' if real >= LIQ_MIN
+                    else '<span class="cv-chip ok">Tolerada</span>')
+            dk = real - LIQ_MAX if real > LIQ_MAX else 0
+        else:
+            if real < 0.5 and abs(d.get(k, 0)) <= 5:
+                continue
+            chip, dk = _chip(d.get(k, 0)), d.get(k, 0)
         filas.append(f'<div class="cv-row"><div>{nom}</div><div class="cv-bar"><i style="width:{min(100, real):.1f}%;background:{COL_CLASE[k]}"></i></div>'
-                     f'<div><b>{real:.0f} %</b> {_chip(d.get(k, 0))}</div></div>')
+                     f'<div><b>{real:.0f} %</b> {chip}</div></div>')
     resto = [x for x in sec["Pesos"][1:] if not re.match(r"^\*\*.*(te pasás|te faltan)", x) and "estás en línea" not in x]
     out.append(_card("⚖️", "Pesos", "".join(filas) + _lista(resto), "#7c3aed", "#f5f3ff"))
     # --- 3. Geografía

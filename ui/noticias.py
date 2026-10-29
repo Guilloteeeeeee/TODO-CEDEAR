@@ -351,6 +351,33 @@ def esperar(futuro, espera_s=TIMEOUT_S + 2):
 # ---------------------------------------------------------------------------------------------------------------
 # Orden de las notas
 # ---------------------------------------------------------------------------------------------------------------
+# v1.2.85 (pedido de Guille): sin relleno. Las notas que no tienen que ver con el mercado (Halloween, horóscopo, farándula, deportes...) no entran, y las cotizaciones
+# del dólar del día ("Dólar hoy", "Dólar blue hoy", "minuto a minuto") cuentan como una sola: sale la más reciente. Si quedan menos de 5 notas, se muestran menos.
+_RELLENO = re.compile(r"halloween|disfraz|hor[oó]scopo|\bsigno\b|receta|far[aá]ndula|chimento|quiniela|loter[ií]a|pron[oó]stico del tiempo|\bclima\b|gran hermano|\bmessi\b|"
+                      r"\bboca\b|\briver\b|selecci[oó]n argentina|\bcostume|horoscope|\brecipe|celebrity", re.I)
+_DOLAR_DIA = re.compile(r"d[oó]lar\b.*\b(hoy|cotiza|opera|minuto a minuto|a cu[aá]nto)|\b(hoy|a cu[aá]nto)\b.*d[oó]lar\b|cotizaci[oó]n del d[oó]lar|minuto a minuto", re.I)
+
+
+def es_relleno(titulo):
+    """True si el titular no tiene que ver con el mercado (Halloween, horóscopo, deportes, farándula...)."""
+    return bool(_RELLENO.search(titulo or ""))
+
+
+def _quitar_relleno(ordenadas):
+    """Saca las notas de relleno y deja una sola cotización del dólar del día (la primera, que es la mejor ubicada)."""
+    salida, hubo_dolar = [], False
+    for n in ordenadas:
+        t = n.get("titulo") or ""
+        if es_relleno(t):
+            continue
+        if _DOLAR_DIA.search(t):
+            if hubo_dolar:
+                continue
+            hubo_dolar = True
+        salida.append(n)
+    return salida
+
+
 def _sin_repetir_ticker(ordenadas, cantidad):
     """Recorre las notas ya ordenadas por importancia y se queda con una sola por empresa: si una nota nombra un ticker que ya
     salio en una nota mas importante, se saltea y se sigue con la proxima. Las que no nombran empresas no se tocan."""
@@ -388,7 +415,7 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
                      and n["clave"] not in (excluir or ())]
         todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers, idioma), "en_portada": n["clave"] in portada, "fuente": fuente or FUENTE} for n in elegibles]
         todas.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
-        salida = _sin_repetir_ticker(todas, cantidad)
+        salida = _sin_repetir_ticker(_quitar_relleno(todas), cantidad)
         if len(salida) >= cantidad:
             break
     return salida, usadas
@@ -464,8 +491,8 @@ CSS = """
 .nt-b:first-of-type{margin-top:2px;border-top:0;padding-top:0}
 .nt-b{border-top:0!important;margin:12px 0 4px!important;padding:6px 10px!important;border-radius:8px;color:var(--ntc,#111827)!important;background:var(--ntf,#f3f4f6);border-left:5px solid var(--ntc,#111827)}
 .nt-b:first-of-type{margin-top:6px!important}
-.nt-locales{--ntc:#0369a1;--ntf:#e0f2fe}.nt-usa{--ntc:#1e3a8a;--ntf:#e0e7ff}.nt-mundo{--ntc:#6d28d9;--ntf:#ede9fe}
-.nt-ul-locales li{border-left:3px solid #7dd3fc;padding-left:10px}.nt-ul-usa li{border-left:3px solid #a5b4fc;padding-left:10px}.nt-ul-mundo li{border-left:3px solid #c4b5fd;padding-left:10px}
+.nt-locales{--ntc:#0b3a5c;--ntf:#cfe8fa}.nt-usa{--ntc:#fff;--ntf:#1e3a8a}.nt-usa small{color:#c7d2fe!important}.nt-mundo{--ntc:#6d28d9;--ntf:#ede9fe}
+.nt-ul-locales li{border-left:3px solid #9fd0f2;padding-left:10px}.nt-ul-usa li{border-left:3px solid #1e3a8a;padding-left:10px}.nt-ul-mundo li{border-left:3px solid #c4b5fd;padding-left:10px}
 .nt-pie{font-size:.74rem;color:#6b7280;padding:2px 0 10px}
 .nt-vacio{font-size:.86rem;color:#4b5563;padding:2px 0 12px}
 @media (max-width:820px){.nt{padding:2px 12px}.nt li a{flex-basis:100%}}

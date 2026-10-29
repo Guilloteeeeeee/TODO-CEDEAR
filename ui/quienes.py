@@ -73,3 +73,34 @@ def quienes_html():
     return ('<a class="qs-vol" href="?" target="_self">← Volver al Inicio</a>'
             f'<div class="qs"><div class="qs-tit"><h1>{TITULO}</h1>{toro}</div>'
             f'<p class="prim">{html.escape(PRIMERA)}.</p>{parrafos}<p class="cierre">{html.escape(CIERRE)}</p><div class="qs-pers">{personas}</div></div>')
+
+
+# --- v1.2.85: Quiénes somos como panel desplegable del menú (el mismo texto, en chico) ----------------------------------------------------
+CSS_PANEL = """
+.fly-q .qp{font-size:.93rem;line-height:1.55;color:#1f2937;padding:2px 2px 6px}
+.fly-q .qp p{margin:0 0 10px}
+.fly-q .qp p.prim{font-weight:700;color:#0f172a}
+.fly-q .qp p.cierre{font-weight:700;color:#0f172a;margin-top:14px}
+.fly-q .qp-pers{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px;padding-top:14px;border-top:1px solid #eef1f4}
+.fly-q .qp-p{text-align:center}
+.fly-q .qp-p img,.fly-q .qp-p .ini{width:76px;height:76px;border-radius:50%;display:block;margin:0 auto 8px;object-fit:cover;box-shadow:0 2px 8px rgba(15,23,42,.18)}
+.fly-q .qp-p .ini{background:#e5e7eb;color:#374151;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.fly-q .qp-p .nm{font-size:.95rem;font-weight:700;color:#0f172a;margin-bottom:3px}
+.fly-q .qp-p .ln{font-size:.78rem;line-height:1.4;color:#4b5563}
+@media (max-width:560px){.fly-q .qp-pers{grid-template-columns:1fr}}
+"""
+
+
+def quienes_panel_html():
+    """Panel «Quiénes somos» del menú (v1.2.85): el texto de la página, en un panel que mide lo que mide su contenido. Si ENLACES_MARCA trae un link propio, no se dibuja."""
+    if _marca._enlaces(None).get("quienes_somos"):
+        return ""
+    parrafos = "".join(f"<p>{html.escape(t)}</p>" for t in PARRAFOS)
+    pers = ""
+    for p in PERSONAS:
+        uri = _marca._uri(_marca._DIR + "/" + p["foto"]) if p.get("foto") else ""
+        foto = f'<img src="{uri}" alt="{html.escape(p["nombre"])}">' if uri else f'<div class="ini">{html.escape(p.get("iniciales", ""))}</div>'
+        lineas = "".join(f'<div class="ln">{html.escape(t)}</div>' for t in p["lineas"])
+        pers += f'<div class="qp-p">{foto}<div class="nm">{html.escape(p["nombre"])}</div>{lineas}</div>'
+    cuerpo = (f'<div class="qp"><p class="prim">{html.escape(PRIMERA)}.</p>{parrafos}<p class="cierre">{html.escape(CIERRE)}</p><div class="qp-pers">{pers}</div></div>')
+    return f'<style>{CSS_PANEL}</style><div class="fly fly-c fly-q fly-quienes">{_marca.fly_cabecera_html(TITULO)}<div class="mc-pop mn-pop">{cuerpo}</div></div>'

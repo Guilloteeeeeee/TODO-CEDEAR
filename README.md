@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.85 (29/10/2026): menú ordenado, paneles compactos, buscador letra por letra, «Liquidez» aparte de la renta fija
+
+- **Menú**: Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros, Contactános y Comentarios, todos juntos y en ese orden. «Quiénes somos» ahora es un panel desplegable más.
+- **Paneles compactos**: los desplegables de cuenta, redes, contacto y quiénes somos tienen alto y ancho según su contenido (ya no ocupan toda la pantalla; en el celular sí van a pantalla completa).
+- **Calendario y noticias**: sólo «Hoy» va en rosa viejo. Argentina en celeste y EE.UU. en azul marino. Solapas «Próximos Resultados Empresariales» y «Próximos Eventos Financieros». «Antes/Después del cierre» en texto común (sin negrita ni color).
+- **Noticias sin relleno**: se descartan temas ajenos al mercado (Halloween, deportes, espectáculos, etc.) y se deja una sola nota de cotización del dólar por día. Puede haber menos de 5 notas.
+- **Buscador**: filtra por el *comienzo* del ticker o del nombre y se angosta letra por letra. Cada empresa aparece en dos formas («TICKER · Nombre» y «Nombre · TICKER»).
+- **Informe de Evaluá tu Portfolio**: el efectivo se llama **Liquidez** y ya no se mezcla con la renta fija. Las clases invertidas se comparan sobre lo invertido (sin contar la liquidez). Una liquidez de **10 a 15 %** se considera bien tolerada; arriba de 15 % se avisa y se sugiere un ajuste; debajo de 10 % es informativo. Para 70+ se mantiene su referencia propia de efectivo.
+
 ### v1.2.84 (29/10/2026): menú con paneles hacia el centro, logos en ETFs, ideal de 2 a 5 %, «Un vistazo rápido»
 - **Menú lateral**: todas las entradas son títulos con la misma flechita «›». Filtro de Empresas / Filtro de ETFs, Noticias Calientes, Calendario Financiero, Nuestras Redes, Contactános, Abrí una cuenta y Comentarios se abren como **paneles hacia el centro** de la página (en el celular ocupan la pantalla, con «‹ Menú» para volver). Espacio visible entre Quiénes somos y el resto, y antes de Comentarios. **ESC** cierra el menú.
 - **ETFs**: la tabla ahora muestra el logo del gestor al lado de cada ETF (se carga desde internet; si no está disponible aparece un ícono dibujado).
