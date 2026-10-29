@@ -6114,6 +6114,192 @@
      "2022"
     ]
    }
+  },
+  "T": {
+   "resumen": "AT&T es uno de los tres grandes operadores de telefonía celular de Estados Unidos, y además vende internet de fibra para hogares y servicios de comunicaciones para empresas; tiene también una operación en México (segmento Latin America). Gana plata con abonos mensuales de celulares, internet y servicios a empresas, más la venta de equipos. Tiene un **foso estrecho, de espectro y red**: tener licencias de espectro y una red nacional cuesta decenas de miles de millones, y pocos pueden hacerlo, lo que limita la competencia nueva. Los números son estables y previsibles: los ingresos pasaron de 120.741 M en 2022 a 125.648 M en 2025 (128.852 M en los últimos 12 meses), el margen operativo de 19,0 % a **21,4 %** y el flujo libre es de **17.816 M**, 13,8 % de los ingresos. Retomó las recompras (9.303 M en los últimos 12 meses) y **hay 8,0 % menos acciones** que en 2022. Su punto débil es la deuda (**la deuda neta es 3,26 veces el EBITDA**), el crecimiento casi nulo y las inversiones altas (22.419 M por año). En 2022 recortó el dividendo (cayó 6,4 % por año en 3 años). Con el bono a 10 años cerca de 5 %, refinanciar deuda cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **buena empresa, con foso estrecho de espectro, flujo libre de 13,8 % de los ingresos y recompras, aunque con deuda alta y crecimiento casi nulo.**",
+   "veredicto": "Buena: foso estrecho de espectro y flujo libre estable, con deuda alta y crecimiento casi nulo",
+   "conclusion": "AT&T es una buena empresa: tiene un foso estrecho de espectro y red, flujo libre de 17.816 M, margen operativo de 21,4 % y 8,0 % menos acciones, pero la deuda neta es 3,26 veces el EBITDA y los ingresos casi no crecen. Vale la pena seguirla de cerca. Es recomendable investigar el origen del aumento de la deuda en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda neta/EBITDA no suba de 3,5x.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "AT&T presta servicios de telecomunicaciones y tecnología a nivel mundial. Opera dos segmentos: **Communications** y **Latin America**. Communications ofrece servicios inalámbricos de voz y datos y vende teléfonos, dispositivos y accesorios en sus tiendas y por otros canales; también ofrece internet de fibra y servicios a empresas. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de infraestructura con abonados recurrentes: **los ingresos crecieron 1,4 % en 2023, cayeron 0,1 % en 2024 y crecieron 2,7 % en 2025, hasta 125.648 M**, y llegaron a 128.852 M en los últimos 12 meses.\n\n**A quién le vende.** A decenas de millones de personas, empresas y organismos públicos. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de AT&T **es de espectro y red, y es estrecha**. Las licencias de espectro y una red nacional de antenas y fibra cuestan decenas de miles de millones, y por eso en Estados Unidos hay solo tres grandes operadores. Los clientes rara vez cambian de operador por unos pocos dólares, y la combinación de celular y fibra en un solo abono refuerza la fidelidad. Pero los números no muestran un foso fuerte: el ROIC (retorno sobre el capital) es de 8,3 %, apenas por encima del costo del capital.\n\nCompite con Verizon, T-Mobile y operadores de cable que ofrecen celular barato. Es frágil en las guerras de precios, en la inversión constante que exige la red y en la deuda (con el bono a 10 años cerca de 5 %, refinanciarla cuesta más). La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de AT&T cuentan **un negocio estable de crecimiento bajo y flujo libre sólido**. Los ingresos fueron de 120.741 M, 122.428 M, 122.336 M y 125.648 M, y de 128.852 M en los últimos 12 meses. El margen operativo fue de 19,0 %, 20,1 %, 19,7 %, 19,9 % y 21,4 %. La ganancia neta fue de -8.524 M en 2022, 14.400 M, 10.948 M y 21.953 M, y de 13.135 M en los últimos 12 meses. Las de 2022 y 2025 incluyen partidas extraordinarias que Yahoo no detalla, por lo que miramos mejor el EBIT. La ganancia por acción fue de -1,13, 1,97, 1,49, 3,04 y 1,85.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 12.397 M, 20.461 M, 18.508 M y 19.442 M, y de **17.816 M en los últimos 12 meses**. Las inversiones suben: de 19.626 M a 22.419 M. El ROE fue de 12,3 % y el ROIC de 8,3 %.\n\nLa mirada crítica: el flujo libre de los últimos 12 meses bajó frente a 2025 por más inversión.",
+   "balance": "**La deuda es alta y subió en el último año.** La deuda total es de 178.147 M y la caja de 10.767 M en los últimos 12 meses; la deuda neta/EBITDA es de 3,26x, que multiplicado por 12 son unos 39 meses de EBITDA. Los intereses se cubren 3,7 veces con el EBIT.\n\nLa deuda subió de 155.043 M en 2025 a 178.147 M en los últimos 12 meses, probablemente por compras de espectro y fibra (dato público a verificar). El patrimonio neto es de 106.775 M. Con tasas altas, cada refinanciación cuesta más, así que es un punto a seguir de cerca.",
+   "gerencia": "La conduce John Stankey, presidente, CEO y presidente del directorio (62 años, pago de 8,9 M según Yahoo), con Pascal Desroches como director financiero (61 años, pago de 5,1 M). Stankey condujo el recorte del dividendo y la separación del negocio de medios en 2022, dato público.\n\nEn lo que importa, **el uso del capital cambió**: paga un dividendo de 1,11 por acción (pagado desde 1984; 7.935 M en los últimos 12 meses, 45 % del flujo libre) y volvió a recomprar acciones (890 M en 2022, 194 M, 215 M, 6.575 M en 2025 y 9.303 M en los últimos 12 meses). **Las acciones bajaron de 7.587 M a 6.981 M, un 8,0 % menos.** Las recompras y el dividendo de los últimos 12 meses (17.238 M) igualan al flujo libre (17.816 M).",
+   "fortalezas": [
+    "Flujo libre de 17.816 M en los últimos 12 meses, 13,8 % de los ingresos.",
+    "Margen operativo de 19,0 % a 21,4 %.",
+    "8,0 % menos acciones desde 2022, con recompras de 9.303 M.",
+    "Espectro y red que cuestan decenas de miles de millones.",
+    "Dividendo pagado desde 1984."
+   ],
+   "debilidades": [
+    "Deuda de 178.147 M, 3,26 veces el EBITDA.",
+    "Crecimiento de ingresos casi nulo.",
+    "Dividendo recortado en 2022: el crítico más duro diría que la deuda limita la capacidad de crecer más.",
+    "Inversiones de 22.419 M por año.",
+    "Cobertura de intereses de 3,7 veces."
+   ],
+   "vigilar": [
+    "Deuda neta/EBITDA: hoy 3,26x; si pasa de 3,5x, el balance queda ajustado.",
+    "Flujo libre: hoy 17.816 M; tiene que cubrir dividendo y recompras.",
+    "Cobertura de intereses: hoy 3,7x; si baja de 3x, los intereses pesan demasiado.",
+    "Abonados de celular y fibra: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Decenas de millones de usuarios de celular",
+    "Hogares con internet de fibra",
+    "Empresas y organismos públicos"
+   ],
+   "ideal_para": [
+    "Buscan un negocio de flujo estable con dividendo.",
+    "Valoran recompras y flujo libre sólido.",
+    "Aceptan deuda alta a cambio de ingresos recurrentes."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento acelerado.",
+    "No toleran deuda alta ni tasas altas."
+   ],
+   "perfil": "general",
+   "capas": [],
+   "ticker": "T",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 128852000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "VZ": {
+   "resumen": "Verizon es otro de los tres grandes operadores de telefonía celular de Estados Unidos: vende servicios inalámbricos y de internet a personas (Consumer) y servicios de comunicaciones, redes y tecnología a empresas y gobiernos (Business). Gana plata con abonos mensuales de celulares, internet fija y servicios a empresas. Tiene un **foso estrecho, de espectro y red**: su red es una de las más extensas y reconocidas del país, y construir otra costaría decenas de miles de millones. Pero los números muestran un negocio estancado: los ingresos pasaron de 136.835 M en 2022 a 138.191 M en 2025, el margen operativo bajó de 22,3 % a **21,2 %**, la ganancia por acción de 5,06 a 3,92 en los últimos 12 meses y **las acciones no bajaron** (4.204 M a 4.194 M). El flujo libre mejoró a **20.160 M** en los últimos 12 meses porque las inversiones bajaron de 26.740 M a 18.639 M, y alcanza para el dividendo de 2,83 por acción (11.633 M, 58 % del flujo libre). Su punto débil es la deuda (**la deuda neta es unas 2,9 veces el EBITDA**), el crecimiento casi nulo y que el dividendo sube solo 1,9 % por año. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular, con foso estrecho, flujo libre de 20.160 M y dividendo de 43 años, aunque con deuda alta, ganancias a la baja y sin recompras.**",
+   "veredicto": "Regular: flujo libre de 20.160 M y dividendo de 43 años, con deuda alta, crecimiento casi nulo y sin recompras",
+   "conclusion": "Verizon es una empresa de calidad regular: tiene un foso estrecho de espectro y red, flujo libre de 20.160 M y dividendo desde 1984, pero la deuda neta es unas 2,9 veces el EBITDA, la ganancia por acción cayó a 3,92 y no recompra acciones. Hay que seguirla de cerca. Es recomendable investigar los abonados y el origen del aumento de la deuda en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos vuelvan a crecer sin subir la deuda.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Verizon se dedica a la provisión de productos y servicios de comunicaciones, tecnología, información y streaming a consumidores, empresas y entidades gubernamentales. Opera dos segmentos: **Verizon Consumer Group** (servicios inalámbricos, internet fijo y equipos para personas) y **Verizon Business Group** (servicios para empresas y gobiernos). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de infraestructura con abonados recurrentes: **los ingresos cayeron 2,1 % en 2023, y crecieron 0,6 % en 2024 y 2,5 % en 2025, hasta 138.191 M**.\n\n**A quién le vende.** A decenas de millones de personas, empresas y organismos públicos. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Verizon **es de espectro y red, y es estrecha**. Tiene una de las redes más extensas y mejor valoradas del país, y las licencias de espectro y la infraestructura cuestan decenas de miles de millones, lo que frena la entrada de nuevos competidores. Pero la rentabilidad no lo muestra como un negocio fuera de serie: el ROIC es de 8,7 %, apenas por encima del costo del capital, y el margen operativo bajó de 22,3 % a 21,2 %.\n\nCompite con AT&T, T-Mobile y operadores de cable con celular barato, que le restan abonados. Es frágil en las guerras de precios, en la inversión constante que exige la red y en la deuda (con el bono a 10 años cerca de 5 %, refinanciarla cuesta más). La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de Verizon cuentan **un negocio estancado que ahora genera más flujo libre**. Los ingresos fueron de 136.835 M, 133.974 M, 134.788 M y 138.191 M. El margen operativo fue de 22,3 %, 21,4 %, 21,3 % y 21,2 %. La ganancia neta fue de 21.256 M, 11.614 M, 17.506 M y 17.174 M. La ganancia por acción fue de 5,06, 2,75, 4,14, 4,06 y **3,92 en los últimos 12 meses**. La caída de 2023 refleja cargos extraordinarios, aunque Yahoo no los detalla.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 10.401 M, 12.912 M, 18.922 M y 19.676 M, y de **20.160 M en los últimos 12 meses**. La mejora viene de invertir menos: 26.740 M, 24.563 M, 17.990 M, 17.461 M y 18.639 M. El ROE fue de 23,3 %, 12,6 %, 17,6 % y 16,4 %, y el ROIC de 8,7 % en 2025.\n\nLa mirada crítica: el flujo libre mejora porque se invierte menos, no porque se venda más.",
+   "balance": "**La deuda es alta y subió en el último año.** La deuda total es de 188.458 M y la caja de 1.752 M en los últimos 12 meses. La deuda neta/EBITDA de 2025 es de 2,92x, que multiplicado por 12 son unos 35 meses de EBITDA, y los intereses se cubrían 4,4 veces con el EBIT. Yahoo informa una deuda neta menor que deuda menos caja, probablemente porque excluye los alquileres.\n\nLa deuda subió de 168.357 M en 2024 a 188.458 M en los últimos 12 meses, probablemente por compras de empresas (dato público a verificar). El patrimonio neto es de 103.920 M. Con tasas altas, refinanciar cuesta más.",
+   "gerencia": "La conduce Dan Schulman, CEO y director (67 años, pago de 2,9 M según Yahoo), con Tony Skiadas como director financiero (56 años, pago de 3,0 M) y Kyle Malady al frente de Verizon Business (57 años). Schulman asumió hace poco, dato público, y conviene seguir su plan.\n\nEn lo que importa, **el uso del capital es de dividendo y reducción de deuda**: paga un dividendo de 2,83 por acción (pagado desde 1984, 43 años; sube solo 1,9 % por año en 3 años; 11.633 M en los últimos 12 meses). Yahoo no muestra recompras. **Las acciones prácticamente no cambiaron: de 4.204 M a 4.194 M, un 0,2 % menos.**",
+   "fortalezas": [
+    "Flujo libre de 20.160 M en los últimos 12 meses.",
+    "Dividendo pagado desde 1984 y cubierto 1,7 veces por el flujo libre.",
+    "Red extensa y reconocida, con espectro difícil de replicar.",
+    "Inversiones bajando de 26.740 M a 18.639 M.",
+    "Ingresos de 138.191 M estables."
+   ],
+   "debilidades": [
+    "Deuda de 188.458 M, unas 2,9 veces el EBITDA.",
+    "Ganancia por acción de 5,06 a 3,92.",
+    "Sin recompras: las acciones no bajaron.",
+    "Dividendo creciendo solo 1,9 % por año: el crítico más duro diría que la prioridad es pagar la deuda y no al accionista.",
+    "Margen operativo de 22,3 % a 21,2 %."
+   ],
+   "vigilar": [
+    "Deuda neta/EBITDA: hoy unas 2,9x; si sube de 3,3x, el balance se ajusta.",
+    "Flujo libre: hoy 20.160 M; si la inversión vuelve a subir, baja la cobertura del dividendo.",
+    "Abonados de celular: Yahoo no los informa, hay que buscarlos en el informe.",
+    "Margen operativo: hoy 21,2 %; si baja de 20 %, la competencia está pesando."
+   ],
+   "clientes": [
+    "Decenas de millones de usuarios de celular",
+    "Hogares con internet fijo",
+    "Empresas y gobiernos"
+   ],
+   "ideal_para": [
+    "Buscan un negocio estable que paga dividendo desde hace 43 años.",
+    "Valoran el flujo libre que cubre el dividendo.",
+    "Aceptan crecimiento casi nulo a cambio de ingresos recurrentes."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento o recompras.",
+    "No toleran deuda alta con tasas altas."
+   ],
+   "perfil": "general",
+   "capas": [],
+   "ticker": "VZ",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "TMUS": {
+   "resumen": "T-Mobile US es el operador de celulares que más creció en Estados Unidos en los últimos años: vende planes de voz, mensajes y datos a clientes pospago y prepago, además de equipos, internet para hogares y servicios a empresas, y sobre todo se destaca por su red 5G. Gana plata con abonos mensuales y la venta de dispositivos. Tiene un **foso estrecho, de espectro y red 5G**: heredó mucho espectro de Sprint, que le permite una cobertura y velocidad de 5G líderes, y logra bajar costos con su tamaño. Los números son los mejores del sector: los ingresos pasaron de 79.571 M en 2022 a 88.309 M en 2025 (92.189 M en los últimos 12 meses), el margen operativo de 10,2 % a **20,1 %**, el flujo libre llegó a **16.236 M** (17,6 % de los ingresos) y el ROE es de 18,8 %. Además **hay 11,8 % menos acciones** que en 2022, por recompras de 12.071 M en los últimos 12 meses, y empezó a pagar dividendo en 2023 (4,68 por acción). Su punto débil es la deuda (**la deuda neta es unas 2,5 veces el EBITDA**), un crecimiento de ganancias que se frenó (la ganancia por acción casi no cambió desde 2024) y un patrimonio que baja por las recompras. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **muy buena empresa, con foso estrecho, margen operativo de 20,1 %, flujo libre de 17,6 % de los ingresos y recompras fuertes, aunque con deuda alta y ganancias que se frenaron.**",
+   "veredicto": "Muy buena: margen operativo de 20,1 %, flujo libre de 17,6 % de los ingresos y recompras fuertes, con deuda alta",
+   "conclusion": "T-Mobile es una muy buena empresa: tiene un foso estrecho de espectro y red 5G, margen operativo de 20,1 %, flujo libre de 16.236 M y 11,8 % menos acciones, pero la deuda neta es unas 2,5 veces el EBITDA y la ganancia por acción se estancó. Vale la pena seguirla de cerca. Es recomendable investigar las altas de abonados pospago en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre siga cubriendo las recompras y el dividendo.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "T-Mobile US presta servicios de comunicaciones inalámbricas en Estados Unidos, Puerto Rico y las Islas Vírgenes de los Estados Unidos. Ofrece servicios de voz, mensajería y datos a clientes pospago, prepago y mayoristas, y también dispositivos inalámbricos (teléfonos, relojes, tabletas, módems) y accesorios. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de abonos recurrentes: **los ingresos cayeron 1,3 % en 2023, y crecieron 3,6 % en 2024 y 8,5 % en 2025, hasta 88.309 M**, y llegaron a 92.189 M en los últimos 12 meses.\n\n**A quién le vende.** A decenas de millones de personas, empresas y operadores mayoristas. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de T-Mobile **es de espectro y red 5G, y es estrecha**. Con el espectro de Sprint ofrece una red 5G con muy buena cobertura y velocidad, y su estrategia de captar clientes con ofertas la hizo crecer más rápido que sus rivales. Se ve en los números: el margen bruto subió de 54,5 % a 62,2 % y el margen operativo de 10,2 % a 20,1 %. Pero el ROIC (retorno sobre el capital) es de 10,1 %, razonable, no extraordinario.\n\nCompite con Verizon, AT&T y operadores de cable que ofrecen celular barato. Es frágil en las guerras de precios, en el costo de renovar y ampliar la red y en la deuda (con el bono a 10 años cerca de 5 %, refinanciar cuesta más). La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de T-Mobile cuentan **un salto de rentabilidad desde 2022 y una ganancia que se estabilizó**. Los ingresos fueron de 79.571 M, 78.558 M, 81.400 M y 88.309 M, y de 92.189 M en los últimos 12 meses. El margen operativo fue de 10,2 %, 18,1 %, 22,1 %, 21,0 % y 20,1 %. La ganancia neta fue de 2.590 M, 8.317 M, 11.339 M y 10.992 M, y de 10.560 M en los últimos 12 meses. La ganancia por acción fue de 2,06, 6,93, 9,66, 9,72 y 9,55.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -520 M, 7.748 M, 9.982 M y 15.427 M, y de **16.236 M en los últimos 12 meses**. El ROE fue de 3,7 %, 12,9 %, 18,4 %, 18,6 % y 18,8 %, y el ROIC de 4,7 % a 10,1 %.\n\nLa mirada crítica: la ganancia neta bajó de 11.339 M a 10.560 M desde 2024 y el margen operativo cayó un punto; la mejora de la ganancia por acción depende cada vez más de las recompras.",
+   "balance": "**La deuda es alta, pero bien cubierta por el flujo.** La deuda total es de 119.439 M y la caja de 2.825 M en los últimos 12 meses; la deuda neta/EBITDA es de 2,54x, que multiplicado por 12 son unos 30 meses de EBITDA. Los intereses se cubren 4,6 veces con el EBIT. La deuda neta de Yahoo es menor que deuda menos caja, probablemente porque excluye los alquileres.\n\nEl patrimonio neto bajó de 69.656 M en 2022 a 56.265 M por las recompras. Con el flujo libre de 16.236 M, la empresa puede pagar el dividendo y las recompras sin pedir más deuda, aunque queda poco margen si el flujo se resiente.",
+   "gerencia": "La conduce Srini Gopalan, CEO (55 años, pago de 8,3 M según Yahoo), con Peter Osvaldik como director financiero (48 años, pago de 4,1 M) y Jon Freier como director de operaciones (49 años). Gopalan asumió hace poco, dato público.\n\nEn lo que importa, **el uso del capital es de recompras fuertes y dividendo reciente**: recompró 3.000 M en 2022, 13.074 M, 11.228 M, 9.974 M y 12.071 M en los últimos 12 meses, y paga un dividendo de 4,68 por acción desde 2023 (4.343 M en los últimos 12 meses, 27 % del flujo libre). **Las acciones bajaron de 1.255 M a 1.107 M, un 11,8 % menos.** Dividendo y recompras de los últimos 12 meses (16.414 M) igualan al flujo libre.",
+   "fortalezas": [
+    "Margen operativo de 10,2 % a 20,1 %.",
+    "Flujo libre de 16.236 M en los últimos 12 meses, 17,6 % de los ingresos.",
+    "11,8 % menos acciones, con recompras de 12.071 M.",
+    "Red 5G líder y espectro valioso.",
+    "ROE de 18,8 % y dividendo desde 2023."
+   ],
+   "debilidades": [
+    "Deuda de 119.439 M, unas 2,5 veces el EBITDA.",
+    "Ganancia por acción estancada (9,66 en 2024, 9,55 hoy).",
+    "Patrimonio neto bajando por las recompras (de 69.656 M a 56.265 M).",
+    "Dividendo y recompras que igualan al flujo libre: el crítico más duro diría que no hay margen para un mal año.",
+    "Guerras de precios con Verizon, AT&T y los operadores de cable."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 20,1 %; si sigue bajando, la competencia por precio está pesando.",
+    "Flujo libre: hoy 16.236 M; tiene que cubrir dividendo y recompras sin más deuda.",
+    "Deuda neta/EBITDA: hoy 2,54x; si pasa de 3x, el balance se ajusta.",
+    "Altas netas de abonados pospago: Yahoo no las informa, hay que buscarlas en el informe."
+   ],
+   "clientes": [
+    "Decenas de millones de usuarios de celular pospago y prepago",
+    "Hogares con internet fijo inalámbrico",
+    "Empresas y operadores mayoristas"
+   ],
+   "ideal_para": [
+    "Buscan el operador de celulares con más crecimiento y recompras.",
+    "Valoran el flujo libre alto y el ROE de 18,8 %.",
+    "Aceptan deuda alta con flujos recurrentes."
+   ],
+   "menos_ideal": [
+    "No toleran deuda alta con tasas altas.",
+    "Buscan una empresa de crecimiento acelerado de ganancias."
+   ],
+   "perfil": "general",
+   "capas": [],
+   "ticker": "TMUS",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 92189000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
