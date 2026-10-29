@@ -10243,6 +10243,192 @@
      "2022"
     ]
    }
+  },
+  "CEG": {
+   "resumen": "Constellation Energy es una empresa estadounidense productora de electricidad: genera y vende energía, gas natural y soluciones relacionadas en cinco regiones (Mid-Atlantic, Midwest, New York, ERCOT y otras), con una flota que Yahoo describe de unos 31.676 megavatios, en gran parte nuclear (dato público). Gana plata vendiendo electricidad en mercados mayoristas y mediante contratos a empresas, incluidos centros de datos (dato público). Tiene un **foso estrecho, de flota nuclear difícil de replicar** (dato público): construir una central nuclear nueva lleva más de una década y requiere permisos que casi no se otorgan. Los números mejoraron mucho desde 2022: el margen operativo es de **14,3 %** (en 2022 era negativo), la ganancia por acción de los últimos 12 meses es de **10,26** y los ingresos subieron a **31.270 M** (22 % más que en 2025). Pero el flujo libre fue negativo entre 2022 y 2024 y hoy es de apenas **309 M** en los últimos 12 meses (1,0 % de los ingresos), la deuda neta subió de 5.351 M a **24.003 M** (2,92x EBITDA), las acciones volvieron a subir (de 314 M a 335 M) y el ROIC cayó a 5,2 %. Yahoo no detalla el motivo, y es probable una gran compra financiada con deuda y acciones (dato a verificar). El dividendo, de 1,71 por acción desde 2022, es chico. Su punto débil es el flujo libre casi nulo con deuda en alza. El riesgo de la inteligencia artificial es **moderado**: no reemplaza el negocio, pero parte de la tesis depende de la demanda eléctrica de los centros de datos. Conclusión: **empresa de calidad regular, con flota nuclear difícil de replicar y ganancias en alza, pero con historial corto, flujo libre de 309 M y deuda neta que se multiplicó por 4,5 en un año.**",
+   "veredicto": "Regular: flota nuclear difícil de replicar y ganancias en alza, pero con flujo libre de 309 M y deuda neta de 24.003 M",
+   "conclusion": "Constellation Energy es una empresa de calidad regular: tiene un foso estrecho de flota nuclear difícil de replicar, margen operativo de 14,3 % y ganancia por acción de 10,26, pero el flujo libre es de apenas 309 M, la deuda neta se multiplicó por 4,5 hasta 24.003 M y el historial como empresa independiente es corto. Hay que seguirla de cerca. Es recomendable investigar la compra reciente y los contratos con centros de datos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre suba y la deuda baje.",
+   "calidad": "Regular",
+   "riesgo_ia": "moderado",
+   "negocio": "Constellation Energy produce y vende productos y servicios de energía en Estados Unidos. Opera cinco segmentos: **Mid-Atlantic, Midwest, New York, ERCOT y Other Power Regions**. Ofrece electricidad, gas natural, productos relacionados con la energía y soluciones sustentables. Según Yahoo, tiene unos 31.676 megavatios de capacidad de generación. Yahoo no informa cuánto aporta cada región ni cada tipo de planta, y no lo vamos a inventar (dato público: es el mayor operador nuclear del país, a verificar).\n\nEs un negocio de ingresos estables que dio un salto reciente: **los ingresos subieron 2,0 % en 2023, bajaron 5,4 % en 2024 y subieron 8,3 % en 2025, hasta 25.533 M**, y llegan a 31.270 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas de servicios públicos, comercios, industrias y clientes mayoristas. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Constellation **es de activos difíciles de replicar, y es estrecha**. Una central nuclear en funcionamiento tarda más de una década en construirse y requiere permisos que casi no se otorgan, y produce electricidad sin emitir carbono, algo que las empresas con centros de datos valoran (dato público). Se ve en el margen bruto, que subió de 8,7 % a 21,4 %, y en el margen operativo de 14,3 %.\n\nPero vende en mercados mayoristas donde los precios de la electricidad suben y bajan, y sus resultados dependen de eso. Compite con Vistra, Talen y NRG en generación, y con las propias distribuidoras. Es frágil en los precios mayoristas, en la regulación de la energía nuclear, en los costos de combustible y mantenimiento y en la deuda de la compra reciente. La inteligencia artificial no la reemplaza, pero la demanda de centros de datos es parte de lo que se espera de ella.",
+   "numeros": "Los números de Constellation cuentan **una recuperación de ganancias con flujo libre todavía casi nulo**. Los ingresos fueron de 24.440 M, 24.918 M, 23.568 M y 25.533 M, y de 31.270 M en los últimos 12 meses. El EBIT fue de -408 M, 2.386 M, 4.848 M y 4.198 M, y de **4.484 M** (margen operativo de 14,3 %). La ganancia neta fue de -160 M, 1.623 M, 3.749 M y 2.319 M, y de 3.465 M. La ganancia por acción fue de -0,49, 5,01, 11,89 y 7,40, y de **10,26**.\n\nEl flujo operativo fue negativo en 2022, 2023 y 2024 (-2.353 M, -5.301 M, -2.464 M) a pesar de ganancias netas positivas, y pasó a 4.237 M en 2025 y 4.206 M en los últimos 12 meses. El flujo libre fue de -4.042 M, -7.723 M, -5.029 M y 1.288 M, y de **309 M** en los últimos 12 meses (Yahoo marca esa caída como dato a verificar). El ROIC fue de -1,9 %, 7,7 %, 18,6 %, 11,8 % y 5,2 %.\n\nLa mirada crítica: tres años de flujo operativo negativo con ganancias positivas indican capital de trabajo y garantías que absorbieron efectivo (Yahoo no lo explica, dato a verificar).",
+   "balance": "**Deuda en fuerte alza.** La deuda total es de 24.700 M y la caja de 697 M; la deuda neta es de 24.003 M y la deuda neta/EBITDA es de 2,92x, que multiplicado por 12 son unos 35 meses de EBITDA. Los intereses se cubren 5,7 veces con el EBIT.\n\nEn 2025, la deuda neta era de 5.351 M (0,90x), así que se multiplicó por 4,5 en los últimos 12 meses; el capital invertido pasó de 23.509 M a 56.677 M. Yahoo no detalla el motivo (probable adquisición, dato a verificar). El patrimonio es de 31.977 M, la deuda equivale a 77 % del patrimonio y la liquidez corriente es de 1,46x.",
+   "gerencia": "La conduce Joseph Dominguez, presidente, CEO y presidente del directorio (61 años, pago de 4,5 M según Yahoo), con Shane Smith como director financiero (45 años) y Daniel Eggers a cargo de finanzas y economía de datos (49 años, pago de 1,7 M). La empresa se separó de Exelon en 2022 (dato público), así que tiene un historial corto como compañía independiente.\n\nEn lo que importa, **el uso del capital combina inversión, recompras y un dividendo chico**: paga un dividendo de 1,71 por acción (desde 2022; 551 M en los últimos 12 meses, que superan el flujo libre de 309 M) y recompró 992 M en 2023, 999 M en 2024 y 400 M en 2025. **Las acciones bajaron de 327 M a 314 M hasta 2025 y subieron a 335 M en los últimos 12 meses, un 2,4 % más que en 2022.**",
+   "fortalezas": [
+    "Flota nuclear difícil de replicar.",
+    "Margen operativo de 14,3 % y ganancia por acción de 10,26.",
+    "Flujo operativo de 4.206 M.",
+    "Ingresos de 31.270 M, en alza.",
+    "Cobertura de intereses de 5,7 veces."
+   ],
+   "debilidades": [
+    "Flujo libre de 309 M, casi nulo.",
+    "Deuda neta que se multiplicó por 4,5 en 12 meses: el crítico más duro diría que la compra se pagó con balance, no con negocio.",
+    "Tres años de flujo operativo negativo (2022-2024).",
+    "ROIC de 5,2 %.",
+    "Historial corto como empresa independiente."
+   ],
+   "vigilar": [
+    "Flujo libre: hoy 309 M; tiene que subir después de las inversiones.",
+    "Deuda neta: hoy 24.003 M; tiene que bajar con el flujo operativo.",
+    "Precios mayoristas de electricidad: Yahoo no los informa, definen los márgenes.",
+    "Acciones en circulación: hoy 335 M; si siguen subiendo, diluyen al accionista."
+   ],
+   "clientes": [
+    "Empresas de servicios públicos",
+    "Comercios e industrias con contratos de energía",
+    "Clientes mayoristas y centros de datos"
+   ],
+   "ideal_para": [
+    "Buscan exposición a energía nuclear y demanda eléctrica creciente.",
+    "Aceptan deuda alta y flujo libre bajo en una etapa de transición.",
+    "Entienden los precios mayoristas de electricidad."
+   ],
+   "menos_ideal": [
+    "Buscan dividendo o flujo libre estable.",
+    "No toleran la deuda en alza ni la dependencia de precios mayoristas."
+   ],
+   "perfil": "utility",
+   "capas": [],
+   "ticker": "CEG",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 31270000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "VST": {
+   "resumen": "Vistra es una empresa estadounidense integrada de electricidad: vende electricidad y gas natural a clientes residenciales, comerciales e industriales (segmento Retail) y genera energía con centrales en Texas, el este y el oeste del país, además de un segmento de cierre de activos (Asset Closure). Gana plata de dos formas: vende electricidad minorista y cobra por la energía de sus plantas en mercados mayoristas. Tiene un **foso estrecho, de flota de generación y base de clientes minoristas** (dato público): permisos, ubicación y plantas nucleares y de gas son difíciles de replicar. Los números mejoraron mucho desde 2022: el margen operativo es de **19,4 %** (EBIT de 3.723 M), la ganancia neta de 2.219 M y el ROIC de **12,5 %**, con recompras de 1.148 M en los últimos 12 meses y **13,3 % menos acciones** desde 2022 (de 390 M a 338 M). Pero las ganancias son muy volátiles (por acción: -3,15, 3,58, 7,00 y 2,22), el flujo libre es de 2.255 M en los últimos 12 meses con inversiones en alza (2.866 M), la deuda neta es de 19.460 M (2,97x EBITDA) y la deuda equivale a 3,6 veces el patrimonio. El dividendo, de 0,92 por acción, crece 7,6 % por año. Su punto débil es esa deuda y la volatilidad de los precios de la electricidad. El riesgo de la inteligencia artificial es **moderado**: no reemplaza el negocio, pero parte de lo que se espera de ella depende de la demanda eléctrica de los centros de datos. Conclusión: **empresa de buena calidad dentro de las eléctricas, con ROIC de 12,5 % y 13,3 % menos acciones, pero con ganancias volátiles, deuda neta de 19.460 M e inversiones en alza.**",
+   "veredicto": "Buena: ROIC de 12,5 % y 13,3 % menos acciones, pero con ganancias volátiles, deuda neta de 19.460 M e inversiones en alza",
+   "conclusion": "Vistra es una empresa de buena calidad dentro de las eléctricas: tiene un foso estrecho de flota y clientes minoristas, margen operativo de 19,4 %, ROIC de 12,5 %, flujo libre de 2.255 M y 13,3 % menos acciones, pero las ganancias son muy volátiles, la deuda neta es de 19.460 M y equivale a 3,6 veces el patrimonio. Vale la pena seguirla de cerca. Es recomendable investigar las coberturas de precios y los contratos de largo plazo en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo no vuelva a caer a niveles de 2025.",
+   "calidad": "Buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Vistra opera como una compañía integrada de venta minorista de electricidad y generación de energía en Estados Unidos. Opera cinco segmentos: **Retail, Texas, East, West y Asset Closure**. Comercializa electricidad y gas natural a clientes residenciales, comerciales e industriales en estados de Estados Unidos y en el Distrito de Columbia. Yahoo no informa cuánto aporta cada segmento ni cada tipo de planta, y no lo vamos a inventar.\n\nEs un negocio en crecimiento con resultados muy sensibles al precio de la electricidad: **los ingresos subieron 7,7 % en 2023, 16,5 % en 2024 y 3,0 % en 2025, hasta 17.738 M**, y llegan a 19.212 M en los últimos 12 meses.\n\n**A quién le vende.** A hogares, comercios e industrias, y a mercados mayoristas. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Vistra **es de flota de generación y base de clientes minoristas, y es estrecha**. Las plantas (nucleares, de gas y otras) tardan años en construirse y requieren permisos, y tener clientes minoristas le permite vender parte de su energía sin depender del precio mayorista (dato público). Se ve en el margen bruto de 38,0 % y en el margen operativo de 19,4 %.\n\nPero el margen operativo cayó de 23,7 % a 12,0 % en 2025 y recién se recupera, lo que muestra la sensibilidad a los precios. Compite con Constellation, NRG, Talen y las distribuidoras. Es frágil en los precios mayoristas de Texas (dato público), en la regulación y en la deuda. La inteligencia artificial no la reemplaza, pero la demanda de centros de datos es parte de lo que se espera de ella.",
+   "numeros": "Los números de Vistra cuentan **una recuperación fuerte desde las pérdidas de 2022, con ganancias muy volátiles**. Los ingresos fueron de 13.728 M, 14.779 M, 17.224 M y 17.738 M, y de 19.212 M en los últimos 12 meses. El EBIT fue de -1.103 M, 2.710 M, 4.081 M y 2.134 M, y de **3.723 M** (margen operativo de 19,4 %). La ganancia neta fue de -1.227 M, 1.493 M, 2.659 M y 944 M, y de 2.219 M. La ganancia por acción fue de -3,15, 3,58, 7,00 y 2,22.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -816 M, 3.777 M, 2.485 M y 1.318 M, y de **2.255 M** (11,7 %), con inversiones que subieron de 1.301 M a 2.866 M. El ROIC fue de -5,4 %, 11,7 %, 16,4 %, 7,9 % y 12,5 %. El ROE de 40,5 % no sirve para comparar porque el patrimonio es chico (5.482 M).\n\nLa mirada crítica: el EBIT bajó 48 % en 2025 después del pico de 2024; los resultados dependen mucho del precio de la electricidad y de las coberturas, que Yahoo no detalla.",
+   "balance": "**Deuda alta con patrimonio chico.** La deuda total es de 19.895 M y la caja de 435 M; la deuda neta es de 19.460 M y la deuda neta/EBITDA es de 2,97x, que multiplicado por 12 son unos 36 meses de EBITDA. Los intereses se cubren 3,9 veces con el EBIT.\n\nEl patrimonio neto es de 5.482 M y la deuda equivale a 3,6 veces el patrimonio, un nivel alto. La deuda total subió de 13.336 M en 2022 a 19.895 M. La deuda de corto plazo es de 2.176 M y la liquidez corriente de 0,97x, algo ajustada.",
+   "gerencia": "La conduce James Burke, presidente, CEO y director (57 años, pago de 4,6 M según Yahoo), con Kristopher Moldovan como director financiero (53 años, pago de 1,5 M).\n\nEn lo que importa, **el uso del capital es de recompras fuertes y dividendo creciente**: paga un dividendo de 0,92 por acción (desde 2016; sube 7,6 % por año en 3 años; 500 M en los últimos 12 meses, 22 % del flujo libre) y recompró 1.949 M en 2022, 1.245 M, 1.266 M, 1.028 M y 1.148 M en los últimos 12 meses. **Las acciones bajaron de 390 M a 338 M, un 13,3 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 19,4 % y ROIC de 12,5 %.",
+    "13,3 % menos acciones desde 2022.",
+    "Flujo libre de 2.255 M en los últimos 12 meses.",
+    "Dividendo creciendo 7,6 % por año con payout bajo.",
+    "Mezcla de clientes minoristas y generación."
+   ],
+   "debilidades": [
+    "Ganancias muy volátiles (por acción: 7,00 en 2024, 2,22 en 2025).",
+    "Deuda equivalente a 3,6 veces el patrimonio: el crítico más duro diría que un golpe de precios deja poco margen.",
+    "Inversiones en alza (2.866 M).",
+    "Liquidez corriente de 0,97x.",
+    "Resultados atados al precio de la electricidad."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 19,4 %; si baja de 12 %, los precios o las coberturas fallaron.",
+    "Deuda neta contra EBITDA: hoy 2,97x; si sube de 3,5x, el balance se tensiona.",
+    "Inversiones: hoy 2.866 M; tienen que dar retorno.",
+    "Acciones en circulación: hoy 338 M; las recompras tienen que seguir."
+   ],
+   "clientes": [
+    "Hogares, comercios e industrias (venta minorista)",
+    "Mercados mayoristas de electricidad",
+    "Empresas con contratos de energía"
+   ],
+   "ideal_para": [
+    "Buscan exposición a generación eléctrica con recompras.",
+    "Aceptan ganancias volátiles y deuda alta.",
+    "Entienden el riesgo de precios mayoristas."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables como una distribuidora regulada.",
+    "No toleran la deuda alta ni la volatilidad."
+   ],
+   "perfil": "utility",
+   "capas": [],
+   "ticker": "VST",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 19212000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "TLN": {
+   "resumen": "Talen Energy es una empresa estadounidense productora independiente de energía: produce y vende electricidad, capacidad y servicios auxiliares en los mercados mayoristas, con plantas nucleares, de gas natural, petróleo y carbón. Gana plata vendiendo energía y la disponibilidad de sus plantas a esos mercados. Tiene un **foso estrecho, de plantas difíciles de replicar** (dato público), con una historia financiera corta y accidentada: Yahoo no informa 2023, año en que, según datos públicos, la empresa salió de una reestructuración (a verificar). Los números cuentan una empresa que se transformó: los ingresos de los últimos 12 meses son de 3.741 M (2.073 M en 2024), el margen operativo subió a **12,5 %** y el flujo libre fue de **444 M** (11,9 % de los ingresos). Pero la ganancia neta es negativa (-219 M en 2025 y -185 M en los últimos 12 meses), el ROIC es de 3,3 %, la deuda neta subió de 2.676 M a **9.341 M** en un año y medio (12,13x EBITDA según Yahoo), el EBIT de los últimos 12 meses (469 M) cubre los intereses (499 M) solo 0,94 veces y no paga dividendo. Es probable que haya comprado plantas con deuda (dato a verificar). Su punto débil es ese balance. El riesgo de la inteligencia artificial es **moderado**: no reemplaza el negocio, pero parte de lo que se espera de ella depende de la demanda eléctrica de los centros de datos. Conclusión: **empresa de calidad pobre hoy: ganancia neta negativa, EBIT que no cubre los intereses y deuda neta de 12,13x EBITDA, aunque con flujo libre positivo y plantas valiosas.**",
+   "veredicto": "Pobre: ganancia neta negativa, EBIT que no cubre los intereses (0,94x) y deuda neta de 12x EBITDA, con flujo libre positivo",
+   "conclusion": "Talen Energy es hoy una empresa de calidad pobre en sus números: tiene un foso estrecho de plantas difíciles de replicar y un flujo libre positivo de 444 M, pero la ganancia neta es negativa, el EBIT no cubre los intereses (0,94 veces), la deuda neta llega a 12,13x EBITDA y el historial es corto. Hay que seguirla de cerca. Es recomendable investigar las compras recientes y los contratos de largo plazo en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el EBITDA crezca lo suficiente para bajar la deuda y cubrir los intereses.",
+   "calidad": "Pobre",
+   "riesgo_ia": "moderado",
+   "negocio": "Talen Energy es un productor independiente de energía y empresa de infraestructura que produce y vende electricidad, capacidad y servicios auxiliares en los mercados mayoristas de energía de Estados Unidos. Sus plantas generan energía con una variedad de combustibles: nuclear, gas natural, petróleo y carbón. Yahoo no informa cuánto aporta cada tipo de planta, y no lo vamos a inventar. **Yahoo no trae datos de 2023; las comparaciones saltan de 2022 a 2024.**\n\nEs un negocio que crece con volatilidad: **los ingresos fueron de 1.775 M en 2021, 2.412 M en 2022, 2.073 M en 2024 y 2.626 M en 2025**, y llegan a 3.741 M en los últimos 12 meses.\n\n**A quién le vende.** A mercados mayoristas de electricidad y a clientes con contratos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Talen **es de plantas difíciles de replicar, y es débil o estrecha**. Una planta nuclear o de gas ya instalada y con conexión a la red es difícil de construir de nuevo, y la electricidad de plantas confiables tiene valor creciente en un mercado con más demanda (dato público). Se ve en el margen bruto, que subió de 13,6 % a 42,1 %, y en el margen operativo de 12,5 %.\n\nPero los resultados dependen de los precios mayoristas, la ganancia neta sigue negativa y el balance está muy exigido. Compite con Constellation, Vistra, NRG y las distribuidoras. Es frágil en los precios mayoristas, en la deuda, en la regulación y en que sus contratos nuevos no se concreten. La inteligencia artificial no la reemplaza, pero la demanda de centros de datos es parte de lo que se espera de ella.",
+   "numeros": "Los números de Talen cuentan **una transformación reciente con pérdidas netas y poco historial** (Yahoo no informa 2023). Los ingresos fueron de 1.775 M, 2.412 M, 2.073 M y 2.626 M (2021, 2022, 2024 y 2025), y de 3.741 M en los últimos 12 meses. El EBIT fue de -446 M, 104 M, 165 M y 16 M, y de **469 M** (margen operativo de 12,5 %). La ganancia neta fue de -989 M, -1.289 M, **998 M** y -219 M, y de **-185 M**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -541 M, -125 M, 67 M y 498 M, y de **444 M** en los últimos 12 meses (11,9 %), con inversiones de 352 M. El ROIC es de 3,3 % y el ROE de -11,4 %. La ganancia por acción de los años anteriores no sirve para comparar porque Yahoo muestra valores absurdos (como -2.198 en 2021) por el cambio en la cantidad de acciones.\n\nLa mirada crítica: la ganancia neta de 2024 (998 M) con un EBIT de 165 M viene de un resultado no operativo que Yahoo no detalla (dato a verificar); no es un hecho repetible.",
+   "balance": "**Deuda muy alta y cobertura insuficiente.** La deuda total es de 9.572 M y la caja de 231 M; la deuda neta es de 9.341 M y la deuda neta/EBITDA es de 12,13x, que multiplicado por 12 son unos 146 meses de EBITDA, es decir, más de 12 años de EBITDA. Los intereses (499 M) son más que el EBIT de los últimos 12 meses (469 M): la cobertura es de 0,94 veces.\n\nEl patrimonio neto es de 1.616 M y la deuda equivale a 5,9 veces el patrimonio. La deuda total subió de 3.004 M en 2024 a 9.572 M, y el capital invertido de 4.391 M a 11.188 M, probablemente por compras de plantas (dato a verificar). La liquidez corriente es de 0,78x.",
+   "gerencia": "La conduce Mark McFarland, CEO y director (56 años, pago de 4,2 M según Yahoo), con Terry Nutt como presidente (48 años, pago de 1,6 M), Brad Berryman como director de operaciones (55 años) y Cole Muller como director financiero (44 años, pago de 2,9 M).\n\nEn lo que importa, **el uso del capital es de recompras y compras de plantas financiadas con deuda, sin dividendo**: no paga dividendo y recompró 1.958 M en 2024, 103 M en 2025 y 298 M en los últimos 12 meses, según Yahoo (la de 2024 es un monto muy grande en relación con su tamaño, dato a verificar). **Las acciones bajaron de 56 M a 46 M entre 2024 y 2025, un 19 % menos.**",
+   "fortalezas": [
+    "Flujo libre de 444 M, 11,9 % de los ingresos.",
+    "Margen bruto de 42,1 % y margen operativo en alza.",
+    "Ingresos de 3.741 M, creciendo.",
+    "Plantas nucleares y de gas difíciles de replicar.",
+    "Menos acciones desde 2024."
+   ],
+   "debilidades": [
+    "Ganancia neta negativa (-185 M).",
+    "Deuda neta de 12,13x EBITDA y EBIT que no cubre los intereses (0,94x): el crítico más duro diría que cualquier baja de precios pone en riesgo el pago de la deuda.",
+    "Historia corta y accidentada (Yahoo no informa 2023).",
+    "ROIC de 3,3 % y patrimonio de apenas 1.616 M.",
+    "No paga dividendo."
+   ],
+   "vigilar": [
+    "Cobertura de intereses: hoy 0,94 veces; tiene que superar 1,5.",
+    "Deuda neta contra EBITDA: hoy 12,13x; tiene que bajar fuerte.",
+    "Ganancia neta: hoy -185 M; tiene que volverse positiva sin ítems únicos.",
+    "Contratos de largo plazo: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Mercados mayoristas de electricidad",
+    "Empresas con contratos de energía",
+    "Operadores de la red eléctrica"
+   ],
+   "ideal_para": [
+    "Entienden la deuda alta como parte de una transformación.",
+    "Buscan exposición a generación eléctrica con riesgo alto.",
+    "Aceptan una empresa con historial corto."
+   ],
+   "menos_ideal": [
+    "Buscan balance sólido o dividendo.",
+    "No toleran la deuda alta ni los resultados volátiles."
+   ],
+   "perfil": "utility",
+   "capas": [],
+   "ticker": "TLN",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 3741000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2022",
+     "2021"
+    ]
+   }
   }
  }
 }
