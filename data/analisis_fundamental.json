@@ -4422,6 +4422,192 @@
      "2022"
     ]
    }
+  },
+  "BNY": {
+   "resumen": "BNY (Bank of New York Mellon) es uno de los grandes bancos de custodia del mundo: guarda, administra y liquida los activos de fondos, aseguradoras y grandes inversores, y además administra patrimonios y presta servicios de pagos y divisas. Gana plata con comisiones por cada activo que custodia y por cada operación que procesa, más los intereses de los depósitos que recibe. Tiene un **foso estrecho, de costos de cambio y escala**: cambiar de custodio un fondo con billones en activos es lento, caro y riesgoso, así que los clientes rara vez se van. Los números mejoraron mucho: los ingresos pasaron de 16.186 M en 2022 a 19.759 M en 2025, la ganancia neta de 2.556 M a 5.549 M, la ganancia por acción de 2,90 a 7,40 (**9,05 en los últimos 12 meses**) y el ROE de 6,3 % a **12,5 %**. Además usa la plata para recomprar: **hay 14,6 % menos acciones que en 2022**. Su punto débil es que el negocio depende de que los mercados no caigan (las comisiones siguen el valor de los activos) y de las tasas de interés, y que el ROE recién llegó a la referencia de 12 %. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para automatizar procesos y el cliente valora la seguridad más que la novedad. Conclusión: **buena empresa, con foso estrecho, ROE de 12,5 %, ganancia por acción en fuerte alza y fuertes recompras, aunque atada al ciclo de los mercados.**",
+   "veredicto": "Buena empresa: foso estrecho, ROE de 12,5 % y 14,6 % menos acciones, atada al ciclo de los mercados",
+   "conclusion": "BNY es una buena empresa: tiene un foso estrecho de costos de cambio, ROE de 12,5 %, ganancia por acción de 9,05 en los últimos 12 meses y 14,6 % menos acciones, pero depende del ciclo de los mercados y de las tasas. Vale la pena seguirla de cerca. Es recomendable investigar los activos bajo custodia y la sensibilidad a las tasas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando bajen las tasas.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "BNY provee servicios financieros en Estados Unidos y en el exterior. Opera cuatro segmentos: **Securities Services** (custodia, fideicomiso, contabilidad de fondos, fondos cotizados, divisas), **Market and Wealth Services**, **Investment and Wealth Management** y **Other**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de infraestructura: los grandes inversores necesitan que alguien guarde sus activos y liquide sus operaciones. **Los ingresos crecieron 7,2 % en 2023, 5,3 % en 2024 y 8,2 % en 2025, hasta 19.759 M.**\n\n**A quién le vende.** A fondos de inversión, aseguradoras, bancos, gestoras y grandes inversores institucionales de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de BNY **es de costos de cambio y de escala, y es estrecha**. Un fondo que tiene sus activos custodiados en BNY y sus operaciones conectadas a sus sistemas no cambia de proveedor por un ahorro pequeño: migrar es lento, caro y riesgoso, y un error puede costar mucho más que la comisión. Además, el tamaño le permite repartir los costos de tecnología y regulación entre más clientes. Pero no es un foso ancho: compite con State Street, JPMorgan, Citi y otros, y la comisión por custodia es una guerra de precios. El ROE de 6,3 % a 12,5 % muestra que el foso protege el negocio, pero no garantiza una rentabilidad extraordinaria.\n\nEs frágil en las caídas de los mercados (si bajan los activos, bajan las comisiones), en las tasas (el margen de los depósitos cambia) y en los errores operativos. La inteligencia artificial puede ayudarla a automatizar tareas, y no amenaza de forma directa su negocio.",
+   "numeros": "Los números de BNY cuentan **un negocio que mejoró fuerte en tres años**. Los ingresos fueron de 16.186 M, 17.344 M, 18.258 M y 19.759 M. La ganancia neta fue de 2.556 M en 2022, 3.302 M, 4.530 M y 5.549 M (+117 %). La ganancia por acción pasó de 2,90 a 4,00, 5,80, 7,40 y **9,05 en los últimos 12 meses** (+212 %).\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **6,3 %, 8,1 %, 11,0 % y 12,5 %**. El capital invertido solo subió de 66.751 M a 73.775 M (+10 %), de modo que la ganancia creció mucho más que el capital.\n\nYahoo marca que el flujo de efectivo operativo de los últimos 12 meses (3.305 M) es muy distinto del del último año fiscal (6.730 M). En un banco ese flujo se mueve con depósitos y operaciones de mercado, y por eso no lo usamos para juzgarlo: miramos la ganancia neta y el ROE. La mirada crítica: parte de la mejora puede ser el ciclo favorable de tasas y de mercados.",
+   "balance": "**El capital del banco crece despacio mientras la ganancia crece rápido.** El capital invertido (lo que financia el negocio) pasó de 66.751 M en 2022 a 73.775 M en 2025, apenas 10,5 % más, y eso explica la suba del ROE. Es un banco grande, de los que los reguladores vigilan de cerca, y su materia prima son los depósitos de los clientes.\n\nCon tasas altas el banco gana más sobre esos depósitos, pero si bajan, ese beneficio se achica. Y con los mercados altos las comisiones por activos custodiados también son más altas, que son dos vientos a favor que pueden cambiar.",
+   "gerencia": "La conduce Robin Vince, presidente, CEO y presidente del directorio (54 años, pago de 11,0 M según Yahoo), con Dermot McDonogh como director financiero (61 años, pago de 6,2 M). Es un equipo que en estos años mejoró el ROE de forma clara.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 2,32 por acción (pagado desde 1987; sube 12,1 % por año en 3 años) y recompra acciones por montos grandes (124 M en 2022, 3.104 M en 2023, 3.064 M en 2024, 4.535 M en 2025 y 4.772 M en los últimos 12 meses). **Las acciones bajaron de 815 M a 696 M, un 14,6 % menos.**",
+   "fortalezas": [
+    "ROE de 6,3 % a 12,5 % en tres años, en la referencia de 12 %.",
+    "Ganancia por acción de 2,90 a 9,05 en los últimos 12 meses.",
+    "14,6 % menos acciones desde 2022, con 4.772 M en recompras en los últimos 12 meses.",
+    "Costos de cambio altos: los clientes rara vez cambian de custodio.",
+    "Ingresos creciendo todos los años (+7,2 %, +5,3 %, +8,2 %) y dividendo creciente (12,1 % anual en 3 años)."
+   ],
+   "debilidades": [
+    "ROE recién en 12,5 %, sin margen de sobra.",
+    "Comisiones atadas al valor de los activos: el crítico más duro diría que la mejora depende de que los mercados no caigan.",
+    "Sensibilidad a las tasas: si bajan, el margen sobre los depósitos se achica.",
+    "Foso estrecho: compite con State Street, JPMorgan y otros en precio.",
+    "Flujo operativo muy variable entre períodos, difícil de interpretar en un banco."
+   ],
+   "vigilar": [
+    "ROE: hoy 12,5 %; si cae por debajo de 10 %, el ciclo favorable se está agotando.",
+    "Ingresos: 19.759 M en 2025 con +8,2 %; si el crecimiento se frena con los mercados estables, algo se está perdiendo.",
+    "Recompras: 4.772 M en los últimos 12 meses; si bajan, la ganancia por acción pierde un impulso importante.",
+    "Margen de intereses y depósitos: es lo que más cambia cuando bajan las tasas."
+   ],
+   "clientes": [
+    "Fondos de inversión y gestoras de activos",
+    "Aseguradoras y bancos",
+    "Grandes inversores institucionales y clientes de patrimonios"
+   ],
+   "ideal_para": [
+    "Buscan un banco de infraestructura con costos de cambio altos.",
+    "Valoran recompras fuertes y dividendo creciente.",
+    "Aceptan que las comisiones dependen del nivel de los mercados."
+   ],
+   "menos_ideal": [
+    "No toleran el riesgo de caída de los mercados.",
+    "Buscan un crecimiento acelerado."
+   ],
+   "perfil": "banco",
+   "capas": [],
+   "ticker": "BNY",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ING": {
+   "resumen": "ING es uno de los mayores bancos de Europa: cuentas, ahorro, hipotecas, préstamos a pymes y a consumo, y banca mayorista, con fuerza en Países Bajos, Bélgica y Alemania y una operación digital muy desarrollada. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones. Tiene un **foso estrecho, de escala y banca digital**: una base grande de clientes y depósitos en Europa, y una app que atiende a mucha gente con pocas sucursales. Los números son buenos: los ingresos pasaron de €18.891 M en 2022 a €22.903 M en 2025 (€23.732 M en los últimos 12 meses), la ganancia neta de €3.674 M a €6.327 M (€6.701 M en los últimos 12 meses), la ganancia por acción de 1,01 a 2,12 y el ROE de 7,4 % a **13,3 %**. Además **hay 17,5 % menos acciones que en 2022**. Su punto débil es que depende de las tasas europeas y del ciclo de crédito, y que la ganancia neta de 2025 (€6.327 M) quedó por debajo de la de 2023 (€7.287 M). Las cifras están en euros, por lo que el rendimiento en dólares depende del tipo de cambio. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa, un banco digital europeo con ROE de 13,3 % y 17,5 % menos acciones, aunque con ganancia estancada desde 2023 y sensible a las tasas.**",
+   "veredicto": "Buena empresa: banco digital europeo con ROE de 13,3 % y menos acciones, aunque con ganancia estancada",
+   "conclusion": "ING es una buena empresa: tiene un banco digital con ROE de 13,3 %, ganancia por acción de 2,12 y 17,5 % menos acciones, pero la ganancia neta no crece desde 2023 y depende de las tasas europeas. Vale la pena seguirla de cerca. Es recomendable investigar el margen de intereses y la morosidad en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando bajen las tasas.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "ING ofrece servicios bancarios en los Países Bajos, Bélgica, Alemania, el resto de Europa y a nivel internacional. Opera cinco segmentos: **Retail Netherlands**, **Retail Belgium**, **Retail Germany**, **Retail Other** y **Wholesale Banking**. Acepta cuentas corrientes, de ahorro y depósitos a plazo, y presta a empresas, a pymes y a consumidores, incluidas hipotecas residenciales. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 20,0 % en 2023, cayeron 0,5 % en 2024 y crecieron 1,5 % en 2025, hasta €22.903 M.** Todas las cifras están en euros.\n\n**A quién le vende.** A millones de personas, pymes y empresas de Europa. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de ING **es de escala y de banca digital, y es estrecha**. Una base grande de clientes y depósitos le da financiamiento barato, y su modelo digital le permite atender mucha gente con menos sucursales. Pero un banco vende dinero, que es igual en todos lados. Se ve en el ROE, de 7,4 % a 13,3 %, ya por encima de la referencia de 12 %, aunque lejos de los bancos más rentables.\n\nCompite con ABN Amro, Rabobank, BNP Paribas, Deutsche Bank y bancos digitales. Es frágil en las tasas europeas (si bajan, el margen de intereses se achica), en el riesgo de crédito en una recesión y en la regulación. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
+   "numeros": "Los números de ING cuentan **una mejora fuerte en 2023 y una ganancia que después quedó estable**. Los ingresos fueron de €18.891 M, €22.674 M, €22.554 M y €22.903 M. La ganancia neta fue de €3.674 M en 2022, €7.287 M, €6.392 M y €6.327 M, y de €6.701 M en los últimos 12 meses. La ganancia por acción pasó de 1,01 a 2,04, 1,98 y **2,12** (+110 %).\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **7,4 %, 14,2 %, 12,7 %, 12,7 % y 13,3 % en los últimos 12 meses**. El capital invertido pasó de €168.230 M a €235.324 M (+40 %).\n\nLa mirada crítica: la ganancia neta no creció desde 2023, y la suba de la ganancia por acción se explica en gran parte por tener menos acciones. Con tasas más bajas, el margen de intereses se achica.",
+   "balance": "**El capital del banco crece más que la ganancia.** El capital invertido (lo que financia el negocio) pasó de €168.230 M en 2022 a €235.324 M en los últimos 12 meses, un 40 % más, mientras la ganancia neta subió 82 % desde un 2022 bajo. Es un banco grande, de los que los reguladores vigilan de cerca, con los depósitos como materia prima.\n\nCon tasas altas el banco gana más al prestar, pero si bajan ese beneficio se achica. Al estar las cifras en euros, el valor en dólares también depende del tipo de cambio.",
+   "gerencia": "La conduce Steven van Rijswijk, CEO y presidente del comité ejecutivo (55 años, pago de 3,2 M según Yahoo), con Ida Lerner como directora financiera (50 años). Es un equipo que mantiene la estrategia digital.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 1,32 por acción (por ADS, en dólares; sube 3,5 % por año en 3 años) y viene achicando la cantidad de acciones. **Las acciones bajaron de 3.624 M a 2.990 M, un 17,5 % menos.** Yahoo no informa el monto de las recompras, y no lo vamos a inventar. Los próximos resultados figuran para el 29/10/2026.",
+   "fortalezas": [
+    "ROE de 13,3 % en los últimos 12 meses, por encima de la referencia de 12 %.",
+    "17,5 % menos acciones desde 2022.",
+    "Ganancia por acción de 1,01 a 2,12 en tres años.",
+    "Ganancia neta de €6.701 M en los últimos 12 meses.",
+    "Banca digital desarrollada, con escala en Europa."
+   ],
+   "debilidades": [
+    "Ganancia neta estancada desde 2023 (€7.287 M, €6.392 M, €6.327 M).",
+    "Ingresos casi sin crecer en 2024 y 2025.",
+    "Sensibilidad a las tasas: el crítico más duro diría que el ROE de hoy es el techo del ciclo.",
+    "Cifras en euros: el valor en dólares depende del tipo de cambio.",
+    "Foso estrecho: el dinero es igual en todos lados y compite con otros bancos grandes."
+   ],
+   "vigilar": [
+    "ROE: hoy 13,3 %; si cae hacia 10 %, el ciclo de tasas se está dando vuelta.",
+    "Ganancia neta: €6.701 M en los últimos 12 meses; si baja con tasas estables, algo se está deteriorando.",
+    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión.",
+    "Margen de intereses: es la línea que más sufre cuando el Banco Central Europeo baja las tasas."
+   ],
+   "clientes": [
+    "Millones de personas y cuentas de ahorro en Europa",
+    "Pequeñas y medianas empresas",
+    "Grandes empresas de la banca mayorista"
+   ],
+   "ideal_para": [
+    "Buscan un banco europeo digital con ROE sobre la referencia.",
+    "Valoran que la cantidad de acciones baje.",
+    "Aceptan el riesgo del euro y de las tasas."
+   ],
+   "menos_ideal": [
+    "No toleran el riesgo de tipo de cambio.",
+    "Buscan una ganancia en crecimiento sostenido."
+   ],
+   "perfil": "banco",
+   "capas": [],
+   "ticker": "ING",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 23732000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "NU": {
+   "resumen": "Nu Holdings (Nubank) es un banco digital que nació en Brasil y hoy opera también en México y Colombia: tarjeta de crédito y prepaga, cuenta digital, préstamos, pagos y seguros, todo desde una app y sin sucursales. Gana plata con los intereses de sus préstamos y tarjetas, más comisiones por pagos. Tiene un **foso estrecho, de costo bajo y marca**: sin sucursales atiende a millones de clientes con menos gastos que un banco tradicional, y su marca es muy fuerte entre los jóvenes. Los números son los de una empresa que crece muy rápido: los ingresos pasaron de 2.971 M en 2022 a 10.627 M en 2025 (**13.174 M en los últimos 12 meses**), la ganancia neta de una pérdida de 365 M a 2.869 M (3.607 M en los últimos 12 meses), y el ROE a **27,2 %**. Su punto débil es que presta a muchos clientes de ingresos bajos en economías con tasas altas, de modo que una recesión puede subir mucho la morosidad, y que **las acciones aumentaron 4,9 %**. Además la ganancia es muy reciente: el primer año con ganancia fue 2023. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque ya trabaja con datos y automatización. Conclusión: **buena empresa, con crecimiento muy rápido y ROE de 27,2 %, aunque con historia corta de ganancias y riesgo de morosidad en economías emergentes.**",
+   "veredicto": "Buena empresa: crecimiento muy rápido y ROE de 27,2 %, pero con historia corta y riesgo de crédito emergente",
+   "conclusion": "Nu Holdings es una buena empresa: tiene un banco digital con ingresos de 13.174 M en los últimos 12 meses, ROE de 27,2 % y ganancia neta de 3.607 M, pero con solo tres años de ganancias, crecimiento que se frena y acciones que aumentaron 4,9 %. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 15 % cuando llegue una recesión.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Nu Holdings provee una plataforma bancaria digital en Brasil, México, Colombia, las Islas Caimán y Estados Unidos. Ofrece la tarjeta de crédito y prepaga Nu, la cuenta digital NuAccount, la tarjeta premium Ultravioleta, pagos móviles, préstamos y seguros. Yahoo no informa cuánto aporta cada país, y no lo vamos a inventar; es un dato público que Brasil es el mercado principal.\n\nEs un negocio de crédito y pagos para personas: **los ingresos crecieron 89,6 % en 2023, 46,8 % en 2024 y 28,5 % en 2025, hasta 10.627 M** (13.174 M en los últimos 12 meses). Las cifras están en dólares.\n\n**A quién le vende.** A millones de personas, en su mayoría jóvenes y de ingresos medios y bajos, y a pequeños comercios. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Nu **es de costo bajo y de marca, y es estrecha**. Sin sucursales ni burocracia, atiende a millones de clientes con un costo mucho menor que un banco tradicional, y su app y su marca atraen clientes que antes no tenían cuenta. Se ve en el ROE de 25,4 % en 2025 y 27,2 % en los últimos 12 meses, muy por encima de la referencia de 12 %. Pero un banco vende dinero, que es igual en todos lados, y la ventaja de costos puede ser copiada por otros bancos que también se digitalizan.\n\nCompite con Itaú, Bradesco, Santander, Mercado Pago, Inter y bancos digitales de cada país. Es frágil en la morosidad (presta a clientes con poco historial), en las tasas y la economía de Brasil y México, y en los cambios regulatorios. La inteligencia artificial puede ayudarla a evaluar mejor el crédito, y no la amenaza de forma directa.",
+   "numeros": "Los números de Nu cuentan **un crecimiento muy rápido, con ganancia desde 2023**. Los ingresos fueron de 2.971 M, 5.632 M, 8.270 M y 10.627 M. La ganancia neta fue de -365 M en 2022, 1.031 M, 1.972 M y 2.869 M, y de 3.607 M en los últimos 12 meses. La ganancia por acción pasó de -0,08 a 0,21, 0,40 y **0,58** en 2025.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **-7,5 %, 16,1 %, 25,8 %, 25,4 % y 27,2 % en los últimos 12 meses**. El capital invertido pasó de 5.476 M a 15.118 M (casi 3 veces), un capital que sostiene la expansión del crédito.\n\nLa mirada crítica: hay solo tres años de ganancias y el crecimiento viene bajando (89,6 %, 46,8 %, 28,5 %). Y como presta a muchos clientes nuevos, el verdadero examen es una recesión.",
+   "balance": "**El capital crece rápido porque la empresa también crece rápido.** El capital invertido (lo que financia el negocio) pasó de 5.476 M en 2022 a 15.118 M en los últimos 12 meses. Para prestar más, un banco necesita más capital propio, y Nu lo fue sumando con ganancias y con nuevas acciones.\n\nCon tasas altas en Brasil gana más sobre sus préstamos, pero los clientes pagan más por sus deudas y la morosidad puede subir. Yahoo no informa deuda ni caja de forma comparable para un banco, y por eso no la comparamos acá.",
+   "gerencia": "La conduce David Vélez, fundador, presidente y CEO, con Rob Livingston como director financiero y Roberto Campos Neto como vicepresidente ejecutivo y responsable de políticas públicas (56 años). Yahoo no informa el pago de los directivos.\n\nEn lo que importa, **la empresa usa el capital para crecer y no paga dividendo.** Yahoo no informa recompras (la línea figura en 0 en 2022 y 2023). **Las acciones aumentaron de 4.677 M a 4.907 M, un 4,9 %**, algo que conviene seguir. Los próximos resultados figuran para el 12/11/2026.",
+   "fortalezas": [
+    "Ingresos de 2.971 M a 10.627 M en tres años, y 13.174 M en los últimos 12 meses.",
+    "ROE de 27,2 % en los últimos 12 meses, muy por encima de la referencia de 12 %.",
+    "Ganancia neta de 3.607 M en los últimos 12 meses, desde una pérdida en 2022.",
+    "Costo bajo y marca fuerte: sin sucursales, atiende a millones de clientes.",
+    "Expansión a México y Colombia, con mucho espacio para crecer."
+   ],
+   "debilidades": [
+    "Solo tres años de ganancias: el crítico más duro diría que no pasó nunca por una recesión larga con esta escala.",
+    "Presta a clientes de ingresos bajos y poco historial: la morosidad puede subir mucho.",
+    "Crecimiento que se frena: 89,6 %, 46,8 %, 28,5 %.",
+    "Las acciones aumentaron 4,9 % desde 2022.",
+    "Depende de Brasil, de sus tasas y de su moneda."
+   ],
+   "vigilar": [
+    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión y lo que más importa en un banco que crece rápido.",
+    "ROE: hoy 27,2 %; si cae hacia 15 %, el crecimiento está costando más capital.",
+    "Ingresos: crecen 28,5 %; si se frenan más rápido, el negocio madura antes de lo esperado.",
+    "Cantidad de acciones: hoy 4.907 M; si siguen subiendo, la ganancia por acción pierde fuerza."
+   ],
+   "clientes": [
+    "Millones de personas, en su mayoría jóvenes",
+    "Clientes de tarjeta de crédito y cuenta digital",
+    "Pequeños comercios y usuarios de pagos y seguros"
+   ],
+   "ideal_para": [
+    "Buscan crecimiento en banca digital de Latinoamérica.",
+    "Aceptan una historia corta de ganancias.",
+    "Toleran el riesgo de morosidad y de monedas emergentes."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos o recompras.",
+    "No toleran el riesgo de crédito en economías emergentes."
+   ],
+   "perfil": "banco",
+   "capas": [],
+   "ticker": "NU",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 13174203000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
