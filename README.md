@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.82 (28/10/2026): Tu Cartera entiende planillas pegadas desde Excel (compras repetidas, subtotales, sectores)
+- Caso real: la planilla propia de Guille (Ticker, Sector, Capitalización, Fecha, #, Coste base, Capital invertido) pegada como texto no se entendía. Arreglado:
+  - Al pegar tablas de Excel (con tabulaciones) se conservan las celdas vacías (antes se corrían las columnas).
+  - Reconoce "Capital invertido" como monto (y avisa en pantalla que es lo que se pagó, no el valor de hoy, así que los porcentajes salen sobre ese costo).
+  - Las filas sin ticker son otra compra del ticker de arriba, y las compras repetidas se suman (una empresa = una posición; así la regla de 3 a 5 % no se rompe).
+  - Se ignoran subtotales, totales y títulos como "Posiciones cerradas" o "Resto del mundo"; "Renta Fija" como título de grupo vale más que una columna que no se entiende.
+  - La columna "Sector" se usa como Tipo: Technology, Consumer Def, Energy, Healthcare, REIT, MLPs, Divis Emergentes... se leen como renta variable; "ETF EDIV" se limpia a "EDIV".
+- Resultado con esa planilla: 63 posiciones, la suma del bloque de EE.UU. coincide al centavo con el total de la planilla (128.337,08).
+- Tests: `test_v181.py` ahora 27 chequeos, con la planilla real como muestra (`cartera_guille.txt`).
+
 ### v1.2.81 (28/10/2026): Tu Cartera lee casi cualquier Excel/CSV y la barra pasa a rosa
 - **Lector adaptable** (`ui/cartera.py: leer_tabla`, `leer_archivo_info`): ya no hace falta el formato de ejemplo. Busca el encabezado en las primeras 30 filas (se saltean títulos y datos de la cuenta), reconoce columnas por sus nombres (Ticker/Símbolo/Especie/Instrumento/Descripción; Monto/Valuación/Valorizado/Importe/Total…; Cantidad/Nominales × Precio/Último; Moneda; Tipo/Rubro), ignora precios de compra, resultados y variaciones, se saltea las filas de Total, usa los títulos de grupo ("Acciones", "Bonos") como Tipo, prefiere la columna en dólares si hay una en pesos y otra en dólares, limpia "AAPL - Apple Inc" a "AAPL", acepta solo porcentajes y archivos sin encabezado (ticker = primera columna, monto = primera columna numérica). `1.500` se lee como 1500 (punto de miles).
 - Varias hojas: usa la que tiene más posiciones y lo avisa en pantalla. CSV: detecta codificación (UTF-8 / Windows) y separador (; , tab |). Se aceptan .xlsx, .xlsm, .xls (con `xlrd` en requirements), .csv, .tsv y .txt. Si no entiende el archivo, el mensaje dice qué necesita.

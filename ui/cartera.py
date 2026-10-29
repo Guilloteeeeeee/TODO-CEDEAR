@@ -58,14 +58,14 @@ def numero(x):
 
 # Palabras que identifican cada columna (se comparan contra el encabezado sin tildes ni mayusculas). Van por PRIORIDAD: se prueba la primera palabra en todas las columnas, despues la segunda...
 _K_TICKER = ("ticker", "simbolo", "especie", "codigo", "nemonico", "symbol", "activo", "instrumento", "papel", "descripcion", "denominacion", "nombre", "name")
-_K_MONTO = ("valuacion", "valorizado", "valorizacion", "valor actual", "valor de mercado", "valor mercado", "market value", "monto", "importe", "tenencia valorizada", "total", "valor",
+_K_MONTO = ("valuacion", "valorizado", "valorizacion", "valor actual", "valor de mercado", "valor mercado", "market value", "monto", "importe", "capital invertido", "invertido", "tenencia valorizada", "total", "valor",
             "tenencia", "saldo", "position value")
-_K_MONTO_MAL = ("precio", "variacion", "resultado", "ganancia", "perdida", "rendimiento", "costo", "compra", "ppc", "inicial", "diario", "dia", "%", "pnl", "p l", "tna", "tir",
+_K_MONTO_MAL = ("precio", "variacion", "resultado", "ganancia", "perdida", "rendimiento", "costo", "compra", "ppc", "inicial", "coste", "diario", "dia", "%", "pnl", "p l", "tna", "tir",
                 "cantidad", "nominal", "disponible", "cotiz")
-_K_TIPO = ("tipo", "clase", "categoria", "rubro", "panel", "mercado", "asset class")
+_K_TIPO = ("tipo", "clase", "categoria", "rubro", "panel", "mercado", "asset class", "sector")
 _K_CANT = ("cantidad", "nominales", "cant", "tenencia", "quantity", "unidades", "titulos")
-_K_PRECIO = ("ultimo", "precio actual", "precio", "cotizacion", "price", "last")
-_K_PRECIO_MAL = ("compra", "ppc", "costo", "promedio", "variacion", "cierre anterior", "apertura")
+_K_PRECIO = ("ultimo", "precio actual", "precio", "cotizacion", "price")
+_K_PRECIO_MAL = ("compra", "ppc", "costo", "coste", "base", "promedio", "variacion", "cierre anterior", "apertura")
 _K_MONEDA = ("moneda", "divisa", "currency")
 _K_PESO = ("peso", "ponderacion", "% de la cartera", "% cartera", "participacion", "porcentaje")
 
@@ -132,7 +132,7 @@ _TOTALES = re.compile(r"^(sub ?total|total|totales|suma|saldo total|resumen|valo
 
 def _ticker_limpio(txt):
     """'AAPL - Apple Inc' -> 'AAPL'; 'AAPL.BA' queda igual; 'ON YPF' queda igual."""
-    t = str(txt or "").strip()
+    t = re.sub(r"^(etf|cedear)\s+(?=[A-Za-z0-9.]{2,10}$)", "", str(txt or "").strip(), flags=re.I)
     m = re.match(r"^([A-Za-z0-9.]{2,10})\s*(?:[-–—:(]\s+|\()", t)
     if m and not re.match(r"^(ON|FCI|BONO|LETRA|PLAZO)$", m.group(1), re.I):
         return m.group(1)
@@ -144,22 +144,23 @@ def _es_numerica(col, filas):
     return len(v) >= 1 and sum(x is not None for x in v) / len(v) >= 0.7
 
 
-def leer_tabla(filas):
-    """`filas`: lista de listas. Se adapta a lo que venga: el encabezado puede estar en cualquiera de las primeras 30 filas (se saltean títulos y datos de la cuenta),
-    las columnas se reconocen por sus nombres (Símbolo, Especie, Valuación, Total valorizado, Cantidad × Precio…), puede haber una columna de monto en pesos y otra en dólares,
-    se ignoran las filas de totales y los títulos de grupo ("Acciones", "Bonos"…) se usan como Tipo. Sin encabezado: primera columna = ticker, primera columna con números = monto.
-    Devuelve [{'ticker', 'monto', 'tipo', 'moneda'}] con monto > 0."""
+def leer_tabla_info(filas):
+    """(posiciones, notas). Ver `leer_tabla`. Las notas avisan de cosas que la persona tiene que saber (por ejemplo, que el monto es lo que pagó y no el valor de hoy)."""
     filas = [list(f) for f in filas if f and any(str(c or "").strip() for c in f)]
     if not filas:
-        return []
+        return [], []
     mejor, mejor_p = None, 0
     for i, f in enumerate(filas[:30]):
         p = _puntaje_encabezado(f)
         if p > mejor_p:
             mejor, mejor_p = i, p
+    notas = []
     if mejor is not None:
         c = _columnas(filas[mejor])
         datos = filas[mejor + 1:]
+        for im, _ in c["monto"][:1]:
+            if re.search(r"invertido|costo|coste|compra", norm(filas[mejor][im])):
+                notas.append(f"Usé la columna «{str(filas[mejor][im]).strip()}»: es lo que pagaste, no el valor de hoy, así que los porcentajes salen sobre ese costo.")
     else:           # sin encabezado: ticker = primera columna, monto = primera columna que tenga numeros
         ancho = max(len(f) for f in filas)
         im = next((j for j in range(1, ancho) if _es_numerica(j, filas)), 1)
@@ -167,14 +168,11 @@ def leer_tabla(filas):
              "moneda": None, "peso": None}
         datos = filas
     it = c["ticker"]
-    out, seccion = [], ""
+    out, seccion, ultimo = [], "", ""
     for f in datos:
-        if it >= len(f):
-            continue
-        tk = str(f[it] or "").strip()
-        if not tk:
-            continue
-        if _TOTALES.match(norm(tk)):
+        tk = str(f[it] or "").strip() if it < len(f) else ""
+        if tk and _TOTALES.match(norm(tk)):
+            seccion, ultimo = "", ""                      # fila de total o subtotal: no es una posicion y corta el grupo
             continue
         m, mo_enc = None, None
         for im, mon in c["monto"]:
@@ -186,16 +184,42 @@ def leer_tabla(filas):
             c_, p_ = numero(f[c["cantidad"]]), numero(f[c["precio"]])
             m = c_ * p_ if c_ and p_ and c_ > 0 and p_ > 0 else None
         if m is None:
-            # fila de titulo de grupo ("Acciones", "Bonos", "CEDEARs"): sin ningun numero en la fila
-            if not any(numero(x) is not None for j, x in enumerate(f) if j != it and str(x or "").strip()) and len(tk) <= 40:
-                seccion = tk
+            # titulo de grupo ("Acciones", "Bonos", "Renta Fija"): sin ningun numero en la fila y que diga de que tipo es
+            if tk and not any(numero(x) is not None for j, x in enumerate(f) if j != it and str(x or "").strip()) and len(tk) <= 40:
+                seccion = tk if clase_de_tipo(tk) else ""      # un grupo que no se entiende ("Fondos") corta el anterior
             continue
+        if not tk:
+            tk = ultimo                                    # varias compras de la misma empresa: la primera fila lleva el ticker y las otras lo dejan vacio
+            if not tk:
+                continue
+        else:
+            ultimo = tk
         tipo = str(f[c["tipo"]] or "").strip() if c["tipo"] is not None and c["tipo"] < len(f) else ""
-        if not tipo and seccion:
-            tipo = seccion
+        if seccion and (not tipo or not clase_de_tipo(tipo)):
+            tipo = seccion              # el título de grupo ("Renta Fija") vale más que una columna que no se entiende
+        if re.match(r"^etf\s+", tk, re.I) and not clase_de_tipo(tipo):
+            tipo = "ETF"
         mo = mo_enc or (moneda_de(f[c["moneda"]]) if c["moneda"] is not None and c["moneda"] < len(f) else None)
         out.append({"ticker": _ticker_limpio(tk), "monto": m, "tipo": tipo, "moneda": mo})
-    return out
+    # una empresa con varias compras (lotes) es UNA posicion: se suman
+    agr, orden = {}, []
+    for p in out:
+        k = (clave_tk(p["ticker"]) or p["ticker"].upper(), p["moneda"])
+        if k in agr:
+            agr[k]["monto"] += p["monto"]
+            agr[k]["tipo"] = agr[k]["tipo"] or p["tipo"]
+        else:
+            agr[k] = dict(p)
+            orden.append(k)
+    return [agr[k] for k in orden], notas
+
+
+def leer_tabla(filas):
+    """`filas`: lista de listas. Se adapta a lo que venga: el encabezado puede estar en cualquiera de las primeras 30 filas (se saltean títulos y datos de la cuenta),
+    las columnas se reconocen por sus nombres (Símbolo, Especie, Valuación, Total valorizado, Capital invertido, Cantidad × Precio…), puede haber una columna de monto en pesos y otra en dólares,
+    se ignoran las filas de totales y subtotales, los títulos de grupo ("Acciones", "Bonos"…) se usan como Tipo, las filas sin ticker son otra compra del ticker de arriba y las compras
+    repetidas se suman. Sin encabezado: primera columna = ticker, primera columna con números = monto. Devuelve [{'ticker', 'monto', 'tipo', 'moneda'}] con monto > 0."""
+    return leer_tabla_info(filas)[0]
 
 
 def moneda_de(txt):
@@ -229,19 +253,26 @@ def convertir(posiciones, base, tc):
     return out, n, falta
 
 
-def leer_texto(texto):
-    """Cartera pegada como texto: una posicion por linea ('AAPL 1500', 'SPY: 20%', 'AL30;2000;bono soberano')."""
+def leer_texto_info(texto):
+    """(posiciones, notas) de una cartera pegada como texto: una posicion por linea ('AAPL 1500', 'SPY: 20%', 'AL30;2000;bono soberano') o una tabla copiada de Excel (separada por tabulaciones)."""
     filas = []
     for linea in str(texto or "").splitlines():
-        linea = linea.strip()
-        if not linea:
+        if not linea.strip():
             continue
-        partes = [p.strip() for p in re.split(r"[;\t|]+", linea)] if re.search(r"[;\t|]", linea) else None
-        if partes is None:
+        if "\t" in linea:
+            partes = [p.strip() for p in linea.rstrip("\r\n").split("\t")]          # tabla de Excel: las celdas vacias cuentan (si no, las columnas se corren)
+        elif re.search(r"[;|]", linea):
+            partes = [p.strip() for p in re.split(r"[;|]", linea.strip())]
+        else:
+            linea = linea.strip()
             m = re.match(r"^([A-Za-z0-9.\-]+)\s*[:=\-]?\s+(.+)$", linea)
             partes = [m.group(1), m.group(2)] if m else [linea]
         filas.append(partes)
-    return leer_tabla(filas)
+    return leer_tabla_info(filas)
+
+
+def leer_texto(texto):
+    return leer_texto_info(texto)[0]
 
 
 def _filas_csv(datos):
@@ -274,7 +305,8 @@ def leer_archivo_info(nombre, datos):
     n = str(nombre or "").lower()
     if n.endswith((".csv", ".txt", ".tsv")):
         try:
-            return leer_tabla(_filas_csv(datos)), ""
+            pos, notas = leer_tabla_info(_filas_csv(datos))
+            return pos, " ".join(notas)
         except Exception as e:  # noqa: BLE001
             raise ValueError("No pude leer el archivo. Probá con el Excel de ejemplo (botón de arriba) o guardalo como .csv.") from e
     try:
@@ -286,16 +318,16 @@ def leer_archivo_info(nombre, datos):
     mejor, mejor_n, mejor_t = None, 0, 0.0
     for nom, df in hojas.items():
         try:
-            pos = leer_tabla(df.values.tolist())
+            pos, notas = leer_tabla_info(df.values.tolist())
         except Exception:  # noqa: BLE001
             continue
         t = sum(p["monto"] for p in pos)
         if len(pos) > mejor_n or (len(pos) == mejor_n and t > mejor_t):
-            mejor, mejor_n, mejor_t = (nom, pos), len(pos), t
+            mejor, mejor_n, mejor_t = (nom, pos, notas), len(pos), t
     if mejor is None:
         return [], ""
     nota = f"Tu archivo tiene {len(hojas)} hojas: usé «{mejor[0]}», que es la que tiene más posiciones." if len(hojas) > 1 else ""
-    return mejor[1], nota
+    return mejor[1], " ".join([nota] + mejor[2]).strip()
 
 
 def leer_archivo(nombre, datos):
@@ -349,6 +381,11 @@ def clase_de_tipo(tipo):
         return "rv"
     if re.search(r"\b(dolar|dolares|peso|pesos|caja)\b", t):
         return "efectivo"
+    # sectores y rubros de renta variable (planillas que traen una columna "Sector": Technology, Consumer Def, Energy, Healthcare, REIT...)
+    if (re.search(r"\b(technology|tecnologia|healthcare|health care|salud|financial|financials|financiero|financieras|utilities|utility|energy|energia|industrial|industrials|industrial goods|"
+                  r"communication|communications|comunicacion|comunicaciones|telecom|telecomunicaciones|consumer|consumo|basic materials|materials|materiales|reit|reits|real estate|inmobiliario|"
+                  r"mlp|mlps|divis|dividend|dividendos|emergentes|acciones)\b", t)):
+        return "rv"
     return None          # por ejemplo "FCI" a secas: depende de en que invierta, asi que se pide aclararlo
 
 

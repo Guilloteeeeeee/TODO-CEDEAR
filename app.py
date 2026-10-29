@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.81"
+APP_VERSION = "1.2.82"
 
 import contextlib
 import streamlit as st
@@ -1413,7 +1413,7 @@ def render_cartera(df, pagina=True):
         st.info("Poné tu edad para ver la evaluación.")
         return
     try:
-        pos, nota_hoja = C.leer_archivo_info(arch.name, arch.getvalue()) if arch is not None else (C.leer_texto(texto), "")
+        pos, nota_hoja = C.leer_archivo_info(arch.name, arch.getvalue()) if arch is not None else (lambda r: (r[0], " ".join(r[1])))(C.leer_texto_info(texto))
     except ValueError as e:
         st.error(str(e))
         return
