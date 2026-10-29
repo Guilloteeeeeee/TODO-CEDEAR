@@ -4794,6 +4794,192 @@
      "2022"
     ]
    }
+  },
+  "COIN": {
+   "resumen": "Coinbase es la mayor plataforma de compra, venta y custodia de criptomonedas de Estados Unidos: ofrece una cuenta para consumidores, una plataforma de intermediación y liquidez para instituciones, y herramientas para desarrolladores que construyen sobre blockchains. Gana plata con comisiones por cada operación, con intereses y comisiones sobre las monedas estables, y con servicios de custodia. **No tiene un foso claro**: tiene marca, licencias y una base grande de usuarios, pero comprar criptomonedas es fácil en muchas plataformas y las comisiones tienden a bajar. Los números son muy irregulares: los ingresos pasaron de 3.194 M en 2022 a 7.181 M en 2025, pero bajaron a **6.283 M en los últimos 12 meses**; la ganancia neta fue de -2.625 M en 2022, 95 M, 2.579 M en 2024, 1.260 M en 2025 y **-988 M en los últimos 12 meses**. El ROE fue de -48,1 % a 25,1 % y -7,6 % hoy. Además **las acciones aumentaron 22,5 %** desde 2022 (de 222 M a 272 M). Su punto débil es que depende del precio y del volumen de las criptomonedas, que suben y bajan muy fuerte. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular, sin foso claro, con ingresos y ganancias que dependen del ciclo cripto y pérdida en los últimos 12 meses.**",
+   "veredicto": "Regular: sin foso claro, resultados que dependen del ciclo cripto y pérdida en los últimos 12 meses",
+   "conclusion": "Coinbase es una empresa de calidad regular: tiene marca y licencias, pero no un foso claro, los ingresos bajaron a 6.283 M en los últimos 12 meses, perdió 988 M y las acciones aumentaron 22,5 % desde 2022. Hay que seguirla de cerca. Es recomendable investigar de dónde viene la diferencia entre el margen operativo y la pérdida neta en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que logre ganancias estables sin depender del precio de las criptomonedas.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Coinbase opera una plataforma de criptoactivos en Estados Unidos y a nivel internacional. Ofrece la cuenta financiera principal de la economía cripto para consumidores, una plataforma de intermediación con liquidez para instituciones y un conjunto de productos para que los desarrolladores construyan sobre blockchains. Fue fundada en 2012 y tiene su base en Nueva York. Yahoo no desglosa cuánto viene de comisiones por operar y cuánto de otros servicios, y no lo vamos a inventar.\n\nEs un negocio ligado al ánimo del mercado cripto: **los ingresos cayeron 2,7 % en 2023, subieron 111,2 % en 2024 y 9,4 % en 2025, hasta 7.181 M**, y bajaron a 6.283 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de inversores individuales y a instituciones. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "**Coinbase no tiene un foso claro.** Tiene una marca conocida, licencias en Estados Unidos y una base grande de usuarios que confían en ella, y eso le da una ventaja real frente a plataformas pequeñas. Pero un usuario puede abrir una cuenta en otra plataforma en minutos, y las comisiones por operar están bajo presión. El margen bruto cayó de 80,3 % a 72,7 %, señal de que la ventaja no alcanza para sostener los precios.\n\nCompite con Binance, Kraken, Robinhood, Schwab y bancos que empiezan a ofrecer criptomonedas. Es frágil en el precio de las criptomonedas, en los volúmenes de operación y en los cambios regulatorios, que pueden ayudarla o perjudicarla. La inteligencia artificial no es una amenaza directa.",
+   "numeros": "Los números de Coinbase cuentan **un negocio muy cíclico**. Los ingresos fueron de 3.194 M, 3.108 M, 6.564 M y 7.181 M, y de 6.283 M en los últimos 12 meses. El margen operativo fue de -61,0 %, -1,7 %, 34,1 %, 20,3 % y 11,7 % en los últimos 12 meses. La ganancia neta fue de -2.625 M, 95 M, 2.579 M y 1.260 M, y de **-988 M en los últimos 12 meses**. La ganancia por acción fue de -11,83, 0,37, 9,48, 4,45 y -3,84.\n\nEl ROE (cuánto gana por cada dólar de patrimonio) fue de **-48,1 %, 1,5 %, 25,1 %, 8,5 % y -7,6 %**. El capital invertido pasó de 8.869 M a 19.563 M.\n\nLa mirada crítica: en los últimos 12 meses el margen operativo sigue positivo (11,7 %) mientras la ganancia neta es negativa; Yahoo no explica la diferencia, y en esta empresa suele reflejar cambios de valor de las criptomonedas que tiene. Hay que verificarlo en el informe.",
+   "balance": "**El capital creció mucho, pero la empresa tiene poca historia de ganancias estables.** El capital invertido (lo que financia el negocio) pasó de 8.869 M en 2022 a 19.563 M en los últimos 12 meses. Yahoo no informa deuda ni caja de forma comparable para este tipo de empresa, y por eso no las comparamos acá.\n\nLo que sí importa vigilar es que Coinbase guarda criptomonedas de clientes y tiene las suyas, así que el valor de su balance sube y baja con el mercado. Es un negocio que en un mal año puede perder plata, como mostraron 2022 y los últimos 12 meses.",
+   "gerencia": "La conduce Brian Armstrong, cofundador, presidente y CEO (42 años, pago de 9,7 M según Yahoo), con Emilie Choi como presidenta y directora de operaciones (46 años) y Alesia Haas como directora financiera (48 años). Es un equipo fundador que sigue al frente.\n\nEn lo que importa, **la empresa no paga dividendo y empezó a recomprar**: recompró 790 M en 2025. **Las acciones aumentaron de 222 M a 272 M, un 22,5 %** desde 2022, y las recompras no alcanzaron a compensarlo. Es un punto en contra para el accionista.",
+   "fortalezas": [
+    "Marca conocida y licencias en Estados Unidos.",
+    "Margen operativo de 34,1 % en 2024 y 20,3 % en 2025, cuando el mercado ayudó.",
+    "Ingresos de 3.194 M a 7.181 M entre 2022 y 2025.",
+    "Gran base de usuarios y de activos en custodia.",
+    "Empezó a recomprar acciones (790 M en 2025)."
+   ],
+   "debilidades": [
+    "Pérdida de 988 M en los últimos 12 meses.",
+    "Resultados que dependen del precio y volumen de las criptomonedas: el crítico más duro diría que es una apuesta al ciclo cripto.",
+    "22,5 % más acciones desde 2022.",
+    "Margen bruto que cae de 80,3 % a 72,7 %.",
+    "Sin foso claro: los usuarios pueden irse a otra plataforma."
+   ],
+   "vigilar": [
+    "Ingresos: hoy 6.283 M en los últimos 12 meses; si siguen bajando, el negocio depende cada vez más del ciclo.",
+    "Margen operativo: hoy 11,7 %; si se vuelve negativo, el costo fijo pesa más que los ingresos.",
+    "Cantidad de acciones: hoy 272 M; si vuelve a subir, la dilución se come las recompras.",
+    "Margen bruto: hoy 72,7 %; si sigue cayendo, la competencia está bajando las comisiones."
+   ],
+   "clientes": [
+    "Inversores individuales de criptomonedas",
+    "Instituciones que operan y guardan criptoactivos",
+    "Desarrolladores que construyen sobre blockchains"
+   ],
+   "ideal_para": [
+    "Quieren exposición al ciclo de las criptomonedas.",
+    "Aceptan resultados muy irregulares.",
+    "Valoran una empresa regulada en Estados Unidos."
+   ],
+   "menos_ideal": [
+    "Buscan ganancias estables y previsibles.",
+    "No toleran la dilución ni la volatilidad."
+   ],
+   "perfil": "mercados",
+   "capas": [],
+   "ticker": "COIN",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 6282872000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "FISV": {
+   "resumen": "Fiserv es una empresa de tecnología para pagos y servicios financieros. Según información pública (Yahoo no trae su descripción), provee sistemas centrales para bancos y cooperativas de crédito, y procesa pagos para comercios, incluida la plataforma Clover. Gana plata con comisiones por transacción y contratos de tecnología de largo plazo. Tiene un **foso débil, de costos de cambio**: cambiar el sistema central de un banco es lento, caro y riesgoso, lo que protege parte del negocio. Pero los números de los últimos 12 meses muestran deterioro: los ingresos bajaron de 21.193 M en 2025 a **20.866 M**, el margen operativo de 26,9 % a **21,4 %**, y la ganancia por acción de 6,34 a 5,21. La deuda es alta: **la deuda neta es 3,12 veces el EBITDA** y los intereses se cubren solo 2,9 veces con el EBIT, contra 4,9 veces en 2022. Lo que sostuvo el número por acción fueron las recompras: **hay 17,1 % menos acciones** que en 2022. El ROIC (retorno sobre el capital) es de solo 7,2 %. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque puede abaratar el desarrollo de software de procesamiento. Conclusión: **empresa de calidad regular, con foso débil, margen en baja, deuda alta y recompras que sostienen la ganancia por acción.**",
+   "veredicto": "Regular: foso débil, margen en baja y deuda alta, con recompras que sostienen la ganancia por acción",
+   "conclusion": "Fiserv es una empresa de calidad regular: tiene costos de cambio con los bancos y 17,1 % menos acciones, pero los ingresos y márgenes bajan, el ROIC es de 7,2 % y la deuda neta es 3,12 veces el EBITDA. Hay que seguirla de cerca. Es recomendable investigar por qué se deterioraron los últimos 12 meses en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva hacia 26 % y la deuda no siga subiendo.",
+   "calidad": "Regular",
+   "riesgo_ia": "moderado",
+   "negocio": "Yahoo no trae la descripción de Fiserv ni el sector. Según información pública, la empresa provee sistemas centrales de procesamiento para bancos y cooperativas de crédito, y servicios de pagos para comercios, entre ellos la plataforma Clover. Yahoo no desglosa los segmentos, y no lo vamos a inventar.\n\nEs un negocio de infraestructura de pagos: **los ingresos crecieron 7,6 % en 2023, 7,1 % en 2024 y 3,6 % en 2025, hasta 21.193 M**, y bajaron a 20.866 M en los últimos 12 meses.\n\n**A quién le vende.** A bancos, cooperativas de crédito y comercios de todos los tamaños. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Fiserv **es de costos de cambio, y es débil**. Para un banco, cambiar el sistema que lleva sus cuentas es un proyecto largo y riesgoso, así que los contratos se renuevan por años. Pero los números no muestran un foso fuerte: el ROIC es de solo 7,2 % en los últimos 12 meses, el margen operativo bajó de 28,7 % a 21,4 % y el margen bruto de 60,8 % a 56,2 %.\n\nCompite con Jack Henry, FIS, Block, Stripe, Adyen y procesadores nuevos en la parte de comercios, donde hay más competencia y menos costos de cambio. Es frágil en el pago a comercios (menos protegido), en la deuda y en que una parte de su negocio se pueda copiar con tecnología más barata.",
+   "numeros": "Los números de Fiserv cuentan **un negocio que creció y ahora muestra deterioro**. Los ingresos fueron de 17.737 M, 19.093 M, 20.456 M y 21.193 M, y de 20.866 M en los últimos 12 meses. El margen operativo fue de 20,8 %, 25,4 %, 28,7 %, 26,9 % y **21,4 %** en los últimos 12 meses. La ganancia neta fue de 2.530 M, 3.068 M, 3.131 M y 3.480 M, y de 2.801 M en los últimos 12 meses. La ganancia por acción fue de 3,91, 4,98, 5,38, 6,34 y **5,21**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.139 M, 3.774 M, 5.062 M y 4.299 M, y de 3.926 M en los últimos 12 meses. El ROE fue de 8,2 % a 13,5 % en 2025 y 10,4 % hoy.\n\nLa mirada crítica: Yahoo no explica por qué se deterioraron los últimos 12 meses; hay que buscarlo en el informe de la empresa.",
+   "balance": "**La deuda es alta y está subiendo.** La deuda total es de 28.034 M y la caja de 245 M en los últimos 12 meses; la deuda neta/EBITDA es de 3,12x, que multiplicado por 12 son unos 37 meses de EBITDA (más de 3 años de ganancias operativas para pagarla). Los intereses se cubren 2,9 veces con el EBIT, contra 4,9 veces en 2022.\n\nLa deuda neta pasó de 19.707 M en 2022 a 25.317 M, mientras el patrimonio neto bajó de 30.828 M a 26.904 M. Cuando el margen cae y la deuda sube, el margen para errores se achica.",
+   "gerencia": "Yahoo no lista al equipo directivo de Fiserv, y no lo vamos a inventar.\n\nEn lo que importa, **el uso del capital fue de recompras fuertes**: 2.677 M en 2022, 4.827 M en 2023, 5.837 M en 2024, 5.899 M en 2025 y solo 1.650 M en los últimos 12 meses. **Las acciones bajaron de 648 M a 537 M, un 17,1 % menos.** El recorte de las recompras en los últimos 12 meses sugiere que la empresa priorizó el balance. Yahoo no muestra dividendo.",
+   "fortalezas": [
+    "17,1 % menos acciones desde 2022.",
+    "Flujo libre de 3.926 M en los últimos 12 meses.",
+    "Costos de cambio altos en el negocio de sistemas para bancos.",
+    "Margen operativo de 20,8 % a 28,7 % hasta 2024.",
+    "Ingresos de 17.737 M a 21.193 M entre 2022 y 2025."
+   ],
+   "debilidades": [
+    "Ingresos, márgenes y ganancia por acción bajaron en los últimos 12 meses.",
+    "Deuda neta de 25.317 M, 3,12 veces el EBITDA.",
+    "Cobertura de intereses que cae de 4,9 a 2,9 veces.",
+    "ROIC de 7,2 %: el crítico más duro diría que no hay foso que lo justifique.",
+    "Competencia fuerte en pagos a comercios."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 21,4 %; si sigue bajando, el negocio perdió poder de precio.",
+    "Deuda neta/EBITDA: hoy 3,12x; si pasa de 3,5x, el balance queda ajustado.",
+    "Cobertura de intereses: hoy 2,9x; si baja de 2,5x, los intereses pesan demasiado.",
+    "Ingresos: hoy 20.866 M en los últimos 12 meses; si siguen bajando, el deterioro no es pasajero."
+   ],
+   "clientes": [
+    "Bancos y cooperativas de crédito",
+    "Comercios de todos los tamaños",
+    "Usuarios de la plataforma de pagos Clover"
+   ],
+   "ideal_para": [
+    "Buscan una apuesta de recuperación en pagos con flujo libre.",
+    "Aceptan deuda alta a cambio de un posible giro.",
+    "Valoran la base de clientes bancarios."
+   ],
+   "menos_ideal": [
+    "No toleran deuda alta ni márgenes en baja.",
+    "Buscan una empresa con foso fuerte comprobado."
+   ],
+   "perfil": "pagos",
+   "capas": [],
+   "ticker": "FISV",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 20866000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "MRSH": {
+   "resumen": "Marsh (Marsh & McLennan) es el mayor corredor de seguros del mundo y además una consultora: ayuda a empresas a conseguir seguros y reaseguros al mejor precio y a manejar sus riesgos (Risk and Insurance Services) y presta consultoría en personas, inversiones y estrategia (Consulting). Gana plata con comisiones sobre las primas que colocan y con honorarios de consultoría; no asume el riesgo de los siniestros, lo asume la aseguradora. Tiene un **foso amplio, de escala, relaciones y datos**: para una multinacional que quiere asegurar riesgos complejos, un corredor con acceso a todas las aseguradoras y datos de miles de casos es difícil de reemplazar. Los números son muy buenos: los ingresos pasaron de 20.720 M en 2022 a 26.981 M en 2025 (28.459 M en los últimos 12 meses), la ganancia por acción de 6,04 a 8,43, el flujo libre de 2.995 M a 5.001 M y el ROE es de **27,5 %**. Su punto débil es que el último año se frenó: la ganancia por acción de los últimos 12 meses (8,36) está por debajo de la de 2025 y el margen operativo bajó de 23,1 % a 21,4 %. Además la deuda subió por compras: **la deuda neta es 2,58 veces el EBITDA**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque puede automatizar parte de la consultoría. Conclusión: **muy buena empresa, con foso amplio, ROE de 27,5 % y dividendo pagado desde 1983, aunque con ganancia por acción estancada y deuda más alta.**",
+   "veredicto": "Muy buena empresa: foso amplio y ROE de 27,5 %, con ganancia por acción estancada y deuda más alta",
+   "conclusion": "Marsh es una muy buena empresa: tiene un foso amplio de escala y relaciones, ROE de 27,5 %, flujo libre de 4.154 M y dividendo pagado desde 1983, pero la ganancia por acción se estancó en 8,36 y la deuda neta es 2,58 veces el EBITDA. Vale la pena seguirla de cerca. Es recomendable investigar cuánto del crecimiento de ingresos viene de compras en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva hacia 23 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Marsh & McLennan es una empresa de servicios profesionales que brinda asesoramiento y soluciones de seguros en riesgo, estrategia y personas, a nivel mundial. Opera dos segmentos: **Risk and Insurance Services** (gestión de riesgos, corretaje de seguros, programas de seguros) y **Consulting** (consultoría de personas, inversiones y estrategia). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de intermediación y asesoramiento: **los ingresos crecieron 9,7 % en 2023, 7,6 % en 2024 y 10,3 % en 2025, hasta 26.981 M**, y llegaron a 28.459 M en los últimos 12 meses. Parte del crecimiento viene de compras de otras empresas.\n\n**A quién le vende.** A grandes empresas, pymes, gobiernos e instituciones de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Marsh **es de escala, relaciones y datos, y es amplia**. Una multinacional que quiere asegurar fábricas, flotas o ciberriesgos necesita un corredor con acceso a todas las aseguradoras, con datos de miles de casos para negociar y con equipos en todos los países. Cambiar de corredor es posible, pero implica perder historial y relaciones, y los clientes rara vez lo hacen. Se ve en el ROE de 27,5 % y en el ROIC de 13,3 %, muy por encima de la referencia de 12 %.\n\nCompite con Aon, Willis Towers Watson, Gallagher, Brown & Brown y corredores locales. Es frágil en el ciclo de precios de los seguros (si bajan las primas, bajan las comisiones), en la deuda tomada para comprar empresas y en la consultoría, más expuesta a la inteligencia artificial.",
+   "numeros": "Los números de Marsh cuentan **un negocio constante, con un último año más flojo**. Los ingresos fueron de 20.720 M, 22.736 M, 24.458 M y 26.981 M, y de 28.459 M en los últimos 12 meses. El margen operativo fue de 20,7 %, 23,2 %, 23,8 %, 23,1 % y 21,4 %. La ganancia neta fue de 3.050 M, 3.756 M, 4.060 M y 4.160 M, y de 4.041 M en los últimos 12 meses. La ganancia por acción fue de 6,04, 7,53, 8,18, 8,43 y **8,36** en los últimos 12 meses.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.995 M, 3.842 M, 3.986 M y 5.001 M, y de 4.154 M en los últimos 12 meses. El ROE fue de **29,0 %, 30,8 %, 30,4 %, 27,5 % y 27,5 %**, y el ROIC de 14,7 % a 13,3 %.\n\nLa mirada crítica: los ingresos crecen, pero la ganancia por acción dejó de crecer y el margen bajó. Parte del aumento de ingresos se compró.",
+   "balance": "**La deuda subió por compras, pero es manejable.** La deuda total es de 22.332 M y la caja de 1.842 M en los últimos 12 meses; la deuda neta/EBITDA es de 2,58x, que multiplicado por 12 son unos 31 meses de EBITDA. Los intereses se cubren 6,3 veces con el EBIT, contra 9,1 veces en 2022.\n\nEl capital invertido pasó de 25.654 M en 2023 a 33.289 M en 2024, un salto que coincide con compras de empresas. La deuda neta pasó de 10.053 M a 18.691 M, así que el margen para errores se achicó.",
+   "gerencia": "La conduce John Doyle, presidente y CEO (61 años, pago de 7,5 M según Yahoo), con Mark McGivney como director financiero y de operaciones (57 años, pago de 4,3 M). Es un equipo estable.\n\nEn lo que importa, **el uso del capital es de compras, dividendo y recompras**: paga un dividendo de 3,96 por acción (pagado desde 1983; sube 15,1 % por año en 3 años; 1.798 M pagados en los últimos 12 meses) y recompró 1.950 M en 2022, 900 M en 2024, 2.012 M en 2025 y 3.002 M en los últimos 12 meses. **Las acciones bajaron de 505 M a 484 M, un 4,2 % menos.**",
+   "fortalezas": [
+    "ROE de 27,5 % en los últimos 12 meses.",
+    "Ingresos de 20.720 M a 28.459 M en los últimos 12 meses.",
+    "Flujo libre de 4.154 M en los últimos 12 meses.",
+    "Dividendo pagado desde 1983, creciendo 15,1 % por año en 3 años.",
+    "Líder mundial en corretaje de seguros, con escala y datos."
+   ],
+   "debilidades": [
+    "Ganancia por acción estancada: 8,43 en 2025 y 8,36 en los últimos 12 meses.",
+    "Margen operativo que baja de 23,8 % a 21,4 %.",
+    "Deuda neta de 18.691 M, casi el doble que en 2022: el crítico más duro diría que el crecimiento se compró con deuda.",
+    "Cobertura de intereses de 9,1 a 6,3 veces.",
+    "Parte del negocio de consultoría puede ser automatizado."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 21,4 %; si baja de 20 %, las compras no están generando eficiencia.",
+    "Ganancia por acción: 8,36 en los últimos 12 meses; si no vuelve a crecer, el ritmo de ganancias se perdió.",
+    "Deuda neta/EBITDA: hoy 2,58x; si sube de 3x, el balance queda ajustado.",
+    "Precios de los seguros: si bajan las primas, bajan las comisiones sobre ellas."
+   ],
+   "clientes": [
+    "Grandes empresas multinacionales",
+    "Pequeñas y medianas empresas",
+    "Gobiernos e instituciones que contratan seguros y consultoría"
+   ],
+   "ideal_para": [
+    "Buscan un negocio de seguros sin asumir el riesgo de los siniestros.",
+    "Valoran dividendo creciente, ROE alto y flujo libre.",
+    "Aceptan deuda moderada a cambio de escala."
+   ],
+   "menos_ideal": [
+    "Les preocupa el efecto de la inteligencia artificial sobre la consultoría.",
+    "Buscan ganancia por acción en rápido crecimiento."
+   ],
+   "perfil": "pagos",
+   "capas": [],
+   "ticker": "MRSH",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 28459000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
