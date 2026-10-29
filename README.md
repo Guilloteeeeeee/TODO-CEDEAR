@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.84 (29/10/2026): menú con paneles hacia el centro, logos en ETFs, ideal de 2 a 5 %, «Un vistazo rápido»
+- **Menú lateral**: todas las entradas son títulos con la misma flechita «›». Filtro de Empresas / Filtro de ETFs, Noticias Calientes, Calendario Financiero, Nuestras Redes, Contactános, Abrí una cuenta y Comentarios se abren como **paneles hacia el centro** de la página (en el celular ocupan la pantalla, con «‹ Menú» para volver). Espacio visible entre Quiénes somos y el resto, y antes de Comentarios. **ESC** cierra el menú.
+- **ETFs**: la tabla ahora muestra el logo del gestor al lado de cada ETF (se carga desde internet; si no está disponible aparece un ícono dibujado).
+- Gráfico chico de valoración: «Más barata» / «Más cara» con mayúscula inicial.
+- Buscador: al escribir «O» aparece Realty Income (orden por largo del ticker).
+- «Evaluá tu Portfolio»: el peso ideal de cada empresa pasa a **2 a 5 %**, dicho como ideal de diversificación (una guía, no una obligación). Los ETFs no entran en esa regla.
+- Ficha: el título «Resumen» pasa a **«Un vistazo rápido»**.
+- Análisis Fundamental: nuevo estilo de lectura amena (como una charla con un amigo que sabe) y foto macro de hoy en `data/macro_actual.txt` (solo contexto verificado; los números de cada empresa salen únicamente del bloque de datos).
+
 ### v1.2.83 (29/10/2026): menú lateral, tablas más arriba, "Evaluá tu Portfolio" con PDF y rentabilidad anual
 - **Menú lateral (☰)**: a la derecha del toro; al pasar el mouse dice «MENU». Orden: Filtro, Noticias, Calendario (con solapas «Próximos resultados empresariales» y «Próximos eventos financieros»), Evaluá tu Portfolio, Ideas de inversión (sección en construcción); abajo, separado: Quiénes somos, redes y contacto; y más abajo Comentarios y la versión de la app. Lo que estaba arriba de la tabla se movió ahí, así que las tablas (Empresas y ETFs) quedan más arriba. Fuera del inicio, Filtro/Noticias/Calendario llevan al inicio con el menú abierto.
 - Al lado de «TodoCedears» hay un solo botón: «Exchange Traded Funds (ETFs)» cuando estás en Empresas, y «Empresas» cuando estás en ETFs.

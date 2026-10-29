@@ -57,6 +57,12 @@ CSS = """
 .etf-r:nth-child(even){background:#f3f6f9}
 .etf-r:hover>div{background:#f8fafc}
 .etf-r>.ctr{align-items:center;text-align:center}
+.etf-r>.etf-id{flex-direction:row;align-items:center;justify-content:flex-start;gap:10px}
+.etf-id>.etf-tx{min-width:0}
+.etf-lg{position:relative;flex:none;width:34px;height:34px;border-radius:9px;background:#fff;border:1px solid #e5e9f0;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.etf-lg .etf-ico{width:100%;height:100%;border-radius:0;font-size:15px;background:#f1f5f9}
+.etf-lg .etf-ico svg{width:100%;height:100%}
+.etf-lg img{width:100%;height:100%;object-fit:contain;padding:4px;box-sizing:border-box;display:block;background:#fff}
 .etf-nm{font-size:14.5px;font-weight:700;line-height:1.3}
 .etf-nm a{color:#111827;text-decoration:underline;text-decoration-color:rgba(75,85,99,.4);text-decoration-thickness:1px;text-underline-offset:2px}
 .etf-nm a:hover{color:#1d4ed8;text-decoration-color:#1d4ed8}
@@ -204,6 +210,15 @@ COLUMNAS = [("nombre", "ETF", 2.3), ("precio", "Precio", 1.0), ("descripcion", "
 TEXTO = ("nombre", "descripcion", "categoria", "gestor")        # al tocar el título por primera vez: de la A a la Z (el resto, de mayor a menor)
 
 
+def logo_chico_html(e, d=None):
+    """Logo chico para la tabla (v1.2.84): el del gestor (BlackRock/iShares, State Street/SPDR, Vanguard, Invesco...), igual que en la página del ETF; si no se conoce el gestor, el dibujo propio o las iniciales."""
+    src = logo_gestor_url({**(d or {}), **e})
+    if src:
+        g = html.escape(str(e.get("gestor") or (d or {}).get("gestor") or ""), quote=True)
+        return f'<div class="etf-lg" title="{g}"><img src="{src}" alt="{g}" loading="lazy"></div>'
+    return f'<div class="etf-lg">{_icono_dibujo(e)}</div>'
+
+
 def _fila(e, d, precio):
     tk = e["ticker"]
     nombre = html.escape(e.get("nombre") or tk)
@@ -217,8 +232,8 @@ def _fila(e, d, precio):
     p = _usd(precio) if _n(precio) else nd
     g = html.escape(e.get("gestor") or (d or {}).get("gestor") or "") or nd
     lab = lambda t: f'<span class="etf-lab">{t}</span>'   # noqa: E731
-    return (f'<div class="etf-r"><div><div class="etf-nm"><a href="?etf={quote(tk, safe="")}" target="_self">{nombre}</a></div>'
-            f'<div class="etf-tk">{html.escape(tk)}</div>{tags}</div>'
+    return (f'<div class="etf-r"><div class="etf-id">{logo_chico_html(e, d)}<div class="etf-tx"><div class="etf-nm"><a href="?etf={quote(tk, safe="")}" target="_self">{nombre}</a></div>'
+            f'<div class="etf-tk">{html.escape(tk)}</div>{tags}</div></div>'
             f'<div class="etf-pr ctr">{lab("Precio")}{p}</div>'
             f'<div class="etf-d">{html.escape(e.get("descripcion") or "")}</div>'
             f'<div class="etf-c ctr">{lab("Categoría")}{html.escape(e.get("categoria") or "")}</div>'

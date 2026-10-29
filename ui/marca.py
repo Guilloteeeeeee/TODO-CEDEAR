@@ -427,15 +427,38 @@ def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
             f'<div class="mc-dev">Developed by <b>{html.escape(NOMBRE_MARCA)}</b></div></div>')
 
 
-# --- menu lateral (v1.2.83) -------------------------------------------------------------------------------------------------------
+# --- menu lateral (v1.2.83 / v1.2.84) ---------------------------------------------------------------------------------------------
 # Las 3 rayitas van a la derecha del toro. El estado abierto / cerrado lo guarda un checkbox escondido (id mc-menu) y el CSS lo lee con :has(), asi que abrir y cerrar
-# no recarga nada. El panel es un contenedor de Streamlit con clave "menu_lateral" (app.py), porque adentro van el Filtro, Noticias y Calendario, que son widgets.
+# no recarga nada. v1.2.84: el menu es una lista de TITULOS, todos con la misma flecha (›). Los que son otra pagina (Evaluá tu Portfolio, Ideas, Quiénes somos) son links;
+# el resto (Filtro, Noticias, Calendario Financiero, Nuestras Redes, Contactános, Abrí una cuenta, Comentarios) abre un panel hacia el centro de la pagina: un grupo de
+# radios escondidos (name mn-sec) dice cual esta abierto. Filtro, Noticias y Calendario son widgets de Streamlit (contenedores con clave fly_*, en app.py);
+# lo demas es HTML (menu_flyouts_html). La tecla ESC lo cierra todo (script en app.py, SCRIPT_ESC).
+SECCIONES = ("filtro", "noticias", "cal", "redes", "contacto", "cuentas", "comentarios")
+
+SCRIPT_ESC = ("(function(){if(window.__mcEsc)return;window.__mcEsc=1;document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;"
+              "var n=document.getElementById('sec-none');if(n)n.checked=true;var c=document.getElementById('mc-menu');if(c)c.checked=false;});"
+              "if(/[?&]menu=1/.test(location.search)){var k=0,t=setInterval(function(){var c=document.getElementById('mc-menu');if(c){c.checked=true;clearInterval(t);}if(++k>40)clearInterval(t);},150);}})();")
+
+
 def hamburguesa_html(abierto=False):
-    chk = " checked" if abierto else ""
-    return ('<input type="checkbox" id="mc-menu" class="mc-chk"' + chk + ' aria-hidden="true" tabindex="-1">'
+    # Ojo: ningun input lleva el atributo "checked": Streamlit pasa el HTML por React y un input con "checked" queda controlado (no deja cambiarlo). El menu abierto por
+    # ?menu=1 lo abre SCRIPT_ESC.
+    radios = '<input type="radio" name="mn-sec" id="sec-none" class="mc-chk" aria-hidden="true" tabindex="-1">' + "".join(
+        f'<input type="radio" name="mn-sec" id="sec-{k}" class="mc-chk" aria-hidden="true" tabindex="-1">' for k in SECCIONES)
+    return ('<input type="checkbox" id="mc-menu" class="mc-chk" aria-hidden="true" tabindex="-1">' + radios +
             '<label for="mc-menu" class="mc-ham" title="Menú" aria-label="Abrir el menú"><span class="mc-hb"><i></i><i></i><i></i></span><span class="mc-hl">MENU</span></label>'
             '<label for="mc-menu" class="mc-ov" aria-hidden="true"></label>')
 
+
+def _fly_selectores(k, clase):
+    return f"body:has(#mc-menu:checked):has(#sec-{k}:checked) {clase}"
+
+
+_FLY_CLASES = {"filtro": ".st-key-fly_filtro", "noticias": ".st-key-fly_noticias", "cal": ".st-key-fly_cal",
+               "redes": ".fly-redes", "contacto": ".fly-contacto", "cuentas": ".fly-cuentas", "comentarios": ".fly-comentarios"}
+_TODOS_FLY = ",".join(_FLY_CLASES.values())
+_VISIBLE_FLY = ",".join(_fly_selectores(k, c) for k, c in _FLY_CLASES.items())
+_ACTIVO_FLY = ",".join(f"body:has(#mc-menu:checked):has(#sec-{k}:checked) label[for=sec-{k}]" for k in SECCIONES)
 
 CSS_MENU = """
 .mc-chk{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
@@ -458,36 +481,43 @@ body:has(#mc-menu:checked) .st-key-menu_lateral{transform:none;visibility:visibl
 .mn-h{display:flex;align-items:center;justify-content:space-between;padding:6px 2px 10px;margin-bottom:6px;font-size:1.05rem;color:#111827;letter-spacing:.3px}
 .mn-x{cursor:pointer;font-size:1.5rem;line-height:1;color:#374151;padding:2px 8px;border-radius:8px}
 .mn-x:hover{background:#f1f4f8}
-.mn-it{display:flex;align-items:center;justify-content:space-between;padding:14px 12px;font-size:1rem;color:#111827!important;text-decoration:none!important;border-bottom:1px solid #eef1f4;font-weight:500}
+/* titulos del menu: todos iguales, con la misma flecha */
+.mn-it{display:flex;align-items:center;justify-content:space-between;padding:15px 12px;font-size:1rem;color:#111827!important;text-decoration:none!important;border-bottom:1px solid #eef1f4;font-weight:500;cursor:pointer;user-select:none}
 .mn-it:hover{background:#f1f4f8}
-.mn-it small{color:#6b7280;font-weight:400;font-size:.78rem}
-.mn-it.mn-rosa{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);color:#fff!important;font-weight:800;border-radius:12px;border:0;margin:10px 0 6px;text-shadow:0 1px 2px rgba(120,20,60,.35);box-shadow:0 4px 14px rgba(190,60,100,.22)}
+.mn-ar{color:#6b7280;font-size:1.25rem;line-height:1;font-weight:400}
+.mn-it small{color:#6b7280;font-weight:400;font-size:.78rem;margin-left:6px}
+.mn-it.mn-rosa{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);color:#fff!important;font-weight:800;border-radius:12px;border:0;margin:12px 0 8px;text-shadow:0 1px 2px rgba(120,20,60,.35);box-shadow:0 4px 14px rgba(190,60,100,.22)}
+.mn-it.mn-rosa .mn-ar{color:#fff}
 .mn-it.mn-rosa:hover{filter:brightness(1.04) saturate(1.1)}
-.mn-sep{height:1px;background:#d9dee5;margin:14px 0 8px}
-.mn-sub{font-size:.74rem;font-weight:800;letter-spacing:1.2px;color:#6b7280;margin:12px 2px 2px}
-.mn-pop{position:static!important;width:auto!important;box-shadow:none!important;border:0!important;padding:0!important;background:transparent!important}
-.mn-pop a.mc-pi{padding:13px 12px;border-bottom:1px solid #eef1f4;border-radius:0;font-weight:500;font-size:1rem}
-.mn-det{border-bottom:1px solid #eef1f4}
-.mn-det>summary{list-style:none;cursor:pointer;padding:14px 12px;font-size:1rem;color:#111827;font-weight:500;display:flex;justify-content:space-between;align-items:center}
-.mn-det>summary::-webkit-details-marker{display:none}
-.mn-det>summary::after{content:"▾";color:#6b7280}
-.mn-det[open]>summary::after{content:"▴"}
-.mn-det .mc-form{padding:4px 4px 12px}
-.mn-ver{margin:18px 2px 0;font-size:.82rem;color:#6b7280;line-height:1.7}
+.mn-sep{height:1px;background:#cfd6de;margin:34px 2px 14px}
+.mn-sep2{height:1px;background:#cfd6de;margin:44px 2px 14px}
+.mn-ver{margin:34px 2px 0;font-size:.82rem;color:#6b7280;line-height:1.7}
 .mn-ver b{color:#374151}
-/* Streamlit dentro del panel: las cajas pasan de tarjetas con sombra a filas de lista */
-.st-key-menu_lateral .st-key-caja_screener [data-testid="stExpander"],.st-key-menu_lateral .st-key-caja_cal [data-testid="stExpander"]{box-shadow:none;border-radius:0;border-bottom:1px solid #eef1f4!important}
-.st-key-menu_lateral .st-key-caja_screener [data-testid="stExpander"] summary,.st-key-menu_lateral .st-key-caja_cal [data-testid="stExpander"] summary{padding:0 12px;min-height:52px;border-radius:0}
-.st-key-menu_lateral .st-key-caja_screener [data-testid="stExpander"] summary p,.st-key-menu_lateral .st-key-caja_cal [data-testid="stExpander"] summary p{font-weight:500;font-size:1rem;color:#111827}
-.st-key-menu_lateral [data-testid="stExpanderDetails"]{padding:.5rem .4rem 1rem!important}
-.st-key-menu_lateral .nt{box-shadow:none;border-radius:0;border-bottom:1px solid #eef1f4;padding:0 12px}
-.st-key-menu_lateral .nt>summary{font-weight:500;font-size:1rem;color:#111827;min-height:52px}
-.st-key-menu_lateral .nt li a{flex-basis:100%}
-.st-key-menu_lateral [data-baseweb="tab-list"]{flex-wrap:wrap;gap:0}
-.st-key-menu_lateral [data-baseweb="tab"]{height:auto;padding:6px 10px}
-.st-key-menu_lateral [data-baseweb="tab"] p{white-space:normal;line-height:1.25;font-size:.9rem}
+""" + f"{_ACTIVO_FLY}{{background:#eef6ff;font-weight:700}}\n" + """
+/* paneles que se abren hacia el centro de la pagina (a la izquierda del menu) */
+""" + f"{_TODOS_FLY}{{" + """position:fixed!important;top:0;bottom:0;right:min(94vw,430px);left:auto;width:min(620px,calc(100vw - min(94vw,430px) - 12px));height:100vh;height:100dvh;box-sizing:border-box;background:#fff;
+z-index:1490;overflow-y:auto;overflow-x:hidden;padding:10px 22px 30px!important;gap:6px!important;box-shadow:-10px 0 30px rgba(15,23,42,.22);display:none!important}
+""" + f"{_VISIBLE_FLY}{{" + """display:flex!important;flex-direction:column;animation:flyin .2s ease}
+@keyframes flyin{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+.fly-h{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0 12px;margin-bottom:8px;border-bottom:1px solid #e3e8ee}
+.fly-h b{font-size:1.12rem;color:#0f172a}
+.fly-b{display:none;cursor:pointer;font-weight:700;color:#1d4ed8;padding:4px 8px;border-radius:8px}
+.fly-b:hover{background:#eef2ff}
+.fly [data-testid="stElementContainer"],[class*="st-key-fly_"] [data-testid="stElementContainer"]{width:100%}
+.fly .mc-redes{padding:10px 4px 16px}
+.fly .mc-ps{padding:8px 4px 2px}
+.fly .mc-form{padding:6px 2px 12px}
+.fly .mc-logos{padding:8px 0}
+.st-key-fly_noticias .nt>summary{display:none}
+.st-key-fly_noticias .nt{box-shadow:none;padding:0}
+.st-key-fly_filtro [data-testid="stExpander"]{box-shadow:none}
+[data-testid="stLayoutWrapper"]:has(>[class*="st-key-fly_"]),[data-testid="stElementContainer"]:has(>[data-testid="stMarkdown"] .fly){position:absolute!important;width:0;height:0;overflow:visible}
 .mc-nav:empty{display:none}
-@media (max-width:820px){.mc-hl{display:none}.mc-ham{padding:8px 4px;order:2}.mc-hb{width:26px}}
+@media (max-width:900px){
+.mc-hl{display:none}.mc-ham{padding:8px 4px;order:2}.mc-hb{width:26px}
+""" + f"{_TODOS_FLY}{{" + """right:0;width:100vw;z-index:1600}
+.fly-b{display:inline-block}
+}
 """
 CSS += CSS_MENU
 
@@ -496,29 +526,70 @@ def menu_cabecera_html():
     return '<div class="mn-h"><b>Menú</b><label for="mc-menu" class="mn-x" title="Cerrar" aria-label="Cerrar el menú">✕</label></div>'
 
 
-def menu_enlaces_html(home=True):
-    """Filas de enlace del menu: Evaluá tu Portfolio (rosa) e Ideas de inversión. Si no se esta en el inicio, también los enlaces a lo que vive solo ahí (Filtro, Noticias, Calendario)."""
-    filas = ""
-    if not home:
-        filas += ('<a class="mn-it" href="?menu=1" target="_self">Filtro de empresas<small>en el inicio</small></a>'
-                  '<a class="mn-it" href="?menu=1" target="_self">Noticias Calientes del día<small>en el inicio</small></a>'
-                  '<a class="mn-it" href="?menu=1" target="_self">Calendario<small>en el inicio</small></a>')
-    filas += ('<a class="mn-it mn-rosa" href="?pagina=cartera" target="_self"><span>Evaluá tu Portfolio</span><span>→</span></a>'
-              '<a class="mn-it" href="?pagina=ideas" target="_self"><span>Ideas de inversión</span><span>›</span></a>')
-    return f'<div>{filas}</div>'
+def fly_cabecera_html(titulo):
+    """Cabecera de un panel que se abre hacia el centro: «‹ Menú» (solo en el celular, vuelve a la lista), el título y la ✕ que cierra el panel."""
+    return (f'<div class="fly-h"><label for="sec-none" class="fly-b">‹ Menú</label><b>{html.escape(titulo)}</b>'
+            '<label for="sec-none" class="mn-x" title="Cerrar" aria-label="Cerrar">✕</label></div>')
 
 
-def menu_pie_html(version, enlaces=None, cuentas=None, comentarios_mail=None):
-    """Parte de abajo del menu: despues de una linea, Quiénes somos / redes / contacto / cuentas; despues de otra, Comentarios; al final la versión."""
+def _it_sec(sec, texto):
+    return f'<label for="sec-{sec}" class="mn-it"><span>{html.escape(texto)}</span><span class="mn-ar">›</span></label>'
+
+
+def _it_href(href, texto, clase="mn-it", chica=""):
+    ch = f"<small>{html.escape(chica)}</small>" if chica else ""
+    return f'<a class="{clase}" href="{href}" target="_self"><span>{html.escape(texto)}{ch}</span><span class="mn-ar">›</span></a>'
+
+
+def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=None, cuentas=None, comentarios_mail=None):
+    """Todo el menu en una sola pieza: Filtro, Noticias, Calendario Financiero, Evaluá tu Portfolio, Ideas de inversión; (espacio) Quiénes somos, Nuestras Redes, Contactános, Abrí una cuenta;
+    (espacio) Comentarios y la versión. En el inicio los tres primeros abren su panel; en otras pantallas llevan al inicio con el menú abierto."""
     e = _enlaces(enlaces)
-    bloques = "".join(_sobre_nosotros_bloques(e, cuentas))
-    com = ""
-    if e["comentarios"]:
-        com = (f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer">Comentarios</a>')
+    if home:
+        arriba = _it_sec("filtro", filtro) + _it_sec("noticias", "Noticias Calientes del día") + _it_sec("cal", "Calendario Financiero")
     else:
-        form = _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
-        if form:
-            com = f'<details class="mn-det"><summary>Comentarios</summary>{form}</details>'
-    return (f'<div class="mn-sep"></div><div class="mc-pop mn-pop">{bloques}</div>'
-            + (f'<div class="mn-sep"></div>{com}' if com else "")
-            + f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b></div>')
+        arriba = (_it_href("?menu=1", filtro, chica="en el inicio") + _it_href("?menu=1", "Noticias Calientes del día", chica="en el inicio")
+                  + _it_href("?menu=1", "Calendario Financiero", chica="en el inicio"))
+    arriba += _it_href("?pagina=cartera", "Evaluá tu Portfolio", clase="mn-it mn-rosa") + _it_href("?pagina=ideas", "Ideas de inversión")
+    if e["quienes_somos"]:
+        qs = f'<a class="mn-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Quiénes somos</span><span class="mn-ar">›</span></a>'
+    else:
+        qs = _it_href("?pagina=quienes", "Quiénes somos")
+    medio = qs
+    if any(e[k] for k in ("youtube", "instagram", "intramed")):
+        medio += _it_sec("redes", "Nuestras Redes")
+    if e["mail"] or e["whatsapp"]:
+        medio += _it_sec("contacto", "Contactános")
+    if _cuentas_html(cuentas):
+        medio += _it_sec("cuentas", "Abrí una cuenta con nosotros")
+    abajo = ""
+    if e["comentarios"]:
+        abajo = f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Comentarios</span><span class="mn-ar">›</span></a>'
+    elif _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail):
+        abajo = _it_sec("comentarios", "Comentarios")
+    ver = f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b></div>' if version else ""
+    return f'<div>{arriba}</div><div class="mn-sep"></div><div>{medio}</div>' + (f'<div class="mn-sep2"></div><div>{abajo}</div>' if abajo else "") + ver
+
+
+def menu_flyouts_html(enlaces=None, cuentas=None, comentarios_mail=None):
+    """Los paneles que se abren hacia el centro y son solo HTML: Nuestras Redes, Contactános, Abrí una cuenta y Comentarios (cada uno, solo si tiene contenido)."""
+    e = _enlaces(enlaces)
+    out = ""
+    redes = "".join(_enlace_color(k, e[k]) for k in ("youtube", "instagram", "intramed") if e[k])
+    if redes:
+        out += f'<div class="fly fly-redes">{fly_cabecera_html("Nuestras Redes")}<div class="mc-pop mn-pop"><div class="mc-redes">{redes}</div></div></div>'
+    contacto = (_enlace_color("mail", e["mail"]) if e["mail"] else "") + _enlace_color("whatsapp", e["whatsapp"])
+    if contacto and (e["mail"] or e["whatsapp"]):
+        out += f'<div class="fly fly-contacto">{fly_cabecera_html("Contactános")}<div class="mc-pop mn-pop"><div class="mc-redes">{contacto}</div></div></div>'
+    logos = _cuentas_html(cuentas)
+    if logos:
+        out += f'<div class="fly fly-cuentas">{fly_cabecera_html("Abrí una cuenta con nosotros")}<div class="mc-pop mn-pop">{logos.replace(chr(10), "")}</div></div>'
+    form = "" if e["comentarios"] else _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
+    if form:
+        out += f'<div class="fly fly-comentarios">{fly_cabecera_html("Comentarios")}<div class="mc-pop mn-pop">{form}</div></div>'
+    return out
+
+
+CSS += """
+.mn-pop{position:static!important;width:auto!important;box-shadow:none!important;border:0!important;padding:0!important;background:transparent!important}
+"""

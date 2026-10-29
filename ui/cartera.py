@@ -649,7 +649,7 @@ def valoracion(categoria):
 
 # --- analisis ---------------------------------------------------------------------------------------------------------------------
 
-PESO_MIN, PESO_MAX = 3.0, 5.0      # regla de Guille: cada empresa (acción o CEDEAR) entre 3 % y 5 % de la cartera
+PESO_MIN, PESO_MAX = 2.0, 5.0      # ideal de diversificación (no es una regla obligatoria): cada empresa (acción o CEDEAR) entre 2 % y 5 % de la cartera; los ETFs no entran
 UMBRAL = 5.0          # puntos de diferencia a partir de los cuales se avisa (la devolución es una orientación, no un cálculo fino)
 _CAT_ETF_GEO = {"usa": "usa", "usa segun sectores": "usa", "internacionales no usa": "fuera_sd", "internacionales con usa": "global"}
 
@@ -771,15 +771,15 @@ def devolucion(res, edad, perfil):
             t = ", ".join(f"{p['ticker']} {p['pct']:.0f} %" for p in lst[:n])
             return t + (f" y {len(lst) - n} más" if len(lst) > n else "")
         if arriba:
-            f.append(f"**Por empresa, lo habitual es entre {PESO_MIN:.0f} y {PESO_MAX:.0f} % de la cartera.** Pasan de {PESO_MAX:.0f} %: {_lista_tk(arriba)}.")
+            f.append(f"**Como ideal de diversificación, cada empresa suele pesar entre {PESO_MIN:.0f} y {PESO_MAX:.0f} % de la cartera** (es una guía, no una obligación). Pasan de {PESO_MAX:.0f} %: {_lista_tk(arriba)}.")
             hallazgos.append(f"{len(arriba)} empresa(s) pasan de {PESO_MAX:.0f} % de la cartera.")
-            ajustes.append(f"Llevar de a poco las empresas que pasan de {PESO_MAX:.0f} % ({', '.join(p['ticker'] for p in arriba[:3])}{'…' if len(arriba) > 3 else ''}) hacia el rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} %.")
+            ajustes.append(f"Si querés diversificar más, ir llevando de a poco las empresas que pasan de {PESO_MAX:.0f} % ({', '.join(p['ticker'] for p in arriba[:3])}{'…' if len(arriba) > 3 else ''}) hacia el rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} %.")
         if len(abajo) >= 2:
-            f.append(f"Pesan menos de {PESO_MIN:.0f} % (casi no mueven tu cartera): {_lista_tk(abajo)}.")
+            f.append(f"Pesan menos de {PESO_MIN:.0f} % (casi no mueven el resultado de tu cartera): {_lista_tk(abajo)}.")
             hallazgos.append(f"{len(abajo)} empresas pesan menos de {PESO_MIN:.0f} %.")
-            ajustes.append(f"Con las empresas que pesan menos de {PESO_MIN:.0f} %, decidir si valen la pena: o se las sube al rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} %, o se las deja de lado.")
+            ajustes.append(f"Las empresas que pesan menos de {PESO_MIN:.0f} % casi no mueven tu cartera: es una decisión tuya si las subís hacia el rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} % o las dejás como están.")
         if not arriba and len(abajo) < 2:
-            f.append(f"**Las empresas están dentro de lo habitual** ({PESO_MIN:.0f} a {PESO_MAX:.0f} % de la cartera cada una): {en_rango} de {len(emp_ps)}.")
+            f.append(f"**Las empresas están dentro del ideal de diversificación** ({PESO_MIN:.0f} a {PESO_MAX:.0f} % de la cartera cada una): {en_rango} de {len(emp_ps)}.")
     if ps and ps[0]["pct"] > 15 and ps[0].get("clase") == "rv" and ps[0].get("fuente") in ("empresa", "regla"):
         f.append(f"**Tu mayor posición, {ps[0]['ticker']}, pesa {ps[0]['pct']:.0f} %** de la cartera: si le va mal, se nota mucho en el total.")
     top3 = sum(p["pct"] for p in ps[:3])

@@ -283,9 +283,21 @@ def _bloque_extra(extra):
     return out
 
 
+RUTA_MACRO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "macro_actual.txt")
+
+
+def macro_actual():
+    """Foto macro del momento (data/macro_actual.txt: tasas, inflación, petróleo, mercado), para que el análisis relacione la empresa con la situación de hoy. '' si no hay archivo."""
+    try:
+        with open(RUTA_MACRO, encoding="utf-8") as f:
+            return f.read().strip()
+    except OSError:
+        return ""
+
+
 def armar_prompt(bloque, ruta=None):
     with open(ruta or RUTA_PROMPT, encoding="utf-8") as f:
-        return f.read().replace("{BLOQUE_DATOS}", bloque)
+        return f.read().replace("{MACRO_ACTUAL}", macro_actual() or "(sin foto macro cargada)").replace("{BLOQUE_DATOS}", bloque)
 
 
 # --- respuesta del modelo -----------------------------------------------------------------------------------------------------

@@ -6,8 +6,9 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.83"
+APP_VERSION = "1.2.84"
 
+import re
 import contextlib
 import streamlit as st
 import pandas as pd
@@ -31,7 +32,7 @@ from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, eti
 from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_condensada, css_fuente
-from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav, menu_cabecera_html, menu_enlaces_html, menu_pie_html
+from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav, menu_cabecera_html, menu_lista_html, menu_flyouts_html, fly_cabecera_html, SCRIPT_ESC
 from ui import noticias as _noticias, calendario as _calendario
 from data import tecnicos as _tecnicos
 from ui import cartera_visual as _cartera_visual
@@ -920,11 +921,24 @@ def render_nav_tablas(contexto="empresas"):
                 st.button(texto, **args)
 
 
-def render_menu_estatico(caja, home=False):
-    """Menu lateral completo para las pantallas que no son el inicio (la cabecera, los enlaces y el pie); en el inicio se arma por partes en main() porque
-    en el medio van el Filtro, las Noticias y el Calendario, que son widgets."""
+def render_menu_estatico(caja, home=False, filtro="Filtro de Empresas"):
+    """Menu lateral (v1.2.84): la cabecera y la lista de títulos (siempre la misma, se arma al toque) y, aparte, los paneles que se abren hacia el centro y son solo HTML
+    (Nuestras Redes, Contactános, Abrí una cuenta, Comentarios). Los paneles con widgets (Filtro, Noticias, Calendario Financiero) se arman en main() cuando hay datos."""
     with caja:
-        st.markdown(menu_cabecera_html() + menu_enlaces_html(home) + menu_pie_html(APP_VERSION), unsafe_allow_html=True)
+        st.markdown(menu_cabecera_html() + menu_lista_html(home, filtro=filtro, version=APP_VERSION), unsafe_allow_html=True)
+    st.markdown(menu_flyouts_html(), unsafe_allow_html=True)
+
+
+def poner_esc():
+    """La tecla ESC cierra el menú y sus paneles (v1.2.84). Usa st.html con JavaScript (Streamlit nuevo) o, si no existe, un componente de 0 px de alto."""
+    try:
+        st.html(f"<script>{SCRIPT_ESC}</script>", unsafe_allow_javascript=True)
+    except Exception:  # noqa: BLE001
+        try:
+            import streamlit.components.v1 as _cmp
+            _cmp.html("<script>(function(){var d=window.parent.document;" + SCRIPT_ESC.replace("document.", "d.").replace("window.__mcEsc", "window.parent.__mcEsc") + "})();</script>", height=0)
+        except Exception:  # noqa: BLE001
+            pass
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -942,7 +956,8 @@ def _opciones_busqueda(etfs_firma: tuple) -> list:
     for t, n in etfs_firma:
         out.append((f"{t} · {n} · ETF", "etf", t))
     vistos, res = set(), []
-    for o in sorted(out, key=lambda x: (x[2], x[1])):
+    # v1.2.84: los tickers cortos van primero (al escribir "O" aparece Realty Income arriba y no 80 empresas que tienen una o en el nombre)
+    for o in sorted(out, key=lambda x: (len(x[2]), x[2], x[1])):
         if o[0] not in vistos:
             vistos.add(o[0])
             res.append(o)
@@ -1332,7 +1347,7 @@ def texto_aviso_legal():
     return (AVISO_LEGAL or "").strip()
 
 
-def render_noticias(df, descarga, lugar=None):
+def render_noticias(df, descarga, lugar=None, directo=False):
     """Recuadro "Noticias Calientes": titulares ordenados con la regla de ui/noticias.py. Nunca rompe la pagina."""
     if not _noticias.ACTIVAS:
         return
@@ -1340,12 +1355,14 @@ def render_noticias(df, descarga, lugar=None):
         crudo = _noticias.esperar(descarga)
         bloques = _noticias.traducir_bloques(_noticias.ordenar_bloques(crudo, list(df["ticker"])))
         cuerpo = f"<style>{_noticias.CSS}</style>" + _noticias.noticias_bloques_html(bloques)
+        if directo:         # v1.2.84: dentro del panel del menú la lista va abierta (el título ya está en la cabecera del panel)
+            cuerpo = re.sub(r'<details class="nt"( open)?>', '<details class="nt" open>', cuerpo)
         (lugar if lugar is not None else st).markdown(cuerpo, unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass
 
 
-def render_calendario(df, lugar=None):
+def render_calendario(df, lugar=None, directo=False):
     """Recuadro "Calendario" (v1.2.79: solapas Resultados de empresas y Economía): proximos 60 dias agrupados por dia (ui/calendario.py). Va entre Noticias y el Filtro, en la misma fila. Nunca rompe la pagina."""
     try:
         paquetes, _ = _paquetes_guardados()
@@ -1354,17 +1371,15 @@ def render_calendario(df, lugar=None):
         nombres = dict(zip(df["ticker"], df["nombre"])) if "nombre" in df.columns else {}
         n = sum(len(v) for _, v in grupos)
         with (lugar if lugar is not None else st.container()):
-            with st.container(key="caja_cal"):
-                with st.expander("Calendario", expanded=False):
-                    t_res, t_eco = st.tabs(["Próximos resultados empresariales", "Próximos eventos financieros"])
-                    with t_res:
-                        tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
-                        if (tk or "").strip():
-                            st.markdown(f"<style>{_calendario.CSS}</style><div class=\"cal\"><div class=\"cal-h\"><b>{html.escape(_calendario.buscar_ticker(paquetes, tk))}</b></div></div>", unsafe_allow_html=True)
-                        st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
-                    with t_eco:
-                        eventos, fuentes_eco = _calendario.cargar_economico()
-                        st.markdown(f"<style>{_calendario.CSS_ECO}</style>" + _calendario.economico_html(_calendario.economicos(eventos), fuentes_eco), unsafe_allow_html=True)
+            t_res, t_eco = st.tabs(["Próximos resultados empresariales", "Próximos eventos financieros"])
+            with t_res:
+                tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
+                if (tk or "").strip():
+                    st.markdown(f"<style>{_calendario.CSS}</style><div class=\"cal\"><div class=\"cal-h\"><b>{html.escape(_calendario.buscar_ticker(paquetes, tk))}</b></div></div>", unsafe_allow_html=True)
+                st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
+            with t_eco:
+                eventos, fuentes_eco = _calendario.cargar_economico()
+                st.markdown(f"<style>{_calendario.CSS_ECO}</style>" + _calendario.economico_html(_calendario.economicos(eventos), fuentes_eco), unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass
 
@@ -1578,8 +1593,10 @@ def main():
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
     # v1.2.83: menu lateral (las 3 rayitas). Fuera del inicio se llena ya; en el inicio se llena mas abajo, cuando estan los datos (Filtro, Noticias, Calendario)
     menu_box = st.container(key="menu_lateral")
-    if not en_inicio:
-        render_menu_estatico(menu_box, home=False)
+    render_menu_estatico(menu_box, home=en_inicio, filtro="Filtro de ETFs" if home_etfs else "Filtro de Empresas")
+    poner_esc()
+    if en_inicio:
+        fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
     render_nav_tablas("etfs" if en_etfs else ("ambos" if (en_quienes or en_cartera or en_ideas) else "empresas"))
     if en_quienes or en_ideas or etf_sel or st.query_params.get("empresa"):
@@ -1708,28 +1725,28 @@ def main():
     st.markdown(f"<style>{CSS_CAJAS}</style>", unsafe_allow_html=True)
     hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     noticias_pendientes = descarga_noticias is not None
-    with menu_box:
-        st.markdown(menu_cabecera_html(), unsafe_allow_html=True)
-        with st.container(key="caja_screener"):
-            if home_etfs:
-                with st.expander("Filtro de ETFs", expanded=False):
-                    sel_etfs = render_filtro_etfs(_etfs_lista())
-            else:
-                with st.expander("Filtro de Empresas", expanded=False):
-                    filtros = render_filtros_inline(universe, df)
-                    st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
+    with fly_filtro:
+        st.markdown(fly_cabecera_html("Filtro de ETFs" if home_etfs else "Filtro de Empresas"), unsafe_allow_html=True)
+        if home_etfs:
+            sel_etfs = render_filtro_etfs(_etfs_lista())
+        else:
+            filtros = render_filtros_inline(universe, df)
+            st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
+    with fly_noticias:
+        st.markdown(fly_cabecera_html("Noticias Calientes del día"), unsafe_allow_html=True)
         lugar_noticias = st.empty()
         if not noticias_pendientes:
-            render_noticias(df, None, lugar_noticias)
-        render_calendario(df, st.container())
-        st.markdown(menu_enlaces_html(True) + menu_pie_html(APP_VERSION), unsafe_allow_html=True)
+            render_noticias(df, None, lugar_noticias, directo=True)
+    with fly_cal:
+        st.markdown(fly_cabecera_html("Calendario Financiero"), unsafe_allow_html=True)
+        render_calendario(df, st.container(), directo=True)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()
     if home_etfs:
         render_tabla_etfs(_etfs_lista(), sel_etfs)
         if noticias_pendientes:
-            render_noticias(df, descarga_noticias, lugar_noticias)
+            render_noticias(df, descarga_noticias, lugar_noticias, directo=True)
         st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
         return
     # v1.2.49: ya no hay "Cómo leer la tabla" (cada título explica su columna al pasar el mouse); el Excel va arriba de la tabla, a la derecha
@@ -1737,7 +1754,7 @@ def main():
     render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
 
     if noticias_pendientes:
-        render_noticias(df, descarga_noticias, lugar_noticias)
+        render_noticias(df, descarga_noticias, lugar_noticias, directo=True)
 
     # Seguimiento (historial del caché)
     render_seguimiento()

@@ -86,7 +86,7 @@ def escala_valoracion_html(mostrar_gris=False):
             f'<span class="esc-gt">sin métricas suficientes</span></div>') if mostrar_gris else ""
     return ('<div class="esc"><div class="esc-t"><b>Escala de valoración</b></div>'
             f'<div class="esc-b">{"".join(tramos)}</div>'
-            '<div class="esc-ej"><span>◀ más barata</span><span>más cara ▶</span></div>'
+            '<div class="esc-ej"><span>◀ Más barata</span><span>Más cara ▶</span></div>'
             f'{gris}</div>')
 
 # Ayuda de cada titulo de la tabla: se ve al pasar el mouse por el titulo (v1.2.47; antes habia un signo de pregunta al lado de cada uno).

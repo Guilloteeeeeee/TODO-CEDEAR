@@ -1077,7 +1077,7 @@ def tiles_analisis(af, estados=None, row=None, universo=None):
         concl_html = ""
     texto = f'<div class="af-rt">{_texto_af(cuerpo_res)}{concl_html}</div>'
     cuerpo = f'<div class="af"><div class="af-rs">{texto}{_score_af(row) if row is not None else ""}</div></div>'
-    t = [_tile("s12", "Resumen", _CSS_AF + cuerpo, ac=color)]
+    t = [_tile("s12", "Un vistazo rápido", _CSS_AF + cuerpo, ac=color)]
     titulos = dict(AF.SECCIONES)
     titulos["balance"] = AP.titulo_balance(perfil)
     for clave in ("negocio", "foso"):
