@@ -6866,6 +6866,191 @@
      "2022"
     ]
    }
+  },
+  "FDX": {
+   "resumen": "FedEx es una de las mayores empresas de transporte y logística del mundo: mueve paquetes, cargas y comercio electrónico con aviones, camiones y una red de centros de clasificación, y vende además soluciones digitales, servicios de impresión y gestión de envíos. Gana plata cobrando por cada envío, con ingresos que dependen del volumen de comercio y del precio del combustible. Tiene un **foso estrecho, de escala y red**: replicar aviones, rutas, camiones y centros de distribución en todo el planeta cuesta decenas de miles de millones, y eso limita la entrada de nuevos competidores, aunque UPS, Amazon y otros ya compiten en serio. Los números son de una empresa grande y estable, pero de márgenes finos: los ingresos del ejercicio 2026 fueron de 94.720 M (+7,7 %), el margen operativo es de **7,0 %**, el ROIC de **8,8 %** y el flujo libre subió a **5.116 M** (5,4 % de los ingresos) porque bajaron las inversiones. Hay 7,0 % menos acciones que en 2023 y el dividendo viene creciendo 10,9 % por año en 3 años. Su punto débil es que el negocio es cíclico, depende del combustible y del comercio mundial, y que la rentabilidad sobre el capital está cerca del costo del dinero. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular, con red logística difícil de replicar y mejor flujo libre, pero con margen operativo de solo 7 % y ROIC de 8,8 %.**",
+   "veredicto": "Regular: red logística difícil de replicar y mejor flujo libre, con margen operativo de solo 7 % y ROIC de 8,8 %",
+   "conclusion": "FedEx es una empresa de calidad regular: tiene un foso estrecho de escala y red, un flujo libre de 5.116 M en 2026, un dividendo que sube 10,9 % por año y 7,0 % menos acciones, pero su margen operativo es de 7,0 % y su ROIC de 8,8 %. Vale la pena seguirla de cerca. Es recomendable investigar la composición de la inversión y los resultados por segmento en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROIC suba por encima de 10 %.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "FedEx provee servicios de transporte, comercio electrónico y servicios empresariales en Estados Unidos y a nivel internacional. Yahoo lista dos segmentos, Express U.S. Domestic y Express International, y suma soluciones digitales y de comercio electrónico, dataworks y servicios de impresión y gestión de envíos. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de volumen y de poco margen: **los ingresos cayeron 2,7 % en 2024, subieron 0,3 % en 2025 y 7,7 % en 2026, hasta 94.720 M** (el ejercicio de FedEx cierra a mediados de año).\n\n**A quién le vende.** A empresas de todos los tamaños, a vendedores de comercio electrónico y a consumidores que reciben paquetes. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de FedEx **es de escala y de red, y es estrecha**. Una red propia de aviones, camiones y centros de clasificación con cobertura en todo el mundo no se arma en pocos años: exige inversiones enormes y una densidad de paquetes que permita llenar cada ruta. Esa densidad baja el costo por envío y es difícil de igualar para un recién llegado.\n\nPero el margen operativo de 5,9 % a 7,2 % y el ROIC de 8,5 % a 9,8 % en los cuatro años muestran que la ventaja no se traduce en una rentabilidad alta. Compite con UPS, DHL, Amazon Logistics y operadores regionales. Es frágil en el precio del combustible (hoy la nafta subió 9,1 % en septiembre y el Brent está en máximos de cinco meses), en el comercio mundial, en los costos laborales y en la guerra de precios. La inteligencia artificial no la amenaza de forma directa; puede ayudarla a ordenar rutas.",
+   "numeros": "Los números de FedEx cuentan **un negocio grande, cíclico y con márgenes finos que mejora el flujo libre**. Los ingresos fueron de 90.155 M, 87.693 M, 87.926 M y 94.720 M. El EBIT fue de 5.338 M, 6.298 M, 6.032 M y 6.623 M, con margen operativo de 5,9 %, 7,2 %, 6,9 % y 7,0 %. La ganancia neta fue de 3.972 M, 4.331 M, 4.092 M y 4.433 M. La ganancia por acción fue de 15,48, 17,21, 16,81 y 18,55.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.674 M, 3.136 M, 2.981 M y **5.116 M**; el salto de 2026 viene de inversiones que bajaron de 6.174 M a 3.809 M, no de un negocio que gane mucho más. El ROIC fue de 8,5 %, 9,8 %, 9,3 % y 8,8 %, y el ROE de 14,0 % en 2026.\n\nLa mirada crítica: el capital invertido subió de 48.653 M a 57.361 M en un año (+17,9 %) y Yahoo no explica el motivo. Con un ROIC cerca de 9 %, la empresa apenas rinde por encima de lo que cuesta financiarse.",
+   "balance": "**Deuda alta en términos absolutos, pero cómoda frente a su generación.** La deuda total es de 42.943 M y la caja de 13.311 M. Yahoo informa una deuda neta de 12.403 M, que no es comparable con la resta (deuda menos caja da 29.632 M) porque parece excluir arrendamientos de aviones y locales; con ese dato, la deuda neta/EBITDA es de 1,11x, que multiplicado por 12 son unos 13 meses de EBITDA. Los intereses se cubren 6,8 veces con el EBIT.\n\nEl patrimonio neto es de 31.647 M y la deuda total equivale a 1,36 veces el patrimonio. La caja casi se duplicó en 2026 (de 5.502 M a 13.311 M) y la deuda subió, un movimiento que conviene mirar en el informe.",
+   "gerencia": "La conduce Rajesh Subramaniam, presidente y CEO (59 años, pago de 16,6 M según Yahoo), con R. Brad Martin como presidente ejecutivo del directorio (73 años, pago de 0,2 M). Yahoo no incluye al director financiero entre los directivos que lista.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras moderadas**: paga un dividendo de 4,88 por acción (pagado desde 2002; sube 10,9 % por año en 3 años; 1.374 M en 2026, 27 % del flujo libre) y recompró 1.500 M en 2023, 2.500 M, 3.017 M y solo 796 M en 2026. **Las acciones bajaron de 257 M a 239 M, un 7,0 % menos.**",
+   "fortalezas": [
+    "Red logística global difícil de replicar.",
+    "Flujo libre de 5.116 M en 2026, el mejor de los cuatro años.",
+    "Dividendo creciendo 10,9 % por año en 3 años y cubierto por el flujo libre.",
+    "7,0 % menos acciones desde 2023.",
+    "Deuda neta de unos 13 meses de EBITDA según Yahoo."
+   ],
+   "debilidades": [
+    "Margen operativo de solo 7,0 %.",
+    "ROIC de 8,8 %, cerca del costo del capital: el crítico más duro diría que crece sin crear valor.",
+    "El salto del flujo libre viene de menos inversión, no de más ganancia.",
+    "Sensible al combustible, al comercio mundial y a los costos laborales.",
+    "Capital invertido que subió 17,9 % en un año sin explicación de Yahoo."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 7,0 %; si baja, el combustible o los costos laborales pesan.",
+    "Inversiones: hoy 3.809 M; si vuelven hacia 6.000 M, el flujo libre se achica.",
+    "Capital invertido: hoy 57.361 M; tiene que justificarse con más ganancia operativa.",
+    "Ingresos: hoy +7,7 %; tiene que sostenerse sin guerra de precios."
+   ],
+   "clientes": [
+    "Empresas y vendedores de comercio electrónico",
+    "Consumidores que reciben paquetes",
+    "Industrias que mueven carga urgente"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de logística global con dividendo creciente.",
+    "Valoran el flujo libre y las recompras.",
+    "Aceptan márgenes finos y ciclo del comercio."
+   ],
+   "menos_ideal": [
+    "Buscan alta rentabilidad sobre el capital.",
+    "No toleran la sensibilidad al combustible."
+   ],
+   "perfil": "general",
+   "capas": [],
+   "ticker": "FDX",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 94720000000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "GEV": {
+   "resumen": "GE Vernova es una empresa de energía, separada de General Electric, que fabrica y da servicio a turbinas de gas, equipos nucleares, hidráulicos y de vapor (Power), turbinas eólicas (Wind) y equipos de red eléctrica y electrificación (Electrification). Gana plata vendiendo equipos grandes y, sobre todo, servicios de mantenimiento y repuestos sobre su base instalada. Tiene un **foso estrecho, de base instalada y conocimiento técnico**: una central con sus turbinas necesita repuestos, ajustes y servicio del fabricante durante décadas, y construir una turbina de gas grande exige décadas de ingeniería. Los números mejoran mucho, pero con una advertencia: los ingresos subieron de 29.654 M en 2022 a **44.040 M** en los últimos 12 meses, el margen bruto pasó de 11,7 % a 21,7 % y el margen operativo de -9,7 % a **6,4 %**. Aun así, la ganancia neta (10.368 M) es casi cuatro veces el EBIT (2.830 M) y el flujo libre (17.115 M) es 4,6 veces el de 2025; Yahoo marca ambos como fuera de lo común y probablemente incluyen ganancias no operativas y cobros anticipados de clientes, dato a verificar. Tiene más caja (16.764 M) que deuda (2.795 M). Su punto débil es que el EBIT sigue siendo chico, que hasta 2023 perdió plata y que gran parte de la demanda actual depende de la inversión en centros de datos de inteligencia artificial, que puede enfriarse. Conclusión: **empresa de buena calidad en mejora, con foso estrecho y caja neta de 13.969 M, aunque con 6,4 % de margen operativo y cifras recientes poco comparables.**",
+   "veredicto": "Buena y en mejora: foso estrecho y caja neta de 13.969 M, con margen operativo de 6,4 % y cifras recientes poco comparables",
+   "conclusion": "GE Vernova es una empresa de buena calidad en mejora: tiene un foso estrecho de base instalada, más caja que deuda (13.969 M de caja neta), margen bruto de 21,7 % y ROIC de 15,5 %, pero su margen operativo es de solo 6,4 % y las cifras recientes de ganancia y flujo libre no son comparables. Hay que seguirla de cerca. Es recomendable investigar el detalle de la caja y de los resultados no operativos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el EBIT siga creciendo.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "GE Vernova provee productos y servicios que generan, transfieren, orquestan, convierten y almacenan electricidad en Estados Unidos, Europa, Asia, Medio Oriente y África. Opera tres segmentos: **Power** (tecnologías de gas, nuclear, hidráulica y vapor), **Wind** y **Electrification**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de equipos y servicios con ciclo largo: **los ingresos crecieron 12,1 % en 2023, 5,1 % en 2024 y 9,0 % en 2025, hasta 38.068 M**, y llegan a 44.040 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas eléctricas, generadores de energía y operadores de redes de distintos países. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de GE Vernova **es de base instalada y conocimiento técnico, y es estrecha**. Las turbinas de gas grandes tardan años en diseñarse y certificarse, y una vez instaladas el propietario depende del fabricante para repuestos, actualizaciones y mantenimiento durante décadas. Eso genera ingresos de servicio que se repiten y explica en parte la mejora del margen bruto de 11,7 % a 21,7 % en los últimos 12 meses.\n\nCompite con Siemens Energy, Mitsubishi Heavy Industries, Hitachi Energy, Schneider Electric y fabricantes chinos. Es frágil en el negocio eólico, que hasta ahora le restó rentabilidad (dato público a verificar), en las demoras de la cadena de suministro y en que el pedido de turbinas hoy se apoya en el apuro de las empresas eléctricas por abastecer centros de datos. El 22/10 los semiconductores cayeron 6,7 %, un recordatorio de que el entusiasmo por la inteligencia artificial puede revertirse. La inteligencia artificial no la amenaza de forma directa; es parte de la demanda.",
+   "numeros": "Los números de GE Vernova cuentan **una recuperación fuerte desde las pérdidas**. Los ingresos fueron de 29.654 M, 33.239 M, 34.935 M y 38.068 M, y de 44.040 M en los últimos 12 meses. El EBIT fue de -2.881 M, -923 M, 471 M y 1.389 M, y de **2.830 M** en los últimos 12 meses (margen operativo de 6,4 %). La ganancia neta fue de -2.736 M, -438 M, 1.552 M y 4.884 M, y de 10.368 M en los últimos 12 meses. La ganancia por acción fue de -10,06, -1,60, 5,58, 17,69 y 38,11.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -627 M, 442 M, 1.700 M, 3.710 M y **17.115 M** en los últimos 12 meses (38,9 % de los ingresos). El ROIC pasó de -19,2 % a 15,5 %.\n\nLa mirada crítica: la ganancia neta supera al EBIT en 2024, 2025 y los últimos 12 meses, lo que indica resultados no operativos (venta de participaciones, intereses sobre la caja o ajustes impositivos; Yahoo no lo detalla). Tampoco el flujo libre de 17.115 M es un nivel repetible: probablemente incluye anticipos de clientes. Conviene tomar como referencia el EBIT de 2.830 M.",
+   "balance": "**Balance de caja neta, el más cómodo posible.** La caja es de 16.764 M y la deuda total de 2.795 M, de modo que la deuda neta es de -13.969 M: tiene más plata que deudas. El patrimonio neto es de 11.382 M, la deuda equivale a 0,25 veces el patrimonio, y los intereses no son un problema.\n\nLa caja pasó de 2.067 M en 2022 a 16.764 M, mientras la deuda total se mantuvo entre 1.144 M y 2.795 M. Conviene confirmar en el informe cuánto de esa caja corresponde a anticipos de clientes y no a ganancia acumulada.",
+   "gerencia": "La conduce Scott Strazik, CEO y presidente (46 años, pago de 6,3 M según Yahoo), con Kenneth Parks como director financiero (62 años, pago de 2,9 M). Strazik condujo la separación de General Electric y la mejora de márgenes, dato público.\n\nEn lo que importa, **el uso del capital cambió a recompras y dividendo apenas empezó a generar caja**: paga un dividendo de 2,00 por acción desde 2024 (474 M en los últimos 12 meses) y recompró 3.316 M en 2025 y 6.371 M en los últimos 12 meses. **Las acciones casi no se movieron: 272 M en 2022 y 271 M hoy**, porque la emisión de acciones para compensación absorbe parte de las recompras.",
+   "fortalezas": [
+    "Más caja (16.764 M) que deuda (2.795 M).",
+    "Margen bruto de 11,7 % a 21,7 % y margen operativo de -9,7 % a 6,4 %.",
+    "Base instalada con servicios por décadas.",
+    "Ingresos de 44.040 M, creciendo todos los años.",
+    "ROIC de 15,5 % en los últimos 12 meses."
+   ],
+   "debilidades": [
+    "Margen operativo de solo 6,4 %.",
+    "Ganancia neta y flujo libre recientes poco repetibles: el crítico más duro diría que el EBIT es el número real.",
+    "Perdió plata hasta 2023.",
+    "Demanda atada en parte al gasto en centros de datos de inteligencia artificial.",
+    "Recompras fuertes que apenas bajan la cantidad de acciones."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 6,4 %; tiene que seguir subiendo para justificar el cambio.",
+    "Ganancia neta contra EBIT: hoy 10.368 M contra 2.830 M; hay que entender qué es no operativo.",
+    "Flujo libre: hoy 17.115 M; hay que ver cuánto son anticipos de clientes.",
+    "Resultado del negocio eólico: Yahoo no lo informa, hay que buscarlo en el informe."
+   ],
+   "clientes": [
+    "Empresas eléctricas y generadores de energía",
+    "Operadores de redes de distribución",
+    "Desarrolladores de parques eólicos"
+   ],
+   "ideal_para": [
+    "Buscan exposición a la inversión en energía eléctrica.",
+    "Valoran un balance con más caja que deuda.",
+    "Aceptan analizar cifras no operativas con cuidado."
+   ],
+   "menos_ideal": [
+    "Buscan datos limpios y comparables.",
+    "No toleran la dependencia del gasto en centros de datos."
+   ],
+   "perfil": "general",
+   "capas": [],
+   "ticker": "GEV",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 44040000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "HWM": {
+   "resumen": "Howmet Aerospace es un fabricante estadounidense de componentes de alta ingeniería para aviones y transporte: álabes y anillos para motores (Engine Products), sistemas de fijación (Fastening Systems), estructuras de aviones (Engineered Structures) y ruedas forjadas (Forged Wheels). Gana plata vendiendo piezas críticas que forman parte de los motores y fuselajes de los fabricantes de aviones y motores. Tiene un **foso estrecho, de especialización técnica y certificaciones**: fabricar piezas que soportan temperaturas extremas en un motor exige décadas de conocimiento y aprobaciones de los clientes, que rara vez cambian de proveedor. Los números son excelentes y mejoran año tras año: los ingresos pasaron de 5.663 M en 2022 a **9.117 M** en los últimos 12 meses, el margen operativo subió de 17,2 % a **27,3 %**, el ROIC es de **20,0 %** y el flujo libre de **1.791 M** es 19,6 % de los ingresos. Hay 4,0 % menos acciones que en 2022. Su punto débil es que depende del ciclo de producción de aviones y motores, que la deuda subió en los últimos 12 meses y que su presidente y CEO tiene 71 años. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso estrecho, margen operativo de 27,3 % y ROIC de 20,0 %, aunque con dependencia del ciclo aeronáutico y un CEO de 71 años.**",
+   "veredicto": "Muy buena: foso estrecho, margen operativo de 27,3 % y ROIC de 20,0 %, con dependencia del ciclo aeronáutico y un CEO de 71 años",
+   "conclusion": "Howmet es una empresa de muy buena calidad: tiene un foso estrecho de especialización técnica, margen operativo de 27,3 %, ROIC de 20,0 %, flujo libre de 1.791 M y 4,0 % menos acciones, pero depende del ciclo de producción de aviones y su CEO tiene 71 años. Vale la pena seguirla de cerca. Es recomendable investigar la concentración de clientes y la compra reciente en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga cerca de 27 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Howmet Aerospace provee soluciones de ingeniería avanzada para las industrias aeroespacial y de transporte en Estados Unidos, Japón, Francia, Alemania, Reino Unido, México, Italia, Canadá, Polonia, China y a nivel internacional. Opera cuatro segmentos: **Engine Products** (álabes y anillos laminados), **Fastening Systems**, **Engineered Structures** y **Forged Wheels**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de piezas críticas con crecimiento sostenido: **los ingresos subieron 17,3 % en 2023, 11,9 % en 2024 y 11,1 % en 2025, hasta 8.252 M**, y llegan a 9.117 M en los últimos 12 meses.\n\n**A quién le vende.** A fabricantes de aviones y de motores, y a fabricantes de vehículos comerciales. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque el negocio depende de pocos grandes fabricantes (dato público).",
+   "foso": "La ventaja de Howmet **es de especialización técnica y certificaciones, y es estrecha**. Las piezas de los motores trabajan a temperaturas y presiones extremas, y cada pieza está aprobada por el fabricante del motor tras años de pruebas; cambiar de proveedor implica repetir ese proceso. Eso sostiene los márgenes: el margen bruto subió de 27,5 % a 36,0 %, y el margen operativo de 17,2 % a 27,3 %.\n\nCompite con Precision Castparts, Safran, Arconic y fabricantes especializados. Es frágil en el ciclo de producción de aviones (los retrasos de Boeing y Airbus se trasladan a sus pedidos), en los precios de materias primas como el titanio y el níquel, y en que sus clientes son pocos y grandes. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de Howmet cuentan **un negocio que crece y gana más margen cada año**. Los ingresos fueron de 5.663 M, 6.640 M, 7.430 M y 8.252 M, y de 9.117 M en los últimos 12 meses. El EBIT fue de 975 M, 1.226 M, 1.654 M y 2.130 M, y de 2.490 M en los últimos 12 meses (margen operativo de 27,3 %). La ganancia neta fue de 469 M, 765 M, 1.155 M y 1.508 M, y de 1.871 M. La ganancia por acción fue de 1,11, 1,83, 2,81, 3,71 y **4,64**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 540 M, 682 M, 977 M, 1.431 M y **1.791 M**, con una inversión liviana (430 M, 4,7 % de los ingresos). El ROIC fue de 9,8 %, 12,5 %, 17,7 %, 20,8 % y 20,0 %. El ROE de 32,6 % está inflado por el patrimonio chico y la deuda.\n\nLa mirada crítica: casi todo el crecimiento de ganancias vino de aumentos de precio y de mix, y el margen alto deja poco margen de error si el ciclo se da vuelta.",
+   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 4.664 M y la caja de 563 M; la deuda neta/EBITDA es de 1,43x, que multiplicado por 12 son unos 17 meses de EBITDA. Los intereses se cubren 14,8 veces con el EBIT.\n\nEl patrimonio neto es de 5.732 M. La deuda total había bajado de 4.277 M a 3.213 M hasta 2025 y subió a 4.664 M en los últimos 12 meses, probablemente por una compra (Yahoo no lo detalla), un movimiento que conviene mirar.",
+   "gerencia": "La conduce John Plant, presidente ejecutivo y CEO (71 años, pago de 8,4 M según Yahoo), con Patrick Winterlich como director financiero (55 años, pago de 1,1 M). Plant lleva años al frente y condujo la separación de Arconic, dato público. A los 71 años, la sucesión es una variable a seguir.\n\nEn lo que importa, **el uso del capital es de recompras y un dividendo chico en crecimiento**: paga un dividendo de 0,56 por acción (pagado desde 2016; sube 63,9 % por año en 3 años desde un nivel muy bajo; 195 M en los últimos 12 meses, 11 % del flujo libre) y recompró 400 M en 2022, 250 M, 500 M, 755 M y 1.055 M en los últimos 12 meses. **Las acciones bajaron de 421 M a 404 M, un 4,0 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 27,3 %, subiendo todos los años.",
+    "ROIC de 20,0 %.",
+    "Flujo libre de 1.791 M, 19,6 % de los ingresos.",
+    "Ganancia por acción de 1,11 a 4,64 en cuatro años.",
+    "Intereses cubiertos 14,8 veces."
+   ],
+   "debilidades": [
+    "Depende del ciclo de producción de aviones y motores.",
+    "Clientes pocos y grandes: el crítico más duro diría que una demora de Boeing o Airbus golpea los pedidos.",
+    "Deuda que subió a 4.664 M en los últimos 12 meses.",
+    "CEO de 71 años.",
+    "Márgenes altos que dejan poco margen de error."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 27,3 %; si baja, el mix o los costos cambiaron.",
+    "Deuda total: hoy 4.664 M; tiene que volver a bajar con el flujo libre.",
+    "Ingresos: hoy +10 % anual; depende del ritmo de entrega de aviones.",
+    "Sucesión del CEO: Yahoo no la informa, hay que buscarla en el informe."
+   ],
+   "clientes": [
+    "Fabricantes de motores de aviones",
+    "Fabricantes de aviones comerciales y de defensa",
+    "Fabricantes de vehículos comerciales"
+   ],
+   "ideal_para": [
+    "Buscan un fabricante aeroespacial de alta rentabilidad.",
+    "Valoran márgenes que suben y recompras.",
+    "Aceptan depender del ciclo de producción de aviones."
+   ],
+   "menos_ideal": [
+    "Buscan un dividendo alto.",
+    "No toleran la dependencia de pocos clientes grandes."
+   ],
+   "perfil": "general",
+   "capas": [],
+   "ticker": "HWM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 9117000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
