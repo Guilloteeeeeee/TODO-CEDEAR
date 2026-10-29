@@ -2919,6 +2919,197 @@
      "2023"
     ]
    }
+  },
+  "RIO": {
+   "resumen": "Rio Tinto es una de las mayores mineras del mundo: saca mineral de hierro en Australia Occidental (la base de su ganancia), aluminio (de la bauxita al metal reciclado), litio y cobre. Gana plata con la diferencia entre lo que cuesta sacar y procesar el mineral y un precio de mercado que no controla. Tiene un **foso estrecho, de bajo costo y de minas de gran escala**: sus minas de hierro son de las más baratas de operar y eso la protege en los años flojos. Los ingresos pasaron de 55.554 M en 2022 a 57.638 M en 2025, y el margen operativo fue de 26,8 % en 2025. El problema es la tendencia: **el margen operativo bajó de 34,9 % a 26,8 %, el ROIC de 22,0 % a 12,9 % y el flujo libre de 9.384 M a 4.497 M**, porque la inversión en minas casi se duplicó (de 6.750 M a 12.335 M). La deuda total se duplicó a 23.517 M, con tasas cerca de 5 %. Y en 2025 pagó de dividendo (6.145 M) más de lo que generó de flujo libre. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se saca roca de la tierra. Conclusión: **buena empresa, con minas de bajo costo y deuda todavía baja, pero con retorno y flujo libre en baja, inversión en alza y un dividendo que ya supera lo que genera.**",
+   "veredicto": "Buena empresa: minas de bajo costo y deuda baja, pero retorno y flujo libre en baja",
+   "conclusion": "Rio Tinto es una buena empresa, no una excelente: tiene minas de bajo costo, margen operativo de 26,8 % y deuda neta de 0,65 veces el EBITDA, pero el flujo libre y el ROIC vienen bajando y el dividendo ya supera lo que genera. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la inversión en minas nuevas se transforme en más flujo libre.",
+   "calidad": "Buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Rio Tinto opera tres segmentos: **Iron Ore** (mineral de hierro, más sal y yeso, en Australia Occidental), **Aluminium and lithium** (bauxita, refinación de alúmina, fundición y reciclaje de aluminio, y litio) y **Copper**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de materias primas: vende lo que el mundo necesita para construir, pero a precios que suben y bajan. **Los ingresos cayeron 2,7 % en 2023 y 0,7 % en 2024, y subieron 7,4 % en 2025, hasta 57.638 M.**\n\n**A quién le vende.** Sobre todo a acerías y fundiciones de Asia, y a industrias que usan aluminio. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
+   "foso": "La ventaja de Rio Tinto **es de bajo costo y de escala, y es estrecha**. Sus minas de hierro en Australia Occidental son grandes y baratas de operar, y eso le permite ganar plata cuando los precios caen y a otros les cuesta. Se ve en el **margen bruto, entre 56,4 % y 61,7 %**, y en el **margen operativo, entre 26,8 % y 34,9 %**.\n\nPero el precio de los metales lo fija el mercado, y la ventaja de costo no la protege de un mal año: la ganancia por acción fue de 7,62 en 2022, 6,17 en 2023, 7,07 en 2024 y 6,08 en 2025. Compite con BHP, Vale, Anglo American y Glencore. Es frágil en el precio del hierro, en China y en que las minas nuevas (litio, cobre) cuestan mucho y tardan en rendir.",
+   "numeros": "Los números de Rio Tinto cuentan **un negocio muy rentable, con un deterioro gradual en caja y retorno**. Los ingresos fueron de 55.554 M, 54.041 M, 53.658 M y 57.638 M. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 34,9 % a 29,1 %, 27,6 % y **26,8 % en 2025**. La ganancia por acción fue de 7,62, 6,17, 7,07 y 6,08.\n\nLa caja es lo que más cambió: el flujo libre (lo que sobra después de invertir) fue de 9.384 M en 2022, 5.978 M en 2024 y **4.497 M en 2025 (7,8 % de las ventas)**, porque la inversión en planta pasó de 6.750 M a 12.335 M (183 % del nivel de 2022). El ROIC, cuánto gana por cada dólar puesto en el negocio, bajó de 22,0 % a **12,9 %**, y el capital invertido subió de 61.705 M a 84.134 M.\n\nLa mirada crítica: en 2025 la inversión (12.335 M) superó a la ganancia neta (9.966 M) y al flujo operativo menos el dividendo. Es una apuesta a que las minas nuevas rindan.",
+   "balance": "**La deuda de Rio Tinto se duplicó, pero sigue siendo cómoda.** La deuda total pasó de 12.271 M en 2022 a 23.517 M en 2025 (+92 %), con 7.452 M en caja: la deuda neta es de 15.027 M, **0,65 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 8 meses de ganancia operativa. Era de 0,21 veces en 2022. La ganancia operativa cubre 8,5 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,44 veces: cómoda. Con tasas cerca de 5 %, la deuda nueva cuesta más y la tendencia de deuda en alza conviene seguirla.",
+   "gerencia": "La conduce Simon Trott, CEO (50 años, pago de 3,4 M según Yahoo), con Peter Cunningham como director financiero (59 años). Hay un jefe por negocio (hierro, aluminio y litio, cobre).\n\nEn lo que importa, **el uso del capital, es de inversión en minas y de dividendo**: paga un dividendo de 4,65 por acción (pagado desde 1990; el -20,6 % por año en 3 años muestra que se recortó desde el pico de 2022; 6.145 M en 2025) e invierte cada vez más. No recompra acciones: las acciones diluidas pasaron de 1.630 M a 1.638 M, **0,5 % más**. En 2025 el dividendo (6.145 M) fue 137 % del flujo libre (4.497 M), y la diferencia se cubre con deuda.",
+   "fortalezas": [
+    "Minas de hierro de bajo costo y gran escala: margen bruto de 57,4 % en 2025.",
+    "Margen operativo de 26,8 % y ganancia neta de 9.966 M en 2025.",
+    "Deuda neta de 15.027 M, 0,65 veces el EBITDA, y liquidez corriente de 1,44 veces.",
+    "Dividendo pagado desde 1990 (4,65 por acción).",
+    "Diversificación hacia cobre, aluminio y litio."
+   ],
+   "debilidades": [
+    "Flujo libre en baja: 4.497 M en 2025 contra 9.384 M en 2022.",
+    "ROIC en baja: de 22,0 % a 12,9 %, con un capital invertido que subió 36 %.",
+    "Dividendo (6.145 M) por encima del flujo libre: el crítico más duro diría que lo paga con deuda.",
+    "Deuda que se duplicó a 23.517 M, con tasas cerca de 5 %.",
+    "Dependencia de China y del precio del hierro; inversión en minas nuevas que todavía no rinde."
+   ],
+   "vigilar": [
+    "Flujo libre: hoy 4.497 M; tiene que volver a cubrir el dividendo de 6.145 M.",
+    "Inversión en planta: hoy 12.335 M; si sigue subiendo más rápido que el flujo operativo, la deuda sigue creciendo.",
+    "ROIC: hoy 12,9 %; tiene que dejar de bajar para justificar el capital que invirtió.",
+    "Deuda neta sobre EBITDA: hoy 0,65 veces; si se acerca a 1,0 veces, el balance empieza a ajustarse."
+   ],
+   "clientes": [
+    "Acerías y fundiciones de Asia",
+    "Industrias que usan aluminio",
+    "Fabricantes que compran cobre y litio"
+   ],
+   "ideal_para": [
+    "Buscan una minera diversificada de bajo costo con dividendo.",
+    "Aceptan que la ganancia dependa del precio del hierro y de China.",
+    "Quieren exposición a cobre, aluminio y litio."
+   ],
+   "menos_ideal": [
+    "No toleran un dividendo que supera el flujo libre.",
+    "Buscan ganancias estables año a año."
+   ],
+   "perfil": "materiales",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "RIO",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2025",
+    "ingresos": 57638000000.0,
+    "anios": [
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "SCCO": {
+   "resumen": "Southern Copper extrae, funde y refina cobre (y molibdeno, plata y zinc) en minas de México y Perú, con operaciones también en Estados Unidos, Brasil y Chile. Gana plata con la diferencia entre lo que cuesta sacar el mineral y el precio de mercado del cobre, que no controla. Tiene un **foso estrecho, de reservas enormes y bajo costo**: sus minas son de las que más cobre guardan bajo tierra y de las más baratas de operar. Se ve en los números: los ingresos pasaron de 10.048 M en 2022 a 13.420 M en 2025, el margen operativo subió de 44,1 % a 52,2 % y el ROIC de 19,3 % a 25,0 %. Los últimos 12 meses mejoraron más: **la ganancia por acción llegó a 7,50 y el flujo libre a 5.100 M**. Tiene poca deuda: la deuda neta de 2025 fue 0,30 veces el EBITDA. Sus puntos débiles son que su resultado depende del precio de un solo metal, que opera en países con riesgo político y de permisos, y que su controlante, Grupo México, decide casi todo. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se extrae roca. Conclusión: **buena empresa, con minas de bajo costo, márgenes de 52,2 % y deuda baja, pero atada al precio del cobre, al riesgo país y a un accionista controlante.**",
+   "veredicto": "Buena empresa: minas de bajo costo, márgenes muy altos y deuda baja, atada al precio del cobre",
+   "conclusion": "Southern Copper es una buena empresa, no una excelente: tiene minas de bajo costo, margen operativo de 52,2 %, ROIC de 25,0 % y deuda neta de 0,30 veces el EBITDA, pero depende del precio del cobre, del riesgo país y de un accionista controlante. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el precio del cobre se sostenga y que los proyectos nuevos avancen sin conflictos.",
+   "calidad": "Buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Southern Copper hace minería, molienda, flotación, fundición y refinación de cobre, y produce concentrados de cobre y molibdeno, cobre blíster, ánodos y cátodos, además de otros productos (como plata y zinc). Opera en México, Estados Unidos, Perú, Brasil, Chile y otros países de América. Yahoo no informa cuánto aporta cada metal ni cada país, y no lo vamos a inventar.\n\nEs un negocio de materias primas: el cobre se vende al precio del mercado. **Los ingresos cayeron 1,5 % en 2023, subieron 15,5 % en 2024 y 17,4 % en 2025, hasta 13.420 M.**\n\n**A quién le vende.** A fundiciones, fabricantes de cables y de productos de cobre de todo el mundo. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
+   "foso": "La ventaja de Southern Copper **es de reservas y de bajo costo, y es estrecha**. Sus minas están entre las de mayor reserva de cobre del mundo, y producir cada tonelada le sale barato frente a otros mineros; eso permite ganar plata aun con precios flojos. Se ve en el **margen bruto, de 44,2 % a 53,6 %**, en el **margen operativo, entre 42,4 % y 52,2 %**, y en el ROIC, siempre arriba de 18 %.\n\nPero el precio del cobre lo fija el mercado, y la ventaja de costo no evita un mal año: la ganancia por acción fue de 3,12 en 2022, 2,88 en 2023 y 5,08 en 2025. Compite con Freeport, Codelco, Antofagasta y las grandes mineras diversificadas. Es frágil en el precio del cobre, en el riesgo político de México y Perú (permisos, conflictos con comunidades, impuestos) y en que sus decisiones las toma su controlante.",
+   "numeros": "Los números de Southern Copper cuentan **un negocio muy rentable que mejora con el precio del cobre**. Los ingresos fueron de 10.048 M, 9.896 M, 11.433 M y 13.420 M. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 44,1 %, 42,4 %, 48,6 % y **52,2 % en 2025**. La ganancia por acción fue de 3,12, 2,88, 4,05, 5,08 y **7,50 en los últimos 12 meses**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 1.854 M en 2022, 3.394 M en 2024, 3.427 M en 2025 y **5.100 M en los últimos 12 meses**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 19,3 % a **25,0 %** en 2025. La inversión en planta subió de 948 M a 1.636 M en los últimos 12 meses.\n\nLa mirada crítica: en un minero, la mejora reciente suele reflejar precios más altos del cobre más que un negocio mejor, y Yahoo no detalla el motivo. Estos números no son un piso.",
+   "balance": "**El balance de Southern Copper es muy sólido.** La deuda total pasó de 7.103 M en 2022 a 8.624 M en los últimos 12 meses, con 7.330 M en caja. En 2025 la deuda neta fue de 2.446 M, **0,30 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 4 meses de ganancia operativa. Era de 1,00 veces en 2023. La ganancia operativa cubre 19,0 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 5,06 veces: muy holgada. Con tasas cerca de 5 %, tener tanta caja es una ventaja. El patrimonio neto subió de 8.084 M a 12.632 M.",
+   "gerencia": "La conduce Leonardo Contreras Lerdo de Tejada, CEO (39 años, pago de 0,1 M según Yahoo), con Raúl Jacob Ruisanchez como director financiero (67 años). Yahoo lo marca como director no independiente, y es un dato público que el accionista controlante es Grupo México: las decisiones de dividendos y de inversión siguen sus intereses, que no siempre coinciden con los de los accionistas minoritarios.\n\nEn lo que importa, **el uso del capital, es de dividendo alto**: paga 5,20 por acción (pagado desde 1996; 3.020 M en los últimos 12 meses, 59 % del flujo libre; sube y baja con el ciclo, -3,4 % anual a 3 años). En 2022 y 2023 el dividendo superó al flujo libre. No recompra acciones: las acciones diluidas pasaron de 844 M a 848 M, **0,5 % más**.",
+   "fortalezas": [
+    "Reservas enormes de cobre y minas de bajo costo.",
+    "Margen operativo de 52,2 % y ROIC de 25,0 % en 2025.",
+    "Flujo libre de 5.100 M en los últimos 12 meses.",
+    "Deuda neta de 0,30 veces el EBITDA en 2025 y liquidez corriente de 5,06 veces.",
+    "Dividendo alto, pagado desde 1996 (5,20 por acción)."
+   ],
+   "debilidades": [
+    "Resultado atado al precio de un solo metal: la ganancia por acción fue de 2,88 en 2023 y de 5,08 en 2025.",
+    "Riesgo país en México y Perú: el crítico más duro diría que un conflicto con comunidades o un impuesto nuevo pega directo en las ventas.",
+    "Accionista controlante: Grupo México decide en lo que importa.",
+    "Dividendo que sube y baja y que superó al flujo libre en 2022 y 2023.",
+    "Foso estrecho: la ventaja de costo no evita un mal año."
+   ],
+   "vigilar": [
+    "Precio del cobre: es lo que más mueve el resultado.",
+    "Flujo libre: hoy 5.100 M en los últimos 12 meses; tiene que cubrir con holgura el dividendo de 3.020 M.",
+    "Inversión en planta: hoy 1.636 M; si sigue subiendo, el flujo libre se achica.",
+    "Permisos y conflictos en México y Perú: son el riesgo que más puede frenar nuevos proyectos."
+   ],
+   "clientes": [
+    "Fundiciones y refinerías de cobre",
+    "Fabricantes de cables y productos de cobre",
+    "Compradores de molibdeno, plata y zinc"
+   ],
+   "ideal_para": [
+    "Buscan exposición pura al cobre con dividendo alto.",
+    "Aceptan que el resultado dependa del precio del cobre.",
+    "Toleran el riesgo político de México y Perú."
+   ],
+   "menos_ideal": [
+    "No toleran un accionista controlante que decide el dividendo.",
+    "Buscan ganancias estables año a año."
+   ],
+   "perfil": "materiales",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "SCCO",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "FCX": {
+   "resumen": "Freeport-McMoRan es una de las mayores productoras de cobre del mundo, con minas en Arizona, Nuevo México y Colorado, en Perú (Cerro Verde), en Chile (El Abra) y la gigantesca Grasberg en Indonesia, que también aporta oro y molibdeno. Gana plata con la diferencia entre lo que cuesta sacar el mineral y el precio de mercado del cobre, que no controla. Tiene un **foso estrecho, de reservas grandes y de larga vida**, pero no de bajo costo: su margen bruto (28,2 %) es la mitad del de Southern Copper (53,6 %). Los ingresos pasaron de 22.780 M en 2022 a 25.915 M en 2025, y el margen operativo bajó de 30,9 % a 25,1 %. El punto débil es la caja: **la inversión (4.494 M) es el doble de la ganancia neta (2.204 M), el flujo libre fue de solo 1.116 M en 2025 (4,3 % de las ventas)** y el dividendo se paga con eso. Opera en Indonesia, lo que suma riesgo político y operativo. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se extrae roca. Conclusión: **empresa de calidad regular, con reservas grandes y deuda cómoda, pero con márgenes más bajos que sus pares, inversión alta y poco flujo libre.**",
+   "veredicto": "Regular: reservas grandes y deuda cómoda, pero costos altos y poco flujo libre",
+   "conclusion": "Freeport es una empresa de calidad regular: tiene reservas grandes de cobre, deuda neta de 0,62 veces el EBITDA y margen operativo de 25,1 %, pero sus costos son más altos que los de sus pares y el flujo libre fue de solo 1.116 M en 2025. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el flujo libre crezca a medida que la inversión rinda.",
+   "calidad": "Regular",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Freeport-McMoRan explora y extrae cobre, oro, molibdeno, plata y otros metales en América del Norte, América del Sur e Indonesia. Entre sus activos están **Grasberg** (Indonesia), **Morenci, Bagdad, Safford, Sierrita y Miami** (Arizona), **Chino y Tyrone** (Nuevo México), **Henderson y Climax** (Colorado), **Cerro Verde** (Perú) y **El Abra** (Chile). Yahoo no informa cuánto aporta cada mina, y no lo vamos a inventar.\n\nEs un negocio de materias primas: el cobre se vende al precio del mercado. **Los ingresos crecieron 0,3 % en 2023, 11,4 % en 2024 y 1,8 % en 2025, hasta 25.915 M.**\n\n**A quién le vende.** A fundiciones, refinerías y fabricantes de cobre de todo el mundo. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
+   "foso": "La ventaja de Freeport **es de reservas y de vida larga de sus minas, y es estrecha**. Tiene yacimientos enormes y difíciles de reemplazar, en un metal que el mundo necesita. Pero **no es una ventaja de costos**: el margen bruto bajó de 33,8 % a 28,2 % entre 2022 y 2025, y el margen operativo de 30,9 % a 25,1 %, muy por debajo de los de Southern Copper. El ROIC fue de 17,7 %, 14,8 %, 16,4 % y 15,0 %: decente, pero no el de un foso amplio.\n\nCompite con Southern Copper, Codelco, BHP, Antofagasta y Glencore. Es frágil en el precio del cobre, en Indonesia (riesgo político, permisos y la dependencia de una sola mina enorme) y en que cada mina vieja cuesta más sostener.",
+   "numeros": "Los números de Freeport cuentan **un negocio grande con rentabilidad media y poca caja libre**. Los ingresos fueron de 22.780 M, 22.855 M, 25.455 M y 25.915 M. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 30,9 % a 27,2 %, 27,0 % y **25,1 % en 2025**. La ganancia por acción fue de 2,39, 1,28, 1,30, 1,52 y **2,38 en los últimos 12 meses**.\n\nLa caja es lo débil: el flujo libre (lo que sobra después de invertir) fue de 1.670 M en 2022, 455 M en 2023, 2.352 M en 2024, 1.116 M en 2025 y **1.762 M en los últimos 12 meses**, entre 2,0 % y 9,2 % de las ventas. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de **15,0 %** en 2025.\n\nLa mirada crítica: la ganancia neta (2.204 M en 2025) es mucho menor que el EBIT (6.502 M) porque entre uno y otro están los impuestos y las participaciones de socios en las minas, que Yahoo no detalla. El margen neto es de solo 8,5 %.",
+   "balance": "**La deuda de Freeport es cómoda.** La deuda total es de 10.492 M en 2025 (era de 10.952 M en 2022), con 3.824 M en caja: la deuda neta es de 5.555 M, **0,62 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 7 meses de ganancia operativa. La ganancia operativa cubre 17,6 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,07 veces: holgada. Con tasas cerca de 5 %, la deuda es manejable, pero hay poco margen para pagar de más: el flujo libre es chico.",
+   "gerencia": "La conduce Kathleen Quirk, CEO y presidenta (61 años, pago de 3,0 M según Yahoo), con Maree Robertson como directora financiera (49 años). Es un equipo con años en el negocio.\n\nEn lo que importa, **el uso del capital, es de inversión en minas y de dividendo fijo**: paga 0,60 por acción (pagado desde 1995; 866 M al año, sin crecer en los últimos 3 años) e invierte entre 4.138 M y 4.824 M al año, más del doble de su ganancia neta. No recompra acciones: las acciones diluidas pasaron de 1.451 M a 1.443 M, **0,6 % menos**. El dividendo (866 M) fue 78 % del flujo libre de 2025 (1.116 M) y 190 % del de 2023 (455 M).",
+   "fortalezas": [
+    "Reservas de cobre grandes y de larga vida, incluida Grasberg.",
+    "Deuda neta de 5.555 M, 0,62 veces el EBITDA, y liquidez corriente de 2,07 veces.",
+    "Margen operativo de 25,1 % y cobertura de intereses de 17,6 veces.",
+    "Mejora en los últimos 12 meses: ganancia por acción de 2,38 y flujo libre de 1.762 M.",
+    "Dividendo pagado desde 1995 (0,60 por acción)."
+   ],
+   "debilidades": [
+    "Costos más altos que sus pares: margen bruto de 28,2 % contra 53,6 % de Southern Copper.",
+    "Inversión (4.494 M) que es el doble de la ganancia neta y deja un flujo libre de solo 1.116 M en 2025.",
+    "Riesgo político y operativo en Indonesia: el crítico más duro diría que una sola mina enorme concentra demasiado.",
+    "Margen neto de 8,5 % y ganancia por acción de 1,52 en 2025.",
+    "Dividendo fijo en 866 M que en 2023 fue casi el doble del flujo libre."
+   ],
+   "vigilar": [
+    "Precio del cobre: es lo que más mueve el resultado.",
+    "Flujo libre: hoy 1.762 M en los últimos 12 meses; tiene que cubrir con holgura el dividendo de 866 M.",
+    "Margen operativo: hoy 25,1 %; si sigue bajando, los costos están subiendo más rápido que el precio.",
+    "Producción en Indonesia: es el activo más importante y el más expuesto a riesgo político."
+   ],
+   "clientes": [
+    "Fundiciones y refinerías de cobre",
+    "Fabricantes de cables y productos de cobre",
+    "Compradores de oro y molibdeno"
+   ],
+   "ideal_para": [
+    "Buscan exposición al cobre con reservas grandes y de larga vida.",
+    "Aceptan que la ganancia dependa del precio del cobre.",
+    "Toleran el riesgo de operar en Indonesia."
+   ],
+   "menos_ideal": [
+    "No toleran poco flujo libre ni inversión alta.",
+    "Buscan una empresa con costos bajos y márgenes de primer nivel."
+   ],
+   "perfil": "materiales",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "FCX",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
