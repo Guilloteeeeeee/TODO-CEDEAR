@@ -5546,6 +5546,198 @@
      "2022"
     ]
    }
+  },
+  "SBUX": {
+   "resumen": "Starbucks es la mayor cadena de cafeterías del mundo: opera tiendas propias y licenciadas que venden café, té, bebidas frías y comida, y además vende café envasado y en grano a través de supermercados y alianzas (Channel Development). Gana plata vendiendo bebidas con un costo bajo y un precio alto, y cobra por el uso de su marca a socios. Tiene un **foso estrecho, de marca y escala**: la gente paga más por la experiencia y la comodidad de su aplicación y su programa de recompensas, pero el café es un producto que cualquier cadena puede ofrecer. Los números empeoraron mucho: los ingresos pasaron de 32.250 M en 2022 a 38.338 M en los últimos 12 meses, pero el margen operativo cayó de 15,3 % a **10,1 %** y la ganancia por acción de 3,58 a **1,73**. El margen bruto bajó de 27,4 % a 22,1 %. La empresa paga un dividendo de 2,52 por acción (**2.811 M en los últimos 12 meses, 77 % del flujo libre de 3.642 M**) y dejó de recomprar acciones. El patrimonio es negativo (-7.674 M) por recompras pasadas. Su punto débil es la baja de rentabilidad y el consumidor presionado por la inflación. Hay una nueva conducción que intenta darla vuelta. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular, con foso estrecho, ganancias a la mitad desde 2023 y una recuperación que todavía hay que comprobar.**",
+   "veredicto": "Regular: marca fuerte, pero ganancias a la mitad desde 2023 y una recuperación todavía por comprobar",
+   "conclusion": "Starbucks es una empresa de calidad regular: tiene una marca global y un flujo libre de 3.642 M, pero la ganancia por acción cayó de 3,58 a 1,73, el margen operativo a 10,1 % y el patrimonio es negativo. Hay que seguirla de cerca. Es recomendable investigar las ventas de tiendas comparables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva hacia 13 %.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Starbucks opera como tostador, comercializador y minorista de café a nivel internacional. Opera tres segmentos: **North America**, **International** y **Channel Development**. Sus tiendas ofrecen café, té y otras bebidas, café en grano y molido, comida, cafés envasados, productos de porción individual y bebidas listas para tomar. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de consumo cotidiano: **los ingresos crecieron 11,6 % en 2023, 0,6 % en 2024 y 2,8 % en 2025, hasta 37.184 M**, y llegaron a 38.338 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de consumidores por día en tiendas y en supermercados. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Starbucks **es de marca y escala, y es estrecha**. Su aplicación, su programa de recompensas y su red de tiendas en esquinas clave generan hábito, y su tamaño le permite negociar la compra de café y repartir los costos de publicidad. Pero el café no es un producto exclusivo, y la rentabilidad cayó: el margen bruto pasó de 27,4 % a 22,1 % y el margen operativo de 15,3 % a 10,1 %.\n\nCompite con Dunkin', McDonald's, Luckin Coffee, cadenas locales y cafeterías de especialidad. Es frágil en el consumidor que recorta gastos (el contexto actual, con inflación de 3,7 % anual y nafta 9,1 % más cara, lo presiona), en los costos del café y de la mano de obra, y en la competencia en China. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de Starbucks cuentan **ventas que casi no crecen y una rentabilidad que cae**. Los ingresos fueron de 32.250 M, 35.976 M, 36.176 M y 37.184 M, y de 38.338 M en los últimos 12 meses. El margen operativo fue de 13,7 %, 15,3 %, 14,1 %, 9,6 % y **10,1 %**. La ganancia neta fue de 3.282 M, 4.124 M, 3.761 M y 1.856 M, y de 1.983 M en los últimos 12 meses. La ganancia por acción fue de 2,83, 3,58, 3,31, 1,63 y **1,73**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.556 M, 3.675 M, 3.318 M y 2.442 M, y de **3.642 M en los últimos 12 meses**, 9,5 % de los ingresos, porque las inversiones bajaron de 2.306 M a 1.344 M. El ROE no sirve porque el patrimonio es negativo.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses es 52 % menor que la de 2023. Los últimos 12 meses mejoran algo frente a 2025, pero todavía no hay una recuperación sólida.",
+   "balance": "**Deuda alta, con patrimonio negativo.** La deuda total es de 22.434 M y la caja de 3.610 M en los últimos 12 meses. Yahoo informa una deuda neta de 9.829 M y una deuda neta/EBITDA de 1,85x, que multiplicado por 12 son unos 22 meses de EBITDA; esa deuda neta no coincide con restar la caja de la deuda total, probablemente porque excluye los alquileres de locales, así que la tomamos como aproximada. Los intereses se cubren 7,0 veces con el EBIT.\n\nEl patrimonio neto es negativo (-7.674 M) porque la empresa devolvió más plata al accionista de lo que ganó acumulado. Con las ganancias a la mitad, el dividendo se lleva 77 % del flujo libre, un margen más justo que antes.",
+   "gerencia": "La conduce Brian Niccol, presidente y CEO (51 años, pago de 11,1 M según Yahoo), con Cathy Smith como directora financiera (61 años, pago de 3,3 M). Niccol asumió hace relativamente poco, dato público, y está en pleno plan de recuperación.\n\nEn lo que importa, **el uso del capital cambió**: paga un dividendo de 2,52 por acción (pagado desde 2010; sube 7,0 % por año en 3 años) y las recompras pasaron de 4.013 M en 2022 a 984 M, 1.267 M y 0 en 2025. **Las acciones bajaron de 1.158 M a 1.142 M, un 1,4 % menos.**",
+   "fortalezas": [
+    "Marca global y aplicación con millones de usuarios.",
+    "Flujo libre de 3.642 M en los últimos 12 meses, mejor que en 2025.",
+    "Dividendo pagado desde 2010 y creciendo 7,0 % por año en 3 años.",
+    "Ingresos de 32.250 M a 38.338 M.",
+    "Nueva conducción con plan de recuperación."
+   ],
+   "debilidades": [
+    "Ganancia por acción de 3,58 a 1,73.",
+    "Margen operativo de 15,3 % a 10,1 %.",
+    "Patrimonio negativo de -7.674 M y deuda alta.",
+    "Crecimiento casi nulo (0,6 % y 2,8 %): el crítico más duro diría que la marca perdió fuerza.",
+    "Consumidor presionado por la inflación."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 10,1 %; si no vuelve hacia 13 %, la recuperación no avanza.",
+    "Ingresos: crecen 3 %; si se estancan, el plan de la nueva conducción no está funcionando.",
+    "Flujo libre: hoy 3.642 M; tiene que seguir cubriendo el dividendo de 2.811 M.",
+    "Ventas en tiendas comparables: Yahoo no las informa, hay que buscarlas en el informe."
+   ],
+   "clientes": [
+    "Millones de consumidores por día",
+    "Compradores de café envasado en supermercados",
+    "Socios que licencian la marca"
+   ],
+   "ideal_para": [
+    "Buscan una marca global en recuperación con dividendo.",
+    "Aceptan esperar a que la nueva conducción dé resultados.",
+    "Valoran el flujo libre que cubre el dividendo."
+   ],
+   "menos_ideal": [
+    "Buscan resultados en alza hoy.",
+    "No toleran deuda alta ni patrimonio negativo."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "SBUX",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 38338300000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ABNB": {
+   "resumen": "Airbnb es la plataforma de alojamientos de viaje más conocida del mundo: conecta a anfitriones que ofrecen casas, departamentos y habitaciones con huéspedes que reservan, y también vende experiencias y servicios. Gana plata con una comisión que cobra a huéspedes y anfitriones sobre cada reserva. Tiene un **foso estrecho, de marca y efecto de red**: más anfitriones atraen más huéspedes, y las reseñas acumuladas de cada alojamiento son difíciles de llevar a otra plataforma. Los números son muy buenos: los ingresos pasaron de 8.399 M en 2022 a 12.241 M en 2025 (13.159 M en los últimos 12 meses), el margen bruto es de 82,9 %, el margen operativo de 20,8 % y el flujo libre de **4.860 M**, 36,9 % de los ingresos. Tiene mucha caja (12.069 M) y poca deuda, y **hay 10,3 % menos acciones** que en 2022 por recompras crecientes (4.111 M en los últimos 12 meses). Su punto débil es que el viaje es cíclico y que el crecimiento se desacelera (18,1 %, 11,9 % y 10,3 %), además de las regulaciones de ciudades que limitan el alquiler de corta duración. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque gran parte de su tráfico es directo. Conclusión: **muy buena empresa, con foso estrecho, flujo libre de 36,9 % de los ingresos y recompras, aunque cíclica, con crecimiento que baja y riesgo regulatorio.**",
+   "veredicto": "Muy buena: flujo libre de 36,9 % de los ingresos y recompras, pero cíclica, con crecimiento que baja y riesgo regulatorio",
+   "conclusion": "Airbnb es una muy buena empresa: tiene un foso estrecho de marca y efecto de red, flujo libre de 4.860 M, mucha caja y 10,3 % menos acciones, pero es cíclica, el crecimiento baja a 10,3 % y las regulaciones de ciudades son un riesgo. Vale la pena seguirla de cerca. Es recomendable investigar las noches reservadas y las regulaciones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 20 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Airbnb opera una plataforma de alojamientos, experiencias y servicios a nivel mundial. Su marketplace conecta a anfitriones y huéspedes en línea o por dispositivos móviles para reservar espacios, experiencias y servicios, y también ofrece tarjetas de regalo. Antes se llamaba AirBed & Breakfast. Yahoo no informa cuánto aporta cada región ni cada línea, y no lo vamos a inventar.\n\nEs un negocio de intermediación ligado al turismo: **los ingresos crecieron 18,1 % en 2023, 11,9 % en 2024 y 10,3 % en 2025, hasta 12.241 M**, y llegaron a 13.159 M en los últimos 12 meses.\n\n**A quién le vende.** A viajeros de todo el mundo y a anfitriones que ofrecen alojamientos. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Airbnb **es de marca y efecto de red, y es estrecha**. Es la primera plataforma que viene a la cabeza para alquilar una casa o un departamento de corta duración, y cada alojamiento acumula reseñas que el anfitrión no puede llevarse. Con más anfitriones hay más opciones, lo que atrae más huéspedes. Se ve en los números: margen bruto de 82,9 %, flujo libre de 36,9 % de los ingresos y ROIC de 21,0 %.\n\nCompite con Booking.com, Expedia (Vrbo), hoteles y plataformas locales. Es frágil en el ciclo del turismo (el contexto actual, con la guerra con Irán y el petróleo en máximos de cinco meses, puede encarecer los pasajes y enfriar los viajes), en las regulaciones de ciudades que limitan los alquileres de corta duración y en la calidad de la experiencia. La inteligencia artificial no la amenaza de forma directa, ya que gran parte de su tráfico llega directo a la aplicación, según información pública.",
+   "numeros": "Los números de Airbnb cuentan **un negocio de margen alto que crece a ritmo de dos dígitos bajos**. Los ingresos fueron de 8.399 M, 9.917 M, 11.102 M y 12.241 M, y de 13.159 M en los últimos 12 meses. El margen operativo fue de 22,5 %, 15,3 %, 23,0 %, 20,8 % y 20,8 %. La ganancia neta fue de 1.893 M, 4.792 M, 2.648 M y 2.511 M, y de 2.691 M en los últimos 12 meses. La de 2023 incluye un beneficio impositivo único (dato público).\n\nYahoo muestra una ganancia por acción de 1,03 en 2025 que no cuadra con la ganancia neta y las acciones (unos 4,03), así que la dejamos de lado; la de los últimos 12 meses es de 4,40.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.430 M, 3.884 M, 4.518 M y 4.646 M, y de **4.860 M en los últimos 12 meses**. Casi no necesita inversiones. El ROE fue de 34,0 %, 58,7 %, 31,5 %, 30,6 % y 34,5 %.",
+   "balance": "**Balance con mucha caja y poca deuda.** La caja es de 12.069 M y la deuda total de 2.496 M en los últimos 12 meses. Parte de esa caja corresponde a plata de huéspedes que todavía no se pagó a los anfitriones, un dato público que Yahoo no separa, así que la caja propia es menor. Aun así, la posición es cómoda.\n\nEl patrimonio neto es de 7.799 M. Yahoo no informa el gasto por intereses en los últimos años, por eso no calculamos la cobertura. Con una deuda tan chica, no es un problema.",
+   "gerencia": "La conduce Brian Chesky, cofundador, CEO y presidente (43 años, pago de 0,2 M según Yahoo), con los cofundadores Nathan Blecharczyk (estrategia) y Joe Gebbia en el directorio, y Elinor Mertz como directora financiera (48 años, pago de 1,4 M). Que el CEO cobre poco en efectivo es una señal de alineación, aunque su participación en acciones es la que importa y Yahoo no la informa.\n\nEn lo que importa, **el uso del capital es de recompras fuertes**: recompró 1.500 M en 2022, 2.252 M, 3.430 M, 3.789 M y 4.111 M en los últimos 12 meses. No paga dividendo. **Las acciones bajaron de 680 M a 610 M, un 10,3 % menos.**",
+   "fortalezas": [
+    "Margen bruto de 82,9 % y flujo libre de 4.860 M en los últimos 12 meses.",
+    "Caja de 12.069 M y deuda de solo 2.496 M.",
+    "10,3 % menos acciones, con recompras de 4.111 M en los últimos 12 meses.",
+    "ROE de 34,5 % y ROIC de 21,0 %.",
+    "Marca y reseñas difíciles de replicar."
+   ],
+   "debilidades": [
+    "Crecimiento que se desacelera: 18,1 %, 11,9 % y 10,3 %.",
+    "Negocio cíclico, ligado al turismo.",
+    "Regulaciones de ciudades sobre los alquileres de corta duración: el crítico más duro diría que es un riesgo difícil de controlar.",
+    "Margen operativo de 20,8 %, por debajo del 23,0 % de 2024.",
+    "Parte de la caja pertenece a huéspedes y anfitriones."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 20,8 %; si baja, el costo de captar viajeros o de cumplir regulaciones aumenta.",
+    "Ingresos: crecen 10,3 %; si bajan de 7 %, el crecimiento madura más rápido.",
+    "Noches reservadas: Yahoo no las informa, hay que buscarlas en el informe.",
+    "Flujo libre: hoy 4.860 M; tiene que seguir cubriendo las recompras de 4.111 M."
+   ],
+   "clientes": [
+    "Viajeros de todo el mundo",
+    "Anfitriones que ofrecen alojamientos y experiencias",
+    "Compradores de tarjetas de regalo"
+   ],
+   "ideal_para": [
+    "Buscan un negocio de viajes con flujo libre alto y poca deuda.",
+    "Valoran las recompras fuertes.",
+    "Aceptan el ciclo del turismo y el riesgo regulatorio."
+   ],
+   "menos_ideal": [
+    "No toleran el ciclo del turismo.",
+    "Buscan dividendos."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "compounder",
+    "ciclica"
+   ],
+   "ticker": "ABNB",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 13159000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ORLY": {
+   "resumen": "O'Reilly Automotive es una de las mayores cadenas de repuestos para autos de Estados Unidos: opera miles de locales (y también en México y Canadá) que venden piezas, baterías, frenos, aceites, herramientas y accesorios a personas que arreglan su propio auto y a talleres profesionales. Gana plata vendiendo repuestos con un margen de alrededor de 52 % sobre el costo. Tiene un **foso amplio, de escala y distribución**: una red densa de locales y centros de distribución le permite tener la pieza justa, el mismo día, algo que un competidor chico no logra, y los talleres compran donde encuentran rápido lo que necesitan. Los números son muy buenos y parejos: los ingresos pasaron de 14.410 M en 2022 a 17.782 M en 2025 (18.573 M en los últimos 12 meses), el margen operativo se mantiene en torno de **19,6 %**, la ganancia por acción subió de 2,23 a 3,14 y **hay 13,4 % menos acciones** que en 2022. Su punto débil es que las inversiones subieron (de 563 M a 1.133 M), por lo que el flujo libre bajó de 2.585 M a 2.156 M, y que tiene un patrimonio negativo por recompras. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **muy buena empresa, con foso amplio, crecimiento parejo y 13,4 % menos acciones, aunque con flujo libre en baja por más inversión y patrimonio negativo.**",
+   "veredicto": "Muy buena: foso amplio, crecimiento parejo y 13,4 % menos acciones, con flujo libre en baja por más inversión",
+   "conclusion": "O'Reilly es una muy buena empresa: tiene un foso amplio de escala y distribución, margen operativo de 19,6 %, ganancia por acción de 3,14 y 13,4 % menos acciones, pero el flujo libre bajó por más inversión y el patrimonio es negativo. Vale la pena seguirla de cerca. Es recomendable investigar las ventas de locales comparables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga cerca de 19 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "O'Reilly Automotive opera como minorista y proveedor de repuestos, herramientas, insumos, equipos y accesorios para el mercado de posventa automotriz en Estados Unidos, Puerto Rico, México y Canadá. Ofrece piezas mecánicas nuevas y remanufacturadas y artículos de mantenimiento, como alternadores, baterías, frenos y correas. Yahoo no informa cuánto viene de clientes particulares y cuánto de talleres, y no lo vamos a inventar.\n\nEs un negocio estable porque los autos se rompen y se mantienen igual: **los ingresos crecieron 9,7 % en 2023, 5,7 % en 2024 y 6,4 % en 2025, hasta 17.782 M**, y llegaron a 18.573 M en los últimos 12 meses.\n\n**A quién le vende.** A personas que reparan su propio auto y a talleres profesionales. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de O'Reilly **es de escala y distribución, y es amplia**. Con una red muy densa de locales y centros de distribución, entrega la pieza correcta en el mismo día, algo clave para un taller que no puede tener un auto parado. Su tamaño le da poder para negociar con proveedores, y se ve en el margen bruto estable de 51,6 % y en el margen operativo de 19,6 %, año tras año.\n\nCompite con AutoZone, Advance Auto Parts, NAPA, Amazon y proveedores locales. Es frágil en un cambio en el tipo de autos (los eléctricos tienen menos piezas que se desgastan), en la baja del consumo de manejo y en la competencia en línea. El contexto actual, con nafta 9,1 % más cara y tasas altas que encarecen comprar un auto nuevo, hace que muchos conserven más tiempo el suyo, lo que suele ayudar a este negocio. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de O'Reilly cuentan **un crecimiento parejo con márgenes estables**. Los ingresos fueron de 14.410 M, 15.812 M, 16.708 M y 17.782 M, y de 18.573 M en los últimos 12 meses. El margen operativo fue de 20,5 %, 20,2 %, 19,5 %, 19,5 % y 19,6 %. La ganancia neta fue de 2.173 M, 2.347 M, 2.387 M y 2.538 M, y de 2.650 M en los últimos 12 meses. La ganancia por acción fue de 2,23, 2,56, 2,71, 2,97 y **3,14** (+41 %).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.585 M, 2.028 M, 2.026 M y 1.593 M, y de **2.156 M en los últimos 12 meses**, 11,6 % de los ingresos. Cayó porque las inversiones pasaron de 563 M a 1.133 M (nuevos locales y centros de distribución, dato que Yahoo no detalla). El ROIC (retorno sobre el capital) fue de 54,7 % en los últimos 12 meses. El ROE no sirve porque el patrimonio es negativo.\n\nLa mirada crítica: el flujo libre no sigue el ritmo de la ganancia.",
+   "balance": "**Deuda moderada y patrimonio negativo por recompras.** La deuda total es de 9.587 M y la caja de 262 M en los últimos 12 meses. Yahoo informa una deuda neta de 6.752 M y una deuda neta/EBITDA de 1,61x, que multiplicado por 12 son unos 19 meses de EBITDA; esa deuda neta es menor que deuda total menos caja, probablemente porque excluye los alquileres de locales. Los intereses se cubren 14 veces con el EBIT.\n\nEl patrimonio neto es negativo (-1.836 M) porque la empresa recompró más acciones de lo que ganó acumulado. Con ganancias tan estables no es una alarma, pero hace que el ROE no sirva.",
+   "gerencia": "La conduce Brad Beckham, CEO (46 años, pago de 2,8 M según Yahoo), con Greg Henslee como presidente ejecutivo (64 años) y David O'Reilly como vicepresidente ejecutivo (75 años, de la familia fundadora). Es un equipo con continuidad y cultura de la casa.\n\nEn lo que importa, **el uso del capital es de recompras fuertes e inversión en locales**: recompró 3.282 M en 2022, 3.151 M, 2.077 M, 2.097 M y 3.353 M en los últimos 12 meses. No paga dividendo. **Las acciones bajaron de 974 M a 843 M, un 13,4 % menos.** Las cifras por acción están ajustadas por la división de acciones de la empresa.",
+   "fortalezas": [
+    "Margen bruto estable de 51,6 % y margen operativo de 19,6 %.",
+    "Ganancia por acción de 2,23 a 3,14 (+41 %).",
+    "13,4 % menos acciones desde 2022.",
+    "Ingresos creciendo todos los años (9,7 %, 5,7 %, 6,4 %).",
+    "Red de locales y distribución difícil de igualar."
+   ],
+   "debilidades": [
+    "Flujo libre de 2.585 M a 2.156 M por más inversión.",
+    "Patrimonio negativo de -1.836 M.",
+    "Deuda neta de 6.752 M, 1,61 veces el EBITDA.",
+    "Exposición a la transición a autos eléctricos: el crítico más duro diría que a largo plazo hay menos piezas que cambiar.",
+    "Competencia en línea de Amazon y otros."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 19,6 %; si baja de 18 %, la competencia o los costos están pesando.",
+    "Ingresos: crecen 6,4 %; si bajan de 4 %, el negocio madura.",
+    "Flujo libre: hoy 2.156 M; tiene que volver a crecer cuando termine el ciclo de inversión.",
+    "Ventas en locales comparables: Yahoo no las informa, hay que buscarlas en el informe."
+   ],
+   "clientes": [
+    "Personas que reparan su propio auto",
+    "Talleres y profesionales de la reparación",
+    "Clientes de México y Canadá"
+   ],
+   "ideal_para": [
+    "Buscan un negocio defensivo con crecimiento parejo.",
+    "Valoran recompras fuertes y márgenes estables.",
+    "Aceptan patrimonio negativo con ganancias previsibles."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos.",
+    "Les preocupa la transición a autos eléctricos."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "compounder",
+    "ciclica"
+   ],
+   "ticker": "ORLY",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 18572562000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
