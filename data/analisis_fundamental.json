@@ -9120,6 +9120,193 @@
      "2022"
     ]
    }
+  },
+  "MO": {
+   "resumen": "Altria es una empresa estadounidense de tabaco: fabrica y vende cigarrillos (sobre todo la marca Marlboro), cigarros (Black & Mild), tabaco oral sin humo (Copenhagen, Skoal), bolsitas orales de nicotina (on!) y productos de vapeo, solo en Estados Unidos. Gana plata vendiendo un producto que genera hábito, con precios que sube cada año para compensar la baja en la cantidad de cigarrillos. Tiene un **foso estrecho, de marca y distribución**: Marlboro es la marca líder del mercado estadounidense (dato público), las restricciones a la publicidad hacen casi imposible lanzar una marca nueva y su red llega a cientos de miles de comercios. Los números son de un negocio extremadamente rentable que se achica: el margen operativo es de **59,9 %**, el ROIC de **42,8 %** y el flujo libre de **9.112 M** (44,6 % de los ingresos), con inversiones de solo 296 M. Pero los ingresos cayeron todos los años (de 20.688 M a 20.139 M en 2025), la ganancia neta salta por resultados no operativos (de 5.764 M en 2022 a 11.264 M en 2024 y 6.947 M en 2025, dato a verificar) y el patrimonio es negativo (-2.668 M). Hay 6,7 % menos acciones que en 2022, el dividendo se paga desde 1962 y el rendimiento es alto, pero absorbe 77 % del flujo libre y la deuda neta es de 22.210 M. Su punto débil es la caída estructural del consumo de cigarrillos y la regulación. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de buena calidad financiera, con márgenes extraordinarios y dividendo de 65 años, pero en un mercado que se achica, con patrimonio negativo y riesgo regulatorio.**",
+   "veredicto": "Buena: márgenes extraordinarios, ROIC de 42,8 % y dividendo de 65 años, en un mercado que se achica y con riesgo regulatorio",
+   "conclusion": "Altria es una empresa de buena calidad financiera: tiene un foso estrecho de marca, margen operativo de 59,9 %, ROIC de 42,8 %, flujo libre de 9.112 M y dividendo desde 1962, pero los ingresos caen todos los años, el patrimonio es negativo y la regulación es una amenaza permanente. Hay que seguirla de cerca. Es recomendable investigar la caída de volúmenes y los productos de nicotina nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los aumentos de precio sigan compensando la baja de volúmenes.",
+   "calidad": "Buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Altria fabrica y vende productos de tabaco para fumar y orales en Estados Unidos. Ofrece cigarrillos, principalmente bajo la marca Marlboro; cigarros y tabaco para pipa (Black & Mild); tabaco sin humo húmedo y oral (Copenhagen, Skoal, Red Seal y Husky); bolsitas orales de nicotina (on!); y productos de vapeo. Yahoo no informa cuánto aporta cada categoría, y no lo vamos a inventar.\n\nEs un negocio en retroceso suave: **los ingresos cayeron 0,9 % en 2023, 0,3 % en 2024 y 1,5 % en 2025, hasta 20.139 M**, y se mantienen en 20.444 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas y minoristas de Estados Unidos, que a su vez venden a los fumadores. **Ningún cliente pesa de forma decisiva**, aunque pocos distribuidores concentran las ventas (dato público a verificar).",
+   "foso": "La ventaja de Altria **es de marca y distribución, y es estrecha**. Marlboro es la marca de cigarrillos más vendida de Estados Unidos (dato público), las restricciones a la publicidad hacen casi imposible que una marca nueva compita, y su red de distribución llega a cientos de miles de comercios. Eso le permite subir precios año tras año y compensar la caída en la cantidad de cigarrillos vendidos. Se ve en el margen bruto, que subió de 68,9 % a 72,2 %, y en el margen operativo de 59,9 %.\n\nPero el mercado se achica de forma estructural y la regulación es una amenaza permanente (por ejemplo, posibles prohibiciones de mentolados o límites a la nicotina, dato público). Compite con Reynolds (British American Tobacco), Philip Morris International (en productos de nicotina nuevos) y con vapeadores ilegales. Es frágil en la caída de volúmenes, en la regulación y en los juicios. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de Altria cuentan **un negocio de márgenes extraordinarios que no crece**. Los ingresos fueron de 20.688 M, 20.502 M, 20.444 M y 20.139 M, y de 20.444 M en los últimos 12 meses. El EBIT fue de 11.919 M, 11.547 M, 11.630 M y 12.035 M, y de **12.256 M** (margen operativo de 59,9 %). La ganancia neta fue de 5.764 M, 8.130 M, 11.264 M y 6.947 M, y de 7.973 M. La ganancia por acción fue de 3,19, 4,57, 6,54 y 4,12.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.051 M, 9.091 M, 8.611 M y 9.074 M, y de **9.112 M** en los últimos 12 meses (44,6 % de los ingresos), con inversiones de solo 296 M. El ROIC fue de 40,9 %, 37,9 %, 42,3 %, 40,1 % y 42,8 %. El ROE es negativo y no sirve porque el patrimonio es negativo.\n\nLa mirada crítica: la ganancia neta salta mucho por resultados no operativos (por ejemplo, ganancias o pérdidas de inversiones en otras empresas; Yahoo no lo detalla, dato a verificar). El EBIT y el flujo libre son los números confiables.",
+   "balance": "**Deuda moderada, patrimonio negativo y cobertura sólida.** La deuda total es de 24.577 M y la caja de 2.367 M; la deuda neta es de 22.210 M y la deuda neta/EBITDA es de 1,88x, que multiplicado por 12 son unos 23 meses de EBITDA. Los intereses se cubren 10,3 veces con el EBIT.\n\nEl patrimonio neto es negativo (-2.668 M) por años de dividendos y recompras mayores que las ganancias retenidas, algo habitual en empresas que devuelven casi todo el flujo libre. La deuda total se mantuvo entre 24.577 M y 26.680 M.",
+   "gerencia": "La conduce Sal Mancuso, CEO y director (60 años, pago de 3,6 M según Yahoo), con Heather Newman como directora financiera (48 años, pago de 2,3 M). Yahoo lista a Billy Gifford, el CEO anterior, como consultor (pago de 10,3 M), lo que indica un cambio reciente de conducción, dato a verificar.\n\nEn lo que importa, **el uso del capital es de dividendo muy alto y recompras moderadas**: paga un dividendo de 4,44 por acción (pagado desde 1962; sube 4,2 % por año en 3 años; 7.062 M en los últimos 12 meses, 77 % del flujo libre) y recompró 1.825 M en 2022, 1.000 M, 3.400 M, 1.000 M y 735 M en los últimos 12 meses. **Las acciones bajaron de 1.804 M a 1.683 M, un 6,7 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 59,9 % y ROIC de 42,8 %.",
+    "Flujo libre de 9.112 M, 44,6 % de los ingresos.",
+    "Dividendo pagado desde 1962 y creciendo 4,2 % por año.",
+    "6,7 % menos acciones desde 2022.",
+    "Marca líder con barreras a la publicidad de competidores."
+   ],
+   "debilidades": [
+    "Ingresos en baja todos los años.",
+    "Mercado que se achica y regulación permanente: el crítico más duro diría que la rentabilidad actual financia un negocio en declive.",
+    "Patrimonio negativo (-2.668 M).",
+    "Dividendo que absorbe 77 % del flujo libre.",
+    "Ganancia neta con resultados no operativos."
+   ],
+   "vigilar": [
+    "Volumen de cigarrillos: Yahoo no lo informa, hay que buscarlo en el informe.",
+    "Ingresos: hoy -1,5 % en 2025; si la caída se acelera, los aumentos de precio no alcanzan.",
+    "Regulación de mentolados y nicotina: define el futuro del negocio.",
+    "Flujo libre contra dividendo: hoy 9.112 M contra 7.062 M."
+   ],
+   "clientes": [
+    "Mayoristas y distribuidores de tabaco",
+    "Minoristas y comercios de conveniencia",
+    "Fumadores y consumidores de nicotina en Estados Unidos"
+   ],
+   "ideal_para": [
+    "Buscan flujo libre alto y dividendo de décadas.",
+    "Aceptan un negocio en declive suave.",
+    "Entienden el riesgo regulatorio."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento de ingresos.",
+    "No toleran la exposición al tabaco ni a la regulación."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "MO",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 20444000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "CL": {
+   "resumen": "Colgate-Palmolive es una empresa estadounidense de productos de consumo: fabrica y vende pasta dental, cepillos, enjuague bucal, jabones, productos de cuidado personal y del hogar (segmento Oral, Personal and Home Care) y alimento para mascotas, sobre todo Hill's (segmento Pet Nutrition), en más de cien países. Gana plata vendiendo productos de uso diario, con una marca líder en cuidado bucal (dato público). Tiene un **foso amplio, de marca, recomendación de profesionales y distribución**: la pasta dental Colgate es la marca líder mundial (dato público), los dentistas la recomiendan y su distribución llega a mercados emergentes donde pocas empresas compiten, lo que le da poder para subir precios. Los números son de primer nivel: el margen bruto es de 60,4 %, el margen operativo de **19,3 %**, el ROIC de **38,1 %** y el flujo libre de **3.858 M** (18,3 % de los ingresos), con inversiones livianas. Hay 4,1 % menos acciones que en 2022 (recompras de 1.100 M a 1.700 M por año) y el dividendo se paga desde 1973. Pero en los últimos 12 meses el margen operativo bajó de 21,5 % a 19,3 %, la ganancia neta cayó 29 % frente a 2024 (a 2.037 M) por cargos que Yahoo no detalla y el patrimonio es chico (236 M), lo que hace que el ROE no sirva. La deuda neta es de 6.487 M (1,69x EBITDA). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso amplio, ROIC de 38,1 % y flujo libre de 3.858 M, aunque con margen operativo en baja y ganancia neta golpeada por cargos.**",
+   "veredicto": "Muy buena: foso amplio, ROIC de 38,1 % y flujo libre de 3.858 M, con margen operativo en baja y ganancia neta golpeada por cargos",
+   "conclusion": "Colgate-Palmolive es una empresa de muy buena calidad: tiene un foso amplio de marca y recomendación profesional, ROIC de 38,1 %, flujo libre de 3.858 M, dividendo desde 1973 y 4,1 % menos acciones, pero el margen operativo bajó a 19,3 % y la ganancia neta cayó 29 % frente a 2024. Vale la pena seguirla de cerca. Es recomendable investigar los cargos y los costos de los últimos 12 meses en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva hacia 21 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Colgate-Palmolive fabrica y vende productos de consumo en Estados Unidos y a nivel internacional. Opera dos segmentos: **Oral, Personal and Home Care**, con pasta dental, cepillos, enjuague bucal, jabones de manos y otros productos de cuidado personal y del hogar, y **Pet Nutrition**, con alimento para mascotas. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio maduro con crecimiento moderado: **los ingresos subieron 8,3 % en 2023, 3,3 % en 2024 y 1,4 % en 2025, hasta 20.382 M**, y llegan a 21.046 M en los últimos 12 meses.\n\n**A quién le vende.** A supermercados, farmacias, tiendas de mascotas y pequeños comercios de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Colgate **es de marca, recomendación profesional y distribución, y es amplia**. Colgate es la marca líder mundial de pasta dental, los dentistas la recomiendan y el consumidor la compra por hábito y confianza; en mascotas, Hill's se vende por recomendación de veterinarios, no por góndola. Su distribución llega a mercados emergentes con pocos competidores. Se ve en el margen bruto de 57,0 % a 60,5 % y en el ROIC de 29,2 % a 40,9 %.\n\nCompite con Procter & Gamble (Crest), Unilever, Haleon, Henkel y marcas propias de los supermercados. Es frágil en la presión de precios, en el costo de materias primas y de aranceles, en las monedas de los mercados emergentes y en el crecimiento de marcas propias. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de Colgate cuentan **un negocio muy estable que en los últimos 12 meses perdió algo de margen**. Los ingresos fueron de 17.967 M, 19.457 M, 20.101 M y 20.382 M, y de 21.046 M en los últimos 12 meses. El EBIT fue de 3.617 M, 4.085 M, 4.330 M y 4.233 M, y de **4.058 M** (margen operativo de 19,3 %). La ganancia neta fue de 1.785 M, 2.300 M, 2.889 M y 2.132 M, y de 2.037 M. La ganancia por acción fue de 2,13, 2,77, 3,51, 2,63 y **2,52**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 1.860 M, 3.040 M, 3.546 M y 3.634 M, y de **3.858 M** en los últimos 12 meses (18,3 % de los ingresos). El ROIC fue de 29,2 %, 32,3 %, 40,9 %, 38,9 % y 38,1 %.\n\nLa mirada crítica: el EBIT bajó de 4.330 M en 2024 a 4.058 M en los últimos 12 meses y la ganancia neta cayó más (de 2.889 M a 2.037 M), por cargos y costos que Yahoo no explica. El flujo libre sigue subiendo, lo que atenúa la preocupación.",
+   "balance": "**Deuda moderada y patrimonio chico.** La deuda total es de 7.857 M y la caja de 1.370 M; la deuda neta es de 6.487 M y la deuda neta/EBITDA es de 1,69x, que multiplicado por 12 son unos 20 meses de EBITDA. Los intereses se cubren 15,9 veces con el EBIT.\n\nEl patrimonio neto es de apenas 236 M por años de dividendos y recompras mayores que las ganancias retenidas, de modo que el ROE de 863 % no sirve para comparar. La deuda total bajó de 9.271 M en 2022 a 7.857 M.",
+   "gerencia": "La conduce Noel Wallace, presidente del directorio, CEO y presidente (61 años, pago de 4,8 M según Yahoo), con Stan Sutula como director financiero (59 años, pago de 2,5 M). Wallace es CEO desde 2020, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras constantes**: paga un dividendo de 2,12 por acción (pagado desde 1973; sube 3,5 % por año en 3 años; 1.822 M en los últimos 12 meses, 47 % del flujo libre) y recompró 1.308 M en 2022, 1.128 M, 1.739 M, 1.210 M y 1.291 M en los últimos 12 meses. **Las acciones bajaron de 839 M a 805 M, un 4,1 % menos.**",
+   "fortalezas": [
+    "ROIC de 38,1 % y margen bruto de 60,4 %.",
+    "Flujo libre de 3.858 M, subiendo todos los años.",
+    "Dividendo pagado desde 1973 y 4,1 % menos acciones.",
+    "Marca líder mundial en cuidado bucal.",
+    "Intereses cubiertos 15,9 veces."
+   ],
+   "debilidades": [
+    "Margen operativo bajó de 21,5 % a 19,3 %.",
+    "Ganancia neta 29 % menor que la de 2024: el crítico más duro diría que los cargos no son tan pasajeros como parecen.",
+    "Crecimiento de ingresos bajo (1,4 % en 2025).",
+    "Patrimonio de solo 236 M.",
+    "Exposición a monedas de mercados emergentes y a materias primas."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 19,3 %; si sigue bajando, los costos o los aranceles pesan.",
+    "Ganancia neta: hoy 2.037 M; tiene que recuperarse hacia 2.900 M.",
+    "Ingresos: hoy +3 % en los últimos 12 meses; si bajan de 2 %, las marcas pierden fuerza.",
+    "Cargos extraordinarios: Yahoo no los detalla, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Supermercados y farmacias",
+    "Tiendas de mascotas y veterinarios",
+    "Consumidores de higiene bucal y del hogar"
+   ],
+   "ideal_para": [
+    "Buscan consumo básico con foso amplio y dividendo creciente.",
+    "Valoran el flujo libre estable y las recompras.",
+    "Aceptan crecimiento moderado."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento rápido.",
+    "No toleran el patrimonio chico."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "CL",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 21046000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "DEO": {
+   "resumen": "Diageo es una empresa británica de bebidas alcohólicas: produce y vende whisky escocés (Johnnie Walker), ginebra, vodka, ron, tequila, licores, cerveza (Guinness) y otras bebidas, en América del Norte, Europa, Asia-Pacífico, América Latina y África. Gana plata vendiendo bebidas premium con marcas conocidas a través de distribuidores, supermercados, bares y restaurantes. Tiene un **foso estrecho, de marcas premium y tiempo de añejamiento**: sus marcas de whisky y tequila se construyeron durante décadas y los productos añejados tardan años en producirse, lo que dificulta que un competidor las copie. Los números cuentan un deterioro fuerte: los ingresos bajaron de 20.555 M en 2023 a **19.643 M** en el ejercicio 2026 (-3,0 %), el margen operativo de 29,6 % a **16,1 %**, la ganancia neta de 4.445 M a **1.737 M** y la ganancia por acción de 8,29 a 3,12. Yahoo no explica el motivo; es probable que sea una combinación de menor demanda de alcohol, desinversión de existencias por parte de distribuidores y aranceles (dato público a verificar). El ROIC bajó de 14,5 % a **7,4 %**, la deuda neta es de 19.991 M (3,27x EBITDA), los intereses se cubren solo 2,9 veces con el EBIT y el dividendo pagado bajó de 2.298 M a 1.846 M. El flujo libre, en cambio, subió a 3.195 M. Su punto débil es esa combinación de ganancias en baja y deuda alta. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular: marcas premium y flujo libre en alza, pero con ganancias en baja desde 2024, ROIC de 7,4 %, deuda neta de 3,27x EBITDA y dividendo recortado.**",
+   "veredicto": "Regular: marcas premium y flujo libre en alza, con ganancias a la baja, ROIC de 7,4 %, deuda neta de 3,27x EBITDA y dividendo recortado",
+   "conclusion": "Diageo es una empresa de calidad regular: tiene un foso estrecho de marcas premium y un flujo libre que subió a 3.195 M, pero el EBIT cayó 47 % desde 2023, el ROIC es de 7,4 %, la deuda neta llega a 3,27x EBITDA y el dividendo se recortó. Hay que seguirla de cerca. Es recomendable investigar la causa de la caída de márgenes y el plan del nuevo CEO en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se estabilice y la deuda baje.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Diageo se dedica a la producción, comercialización y distribución de bebidas alcohólicas en América del Norte, Europa, Asia-Pacífico, América Latina y el Caribe, y África. Ofrece cerveza, whisky escocés, ginebra, vodka, ron, licores, tequila, vino y otras bebidas, entre ellas whisky irlandés, canadiense y estadounidense. Yahoo no informa cuánto aporta cada marca ni cada región, y no lo vamos a inventar. **Las cifras están en dólares.**\n\nEs un negocio maduro que hoy retrocede: **los ingresos cayeron 1,4 % en 2024, 0,1 % en 2025 y 3,0 % en 2026, hasta 19.643 M** (el ejercicio cierra a fines de junio).\n\n**A quién le vende.** A distribuidores, supermercados, bares y restaurantes de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Diageo **es de marcas premium y tiempo de añejamiento, y es estrecha**. Marcas como Johnnie Walker, Guinness, Tanqueray y Don Julio se construyeron durante décadas, y un whisky añejado tarda años en estar listo, algo que un competidor nuevo no puede acelerar. Se ve en el margen bruto, que se mantiene en 59,5 % a 60,2 %.\n\nPero el margen operativo cayó de 29,6 % a 16,1 % y el ROIC de 14,5 % a 7,4 %, señal de que la ventaja de marca no protegió las ganancias en este ciclo. Compite con Pernod Ricard, Brown-Forman, Campari, Rémy Cointreau, Constellation y marcas locales. Es frágil en la demanda de alcohol (que parece debilitarse en jóvenes y en mercados clave, dato público a verificar), en los aranceles, en los inventarios de distribuidores y en la deuda. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de Diageo cuentan **dos años de deterioro fuerte con flujo libre que resiste**. Los ingresos fueron de 20.555 M, 20.269 M, 20.245 M y 19.643 M. El EBIT fue de 5.547 M, 6.001 M, 4.335 M y 3.156 M, con margen operativo de 27,0 %, 29,6 %, 21,4 % y 16,1 %. La ganancia neta fue de 4.445 M, 3.870 M, 2.354 M y 1.737 M. La ganancia por acción fue de 8,29, 6,91, 4,23 y **3,12**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.219 M, 2.595 M, 2.685 M y **3.195 M** (16,3 % de los ingresos); subió porque las inversiones bajaron de 1.612 M a 1.197 M y porque el capital de trabajo ayudó. El ROIC fue de 14,4 %, 14,5 %, 8,7 % y 7,4 %.\n\nLa mirada crítica: el EBIT cayó 47 % en dos años mientras el flujo libre subió; ese contraste sugiere que parte del flujo libre viene de ajustes de capital de trabajo que no se repiten. La ganancia por acción cayó 62 % desde 2023.",
+   "balance": "**Deuda alta y cobertura de intereses en baja.** La deuda total es de 22.196 M y la caja de 1.781 M; la deuda neta es de 19.991 M y la deuda neta/EBITDA es de 3,27x, que multiplicado por 12 son unos 39 meses de EBITDA. Los intereses se cubren solo 2,9 veces con el EBIT, contra 5,8 veces en 2023.\n\nEl patrimonio neto es de 10.871 M y la deuda equivale a 2,04 veces el patrimonio. La deuda total subió de 21.355 M a 22.196 M mientras el EBIT bajaba, lo que explica la cobertura más débil.",
+   "gerencia": "La conduce Dave Lewis, CEO y director ejecutivo (60 años, pago de 2,9 M según Yahoo), con Manik Jhangiani como director financiero (60 años, pago de 2,7 M). Lewis dirigió antes Tesco y asumió en Diageo recientemente, dato público.\n\nEn lo que importa, **el uso del capital cambió: las recompras se detuvieron y el dividendo se redujo**: pagó un dividendo de 2,00 por acción según Yahoo (pagado desde 1991; sube 2,5 % por año en 3 años; 1.846 M en 2026, 58 % del flujo libre, contra 2.298 M en 2025) y recompró 1.673 M en 2023, 987 M en 2024 y nada en 2025 y 2026. **Las acciones bajaron de 568 M a 558 M, un 1,8 % menos.**",
+   "fortalezas": [
+    "Marcas premium con décadas de construcción.",
+    "Margen bruto estable de casi 60 %.",
+    "Flujo libre de 3.195 M en 2026, el mejor de los cuatro años.",
+    "Dividendo pagado desde 1991.",
+    "Recursos de añejamiento difíciles de replicar."
+   ],
+   "debilidades": [
+    "Ganancias en baja: EBIT -47 % y ganancia por acción -62 % desde 2023.",
+    "Deuda neta de 3,27x EBITDA y cobertura de intereses de solo 2,9 veces: el crítico más duro diría que tiene poco margen de error.",
+    "ROIC de 7,4 %, la mitad del de 2024.",
+    "Dividendo pagado recortado y recompras detenidas.",
+    "Demanda de alcohol en duda."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 16,1 %; tiene que dejar de caer.",
+    "Cobertura de intereses: hoy 2,9 veces; si baja de 2,5, el balance se tensiona.",
+    "Deuda neta: hoy 19.991 M; tiene que bajar con el flujo libre.",
+    "Ingresos por región: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Distribuidores y mayoristas de bebidas",
+    "Supermercados, bares y restaurantes",
+    "Consumidores de whisky, tequila y cerveza"
+   ],
+   "ideal_para": [
+    "Buscan marcas premium en un caso de recuperación.",
+    "Valoran el dividendo de décadas.",
+    "Aceptan deuda alta y ganancias en baja."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables.",
+    "No toleran la deuda alta ni la incertidumbre sobre la demanda de alcohol."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "DEO",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 19643000000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
   }
  }
 }
