@@ -5738,6 +5738,196 @@
      "2022"
     ]
    }
+  },
+  "GM": {
+   "resumen": "General Motors es una de las mayores automotrices del mundo: diseña, fabrica y vende camiones, camionetas, SUV y autos bajo las marcas Chevrolet, GMC, Buick y Cadillac (y Wuling y Baojun en China), a través de concesionarios, y tiene un brazo financiero (GM Financial) que da crédito para comprarlos. Gana plata con la venta de vehículos, sobre todo camionetas y SUV grandes en Estados Unidos, y con los intereses del crédito. Tiene un **foso estrecho, de escala y de camionetas grandes en Norteamérica**: ese segmento tiene márgenes más altos y pocos rivales con su red de concesionarios. Pero los números empeoraron mucho: la ganancia neta pasó de 10.127 M en 2023 a **2.697 M en 2025** (3.957 M en los últimos 12 meses), el margen bruto de 12,5 % a 7,0 % y el margen operativo a **2,3 %**. El ROE bajó de 15,8 % a 6,3 % y el ROIC (retorno sobre el capital) es de apenas 1,9 %. Lo que sostuvo la ganancia por acción fueron las recompras: **hay 33,1 % menos acciones que en 2022**. Todo el flujo operativo se va en inversión (22.597 M por año), por lo que el flujo libre es de solo 605 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, por la conducción autónoma y el software de rivales. Conclusión: **empresa de calidad regular, con foso estrecho, margen operativo de 2,3 % y ganancias en fuerte baja, sostenidas por recompras.**",
+   "veredicto": "Regular: foso estrecho, margen operativo de 2,3 % y ganancias en baja, sostenidas por recompras",
+   "conclusion": "General Motors es una empresa de calidad regular: tiene un foso estrecho de escala y camionetas, 33,1 % menos acciones y 27.805 M de caja, pero el margen operativo cayó a 2,3 %, el ROIC es de 1,9 % y el flujo libre es de solo 605 M. Hay que seguirla de cerca. Es recomendable investigar el efecto de los aranceles y de los eléctricos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva hacia 6 %.",
+   "calidad": "Regular",
+   "riesgo_ia": "moderado",
+   "negocio": "General Motors diseña, fabrica y vende camiones, crossovers, autos y autopartes en todo el mundo. Opera tres segmentos: **GM North America**, **GM International** y **GM Financial**. Comercializa sus vehículos principalmente con las marcas Buick, Cadillac, Chevrolet, GMC, Baojun y Wuling, a través de concesionarios, distribuidores y otros canales. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar; es un dato público que Norteamérica genera la mayor parte de la ganancia.\n\nEs un negocio cíclico y de capital intensivo: **los ingresos crecieron 9,6 % en 2023, 9,1 % en 2024, cayeron 1,3 % en 2025 hasta 185.019 M**, y fueron de 186.951 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de personas y empresas, a través de concesionarios. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de General Motors **es de escala y de camionetas grandes en Norteamérica, y es estrecha**. Las camionetas y SUV grandes dejan márgenes más altos que los autos chicos, y una red de concesionarios y servicio tan extensa es difícil de replicar. Pero el sector es cíclico y tiene mucha competencia, y los números no muestran un foso fuerte: el ROIC es de solo 1,9 % y el margen bruto cayó de 12,5 % a 7,0 %.\n\nCompite con Ford, Toyota, Stellantis, Hyundai, Tesla y fabricantes chinos. Es frágil en el ciclo de ventas de autos, en los costos de materiales y aranceles, en la transición a eléctricos (que exige inversiones enormes con retornos inciertos) y en el crédito: con el bono a 10 años cerca de 5 %, los préstamos para autos están caros. La inteligencia artificial y la conducción autónoma pueden cambiar quién captura el valor del vehículo.",
+   "numeros": "Los números de General Motors cuentan **un negocio que perdió rentabilidad de golpe en 2025**. Los ingresos fueron de 156.735 M, 171.842 M, 187.442 M y 185.019 M, y de 186.951 M en los últimos 12 meses. El margen operativo fue de 6,6 %, 5,4 %, 6,8 %, 1,6 % y 2,3 %. La ganancia neta fue de 9.934 M, 10.127 M, 6.008 M y 2.697 M, y de 3.957 M en los últimos 12 meses. La ganancia por acción fue de 6,13, 7,32, 6,37 y **3,27**.\n\nEl margen bruto cayó de 12,5 % a 6,3 % en 2025. Yahoo no explica la causa; públicamente se atribuyó a costos de aranceles y cargos por vehículos eléctricos, dato que conviene verificar en el informe. El ROE fue de 14,7 %, 15,8 %, 9,5 %, 4,4 % y 6,3 %.\n\nEl flujo libre fue de -5.144 M, -3.680 M, -5.980 M, 1.771 M y 605 M en los últimos 12 meses. Ese número incluye las inversiones del brazo financiero (autos para alquiler y préstamos), por lo que no es comparable al de una industrial común.",
+   "balance": "**La deuda es alta, aunque incluye el brazo financiero.** La deuda total es de 128.743 M y la caja de 27.805 M en los últimos 12 meses. Yahoo informa una deuda neta/EBITDA de 8,26x, que no es comparable con la de una industrial normal porque la mayor parte de la deuda financia créditos y alquileres de vehículos a clientes (GM Financial). Los intereses se cubren 6,8 veces con el EBIT, contra 15,1 veces en 2024.\n\nEl patrimonio neto es de 62.806 M. Con márgenes tan bajos, la parte industrial tiene poco margen para absorber un año malo.",
+   "gerencia": "La conduce Mary Barra, presidenta y CEO (63 años, pago de 8,3 M según Yahoo), con Mark Reuss como presidente (61 años) y Paul Jacobson como director financiero (53 años, pago de 3,2 M). Barra conduce la empresa desde hace más de diez años, dato público.\n\nEn lo que importa, **el uso del capital es de recompras fuertes**: 2.500 M en 2022, 11.115 M, 7.064 M, 6.012 M y 6.800 M en los últimos 12 meses, y un dividendo de 0,72 por acción (1.169 M en los últimos 12 meses), reiniciado después de una suspensión. **Las acciones bajaron de 1.454 M a 973 M, un 33,1 % menos.** Las recompras en los últimos 12 meses (6.800 M) fueron mucho mayores que el flujo libre (605 M), una brecha que se cubre con caja y deuda.",
+   "fortalezas": [
+    "33,1 % menos acciones desde 2022.",
+    "Ingresos de 186.951 M en los últimos 12 meses.",
+    "Camionetas y SUV grandes con buenos márgenes en Norteamérica.",
+    "Caja de 27.805 M.",
+    "Dividendo de 0,72 por acción."
+   ],
+   "debilidades": [
+    "Margen operativo de 6,8 % a 2,3 %.",
+    "Ganancia por acción de 7,32 a 3,27, aun con 33 % menos acciones.",
+    "ROIC de 1,9 %: el crítico más duro diría que la empresa no gana lo que cuesta su capital.",
+    "Flujo libre de solo 605 M frente a recompras de 6.800 M.",
+    "Inversión enorme en eléctricos con retorno incierto."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 2,3 %; si no vuelve hacia 6 %, la rentabilidad sigue deteriorada.",
+    "Flujo libre: hoy 605 M; si no sube, las recompras dependen de la caja y la deuda.",
+    "Cobertura de intereses: hoy 6,8x; si baja de 5x, la deuda pesa más.",
+    "Pérdidas en vehículos eléctricos: Yahoo no las informa, hay que buscarlas en el informe."
+   ],
+   "clientes": [
+    "Compradores de camionetas y SUV en Estados Unidos",
+    "Flotas de empresas y alquiladoras",
+    "Clientes de crédito del brazo financiero"
+   ],
+   "ideal_para": [
+    "Buscan una automotriz grande con recompras fuertes.",
+    "Aceptan un ciclo difícil a cambio de una posible recuperación.",
+    "Valoran la exposición a camionetas y SUV de Estados Unidos."
+   ],
+   "menos_ideal": [
+    "Buscan flujo libre estable.",
+    "No toleran márgenes bajos ni deuda alta."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "GM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 186951000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ROST": {
+   "resumen": "Ross Stores es una cadena de tiendas de ropa y artículos para el hogar de descuento (off-price), con las marcas Ross Dress for Less y dd's DISCOUNTS: vende marcas conocidas y ropa de diseñador a precios entre 20 % y 60 % menores que los de otras tiendas, para hogares de ingresos medios y bajos. Gana plata comprando saldos y excedentes de fabricantes y otras tiendas a precios bajos y revendiéndolos con un margen razonable. Tiene un **foso estrecho, de costo bajo y escala de compra**: con cientos de proveedores a los que les compra grandes volúmenes, consigue mercadería barata, y sus tiendas sencillas cuestan poco. Los números son muy buenos: los ingresos pasaron de 18.696 M en 2023 a 24.512 M en los últimos 12 meses, el margen operativo de 10,6 % a **13,7 %**, la ganancia por acción de 4,38 a **8,26** y el ROE es de 39,4 %. Además **hay 6,7 % menos acciones** que en 2023, el flujo libre llegó a 2.790 M y la deuda neta es mínima. Su punto débil es que depende del consumidor de ingresos bajos y medios, de la disponibilidad de mercadería de oferta y de un negocio sin comercio electrónico relevante. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente va a buscar ofertas a las tiendas. Conclusión: **muy buena empresa, con foso estrecho, ROE de 39,4 %, ganancia por acción en alza y dividendo pagado desde 1994, aunque dependiente del consumo de hogares de ingresos bajos.**",
+   "veredicto": "Muy buena: ROE de 39,4 %, ganancia por acción en alza y balance sólido, dependiente del consumidor de ingresos bajos",
+   "conclusion": "Ross Stores es una muy buena empresa: tiene un foso estrecho de costo bajo, ROE de 39,4 %, ganancia por acción de 8,26 en los últimos 12 meses, deuda neta mínima y dividendo desde 1994, pero depende del consumidor de ingresos bajos y medios. Vale la pena seguirla de cerca. Es recomendable investigar las ventas de tiendas comparables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 12 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Ross Stores opera tiendas minoristas de ropa y artículos de moda para el hogar a precios de descuento (off-price), bajo las marcas Ross Dress for Less y dd's DISCOUNTS, en Estados Unidos. Ofrece ropa de diseñador, accesorios, calzado y decoración para el hogar para toda la familia, y vende a hogares de ingresos medios y bajos. Yahoo no informa cuánto aporta cada marca, y no lo vamos a inventar. Yahoo etiqueta los años como 2023 a 2026; el ejercicio de Ross cierra en enero, dato público.\n\nEs un negocio de consumo que crece parejo: **los ingresos crecieron 9,0 % en 2024, 3,7 % en 2025 y 7,7 % en 2026, hasta 22.751 M**, y llegaron a 24.512 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de hogares de ingresos medios y bajos, en tiendas físicas. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Ross **es de costo bajo y de escala de compra, y es estrecha**. Al ser una de las mayores cadenas off-price compra grandes volúmenes de excedentes a precios bajos, y las tiendas sencillas, sin lujos ni comercio electrónico, tienen costos reducidos. Se ve en el ROIC de 33,0 % y en el margen operativo de 13,7 %. Además, la mercadería cambia todo el tiempo, y el cliente vuelve por la 'búsqueda del tesoro'.\n\nCompite con TJX (T.J. Maxx y Marshalls), Burlington, Walmart, Target y tiendas en línea. Es frágil en el consumidor de ingresos bajos y medios (el contexto actual, con inflación de 3,7 % anual y nafta 9,1 % más cara, lo presiona, aunque también puede llevar más gente a comprar barato), en la disponibilidad de mercadería de oferta y en los costos de mano de obra y alquileres. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de Ross cuentan **un crecimiento parejo con márgenes en alza**. Los ingresos fueron de 18.696 M, 20.377 M, 21.129 M y 22.751 M, y de 24.512 M en los últimos 12 meses. El margen bruto pasó de 25,4 % a 29,7 % y el margen operativo de 10,6 % a 11,3 %, 12,2 %, 11,9 % y **13,7 %**. La ganancia neta fue de 1.512 M, 1.875 M, 2.091 M y 2.145 M, y de 2.659 M en los últimos 12 meses. La ganancia por acción fue de 4,38, 5,56, 6,32, 6,61 y **8,26** (+89 %).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 1.035 M, 1.752 M, 1.637 M y 2.208 M, y de **2.790 M en los últimos 12 meses**, 11,4 % de los ingresos. El ROE fue de **35,3 %, 38,5 %, 37,9 %, 34,7 % y 39,4 %**, y el ROIC de 22,5 % a 33,0 %.\n\nLa mirada crítica: los últimos 12 meses mejoran mucho frente al último ejercicio cerrado; conviene confirmar en el informe que el margen se sostiene.",
+   "balance": "**Balance muy sólido.** La deuda total es de 4.739 M y la caja de 4.288 M en los últimos 12 meses; la deuda neta/EBITDA es de 0,11x, que multiplicado por 12 son poco más de 1 mes de EBITDA. Los intereses se cubren 106 veces con el EBIT. Una parte de la deuda corresponde a alquileres de locales.\n\nEl patrimonio neto es de 6.743 M. Con ese nivel de deuda, la empresa puede abrir tiendas, pagar dividendo y recomprar acciones sin presión financiera.",
+   "gerencia": "La conduce Jim Conroy, CEO (55 años, pago de 6,8 M según Yahoo), con Michael Hartshorn como presidente de grupo y director de operaciones (57 años) y William Sheehan como director financiero (56 años). Es un equipo de la casa, con continuidad.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras constantes**: paga un dividendo de 1,78 por acción (pagado desde 1994, 33 años; sube 9,3 % por año en 3 años; 549 M en los últimos 12 meses) y recompra unos 1.000 M a 1.300 M por año (1.315 M en los últimos 12 meses). **Las acciones bajaron de 345 M a 322 M, un 6,7 % menos.**",
+   "fortalezas": [
+    "ROE de 39,4 % y ROIC de 33,0 %.",
+    "Ganancia por acción de 4,38 a 8,26 en los últimos 12 meses.",
+    "Margen operativo de 10,6 % a 13,7 %.",
+    "Deuda neta mínima y cobertura de intereses de 106 veces.",
+    "Dividendo desde 1994 y 6,7 % menos acciones."
+   ],
+   "debilidades": [
+    "Dependencia del consumidor de ingresos bajos y medios.",
+    "Sin comercio electrónico relevante: el crítico más duro diría que depende de que la gente siga yendo a tiendas físicas.",
+    "Necesita mercadería de oferta disponible.",
+    "Margen operativo sensible a los costos de mano de obra y alquileres.",
+    "Los últimos 12 meses mejoran mucho frente al último ejercicio; a confirmar."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 13,7 %; si baja de 11 %, los costos o la competencia están pesando.",
+    "Ingresos: crecen 7,7 %; si bajan de 4 %, el consumidor se retrae.",
+    "Ventas en tiendas comparables: Yahoo no las informa, hay que buscarlas en el informe.",
+    "Flujo libre: hoy 2.790 M; tiene que cubrir con holgura el dividendo y las recompras."
+   ],
+   "clientes": [
+    "Hogares de ingresos medios y bajos de Estados Unidos",
+    "Compradores de ropa y artículos del hogar de oferta",
+    "Familias que buscan marcas conocidas a menor precio"
+   ],
+   "ideal_para": [
+    "Buscan una cadena minorista con ROE alto y balance sólido.",
+    "Valoran dividendo creciente y recompras constantes.",
+    "Aceptan depender del consumo de ingresos bajos y medios."
+   ],
+   "menos_ideal": [
+    "Buscan exposición al comercio electrónico.",
+    "No toleran el riesgo del consumidor de ingresos bajos."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "ROST",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 24511798000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "NFLX": {
+   "resumen": "Netflix es el mayor servicio de streaming de series, películas, documentales, juegos y programación en vivo del mundo: los clientes pagan una suscripción mensual para verlo en televisores, celulares y otros dispositivos, con planes con publicidad. Gana plata con las suscripciones y, cada vez más, con la publicidad. Tiene un **foso amplio, de escala y datos**: con cientos de millones de suscriptores reparte el costo de producir contenido y conoce lo que mira cada uno, algo que un competidor chico no puede igualar. Los números son excelentes: los ingresos pasaron de 31.616 M en 2022 a 45.183 M en 2025 (49.735 M en los últimos 12 meses), el margen operativo de 17,8 % a **31,3 %**, la ganancia por acción de 0,99 a 3,46 y el flujo libre es de **11.375 M**, 22,9 % de los ingresos. El ROE es de 50,4 % y **hay 5,4 % menos acciones** que en 2022, con recompras crecientes (12.861 M en los últimos 12 meses). Su punto débil es la competencia de YouTube, Disney, Amazon y otros por el tiempo y la plata de las personas, y que gasta miles de millones por año en contenido. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque puede bajar la barrera para crear contenido. Conclusión: **excelente empresa, con foso amplio, margen operativo de 31,3 % y recompras fuertes, aunque con competencia intensa y gasto alto en contenido.**",
+   "veredicto": "Excelente: foso amplio, margen operativo de 31,3 % y recompras fuertes, con competencia intensa",
+   "conclusion": "Netflix es una excelente empresa: tiene un foso amplio de escala y datos, margen operativo de 31,3 %, flujo libre de 11.375 M, ROE de 50,4 % y 5,4 % menos acciones, pero compite con gigantes y gasta miles de millones en contenido. Vale la pena seguirla de cerca. Es recomendable investigar el origen de la ganancia neta de los últimos 12 meses en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 28 %.",
+   "calidad": "Excelente",
+   "riesgo_ia": "moderado",
+   "negocio": "Netflix presta servicios de entretenimiento a nivel mundial. Ofrece series de televisión, documentales, largometrajes, juegos y programación en vivo de diversos géneros e idiomas. Los miembros reciben el contenido en streaming en televisores, reproductores y otros dispositivos conectados a internet. Yahoo no informa cuánto viene de suscripciones y cuánto de publicidad, y no lo vamos a inventar. Las cifras por acción están ajustadas por la división de acciones.\n\nEs un negocio de suscripción que volvió a crecer rápido: **los ingresos crecieron 6,7 % en 2023, 15,6 % en 2024 y 15,9 % en 2025, hasta 45.183 M**, y llegaron a 49.735 M en los últimos 12 meses.\n\n**A quién le vende.** A cientos de millones de suscriptores en más de cien países, y a anunciantes. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Netflix **es de escala y datos, y es amplia**. Con tantos suscriptores, el costo de cada producción se reparte entre más gente, y el conocimiento de lo que mira cada uno ayuda a elegir qué producir y a recomendar. Se ve en los números: el margen bruto subió de 39,4 % a 50,7 % y el ROIC (retorno sobre el capital) de 13,6 % a 29,6 %.\n\nCompite con YouTube, Disney+, Amazon Prime Video, Max, Apple TV y con las redes sociales por el tiempo de las personas. Es frágil en la inversión creciente en contenido y derechos deportivos, en que los suscriptores cambien de servicio con facilidad y en la saturación de los mercados maduros. La inteligencia artificial puede bajar los costos de producir contenido, lo que también facilita la entrada de competidores.",
+   "numeros": "Los números de Netflix cuentan **un negocio que creció y ganó mucho margen**. Los ingresos fueron de 31.616 M, 33.723 M, 39.001 M y 45.183 M, y de 49.735 M en los últimos 12 meses. El margen operativo pasó de 17,8 % a 20,6 %, 26,7 %, 29,5 % y **31,3 %**. La ganancia neta fue de 4.492 M, 5.408 M, 8.712 M y 10.981 M, y de 14.767 M en los últimos 12 meses. La ganancia por acción fue de 0,99, 1,20, 1,98, 2,53 y **3,46**.\n\nLa ganancia neta de los últimos 12 meses (14.767 M) es casi igual al EBIT (15.565 M), algo poco común porque hay impuestos; probablemente incluye una partida no operativa que Yahoo no explica, y conviene verificarlo. El flujo libre (lo que queda después de las inversiones) fue de 1.619 M, 6.926 M, 6.922 M y 9.461 M, y de **11.375 M en los últimos 12 meses**. El ROE pasó de 21,6 % a 50,4 %.\n\nLa mirada crítica: parte de la mejora viene de los aumentos de precio y de la publicidad, que tienen un límite.",
+   "balance": "**Balance sólido y deuda bajando.** La deuda total es de 15.132 M y la caja de 8.223 M en los últimos 12 meses; la deuda neta/EBITDA es de 0,19x, que multiplicado por 12 son unos 2 meses de EBITDA. Los intereses se cubren 18 veces con el EBIT.\n\nEl patrimonio neto creció de 20.777 M a 29.286 M. Con estos números, la empresa puede financiar contenido y recomprar acciones sin presión financiera.",
+   "gerencia": "La conducen dos copresidentes y co-CEO: Ted Sarandos (60 años, pago de 12,5 M según Yahoo) y Greg Peters (54 años, pago de 11,8 M), con Spencer Neumann como director financiero (55 años, pago de 6,8 M). Son pagos altos, pero acompañados de resultados.\n\nEn lo que importa, **el uso del capital es de recompras fuertes**: no recompró en 2022, y luego 6.045 M, 6.264 M, 9.127 M y 12.861 M en los últimos 12 meses. No paga dividendo. **Las acciones bajaron de 4.513 M a 4.268 M, un 5,4 % menos.** Las recompras de los últimos 12 meses (12.861 M) fueron superiores al flujo libre (11.375 M).",
+   "fortalezas": [
+    "Margen operativo de 17,8 % a 31,3 %.",
+    "Flujo libre de 11.375 M en los últimos 12 meses, 22,9 % de los ingresos.",
+    "ROE de 50,4 % y ROIC de 29,6 %.",
+    "Ingresos creciendo cerca de 16 % por año en 2024 y 2025.",
+    "5,4 % menos acciones y deuda neta de solo 0,19 veces el EBITDA."
+   ],
+   "debilidades": [
+    "Competencia intensa de YouTube, Disney, Amazon y otros.",
+    "Gasto enorme en contenido: el crítico más duro diría que un par de años flojos de producciones pueden costar suscriptores.",
+    "Ganancia neta de los últimos 12 meses con una posible partida única.",
+    "Recompras mayores que el flujo libre.",
+    "Crecimiento apoyado en aumentos de precio y publicidad."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 31,3 %; si baja, el gasto en contenido o la competencia pesan más.",
+    "Ingresos: crecen cerca de 16 %; si bajan de 10 %, el crecimiento madura.",
+    "Gasto en contenido: Yahoo no lo informa, hay que buscarlo en el informe.",
+    "Flujo libre: hoy 11.375 M; tiene que cubrir las recompras."
+   ],
+   "clientes": [
+    "Cientos de millones de suscriptores en el mundo",
+    "Anunciantes que pagan por el plan con publicidad",
+    "Jugadores de juegos incluidos en la suscripción"
+   ],
+   "ideal_para": [
+    "Buscan un negocio de suscripción con margen en alza y flujo libre alto.",
+    "Valoran recompras fuertes sin deuda relevante.",
+    "Aceptan competir contra gigantes tecnológicos."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos.",
+    "Les preocupa el gasto en contenido y la competencia."
+   ],
+   "perfil": "general",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "NFLX",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 49734633000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
