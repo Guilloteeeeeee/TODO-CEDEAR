@@ -75,3 +75,12 @@ def primas_pais():
     import json
     with open(os.path.join(_DIR, "erp_paises.json"), encoding="utf-8") as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def historico():
+    """PER y EV/EBITDA de todas las industrias a fin de 2015 y de 2020 (planillas de archivo de Damodaran): {'años': {'2015': {'fecha_actualizacion', 'pedata': {industria: {...}}, 'vebitda': {...}}}}.
+    Para comparar el múltiplo actual de una industria con el de hace 5 y 10 años. No se muestra todavía."""
+    import json
+    with open(os.path.join(_DIR, "historico.json"), encoding="utf-8") as f:
+        return json.load(f)
