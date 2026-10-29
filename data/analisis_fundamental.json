@@ -3803,6 +3803,68 @@
      "2022"
     ]
    }
+  },
+  "C": {
+   "resumen": "Citigroup es uno de los mayores bancos de Estados Unidos y el más internacional: presta servicios de tesorería y comercio exterior a empresas multinacionales, opera en los mercados, hace banca de inversión, tiene tarjetas y banca para personas en Estados Unidos y gestiona patrimonio. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones por mover dinero entre países. Tiene un **foso estrecho, de red internacional**: su negocio de servicios a multinacionales funciona en decenas de países y es difícil de replicar. Pero los números todavía no lo muestran: **el ROE fue de 4,5 % a 7,4 % entre 2022 y 2025 (6,7 % en 2025), muy por debajo del 12 % de referencia**, y la ganancia neta de 2025 (14.306 M) es menor que la de 2022 (14.845 M), aunque los ingresos subieron 14,4 % a 85.213 M. La ganancia por acción de 2025 (6,99) es igual a la de 2022 (7,00), y subió a 10,25 en los últimos 12 meses. Lo que mejora el número por acción es una recompra enorme: **18.250 M en 2025, 128 % de la ganancia neta, y 10,9 % menos acciones**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **empresa de calidad regular, un banco global en reestructuración, con ROE de 6,7 %, ganancia estancada y recompras que superan la ganancia.**",
+   "veredicto": "Regular: banco global con ROE bajo y ganancia estancada, que mejora el número recomprando",
+   "conclusion": "Citigroup es una empresa de calidad regular: tiene una red internacional difícil de replicar y 10,9 % menos acciones, pero su ROE fue de 6,7 % en 2025 y su ganancia neta sigue por debajo de la de 2022. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE suba hacia 12 % sin depender de recompras.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Citigroup es una sociedad controlante de servicios financieros diversificados. Opera cinco segmentos: **Services** (tesorería, comercio exterior, administración de efectivo y capital de trabajo para multinacionales, bancos y organismos), **Markets** (operaciones en mercados), **Banking** (banca de inversión y de empresas), **U.S. Personal Banking** (tarjetas y banca de personas en Estados Unidos) y **Wealth** (gestión de patrimonio). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las empresas necesitan mover dinero y las personas, cuentas y crédito. **Los ingresos crecieron 4,8 % en 2023, 3,3 % en 2024 y 5,6 % en 2025, hasta 85.213 M.**\n\n**A quién le vende.** A multinacionales, instituciones financieras, gobiernos y personas. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Citigroup **es de red internacional, y es estrecha**. Una multinacional que opera en decenas de países necesita un banco que le maneje el efectivo y el comercio exterior en cada uno, y pocos pueden hacerlo. Pero **los números no muestran todavía el foso**: el ROE fue de 7,4 %, 4,5 %, 6,1 % y 6,7 %, siempre por debajo de la referencia de 12 %.\n\nCompite con JPMorgan, Bank of America, HSBC y bancos locales. Es frágil en el riesgo de crédito (tarjetas, préstamos corporativos), en los costos de reestructuración y en el riesgo de operar en muchos países. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
+   "numeros": "Los números de Citigroup cuentan **un banco enorme cuya ganancia no crece**. Los ingresos fueron de 74.480 M, 78.090 M, 80.672 M y 85.213 M. La ganancia neta fue de 14.845 M en 2022, 9.228 M en 2023, 12.682 M en 2024 y 14.306 M en 2025. La ganancia por acción pasó de 7,00 a 4,04, 5,94, 6,99 y **10,25 en los últimos 12 meses**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **7,4 %, 4,5 %, 6,1 % y 6,7 %**. El capital invertido pasó de 500.896 M a 595.192 M (+19 %).\n\nLa mirada crítica: la ganancia neta de 2025 es 3,6 % menor que la de 2022, y la ganancia por acción se sostiene por las recompras. Sin ellas, el crecimiento por acción sería negativo.",
+   "balance": "**El capital del banco crece, pero rinde poco.** El capital invertido (lo que financia el negocio) pasó de 500.896 M en 2022 a 595.192 M en los últimos 12 meses, un 19 % más, mientras la ganancia neta no creció. Es un banco de los que los reguladores vigilan de cerca.\n\nEl banco recompra más de lo que gana (18.250 M en 2025 contra 14.306 M de ganancia neta), lo que reduce el capital propio. Con el bono a 10 años cerca de 5 %, los bonos que tiene se desvalorizan y sus clientes pagan más por el dinero. Es un efecto que aparece en el patrimonio y no en la ganancia, y por eso conviene seguirlo.",
+   "gerencia": "La conduce Jane Fraser, presidenta del directorio y CEO (57 años, pago de 7,6 M según Yahoo), con Viswas Raghavan (pago de 23,5 M) al frente de banca de inversión y Andrew Morton al frente de mercados. Fraser condujo la reestructuración del banco desde que asumió.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 2,68 por acción (pagado desde 1987; sube 4,4 % por año en 3 años) y recompra acciones por montos crecientes (3.250 M en 2022, 18.250 M en 2025 y 23.600 M en los últimos 12 meses). **Las acciones diluidas bajaron de 1.964 M a 1.750 M, un 10,9 % menos.**",
+   "fortalezas": [
+    "Red internacional difícil de replicar en servicios a multinacionales.",
+    "Ingresos de 85.213 M en 2025, con ventas en alza tres años seguidos.",
+    "Ganancia por acción de 10,25 en los últimos 12 meses.",
+    "10,9 % menos acciones desde 2022.",
+    "Dividendo pagado desde 1987 (2,68 por acción)."
+   ],
+   "debilidades": [
+    "ROE bajo y estancado: 4,5 % a 7,4 % entre 2022 y 2025, contra la referencia de 12 %.",
+    "Ganancia neta de 14.306 M en 2025, menor que la de 2022 (14.845 M).",
+    "Recompras (18.250 M en 2025) que superan la ganancia neta: el crítico más duro diría que el crecimiento por acción es financiero y no del negocio.",
+    "Banco en reestructuración, con riesgos de ejecución en muchos países.",
+    "Foso estrecho que todavía no se refleja en los números."
+   ],
+   "vigilar": [
+    "ROE: hoy 6,7 % en 2025; tiene que subir hacia 12 % para justificar el capital que tiene.",
+    "Ganancia neta: 14.306 M en 2025; tiene que superar la de 2022 sin depender de recompras.",
+    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión, sobre todo en tarjetas.",
+    "Recompras: si bajan, la ganancia por acción pierde un empuje importante."
+   ],
+   "clientes": [
+    "Multinacionales e instituciones financieras",
+    "Gobiernos y organismos",
+    "Personas con tarjetas y cuentas en Estados Unidos"
+   ],
+   "ideal_para": [
+    "Buscan un banco global en reestructuración con recompras y dividendo.",
+    "Aceptan un ROE bajo hoy a cambio de una mejora esperada.",
+    "Quieren exposición al comercio y a las finanzas internacionales."
+   ],
+   "menos_ideal": [
+    "No toleran un ROE persistentemente bajo.",
+    "Buscan una empresa con ganancias en alza sostenida por el negocio."
+   ],
+   "perfil": "banco",
+   "capas": [],
+   "ticker": "C",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
