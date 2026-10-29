@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.85"
+APP_VERSION = "1.2.86"
 
 import re
 import contextlib
@@ -1420,11 +1420,34 @@ def render_cartera(df, pagina=True):
     from ui import cartera as C
     from ui import cartera_visual as CV
     st.markdown(f"<style>{C.CSS}{CV.CSS}{CV.CSS_ENTRADA}</style>", unsafe_allow_html=True)
-    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Portfolio</h1><p class="cr-i">Subí tus posiciones y recibí una evaluación gratuita de tu cartera de inversiones.</p></div>', unsafe_allow_html=True)
-    t_eval, t_rent = st.tabs(["Evaluá tu cartera", "Conocé tu rentabilidad anual"])
-    with t_eval:
+    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Portfolio</h1></div>', unsafe_allow_html=True)
+    modo = st.session_state.get("cr_modo")
+    _mosaicos = (("eval", "Evaluá tu Cartera de Inversiones", "Subí tus posiciones y recibí una evaluación gratuita de tu cartera de inversiones."),
+                 ("rent", "Conocé tu Rentabilidad Anual", "Contanos cuándo empezaste, cuánto pusiste en total y cuánto vale hoy tu cartera, y te estimamos cuánto rindió por año."))
+
+    def _abrir(k):
+        st.session_state["cr_modo"] = None if st.session_state.get("cr_modo") == k else k
+    st.markdown("""<style>
+[class*="st-key-mos_"] button{min-height:132px;height:100%;width:100%;border-radius:16px;border:1px solid #fbd5e1;background:linear-gradient(180deg,#fff7fa 0%,#fff 75%);
+ box-shadow:0 1px 2px rgba(15,23,42,.05);padding:16px 18px;text-align:left;justify-content:flex-start;align-items:flex-start;transition:box-shadow .15s,border-color .15s}
+[class*="st-key-mos_"] button:hover{border-color:#f4909f;box-shadow:0 4px 14px rgba(232,102,143,.18)}
+[class*="st-key-mos_"] button p{text-align:left;margin:0 0 .35em;color:#475569;font-size:.93rem;line-height:1.5;font-weight:400}
+[class*="st-key-mos_"] button p:first-child{color:#be185d;font-size:1.12rem;font-weight:800}
+[class*="st-key-mos_"] button > div{justify-content:flex-start;width:100%}
+[class*="st-key-mos_"] [data-testid="stMarkdownContainer"],[class*="st-key-mos_"] button p{display:block!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;width:100%}
+[class*="st-key-mos_on_"] button{border:2px solid #e8668f;background:linear-gradient(180deg,#ffeaf1 0%,#fff 85%)}
+</style>""", unsafe_allow_html=True)
+    cols = st.columns(2, gap="medium")
+    for col, (k, tit, sub) in zip(cols, _mosaicos):
+        with col:
+            st.button(f"{tit}\n\n{sub}", key=f"mos_{'on' if modo == k else 'off'}_{k}", on_click=_abrir, args=(k,), use_container_width=True)
+    # las dos secciones quedan armadas (así no se pierde lo cargado al cambiar de mosaico); se muestra sólo la elegida
+    ocultar = [f".st-key-cr_sec_{k}{{display:none!important}}" for k in ("eval", "rent") if modo != k]
+    if ocultar:
+        st.markdown("<style>" + "".join(ocultar) + "</style>", unsafe_allow_html=True)
+    with st.container(key="cr_sec_eval"):
         _evaluar_cartera(df, C, CV)
-    with t_rent:
+    with st.container(key="cr_sec_rent"):
         _rentabilidad_anual(C)
 
 
@@ -1541,8 +1564,7 @@ def _rentabilidad_anual(C):
 .rt-fila b{color:#0f172a}
 .rt-nota{font-size:.84rem;color:#64748b;line-height:1.5;margin-top:12px}
 </style>""", unsafe_allow_html=True)
-    st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">Contanos cuándo empezaste, cuánto pusiste en total y cuánto vale hoy tu cartera, y te estimamos cuánto rindió por año. '
-                'No hace falta que cargues tus posiciones.</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">No hace falta que cargues tus posiciones.</p></div>', unsafe_allow_html=True)
     c1, c2, c3 = st.columns(3, gap="medium")
     with c1:
         inicio = st.date_input("¿Cuándo empezaste a invertir?", value=None, min_value=_dt.date(1990, 1, 1), max_value=_dt.date.today(), format="DD/MM/YYYY", key="rt_inicio")
@@ -1552,7 +1574,7 @@ def _rentabilidad_anual(C):
     with c3:
         final = st.number_input("Capital final (lo que vale hoy)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 13000", key="rt_final",
                                 help="El valor de toda tu cartera hoy, en la misma moneda que los aportes.")
-    forma = st.radio("¿Cómo fuiste aportando?", ["De a poco, parejo en el tiempo", "Todo al principio"], horizontal=True, key="rt_forma")
+    forma = st.radio("¿Cómo fuiste aportando?", ["Aportes periódicos a lo largo del camino", "Todo al principio"], horizontal=True, key="rt_forma")
     if inicio is None or not aportado or not final:
         st.caption("Completá los tres datos para ver la estimación.")
         return

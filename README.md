@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.86 (29/10/2026): Evaluá tu Portfolio con dos mosaicos
+
+- **Dos mosaicos lado a lado** (apilados en el celular): «Evaluá tu Cartera de Inversiones» (con el texto «Subí tus posiciones y recibí una evaluación gratuita…») y «Conocé tu Rentabilidad Anual». Se abren al tocarlos y se cierran al volver a tocar. Las dos secciones quedan armadas, así que no se pierde lo cargado al cambiar de mosaico.
+- La opción «De a poco, parejo en el tiempo» pasó a llamarse «Aportes periódicos a lo largo del camino» (el cálculo no cambia).
+
 ### v1.2.85 (29/10/2026): menú ordenado, paneles compactos, buscador letra por letra, «Liquidez» aparte de la renta fija
 
 - **Menú**: Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros, Contactános y Comentarios, todos juntos y en ese orden. «Quiénes somos» ahora es un panel desplegable más.
