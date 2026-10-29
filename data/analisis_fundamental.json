@@ -4980,6 +4980,194 @@
      "2022"
     ]
    }
+  },
+  "BABA": {
+   "resumen": "Alibaba es el mayor grupo de comercio electrónico de China: sus plataformas Taobao y Tmall conectan a marcas y comerciantes con cientos de millones de compradores, y además tiene comercio internacional (AliExpress, Lazada), la nube Alibaba Cloud y otros negocios. Gana plata con publicidad y comisiones que cobra a los comerciantes, con las ventas de su comercio directo y con los servicios de nube. Tiene un **foso estrecho, de efecto de red**: muchos comerciantes están en sus plataformas porque están los compradores, y viceversa, aunque la competencia de Pinduoduo, JD y Douyin le quitó fuerza. Los números de los últimos años se deterioraron: los ingresos crecieron cada vez menos (8,3 %, 5,9 %, 2,7 %), el margen operativo bajó de 14,8 % a **4,2 %** en los últimos 12 meses y el flujo libre pasó de +165.400 M a **-48.451 M de yuanes**, porque la inversión en capital se disparó de 34.352 M a 126.937 M. Lo bueno es que tiene mucha caja (385.697 M contra una deuda de 266.530 M), paga dividendo y **recompró acciones: hay 8,7 % menos que en 2023**. Todas las cifras están en yuanes. Su punto débil es la competencia, la regulación y el riesgo político de ser una empresa china. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: invierte fuerte en nube e inteligencia artificial, y puede ganar o perder. Conclusión: **empresa de calidad regular, con foso estrecho, margen operativo en caída y flujo libre negativo por una inversión récord.**",
+   "veredicto": "Regular: foso estrecho, margen operativo en caída a 4,2 % y flujo libre negativo por una inversión récord",
+   "conclusion": "Alibaba es una empresa de calidad regular: tiene un foso estrecho de efecto de red, mucha caja y 8,7 % menos acciones, pero el margen operativo cayó a 4,2 %, el flujo libre es negativo por una inversión récord y compite con rivales fuertes. Hay que seguirla de cerca. Es recomendable investigar el rendimiento de la inversión en nube e inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre vuelva a ser positivo.",
+   "calidad": "Regular",
+   "riesgo_ia": "moderado",
+   "negocio": "Alibaba provee infraestructura tecnológica y alcance de marketing a comerciantes, marcas y minoristas en China y en el exterior. Opera cuatro segmentos: **Alibaba China E-Commerce Group** (Taobao y Tmall), **Alibaba International Digital Commerce Group**, **Cloud Intelligence Group** y **All Others**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Yahoo etiqueta los años como 2023 a 2026; el ejercicio de Alibaba cierra en marzo, dato público.\n\nEs un negocio de consumo muy ligado a la economía china: **los ingresos crecieron 8,3 % en 2024, 5,9 % en 2025 y 2,7 % en 2026, hasta 1.023.670 M de yuanes**, y llegaron a 1.044.971 M en los últimos 12 meses.\n\n**A quién le vende.** A cientos de millones de consumidores y a millones de comerciantes y marcas. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Alibaba **es de efecto de red, y es estrecha y se erosiona**. Los comerciantes publicitan donde están los compradores y los compradores buscan donde están los comerciantes, y esa red es difícil de armar desde cero. Pero en China hay competidores fuertes (Pinduoduo, JD.com, Douyin de ByteDance, Meituan) y la rentabilidad cayó: el margen operativo pasó de 14,8 % a 4,2 % y el ROIC (retorno sobre el capital) es de solo 2,5 % en los últimos 12 meses.\n\nEs frágil en la competencia de precios de China, en la regulación, en la economía y el consumo chinos y en el riesgo político, por ejemplo la estructura legal con la que las empresas chinas cotizan en Estados Unidos. La nube es un negocio con potencial, pero exige inversión muy grande.",
+   "numeros": "Los números de Alibaba cuentan **un negocio grande y estable en ingresos, pero con la rentabilidad en baja**. Los ingresos fueron de 868.687 M, 941.168 M, 996.347 M y 1.023.670 M de yuanes. El margen operativo fue de 11,9 %, 13,2 %, 14,8 %, 5,8 % y **4,2 %** en los últimos 12 meses. La ganancia neta fue de 72.783 M, 80.009 M, 130.109 M y 103.592 M, y de 73.557 M en los últimos 12 meses.\n\nLa ganancia neta es mayor que el EBIT (44.296 M en los últimos 12 meses), un indicio de ganancias no operativas, por ejemplo de sus inversiones en otras empresas; Yahoo no las detalla. El ROE fue de 7,4 %, 8,1 %, 12,9 %, 9,8 % y **7,0 %**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 165.400 M, 149.664 M, 77.537 M, **-50.724 M** y -48.451 M en los últimos 12 meses. La inversión en capital pasó de 34.352 M a 126.937 M, probablemente por nube e inteligencia artificial, aunque Yahoo no lo detalla.",
+   "balance": "**Balance con mucha caja, pero con la plata saliendo más rápido de lo que entra.** La caja es de 385.697 M y la deuda total de 266.530 M de yuanes en los últimos 12 meses; los intereses se cubren 4,6 veces con el EBIT, contra 15,3 veces en 2025. Yahoo muestra una deuda neta positiva que no cuadra con esas cifras, así que no la usamos.\n\nEl problema no es la deuda, sino que la inversión (126.937 M) supera al flujo operativo (76.213 M), y por eso el flujo libre es negativo y la caja bajó de 571.029 M en 2024 a 385.697 M. Si la inversión no rinde, la caja se sigue gastando.",
+   "gerencia": "La conduce Eddie Wu (Yongming Wu), CEO (50 años, pago de 9,7 M según Yahoo), con Joseph Tsai como presidente ejecutivo (61 años, pago de 5,8 M) y Hong Xu como director financiero (52 años). Es un equipo que apostó fuerte a la nube y la inteligencia artificial.\n\nEn lo que importa, **el uso del capital cambió**: pasó de recomprar mucho (74.746 M, 88.745 M y 86.662 M de yuanes) a una inversión récord en capital; Yahoo muestra solo 7.638 M de recompras en el último ejercicio, dato a verificar. Paga un dividendo de 1,05 por acción (por ADS, en dólares; desde 2023). **Las acciones bajaron de 2.639 M a 2.410 M, un 8,7 % menos.**",
+   "fortalezas": [
+    "Mayor plataforma de comercio electrónico de China, con efecto de red.",
+    "Caja de 385.697 M de yuanes, más que la deuda.",
+    "8,7 % menos acciones desde 2023 y dividendo desde 2023.",
+    "Ingresos de más de 1 billón de yuanes.",
+    "Nube con potencial de crecimiento."
+   ],
+   "debilidades": [
+    "Margen operativo de 14,8 % a 4,2 % en los últimos 12 meses.",
+    "Flujo libre negativo: -48.451 M de yuanes en los últimos 12 meses.",
+    "Crecimiento que se frena: 8,3 %, 5,9 %, 2,7 %.",
+    "Competencia fuerte en China y riesgo regulatorio y político: el crítico más duro diría que la inversión en inteligencia artificial puede no rendir.",
+    "ROIC de 2,5 %, muy bajo."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 4,2 %; si no se recupera, la inversión no está generando rentabilidad.",
+    "Flujo libre: hoy -48.451 M de yuanes; si sigue negativo, la caja de 385.697 M se va gastando.",
+    "Inversión de capital: 126.937 M; si sigue subiendo sin que crezcan los ingresos, el retorno es dudoso.",
+    "Ingresos de la nube: es donde está la apuesta; Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Cientos de millones de consumidores chinos",
+    "Millones de comerciantes y marcas",
+    "Empresas clientes de la nube y compradores internacionales"
+   ],
+   "ideal_para": [
+    "Buscan exposición al consumo y a la nube de China.",
+    "Aceptan riesgo político y regulatorio.",
+    "Valoran una caja grande y un dividendo."
+   ],
+   "menos_ideal": [
+    "No toleran el riesgo político y regulatorio de China.",
+    "Buscan flujo libre positivo y márgenes estables."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "BABA",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 1044971000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "TM": {
+   "resumen": "Toyota es la mayor automotriz del mundo por volumen: diseña, fabrica y vende autos de pasajeros, minivans, utilitarios y vehículos comerciales, con fuerza en Japón, América del Norte, Asia y Europa, y además tiene un brazo financiero que da crédito para comprar sus autos. Gana plata con la venta de vehículos y repuestos y con los intereses del crédito. Tiene un **foso estrecho, de escala y reputación de confiabilidad**: fabrica a una escala que reparte costos, y sus clientes confían en que el auto dura y conserva valor. Los números muestran un año más flojo: los ingresos crecieron 5,5 % hasta 50.684.952 M de yenes, pero el margen operativo bajó de 10,0 % a **7,4 %** (7,1 % en los últimos 12 meses) y la ganancia por acción de 3.595,60 a 2.952,50 yenes. El ROE es de 12,0 %. Yahoo muestra solo 2 años completos, así que las tendencias son poco confiables. La deuda es alta porque incluye el negocio de crédito, y **el flujo libre es negativo** en los últimos 12 meses por una inversión de 5,4 billones de yenes. Todas las cifras están en yenes. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, por la conducción autónoma y los vehículos eléctricos de rivales. Conclusión: **buena empresa, con foso estrecho y 34 años de dividendo, aunque con margen en baja, flujo libre negativo y datos de solo dos años.**",
+   "veredicto": "Buena: foso estrecho y dividendo de 34 años, pero con margen en baja y flujo libre negativo",
+   "conclusion": "Toyota es una buena empresa: tiene un foso estrecho de escala y confiabilidad, ingresos de 51.957.026 M de yenes y dividendo desde hace 34 años, pero el margen operativo cayó a 7,1 %, el flujo libre es negativo y solo hay dos años completos de datos. Vale la pena seguirla de cerca. Es recomendable investigar los márgenes por segmento en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se recupere hacia 10 %.",
+   "calidad": "Buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Toyota Motor Corporation diseña, fabrica, ensambla y vende vehículos de pasajeros, minivans y vehículos comerciales, con sus repuestos y accesorios, en Japón, América del Norte, Europa, Asia, América Central y del Sur, Oceanía, África y Medio Oriente. Opera tres segmentos: **Automotive**, **Financial Services** y **All Other**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Yahoo etiqueta los años de forma repetida y trae solo 2 ejercicios completos (que cierran en marzo), por lo que las tendencias son poco confiables.\n\nEs un negocio cíclico y de capital intensivo: **los ingresos crecieron 5,5 % en el último ejercicio, hasta 50.684.952 M de yenes**, y llegaron a 51.957.026 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de personas y empresas en todo el mundo, a través de concesionarios. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Toyota **es de escala y de reputación de confiabilidad, y es estrecha**. Al fabricar a gran escala reparte los costos de desarrollo y compra de piezas, y su fama de autos duraderos y con buen valor de reventa hace que muchos clientes repitan la marca. Pero los autos son un negocio competido y con mucho capital: el margen bruto bajó de 19,9 % a 16,7 % y el ROIC (retorno sobre el capital) es de solo 3,6 %.\n\nCompite con Volkswagen, Hyundai, General Motors, Tesla y fabricantes chinos como BYD, que avanzan en eléctricos. Es frágil en el ciclo de ventas de autos, en la transición a eléctricos y en la conducción autónoma, en el yen y en los costos de materiales. La inteligencia artificial puede cambiar el valor del software dentro del auto, y eso puede ayudar o perjudicar según quién lo domine.",
+   "numeros": "Los números de Toyota cuentan **ventas en alza con márgenes en baja**, y solo dos años completos. Los ingresos fueron de 48.036.704 M y 50.684.952 M de yenes, y de 51.957.026 M en los últimos 12 meses. El margen operativo pasó de 10,0 % a **7,4 %** y a 7,1 % en los últimos 12 meses. La ganancia neta fue de 4.765.086 M y 3.848.098 M, y de 4.483.797 M en los últimos 12 meses. La ganancia por acción (por ADR, equivalente a 10 acciones) pasó de 3.595,60 a **2.952,50 yenes**.\n\nEl ROE fue de 13,3 %, 9,6 % y 12,0 % en los últimos 12 meses. El flujo libre fue de -1.560.993 M, +179.572 M y -1.222.968 M en los últimos 12 meses, porque la inversión (unos 5,3 billones de yenes por año) supera al flujo operativo. Ese flujo no es comparable al de una automotriz simple, porque incluye el crédito que su brazo financiero da a los compradores.\n\nLa mirada crítica: con solo dos años completos no se puede hablar de tendencia, y la caída de márgenes de este período todavía no se sabe si es pasajera.",
+   "balance": "**La deuda parece alta, pero incluye el negocio de crédito.** La deuda total es de 43.953.168 M de yenes y la caja de 13.350.561 M en los últimos 12 meses; la deuda neta/EBITDA es de 3,87x, que multiplicado por 12 son unos 46 meses. Esa cifra no es comparable a la de una automotriz sin brazo financiero, porque una parte grande de la deuda financia créditos a clientes.\n\nLa cobertura de intereses bajó de 62,5 veces a 10,8 veces en los últimos 12 meses, un cambio grande que Yahoo no explica y que conviene verificar. El patrimonio neto es de 37.308.828 M.",
+   "gerencia": "La conduce Kenta Kon, presidente y CEO (57 años, pago de 0,7 M según Yahoo), con Koji Sato como vicepresidente (56 años, pago de 2,4 M) y Yoichi Miyazaki como director financiero (62 años, pago de 1,7 M). Yahoo no informa la fecha de cada cambio de cargo, y no lo vamos a inventar.\n\nEn lo que importa, **el uso del capital es de dividendo**: paga 6,27 por acción (por ADR, en dólares; pagado desde 1992, 34 años) y 1.238.225 M de yenes en los últimos 12 meses. **Las acciones (equivalentes ADR) bajaron de 1.325 M a 1.303 M, un 1,7 % menos.**",
+   "fortalezas": [
+    "Mayor automotriz del mundo, con escala y reputación de confiabilidad.",
+    "Ingresos de más de 50 billones de yenes.",
+    "Dividendo pagado desde 1992 (34 años).",
+    "ROE de 12,0 % en los últimos 12 meses.",
+    "Cobertura de intereses de 10,8 veces."
+   ],
+   "debilidades": [
+    "Margen operativo de 10,0 % a 7,1 %.",
+    "Flujo libre negativo en los últimos 12 meses (-1.222.968 M de yenes).",
+    "ROIC de 3,6 %, bajo.",
+    "Solo 2 años completos de datos: las tendencias son poco confiables.",
+    "Exposición a la transición a eléctricos y a la competencia china: el crítico más duro diría que el margen de hoy es una señal temprana."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 7,1 %; si sigue bajando, el poder de precio se está perdiendo.",
+    "Flujo libre: negativo; si no se recupera, el dividendo depende de la deuda.",
+    "Cobertura de intereses: hoy 10,8x contra 62,5x antes; el cambio hay que entenderlo en el informe.",
+    "Ventas de eléctricos e híbridos: define si mantiene su posición en la próxima etapa."
+   ],
+   "clientes": [
+    "Millones de compradores de autos en el mundo",
+    "Empresas con flotas y vehículos comerciales",
+    "Clientes de crédito y financiación del brazo financiero"
+   ],
+   "ideal_para": [
+    "Buscan una automotriz grande con dividendo largo.",
+    "Valoran la escala y la reputación de confiabilidad.",
+    "Aceptan el riesgo del yen y de la transición a eléctricos."
+   ],
+   "menos_ideal": [
+    "No toleran márgenes en baja ni flujo libre negativo.",
+    "Buscan crecimiento acelerado."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "TM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 51957026000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2025",
+     "2025"
+    ]
+   }
+  },
+  "BKNG": {
+   "resumen": "Booking Holdings es la mayor agencia de viajes en línea del mundo: opera Booking.com (alojamientos), Priceline, y otras marcas de reservas de viajes y restaurantes. Gana plata con una comisión sobre cada reserva, que cobra a hoteles y otros alojamientos, además de publicidad y servicios de pago. Tiene un **foso estrecho, de efecto de red**: muchos alojamientos están en Booking.com porque están los viajeros, y los viajeros buscan donde hay más oferta, sobre todo en Europa. Los números son excelentes: los ingresos pasaron de 17.090 M en 2022 a 26.917 M en 2025 (28.241 M en los últimos 12 meses), el margen operativo de 29,9 % a **34,5 %**, el flujo libre de 6.186 M a 9.539 M en los últimos 12 meses y el ROIC (retorno sobre el capital) es de **80,2 %**. Además **hay 18,5 % menos acciones** que en 2022. Su punto débil es que el viaje es cíclico y depende de la economía, y que Google y los asistentes de inteligencia artificial pueden quedarse con parte del contacto con el viajero. El patrimonio neto es negativo (-10.783 M) por las recompras, por lo que el ROE no sirve. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**. Conclusión: **muy buena empresa, con foso estrecho, margen operativo de 34,5 % y fuertes recompras, aunque cíclica y con el riesgo de que la inteligencia artificial cambie cómo se reserva.**",
+   "veredicto": "Muy buena: margen operativo de 34,5 % y 18,5 % menos acciones, pero cíclica y expuesta a cambios en cómo se reserva",
+   "conclusion": "Booking Holdings es una muy buena empresa: tiene un foso estrecho de efecto de red, margen operativo de 34,5 %, flujo libre de 9.539 M y 18,5 % menos acciones, pero es cíclica y la inteligencia artificial puede cambiar cómo se reserva. Vale la pena seguirla de cerca. Es recomendable investigar el origen de las reservas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 30 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Booking Holdings provee servicios de reservas de viajes y restaurantes en línea y tradicionales, en Estados Unidos, los Países Bajos, el Reino Unido y a nivel internacional. Opera **Booking.com** (reservas de alojamiento) y **Priceline** (viajes con descuento, alojamiento y vuelos), además de otras marcas que son de conocimiento público, como Agoda, Kayak y OpenTable. Yahoo no desglosa cuánto aporta cada marca, y no lo vamos a inventar.\n\nEs un negocio de intermediación que crece con el turismo: **los ingresos crecieron 25,0 % en 2023, 11,1 % en 2024 y 13,4 % en 2025, hasta 26.917 M**, y llegaron a 28.241 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de viajeros y a cientos de miles de hoteles y alojamientos. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Booking **es de efecto de red, y es estrecha**. Un hotel o alojamiento quiere estar donde hay viajeros, y un viajero busca donde hay más opciones y comparaciones. Esa red es difícil de armar desde cero, y se ve en los números: margen operativo de 34,5 %, flujo libre de 33,8 % de los ingresos y ROIC de 80,2 %.\n\nPero el viajero llega mucho a través de Google, y los hoteles pueden vender directo o por Airbnb, Expedia y otros. Es frágil en el ciclo del turismo (el contexto actual, con la guerra con Irán y el petróleo en máximos de cinco meses, puede encarecer los pasajes y enfriar los viajes) y en la dependencia de Google. La inteligencia artificial es el mayor riesgo: si los asistentes reservan por el usuario, Booking podría pasar a ser un proveedor más.",
+   "numeros": "Los números de Booking cuentan **un crecimiento parejo con márgenes en alza**. Los ingresos fueron de 17.090 M, 21.365 M, 23.739 M y 26.917 M, y de 28.241 M en los últimos 12 meses. El margen operativo fue de 29,9 %, 27,3 %, 31,8 %, 34,5 % y 34,5 %. La ganancia neta fue de 3.058 M, 4.289 M, 5.882 M y 5.404 M, y de 7.209 M en los últimos 12 meses. La ganancia por acción (ajustada por la división de acciones) fue de 3,05, 4,70, 6,91 y 6,62.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 6.186 M, 6.999 M, 7.894 M y 9.087 M, y de **9.539 M en los últimos 12 meses**. Las inversiones son bajas: 320 M. El ROIC pasó de 26,0 % a 80,2 %, porque el capital invertido bajó de 15.267 M a 9.397 M.\n\nLa mirada crítica: en 2025 el EBIT subió 22,9 % pero la ganancia neta bajó 8,1 %, algo que Yahoo no explica y que suele deberse a partidas no operativas o impuestos.",
+   "balance": "**Balance sólido con patrimonio negativo por recompras.** La caja es de 17.214 M y la deuda total de 20.694 M en los últimos 12 meses; la deuda neta/EBITDA es de 0,27x, que multiplicado por 12 son unos 3 meses de EBITDA. Los intereses se cubren 8,8 veces con el EBIT.\n\nEl patrimonio neto es negativo (-10.783 M) porque la empresa recompró más acciones de lo que ganó acumulado. No es una señal de quiebra cuando hay flujo libre alto y caja, pero hace que el ROE no tenga sentido y deja menos colchón si el turismo se frena.",
+   "gerencia": "La conduce Glenn Fogel, presidente y CEO (63 años, pago de 9,2 M según Yahoo), con Ewout Steenbergen como director financiero (56 años, pago de 3,2 M). Fogel conduce la compañía hace varios años y mejoró márgenes y retorno.\n\nEn lo que importa, **el uso del capital es de recompras y dividendo**: recompró 6.621 M en 2022, 10.377 M en 2023, 6.509 M en 2024, 6.440 M en 2025 y 10.530 M en los últimos 12 meses, y paga un dividendo de 1,68 por acción desde 2024 (1.281 M en los últimos 12 meses). **Las acciones bajaron de 1.001 M a 816 M, un 18,5 % menos** hasta 2025.",
+   "fortalezas": [
+    "Margen operativo de 34,5 % y flujo libre de 9.539 M en los últimos 12 meses.",
+    "ROIC de 80,2 %: mucho retorno con poco capital.",
+    "18,5 % menos acciones desde 2022.",
+    "Ingresos de 17.090 M a 28.241 M en los últimos 12 meses.",
+    "Efecto de red con una oferta enorme de alojamientos."
+   ],
+   "debilidades": [
+    "Cíclica: el turismo depende de la economía y del precio de los viajes.",
+    "Dependencia de Google para atraer viajeros.",
+    "Patrimonio negativo de -10.783 M por recompras.",
+    "La inteligencia artificial puede cambiar cómo se reserva: el crítico más duro diría que el efecto de red pierde valor si el asistente decide por el usuario.",
+    "Ganancia por acción de 2025 (6,62) menor que la de 2024 (6,91)."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 34,5 %; si baja de 30 %, aumenta el costo de captar viajeros.",
+    "Ingresos: crecen 13,4 %; si bajan de 8 %, el turismo o la competencia se enfriaron.",
+    "Reservas que llegan por canales propios: si bajan, crece la dependencia de Google; Yahoo no las informa, hay que buscarlas en el informe.",
+    "Flujo libre: hoy 9.539 M; tiene que seguir cubriendo las recompras de unos 10.000 M."
+   ],
+   "clientes": [
+    "Millones de viajeros de todo el mundo",
+    "Hoteles, alojamientos y restaurantes",
+    "Aerolíneas y empresas de alquiler de autos"
+   ],
+   "ideal_para": [
+    "Buscan un negocio de viajes con márgenes y flujo libre altos.",
+    "Valoran recompras fuertes y dividendo.",
+    "Aceptan el ciclo del turismo."
+   ],
+   "menos_ideal": [
+    "No toleran el ciclo del turismo.",
+    "Les preocupa el efecto de la inteligencia artificial sobre las reservas."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "BKNG",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 28241000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
