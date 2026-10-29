@@ -577,13 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.2.88 (29/10/2026): datos de Damodaran cargados (todavía sin mostrar)
+### v1.2.88 (29/10/2026): promedio de la industria (Damodaran) en Ratios Financieros
 
-- Se guardaron en `data/damodaran/` las planillas de Damodaran (EE.UU., enero 2026) que Guille copió de su página: márgenes, P/B y ROE, PER, EV/EBITDA, P/S, costo de capital y betas, capex.
-- `data/damodaran.py` las lee (96 filas: 94 industrias + 2 totales) y `data/damodaran_mapa.py` propone la industria de Damodaran de cada una de las 166 empresas. **No se muestra en pantalla hasta que Guille apruebe esa tabla.**
-- Se sumaron `fundgrEB` (ROC, tasa de reinversión y crecimiento esperado del EBIT por industria) y las primas de riesgo por país de julio 2026 (`erp_paises.json`, 178 países; ERP maduro 4,20 %, ERP EE.UU. 4,42 %) para el DCF. Tampoco se muestran todavía.
-- Se sumó el histórico de PER y EV/EBITDA por industria a fin de 2015 y de 2020 (`historico.json`, de las planillas de archivo) para comparar el múltiplo actual contra el de hace 5 y 10 años.
-- La fuente a citar será «Damodaran, ene-2026 (empresas de EE.UU.)»; se actualiza una vez por año.
+- **Ficha > Estados Financieros > Ratios Financieros**: columna nueva «Industria» con el promedio de la industria de EE.UU. de Damodaran (datos a enero de 2026) para margen bruto, operativo y neto, ROE, ROIC y deuda/patrimonio. En bancos, brokers y seguros sólo margen neto y ROE. Si no hay dato, queda en blanco. Debajo de la tabla se aclara la industria, la cantidad de empresas y la fuente («Damodaran, ene-2026»). Son promedios del conjunto, no un número ideal.
+- **Tabla empresa -> industria** de Damodaran para las 166 empresas (`data/damodaran_mapa.py`), aprobada por Guille.
+- **Datos cargados** en `data/damodaran/` (todos con la fuente y fecha): márgenes, P/B y ROE, PER, EV/EBITDA, P/S, costo de capital, betas, capex, crecimiento fundamental del EBIT, histórico de PER, EV/EBITDA y márgenes a fin de 2015 y 2020, primas de riesgo por país (julio 2026), tasas de impuesto por país, y la tabla de rating sintético (cobertura de intereses -> rating y spread). Todo lo de abajo se usa para el DCF y por ahora no se muestra: primas de riesgo, tasas, rating, histórico y betas.
+- Pendiente (decisión de Guille): planillas regionales (Mercados Emergentes, Europa) para comparar a las empresas de fuera de EE.UU. con su región.
 
 ### v1.2.87 (29/10/2026): informe con «por qué», botón de confirmar, noticias locales y menú
 

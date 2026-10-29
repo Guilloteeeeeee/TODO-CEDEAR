@@ -1305,7 +1305,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_val:
         st.markdown(_ficha.con_intro("valuacion", _ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk))), unsafe_allow_html=True)
     with t_est:
-        st.markdown(_ficha.con_intro("estados", _ficha.tab_estados(extra.get("estados"))), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("estados", _ficha.tab_estados(extra.get("estados"), ticker=tk)), unsafe_allow_html=True)
         _nota_archivo(extra, "estados")
     with t_div:
         div = extra.get("dividendos") or {}

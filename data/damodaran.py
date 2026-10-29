@@ -84,3 +84,30 @@ def historico():
     import json
     with open(os.path.join(_DIR, "historico.json"), encoding="utf-8") as f:
         return json.load(f)
+
+
+@lru_cache(maxsize=1)
+def _rating_tabla():
+    import json
+    with open(os.path.join(_DIR, "rating_sintetico.json"), encoding="utf-8") as f:
+        return json.load(f)
+
+
+def rating_sintetico(cobertura, tipo="grande"):
+    """Rating y spread de default estimados a partir de la cobertura de intereses (resultado operativo / intereses), con la planilla de Damodaran.
+    tipo: 'grande' (no financiera grande), 'chica' (más chica o riesgosa) o 'financiera'. -> (rating, spread) o (None, None). Para el DCF; no se muestra todavía."""
+    if cobertura is None:
+        return None, None
+    t = _rating_tabla()[{"grande": "grandes_no_financieras", "chica": "chicas_o_riesgosas", "financiera": "financieras"}[tipo]]
+    for desde, hasta, rating, spread in t:
+        if desde < float(cobertura) <= hasta or (float(cobertura) == desde == t[0][0]):
+            return rating, spread
+    return None, None
+
+
+@lru_cache(maxsize=1)
+def tasas_paises():
+    """Tasa marginal de impuesto a las ganancias por país: {'fuente', 'paises': {país: {'tasa', 'tasa_minimo_global'}}}. Para el DCF; no se muestra todavía."""
+    import json
+    with open(os.path.join(_DIR, "tasas_paises.json"), encoding="utf-8") as f:
+        return json.load(f)

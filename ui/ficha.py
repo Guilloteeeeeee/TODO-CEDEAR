@@ -257,6 +257,7 @@ CSS = """
 .comp th{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;text-align:right;padding:6px 8px;border-bottom:1px solid #e5e7eb;white-space:nowrap}
 .comp td{text-align:right;padding:8px;border-bottom:1px solid #eef1f4;white-space:nowrap}
 .comp th:first-child,.comp td:first-child{text-align:left}
+.comp .ind-d{background:#fff8e1;border-left:2px solid #f59e0b;color:#7c5a00}
 .comp a{color:#1d4ed8;text-decoration:none;font-weight:600}.comp a:hover{text-decoration:underline}
 .comp .tkc{color:#6b7280;font-size:12px;margin-left:4px}
 .nlist{list-style:none;margin:0 0 6px;padding:0}.nlist li{padding:9px 0;border-bottom:1px solid #eef1f4}
@@ -1448,18 +1449,52 @@ AYUDA_ESTADOS = {
 }
 
 
-def _tabla_estado_html(t, moneda):
-    cab = "<tr><th>Concepto</th>" + "".join(f"<th>{a}</th>" for a in t["anios"]) + "</tr>"
+def _tabla_estado_html(t, moneda, industria=None):
+    """industria (v1.2.88): {rótulo de la fila: valor} -> suma una última columna con el promedio de la industria (Damodaran); en las filas sin dato queda en blanco."""
+    cab = ("<tr><th>Concepto</th>" + "".join(f"<th>{a}</th>" for a in t["anios"])
+           + ('<th class="ind-d" title="Promedio de la industria de EE.UU. (Damodaran, ene-2026)">Industria</th>' if industria else "") + "</tr>")
     filas = ""
     for rot, vals, tipo in t["filas"]:
         negrita = ' class="tot"' if tipo == "t" else ""
         tip = AYUDA_ESTADOS.get(rot)
         nom = f'<span class="hv" title="{html.escape(tip, quote=True)}">{html.escape(rot)}</span>' if tip else html.escape(rot)
-        filas += f"<tr{negrita}><td>{nom}</td>" + "".join(f"<td>{_monto_estado(v, tipo, moneda)}</td>" for v in vals) + "</tr>"
+        ind = ""
+        if industria:
+            v = industria.get(rot)
+            ind = f'<td class="ind-d">{_monto_estado(v, tipo, moneda) if v is not None else ""}</td>'
+        filas += f"<tr{negrita}><td>{nom}</td>" + "".join(f"<td>{_monto_estado(v, tipo, moneda)}</td>" for v in vals) + ind + "</tr>"
     return f'<div class="comp-w"><table class="comp">{cab}{filas}</table></div>'
 
 
-def tab_estados(est):
+def _industria_ratios(ticker):
+    """({rótulo de fila de Ratios Financieros: valor}, nota) con el promedio de la industria de Damodaran de esa empresa, o (None, ""). Financieras: sólo margen neto y ROE."""
+    if not ticker:
+        return None, ""
+    try:
+        from data import damodaran as _D
+        from data.damodaran_mapa import FINANCIERAS
+        v = _D.valores(ticker)
+    except Exception:  # noqa: BLE001
+        return None, ""
+    if not v:
+        return None, ""
+    m, pb, be = v.get("margin", {}), v.get("pbvdata", {}), v.get("betas", {})
+    g = lambda d, k: (d.get(k) / 100.0 if d.get(k) is not None else None)      # Damodaran trae los porcentajes en puntos
+    fila = {"Margen neto": g(m, "Net Margin"), "Retorno sobre el patrimonio (ROE)": g(pb, "ROE")}
+    if v["industria"] not in FINANCIERAS:
+        fila.update({"Margen bruto": g(m, "Gross Margin"), "Margen operativo": g(m, "Pre-tax Unadjusted Operating Margin"),
+                     "Retorno sobre el capital invertido (ROIC)": g(pb, "ROIC"), "Deuda total / Patrimonio": g(be, "D/E Ratio")})
+    fila = {k: x for k, x in fila.items() if x is not None}
+    if not fila:
+        return None, ""
+    n = int(m.get("Number of firms") or 0)
+    nota = (f"<b>Industria</b> = promedio de la industria «{html.escape(v['industria'])}» de Damodaran ({n} empresas de EE.UU., datos a enero de 2026); "
+            "es un promedio del conjunto, no un número ideal. " + ("En bancos, brokers y seguros sólo se compara margen neto y ROE. " if v["industria"] in FINANCIERAS else "")
+            + "Fuente: Damodaran, ene-2026.")
+    return fila, nota
+
+
+def tab_estados(est, ticker=None):
     """Estados financieros de Yahoo: la columna TTM (ultimos 12 meses) y los ultimos 4 anios fiscales, el mas nuevo a la izquierda (v1.2.58):
     Estado de Resultados, Balance, Estado de Flujo de Efectivo y Ratios Financieros (calculados con esas cifras, con ROIC)."""
     vacio = _env(_tile("s12", "Estados Financieros", '<div class="fch-sub" style="margin:0">No disponibles por ahora.</div>', ac="#0ea5e9"))
@@ -1483,7 +1518,10 @@ def tab_estados(est):
         if est.get(clave):
             pre = f'<div class="fch-nota" style="margin:0 0 8px">{nota}</div>' if not tiles else ""
             post = f'<div class="fch-nota" style="margin:8px 0 0">{nota_roic}</div>' if clave == "ratios" else ""
-            tiles.append(_tile("s12", titulo, pre + _tabla_estado_html(est[clave], moneda) + post, ac=color))
+            ind, nota_ind = _industria_ratios(ticker) if clave == "ratios" else (None, "")
+            if nota_ind:
+                post += f'<div class="fch-nota" style="margin:6px 0 0">{nota_ind}</div>'
+            tiles.append(_tile("s12", titulo, pre + _tabla_estado_html(est[clave], moneda, ind) + post, ac=color))
     return _env(*tiles) if tiles else vacio
 
 
