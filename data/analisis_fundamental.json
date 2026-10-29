@@ -7991,6 +7991,190 @@
      "2022"
     ]
    }
+  },
+  "IBM": {
+   "resumen": "IBM es una de las mayores empresas de tecnología empresarial del mundo: vende software de nube híbrida y de inteligencia artificial (Software), servicios de consultoría y tercerización (Consulting), computadoras y servidores, incluidos los mainframes (Infrastructure), y financiamiento para sus clientes (Financing). Gana plata con contratos de largo plazo, licencias, suscripciones, servicios y equipos que los clientes mantienen durante años. Tiene un **foso estrecho, de base instalada y costos de cambio**: bancos, aseguradoras y gobiernos corren sus operaciones críticas en sistemas IBM, y migrarlos es lento, caro y riesgoso. Los números mejoraron: los ingresos pasaron de 60.530 M en 2022 a **69.870 M** en los últimos 12 meses, el margen operativo subió de 13,5 % a **18,3 %** y el flujo libre es de **14.018 M** (20,1 % de los ingresos). Paga dividendo desde 1962 (6.336 M, 45 % del flujo libre). Pero el crecimiento fue bajo durante años (2,2 % y 1,4 % en 2023 y 2024), el ROIC es de apenas **10,9 %**, las acciones aumentaron **4,5 %** y la deuda total es de 67.140 M (en parte de su brazo financiero). La ganancia neta (11.170 M) es 87 % del EBIT, una proporción alta que sugiere beneficios impositivos o resultados no operativos, dato a verificar. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: IBM la vende, pero la consultoría y el desarrollo de software pueden reducirse con ella. Conclusión: **empresa de buena calidad, con foso estrecho, dividendo de 65 años y flujo libre de 14.018 M, aunque con ROIC de 10,9 %, deuda alta y crecimiento histórico bajo.**",
+   "veredicto": "Buena: foso estrecho, dividendo de 65 años y flujo libre de 14.018 M, con ROIC de 10,9 %, deuda alta y crecimiento histórico bajo",
+   "conclusion": "IBM es una empresa de buena calidad: tiene un foso estrecho de base instalada, dividendo desde 1962, flujo libre de 14.018 M y margen operativo de 18,3 %, pero el ROIC es de 10,9 %, la deuda total llega a 67.140 M y las acciones aumentaron 4,5 %. Hay que seguirla de cerca. Es recomendable investigar la composición de ingresos por segmento y la deuda del brazo financiero en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo con márgenes estables.",
+   "calidad": "Buena",
+   "riesgo_ia": "moderado",
+   "negocio": "IBM ofrece soluciones y servicios integrados en América, Europa, Medio Oriente, África y Asia-Pacífico. Opera cuatro segmentos: **Software** (plataformas de nube híbrida y de inteligencia artificial), **Consulting**, **Infrastructure** y **Financing**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio maduro con crecimiento bajo y una aceleración reciente: **los ingresos subieron 2,2 % en 2023, 1,4 % en 2024 y 7,6 % en 2025, hasta 67.536 M**, y llegan a 69.870 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes empresas, bancos, aseguradoras y gobiernos de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de IBM **es de base instalada y costos de cambio, y es estrecha**. Sus mainframes y su software corren procesos que no se pueden detener (pagos, reservas, seguros), con programas escritos durante décadas, de modo que migrar es un proyecto de años con riesgo. Se ve en el margen bruto, que subió de 54,0 % a 58,0 %, y en los contratos de largo plazo.\n\nPero la ventaja no se traduce en una rentabilidad alta sobre el capital: el ROIC es de 10,9 % y el crecimiento promedió 3 % durante años. Compite con Microsoft, Amazon, Oracle, SAP, Accenture, Infosys y TCS. Es frágil en la consultoría, un negocio de personas que la inteligencia artificial puede automatizar en parte, y en la presión de los clientes a migrar a la nube de otros proveedores. IBM vende su propia inteligencia artificial (watsonx), por eso el riesgo es moderado.",
+   "numeros": "Los números de IBM cuentan **un negocio maduro que mejora márgenes**. Los ingresos fueron de 60.530 M, 61.860 M, 62.753 M y 67.536 M, y de 69.870 M en los últimos 12 meses. El EBIT fue de 8.174 M, 9.382 M, 10.074 M y 12.492 M, y de **12.808 M** (margen operativo de 18,3 %). La ganancia neta fue de 1.640 M, 7.502 M, 6.023 M y 10.593 M, y de 11.170 M. La ganancia por acción fue de 1,80, 8,14, 6,43, 11,17 y **11,73**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.463 M, 12.121 M, 11.760 M y 11.455 M, y de **14.018 M** en los últimos 12 meses (20,1 % de los ingresos). El ROIC fue de 8,3 %, 10,3 %, 9,1 %, 9,9 % y 10,9 %, y el ROE de 31,4 %, inflado por el patrimonio chico en relación con la deuda.\n\nLa mirada crítica: la ganancia neta salta de año en año por resultados no operativos (1.640 M en 2022 por la separación de Kyndryl, dato público; 11.170 M hoy, 87 % del EBIT). Es más fiable mirar el EBIT y el flujo libre. El capital invertido subió de 72.893 M a 99.354 M (compras de empresas, a verificar), con un ROIC que apenas avanzó.",
+   "balance": "**Deuda alta, parte explicada por el financiamiento a clientes.** La deuda total es de 67.140 M y la caja de 11.058 M; Yahoo informa una deuda neta de 54.584 M y la deuda neta/EBITDA es de 3,08x, que multiplicado por 12 son unos 37 meses de EBITDA. Esa cifra incluye la deuda del brazo financiero que presta a los clientes de IBM, por lo que no es comparable con una empresa de software pura. Los intereses se cubren 6,6 veces con el EBIT.\n\nEl patrimonio neto es de 35.537 M, subió desde 21.944 M, y la deuda equivale a 1,89 veces el patrimonio. La deuda total subió de 54.013 M a 67.140 M desde 2022, y la caja bajó en el último año de 14.417 M a 11.058 M.",
+   "gerencia": "La conduce Arvind Krishna, CEO, presidente y presidente del directorio (62 años, pago de 7,4 M según Yahoo), con Jim Kavanaugh como director financiero (58 años, pago de 4,1 M). Krishna lidera la empresa desde 2020 y condujo la separación de Kyndryl y la compra de Red Hat, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo y compras de empresas, con recompras chicas**: paga un dividendo de 6,76 por acción (pagado desde 1962; sube 0,6 % por año en 3 años; 6.336 M en los últimos 12 meses, 45 % del flujo libre) y recompró 407 M en 2022, 402 M, 651 M, 1.018 M y 984 M en los últimos 12 meses. **Las acciones subieron de 912 M a 953 M, un 4,5 % más.**",
+   "fortalezas": [
+    "Dividendo pagado desde 1962.",
+    "Flujo libre de 14.018 M, 20,1 % de los ingresos.",
+    "Margen operativo de 18,3 %, subiendo desde 13,5 %.",
+    "Base instalada de mainframes y software crítico.",
+    "Ingresos que aceleran (+7,6 % en 2025)."
+   ],
+   "debilidades": [
+    "ROIC de 10,9 %, bajo.",
+    "Deuda total de 67.140 M: el crítico más duro diría que la deuda del brazo financiero oculta la deuda real.",
+    "4,5 % más acciones desde 2022.",
+    "Dividendo con crecimiento de solo 0,6 % por año en 3 años.",
+    "Ganancia neta con resultados no operativos que complican la lectura."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +7,6 % en 2025; si vuelven a 1 % a 2 %, la aceleración fue pasajera.",
+    "Margen operativo: hoy 18,3 %; si baja, la inteligencia artificial presiona la consultoría.",
+    "Deuda neta: hoy 54.584 M; tiene que bajar con el flujo libre.",
+    "Cantidad de acciones: hoy 953 M; si siguen subiendo, la dilución continúa."
+   ],
+   "clientes": [
+    "Bancos y aseguradoras",
+    "Gobiernos y grandes empresas",
+    "Empresas que operan sistemas críticos"
+   ],
+   "ideal_para": [
+    "Buscan un dividendo de décadas en tecnología empresarial.",
+    "Valoran la base instalada y los contratos largos.",
+    "Aceptan una deuda alta explicada en parte por el financiamiento."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento rápido.",
+    "No toleran el desafío de la inteligencia artificial en consultoría."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "IBM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 69870000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ACN": {
+   "resumen": "Accenture es una empresa de consultoría y servicios gestionados con sede legal en Irlanda: ayuda a las grandes empresas a diseñar, construir y operar sus sistemas de tecnología, nube, ciberseguridad, datos e inteligencia artificial, y también a transformar sus finanzas, operaciones y gestión de riesgos. Gana plata cobrando por horas de profesionales y por contratos de servicios gestionados a varios años. Tiene un **foso estrecho, de relaciones con grandes clientes, escala y talento**: trabaja con la mayoría de las grandes empresas del mundo, conoce sus sistemas por dentro y tiene decenas de miles de profesionales en cada región. Los números son sólidos y estables: los ingresos pasaron de 64.112 M en el ejercicio 2023 a **74.183 M** en 2026 (+6,5 %), el margen operativo subió de 13,7 % a **15,4 %**, el ROIC es de **20,5 %** y el flujo libre de **11.621 M** (15,7 % de los ingresos). Hay 3,4 % menos acciones que en 2023 y el dividendo se paga desde 2005. Tiene poca deuda neta (559 M). Su punto débil es que el margen bruto es bajo y estable en 32 %, el ROIC bajó de 26,1 % a 20,5 % por las compras (el capital invertido pasó de 25.841 M a 41.679 M) y que la deuda total subió de 3.149 M a 13.397 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **alto**: su negocio se basa en horas de personas, y la inteligencia artificial puede automatizar buena parte de ese trabajo, aunque Accenture también vende servicios de inteligencia artificial. Conclusión: **empresa de muy buena calidad, con ROIC de 20,5 % y flujo libre de 11.621 M, pero con un modelo de horas de personas que la inteligencia artificial pone en cuestión.**",
+   "veredicto": "Muy buena: ROIC de 20,5 % y flujo libre de 11.621 M, con un modelo de horas de personas que la inteligencia artificial pone en cuestión",
+   "conclusion": "Accenture es una empresa de muy buena calidad: tiene un foso estrecho de relaciones con grandes clientes, ROIC de 20,5 %, flujo libre de 11.621 M, deuda neta casi nula y 3,4 % menos acciones, pero su negocio se basa en horas de personas y la inteligencia artificial puede reducir esa demanda. Vale la pena seguirla de cerca. Es recomendable investigar la composición de los contratos y las compras recientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo con margen operativo estable.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "alto",
+   "negocio": "Accenture presta servicios de consultoría y servicios gestionados en América, Europa, Medio Oriente, África y Asia-Pacífico. Ofrece inteligencia artificial y datos, consultoría en la nube, ciberseguridad, ingeniería y manufactura digitales, finanzas y gestión de riesgos, entre otros servicios. Yahoo no informa cuánto aporta cada línea ni cada región, y no lo vamos a inventar.\n\nEs un negocio de servicios con crecimiento moderado: **los ingresos subieron 1,2 % en 2024, 7,4 % en 2025 y 6,5 % en 2026, hasta 74.183 M** (el ejercicio cierra a fines de agosto).\n\n**A quién le vende.** A grandes empresas y organismos públicos de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Accenture **es de relaciones con grandes clientes, escala y talento, y es estrecha**. Una gran empresa que confía su transformación de tecnología a Accenture la tiene dentro de sus procesos, y la compañía puede mover a miles de profesionales con las habilidades necesarias a cualquier región. Se ve en un margen operativo estable que sube de 13,7 % a 15,4 % y en un ROIC de 20,5 % a 26,1 %.\n\nPero el margen bruto de 32 % es bajo y no mejora: el negocio depende de vender horas de personas. Compite con IBM, Deloitte, PwC, McKinsey, Cognizant, Infosys, TCS y consultoras especializadas. Es frágil en la presión de precios, en el ciclo de gasto en tecnología de las empresas y, sobre todo, en que la inteligencia artificial puede reducir las horas que los clientes compran, porque automatiza programación, pruebas y análisis. Por eso el riesgo es alto.",
+   "numeros": "Los números de Accenture cuentan **un negocio estable que crece al 6 % a 7 % con rentabilidad alta**. Los ingresos fueron de 64.112 M, 64.896 M, 69.673 M y 74.183 M. El EBIT fue de 8.810 M, 9.596 M, 10.226 M y 11.406 M, con margen operativo de 13,7 %, 14,8 %, 14,7 % y 15,4 %. La ganancia neta fue de 6.872 M, 7.265 M, 7.678 M y 8.367 M. La ganancia por acción fue de 10,77, 11,44, 12,15 y **13,56**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.996 M, 8.615 M, 10.874 M y **11.621 M** (15,7 % de los ingresos), con inversiones livianas (743 M). El ROIC fue de 26,1 %, 25,0 %, 21,5 % y 20,5 %, y el ROE de 26,5 %.\n\nLa mirada crítica: el ROIC bajó porque el capital invertido subió 61 % (de 25.841 M a 41.679 M) por compras de empresas, y las ganancias no subieron al mismo ritmo. La compra de empresas es una apuesta que hay que seguir en el informe.",
+   "balance": "**Deuda subió pero la deuda neta es casi nula.** La deuda total es de 13.397 M y la caja de 12.838 M; la deuda neta es de apenas 559 M y la deuda neta/EBITDA es de 0,04x, que multiplicado por 12 es menos de 1 mes de EBITDA. Los intereses se cubren 37,6 veces con el EBIT.\n\nEl patrimonio neto es de 31.567 M y la deuda equivale a 0,42 veces el patrimonio. La deuda total subió de 3.149 M a 13.397 M en tres años, un movimiento a seguir; el aumento de la caja amortigua el efecto.",
+   "gerencia": "La conduce Julie Sweet, presidenta del directorio y CEO (58 años, pago de 6,8 M según Yahoo), con Angie Park como directora financiera (52 años, pago de 2,0 M). Sweet lleva la empresa desde 2019 y ha reorientado el negocio hacia la nube y la inteligencia artificial, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente, recompras y compras de empresas**: paga un dividendo de 6,84 por acción (pagado desde 2005; sube 3,3 % por año en 3 años; 3.987 M en 2026, 34 % del flujo libre) y recompró 4.330 M en 2023, 4.525 M, 4.619 M y 7.521 M. **Las acciones bajaron de 639 M a 617 M, un 3,4 % menos.**",
+   "fortalezas": [
+    "ROIC de 20,5 % y flujo libre de 11.621 M.",
+    "Ingresos de 74.183 M creciendo cerca de 7 % por año.",
+    "Deuda neta casi nula (559 M).",
+    "3,4 % menos acciones y dividendo desde 2005.",
+    "Relaciones profundas con las grandes empresas del mundo."
+   ],
+   "debilidades": [
+    "La inteligencia artificial puede reducir las horas que se venden: el crítico más duro diría que su modelo es el más expuesto al cambio.",
+    "Margen bruto bajo (32 %) y sin mejora.",
+    "ROIC en baja desde 26,1 %.",
+    "Deuda total que se cuadruplicó.",
+    "Dependencia del ciclo de gasto en tecnología."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +6,5 %; si bajan a 2 % a 3 %, la inteligencia artificial está reduciendo la demanda.",
+    "Margen operativo: hoy 15,4 %; si baja, la presión de precios aumenta.",
+    "ROIC: hoy 20,5 %; las compras tienen que rendir.",
+    "Deuda total: hoy 13.397 M; no debería seguir subiendo."
+   ],
+   "clientes": [
+    "Grandes empresas multinacionales",
+    "Organismos públicos",
+    "Empresas que tercerizan operaciones de tecnología"
+   ],
+   "ideal_para": [
+    "Buscan una consultora global con retornos altos.",
+    "Valoran el dividendo y las recompras.",
+    "Aceptan el riesgo de la inteligencia artificial sobre los servicios."
+   ],
+   "menos_ideal": [
+    "Buscan márgenes brutos altos.",
+    "No toleran el cambio tecnológico en servicios basados en personas."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "ACN",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 74183445000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "ADP": {
+   "resumen": "ADP es una empresa estadounidense de gestión del capital humano: procesa sueldos, impuestos, beneficios, tiempo y asistencia de millones de empleados para empresas de todos los tamaños, con plataformas en la nube y tercerización de recursos humanos. Opera dos segmentos: Employer Services y PEO, en el que se convierte en empleador conjunto de los empleados de sus clientes. Gana plata con comisiones por empleado que se repiten cada período de pago y con los intereses que obtiene sobre los fondos de clientes que maneja entre el cobro y el pago (dato público). Tiene un **foso estrecho a amplio, de costos de cambio y cumplimiento normativo**: pagar sueldos e impuestos mal tiene consecuencias legales, y las empresas rara vez cambian de proveedor de nómina. Los números son excelentes y estables: los ingresos crecen cerca de 7 % por año hasta 21.947 M, el margen operativo es de **26,3 %**, el ROIC de **40,5 %** y el flujo libre de **4.776 M** (21,8 % de los ingresos). Paga dividendo desde 1983 y crece 13,1 % por año en 3 años. Tiene una deuda neta baja (734 M, 0,11x EBITDA). Su punto débil es que parte de las ganancias depende de las tasas de interés (con la Fed en 3,75 % a 4,00 % el 28/10, hoy son favorables), que las compras recientes subieron el capital invertido y que el ROE de 73,2 % no es comparable porque el patrimonio es chico. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso estrecho a amplio, ROIC de 40,5 %, flujo libre de 4.776 M y dividendo creciente, aunque sensible a las tasas de interés.**",
+   "veredicto": "Muy buena: foso estrecho a amplio, ROIC de 40,5 % y flujo libre de 4.776 M, con dividendo creciente y sensibilidad a las tasas",
+   "conclusion": "ADP es una empresa de muy buena calidad: tiene un foso estrecho a amplio de costos de cambio y cumplimiento normativo, margen operativo de 26,3 %, ROIC de 40,5 %, flujo libre de 4.776 M y dividendo desde 1983 que crece 13,1 % por año, pero parte de sus ganancias depende de las tasas de interés. Vale la pena seguirla de cerca. Es recomendable investigar el aporte de los intereses sobre fondos de clientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga con tasas más bajas.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "ADP provee soluciones de gestión del capital humano basadas en la nube en todo el mundo. Opera dos segmentos: **Employer Services**, que ofrece plataformas en la nube y tercerización de recursos humanos, y **PEO** (organización de empleadores profesionales). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de ingresos recurrentes y crecimiento estable: **los ingresos subieron 6,6 % en 2024, 7,1 % en 2025 y 6,7 % en 2026, hasta 21.947 M** (el ejercicio cierra a fines de junio).\n\n**A quién le vende.** A empresas de todos los tamaños, desde pequeñas hasta multinacionales. **Ningún cliente pesa de forma decisiva**: la base es muy atomizada.",
+   "foso": "La ventaja de ADP **es de costos de cambio y cumplimiento normativo, y es estrecha a amplia**. Procesar sueldos exige cumplir leyes laborales e impositivas que cambian por país, estado y municipio, y un error implica multas; por eso las empresas, una vez integrado el sistema con su contabilidad y sus empleados, casi no cambian de proveedor. Se ve en el margen bruto que sube de 44,7 % a 46,4 %, en el margen operativo de 26,3 % y en el ROIC de 40,5 %.\n\nCompite con Paychex, Workday, Paycom, Paylocity, Gusto y proveedores locales. Es frágil en el recorte de empleo (menos empleados en las empresas clientes, menos ingresos) y en las tasas de interés, porque parte de la ganancia viene del rendimiento de los fondos de clientes (dato público a verificar). La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de ADP cuentan **un negocio muy estable que crece con márgenes altos**. Los ingresos fueron de 18.012 M, 19.203 M, 20.561 M y 21.947 M. El EBIT fue de 4.507 M, 4.947 M, 5.412 M y 5.779 M, con margen operativo de 25,0 %, 25,8 %, 26,3 % y 26,3 %. La ganancia neta fue de 3.412 M, 3.752 M, 4.080 M y 4.414 M. La ganancia por acción fue de 8,21, 9,10 y 9,98 (Yahoo no trae la de 2026).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.636 M, 3.594 M, 4.393 M y **4.776 M** (21,8 % de los ingresos). El ROIC fue de 53,3 %, 50,5 %, 27,8 % y 40,5 %; la baja de 2025 coincide con la compra de otra empresa (el capital invertido saltó a 14.932 M). El ROE de 73,2 % no sirve para comparar porque el patrimonio es chico (6.031 M).\n\nLa mirada crítica: el crecimiento de la ganancia depende en parte del rendimiento de los fondos de clientes; si las tasas bajan, ese aporte baja.",
+   "balance": "**Deuda baja y bien cubierta.** La deuda total es de 5.271 M y la caja de 4.230 M; la deuda neta es de 734 M y la deuda neta/EBITDA es de 0,11x, que multiplicado por 12 es poco más de 1 mes de EBITDA. Los intereses se cubren 12,6 veces con el EBIT.\n\nEl patrimonio neto es de 6.031 M. En 2025 la deuda total subió a 9.065 M (con 4.770 M de corto plazo) y bajó en 2026 a 5.271 M, un movimiento que coincide con una compra y su posterior repago (a verificar en el informe).",
+   "gerencia": "La conduce María Black, presidente y CEO (51 años, pago de 4,8 M según Yahoo), con Peter Hadley como director financiero (52 años, pago de 2,0 M). Black asumió en 2023, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras**: paga un dividendo de 6,80 por acción (pagado desde 1983; sube 13,1 % por año en 3 años; 2.626 M en 2026, 55 % del flujo libre) y recompró 1.121 M en 2023, 1.232 M, 1.280 M y 2.083 M. **Las acciones bajaron de 416 M a 409 M hasta 2025, un 1,7 % menos** (Yahoo no trae el dato de 2026).",
+   "fortalezas": [
+    "Ingresos recurrentes creciendo cerca de 7 % por año.",
+    "Margen operativo de 26,3 % y ROIC de 40,5 %.",
+    "Flujo libre de 4.776 M, 21,8 % de los ingresos.",
+    "Dividendo creciendo 13,1 % por año en 3 años.",
+    "Costos de cambio y cumplimiento normativo altos."
+   ],
+   "debilidades": [
+    "Parte de las ganancias depende de las tasas de interés: el crítico más duro diría que una baja de tasas la golpearía.",
+    "Sensible al empleo de sus clientes.",
+    "Dividendo que absorbe 55 % del flujo libre.",
+    "Patrimonio chico (6.031 M).",
+    "Recompras moderadas: las acciones bajaron poco."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +6,7 %; si bajan de 5 %, el empleo de los clientes se debilita.",
+    "Margen operativo: hoy 26,3 %; si baja, las tasas o los costos pesan.",
+    "Tasas de interés: la Fed está en 3,75 % a 4,00 %; una baja reduce el aporte de los fondos de clientes.",
+    "Deuda total: hoy 5.271 M; debería mantenerse baja."
+   ],
+   "clientes": [
+    "Empresas de todos los tamaños",
+    "Multinacionales con nómina en varios países",
+    "Pequeñas empresas que tercerizan recursos humanos"
+   ],
+   "ideal_para": [
+    "Buscan un negocio recurrente con dividendo creciente.",
+    "Valoran los márgenes altos y la estabilidad.",
+    "Entienden el efecto de las tasas de interés en el negocio."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento rápido.",
+    "No toleran la sensibilidad al empleo y a las tasas."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "ADP",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 21947400000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
   }
  }
 }
