@@ -373,8 +373,9 @@ span[data-baseweb="tag"] svg{fill:#475569!important}
 """
 
 # Colores del encabezado (barra gris pizarra oscura, la misma gama del logo, con titulos blancos centrados; la columna Valoracion un poco mas oscura)
-_BARRA = "#2b2f33"
-_BARRA_VAL = "#1d2023"
+_BARRA = "#d3e6fa"      # v1.2.83: celeste suave (antes gris oscuro), para que no se funda con la franja negra de arriba; los titulos van en azul oscuro
+_BARRA_VAL = "#c2dbf6"
+_TXT_BARRA = "#1e3a5f"
 
 
 def _css_flechas(sort_col=None, sort_asc=True):
@@ -400,11 +401,11 @@ def css_encabezado(sort_col=None, n_extra=0, visibles=None, sort_asc=True):
         + f'{base}{{gap:0!important;background:{_BARRA};border:1px solid {_BARRA};border-radius:14px 14px 0 0;align-items:stretch!important}}'
         f'{base} [data-testid="stColumn"]{{min-width:0!important;padding:0!important}}'
         f'{base} [data-testid="stElementContainer"]{{width:100%}}'
-        '[class*="st-key-tvh_"] button{width:100%;min-height:46px;background:transparent;border:0;border-radius:0;box-shadow:none;color:#fff}'
-        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:500;color:#fff;margin:0;padding:0 2px;letter-spacing:0;white-space:normal;word-break:keep-all;overflow-wrap:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
+        '[class*="st-key-tvh_"] button{width:100%;min-height:46px;background:transparent;border:0;border-radius:0;box-shadow:none;color:' + _TXT_BARRA + '}'
+        '[class*="st-key-tvh_"] button p{font-size:14.5px;font-weight:600;color:' + _TXT_BARRA + ';margin:0;padding:0 2px;letter-spacing:0;white-space:normal;word-break:keep-all;overflow-wrap:normal;text-overflow:clip;overflow:visible;line-height:1.2;text-align:center}'
         '[class*="st-key-tvh_"] button div,[class*="st-key-tvh_"] button [data-testid="stMarkdownContainer"]{white-space:normal;overflow:visible;text-overflow:clip}'
-        '[class*="st-key-tvh_"] button:hover{background:rgba(255,255,255,.12);color:#fff}'
-        '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:#fff;box-shadow:none;background:rgba(255,255,255,.12)}'
+        '[class*="st-key-tvh_"] button:hover{background:rgba(30,64,120,.10);color:' + _TXT_BARRA + '}'
+        '[class*="st-key-tvh_"] button:focus,[class*="st-key-tvh_"] button:active{color:' + _TXT_BARRA + ';box-shadow:none;background:rgba(30,64,120,.10)}'
         f'{base} [data-testid="stColumn"] [data-testid="stVerticalBlock"]{{gap:0!important}}'
         '[class*="st-key-tvh_"] button{padding-left:3px!important;padding-right:3px!important}'
         'div[data-testid="stElementContainer"]:has(.tv2){margin-top:-1rem}'

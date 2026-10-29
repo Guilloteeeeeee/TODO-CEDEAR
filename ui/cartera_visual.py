@@ -70,6 +70,7 @@ background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);box-shadow:0 1px 2px r
 .st-key-cr_p1 [data-testid="stFileUploaderDropzone"]{border:2px dashed #f4909f;background:#fff7fa;border-radius:14px}
 .st-key-cr_p1 [data-testid="stFileUploaderDropzone"]:hover{background:#ffeaf1}
 .st-key-cr_p1 [data-testid="stNumberInput"] input{font-size:1.1rem;font-weight:700}
+.st-key-cr_p1 [data-testid="stNumberInput"] input::placeholder{font-weight:400;opacity:.6}
 @media (max-width:640px){.st-key-cr_p1{padding:12px 12px 10px}}
 """
 

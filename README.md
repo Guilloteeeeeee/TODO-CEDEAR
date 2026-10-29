@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.83 (29/10/2026): menú lateral, tablas más arriba, "Evaluá tu Portfolio" con PDF y rentabilidad anual
+- **Menú lateral (☰)**: a la derecha del toro; al pasar el mouse dice «MENU». Orden: Filtro, Noticias, Calendario (con solapas «Próximos resultados empresariales» y «Próximos eventos financieros»), Evaluá tu Portfolio, Ideas de inversión (sección en construcción); abajo, separado: Quiénes somos, redes y contacto; y más abajo Comentarios y la versión de la app. Lo que estaba arriba de la tabla se movió ahí, así que las tablas (Empresas y ETFs) quedan más arriba. Fuera del inicio, Filtro/Noticias/Calendario llevan al inicio con el menú abierto.
+- Al lado de «TodoCedears» hay un solo botón: «Exchange Traded Funds (ETFs)» cuando estás en Empresas, y «Empresas» cuando estás en ETFs.
+- Cabecera de las tablas en celeste suave (contrasta con la barra negra).
+- **Evaluá tu Portfolio** (antes «Evaluá tu Cartera»): sin selector de moneda (se detecta sola: columna Moneda, símbolo $ / USD, título del archivo, bonos terminados en D/C; solo si algún monto no la dice se pregunta con una casilla), el ejemplo de edad sin negrita, nuevo subtítulo.
+- **Lee PDFs** de resumen del broker (probado con Balanz: tablas por tipo de activo con valor en $, efectivo en pesos y dólares y dólar MEP del resumen como tipo de cambio sugerido). No se guardan datos personales: solo tickers y montos. Requiere `pypdf` (requirements.txt). PDFs escaneados (foto) no se pueden leer.
+- Nueva solapa **«Conocé tu rentabilidad anual»**: fecha de inicio + dinero aportado + capital final → rentabilidad anualizada **estimada** (rango entre «todo al principio» y «aportes parejos en el tiempo»; nominal, sin inflación).
+- Análisis fundamental de O (Realty Income) reescrito con el nuevo estilo (más amable, con lo que puede salir mal y qué vigilar). Datos Yahoo refrescados (paquetes, técnicos, ETFs).
+- No hay contador de visitantes: requiere un servicio externo o cuenta; la versión de la app sí se muestra en el menú.
+
 ### v1.2.82 (28/10/2026): Tu Cartera entiende planillas pegadas desde Excel (compras repetidas, subtotales, sectores)
 - Caso real: la planilla propia de Guille (Ticker, Sector, Capitalización, Fecha, #, Coste base, Capital invertido) pegada como texto no se entendía. Arreglado:
   - Al pegar tablas de Excel (con tabulaciones) se conservan las celdas vacías (antes se corrían las columnas).

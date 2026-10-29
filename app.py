@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.82"
+APP_VERSION = "1.2.83"
 
 import contextlib
 import streamlit as st
@@ -31,7 +31,7 @@ from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, eti
 from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_condensada, css_fuente
-from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav
+from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav, menu_cabecera_html, menu_enlaces_html, menu_pie_html
 from ui import noticias as _noticias, calendario as _calendario
 from data import tecnicos as _tecnicos
 from ui import cartera_visual as _cartera_visual
@@ -904,14 +904,27 @@ def _ir_a_tabla(tabla):
         st.query_params["pagina"] = "cartera"
 
 
-def render_nav_tablas():
+def render_nav_tablas(contexto="empresas"):
+    """v1.2.83: al lado del nombre va el boton de la OTRA tabla: en Empresas, "Exchange Traded Funds (ETFs)"; en ETFs, "Empresas". En las demas pantallas (cartera, Quiénes somos...) van los dos."""
+    botones = (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)"))
+    if contexto == "empresas":
+        botones = botones[1:]
+    elif contexto == "etfs":
+        botones = botones[:1]
     with st.container(key="nav_tablas"):
-        for clave, texto in (("emp", "Empresas"), ("etfs", "Exchange Traded Funds (ETFs)")):
+        for clave, texto in botones:
             args = dict(key=f"nav_{clave}", on_click=_ir_a_tabla, args=({"etfs": "etfs"}.get(clave, "empresas"),))
             try:
                 st.button(texto, type="tertiary", **args)
             except TypeError:       # Streamlit viejo, sin type="tertiary"
                 st.button(texto, **args)
+
+
+def render_menu_estatico(caja, home=False):
+    """Menu lateral completo para las pantallas que no son el inicio (la cabecera, los enlaces y el pie); en el inicio se arma por partes en main() porque
+    en el medio van el Filtro, las Noticias y el Calendario, que son widgets."""
+    with caja:
+        st.markdown(menu_cabecera_html() + menu_enlaces_html(home) + menu_pie_html(APP_VERSION), unsafe_allow_html=True)
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -1343,7 +1356,7 @@ def render_calendario(df, lugar=None):
         with (lugar if lugar is not None else st.container()):
             with st.container(key="caja_cal"):
                 with st.expander("Calendario", expanded=False):
-                    t_res, t_eco = st.tabs(["Resultados de empresas", "Economía"])
+                    t_res, t_eco = st.tabs(["Próximos resultados empresariales", "Próximos eventos financieros"])
                     with t_res:
                         tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
                         if (tk or "").strip():
@@ -1376,14 +1389,22 @@ def _ccl_hoy(df):
 
 
 def render_cartera(df, pagina=True):
-    """"Evaluá tu Cartera": edad + perfil + Excel/CSV (o texto) -> evaluación en 4 bloques (pesos, geografía, sectores, conclusiones y ajustes).
-    v1.2.79: pantalla exclusiva (?pagina=cartera, se llega con la barra naranja del inicio) y carga mínima: una sola tarjeta con edad, perfil, moneda y el Excel."""
+    """"Evaluá tu Portfolio" (?pagina=cartera): edad + perfil + archivo (Excel, .csv o PDF del broker) o texto -> evaluación en 4 bloques (pesos, geografía, sectores, conclusiones y ajustes).
+    v1.2.79: pantalla exclusiva y carga mínima. v1.2.83: sin selector de moneda (se detecta sola), acepta PDF y suma la solapa "Conocé tu rentabilidad anual"."""
     from ui import cartera as C
     from ui import cartera_visual as CV
     st.markdown(f"<style>{C.CSS}{CV.CSS}{CV.CSS_ENTRADA}</style>", unsafe_allow_html=True)
-    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Cartera</h1><p class="cr-i">Subí tu Excel y recibí una evaluación gratuita. No guardamos tu cartera.</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="cr cr-top"><h1>Evaluá tu Portfolio</h1><p class="cr-i">Subí tus posiciones y recibí una evaluación gratuita de tu cartera de inversiones.</p></div>', unsafe_allow_html=True)
+    t_eval, t_rent = st.tabs(["Evaluá tu cartera", "Conocé tu rentabilidad anual"])
+    with t_eval:
+        _evaluar_cartera(df, C, CV)
+    with t_rent:
+        _rentabilidad_anual(C)
+
+
+def _evaluar_cartera(df, C, CV):
     with st.container(key="cr_p1"):
-        e1, e2, e3 = st.columns([1, 2, 1.3], gap="medium")
+        e1, e2 = st.columns([1, 2.4], gap="medium")
         with e1:
             edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
         with e2:
@@ -1391,19 +1412,17 @@ def render_cartera(df, pagina=True):
                 perfil = st.segmented_control("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], default="Moderado", key="cr_perfil") or "Moderado"
             except Exception:  # noqa: BLE001
                 perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
-        with e3:
-            base = st.radio("Montos en", ["Dólares", "Pesos"], horizontal=True, key="cr_base")
         lugar_tc = st.container()
         u1, u2 = st.columns([3, 1], gap="medium")
         with u1:
-            arch = st.file_uploader("Tu cartera (Excel o .csv)", type=["xlsx", "xlsm", "xls", "csv", "tsv", "txt"], key="cr_archivo", label_visibility="collapsed")
+            arch = st.file_uploader("Tu cartera (Excel, .csv o PDF del broker)", type=["xlsx", "xlsm", "xls", "csv", "tsv", "txt", "pdf"], key="cr_archivo", label_visibility="collapsed")
         with u2:
             try:
                 st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
                                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
             except Exception:  # noqa: BLE001
                 pass
-        st.markdown('<div class="cv-ayuda">Subí el Excel de tu broker tal como lo bajás: busco solas las columnas (<span class="cv-cols">ticker</span> y <span class="cv-cols">monto</span>, o <span class="cv-cols">cantidad</span> y <span class="cv-cols">precio</span>). Si no se entiende, usá el de ejemplo.</div>', unsafe_allow_html=True)
+        st.markdown('<div class="cv-ayuda">Subí el Excel o el PDF de tu broker tal como lo bajás: busco solo las columnas, la moneda y el efectivo (<span class="cv-cols">ticker</span> y <span class="cv-cols">monto</span>, o <span class="cv-cols">cantidad</span> y <span class="cv-cols">precio</span>). Si no se entiende, usá el de ejemplo.</div>', unsafe_allow_html=True)
         with st.expander("¿No tenés Excel? Pegá tu cartera como texto", expanded=False):
             texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=120, key="cr_texto", label_visibility="collapsed",
                                  placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
@@ -1412,8 +1431,15 @@ def render_cartera(df, pagina=True):
     if edad is None:
         st.info("Poné tu edad para ver la evaluación.")
         return
+    tc_resumen = None
     try:
-        pos, nota_hoja = C.leer_archivo_info(arch.name, arch.getvalue()) if arch is not None else (lambda r: (r[0], " ".join(r[1])))(C.leer_texto_info(texto))
+        if arch is not None and arch.name.lower().endswith(".pdf"):
+            pos, _n, tc_resumen = C.leer_pdf_info(arch.getvalue())
+            nota_hoja = " ".join(_n)
+        elif arch is not None:
+            pos, nota_hoja = C.leer_archivo_info(arch.name, arch.getvalue())
+        else:
+            pos, nota_hoja = (lambda r: (r[0], " ".join(r[1])))(C.leer_texto_info(texto))
     except ValueError as e:
         st.error(str(e))
         return
@@ -1422,14 +1448,21 @@ def render_cartera(df, pagina=True):
         return
     if nota_hoja:
         st.caption(nota_hoja)
-    base_k = "ars" if base == "Pesos" else "usd"
+    # v1.2.83: la moneda se detecta sola (columna Moneda, símbolo $ / USD, encabezado, bonos en D/C, título del archivo). Solo si algún monto no la dice, se pregunta (y es una pregunta, no un dato obligatorio)
+    sin_moneda = [p for p in pos if not p.get("moneda")]
+    base_k = "usd"
+    if sin_moneda:
+        with lugar_tc:
+            if st.checkbox("En tu archivo no encontré la moneda de algunos montos: los tomé como dólares. Marcá acá si están en pesos.", key="cr_pesos"):
+                base_k = "ars"
     hay_pesos = any((p.get("moneda") or base_k) == "ars" for p in pos)
     tc = None
     if hay_pesos:
-        auto = _ccl_hoy(df)
+        auto = tc_resumen or _ccl_hoy(df)
         with lugar_tc:
             tc = st.number_input("Dólar para convertir (pesos por dólar)", min_value=1.0, value=round(auto, 2) if auto else None, step=1.0, key="cr_tc",
-                                 help="Por defecto, el dólar CCL implícito de los CEDEARs de hoy. Podés cambiarlo." if auto else "No pudimos calcular el CCL ahora: escribilo vos.")
+                                 help=("Por defecto, el dólar MEP que figura en tu resumen. Podés cambiarlo." if tc_resumen else "Por defecto, el dólar CCL implícito de los CEDEARs de hoy. Podés cambiarlo.") if auto
+                                 else "No pudimos calcular el CCL ahora: escribilo vos.")
         if not tc:
             st.info("Hay montos en pesos: poné el dólar con el que querés convertirlos (por ejemplo, el CCL de hoy).")
             return
@@ -1447,7 +1480,7 @@ def render_cartera(df, pagina=True):
         return
     if n_conv:
         tc_txt = f"{tc:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-        st.caption(f"Pasamos a dólares {n_conv} posición(es) en pesos, a $ {tc_txt} por dólar.")
+        st.caption(f"Pasamos a dólares {n_conv} posición(es) en pesos, a $ {tc_txt} por dólar" + (" (el dólar MEP de tu resumen)." if tc_resumen and abs(tc - tc_resumen) < 0.01 else "."))
     st.markdown(CV.visual_html(res, edad, perfil)
                 + '<div class="cr"><div class="cr-av">Orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. '
                 'No es una recomendación de compra o venta ni un consejo personalizado: cada situación (objetivos, plazos, impuestos, otros ingresos) es distinta. '
@@ -1464,6 +1497,59 @@ def render_cartera(df, pagina=True):
         st.caption("El informe se arma en el momento y se baja a tu dispositivo: no guardamos tu cartera ni el informe.")
     except Exception:  # noqa: BLE001
         pass
+
+
+def _fmt_num(x, dec=0):
+    t = f"{x:,.{dec}f}"
+    return t.replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def _rentabilidad_anual(C):
+    """v1.2.83: "Conocé tu rentabilidad anual": fecha de inicio + dinero aportado + capital final -> rentabilidad anualizada ESTIMADA (no se conocen las fechas exactas de los aportes)."""
+    import datetime as _dt
+    st.markdown("""<style>
+.rt-card{border:1px solid #fbd5e1;background:linear-gradient(180deg,#fff7fa 0%,#fff 70%);border-radius:16px;padding:18px 20px;margin:12px 0 6px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.rt-big{font-size:2.3rem;font-weight:800;color:#be185d;line-height:1.1}
+.rt-big small{font-size:1rem;font-weight:700;color:#64748b;margin-left:6px}
+.rt-fila{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:12px;color:#334155;font-size:.97rem}
+.rt-fila b{color:#0f172a}
+.rt-nota{font-size:.84rem;color:#64748b;line-height:1.5;margin-top:12px}
+</style>""", unsafe_allow_html=True)
+    st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">Contanos cuándo empezaste, cuánto pusiste en total y cuánto vale hoy tu cartera, y te estimamos cuánto rindió por año. '
+                'No hace falta que cargues tus posiciones.</p></div>', unsafe_allow_html=True)
+    c1, c2, c3 = st.columns(3, gap="medium")
+    with c1:
+        inicio = st.date_input("¿Cuándo empezaste a invertir?", value=None, min_value=_dt.date(1990, 1, 1), max_value=_dt.date.today(), format="DD/MM/YYYY", key="rt_inicio")
+    with c2:
+        aportado = st.number_input("Dinero que pusiste en total", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 10000", key="rt_aportado",
+                                   help="Sumá todos tus aportes (menos lo que retiraste). Usá la misma moneda que en el capital final.")
+    with c3:
+        final = st.number_input("Capital final (lo que vale hoy)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 13000", key="rt_final",
+                                help="El valor de toda tu cartera hoy, en la misma moneda que los aportes.")
+    forma = st.radio("¿Cómo fuiste aportando?", ["De a poco, parejo en el tiempo", "Todo al principio"], horizontal=True, key="rt_forma")
+    if inicio is None or not aportado or not final:
+        st.caption("Completá los tres datos para ver la estimación.")
+        return
+    anios = (_dt.date.today() - inicio).days / 365.25
+    r = C.rentabilidad_anual(aportado, final, anios)
+    if r is None:
+        st.warning("Con esos datos no puedo estimar: la fecha de inicio tiene que ser de hace al menos un mes y los dos montos tienen que ser mayores a cero.")
+        return
+    todo = forma.startswith("Todo")
+    prin = r["anual_inicio"] if todo or r["anual_parejo"] is None else r["anual_parejo"]
+    otro = r["anual_parejo"] if todo else r["anual_inicio"]
+    gan = final - aportado
+    signo = "+" if gan >= 0 else "−"
+    lo, hi = sorted([x for x in (r["anual_inicio"], r["anual_parejo"]) if x is not None])
+    rango = f"Rango estimado: entre <b>{_fmt_num(lo, 1)} %</b> y <b>{_fmt_num(hi, 1)} %</b> por año." if hi - lo > 0.05 else ""
+    corto = ('<div class="rt-nota"><b>Ojo:</b> con menos de un año, pasar el resultado a «por año» lo exagera. Mirá sobre todo la ganancia total.</div>' if anios < 1 else "")
+    st.markdown(
+        f'<div class="rt-card"><div class="rt-big">{_fmt_num(prin, 1)} %<small>por año (estimado)</small></div>'
+        f'<div class="rt-fila"><span>Ganancia total: <b>{signo}{_fmt_num(abs(r["total"]), 1)} %</b> ({signo}{_fmt_num(abs(gan))})</span>'
+        f'<span>Tiempo invertido: <b>{_fmt_num(anios, 1)} años</b></span></div>'
+        f'<div class="rt-fila"><span>{rango}</span></div>{corto}'
+        f'<div class="rt-nota">Es una <b>estimación</b>: no sabemos en qué fechas pusiste cada aporte. Si pusiste todo el primer día, el resultado es el más bajo del rango; si fuiste aportando de a poco, el dinero estuvo menos tiempo invertido y el rendimiento por año real es más alto. '
+        f'Los números son nominales (no descuentan inflación ni cambios en el tipo de cambio) y no garantizan resultados futuros.</div></div>', unsafe_allow_html=True)
 
 
 def render_barra_cartera(df):
@@ -1484,15 +1570,29 @@ def main():
     home_etfs = en_etfs and not etf_sel
     en_quienes = st.query_params.get("pagina") == "quienes"
     en_cartera = st.query_params.get("pagina") == "cartera"
-    activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if en_quienes else "empresas"))
-    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>" + encabezado_html(NOMBRE_APP), unsafe_allow_html=True)
+    en_ideas = st.query_params.get("pagina") == "ideas"
+    en_inicio = not (en_quienes or en_cartera or en_ideas or etf_sel or st.query_params.get("empresa"))
+    activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas) else "empresas"))
+    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
+                + encabezado_html(NOMBRE_APP, menu_abierto=st.query_params.get("menu") == "1"), unsafe_allow_html=True)
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
-    # v1.2.60: "Empresas" y "ETFs" (botones) y el buscador estan en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    render_nav_tablas()
-    if en_quienes or etf_sel or st.query_params.get("empresa"):
+    # v1.2.83: menu lateral (las 3 rayitas). Fuera del inicio se llena ya; en el inicio se llena mas abajo, cuando estan los datos (Filtro, Noticias, Calendario)
+    menu_box = st.container(key="menu_lateral")
+    if not en_inicio:
+        render_menu_estatico(menu_box, home=False)
+    # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
+    render_nav_tablas("etfs" if en_etfs else ("ambos" if (en_quienes or en_cartera or en_ideas) else "empresas"))
+    if en_quienes or en_ideas or etf_sel or st.query_params.get("empresa"):
         render_buscador()
     aviso = texto_aviso_legal()
     fecha = None
+
+    # v1.2.83: "Ideas de inversión" (?pagina=ideas): por ahora un aviso; la sección se arma más adelante
+    if en_ideas:
+        st.markdown('<div class="cr-top"></div><div style="max-width:760px;margin:40px auto;text-align:center;color:#334155"><h2 style="margin:0 0 8px;color:#0f172a">Ideas de inversión</h2>'
+                    '<p style="font-size:1.05rem;line-height:1.6">Estamos armando esta sección: va a reunir listas de empresas por tema. Muy pronto.</p></div>', unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
+        return
 
     # v1.2.49: pagina "Quiénes somos" (?pagina=quienes): no necesita los datos de las empresas, asi que se muestra al toque
     if st.query_params.get("pagina") == "quienes":
@@ -1602,41 +1702,27 @@ def main():
         st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=fuente_emp or texto_fuente()), unsafe_allow_html=True)
         return
 
-    # v1.2.45: "Noticias Calientes" y "Filtro de empresas" (antes "Screener") van uno al lado del otro, para ocupar menos pantalla.
-    # Cada uno se despliega hacia abajo, en su mitad; la mitad que se abre se ensancha un poco (ui/cajas.py). En el celular quedan
-    # uno abajo del otro. Si ya estaban bajadas (se guardan 15 minutos) las noticias se dibujan al toque; si hay que esperar a la
-    # fuente, el lugar queda reservado y se completa al final, sin hacer esperar a la tabla.
+    # v1.2.83: Filtro, Noticias Calientes y Calendario ya no van arriba de la tabla: viven en el menu lateral (las 3 rayitas), junto con Evaluá tu Portfolio,
+    # Ideas de inversión, Quiénes somos, las redes y Comentarios. Asi la tabla sube. Todo se dibuja siempre (aunque el menu este cerrado): los filtros siguen valiendo.
+    # Las noticias: si ya estaban bajadas (se guardan 15 minutos) se dibujan al toque; si hay que esperar a la fuente, el lugar queda reservado y se completa al final.
     st.markdown(f"<style>{CSS_CAJAS}</style>", unsafe_allow_html=True)
     hay_gris = "categoria" in df.columns and bool((df["categoria"] == "DATOS INSUFICIENTES").any())
     noticias_pendientes = descarga_noticias is not None
-    with st.container(key="fila_cajas"):
-        if _noticias.ACTIVAS and not home_etfs:
-            # v1.2.72: Noticias | Calendario de Resultados | Filtro, los tres en la misma fila
-            col_noticias, col_cal, col_filtro = st.columns(3, gap="medium")
-            lugar_noticias = col_noticias.empty()
-            render_calendario(df, col_cal)
-        elif _noticias.ACTIVAS:
-            col_noticias, col_filtro = st.columns(2, gap="medium")
-            lugar_noticias = col_noticias.empty()
-        else:
-            col_filtro, lugar_noticias = st.container(), st.empty()
+    with menu_box:
+        st.markdown(menu_cabecera_html(), unsafe_allow_html=True)
+        with st.container(key="caja_screener"):
+            if home_etfs:
+                with st.expander("Filtro de ETFs", expanded=False):
+                    sel_etfs = render_filtro_etfs(_etfs_lista())
+            else:
+                with st.expander("Filtro de Empresas", expanded=False):
+                    filtros = render_filtros_inline(universe, df)
+                    st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
+        lugar_noticias = st.empty()
         if not noticias_pendientes:
             render_noticias(df, None, lugar_noticias)
-        # Filtro de empresas: recuadro desplegable, cerrado al abrir la pagina. Adentro: los filtros, la escala de valoracion y
-        # las variables a ver en la tabla. Cerrado, los filtros siguen valiendo: solo se esconden.
-        with col_filtro:
-            with st.container(key="caja_screener"):
-                if home_etfs:
-                    with st.expander("Filtro de ETFs", expanded=False):
-                        sel_etfs = render_filtro_etfs(_etfs_lista())
-                else:
-                    with st.expander("Filtro de Empresas", expanded=False):
-                        filtros = render_filtros_inline(universe, df)
-                        st.markdown(escala_valoracion_html(hay_gris), unsafe_allow_html=True)
-
-    # v1.2.77: barra "Evaluá tu Cartera" de punta a punta (Empresas y ETFs)
-    st.markdown(f"<style>{_cartera_visual.CSS_ENTRADA}</style>", unsafe_allow_html=True)
-    render_barra_cartera(df)
+        render_calendario(df, st.container())
+        st.markdown(menu_enlaces_html(True) + menu_pie_html(APP_VERSION), unsafe_allow_html=True)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
     busqueda = render_buscador()

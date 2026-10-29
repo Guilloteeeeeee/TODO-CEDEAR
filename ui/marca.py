@@ -331,10 +331,10 @@ def _enlace_color(clave, url):
     return f'<span class="mc-lk" title="{leyenda}: próximamente">{cuerpo}</span>'
 
 
-def _sobre_nosotros_html(e, cuentas=None):
-    """Menu "Sobre Nosotros" (v1.2.49): Quiénes somos (la pagina propia ?pagina=quienes, o el link de ENLACES_MARCA["quienes_somos"] si se carga uno),
+def _sobre_nosotros_bloques(e, cuentas=None):
+    """Bloques de "Sobre Nosotros" (lista de piezas HTML): Quiénes somos (la pagina propia ?pagina=quienes, o el link de ENLACES_MARCA["quienes_somos"] si se carga uno),
     "Nuestras Redes" (YouTube, Instagram e Intramed, a color) y "Contactános" (Gmail y WhatsApp, a color). Lo que no tiene link no se muestra
-    (WhatsApp se muestra apagado hasta que se cargue su link)."""
+    (WhatsApp se muestra apagado hasta que se cargue su link). v1.2.50: "Abrí una cuenta con nosotros" va acá adentro."""
     if e["quienes_somos"]:
         qs = f'<a class="mc-pi" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer">Quiénes somos</a>'
     else:
@@ -347,11 +347,15 @@ def _sobre_nosotros_html(e, cuentas=None):
     contacto += _enlace_color("whatsapp", e["whatsapp"])
     if contacto:
         bloques += ['<div class="mc-hr"></div>', '<div class="mc-ps">Contactános</div>', f'<div class="mc-redes">{contacto}</div>']
-    # v1.2.50 (decidido por el dueño): "Abrí una cuenta con nosotros" va DENTRO de este menu, no como boton aparte en la barra.
     logos = _cuentas_html(cuentas)
     if logos:
         bloques += ['<div class="mc-hr"></div>', logos]
-    return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Sobre Nosotros ▾</summary><div class="mc-pop">{"".join(bloques)}</div></details>'
+    return bloques
+
+
+def _sobre_nosotros_html(e, cuentas=None):
+    """Menu desplegable "Sobre Nosotros" de la franja (la forma de antes de la v1.2.83; ahora todo esto vive en el menu lateral)."""
+    return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Sobre Nosotros ▾</summary><div class="mc-pop">{"".join(_sobre_nosotros_bloques(e, cuentas))}</div></details>'
 
 
 def _comentarios_menu_html(e, comentarios_mail=None):
@@ -366,7 +370,7 @@ def _comentarios_menu_html(e, comentarios_mail=None):
     return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Comentarios ▾</summary><div class="mc-pop">{form}</div></details>'
 
 
-def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None, activa="empresas", con_buscador=True):
+def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None, activa="empresas", con_buscador=True, menu_lateral=True, menu_abierto=False):
     """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrí una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
     try:
         from config.ajustes import TITULO_EN_FUENTE_CONDENSADA as _tc
@@ -387,14 +391,15 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
                 iconos += _insignia(k, "WhatsApp: próximamente")
         iconos += _icono_img("intramed", "Intramed", e["intramed"], "mc-ib")
     iconos = f'<div class="mc-ic">{iconos}</div>' if iconos else ""
-    menus = _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)
+    menus = "" if menu_lateral else _sobre_nosotros_html(e, cuentas) + _comentarios_menu_html(e, comentarios_mail)      # v1.2.83: los menus viven en el menu lateral
     nav = f'<div class="mc-nav">{menus}{iconos}</div>'
     uri = logo_uri()
     toro = (f'<a class="mc-toro" href="?pagina=quienes" target="_self" title="Quiénes somos"><img src="{uri}" alt="{html.escape(NOMBRE_MARCA)}"></a>'
             if uri else "")   # v1.2.51: tocar el toro abre "Quiénes somos"
     datos = f'<div class="mc-datos">Datos al <b>{html.escape(str(datos_al))}</b></div>' if datos_al else ""
     # v1.2.60: "Empresas" y "ETFs" ya no son links de la franja (recargaban la pagina): son botones de Streamlit (app.py: render_nav_tablas)
-    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}</div></div>{datos}'
+    ham = hamburguesa_html(menu_abierto) if menu_lateral else ""
+    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}{ham}</div></div>{datos}'
 
 
 def css_nav(activa):
@@ -420,3 +425,100 @@ def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
         dat += f'{precios} · '
     return (f'<div class="mc-pie">{av}<div>{dat}Powered by <b>Claude AI</b> · v{html.escape(str(version))}</div>'
             f'<div class="mc-dev">Developed by <b>{html.escape(NOMBRE_MARCA)}</b></div></div>')
+
+
+# --- menu lateral (v1.2.83) -------------------------------------------------------------------------------------------------------
+# Las 3 rayitas van a la derecha del toro. El estado abierto / cerrado lo guarda un checkbox escondido (id mc-menu) y el CSS lo lee con :has(), asi que abrir y cerrar
+# no recarga nada. El panel es un contenedor de Streamlit con clave "menu_lateral" (app.py), porque adentro van el Filtro, Noticias y Calendario, que son widgets.
+def hamburguesa_html(abierto=False):
+    chk = " checked" if abierto else ""
+    return ('<input type="checkbox" id="mc-menu" class="mc-chk"' + chk + ' aria-hidden="true" tabindex="-1">'
+            '<label for="mc-menu" class="mc-ham" title="Menú" aria-label="Abrir el menú"><span class="mc-hb"><i></i><i></i><i></i></span><span class="mc-hl">MENU</span></label>'
+            '<label for="mc-menu" class="mc-ov" aria-hidden="true"></label>')
+
+
+CSS_MENU = """
+.mc-chk{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.mc-ham{display:flex;align-items:center;gap:8px;cursor:pointer;padding:10px 8px;margin-left:2px;border-radius:10px;user-select:none;flex:none}
+.mc-ham{position:relative;z-index:70}
+[data-testid="stLayoutWrapper"]:has(>.st-key-nav_tablas),.st-key-nav_tablas{pointer-events:none}
+.st-key-nav_tablas button{pointer-events:auto}
+.mc-hb{display:flex;flex-direction:column;gap:5px;width:28px}
+.mc-hb i{display:block;height:3px;border-radius:2px;background:#e5e7eb;transition:background .15s}
+.mc-hl{font-size:.8rem;font-weight:800;letter-spacing:1.6px;color:#00e85c;max-width:0;overflow:hidden;opacity:0;white-space:nowrap;transition:max-width .22s ease,opacity .22s ease}
+.mc-ham:hover .mc-hb i,body:has(#mc-menu:checked) .mc-hb i{background:#00e85c}
+.mc-ham:hover .mc-hl,body:has(#mc-menu:checked) .mc-hl{max-width:64px;opacity:1}
+.mc-ov{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:1400;cursor:default}
+body:has(#mc-menu:checked) .mc-ov{display:block}
+.st-key-menu_lateral{position:fixed!important;top:0;right:0;bottom:0;height:100vh;height:100dvh;width:min(94vw,430px);max-width:100vw;box-sizing:border-box;background:#fff;z-index:1500;
+overflow-y:auto;overflow-x:hidden;padding:10px 18px 28px!important;gap:0!important;box-shadow:-16px 0 36px rgba(15,23,42,.30);transform:translateX(106%);visibility:hidden;
+transition:transform .24s ease,visibility 0s linear .24s}
+body:has(#mc-menu:checked) .st-key-menu_lateral{transform:none;visibility:visible;transition:transform .24s ease}
+.st-key-menu_lateral [data-testid="stElementContainer"]{width:100%}
+.mn-h{display:flex;align-items:center;justify-content:space-between;padding:6px 2px 10px;margin-bottom:6px;font-size:1.05rem;color:#111827;letter-spacing:.3px}
+.mn-x{cursor:pointer;font-size:1.5rem;line-height:1;color:#374151;padding:2px 8px;border-radius:8px}
+.mn-x:hover{background:#f1f4f8}
+.mn-it{display:flex;align-items:center;justify-content:space-between;padding:14px 12px;font-size:1rem;color:#111827!important;text-decoration:none!important;border-bottom:1px solid #eef1f4;font-weight:500}
+.mn-it:hover{background:#f1f4f8}
+.mn-it small{color:#6b7280;font-weight:400;font-size:.78rem}
+.mn-it.mn-rosa{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);color:#fff!important;font-weight:800;border-radius:12px;border:0;margin:10px 0 6px;text-shadow:0 1px 2px rgba(120,20,60,.35);box-shadow:0 4px 14px rgba(190,60,100,.22)}
+.mn-it.mn-rosa:hover{filter:brightness(1.04) saturate(1.1)}
+.mn-sep{height:1px;background:#d9dee5;margin:14px 0 8px}
+.mn-sub{font-size:.74rem;font-weight:800;letter-spacing:1.2px;color:#6b7280;margin:12px 2px 2px}
+.mn-pop{position:static!important;width:auto!important;box-shadow:none!important;border:0!important;padding:0!important;background:transparent!important}
+.mn-pop a.mc-pi{padding:13px 12px;border-bottom:1px solid #eef1f4;border-radius:0;font-weight:500;font-size:1rem}
+.mn-det{border-bottom:1px solid #eef1f4}
+.mn-det>summary{list-style:none;cursor:pointer;padding:14px 12px;font-size:1rem;color:#111827;font-weight:500;display:flex;justify-content:space-between;align-items:center}
+.mn-det>summary::-webkit-details-marker{display:none}
+.mn-det>summary::after{content:"▾";color:#6b7280}
+.mn-det[open]>summary::after{content:"▴"}
+.mn-det .mc-form{padding:4px 4px 12px}
+.mn-ver{margin:18px 2px 0;font-size:.82rem;color:#6b7280;line-height:1.7}
+.mn-ver b{color:#374151}
+/* Streamlit dentro del panel: las cajas pasan de tarjetas con sombra a filas de lista */
+.st-key-menu_lateral .st-key-caja_screener [data-testid="stExpander"],.st-key-menu_lateral .st-key-caja_cal [data-testid="stExpander"]{box-shadow:none;border-radius:0;border-bottom:1px solid #eef1f4!important}
+.st-key-menu_lateral .st-key-caja_screener [data-testid="stExpander"] summary,.st-key-menu_lateral .st-key-caja_cal [data-testid="stExpander"] summary{padding:0 12px;min-height:52px;border-radius:0}
+.st-key-menu_lateral .st-key-caja_screener [data-testid="stExpander"] summary p,.st-key-menu_lateral .st-key-caja_cal [data-testid="stExpander"] summary p{font-weight:500;font-size:1rem;color:#111827}
+.st-key-menu_lateral [data-testid="stExpanderDetails"]{padding:.5rem .4rem 1rem!important}
+.st-key-menu_lateral .nt{box-shadow:none;border-radius:0;border-bottom:1px solid #eef1f4;padding:0 12px}
+.st-key-menu_lateral .nt>summary{font-weight:500;font-size:1rem;color:#111827;min-height:52px}
+.st-key-menu_lateral .nt li a{flex-basis:100%}
+.st-key-menu_lateral [data-baseweb="tab-list"]{flex-wrap:wrap;gap:0}
+.st-key-menu_lateral [data-baseweb="tab"]{height:auto;padding:6px 10px}
+.st-key-menu_lateral [data-baseweb="tab"] p{white-space:normal;line-height:1.25;font-size:.9rem}
+.mc-nav:empty{display:none}
+@media (max-width:820px){.mc-hl{display:none}.mc-ham{padding:8px 4px;order:2}.mc-hb{width:26px}}
+"""
+CSS += CSS_MENU
+
+
+def menu_cabecera_html():
+    return '<div class="mn-h"><b>Menú</b><label for="mc-menu" class="mn-x" title="Cerrar" aria-label="Cerrar el menú">✕</label></div>'
+
+
+def menu_enlaces_html(home=True):
+    """Filas de enlace del menu: Evaluá tu Portfolio (rosa) e Ideas de inversión. Si no se esta en el inicio, también los enlaces a lo que vive solo ahí (Filtro, Noticias, Calendario)."""
+    filas = ""
+    if not home:
+        filas += ('<a class="mn-it" href="?menu=1" target="_self">Filtro de empresas<small>en el inicio</small></a>'
+                  '<a class="mn-it" href="?menu=1" target="_self">Noticias Calientes del día<small>en el inicio</small></a>'
+                  '<a class="mn-it" href="?menu=1" target="_self">Calendario<small>en el inicio</small></a>')
+    filas += ('<a class="mn-it mn-rosa" href="?pagina=cartera" target="_self"><span>Evaluá tu Portfolio</span><span>→</span></a>'
+              '<a class="mn-it" href="?pagina=ideas" target="_self"><span>Ideas de inversión</span><span>›</span></a>')
+    return f'<div>{filas}</div>'
+
+
+def menu_pie_html(version, enlaces=None, cuentas=None, comentarios_mail=None):
+    """Parte de abajo del menu: despues de una linea, Quiénes somos / redes / contacto / cuentas; despues de otra, Comentarios; al final la versión."""
+    e = _enlaces(enlaces)
+    bloques = "".join(_sobre_nosotros_bloques(e, cuentas))
+    com = ""
+    if e["comentarios"]:
+        com = (f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer">Comentarios</a>')
+    else:
+        form = _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
+        if form:
+            com = f'<details class="mn-det"><summary>Comentarios</summary>{form}</details>'
+    return (f'<div class="mn-sep"></div><div class="mc-pop mn-pop">{bloques}</div>'
+            + (f'<div class="mn-sep"></div>{com}' if com else "")
+            + f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b></div>')

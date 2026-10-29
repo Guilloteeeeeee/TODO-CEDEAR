@@ -144,6 +144,29 @@ def _es_numerica(col, filas):
     return len(v) >= 1 and sum(x is not None for x in v) / len(v) >= 0.7
 
 
+def moneda_ticker(tk):
+    """Los bonos argentinos terminan en D (dólar MEP) o C (dólar cable/CCL): AL30D, GD30C. Sin esa letra cotizan en pesos. Para el resto no se deduce nada (None)."""
+    t = str(tk or "").strip().upper()
+    if re.fullmatch(r"[A-Z]{2,3}\d{2}[DC]", t):
+        return "usd"
+    return None
+
+
+_USD_GLOBAL = re.compile(r"(?:\ben|expresad[oa]s? en|valores en|montos en|importes en|valuado en|valorizado en)\s+(?:dolares|dolar|usd|u\$s|us\$|u s d)\b")
+_ARS_GLOBAL = re.compile(r"(?:\ben|expresad[oa]s? en|valores en|montos en|importes en|valuado en|valorizado en)\s+(?:pesos|ars|\$)(?:\s|$)")
+
+
+def _moneda_global(filas):
+    """Moneda declarada en los títulos de arriba de la tabla ('Valores expresados en dólares'); None si no dice."""
+    for f in filas:
+        t = norm(" ".join(str(c or "") for c in f))
+        if _USD_GLOBAL.search(t):
+            return "usd"
+        if _ARS_GLOBAL.search(t):
+            return "ars"
+    return None
+
+
 def leer_tabla_info(filas):
     """(posiciones, notas). Ver `leer_tabla`. Las notas avisan de cosas que la persona tiene que saber (por ejemplo, que el monto es lo que pagó y no el valor de hoy)."""
     filas = [list(f) for f in filas if f and any(str(c or "").strip() for c in f)]
@@ -155,7 +178,9 @@ def leer_tabla_info(filas):
         if p > mejor_p:
             mejor, mejor_p = i, p
     notas = []
+    mon_global = None
     if mejor is not None:
+        mon_global = _moneda_global(filas[:mejor + 1])
         c = _columnas(filas[mejor])
         datos = filas[mejor + 1:]
         for im, _ in c["monto"][:1]:
@@ -199,7 +224,7 @@ def leer_tabla_info(filas):
             tipo = seccion              # el título de grupo ("Renta Fija") vale más que una columna que no se entiende
         if re.match(r"^etf\s+", tk, re.I) and not clase_de_tipo(tipo):
             tipo = "ETF"
-        mo = mo_enc or (moneda_de(f[c["moneda"]]) if c["moneda"] is not None and c["moneda"] < len(f) else None)
+        mo = mo_enc or (moneda_de(f[c["moneda"]]) if c["moneda"] is not None and c["moneda"] < len(f) else None) or moneda_ticker(tk) or mon_global
         out.append({"ticker": _ticker_limpio(tk), "monto": m, "tipo": tipo, "moneda": mo})
     # una empresa con varias compras (lotes) es UNA posicion: se suman
     agr, orden = {}, []
@@ -303,6 +328,9 @@ def leer_archivo_info(nombre, datos):
     Lanza ValueError con un mensaje claro si no se puede leer."""
     import pandas as pd
     n = str(nombre or "").lower()
+    if n.endswith(".pdf"):
+        pos, notas, _tc = leer_pdf_info(datos)
+        return pos, " ".join(notas)
     if n.endswith((".csv", ".txt", ".tsv")):
         try:
             pos, notas = leer_tabla_info(_filas_csv(datos))
@@ -333,6 +361,178 @@ def leer_archivo_info(nombre, datos):
 def leer_archivo(nombre, datos):
     """Posiciones desde un .xlsx / .xls / .csv (bytes). Lanza ValueError con un mensaje claro si no se puede leer."""
     return leer_archivo_info(nombre, datos)[0]
+
+
+# --- PDF del broker (resumen de cuenta / tenencias) -----------------------------------------------------------------------------------------------------------
+
+_SIMB = {"$": "ars", "ars": "ars", "usd": "usd", "us$": "usd", "u$s": "usd", "us": "usd"}
+_TK_PDF = re.compile(r"^[A-Z0-9][A-Z0-9.\-/]{0,11}$")
+_ENC_PDF = re.compile(r"(especie|ticker|simbolo|instrumento|activo|descripcion)")
+_EFECTIVO_TIT = ("monedas", "efectivo", "liquidez", "disponible", "disponibilidades", "saldos", "caja", "cuentas")
+
+
+def _texto_pdf(datos):
+    try:
+        from pypdf import PdfReader
+    except ImportError as e:
+        raise ValueError("Para leer PDFs falta un componente en el servidor. Mientras tanto subí el Excel o pegá tu cartera como texto.") from e
+    try:
+        lector = PdfReader(io.BytesIO(datos))
+        if getattr(lector, "is_encrypted", False):
+            try:
+                lector.decrypt("")
+            except Exception:  # noqa: BLE001
+                pass
+        return "\n".join((pg.extract_text() or "") for pg in lector.pages)
+    except Exception as e:  # noqa: BLE001
+        raise ValueError("No pude abrir ese PDF. Probá con el Excel del broker o pegá tu cartera como texto.") from e
+
+
+def _cola_numerica(linea):
+    """Separa una línea en (texto, [(moneda, número)...]) tomando los números del final: 'AO28 BONO … USD 546,00 0.00 $ 1.417,50 $ 773.955' -> texto + 4 números."""
+    tok = linea.split()
+    cola, i = [], len(tok)
+    while i > 0:
+        t = tok[i - 1]
+        if re.fullmatch(r"-?\d[\d.,]*", t) and numero(t) is not None:
+            mon = None
+            if i - 1 > 0 and tok[i - 2].lower() in _SIMB:
+                mon = _SIMB[tok[i - 2].lower()]
+                i -= 1
+            elif re.match(r"^(\$|us\$|u\$s)", t.lower()):
+                mon = "ars" if t.startswith("$") else "usd"
+            cola.append((mon, numero(t)))
+            i -= 1
+        else:
+            m = re.fullmatch(r"(\$|US\$|U\$S)(-?\d[\d.,]*)", t, re.I)
+            if m and numero(m.group(2)) is not None:
+                cola.append((_SIMB[m.group(1).lower()], numero(m.group(2))))
+                i -= 1
+            else:
+                break
+    cola.reverse()
+    return " ".join(tok[:i]), cola
+
+
+def tipo_cambio_texto(texto):
+    """Dólar MEP/CCL que figura en el resumen ('Tipo de cambio para esa fecha: MEP $ 1.564,29'); None si no hay."""
+    m = re.search(r"\b(?:MEP|CCL|contado con liqui\w*)\s*[:=]?\s*\$?\s*(\d[\d.]*,\d+|\d+\.\d{2})", texto or "", re.I)
+    v = numero(m.group(1)) if m else None
+    return v if v and v > 50 else None
+
+
+def leer_pdf_info(datos):
+    """(posiciones, notas, tipo de cambio del resumen) desde el PDF de un broker. Entiende los resúmenes con tablas por tipo de activo (Bonos, Cedears, Corporativos… con
+    especie, descripción, cantidad, precio y valor actual) y la sección de monedas/efectivo; la moneda de cada valor sale del símbolo ($ o USD). Si no encuentra ese formato,
+    prueba con las tablas en columnas. No se guardan datos personales: solo se toman tickers y montos."""
+    texto = _texto_pdf(datos)
+    if not texto.strip():
+        raise ValueError("Ese PDF no tiene texto que pueda leer (parece una foto o un escaneo). Subí el Excel del broker o pegá tu cartera como texto.")
+    out, seccion, modo, hay_efectivo = [], "", "", False
+    for linea in texto.splitlines():
+        linea = linea.strip()
+        if not linea:
+            continue
+        n = norm(linea)
+        sin_num = not re.search(r"\d", linea)
+        if sin_num and len(linea) <= 45:
+            if n in _EFECTIVO_TIT:
+                modo, seccion = "efectivo", ""
+                continue
+            if clase_de_tipo(linea) and n not in ("monedas",):
+                modo, seccion = "tabla", linea
+                continue
+            if modo == "efectivo" or re.search(r"evolucion|distribucion|resumen|informacion|instrumentos|composicion", n):
+                modo = "" if modo == "efectivo" else modo
+                continue
+        if _ENC_PDF.search(n) and re.search(r"(valor|monto|importe|valuacion|total)", n) and sin_num:
+            modo = "tabla"
+            continue
+        if _TOTALES.match(n) or re.search(r"tipo de cambio|cotizacion|dolar mep|\|", n):
+            continue
+        texto_l, cola = _cola_numerica(linea)
+        if not cola or not texto_l:
+            continue
+        mon, valor = cola[-1]
+        if valor <= 0:
+            continue
+        if modo == "efectivo":
+            if mon is None and not moneda_de(texto_l):
+                continue
+            mon = mon or moneda_de(texto_l)
+            if len(cola) != 1 or not re.search(r"peso|dolar|dollar|usd|cable|mep|ccl|euro|real", n):
+                continue
+            nombre = "Efectivo en pesos" if mon == "ars" else "Efectivo en dólares"
+            out.append({"ticker": nombre, "monto": round(valor, 2), "tipo": "Efectivo", "moneda": mon})
+            hay_efectivo = True
+        elif modo == "tabla":
+            tk, _, desc = texto_l.partition(" ")
+            if not _TK_PDF.match(tk) or not re.search(r"[A-Z]", tk) or len(cola) < 2 or re.fullmatch(r"\d+", tk):
+                continue
+            tipo = seccion
+            if not clase_de_tipo(tipo):
+                d = norm(desc)
+                tipo = "Cedear" if d.startswith("cedear") else ("Obligación negociable" if re.search(r"\bon\b", d) else ("Bono" if re.search(r"\b(bono|letra|lecap|boncap)\b", d) else ""))
+            out.append({"ticker": _ticker_limpio(tk), "monto": valor, "tipo": tipo, "moneda": mon})
+    notas = []
+    if out:
+        agr, orden = {}, []
+        for p in out:
+            k = (clave_tk(p["ticker"]) or p["ticker"].upper(), p["moneda"])
+            if k in agr:
+                agr[k]["monto"] += p["monto"]
+            else:
+                agr[k] = dict(p)
+                orden.append(k)
+        out = [dict(agr[k], monto=round(agr[k]["monto"], 2)) for k in orden]
+        if hay_efectivo:
+            notas.append("Incluí el efectivo que figura en tu resumen.")
+        return out, notas, tipo_cambio_texto(texto)
+    # sin el formato "una tabla por tipo de activo": se prueba con las filas en columnas (separadas por 2+ espacios) del PDF
+    try:
+        from pypdf import PdfReader
+        filas = []
+        for pg in PdfReader(io.BytesIO(datos)).pages:
+            for l in (pg.extract_text(extraction_mode="layout") or "").splitlines():
+                celdas = [c.strip() for c in re.split(r"\s{2,}", l.strip()) if c.strip()]
+                if len(celdas) >= 2:
+                    filas.append(celdas)
+        pos, notas = leer_tabla_info(filas)
+    except Exception:  # noqa: BLE001
+        pos, notas = [], []
+    return pos, notas, tipo_cambio_texto(texto)
+
+
+
+def rentabilidad_anual(aportado, final, anios):
+    """Rentabilidad anualizada ESTIMADA de una cartera cuando no se conocen las fechas exactas de los aportes.
+    Devuelve {'total': ganancia % sobre lo aportado, 'anual_inicio': anual si todo se aportó al principio, 'anual_parejo': anual si se aportó en cuotas iguales, una por mes}.
+    Si se aportó de a poco, el dinero estuvo menos tiempo invertido y la tasa verdadera es mayor que la de 'todo al principio' (cuando hubo ganancia): por eso se muestran las dos.
+    None si los datos no sirven (aportes o capital <= 0, o menos de un mes)."""
+    try:
+        a, f, y = float(aportado), float(final), float(anios)
+    except (TypeError, ValueError):
+        return None
+    if a <= 0 or f <= 0 or y < 1 / 12:
+        return None
+    r0 = (f / a) ** (1 / y) - 1
+    n = max(1, int(round(y * 12)))
+    c = a / n
+
+    def valor_final(r):
+        return sum(c * (1 + r) ** (y - i / 12) for i in range(n))
+    lo, hi = -0.95, 20.0
+    if valor_final(lo) > f or valor_final(hi) < f:
+        r1 = None
+    else:
+        for _ in range(200):
+            mid = (lo + hi) / 2
+            if valor_final(mid) < f:
+                lo = mid
+            else:
+                hi = mid
+        r1 = (lo + hi) / 2
+    return {"total": (f / a - 1) * 100, "anual_inicio": r0 * 100, "anual_parejo": r1 * 100 if r1 is not None else None, "anios": y}
 
 
 def plantilla_excel():
