@@ -66,3 +66,16 @@ MAPA = {t: ind for ind, tks in _G.items() for t in tks.split()}
 # Industrias donde los márgenes/EV de Damodaran NO se pueden comparar con una empresa común (financieras): en la ficha se muestran solo PER, P/B, ROE y margen neto.
 FINANCIERAS = {"Bank (Money Center)", "Banks (Regional)", "Brokerage & Investment Banking", "Investments & Asset Management", "Insurance (General)", "Insurance (Prop/Cas.)",
                "Financial Svcs. (Non-bank & Insurance)"}
+
+
+# Región de Damodaran con la que se compara cada empresa (v1.2.88). Todo lo que no figura acá se compara con EE.UU. Cuenta el lugar donde la empresa hace su negocio y cotiza, no sólo donde está registrada
+# (ACN, MDT y LIN, registradas en Irlanda/Reino Unido pero con negocio y cotización en EE.UU., quedan con EE.UU.; PDD, registrada en Irlanda pero china, va con emergentes).
+_R = {
+    "emergentes": "VALE ITUB NU PBR HDB IBN INFY BABA NTES PDD MELI TSM",
+    "europa": "HSBC ARM SHEL BP UL DEO GSK AZN RIO SAN BBVA ING ASML SIEGY SAP RACE SPOT TTE EQNR NVS NVO",
+    "aus_nz_canada": "AEM SHOP BHP",
+    "japon": "MUFG TM SONY",          # sin planilla regional: se compara con EE.UU. y la nota lo aclara
+}
+REGION = {t: r for r, tks in _R.items() for t in tks.split()}
+REGION_TXT = {"us": "empresas de EE.UU.", "emergentes": "empresas de mercados emergentes", "europa": "empresas de Europa", "aus_nz_canada": "empresas de Australia, Nueva Zelanda y Canadá",
+              "japon": "empresas de EE.UU. (no hay planilla de Japón)"}

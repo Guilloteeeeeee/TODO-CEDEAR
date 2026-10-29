@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.89 (29/10/2026): el promedio de la industria se compara con la región de cada empresa
+
+- **Planillas regionales de Damodaran** cargadas en `data/damodaran/regiones.json` (Mercados Emergentes, Europa, Australia/Nueva Zelanda/Canadá y PER global). La columna «Industria» de Ratios Financieros usa la región de la empresa; la nota al pie dice con qué región se comparó.
+- **Regiones** (`REGION` en `data/damodaran_mapa.py`): emergentes (VALE, ITUB, NU, PBR, HDB, IBN, INFY, BABA, NTES, PDD, MELI, TSM), Europa (21 empresas, entre ellas HSBC, SAP, ASML, NVS, SHEL), Australia/NZ/Canadá (AEM, SHOP, BHP). ACN, MDT y LIN se comparan con EE.UU.
+- **Japón** (MUFG, TM, SONY): Damodaran no tiene planilla de Japón, así que se comparan con EE.UU. y la nota lo dice.
+- **Australia/NZ/Canadá** solo trae márgenes y PER: ROE, ROIC y deuda/patrimonio quedan en blanco para BHP, AEM y SHOP. Nunca se completa con EE.UU.
+- El archivo de PER global está cargado pero todavía no se usa. Primas por país, tasas, rating sintético, betas, WACC, detalle de deuda e histórico quedan para el DCF (decisión de Guille).
+
 ### v1.2.88 (29/10/2026): promedio de la industria (Damodaran) en Ratios Financieros
 
 - **Ficha > Estados Financieros > Ratios Financieros**: columna nueva «Industria» con el promedio de la industria de EE.UU. de Damodaran (datos a enero de 2026) para margen bruto, operativo y neto, ROE, ROIC y deuda/patrimonio. En bancos, brokers y seguros sólo margen neto y ROE. Si no hay dato, queda en blanco. Debajo de la tabla se aclara la industria, la cantidad de empresas y la fuente («Damodaran, ene-2026»). Son promedios del conjunto, no un número ideal.

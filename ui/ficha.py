@@ -1452,7 +1452,7 @@ AYUDA_ESTADOS = {
 def _tabla_estado_html(t, moneda, industria=None):
     """industria (v1.2.88): {rótulo de la fila: valor} -> suma una última columna con el promedio de la industria (Damodaran); en las filas sin dato queda en blanco."""
     cab = ("<tr><th>Concepto</th>" + "".join(f"<th>{a}</th>" for a in t["anios"])
-           + ('<th class="ind-d" title="Promedio de la industria de EE.UU. (Damodaran, ene-2026)">Industria</th>' if industria else "") + "</tr>")
+           + ('<th class="ind-d" title="Promedio de la industria (Damodaran, ene-2026)">Industria</th>' if industria else "") + "</tr>")
     filas = ""
     for rot, vals, tipo in t["filas"]:
         negrita = ' class="tot"' if tipo == "t" else ""
@@ -1488,7 +1488,7 @@ def _industria_ratios(ticker):
     if not fila:
         return None, ""
     n = int(m.get("Number of firms") or 0)
-    nota = (f"<b>Industria</b> = promedio de la industria «{html.escape(v['industria'])}» de Damodaran ({n} empresas de EE.UU., datos a enero de 2026); "
+    nota = (f"<b>Industria</b> = promedio de la industria «{html.escape(v['industria'])}» de Damodaran ({n} {html.escape(v.get('region_txt', 'empresas de EE.UU.'))}, datos a enero de 2026); "
             "es un promedio del conjunto, no un número ideal. " + ("En bancos, brokers y seguros sólo se compara margen neto y ROE. " if v["industria"] in FINANCIERAS else "")
             + "Fuente: Damodaran, ene-2026.")
     return fila, nota

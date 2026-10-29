@@ -63,10 +63,35 @@ def industria_de(ticker):
     return MAPA.get(str(ticker).upper())
 
 
+@lru_cache(maxsize=1)
+def _regiones():
+    import json
+    with open(os.path.join(_DIR, "regiones.json"), encoding="utf-8") as f:
+        return json.load(f)["regiones"]
+
+
+def region_de(ticker):
+    """'us' | 'emergentes' | 'europa' | 'aus_nz_canada' | 'japon' (Japón se compara con EE.UU.)."""
+    from data.damodaran_mapa import REGION
+    return REGION.get(str(ticker).upper(), "us")
+
+
 def valores(ticker):
-    """Dict de planillas de la industria de Damodaran de esa empresa (o None)."""
+    """Dict de planillas de la industria de Damodaran de esa empresa, en la región que le toca (o None). Si la región no tiene una planilla, esa clave no está (no se completa con EE.UU.).
+    Incluye 'industria', 'region' y 'region_txt'. Los porcentajes están en puntos (12,3 = 12,3 %)."""
+    from data.damodaran_mapa import REGION_TXT
     ind = industria_de(ticker)
-    return ({"industria": ind, **cargar()[ind]} if ind and ind in cargar() else None)
+    if not ind or ind not in cargar():
+        return None
+    rg = region_de(ticker)
+    out = {"industria": ind, "region": rg, "region_txt": REGION_TXT[rg]}
+    if rg in ("us", "japon"):
+        out.update(cargar()[ind])
+    else:
+        for ds, filas in _regiones().get(rg, {}).items():
+            if ind in filas:
+                out[ds] = filas[ind]
+    return out
 
 
 @lru_cache(maxsize=1)
