@@ -7051,6 +7051,196 @@
      "2022"
     ]
    }
+  },
+  "PCAR": {
+   "resumen": "PACCAR es un fabricante estadounidense de camiones comerciales livianos, medianos y pesados, con presencia en Estados Unidos, Canadá, Australia, México, Europa y América Central y del Sur. Opera tres segmentos: camiones (Truck), repuestos (Parts) y servicios financieros (Financial Services), que financia la compra de sus propios camiones. Gana plata vendiendo camiones de ciclo largo, repuestos para la flota instalada y financiamiento. Tiene un **foso débil a estrecho, de marca y red de concesionarios**: sus camiones son de marca premium en el transporte por carretera y los dueños de flotas valoran el servicio y los repuestos cerca de la ruta, pero un camión es un bien comparable y el cliente puede cambiar de marca cada vez que renueva la flota. Los números reflejan un negocio muy cíclico: los ingresos subieron a 35.127 M en 2023, y bajaron a **28.445 M en 2025** (-15,5 %); el margen operativo pasó de 16,9 % a **10,4 %** y el ROIC de 15,9 % a **6,7 %**. Aun así, el flujo libre se mantuvo cerca de 3.000 M todos los años y la ganancia por acción de los últimos 12 meses (5,25) ya subió 16 % respecto de 2025. Paga dividendo desde 1987 y las acciones casi no se movieron (523 M a 527 M). Su punto débil es que depende del ciclo del transporte y que su rentabilidad sobre el capital cayó cerca del costo del dinero. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad con dividendo de 40 años y flujo libre estable, aunque muy cíclica y con ROIC de 6,7 % en el punto bajo del ciclo.**",
+   "veredicto": "Buena: dividendo de 40 años y flujo libre estable cerca de 3.000 M, aunque muy cíclica y con ROIC de 6,7 % en el punto bajo del ciclo",
+   "conclusion": "PACCAR es una empresa de buena calidad: tiene un foso débil a estrecho de marca y red de concesionarios, dividendo desde 1987 y flujo libre cercano a 3.000 M todos los años, pero es muy cíclica y su ROIC cayó a 6,7 % en 2025. Hay que seguirla de cerca. Es recomendable investigar la cartera de pedidos y la política de dividendos extra en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva a subir cuando el ciclo se recupere.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "PACCAR diseña, fabrica y distribuye camiones comerciales livianos, medianos y pesados en Estados Unidos, Canadá, Australia, México, Europa, América Central y del Sur, y a nivel internacional. Opera tres segmentos: **Truck**, que diseña, fabrica y distribuye camiones para el transporte por carretera y fuera de ella; **Parts** y **Financial Services**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio cíclico: **los ingresos crecieron 21,9 % en 2023, cayeron 4,2 % en 2024 y 15,5 % en 2025, hasta 28.445 M**.\n\n**A quién le vende.** A empresas de transporte, dueños de flotas y transportistas independientes, a través de concesionarios. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de PACCAR **es de marca y de red de concesionarios, y es débil a estrecha**. Sus camiones de marca premium tienen buena reventa y los transportistas valoran contar con repuestos y servicio cerca de las rutas. Eso sostiene un margen bruto de 16,7 % a 22,0 % en el ciclo, mejor que el de varios competidores.\n\nPero el ROIC de 6,7 % a 15,9 % y los altibajos de margen operativo (de 16,9 % a 10,4 %) indican que la ventaja no es permanente: en la baja del ciclo la rentabilidad cae mucho. Compite con Daimler Truck, Volvo, Traton y Navistar (International). Es frágil en el ciclo del transporte de cargas, en las regulaciones de emisiones, en el costo de acero y componentes, y en la transición a camiones eléctricos. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de PACCAR cuentan **un ciclo completo de subida y bajada**. Los ingresos fueron de 28.820 M, 35.127 M, 33.664 M y 28.445 M. El EBIT fue de 3.679 M, 5.946 M, 4.892 M y 2.962 M, con margen operativo de 12,8 %, 16,9 %, 14,5 % y 10,4 %. La ganancia neta fue de 3.012 M, 4.601 M, 4.162 M y 2.376 M. La ganancia por acción fue de 5,75, 8,76, 7,90, 4,51 y **5,25** en los últimos 12 meses.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 1.636 M, 2.928 M, 2.895 M, 3.029 M y 2.963 M en los últimos 12 meses; se mantiene estable porque en la baja del ciclo se libera capital de trabajo. El ROIC fue de 11,7 %, 15,9 %, 11,3 % y 6,7 %, y el ROE de 12,3 % en 2025.\n\nLa mirada crítica: el flujo libre de 2025 (3.029 M) es más alto que la ganancia neta (2.376 M) justamente porque la actividad se achica; ese colchón se revierte cuando el ciclo vuelve a subir.",
+   "balance": "**Deuda alta en apariencia, explicada por el financiamiento a clientes.** La deuda total es de 14.696 M y la caja de 8.834 M; Yahoo informa una deuda neta de 9.122 M, que no es comparable con una empresa industrial pura porque incluye la deuda del brazo financiero que presta a los compradores de camiones. La deuda equivale a 0,72 veces el patrimonio, que es de 20.321 M. En 2025, la deuda neta/EBITDA fue de 2,46x (unos 30 meses de EBITDA), también inflada por el brazo financiero.\n\nEl patrimonio neto subió de 13.167 M en 2022 a 20.321 M. Yahoo no trae el gasto por intereses, así que no calculamos la cobertura.",
+   "gerencia": "La conduce Preston Feight, CEO (57 años, pago de 3,0 M según Yahoo), con Brice Poplawski como director financiero (60 años, pago de 0,7 M) y Mark Pigott como presidente ejecutivo del directorio (71 años, pago de 0,5 M). Pigott pertenece a la familia que conduce la empresa desde hace décadas, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo, con recompras casi nulas**: paga un dividendo de 1,40 por acción desde 1987 (los dividendos pagados fueron de 1.005 M en 2022, 1.519 M, 2.288 M, 2.267 M y 1.440 M en los últimos 12 meses, e incluyen pagos extra, dato público a verificar, por eso el crecimiento a 3 años figura en -0,9 %). **Las acciones casi no se movieron: de 523 M a 527 M, un 0,8 % más.**",
+   "fortalezas": [
+    "Dividendo pagado desde 1987.",
+    "Flujo libre estable cerca de 3.000 M todos los años.",
+    "Ganancia por acción que ya rebota (5,25 en los últimos 12 meses).",
+    "Marca premium en camiones y red de repuestos.",
+    "Patrimonio neto creciente (20.321 M)."
+   ],
+   "debilidades": [
+    "Muy cíclica: los ingresos cayeron 15,5 % en 2025.",
+    "ROIC de 6,7 % en 2025, cerca del costo del capital: el crítico más duro diría que el buen año de 2023 fue la excepción.",
+    "Dividendos pagados que absorben 75 % del flujo libre de 2025.",
+    "Sin recompras: las acciones subieron 0,8 %.",
+    "La deuda incluye el brazo financiero y complica la comparación."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 10,4 % en 2025; tiene que recuperarse hacia 14 % con el ciclo.",
+    "Ingresos: hoy 28.445 M; Yahoo no informa la cartera de pedidos, hay que buscarla en el informe.",
+    "Flujo libre: hoy 2.963 M; si baja con el ciclo, el dividendo se aprieta.",
+    "Pagos extra de dividendo: definen el rendimiento real para el accionista."
+   ],
+   "clientes": [
+    "Empresas de transporte y dueños de flotas",
+    "Transportistas independientes",
+    "Compradores que financian camiones con su brazo financiero"
+   ],
+   "ideal_para": [
+    "Buscan una empresa cíclica con dividendo de décadas.",
+    "Entienden que el camión se vende por ciclos.",
+    "Valoran el flujo libre estable."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento constante.",
+    "No toleran los altibajos del ciclo del transporte."
+   ],
+   "perfil": "general",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "PCAR",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ARM": {
+   "resumen": "Arm es una empresa británica que diseña y licencia propiedad intelectual de procesadores: núcleos de CPU, aceleradores gráficos y de redes neuronales, subsistemas de cómputo completos y herramientas de software. No fabrica chips: les vende a las empresas de semiconductores el derecho a usar sus diseños y cobra una licencia inicial y una regalía por cada chip que se vende. Tiene un **foso estrecho, de ecosistema y estándar de la industria**: millones de programas, herramientas y desarrolladores ya están escritos para su arquitectura, y cambiar a otra exige reescribir y probar todo. Los números son de un negocio de licencias: el margen bruto es de **97,5 %** y los ingresos pasaron de 2.679 M en el ejercicio 2023 a **5.156 M** en los últimos 12 meses. Sin embargo, el margen operativo bajó de 25,3 % a **17,3 %**, el ROIC es de 7,8 % y las inversiones subieron de 93 M a 622 M. Tiene más caja (3.888 M) que deuda (464 M) y no paga dividendo. Su punto débil es que los gastos suben más rápido que los ingresos, que las acciones aumentaron 4,4 % y que depende de pocos clientes grandes que también pueden diseñar sus propios chips (dato público). El 22/10 los semiconductores cayeron 6,7 %, y Arm es muy sensible a ese ánimo. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho, margen bruto de 97,5 % y caja neta de 3.424 M, aunque con margen operativo en baja, ROIC de 7,8 % y acciones en alza.**",
+   "veredicto": "Buena: foso estrecho, margen bruto de 97,5 % y caja neta de 3.424 M, con margen operativo en baja, ROIC de 7,8 % y acciones en alza",
+   "conclusion": "Arm es una empresa de buena calidad: tiene un foso estrecho de ecosistema, margen bruto de 97,5 %, ingresos que crecen cerca de 20 % por año y caja neta de 3.424 M, pero el margen operativo bajó a 17,3 %, el ROIC es de 7,8 % y las acciones aumentaron 4,4 %. Hay que seguirla de cerca. Es recomendable investigar la concentración de clientes y el plan de inversiones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva a subir.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Arm Holdings investiga, desarrolla, licencia y comercializa propiedad intelectual de unidades centrales de procesamiento (CPU), de unidades gráficas, de sistemas y subsistemas de cómputo (CSS) y software, herramientas y servicios relacionados. Su cartera incluye diseños de CPU, aceleradores de GPU y de redes neuronales (NPU). Yahoo no informa cuánto aporta cada línea, ni cuánto viene de licencias y cuánto de regalías, y no lo vamos a inventar.\n\nEs un negocio de licencias que crece rápido: **los ingresos subieron 20,7 % en 2024, 23,9 % en 2025 y 22,8 % en 2026, hasta 4.920 M**, y llegan a 5.156 M en los últimos 12 meses (el ejercicio cierra a fines de marzo).\n\n**A quién le vende.** A fabricantes de chips y empresas de tecnología que diseñan procesadores para teléfonos, autos, servidores y otros dispositivos. **Yahoo no informa la concentración de clientes**, y se trata de un dato a verificar en el informe.",
+   "foso": "La ventaja de Arm **es de ecosistema y de estándar, y es estrecha**. Su arquitectura se usa en una enorme cantidad de dispositivos, y miles de programas, herramientas y desarrolladores están escritos para ella; cambiar de arquitectura implica reescribir software y repetir pruebas, algo que casi ninguna empresa quiere hacer. Se ve en el margen bruto de 97,5 %.\n\nPero esa fortaleza todavía no se traduce en una rentabilidad alta sobre el capital: el margen operativo es de 17,3 % y el ROIC de 7,8 %. Compite con arquitecturas abiertas como RISC-V y con x86 de Intel y AMD, y sus propios clientes pueden desarrollar diseños internos. Es frágil en la dependencia de pocos clientes grandes y en el ciclo de los teléfonos y chips. La inteligencia artificial no la amenaza de forma directa; hoy es parte de la demanda.",
+   "numeros": "Los números de Arm cuentan **un negocio que crece al 20 % con un margen bruto casi perfecto, pero con gastos que suben**. Los ingresos fueron de 2.679 M, 3.233 M, 4.007 M y 4.920 M, y de 5.156 M en los últimos 12 meses. El EBIT fue de 678 M, 117 M, 831 M y 908 M, y de 892 M (margen operativo de 17,3 %). La ganancia neta fue de 524 M, 306 M, 792 M y 904 M, y de 1.044 M. La ganancia por acción fue de 0,51, 0,29, 0,61, 0,85 y **0,97**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 646 M, 947 M, 158 M, 949 M y **1.472 M** en los últimos 12 meses (28,5 % de los ingresos). Las inversiones subieron de 93 M a 575 M en 2026. El ROIC fue de 13,1 %, 1,6 %, 9,0 %, 8,6 % y 7,8 %.\n\nLa mirada crítica: el margen operativo de 2024 (3,6 %) coincide con el año de la salida a bolsa, y probablemente refleja un gasto único en compensación (dato público a verificar). La ganancia neta de los últimos 12 meses supera al EBIT porque cobra intereses sobre la caja.",
+   "balance": "**Balance de caja neta.** La caja es de 3.888 M y la deuda total de solo 464 M (probablemente arrendamientos, dato a verificar), de modo que la deuda neta es de -3.424 M: tiene más plata que deudas. El patrimonio neto es de 8.630 M y la deuda equivale a 0,05 veces el patrimonio.\n\nYahoo no trae el gasto por intereses, así que no calculamos la cobertura. El patrimonio se duplicó de 4.051 M a 8.630 M, y la caja pasó de 2.215 M a 3.888 M.",
+   "gerencia": "La conduce Rene Haas, CEO (63 años, pago de 5,1 M según Yahoo), con Jason Child como director financiero (56 años). Haas dirige la empresa desde 2022 y la llevó a la bolsa en 2023, dato público; SoftBank sigue siendo el accionista mayoritario, dato público.\n\nEn lo que importa, **el uso del capital es de reinversión: no paga dividendo ni recompra**. **Las acciones subieron de 1.026 M a 1.071 M, un 4,4 % más**, por la compensación en acciones, y las inversiones crecen: 575 M en 2026 y 622 M en los últimos 12 meses, contra 93 M en 2023.",
+   "fortalezas": [
+    "Margen bruto de 97,5 %.",
+    "Ingresos creciendo cerca de 20 % por año.",
+    "Más caja (3.888 M) que deuda (464 M).",
+    "Flujo libre de 1.472 M en los últimos 12 meses.",
+    "Ecosistema de software difícil de reemplazar."
+   ],
+   "debilidades": [
+    "Margen operativo bajó de 25,3 % a 17,3 %.",
+    "ROIC de 7,8 %, bajo para un negocio de licencias: el crítico más duro diría que la ventaja de ecosistema todavía no se ve en la rentabilidad.",
+    "4,4 % más acciones desde 2023.",
+    "Inversiones que subieron más de seis veces.",
+    "Posible dependencia de pocos clientes grandes y de SoftBank como accionista mayoritario."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 17,3 %; tiene que recuperar el nivel de 2023 (25,3 %).",
+    "Inversiones: hoy 622 M; si siguen subiendo, el flujo libre se achica.",
+    "Cantidad de acciones: hoy 1.071 M; si suben más, la dilución se acumula.",
+    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe."
+   ],
+   "clientes": [
+    "Fabricantes de chips para teléfonos y dispositivos",
+    "Empresas de servidores y centros de datos",
+    "Fabricantes de autos y otros equipos electrónicos"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de licencias con margen bruto altísimo.",
+    "Valoran el crecimiento y la caja neta.",
+    "Aceptan que no paga dividendo."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos.",
+    "No toleran la volatilidad de los semiconductores."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "ARM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 5156000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "TXN": {
+   "resumen": "Texas Instruments diseña, fabrica y vende semiconductores a diseñadores y fabricantes de productos electrónicos en Estados Unidos, China, el resto de Asia, Europa, Medio Oriente, África y Japón. Opera dos segmentos: Analog, con chips de energía y de señal, y Embedded Processing, con microcontroladores y procesadores. Gana plata vendiendo chips baratos y duraderos que quedan diseñados dentro de productos que se fabrican durante años. Tiene un **foso amplio, de costo de fabricación y portfolio**: fabrica gran parte de sus chips en plantas propias, lo que le baja el costo, y sus clientes ya diseñaron sus productos con esos chips, por lo que cambiar es caro. Los números muestran una empresa de alta rentabilidad en un ciclo bajo y ahora en recuperación: el margen operativo fue de 51,9 % en 2022, cayó a 34,1 % en 2024 y llegó a **41,1 %** en los últimos 12 meses, con ROIC de **22,7 %**. Los ingresos de los últimos 12 meses (20.766 M) ya superan el pico de 2022. Pagó dividendo desde 1972, pero entre 2023 y 2025 los dividendos (4.557 M, 4.795 M y 4.999 M) superaron al flujo libre (1.349 M, 1.498 M y 2.603 M) porque invirtió 4.500 M a 5.000 M por año en nuevas plantas; la deuda subió a 13.555 M. Su punto débil es esa presión sobre el flujo libre y el ciclo de la industria. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso amplio, margen operativo de 41,1 % y ROIC de 22,7 %, aunque con dividendo que superó el flujo libre durante tres años y deuda en alza.**",
+   "veredicto": "Muy buena: foso amplio, margen operativo de 41,1 % y ROIC de 22,7 %, con dividendo que superó el flujo libre tres años y deuda en alza",
+   "conclusion": "Texas Instruments es una empresa de muy buena calidad: tiene un foso amplio de costo y portfolio, margen operativo de 41,1 %, ROIC de 22,7 % y dividendo desde 1972, pero entre 2023 y 2025 el dividendo superó al flujo libre y la deuda subió a 13.555 M. Vale la pena seguirla de cerca. Es recomendable investigar el plan de inversiones y el flujo libre normalizado en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo de forma sostenida.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Texas Instruments diseña, fabrica y vende semiconductores a diseñadores y fabricantes de productos electrónicos en Estados Unidos, China, el resto de Asia, Europa, Medio Oriente, África, Japón y a nivel internacional. Opera dos segmentos: **Analog** (chips de energía para gestionar los requerimientos de potencia y otros) y **Embedded Processing**. Yahoo no informa cuánto aporta cada segmento ni cada industria final, y no lo vamos a inventar.\n\nEs un negocio de chips con ciclo: **los ingresos cayeron 12,5 % en 2023 y 10,7 % en 2024, y subieron 13,0 % en 2025, hasta 17.682 M**, y llegan a 20.766 M en los últimos 12 meses.\n\n**A quién le vende.** A miles de fabricantes de productos electrónicos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Texas Instruments **es de costo y de portfolio, y es amplia**. Fabricar sus propios chips en plantas modernas le da un costo por chip menor que el de competidores que dependen de terceros, y su catálogo de decenas de miles de productos estándar permite a un cliente comprar casi todo a un solo proveedor. Los chips analógicos duran años en cada producto y sus clientes no los cambian sin necesidad. Se ve en el margen operativo, que en el punto más bajo del ciclo (2024) todavía fue de 34,1 %, y en el ROIC de 15,4 % a 38,9 %.\n\nCompite con Analog Devices, Infineon, STMicroelectronics, NXP, Microchip y fabricantes chinos que bajan precios. Es frágil en el ciclo de la industria, en los precios de los competidores chinos y en la exigencia de inversión en plantas. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de Texas Instruments cuentan **un ciclo de baja y una recuperación en marcha**. Los ingresos fueron de 20.028 M, 17.519 M, 15.641 M y 17.682 M, y de 20.766 M en los últimos 12 meses. El EBIT fue de 10.397 M, 7.331 M, 5.341 M y 6.140 M, y de 8.538 M (margen operativo de 41,1 %). La ganancia neta fue de 8.749 M, 6.510 M, 4.799 M y 5.001 M, y de 7.113 M. La ganancia por acción fue de 9,41, 7,07, 5,20, 5,45 y **7,71**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 5.923 M, 1.349 M, 1.498 M, 2.603 M y **7.318 M** en los últimos 12 meses; Yahoo marca ese último valor como fuera de lo común y se explica porque las inversiones bajaron de 4.550 M a 2.578 M. El ROIC fue de 38,9 %, 22,9 %, 15,4 %, 17,7 % y 22,7 %.\n\nLa mirada crítica: el flujo libre de 7.318 M sigue sin ser un nivel firme hasta que se confirme que las inversiones en plantas se estabilizan en 2.500 M.",
+   "balance": "**Deuda en alza pero cómoda.** La deuda total es de 13.555 M y la caja de 8.142 M; la deuda neta es de 9.344 M y la deuda neta/EBITDA es de 0,85x, que multiplicado por 12 son unos 10 meses de EBITDA. Los intereses se cubren 15,1 veces con el EBIT.\n\nLa deuda total subió de 8.735 M a 13.555 M desde 2022 para financiar nuevas plantas y el dividendo, mientras el patrimonio neto se mantuvo en 16.273 M a 19.185 M. Conviene mirar que la deuda no siga subiendo.",
+   "gerencia": "La conduce Haviv Ilan, presidente, CEO y presidente del directorio (56 años, pago de 4,7 M según Yahoo), con Julie Knecht como directora financiera y de contabilidad (53 años). Ilan lleva el plan de inversión en plantas propias, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras reducidas**: paga un dividendo de 6,08 por acción (pagado desde 1972; sube 5,5 % por año en 3 años; 5.174 M en los últimos 12 meses, 71 % del flujo libre) y recompró 3.615 M en 2022, 293 M, 929 M, 1.477 M y 636 M en los últimos 12 meses. **Las acciones bajaron de 926 M a 916 M, un 1,1 % menos.** El dividendo superó al flujo libre en 2023, 2024 y 2025.",
+   "fortalezas": [
+    "Margen operativo de 41,1 % y ROIC de 22,7 % en los últimos 12 meses.",
+    "Fabricación propia que baja el costo por chip.",
+    "Dividendo pagado desde 1972.",
+    "Ingresos de 20.766 M, por encima del pico de 2022.",
+    "Intereses cubiertos 15,1 veces."
+   ],
+   "debilidades": [
+    "Dividendo mayor que el flujo libre durante 2023, 2024 y 2025: el crítico más duro diría que lo financió con deuda.",
+    "Deuda que subió de 8.735 M a 13.555 M.",
+    "Inversiones de 4.500 M a 5.000 M por año durante tres años.",
+    "Muy sensible al ciclo de los semiconductores.",
+    "Recompras casi detenidas."
+   ],
+   "vigilar": [
+    "Inversiones: hoy 2.578 M; si vuelven a subir, el dividendo se aprieta.",
+    "Flujo libre: hoy 7.318 M en los últimos 12 meses; tiene que cubrir el dividendo de 5.174 M.",
+    "Deuda total: hoy 13.555 M; define cuánto margen queda.",
+    "Margen operativo: hoy 41,1 %; si baja, la competencia china está presionando precios."
+   ],
+   "clientes": [
+    "Fabricantes de productos electrónicos de todo el mundo",
+    "Empresas industriales y automotrices",
+    "Diseñadores de equipos de comunicación y de consumo"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de semiconductores con dividendo de décadas.",
+    "Valoran la fabricación propia y los márgenes altos.",
+    "Aceptan el ciclo de la industria."
+   ],
+   "menos_ideal": [
+    "Buscan flujo libre estable año a año.",
+    "No toleran la deuda en alza."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "TXN",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 20766000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
