@@ -1478,12 +1478,14 @@ def _industria_ratios(ticker):
         return None, ""
     if not v:
         return None, ""
-    m, pb, be = v.get("margin", {}), v.get("pbvdata", {}), v.get("betas", {})
+    m, pb = v.get("margin", {}), v.get("pbvdata", {})
     g = lambda d, k: (d.get(k) / 100.0 if d.get(k) is not None else None)      # Damodaran trae los porcentajes en puntos
     fila = {"Margen neto": g(m, "Net Margin"), "Retorno sobre el patrimonio (ROE)": g(pb, "ROE")}
     if v["industria"] not in FINANCIERAS:
         fila.update({"Margen bruto": g(m, "Gross Margin"), "Margen operativo": g(m, "Pre-tax Unadjusted Operating Margin"),
-                     "Retorno sobre el capital invertido (ROIC)": g(pb, "ROIC"), "Deuda total / Patrimonio": g(be, "D/E Ratio")})
+                     "Retorno sobre el capital invertido (ROIC)": g(pb, "ROIC")})
+        # v1.2.90: sin Deuda / Patrimonio. El D/E de Damodaran (planilla de betas) usa el valor de MERCADO de las acciones y el de la empresa usa el patrimonio
+        # contable: no se pueden comparar (en una empresa que vale 10 veces su patrimonio, el de mercado da 10 veces menos).
     fila = {k: x for k, x in fila.items() if x is not None}
     if not fila:
         return None, ""

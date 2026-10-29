@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.90 (29/10/2026): sin Deuda / Patrimonio de la industria en Ratios Financieros
+
+- **Corrección**: la columna «Industria» ya no muestra Deuda total / Patrimonio. El D/E de Damodaran (planilla de betas) usa el valor de MERCADO de las acciones; el de la empresa usa el patrimonio CONTABLE. No son comparables (en una empresa que vale 10 veces su patrimonio, el de mercado da 10 veces menos). Siguen margen bruto, operativo y neto, ROE y ROIC.
+
 ### v1.2.89 (29/10/2026): el promedio de la industria se compara con la región de cada empresa
 
 - **Planillas regionales de Damodaran** cargadas en `data/damodaran/regiones.json` (Mercados Emergentes, Europa, Australia/Nueva Zelanda/Canadá y PER global). La columna «Industria» de Ratios Financieros usa la región de la empresa; la nota al pie dice con qué región se comparó.
