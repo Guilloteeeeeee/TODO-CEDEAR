@@ -7241,6 +7241,192 @@
      "2022"
     ]
    }
+  },
+  "MRVL": {
+   "resumen": "Marvell es una empresa estadounidense de semiconductores de infraestructura de datos: diseña chips que mueven, procesan y almacenan información desde el núcleo de los centros de datos hasta el borde de las redes, integrando funciones analógicas, digitales y de memoria en un solo chip. No fabrica: diseña y terceros producen. Gana plata vendiendo chips a medida y estándar a empresas de centros de datos, redes y telecomunicaciones. Tiene un **foso débil a estrecho, de diseños a medida y relaciones de largo plazo**: un chip diseñado para el equipo de un cliente grande se usa durante años y cambiarlo exige rediseñar el producto, pero esa relación depende de pocos clientes y de que Marvell siga ganando cada generación. Los números mejoraron mucho: los ingresos pasaron de 5.767 M en el ejercicio 2025 a **8.195 M** en 2026 (+42,1 %) y 9.450 M en los últimos 12 meses, el margen operativo pasó de -6,4 % a **16,8 %** y el flujo libre es de 1.723 M. Pero hasta 2025 acumuló tres años de pérdidas operativas o netas, el ROIC de los últimos 12 meses es de solo **4,9 %** y la ganancia neta de 2026 (2.670 M) supera al EBIT (1.338 M), lo que sugiere una ganancia por la venta de un negocio, dato a verificar. Las acciones aumentaron 3,9 % desde 2023. Su punto débil es que el crecimiento actual depende en gran parte del gasto de centros de datos para inteligencia artificial, y el 22/10 los semiconductores cayeron 6,7 %. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular en mejora, con crecimiento fuerte y caja suficiente, pero con ROIC de 4,9 %, tres años previos de pérdidas y demanda concentrada en la inteligencia artificial.**",
+   "veredicto": "Regular y en mejora: crecimiento fuerte y flujo libre de 1.723 M, con ROIC de 4,9 %, tres años previos de pérdidas y demanda concentrada",
+   "conclusion": "Marvell es una empresa de calidad regular y en mejora: pasó de pérdidas a un margen operativo de 16,8 %, tiene ingresos de 9.450 M y flujo libre de 1.723 M, pero su ROIC es de 4,9 %, la ganancia neta incluye un resultado no operativo y el crecimiento depende de la demanda de inteligencia artificial. Hay que seguirla de cerca. Es recomendable investigar la concentración de clientes y el detalle de la ganancia no operativa en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo y el ROIC sigan subiendo.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Marvell provee soluciones de semiconductores de infraestructura de datos, que abarcan desde el núcleo del centro de datos hasta el borde de la red, en Estados Unidos, Argentina, China, India, Israel, Japón, Singapur, Corea del Sur, Taiwán, Vietnam y a nivel internacional. Desarrolla y escala arquitecturas de sistema en un chip. Yahoo no informa cuánto aporta cada línea de producto ni cada cliente, y no lo vamos a inventar.\n\nEs un negocio de chips con un ciclo reciente muy marcado: **los ingresos cayeron 7,0 % en 2024, subieron 4,7 % en 2025 y 42,1 % en 2026, hasta 8.195 M** (el ejercicio cierra a fines de enero), y llegan a 9.450 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas de centros de datos, fabricantes de equipos de red y de telecomunicaciones. **Yahoo no informa la concentración de clientes**, un dato a verificar en el informe porque suele ser alta en este tipo de negocio.",
+   "foso": "La ventaja de Marvell **es de diseños a medida y relaciones de largo plazo, y es débil a estrecha**. Cuando diseña un chip para el equipo de un cliente grande, ese chip queda dentro del producto durante varios años y cambiarlo exige rediseñar y volver a probar todo. Se ve en el margen bruto de 52,2 % en los últimos 12 meses, contra 41,3 % en 2025.\n\nPero la rentabilidad sobre el capital es baja (ROIC de 4,9 %) y el margen operativo recién volvió a ser positivo en 2026, así que el foso todavía no se demostró en los resultados. Compite con Broadcom, Nvidia, Intel y diseñadores propios de los grandes clientes. Es frágil en la concentración de clientes, en la posibilidad de que un cliente grande diseñe sus chips por su cuenta y en que el gasto de centros de datos se enfríe. La inteligencia artificial no la amenaza de forma directa; hoy es la principal fuente de demanda.",
+   "numeros": "Los números de Marvell cuentan **un giro fuerte desde pérdidas a ganancias**. Los ingresos fueron de 5.920 M, 5.508 M, 5.767 M y 8.195 M, y de 9.450 M en los últimos 12 meses. El EBIT fue de 360 M, -437 M, -366 M y 1.338 M, y de 1.588 M (margen operativo de 16,8 %). La ganancia neta fue de -164 M, -933 M, -885 M y **2.670 M**, y de 2.640 M. La ganancia por acción fue de -0,19, -1,08, -1,02, 3,07 y 3,03.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 1.072 M, 1.020 M, 1.390 M y 1.392 M, y de **1.723 M** en los últimos 12 meses (18,2 % de los ingresos). El ROIC fue de 1,3 %, -1,7 %, -2,1 %, 6,2 % y 4,9 %.\n\nLa mirada crítica: la ganancia neta de 2026 es el doble del EBIT, lo que indica una ganancia no operativa probablemente por la venta de un negocio (dato público a verificar), y no se repite. El número que mejor refleja el negocio es el EBIT de 1.588 M.",
+   "balance": "**Deuda moderada y bien cubierta ahora.** La deuda total es de 5.286 M y la caja de 3.933 M; la deuda neta es de 1.030 M y la deuda neta/EBITDA es de 0,22x, que multiplicado por 12 son unos 3 meses de EBITDA. Los intereses se cubren 3,6 veces con el EBIT, un colchón modesto.\n\nEl patrimonio neto es de 18.532 M, gran parte originado en compras de empresas anteriores (dato público), y la deuda equivale a 0,29 veces el patrimonio. La caja subió de 948 M en 2025 a 3.933 M, pero la cobertura de intereses era negativa en 2024 y 2025.",
+   "gerencia": "La conduce Matt Murphy, CEO y presidente del directorio (52 años, pago de 4,9 M según Yahoo), con Daniel Durn como director financiero (59 años) y Chris Koopmans como presidente y director de operaciones (48 años, pago de 2,1 M). Murphy lidera la empresa desde 2016 y orientó el negocio hacia centros de datos, dato público.\n\nEn lo que importa, **el uso del capital cambió de dividendo a recompras**: paga un dividendo de 0,24 por acción desde 2012 (209 M en los últimos 12 meses, sin crecimiento en 10 años) y recompró 115 M en 2023, 150 M, 725 M, 2.040 M y 1.900 M en los últimos 12 meses. **Las acciones aun así aumentaron de 851 M a 884 M, un 3,9 % más**, por la compensación en acciones y las compras.",
+   "fortalezas": [
+    "Ingresos de 9.450 M en los últimos 12 meses, +42,1 % en el ejercicio 2026.",
+    "Margen bruto de 52,2 % y margen operativo de 16,8 %.",
+    "Flujo libre de 1.723 M, 18,2 % de los ingresos.",
+    "Deuda neta baja (0,22x EBITDA).",
+    "Diseños a medida que quedan años dentro de los productos."
+   ],
+   "debilidades": [
+    "ROIC de 4,9 %: el crítico más duro diría que sigue sin crear valor pese al giro.",
+    "Tres años previos de pérdidas operativas o netas.",
+    "Ganancia neta de 2026 inflada por un resultado no operativo.",
+    "Posible concentración en pocos clientes y en el gasto de inteligencia artificial.",
+    "3,9 % más acciones desde 2023."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 16,8 %; tiene que sostenerse por encima de 15 %.",
+    "ROIC: hoy 4,9 %; tiene que subir por encima del costo del capital.",
+    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe.",
+    "Cantidad de acciones: hoy 884 M; si siguen subiendo, la dilución continúa."
+   ],
+   "clientes": [
+    "Empresas de centros de datos",
+    "Fabricantes de equipos de red",
+    "Empresas de telecomunicaciones"
+   ],
+   "ideal_para": [
+    "Buscan exposición a chips de centros de datos.",
+    "Aceptan una empresa en transición de pérdidas a ganancias.",
+    "Entienden el riesgo de depender de pocos clientes."
+   ],
+   "menos_ideal": [
+    "Buscan rentabilidad sobre el capital ya probada.",
+    "No toleran la volatilidad de los semiconductores."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "MRVL",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 9450300000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "ADI": {
+   "resumen": "Analog Devices es una empresa estadounidense de semiconductores analógicos: diseña, fabrica, prueba y comercializa circuitos integrados, software y subsistemas que traducen señales del mundo real (sonido, temperatura, presión, radio) a datos digitales y al revés, y que gestionan la energía de los equipos. Gana plata vendiendo chips que quedan dentro de productos industriales, automotrices, de comunicaciones y de consumo durante años. Tiene un **foso estrecho, de diseño especializado y costos de cambio**: el diseño analógico requiere ingenieros de mucha experiencia, y un cliente que ya validó un chip en su producto rara vez lo cambia. Los números son los de una empresa de alta rentabilidad operativa: el margen bruto de los últimos 12 meses es de **65,8 %**, el margen operativo de **35,7 %** y el flujo libre de **4.937 M** (35,6 % de los ingresos). Hay 6,1 % menos acciones que en 2022 y paga dividendo desde 2003. Pero el ROIC es de solo **10,2 %** (y 4,5 % en 2024) porque el capital invertido (42.672 M) incluye una compra grande anterior (dato público: Maxim Integrated), y la ganancia fluctuó mucho con el ciclo (de 6,55 por acción en 2023 a 3,28 en 2024, y 8,43 en los últimos 12 meses). Su punto débil es esa sensibilidad al ciclo industrial y que la deuda subió a 9.122 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho, margen operativo de 35,7 % y flujo libre de 4.937 M, aunque con ROIC de 10,2 % y un ciclo industrial que golpea los resultados.**",
+   "veredicto": "Buena: foso estrecho, margen operativo de 35,7 % y flujo libre de 4.937 M, con ROIC de 10,2 % y ciclo industrial que golpea los resultados",
+   "conclusion": "Analog Devices es una empresa de buena calidad: tiene un foso estrecho de diseño especializado, margen operativo de 35,7 %, flujo libre de 4.937 M, dividendo desde 2003 y 6,1 % menos acciones, pero su ROIC es de 10,2 % y sus resultados fluctúan con el ciclo industrial. Vale la pena seguirla de cerca. Es recomendable investigar la composición de ventas por industria y el uso de la deuda en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga cerca de 35 %.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Analog Devices se dedica al diseño, la fabricación, las pruebas y la comercialización de circuitos integrados, software y subsistemas en Estados Unidos, el resto de América, Europa, Japón, China y el resto de Asia. Ofrece productos de conversión de datos, que traducen señales analógicas del mundo real en datos digitales y al revés. Yahoo no informa cuánto aporta cada línea ni cada industria final, y no lo vamos a inventar.\n\nEs un negocio con ciclo: **los ingresos subieron 2,4 % en 2023, cayeron 23,4 % en 2024 y subieron 16,9 % en 2025, hasta 11.020 M**, y llegan a 13.882 M en los últimos 12 meses.\n\n**A quién le vende.** A fabricantes de equipos industriales, automotrices, de comunicaciones y de consumo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Analog Devices **es de diseño especializado y costos de cambio, y es estrecha**. Los chips analógicos de alto rendimiento dependen del talento y la experiencia de ingenieros más que de la escala de fabricación, y cada chip queda validado dentro del producto del cliente durante años. Eso explica un margen bruto que no baja de 57 % ni en el peor año (2024) y un margen operativo de 35,7 % hoy.\n\nCompite con Texas Instruments, Infineon, STMicroelectronics, NXP, Microchip y fabricantes chinos. Es frágil en el ciclo industrial (los ingresos cayeron 23,4 % en 2024), en los precios de los competidores chinos y en las inversiones en plantas. La inteligencia artificial no la amenaza de forma directa.",
+   "numeros": "Los números de Analog Devices cuentan **un ciclo de baja y una recuperación fuerte**. Los ingresos fueron de 12.014 M, 12.306 M, 9.427 M y 11.020 M, y de 13.882 M en los últimos 12 meses. El EBIT fue de 3.553 M, 3.984 M, 2.070 M y 3.002 M, y de 4.959 M (margen operativo de 35,7 %). La ganancia neta fue de 2.749 M, 3.315 M, 1.635 M y 2.267 M, y de 4.135 M. La ganancia por acción fue de 5,25, 6,55, 3,28, 4,56 y **8,43**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.776 M, 3.556 M, 3.122 M y 4.279 M, y de **4.937 M** en los últimos 12 meses. El ROIC fue de 7,3 %, 8,6 %, 4,5 %, 5,9 % y 10,2 %, y el ROE de 12,3 %.\n\nLa mirada crítica: con un margen operativo de 35,7 %, el ROIC de 10,2 % es bajo, y la causa es el capital invertido de 42.672 M, inflado por la compra anterior. Un accionista cobra ganancias de una compra que ya pagó; el crecimiento del ROIC depende de que las ganancias suban sin sumar capital.",
+   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 9.122 M y la caja de 2.325 M; la deuda neta es de 6.956 M y la deuda neta/EBITDA es de 0,99x, que multiplicado por 12 son unos 12 meses de EBITDA. Los intereses se cubren 14,1 veces con el EBIT.\n\nEl patrimonio neto es de 33.551 M y la deuda equivale a 0,27 veces el patrimonio. La deuda total subió de 6.602 M en 2022 a 9.122 M, y el patrimonio bajó de 36.465 M, por recompras y dividendos mayores que las ganancias en los años flojos.",
+   "gerencia": "La conduce Vincent Roche, CEO y presidente del directorio (65 años, pago de 5,5 M según Yahoo), con Richard Puccio como director financiero (57 años, pago de 2,1 M). El cofundador Ray Stata (91 años) sigue como director. Roche lidera la empresa desde 2013, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras**: paga un dividendo de 4,40 por acción (pagado desde 2003; sube 9,2 % por año en 3 años; 2.043 M en los últimos 12 meses, 41 % del flujo libre) y recompró 2.577 M en 2022, 2.964 M, 616 M, 2.165 M y 3.127 M en los últimos 12 meses. **Las acciones bajaron de 523 M a 491 M, un 6,1 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 35,7 % y margen bruto de 65,8 %.",
+    "Flujo libre de 4.937 M, 35,6 % de los ingresos.",
+    "Dividendo pagado desde 2003 y creciendo 9,2 % por año.",
+    "6,1 % menos acciones desde 2022.",
+    "Intereses cubiertos 14,1 veces."
+   ],
+   "debilidades": [
+    "ROIC de 10,2 %, bajo para un margen tan alto.",
+    "Muy sensible al ciclo industrial: ingresos -23,4 % en 2024.",
+    "Ganancia por acción que cayó de 6,55 a 3,28 en un año: el crítico más duro diría que el ciclo mueve más que el foso.",
+    "Deuda que subió a 9.122 M.",
+    "Patrimonio que bajó de 36.465 M a 33.551 M."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 35,7 %; si baja, el ciclo industrial se está dando vuelta.",
+    "Ingresos: hoy 13.882 M; el cambio de ritmo anticipa el ciclo.",
+    "ROIC: hoy 10,2 %; tiene que seguir subiendo con las ganancias.",
+    "Deuda total: hoy 9.122 M; no tiene que seguir subiendo."
+   ],
+   "clientes": [
+    "Fabricantes de equipos industriales",
+    "Automotrices y proveedores del sector",
+    "Empresas de comunicaciones y de electrónica de consumo"
+   ],
+   "ideal_para": [
+    "Buscan un fabricante de chips analógicos con dividendo creciente.",
+    "Valoran márgenes altos y recompras.",
+    "Aceptan el ciclo industrial."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables año a año.",
+    "No toleran los ciclos de la industria de chips."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "ADI",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 13881744000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "QCOM": {
+   "resumen": "Qualcomm es una empresa estadounidense que desarrolla tecnologías fundamentales para la industria inalámbrica. Opera tres segmentos: QCT, que diseña y vende chips y software de conectividad y cómputo para teléfonos y otros dispositivos; QTL, que cobra licencias por sus patentes de comunicaciones móviles; y QSI, de inversiones estratégicas. Gana plata vendiendo chips y cobrando regalías por patentes que los fabricantes de teléfonos necesitan para operar en las redes móviles. Tiene un **foso estrecho, de patentes y de portfolio de conectividad**: sus patentes son parte de los estándares de telefonía móvil, y dejar de pagarlas no es una opción para quien fabrica teléfonos. Los números muestran una empresa muy rentable pero estancada: los ingresos fueron de 44.200 M en 2022 y de **44.069 M** en los últimos 12 meses, sin crecimiento neto, con margen operativo de **23,3 %** (35,9 % en 2022), ROIC de **17,9 %** y flujo libre de **10.416 M**. Las acciones bajaron 5,5 % y el dividendo se paga desde 1998. Pero en los últimos 12 meses entregó 13.075 M en recompras y dividendos, 126 % del flujo libre. Su punto débil es la dependencia de pocos grandes clientes que pueden fabricar sus propios chips (dato público: Apple desarrolla su propio módem) y del mercado de teléfonos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho de patentes, ROIC de 17,9 % y flujo libre de 10.416 M, aunque con ingresos estancados y retornos al accionista mayores que el flujo libre.**",
+   "veredicto": "Buena: foso estrecho de patentes, ROIC de 17,9 % y flujo libre de 10.416 M, con ingresos estancados y retornos mayores que el flujo libre",
+   "conclusion": "Qualcomm es una empresa de buena calidad: tiene un foso estrecho de patentes, ROIC de 17,9 %, flujo libre de 10.416 M, dividendo desde 1998 y 5,5 % menos acciones, pero sus ingresos no crecen, el margen operativo bajó a 23,3 % y los retornos al accionista superaron al flujo libre. Hay que seguirla de cerca. Es recomendable investigar la concentración de clientes y el avance en autos y computadoras en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos vuelvan a crecer fuera de los teléfonos.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Qualcomm se dedica al desarrollo y la comercialización de tecnologías fundamentales para la industria inalámbrica en todo el mundo. Opera tres segmentos: **QCT** (circuitos integrados y software de conectividad y cómputo), **QTL** (licencias de patentes) y **QSI** (inversiones estratégicas). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al ciclo de los teléfonos: **los ingresos cayeron 19,0 % en 2023, subieron 8,8 % en 2024 y 13,7 % en 2025, hasta 44.284 M**, y se mantienen en 44.069 M en los últimos 12 meses.\n\n**A quién le vende.** A fabricantes de teléfonos, de autos y de equipos conectados, con una concentración alta en pocos clientes (dato público a verificar).",
+   "foso": "La ventaja de Qualcomm **es de patentes y de portfolio de conectividad, y es estrecha**. Sus patentes forman parte de los estándares de comunicaciones móviles y cobra una regalía por cada teléfono vendido que las use, un ingreso con muy alto margen. Su portfolio de chips que integra procesador, módem y conectividad es difícil de replicar. Se ve en el margen bruto de 54 % a 58 % y en el ROIC de 17,9 % a 41,2 %.\n\nCompite con MediaTek, Apple (que desarrolla sus propios chips y módems, dato público a verificar), Samsung y Huawei. Es frágil en la dependencia de pocos clientes, en las disputas de licencias con reguladores y en el ciclo de los teléfonos. La inteligencia artificial no la amenaza de forma directa; los procesadores para inteligencia artificial en el dispositivo son parte de la oferta.",
+   "numeros": "Los números de Qualcomm cuentan **un negocio muy rentable sin crecimiento**. Los ingresos fueron de 44.200 M, 35.820 M, 38.962 M y 44.284 M, y de 44.069 M en los últimos 12 meses. El EBIT fue de 15.860 M, 8.650 M, 10.253 M y 12.394 M, y de 10.258 M (margen operativo de 23,3 %). La ganancia neta fue de 12.936 M, 7.232 M, 10.142 M y 5.541 M, y de 9.259 M. La ganancia por acción fue de 11,37, 6,42, 8,97, 5,01 y **8,64**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 6.834 M, 9.849 M, 11.161 M y 12.820 M, y de **10.416 M** en los últimos 12 meses (23,6 % de los ingresos). El ROIC fue de 41,2 %, 23,2 %, 24,6 %, 25,6 % y 17,9 %.\n\nLa mirada crítica: la ganancia neta de 2025 (5.541 M) es menos de la mitad del EBIT (12.394 M), por un cargo que Yahoo no detalla (probablemente impositivo, dato a verificar). El margen operativo de los últimos 12 meses bajó de 28,0 % a 23,3 % con ingresos planos.",
+   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 15.270 M y la caja de 8.304 M. Yahoo informa una deuda neta de 10.737 M, que no coincide con la resta simple (6.966 M) porque probablemente excluye inversiones de corto plazo; con ese dato, la deuda neta/EBITDA es de 0,80x, que multiplicado por 12 son unos 10 meses de EBITDA. Los intereses se cubren 14,9 veces con el EBIT.\n\nEl patrimonio neto es de 27.658 M y la deuda equivale a 0,55 veces el patrimonio. La caja bajó de 13.300 M en 2024 a 8.304 M, mientras las recompras se aceleraron.",
+   "gerencia": "La conduce Cristiano Amon, CEO y presidente (55 años, pago de 5,5 M según Yahoo), con Akash Palkhiwala como director financiero y de operaciones (49 años, pago de 2,6 M). Amon lidera la empresa desde 2021 y apuesta a diversificarse hacia autos, computadoras y centros de datos, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras fuertes**: paga un dividendo de 3,68 por acción (pagado desde 1998; sube 6,3 % por año en 3 años; 3.825 M en los últimos 12 meses, 37 % del flujo libre) y recompró 3.129 M en 2022, 2.973 M, 4.121 M, 8.791 M y 9.250 M en los últimos 12 meses. **Las acciones bajaron de 1.137 M a 1.074 M, un 5,5 % menos.** Dividendos más recompras (13.075 M) superaron al flujo libre (10.416 M).",
+   "fortalezas": [
+    "Patentes de comunicaciones móviles con alto margen.",
+    "Flujo libre de 10.416 M y ROIC de 17,9 %.",
+    "Dividendo pagado desde 1998 y creciendo 6,3 % por año.",
+    "5,5 % menos acciones desde 2022.",
+    "Intereses cubiertos 14,9 veces."
+   ],
+   "debilidades": [
+    "Ingresos sin crecimiento desde 2022.",
+    "Margen operativo bajó de 35,9 % a 23,3 %.",
+    "Retornos al accionista mayores que el flujo libre: el crítico más duro diría que la caja bajó para sostener las recompras.",
+    "Dependencia de pocos clientes grandes que desarrollan chips propios.",
+    "Mercado de teléfonos maduro y cíclico."
+   ],
+   "vigilar": [
+    "Ingresos: hoy 44.069 M, planos; tienen que crecer con autos y computadoras.",
+    "Margen operativo: hoy 23,3 %; si sigue bajando, el mix o la competencia pesan.",
+    "Caja: hoy 8.304 M; define cuánto margen queda para recomprar.",
+    "Clientes grandes: Yahoo no informa la concentración, hay que buscarla en el informe."
+   ],
+   "clientes": [
+    "Fabricantes de teléfonos",
+    "Automotrices y fabricantes de equipos conectados",
+    "Fabricantes de computadoras y otros dispositivos"
+   ],
+   "ideal_para": [
+    "Buscan una empresa tecnológica rentable con dividendo y recompras.",
+    "Valoran las patentes y el flujo libre.",
+    "Aceptan que los ingresos hoy no crecen."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento de ingresos.",
+    "No toleran la dependencia de pocos clientes grandes."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "QCOM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 44069000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
