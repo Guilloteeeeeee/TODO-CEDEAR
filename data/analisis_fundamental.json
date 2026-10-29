@@ -9869,6 +9869,194 @@
      "2022"
     ]
    }
+  },
+  "BMY": {
+   "resumen": "Bristol-Myers Squibb es una empresa estadounidense farmacéutica: descubre, desarrolla, fabrica y vende medicamentos para oncología, hematología, inmunología, enfermedades cardiovasculares y neurociencias, con productos como Opdivo y su versión subcutánea Opdivo Qvantig (según Yahoo). Gana plata vendiendo medicamentos protegidos por patentes, sobre todo contra el cáncer. Tiene un **foso estrecho, de patentes y escala en inmunooncología**, con vencimientos que se acercan en los próximos años (dato público a verificar). Los números mezclan fortaleza y cautela: el flujo libre fue de **11.440 M** en los últimos 12 meses (23,3 % de los ingresos), el margen operativo de **28,1 %** y el ROIC de **16,3 %**, con 4,8 % menos acciones que en 2022. Pero los ingresos están planos (de 46.159 M a 49.187 M en cuatro años), el margen bruto cayó de 78,0 % a 70,2 %, en 2024 hubo una pérdida de 8.948 M por un cargo que Yahoo no detalla (probable compra de empresas de investigación, dato a verificar) y la deuda neta es de 34.398 M. El salto del EBIT de 2025 sobre ingresos planos refleja la ausencia de cargos, no un negocio que mejore. El dividendo, de 2,52 por acción desde 1972, absorbe 45 % del flujo libre. Su punto débil es depender de productos cuyas patentes vencen. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con flujo libre de 11.440 M y ROIC de 16,3 %, pero con ingresos planos, deuda neta de 34.398 M y patentes importantes por vencer.**",
+   "veredicto": "Buena: flujo libre de 11.440 M y ROIC de 16,3 %, pero ingresos planos, deuda neta de 34.398 M y patentes por vencer",
+   "conclusion": "Bristol-Myers Squibb es una empresa de buena calidad: tiene un foso estrecho de patentes, flujo libre de 11.440 M, ROIC de 16,3 %, margen operativo de 28,1 % y dividendo desde 1972, pero los ingresos están planos, la deuda neta es de 34.398 M y varias patentes importantes vencen en los próximos años. Hay que seguirla de cerca. Es recomendable investigar el peso de cada producto y los lanzamientos nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los productos nuevos reemplacen a los que pierden protección.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Bristol-Myers Squibb descubre, desarrolla, otorga licencias, fabrica, comercializa, distribuye y vende productos biofarmacéuticos a nivel mundial. Ofrece productos para oncología, hematología, inmunología, enfermedades cardiovasculares y neurociencias. Según Yahoo, sus productos incluyen **Opdivo** (oncología) y **Opdivo Qvantig**, un inhibidor de PD-1 subcutáneo para tumores sólidos, entre otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio maduro con ingresos casi planos: **los ingresos cayeron 2,5 % en 2023, subieron 7,3 % en 2024 y bajaron 0,2 % en 2025, hasta 48.195 M**, y llegan a 49.187 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, hospitales, farmacias y sistemas de salud; en Estados Unidos, pocos distribuidores concentran las compras (dato público a verificar).",
+   "foso": "La ventaja de Bristol-Myers **es de patentes y escala en oncología e inmunología, y es estrecha**. Un medicamento patentado no tiene copia directa mientras dura la protección y los oncólogos prefieren tratamientos con años de evidencia clínica. Se ve en el margen bruto de 70,2 % y en el margen operativo de 28,1 %.\n\nPero el margen bruto bajó de 78,0 % a 70,2 % en cuatro años y varios productos importantes enfrentan vencimiento de patentes en los próximos años (dato público a verificar). Compite con Merck, Roche, AstraZeneca, Pfizer y AbbVie. Es frágil en el vencimiento de patentes, en la presión de precios (Medicare) y en que sus lanzamientos nuevos no alcancen para reemplazar lo que se pierde. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de Bristol-Myers cuentan **un negocio plano con cargos extraordinarios que distorsionan los años**. Los ingresos fueron de 46.159 M, 45.006 M, 48.300 M y 48.195 M, y de 49.187 M en los últimos 12 meses. El EBIT fue de 9.104 M, 8.195 M, 5.887 M y 13.724 M, y de **13.842 M** (margen operativo de 28,1 %). La ganancia neta fue de 6.327 M, 8.025 M, **-8.948 M** y 7.054 M, y de 9.282 M. La ganancia por acción fue de 2,95, 3,86, -4,41, 3,46 y **4,54**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 11.948 M, 12.651 M, 13.942 M y 12.845 M, y de **11.440 M** (23,3 %), en baja en los últimos 12 meses. El ROIC fue de 10,6 %, 11,3 %, 6,6 %, 16,3 % y 16,3 %. El ROE de 41,6 % no sirve para comparar porque el patrimonio es chico (22.319 M).\n\nLa mirada crítica: con ingresos planos, el EBIT saltó de 5.887 M a 13.724 M; la diferencia se explica por cargos de 2024 que Yahoo no detalla. El flujo libre, que no se mueve tanto, es la medida más confiable.",
+   "balance": "**Deuda alta pero con cobertura sólida.** La deuda total es de 45.053 M y la caja de 11.067 M; la deuda neta es de 34.398 M y la deuda neta/EBITDA es de 2,05x, que multiplicado por 12 son unos 25 meses de EBITDA. Los intereses se cubren 8,0 veces con el EBIT.\n\nEl patrimonio neto es de 22.319 M y la deuda equivale a 2,0 veces el patrimonio. La deuda total subió de 41.464 M en 2023 a 51.200 M en 2024, y bajó a 45.053 M. La liquidez corriente es de 1,53x.",
+   "gerencia": "La conduce Christopher Boerner, CEO y presidente del directorio (54 años, pago de 5,8 M según Yahoo), con David Elkins como director financiero (57 años, pago de 3,2 M). Boerner es CEO desde 2023, dato público.\n\nEn lo que importa, **el uso del capital priorizó el dividendo y frenó las recompras**: paga un dividendo de 2,52 por acción (desde 1972; sube 4,7 % por año en 3 años; 5.095 M en los últimos 12 meses, 45 % del flujo libre) y recompró 8.001 M en 2022 y 5.155 M en 2023, y nada desde 2024. **Las acciones bajaron de 2.146 M a 2.044 M, un 4,8 % menos.**",
+   "fortalezas": [
+    "Flujo libre de 11.440 M, 23,3 % de los ingresos.",
+    "ROIC de 16,3 % y margen operativo de 28,1 %.",
+    "Dividendo pagado desde 1972 con payout de 45 %.",
+    "4,8 % menos acciones desde 2022.",
+    "Cobertura de intereses de 8,0 veces."
+   ],
+   "debilidades": [
+    "Ingresos planos en cuatro años.",
+    "Margen bruto bajó de 78,0 % a 70,2 %.",
+    "Patentes importantes por vencer: el crítico más duro diría que la rentabilidad actual no está asegurada.",
+    "Deuda neta de 34.398 M.",
+    "Cargos extraordinarios que distorsionan los resultados."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +2 % en 12 meses; tienen que crecer para compensar los vencimientos.",
+    "Margen bruto: hoy 70,2 %; si baja de 68 %, hay presión de precios.",
+    "Deuda neta: hoy 34.398 M; tiene que bajar con el flujo libre.",
+    "Ingresos por producto: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Mayoristas y distribuidores de medicamentos",
+    "Hospitales y centros de oncología",
+    "Sistemas de salud y aseguradoras"
+   ],
+   "ideal_para": [
+    "Buscan dividendo de décadas y flujo libre alto.",
+    "Aceptan el riesgo de vencimiento de patentes.",
+    "Valoran un caso de recuperación en ingresos."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento de ingresos.",
+    "No toleran los cargos extraordinarios ni la deuda alta."
+   ],
+   "perfil": "salud",
+   "capas": [],
+   "ticker": "BMY",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 49187000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "MDT": {
+   "resumen": "Medtronic es una empresa irlandesa de tecnología médica con sede operativa en Estados Unidos: desarrolla, fabrica y vende dispositivos médicos como marcapasos y desfibriladores implantables, productos de neurociencia y productos para cirugía, en tres segmentos: Cardiovascular, Neuroscience y Medical Surgical. Gana plata vendiendo dispositivos implantables y descartables a hospitales y médicos de todo el mundo. Tiene un **foso estrecho, de regulación, entrenamiento de médicos y base instalada**: los médicos aprenden a usar sus dispositivos y los hospitales los compran por contratos, lo que dificulta cambiar. Los números son estables: los ingresos subieron de 31.227 M a **37.541 M** en los últimos 12 meses, con aceleración a 8,4 % en el ejercicio 2026 (terminado en abril de 2026), el margen operativo es de **19,0 %**, la ganancia por acción pasó de 2,82 a **4,06** y el flujo libre es de **6.132 M**. El dividendo se paga desde 1982 y hay 3,4 % menos acciones que en 2023. Pero el ROIC es de apenas **7,3 %**, por adquisiciones grandes del pasado (dato público), el dividendo absorbe 60 % del flujo libre y crece solo 2,0 % por año. Su punto débil es esa baja rentabilidad sobre el capital. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, estable y con dividendo de 45 años, pero con ROIC de 7,3 %, deuda neta de 26.462 M y dividendo que absorbe 60 % del flujo libre.**",
+   "veredicto": "Buena: dispositivos con ingresos +8 % y dividendo de 45 años, pero ROIC de 7,3 % y deuda neta de 26.462 M",
+   "conclusion": "Medtronic es una empresa de buena calidad: tiene un foso estrecho de regulación y base instalada, ingresos que aceleran a 8,4 %, flujo libre de 6.132 M y dividendo desde 1982, pero el ROIC es de 7,3 %, la deuda neta es de 26.462 M y el dividendo crece solo 2,0 % por año. Vale la pena seguirla de cerca. Es recomendable investigar qué impulsó la aceleración de ingresos y cuánto aporta cada segmento en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el crecimiento se sostenga y el ROIC suba.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Medtronic desarrolla, fabrica y vende terapias médicas basadas en dispositivos a sistemas de salud, médicos, profesionales clínicos y pacientes, en Estados Unidos, Irlanda y a nivel internacional. Opera tres segmentos: **The Cardiovascular Portfolio** (marcapasos cardíacos implantables, desfibriladores y otros), **Neuroscience Portfolio** y **Medical Surgical Portfolio**. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar. **El ejercicio cierra en abril; \"2026\" es el ejercicio terminado en abril de 2026.**\n\nEs un negocio maduro que acelera: **los ingresos subieron 3,6 % en 2024, 3,6 % en 2025 y 8,4 % en 2026, hasta 36.364 M**, y llegan a 37.541 M en los últimos 12 meses.\n\n**A quién le vende.** A hospitales, médicos, sistemas de salud y gobiernos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Medtronic **es de regulación, entrenamiento de médicos y base instalada, y es estrecha**. Un dispositivo implantable requiere aprobaciones, seguimiento de pacientes y médicos capacitados, y cambiar de proveedor implica reentrenamiento y riesgos clínicos. Se ve en el margen bruto estable entre 65,0 % y 65,7 %.\n\nPero el ROIC es de 7,3 % y el margen operativo no supera 19,5 %, por lo que el foso no se traduce en una rentabilidad alta. Compite con Abbott, Boston Scientific, Johnson & Johnson, Stryker e Intuitive. Es frágil en los precios de los sistemas de salud, en retiros de productos y en la competencia de dispositivos nuevos. La inteligencia artificial más bien ayuda a sus dispositivos.",
+   "numeros": "Los números de Medtronic cuentan **estabilidad con mejora reciente y poca rentabilidad sobre el capital** (años fiscales terminados en abril). Los ingresos fueron de 31.227 M, 32.364 M, 33.537 M y 36.364 M, y de 37.541 M en los últimos 12 meses. El EBIT fue de 5.830 M, 5.520 M, 6.540 M y 6.828 M, y de **7.147 M** (margen operativo de 19,0 %). La ganancia neta fue de 3.758 M, 3.676 M, 4.662 M y 4.801 M, y de 5.231 M. La ganancia por acción fue de 2,82, 2,76, 3,61 y 3,73, y de **4,06**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 4.580 M, 5.200 M, 5.185 M y 5.426 M, y de **6.132 M** (16,3 %). El ROIC fue de 5,4 %, 5,6 %, 7,1 %, 7,0 % y 7,3 %, y el ROE de 10,4 %, bajo el 12 % de referencia.\n\nLa mirada crítica: las inversiones (1.903 M) equivalen a 36 % de la ganancia neta, un nivel alto, y el capital invertido sigue en 78.385 M, por lo que el ROIC mejora poco a poco.",
+   "balance": "**Deuda moderada, con cobertura sólida.** La deuda total es de 28.153 M y la caja de 8.819 M; la deuda neta es de 26.462 M y la deuda neta/EBITDA es de 2,58x, que multiplicado por 12 son unos 31 meses de EBITDA. Los intereses se cubren 9,9 veces con el EBIT.\n\nEl patrimonio neto es de 50.232 M y la deuda equivale a 56 % del patrimonio. La deuda total se mantuvo entre 24.364 M y 28.516 M. La liquidez corriente es de 2,07x.",
+   "gerencia": "La conduce Geoffrey Martha, presidente del directorio y CEO (55 años, pago de 4,1 M según Yahoo). Yahoo lista además a Rogerio Branco (operaciones y cadena de suministro) y a Laura Mauri (directora científica y médica, 55 años). Martha es CEO desde 2020, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo estable y recompras irregulares**: paga un dividendo de 2,88 por acción (desde 1982; sube 2,0 % por año en 3 años y 7,0 % en 10 años; 3.650 M en los últimos 12 meses, 60 % del flujo libre) y recompró 645 M en 2023, 2.138 M, 3.235 M, 1.035 M y 1.179 M en los últimos 12 meses. **Las acciones bajaron de 1.333 M a 1.288 M, un 3,4 % menos.**",
+   "fortalezas": [
+    "Ingresos acelerando a 8,4 % en el ejercicio 2026.",
+    "Flujo libre de 6.132 M en los últimos 12 meses.",
+    "Dividendo pagado desde 1982 y 3,4 % menos acciones.",
+    "Margen bruto estable cerca de 65 %.",
+    "Cobertura de intereses de 9,9 veces."
+   ],
+   "debilidades": [
+    "ROIC de 7,3 % y ROE de 10,4 %.",
+    "Dividendo que crece solo 2,0 % por año y absorbe 60 % del flujo libre: el crítico más duro diría que el pago deja poco margen.",
+    "Deuda neta de 26.462 M.",
+    "Margen operativo que no pasa de 19,5 %.",
+    "Inversiones altas (36 % de la ganancia neta)."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +8,4 %; si vuelven a 3,6 %, la aceleración fue pasajera.",
+    "Margen operativo: hoy 19,0 %; si no sube, el foso rinde poco.",
+    "ROIC: hoy 7,3 %; tiene que subir.",
+    "Ingresos por segmento: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Hospitales y centros quirúrgicos",
+    "Médicos y profesionales clínicos",
+    "Sistemas de salud y gobiernos"
+   ],
+   "ideal_para": [
+    "Buscan tecnología médica estable con dividendo de décadas.",
+    "Aceptan rentabilidad moderada.",
+    "Valoran la aceleración reciente de ingresos."
+   ],
+   "menos_ideal": [
+    "Buscan alto crecimiento.",
+    "No toleran el ROIC bajo ni el dividendo que crece poco."
+   ],
+   "perfil": "salud",
+   "capas": [],
+   "ticker": "MDT",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 37541000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "GSK": {
+   "resumen": "GSK es una empresa británica farmacéutica: investiga, desarrolla y fabrica vacunas, medicamentos especializados (oncología, respiratorio e inmunología, entre otros) y medicamentos generales en el Reino Unido, Estados Unidos y el resto del mundo, en dos segmentos: Commercial Operations y Total R&D. Gana plata vendiendo vacunas y medicamentos protegidos por patentes, con un negocio fuerte en VIH (dato público). Tiene un **foso estrecho, de patentes, vacunas y liderazgo en VIH**, con vencimientos de patentes que se acercan (dato público a verificar). Las cifras están en libras (GBP). Los números son sólidos: el margen operativo es de **20,7 %**, el flujo libre fue de **5.331 M** en los últimos 12 meses (16,1 % de los ingresos) y el ROIC de 2025 fue de 21,3 %. Pero las ganancias son volátiles: la ganancia neta fue de 14.956 M en 2022 (incluye una ganancia por la separación de Haleon, dato público), 4.928 M, 2.575 M, 5.716 M y 4.821 M en los últimos 12 meses, y el EBIT de los últimos 12 meses (6.873 M) es menor que el de 2025 (8.338 M), sin explicación en Yahoo. El dividendo no crece (-0,1 % por año en 3 años, tras el recorte de 2022, dato público), las inversiones subieron a 3.000 M y la liquidez corriente es de 0,82x. Su punto débil es esa volatilidad y los vencimientos de patentes de VIH. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con flujo libre de 5.331 M y margen operativo de 20,7 %, pero con ganancias volátiles, dividendo sin crecimiento y patentes de VIH por vencer.**",
+   "veredicto": "Buena: flujo libre de 5.331 M y ROIC alto, pero ganancias volátiles, dividendo sin crecer y patentes de VIH por vencer",
+   "conclusion": "GSK es una empresa de buena calidad: tiene un foso estrecho de vacunas, patentes y VIH, margen operativo de 20,7 %, flujo libre de 5.331 M y ROIC de 21,3 % en 2025, pero las ganancias son volátiles, el dividendo no crece, la liquidez corriente es de 0,82x y los tratamientos de VIH pierden patente en la próxima década. Hay que seguirla de cerca. Es recomendable investigar el EBIT de los últimos 12 meses y el peso del VIH en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los productos nuevos reemplacen a los de VIH.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "GSK se dedica a la investigación, el desarrollo y la fabricación de vacunas, medicamentos especializados y medicamentos generales para prevenir y tratar enfermedades en el Reino Unido, Estados Unidos y a nivel internacional. Opera dos segmentos: **Commercial Operations** y **Total R&D**. Ofrece medicamentos especializados en oncología, respiratorio e inmunología, entre otras áreas (según Yahoo). Yahoo no informa cuánto aporta cada producto ni cada región, y no lo vamos a inventar. **Las cifras están en libras (GBP), no en dólares.**\n\nEs un negocio maduro con crecimiento bajo y constante: **los ingresos subieron 3,4 % en 2023, 3,5 % en 2024 y 4,1 % en 2025, hasta 32.667 M**, y llegan a 33.203 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, farmacias, hospitales, sistemas de salud y gobiernos (en vacunas). **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de GSK **es de patentes, vacunas y VIH, y es estrecha**. Las vacunas requieren fabricación compleja y aprobaciones, y en VIH tiene tratamientos que los pacientes toman de por vida (dato público). Se ve en el margen bruto de 72,7 % y en el ROIC de 15,9 % a 21,3 % de los últimos años.\n\nPero el margen operativo cayó de 25,5 % (2025) a 20,7 % (últimos 12 meses), y los tratamientos principales de VIH pierden patente en la próxima década (dato público a verificar). Compite con Pfizer, Merck, Sanofi, Novartis y Gilead (en VIH). Es frágil en el vencimiento de patentes, en la política de vacunas y en los precios. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de GSK cuentan **ingresos estables y ganancias muy volátiles** (en libras, GBP). Los ingresos fueron de 29.324 M, 30.328 M, 31.376 M y 32.667 M, y de 33.203 M en los últimos 12 meses. El EBIT fue de 6.729 M, 7.345 M, 5.542 M y 8.338 M, y de **6.873 M** (margen operativo de 20,7 %). La ganancia neta fue de 14.956 M, 4.928 M, 2.575 M y 5.716 M, y de 4.821 M. La ganancia por acción fue de 7,32, 2,40, 1,24 y 2,78, y de **2,36**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 5.145 M, 4.424 M, 3.572 M y 4.756 M, y de **5.331 M** (16,1 %), con inversiones de 3.000 M, mayores que los 2.258 M de 2022. El ROIC de 2025 fue de 21,3 %; el de los últimos 12 meses que informa Yahoo (31,6 %) usa un capital invertido de 17.645 M que parece incompleto, así que no lo usamos. El ROE fue de 27,3 %.\n\nLa mirada crítica: la ganancia por acción de 2022 (7,32) incluye un resultado único por la separación de Haleon, por lo que la caída posterior no refleja el negocio.",
+   "balance": "**Deuda moderada y liquidez justa.** La deuda total es de 18.238 M y la caja de 3.106 M. Yahoo no informa la deuda neta de los últimos 12 meses; nuestro cálculo (deuda total menos caja) da 15.132 M, que con el EBITDA de 2025 (10.402 M) son unas 1,5x, o unos 17 meses de EBITDA. En 2025 la deuda neta era de 13.740 M (1,32x EBITDA). Los intereses se cubren 10,0 veces con el EBIT.\n\nEl patrimonio es de 17.645 M, la deuda equivale a 1,03 veces el patrimonio y la liquidez corriente es de 0,82x, menor a 1, con 4.291 M de deuda de corto plazo. La deuda total bajó de 20.987 M en 2022 a 18.238 M.",
+   "gerencia": "La conduce Luke Miels, CEO y director (51 años), que asumió hace poco como sucesor de la CEO anterior (dato público a verificar), con Julie Brown como directora financiera (63 años, pago de 6,0 M según Yahoo), Tony Wood como director científico y Shobie Ramakrishnan en tecnología digital.\n\nEn lo que importa, **el uso del capital es de dividendo estable y recompras recientes**: paga un dividendo de 1,82 por acción según Yahoo (probablemente por ADR en dólares, dato a verificar; desde 1987; -0,1 % por año en 3 años y -3,7 % en 10 años; 2.666 M en los últimos 12 meses, 50 % del flujo libre) y recompró 1.377 M en 2025 y 1.203 M en los últimos 12 meses. **Las acciones quedaron en 2.040 M, igual que en 2022.**",
+   "fortalezas": [
+    "Flujo libre de 5.331 M, 16,1 % de los ingresos.",
+    "Margen bruto de 72,7 % y margen operativo de 20,7 %.",
+    "ROIC de 21,3 % en 2025.",
+    "Vacunas y VIH con patentes y producción compleja.",
+    "Cobertura de intereses de 10,0 veces."
+   ],
+   "debilidades": [
+    "Ganancias volátiles (por acción: 7,32, 2,40, 1,24, 2,78, 2,36).",
+    "Dividendo sin crecimiento en tres años: el crítico más duro diría que la empresa no logró crecer sus pagos.",
+    "Patentes de VIH por vencer.",
+    "Liquidez corriente de 0,82x.",
+    "Inversiones en alza (3.000 M)."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 20,7 %; tiene que volver hacia 25 %.",
+    "Ingresos de VIH: Yahoo no los informa, hay que buscarlos en el informe.",
+    "Flujo libre contra inversiones: hoy 5.331 M contra 3.000 M.",
+    "Deuda de corto plazo: hoy 4.291 M; con liquidez de 0,82x, hay que seguir el refinanciamiento."
+   ],
+   "clientes": [
+    "Mayoristas y distribuidores de medicamentos",
+    "Gobiernos y sistemas de salud (vacunas)",
+    "Hospitales y farmacias"
+   ],
+   "ideal_para": [
+    "Buscan salud europea con vacunas y VIH.",
+    "Aceptan ganancias volátiles.",
+    "Entienden que las cifras están en libras."
+   ],
+   "menos_ideal": [
+    "Buscan dividendo creciente.",
+    "No toleran el riesgo de vencimiento de patentes."
+   ],
+   "perfil": "salud",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "GSK",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 33203000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
