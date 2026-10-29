@@ -878,54 +878,70 @@
    }
   },
   "BRK-B": {
-   "resumen": "Berkshire Hathaway es una empresa dueña de otras empresas: GEICO y otras aseguradoras, el ferrocarril BNSF, una gran empresa de electricidad y gas, fábricas de todo tipo (desde chocolates hasta herramientas y piezas de aviones) y una cartera enorme de acciones de empresas cotizadas. Su secreto es el seguro: cobra primas hoy y paga siniestros después, e invierte ese dinero mientras tanto. Tiene un **foso amplio, de escala y costos bajos** en seguros y en ferrocarril, difícil de copiar. Los números muestran un ROE de 9,3 % en 2025 (17,1 % en 2023) y un resultado neto que varía mucho porque cuenta las ganancias y pérdidas de sus inversiones: -22.759 M en 2022, 96.223 M en 2023, 66.968 M en 2025. Su punto débil es el tamaño: **es tan grande que a cada inversión nueva le cuesta mover la aguja**, y en 2025 dejó de recomprar acciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque sus negocios son ferrocarriles, energía, seguros y fábricas. Conclusión: **muy buena empresa, diversificada, con foso amplio y un manejo del capital prudente, aunque su tamaño le limita el crecimiento y el retorno sobre el capital hoy es moderado.**",
-   "veredicto": "Muy buena empresa: diversificada, foso amplio y manejo prudente; retorno moderado por su tamaño",
-   "conclusion": "Berkshire es una muy buena empresa, no una excelente: tiene un foso amplio, diversificación enorme y un manejo del capital prudente, pero su ROE bajó a 9,3 % en 2025 y los ingresos vienen cayendo desde 2023. Vale la pena seguirla de cerca. Es recomendable investigar el ratio combinado (primas contra siniestros) y las reservas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE no siga bajando.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Berkshire gana dinero de varias maneras. **Seguros y reaseguros** (propiedad, accidentes, vida, salud): cobra primas y las invierte. **Ferrocarril de carga** en Norteamérica (BNSF). **Energía**: genera, transmite y distribuye electricidad y gas, con fuentes eólica, solar, hidroeléctrica, nuclear y otras. Además fabrica y vende productos de todo tipo (chocolates en caja, productos químicos, herramientas de corte, componentes aeroespaciales) y tiene participaciones en acciones de empresas cotizadas. Yahoo no informa cuánto aporta cada una, y no lo vamos a inventar.\n\nEs un negocio indispensable: la gente siempre necesita seguros, electricidad y transporte de carga. Los ingresos que informa Yahoo son **439.337 M en 2023, 424.232 M en 2024 y 410.522 M en 2025**. El salto de 2022 a 2023 (de 234.121 M) probablemente refleja el efecto de las ganancias y pérdidas de las inversiones, que se cuentan en esos ingresos; por eso no usamos ese dato como crecimiento.\n\n**A quién le vende.** A millones de clientes: asegurados, empresas que usan el tren para mover carga, hogares que reciben electricidad y consumidores. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Berkshire **es de costos y de escala, con la fuerza del 'float'**. En seguros, cobra primas antes de pagar los siniestros y usa ese dinero para invertir: cuanto mejor suscribe, más barato le sale ese dinero. El ferrocarril BNSF tiene una ventaja de escala propia: tender otra red de vías es casi imposible, así que sus competidores son pocos. La energía regulada da ingresos estables.\n\nCompite en seguros con Progressive, Allstate y Chubb; en ferrocarril con Union Pacific y los camiones; y en energía con otras empresas de servicios públicos. Es un foso **amplio** pero distinto al de una marca: depende de la disciplina de los gerentes al asegurar y de buenas decisiones de inversión. La inteligencia artificial no amenaza sus negocios, que son físicos o regulados; lo que sí puede cambiar es cómo se venden y se tarifan los seguros.",
-   "numeros": "Los números de Berkshire **se leen distinto a los de una empresa común**, porque el resultado incluye las ganancias y pérdidas no realizadas de su cartera de acciones. Por eso la ganancia neta pasó de -22.759 M en 2022 a 96.223 M en 2023, 88.995 M en 2024 y 66.968 M en 2025: no es el negocio operativo, sino el mercado. La ganancia por acción pasó de 44,27 en 2023 a 41,27 en 2024 y 31,04 en 2025.\n\nEl indicador más estable es el ROE (cuánto gana por cada dólar de patrimonio): **17,1 % en 2023, 13,7 % en 2024 y 9,3 % en 2025**, con un promedio de 8,8 % en la tabla. Es un retorno decente, pero menor al de otras empresas de calidad, y bajó porque el capital creció más que la ganancia. El capital invertido pasó de 596.168 M en 2022 a 846.500 M en 2025 y a 876.509 M en los últimos 12 meses.\n\nLa mirada crítica: la ganancia neta de 2023 fue un máximo ayudado por el mercado, y desde entonces baja. Lo que importa es cuánto gana el negocio operativo, y por eso el ROE es mejor guía que la ganancia neta de cada año.",
-   "balance": "**El tamaño y la solidez de Berkshire son su principal protección.** El capital invertido (el dinero que está trabajando en el negocio) pasó de 596.168 M en 2022 a 846.500 M en 2025 y a 876.509 M en los últimos 12 meses: casi 47 % más en tres años y medio. Para una aseguradora, lo importante es que mantiene un patrimonio enorme para pagar siniestros, y se ve en que sigue creciendo.\n\nLas acciones diluidas pasaron de 2.203 M en 2022 a 2.157 M en 2025, un 2,1 % menos. Las recompras fueron de 7.854 M en 2022, 9.171 M en 2023, 2.918 M en 2024 y cero en 2025: la empresa dejó de recomprar, lo que suele significar que no ve las acciones baratas o que prefiere guardar caja.",
-   "gerencia": "La conduce Greg Abel, CEO y presidente (63 años, pago de 22,0 M según Yahoo), que tomó la posta de Warren Buffett, con Ajit Jain al frente de los seguros (73 años) y Charles Chang como director financiero. Es un equipo con décadas de trayectoria, pero **el cambio de conducción es el gran tema**: la cultura de la empresa estuvo atada a Buffett y el mercado va a mirar de cerca cómo asigna el capital Abel.\n\nEn lo que importa, **el uso del capital, es prudente**: Berkshire casi no paga dividendo y tradicionalmente prefiere reinvertir, comprar empresas enteras o acciones de empresas cotizadas, o recomprar cuando ve valor. Que haya dejado de recomprar en 2025 es una señal que hay que seguir. Las acciones bajaron 2,1 % desde 2022: no diluye.",
-   "fortalezas": [
-    "Diversificación enorme: seguros, ferrocarril, energía y manufactura, que no se mueven todos con el mismo ciclo.",
-    "Foso amplio de escala y costos en seguros y ferrocarril.",
-    "Capital creciente: de 596.168 M en 2022 a 876.509 M en los últimos 12 meses.",
-    "No diluye: 2,1 % menos acciones desde 2022.",
-    "Prudencia en el uso del capital: no paga dividendo y compra cuando ve valor."
+   "formato": "v4",
+   "titulo": "Berkshire después de Buffett: más ganancia operativa y la misma montaña de caja",
+   "resumen": [
+    "Berkshire es un conglomerado: **seguros, un ferrocarril, eléctricas, decenas de fábricas y comercios, y una cartera de acciones gigante**. Su ventaja es el float: la plata de las primas que cobra hoy y paga mañana, que invierte mientras tanto.",
+    "En el segundo trimestre de 2026, la **ganancia operativa subió 16,3 %**, a 12.983 M, con todos los negocios menos los seguros mejorando. Es el primer año con **Greg Abel como CEO**, después de seis décadas de Warren Buffett.",
+    "Excelente empresa, con un balance de los más sólidos del mundo y negocios de calidad, cuyo desafío es encontrar dónde invertir una cantidad enorme de efectivo."
    ],
-   "debilidades": [
-    "Retorno moderado: ROE de 9,3 % en 2025 contra 17,1 % en 2023; el tamaño dificulta rendimientos altos.",
-    "Resultado neto muy volátil: de -22.759 M en 2022 a 96.223 M en 2023 y 66.968 M en 2025, porque depende del valor de sus acciones.",
-    "Transición de liderazgo: el crítico más duro diría que la cultura de Berkshire dependía de Warren Buffett y que eso es difícil de reemplazar.",
-    "Ingresos en baja desde 2023: de 439.337 M a 410.522 M en 2025.",
-    "Dejó de recomprar acciones en 2025 (cero, contra 9.171 M en 2023)."
+   "introduccion": "Durante sesenta años, invertir en Berkshire Hathaway era invertir en Warren Buffett. Desde el 1 de enero de 2026, ya no es así: el CEO es Greg Abel, el hombre que Buffett eligió para sucederlo, y Buffett sigue solo como presidente del directorio.\n\nEl primer semestre de Abel dejó una buena señal: la ganancia operativa, que es lo que ganan los negocios sin contar las subas y bajas de la cartera de acciones, creció 17 %.\n\nPero el gran tema de Berkshire no cambió con el nuevo CEO. Tiene una de las mayores reservas de efectivo del mundo, cientos de miles de millones de dólares en caja y letras del Tesoro, y le cuesta encontrar dónde ponerla a buen precio.\n\nCon el bono del Tesoro a 10 años cerca de 5 %, esa caja al menos rinde. Pero ningún accionista compra Berkshire para tener plata en letras.\n\nEntonces, la pregunta es: ¿puede Abel mantener la máquina de crear valor que armó Buffett, ahora que el tamaño juega en contra?",
+   "secciones": [
+    {
+     "titulo": "Un conglomerado que vive del float",
+     "texto": "Berkshire tiene cinco grandes motores. En el segundo trimestre de 2026, cada uno ganó así:\n\n- **Fábricas, servicios y comercios** (desde pinturas y baterías hasta casas prefabricadas y chocolates See's): 4.470 M.\n- **Inversiones de las aseguradoras**: 3.059 M.\n- **Seguros** (GEICO, General Re y otros), por la diferencia entre primas y siniestros: 1.731 M.\n- **BNSF**, uno de los ferrocarriles de carga más grandes de EE.UU.: 1.558 M.\n- **Berkshire Hathaway Energy**, sus eléctricas: 891 M.\n\nSus clientes son millones de asegurados, empresas que mandan carga por tren, hogares que pagan la luz y consumidores de sus marcas: no depende de ninguno en particular.\n\nLa **ventaja** central es el **float**. Una aseguradora cobra las primas hoy y paga los siniestros meses o años después. Mientras tanto, esa plata (el float) se puede invertir. Si además la aseguradora gana con la suscripción (cobra más de lo que paga), es como recibir un préstamo que encima te pagan por tomar. Berkshire tiene **unos 177.500 M de float** y lo viene logrando hace décadas.\n\nA eso se suman negocios con ventajas propias: un ferrocarril (nadie construye otro al lado) y eléctricas reguladas.\n\nLa inteligencia artificial casi no amenaza a estos negocios: trenes, cables y seguros no se reemplazan con un algoritmo."
+    },
+    {
+     "titulo": "La ganancia que importa no es la que aparece en el titular",
+     "texto": "Berkshire es la empresa donde más engaña la ganancia contable. Por una regla contable, cada suba o baja de las acciones que tiene en cartera (Apple, American Express, Coca-Cola y otras) se anota como ganancia o pérdida, aunque no venda nada.\n\nEn el segundo trimestre de 2026, la ganancia neta fue de 25.667 M. Pero casi la mitad, 12.684 M, vino de inversiones que subieron de valor. En 2022 pasó lo contrario: la ganancia contable fue negativa (-22.759 M) solo porque cayó la bolsa.\n\nPor eso el propio Buffett siempre pidió mirar otra cosa: la **ganancia operativa**, lo que ganan los negocios. En el semestre fue de **24.329 M, un 17 % más** que un año antes.\n\nPara una aseguradora, el número que mejor resume el negocio es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. En 2025 fue de **9,3 %**, por debajo del promedio de su industria (18,7 %).\n\n[[grafico:roe]]\n\n¿Es mala señal? No necesariamente. Berkshire tiene un patrimonio gigante, de 747.910 M, y buena parte está en caja que rinde lo que paga una letra del Tesoro. Esa prudencia baja el ROE, pero también la hace casi indestructible. Es el costo de tener una reserva para cuando lleguen las crisis."
+    },
+    {
+     "titulo": "Un balance hecho para las crisis, y el problema de tener demasiada plata",
+     "texto": "Berkshire es, probablemente, la empresa con el balance más sólido de EE.UU. Sus activos son apenas **1,69 veces su patrimonio**: es decir, casi todo lo que tiene es de sus dueños, no prestado. En una aseguradora típica, esa relación es bastante más alta.\n\nEsa fortaleza tiene un objetivo: cuando llega una crisis y todos necesitan plata, Berkshire puede comprar empresas o acciones a precios de liquidación. Lo hizo en 2008 y es su mayor ventaja en un mal momento del mercado.\n\nEl problema es el tamaño. Para mover la aguja en una empresa de este patrimonio, hay que hacer compras de decenas de miles de millones. Y hay pocas oportunidades así a buen precio.\n\nMientras tanto, Berkshire volvió a **recomprar acciones**: unos 4.500 M en el segundo trimestre, después de pasar todo 2025 sin recomprar. Recomprar tiene sentido cuando la acción vale menos que lo que la empresa cree que vale; es una señal de que Abel ve valor en su propia empresa.\n\n[[grafico:acciones]]\n\nBerkshire no paga dividendo: prefiere reinvertir cada dólar."
+    }
    ],
-   "vigilar": [
-    "ROE: hoy 9,3 %; si sigue bajando por debajo de 8 %, la empresa pierde ritmo.",
-    "Recompras: cero en 2025; si vuelven, señal de que la gerencia ve valor; si se acumula más caja sin uso, es un freno.",
-    "Ingresos: 410.522 M en 2025 contra 439.337 M en 2023; hay que ver si se estabilizan.",
-    "Decisiones de Greg Abel: compras de empresas y uso de la caja en los próximos años."
+   "valuacion": {
+    "texto": "En una aseguradora o un conglomerado financiero como Berkshire, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción. Es la medida que usa la propia empresa para decidir cuándo recomprar.\n\nCon el precio de {precio} dólares, Berkshire cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nCuanto más alto es este múltiplo, más se paga por la calidad del negocio; y con un ROE de 9,3 %, esa prima tiene un límite. Cuando el múltiplo baja, la empresa suele aprovechar para recomprar acciones.\n\nEl PER contable ({per_ref} veces) no sirve mucho acá, porque mezcla la ganancia de los negocios con las subas y bajas de la bolsa.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Berkshire no paga dividendo."
+   },
+   "conclusion": "Berkshire Hathaway es una empresa excelente. Tiene una de las ventajas más originales del mercado, el float de sus aseguradoras, negocios con ventajas propias (un ferrocarril, eléctricas reguladas, marcas de consumo) y el balance más sólido que se pueda imaginar. Y en el primer año sin Buffett al frente, la ganancia operativa creció 17 %.\n\nSu punto débil es el tamaño. Con tanta plata y tan pocas oportunidades grandes a buen precio, su ROE (9,3 %) quedó por debajo del de su industria. El crítico más duro diría que, sin Buffett, Berkshire es un conglomerado demasiado grande para crecer rápido, y que la caja ociosa es plata que podría estar mejor en manos de los accionistas. Es un argumento razonable.\n\nEncaja con quien busca una empresa defensiva, con capacidad de aprovechar las crisis, para el largo plazo. No es para quien busca dividendos ni crecimiento acelerado. Es recomendable revisar el ratio combinado de las aseguradoras y sus reservas en el informe de la empresa.\n\nPara que la tesis se mantenga, lo más importante es que Abel use la caja con la misma disciplina que Buffett: comprar solo cuando el precio es bueno.",
+   "pros": [
+    "Float gigante: unos 177.500 M de primas que invierte antes de pagar siniestros.",
+    "Balance indestructible: activos de apenas 1,69 veces su patrimonio y una reserva de caja enorme.",
+    "Negocios diversos: seguros, tren, eléctricas y decenas de empresas que ganan más (ganancia operativa +17 %)."
    ],
+   "contras": [
+    "ROE bajo: 9,3 % en 2025, la mitad que el promedio de su industria, por la caja ociosa.",
+    "Tamaño: cada vez cuesta más encontrar compras que muevan la aguja.",
+    "Era post-Buffett: Greg Abel todavía tiene que demostrar su criterio para invertir."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Asegurados individuales y empresas (GEICO y otras aseguradoras)",
-    "Empresas que mueven carga por el ferrocarril (BNSF)",
-    "Hogares y empresas que consumen electricidad y gas",
-    "Consumidores finales: sin cliente dominante"
+    "Asegurados de GEICO y otras aseguradoras del grupo",
+    "Empresas que mueven carga por el ferrocarril BNSF",
+    "Hogares y empresas que reciben electricidad de sus eléctricas",
+    "Consumidores de sus marcas (See's, Duracell, Fruit of the Loom, entre otras)"
    ],
-   "ideal_para": [
-    "Buscan diversificación con una empresa que combina seguros, transporte y energía.",
-    "Valoran la prudencia y un historial de buen manejo del capital.",
-    "Aceptan retornos moderados a cambio de estabilidad."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ganancia neta de 25.667 M (12.370 M un año antes); ganancia operativa de 12.983 M (11.160 M); ganancias por inversiones de 12.684 M",
+     "fuente": "Comunicado de resultados del 2T26 (8-K, anexo 99.1), 08/08/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001067983/000119312526344495/d159922dex991.htm"
+    },
+    {
+     "dato": "Ganancia operativa del trimestre por negocio: fábricas, servicios y comercios 4.470 M; inversiones de seguros 3.059 M; suscripción de seguros 1.731 M; BNSF 1.558 M; energía 891 M. Primer semestre: 24.329 M (20.801 M un año antes)",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001067983/000119312526344495/d159922dex991.htm"
+    },
+    {
+     "dato": "Recompras de acciones por unos 4.500 M en el trimestre; float de seguros de unos 177.500 M al 30/06/2026",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001067983/000119312526344495/d159922dex991.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido: por tamaño, es difícil que lo logre.",
-    "Quieren ingresos por dividendos."
-   ],
+   "ticker": "BRK-B",
    "perfil": "seguros",
    "capas": [],
-   "ticker": "BRK-B",
    "fecha": "29/10/2026",
    "modelo": "Claude",
    "base": {

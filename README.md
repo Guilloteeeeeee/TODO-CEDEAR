@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.93 (29/10/2026): Análisis Fundamental nuevo, BRK-B y listas
+
+- BRK-B reescrita con el formato v4 (informe del 2T26). El texto del análisis admite listas cortas (un párrafo con un ítem por línea que empieza con "- ").
+- La tanda sigue cuando vuelva a estar disponible la lectura de páginas web (límite semanal de la herramienta, se renueva el 31/10).
+
 ### v1.2.92 (29/10/2026): Análisis Fundamental nuevo, tanda 1 (10 empresas)
 
 - Reescritas con el formato v4 y su último informe oficial: NVDA, AAPL, GOOGL, MSFT, AMZN, TSM, META, AVGO, TSLA (más NEE de la v1.2.91). Resultados del 3T26 cuando ya estaban publicados (Alphabet, Microsoft, Amazon, Meta, Tesla, TSMC); en las demás, el último trimestre informado.

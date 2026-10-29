@@ -434,9 +434,13 @@ def texto_html(txt, ctx=None, graficos=None):
             if graficos:
                 out.append(graficos(m.group(1)))
             continue
-        h = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(par))
-        h = h.replace("\x01", '<span class="af-vv" title="Dato del día: lo actualiza la app">').replace("\x02", "</span>")
-        out.append(f"<p>{h}</p>")
+        fmt = lambda s: re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(s)).replace(
+            "\x01", '<span class="af-vv" title="Dato del día: lo actualiza la app">').replace("\x02", "</span>")
+        lineas = [l.strip() for l in par.split("\n") if l.strip()]
+        if lineas and all(l.startswith(("- ", "• ")) for l in lineas):          # párrafo que es una lista
+            out.append("<ul>" + "".join(f"<li>{fmt(l[2:].strip())}</li>" for l in lineas) + "</ul>")
+        else:
+            out.append(f"<p>{fmt(' '.join(lineas))}</p>")
     return "".join(out)
 
 

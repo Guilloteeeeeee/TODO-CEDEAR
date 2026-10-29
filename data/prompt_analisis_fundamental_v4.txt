@@ -114,6 +114,8 @@ Una empresa joven con pérdidas rara vez es Excelente o Muy buena. Bancos, asegu
 - ¿Cada dato del informe oficial está en "hechos" con su link?
 - ¿Aparece algún nombre de autor o sitio, una recomendación o una frase prohibida?
 
+LISTAS: si una sección necesita una lista corta, va en su propio párrafo (después de una línea en blanco), con un ítem por línea que empieza con "- ". Usalas poco: el estilo es prosa.
+
 FORMATO DE SALIDA: SOLO un objeto JSON válido, con "formato": "v4" y las claves titulo, resumen, introduccion, secciones, valuacion, conclusion, pros, contras, calidad, riesgo_ia, clientes, hechos (y desde_el_ultimo si corresponde). Párrafos separados por una línea en blanco. Sin emojis ni tablas.
 
 FOTO MACRO (fechada; no agregues macro de memoria):
