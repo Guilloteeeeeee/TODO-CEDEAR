@@ -8745,6 +8745,196 @@
      "2022"
     ]
    }
+  },
+  "EQNR": {
+   "resumen": "Equinor es la petrolera estatal de Noruega (el Estado es su principal accionista, dato público): descubre, desarrolla y opera yacimientos de petróleo y gas en el Mar del Norte y en otros países, vende gas por gasoductos a Europa y tiene un negocio de energías renovables. Opera cinco segmentos: producción en Noruega, producción internacional, producción en Estados Unidos, comercialización y procesamiento, y renovables. Gana plata extrayendo y vendiendo energía a precios que fija el mercado. Tiene un **foso estrecho, de recursos de bajo costo en Noruega y cercanía al mercado europeo del gas**: sus yacimientos del Mar del Norte producen con costos bajos y el gas llega a Europa por gasoductos propios, sin pasar por barcos. Los números cuentan un ciclo: el EBIT bajó de 77.741 M en 2022 a **24.730 M** en 2025 y subió a **38.365 M** en los últimos 12 meses, con el Brent en máximos de cinco meses por la guerra con Irán y Ormuz; el margen operativo es de 31,8 % y el ROIC de **42,6 %**. Pero la ganancia neta (11.804 M) es solo 31 % del EBIT por los impuestos muy altos sobre la actividad petrolera noruega (dato público), el flujo libre cayó de 26.378 M a **11.330 M** (9,4 % de los ingresos), las inversiones subieron a 13.006 M y el dividendo pagado bajó de 10.906 M a 3.747 M. Hay 22,7 % menos acciones que en 2022. Su punto débil es la dependencia del precio de la energía y la carga impositiva. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de buena calidad, con foso estrecho de bajo costo, ROIC de 42,6 % y 22,7 % menos acciones, aunque con impuestos muy altos, flujo libre menor y dividendo recortado.**",
+   "veredicto": "Buena: foso estrecho de bajo costo, ROIC de 42,6 % y 22,7 % menos acciones, con impuestos muy altos y dividendo recortado",
+   "conclusion": "Equinor es una empresa de buena calidad: tiene un foso estrecho de recursos de bajo costo, ROIC de 42,6 %, margen operativo de 31,8 % y 22,7 % menos acciones, pero los impuestos dejan una ganancia neta de 31 % del EBIT, el flujo libre cayó más de la mitad desde 2022 y el dividendo se recortó. Hay que seguirla de cerca. Es recomendable investigar la carga impositiva y el plan de inversiones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo con un petróleo más bajo.",
+   "calidad": "Buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Equinor opera como una compañía de energía en Noruega y a nivel internacional. Opera cinco segmentos: **Exploration & Production Norway**, **Exploration & Production International**, **Exploration & Production USA**, **Marketing, Midstream & Processing** y **Renewables**. Se dedica al descubrimiento y la evaluación de nuevos recursos y al desarrollo y la operación de proyectos de petróleo y gas. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al precio de la energía: **los ingresos cayeron 28,3 % en 2023 y 4,1 % en 2024, y subieron 3,2 % en 2025 hasta 105.828 M**, y llegan a 120.571 M en los últimos 12 meses.\n\n**A quién le vende.** A refinerías, empresas de energía y compradores de gas de toda Europa. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Equinor **es de recursos de bajo costo y cercanía al mercado europeo del gas, y es estrecha**. Sus yacimientos del Mar del Norte son grandes y de producción eficiente, y el gas llega a Europa por gasoductos propios, una ventaja de costo y de seguridad de suministro frente al gas transportado en barco. Se ve en un margen operativo de 23,4 % a 52,2 % y un ROIC de 28,3 % a 73,5 %.\n\nPero no controla el precio del petróleo y el gas, y el Estado noruego es su principal accionista (dato público), con influencia en sus decisiones. Compite con Shell, TotalEnergies, BP, Exxon y Chevron. Es frágil en el precio de la energía, en los impuestos petroleros noruegos (que dejan pocas ganancias netas frente al EBIT), en el cambio de estrategia entre petróleo y renovables y en los costos de las inversiones. La inteligencia artificial casi no la afecta.",
+   "numeros": "Los números de Equinor cuentan **un ciclo de precios con rentabilidad operativa muy alta y ganancia neta recortada por impuestos**. Los ingresos fueron de 149.004 M, 106.848 M, 102.502 M y 105.828 M, y de 120.571 M en los últimos 12 meses. El EBIT fue de 77.741 M, 35.233 M, 30.354 M y 24.730 M, y de **38.365 M** (margen operativo de 31,8 %). La ganancia neta fue de 28.746 M, 11.885 M, 8.806 M y 5.043 M, y de 11.804 M. La ganancia por acción fue de 9,03, 3,93, 3,11, 1,94 y **4,81**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 26.378 M, 18.682 M, 7.288 M y 5.977 M, y de **11.330 M** en los últimos 12 meses (9,4 % de los ingresos); Yahoo marca ese último valor como fuera de lo común frente a 2025 (a verificar). Las inversiones subieron de 8.758 M a 13.006 M. El ROIC fue de 73,5 %, 35,8 %, 34,3 %, 28,3 % y 42,6 %.\n\nLa mirada crítica: la ganancia neta equivale a 31 % del EBIT, porque los impuestos sobre la actividad petrolera noruega son muy altos. Mirar solo el EBIT sobrestima lo que le queda al accionista. El rebote de los últimos 12 meses viene del precio del petróleo y del gas.",
+   "balance": "**Deuda baja frente al EBITDA.** La deuda total es de 29.662 M y la caja de 23.995 M. Yahoo informa una deuda neta de 19.072 M, que no coincide con la resta simple (5.667 M) porque probablemente incluye arrendamientos y partidas que la resta no cuenta; en ambos casos, la deuda neta es menor a medio año de EBITDA (52.643 M). Los intereses se cubren 37 veces con el EBIT.\n\nEl patrimonio neto es de 44.914 M, menor que los 53.988 M de 2022 por dividendos y recompras mayores que las ganancias, y la deuda equivale a 0,66 veces el patrimonio.",
+   "gerencia": "La conduce Anders Opedal, presidente y CEO (57 años, pago de 1,9 M según Yahoo), con Torgrim Reitan como director financiero (56 años, pago de 0,9 M). Los pagos son bajos frente a otras petroleras, algo habitual en una empresa con control estatal, dato público.\n\nEn lo que importa, **el uso del capital cambió de dividendo extraordinario a recompras e inversión**: paga un dividendo de 1,56 por acción (pagado desde 2002; cayó 4,6 % por año en 3 años; 3.747 M en los últimos 12 meses, 33 % del flujo libre) y el total pagado bajó de 10.906 M en 2023. **Las acciones bajaron de 3.182 M a 2.460 M, un 22,7 % menos.** Yahoo no trae el monto de recompras.",
+   "fortalezas": [
+    "ROIC de 42,6 % en los últimos 12 meses.",
+    "22,7 % menos acciones desde 2022.",
+    "Recursos de bajo costo en el Mar del Norte.",
+    "Deuda neta baja frente al EBITDA de 52.643 M.",
+    "Gas por gasoducto al mercado europeo."
+   ],
+   "debilidades": [
+    "Ganancia neta de solo 31 % del EBIT por impuestos altos.",
+    "Flujo libre 57 % menor que el de 2022: el crítico más duro diría que las inversiones se comen la caja.",
+    "Dividendo pagado recortado a una tercera parte del de 2023.",
+    "Control estatal.",
+    "Totalmente expuesta al precio de la energía."
+   ],
+   "vigilar": [
+    "Precio del Brent y del gas: hoy en máximos; si bajan, el EBIT vuelve hacia 25.000 M.",
+    "Inversiones: hoy 13.006 M; si suben, el flujo libre se aprieta.",
+    "Ganancia neta contra EBIT: define cuánto queda tras impuestos.",
+    "Dividendo: hoy 1,56 por acción; Yahoo no informa la política futura."
+   ],
+   "clientes": [
+    "Refinerías y empresas de energía",
+    "Compradores de gas de Europa",
+    "Operadores de redes eléctricas y renovables"
+   ],
+   "ideal_para": [
+    "Buscan una petrolera de bajo costo con balance sólido.",
+    "Valoran las recompras y el gas hacia Europa.",
+    "Aceptan los impuestos altos y el control estatal."
+   ],
+   "menos_ideal": [
+    "Buscan ganancias estables.",
+    "No toleran la exposición al precio de la energía."
+   ],
+   "perfil": "energia",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "EQNR",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 120571000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "PSX": {
+   "resumen": "Phillips 66 es una empresa estadounidense de energía de la etapa final de la cadena (downstream): refina petróleo en combustibles, transporta y almacena petróleo y derivados (Midstream), produce químicos (a través de una sociedad con Chevron, dato público), vende lubricantes y combustibles en estaciones de servicio (Marketing and Specialties) y produce combustibles renovables. Gana plata con el margen entre el costo del petróleo que compra y el precio de los combustibles que vende. Tiene un **foso débil, de escala y activos integrados**: sus refinerías, oleoductos y terminales son difíciles de replicar y los costos de construir otra son enormes, pero el margen de refinación lo fija el mercado y fluctúa mucho. Los números muestran un negocio muy cíclico: el EBIT bajó de 9.620 M en 2022 a **1.746 M** en 2024 y subió a **6.980 M** en los últimos 12 meses (margen operativo de 4,6 %), con la nafta cara por la guerra con Irán y el riesgo en Ormuz. El ROIC es de **11,1 %** y el flujo libre fue de **6.394 M** en los últimos 12 meses (4,2 % de los ingresos), que Yahoo marca como fuera de lo común frente a 2.729 M en 2025. Paga dividendo desde 2012 y hay 14,8 % menos acciones que en 2022. Su punto débil es que los márgenes de refinación son impredecibles, la deuda neta es de 16.466 M (1,28x EBITDA) y las recompras bajaron de 4.014 M a 1.189 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de calidad regular, con activos integrados difíciles de replicar y 14,8 % menos acciones, pero con márgenes muy cíclicos, ROIC de 11,1 % y flujo libre irregular.**",
+   "veredicto": "Regular: activos integrados y 14,8 % menos acciones, con márgenes muy cíclicos, ROIC de 11,1 % y flujo libre irregular",
+   "conclusion": "Phillips 66 es una empresa de calidad regular: tiene un foso débil de activos integrados, dividendo creciente y 14,8 % menos acciones, pero el margen operativo es de 4,6 %, el flujo libre es irregular y la deuda neta llega a 16.466 M. Hay que seguirla de cerca. Es recomendable investigar los márgenes de refinación y la contribución de la sociedad de químicos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo en los años flojos del ciclo.",
+   "calidad": "Regular",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Phillips 66 opera como un proveedor de energía integrado del segmento downstream en Estados Unidos, Reino Unido, Alemania y a nivel internacional. Opera cinco segmentos: **Midstream** (transporte, terminales y almacenamiento de petróleo y derivados), **Chemicals**, **Refining**, **Marketing and Specialties** y **Renewable Fuels**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de volumen y márgenes finos: **los ingresos cayeron 13,3 % en 2023, 2,9 % en 2024 y 7,5 % en 2025, hasta 132.376 M**, y suben a 152.167 M en los últimos 12 meses por los precios.\n\n**A quién le vende.** A mayoristas, estaciones de servicio, industrias y consumidores. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Phillips 66 **es de escala y activos integrados, y es débil**. Sus refinerías, oleoductos y terminales son costosos de replicar, y la integración con el transporte, los químicos y la venta de combustibles le permite capturar más valor que una refinería aislada. Se ve en el ROIC de 11,1 % a 16,0 % en los buenos años.\n\nPero el margen de refinación depende del precio del petróleo, de la demanda de combustibles y de la capacidad disponible, y el margen operativo fue de apenas 1,2 % en 2024. Compite con Valero, Marathon Petroleum, Exxon, Chevron y refinerías de otros países. Es frágil en esos márgenes, en la regulación ambiental, en el costo de los biocombustibles y en una caída de la demanda de combustibles a largo plazo. La inteligencia artificial casi no la afecta.",
+   "numeros": "Los números de Phillips 66 cuentan **un ciclo de refinación con un rebote reciente**. Los ingresos fueron de 169.990 M, 147.399 M, 143.153 M y 132.376 M, y de 152.167 M en los últimos 12 meses. El EBIT fue de 9.620 M, 7.950 M, 1.746 M y 3.381 M, y de **6.980 M** (margen operativo de 4,6 %). La ganancia neta fue de 11.024 M, 7.015 M, 2.117 M y 4.403 M, y de 7.093 M. La ganancia por acción fue de 23,27, 15,48, 4,99, 10,79 y **17,55**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.925 M, 4.874 M, 2.332 M y 2.729 M, y de **6.394 M** en los últimos 12 meses (4,2 % de los ingresos). El ROIC fue de 16,0 %, 12,2 %, 3,0 %, 5,8 % y 11,1 %.\n\nLa mirada crítica: la ganancia neta supera al EBIT en varios años porque incluye ganancias de sociedades asociadas, como la de químicos (dato público a verificar). El rebote de los últimos 12 meses depende de márgenes de refinación altos que pueden no repetirse.",
+   "balance": "**Deuda moderada y cubierta, pero más alta que antes.** La deuda total es de 20.565 M y la caja de 4.099 M; la deuda neta es de 16.466 M y la deuda neta/EBITDA es de 1,28x, que multiplicado por 12 son unos 15 meses de EBITDA. Los intereses se cubren 5,8 veces con el EBIT; en 2024 fueron 1,8 veces.\n\nEl patrimonio neto es de 31.506 M y la deuda equivale a 0,65 veces el patrimonio. La deuda total subió de 17.190 M en 2022 a 20.565 M, mientras la caja bajó de 6.133 M a 4.099 M.",
+   "gerencia": "La conduce Mark Lashier, presidente del directorio y CEO (63 años, pago de 6,4 M según Yahoo), con Kevin Mitchell como director financiero (59 años, pago de 2,7 M). Lashier lidera la empresa desde 2022, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras en baja**: paga un dividendo de 5,32 por acción (pagado desde 2012; sube 7,4 % por año en 3 años; 1.983 M en los últimos 12 meses, 31 % del flujo libre) y recompró 1.513 M en 2022, 4.014 M, 3.451 M, 1.207 M y 1.189 M en los últimos 12 meses. **Las acciones bajaron de 474 M a 404 M, un 14,8 % menos.**",
+   "fortalezas": [
+    "14,8 % menos acciones desde 2022.",
+    "Dividendo creciendo 7,4 % por año en 3 años.",
+    "EBIT de 6.980 M en los últimos 12 meses, en rebote.",
+    "Activos integrados de refinación, transporte y químicos.",
+    "ROIC de 11,1 % en los últimos 12 meses."
+   ],
+   "debilidades": [
+    "Margen operativo de solo 4,6 %: el crítico más duro diría que una caída de márgenes de refinación borra casi toda la ganancia.",
+    "Flujo libre irregular (de 2.332 M a 6.394 M).",
+    "Deuda neta de 16.466 M.",
+    "Recompras que bajaron a una cuarta parte del pico.",
+    "Dependiente del ciclo de refinación."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 4,6 %; si baja de 3 %, el ciclo se dio vuelta.",
+    "Márgenes de refinación: Yahoo no los informa, hay que buscarlos en el informe.",
+    "Deuda neta: hoy 16.466 M; debería bajar con el flujo libre.",
+    "Flujo libre: hoy 6.394 M; tiene que cubrir dividendo y recompras."
+   ],
+   "clientes": [
+    "Mayoristas y estaciones de servicio",
+    "Industrias y empresas químicas",
+    "Consumidores de combustibles y lubricantes"
+   ],
+   "ideal_para": [
+    "Buscan una refinadora integrada con dividendo creciente.",
+    "Valoran las recompras del pasado.",
+    "Aceptan márgenes cíclicos."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables.",
+    "No toleran los ciclos de refinación."
+   ],
+   "perfil": "energia",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "PSX",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 152167000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "PEP": {
+   "resumen": "PepsiCo es una de las mayores empresas de alimentos y bebidas del mundo: vende snacks (Lay's, Doritos, Cheetos), bebidas (Pepsi, Gatorade, Mountain Dew, Tropicana) y cereales (Quaker), con seis segmentos: alimentos y bebidas de América del Norte, bebidas internacionales, Europa-Medio Oriente-África, alimentos de América Latina y Asia-Pacífico. Gana plata vendiendo productos de consumo diario a través de supermercados, kioscos y restaurantes, con una red propia de distribución directa a los locales. Tiene un **foso estrecho, de marcas y distribución**: sus marcas se reconocen en todo el mundo y su red de camiones que entrega snacks y bebidas directo al local es muy difícil de replicar, lo que le da espacio en las góndolas. Los números son estables: los ingresos pasaron de 86.392 M en 2022 a **98.241 M** en los últimos 12 meses, el margen operativo es de **15,3 %**, el ROIC de **16,3 %** y el flujo libre de **10.471 M** (10,7 % de los ingresos). Paga dividendo desde 1972, creciendo 7,5 % por año en 3 años. Pero el crecimiento es de 2 % a 6 % por año, el dividendo (7.881 M) absorbe 75 % del flujo libre, las recompras son chicas (987 M) y la deuda total subió de 39.554 M a 51.881 M (probablemente por compras, dato a verificar). Hay 1,2 % menos acciones desde 2022. Su punto débil es el apalancamiento (2,14x EBITDA) y la presión de los consumidores y las marcas propias de los supermercados. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho de marcas y distribución, dividendo de 55 años y flujo libre de 10.471 M, aunque con crecimiento bajo, deuda en alza y poca capacidad de recompra.**",
+   "veredicto": "Buena: foso estrecho de marcas y distribución, dividendo de 55 años y flujo libre de 10.471 M, con crecimiento bajo y deuda en alza",
+   "conclusion": "PepsiCo es una empresa de buena calidad: tiene un foso estrecho de marcas y distribución, margen operativo de 15,3 %, ROIC de 16,3 %, flujo libre de 10.471 M y dividendo creciente desde 1972, pero el crecimiento es bajo, el dividendo absorbe 75 % del flujo libre y la deuda neta llega a 41.206 M. Hay que seguirla de cerca. Es recomendable investigar los cargos de 2025 y las compras recientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre siga cubriendo el dividendo con la deuda estable.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "PepsiCo se dedica a la fabricación, comercialización, distribución y venta de bebidas y alimentos de consumo práctico a nivel mundial. Opera seis segmentos: **PepsiCo Foods North America**, **PepsiCo Beverages North America**, **International Beverages Franchise**, **Europe, Middle East and Africa**, **Latin America Foods** y **Asia Pacific Foods**. Ofrece cereales, papas fritas, dips, bebidas y otros productos. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio maduro de crecimiento bajo: **los ingresos subieron 5,9 % en 2023, 0,4 % en 2024 y 2,3 % en 2025, hasta 93.925 M**, y llegan a 98.241 M en los últimos 12 meses.\n\n**A quién le vende.** A supermercados, kioscos, restaurantes y distribuidores de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque las grandes cadenas minoristas concentran buena parte de las ventas (dato público a verificar).",
+   "foso": "La ventaja de PepsiCo **es de marcas y distribución, y es estrecha**. Sus marcas de snacks y bebidas se reconocen en todo el mundo y su red propia de entrega directa a los locales (camiones que reponen las góndolas) no se arma en poco tiempo. Se ve en un margen bruto estable de 53,0 % a 54,6 % y en un ROIC de 15,7 % a 16,9 % año tras año.\n\nCompite con Coca-Cola, Nestlé, Mondelez, Kraft Heinz, Danone y marcas propias de los supermercados. Es frágil en la presión de precios de los consumidores, en el crecimiento de las marcas propias, en el cambio de hábitos hacia opciones más saludables y en los costos de materias primas. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de PepsiCo cuentan **un negocio estable con crecimiento bajo y rentabilidad constante**. Los ingresos fueron de 86.392 M, 91.471 M, 91.854 M y 93.925 M, y de 98.241 M en los últimos 12 meses. El EBIT fue de 11.357 M, 12.913 M, 12.920 M y 13.491 M, y de **15.053 M** (margen operativo de 15,3 %). La ganancia neta fue de 8.910 M, 9.074 M, 9.578 M y 8.240 M, y de 10.896 M. La ganancia por acción fue de 6,42, 6,56, 6,95, 6,00 y **7,96**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 5.604 M, 7.924 M, 7.189 M y 7.672 M, y de **10.471 M** en los últimos 12 meses (10,7 % de los ingresos). El ROIC fue de 16,9 %, 16,5 %, 16,7 %, 15,7 % y 16,3 %. El ROE de 48,9 % está inflado por el patrimonio chico (22.292 M).\n\nLa mirada crítica: la ganancia neta cayó 14 % en 2025 por cargos que Yahoo no detalla y los últimos 12 meses la devuelven a un nivel alto (10.896 M); hay que verificar cuánto de ese rebote es repetible. Con ingresos que crecieron 14 % en tres años, el ritmo es modesto.",
+   "balance": "**Deuda moderada pero con poco colchón.** La deuda total es de 51.881 M y la caja de 11.163 M; la deuda neta es de 41.206 M y la deuda neta/EBITDA es de 2,14x, que multiplicado por 12 son unos 26 meses de EBITDA. Los intereses se cubren 13,6 veces con el EBIT.\n\nEl patrimonio neto es de 22.292 M, chico para el tamaño de la empresa, y la deuda equivale a 2,33 veces el patrimonio. La deuda total subió de 39.554 M en 2022 a 51.881 M, y el capital invertido de 56.220 M a 74.173 M, un movimiento que coincide con compras de empresas (a verificar).",
+   "gerencia": "La conduce Ramón Laguarta, presidente del directorio y CEO (61 años, pago de 8,2 M según Yahoo), en el cargo desde 2018, dato público, con Steve Schmitt como director financiero (51 años, pago de 3,2 M).\n\nEn lo que importa, **el uso del capital es de dividendo creciente y compras de empresas, con recompras chicas**: paga un dividendo de 5,92 por acción (pagado desde 1972; sube 7,5 % por año en 3 años; 7.881 M en los últimos 12 meses, 75 % del flujo libre) y recompró 1.500 M en 2022, 1.000 M en 2023, 2024 y 2025, y 987 M en los últimos 12 meses. **Las acciones bajaron de 1.387 M a 1.370 M, un 1,2 % menos.**",
+   "fortalezas": [
+    "Marcas globales y red de distribución directa.",
+    "Margen operativo de 15,3 % y ROIC estable de 16 %.",
+    "Flujo libre de 10.471 M.",
+    "Dividendo pagado desde 1972 y creciendo 7,5 % por año.",
+    "Margen bruto estable de 54 %."
+   ],
+   "debilidades": [
+    "Crecimiento de ingresos de 0,4 % a 5,9 % por año.",
+    "Dividendo que absorbe 75 % del flujo libre: el crítico más duro diría que deja poco margen de error.",
+    "Deuda neta de 41.206 M (2,14x EBITDA).",
+    "Poca capacidad de recompra.",
+    "Presión de las marcas propias y de cambios en hábitos de consumo."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +4,6 % en los últimos 12 meses; si baja de 2 %, las marcas pierden fuerza.",
+    "Margen operativo: hoy 15,3 %; si baja, los costos o los precios pesan.",
+    "Deuda neta: hoy 41.206 M; no debería seguir subiendo.",
+    "Flujo libre contra dividendo: hoy 10.471 M contra 7.881 M."
+   ],
+   "clientes": [
+    "Supermercados y cadenas minoristas",
+    "Kioscos, restaurantes y distribuidores",
+    "Consumidores finales de snacks y bebidas"
+   ],
+   "ideal_para": [
+    "Buscan consumo básico con dividendo creciente.",
+    "Valoran las marcas y la distribución.",
+    "Aceptan crecimiento bajo."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento rápido.",
+    "No toleran un balance con deuda moderada."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "PEP",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 98241000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
