@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.88 (29/10/2026): datos de Damodaran cargados (todavía sin mostrar)
+
+- Se guardaron en `data/damodaran/` las planillas de Damodaran (EE.UU., enero 2026) que Guille copió de su página: márgenes, P/B y ROE, PER, EV/EBITDA, P/S, costo de capital y betas, capex.
+- `data/damodaran.py` las lee (96 filas: 94 industrias + 2 totales) y `data/damodaran_mapa.py` propone la industria de Damodaran de cada una de las 166 empresas. **No se muestra en pantalla hasta que Guille apruebe esa tabla.**
+- La fuente a citar será «Damodaran, ene-2026 (empresas de EE.UU.)»; se actualiza una vez por año.
+
 ### v1.2.87 (29/10/2026): informe con «por qué», botón de confirmar, noticias locales y menú
 
 - **Informe de cartera**: cada sugerencia de «Qué ajustaría» lleva su **Por qué** (oro: reaseguro contra la inflación y sostén en momentos de incertidumbre; emergentes → desarrollados: menos volatilidad; defensivas, sector, empresas grandes, liquidez, etc.) y, cuando mueve peso entre grupos, **cuántos puntos**. Los grupos nombran lo que los compone: «Renta fija 12 % (AO28 y VSCXO)», «Energía (PBR y CVX)».

@@ -1,0 +1,113 @@
+Price and Value to Book Ratio by Sector (US)
+Data Used: Multiple data services
+
+Date of Analysis: Data used is as of January 2026
+
+Download as an excel file instead: https://www.stern.nyu.edu/~adamodar/pc/datasets/pbvdata.xls
+
+For global datasets: https://www.stern.nyu.edu/~adamodar/New_Home_Page/data.html
+
+ can be obtained by clicking here
+
+on which companies are included in each industry
+
+
+Industry Name	Number of firms	PBV	ROE	EV/ Invested Capital	ROIC
+Advertising	52	4.55	-1.34%	4.66	27.72%
+Aerospace/Defense	79	7.88	15.27%	6.39	16.01%
+Air Transport	23	2.84	14.19%	1.79	7.93%
+Apparel	35	3.89	10.42%	2.89	15.77%
+Auto & Truck	33	7.72	3.16%	3.46	2.25%
+Auto Parts	35	1.87	2.17%	1.43	8.98%
+Bank (Money Center)	15	1.62	12.86%	1.31	NA
+Banks (Regional)	568	1.14	9.75%	1.33	NA
+Beverage (Alcoholic)	14	1.91	0.57%	1.91	15.74%
+Beverage (Soft)	27	6.87	30.92%	5.39	29.03%
+Broadcasting	24	1.66	3.99%	1.69	14.57%
+Brokerage & Investment Banking	32	2.81	17.77%	1.52	NA
+Building Materials	41	3.62	16.00%	3.68	20.16%
+Business & Consumer Services	155	5.30	18.20%	6.00	28.30%
+Cable TV	9	1.31	11.06%	1.53	12.06%
+Chemical (Basic)	29	1.12	-8.29%	1.18	3.72%
+Chemical (Diversified)	4	1.08	-15.30%	1.03	4.05%
+Chemical (Specialty)	59	2.45	3.50%	2.53	10.95%
+Coal & Related Energy	16	2.25	-2.51%	2.18	-4.76%
+Computer Services	64	4.73	18.25%	5.20	26.35%
+Computers/Peripherals	36	34.08	-0.17%	13.40	44.76%
+Construction Supplies	40	5.46	22.86%	3.88	16.71%
+Diversified	20	1.78	11.37%	1.94	14.82%
+Drugs (Biotechnology)	496	8.22	-5.67%	3.21	3.53%
+Drugs (Pharmaceutical)	228	6.64	24.04%	3.83	16.95%
+Education	32	2.60	15.90%	3.05	15.94%
+Electrical Equipment	112	6.51	1.53%	6.37	15.60%
+Electronics (Consumer & Office)	8	3.85	-28.81%	1.28	-8.35%
+Electronics (General)	114	4.97	12.62%	5.34	17.91%
+Engineering/Construction	48	5.49	26.14%	6.14	25.32%
+Entertainment	92	4.80	6.09%	4.97	12.42%
+Environmental & Waste Services	53	6.59	19.74%	7.10	31.75%
+Farming/Agriculture	35	2.42	12.04%	1.74	7.28%
+Financial Svcs. (Non-bank & Insurance)	176	3.66	28.82%	1.29	NA
+Food Processing	78	1.80	4.60%	2.41	15.95%
+Food Wholesalers	13	4.88	18.22%	3.19	17.84%
+Furn/Home Furnishings	27	2.45	3.11%	2.24	10.59%
+Green & Renewable Energy	15	1.26	-7.36%	1.13	3.64%
+Healthcare Products	204	4.44	11.26%	4.70	16.98%
+Healthcare Support Services	104	2.80	9.89%	4.83	31.19%
+Heathcare Information and Technology	115	4.00	6.40%	5.22	13.72%
+Homebuilding	30	1.63	14.23%	1.64	14.91%
+Hospitals/Healthcare Facilities	31	5.62	50.84%	2.79	22.16%
+Hotel/Gaming	63	12.30	45.38%	3.86	14.58%
+Household Products	110	5.85	27.02%	5.67	34.42%
+Information Services	15	3.79	14.95%	4.92	22.17%
+Insurance (General)	21	3.45	19.07%	6.55	44.51%
+Insurance (Life)	20	1.43	12.87%	1.37	10.77%
+Insurance (Prop/Cas.)	57	2.02	18.71%	2.03	18.49%
+Investments & Asset Management	283	2.49	15.88%	2.42	14.25%
+Machinery	105	4.50	16.42%	5.68	24.41%
+Metals & Mining	73	4.34	17.79%	3.65	27.04%
+Office Equipment & Services	14	2.92	13.23%	2.26	18.26%
+Oil/Gas (Integrated)	4	1.71	9.96%	1.60	8.45%
+Oil/Gas (Production and Exploration)	142	1.36	12.21%	1.26	13.73%
+Oil/Gas Distribution	23	2.88	18.03%	1.92	12.35%
+Oilfield Svcs/Equip.	97	1.92	8.65%	1.82	11.94%
+Packaging & Container	19	2.18	12.29%	2.22	14.82%
+Paper/Forest Products	6	1.83	7.01%	1.68	10.41%
+Power	46	2.28	12.40%	1.57	6.92%
+Precious Metals	56	3.64	23.52%	3.58	25.45%
+Publishing & Newspapers	19	2.28	13.83%	3.18	17.63%
+R.E.I.T.	190	1.99	5.04%	1.43	3.20%
+Real Estate (Development)	14	0.99	5.06%	1.00	7.04%
+Real Estate (General/Diversified)	12	1.16	10.77%	1.14	5.19%
+Real Estate (Operations & Services)	54	3.06	3.30%	3.26	5.94%
+Recreation	49	4.03	-12.76%	2.26	8.02%
+Reinsurance	1	1.02	7.79%	1.02	10.14%
+Restaurant/Dining	64	74.74	0.10%	5.64	18.36%
+Retail (Automotive)	34	7.48	34.38%	2.89	12.19%
+Retail (Building Supply)	14	132.20	NA	6.71	34.95%
+Retail (Distributors)	62	4.04	18.33%	3.20	16.11%
+Retail (General)	23	7.19	26.05%	4.26	13.59%
+Retail (Grocery and Food)	15	3.93	12.90%	2.24	6.76%
+Retail (REITs)	26	2.08	6.36%	1.54	5.16%
+Retail (Special Lines)	94	7.25	30.12%	4.44	21.54%
+Rubber& Tires	3	0.79	-36.41%	0.85	3.17%
+Semiconductor	66	13.31	31.36%	11.19	27.23%
+Semiconductor Equip	31	9.70	35.78%	7.88	28.40%
+Shipbuilding & Marine	8	1.50	10.15%	1.51	11.99%
+Shoe	11	6.06	19.49%	5.22	20.93%
+Software (Entertainment)	77	9.10	36.51%	6.05	27.02%
+Software (Internet)	29	10.86	-1.47%	5.69	3.43%
+Software (System & Application)	309	9.14	29.62%	7.85	29.32%
+Steel	19	1.88	3.68%	1.89	6.72%
+Telecom (Wireless)	12	3.47	16.06%	2.06	10.37%
+Telecom. Equipment	57	8.37	24.96%	7.90	25.47%
+Telecom. Services	39	1.64	19.82%	1.47	12.04%
+Tobacco	10	NA	NA	10.00	63.08%
+Transportation	19	4.79	36.58%	2.84	13.00%
+Transportation (Railroads)	4	5.83	29.07%	2.90	14.24%
+Trucking	26	2.86	7.60%	2.45	9.30%
+Utility (General)	14	1.81	10.42%	1.38	5.99%
+Utility (Water)	14	2.00	10.28%	1.57	7.25%
+Total Market	5994	4.61	17.21%	2.74	8.96%
+Total Market (without financials)	4935	5.10	16.41%	3.62	15.01%
+Last Updated in January 2026
+By Aswath Damodaran

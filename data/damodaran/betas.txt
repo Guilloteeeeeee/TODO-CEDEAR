@@ -1,0 +1,119 @@
+Betas by Sector (US)
+Data Used: Multiple data services
+
+Date of Analysis: Data used is as of January 2026
+
+Download as an excel file instead: https://www.stern.nyu.edu/~adamodar/pc/datasets/betas.xls
+
+For global datasets: https://www.stern.nyu.edu/~adamodar/New_Home_Page/data.html
+
+YouTube Video explaining data: https://www.youtube.com/watch?v=rxmttgceSjg
+
+ can be obtained by clicking here
+
+on which companies are included in each industry
+
+Industry Name	Number of firms	Beta 	D/E Ratio	Effective Tax rate	Unlevered beta	Cash/Firm value	Unlevered beta corrected for cash	HiLo Risk	Standard deviation of equity	Standard deviation in operating income (last 10 years)
+Advertising	52	1.21	40.20%	5.02%	0.93	7.73%	1.01	0.6233	62.91%	15.17%
+Aerospace/Defense	79	0.95	15.56%	11.58%	0.85	2.61%	0.87	0.5213	46.45%	21.86%
+Air Transport	23	1.19	91.17%	8.29%	0.70	7.11%	0.76	0.5152	59.00%	210.43%
+Apparel	35	0.94	31.29%	9.61%	0.76	4.60%	0.79	0.5786	46.26%	26.80%
+Auto & Truck	33	1.46	19.70%	3.74%	1.27	2.99%	1.31	0.7242	61.83%	38.88%
+Auto Parts	35	1.34	41.46%	15.00%	1.02	9.45%	1.13	0.5243	49.87%	21.22%
+Bank (Money Center)	15	0.76	164.19%	18.43%	0.34	23.17%	0.44	0.2310	22.74%	NA
+Banks (Regional)	568	0.40	52.10%	17.61%	0.29	23.48%	0.37	0.1917	22.68%	55.33%
+Beverage (Alcoholic)	14	0.81	43.34%	12.35%	0.61	2.37%	0.63	0.5830	55.96%	18.74%
+Beverage (Soft)	27	0.64	20.59%	6.85%	0.56	3.44%	0.58	0.6187	57.89%	18.65%
+Broadcasting	24	0.47	85.85%	7.73%	0.29	9.18%	0.32	0.5721	46.62%	24.68%
+Brokerage & Investment Banking	32	1.17	135.57%	15.27%	0.58	14.51%	0.68	0.4221	36.61%	NA
+Building Materials	41	1.11	26.00%	18.02%	0.93	3.16%	0.96	0.4099	35.28%	38.06%
+Business & Consumer Services	155	0.89	19.72%	10.38%	0.77	4.02%	0.81	0.5302	41.11%	27.10%
+Cable TV	9	0.74	146.94%	10.64%	0.35	2.89%	0.36	0.4441	44.04%	26.88%
+Chemical (Basic)	29	1.01	99.35%	7.68%	0.58	8.91%	0.64	0.5354	45.81%	39.28%
+Chemical (Diversified)	4	0.85	176.11%	0.00%	0.37	9.75%	0.41	0.4230	39.04%	45.64%
+Chemical (Specialty)	59	0.97	29.88%	13.68%	0.79	3.91%	0.82	0.4095	42.31%	21.76%
+Coal & Related Energy	16	1.07	7.14%	3.13%	1.02	14.03%	1.18	0.6619	64.31%	242.50%
+Computer Services	64	1.09	25.10%	10.53%	0.92	4.80%	0.96	0.5715	53.43%	19.63%
+Computers/Peripherals	36	1.35	4.62%	5.91%	1.31	1.47%	1.32	0.5571	54.58%	30.57%
+Construction Supplies	40	1.15	17.62%	16.04%	1.02	2.94%	1.05	0.4302	35.51%	38.60%
+Diversified	20	0.88	15.55%	2.76%	0.79	6.42%	0.84	0.5558	28.41%	69.90%
+Drugs (Biotechnology)	496	1.14	13.04%	1.08%	1.03	4.20%	1.08	0.6431	75.68%	40.52%
+Drugs (Pharmaceutical)	228	0.98	14.54%	2.99%	0.89	3.16%	0.92	0.6841	76.64%	26.77%
+Education	32	0.78	24.38%	15.54%	0.66	8.26%	0.72	0.5006	47.24%	37.79%
+Electrical Equipment	112	1.25	12.00%	4.82%	1.15	3.53%	1.19	0.6771	72.71%	19.79%
+Electronics (Consumer & Office)	8	0.87	5.80%	0.00%	0.83	10.52%	0.93	0.6314	70.18%	NA
+Electronics (General)	114	0.97	11.01%	8.04%	0.90	4.28%	0.94	0.5332	51.84%	25.55%
+Engineering/Construction	48	1.21	14.01%	13.64%	1.09	3.74%	1.14	0.4819	45.92%	40.66%
+Entertainment	92	0.83	15.91%	3.30%	0.74	3.36%	0.76	0.6108	48.71%	33.72%
+Environmental & Waste Services	53	0.95	21.45%	4.27%	0.81	1.25%	0.82	0.6040	54.91%	33.05%
+Farming/Agriculture	35	1.13	51.85%	6.29%	0.81	3.87%	0.85	0.5709	50.79%	49.70%
+Financial Svcs. (Non-bank & Insur	176	0.97	272.13%	12.06%	0.32	2.69%	0.33	0.4484	42.47%	33.72%
+Food Processing	78	0.61	43.73%	10.37%	0.46	2.56%	0.47	0.4859	43.47%	9.38%
+Food Wholesalers	13	0.87	46.97%	9.15%	0.64	1.06%	0.65	0.5105	33.98%	35.62%
+Furn/Home Furnishings	27	0.82	42.33%	11.38%	0.62	4.19%	0.65	0.4719	51.51%	20.43%
+Green & Renewable Energy	15	0.86	113.11%	0.00%	0.46	1.90%	0.47	0.7310	65.14%	28.78%
+Healthcare Products	204	0.91	12.79%	4.85%	0.83	3.25%	0.86	0.5590	61.79%	30.90%
+Healthcare Support Services	104	0.87	35.43%	9.80%	0.69	7.51%	0.74	0.5230	47.24%	24.13%
+Heathcare Information and Techno	115	1.11	15.74%	6.38%	0.99	2.46%	1.02	0.5788	63.78%	35.53%
+Homebuilding	30	0.91	21.34%	16.99%	0.78	8.00%	0.85	0.3682	32.79%	59.59%
+Hospitals/Healthcare Facilities	31	0.80	59.92%	11.35%	0.55	2.32%	0.56	0.5198	56.46%	20.29%
+Hotel/Gaming	63	1.08	39.75%	8.31%	0.83	4.96%	0.88	0.4804	39.65%	99.05%
+Household Products	110	0.82	18.15%	6.50%	0.72	3.14%	0.74	0.6273	55.46%	12.19%
+Information Services	15	0.92	33.17%	18.16%	0.74	2.54%	0.76	0.4395	32.38%	40.82%
+Insurance (General)	21	0.67	25.63%	12.77%	0.56	2.50%	0.58	0.4201	46.07%	42.10%
+Insurance (Life)	20	0.64	67.84%	15.19%	0.43	19.67%	0.53	0.2318	35.15%	28.26%
+Insurance (Prop/Cas.)	57	0.48	14.83%	18.37%	0.44	4.68%	0.46	0.2677	28.70%	37.90%
+Investments & Asset Management	283	0.66	32.69%	3.53%	0.53	9.92%	0.59	0.2498	30.04%	23.01%
+Machinery	105	0.96	14.69%	13.37%	0.87	2.91%	0.89	0.4387	45.03%	23.40%
+Metals & Mining	73	1.04	10.98%	2.52%	0.96	4.63%	1.01	0.7047	77.56%	53.67%
+Office Equipment & Services	14	1.33	48.10%	12.30%	0.98	5.55%	1.04	0.4265	39.61%	14.22%
+Oil/Gas (Integrated)	4	0.30	13.85%	28.24%	0.27	2.44%	0.28	0.1572	20.27%	106.56%
+Oil/Gas (Production and Exploratio	142	0.72	37.59%	6.66%	0.56	2.73%	0.58	0.5045	42.22%	185.49%
+Oil/Gas Distribution	23	0.67	58.53%	9.17%	0.47	0.89%	0.47	0.4565	42.24%	56.92%
+Oilfield Svcs/Equip.	97	0.95	37.36%	8.75%	0.74	5.59%	0.79	0.4766	48.32%	82.21%
+Packaging & Container	19	1.02	55.11%	15.57%	0.72	3.46%	0.75	0.3815	25.45%	13.14%
+Paper/Forest Products	6	0.96	43.69%	8.60%	0.72	6.25%	0.77	0.4671	56.94%	67.29%
+Power	46	0.48	74.15%	12.75%	0.31	1.45%	0.31	0.2234	25.38%	17.04%
+Precious Metals	56	0.84	7.28%	5.97%	0.79	4.53%	0.83	0.7327	69.95%	67.60%
+Publishing & Newspapers	19	0.56	23.94%	10.21%	0.48	6.75%	0.51	0.3069	35.93%	12.15%
+R.E.I.T.	190	0.64	84.46%	1.58%	0.39	1.91%	0.40	0.2593	26.37%	23.20%
+Real Estate (Development)	14	0.84	101.83%	4.91%	0.48	15.21%	0.56	0.6070	52.10%	81.39%
+Real Estate (General/Diversified)	12	0.81	53.56%	4.65%	0.58	7.83%	0.63	0.4625	31.21%	46.67%
+Real Estate (Operations & Service	54	0.97	24.64%	8.70%	0.81	4.98%	0.86	0.4308	50.56%	29.71%
+Recreation	49	1.02	62.99%	11.45%	0.70	5.62%	0.74	0.5365	48.31%	25.09%
+Reinsurance	1	0.58	43.47%	30.36%	0.44	24.11%	0.58	0.1880	19.21%	21.97%
+Restaurant/Dining	64	0.92	27.22%	9.92%	0.77	1.99%	0.78	0.4914	41.15%	22.10%
+Retail (Automotive)	34	0.94	45.36%	10.77%	0.70	2.08%	0.71	0.4825	44.58%	29.76%
+Retail (Building Supply)	14	1.54	23.29%	11.84%	1.31	0.81%	1.32	0.3865	45.88%	28.49%
+Retail (Distributors)	62	0.95	28.24%	14.59%	0.78	2.36%	0.80	0.4330	39.29%	38.70%
+Retail (General)	23	0.81	7.94%	19.10%	0.76	2.68%	0.78	0.3806	43.34%	37.61%
+Retail (Grocery and Food)	15	1.12	51.95%	12.22%	0.80	5.14%	0.85	0.4158	49.42%	33.40%
+Retail (REITs)	26	0.62	56.42%	1.60%	0.44	1.48%	0.44	0.2005	18.77%	16.63%
+Retail (Special Lines)	94	1.09	19.76%	10.07%	0.95	5.30%	1.00	0.5309	53.25%	25.77%
+Rubber& Tires	3	0.53	358.47%	0.00%	0.14	7.01%	0.15	0.3628	50.77%	61.96%
+Semiconductor	66	1.52	2.59%	5.11%	1.49	1.02%	1.50	0.5440	55.83%	41.94%
+Semiconductor Equip	31	1.40	4.86%	9.96%	1.35	3.13%	1.39	0.4760	50.08%	49.58%
+Shipbuilding & Marine	8	0.75	22.55%	5.26%	0.64	2.54%	0.66	0.5291	50.09%	70.60%
+Shoe	11	1.02	11.94%	11.86%	0.93	6.65%	1.00	0.4536	50.08%	26.37%
+Software (Entertainment)	77	1.03	2.04%	5.29%	1.01	0.78%	1.02	0.6091	57.06%	59.01%
+Software (Internet)	29	1.69	12.30%	3.05%	1.55	2.80%	1.59	0.5618	52.61%	234.02%
+Software (System & Application)	309	1.28	5.58%	5.51%	1.23	1.83%	1.25	0.5741	56.79%	48.63%
+Steel	19	1.06	23.51%	9.28%	0.90	4.38%	0.94	0.3648	38.51%	85.30%
+Telecom (Wireless)	12	0.54	51.95%	4.02%	0.39	1.32%	0.39	0.5030	40.18%	58.11%
+Telecom. Equipment	57	0.92	9.22%	7.06%	0.86	2.68%	0.89	0.5619	55.26%	11.30%
+Telecom. Services	39	0.63	96.06%	3.40%	0.37	4.21%	0.38	0.5335	60.29%	9.46%
+Tobacco	10	0.79	22.97%	14.77%	0.68	1.84%	0.69	0.5640	65.96%	10.13%
+Transportation	19	0.86	36.45%	8.54%	0.68	5.09%	0.71	0.4445	38.13%	54.77%
+Transportation (Railroads)	4	0.98	27.79%	16.98%	0.81	0.83%	0.81	0.2393	23.90%	13.37%
+Trucking	26	1.01	25.23%	12.60%	0.85	2.12%	0.87	0.4329	35.29%	33.03%
+Utility (General)	14	0.24	81.48%	12.77%	0.15	0.33%	0.15	0.1301	14.96%	13.12%
+Utility (Water)	14	0.41	62.36%	11.19%	0.28	0.46%	0.28	0.2491	48.07%	21.22%
+Total Market	5994	0.91	35.17%	8.30%	0.72	4.50%	0.76	0.4807	48.07%	27.75%
+Total Market (without financial	4822	0.99	17.29%	7.10%	0.88	2.60%	0.90	0.5345	52.76%	28.15%
+ 
+
+ 
+
+
+Last Updated in January 2026
+By Aswath Damodaran
