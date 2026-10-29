@@ -7615,6 +7615,192 @@
      "2022"
     ]
    }
+  },
+  "SHOP": {
+   "resumen": "Shopify es una empresa canadiense de tecnología de comercio: ofrece a comerciantes de cualquier tamaño una plataforma para abrir y administrar una tienda online y física, con herramientas para productos e inventario, pedidos, pagos, envíos, marketing y más. Gana plata con suscripciones mensuales y, sobre todo, con soluciones que cobran un porcentaje de lo que vende cada comerciante (pagos, envíos, financiamiento). Tiene un **foso estrecho, de ecosistema y costos de cambio**: miles de aplicaciones y desarrolladores se construyeron alrededor de la plataforma, y un comerciante que ya cargó su catálogo, sus clientes y sus pagos rara vez migra. Los números muestran un giro fuerte: los ingresos pasaron de 5.600 M en 2022 a **13.269 M** en los últimos 12 meses (creciendo más de 25 % por año), el EBIT pasó de -687 M a **2.363 M** (17,8 %), el ROIC es de **16,1 %** y el flujo libre de **2.352 M** (17,7 %), con inversiones casi nulas (25 M). Tiene mucha más caja (4.947 M) que deuda (178 M). Pero el margen bruto bajó de 50,4 % a 47,8 % porque los pagos pesan más en el mix, las acciones aumentaron 3,0 % y las ganancias netas incluyen resultados de inversiones (de 2.019 M en 2024 a 1.231 M en 2025) que no son del negocio. Su punto débil es que depende del gasto de los comerciantes y que Yahoo no trae recompras ni dividendos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: los agentes de compra pueden cambiar cómo llegan los clientes a las tiendas. Conclusión: **empresa de buena calidad, con foso estrecho, ingresos que crecen más de 25 % por año, ROIC de 16,1 % y caja neta de 4.769 M, aunque con margen bruto en baja.**",
+   "veredicto": "Buena: foso estrecho, ingresos creciendo más de 25 % por año, ROIC de 16,1 % y caja neta de 4.769 M, con margen bruto en baja",
+   "conclusion": "Shopify es una empresa de buena calidad: tiene un foso estrecho de ecosistema, ingresos que crecen más de 25 % por año, margen operativo de 17,8 %, ROIC de 16,1 % y caja neta de 4.769 M, pero el margen bruto baja, las acciones aumentaron 3,0 % y su ganancia neta incluye resultados de inversiones. Vale la pena seguirla de cerca. Es recomendable investigar la composición de ingresos entre suscripciones y pagos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el crecimiento siga siendo alto con márgenes que suban.",
+   "calidad": "Buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Shopify es una compañía de tecnología de comercio que ofrece herramientas para iniciar, escalar, promocionar y administrar un negocio de cualquier tamaño en Canadá, Estados Unidos, Europa, Medio Oriente, África, Asia-Pacífico y América Latina. Su plataforma permite administrar productos e inventario, procesar pedidos y pagos, preparar y enviar pedidos, entre otras funciones. Yahoo no informa cuánto aporta cada línea (suscripciones o soluciones comerciales), y no lo vamos a inventar.\n\nEs un negocio de crecimiento sostenido: **los ingresos subieron 26,1 % en 2023, 25,8 % en 2024 y 30,1 % en 2025, hasta 11.556 M**, y llegan a 13.269 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de comerciantes de todos los tamaños. **Ningún cliente pesa de forma decisiva**: la base es muy atomizada.",
+   "foso": "La ventaja de Shopify **es de ecosistema y costos de cambio, y es estrecha**. Alrededor de su plataforma hay miles de aplicaciones, temas y desarrolladores, y los comerciantes que ya cargaron su catálogo, sus clientes y sus medios de pago pierden tiempo y ventas si migran. Su red de pagos y envíos le da además datos para ofrecer financiamiento y servicios.\n\nPero el margen bruto de 47,8 % es bajo para un negocio de software porque cobra pagos, que tienen costos asociados, y bajó de 50,4 % en 2024. Compite con Amazon, WooCommerce, Wix, Squarespace, BigCommerce y plataformas de grandes empresas. Es frágil en el gasto de los comerciantes (si las ventas de sus clientes bajan, bajan sus ingresos), en la competencia de precios y en que las compras podrían migrar a canales controlados por otras plataformas. La inteligencia artificial puede ayudarla y también cambiar cómo llegan los compradores a las tiendas; por eso el riesgo es moderado.",
+   "numeros": "Los números de Shopify cuentan **un giro de pérdidas a una rentabilidad creciente**. Los ingresos fueron de 5.600 M, 7.060 M, 8.880 M y 11.556 M, y de 13.269 M en los últimos 12 meses. El EBIT fue de -687 M, 74 M, 1.302 M y 1.885 M, y de **2.363 M** (margen operativo de 17,8 %). La ganancia neta fue de -3.460 M, 132 M, 2.019 M y 1.231 M, y de 1.928 M. La ganancia por acción fue de -2,73, 0,10, 1,56, 0,94 y 1,48.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -186 M, 905 M, 1.597 M y 2.007 M, y de **2.352 M** en los últimos 12 meses (17,7 % de los ingresos), con inversiones de solo 25 M. El ROIC fue de -7,2 %, 0,5 %, 9,5 %, 11,4 % y 16,1 %.\n\nLa mirada crítica: las ganancias netas de 2022 (-3.460 M) y 2024 (2.019 M, por encima del EBIT de 1.302 M) incluyen resultados de inversiones en otras empresas que no son del negocio (dato público a verificar). Es más fiable mirar el EBIT y el flujo libre.",
+   "balance": "**Balance de caja neta, sin riesgo de deuda.** La caja es de 4.947 M y la deuda total de apenas 178 M (probablemente arrendamientos), de modo que la deuda neta es de -4.769 M: tiene más plata que deudas. El patrimonio neto es de 12.684 M y la deuda equivale a 0,01 veces el patrimonio. La cobertura de intereses no es relevante con una deuda tan baja.\n\nLa deuda total bajó de 1.396 M en 2022 a 178 M, y la caja se mantuvo entre 4.947 M y 5.767 M. Es un balance muy cómodo.",
+   "gerencia": "La conduce Tobias Lütke, fundador, CEO y director de investigación y desarrollo (44 años, pago de 0,0 M según Yahoo), con Harley Finkelstein como presidente (42 años, pago de 1,0 M) y Jeff Hoffmeister como director financiero (55 años, pago de 1,0 M). El fundador conduce la empresa desde su origen y casi no cobra salario, dato que Yahoo muestra.\n\nEn lo que importa, **el uso del capital es de reinversión: no paga dividendo y Yahoo no informa recompras**. **Las acciones subieron de 1.266 M a 1.304 M, un 3,0 % más**, por la compensación en acciones. Las inversiones son mínimas (25 M).",
+   "fortalezas": [
+    "Ingresos de 13.269 M, creciendo más de 25 % por año.",
+    "Margen operativo de 17,8 % y ROIC de 16,1 %, subiendo.",
+    "Flujo libre de 2.352 M con inversiones mínimas.",
+    "Más caja (4.947 M) que deuda (178 M).",
+    "Ecosistema de aplicaciones y comerciantes difícil de reemplazar."
+   ],
+   "debilidades": [
+    "Margen bruto de 47,8 % y en baja, bajo para software.",
+    "Ganancias netas con resultados de inversiones que no son del negocio.",
+    "3,0 % más acciones desde 2022.",
+    "Depende del gasto de los comerciantes: el crítico más duro diría que una caída del consumo golpea directamente.",
+    "Competencia fuerte de Amazon y de otras plataformas."
+   ],
+   "vigilar": [
+    "Margen bruto: hoy 47,8 %; si sigue bajando, los pagos pesan más y el negocio vale menos.",
+    "Margen operativo: hoy 17,8 %; tiene que sostenerse mientras crece.",
+    "Crecimiento de ingresos: hoy cerca de 25 % a 30 %; si baja de 20 %, el negocio cambia de etapa.",
+    "Cantidad de acciones: hoy 1.304 M; si siguen subiendo, la dilución se acumula."
+   ],
+   "clientes": [
+    "Comerciantes de todos los tamaños",
+    "Marcas que venden online y en tiendas físicas",
+    "Desarrolladores de aplicaciones para la plataforma"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de comercio electrónico en crecimiento.",
+    "Valoran la caja neta y la baja deuda.",
+    "Aceptan que no paga dividendo."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos.",
+    "No toleran la sensibilidad al consumo."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "SHOP",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 13269000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "NOW": {
+   "resumen": "ServiceNow es una empresa estadounidense de software en la nube para flujos de trabajo digitales: vende una plataforma donde las grandes empresas gestionan servicios de tecnología (pedidos de soporte), recursos humanos, seguridad, riesgos, activos y operaciones, automatizando tareas que antes se hacían por mail o planilla. Gana plata con suscripciones anuales que los clientes renuevan. Tiene un **foso estrecho, de costos de cambio y plataforma central**: una vez que una gran empresa organiza sus procesos de soporte y trabajo en ServiceNow y conecta otros sistemas, cambiar implica rehacer flujos y reentrenar a muchas personas. Los números son de una empresa que crece rápido y genera caja: los ingresos pasaron de 7.245 M en 2022 a **14.732 M** en los últimos 12 meses, creciendo más de 20 % por año, y el flujo libre fue de **4.571 M** (31,0 % de los ingresos). El margen bruto es de 74,8 % pero bajó de 79,2 %, y el margen operativo de los últimos 12 meses (**11,4 %**) bajó de 13,7 % en 2025. El ROIC es de solo **6,0 %**. La deuda total subió de 2.403 M a **8.453 M** y el capital invertido de 14.455 M a 20.033 M, probablemente por compras (Yahoo no lo detalla). Las acciones aumentaron 2,3 % desde 2022 pese a las recompras. Su punto débil es que las ganancias contables son chicas frente al flujo libre, por la compensación en acciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: los agentes pueden automatizar tareas y cambiar cuántos usuarios necesita cada cliente. Conclusión: **empresa de buena calidad, con foso estrecho, ingresos que crecen más de 20 % por año y flujo libre de 4.571 M, aunque con ROIC de 6,0 %, margen en baja y deuda en alza.**",
+   "veredicto": "Buena: foso estrecho, ingresos creciendo más de 20 % por año y flujo libre de 4.571 M, con ROIC de 6,0 %, margen en baja y deuda en alza",
+   "conclusion": "ServiceNow es una empresa de buena calidad: tiene un foso estrecho de costos de cambio, ingresos que crecen más de 20 % por año y flujo libre de 4.571 M, pero el ROIC es de 6,0 %, los márgenes bajaron en los últimos 12 meses y la deuda subió a 8.453 M. Hay que seguirla de cerca. Es recomendable investigar las compras recientes y el costo de la inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva a subir mientras el crecimiento se sostiene.",
+   "calidad": "Buena",
+   "riesgo_ia": "moderado",
+   "negocio": "ServiceNow provee soluciones basadas en la nube para flujos de trabajo digitales en América del Norte, Brasil, Europa, Medio Oriente, África, Asia-Pacífico y a nivel internacional. Ofrece productos de gestión de activos, gestión integrada de riesgos, gestión de servicios de TI, gestión de tecnología operativa, operaciones de seguridad y gestión estratégica de portafolios, entre otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio de suscripciones en fuerte crecimiento: **los ingresos subieron 23,8 % en 2023, 22,4 % en 2024 y 20,9 % en 2025, hasta 13.278 M**, y llegan a 14.732 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes empresas y organismos públicos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de ServiceNow **es de costos de cambio y plataforma central, y es estrecha**. Cuando una gran empresa organiza el soporte de tecnología, los pedidos de recursos humanos, la seguridad y los activos en una sola plataforma, miles de empleados dependen de ella y cambiarla es un proyecto largo con riesgo de parar la operación. Se ve en los ingresos que crecen más de 20 % año tras año.\n\nPero la rentabilidad todavía es modesta: el margen operativo es de 11,4 % y el ROIC de 6,0 %, y el margen bruto bajó de 79,2 % a 74,8 % en los últimos 12 meses (Yahoo no explica el motivo). Compite con Microsoft, Salesforce, SAP, Atlassian y BMC. Es frágil en la competencia de paquetes de grandes empresas y en que la inteligencia artificial puede reducir el número de usuarios necesarios por contrato, aunque ServiceNow vende sus propios agentes. Por eso el riesgo es moderado.",
+   "numeros": "Los números de ServiceNow cuentan **un crecimiento fuerte con rentabilidad contable modesta**. Los ingresos fueron de 7.245 M, 8.971 M, 10.984 M y 13.278 M, y de 14.732 M en los últimos 12 meses. El EBIT fue de 355 M, 762 M, 1.364 M y 1.824 M, y de 1.680 M (margen operativo de 11,4 %). La ganancia neta fue de 325 M, 1.731 M, 1.425 M y 1.748 M, y de 1.670 M. La ganancia por acción fue de 0,32, 1,68, 1,37, 1,67 y 1,60; Yahoo parece expresarla tras un split de acciones (dato público a verificar).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.173 M, 2.701 M, 3.375 M y 4.533 M, y de **4.571 M** en los últimos 12 meses (31,0 % de los ingresos). El ROIC fue de 4,4 %, 6,6 %, 10,1 %, 9,8 % y 6,0 %.\n\nLa mirada crítica: el flujo libre (4.571 M) es 2,7 veces la ganancia neta (1.670 M); esa diferencia se explica en gran parte por la compensación en acciones, que no se resta del flujo libre pero diluye al accionista. El EBIT de los últimos 12 meses (1.680 M) bajó frente a 2025 (1.824 M).",
+   "balance": "**La deuda subió fuerte en el último año.** En los últimos 12 meses, la deuda total es de 8.453 M y la caja de 4.664 M; la deuda neta es de 5.014 M y la deuda neta/EBITDA es de 1,43x, que multiplicado por 12 son unos 17 meses de EBITDA. Los intereses se cubren 20,2 veces con el EBIT. Un año antes, la deuda total era de 2.403 M y no tenía deuda neta.\n\nEl patrimonio neto es de 12.516 M y la deuda equivale a 0,68 veces el patrimonio. El capital invertido subió de 14.455 M a 20.033 M, lo que apunta a compras de empresas (Yahoo no lo detalla).",
+   "gerencia": "La conduce Bill McDermott, presidente del directorio y CEO (63 años, pago de 8,1 M según Yahoo), con Gina Mastantuono como presidenta y directora financiera (55 años, pago de 2,2 M). McDermott dirigió antes SAP, dato público. El fundador Fred Luddy (70 años) sigue como director.\n\nEn lo que importa, **el uso del capital cambió a recompras y compras de empresas**: no paga dividendo y recompró 538 M en 2023, 696 M, 1.840 M y 3.406 M en los últimos 12 meses. **Las acciones aun así subieron de 1.020 M a 1.043 M, un 2,3 % más**, por la compensación en acciones. Las recompras de los últimos 12 meses (3.406 M) equivalen a 75 % del flujo libre.",
+   "fortalezas": [
+    "Ingresos de 14.732 M, creciendo más de 20 % por año.",
+    "Flujo libre de 4.571 M, 31,0 % de los ingresos.",
+    "Costos de cambio altos en grandes clientes.",
+    "Margen bruto de 74,8 %.",
+    "Intereses cubiertos 20,2 veces."
+   ],
+   "debilidades": [
+    "ROIC de 6,0 %, bajo, y en baja desde 9,8 %.",
+    "Margen bruto y margen operativo en baja en los últimos 12 meses: el crítico más duro diría que el crecimiento cuesta cada vez más.",
+    "Deuda que subió de 2.403 M a 8.453 M.",
+    "2,3 % más acciones desde 2022 pese a las recompras.",
+    "Los agentes de inteligencia artificial pueden reducir el número de usuarios por contrato."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 11,4 %; tiene que volver a subir hacia 14 %.",
+    "Margen bruto: hoy 74,8 %; si sigue bajando, el costo de la inteligencia artificial pesa.",
+    "Deuda total: hoy 8.453 M; tiene que estabilizarse.",
+    "Cantidad de acciones: hoy 1.043 M; las recompras deberían reducirla."
+   ],
+   "clientes": [
+    "Grandes empresas multinacionales",
+    "Organismos públicos",
+    "Áreas de tecnología, recursos humanos y seguridad"
+   ],
+   "ideal_para": [
+    "Buscan software empresarial en crecimiento con flujo libre fuerte.",
+    "Valoran los costos de cambio.",
+    "Aceptan que las ganancias contables son modestas."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos.",
+    "No toleran la dilución ni la deuda en alza."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "NOW",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 14732000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "CRM": {
+   "resumen": "Salesforce es una empresa estadounidense de software de gestión de relaciones con clientes: vende en la nube herramientas para ventas, servicio al cliente, marketing, análisis de datos y agentes de inteligencia artificial autónomos (Agentforce), con el objetivo de que las empresas administren todo lo que hacen con sus clientes en un solo lugar. Gana plata con suscripciones anuales que los clientes renuevan. Tiene un **foso estrecho, de costos de cambio y datos de clientes**: una empresa que cargó años de historial de clientes, procesos y conexiones con otros sistemas en Salesforce no cambia con facilidad. Los números son de una empresa grande que ganó eficiencia: los ingresos pasaron de 31.352 M en el ejercicio 2023 a **43.938 M** en los últimos 12 meses, el margen operativo subió de 5,9 % a **21,5 %** y el flujo libre llegó a **15.154 M** (34,5 % de los ingresos). Las recompras fueron enormes: **35.070 M en los últimos 12 meses**, mucho más que el flujo libre, y para financiarlas la deuda total saltó de 17.176 M a 41.743 M (dato a verificar en el informe). Las acciones bajaron 10,1 %. Su punto débil es que el ROIC es de apenas 9,5 % porque el capital invertido (77.666 M) viene de compras grandes anteriores, el crecimiento de ingresos es de 9 % a 10 % y el patrimonio bajó de 59.142 M a 38.378 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: los agentes pueden automatizar tareas y reducir el número de usuarios por contrato. Conclusión: **empresa de buena calidad, con foso estrecho, margen operativo de 21,5 % y flujo libre de 15.154 M, aunque con ROIC de 9,5 %, deuda que se multiplicó para recomprar acciones y crecimiento moderado.**",
+   "veredicto": "Buena: foso estrecho, margen operativo de 21,5 % y flujo libre de 15.154 M, con ROIC de 9,5 % y deuda en alza",
+   "conclusion": "Salesforce es una empresa de buena calidad: tiene un foso estrecho de costos de cambio, margen operativo de 21,5 %, flujo libre de 15.154 M y 10,1 % menos acciones, pero el ROIC es de 9,5 %, la deuda neta subió a 30.978 M para financiar recompras y los ingresos crecen cerca de 10 %. Hay que seguirla de cerca. Es recomendable investigar el origen de la deuda y la estrategia de agentes de inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda baje y el margen operativo se sostenga.",
+   "calidad": "Buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Salesforce presta servicios tecnológicos de gestión de relaciones con clientes en Estados Unidos, Europa y Asia-Pacífico. Ofrece Agentforce, para crear, implementar y administrar agentes de inteligencia artificial autónomos de nivel empresarial, y Agentforce Sales, una plataforma de ventas, entre otros productos. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de software maduro con crecimiento moderado: **los ingresos subieron 11,2 % en 2024, 8,7 % en 2025 y 9,6 % en 2026, hasta 41.525 M** (el ejercicio cierra a fines de enero), y llegan a 43.938 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas de todos los tamaños y sectores. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Salesforce **es de costos de cambio y datos de clientes, y es estrecha**. Una empresa que registró años de historial de clientes, oportunidades de venta y casos de servicio en la plataforma, y que la conectó con su sistema de facturación, marketing y análisis, tendría que migrar todo para cambiar. Se ve en el margen bruto, que subió de 73,3 % a 77,7 %.\n\nPero el ROIC de 9,5 % indica que la ventaja no genera rentabilidad extraordinaria sobre el capital invertido, inflado por compras. Compite con Microsoft Dynamics, HubSpot, Oracle, SAP y ServiceNow. Es frágil en la competencia de Microsoft, que incluye sus productos en paquetes, y en que la inteligencia artificial puede cambiar la forma de trabajar con clientes: si los agentes automatizan tareas, se necesitan menos usuarios con licencia. Por eso el riesgo es moderado.",
+   "numeros": "Los números de Salesforce cuentan **un salto de márgenes en tres años**. Los ingresos fueron de 31.352 M, 34.857 M, 37.895 M y 41.525 M, y de 43.938 M en los últimos 12 meses. El EBIT fue de 1.858 M, 5.999 M, 7.666 M y 8.917 M, y de **9.455 M** (margen operativo de 21,5 %). La ganancia neta fue de 208 M, 4.136 M, 6.197 M y 7.457 M, y de 9.662 M. La ganancia por acción fue de 0,21, 4,20, 6,36, 7,80 y **10,97**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 6.313 M, 9.498 M, 12.434 M y 14.402 M, y de **15.154 M** en los últimos 12 meses (34,5 % de los ingresos). El ROIC fue de 2,0 %, 7,3 %, 9,2 %, 9,5 % y 9,5 %.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (9.662 M) supera al EBIT (9.455 M), lo que indica un resultado no operativo (por ejemplo, ganancias de inversiones o impuestos; Yahoo no lo detalla). El flujo libre no resta la compensación en acciones. El ROE de 25,2 % está inflado porque el patrimonio bajó por las recompras.",
+   "balance": "**La deuda se multiplicó en el último año.** En los últimos 12 meses, la deuda total es de 41.743 M y la caja de 11.403 M; la deuda neta es de 30.978 M. Un año antes, la deuda total era de 17.176 M y la deuda neta de 7.112 M. Esa deuda neta equivale a unos 3,3 veces el EBIT, unos 39 meses de EBIT (cálculo propio, porque Yahoo no trae el EBITDA de los últimos 12 meses).\n\nEl patrimonio neto bajó de 59.142 M a 38.378 M y la deuda equivale a 1,09 veces el patrimonio. Yahoo no trae el gasto por intereses, así que no calculamos la cobertura. El salto de deuda coincide con recompras de 35.070 M (a verificar en el informe).",
+   "gerencia": "La conduce Marc Benioff, cofundador, presidente del directorio y CEO (60 años, pago de 11,4 M según Yahoo), con Miguel Milano como presidente y director de operaciones (56 años, pago de 4,3 M). Benioff fundó la empresa en 1999, dato público.\n\nEn lo que importa, **el uso del capital cambió a recompras gigantes y un dividendo nuevo**: paga un dividendo de 1,76 por acción desde 2024 (1.515 M en los últimos 12 meses, 10 % del flujo libre) y recompró 4.000 M en 2023, 7.620 M, 7.829 M, 12.596 M y 35.070 M en los últimos 12 meses. **Las acciones bajaron de 997 M a 896 M, un 10,1 % menos.** Las recompras de los últimos 12 meses superaron más de dos veces al flujo libre.",
+   "fortalezas": [
+    "Margen operativo de 21,5 %, subiendo desde 5,9 %.",
+    "Flujo libre de 15.154 M, 34,5 % de los ingresos.",
+    "10,1 % menos acciones desde 2023.",
+    "Dividendo nuevo desde 2024.",
+    "Costos de cambio altos en sus clientes."
+   ],
+   "debilidades": [
+    "Deuda total que pasó de 17.176 M a 41.743 M para recomprar acciones: el crítico más duro diría que compró sus propias acciones con plata prestada.",
+    "ROIC de 9,5 %, bajo para su margen.",
+    "Crecimiento de ingresos de 9 % a 10 %.",
+    "Patrimonio que bajó de 59.142 M a 38.378 M.",
+    "Los agentes de inteligencia artificial pueden reducir el número de usuarios por contrato."
+   ],
+   "vigilar": [
+    "Deuda neta: hoy 30.978 M; tiene que bajar con el flujo libre.",
+    "Margen operativo: hoy 21,5 %; si baja, la inteligencia artificial cuesta más de lo previsto.",
+    "Ingresos: hoy +9,6 %; si baja de 8 %, el negocio se estanca.",
+    "Recompras: hoy 35.070 M; no deberían seguir superando al flujo libre."
+   ],
+   "clientes": [
+    "Empresas de todos los tamaños",
+    "Equipos de ventas, servicio y marketing",
+    "Organismos públicos y sectores regulados"
+   ],
+   "ideal_para": [
+    "Buscan software empresarial rentable con recompras y dividendo.",
+    "Valoran el flujo libre alto.",
+    "Aceptan el riesgo de la deuda alta."
+   ],
+   "menos_ideal": [
+    "Buscan balances sin deuda.",
+    "No toleran el desafío de los agentes de inteligencia artificial."
+   ],
+   "perfil": "software",
+   "capas": [],
+   "ticker": "CRM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 43938000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
   }
  }
 }
