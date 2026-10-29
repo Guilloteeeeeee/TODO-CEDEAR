@@ -9495,6 +9495,192 @@
      "2022"
     ]
    }
+  },
+  "ABT": {
+   "resumen": "Abbott Laboratories es una empresa estadounidense de salud con cuatro segmentos: dispositivos médicos, diagnósticos, nutrición y medicamentos de marca establecidos (Established Pharmaceuticals), que vende en todo el mundo. Gana plata vendiendo productos médicos y de consumo recurrente (nutrición, pruebas de laboratorio, sensores y dispositivos), con marcas conocidas por médicos y pacientes. Tiene un **foso estrecho, de marcas, regulación y diversificación**: cada producto médico requiere aprobaciones y los médicos confían en marcas conocidas; no depende de un solo producto (dato público). Los números son sólidos: los ingresos subieron de 40.109 M a **44.328 M** entre 2023 y 2025, el margen operativo volvió a **18,2 %**, el flujo libre fue de **7.395 M** (16,7 %) y el dividendo se paga desde 1983 con aumentos de 7,9 % por año. Pero la ganancia por acción es errática (3,91, 3,26, 7,64 y 3,72, y 2,68 en los últimos 12 meses) por resultados extraordinarios que Yahoo no detalla, el ROIC es de 9,5 % y, en los últimos 12 meses, la deuda total saltó de 13.860 M a 34.047 M, probablemente por una gran compra (dato a verificar). Las recompras bajaron de 3.795 M a 793 M. Su punto débil es ese salto de deuda y la baja de ganancias. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, diversificada y con flujo libre de 7.395 M, pero con ganancias erráticas, ROIC de 9,5 % y deuda que saltó a 34.047 M por una gran compra.**",
+   "veredicto": "Buena: diversificada, con flujo libre de 7.395 M y dividendo desde 1983, pero con ROIC de 9,5 % y deuda que saltó a 34.047 M",
+   "conclusion": "Abbott es una empresa de buena calidad: tiene un foso estrecho de marcas y regulación, flujo libre de 7.395 M, dividendo desde 1983 y ingresos que vuelven a crecer, pero la ganancia por acción es errática, el ROIC es de 9,5 % y la deuda saltó a 34.047 M en 12 meses. Vale la pena seguirla de cerca. Es recomendable investigar qué compró y cómo se explica la ganancia neta de 2024 en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda baje con el flujo libre.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Abbott descubre, desarrolla, fabrica y vende productos de atención médica en todo el mundo. Opera cuatro segmentos: **Established Pharmaceuticals** (medicamentos de marca establecidos y genéricos), **Diagnostics** (pruebas), **Nutrition** (nutrición) y **Medical Devices** (dispositivos médicos). Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio grande que volvió a crecer: **los ingresos cayeron 8,1 % en 2023 (fin de las pruebas de COVID, dato público), y subieron 4,6 % en 2024 y 5,7 % en 2025, hasta 44.328 M**.\n\n**A quién le vende.** A hospitales, laboratorios, farmacias, distribuidores y consumidores finales. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Abbott **es de marcas, regulación y diversificación, y es estrecha**. Los dispositivos y diagnósticos necesitan aprobaciones regulatorias, los médicos y los hospitales confían en productos probados, y la nutrición infantil y de adultos se compra por marca. Se ve en el margen bruto estable entre 55,2 % y 56,4 %.\n\nPero el margen operativo (16,2 % a 19,2 %) y el ROIC (de 13,1 % a 9,5 %) son moderados. Compite con Medtronic, Johnson & Johnson, Danaher, Roche, Dexcom y Nestlé. Es frágil en los retiros de productos (en nutrición infantil, dato público), en los precios de los sistemas de salud y en la baja de pruebas de diagnóstico. La inteligencia artificial más bien ayuda a sus dispositivos.",
+   "numeros": "Los números de Abbott cuentan **un negocio estable con ganancias netas distorsionadas por resultados extraordinarios**. Los ingresos fueron de 43.653 M, 40.109 M, 41.950 M y 44.328 M. El EBIT fue de 8.362 M, 6.478 M, 6.825 M y **8.053 M** (margen operativo de 18,2 %). La ganancia neta fue de 6.933 M, 5.723 M, **13.402 M** y 6.524 M. La ganancia por acción fue de 3,91, 3,26, 7,64 y 3,72, y de **2,68** en los últimos 12 meses.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 7.804 M, 5.059 M, 6.351 M y **7.395 M** (16,7 %), y de 7.378 M en los últimos 12 meses. El ROIC fue de 13,1 %, 10,4 %, 8,2 % y 9,5 %; el ROE de 2025 fue de 12,5 %.\n\nLa mirada crítica: la ganancia neta de 2024 (13.402 M) casi duplica la de los otros años con EBIT parecido; Yahoo no lo explica (probable beneficio fiscal extraordinario, dato a verificar). La de los últimos 12 meses cae a 2,68 por acción, también sin explicación en los datos.",
+   "balance": "**Balance liviano hasta 2025 y más pesado ahora.** En 2025, la deuda total era de 13.860 M, la caja de 8.939 M y la deuda neta de 4.407 M (0,36x EBITDA), con cobertura de 16,3 veces.\n\nEn los últimos 12 meses, la deuda total subió a **34.047 M**, la caja bajó a 7.295 M y la deuda neta llegó a **27.244 M**. Con el EBITDA de 2025 (12.075 M), serían unas 2,3x, que multiplicado por 12 son unos 27 meses de EBITDA (cálculo nuestro, porque Yahoo no informa el cociente). El patrimonio es de 52.061 M y la liquidez corriente de 2,12x. El motivo probable es una adquisición grande, dato a verificar.",
+   "gerencia": "La conduce Robert Ford, presidente ejecutivo y CEO (51 años, pago de 4,4 M según Yahoo), con Philip Boudreau como director financiero (52 años, pago de 2,1 M). Ford es CEO desde 2020, dato público.\n\nEn lo que importa, **el uso del capital combina dividendo creciente y recompras que se enfriaron**: paga un dividendo de 2,52 por acción (desde 1983; sube 7,9 % por año en 3 años y 9,4 % en 10 años; 4.188 M en los últimos 12 meses, 57 % del flujo libre) y recompró 3.795 M en 2022, 1.227 M, 1.295 M, 893 M y 793 M en los últimos 12 meses. **Las acciones bajaron de 1.764 M a 1.744 M, un 1,1 % menos.**",
+   "fortalezas": [
+    "Cuatro segmentos que reducen la dependencia de un solo producto.",
+    "Flujo libre de 7.395 M en 2025.",
+    "Dividendo pagado desde 1983 y creciendo 7,9 % por año.",
+    "Margen bruto estable cerca de 56 %.",
+    "Balance muy liviano hasta 2025 (0,36x EBITDA)."
+   ],
+   "debilidades": [
+    "Ganancia por acción errática (de 7,64 a 3,72 y 2,68).",
+    "ROIC de 9,5 %: el crítico más duro diría que no es excepcional para un foso estrecho.",
+    "Deuda total de 13.860 M a 34.047 M en 12 meses.",
+    "Recompras cayendo (de 3.795 M a 793 M).",
+    "Márgenes que no superan 19 %."
+   ],
+   "vigilar": [
+    "Ganancia por acción: hoy 2,68 en 12 meses; tiene que volver cerca de 3,70.",
+    "Deuda neta: hoy 27.244 M; tiene que bajar con el flujo libre.",
+    "Margen operativo: hoy 18,2 %; si baja de 16 %, pierde poder de precio.",
+    "Ingresos por segmento: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Hospitales y laboratorios",
+    "Farmacias y distribuidores",
+    "Consumidores de nutrición y dispositivos médicos"
+   ],
+   "ideal_para": [
+    "Buscan salud diversificada con dividendo creciente.",
+    "Valoran un balance que era liviano.",
+    "Aceptan ganancias netas con ruido."
+   ],
+   "menos_ideal": [
+    "Buscan ganancias estables año a año.",
+    "No toleran el salto de deuda por adquisiciones."
+   ],
+   "perfil": "salud",
+   "capas": [],
+   "ticker": "ABT",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "PFE": {
+   "resumen": "Pfizer es una empresa estadounidense farmacéutica: descubre, desarrolla, fabrica y vende medicamentos y vacunas en todo el mundo, con productos como Eliquis (cardiovascular y metabólico), Nurtec ODT y Zavzpret (migraña), entre otros (según Yahoo), en tres segmentos: Biopharma, PC1 y Pfizer Ignite. Gana plata vendiendo medicamentos protegidos por patentes. Tiene un **foso estrecho, de patentes y escala en vacunas y medicamentos**, con fechas de vencimiento que se acercan (dato público a verificar). Los números cuentan una caída fuerte y una recuperación parcial: los ingresos bajaron de 101.175 M en 2022 (auge de las vacunas y los tratamientos de COVID, dato público) a **63.695 M** en los últimos 12 meses, el margen operativo se recuperó de 7,4 % a **26,7 %** y el flujo libre es de **10.985 M**. Pero la ganancia neta de los últimos 12 meses es de 4.332 M (0,76 por acción, contra 1,36 en 2025), el ROIC es de apenas **9,2 %** y el dividendo (9.785 M) absorbe 89 % del flujo libre. La deuda neta que informa Yahoo es de 62.218 M, tras la compra de Seagen en 2023 (dato público). Su punto débil es esa combinación de deuda, dividendo alto y patentes por vencer. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular, con flujo libre de 10.985 M y dividendo desde 1972, pero con ROIC de 9,2 %, dividendo que absorbe 89 % del flujo libre, deuda alta y patentes por vencer.**",
+   "veredicto": "Regular: flujo libre de 10.985 M, pero ROIC de 9,2 %, dividendo de 89 % del flujo libre, deuda alta y patentes por vencer",
+   "conclusion": "Pfizer es una empresa de calidad regular: tiene un foso estrecho de patentes y escala, flujo libre de 10.985 M, margen operativo de 26,7 % y dividendo desde 1972, pero el ROIC es de 9,2 %, el dividendo absorbe 89 % del flujo libre, la deuda neta llega a 62.218 M y varias patentes están por vencer. Hay que seguirla de cerca. Es recomendable investigar los vencimientos de patentes y los lanzamientos nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo y baje la deuda.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Pfizer descubre, desarrolla, fabrica, comercializa y distribuye productos biofarmacéuticos en Estados Unidos y a nivel internacional. Opera tres segmentos: **Biopharma**, **PC1** y **Pfizer Ignite**. Según Yahoo, ofrece **Eliquis** (enfermedades cardiovasculares y metabólicas), **Nurtec ODT/Vydura** y **Zavzpret** (migraña), entre otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio que se achicó tras el auge del COVID: **los ingresos bajaron 41,1 % en 2023, subieron 6,8 % en 2024, bajaron 1,6 % en 2025, hasta 62.579 M**, y llegan a 63.695 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, hospitales, farmacias y gobiernos; en Estados Unidos, pocos distribuidores concentran las compras (dato público a verificar).",
+   "foso": "La ventaja de Pfizer **es de patentes y escala, y es estrecha**. Un medicamento patentado no tiene copia directa mientras dura la protección, y la empresa tiene capacidad de investigación, fabricación y distribución a escala mundial. Se ve en el margen bruto de 73,2 % y en el margen operativo de 26,7 % en los últimos 12 meses.\n\nPero el ROIC es de 9,2 % y varios productos importantes enfrentan vencimiento de patentes en los próximos años (dato público a verificar), además de la presión de precios de Medicare. Compite con Merck, Novartis, AstraZeneca, Lilly y Johnson & Johnson. Es frágil en los vencimientos de patentes, en el precio de los medicamentos y en que sus lanzamientos nuevos no alcancen. La inteligencia artificial no la amenaza.",
+   "numeros": "Los números de Pfizer cuentan **una caída muy fuerte desde el pico del COVID y una recuperación parcial**. Los ingresos fueron de 101.175 M, 59.554 M, 63.627 M y 62.579 M. El EBIT fue de 38.117 M, 4.417 M, 14.938 M y 17.407 M, y de **17.019 M** en los últimos 12 meses (margen operativo de 26,7 %). La ganancia neta fue de 31.372 M, 2.119 M, 8.031 M y 7.771 M, y de **4.332 M**. La ganancia por acción fue de 5,47, 0,37, 1,41, 1,36 y 0,76.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 26.031 M, 4.793 M, 9.835 M y 9.075 M, y de **10.985 M** (17,2 %), con inversiones de 2.416 M. El ROIC fue de 26,4 %, 2,1 %, 7,3 %, 8,6 % y 9,2 %. El ROE de los últimos 12 meses fue de 5,1 %.\n\nLa mirada crítica: el EBIT de 17.019 M y la ganancia neta de 4.332 M están muy lejos; la diferencia (intereses y probables cargos únicos) no está explicada en los datos de Yahoo.",
+   "balance": "**Deuda alta y cobertura justa.** La deuda total es de 63.194 M y la caja de 11.698 M (incluye inversiones a corto plazo). Yahoo informa una deuda neta de **62.218 M**, que no coincide con deuda total menos caja (51.496 M) porque parece contar solo el efectivo; la cifra real queda entre ambas. Con deuda neta/EBITDA de 4,61x según Yahoo, el EBITDA de los últimos 12 meses (13.491 M) es menor que el EBIT (17.019 M), señal de cargos mezclados; con el EBITDA de 2025 (16.783 M) serían unas 3,7x, que multiplicado por 12 son unos 44 meses de EBITDA (cálculo nuestro).\n\nLos intereses se cubren 6,3 veces con el EBIT. El patrimonio es de 85.190 M. La deuda total subió de 34.859 M en 2022 a 63.194 M tras la compra de 2023. La liquidez corriente es de 2,36x.",
+   "gerencia": "La conduce Albert Bourla, presidente del directorio y CEO (63 años, pago de 9,1 M según Yahoo), con Chris Boshoff a cargo de investigación (61 años, pago de 5,2 M). La directora financiera, Cecile Guegan (54 años), figura como **interina**, un dato a seguir. Bourla es CEO desde 2019, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo alto y sin recompras**: paga un dividendo de 1,72 por acción (desde 1972; sube 2,4 % por año en 3 años y 4,9 % en 10 años; 9.785 M en los últimos 12 meses, 89 % del flujo libre) y recompró solo 2.000 M en 2022. **Las acciones quedaron en 5.708 M, un 0,4 % menos que en 2022.**",
+   "fortalezas": [
+    "Flujo libre de 10.985 M en los últimos 12 meses.",
+    "Margen operativo recuperado a 26,7 %.",
+    "Dividendo pagado desde 1972.",
+    "Escala mundial en investigación, fabricación y distribución.",
+    "Liquidez corriente de 2,36x."
+   ],
+   "debilidades": [
+    "ROIC de 9,2 % y ROE de 5,1 %.",
+    "Dividendo que absorbe 89 % del flujo libre: el crítico más duro diría que el pago deja poco margen para bajar deuda.",
+    "Deuda neta de 62.218 M según Yahoo.",
+    "Ganancia por acción en baja (0,76 contra 1,36).",
+    "Directora financiera interina y patentes por vencer."
+   ],
+   "vigilar": [
+    "Dividendo contra flujo libre: hoy 9.785 M contra 10.985 M.",
+    "Ingresos por producto: Yahoo no los informa, hay que buscarlos en el informe.",
+    "Deuda neta: hoy 62.218 M; tiene que bajar.",
+    "Ganancia por acción: hoy 0,76; tiene que volver sobre 1,36."
+   ],
+   "clientes": [
+    "Mayoristas y distribuidores de medicamentos",
+    "Hospitales y farmacias",
+    "Gobiernos y sistemas de salud"
+   ],
+   "ideal_para": [
+    "Buscan dividendo alto en una farmacéutica grande.",
+    "Aceptan un caso de recuperación.",
+    "Entienden el riesgo de vencimiento de patentes."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento de ganancias.",
+    "No toleran deuda alta ni dividendo ajustado."
+   ],
+   "perfil": "salud",
+   "capas": [],
+   "ticker": "PFE",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 63695000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "DHR": {
+   "resumen": "Danaher es una empresa estadounidense de ciencias de la vida y diagnóstico: diseña, fabrica y vende instrumentos, consumibles y servicios para biotecnología, investigación y diagnóstico en tres segmentos: Biotechnology, Life Sciences y Diagnostics. Gana plata vendiendo equipos y, sobre todo, los consumibles y servicios que esos clientes repiten. Tiene un **foso estrecho, de base instalada y costos de cambio**: las farmacéuticas que validaron un proceso de fabricación con sus filtros y equipos rara vez lo cambian (dato público). Los números cuentan un negocio rentable que perdió vuelo: el margen operativo bajó de 28,3 % a **20,4 %**, la ganancia por acción de 9,66 a **6,11** (últimos 12 meses) y el ROIC a **5,1 %**; los ingresos bajaron de 26.643 M a 24.568 M en 2025 y se recuperan a 25.608 M. El flujo libre se mantiene en **5.727 M** (22,4 % de los ingresos), el dividendo crece 13 % por año y las acciones bajaron 3,8 % desde 2022. En los últimos 12 meses, la deuda neta subió de 13.803 M a 20.800 M por un motivo que Yahoo no detalla (probable adquisición, dato a verificar). Su punto débil es ese ROIC bajo, consecuencia de adquisiciones grandes. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con flujo libre de 5.727 M y dividendo creciente, pero con ROIC de 5,1 %, margen operativo 8 puntos más bajo que en 2022 y deuda en alza.**",
+   "veredicto": "Buena: flujo libre de 5.727 M y dividendo creciente, pero con ROIC de 5,1 %, margen operativo en baja y deuda en alza",
+   "conclusion": "Danaher es una empresa de buena calidad: tiene un foso estrecho de base instalada y consumibles, margen bruto cercano a 59 %, flujo libre de 5.727 M y dividendo creciente, pero el ROIC es de 5,1 %, el margen operativo bajó de 28,3 % a 20,4 % y la deuda neta subió a 20.800 M. Vale la pena seguirla de cerca. Es recomendable investigar la causa de la caída de márgenes y la última compra en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se estabilice y el ROIC suba.",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Danaher diseña, fabrica y comercializa productos y servicios profesionales, médicos, de investigación e industriales en Estados Unidos, China y a nivel internacional. Opera tres segmentos: **Biotechnology** (tecnologías, consumibles y servicios para desarrollar y fabricar terapias), **Life Sciences** y **Diagnostics**. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio que se achicó tras el auge del COVID y hoy se recupera: **los ingresos cayeron 10,3 % en 2023 y 0,1 % en 2024, subieron 2,9 % en 2025, hasta 24.568 M**, y llegan a 25.608 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas biofarmacéuticas, laboratorios de diagnóstico, hospitales, universidades y centros de investigación. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Danaher **es de base instalada y costos de cambio, y es estrecha**. Una farmacéutica que validó un proceso con sus equipos y consumibles tiene que repetir pruebas regulatorias para cambiar, y los consumibles se compran de forma recurrente. Se ve en el margen bruto estable entre 58,6 % y 60,8 %.\n\nPero el margen operativo cayó de 28,3 % a 20,4 % y el ROIC a 5,1 %, señal de que el foso no protegió la rentabilidad total tras las adquisiciones y la normalización post-COVID. Compite con Thermo Fisher, Agilent, Waters, Merck KGaA, Sartorius y Roche. Es frágil en el gasto en investigación de las farmacéuticas, en China y en los aranceles (dato público). La inteligencia artificial más bien le abre demanda de equipos.",
+   "numeros": "Los números de Danaher cuentan **tres años de baja de rentabilidad con flujo libre firme**. Los ingresos fueron de 26.643 M, 23.890 M, 23.875 M y 24.568 M, y de 25.608 M en los últimos 12 meses. El EBIT fue de 7.536 M, 5.202 M, 4.863 M y 4.690 M, y de **5.218 M** (margen operativo de 20,4 %). La ganancia neta fue de 7.209 M, 4.764 M, 3.899 M y 3.614 M, y de 4.331 M. La ganancia por acción fue de 9,66, 6,38, 5,29 y 5,05, y de **6,11**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 7.401 M, 5.781 M, 5.296 M y 5.260 M, y de **5.727 M** (22,4 %). El ROIC fue de 9,8 %, 6,1 %, 6,2 %, 5,6 % y 5,1 %, y el ROE de los últimos 12 meses fue de 8,1 %, bajo el 12 % de referencia.\n\nLa mirada crítica: el EBIT bajó 38 % desde 2022 y la ganancia neta más de 40 %. Tres años de caída no son solo un efecto pasajero del COVID.",
+   "balance": "**Deuda moderada en alza y cobertura sólida.** En los últimos 12 meses, la deuda total es de 26.482 M, la caja de 5.682 M y la deuda neta de **20.800 M**; la deuda neta/EBITDA es de 2,66x, que multiplicado por 12 son unos 32 meses de EBITDA. Los intereses se cubren 14,5 veces con el EBIT.\n\nEn 2025, la deuda neta era de 13.803 M (1,99x), así que subió unos 7.000 M en pocos meses; Yahoo no detalla el motivo (probable adquisición, dato a verificar). El patrimonio es de 53.621 M, la deuda equivale a 49 % del patrimonio y la liquidez corriente es de 1,74x.",
+   "gerencia": "La conduce Julie Sawyer Montgomery, presidente y CEO (53 años, pago de 2,6 M según Yahoo), con los cofundadores Steven Rales (presidente del directorio, 74 años) y Mitchell Rales (director, 68 años) todavía en la conducción, dato que alinea intereses. El cambio de CEO es reciente, dato público a verificar.\n\nEn lo que importa, **el uso del capital combina dividendo creciente, recompras irregulares y adquisiciones**: paga un dividendo de 1,60 por acción (desde 1993; sube 13,0 % por año en 3 años; 1.016 M en los últimos 12 meses, 18 % del flujo libre) y recompró 0 M en 2022 y 2023, 5.979 M en 2024, 3.088 M en 2025 y 894 M en los últimos 12 meses. **Las acciones bajaron de 737 M a 709 M, un 3,8 % menos.**",
+   "fortalezas": [
+    "Flujo libre de 5.727 M, 22,4 % de los ingresos.",
+    "Margen bruto estable cerca de 59 %.",
+    "Dividendo creciente a 13 % por año con payout de 18 %.",
+    "3,8 % menos acciones desde 2022.",
+    "Cobertura de intereses de 14,5 veces."
+   ],
+   "debilidades": [
+    "ROIC de 5,1 %, bajo para un foso.",
+    "EBIT 31 % menor que en 2022: el crítico más duro diría que la caída ya no es solo post-COVID.",
+    "Ganancia por acción de 6,11 contra 9,66 en 2022.",
+    "Deuda neta subiendo a 20.800 M.",
+    "Exposición a China y al gasto en investigación."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 20,4 %; tiene que dejar de caer.",
+    "ROIC: hoy 5,1 %; si no sube, las adquisiciones no crean valor.",
+    "Ingresos: hoy +3 % en 12 meses; tienen que crecer sin comprar.",
+    "Deuda neta: hoy 20.800 M; tiene que bajar con el flujo libre."
+   ],
+   "clientes": [
+    "Empresas biofarmacéuticas y biotecnológicas",
+    "Laboratorios de diagnóstico y hospitales",
+    "Universidades y centros de investigación"
+   ],
+   "ideal_para": [
+    "Buscan un líder de ciencias de la vida con flujo libre fuerte.",
+    "Valoran el dividendo creciente.",
+    "Aceptan una recuperación lenta."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento de ingresos.",
+    "No toleran el ROIC bajo ni la deuda en alza."
+   ],
+   "perfil": "salud",
+   "capas": [],
+   "ticker": "DHR",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 25608000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
