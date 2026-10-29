@@ -7801,6 +7801,196 @@
      "2023"
     ]
    }
+  },
+  "SNOW": {
+   "resumen": "Snowflake es una empresa estadounidense de plataforma de datos en la nube: permite a las organizaciones guardar todos sus datos en un solo lugar, consultarlos, crear aplicaciones y compartir datos y productos con otras empresas, y hoy lo presenta como una nube de datos de inteligencia artificial. Gana plata cobrando por el uso: cuanto más almacenan y consultan los clientes, más pagan. Tiene un **foso débil a estrecho, de datos acumulados y costos de cambio**: una empresa que cargó años de datos y armó sus informes y aplicaciones sobre Snowflake enfrenta un trabajo grande para migrar, aunque competidores como Databricks y los servicios de las grandes nubes pelean el mismo mercado. Los números muestran un negocio en crecimiento con pérdidas contables: los ingresos pasaron de 2.066 M en el ejercicio 2023 a **5.435 M** en los últimos 12 meses (+29 % por año), el margen bruto es de 67,0 % y el flujo libre es positivo y creciente (**1.193 M**, 22,0 % de los ingresos). Pero el EBIT es de **-1.237 M** (-22,8 %), la ganancia neta de -1.091 M, el ROIC de **-20,5 %** y las acciones aumentaron **7,8 %** desde 2023 pese a recompras de 683 M a 1.932 M por año. La diferencia entre el flujo libre positivo y las pérdidas se explica sobre todo por la compensación en acciones (Yahoo no lo detalla). La caja bajó de 4.638 M a 2.345 M y tomó deuda de 2.764 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: es parte de su oferta y de su demanda. Conclusión: **empresa de calidad regular, con ingresos que crecen cerca de 30 % y flujo libre positivo, pero con EBIT de -22,8 %, ROIC de -20,5 %, caja en baja y acciones en alza.**",
+   "veredicto": "Regular: ingresos creciendo cerca de 30 % y flujo libre positivo, con EBIT de -22,8 %, ROIC de -20,5 %, caja en baja y acciones en alza",
+   "conclusion": "Snowflake es una empresa de calidad regular: tiene ingresos que crecen cerca de 30 % por año, margen bruto de 67 % y flujo libre positivo de 1.193 M, pero el EBIT es de -22,8 %, el ROIC de -20,5 %, la caja bajó y las acciones aumentaron 7,8 %. Hay que seguirla de cerca. Es recomendable investigar la compensación en acciones y el uso de la caja en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se acerque a cero sin frenar el crecimiento.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Snowflake provee una plataforma de datos basada en la nube para organizaciones en Estados Unidos y a nivel internacional. Su plataforma incluye el AI Data Cloud, que permite a los clientes consolidar sus datos en una única fuente de verdad para generar información de negocio, crear aplicaciones de datos y compartir datos y productos. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de consumo en fuerte crecimiento: **los ingresos subieron 35,9 % en 2024, 29,2 % en 2025 y 29,2 % en 2026, hasta 4.684 M** (el ejercicio cierra a fines de enero), y llegan a 5.435 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes y medianas empresas de todos los sectores. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
+   "foso": "La ventaja de Snowflake **es de datos acumulados y costos de cambio, y es débil a estrecha**. Una empresa que cargó años de datos, armó sus informes y aplicaciones y compartió datos con socios dentro de Snowflake enfrenta un trabajo grande y riesgoso si quiere migrar. Se ve en el crecimiento de ingresos de cerca de 30 % y en un margen bruto estable de 65 % a 68 %.\n\nPero la rentabilidad todavía no aparece: el margen operativo es de -22,8 % y el ROIC de -20,5 %. Compite con Databricks, Google BigQuery, Amazon Redshift, Microsoft Fabric y Oracle, y los grandes proveedores de nube tienen la ventaja de ofrecer sus servicios en el mismo lugar donde viven los datos del cliente. Es frágil en esa competencia de precios y en que los clientes pueden optimizar su consumo para pagar menos. La inteligencia artificial hoy impulsa la demanda de datos organizados.",
+   "numeros": "Los números de Snowflake cuentan **crecimiento rápido, pérdidas que se achican en porcentaje y flujo libre positivo**. Los ingresos fueron de 2.066 M, 2.806 M, 3.626 M y 4.684 M, y de 5.435 M en los últimos 12 meses. El EBIT fue de -842 M, -1.095 M, -1.456 M y -1.435 M, y de -1.237 M (margen operativo de -22,8 %, contra -40,8 % en 2023). La ganancia neta fue de -797 M, -836 M, -1.286 M y -1.332 M, y de -1.091 M. La ganancia por acción fue de -2,50, -2,55, -3,86, -3,95 y -3,18.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 496 M, 750 M, 884 M y 1.117 M, y de **1.193 M** en los últimos 12 meses (22,0 % de los ingresos), con inversiones de solo 60 M. El ROIC fue de -15,1 %, -20,9 %, -20,6 %, -20,5 % y -20,5 %.\n\nLa mirada crítica: el flujo libre positivo se logra pagando gran parte del salario en acciones, que no se resta del flujo libre pero diluye al accionista. Las pérdidas en dólares dejaron de crecer (de -1.456 M a -1.237 M en el EBIT), pero siguen siendo grandes.",
+   "balance": "**La caja bajó y apareció deuda.** La caja es de 2.345 M y la deuda total de 2.764 M (casi toda de largo plazo), de modo que la deuda neta es de 419 M. En 2025 la caja era de 4.638 M y la deuda neta de -1.952 M. La caja bajó 2.293 M en un año a pesar de un flujo libre positivo de 1.193 M, por recompras (683 M) y otros usos que Yahoo no detalla, como compras de empresas (a verificar en el informe).\n\nEl patrimonio neto bajó de 5.456 M en 2023 a 2.150 M y la deuda equivale a 1,29 veces el patrimonio. Como el EBITDA es negativo, la deuda neta/EBITDA no tiene sentido; el gasto en intereses (8 M) es chico.",
+   "gerencia": "La conduce Sridhar Ramaswamy, CEO (58 años, pago de 1,5 M según Yahoo), con Brian Robins como director financiero (55 años, pago de 0,7 M). Ramaswamy asumió en 2024, dato público. El cofundador Benoit Dageville sigue como asesor y director.\n\nEn lo que importa, **el uso del capital cambió a recompras financiadas en parte con deuda**: no paga dividendo y recompró 592 M en 2024, 1.932 M, 874 M y 683 M en los últimos 12 meses. **Las acciones aun así subieron de 319 M a 344 M, un 7,8 % más**, porque la emisión por compensación supera a las recompras.",
+   "fortalezas": [
+    "Ingresos de 5.435 M, creciendo cerca de 30 % por año.",
+    "Flujo libre de 1.193 M, 22,0 % de los ingresos.",
+    "Margen operativo que mejoró de -40,8 % a -22,8 %.",
+    "Costos de cambio por los datos acumulados.",
+    "Inversiones mínimas (60 M)."
+   ],
+   "debilidades": [
+    "EBIT de -1.237 M y ROIC de -20,5 %.",
+    "7,8 % más acciones desde 2023: el crítico más duro diría que el flujo libre positivo se paga con dilución.",
+    "Caja que bajó de 4.638 M a 2.345 M.",
+    "Deuda de 2.764 M que apareció en 2025.",
+    "Competencia de las grandes nubes y de Databricks."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy -22,8 %; tiene que acercarse a cero para justificar el modelo.",
+    "Cantidad de acciones: hoy 344 M; si siguen subiendo, la dilución se acumula.",
+    "Caja contra deuda: hoy 2.345 M contra 2.764 M; no debería seguir empeorando.",
+    "Crecimiento de ingresos: hoy cerca de 29 %; si baja de 20 %, el negocio cambia de etapa."
+   ],
+   "clientes": [
+    "Grandes empresas de todos los sectores",
+    "Empresas que comparten datos con socios",
+    "Desarrolladores de aplicaciones de datos"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de datos en la nube con crecimiento alto.",
+    "Entienden que las ganancias contables todavía no aparecen.",
+    "Valoran el flujo libre positivo."
+   ],
+   "menos_ideal": [
+    "Buscan ganancias y dividendo.",
+    "No toleran la dilución por acciones de compensación."
+   ],
+   "perfil": "joven",
+   "capas": [],
+   "ticker": "SNOW",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 5434647000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "ADBE": {
+   "resumen": "Adobe es una empresa estadounidense de software creativo y de marketing digital: su segmento Digital Media vende herramientas para crear, publicar y promocionar contenido (fotografía, video, diseño gráfico, documentos) a fotógrafos, editores, diseñadores, estudiantes y empresas, y su segmento Digital Experience ayuda a las compañías a gestionar la relación con sus clientes. Gana plata con suscripciones mensuales o anuales que los usuarios renuevan. Tiene un **foso estrecho a amplio, de estándar de la industria y costos de cambio**: los archivos, atajos y flujos de trabajo de millones de profesionales están hechos alrededor de sus programas, y los estudios enseñan a sus empleados a usarlos. Los números son excelentes: el margen bruto es de **89,3 %**, el margen operativo de **35,7 %**, el ROIC de **40,1 %** y el flujo libre de **10.592 M** (40,8 % de los ingresos), con inversiones de solo 214 M. Los ingresos crecen cerca de 10 % por año, hasta 25.970 M en los últimos 12 meses, y las acciones bajaron **13,8 %** desde 2022 (de 471 M a 406 M) por recompras de hasta 11.281 M por año. Tiene poca deuda (6.762 M) y la cobertura de intereses es de 35,7 veces. Su punto débil es la inteligencia artificial generativa, que permite crear imágenes, video y diseños sin dominar sus herramientas, y que los competidores gratuitos o baratos crecen. Además, Yahoo lista a un director financiero interino. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **alto**, aunque Adobe integra sus propias herramientas de inteligencia artificial. Conclusión: **empresa de muy buena calidad, con ROIC de 40,1 %, margen operativo de 35,7 % y flujo libre de 10.592 M, pero con el mayor interrogante de su historia: la inteligencia artificial generativa.**",
+   "veredicto": "Muy buena: ROIC de 40,1 % y flujo libre de 10.592 M, con la inteligencia artificial generativa como gran interrogante",
+   "conclusion": "Adobe es una empresa de muy buena calidad: tiene un foso estrecho a amplio de estándar de la industria, ROIC de 40,1 %, margen operativo de 35,7 %, flujo libre de 10.592 M y 13,8 % menos acciones, pero la inteligencia artificial generativa apunta directamente a su negocio central. Hay que seguirla de cerca. Es recomendable investigar la cantidad de suscriptores y el avance de sus herramientas de inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo cerca de 10 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "alto",
+   "negocio": "Adobe opera como una empresa de tecnología a nivel mundial. Su segmento **Digital Media** ofrece productos y servicios que permiten a individuos, equipos y empresas crear, publicar y promocionar contenido; atiende a fotógrafos, editores de video, diseñadores gráficos y de experiencias, desarrolladores de videojuegos, creadores de contenido, estudiantes y especialistas en marketing. Su segmento **Digital Experience** ayuda a las empresas con su relación con los clientes. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de suscripciones maduro: **los ingresos subieron 10,2 % en 2023, 10,8 % en 2024 y 10,5 % en 2025, hasta 23.769 M**, y llegan a 25.970 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de profesionales, estudiantes y empresas. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Adobe **es de estándar de la industria y costos de cambio, y es estrecha a amplia**. Photoshop, Illustrator, Premiere y el formato PDF son lenguaje común del trabajo creativo: los profesionales los aprendieron, los estudios los exigen en sus equipos y los archivos de proyectos pasan entre personas con esas herramientas. Se ve en el margen bruto de 89,3 % y el ROIC que subió de 26,5 % a 40,1 %.\n\nCompite con Canva, Figma, Affinity y herramientas de inteligencia artificial generativa como Midjourney. Es frágil justamente en lo que más vale: la creación de imágenes, video y diseños con pocas indicaciones de texto reduce la necesidad de dominar sus programas, y los usuarios casuales pueden migrar a opciones gratuitas. Adobe responde integrando su propia inteligencia artificial (Firefly), pero todavía no hay forma de saber cuánto protegerá su negocio. Por eso el riesgo es alto.",
+   "numeros": "Los números de Adobe cuentan **un negocio excepcional en rentabilidad y estable en crecimiento**. Los ingresos fueron de 17.606 M, 19.409 M, 21.505 M y 23.769 M, y de 25.970 M en los últimos 12 meses. El EBIT fue de 6.098 M, 6.650 M, 7.741 M y 8.706 M, y de 9.271 M (margen operativo de 35,7 %). La ganancia neta fue de 4.756 M, 5.428 M, 5.560 M y 7.130 M, y de 7.284 M. La ganancia por acción fue de 10,10, 11,82, 12,36, 16,70 y **17,92**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 7.396 M, 6.942 M, 7.873 M y 9.852 M, y de **10.592 M** en los últimos 12 meses (40,8 % de los ingresos). El ROIC fue de 26,5 %, 26,4 %, 31,4 %, 40,0 % y 40,1 %. El ROE de 61,9 % está inflado por el patrimonio chico tras las recompras.\n\nLa mirada crítica: el crecimiento de ingresos es de alrededor de 10 % por año y el flujo libre no resta la compensación en acciones. Mucho del salto de ganancia por acción (de 12,36 a 16,70 en 2025) viene de la baja en la cantidad de acciones.",
+   "balance": "**Deuda baja y muy bien cubierta.** La deuda total es de 6.762 M y la caja de 5.639 M; Yahoo informa una deuda neta de 2.004 M y la deuda neta/EBITDA es de 0,19x, que multiplicado por 12 son unos 2 meses de EBITDA. Los intereses se cubren 35,7 veces con el EBIT.\n\nEl patrimonio neto es de 11.764 M, menor que los 16.518 M de 2023 porque devuelve más capital del que retiene. La deuda total subió de 4.080 M a 6.762 M desde 2023, pero con este flujo libre se paga en menos de un año.",
+   "gerencia": "La conduce Shantanu Narayen, presidente del directorio y CEO (61 años, pago de 5,8 M según Yahoo), en el cargo desde 2007, dato público. Yahoo lista a Steven Day como director financiero interino, un puesto que conviene seguir. Adele Pentland es la directora legal (53 años, pago de 3,1 M).\n\nEn lo que importa, **el uso del capital es de recompras fuertes sin dividendo**: recompró 6.550 M en 2022, 4.400 M, 9.500 M, 11.281 M y 9.295 M en los últimos 12 meses (88 % del flujo libre). **Las acciones bajaron de 471 M a 406 M, un 13,8 % menos.**",
+   "fortalezas": [
+    "ROIC de 40,1 % y margen bruto de 89,3 %.",
+    "Flujo libre de 10.592 M, 40,8 % de los ingresos.",
+    "13,8 % menos acciones desde 2022.",
+    "Deuda neta de unos 2 meses de EBITDA.",
+    "Estándar de la industria creativa con millones de usuarios."
+   ],
+   "debilidades": [
+    "La inteligencia artificial generativa ataca directamente la creación de contenido: el crítico más duro diría que el foso puede perder valor aunque hoy rinda.",
+    "Crecimiento de ingresos de solo 10 % por año.",
+    "Competencia de Canva, Figma y herramientas gratuitas.",
+    "Sin dividendo.",
+    "Director financiero interino."
+   ],
+   "vigilar": [
+    "Ingresos: hoy +10 %; si bajan a un dígito bajo, la inteligencia artificial está desplazando usuarios.",
+    "Margen operativo: hoy 35,7 %; si baja, la inteligencia artificial cuesta más de lo previsto.",
+    "Usuarios de pago: Yahoo no los informa, hay que buscarlos en el informe.",
+    "Nombramiento del director financiero: define la continuidad de la política de capital."
+   ],
+   "clientes": [
+    "Profesionales creativos y estudios",
+    "Estudiantes y creadores de contenido",
+    "Empresas que gestionan marketing y experiencia de clientes"
+   ],
+   "ideal_para": [
+    "Buscan un software con márgenes y retornos muy altos.",
+    "Valoran las recompras y el flujo libre.",
+    "Aceptan el riesgo de la inteligencia artificial generativa."
+   ],
+   "menos_ideal": [
+    "Buscan un dividendo.",
+    "No toleran el riesgo de cambio tecnológico en el negocio central."
+   ],
+   "perfil": "software",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "ADBE",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 25970000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "ANET": {
+   "resumen": "Arista Networks es una empresa estadounidense de redes para centros de datos: vende switches (los equipos que conectan servidores entre sí a gran velocidad) y su sistema operativo de red, EOS, para entornos de inteligencia artificial, nube, campus y enrutamiento. Gana plata vendiendo equipos y software, más servicios de soporte, sobre todo a las empresas que operan los mayores centros de datos del mundo. Tiene un **foso estrecho, de software de red y relaciones con grandes clientes**: su sistema operativo único para todos sus equipos facilita la automatización y es difícil de reemplazar, y los grandes operadores de nube confían en su velocidad y su soporte. Los números son excelentes: los ingresos pasaron de 4.381 M en 2022 a **10.541 M** en los últimos 12 meses (creciendo entre 19 % y 34 % por año), el margen operativo es de **43,1 %**, el ROIC de **24,9 %** y el flujo libre de **5.155 M** (48,9 % de los ingresos), con inversiones de solo 151 M. Tiene **13.343 M en caja y sin deuda** (Yahoo no informa deuda desde 2023) y las acciones casi no aumentaron (de 1.266 M a 1.276 M, 0,8 % más). No paga dividendo. Su punto débil es la concentración: pocos clientes gigantes de nube compran buena parte de sus equipos (dato público a verificar), y el crecimiento actual depende en gran parte del gasto en centros de datos para inteligencia artificial. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad excelente, con foso estrecho, margen operativo de 43,1 %, ROIC de 24,9 % y caja de 13.343 M sin deuda, aunque con clientes concentrados y demanda atada a la inteligencia artificial.**",
+   "veredicto": "Excelente: margen operativo de 43,1 %, ROIC de 24,9 % y caja de 13.343 M sin deuda, con clientes muy concentrados",
+   "conclusion": "Arista es una empresa de calidad excelente: tiene un foso estrecho de software de red, margen operativo de 43,1 %, ROIC de 24,9 %, flujo libre de 5.155 M y 13.343 M en caja sin deuda informada, pero depende de pocos clientes gigantes y del gasto en centros de datos de inteligencia artificial. Vale la pena seguirla de cerca. Es recomendable investigar la concentración de clientes y la competencia de Nvidia en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los clientes grandes sigan comprando y el margen operativo se sostenga.",
+   "calidad": "Excelente",
+   "riesgo_ia": "bajo",
+   "negocio": "Arista Networks se dedica al desarrollo, la comercialización y la venta de soluciones de redes basadas en datos, del cliente a la nube, para entornos de inteligencia artificial, centros de datos, campus y enrutamiento en América, Europa, Medio Oriente, África y Asia-Pacífico. Sus soluciones consisten en EOS, un sistema operativo de red, y los equipos que lo usan. Yahoo no informa cuánto aporta cada línea ni cada cliente, y no lo vamos a inventar.\n\nEs un negocio de equipos en fuerte crecimiento: **los ingresos subieron 33,8 % en 2023, 19,5 % en 2024 y 28,6 % en 2025, hasta 9.006 M**, y llegan a 10.541 M en los últimos 12 meses.\n\n**A quién le vende.** Principalmente a las empresas que operan grandes centros de datos y nubes, además de empresas y organismos. **Yahoo no informa la concentración de clientes**, un dato clave a verificar en el informe.",
+   "foso": "La ventaja de Arista **es de software de red y relaciones con grandes clientes, y es estrecha**. Su sistema operativo EOS es el mismo en todos sus equipos y está diseñado para automatizar y controlar miles de switches desde programas, algo que los grandes operadores de nube valoran y que los obliga a invertir en personal y herramientas pensadas para él. Se ve en el margen operativo, que subió de 34,9 % a 43,1 %, y en un ROIC estable cerca de 25 %.\n\nCompite con Cisco, Nvidia (que vende redes para inteligencia artificial), Juniper (adquirida por Hewlett Packard Enterprise, dato público), Huawei y los equipos propios de los gigantes de nube. Es frágil en la concentración de clientes, en que un cliente grande puede diseñar sus propios switches y en el ciclo de gasto de centros de datos. La inteligencia artificial no la amenaza de forma directa; hoy es la principal fuente de demanda.",
+   "numeros": "Los números de Arista cuentan **crecimiento fuerte con márgenes de primer nivel**. Los ingresos fueron de 4.381 M, 5.860 M, 7.003 M y 9.006 M, y de 10.541 M en los últimos 12 meses. El EBIT fue de 1.527 M, 2.257 M, 2.945 M y 3.856 M, y de **4.547 M** (margen operativo de 43,1 %). La ganancia neta fue de 1.352 M, 2.087 M, 2.852 M y 3.511 M, y de 4.045 M. La ganancia por acción fue de 1,07, 1,65, 2,23, 2,75 y **3,17**; Yahoo parece expresarla tras un split de acciones (dato público a verificar).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 448 M, 2.000 M, 3.676 M y 4.252 M, y de **5.155 M** en los últimos 12 meses (48,9 % de los ingresos). El ROIC fue de 26,7 %, 27,0 %, 25,7 %, 25,7 % y 24,9 %.\n\nLa mirada crítica: el flujo libre de 2022 (448 M) fue bajo por acumulación de inventario y compras de componentes en la escasez de chips (dato público a verificar). El margen bruto bajó de 64,1 % a 63,0 % en los últimos 12 meses, probablemente por el mix de clientes grandes.",
+   "balance": "**Balance sin deuda y con mucha caja.** La caja es de 13.343 M y Yahoo no informa deuda desde 2023 (en 2022 eran 44 M), lo que indica deuda nula o mínima, un dato a verificar en el informe. El patrimonio neto es de 14.798 M y la caja equivale a 90 % del patrimonio. La cobertura de intereses y la deuda neta/EBITDA no son relevantes.\n\nLa caja pasó de 3.024 M en 2022 a 13.343 M, un crecimiento que financió con su propio flujo libre. Es un balance extremadamente cómodo.",
+   "gerencia": "La conduce Jayshree Ullal, presidenta del directorio y CEO (64 años, pago de 0,6 M según Yahoo), con Chantelle Breithaupt como directora financiera (53 años, pago de 0,6 M), Ken Duda como presidente y director de tecnología (53 años) y Todd Nightingale como presidente y director de operaciones (45 años). El cofundador Andy Bechtolsheim (70 años) sigue como arquitecto jefe. Ullal lleva más de una década al frente, dato público.\n\nEn lo que importa, **el uso del capital es de reinversión y recompras moderadas**: no paga dividendo y recompró 670 M en 2022, 112 M, 424 M, 1.603 M y 620 M en los últimos 12 meses (12 % del flujo libre). **Las acciones casi no se movieron: de 1.266 M a 1.276 M, un 0,8 % más.** La caja se acumula.",
+   "fortalezas": [
+    "Margen operativo de 43,1 % y ROIC de 24,9 %.",
+    "Flujo libre de 5.155 M, 48,9 % de los ingresos.",
+    "Caja de 13.343 M sin deuda informada.",
+    "Ingresos creciendo entre 19 % y 34 % por año.",
+    "Sistema operativo propio que fideliza a los grandes clientes."
+   ],
+   "debilidades": [
+    "Clientes grandes y concentrados: el crítico más duro diría que la pérdida de uno solo cambia el negocio.",
+    "Demanda atada al gasto en centros de datos de inteligencia artificial.",
+    "Margen bruto que bajó de 64,1 % a 63,0 %.",
+    "Competencia de Nvidia, Cisco y diseños propios de los gigantes de nube.",
+    "Sin dividendo y con la caja acumulándose sin destino claro."
+   ],
+   "vigilar": [
+    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe.",
+    "Margen bruto: hoy 63,0 %; si baja más, el mix de clientes grandes pesa.",
+    "Ingresos: hoy +28 %; el cambio de ritmo anticipa el ciclo de gasto.",
+    "Uso de la caja: hoy 13.343 M; define cuánto se devuelve al accionista."
+   ],
+   "clientes": [
+    "Operadores de grandes nubes y centros de datos",
+    "Empresas y campus corporativos",
+    "Proveedores de servicios y organismos públicos"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de redes con márgenes y caja muy altos.",
+    "Valoran un balance sin deuda.",
+    "Aceptan la dependencia del gasto en centros de datos."
+   ],
+   "menos_ideal": [
+    "Buscan dividendos.",
+    "No toleran la concentración en pocos clientes."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "ANET",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 10540800000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
