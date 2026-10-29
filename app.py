@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.86"
+APP_VERSION = "1.2.87"
 
 import re
 import contextlib
@@ -1435,6 +1435,7 @@ def render_cartera(df, pagina=True):
 [class*="st-key-mos_"] button p:first-child{color:#be185d;font-size:1.12rem;font-weight:800}
 [class*="st-key-mos_"] button > div{justify-content:flex-start;width:100%}
 [class*="st-key-mos_"] [data-testid="stMarkdownContainer"],[class*="st-key-mos_"] button p{display:block!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;width:100%}
+.st-key-cr_go button{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%)!important;color:#fff!important;border:0!important;font-weight:800;border-radius:12px;padding:.55em 1.6em;box-shadow:0 2px 8px rgba(232,102,143,.3)}
 [class*="st-key-mos_on_"] button{border:2px solid #e8668f;background:linear-gradient(180deg,#ffeaf1 0%,#fff 85%)}
 </style>""", unsafe_allow_html=True)
     cols = st.columns(2, gap="medium")
@@ -1480,6 +1481,14 @@ def _evaluar_cartera(df, C, CV):
     if edad is None:
         st.info("Poné tu edad para ver la evaluación.")
         return
+    # v1.2.87: antes de analizar, un botón para confirmar (se vuelve a pedir si cambia el archivo o el texto)
+    _firma = (arch.name, arch.size) if arch is not None else ("texto", (texto or "").strip())
+    if st.session_state.get("cr_ok") != _firma:
+        if st.button("Analizar mi cartera", key="cr_go", type="primary"):
+            st.session_state["cr_ok"] = _firma
+        else:
+            st.caption("Cuando tengas cargados tu edad, tu perfil y tu cartera, tocá el botón para ver la evaluación.")
+            return
     tc_resumen = None
     try:
         if arch is not None and arch.name.lower().endswith(".pdf"):

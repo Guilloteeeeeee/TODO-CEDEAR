@@ -55,7 +55,7 @@ _FUENTES_DEFECTO = {
 # v1.2.58: la caja se divide en tres bloques (Locales, Estados Unidos, Resto del mundo), 5 notas cada uno. Cada bloque tiene su fuente,
 # su idioma y sus feeds (nombre que se muestra, url del RSS, es_portada). Se cambian en config/ajustes.py (NOTICIAS_BLOQUES).
 _BLOQUES_DEFECTO = (
-    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito", "idioma": "es", "traducir": False,
+    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito", "idioma": "es", "traducir": False, "cantidad": 3, "dolar": True,
      "feeds": _FUENTES_DEFECTO["es"]["feeds"]},
     {"clave": "usa", "titulo": "Estados Unidos", "fuente": "CNBC", "idioma": "en", "traducir": True,
      "feeds": _FUENTES_DEFECTO["en"]["feeds"]},
@@ -393,7 +393,7 @@ def _sin_repetir_ticker(ordenadas, cantidad):
     return salida
 
 
-def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None):
+def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None, con_dolar=False):
     """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si no alcanzan `cantidad` notas), orden por
     (menciona empresas del screener, esta en portada, mas reciente) y una sola nota por ticker (v1.2.46: se saltea la repetida y se
     sigue con la que viene). Devuelve (lista, horas_usadas)."""
@@ -415,7 +415,15 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
                      and n["clave"] not in (excluir or ())]
         todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers, idioma), "en_portada": n["clave"] in portada, "fuente": fuente or FUENTE} for n in elegibles]
         todas.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
-        salida = _sin_repetir_ticker(_quitar_relleno(todas), cantidad)
+        base = _quitar_relleno(todas)
+        if con_dolar:
+            # v1.2.87: se reserva un lugar para la nota de "cómo está el dólar hoy" (la mejor ubicada) y el resto se completa con las demás, en el mismo orden.
+            dol = [n for n in base if _DOLAR_DIA.search(n.get("titulo") or "")][:1]
+            otras = _sin_repetir_ticker([n for n in base if not any(n is d for d in dol)], max(cantidad - len(dol), 0))
+            elegidas = otras + dol
+            salida = [n for n in base if any(n is e for e in elegidas)]
+        else:
+            salida = _sin_repetir_ticker(base, cantidad)
         if len(salida) >= cantidad:
             break
     return salida, usadas
@@ -441,7 +449,8 @@ def ordenar_bloques(crudo, tickers, ahora=None):
     vistos, salida = set(), []
     for b in BLOQUES:
         cb = ((crudo or {}).get("bloques") or {}).get(b["clave"])
-        notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=vistos)
+        notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=vistos,
+                               cantidad=b.get("cantidad"), con_dolar=bool(b.get("dolar")))
         vistos.update(n["clave"] for n in notas)
         salida.append({"clave": b["clave"], "titulo": b["titulo"], "fuente": b["fuente"], "idioma": b["idioma"],
                        "traducir": bool(b.get("traducir")), "notas": notas, "horas": horas,

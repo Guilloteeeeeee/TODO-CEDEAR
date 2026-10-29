@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.87 (29/10/2026): informe con «por qué», botón de confirmar, noticias locales y menú
+
+- **Informe de cartera**: cada sugerencia de «Qué ajustaría» lleva su **Por qué** (oro: reaseguro contra la inflación y sostén en momentos de incertidumbre; emergentes → desarrollados: menos volatilidad; defensivas, sector, empresas grandes, liquidez, etc.) y, cuando mueve peso entre grupos, **cuántos puntos**. Los grupos nombran lo que los compone: «Renta fija 12 % (AO28 y VSCXO)», «Energía (PBR y CVX)».
+- **Liquidez**: la frase pasó a «Se sugiere contemplar una liquidez del 10 al 15 % para aprovechar las oportunidades del mercado»; pasarse de ese rango se avisa como decisión a tomar a propósito.
+- **Botón «Analizar mi cartera»**: antes de evaluar hay que confirmarlo (se vuelve a pedir si cambia el archivo o el texto).
+- **Noticias locales**: 3 notas de Argentina, una de ellas la del dólar del día.
+- **Menú**: «Ideas de inversión» antes que «Evaluá tu Portfolio», más compacto, y la línea «Versión de la app: vX · Powered by Claude AI».
+- Pendiente (decisión de Guille): medias de sector con datos de Damodaran (no se pudo bajar desde el entorno de trabajo; hay que cargar sus planillas).
+
 ### v1.2.86 (29/10/2026): Evaluá tu Portfolio con dos mosaicos
 
 - **Dos mosaicos lado a lado** (apilados en el celular): «Evaluá tu Cartera de Inversiones» (con el texto «Subí tus posiciones y recibí una evaluación gratuita…») y «Conocé tu Rentabilidad Anual». Se abren al tocarlos y se cierran al volver a tocar. Las dos secciones quedan armadas, así que no se pierde lo cargado al cambiar de mosaico.

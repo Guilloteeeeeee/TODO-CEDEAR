@@ -482,16 +482,16 @@ body:has(#mc-menu:checked) .st-key-menu_lateral{transform:none;visibility:visibl
 .mn-x{cursor:pointer;font-size:1.5rem;line-height:1;color:#374151;padding:2px 8px;border-radius:8px}
 .mn-x:hover{background:#f1f4f8}
 /* titulos del menu: todos iguales, con la misma flecha */
-.mn-it{display:flex;align-items:center;justify-content:space-between;padding:15px 12px;font-size:1rem;color:#111827!important;text-decoration:none!important;border-bottom:1px solid #eef1f4;font-weight:500;cursor:pointer;user-select:none}
+.mn-it{display:flex;align-items:center;justify-content:space-between;padding:11px 12px;font-size:1rem;color:#111827!important;text-decoration:none!important;border-bottom:1px solid #eef1f4;font-weight:500;cursor:pointer;user-select:none}
 .mn-it:hover{background:#f1f4f8}
 .mn-ar{color:#6b7280;font-size:1.25rem;line-height:1;font-weight:400}
 .mn-it small{color:#6b7280;font-weight:400;font-size:.78rem;margin-left:6px}
-.mn-it.mn-rosa{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);color:#fff!important;font-weight:800;border-radius:12px;border:0;margin:12px 0 8px;text-shadow:0 1px 2px rgba(120,20,60,.35);box-shadow:0 4px 14px rgba(190,60,100,.22)}
+.mn-it.mn-rosa{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);color:#fff!important;font-weight:800;border-radius:12px;border:0;margin:8px 0 6px;text-shadow:0 1px 2px rgba(120,20,60,.35);box-shadow:0 4px 14px rgba(190,60,100,.22)}
 .mn-it.mn-rosa .mn-ar{color:#fff}
 .mn-it.mn-rosa:hover{filter:brightness(1.04) saturate(1.1)}
-.mn-sep{height:1px;background:#cfd6de;margin:34px 2px 14px}
+.mn-sep{height:1px;background:#cfd6de;margin:16px 2px 6px}
 .mn-sep2{height:1px;background:#cfd6de;margin:44px 2px 14px}
-.mn-ver{margin:34px 2px 0;font-size:.82rem;color:#6b7280;line-height:1.7}
+.mn-ver{margin:12px 2px 0;font-size:.8rem;color:#6b7280;line-height:1.5}
 .mn-ver b{color:#374151}
 """ + f"{_ACTIVO_FLY}{{background:#eef6ff;font-weight:700}}\n" + """
 /* paneles que se abren hacia el centro de la pagina (a la izquierda del menu) */
@@ -550,7 +550,7 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
     else:
         arriba = (_it_href("?menu=1", filtro, chica="en el inicio") + _it_href("?menu=1", "Noticias Calientes del día", chica="en el inicio")
                   + _it_href("?menu=1", "Calendario Financiero", chica="en el inicio"))
-    arriba += _it_href("?pagina=cartera", "Evaluá tu Portfolio", clase="mn-it mn-rosa") + _it_href("?pagina=ideas", "Ideas de inversión")
+    arriba += _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evaluá tu Portfolio", clase="mn-it mn-rosa")
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
     # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
     if e["quienes_somos"]:
@@ -567,7 +567,7 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
         medio += f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Comentarios</span><span class="mn-ar">›</span></a>'
     elif _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail):
         medio += _it_sec("comentarios", "Comentarios")
-    ver = f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b></div>' if version else ""
+    ver = f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b> · Powered by <b>Claude AI</b></div>' if version else ""
     return f'<div>{arriba}</div><div class="mn-sep"></div><div>{medio}</div>' + ver
 
 
