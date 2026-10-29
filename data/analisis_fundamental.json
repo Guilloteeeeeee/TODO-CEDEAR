@@ -1,5 +1,5 @@
 {
- "fecha": "28/10/2026",
+ "fecha": "29/10/2026",
  "datos": {
   "TJX": {
    "resumen": "TJX vende ropa, calzado y artículos para el hogar de marcas conocidas a precios más bajos que los de una tienda tradicional, a través de cadenas como T.J. Maxx, Marshalls y HomeGoods en Estados Unidos, Canadá, Europa y Australia. Su ventaja está en cómo compra: es tan grande que los proveedores le ofrecen primero la mercadería que les sobró, y eso le permite vender barato y aun así ganar más que antes. Tiene un **foso estrecho, de costos y escala**: es real, pero más frágil que el de una marca. Los números lo confirman: los ingresos crecieron 6,5 % por año entre 2023 y 2026, el margen operativo subió de 9,7 % a 12,7 % en los últimos 12 meses y el retorno sobre el capital invertido supera el 40 %. Su debilidad es la de todo comercio: si el cliente deja de encontrar buenas ofertas, **se va a otra tienda sin pagar ningún costo**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente va a las tiendas a buscar sorpresas y eso es difícil de reemplazar con tecnología. Conclusión: **muy buena empresa de comercio, con foso estrecho, retornos excepcionales, balance cómodo y márgenes en máximos.**",
@@ -250,6 +250,774 @@
      "2024",
      "2023",
      "2022"
+    ]
+   }
+  },
+  "AAPL": {
+   "resumen": "Apple es la empresa del iPhone, la Mac, el iPad y el Apple Watch, y cada vez más la del dinero que cobra todos los meses por servicios: la App Store, iCloud, Apple Music, la publicidad y Apple Pay. Quien compró un iPhone queda dentro de un mundo (mensajes, fotos, relojes, auriculares) del que cuesta salir, y eso le permite cobrar más y sostener márgenes que casi ninguna fabricante de aparatos logra. Tiene un **foso amplio, de marca y costos de cambio**. Los números lo confirman: el margen operativo pasó de 30,3 % en 2022 a 33,2 % en los últimos 12 meses, y el retorno sobre el capital invertido está en 66,8 %. Además recompró tanto que las acciones bajaron 9,5 % desde 2022. Su punto débil es que **depende del iPhone y de que la gente siga renovándolo**: en 2023 los ingresos cayeron 2,8 % y recién se recuperaron. Con la inflación alta y la nafta más cara, el consumidor posterga compras grandes, y eso se nota primero en los aparatos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque el teléfono sigue siendo la puerta por la que la gente usa esa tecnología. Conclusión: **excelente empresa, con foso amplio, retornos extraordinarios y balance holgado, en un momento de márgenes y ganancias en máximos.**",
+   "veredicto": "Excelente empresa: foso amplio, retornos extraordinarios y balance holgado",
+   "conclusion": "Apple es una empresa excelente: un negocio de marca y de costos de cambio que rinde 66,8 % sobre su capital, con márgenes en máximos y balance holgado. Su punto débil es la dependencia del iPhone y del consumidor, que hoy enfrenta inflación y nafta cara. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos y el margen bruto (48,7 %) no se deterioren.",
+   "calidad": "Excelente",
+   "riesgo_ia": "bajo",
+   "negocio": "Apple vende aparatos y, sobre esos aparatos, servicios. El iPhone es el producto estrella; después vienen la Mac, el iPad y los accesorios (Apple Watch, AirPods, Apple TV, HomePod). Arriba de todo eso corre la parte que más rinde por dólar vendido: la App Store, la publicidad, las suscripciones (Apple Music, Apple TV, iCloud, Fitness+), AppleCare y Apple Pay. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio **que se repite**: la gente cambia el teléfono cada pocos años y paga suscripciones todos los meses. El crecimiento viene de que cada cliente nuevo compra más productos del mismo mundo y de que los servicios se suman encima de los aparatos ya vendidos. **Los ingresos pasaron de 416.161 M en el año fiscal 2025 a 466.823 M en los últimos 12 meses.**\n\n**A quién le vende.** A consumidores, pequeñas y medianas empresas, educación y gobierno, a través de sus tiendas, su sitio web, operadores de telefonía y revendedores. **No hay un cliente que pese de forma decisiva**: la dependencia está del lado de los proveedores, porque fabrica con terceros.",
+   "foso": "La ventaja de Apple **es de marca y de costos de cambio**. La marca le permite cobrar más por un producto parecido al de la competencia; los costos de cambio aparecen porque, una vez que tenés iPhone, Mac, reloj y auriculares que funcionan juntos, pasarte a otro sistema te obliga a cambiar todo. **Cada aparato nuevo hace más difícil irse**, y los servicios (fotos, archivos, pagos) refuerzan ese encierro.\n\nSe ve en el **margen bruto, que subió de 43,3 % en 2022 a 48,7 % en los últimos 12 meses**: una fabricante común de aparatos pelea con márgenes bastante más bajos. Compite con Samsung y los fabricantes chinos en teléfonos, con Google (Android) en el sistema, y con Microsoft y las fabricantes de PC en computadoras.\n\nDónde es frágil: depende de que el iPhone siga siendo el aparato que todos quieren, y los reguladores de varios países vienen presionando para que la App Store cobre menos comisión. Sobre la inteligencia artificial, el riesgo es que un asistente nuevo le quite el lugar a la pantalla del teléfono; hoy parece lejos, porque **el teléfono sigue siendo la puerta de entrada**.",
+   "numeros": "Los números de Apple cuentan una historia de **mejora de rentabilidad más que de crecimiento explosivo**. Los ingresos pasaron de 394.328 M en 2022 a 416.161 M en 2025, apenas 1,8 % por año, con una caída de 2,8 % en 2023. En los últimos 12 meses se aceleraron: 466.823 M. Lo importante es que las ganancias crecieron más que las ventas: el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 30,3 % a 33,2 %, y la ganancia por acción pasó de 6,11 en 2022 a 7,46 en 2025 y a 8,72 en los últimos 12 meses. Una parte viene de las recompras: **las acciones bajaron 9,5 % desde 2022**, y cada acción que queda se lleva una porción mayor de la ganancia.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir en el negocio) fue de 136.683 M en los últimos 12 meses, un 29,3 % de las ventas. El retorno sobre el capital invertido (ROIC), cuánto gana por cada dólar puesto en el negocio, **es de 66,8 %**, un nivel extraordinario.\n\nLa mirada crítica: el flujo libre fue de 99.584 M en 2023 y 98.767 M en 2025; no es una línea recta, y los últimos 12 meses están en un máximo. El ROE de 119,9 % es muy alto porque recompró tantas acciones que el patrimonio quedó chico: no hay que leerlo como una eficiencia mágica.",
+   "balance": "**El balance de Apple es holgado.** La deuda total es de 84.344 M en los últimos 12 meses y tiene 62.399 M en caja, así que la deuda neta es de 44.800 M. Eso equivale a **0,27 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con unos tres meses de ganancia operativa. El ratio bajó desde 0,74 veces en 2022, y la deuda total bajó de 132.480 M a 84.344 M.\n\nEn 2023 la cobertura de intereses fue de 29 veces: la ganancia operativa cubría los intereses casi treinta veces. La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,00 vez: justa, pero normal en una empresa que cobra rápido y genera tanta caja. Con tasas altas, que a otras empresas les encarecen la deuda, a Apple casi no le pesan.",
+   "gerencia": "Yahoo lista a Tim Cook como presidente ejecutivo del directorio (64 años, pago de 16,8 M), con Kevan Parekh como director financiero (53 años) y Sabih Khan como director de operaciones (58 años). Es un equipo con mucha trayectoria dentro de la empresa.\n\nEn lo que importa, **el uso del capital, es disciplinado**: invierte poco en relación con lo que gana (10.041 M en los últimos 12 meses, 7,8 % del resultado neto), paga un dividendo de 1,08 por acción y, sobre todo, recompra acciones por montos enormes: 82.226 M en los últimos 12 meses. Esas recompras no diluyen sino que concentran la ganancia: las acciones diluidas bajaron de 16.326 M en 2022 a 14.779 M en los últimos 12 meses. Lo discutible es el precio al que se recompra, pero eso se ve en la solapa Valuación.",
+   "fortalezas": [
+    "Foso amplio: marca y ecosistema que retienen al cliente; el margen bruto subió de 43,3 % en 2022 a 48,7 % en los últimos 12 meses.",
+    "Retornos extraordinarios: ROIC de 66,8 % en los últimos 12 meses, con promedio de 59,3 % en los años completos.",
+    "Caja enorme: flujo libre de 136.683 M en los últimos 12 meses, 29,3 % de las ventas.",
+    "Balance holgado: deuda neta de 0,27 veces el EBITDA, bajando desde 0,74 veces en 2022.",
+    "Recompras que achican la cantidad de acciones: 9,5 % menos desde 2022."
+   ],
+   "debilidades": [
+    "Depende del iPhone: si el ciclo de renovación se alarga o un competidor lo desplaza, es el negocio que más se resiente; en 2023 los ingresos cayeron 2,8 %.",
+    "Consumo golpeado: con la inflación en 3,7 % anual y la nafta 9,1 % más cara en septiembre, el cliente puede postergar el cambio de teléfono, y los aparatos son lo primero que se posterga.",
+    "Presión de reguladores sobre la App Store y sobre sus acuerdos de publicidad: los servicios son la parte más rentable y la que más se discute.",
+    "Crecimiento bajo en el largo plazo: 1,8 % por año en ingresos entre 2022 y 2025. El crítico más duro diría que gran parte de la mejora de la ganancia por acción viene de recomprar y no de vender mucho más.",
+    "Fabricación concentrada en terceros y en Asia: un conflicto geopolítico o un problema de suministro afecta directo a los aparatos."
+   ],
+   "vigilar": [
+    "Ingresos: lo que sostiene todo es que los últimos 12 meses (466.823 M) no sean un pico; si los ingresos vuelven a caer como en 2023, el ciclo de renovación del iPhone se está agotando.",
+    "Margen bruto: hoy está en 48,7 % contra 45,1 % de promedio; si baja, es señal de que los servicios no compensan o de que la competencia obliga a bajar precios.",
+    "Flujo libre: 136.683 M en los últimos 12 meses contra 98.767 M en 2025; hay que verificar que se mantenga cerca de ese nivel.",
+    "Regulación de la App Store: si los reguladores obligan a bajar comisiones de forma importante, se debilita la parte más rentable del negocio."
+   ],
+   "clientes": [
+    "Consumidores finales: no depende de un cliente en particular",
+    "Pequeñas y medianas empresas, educación y gobierno",
+    "Operadores de telefonía celular y revendedores"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de calidad con una marca que retiene al cliente.",
+    "Valoran el retorno sobre el capital y las recompras que achican la cantidad de acciones.",
+    "Quieren exposición a servicios digitales y hardware en una sola compañía."
+   ],
+   "menos_ideal": [
+    "Necesitan dividendos altos: el pago es de 1,08 por acción y no es el centro de la historia.",
+    "No toleran que la ganancia dependa de un solo producto (el iPhone) y del consumo."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "AAPL",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 466823000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "GOOGL": {
+   "resumen": "Alphabet es la dueña de Google: cada vez que alguien busca algo, mira un video en YouTube, usa Maps o Gmail, hay un anunciante pagando, y por eso la publicidad es el corazón de su negocio. Sumó una nube (Google Cloud) que vende computación y herramientas de inteligencia artificial a empresas. Tiene un **foso amplio, de efecto de red y escala**: cuanta más gente la usa, más datos tiene, mejores son sus resultados y más anunciantes la eligen. Los números acompañan: los ingresos crecieron 12,5 % por año entre 2022 y 2025 y el margen operativo subió de 26,5 % a 33,1 % en los últimos 12 meses. Lo que cambió es el gasto: invierte tanto en centros de datos que el **flujo libre cayó a 53.273 M en los últimos 12 meses, contra 73.266 M en 2025**. El mercado está justo mirando si ese gasto en inteligencia artificial da ganancias, y la caída del 22 de octubre lo mostró. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque un asistente que conteste sin mostrar anuncios le puede sacar parte de la búsqueda, aunque ella misma compite con Gemini. Conclusión: **muy buena empresa, con foso amplio, márgenes en máximos y balance sólido, pero con un gasto de inversión que hoy le come la caja.**",
+   "veredicto": "Muy buena empresa: foso amplio y márgenes en máximos, con inversión récord en IA",
+   "conclusion": "Alphabet es una muy buena empresa, no una excelente: un negocio con foso amplio, márgenes de 33,1 % y balance sólido, pero que hoy gasta tanto en inteligencia artificial que su flujo libre cayó a 53.273 M en los últimos 12 meses. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo a dos dígitos y que la inversión empiece a dar retorno.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "moderado",
+   "negocio": "Alphabet gana dinero sobre todo vendiendo publicidad: los avisos que aparecen al lado de las búsquedas de Google, en YouTube y en otras aplicaciones como Gmail, Maps y Play. Suma suscripciones (YouTube Premium, YouTube TV, Google One), la venta de aplicaciones en Google Play y dispositivos como los Pixel. El segundo pilar es **Google Cloud**: alquila computación, almacenamiento y herramientas de inteligencia artificial (la plataforma Vertex AI y Gemini) a empresas, y vende Google Workspace (Gmail, Docs, Drive, Meet). Un tercer segmento, Other Bets, agrupa apuestas chicas como el transporte autónomo. Yahoo no informa cuánto pesa cada uno, y no lo vamos a inventar.\n\nEs un negocio indispensable hoy y difícil de reemplazar: **los ingresos pasaron de 282.836 M en 2022 a 402.836 M en 2025, y a 445.867 M en los últimos 12 meses**. Lo que lo impulsa es que más empresas pasan su publicidad a internet y que la nube se vuelve el lugar donde corre la inteligencia artificial.\n\n**A quién le vende.** A millones de anunciantes de todos los tamaños, a consumidores que pagan suscripciones y a empresas que alquilan su nube. **Ningún cliente pesa de forma decisiva**, aunque el negocio sí depende de que la economía y el gasto publicitario se mantengan.",
+   "foso": "La ventaja de Alphabet **es de efecto de red y de escala**. Más usuarios en su buscador generan más datos y mejores respuestas, lo que atrae más usuarios y más anunciantes, que pagan por llegar a esa gente; y con ese dinero financia mejoras que ninguna competidora chica puede copiar. Android y Chrome refuerzan el círculo: son la puerta por la que la gente llega al buscador. Se ve en el **margen bruto, que subió de 55,4 % en 2022 a 60,9 % en los últimos 12 meses**.\n\nCompite en publicidad con Meta, Amazon y TikTok; en nube con Amazon y Microsoft; y en inteligencia artificial con OpenAI, Microsoft y Meta. Es un foso amplio, pero hoy **es más discutido que el de Apple o Microsoft**, porque el negocio central (la búsqueda) es justamente el que la inteligencia artificial puede transformar: si la gente le pregunta a un asistente en lugar de buscar, hay menos lugares para mostrar anuncios. La empresa responde con sus propios modelos (Gemini), pero cambiar de modelo de negocio sin perder ingresos es lo difícil. Hasta ahora los números no muestran un daño.",
+   "numeros": "Los números de Alphabet muestran **un crecimiento fuerte y márgenes que subieron**, con un cambio de tendencia en la caja. Los ingresos crecieron 8,7 % en 2023, 13,9 % en 2024 y 15,1 % en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 26,5 % en 2022 a 32,0 % en 2025 y a 33,1 % en los últimos 12 meses, y la ganancia por acción pasó de 4,56 a 10,81 entre 2022 y 2025.\n\nAhora, lo que preocupa: el flujo libre (lo que sobra después de invertir) fue de 73.266 M en 2025 y de 53.273 M en los últimos 12 meses, porque la inversión en equipos y centros de datos pasó de 31.485 M en 2022 a 132.402 M en los últimos 12 meses. **El retorno sobre el capital invertido bajó de 28,0 % en 2024 a 16,9 %**, en parte porque el capital invertido casi se triplicó respecto de 2022.\n\nUna advertencia: la ganancia neta de los últimos 12 meses (244.205 M) es 1,8 veces la del año fiscal 2025 (132.170 M) y Yahoo la marca como dato a verificar; no la usamos como prueba de nada, y nos apoyamos en el resultado operativo, que es más estable.",
+   "balance": "**El balance de Alphabet es sólido.** En los últimos 12 meses tiene 242.474 M en caja y una deuda total de 112.756 M, así que la deuda neta es de 42.254 M, **0,13 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con unos tres meses de ganancia operativa. La deuda subió contra 2025 (59.291 M), y también la caja, así que Yahoo marca esos saltos como datos a verificar; aun así, la fotografía es cómoda.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,72 veces: muy holgada. El gasto en intereses aumentó (2.252 M en los últimos 12 meses contra 736 M en 2025), pero la ganancia operativa lo cubre 65,6 veces. Con tasas altas, la deuda nueva le cuesta más, pero no es un problema para ella.",
+   "gerencia": "La conduce Sundar Pichai como CEO (52 años, pago de 10,9 M según Yahoo), con Anat Ashkenazi como directora financiera y los fundadores Larry Page y Sergey Brin en el directorio. Es un equipo estable.\n\nLo central de la gestión hoy es **cómo usa el capital**: la inversión en centros de datos se multiplicó por 4 en tres años, para apoyar su nube y sus modelos de inteligencia artificial. Es una apuesta grande: si el gasto rinde, refuerza el foso; si no, se paga con menor caja. A favor, **empezó a pagar dividendo en 2024 (0,88 por acción hoy)** y viene recomprando acciones: 13.159 M en 2022 contra 12.244 M en los últimos 12 meses, 6,9 % menos. Las recompras bajaron de 62.222 M en 2024 a 17.403 M en los últimos 12 meses, señal de que la plata se está yendo a invertir.",
+   "fortalezas": [
+    "Foso amplio, de efecto de red y escala; el margen bruto subió de 55,4 % en 2022 a 60,9 % en los últimos 12 meses.",
+    "Crecimiento fuerte y parejo: ingresos +12,5 % por año entre 2022 y 2025, con margen operativo de 33,1 % en los últimos 12 meses.",
+    "Balance muy sólido: deuda neta de 0,13 veces el EBITDA y liquidez corriente de 2,72 veces.",
+    "Dos negocios fuertes: publicidad y una nube que vende inteligencia artificial a las empresas.",
+    "Menos acciones: 6,9 % menos en circulación desde 2022, además de un dividendo desde 2024."
+   ],
+   "debilidades": [
+    "Gasto en inversión récord: 132.402 M en los últimos 12 meses contra 31.485 M en 2022; el flujo libre cayó de 73.266 M en 2025 a 53.273 M, y el retorno sobre el capital invertido bajó a 16,9 %.",
+    "Búsqueda amenazada: el crítico más duro diría que un asistente de inteligencia artificial puede responder sin que el usuario vea anuncios, y ese es su negocio más rentable.",
+    "Dependencia de la publicidad: si las empresas recortan avisos por inflación o por tasas altas, la ganancia cae rápido.",
+    "Regulación: juicios y reclamos de competencia en varios países pueden obligarla a cambiar cómo distribuye Chrome, Android y el buscador.",
+    "Los números de los últimos 12 meses tienen saltos que Yahoo marca a verificar (ganancia neta, caja, deuda): hay que leerlos con cuidado."
+   ],
+   "vigilar": [
+    "Inversión en centros de datos: hoy es 54,2 % del resultado neto; si sigue subiendo sin que se aceleren los ingresos de la nube, el retorno sobre el capital sigue bajando.",
+    "Ingresos: se mantiene en crecimiento de 15,1 % (2025); si se frena de forma sostenida, la inteligencia artificial no está compensando.",
+    "Flujo libre: 53.273 M en los últimos 12 meses contra 73.266 M en 2025; hay que ver si se recupera cuando la inversión se estabilice.",
+    "Margen operativo: hoy 33,1 %; si baja de forma sostenida, es la primera señal de que la competencia de la inteligencia artificial pega en el negocio."
+   ],
+   "clientes": [
+    "Millones de anunciantes de todos los tamaños: ninguno domina",
+    "Consumidores con suscripciones (YouTube, Google One)",
+    "Empresas clientes de Google Cloud y Google Workspace"
+   ],
+   "ideal_para": [
+    "Buscan una empresa con foso amplio y crecimiento sostenido.",
+    "Quieren exposición a publicidad digital y a la nube de inteligencia artificial en una misma compañía.",
+    "Toleran que la caja baje un tiempo mientras la empresa invierte."
+   ],
+   "menos_ideal": [
+    "Quieren ingresos por dividendos: el pago es de 0,88 por acción y es chico.",
+    "No toleran el riesgo de que la inteligencia artificial cambie la búsqueda."
+   ],
+   "perfil": "general",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "GOOGL",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 445867000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "MSFT": {
+   "resumen": "Microsoft es la empresa de Windows, Office (hoy Microsoft 365), Teams, LinkedIn y Xbox, pero sobre todo la dueña de Azure, la nube donde corren las aplicaciones de millones de empresas y donde hoy se entrena y se usa mucha inteligencia artificial. La mayoría de sus clientes pagan por suscripción y la plata entra todos los meses. Tiene un **foso amplio, de costos de cambio**: pasarse de Office, Windows y Azure a otro proveedor implica cambiar hábitos, archivos y sistemas de toda una empresa. Los números son de los mejores del mercado: los ingresos crecieron 16,1 % por año entre 2023 y 2026, el margen operativo subió de 41,8 % a 46,8 % y el retorno sobre el capital invertido es de 25,9 %. Su punto débil es la inversión: gastó **115.948 M en equipos y centros de datos en 2026, contra 28.107 M en 2023**, y el flujo libre bajó a 66.987 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque ella misma la vende a sus clientes, aunque podría reducir la cantidad de puestos que pagan licencias. Conclusión: **excelente empresa, con foso amplio, márgenes entre los más altos del mercado y balance sólido, aunque hoy invierte en inteligencia artificial más de lo que su caja puede mostrar.**",
+   "veredicto": "Excelente empresa: foso amplio, márgenes altísimos y balance sólido",
+   "conclusion": "Microsoft es una empresa excelente: un negocio con costos de cambio altísimos, ingresos creciendo 16,1 % por año, margen operativo de 46,8 % y balance sólido. Su punto débil es que hoy invierte tanto en inteligencia artificial que el flujo libre bajó a 66.987 M en 2026. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos de la nube sigan creciendo a dos dígitos y que el retorno sobre el capital no baje de 20 %.",
+   "calidad": "Excelente",
+   "riesgo_ia": "bajo",
+   "negocio": "Microsoft vende tres cosas: herramientas de trabajo (Microsoft 365, Teams, LinkedIn, Dynamics), servicios en la nube (Azure, SQL Server, GitHub) y productos personales (licencias de Windows para fabricantes de PC, Surface, Xbox, publicidad en Bing). Yahoo no informa cuánto pesa cada segmento, y no lo vamos a inventar; lo que sí se sabe es que **la mayor parte de lo que vende es software por suscripción**, y por eso los ingresos son muy previsibles.\n\nEs indispensable hoy y difícil de reemplazar: **los ingresos pasaron de 211.915 M en 2023 a 331.839 M en 2026**, un 16,1 % por año. Lo que impulsa el crecimiento es que más empresas llevan sus sistemas a la nube y que Copilot, su asistente de inteligencia artificial, se suma a las licencias que ya pagan.\n\n**A quién le vende.** A empresas de todos los tamaños, gobiernos y consumidores, a través de socios y redes minoristas. **No hay un cliente que pese de forma decisiva**: el riesgo está en que muchos de sus clientes recorten el gasto en tecnología a la vez.",
+   "foso": "La ventaja de Microsoft **es de costos de cambio y de efecto de red**. Una empresa que ya tiene sus correos, sus archivos, sus reuniones, sus usuarios y sus aplicaciones armadas sobre Microsoft pierde mucho tiempo y plata si se pasa a otra: eso la retiene. Además, cuanto más gente usa Teams o Office, más obligados se sienten los demás a usarlos para trabajar juntos. Es **un foso de los más sólidos del mercado**: el margen operativo subió de 41,8 % en 2023 a 46,8 % en 2026.\n\nCompite con Google (Workspace y Cloud), Amazon (nube), Salesforce, Oracle y Apple. Dónde es frágil: el margen bruto bajó de 69,8 % en 2024 a 67,9 % en 2026, porque la inteligencia artificial cuesta más de servir que el software común. Y si los asistentes de inteligencia artificial reducen la cantidad de personas que necesitan licencias, el modelo de cobrar por usuario se debilita. Por ahora los números no lo muestran.",
+   "numeros": "Los números de Microsoft son **de los más fuertes que va a ver en cualquier empresa**. Los ingresos crecieron 15,7 % en 2024, 14,9 % en 2025 y 17,8 % en 2026. Lo importante es que las ganancias crecieron todavía más: el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 41,8 % a 46,8 %, y la ganancia por acción pasó de 9,68 en 2023 a 17,95 en 2026, un 22,9 % por año.\n\nLa ganancia se convierte en caja, pero hay un matiz: el flujo operativo creció 27,8 % por año, pero el **flujo libre (lo que sobra después de invertir) bajó de 74.071 M en 2024 a 66.987 M en 2026**, porque la inversión en centros de datos pasó de 28.107 M a 115.948 M. El retorno sobre el capital invertido bajó de 28,3 % a 25,9 %, que sigue siendo muy alto.\n\nLa mirada crítica: el margen operativo está en su máximo de la tabla, 2,1 puntos por encima del promedio, y el gasto en inversión equivale a 86,7 % del resultado neto de 2026. Si el gasto en inteligencia artificial no se traduce en más ingresos, los márgenes de hoy son difíciles de sostener.",
+   "balance": "**El balance de Microsoft es sólido.** En 2026 tiene una deuda total de 56.826 M y 76.651 M en caja, y la deuda neta es de 19.359 M, **0,09 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con un mes y medio de ganancia operativa. La cobertura de intereses es de 50,9 veces: la ganancia operativa cubre los intereses con enorme holgura.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, bajó de 1,77 veces en 2023 a 1,23 veces en 2026: es ajustada pero cómoda para una empresa que cobra por adelantado. La caja bajó de 111.256 M en 2023 a 76.651 M en 2026, porque la inversión consume buena parte del flujo. Con tasas altas, la deuda nueva cuesta más, pero la suya es chica contra lo que gana.",
+   "gerencia": "La conduce Satya Nadella, presidente y CEO (58 años, pago de 13,1 M según Yahoo), con Amy Hood como directora financiera y Brad Smith como presidente. Es un equipo estable y con mucho historial de buena asignación de capital: la transformación hacia la nube y las suscripciones fue de ellos.\n\nHoy **el tema es cuánto invierte en inteligencia artificial**: 115.948 M en 2026 contra 44.477 M en 2024. Es una apuesta grande y recién se va a poder juzgar cuando se vea cuánto vende de esa tecnología. Mientras tanto, mantiene un dividendo de 3,92 por acción (que viene creciendo 10,2 % por año) y recompras de 22.271 M en 2026; aun así, las acciones diluidas casi no cambiaron (7.472 M en 2023, 7.453 M en 2026). No diluye, pero tampoco achica.",
+   "fortalezas": [
+    "Foso amplio de costos de cambio y efecto de red: el margen operativo subió de 41,8 % en 2023 a 46,8 % en 2026.",
+    "Crecimiento fuerte y parejo: ingresos +16,1 % por año entre 2023 y 2026.",
+    "Retornos altos: ROIC de 25,9 % en 2026, con promedio de 27,4 %.",
+    "Balance sólido: deuda neta de 0,09 veces el EBITDA y cobertura de intereses de 50,9 veces.",
+    "Dividendo creciente (3,92 por acción, +10,2 % por año en 3 años) sin diluir a los accionistas."
+   ],
+   "debilidades": [
+    "Inversión récord: 115.948 M en 2026 contra 28.107 M en 2023; el flujo libre bajó de 74.071 M en 2024 a 66.987 M en 2026 y la caja bajó 31 %.",
+    "Margen bruto en baja: de 69,8 % en 2024 a 67,9 % en 2026, porque servir inteligencia artificial cuesta más que servir software común.",
+    "Riesgo de recorte del gasto empresarial: con tasas altas y mercado de acciones cayendo, los clientes pueden frenar nuevos contratos de nube.",
+    "El crítico más duro diría que la inteligencia artificial puede reducir la cantidad de puestos que pagan licencias, y su modelo cobra por puesto.",
+    "Dependencia de la nube: gran parte del crecimiento viene de Azure, que compite de frente con Amazon y Google."
+   ],
+   "vigilar": [
+    "Flujo libre: hoy es 20,2 % de las ventas contra 28,1 % en 2023; si sigue bajando mientras la inversión crece, el retorno de la inteligencia artificial no está llegando.",
+    "Margen bruto: hoy 67,9 % contra 69,8 % en 2024; si sigue cayendo, el costo de servir inteligencia artificial está comiéndose la rentabilidad.",
+    "Ingresos: 17,8 % en 2026; es lo que justifica el gasto, y si baja de forma clara hay que revisar la tesis.",
+    "Retorno sobre el capital: hoy 25,9 %; si baja de 20 %, la inversión récord no está rindiendo."
+   ],
+   "clientes": [
+    "Empresas de todos los tamaños: no hay un cliente dominante",
+    "Gobiernos e instituciones públicas",
+    "Consumidores (Windows, Microsoft 365, Xbox)",
+    "Fabricantes de PC (licencias de Windows)"
+   ],
+   "ideal_para": [
+    "Buscan una empresa de calidad con ingresos recurrentes por suscripción.",
+    "Valoran un foso amplio y retornos altos sostenidos.",
+    "Quieren exposición a la nube y a la inteligencia artificial en una empresa con balance sólido."
+   ],
+   "menos_ideal": [
+    "Buscan ingresos altos por dividendos: el pago es una parte chica de lo que gana.",
+    "No toleran que la caja baje por una inversión récord en inteligencia artificial."
+   ],
+   "perfil": "software",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "MSFT",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 331839000000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "AMZN": {
+   "resumen": "Amazon es la tienda donde mucha gente compra casi todo, el servicio Prime que te trae el pedido rápido y, en paralelo, AWS: la nube donde corren las aplicaciones de empresas de todo el mundo y buena parte de la inteligencia artificial. Vende productos propios y de terceros, publicidad dentro de su tienda y suscripciones. Tiene un **foso amplio, de escala y efecto de red**: cuantos más compradores tiene, más vendedores quieren estar ahí, y con más vendedores hay más variedad y mejor precio, y así vuelven los compradores. Los números mejoraron mucho: el margen operativo pasó de 2,4 % en 2022 a 11,2 % en 2025, y los ingresos crecieron 11,7 % por año. Su punto débil es que **gasta casi todo lo que gana en construir**: el flujo libre fue de 7.695 M en 2025 y de -2.472 M en los últimos 12 meses, con una inversión de 151.003 M. Con la nafta 9,1 % más cara y la inflación en 3,7 %, el costo de entregar cada pedido sube y el cliente mira más el precio. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la vende desde AWS, aunque un asistente que compre por la gente podría cambiar quién domina la venta online. Conclusión: **muy buena empresa, con foso amplio, rentabilidad en mejora y balance sólido, pero con una caja que hoy se la come la inversión.**",
+   "veredicto": "Muy buena empresa: foso amplio y rentabilidad en mejora, con la caja absorbida por la inversión",
+   "conclusion": "Amazon es una muy buena empresa, no una excelente: tiene un foso amplio, un margen operativo que casi se quintuplicó en tres años (de 2,4 % a 11,2 %) y un balance sólido. Su punto débil es la caja: el flujo libre fue de -2.472 M en los últimos 12 meses por una inversión récord. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el flujo libre vuelva a ser positivo y que el retorno sobre el capital invertido no baje de 13 %.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Amazon gana dinero de cuatro maneras. La primera es vender productos en su tienda, tanto propios como de miles de vendedores externos a los que les cobra comisiones y servicios de logística. La segunda es **AWS**, que alquila computación, almacenamiento, bases de datos e inteligencia artificial a empresas. La tercera es la publicidad: los avisos patrocinados que aparecen cuando buscás un producto. La cuarta son las suscripciones, sobre todo Prime. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio que se repite: la gente compra todo el año y las empresas siguen pagando por la nube mes a mes. **Los ingresos pasaron de 513.983 M en 2022 a 716.924 M en 2025.** El margen bruto subió de 43,8 % a 50,3 %, señal de que crece lo que más rinde (nube y publicidad), aunque Yahoo no da el detalle.\n\n**A quién le vende.** A consumidores, vendedores externos, empresas que usan AWS, anunciantes y creadores de contenido. **Ningún cliente pesa de forma decisiva**, aunque la nube depende de que las empresas sigan gastando en tecnología.",
+   "foso": "La ventaja de Amazon **es de escala y de efecto de red, con costos de cambio en la nube**. En la tienda, más compradores atraen más vendedores, que traen más variedad y mejores precios, y eso atrae más compradores; encima, su red de envíos propios es tan grande que nadie la puede copiar sin años de inversión. En AWS, una empresa que armó todos sus sistemas ahí pierde mucho tiempo y plata si se va. Se ve en el **margen bruto: de 43,8 % en 2022 a 50,3 % en 2025**.\n\nCompite en el comercio con Walmart, Mercado Libre, Alibaba y Temu; en nube con Microsoft y Google. Es frágil en el comercio, donde el cliente no paga nada por cambiar de tienda y los márgenes son finos. La inteligencia artificial es una oportunidad para AWS y un posible riesgo para la tienda, si los asistentes que recomiendan y compran por el usuario dejan de pasar por su buscador interno.",
+   "numeros": "Los números de Amazon cuentan **una mejora enorme de rentabilidad con una caja que no la acompaña**. Los ingresos crecieron 11,8 % en 2023, 11,0 % en 2024 y 12,4 % en 2025. El margen operativo (lo que queda de cada dólar vendido después de pagar todos los costos del negocio) pasó de 2,4 % en 2022 a 11,2 % en 2025, y la ganancia neta, de -2.722 M a 77.670 M. La ganancia por acción fue de 7,17 en 2025 y de 12,43 en los últimos 12 meses.\n\nLa mirada crítica: el flujo operativo creció a 139.514 M en 2025, pero la inversión en equipos y centros de datos también: **151.003 M en los últimos 12 meses, contra 63.645 M en 2022**. Resultado: el flujo libre (lo que sobra después de invertir) fue de 32.878 M en 2024, 7.695 M en 2025 y -2.472 M en los últimos 12 meses. El retorno sobre el capital invertido (ROIC) bajó de 17,5 % en 2024 a 13,5 % en 2025, porque el capital invertido casi se duplicó. Ese retorno es decente, pero no el de una empresa excepcional.",
+   "balance": "**El balance de Amazon es sólido.** La deuda total subió de 152.987 M en 2025 a 209.888 M en los últimos 12 meses, y la caja de 123.029 M a 143.089 M. La deuda que informa Yahoo incluye en buena parte los alquileres de sus depósitos y sus equipos, un compromiso fijo como una deuda aunque no sea un préstamo. En 2025 la ganancia operativa cubría 35,2 veces los intereses, y en 2022 solo 5,2 veces, así que la mejora fue fuerte.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,18 veces: ajustada pero normal para un comercio que cobra rápido y paga a sus proveedores más tarde. Con tasas altas, la deuda nueva le cuesta más; como el flujo libre ya es chico, no tiene mucho margen para financiar la inversión con su propia caja. Para una empresa de este tamaño no es un problema hoy, pero hay que mirarlo.",
+   "gerencia": "La conduce Andy Jassy, CEO desde que Jeff Bezos pasó a presidente ejecutivo (57 años, pago de 2,1 M según Yahoo), con Brian Olsavsky como director financiero y Doug Herrington al frente de las tiendas. Es un equipo con larga trayectoria dentro de la empresa.\n\nEn lo que importa, **el uso del capital, es una apuesta enorme**: la inversión pasó de 52.729 M en 2023 a 151.003 M en los últimos 12 meses, para construir centros de datos y capacidad de inteligencia artificial para AWS. Si esa capacidad se llena de clientes, refuerza el foso; si no, pesa. **No paga dividendo y casi no recompra acciones** (6.000 M en 2022 y cero en 2023 y 2024), y las acciones diluidas subieron 6,7 % desde 2022 (10.189 M a 10.871 M): una dilución chica pero real, por el pago a empleados con acciones.",
+   "fortalezas": [
+    "Foso amplio de escala y efecto de red, con costos de cambio en la nube; el margen bruto subió de 43,8 % en 2022 a 50,3 % en 2025.",
+    "Mejora de rentabilidad: margen operativo de 2,4 % en 2022 a 11,2 % en 2025; ganancia neta de 77.670 M en 2025.",
+    "Crecimiento parejo: ingresos +11,7 % por año entre 2022 y 2025 sobre una base ya enorme.",
+    "Flujo operativo fuerte: 139.514 M en 2025, 179,6 % del resultado neto.",
+    "Cobertura de intereses de 35,2 veces en 2025 y 143.089 M en caja en los últimos 12 meses."
+   ],
+   "debilidades": [
+    "Flujo libre casi nulo: 7.695 M en 2025 y -2.472 M en los últimos 12 meses, porque la inversión (151.003 M) absorbe todo lo que genera el negocio.",
+    "Retorno sobre el capital invertido moderado y en baja: 13,5 % en 2025 contra 17,5 % en 2024.",
+    "Comercio de márgenes finos: con nafta 9,1 % más cara en septiembre y la inflación en 3,7 %, aumentan el transporte y la entrega, que son costos suyos, y el cliente se vuelve más sensible al precio.",
+    "El crítico más duro diría que gasta cifras récord en inteligencia artificial sin saber si los clientes van a pagar por esa capacidad.",
+    "Dilución de 6,7 % desde 2022 y sin dividendo: el accionista no recibe caja."
+   ],
+   "vigilar": [
+    "Flujo libre: está en -2.472 M en los últimos 12 meses; tiene que volver a ser claramente positivo cuando la inversión se estabilice, o el retorno sobre el capital invertido (13,5 %) sigue cayendo.",
+    "Margen operativo: hoy 11,2 %; si baja, es la primera señal de que la competencia o el costo de entrega le pegan.",
+    "Inversión en centros de datos: 151.003 M en los últimos 12 meses; hay que ver si se traduce en más ingresos de AWS.",
+    "Acciones en circulación: +6,7 % desde 2022; si siguen subiendo, la dilución le quita valor a cada acción."
+   ],
+   "clientes": [
+    "Consumidores finales: no depende de un cliente en particular",
+    "Vendedores externos que usan su tienda y logística",
+    "Empresas clientes de AWS",
+    "Anunciantes de todos los tamaños"
+   ],
+   "ideal_para": [
+    "Buscan una empresa con foso amplio y presencia en comercio y nube.",
+    "Toleran que la caja libre sea baja mientras la empresa invierte para crecer.",
+    "Valoran la mejora de rentabilidad sostenida de los últimos años."
+   ],
+   "menos_ideal": [
+    "Quieren dividendos o recompras que devuelvan caja al accionista.",
+    "No toleran un flujo libre cercano a cero o negativo."
+   ],
+   "perfil": "consumo",
+   "capas": [],
+   "ticker": "AMZN",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "TSM": {
+   "resumen": "TSMC no vende marcas: fabrica los chips que diseñan otras empresas. Los procesadores de los iPhone, los de Nvidia para inteligencia artificial y los de AMD salen de sus fábricas, porque casi nadie más sabe hacerlos tan chicos y con tan pocas fallas. Cobra por cada oblea fabricada y los clientes le dejan sus pedidos con años de anticipación. Tiene un **foso amplio, de escala y costos de cambio**: una fábrica de punta cuesta decenas de miles de millones y un cliente que diseñó su chip para su proceso no puede mudarse fácil. Los números lo muestran: el margen operativo subió de 42,6 % en 2023 a 58,0 % en los últimos 12 meses, y el ROIC está en 31,4 %. Su punto débil es doble: **depende de la demanda de inteligencia artificial** (el 22 de octubre los semiconductores cayeron 6,7 % por dudas sobre ese gasto) y **fabrica en Taiwán**, una zona de tensión política. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque es la que cobra por fabricar sus chips. Conclusión: **excelente empresa, con foso amplio, márgenes extraordinarios y más caja que deuda, aunque con un negocio cíclico y concentrado en una región riesgosa.**",
+   "veredicto": "Excelente empresa: foso amplio, márgenes extraordinarios y más caja que deuda",
+   "conclusion": "TSMC es una empresa excelente: fabrica los chips más avanzados, que casi nadie más puede hacer, con márgenes operativos de 58,0 %, ROIC de 31,4 % y más caja que deuda. Su punto débil es el ciclo y la concentración en Taiwán. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen bruto (65,8 %) no se deteriore y que sus clientes sigan pidiendo chips de punta.",
+   "calidad": "Excelente",
+   "riesgo_ia": "bajo",
+   "negocio": "TSMC es una **fundición**: fabrica chips para otras empresas, no los diseña ni los vende con su marca. Produce diversos tipos de chips (lógica, señal mixta, radiofrecuencia, memoria embebida), los encapsula y los prueba. Sus productos terminan en computación de alto rendimiento (donde entra la inteligencia artificial), teléfonos inteligentes, internet de las cosas, autos y electrónica de consumo. Yahoo no informa cuánto pesa cada mercado, y no lo vamos a inventar.\n\nEs un negocio indispensable: **los ingresos pasaron de 2.263.891 M de dólares taiwaneses en 2022 a 3.809.054 M en 2025, y a 4.944.817 M en los últimos 12 meses** (todas las cifras de este informe están en esa moneda). Lo que impulsa el crecimiento es la demanda de chips más avanzados para inteligencia artificial y teléfonos.\n\n**A quién le vende.** A las empresas que diseñan chips sin fabricarlos: entre sus clientes más conocidos están Apple, Nvidia, AMD, Qualcomm y Broadcom. Yahoo no da los porcentajes, pero es un negocio **concentrado en pocos clientes grandes**: si uno recorta pedidos, se nota.",
+   "foso": "La ventaja de TSMC **es de escala y de costos de cambio**. Hacer chips de punta requiere fábricas carísimas y años de aprendizaje: cuanto más produce, más aprende y baja el costo y las fallas; y cuanto mejor produce, más clientes le entregan sus diseños. El cliente tiene un costo alto de irse: rediseñar un chip para otra fábrica lleva años y puede salir peor. Se ve en el **margen bruto, que subió de 54,4 % en 2023 a 65,8 % en los últimos 12 meses**.\n\nCompite con Samsung e Intel, que fabrican para terceros pero hoy van detrás en los procesos más avanzados. Es frágil por dos razones: la demanda es cíclica (en 2023 los ingresos cayeron 4,5 % y el resultado operativo 17,8 %) y está concentrada geográficamente en Taiwán. La inteligencia artificial no amenaza el negocio: es el motor de su demanda. El riesgo es que el gasto de sus clientes en esa tecnología se frene.",
+   "numeros": "Los números de TSMC cuentan **un crecimiento fuerte con un ciclo claro**. Los ingresos cayeron 4,5 % en 2023 y después crecieron 33,9 % en 2024 y 31,6 % en 2025. El margen operativo (lo que queda de cada unidad vendida después de todos los costos del negocio) pasó de 42,6 % en 2023 a 50,8 % en 2025 y a 58,0 % en los últimos 12 meses. La ganancia por acción pasó de 161,70 en 2023 a 327,35 en 2025 y a 491,28 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 1.124.667 M en los últimos 12 meses, 22,7 % de las ventas, aun con una inversión de 1.510.012 M en fábricas nuevas. El ROIC, cuánto gana por cada unidad puesta en el negocio, **está en 31,4 %**, un nivel excelente para una industria que exige tanto capital.\n\nLa mirada crítica: **el margen operativo está 10,8 puntos por encima del promedio de la tabla**, un nivel que en 2023 no se vio. Si la demanda de inteligencia artificial se enfría, esos márgenes pueden volver a niveles de 42 % a 45 %, como pasó en 2023.",
+   "balance": "**El balance de TSMC es de los más sólidos que vamos a ver: tiene más caja que deuda.** En los últimos 12 meses tiene 3.597.437 M en caja y una deuda total de 1.064.950 M, así que la deuda neta es negativa en 2.532.488 M (es decir, le sobra plata aun pagando todo lo que debe). En 2025 la ganancia operativa cubría 156,5 veces los intereses. La liquidez corriente es de 2,46 veces.\n\nCon tasas altas, a TSMC casi no le importa: no necesita pedir dinero prestado y gana intereses sobre su caja. Lo que sí importa es que invierte muchísimo (1.510.012 M en los últimos 12 meses, 59,7 % de su resultado neto), y esa inversión depende de que los clientes sigan comprando los chips más avanzados.",
+   "gerencia": "La conduce C. C. Wei, presidente y CEO (pago de 63,5 M según Yahoo), con Jen-Chau Huang como director financiero. Es un equipo técnico y estable, con una ejecución muy buena en los procesos de punta.\n\nEn lo que importa, **el uso del capital, es disciplinado**: reinvierte una parte grande en fábricas nuevas (1.510.012 M en los últimos 12 meses) y devuelve el resto con **dividendos crecientes**: paga 3,77 por acción según Yahoo, y el dividendo viene subiendo 18,9 % por año en los últimos 3 años; en los últimos 12 meses pagó 531.618 M. No diluye al accionista: las acciones diluidas se mantienen en 5.186 M desde 2022, y las recompras son chicas.",
+   "fortalezas": [
+    "Foso amplio de escala y costos de cambio: el margen bruto subió de 54,4 % en 2023 a 65,8 % en los últimos 12 meses.",
+    "Rentabilidad extraordinaria: margen operativo de 58,0 % y ROIC de 31,4 % en los últimos 12 meses.",
+    "Más caja que deuda: deuda neta negativa en 2.532.488 M y cobertura de intereses de 156,5 veces en 2025.",
+    "Crecimiento fuerte: ingresos +18,9 % por año entre 2022 y 2025, con una ganancia por acción de 491,28 en los últimos 12 meses.",
+    "Dividendo creciente (+18,9 % por año en 3 años) sin diluir a nadie."
+   ],
+   "debilidades": [
+    "Concentración geográfica: sus fábricas más avanzadas están en Taiwán, una zona de tensión política; una crisis allí afectaría a casi toda la industria.",
+    "Negocio cíclico: en 2023 los ingresos cayeron 4,5 % y el resultado operativo 17,8 %, y hoy los márgenes están muy por encima del promedio.",
+    "Dependencia de la inteligencia artificial: sus clientes más grandes gastan sin saber aún si eso se recupera en ganancias; el 22 de octubre los semiconductores cayeron 6,7 % por esa duda.",
+    "Inversión enorme: 1.510.012 M en los últimos 12 meses; el crítico más duro diría que si la demanda baja, tiene fábricas caras sin llenar.",
+    "Pocos clientes grandes concentran sus pedidos, así que la salida de uno se notaría."
+   ],
+   "vigilar": [
+    "Margen bruto: hoy 65,8 % contra 57,5 % de promedio; si baja de forma sostenida, es señal de que la demanda se enfría o de que los costos suben.",
+    "Inversión en fábricas: 1.510.012 M en los últimos 12 meses (59,7 % del resultado neto); si sube sin que crezcan los ingresos, el retorno sobre el capital cae.",
+    "Ingresos: crecen 31,6 % (2025); si el ritmo se frena, hay que revisar cuánto depende de los pedidos de inteligencia artificial.",
+    "Situación política en Taiwán: es el riesgo que ningún número muestra y que puede cambiar todo."
+   ],
+   "clientes": [
+    "Apple (AAPL)",
+    "NVIDIA (NVDA)",
+    "AMD",
+    "Qualcomm",
+    "Broadcom (AVGO)"
+   ],
+   "ideal_para": [
+    "Buscan exposición a la inteligencia artificial a través de quien fabrica los chips.",
+    "Valoran un foso amplio, retornos altos y un balance con más caja que deuda.",
+    "Aceptan un negocio cíclico y el riesgo geopolítico de Taiwán a cambio de ese foso."
+   ],
+   "menos_ideal": [
+    "No toleran riesgos políticos o de una región concentrada.",
+    "Buscan estabilidad y no soportan caídas de márgenes en un ciclo bajo."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "TSM",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 4944817139000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "META": {
+   "resumen": "Meta es la dueña de Facebook, Instagram, WhatsApp, Messenger y Threads: miles de millones de personas pasan horas ahí, y la empresa vende ese tiempo a los anunciantes. Casi toda su plata viene de la publicidad; además invierte en anteojos con inteligencia artificial y en realidad virtual (Reality Labs). Tiene un **foso amplio, de efecto de red**: la gente está en sus aplicaciones porque están sus amigos, y los anunciantes van donde está la gente. Los números son muy buenos: los ingresos crecieron 19,9 % por año entre 2022 y 2025 y el margen bruto es de 81,0 %. Pero este año el gasto cambió el panorama: el **margen operativo bajó de 42,2 % en 2024 a 32,9 % en los últimos 12 meses y el flujo libre cayó a 28.649 M**, porque invierte 104.438 M en centros de datos. El 22 de octubre la acción cayó 7 % tras informar su primer flujo de caja negativo en más de una década, y esa es hoy la duda del mercado. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para mejorar los avisos y tiene su propio asistente. Conclusión: **muy buena empresa, con foso amplio, márgenes altos y crecimiento fuerte, pero con un gasto en inteligencia artificial que le comió la caja y los márgenes.**",
+   "veredicto": "Muy buena empresa: foso amplio y crecimiento fuerte, con un gasto récord en IA que le come la caja",
+   "conclusion": "Meta es una muy buena empresa, no una excelente: tiene un foso de efecto de red, márgenes brutos de 81,0 % y ingresos creciendo casi 20 % por año, pero hoy su inversión en inteligencia artificial redujo el margen operativo a 32,9 % y el flujo libre a 28.649 M. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo y que el flujo libre deje de caer.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Meta gana dinero con la publicidad que muestra en Facebook, Instagram, Messenger, WhatsApp y Threads, el segmento que Yahoo llama Family of Apps. El segundo segmento, **Reality Labs**, vende cascos de realidad virtual (Meta Quest) y anteojos con inteligencia artificial (Ray-Ban Meta y Oakley Meta, además de unos con pantalla integrada); es una apuesta de largo plazo y Yahoo no informa cuánto pierde o gana.\n\nEs un negocio indispensable para los anunciantes: **los ingresos pasaron de 116.609 M en 2022 a 200.966 M en 2025, y a 241.606 M en los últimos 12 meses**. Lo que impulsa el crecimiento es que la inteligencia artificial hace más efectivos los avisos y que cada vez más empresas pasan su publicidad a las pantallas.\n\n**A quién le vende.** A millones de anunciantes, desde comercios chicos hasta marcas globales: **ninguno domina**. La dependencia está en la economía: si las empresas recortan avisos, es el primer gasto que se achica.",
+   "foso": "La ventaja de Meta **es de efecto de red**. Cada persona que usa WhatsApp o Instagram hace más valioso el servicio para sus amigos, y cada usuario nuevo trae más datos para que los avisos lleguen mejor. Para un anunciante, ir a otro lado es renunciar a esa audiencia. Se ve en el **margen bruto: 78,3 % en 2022 y 81,0 % en los últimos 12 meses**, un nivel que casi ninguna empresa logra.\n\nCompite en publicidad con Google, Amazon y TikTok, y en mensajería con Apple y Google. Es frágil en algo que depende de ella: la atención de la gente. Si los jóvenes pasan el tiempo en otra aplicación, el foso se erosiona sin aviso. La inteligencia artificial es una ventaja hoy (mejora la segmentación de los avisos), pero también el motivo del gasto récord.",
+   "numeros": "Los números de Meta cuentan **un crecimiento muy fuerte con un último año más flojo en rentabilidad**. Los ingresos crecieron 15,7 % en 2023, 21,9 % en 2024 y 22,2 % en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 24,8 % en 2022 a 42,2 % en 2024, pero bajó a 41,4 % en 2025 y a 32,9 % en los últimos 12 meses. La ganancia por acción pasó de 8,59 en 2022 a 23,86 en 2024, 23,49 en 2025 y 29,33 en los últimos 12 meses.\n\nLo que más cambió es la caja: el flujo libre (lo que sobra después de invertir) fue de 54.072 M en 2024, 46.109 M en 2025 y **28.649 M en los últimos 12 meses (11,9 % de las ventas)**, porque la inversión pasó de 37.256 M a 104.438 M. El retorno sobre el capital invertido bajó de 29,0 % en 2024 a 17,3 %.\n\nLa mirada crítica: el margen de 2024 fue un máximo, y el gasto en inteligencia artificial no da señales de bajar. Los márgenes de antes de esta ola de inversión pueden no volver.",
+   "balance": "**El balance de Meta es cómodo, pero la deuda sube rápido.** La deuda total pasó de 49.060 M en 2024 a 83.897 M en 2025 y a 114.842 M en los últimos 12 meses; la caja es de 82.449 M. Yahoo informa una deuda neta de 72.447 M, que equivale a **0,68 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con menos de un año de ganancia operativa. La cobertura de intereses bajó de 156 veces en 2022 a 28,6 veces en los últimos 12 meses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,90 veces: cómoda. Con tasas cerca de 5 %, la deuda nueva le cuesta más, y como el flujo libre bajó, es una empresa que ahora se financia más con deuda que antes.",
+   "gerencia": "La conduce Mark Zuckerberg, fundador, presidente y CEO (41 años, pago de 25,1 M según Yahoo), con Susan Li como directora financiera, Javier Olivan como director de operaciones y Dina Powell McCormick como presidenta. Es un equipo estable, y Zuckerberg tiene el control de las decisiones, lo que permite apuestas de largo plazo pero también apuestas caras que los accionistas no pueden frenar.\n\nEn lo que importa, **el uso del capital, es el punto de debate**: invirtió 104.438 M en los últimos 12 meses (138,8 % del resultado neto), por encima de sus ganancias, para construir capacidad de inteligencia artificial; además, tiene una colaboración con Microsoft, Nvidia, AMD, Broadcom y OpenAI. A favor, **paga dividendo desde 2024 (2,10 por acción)** y viene achicando las acciones: 2.702 M en 2022 contra 2.567 M en los últimos 12 meses, 5,0 % menos. En contra, las recompras pasaron de 26.248 M en 2025 a cero en los últimos 12 meses.",
+   "fortalezas": [
+    "Foso amplio de efecto de red; margen bruto de 81,0 % en los últimos 12 meses.",
+    "Crecimiento fuerte: ingresos +19,9 % por año entre 2022 y 2025 y 241.606 M en los últimos 12 meses.",
+    "Flujo operativo enorme: 133.087 M en los últimos 12 meses, 176,9 % del resultado neto.",
+    "Menos acciones: 5,0 % menos en circulación desde 2022, y un dividendo desde 2024.",
+    "Balance cómodo: liquidez corriente de 1,90 veces y cobertura de intereses de 28,6 veces."
+   ],
+   "debilidades": [
+    "Gasto récord: la inversión pasó de 37.256 M en 2024 a 104.438 M en los últimos 12 meses y el flujo libre cayó de 54.072 M a 28.649 M; el mercado ya la castigó el 22 de octubre.",
+    "Margen operativo en baja: de 42,2 % en 2024 a 32,9 % en los últimos 12 meses, y retorno sobre el capital invertido de 17,3 % contra 29,0 %.",
+    "Dependencia casi total de la publicidad: si las empresas recortan avisos, la ganancia cae rápido.",
+    "El crítico más duro diría que Reality Labs y la inteligencia artificial consumen miles de millones sin un retorno demostrado.",
+    "Deuda en aumento: de 49.060 M en 2024 a 114.842 M en los últimos 12 meses."
+   ],
+   "vigilar": [
+    "Flujo libre: 28.649 M en los últimos 12 meses contra 54.072 M en 2024; si sigue bajando, el gasto en inteligencia artificial está pesando más que el crecimiento.",
+    "Margen operativo: hoy 32,9 % contra 42,2 % en 2024; hay que ver si se estabiliza o sigue cayendo.",
+    "Ingresos: crecen 22,2 % (2025); es lo que justifica el gasto, y una desaceleración fuerte debilitaría la tesis.",
+    "Deuda total: 114.842 M en los últimos 12 meses; si sigue subiendo mientras el flujo libre baja, el balance se ajusta."
+   ],
+   "clientes": [
+    "Millones de anunciantes de todos los tamaños: ninguno domina",
+    "Empresas que usan WhatsApp Business y Messenger",
+    "Consumidores de Reality Labs (cascos y anteojos)"
+   ],
+   "ideal_para": [
+    "Buscan crecimiento fuerte con un foso de efecto de red.",
+    "Toleran que el flujo libre baje mientras la empresa invierte en inteligencia artificial.",
+    "Valoran un balance cómodo y un dividendo que recién empieza."
+   ],
+   "menos_ideal": [
+    "No toleran que el margen operativo baje por apuestas de largo plazo.",
+    "Quieren una empresa que no dependa de la publicidad."
+   ],
+   "perfil": "general",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "META",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 241606000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "AVGO": {
+   "resumen": "Broadcom diseña chips que la mayoría de la gente nunca ve pero usa todos los días: los que mueven los datos dentro de los centros de datos, los de conectividad inalámbrica de los teléfonos y los que los gigantes de internet le piden a medida para su inteligencia artificial. Desde que compró VMware, suma además software de infraestructura que las empresas pagan por suscripción. Tiene un **foso estrecho, de costos de cambio**: cuando un cliente diseña su producto alrededor de un chip de Broadcom o corre sus sistemas sobre su software, cambiar le lleva años y mucho dinero. Los números crecieron fuerte: los ingresos pasaron de 33.203 M en 2022 a 63.887 M en 2025 y a 89.104 M en los últimos 12 meses, y el margen operativo está en 48,5 %. Su punto débil es que **depende de pocos clientes enormes** y de que sigan comprando chips para inteligencia artificial: el 22 de octubre los semiconductores cayeron 6,7 % por dudas sobre ese gasto. También creció comprando empresas, y las acciones aumentaron 15,5 % desde 2022. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque vende los chips que esa tecnología necesita. Conclusión: **muy buena empresa, con foso estrecho, márgenes altos y crecimiento fuerte, aunque dependiente de pocos clientes y con deuda que todavía pesa.**",
+   "veredicto": "Muy buena empresa: foso estrecho, márgenes altos, dependiente de pocos clientes grandes",
+   "conclusion": "Broadcom es una muy buena empresa, no una excelente: crece 24,4 % por año, con márgenes operativos de 48,5 %, un flujo libre de 39.403 M en los últimos 12 meses y deuda a la baja. Su foso es estrecho y depende de pocos clientes y del gasto en inteligencia artificial. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo y que el margen operativo no baje de forma sostenida.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Broadcom tiene dos grandes negocios. El primero es **Semiconductor Solutions**: chips para conectar redes (conmutadores y enrutadores ethernet, fibra óptica), chips de radiofrecuencia y conectividad inalámbrica para teléfonos, controladores para servidores y almacenamiento, y soluciones de silicio a medida para clientes grandes. El segundo es **Infrastructure Software**, que son programas que las empresas usan para administrar sus sistemas y que se pagan por suscripción. Yahoo no informa cuánto pesa cada uno, y no lo vamos a inventar.\n\nEs un negocio indispensable para quien lo usa y se repite: **los ingresos crecieron 24,4 % por año entre 2022 y 2025**, impulsados por la demanda de chips para inteligencia artificial y por la compra de VMware, que se ve en el salto de 2024 (+44,0 %).\n\n**A quién le vende.** A fabricantes de teléfonos, grandes empresas de internet y de nube, fabricantes de equipos de red y empresas que usan su software. Entre los más conocidos están Apple, Alphabet y Meta; Yahoo no da los porcentajes, pero **es un negocio concentrado en pocos clientes grandes**, y que alguno recorte pedidos se notaría.",
+   "foso": "La ventaja de Broadcom **es de costos de cambio y, en menor medida, de escala**. Un cliente que diseñó su producto alrededor de un chip de Broadcom, o que corre sus sistemas con su software, tiene que rehacer todo para irse, y eso rara vez conviene. Además, muchos de sus productos son los líderes de su categoría y compiten con pocos rivales. Se ve en el **margen bruto, estable entre 63,0 % y 68,9 % en los últimos años, y de 68,8 % en los últimos 12 meses**.\n\nCompite con Nvidia, AMD, Marvell y Qualcomm en chips, y con Microsoft y Red Hat en software. Es un foso **estrecho**: la tecnología cambia rápido y un cliente grande puede decidir diseñar sus propios chips o cambiar de proveedor para la próxima generación. La inteligencia artificial hoy lo ayuda, pero lo vuelve más dependiente de las decisiones de gasto de unas pocas empresas.",
+   "numeros": "Los números de Broadcom cuentan **un crecimiento muy fuerte con un 2024 distorsionado por una compra**. Los ingresos crecieron 7,9 % en 2023, 44,0 % en 2024 y 23,9 % en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 45,9 % en 2023, bajó a 29,1 % en 2024 por los costos de integrar a VMware y volvió a 40,8 % en 2025 y 48,5 % en los últimos 12 meses. La ganancia por acción pasó de 3,30 en 2023 a 1,23 en 2024 y a 7,83 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 39.403 M en los últimos 12 meses, 44,2 % de las ventas, con una inversión muy chica (1.250 M). El retorno sobre el capital invertido cayó a 6,9 % en 2024 por la compra, y se recuperó a 23,2 % en los últimos 12 meses.\n\nLa mirada crítica: **el margen operativo está 8,8 puntos por encima del promedio de la tabla**, y buena parte del salto viene de los pedidos de inteligencia artificial, que son los más difíciles de predecir. Lo que se ve hoy no es necesariamente lo normal.",
+   "balance": "**La deuda de Broadcom bajó, pero sigue siendo importante.** La deuda total es de 59.419 M en los últimos 12 meses (llegó a 67.566 M en 2024 después de comprar VMware) y tiene 23.975 M en caja, por lo que la deuda neta es de 35.444 M, **0,68 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con menos de un año de ganancia operativa. Ese ratio era de 2,44 veces en 2024, así que la mejora fue rápida.\n\nLa ganancia operativa cubre 13,9 veces los intereses y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,50 veces: cómoda. Con tasas cerca de 5 %, el costo de su deuda pesa (3.116 M de intereses en los últimos 12 meses), pero sus ganancias actuales lo absorben bien.",
+   "gerencia": "La conduce Hock Tan, presidente y CEO (73 años, pago de 2,9 M según Yahoo), con Amie Thuener O'Toole como directora financiera y Charlie Kawwas al frente de los semiconductores. Tan es el arquitecto de su estrategia de comprar empresas y mejorar su rentabilidad, y también **es un riesgo de continuidad**: la empresa depende mucho de su criterio.\n\nEn lo que importa, **el uso del capital, es agresivo pero disciplinado**: compra empresas grandes (VMware), paga el dividendo (2,60 por acción, creciendo 12,7 % por año en los últimos 3 años; 12.078 M en los últimos 12 meses) y recompra acciones (8.450 M en los últimos 12 meses). Lo discutible: las acciones diluidas pasaron de 4.230 M en 2022 a 4.885 M en los últimos 12 meses, **15,5 % más**, sobre todo en 2024 por la compra: las recompras no alcanzaron para compensarlo.",
+   "fortalezas": [
+    "Crecimiento muy fuerte: ingresos +24,4 % por año entre 2022 y 2025, y 89.104 M en los últimos 12 meses.",
+    "Márgenes altos: margen operativo de 48,5 % y margen de flujo libre de 44,2 % en los últimos 12 meses.",
+    "Inversión muy baja para lo que gana (1.250 M en los últimos 12 meses): casi toda la ganancia se vuelve caja.",
+    "Foso de costos de cambio en chips de red y en software de infraestructura.",
+    "Dividendo creciente (2,60 por acción, +12,7 % por año en 3 años) y deuda neta que bajó de 2,44 a 0,68 veces el EBITDA."
+   ],
+   "debilidades": [
+    "Dependencia de pocos clientes grandes y del gasto en inteligencia artificial: si recortan pedidos, el impacto es inmediato.",
+    "Crecimiento por compras: las acciones aumentaron 15,5 % desde 2022 y el resultado de 2024 cayó por los costos de integrar VMware.",
+    "Deuda todavía importante: 59.419 M en los últimos 12 meses y 3.116 M de intereses, con tasas cerca de 5 %.",
+    "Foso estrecho: el crítico más duro diría que un cliente enorme puede diseñar sus propios chips y dejar de pagarle por los suyos.",
+    "Riesgo de continuidad: el CEO tiene 73 años y la estrategia depende mucho de él."
+   ],
+   "vigilar": [
+    "Ingresos: crecen 23,9 % (2025); si se frenan, la demanda de chips para inteligencia artificial se está enfriando.",
+    "Margen operativo: hoy 48,5 % contra 39,7 % de promedio; si baja de forma sostenida, es señal de que los pedidos grandes pierden precio.",
+    "Concentración de clientes: hay que mirar en el informe anual cuánto de los ingresos viene de los clientes más grandes.",
+    "Deuda neta sobre EBITDA: hoy 0,68 veces; si vuelve a subir por nuevas compras, el balance se ajusta."
+   ],
+   "clientes": [
+    "Apple (AAPL)",
+    "Alphabet (GOOGL)",
+    "Meta Platforms (META)",
+    "Fabricantes de equipos de red y proveedores de nube",
+    "Empresas que usan su software de infraestructura"
+   ],
+   "ideal_para": [
+    "Buscan crecimiento con una caja muy grande y márgenes altos.",
+    "Quieren exposición a los chips de inteligencia artificial y al software de infraestructura.",
+    "Valoran un dividendo que viene creciendo."
+   ],
+   "menos_ideal": [
+    "No toleran la dependencia de pocos clientes grandes.",
+    "Quieren empresas que crezcan sin comprar otras (aquí la compra de empresas es parte de la estrategia)."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "AVGO",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 89104000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "BRK-B": {
+   "resumen": "Berkshire Hathaway es una empresa dueña de otras empresas: GEICO y otras aseguradoras, el ferrocarril BNSF, una gran empresa de electricidad y gas, fábricas de todo tipo (desde chocolates hasta herramientas y piezas de aviones) y una cartera enorme de acciones de empresas cotizadas. Su secreto es el seguro: cobra primas hoy y paga siniestros después, e invierte ese dinero mientras tanto. Tiene un **foso amplio, de escala y costos bajos** en seguros y en ferrocarril, difícil de copiar. Los números muestran un ROE de 9,3 % en 2025 (17,1 % en 2023) y un resultado neto que varía mucho porque cuenta las ganancias y pérdidas de sus inversiones: -22.759 M en 2022, 96.223 M en 2023, 66.968 M en 2025. Su punto débil es el tamaño: **es tan grande que a cada inversión nueva le cuesta mover la aguja**, y en 2025 dejó de recomprar acciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque sus negocios son ferrocarriles, energía, seguros y fábricas. Conclusión: **muy buena empresa, diversificada, con foso amplio y un manejo del capital prudente, aunque su tamaño le limita el crecimiento y el retorno sobre el capital hoy es moderado.**",
+   "veredicto": "Muy buena empresa: diversificada, foso amplio y manejo prudente; retorno moderado por su tamaño",
+   "conclusion": "Berkshire es una muy buena empresa, no una excelente: tiene un foso amplio, diversificación enorme y un manejo del capital prudente, pero su ROE bajó a 9,3 % en 2025 y los ingresos vienen cayendo desde 2023. Vale la pena seguirla de cerca. Es recomendable investigar el ratio combinado (primas contra siniestros) y las reservas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE no siga bajando.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Berkshire gana dinero de varias maneras. **Seguros y reaseguros** (propiedad, accidentes, vida, salud): cobra primas y las invierte. **Ferrocarril de carga** en Norteamérica (BNSF). **Energía**: genera, transmite y distribuye electricidad y gas, con fuentes eólica, solar, hidroeléctrica, nuclear y otras. Además fabrica y vende productos de todo tipo (chocolates en caja, productos químicos, herramientas de corte, componentes aeroespaciales) y tiene participaciones en acciones de empresas cotizadas. Yahoo no informa cuánto aporta cada una, y no lo vamos a inventar.\n\nEs un negocio indispensable: la gente siempre necesita seguros, electricidad y transporte de carga. Los ingresos que informa Yahoo son **439.337 M en 2023, 424.232 M en 2024 y 410.522 M en 2025**. El salto de 2022 a 2023 (de 234.121 M) probablemente refleja el efecto de las ganancias y pérdidas de las inversiones, que se cuentan en esos ingresos; por eso no usamos ese dato como crecimiento.\n\n**A quién le vende.** A millones de clientes: asegurados, empresas que usan el tren para mover carga, hogares que reciben electricidad y consumidores. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de Berkshire **es de costos y de escala, con la fuerza del 'float'**. En seguros, cobra primas antes de pagar los siniestros y usa ese dinero para invertir: cuanto mejor suscribe, más barato le sale ese dinero. El ferrocarril BNSF tiene una ventaja de escala propia: tender otra red de vías es casi imposible, así que sus competidores son pocos. La energía regulada da ingresos estables.\n\nCompite en seguros con Progressive, Allstate y Chubb; en ferrocarril con Union Pacific y los camiones; y en energía con otras empresas de servicios públicos. Es un foso **amplio** pero distinto al de una marca: depende de la disciplina de los gerentes al asegurar y de buenas decisiones de inversión. La inteligencia artificial no amenaza sus negocios, que son físicos o regulados; lo que sí puede cambiar es cómo se venden y se tarifan los seguros.",
+   "numeros": "Los números de Berkshire **se leen distinto a los de una empresa común**, porque el resultado incluye las ganancias y pérdidas no realizadas de su cartera de acciones. Por eso la ganancia neta pasó de -22.759 M en 2022 a 96.223 M en 2023, 88.995 M en 2024 y 66.968 M en 2025: no es el negocio operativo, sino el mercado. La ganancia por acción pasó de 44,27 en 2023 a 41,27 en 2024 y 31,04 en 2025.\n\nEl indicador más estable es el ROE (cuánto gana por cada dólar de patrimonio): **17,1 % en 2023, 13,7 % en 2024 y 9,3 % en 2025**, con un promedio de 8,8 % en la tabla. Es un retorno decente, pero menor al de otras empresas de calidad, y bajó porque el capital creció más que la ganancia. El capital invertido pasó de 596.168 M en 2022 a 846.500 M en 2025 y a 876.509 M en los últimos 12 meses.\n\nLa mirada crítica: la ganancia neta de 2023 fue un máximo ayudado por el mercado, y desde entonces baja. Lo que importa es cuánto gana el negocio operativo, y por eso el ROE es mejor guía que la ganancia neta de cada año.",
+   "balance": "**El tamaño y la solidez de Berkshire son su principal protección.** El capital invertido (el dinero que está trabajando en el negocio) pasó de 596.168 M en 2022 a 846.500 M en 2025 y a 876.509 M en los últimos 12 meses: casi 47 % más en tres años y medio. Para una aseguradora, lo importante es que mantiene un patrimonio enorme para pagar siniestros, y se ve en que sigue creciendo.\n\nLas acciones diluidas pasaron de 2.203 M en 2022 a 2.157 M en 2025, un 2,1 % menos. Las recompras fueron de 7.854 M en 2022, 9.171 M en 2023, 2.918 M en 2024 y cero en 2025: la empresa dejó de recomprar, lo que suele significar que no ve las acciones baratas o que prefiere guardar caja.",
+   "gerencia": "La conduce Greg Abel, CEO y presidente (63 años, pago de 22,0 M según Yahoo), que tomó la posta de Warren Buffett, con Ajit Jain al frente de los seguros (73 años) y Charles Chang como director financiero. Es un equipo con décadas de trayectoria, pero **el cambio de conducción es el gran tema**: la cultura de la empresa estuvo atada a Buffett y el mercado va a mirar de cerca cómo asigna el capital Abel.\n\nEn lo que importa, **el uso del capital, es prudente**: Berkshire casi no paga dividendo y tradicionalmente prefiere reinvertir, comprar empresas enteras o acciones de empresas cotizadas, o recomprar cuando ve valor. Que haya dejado de recomprar en 2025 es una señal que hay que seguir. Las acciones bajaron 2,1 % desde 2022: no diluye.",
+   "fortalezas": [
+    "Diversificación enorme: seguros, ferrocarril, energía y manufactura, que no se mueven todos con el mismo ciclo.",
+    "Foso amplio de escala y costos en seguros y ferrocarril.",
+    "Capital creciente: de 596.168 M en 2022 a 876.509 M en los últimos 12 meses.",
+    "No diluye: 2,1 % menos acciones desde 2022.",
+    "Prudencia en el uso del capital: no paga dividendo y compra cuando ve valor."
+   ],
+   "debilidades": [
+    "Retorno moderado: ROE de 9,3 % en 2025 contra 17,1 % en 2023; el tamaño dificulta rendimientos altos.",
+    "Resultado neto muy volátil: de -22.759 M en 2022 a 96.223 M en 2023 y 66.968 M en 2025, porque depende del valor de sus acciones.",
+    "Transición de liderazgo: el crítico más duro diría que la cultura de Berkshire dependía de Warren Buffett y que eso es difícil de reemplazar.",
+    "Ingresos en baja desde 2023: de 439.337 M a 410.522 M en 2025.",
+    "Dejó de recomprar acciones en 2025 (cero, contra 9.171 M en 2023)."
+   ],
+   "vigilar": [
+    "ROE: hoy 9,3 %; si sigue bajando por debajo de 8 %, la empresa pierde ritmo.",
+    "Recompras: cero en 2025; si vuelven, señal de que la gerencia ve valor; si se acumula más caja sin uso, es un freno.",
+    "Ingresos: 410.522 M en 2025 contra 439.337 M en 2023; hay que ver si se estabilizan.",
+    "Decisiones de Greg Abel: compras de empresas y uso de la caja en los próximos años."
+   ],
+   "clientes": [
+    "Asegurados individuales y empresas (GEICO y otras aseguradoras)",
+    "Empresas que mueven carga por el ferrocarril (BNSF)",
+    "Hogares y empresas que consumen electricidad y gas",
+    "Consumidores finales: sin cliente dominante"
+   ],
+   "ideal_para": [
+    "Buscan diversificación con una empresa que combina seguros, transporte y energía.",
+    "Valoran la prudencia y un historial de buen manejo del capital.",
+    "Aceptan retornos moderados a cambio de estabilidad."
+   ],
+   "menos_ideal": [
+    "Buscan crecimiento rápido: por tamaño, es difícil que lo logre.",
+    "Quieren ingresos por dividendos."
+   ],
+   "perfil": "seguros",
+   "capas": [],
+   "ticker": "BRK-B",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": null,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "TSLA": {
+   "resumen": "Tesla vende autos eléctricos (Model 3, Model Y, Cybertruck y otros) y sistemas para almacenar energía, y además cobra por créditos regulatorios, servicios de mantenimiento y seguros. Es la marca de autos eléctricos más reconocida del mundo, con una red de cargadores propia (Superchargers), y apuesta a que el manejo autónomo y los robots la conviertan en algo más grande que una fabricante de autos. Tiene un **foso estrecho, de marca y de red de carga**, pero muy discutido. Los números cuentan otra historia: **el margen operativo se desplomó de 17,0 % en 2022 a 3,5 % en los últimos 12 meses**, y el retorno sobre el capital invertido, de 27,2 % a 2,8 %. Vende cada vez más barato para sostener las ventas, y la competencia china y la tradicional ya no está lejos. Con la nafta 9,1 % más cara en septiembre, el auto eléctrico se vuelve más atractivo, pero con tasas cerca de 5 % financiar un auto es más caro. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: es una apuesta suya, pero otras empresas la persiguen. Conclusión: **empresa de calidad regular, con marca fuerte y mucha caja, pero con márgenes y retornos en caída libre y un foso estrecho.**",
+   "veredicto": "Calidad regular: marca fuerte y caja, pero márgenes y retornos en caída",
+   "conclusion": "Tesla es una empresa de calidad regular: tiene marca, caja y 45.216 M para aguantar, pero su margen operativo cayó de 17,0 % a 3,5 % en tres años y su retorno sobre el capital invertido es de 2,8 %. Su foso es estrecho y la competencia es fuerte. Hay que seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen bruto (19,3 %) y el operativo dejen de caer.",
+   "calidad": "Regular",
+   "riesgo_ia": "moderado",
+   "negocio": "Tesla tiene dos segmentos. **Automotive**, el más grande, vende vehículos eléctricos (sedanes y utilitarios), créditos regulatorios a otras fabricantes que no cumplen las normas de emisiones, servicios de mantenimiento, repuestos, seguros, financiamiento y acceso a su red de Superchargers. **Energy Generation and Storage** vende baterías para casas y para redes eléctricas. Yahoo no informa cuánto pesa cada uno, y no lo vamos a inventar.\n\nEs un negocio de ciclo: la gente cambia de auto cada varios años y depende del precio, el crédito y las ayudas del gobierno. **Los ingresos pasaron de 81.462 M en 2022 a 97.690 M en 2024, cayeron a 94.827 M en 2025 y volvieron a 103.570 M en los últimos 12 meses.** El crecimiento depende de lanzar modelos nuevos y de que la energía y los servicios sumen más.\n\n**A quién le vende.** A consumidores y empresas que compran autos, y a otras fabricantes que compran sus créditos regulatorios. **Ningún cliente pesa de forma decisiva**: la dependencia está en el precio y en la demanda.",
+   "foso": "La ventaja de Tesla **es de marca y de red de carga, con una ventaja de costos que se achicó**. Su marca es muy fuerte entre quienes buscan un eléctrico, y la red de Superchargers hace más cómodo usarlo. Antes también tenía una ventaja de costos de fabricación: **el margen bruto, de 25,6 % en 2022, bajó a 18,0 % en 2025 y a 19,3 % en los últimos 12 meses**, señal de que hoy tiene que bajar precios para vender.\n\nCompite con BYD y otras fabricantes chinas, con General Motors, Ford, Volkswagen y Hyundai, y con cualquier fabricante que venda eléctricos. Es un foso **estrecho**: el cliente no paga ningún costo por elegir otra marca, y los competidores mejoran rápido. La inteligencia artificial es su apuesta (manejo autónomo, robots), pero los números de hoy no la muestran todavía rentable, y Waymo, Google y otras fabricantes van en la misma carrera.",
+   "numeros": "Los números de Tesla cuentan **una caída pareja de rentabilidad**. Los ingresos crecieron 18,8 % en 2023, 0,9 % en 2024 y cayeron 2,9 % en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 17,0 % en 2022 a 9,2 % en 2023, 7,9 % en 2024, 5,1 % en 2025 y 3,5 % en los últimos 12 meses. La ganancia por acción pasó de 4,31 en 2023 a 0,91 en los últimos 12 meses.\n\nLa caja es mejor que la ganancia: el flujo operativo fue de 18.710 M en los últimos 12 meses, pero la inversión también subió (15.414 M), y el flujo libre (lo que sobra después de invertir) fue de 3.296 M, **3,2 % de las ventas**. El ROIC, cuánto gana por cada dólar puesto en el negocio, cayó a **2,8 %** en los últimos 12 meses, por debajo de lo que cuesta el capital.\n\nLa mirada crítica: tiene mucha caja, y su resultado neto de 3.218 M se parece al operativo de 3.628 M, así que casi no se apoya en gastos financieros. Pero no hay recuperación en las tendencias: tres años seguidos de baja del margen.",
+   "balance": "**El balance de Tesla es cómodo, el punto fuerte de la empresa.** Tiene 45.216 M en caja y una deuda total de 16.445 M en los últimos 12 meses, así que **tiene más caja que deuda: la deuda neta es negativa en 28.771 M**. La cobertura de intereses (ganancia operativa sobre intereses) bajó de 72,4 veces en 2022 a 10,4 veces en los últimos 12 meses, porque la ganancia operativa se achicó, no porque deba más. La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,74 veces.\n\nCon tasas altas, a Tesla casi no le afecta su propia deuda; sí le afecta que los clientes financian autos más caros. Con esta caja puede aguantar varios años de márgenes bajos, algo que otras fabricantes no pueden.",
+   "gerencia": "La conduce Elon Musk, cofundador y CEO (54 años; Yahoo no informa su pago), con Vaibhav Taneja como director financiero. Es un equipo con una figura dominante, y **eso es una fortaleza y un riesgo**: la visión de largo plazo es suya, pero la empresa depende de él y de su atención, repartida entre varias compañías.\n\nEn lo que importa, **el uso del capital, es de reinversión**: invierte más de lo que gana (15.414 M en los últimos 12 meses, 479,0 % del resultado neto) en fábricas, centros de cómputo y producto, y no paga dividendo. Las acciones diluidas pasaron de 3.475 M en 2022 a 3.540 M en los últimos 12 meses, **1,9 % más**: una dilución chica. El crítico más duro diría que el capital se destina a apuestas lejanas (autos autónomos, robots) mientras el negocio de los autos pierde rentabilidad.",
+   "fortalezas": [
+    "Marca muy fuerte en autos eléctricos y red de Superchargers propia.",
+    "Más caja que deuda: 45.216 M en caja y deuda neta negativa de 28.771 M en los últimos 12 meses.",
+    "Flujo operativo positivo de 18.710 M en los últimos 12 meses, mucho mayor que el resultado neto (3.218 M).",
+    "Dilución baja: 1,9 % más acciones desde 2022.",
+    "Segundo negocio (energía y baterías) que diversifica de los autos."
+   ],
+   "debilidades": [
+    "Rentabilidad en caída: margen operativo de 17,0 % en 2022 a 3,5 % en los últimos 12 meses y ROIC de 27,2 % a 2,8 %.",
+    "Margen bruto bajo para una marca premium: 19,3 % en los últimos 12 meses, contra 25,6 % en 2022; compite bajando precios.",
+    "Competencia fuerte de fabricantes chinas y tradicionales con eléctricos más baratos.",
+    "Dependencia de Elon Musk y de apuestas (autónomos, robots) que todavía no muestran ganancias.",
+    "Ingresos estancados: de 97.690 M en 2024 a 94.827 M en 2025."
+   ],
+   "vigilar": [
+    "Margen bruto: hoy 19,3 %; si no se recupera, el negocio de autos sigue perdiendo rentabilidad.",
+    "Margen operativo: hoy 3,5 % contra 9,8 % de promedio; si sigue bajando, la empresa se vuelve poco rentable.",
+    "Flujo libre: 3.296 M en los últimos 12 meses; si la inversión sigue subiendo sin que los ingresos crezcan, se achica.",
+    "Ingresos: 103.570 M en los últimos 12 meses contra 94.827 M en 2025; hay que ver si el repunte se sostiene."
+   ],
+   "clientes": [
+    "Consumidores y empresas que compran autos: no hay un cliente dominante",
+    "Otras fabricantes que compran créditos regulatorios",
+    "Empresas de energía y clientes de baterías para redes"
+   ],
+   "ideal_para": [
+    "Buscan una empresa con marca fuerte y una caja que la protege.",
+    "Aceptan una apuesta de largo plazo en autos autónomos y energía.",
+    "Toleran ciclos de márgenes bajos."
+   ],
+   "menos_ideal": [
+    "Buscan retornos altos y estables sobre el capital.",
+    "No toleran depender de un líder único."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "TSLA",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 103570000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "LLY": {
+   "resumen": "Eli Lilly es la farmacéutica detrás de Mounjaro y Zepbound, los medicamentos para la diabetes tipo 2 y la obesidad que hoy están entre los más vendidos y comentados del mundo, además de insulinas conocidas (Humalog, Humulin), Jardiance, Trulicity y una línea de oncología. Gana plata vendiendo medicamentos protegidos por patentes, que nadie más puede copiar mientras duren. Tiene un **foso amplio, de patentes y activos intangibles**, y ahora tiene en sus manos un producto de los que se ven una vez cada tantos años. Los números lo muestran: los ingresos pasaron de 28.541 M en 2022 a 65.179 M en 2025 y a 79.666 M en los últimos 12 meses, y el margen operativo llegó a **49,7 %**. Su punto débil es que **depende cada vez más de pocos medicamentos** (los de diabetes y obesidad), y que esas ventas se enfrentan a la competencia de Novo Nordisk y a la presión de los gobiernos por bajar los precios. Con tasas cerca de 5 %, la deuda, que se triplicó desde 2022, cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque le sirve para descubrir medicamentos. Conclusión: **muy buena empresa, con foso amplio, rentabilidad extraordinaria y un crecimiento fuera de lo común, aunque concentrada en pocos productos.**",
+   "veredicto": "Muy buena empresa: foso de patentes y rentabilidad extraordinaria, concentrada en pocos productos",
+   "conclusion": "Eli Lilly es una muy buena empresa, no una excelente: un negocio de patentes con margen operativo de 49,7 %, ROIC de 35,4 % y ventas que más que se duplicaron en tres años, pero concentrado en pocos medicamentos y con la deuda triplicada. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos de diabetes y obesidad sigan creciendo y que el margen operativo no se deteriore.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Lilly descubre, desarrolla, fabrica y vende medicamentos para personas. Su línea más importante es la **cardiometabólica**: insulinas (Humalog, Humulin, Basaglar) y medicamentos para la diabetes tipo 2 (Jardiance, Mounjaro, Trulicity) y para la obesidad (Zepbound). También vende productos de oncología (como Cyramza) y de otras áreas. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar; lo que sí se ve es que **los ingresos más que se duplicaron en tres años**.\n\nEs un negocio indispensable para quien lo necesita y se repite: los pacientes con diabetes u obesidad usan los medicamentos de forma continua. **Los ingresos crecieron 19,6 % en 2023, 32,0 % en 2024 y 44,7 % en 2025**, impulsados por Mounjaro y Zepbound. Para que siga así tienen que pasar dos cosas: que la demanda de estos tratamientos continúe y que Lilly produzca lo suficiente, para lo cual invierte en fábricas (14.523 M en los últimos 12 meses).\n\n**A quién le vende.** Sobre todo a distribuidores mayoristas que abastecen farmacias y hospitales (en Estados Unidos, McKesson, Cencora y Cardinal Health son los tres grandes), y los pacientes lo compran a través de seguros y farmacias. Yahoo no da los porcentajes, pero **pocos distribuidores concentran las ventas**.",
+   "foso": "La ventaja de Lilly **es de patentes y de activos intangibles**. Una patente da el derecho exclusivo de vender un medicamento durante años: nadie puede copiarlo mientras dura, y por eso Lilly puede cobrar precios altos. Además, producir estos medicamentos a gran escala es difícil, y la experiencia con los médicos y los pacientes también cuenta. Se ve en el **margen bruto, que subió de 76,8 % en 2022 a 83,4 % en los últimos 12 meses**.\n\nCompite con Novo Nordisk (Ozempic y Wegovy), con Pfizer, Merck, Amgen y otras farmacéuticas. Es un foso **amplio pero con fecha de vencimiento**: las patentes se acaban y entonces entran las copias baratas, y las farmacéuticas que dependen de pocos productos sufren cuando llega ese momento. Los gobiernos también pueden fijar precios más bajos. La inteligencia artificial no amenaza este negocio: ayuda a encontrar y probar medicamentos nuevos.",
+   "numeros": "Los números de Lilly cuentan **un crecimiento extraordinario, y de buena calidad**. Los ingresos crecieron 44,7 % en 2025 y llegaron a 79.666 M en los últimos 12 meses. Lo importante es que las ganancias crecieron más rápido que las ventas: el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 29,0 % en 2022 a 49,7 % en los últimos 12 meses, y la ganancia por acción pasó de 5,80 en 2023 a 22,95 en 2025 y a 29,80 en los últimos 12 meses.\n\nLa caja siguió el mismo camino, con retraso: el flujo libre (lo que sobra después de invertir) fue de -3.152 M en 2023, 414 M en 2024, 5.964 M en 2025 y 13.560 M en los últimos 12 meses (17,0 % de las ventas; Yahoo marca ese último salto como dato a verificar). El ROIC, cuánto gana por cada dólar puesto en el negocio, **es de 35,4 %**, un retorno excepcional.\n\nLa mirada crítica: el margen operativo de hoy es el más alto de la tabla, 15,5 puntos por encima de 2022, y depende de pocos productos. Además, el flujo operativo fue de apenas 53,0 % del EBITDA en 2025: la caja venía rezagada respecto de la ganancia.",
+   "balance": "**La deuda de Lilly es importante pero cómoda para lo que gana.** La deuda total es de 54.908 M en los últimos 12 meses (era de 16.239 M en 2022) y la caja es de 8.950 M, así que la deuda neta es de 45.958 M, **1,06 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con poco más de un año de ganancia operativa. Ese ratio bajó desde 1,89 veces en 2023, porque la ganancia creció más rápido que la deuda.\n\nLa cobertura de intereses fue de 21,8 veces en 2024, y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,35 veces: cómoda. Con tasas cerca de 5 %, la deuda nueva le cuesta más, pero su ganancia operativa la absorbe sin problemas. El patrimonio creció de 10.650 M en 2022 a 33.879 M.",
+   "gerencia": "La conduce David Ricks, presidente y CEO (57 años, pago de 8,9 M según Yahoo), con Lucas Montarce como director financiero y Daniel Skovronsky al frente de la ciencia y los productos. Es un equipo estable, y los resultados de estos años hablan por él.\n\nEn lo que importa, **el uso del capital, es de reinversión y de retorno al accionista**: construye fábricas para producir más (14.523 M en los últimos 12 meses, 54,4 % del resultado neto), paga un dividendo de 6,92 por acción (creciendo 15,2 % por año en los últimos 3 años, y pagado desde 1972) y recompra acciones (6.173 M en los últimos 12 meses, contra 1.500 M en 2022). Las acciones diluidas pasaron de 950 M en 2022 a 897 M en los últimos 12 meses, **5,6 % menos**. La deuda, en cambio, se triplicó: es la contrapartida de ese crecimiento.",
+   "fortalezas": [
+    "Foso amplio de patentes: el margen bruto subió de 76,8 % en 2022 a 83,4 % en los últimos 12 meses.",
+    "Crecimiento extraordinario: ingresos de 28.541 M en 2022 a 79.666 M en los últimos 12 meses.",
+    "Rentabilidad altísima: margen operativo de 49,7 % y ROIC de 35,4 % en los últimos 12 meses.",
+    "Deuda neta baja contra lo que gana: 1,06 veces el EBITDA, bajando desde 1,89 veces en 2023.",
+    "Dividendo creciente (6,92 por acción, +15,2 % por año en 3 años) y 5,6 % menos acciones desde 2022."
+   ],
+   "debilidades": [
+    "Concentración: gran parte del crecimiento viene de pocos medicamentos (diabetes y obesidad); un competidor o una baja de precios les pega fuerte.",
+    "Presión sobre los precios: los gobiernos y los seguros pueden obligar a vender más barato.",
+    "Foso con vencimiento: las patentes expiran y las copias entran; el crítico más duro diría que hoy se ven los mejores años del producto estrella.",
+    "Deuda que se triplicó desde 2022 (de 16.239 M a 54.908 M) con tasas cerca de 5 %.",
+    "Mucha inversión en fábricas: 14.523 M en los últimos 12 meses; si la demanda se frena, quedan con capacidad cara."
+   ],
+   "vigilar": [
+    "Ingresos: crecen 44,7 % (2025); si el ritmo cae de forma fuerte, hay que ver si es por competencia o por saturación del mercado.",
+    "Margen operativo: hoy 49,7 %; si baja, es señal de presión de precios o de costos.",
+    "Flujo libre: 13.560 M en los últimos 12 meses (a verificar); hay que ver que se confirme.",
+    "Deuda neta sobre EBITDA: hoy 1,06 veces; si vuelve a subir, la expansión se está financiando con más deuda."
+   ],
+   "clientes": [
+    "Distribuidores mayoristas de medicamentos (McKesson, Cencora, Cardinal Health)",
+    "Farmacias y hospitales",
+    "Pacientes a través de seguros de salud y programas públicos"
+   ],
+   "ideal_para": [
+    "Buscan crecimiento fuerte en un sector con foso de patentes.",
+    "Valoran retornos altos sobre el capital y un dividendo que crece.",
+    "Aceptan concentrarse en pocos productos exitosos."
+   ],
+   "menos_ideal": [
+    "No toleran la dependencia de pocos medicamentos.",
+    "Buscan una empresa con poca deuda."
+   ],
+   "perfil": "salud",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "LLY",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 79665800000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "MU": {
+   "resumen": "Micron fabrica la memoria de las computadoras y de los teléfonos: los chips DRAM, que guardan lo que el aparato está usando, y los NAND, que guardan archivos, además de la memoria de alto ancho de banda que necesitan los chips de inteligencia artificial. Es una de las tres grandes fabricantes del mundo, junto con Samsung y SK Hynix. Tiene un **foso estrecho, de escala y costos**: hacer memoria requiere fábricas carísimas, pero el producto es casi una materia prima, y su precio sube y baja con la oferta y la demanda. Los números muestran ese vaivén: en 2023 perdió 5.833 M con un margen operativo de -34,8 %, y en el año fiscal 2026 ganó **84.969 M con un margen operativo de 74,6 %**, porque la inteligencia artificial disparó la demanda de memoria. Su punto débil es que **ese nivel es un pico**: cuando la oferta se pone al día, los precios caen, y el 22 de octubre los semiconductores cayeron 6,7 % por dudas sobre el gasto en esa tecnología. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque le compra memoria. Conclusión: **buena empresa en el mejor momento de su ciclo, con foso estrecho, caja récord y balance holgado, pero con resultados que pueden volver a niveles mucho más bajos.**",
+   "veredicto": "Buena empresa en el mejor momento de su ciclo: caja récord, resultados muy cíclicos",
+   "conclusion": "Micron es una buena empresa, no una excelente: fabrica un producto indispensable, con una caja de 43.434 M, márgenes operativos de 74,6 % y retorno sobre el capital de 60,0 %, pero esos resultados son los del mejor momento de un ciclo extremo, y en 2023 perdió dinero. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen bruto se mantenga muy por encima del de 2025 (39,8 %).",
+   "calidad": "Buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Micron produce **memoria y almacenamiento**: DRAM (memoria de trabajo, incluida la de alto ancho de banda para inteligencia artificial y la de bajo consumo para teléfonos), NAND (discos de estado sólido y memoria para dispositivos). Los vende a través de cuatro unidades: memoria para la nube, centros de datos, teléfonos y computadoras, y autos y equipos industriales. Yahoo no informa cuánto pesa cada una, y no lo vamos a inventar.\n\nEs un negocio indispensable pero muy cíclico: todos los aparatos necesitan memoria, pero el precio de cada chip cambia con la oferta. **Los ingresos pasaron de 15.540 M en 2023 a 37.378 M en 2025 y a 133.188 M en el año fiscal 2026** (todas las cifras son de años fiscales de la empresa). Lo que impulsó ese salto fue la demanda de memoria para centros de datos de inteligencia artificial.\n\n**A quién le vende.** A fabricantes de servidores y de nube, de teléfonos, computadoras y autos. Entre los clientes más conocidos están Nvidia y Apple; Yahoo no da los porcentajes, pero **es un negocio donde pocos clientes grandes compran mucho**.",
+   "foso": "La ventaja de Micron **es de escala y de costos, y es estrecha**. Fabricar memoria exige fábricas de decenas de miles de millones de dólares, y solo tres empresas pueden hacerlo en el mundo: eso limita la competencia. Quien produce más barato por chip gana más en los años buenos y pierde menos en los malos. El programa estima el foso como amplio; nuestra lectura es más cauta, porque **el producto es casi una materia prima**: el cliente compra al que ofrece mejor precio, y sin diferencia propia, la ganancia depende del ciclo y no de la empresa.\n\nSe ve en el **margen bruto: -9,1 % en 2023, 39,8 % en 2025 y 80,7 % en 2026**. Un foso fuerte no produce esos saltos. Compite con Samsung y SK Hynix, y con fabricantes chinas que quieren entrar. La inteligencia artificial hoy la favorece: necesita muchísima memoria.",
+   "numeros": "Los números de Micron cuentan **un ciclo extremo**. Los ingresos crecieron 61,6 % en 2024, 48,9 % en 2025 y 256,3 % en 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de -34,8 % en 2023, 5,2 % en 2024, 26,1 % en 2025 y 74,6 % en 2026. La ganancia por acción pasó de -5,34 en 2023 a 7,59 en 2025 y a 74,33 en 2026.\n\nLa caja acompañó: el flujo libre (lo que sobra después de invertir) fue de -6.117 M en 2023, 1.668 M en 2025 y **58.963 M en 2026, 44,3 % de las ventas**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de -7,1 % en 2023 a **60,0 %** en 2026.\n\nLa mirada crítica: **2026 es un año extraordinario y no representa a una empresa normal**. Un margen operativo de 74,6 % es difícil de sostener cuando la oferta de memoria crece, y en 2023 la empresa perdió dinero. Mirar un solo año de esta tabla sería un error.",
+   "balance": "**El balance de Micron es sólido hoy: tiene mucha más caja que deuda.** En 2026 tiene 43.434 M en caja y una deuda total de 5.179 M, y la deuda bajó desde 14.577 M en 2025. La ganancia operativa cubre los intereses de forma holgada (el gasto en intereses fue de 106 M en 2026). La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 3,31 veces. El patrimonio creció de 54.165 M en 2025 a 138.378 M en 2026.\n\nCon tasas altas, a Micron casi no le importa: no necesita prestado y gana intereses sobre su caja. Lo que sí importa es que la industria invierte mucho en fábricas (30.712 M en 2026) y, en los años malos, esa caja se gasta rápido: en 2023 el flujo libre fue negativo en 6.117 M.",
+   "gerencia": "La conduce Sanjay Mehrotra, CEO y presidente (66 años, pago de 5,6 M según Yahoo), con Mark Murphy como director financiero y Manish Bhatia como director de operaciones. Es un equipo con experiencia en una industria de ciclos duros, y los números del último año muestran buena ejecución.\n\nEn lo que importa, **el uso del capital, es de inversión intensa**: puso 30.712 M en fábricas en 2026 (36,1 % del resultado neto), pagó un dividendo chico (0,60 por acción, casi sin crecer: 1,1 % por año en 3 años) y recompró poco (650 M en 2026). Las acciones diluidas aumentaron de 1.093 M en 2023 a 1.143 M en 2026, **4,6 % más**: una dilución chica por el pago a empleados. En una industria cíclica, lo que más importa es no invertir de más en el pico.",
+   "fortalezas": [
+    "Una de solo tres grandes fabricantes de memoria del mundo, con fábricas difíciles de replicar.",
+    "Rentabilidad extraordinaria en el año fiscal 2026: margen operativo de 74,6 % y ROIC de 60,0 %.",
+    "Caja de 43.434 M contra deuda total de 5.179 M en 2026.",
+    "Flujo libre de 58.963 M en 2026, 44,3 % de las ventas.",
+    "Demanda estructural de memoria para inteligencia artificial."
+   ],
+   "debilidades": [
+    "Negocio muy cíclico: en 2023 perdió 5.833 M con margen operativo de -34,8 %, y el 2026 es un pico.",
+    "Producto casi de materia prima: el precio lo fijan la oferta y la demanda, y el crítico más duro diría que sus márgenes de hoy no son su estado normal.",
+    "Inversión récord: 30.712 M en 2026; si la demanda baja, la capacidad sobrante hunde los precios.",
+    "Foso estrecho: sin marca ni costos de cambio, compite por precio con Samsung y SK Hynix.",
+    "Depende del gasto en inteligencia artificial, que el mercado ya está cuestionando (semiconductores -6,7 % el 22 de octubre)."
+   ],
+   "vigilar": [
+    "Margen bruto: hoy 80,7 % (año fiscal 2026) contra 39,8 % en 2025; si cae de golpe, el ciclo está cambiando.",
+    "Inversión en fábricas: 30.712 M en 2026; si sube mucho más, la oferta se pone al día y los precios caen.",
+    "Ingresos: 133.188 M en 2026; hay que ver si se sostienen o si el año fue un pico.",
+    "Flujo libre: 58.963 M en 2026; confirmar que se mantiene alto."
+   ],
+   "clientes": [
+    "NVIDIA (NVDA)",
+    "Apple (AAPL)",
+    "Fabricantes de servidores y proveedores de nube",
+    "Fabricantes de teléfonos, computadoras y autos"
+   ],
+   "ideal_para": [
+    "Buscan exposición a la memoria que necesita la inteligencia artificial.",
+    "Aceptan que los resultados suban y bajen mucho con el ciclo.",
+    "Valoran un balance con mucha caja y poca deuda."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables año a año.",
+    "No toleran empresas sin una ventaja clara frente a la competencia."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "MU",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 133188000000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "WMT": {
+   "resumen": "Walmart es el supermercado y tienda de descuento más grande del mundo: vende alimentos, ropa, electrodomésticos y casi todo lo que una familia compra en una semana, a precios bajos, en miles de tiendas, en Sam's Club y por internet. Su negocio es vender muchísimo con un margen chico. Tiene un **foso amplio, de escala y costos**: compra tanto que consigue mejores precios que casi cualquier competidor, y se los traslada al cliente, que vuelve. Los números son parejos: los ingresos pasaron de 611.289 M en el año fiscal 2023 a 735.840 M en los últimos 12 meses, y el margen operativo subió de 3,3 % a 4,4 %. Su punto débil es que **gana poco por cada dólar vendido y está invirtiendo más de lo que le sobra**: el flujo libre fue de 13.509 M en los últimos 12 meses, 1,8 % de las ventas. Con la inflación en 3,7 % y la nafta 9,1 % más cara, los clientes buscan precios bajos y le llegan más compradores, pero su propio costo de transporte también sube. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente compra alimentos y productos de todos los días en tiendas físicas. Conclusión: **muy buena empresa de comercio, con foso amplio, ventas parejas y balance cómodo, aunque con márgenes finos y una inversión que le come la caja.**",
+   "veredicto": "Muy buena empresa de comercio: foso amplio y ventas parejas, con márgenes finos",
+   "conclusion": "Walmart es una muy buena empresa de comercio, no una excelente: tiene un foso amplio de escala, ingresos que crecen parejo (4,7 %), ROIC de 16,6 % y un balance cómodo, pero su margen operativo es de apenas 4,4 % y su flujo libre, 1,8 % de las ventas. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo no baje y que la inversión empiece a dar retorno.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Walmart opera tres segmentos: **Walmart U.S.** (supercentros, supermercados y tiendas de descuento, más walmart.com), **Walmart International** (México, Canadá, India con Flipkart y PhonePe, entre otros) y **Sam's Club U.S.** (clubes de compra mayorista para socios). Vende alimentos, artículos del hogar, ropa y electrónica, y suma servicios como publicidad y membresías. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable y estable: la gente compra alimentos y artículos básicos todo el año, y cuando la economía aprieta, busca precios bajos, lo que juega a favor. **Los ingresos crecieron 6,0 % en 2024, 5,1 % en 2025 y 4,7 % en 2026**, con 735.840 M en los últimos 12 meses.\n\n**A quién le vende.** A consumidores finales, de todos los niveles de ingreso, y a socios de Sam's Club. **Ningún cliente pesa de forma decisiva.** La dependencia está del lado de los proveedores y del consumo de las familias.",
+   "foso": "La ventaja de Walmart **es de escala y de costos**. Como compra enormes volúmenes, consigue precios más bajos de los proveedores; con eso puede vender barato y aun así ganar, y las tiendas baratas atraen a más compradores, lo que le da todavía más poder de compra. Es **un círculo que se refuerza**. Su logística y su red de tiendas, difíciles de copiar, completan la ventaja. Se ve en el **margen bruto, que subió de 24,1 % en 2023 a 25,2 % en los últimos 12 meses**, algo difícil para un comercio que vende barato.\n\nCompite con Amazon, Costco, Target y los supermercados regionales. Es frágil en lo de siempre en el comercio: el cliente no paga nada por cambiar de tienda, y la competencia online y de descuento nunca descansa. La inteligencia artificial no amenaza el modelo de ir a comprar comida; lo que podría cambiar es cuánta gente compra por internet, y ahí Walmart también compite.",
+   "numeros": "Los números de Walmart cuentan **un crecimiento parejo y una mejora lenta de la rentabilidad**. Los ingresos crecieron 4,7 % en el año fiscal 2026 y el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 3,3 % en 2023 a 4,2 % en 2026 y 4,4 % en los últimos 12 meses. La ganancia por acción pasó de 1,42 a 2,73 entre 2023 y 2026, 2,77 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo operativo fue de 42.923 M en los últimos 12 meses, 194,4 % del resultado neto, en parte porque algunos gastos contables, como la depreciación de las tiendas, no son una salida de dinero. Pero **la inversión creció más rápido: 29.414 M en los últimos 12 meses contra 16.857 M en 2023**, y el flujo libre (lo que sobra después de invertir) quedó en 13.509 M, apenas 1,8 % de las ventas. El ROIC es de **16,6 %**, un retorno muy bueno para un comercio.\n\nLa mirada crítica: con un margen operativo de 4,4 %, un error de costos de apenas un punto la golpea fuerte. Y el margen casi no mejoró desde 2025 (4,3 %).",
+   "balance": "**La deuda de Walmart es cómoda.** La deuda total que informa Yahoo es de 73.755 M en los últimos 12 meses, pero incluye en buena parte los alquileres de sus tiendas, un compromiso fijo como una deuda aunque no sea un préstamo. Con 11.529 M en caja, la deuda neta es de 38.882 M, **0,83 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con menos de un año de ganancia operativa. La cobertura de intereses es de 13,7 veces.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,77 veces: ajustada, pero normal en un supermercado que cobra al contado y paga a sus proveedores más tarde. La deuda de corto plazo subió de 6.603 M en 2023 a 16.543 M en los últimos 12 meses; con tasas cerca de 5 %, refinanciarla cuesta más.",
+   "gerencia": "La conduce John Furner, presidente y CEO (50 años, pago de 4,6 M según Yahoo), que sucedió a Doug McMillon (hoy figura como directivo), con John David Rainey como director financiero. Es un equipo con larga trayectoria en la empresa, y hay un responsable de aceleración de inteligencia artificial (Daniel Danker), señal de que le da importancia.\n\nEn lo que importa, **el uso del capital, es prudente**: reinvierte mucho en tiendas, logística y automatización (29.414 M en los últimos 12 meses), paga un dividendo de 0,99 por acción (creciendo 8,0 % por año en 3 años y pagado desde 1974) y recompra acciones (6.992 M en los últimos 12 meses). Las acciones diluidas pasaron de 8.202 M en 2023 a 7.999 M en los últimos 12 meses, **2,5 % menos**. No diluye al accionista.",
+   "fortalezas": [
+    "Foso amplio de escala y costos; el margen bruto subió de 24,1 % en 2023 a 25,2 % en los últimos 12 meses.",
+    "Crecimiento parejo: ingresos +4,7 % en el año fiscal 2026 sobre una base de 713.163 M.",
+    "Retornos muy buenos para un comercio: ROIC de 16,6 % en los últimos 12 meses.",
+    "Dividendo creciente (0,99 por acción, +8,0 % por año en 3 años, pagado desde 1974) y 2,5 % menos acciones desde 2023.",
+    "Balance cómodo: deuda neta de 0,83 veces el EBITDA."
+   ],
+   "debilidades": [
+    "Márgenes finos: margen operativo de 4,4 % y flujo libre de 1,8 % de las ventas; cualquier suba de costos pega fuerte.",
+    "Inversión que supera lo que gana: 29.414 M en los últimos 12 meses, 133,2 % del resultado neto.",
+    "Costos de transporte y de operación: con el petróleo en máximos de cinco meses y la nafta 9,1 % más cara, sube el costo de mover mercadería.",
+    "Comercio sin costos de cambio: el crítico más duro diría que Amazon, Costco y los descuentos online pueden quitarle clientes en cualquier momento.",
+    "Deuda de corto plazo creciente (16.543 M en los últimos 12 meses contra 6.603 M en 2023) con tasas altas."
+   ],
+   "vigilar": [
+    "Margen operativo: hoy 4,4 %; si baja, es la señal de que el costo de transporte o la guerra de precios se come la ganancia.",
+    "Flujo libre: hoy 13.509 M (1,8 % de las ventas); si baja más mientras la inversión crece, la empresa se financia con deuda.",
+    "Ingresos: crecen 4,7 %; si baja de 3 %, se pierde tráfico frente a Amazon o Costco.",
+    "Deuda de corto plazo: 16.543 M; si sigue subiendo con tasas cerca de 5 %, aumenta el costo financiero."
+   ],
+   "clientes": [
+    "Consumidores finales de todos los niveles de ingreso: no depende de un cliente en particular",
+    "Socios de Sam's Club",
+    "Clientes de Walmart International (México, Canadá, India)"
+   ],
+   "ideal_para": [
+    "Buscan una empresa defensiva de consumo masivo.",
+    "Valoran un dividendo que crece desde hace décadas.",
+    "Quieren estabilidad en ventas y un balance cómodo."
+   ],
+   "menos_ideal": [
+    "Buscan alto crecimiento de ganancias.",
+    "No toleran márgenes finos que dependen de costos y de precios."
+   ],
+   "perfil": "consumo",
+   "capas": [
+    "compounder"
+   ],
+   "ticker": "WMT",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 735840000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
     ]
    }
   }
