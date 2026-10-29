@@ -203,6 +203,8 @@ def contexto(row, af=None, dam=None, bono10=None):
         d = fv / p - 1
         c["dist_fv"] = ("prácticamente en el precio de hoy" if abs(d) < 0.03 else
                         f"un {num(abs(d) * 100, 0)} % {'por encima' if d > 0 else 'por debajo'} del precio de hoy")
+    if _n(af.get("mes_cierre_fiscal")):
+        c["_mes_cierre"] = str(int(_n(af.get("mes_cierre_fiscal"))))
     cr = _n(val.get("crecimiento_ref"))
     if cr is not None and dy is not None:
         c["retorno"] = pct(cr + dy, 0)
@@ -320,10 +322,11 @@ def _per_historico(estados, historial, row, ctx):
     if not historial:
         return "", ""
     lab, val = [], []
+    mes = int(_n(ctx.get("_mes_cierre")) or 12)            # mes en que cierra el año fiscal (NVDA: enero; AAPL: septiembre...)
     for a in fy:
         e = _n(eps.get(a))
-        cierres = [c for d, c in historial if getattr(d, "year", None) == a]
-        if e and e > 0 and cierres:
+        cierres = [c for d, c in historial if hasattr(d, "year") and (d.year, d.month) <= (a, mes) and (d.year, d.month) > (a - 1, mes)]
+        if e and e > 0 and cierres and historial and (historial[-1][0].year, historial[-1][0].month) > (a, mes):
             lab.append(str(a))
             val.append(cierres[-1] / e)
     if ctx.get("per_ref"):
@@ -392,6 +395,8 @@ def _grafico(clave, estados, row, dam, ctx, historial, dps):
         xs = [(int(a), _n(v)) for a, v in (dps or []) if _n(v)][-10:]
         svg = _svg_barras([str(a) for a, _ in xs], [v for _, v in xs], "usd")
     elif clave == "per_historico":
+        if str(T.moneda(estados) or "USD").upper() != "USD":          # ganancia en otra moneda y precio en dólares: el PER saldría mal
+            return ""
         lab, x = _per_historico(estados, historial, row, ctx)
         if lab:
             val, md = x
@@ -508,6 +513,12 @@ def validar(d):
                    if isinstance(h, dict) and _t(h.get("dato")) and _t(h.get("url")).startswith("https://")]
     if len(o["hechos"]) != len(hs):
         pr.append("cada 'hecho' necesita 'dato', 'fuente' y 'url' (https://, documento oficial)")
+    mc = _n(d.get("mes_cierre_fiscal"))
+    if mc is not None:
+        if 1 <= mc <= 12:
+            o["mes_cierre_fiscal"] = int(mc)
+        else:
+            pr.append("'mes_cierre_fiscal' tiene que ser un mes (1 a 12)")
     if _t(d.get("desde_el_ultimo")):
         o["desde_el_ultimo"] = _t(d.get("desde_el_ultimo"))
     # marcadores y gráficos válidos
@@ -569,7 +580,7 @@ def valuacion_hoy_texto(row, af=None, dam=None):
     ctx = contexto(row, af, dam)
     if not ctx:
         return "(sin datos)"
-    return "\n".join(f"- {{{k}}} = {v}" for k, v in sorted(ctx.items()))
+    return "\n".join(f"- {{{k}}} = {v}" for k, v in sorted(ctx.items()) if not k.startswith("_"))
 
 
 def armar_prompt(ticker, bloque, row=None, anterior=None, ruta=None):

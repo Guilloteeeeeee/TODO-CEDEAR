@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.92 (29/10/2026): Análisis Fundamental nuevo, tanda 1 (10 empresas)
+
+- Reescritas con el formato v4 y su último informe oficial: NVDA, AAPL, GOOGL, MSFT, AMZN, TSM, META, AVGO, TSLA (más NEE de la v1.2.91). Resultados del 3T26 cuando ya estaban publicados (Alphabet, Microsoft, Amazon, Meta, Tesla, TSMC); en las demás, el último trimestre informado.
+- Donde la ganancia contable está distorsionada (ganancias o pérdidas por inversiones en Alphabet, Amazon y NVIDIA; coberturas en NEE), la valuación usa una ganancia de referencia explicada en el texto.
+- `mes_cierre_fiscal` (opcional): el PER histórico usa el precio del cierre de cada año fiscal (NVIDIA: enero; Apple: septiembre; Microsoft: junio). Si los estados están en otra moneda (TSMC: TWD), el PER histórico no se dibuja.
+
 ### v1.2.91 (29/10/2026): Análisis Fundamental nuevo (formato v4: un artículo con tesis)
 
 - **Estilo nuevo, pedido por Guille**: el Análisis Fundamental pasa a ser un artículo con tesis (título con la idea central, fecha, resumen de 3 puntos, introducción con gancho desde la macro o la última noticia, 3 a 5 secciones con títulos que afirman algo, valuación, conclusión y pros y contras). Enseña: cada indicador clave dice qué es, qué pasa si empeora y cuál es un nivel sano. Pocas cifras por párrafo, siempre comparadas (con su historia, su industria, la guía de la empresa o la macro). Reglas en `data/prompt_analisis_fundamental_v4.txt`; validación y pantalla en `data/af_v4.py` y `ui/ficha.py` (`tiles_analisis_v4`).
