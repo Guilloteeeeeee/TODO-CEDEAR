@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.91 (29/10/2026): Análisis Fundamental nuevo (formato v4: un artículo con tesis)
+
+- **Estilo nuevo, pedido por Guille**: el Análisis Fundamental pasa a ser un artículo con tesis (título con la idea central, fecha, resumen de 3 puntos, introducción con gancho desde la macro o la última noticia, 3 a 5 secciones con títulos que afirman algo, valuación, conclusión y pros y contras). Enseña: cada indicador clave dice qué es, qué pasa si empeora y cuál es un nivel sano. Pocas cifras por párrafo, siempre comparadas (con su historia, su industria, la guía de la empresa o la macro). Reglas en `data/prompt_analisis_fundamental_v4.txt`; validación y pantalla en `data/af_v4.py` y `ui/ficha.py` (`tiles_analisis_v4`).
+- **Último informe oficial**: cada análisis se escribe leyendo el comunicado de resultados o el 10-Q/10-K/20-F más reciente (SEC u oficial). Cada dato tomado de ahí queda en «hechos» con su link y se muestra en Fuentes.
+- **Valuación que no envejece**: los números del día van como marcadores (`{precio}`, `{per_ref}`, `{vs:per}`, `{ind:per}`, `{dy}`, `{bono10}`, `{fv}`, `{dist_fv}`, `{retorno}`...) que la app completa con el precio del día; se ven subrayados («dato del día»). Los múltiplos del día salen del caché ajustados por el precio en vivo. Si un marcador no se puede calcular, la oración no se muestra. Con `ganancia_ref` (ganancia ajustada que guía la empresa) el PER se calcula con esa ganancia cuando la contable está distorsionada. Bono a 10 años: Yahoo (^TNX), con respaldo en `data/macro_numeros.json`.
+- **Gráficos**: el redactor elige 2 o 3 de una lista fija (`[[grafico:clave]]` en el texto) y la app los dibuja con los datos reales: ingresos, márgenes y ROE/ROIC contra el promedio de su industria, flujo libre, flujo contra inversión, deuda neta, cobertura de intereses (con líneas de «sano» y «alarma»), acciones, ganancia por acción, dividendo y PER histórico contra su mediana.
+- **La calidad** se muestra junto a la Conclusión (no arriba). Los promedios de la industria no se nombran en el texto («el promedio de su industria»): Damodaran va en Fuentes. No se nombra a otros autores.
+- `generar_analisis_fundamental.py --prompt4 TICKER` arma el prompt nuevo; `--agregar` valida los dos formatos. Los análisis del formato anterior se siguen mostrando hasta que se reescriban. Primer análisis nuevo: NEE.
+
 ### v1.2.90 (29/10/2026): sin Deuda / Patrimonio de la industria en Ratios Financieros
 
 - **Corrección**: la columna «Industria» ya no muestra Deuda total / Patrimonio. El D/E de Damodaran (planilla de betas) usa el valor de MERCADO de las acciones; el de la empresa usa el patrimonio CONTABLE. No son comparables (en una empresa que vale 10 veces su patrimonio, el de mercado da 10 veces menos). Siguen margen bruto, operativo y neto, ROE y ROIC.

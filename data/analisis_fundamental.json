@@ -10183,53 +10183,85 @@
    }
   },
   "NEE": {
-   "resumen": "NextEra Energy es una empresa estadounidense de electricidad: genera, almacena, transmite, distribuye y vende energía a clientes minoristas y mayoristas en América del Norte, con dos segmentos: Florida Power & Light (FPL), una distribuidora regulada, y NEER, el negocio de generación (eólica, solar, nuclear, gas y otras). Gana plata de dos formas: cobra una tarifa regulada en Florida, que fija el regulador con una rentabilidad permitida, y vende energía renovable con contratos de largo plazo. Tiene un **foso estrecho a amplio, de monopolio regulado en Florida y escala en renovables** (dato público). Los números cuentan una empresa en expansión pesada: los ingresos subieron de 20.956 M a **28.825 M** y el margen operativo es de **29,0 %**, pero invierte más de lo que genera: las inversiones fueron de **10.732 M** en los últimos 12 meses, el flujo libre de **4.089 M** y la deuda neta creció de 63.365 M a **108.353 M** desde 2022 (6,43x EBITDA). El ROIC es de apenas **3,4 %**, los intereses se cubren solo 1,75 veces con el EBIT (2025) y las acciones subieron 5,3 % (de 1.987 M a 2.093 M). La ganancia neta de los últimos 12 meses (11.636 M) supera el EBIT (8.350 M) por resultados que Yahoo no detalla (probables ganancias no operativas, dato a verificar). El dividendo, desde 1973, crece 10,1 % por año. Su punto débil es esa deuda y la dependencia de decisiones del regulador. La inteligencia artificial, vía la demanda de electricidad de los centros de datos (dato público), es más una oportunidad que un riesgo: el riesgo es **muy bajo**. Conclusión: **empresa de buena calidad dentro de las eléctricas, con dividendo creciente y expansión fuerte, pero con ROIC de 3,4 %, deuda neta de 108.353 M y cobertura de intereses ajustada.**",
-   "veredicto": "Buena: monopolio regulado y renovables con dividendo creciente, pero ROIC de 3,4 %, deuda neta de 108.353 M y más acciones",
-   "conclusion": "NextEra Energy es una empresa de buena calidad dentro de las eléctricas: tiene un foso de monopolio regulado en Florida y escala en renovables, margen operativo de 29,0 % y dividendo creciente desde 1973, pero el ROIC es de 3,4 %, la deuda neta llega a 108.353 M, los intereses se cubren apenas 1,75 veces y las acciones suben 5,3 %. Hay que seguirla de cerca. Es recomendable investigar el plan de inversiones y la relación con el regulador en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda no crezca más rápido que el EBITDA.",
+   "formato": "v4",
+   "titulo": "NextEra: la eléctrica que alimenta a la IA, con una deuda que no perdona errores",
+   "resumen": [
+    "NextEra es dos empresas en una: **el monopolio eléctrico de Florida** y **el mayor desarrollador de energía renovable y baterías de EE.UU.** Su ventaja es el tamaño: compra y se financia más barato que casi todos.",
+    "En el tercer trimestre de 2026, la ganancia ajustada por acción subió **9,7 %**, pero **la deuda neta pasó de 63.365 M a 108.353 M desde 2022**, justo cuando la plata está cara y en plena fusión con Dominion Energy.",
+    "Buena empresa, con monopolio regulado y márgenes por encima de su industria, pero con un balance cada vez más cargado de deuda."
+   ],
+   "introduccion": "Cuando se habla de inteligencia artificial, todos piensan en Nvidia. Pero hay una pregunta que se hace menos: ¿de dónde va a salir la electricidad?\n\nCada centro de datos nuevo es, para una eléctrica, un cliente gigante que consume las 24 horas, todos los días. Y pocas empresas en Estados Unidos están tan preparadas para venderle esa energía como NextEra Energy (NEE).\n\nLos últimos resultados lo muestran. Firmó tres grandes polos para consumidores de energía a gran escala en Texas y Pensilvania, con 16,5 gigavatios en total, que va a construir y operar cobrando por el servicio, sin poner capital propio. Tiene otros 30 en conversación y va a levantar un campus de centros de datos en Kentucky. Además, está en medio de la operación más grande de su historia: la fusión con Dominion Energy, la eléctrica de Virginia, donde está el mayor mercado de centros de datos del mundo.\n\nAhora bien, todo ese crecimiento se paga con deuda. Y la plata hoy está cara: la Reserva Federal subió la tasa en septiembre y el bono del Tesoro a 10 años rinde cerca de 5 %.\n\nEntonces, la pregunta que importa es esta: ¿puede NextEra crecer a este ritmo sin que la deuda se lleve la ganancia del accionista?",
+   "secciones": [
+    {
+     "titulo": "Dos negocios, una misma idea: vender electricidad más barata que los demás",
+     "texto": "La primera mitad es **Florida Power & Light (FPL)**, la distribuidora de Florida. Le lleva luz a unos 12 millones de personas, a través de unos 6 millones de cuentas.\n\nAcá el negocio es simple. Nadie puede tender otra red de cables al lado, así que el cliente no tiene opción. A cambio, el regulador fija la tarifa y le permite ganar un porcentaje sobre lo que invierte. Por eso, cuanto más invierte en la red, más gana. Su capital regulado creció **9,2 % en el último año**, y este año planea invertir unos 12.000 M solo en FPL.\n\nLa segunda mitad es **NextEra Energy Resources**: construye y opera parques eólicos y solares, baterías y centrales nucleares y de gas, y vende esa energía con contratos largos a otras eléctricas y a empresas. Su cartera de proyectos firmados llegó a **36,7 gigavatios**.\n\n¿Y su ventaja frente a la competencia? Es el **tamaño**. Compra paneles, turbinas y baterías en volúmenes que nadie iguala, y consigue crédito más barato que un competidor chico.\n\nLos números lo confirman. El margen operativo mide cuánto le queda del negocio después de pagar todos los costos de funcionar, antes de intereses e impuestos. De cada 100 dólares que factura NextEra, le quedan **29**; el promedio de su industria se queda con 23. En criollo: vende lo mismo que las demás, pero le cuesta menos producirlo.\n\n[[grafico:margen_operativo]]\n\nEsa ventaja tiene un límite claro: el regulador. Si un día decide bajarle la ganancia permitida, el monopolio gana menos. La inteligencia artificial no es una amenaza para este negocio: es una de sus mayores fuentes de demanda nueva."
+    },
+    {
+     "titulo": "La ganancia que se ve y la que importa",
+     "texto": "Si mirás cualquier pantalla, NextEra ganó **5,55 dólares por acción** en los últimos 12 meses. Parece un salto enorme contra los 3,28 de 2025.\n\nNo te dejes engañar.\n\nBuena parte de esa ganancia viene de **coberturas**: contratos que la empresa firma para protegerse de los movimientos del precio de la energía y de las tasas. Cuando el mercado se mueve, esos contratos cambian de valor y la contabilidad lo anota como ganancia, aunque no entre un peso de caja. Solo en el tercer trimestre, las coberturas sumaron 1,07 dólares por acción a la ganancia contable.\n\nPor eso la propia empresa, y también los analistas del mercado, miran otro número: la **ganancia ajustada**, que deja afuera esos movimientos contables. En el tercer trimestre fue de 1,24 dólares por acción, **9,7 % más** que un año antes. Para todo 2026, la empresa espera entre 3,92 y 4,02 dólares, y apunta al extremo alto.\n\nLa gerencia promete que la ganancia ajustada crezca **8 % o más por año hasta 2032**. Para una eléctrica, es un ritmo alto: está por encima de lo que se espera para el promedio del sector. Y hasta acá lo viene cumpliendo."
+    },
+    {
+     "titulo": "Dominion: más grande, más regulada y con más deuda para integrar",
+     "texto": "En mayo de 2026, NextEra anunció que se fusiona con **Dominion Energy**, la eléctrica de Virginia y las Carolinas. Se paga con acciones, no con efectivo: por cada acción de Dominion, sus dueños reciben 0,8138 acciones de NextEra. Los accionistas de NextEra quedarán con el 74,5 % de la nueva empresa.\n\nEl resultado sería la mayor eléctrica regulada del mundo por valor de mercado: unos **10 millones de cuentas** en cuatro estados, con más de 80 % del negocio regulado. Su CEO, John Ketchum, lo resumió así: \"uno más uno es igual a tres\".\n\nLa lógica tiene sentido. Virginia es el corazón de los centros de datos, y la base regulada de las dos juntas (138.000 M) crecería cerca de 11 % por año hasta 2032.\n\nPero conviene mirar la letra chica. Pagar con acciones evita pedir más deuda para comprar, pero suma acciones nuevas, y eso reparte la ganancia entre más dueños. Además, trae consigo la deuda de Dominion. Y para conseguir el permiso de Virginia, NextEra ya se comprometió a descuentos en las facturas y a programas de cientos de millones. Los fallos de Virginia y Carolina del Sur se esperan para enero de 2027, y el cierre para la segunda mitad de 2027."
+    },
+    {
+     "titulo": "Crecer cuesta, y hoy la plata está cara",
+     "texto": "Este es el punto débil de NextEra, y hay que mirarlo de frente.\n\nLa **deuda neta** (lo que debe menos la caja que tiene) **pasó de 63.365 M en 2022 a 108.353 M**: un 71 % más en menos de cuatro años. Hoy equivale a **6,4 veces su EBITDA**, que es lo que genera el negocio antes de intereses e impuestos. Dicho de otra forma: si destinara todo lo que genera a pagar la deuda, tardaría más de seis años. En una empresa común, más de 3 veces ya es exigente; las eléctricas aguantan más porque su ingreso es estable, pero arriba de 6 el margen es poco.\n\n[[grafico:deuda_neta]]\n\nLas tablas muestran un flujo libre positivo, pero el informe de la empresa cuenta otra historia. En los primeros nueve meses de 2026, la operación generó 12.322 M y las inversiones se llevaron 26.986 M. La diferencia se cubrió con deuda nueva: emitió 18.232 M en el mismo período.\n\nPara una eléctrica, pedir prestado para crecer es normal. El problema es el momento. Con el bono a 10 años cerca de 5 %, cada dólar que refinancia le cuesta más.\n\nAcá entra un indicador clave: la **cobertura de intereses**, que mide cuántas veces la ganancia operativa paga los intereses del año. En 2025 fue de **1,75 veces**. Es decir: de cada 100 dólares que gana con su negocio, 57 se van en intereses. En general, más de 3 veces se considera sano y menos de 1,5 es una señal de alarma. ¿Qué pasa si sigue bajando? Queda menos plata para invertir y para el dividendo, y las calificadoras pueden bajarle la nota, lo que encarece todavía más su próxima deuda.\n\n[[grafico:cobertura_intereses]]\n\nHablando del dividendo: lo viene subiendo **11,4 % por año en los últimos 10 años**, pero la propia empresa ya avisó que, después de 2026, crecerá 6 % por año hasta 2028. Es una señal de prudencia, y también de que la caja ya no da para todo."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una eléctrica como esta, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero calculado con la **ganancia ajustada**, no con la contable, que por las coberturas la hace parecer mucho más barata de lo que es.\n\nTomamos como referencia unos 3,97 dólares por acción, el medio de lo que la empresa espera ganar en 2026. Con el precio de {precio} dólares, cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_ind} el promedio de su industria ({ind:per} veces) y {vs_ref_med} su propia mediana histórica ({med:per} veces).\n\nAhora, una cuenta simple para entender qué se está pagando. Si la ganancia crece el 8 % por año que promete la empresa y el PER se mantiene, el accionista ganaría ese 8 % más el dividendo, que hoy rinde {dy}: un retorno teórico de alrededor de {retorno} por año. No es una promesa: es la cuenta de qué pasa si todo sale según el plan.\n\nY hay que mirar la competencia de la renta fija. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}), que no tiene riesgo. Cuando el bono paga más que el dividendo, muchos inversores que buscan renta lo prefieren, y a las eléctricas les cuesta subir de precio.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Tomalo con cuidado: está calculado con la ganancia contable, la que inflan las coberturas.",
+    "ganancia_ref": 3.97,
+    "crecimiento_ref": 8.0,
+    "ganancia_ref_txt": "ganancia ajustada esperada para 2026 (medio de la guía de 3,92 a 4,02)"
+   },
+   "conclusion": "NextEra es una buena empresa, no una excelente. Tiene lo más difícil de conseguir: un monopolio regulado en uno de los estados que más crece, escala en renovables y márgenes por encima de su industria.\n\nSu punto débil es el balance. La deuda neta creció 71 % desde 2022 y la fusión con Dominion la hará todavía más grande, justo con la plata cara. El crítico más duro diría que NextEra crece como una tecnológica, pero gracias a pedir prestado barato, y que esa época terminó. Es un argumento serio.\n\nEncaja con quien busca una eléctrica con dividendo creciente y más crecimiento que el promedio, y tiene paciencia para un plan de varios años con aprobaciones regulatorias en el medio. No es para quien busca renta alta hoy ni para quien no tolera el riesgo de tasas.\n\nPara que la tesis se mantenga, lo más importante es que la ganancia ajustada siga creciendo 8 % o más por año sin que la deuda crezca más rápido que lo que genera el negocio.",
+   "pros": [
+    "Monopolio en Florida: 6 millones de cuentas que no pueden elegir otra distribuidora.",
+    "Márgenes de primera: gana 29 de cada 100 dólares que factura, contra 23 de su industria.",
+    "Demanda nueva: polos para grandes consumidores por 16,5 gigavatios, 30 más en conversación y un campus de centros de datos."
+   ],
+   "contras": [
+    "Deuda pesada: 6,4 veces su EBITDA y en suba, en plena era de tasas altas.",
+    "Fusión con Dominion: más acciones, más deuda y condiciones de los reguladores todavía abiertas."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "NextEra Energy genera, almacena, transmite, distribuye y vende energía eléctrica a clientes minoristas y mayoristas en América del Norte. Opera dos segmentos: **Florida Power & Light Company (FPL)**, la distribuidora regulada de Florida, y **NEER**, el negocio de generación. Genera electricidad a partir de energía eólica, solar, nuclear, gas natural y otras fuentes limpias. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de crecimiento irregular: **los ingresos subieron 34,2 % en 2023, bajaron 12,0 % en 2024 y subieron 10,7 % en 2025, hasta 27.412 M**, y llegan a 28.825 M en los últimos 12 meses.\n\n**A quién le vende.** A hogares y empresas de Florida (FPL) y a compañías eléctricas y empresas de otros estados (NEER). **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de NextEra **es de monopolio regulado en Florida y de escala en renovables, y es de estrecha a amplia**. En FPL, los clientes no pueden elegir otra distribuidora y el regulador permite una rentabilidad sobre lo invertido (dato público); en NEER, su tamaño le da costos de compra y de financiamiento menores a los de competidores chicos. Se ve en el margen operativo de 29,0 %.\n\nPero el regulador limita lo que puede ganar y puede cambiar las reglas, y el ROIC es de apenas 3,4 %. Compite en renovables con Brookfield, Iberdrola, Duke y otros desarrolladores. Es frágil en las decisiones tarifarias de Florida, en las tasas de interés (por la deuda), en los permisos y en los cambios de política sobre energías limpias. La inteligencia artificial más bien aumenta la demanda de electricidad.",
-   "numeros": "Los números de NextEra cuentan **una expansión de inversiones que supera el flujo libre** (como es normal en una eléctrica). Los ingresos fueron de 20.956 M, 28.114 M, 24.753 M y 27.412 M, y de 28.825 M en los últimos 12 meses. El EBIT fue de 3.559 M, 9.832 M, 7.127 M y 8.020 M, y de **8.350 M** (margen operativo de 29,0 %). La ganancia neta fue de 4.147 M, 7.310 M, 6.946 M y 6.835 M, y de **11.636 M**. La ganancia por acción fue de 2,09, 3,60, 3,37 y 3,28, y de 5,55.\n\nEl flujo operativo fue de 14.821 M y las inversiones de 10.732 M, así que el flujo libre fue de **4.089 M** (14,2 %); en 2022 fue negativo (-1.480 M). El ROIC fue de 2,9 %, 7,0 %, 5,1 %, 4,0 % y 3,4 %, y el ROE de 18,9 % en los últimos 12 meses.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (11.636 M) es 39 % mayor que el EBIT (8.350 M); Yahoo no lo explica y no sirve de base para comparar con los años anteriores.",
-   "balance": "**Deuda muy alta y cobertura ajustada.** La deuda total es de 113.932 M y la caja de 5.579 M; la deuda neta es de 108.353 M y la deuda neta/EBITDA es de 6,43x, que multiplicado por 12 son unos 77 meses de EBITDA, un nivel alto incluso para una eléctrica. En 2025 los intereses se cubrían solo 1,75 veces con el EBIT.\n\nEl patrimonio neto es de 61.498 M y la deuda equivale a 1,85 veces el patrimonio. La deuda total subió de 64.966 M en 2022 a 113.932 M, un 75 % más. La deuda de corto plazo es de 16.807 M y la liquidez corriente de 0,53x, algo que en una eléctrica se refinancia en el mercado, pero tensiona el balance si suben las tasas.",
-   "gerencia": "La conduce John Ketchum, presidente, CEO y presidente del directorio (54 años, pago de 7,2 M según Yahoo), con Michael Dunne como director financiero (49 años, pago de 2,1 M) y Brian Bolster al frente de NextEra Energy Resources (52 años, pago de 2,9 M). Ketchum es CEO desde 2022, dato público.\n\nEn lo que importa, **el uso del capital es de inversión pesada financiada con deuda y acciones nuevas**: paga un dividendo de 2,49 por acción (desde 1973; sube 10,1 % por año en 3 años y 11,4 % en 10 años; 5.088 M en los últimos 12 meses, 124 % del flujo libre y 34 % del flujo operativo) y no informa recompras. **Las acciones subieron de 1.987 M a 2.093 M, un 5,3 % más.**",
-   "fortalezas": [
-    "Margen operativo de 29,0 %.",
-    "Dividendo pagado desde 1973 y creciendo 10,1 % por año.",
-    "Monopolio regulado en Florida y escala en renovables.",
-    "Flujo operativo de 14.821 M.",
-    "Demanda de electricidad en alza por centros de datos (dato público)."
-   ],
-   "debilidades": [
-    "Deuda neta de 108.353 M, 6,43x EBITDA: el crítico más duro diría que el crecimiento se financia con un balance muy exigido.",
-    "ROIC de 3,4 % y cobertura de intereses de 1,75 veces.",
-    "Acciones subiendo 5,3 %.",
-    "Dividendo mayor al flujo libre (124 %).",
-    "Dependencia del regulador y de las tasas de interés."
-   ],
-   "vigilar": [
-    "Deuda neta contra EBITDA: hoy 6,43x; si sube de 7x, el balance se tensiona.",
-    "Cobertura de intereses: hoy 1,75 veces; si baja de 1,5, hay riesgo de recorte de dividendo.",
-    "Decisiones tarifarias de Florida: definen cuánto puede ganar FPL.",
-    "Acciones en circulación: hoy 2.093 M; si siguen subiendo, diluyen al accionista."
-   ],
    "clientes": [
-    "Hogares y empresas de Florida",
-    "Compañías eléctricas y empresas con contratos de energía renovable",
-    "Clientes mayoristas en América del Norte"
+    "Hogares y empresas de Florida (unos 6 millones de cuentas)",
+    "Eléctricas y empresas con contratos de energía renovable de largo plazo",
+    "Grandes consumidores de energía y centros de datos (polos en Texas y Pensilvania, campus en Kentucky)"
    ],
-   "ideal_para": [
-    "Buscan una eléctrica con dividendo creciente.",
-    "Aceptan deuda alta típica del sector.",
-    "Valoran la demanda de electricidad por centros de datos."
+   "hechos": [
+    {
+     "dato": "Ganancia ajustada por acción del 3T26 de 1,24 dólares (1,13 un año antes, +9,7 %); ganancia contable de 2,28, con 1,07 por coberturas",
+     "fuente": "Comunicado de resultados del 3T26 (8-K, anexo 99), 21/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000753308/000075330826000077/neeq32026exhibit99.htm"
+    },
+    {
+     "dato": "Guía 2026 de 3,92 a 4,02 dólares por acción (ajustada); crecimiento de 8 % o más por año hasta 2032; dividendo: cerca de 10 % por año hasta 2026 y 6 % por año hasta 2028",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000753308/000075330826000077/neeq32026exhibit99.htm"
+    },
+    {
+     "dato": "Capital regulado de FPL +9,2 %; inversión de FPL de unos 12.000 M en 2026; cartera de proyectos de 36,7 GW; polos para grandes consumidores por 16,5 GW y 30 más en conversación; campus de centros de datos en Paducah (Kentucky)",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000753308/000075330826000077/neeq32026exhibit99.htm"
+    },
+    {
+     "dato": "Nueve meses de 2026: flujo operativo de 12.322 M, inversiones de 26.986 M y deuda emitida por 18.232 M",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000753308/000075330826000077/neeq32026exhibit99.htm"
+    },
+    {
+     "dato": "Fusión con Dominion: 0,8138 acciones de NEE por acción de D, 74,5 % para los accionistas de NEE, unos 10 millones de cuentas, base regulada de 138.000 M que crecería cerca de 11 % por año hasta 2032; frase de John Ketchum",
+     "fuente": "Comunicado conjunto del 18/05/2026 (formulario 425 en la SEC)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000715957/000110465926063003/tm2614888d1_ex99-1.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan balance liviano.",
-    "No toleran el riesgo regulatorio ni el de tasas de interés."
-   ],
+   "ticker": "NEE",
    "perfil": "utility",
    "capas": [],
-   "ticker": "NEE",
    "fecha": "29/10/2026",
    "modelo": "Claude",
    "base": {

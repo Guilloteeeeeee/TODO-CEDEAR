@@ -5,6 +5,7 @@ Herramientas del ANÁLISIS FUNDAMENTAL (solapa de cada empresa). Sin API y sin c
 Uso (desde la carpeta del proyecto):
     python generar_analisis_fundamental.py --bloque KO       muestra los datos de KO tal como los ve quien redacta (tablas incluidas)
     python generar_analisis_fundamental.py --prompt KO       prompt completo de KO (reglas + datos), listo para pegar en un chat de IA
+    python generar_analisis_fundamental.py --prompt4 KO      prompt del formato v4 (artículo con tesis, v1.2.91): reglas + macro + industria + valuación del día + datos
     python generar_analisis_fundamental.py --agregar a.json  valida el/los archivo(s) JSON con el análisis ({"KO": {...}} o un análisis suelto con "ticker") y los suma a
                                                              data/analisis_fundamental.json (si algo no cumple el formato, lo dice y NO guarda ese)
     python generar_analisis_fundamental.py --estado          cuántas empresas tienen análisis y cuáles faltan
@@ -66,6 +67,16 @@ def perfil_de(ticker, paquetes=None, fichas=None, foso=None):
     return AF.perfil_de(f.get("sector_yahoo", ""), f.get("industria_yahoo", ""), fo.get("etapa"), (paquetes.get(ticker) or {}).get("estados") or {}, fo.get("foso"), ticker, sector_app)
 
 
+def _fila_cache(ticker):
+    """La fila del caché de la empresa (precio, múltiplos, medianas, Fair Value), o {}."""
+    try:
+        with open(os.path.join(AQUI, "data", "cache_datos.json"), encoding="utf-8") as f:
+            filas = json.load(f).get("data") or []
+        return next((r for r in filas if str(r.get("ticker")).upper() == ticker), {})
+    except Exception:  # noqa: BLE001
+        return {}
+
+
 def agregar(archivos, modelo="Claude"):
     datos, _ = AF.cargar()
     paquetes = py.cargar()[0]
@@ -81,7 +92,11 @@ def agregar(archivos, modelo="Claude"):
         items = j if all(isinstance(v, dict) for v in j.values()) and "resumen" not in j else {str(j.get("ticker", "")).upper(): j}
         for t, d in items.items():
             t = str(t).upper()
-            res, problemas = AF.validar(d, (paquetes.get(t) or {}).get("estados") or {})
+            if d.get("formato") == "v4" or "titulo" in d:      # v1.2.91: artículo con tesis (data/af_v4.py)
+                from data import af_v4 as V4
+                res, problemas = V4.validar(d)
+            else:
+                res, problemas = AF.validar(d, (paquetes.get(t) or {}).get("estados") or {})
             if res is not None:
                 res["perfil"], res["capas"] = perfil_de(t, paquetes)
                 res["ticker"] = t
@@ -107,6 +122,13 @@ def main(args):
         t = args[1].upper()
         b = armar(t, *(empresas.get(t) or ("", "")))
         print(b if args[0] == "--bloque" else AF.armar_prompt(b))
+    elif len(args) >= 2 and args[0] == "--prompt4":
+        # v1.2.91: prompt del formato v4 (artículo): reglas + macro + industria + valuación del día + análisis anterior + datos
+        from data import af_v4 as V4
+        t = args[1].upper()
+        b = armar(t, *(empresas.get(t) or ("", "")))
+        row = _fila_cache(t)
+        print(V4.armar_prompt(t, b, row, AF.cargar()[0].get(t)))
     elif args and args[0] == "--agregar" and len(args) >= 2:
         sys.exit(0 if agregar(args[1:]) else 1)
     elif args and args[0] == "--estado":

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.90"
+APP_VERSION = "1.2.91"
 
 import re
 import contextlib
@@ -304,6 +304,16 @@ def _extras_empresa(ticker: str) -> dict:
             m.clear()
         m[("emp", ticker)] = (time.time(), res)
     return res
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _bono10_hoy():
+    """v1.2.91: rendimiento del bono del Tesoro a 10 años (Yahoo ^TNX), para la valuación del Análisis Fundamental. None si Yahoo no responde
+    (entonces se usa el de la foto macro, data/macro_numeros.json)."""
+    if not PRECIOS_VIVOS:
+        return None
+    from data import af_v4 as _v4
+    return _v4.bono10_vivo()
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -1297,7 +1307,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_res:
         st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
-        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_para_ficha(tk), estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]})), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_para_ficha(tk), estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]}, historial=pares, dividendos=extra.get("dividendos"), bono10=_bono10_hoy())), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ficha.con_intro("grafico", _ficha.tab_grafico_tabla(pares)), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)

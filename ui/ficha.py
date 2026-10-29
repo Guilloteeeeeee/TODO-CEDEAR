@@ -902,7 +902,7 @@ def encabezado_html(row, cedears=None, ficha=None, mercado_codigo=None, fecha_da
 
 INTROS = {
     "resumen": "Qué hace la empresa, dónde cotiza y sus números básicos de un vistazo: tamaño, dividendo, rango de precio del último año y cuándo presenta resultados.",
-    "analisis": "Un informe breve de la empresa: resumen con su conclusión y el Score, el negocio y su ventaja, puntos fuertes y débiles, cómo entender los números (deuda y gerencia incluidas), qué vigilar y conclusión. La tabla la calcula el programa; el texto es de inteligencia artificial. Informativo: no es una recomendación.",
+    "analisis": "Un análisis de la empresa: qué hace, qué la distingue, cómo vienen sus números, cuánto se paga hoy por ella y qué le puede salir mal. Escrito con asistencia de inteligencia artificial a partir de los informes oficiales; los números del día los actualiza la app. Informativo: no es una recomendación.",
     "grafico": "Cómo se movió el precio de la acción, cuánto rindió en distintos plazos y qué dicen los indicadores técnicos (rango de 52 semanas, promedios móviles, RSI, MACD y riesgo). Es información sobre el pasado del precio, no una señal de compra o venta.",
     "valuacion": "Una estimación sobre si la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana.",
     "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
@@ -1114,10 +1114,77 @@ def tiles_analisis(af, estados=None, row=None, universo=None):
     return t
 
 
-def tab_analisis(row, envolver=True, af=None, estados=None, universo=None):
+def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None, dividendos=None, bono10=None):
+    """Análisis Fundamental v4 (data/af_v4.py): un artículo con tesis. Arriba el título, la fecha y el resumen de 3 puntos (con el Score a la derecha);
+    después el artículo entero en un solo mosaico (introducción, secciones con gráficos, valuación con datos del día y conclusión con la calidad);
+    pros y contras; y las fuentes (los datos del informe oficial, con su link). El análisis queda escrito; los números del día los completa la app."""
+    from data import analisis_fundamental as AF
+    from data import af_v4 as V
+    tk = str(af.get("ticker") or (row or {}).get("ticker") or "").upper()
+    try:
+        from data import damodaran as _D
+        dam = _D.valores(tk) or {}
+    except Exception:  # noqa: BLE001
+        dam = {}
+    ctx = V.contexto(row or {}, af, dam, bono10)
+    dps = ((dividendos or {}).get("trayectoria") or {}).get("anuales")
+    graf = lambda k: V.grafico(k, estados, row or {}, dam, ctx, historial, dps)
+    cal = af.get("calidad") if af.get("calidad") in AF.CALIDADES else "Buena"
+    color = AF.CALIDADES[cal]
+    fecha = html.escape(str(af.get("fecha") or ""))
+    res = af.get("resumen") if isinstance(af.get("resumen"), list) else []
+    lis = "".join(f"<li>{_negrita(x)}</li>" for x in res)
+    cab = (f'<div class="af4"><div class="af4-t">{html.escape(str(af.get("titulo") or ""))}</div>'
+           f'<div class="af4-f">Escrito el {fecha}</div><ul class="af4-rs">{lis}</ul></div>')
+    cuerpo = f'<div class="af"><div class="af-rs"><div class="af-rt">{cab}</div>{_score_af(row) if row is not None else ""}</div></div>'
+    t = [_tile("s12", "En pocas palabras", _CSS_AF + V.CSS + cuerpo, ac=color)]
+    art = ""
+    if af.get("desde_el_ultimo"):
+        art += f'<p class="af-cx" style="background:#f1f5f9"><b>Desde el último análisis:</b> {_negrita(af["desde_el_ultimo"])}</p>'
+    art += V.texto_html(af.get("introduccion"), graficos=graf)
+    for i, s in enumerate(af.get("secciones") or []):
+        art += f"<h3>{html.escape(s.get('titulo', ''))}</h3>" + V.texto_html(s.get("texto"), graficos=graf)
+        if i == 0 and af.get("clientes"):
+            art += _clientes_af(af.get("clientes"), universo)
+    val = af.get("valuacion") or {}
+    if val.get("texto"):
+        fp = ctx.get("fecha_precio")
+        art += "<h3>Valuación</h3>" + (f'<div class="af4-vf">Los números subrayados son del día{f" (precio al {html.escape(fp)})" if fp else ""}: los actualiza la app.</div>')
+        art += V.texto_html(val["texto"], ctx=ctx, graficos=graf)
+    cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
+    art += (f'<h3>Conclusión <span class="af4-cal" style="background:{color};color:{_TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")}">Calidad del negocio: {html.escape(cal)}</span></h3>'
+            + V.texto_html(af.get("conclusion")) + (f'<p class="af-cp"><b>Calidad y PRECIO hoy:</b> {html.escape(cr)}</p>' if cr else ""))
+    t.append(_tile("s12", "El análisis", f'<div class="af af4">{art}</div>', ac="#8b5cf6"))
+    pc = ('<div class="af af4"><div class="af4-pc"><div class="p"><h4>A favor</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("pros") or [])
+          + '</ul></div><div class="c"><h4>En contra</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("contras") or []) + "</ul></div></div></div>")
+    t.append(_tile("s12", "A favor y en contra", pc, ac="#16a34a"))
+    fu = "".join(f'<li>{html.escape(h["dato"])}. <a class="af-lk" href="{html.escape(h["url"])}" target="_blank" rel="noopener">{html.escape(h.get("fuente") or "Documento oficial")} ↗</a></li>'
+                 for h in af.get("hechos") or [] if str(h.get("url", "")).startswith("https://"))
+    lsec = AF.link_sec(tk)
+    fu += ("<li>Estados financieros de 4 años y últimos 12 meses, dividendos y equipo directivo: Yahoo Finance."
+           + (f' <a class="af-lk" href="{html.escape(lsec)}" target="_blank" rel="noopener">Informes de la empresa en la SEC ↗</a>' if lsec else "") + "</li>"
+           "<li>Promedios de la industria: Aswath Damodaran, NYU Stern (datos a enero de 2026).</li>"
+           "<li>Precio, múltiplos y Fair Value del día: TodoCedears (Yahoo Finance); bono del Tesoro a 10 años: Yahoo Finance.</li>")
+    t.append(_tile("s12", "Fuentes", f'<div class="af af4"><ul class="af4-fu">{fu}</ul></div>', ac="#94a3b8"))
+    t.append('<div class="fch-sub af-pie" style="margin:4px 4px 0;grid-column:1/-1">Análisis escrito el ' + fecha + ' por Finanzas para Médicos Argentina con asistencia de '
+             'inteligencia artificial, a partir de los informes oficiales de la empresa y los datos de Yahoo Finance. Los números del día los actualiza la app. Puede contener '
+             'errores o quedar desactualizado: verificá siempre con los documentos oficiales. Es información con fines educativos, no una recomendación de inversión.</div>')
+    return t
+
+
+def _negrita_dos(x):
+    """Pros y contras: "Idea corta: frase" -> la idea en negrita."""
+    m = re.match(r"^\s*([^:]{3,50}):\s+(.*)$", str(x), re.S)
+    return f"<b>{html.escape(m.group(1).strip())}:</b> {_negrita(m.group(2))}" if m else _negrita(x)
+
+
+def tab_analisis(row, envolver=True, af=None, estados=None, universo=None, historial=None, dividendos=None, bono10=None):
     """Análisis Fundamental: Resumen, parte cualitativa, los números punto por punto, fortalezas/debilidades, tesis y conclusión (ver data/analisis_fundamental.py); al final,
-    el puntaje actual del modelo (el Score de calidad llega más adelante). Sin análisis guardado para la empresa: 'Próximamente'."""
-    if af and af.get("resumen"):
+    el puntaje actual del modelo (el Score de calidad llega más adelante). Sin análisis guardado para la empresa: 'Próximamente'.
+    v1.2.91: los análisis en formato v4 (artículo con tesis, data/af_v4.py) se muestran con tiles_analisis_v4."""
+    if af and af.get("formato") == "v4" and af.get("titulo"):
+        t = tiles_analisis_v4(af, estados, row, universo, historial, dividendos, bono10)
+    elif af and af.get("resumen"):
         t = tiles_analisis(af, estados, row, universo)
     else:
         t = [_tile_score(row), _tile("s12", "Resumen fundamental", '<div class="fch-sub" style="margin:0">Próximamente: un resumen del negocio y de sus fundamentos, con sus puntos fuertes, débiles y la tesis de inversión.</div>', ac="#94a3b8")]
