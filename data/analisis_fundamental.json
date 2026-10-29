@@ -8363,6 +8363,196 @@
      "2023"
     ]
    }
+  },
+  "WDC": {
+   "resumen": "Western Digital es una empresa estadounidense que fabrica discos rígidos (HDD) para almacenar datos: unidades internas, discos para centros de datos, plataformas de almacenamiento para centros de datos, unidades externas y portátiles, y sistemas para el hogar y la oficina. Tras separar su negocio de memorias flash a comienzos de 2025 (dato público), hoy se concentra en discos rígidos. Gana plata vendiendo discos a las grandes empresas de nube y a fabricantes de computadoras y equipos. Tiene un **foso débil a estrecho, de tecnología y oligopolio**: fabricar discos de gran capacidad exige décadas de ingeniería y casi solo hay tres productores en el mundo, lo que limita la competencia, pero el producto es un componente que se compra por capacidad y precio. Los números cambiaron de golpe: los ingresos pasaron de 6.317 M en el ejercicio 2024 a **14.482 M** en los últimos 12 meses, el margen bruto de 28,1 % a **52,6 %**, el margen operativo de 1,5 % a **40,7 %** y el flujo libre de -781 M a **4.289 M**. Pero hasta 2024 perdió plata, la ganancia neta de 9.895 M es mucho mayor que el EBIT de 5.893 M (probablemente por ganancias de la separación o de su participación en la empresa separada, dato a verificar) y las acciones aumentaron **21 %** desde 2023. Su punto débil es que está en el pico del ciclo: los discos son un negocio que sube y baja con el gasto de los grandes clientes de nube. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: hoy la impulsa, aunque el 22/10 los semiconductores cayeron 6,7 %. Conclusión: **empresa de calidad regular: números de pico de ciclo y deuda casi nula, pero con dos años previos de pérdidas, ganancia neta no comparable y 21 % más acciones.**",
+   "veredicto": "Regular: números de pico de ciclo y deuda casi nula, con dos años previos de pérdidas, ganancia neta no comparable y 21 % más acciones",
+   "conclusion": "Western Digital es una empresa de calidad regular: tiene un foso débil a estrecho de oligopolio, márgenes y flujo libre en un pico (margen operativo de 40,7 %, flujo libre de 4.289 M) y deuda casi nula, pero perdió plata hasta 2024, la ganancia neta incluye resultados no operativos y las acciones aumentaron 21 %. Hay que seguirla de cerca. Es recomendable investigar el origen de la ganancia neta y la concentración de clientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los márgenes se sostengan cuando el ciclo se normalice.",
+   "calidad": "Regular",
+   "riesgo_ia": "bajo",
+   "negocio": "Western Digital se dedica al desarrollo, la fabricación y la venta de dispositivos y soluciones de almacenamiento de datos basados en discos rígidos (HDD) en Estados Unidos, Asia, Europa, Medio Oriente y África. Ofrece discos internos, unidades para centros de datos, plataformas para centros de datos, unidades externas, unidades portátiles y sistemas de almacenamiento para el hogar y la oficina. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de ciclo marcado: **los ingresos subieron 1,0 % en 2024, 50,7 % en 2025 y 35,7 % en 2026, hasta 12.919 M** (el ejercicio cierra a fines de junio), y llegan a 14.482 M en los últimos 12 meses. Las cifras de años anteriores parecen reexpresadas sin el negocio separado (a verificar).\n\n**A quién le vende.** A grandes empresas de nube y centros de datos, fabricantes de computadoras y consumidores. **Yahoo no informa la concentración de clientes**, un dato clave a verificar en el informe.",
+   "foso": "La ventaja de Western Digital **es de tecnología y oligopolio, y es débil a estrecha**. Fabricar discos rígidos de gran capacidad requiere cabezas de lectura, medios magnéticos y procesos de fabricación que tardaron décadas en desarrollarse, y solo tres empresas en el mundo lo hacen, lo que limita la guerra de precios. Se ve en el margen bruto, que subió de 22,2 % a 52,6 %.\n\nPero el mismo producto perdió plata en 2023 y 2024 (margen operativo de -6,4 % y 1,5 %), señal de que el poder de fijar precios depende del ciclo. Compite con Seagate y Toshiba, y con las memorias flash que reemplazan discos en algunos usos. Es frágil en el ciclo de gasto de las grandes nubes, en la concentración de pocos clientes y en la dilución de acciones. La inteligencia artificial hoy impulsa la demanda de almacenamiento de datos.",
+   "numeros": "Los números de Western Digital cuentan **un giro extremo de pérdidas a ganancias de pico**. Los ingresos fueron de 6.255 M, 6.317 M, 9.520 M y 12.919 M, y de 14.482 M en los últimos 12 meses. El EBIT fue de -402 M, 97 M, 2.130 M y 4.599 M, y de **5.893 M** (margen operativo de 40,7 %). La ganancia neta fue de -1.684 M, -798 M, 1.861 M y 9.298 M, y de 9.895 M. La ganancia por acción fue de -5,44, -1,72, 5,12, 26,92 y 25,77.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -1.229 M, -781 M, 1.279 M y 3.511 M, y de **4.289 M** en los últimos 12 meses (29,6 % de los ingresos). El ROIC fue de -1,7 %, 0,4 %, 15,8 %, 44,1 % y 54,4 %.\n\nLa mirada crítica: la ganancia neta de 9.895 M casi duplica el EBIT (5.893 M), lo que indica una ganancia no operativa (probablemente por la separación del negocio de memorias flash o por su participación en esa empresa, dato público a verificar). La ganancia por acción de 25,77 no es repetible. Los márgenes de los últimos 12 meses están en un pico de ciclo.",
+   "balance": "**Deuda casi eliminada.** La caja es de 1.314 M y la deuda total de 789 M (toda de corto plazo), de modo que la caja supera la deuda. Los intereses se cubren 50 veces con el EBIT. El patrimonio neto es de 9.348 M y la deuda equivale a 0,08 veces el patrimonio.\n\nLa deuda total bajó de 7.434 M en 2024 a 789 M, mientras el patrimonio pasó de 11.047 M a 5.540 M en 2025 (por la separación) y a 9.348 M hoy. Es un balance muy distinto al de hace dos años.",
+   "gerencia": "La conduce Irving Tan, CEO y director (55 años, pago de 4,5 M según Yahoo), con Kris Sennesael como director financiero (56 años, pago de 2,2 M). Yahoo lo lista como Tiang Yew Tan. Tan asumió la conducción de la empresa tras la separación, dato público.\n\nEn lo que importa, **el uso del capital cambió de cero a recompras y dividendo reciente**: paga un dividendo de 0,70 por acción (Yahoo dice que paga desde 2012, con 2 años de continuidad; 201 M en los últimos 12 meses) y recompró nada en 2023, 5 M, 149 M, 2.592 M y 3.040 M en los últimos 12 meses. **Las acciones aun así subieron de 318 M a 385 M, un 21 % más**, por conversión de deuda y compensación (a verificar en el informe).",
+   "fortalezas": [
+    "Margen operativo de 40,7 % y margen bruto de 52,6 % en los últimos 12 meses.",
+    "Flujo libre de 4.289 M, 29,6 % de los ingresos.",
+    "Deuda casi eliminada.",
+    "Oligopolio de tres productores de discos.",
+    "ROIC de 54,4 %, aunque en pico de ciclo."
+   ],
+   "debilidades": [
+    "Pico de ciclo: el crítico más duro diría que estos márgenes no son normales.",
+    "Pérdidas en 2023 y 2024.",
+    "21 % más acciones desde 2023.",
+    "Ganancia neta inflada por resultados no operativos.",
+    "Dependencia de pocos clientes de nube."
+   ],
+   "vigilar": [
+    "Margen bruto: hoy 52,6 %; si baja, el ciclo se está dando vuelta.",
+    "Ingresos: hoy +35 %; el cambio de ritmo anticipa el ciclo.",
+    "Cantidad de acciones: hoy 385 M; las recompras tienen que reducirla.",
+    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe."
+   ],
+   "clientes": [
+    "Operadores de nube y centros de datos",
+    "Fabricantes de computadoras y equipos",
+    "Consumidores de almacenamiento externo"
+   ],
+   "ideal_para": [
+    "Buscan exposición al almacenamiento de datos para inteligencia artificial.",
+    "Valoran un balance casi sin deuda.",
+    "Entienden que los márgenes actuales son de pico de ciclo."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables.",
+    "No toleran la dilución ni el ciclo."
+   ],
+   "perfil": "hardware",
+   "capas": [],
+   "ticker": "WDC",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 14482000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "TTE": {
+   "resumen": "TotalEnergies es una de las mayores petroleras integradas del mundo, con sede en Francia: produce y comercializa petróleo y biocombustibles, gas natural y GNL, biogás e hidrógeno de bajo carbono, renovables y electricidad. Opera cinco segmentos: exploración y producción, GNL integrado, electricidad integrada, refinación y química, y comercialización y servicios (estaciones de servicio). Gana plata extrayendo y vendiendo energía a precios que fija el mercado mundial. Tiene un **foso débil a estrecho, de escala, activos de bajo costo y GNL integrado**: algunos de sus yacimientos y contratos de gas natural licuado tienen costos menores al promedio y la integración hasta la estación de servicio suaviza el ciclo, pero el precio de lo que vende no lo decide ella. Los números cuentan un ciclo: el EBIT bajó de 49.693 M en 2022 a **19.925 M** en 2025 y subió a **26.931 M** en los últimos 12 meses, con el Brent en máximos de cinco meses por la guerra con Irán y Ormuz. El margen operativo es de 13,7 %, el ROIC de **8,7 %** y el flujo libre de **16.221 M** (8,3 % de los ingresos), 49 % menos que el de 2022. Hay 13,4 % menos acciones que en 2022 y entrega casi todo el flujo libre al accionista (91 % entre dividendo y recompras). Su punto débil es que las inversiones (16.818 M) son casi iguales al flujo operativo, que la deuda total subió de 47.870 M a 62.708 M y que la transición energética exige inversiones con retornos todavía inciertos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de calidad regular, con escala, GNL integrado y retorno al accionista alto, aunque con ROIC de 8,7 %, flujo libre a la mitad del de 2022 y deuda en alza.**",
+   "veredicto": "Regular: escala, GNL integrado y retorno al accionista alto, con ROIC de 8,7 %, flujo libre a la mitad del de 2022 y deuda en alza",
+   "conclusion": "TotalEnergies es una empresa de calidad regular: tiene escala, GNL integrado, un flujo libre de 16.221 M y 13,4 % menos acciones, pero su ROIC es de 8,7 %, el flujo libre es la mitad del de 2022, la deuda subió a 62.708 M y todo depende del precio de la energía. Hay que seguirla de cerca. Es recomendable investigar el costo de producción y los retornos de las inversiones en electricidad en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo y las recompras sin más deuda.",
+   "calidad": "Regular",
+   "riesgo_ia": "muy bajo",
+   "negocio": "TotalEnergies produce y comercializa petróleo y biocombustibles, gas natural, biogás e hidrógeno bajo en carbono, energías renovables y electricidad en Francia, Estados Unidos, Europa, África y a nivel internacional. Opera cinco segmentos: **Exploration & Production**, **Integrated LNG**, **Integrated Power**, **Refining & Chemicals** y **Marketing & Services**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al precio de la energía: **los ingresos cayeron 16,8 % en 2023, 10,7 % en 2024 y 6,8 % en 2025, hasta 182.344 M**, y suben a 196.382 M en los últimos 12 meses.\n\n**A quién le vende.** A industrias, empresas de energía, distribuidores y consumidores de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de TotalEnergies **es de escala, activos de bajo costo y GNL integrado, y es débil a estrecha**. Una parte de sus yacimientos tiene costos de producción menores al promedio, sus contratos de gas natural licuado a largo plazo le dan ingresos más estables y su red de estaciones de servicio y refinerías le permite capturar valor en varios puntos de la cadena. Se ve en un margen operativo que se mantiene entre 10,9 % y 18,9 % incluso con precios más bajos.\n\nPero no controla el precio del petróleo y el gas, y el ROIC de 8,7 % indica que, en promedio, apenas rinde por encima del costo del capital. Compite con Shell, BP, Exxon, Chevron, Eni y las petroleras estatales. Es frágil en el precio de la energía, en la geopolítica de sus zonas de operación, en la regulación ambiental y en que invierte en energías renovables con retornos todavía inciertos. La inteligencia artificial casi no la afecta.",
+   "numeros": "Los números de TotalEnergies cuentan **un ciclo de precios con un rebote reciente**. Los ingresos fueron de 263.310 M, 218.945 M, 195.610 M y 182.344 M, y de 196.382 M en los últimos 12 meses. El EBIT fue de 49.693 M, 30.857 M, 24.105 M y 19.925 M, y de **26.931 M** (margen operativo de 13,7 %). La ganancia neta fue de 20.526 M, 21.384 M, 15.758 M y 13.127 M, y de 17.837 M. La ganancia por acción fue de 7,85, 8,67, 6,69, 5,78 y **7,99**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 31.677 M, 22.957 M, 15.945 M y 10.390 M, y de **16.221 M** en los últimos 12 meses (8,3 % de los ingresos), con inversiones de 16.818 M. El ROIC fue de 22,3 %, 11,7 %, 10,8 %, 8,6 % y 8,7 %.\n\nLa mirada crítica: el rebote de los últimos 12 meses viene de un precio del petróleo más alto por la guerra con Irán y el riesgo en Ormuz (macro de la semana), no de una mejora del negocio. Si el precio vuelve a bajar, el EBIT vuelve hacia 20.000 M.",
+   "balance": "**Deuda moderada pero en alza.** La deuda total es de 62.708 M y la caja de 31.717 M; la deuda neta es de 35.030 M y la deuda neta/EBITDA es de 0,75x, que multiplicado por 12 son unos 9 meses de EBITDA. Los intereses se cubren 10,3 veces con el EBIT.\n\nEl patrimonio neto es de 128.408 M y la deuda equivale a 0,49 veces el patrimonio. La deuda total subió de 47.870 M en 2023 a 62.708 M, mientras el flujo libre bajaba; es una tendencia a vigilar.",
+   "gerencia": "La conduce Patrick Pouyanné, presidente del directorio y CEO (62 años, pago de 4,7 M según Yahoo), en el cargo desde 2014, dato público, con Jean-Pierre Sbraire como director financiero (60 años). A los 62 años, la sucesión es una variable a seguir.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras muy altos**: paga un dividendo de 4,01 por acción (8.593 M en los últimos 12 meses, 53 % del flujo libre) y recompró 7.711 M en 2022, 9.167 M, 7.995 M, 7.714 M y 6.141 M en los últimos 12 meses. **Las acciones bajaron de 2.595 M a 2.248 M hasta 2025, un 13,4 % menos.** Entre dividendo y recompras entrega 14.734 M, 91 % del flujo libre.",
+   "fortalezas": [
+    "13,4 % menos acciones desde 2022.",
+    "Flujo libre de 16.221 M y dividendo cubierto.",
+    "GNL integrado con contratos de largo plazo.",
+    "Deuda neta de unos 9 meses de EBITDA.",
+    "Diversificación entre petróleo, gas, refinación y electricidad."
+   ],
+   "debilidades": [
+    "ROIC de 8,7 %, cerca del costo del capital.",
+    "Flujo libre 49 % menor que el de 2022.",
+    "Deuda total que subió de 47.870 M a 62.708 M: el crítico más duro diría que sostiene los retornos con deuda.",
+    "Inversiones de 16.818 M, casi iguales al flujo operativo.",
+    "Totalmente expuesta al precio de la energía."
+   ],
+   "vigilar": [
+    "Precio del Brent: hoy en máximos de cinco meses; si baja, el EBIT vuelve hacia 20.000 M.",
+    "Deuda total: hoy 62.708 M; no debería seguir subiendo.",
+    "Inversiones: hoy 16.818 M; si suben, el flujo libre se aprieta.",
+    "Retornos de las inversiones en renovables: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Industrias y empresas de energía",
+    "Distribuidores y estaciones de servicio",
+    "Consumidores de combustibles y electricidad"
+   ],
+   "ideal_para": [
+    "Buscan una petrolera integrada con retorno al accionista alto.",
+    "Valoran la diversificación en GNL y electricidad.",
+    "Aceptan el ciclo del precio de la energía."
+   ],
+   "menos_ideal": [
+    "Buscan resultados estables.",
+    "No toleran la exposición al precio del petróleo y el gas."
+   ],
+   "perfil": "energia",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "TTE",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 196382000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "COP": {
+   "resumen": "ConocoPhillips es una de las mayores productoras independientes de petróleo y gas del mundo: explora, produce, transporta y vende petróleo crudo, bitumen, gas natural, gas natural licuado (GNL) y líquidos de gas, con operaciones en Alaska, el Lower 48 de Estados Unidos, Canadá, Europa, Medio Oriente, Norte de África y Asia-Pacífico. A diferencia de las petroleras integradas, no refina ni vende combustible en estaciones. Gana plata extrayendo y vendiendo a precios que fija el mercado. Tiene un **foso estrecho, de recursos de bajo costo y escala**: posee yacimientos no convencionales y convencionales con costos de producción competitivos, lo que le permite ganar plata con precios bajos, aunque no controla el precio. Los números cuentan un ciclo: el EBIT bajó de 25.462 M en 2022 a **11.342 M** en 2025 y subió a **13.884 M** en los últimos 12 meses, con el Brent en máximos de cinco meses por la guerra con Irán y Ormuz. El margen operativo es de 21,9 %, el ROIC de **10,5 %** y el flujo libre de **10.064 M** (15,9 % de los ingresos). Paga dividendo desde 1982 y devolvió 94 % del flujo libre entre dividendo y recompras. Su punto débil es que las inversiones (11.861 M) son 1,3 veces la ganancia neta, que la deuda subió de 16.643 M a 23.290 M con la compra de otra petrolera (dato público) y que el dividendo cayó 13,9 % por año en 3 años porque antes pagaba extras variables. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de buena calidad dentro del sector, con foso estrecho de bajo costo y flujo libre de 10.064 M, aunque con ROIC de 10,5 %, deuda en alza y total dependencia del precio del petróleo.**",
+   "veredicto": "Buena: foso estrecho de bajo costo y flujo libre de 10.064 M, con ROIC de 10,5 %, deuda en alza y total dependencia del precio del petróleo",
+   "conclusion": "ConocoPhillips es una empresa de buena calidad dentro del sector: tiene un foso estrecho de recursos de bajo costo, margen operativo de 21,9 %, flujo libre de 10.064 M, dividendo desde 1982 y 3,8 % menos acciones, pero el ROIC es de 10,5 %, la deuda subió y depende totalmente del precio del petróleo. Hay que seguirla de cerca. Es recomendable investigar el costo de producción y la reposición de reservas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre siga cubriendo el dividendo con un petróleo más bajo.",
+   "calidad": "Buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "ConocoPhillips explora, produce, transporta y comercializa petróleo crudo, bitumen, gas natural, GNL y líquidos de gas natural. Opera cinco segmentos: **Alaska**, **Lower 48**, **Canadá**, **Europa, Medio Oriente y Norte de África** y **Asia-Pacífico**. Su portafolio incluye yacimientos no convencionales en América del Norte y activos convencionales en América del Norte, Europa y Asia. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al precio de la energía: **los ingresos cayeron 28,5 % en 2023 y 2,5 % en 2024, y subieron 7,7 % en 2025 hasta 58.944 M**, y llegan a 63.345 M en los últimos 12 meses.\n\n**A quién le vende.** A refinerías, comercializadoras y compradores de GNL de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
+   "foso": "La ventaja de ConocoPhillips **es de recursos de bajo costo y escala, y es estrecha**. Tiene una gran cantidad de reservas en yacimientos no convencionales de Estados Unidos y activos convencionales de larga vida, lo que le permite seguir produciendo con rentabilidad aun con precios más bajos que los de varios competidores. Se ve en un margen operativo que se mantuvo por encima de 19 % incluso en el año flojo (2025).\n\nPero no controla el precio del petróleo y el gas, y el ROIC bajó de 26,6 % a 10,5 %. Compite con Exxon, Chevron, Occidental, EOG, Devon y petroleras estatales. Es frágil en el precio de la energía, en el agotamiento de los yacimientos (tiene que reponer reservas invirtiendo más de lo que gana) y en la regulación ambiental. La inteligencia artificial casi no la afecta.",
+   "numeros": "Los números de ConocoPhillips cuentan **un ciclo de precios con un rebote reciente**. Los ingresos fueron de 78.494 M, 56.141 M, 54.745 M y 58.944 M, y de 63.345 M en los últimos 12 meses. El EBIT fue de 25.462 M, 15.026 M, 12.783 M y 11.342 M, y de **13.884 M** (margen operativo de 21,9 %). La ganancia neta fue de 18.680 M, 10.957 M, 9.245 M y 7.988 M, y de 9.282 M. La ganancia por acción fue de 14,57, 9,06, 7,81, 6,35 y **7,56**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 18.155 M, 8.717 M, 8.006 M y 7.243 M, y de **10.064 M** en los últimos 12 meses (15,9 % de los ingresos), con inversiones de 11.861 M. El ROIC fue de 26,6 %, 15,1 %, 9,8 %, 8,2 % y 10,5 %.\n\nLa mirada crítica: el rebote de los últimos 12 meses viene de un precio del petróleo más alto por la guerra con Irán y el riesgo en Ormuz, no de una mejora estructural. El capital invertido subió de 63.326 M a 88.639 M, en gran parte por la compra de otra petrolera (dato público), y el ROIC no volvió a su nivel de 2022.",
+   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 23.290 M y la caja de 7.692 M; la deuda neta es de 16.716 M y la deuda neta/EBITDA es de 0,60x, que multiplicado por 12 son unos 7 meses de EBITDA. Los intereses se cubren 11,7 veces con el EBIT.\n\nEl patrimonio neto es de 65.349 M y la deuda equivale a 0,36 veces el patrimonio. La deuda total subió de 16.643 M en 2022 a 23.290 M, y el patrimonio de 48.003 M a 65.349 M, un cambio que coincide con la compra de otra empresa petrolera en 2024 (dato público).",
+   "gerencia": "La conduce Andrew O'Brien, presidente y CEO (50 años, pago de 2,2 M según Yahoo), con Ryan Lance como presidente ejecutivo del directorio (63 años, pago de 6,9 M) y Kontessa Haynes-Welsh como directora financiera (50 años). Lance fue el CEO durante años y sigue en el directorio, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras, con un recorte del dividendo variable**: paga un dividendo de 3,36 por acción (pagado desde 1982; cayó 13,9 % por año en 3 años porque en 2022 incluía pagos extra variables, dato a verificar; 4.070 M en los últimos 12 meses, 40 % del flujo libre) y recompró 9.270 M en 2022, 5.452 M, 5.541 M, 5.118 M y 5.386 M en los últimos 12 meses. **Las acciones bajaron de 1.278 M a 1.230 M, un 3,8 % menos.**",
+   "fortalezas": [
+    "Margen operativo de 21,9 % en los últimos 12 meses.",
+    "Flujo libre de 10.064 M, 15,9 % de los ingresos.",
+    "Dividendo pagado desde 1982 y 3,8 % menos acciones.",
+    "Deuda neta de unos 7 meses de EBITDA.",
+    "Recursos de bajo costo en yacimientos no convencionales."
+   ],
+   "debilidades": [
+    "Totalmente expuesta al precio del petróleo y el gas.",
+    "ROIC de 10,5 %, muy inferior al de 2022.",
+    "Inversiones de 11.861 M, 1,3 veces la ganancia neta: el crítico más duro diría que tiene que invertir mucho solo para mantener la producción.",
+    "Deuda total que subió de 16.643 M a 23.290 M.",
+    "Dividendo recortado desde los extras de 2022."
+   ],
+   "vigilar": [
+    "Precio del Brent: hoy en máximos de cinco meses; si baja, el EBIT vuelve hacia 11.000 M.",
+    "Inversiones: hoy 11.861 M; si suben, el flujo libre se achica.",
+    "Deuda total: hoy 23.290 M; debería bajar con el flujo libre.",
+    "Reservas y costos de producción: Yahoo no los informa, hay que buscarlos en el informe."
+   ],
+   "clientes": [
+    "Refinerías y comercializadoras de energía",
+    "Compradores de GNL",
+    "Empresas de gas y servicios públicos"
+   ],
+   "ideal_para": [
+    "Buscan exposición directa al precio del petróleo y el gas.",
+    "Valoran el dividendo y las recompras.",
+    "Aceptan el ciclo de materias primas."
+   ],
+   "menos_ideal": [
+    "Buscan ingresos estables.",
+    "No toleran la volatilidad del precio de la energía."
+   ],
+   "perfil": "energia",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "COP",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 63345000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
   }
  }
 }
