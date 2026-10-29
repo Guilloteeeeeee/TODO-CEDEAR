@@ -2727,6 +2727,198 @@
      "2023"
     ]
    }
+  },
+  "LRCX": {
+   "resumen": "Lam Research fabrica las máquinas que las fábricas de chips usan para depositar y grabar capas de material sobre el silicio, y vende servicios, repuestos y mejoras para esas máquinas. Cuando alguien quiere fabricar más chips de memoria o de lógica, incluidos los que usa la inteligencia artificial, necesita comprarle equipos a ella o a pocos competidores. Tiene un **foso amplio, de tecnología y costos de cambio**: una fábrica de chips califica cada herramienta durante años y no la cambia fácil. Los números son excelentes: los ingresos pasaron de 17.429 M en el año fiscal 2023 a 26.128 M en los últimos 12 meses, el margen operativo subió a 37,0 % y el ROIC a 47,8 %. Tiene **más caja (7.437 M) que deuda (3.735 M)** y recompró acciones: hoy hay 7,4 % menos que en 2023. Su punto débil es el ciclo: en el año fiscal 2024 los ingresos cayeron 14,5 %, y el 22 de octubre los semiconductores cayeron 6,7 %. Además depende de pocos clientes grandes y de China. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la impulsa; el riesgo es que ese gasto en chips se frene. Conclusión: **muy buena empresa, con foso amplio, ROIC de 47,8 %, más caja que deuda y recompras, pero muy cíclica y atada al gasto de pocos clientes.**",
+   "veredicto": "Muy buena empresa: retorno altísimo y más caja que deuda, pero muy cíclica",
+   "conclusion": "Lam Research es una muy buena empresa: tiene un foso amplio, margen operativo de 37,0 %, ROIC de 47,8 % y más caja que deuda, pero es muy cíclica y hoy está en la parte alta del ciclo. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el gasto de los clientes en equipos para chips se sostenga cuando el ciclo se enfríe.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
+   "negocio": "Lam Research diseña, fabrica, reacondiciona y da servicio a equipos de procesamiento de semiconductores. Entre sus productos están los sistemas **ALTUS** (depósito de películas de tungsteno o molibdeno) y los productos de depósito electroquímico **SABRE** (interconexiones de cobre), además de equipos de grabado. Vende en Estados Unidos, China, Corea, Taiwán, Japón, el Sudeste Asiático y Europa. Yahoo no informa cuánto aporta cada línea ni cada región, y no lo vamos a inventar.\n\nEs un negocio de bienes de capital: sus clientes compran cuando amplían fábricas. **Los ingresos cayeron 14,5 % en el año fiscal 2024, y subieron 23,7 % en 2025 y 26,0 % en 2026, hasta 26.128 M en los últimos 12 meses** (el año fiscal termina en junio).\n\n**A quién le vende.** A las grandes fábricas de chips del mundo. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
+   "foso": "La ventaja de Lam Research **es de tecnología y de costos de cambio, y es amplia**. Fabricar estas máquinas exige décadas de ingeniería, y las fábricas de chips pasan años calificando cada herramienta para su proceso; una vez instalada, pagan servicio y repuestos por años. Se ve en el **margen bruto, de 44,6 % a 51,1 %**, en el **margen operativo, de 29,9 % a 37,0 %** y en el ROIC, siempre arriba de 27 %.\n\nCompite con Applied Materials, Tokyo Electron, KLA y ASML. Es frágil en el ciclo (los clientes recortan inversión cuando baja la demanda), en las restricciones de exportación a China y en que sus clientes son pocos y muy grandes.",
+   "numeros": "Los números de Lam Research cuentan **un negocio muy rentable que sube y baja con el ciclo, ahora en la parte alta**. Los ingresos fueron de 17.429 M, 14.905 M, 18.436 M y 23.233 M, y de 26.128 M en los últimos 12 meses, 49,9 % más que en 2023. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 29,9 %, 28,7 %, 32,0 %, 35,3 % y **37,0 %**. La ganancia por acción pasó de 3,32 a 2,90, 4,15, 5,76 y **6,71 en los últimos 12 meses**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 4.677 M en 2023, 4.891 M en 2026 y **6.537 M en los últimos 12 meses (25,0 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 35,0 % a **47,8 %**, con un capital invertido de 17.644 M.\n\nLa mirada crítica: estas son cifras de un momento fuerte del ciclo. En el año fiscal 2024 los ingresos cayeron 14,5 % y la ganancia por acción 12,7 %. Los márgenes de hoy no son un piso.",
+   "balance": "**El balance de Lam Research es muy sólido.** La caja es de 7.437 M y la deuda total de 3.735 M, así que tiene **más caja que deuda** (deuda neta de -3.702 M según Yahoo, que es una caja neta). La cobertura de intereses es de 63,9 veces y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,48 veces: holgada. El patrimonio neto subió de 8.210 M a 13.908 M.\n\nCon tasas cerca de 5 %, tener más caja que deuda es una ventaja: gana intereses en lugar de pagarlos. Es una buena base para aguantar un ciclo malo.",
+   "gerencia": "La conduce Tim Archer, presidente y CEO (58 años, pago de 6,8 M según Yahoo), con Doug Bettinger como director financiero (58 años). Es un equipo con años en el negocio.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: paga un dividendo de 1,32 por acción (pagado desde 2014; sube 15,0 % por año en 3 años; 1.304 M en los últimos 12 meses, 20 % del flujo libre) y recompra acciones (3.422 M en 2025 y 3.901 M en los últimos 12 meses). Las acciones diluidas bajaron de 1.358 M a 1.258 M, **7,4 % menos**.",
+   "fortalezas": [
+    "Foso amplio de tecnología y costos de cambio, con servicios recurrentes sobre las máquinas instaladas.",
+    "Margen operativo de 37,0 % y margen bruto de 51,1 % en los últimos 12 meses.",
+    "ROIC de 47,8 % y flujo libre de 6.537 M (25,0 % de las ventas).",
+    "Más caja (7.437 M) que deuda (3.735 M) y cobertura de intereses de 63,9 veces.",
+    "7,4 % menos acciones desde 2023 y dividendo creciente (15,0 % anual en 3 años)."
+   ],
+   "debilidades": [
+    "Muy cíclica: en el año fiscal 2024 los ingresos cayeron 14,5 % y la ganancia por acción 12,7 %.",
+    "Pocos clientes grandes y exposición a China: el crítico más duro diría que una restricción de exportación pega directo en las ventas.",
+    "Los márgenes y el ROIC de hoy están en la parte alta del ciclo.",
+    "El 22 de octubre los semiconductores cayeron 6,7 %: el sector reacciona fuerte a dudas sobre el gasto en inteligencia artificial.",
+    "Inversión en planta en alza: 1.039 M contra 502 M en 2023."
+   ],
+   "vigilar": [
+    "Ingresos: hoy 26.128 M en los últimos 12 meses; si se frenan, el gasto de los clientes en chips se enfría.",
+    "Margen operativo: hoy 37,0 %; si cae, el ciclo o la competencia están pegando.",
+    "Ventas a China: pesan en los ingresos y dependen de las reglas de exportación; Yahoo no da el porcentaje.",
+    "Flujo libre: hoy 6.537 M; tiene que cubrir con holgura recompras y dividendo."
+   ],
+   "clientes": [
+    "Grandes fábricas de chips del mundo",
+    "Fabricantes de memorias y de procesadores",
+    "Empresas que usan sus servicios de mantenimiento y mejora"
+   ],
+   "ideal_para": [
+    "Buscan exposición a la fabricación de chips y a la inteligencia artificial.",
+    "Valoran un balance con más caja que deuda, recompras y un dividendo creciente.",
+    "Aceptan que los resultados suban y bajen con el ciclo."
+   ],
+   "menos_ideal": [
+    "No toleran ganancias cíclicas ni caídas fuertes en el sector.",
+    "Buscan una empresa sin exposición a China."
+   ],
+   "perfil": "hardware",
+   "capas": [
+    "compounder",
+    "ciclica"
+   ],
+   "ticker": "LRCX",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 26127935000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
+  },
+  "LIN": {
+   "resumen": "Linde es la mayor empresa de gases industriales del mundo: produce oxígeno, nitrógeno, argón, hidrógeno, helio y gases especiales para chips, y los entrega por cañerías desde plantas construidas al lado de sus clientes o en camiones. Gana plata con contratos largos, muchos de ellos con un consumo mínimo asegurado, y también diseña y construye plantas para terceros. Tiene un **foso amplio, de escala y contratos de largo plazo**: pocos competidores en el mundo y una planta propia al lado de la fábrica del cliente, que no se muda. Los números lo muestran: el margen operativo subió de 19,4 % en 2022 a 27,1 % en los últimos 12 meses y la ganancia por acción de 8,23 a 15,48. Su punto débil es la caja: **el flujo libre bajó a 4.975 M (14,0 % de las ventas) porque la inversión en plantas subió de 3.173 M a 5.514 M**, y la deuda subió 49 % a 28.013 M. Con el bono a 10 años cerca de 5 %, esas inversiones y esa deuda cuestan más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**; hasta puede ayudarla, porque vende gases para fabricar chips. Conclusión: **muy buena empresa, con foso amplio, márgenes en alza y recompras, pero con flujo libre en baja, deuda en alza y ROIC de solo 11,1 %.**",
+   "veredicto": "Muy buena empresa: foso amplio y márgenes en alza, pero flujo libre en baja y deuda en alza",
+   "conclusion": "Linde es una muy buena empresa: tiene un foso amplio, margen operativo de 27,1 %, ganancia por acción en alza y 7,1 % menos acciones, pero el flujo libre bajó a 14,0 % de las ventas y la deuda subió 49 %. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la inversión en plantas se transforme en más ventas y en flujo libre.",
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "Linde produce y entrega **gases atmosféricos** (oxígeno, nitrógeno, argón, gases raros) y **gases de proceso** (hidrógeno, helio, dióxido de carbono, monóxido de carbono, gases electrónicos, gases especiales y acetileno). También diseña y construye plantas llave en mano (separación de aire, hidrógeno, síntesis, olefinas y gas natural) para terceros y para sus propios negocios. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio indispensable y de contratos largos: la industria usa gases todos los años. **Los ingresos cayeron 1,5 % en 2023, subieron 0,5 % en 2024 y 3,0 % en 2025, hasta 35.449 M en los últimos 12 meses.** El crecimiento es lento y parejo, con precios que suben y volumen estable.\n\n**A quién le vende.** A industrias muy variadas: manufactura, salud, electrónica, alimentos, energía y químicos. **Ningún cliente concentra una parte decisiva de las ventas.**",
+   "foso": "La ventaja de Linde **es de escala y de contratos de largo plazo, y es amplia**. Los gases industriales se producen en plantas grandes y se entregan por cañería a clientes que no pueden cambiar de proveedor de un día para otro; en muchos contratos el cliente asegura un consumo mínimo. Hay muy pocos jugadores en el mundo (Linde, Air Liquide, Air Products). Se ve en el **margen bruto, de 41,7 % a 48,3 %**, y en el **margen operativo, que subió de 19,4 % a 27,1 %**.\n\nCompite con Air Liquide, Air Products y proveedores regionales. Es frágil en el ciclo industrial (si baja la producción, baja el volumen), en los costos de energía que usa para producir y en la inversión que necesita para crecer. Y el ROIC, de 8,3 % a 11,1 %, es modesto porque pagó caro por sus plantas.",
+   "numeros": "Los números de Linde cuentan **un negocio muy estable que mejora sus márgenes**. Los ingresos pasaron de 33.364 M en 2022 a 33.986 M en 2025 y a 35.449 M en los últimos 12 meses. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 19,4 %, 24,7 %, 26,0 %, 27,2 % y **27,1 % en los últimos 12 meses**. La ganancia por acción fue de 8,23 en 2022 (año con partidas que Yahoo no detalla), 12,59, 13,62, 14,61 y **15,48 en los últimos 12 meses**.\n\nLa caja, en cambio, flojea: el flujo libre (lo que sobra después de invertir) fue de 5.691 M en 2022, 4.926 M en 2024, 5.089 M en 2025 y **4.975 M en los últimos 12 meses (14,0 % de las ventas)**, contra 17,1 % en 2022. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 8,3 %, 10,6 %, 11,0 %, 11,0 % y **11,1 %**.\n\nLa mirada crítica: la inversión en planta subió 74 % en cuatro años mientras el flujo libre bajó. Es plata para crecer, pero todavía no se transformó en más ventas.",
+   "balance": "**La deuda de Linde subió, pero se banca.** La deuda total pasó de 18.791 M en 2022 a 28.013 M en los últimos 12 meses (+49 %), con 4.898 M en caja: la deuda neta es de 23.115 M, **1,70 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 20 meses de ganancia operativa. Era de 1,25 veces en 2022. La ganancia operativa cubre 20,9 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,88 veces: justa, y bastante estable en los últimos años. Con tasas cerca de 5 %, la deuda nueva cuesta más.",
+   "gerencia": "La conduce Sanjiv Lamba, CEO y presidente del directorio (61 años, pago de 5,0 M según Yahoo), con Matthew White como director financiero (53 años). Es un equipo estable.\n\nEn lo que importa, **el uso del capital, es de inversión en plantas y de retorno al accionista**: paga un dividendo de 6,40 por acción (pagado desde 1992; sube 8,6 % por año en 3 años; 2.878 M en los últimos 12 meses) y recompra acciones (4.601 M en 2025 y 4.057 M en los últimos 12 meses). Las acciones diluidas bajaron de 504 M a 468 M, **7,1 % menos**. Entre recompras y dividendo devolvió 6.935 M, más que el flujo libre de 4.975 M, y la diferencia se financia con deuda.",
+   "fortalezas": [
+    "Líder mundial en gases industriales, con contratos largos y plantas junto al cliente.",
+    "Margen operativo de 27,1 % y margen bruto de 48,3 % en los últimos 12 meses.",
+    "Ganancia por acción de 15,48 en los últimos 12 meses, contra 8,23 en 2022.",
+    "Recompras: 7,1 % menos acciones desde 2022.",
+    "Dividendo pagado desde 1992 (6,40 por acción) y cobertura de intereses de 20,9 veces."
+   ],
+   "debilidades": [
+    "Flujo libre en baja: 4.975 M, 14,0 % de las ventas, contra 17,1 % en 2022.",
+    "Devuelve más (6.935 M) de lo que genera (4.975 M): el crítico más duro diría que la diferencia se paga con deuda.",
+    "Deuda en alza: 28.013 M, 49 % más que en 2022, con tasas cerca de 5 %.",
+    "ROIC modesto (11,1 %) para un foso amplio.",
+    "Ingresos casi sin crecer: +3,0 % en 2025."
+   ],
+   "vigilar": [
+    "Flujo libre: hoy 4.975 M; tiene que recuperar los 15 % o más de las ventas cuando las plantas nuevas produzcan.",
+    "Deuda neta sobre EBITDA: hoy 1,70 veces; si sigue subiendo, el balance se ajusta con tasas cerca de 5 %.",
+    "ROIC: hoy 11,1 %; tiene que subir hacia 13 % o más para justificar la inversión.",
+    "Margen operativo: hoy 27,1 %; si cae, el poder de fijar precios se debilita."
+   ],
+   "clientes": [
+    "Industrias de manufactura, químicas y energéticas",
+    "Hospitales y empresas de salud",
+    "Fabricantes de chips y electrónica"
+   ],
+   "ideal_para": [
+    "Buscan un negocio industrial estable con contratos largos y márgenes en alza.",
+    "Valoran un dividendo pagado desde 1992 y recompras.",
+    "Aceptan un crecimiento lento a cambio de estabilidad."
+   ],
+   "menos_ideal": [
+    "No toleran un flujo libre en baja ni una deuda en alza.",
+    "Buscan crecimiento rápido de ingresos."
+   ],
+   "perfil": "materiales",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "LIN",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026 (TTM)",
+    "ingresos": 35449000000.0,
+    "anios": [
+     "2026 (TTM)",
+     "2025",
+     "2024",
+     "2023",
+     "2022"
+    ]
+   }
+  },
+  "BHP": {
+   "resumen": "BHP es una de las mayores mineras del mundo: saca mineral de hierro (el insumo del acero), cobre, carbón siderúrgico y otros metales, sobre todo de minas en Australia, Chile y otros países. Gana plata con la diferencia entre lo que cuesta sacar y procesar el mineral y el precio de mercado, que no controla. Tiene un **foso estrecho, de bajo costo**: sus minas de hierro y cobre son de las más baratas de operar, y por eso gana plata incluso con precios flojos. Se ve en los márgenes: el margen operativo fue de 43,4 % en el año fiscal 2026, y el ROIC de 24,7 %. Los ingresos pasaron de 53.817 M en 2023 a 58.760 M en 2026 y el flujo libre fue de 11.929 M (20,3 % de las ventas). Su punto débil es el ciclo y la dependencia de China: **el dividendo se redujo a casi la mitad desde 2023 (de 13.268 M a 6.756 M)** y la inversión en minas subió de 6.733 M a 9.849 M. Tiene poca deuda: la deuda neta es de 4.290 M, 0,14 veces el EBITDA. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se saca roca de la tierra. Conclusión: **buena empresa, con minas de bajo costo, márgenes altos y deuda baja, pero atada al precio de los metales, a China y con un dividendo que sube y baja con el ciclo.**",
+   "veredicto": "Buena empresa: minas de bajo costo y deuda baja, pero atada al precio de los metales y a China",
+   "conclusion": "BHP es una buena empresa, no una excelente: tiene minas de bajo costo, margen operativo de 43,4 %, flujo libre de 11.929 M y deuda de 0,14 veces el EBITDA, pero depende del precio de los metales y de China, y su dividendo sube y baja con el ciclo. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la demanda de hierro y cobre se sostenga.",
+   "calidad": "Buena",
+   "riesgo_ia": "muy bajo",
+   "negocio": "BHP opera tres segmentos: **Cobre**, **Mineral de hierro** y **Carbón**. Explora y extrae cobre, mineral de hierro, carbón siderúrgico y energético, níquel, potasa y otros metales, y participa en servicios, comercialización y trading. Vende a Australia, Europa, China, Japón, India, Corea del Sur y el resto de Asia, y a América. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio de materias primas: vende lo que el mundo necesita para construir, pero a precios que suben y bajan. **Los ingresos crecieron 3,4 % en el año fiscal 2024, cayeron 7,9 % en 2025 y subieron 14,6 % en 2026, hasta 58.760 M** (el año fiscal termina en junio).\n\n**A quién le vende.** Sobre todo a acerías y fundiciones de Asia, y China pesa mucho (Yahoo la lista entre las regiones, sin dar el porcentaje). **Pocos clientes grandes concentran buena parte de las ventas.**",
+   "foso": "La ventaja de BHP **es de bajo costo, y es estrecha**. Sus minas de hierro y de cobre son grandes, de buena ley y de bajo costo por tonelada, y eso le permite ganar plata cuando los precios caen y a otros les cuesta. Se ve en el **margen bruto, entre 70,4 % y 75,6 %**, y en el **margen operativo, entre 37,2 % y 43,4 %**.\n\nPero el precio de los metales lo fija el mercado, y esa ventaja de costo no la protege de un mal año: la ganancia por acción fue de 5,09 en 2023, 3,11 en 2024 y 3,86 en 2026. Compite con Rio Tinto, Vale, Anglo American y Glencore. Es frágil en el precio del hierro y del cobre, en China y en que cada mina nueva cuesta más.",
+   "numeros": "Los números de BHP cuentan **un negocio muy rentable con ganancias que suben y bajan con los precios**. Los ingresos fueron de 53.817 M en 2023, 55.658 M, 51.262 M y 58.760 M en 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 40,8 %, 41,2 %, 37,2 % y **43,4 %**. La ganancia por acción fue de 5,09, 3,11, 3,55 y **3,86**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 11.968 M en 2023, 9.294 M en 2025 y **11.929 M en 2026 (20,3 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 25,7 %, 26,5 %, 17,1 % y **24,7 %**.\n\nLa mirada crítica: en 2026 el EBIT subió 33,7 % pero la ganancia neta solo 9,0 %, porque entre uno y otro están los impuestos y las participaciones de socios en las minas, que Yahoo no detalla. El margen neto (16,7 %) es mucho menor que el operativo.",
+   "balance": "**El balance de BHP es muy sólido.** La deuda total pasó de 22.345 M en 2023 a 27.121 M en 2026, con 18.602 M en caja: la deuda neta es de 4.290 M, **0,14 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o menos de 2 meses de ganancia operativa. La ganancia operativa cubre 12,1 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,88 veces: cómoda. Con tasas cerca de 5 %, la deuda cuesta más, pero la caja y el flujo libre la sostienen.",
+   "gerencia": "Yahoo lista a Brandon Craig como CEO (pago de 2,0 M) y a Vandita Pant como directora financiera (54 años). Mike Henry, que condujo la empresa antes, figura ahora como ejecutivo: conviene seguir cómo sigue la transición.\n\nEn lo que importa, **el uso del capital, es de dividendo y de inversión en minas**: paga un dividendo de 3,96 por acción (pagado desde 1987; 6.756 M en 2026). El dividendo cayó -45,5 % por año en 3 años: sube y baja con los precios. Invierte mucho (9.849 M en 2026, 100,2 % de la ganancia neta) y no recompra acciones: las acciones diluidas pasaron de 2.536 M a 2.544 M, **0,3 % más**.",
+   "fortalezas": [
+    "Minas de hierro y cobre de bajo costo: margen operativo de 43,4 % en 2026.",
+    "Flujo libre de 11.929 M en 2026, 20,3 % de las ventas.",
+    "Deuda neta de 4.290 M, 0,14 veces el EBITDA, y liquidez corriente de 1,88 veces.",
+    "ROIC de 24,7 % en 2026.",
+    "Dividendo pagado desde 1987 (3,96 por acción) y acciones sin dilución."
+   ],
+   "debilidades": [
+    "Sin control sobre el precio de los metales: la ganancia por acción fue de 5,09 en 2023 y de 3,86 en 2026.",
+    "Dependencia de China: el crítico más duro diría que una caída de su construcción pega directo en las ventas.",
+    "Dividendo que sube y baja: -45,5 % por año en 3 años.",
+    "Inversión en minas en alza: 9.849 M contra 6.733 M en 2023.",
+    "Foso estrecho: la ventaja de costo no evita un mal año."
+   ],
+   "vigilar": [
+    "Precios del hierro y del cobre: son lo que más mueve el resultado.",
+    "Ventas a China: pesan en los ingresos; Yahoo no da el porcentaje, hay que buscarlo en el informe.",
+    "Inversión en planta: hoy 9.849 M; si sigue subiendo más rápido que el flujo libre, se achica la plata para el dividendo.",
+    "ROIC: hoy 24,7 %; tiene que mantenerse sobre 15 % incluso con metales más baratos."
+   ],
+   "clientes": [
+    "Acerías y fundiciones de Asia, sobre todo China",
+    "Compradores de cobre y carbón en Europa, Japón e India",
+    "Empresas de trading de materias primas"
+   ],
+   "ideal_para": [
+    "Buscan una minera de bajo costo con balance sólido y dividendo.",
+    "Aceptan que la ganancia dependa del precio de los metales y de China.",
+    "Quieren exposición al hierro y al cobre."
+   ],
+   "menos_ideal": [
+    "No toleran un dividendo que sube y baja con el ciclo.",
+    "Buscan ganancias estables año a año."
+   ],
+   "perfil": "materiales",
+   "capas": [
+    "ciclica"
+   ],
+   "ticker": "BHP",
+   "fecha": "29/10/2026",
+   "modelo": "Claude",
+   "base": {
+    "periodo": "2026",
+    "ingresos": 58760000000.0,
+    "anios": [
+     "2026",
+     "2025",
+     "2024",
+     "2023"
+    ]
+   }
   }
  }
 }
