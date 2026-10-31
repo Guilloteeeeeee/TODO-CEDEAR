@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.98 (31/10/2026): Análisis Fundamental nuevo, tanda 6
+
+- Reescritas con el formato v4: MA, ABBV, INTC, CVX y MRK (las que estaban pendientes porque la SEC no respondía; se leyeron los comunicados oficiales en otras fuentes). Van 44 de 166.
+- Renovadas con su último informe: XOM (3T26) y ORCL (1T del año fiscal 2027), con la nota "Desde el último análisis".
+
 ### v1.2.97 (31/10/2026): Análisis Fundamental nuevo, tanda 5
 
 - Reescritas con el formato v4: HD, CAT, HSBC, PM, GE, AMAT, SHEL, NVS, PANW, LRCX y MS. Van 39 de 166.

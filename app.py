@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.2.97"
+APP_VERSION = "1.2.98"
 
 import re
 import contextlib
