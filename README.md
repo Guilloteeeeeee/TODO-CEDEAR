@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.94 (31/10/2026): Análisis Fundamental nuevo, tanda 2
+
+- Reescritas con el formato v4 y su último informe oficial: LLY, MU, WMT, JPM, AMD, V y XOM (más BRK-B de la v1.2.93). Van 19 de 166.
+- XOM usa el informe del 2T26 (el del 3T26 salió el 30/10 y no se pudo leer todavía): se renueva en la próxima vuelta.
+
 ### v1.2.93 (29/10/2026): Análisis Fundamental nuevo, BRK-B y listas
 
 - BRK-B reescrita con el formato v4 (informe del 2T26). El texto del análisis admite listas cortas (un párrafo con un ítem por línea que empieza con "- ").

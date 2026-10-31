@@ -1,5 +1,5 @@
 {
- "fecha": "29/10/2026",
+ "fecha": "31/10/2026",
  "datos": {
   "TJX": {
    "resumen": "TJX vende ropa, calzado y artículos para el hogar de marcas conocidas a precios más bajos que los de una tienda tradicional, a través de cadenas como T.J. Maxx, Marshalls y HomeGoods en Estados Unidos, Canadá, Europa y Australia. Su ventaja está en cómo compra: es tan grande que los proveedores le ofrecen primero la mercadería que les sobró, y eso le permite vender barato y aun así ganar más que antes. Tiene un **foso estrecho, de costos y escala**: es real, pero más frágil que el de una marca. Los números lo confirman: los ingresos crecieron 6,5 % por año entre 2023 y 2026, el margen operativo subió de 9,7 % a 12,7 % en los últimos 12 meses y el retorno sobre el capital invertido supera el 40 %. Su debilidad es la de todo comercio: si el cliente deja de encontrar buenas ofertas, **se va a otra tienda sin pagar ningún costo**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente va a las tiendas a buscar sorpresas y eso es difícil de reemplazar con tecnología. Conclusión: **muy buena empresa de comercio, con foso estrecho, retornos excepcionales, balance cómodo y márgenes en máximos.**",
@@ -160,54 +160,71 @@
    }
   },
   "JPM": {
-   "resumen": "JPMorgan Chase es el mayor banco de Estados Unidos y hace casi todo lo que hace un banco: recibe depósitos y presta a familias y empresas, financia y asesora a grandes compañías, opera en los mercados y administra patrimonios. Tiene un **foso estrecho, de los más sólidos de la banca**: sus clientes no cambian fácil de banco, y su escala le permite invertir en tecnología y financiarse más barato que casi cualquier competidor. Los números acompañan: la ganancia por acción pasó de 12,09 en 2022 a 20,02 en 2025 (y 23,84 en los últimos 12 meses), con un retorno sobre el patrimonio (ROE) de **15,7 % en 2025**, por encima del 12 % que suele pedirse a un banco. El riesgo central es el de todo banco: **un ciclo de créditos malos puede borrar años de ganancias**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: puede bajar sus costos, pero también acercar competidores digitales. Conclusión: **banco de primera línea, rentable y bien conducido: muy buena empresa y no excelente, porque su foso es estrecho y su ganancia acompaña el ciclo del crédito.**",
-   "veredicto": "Banco de primera línea: muy buena empresa, con un foso estrecho y una ganancia que sigue el ciclo",
-   "conclusion": "JPMorgan es una muy buena empresa: un banco de primera línea, con escala, confianza y un ROE de 15,7 % en 2025, por encima del 12 % que se le pide a un banco. No es excelente porque su foso es estrecho y su ganancia sigue el ciclo del crédito y de las tasas (cayó 2,4 % en 2025). Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por préstamos incobrables en los informes de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se mantenga por encima de 12 % y que el activo sobre patrimonio no siga subiendo.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "moderado",
-   "negocio": "JPMorgan opera en tres grandes segmentos. **Consumer & Community Banking** es el banco de las personas y los pequeños comercios: cuentas, tarjetas, hipotecas y préstamos. **Commercial & Investment Bank** atiende a empresas y gobiernos, con préstamos, pagos, banca de inversión y operaciones en los mercados. **Asset & Wealth Management** administra el dinero de clientes de alto patrimonio e instituciones. Yahoo no informa cuánto aporta cada segmento.\n\nGana de tres maneras: la diferencia entre lo que cobra por prestar y lo que paga por los depósitos, las comisiones por servicios y las ganancias de operar en los mercados. Es un negocio que se repite todos los años porque la gente y las empresas siempre necesitan cuentas, pagos y crédito. Lo que impulsa su crecimiento es sumar clientes, vender más servicios a los mismos clientes y, a veces, comprar otros bancos.\n\n**A quién le vende.** A familias y pequeños comercios (banca personal, tarjetas, hipotecas), a empresas, instituciones y gobiernos (préstamos, pagos, banca de inversión) y a clientes de alto patrimonio. Su base es tan amplia que **ningún cliente pesa por sí solo**; lo que sí la une al resto de la economía es que sus ganancias dependen de que esos clientes sigan pagando.",
-   "foso": "La ventaja de JPMorgan viene de tres fuentes. Primero, **los costos de cambio**: cambiar de banco principal implica mover cuentas, pagos automáticos y créditos, y la mayoría de la gente no lo hace salvo que algo salga muy mal. Segundo, **la escala**: al ser tan grande, puede repartir el costo de tecnología y regulación entre muchísimos clientes y financiarse con depósitos baratos. Tercero, **los activos intangibles**: la marca, la confianza y las licencias que cuestan años y regulaciones obtener.\n\nCompite con Bank of America, Citigroup, Wells Fargo, y en banca de inversión con Goldman Sachs y Morgan Stanley. La ventaja de JPMorgan es de las más sólidas del sector, pero ningún banco la tiene tan blindada como una empresa de software, porque la banca **depende del ciclo económico y de la regulación**. La inteligencia artificial puede mejorar sus costos pero también acercar competidores digitales, y por eso el riesgo es moderado.",
-   "numeros": "Una advertencia previa: en un banco el flujo de caja que informa Yahoo no sirve para juzgarlo (los movimientos de depósitos y préstamos lo distorsionan), así que nos apoyamos en la ganancia y en el ROE. Los ingresos crecieron de 127.727 M en 2022 a 181.847 M en 2025, **12,5 % por año**. La ganancia neta pasó de 37.676 M a 57.048 M, y la ganancia por acción de 12,09 a 20,02, y llega a **23,84** en los últimos 12 meses. Parte de la mejora viene de las recompras: las acciones bajaron 8,8 % desde 2022.\n\nEl ROE, que mide cuánto gana por cada dólar de los dueños, fue de **15,7 % en 2025**, con un promedio de 15,2 % en los años completos. Es un resultado bueno para un banco grande.\n\nLa mirada crítica: **la ganancia neta cayó 2,4 % en 2025** (de 58.471 M a 57.048 M), después de crecer con fuerza en 2023 y 2024. Los años de tasas de interés altas ayudaron a los bancos, y si las tasas bajan el margen que cobran por prestar puede achicarse.",
-   "balance": "En un banco, la deuda (los depósitos) es la materia prima, por lo que lo que importa es cuánto colchón de capital tiene frente a sus activos. El activo total equivale a **12,21 veces el patrimonio en 2025 y a 13,39 veces** en los últimos 12 meses: el banco usa unos 12 a 13 dólares prestados o depositados por cada dólar propio, un nivel normal para un banco grande, aunque la tendencia subió en el último dato. El patrimonio creció de 292.332 M en 2022 a 374.598 M en los últimos 12 meses.\n\nLo más importante en un banco es la calidad de sus préstamos (cuánto no se paga, cuánto dinero reserva para pérdidas), y esos datos no están en lo que tenemos. **Es un vacío real**: no podemos decir si sus créditos están sanos o no. Lo que sí sabemos es que JPMorgan tiene fama de ser un banco conservador, pero conviene verificarlo en sus informes.",
-   "gerencia": "Lo conduce James Dimon, presidente y CEO (69 años, pago de 8,1 M según Yahoo), junto a dos copresidentes (Douglas Petno y Troy Rohrbaugh), el CFO Jeremy Barnum y Mary Erdoes en gestión de patrimonios. **La sucesión de Dimon es una pregunta abierta** para el largo plazo, aunque tener varios ejecutivos de peso ayuda a cubrir ese riesgo.\n\nEl uso del capital es de manual: recompra acciones (**33.670 M** en los últimos 12 meses, contra 10.596 M en 2022) y paga dividendos (6,60 por acción al año, creciendo 12,7 % por año en 10 años, según Yahoo). Las acciones diluidas bajaron de 2.970 M a 2.709 M desde 2022, es decir, **no hay dilución**. Si las recompras se hacen a buenos precios no lo podemos decir: depende del valor de la acción cuando se compra.",
-   "fortalezas": [
-    "Banco de primera línea con escala: ingresos de 181.847 M en 2025, con presencia en banca personal, empresas, mercados y patrimonios.",
-    "ROE de 15,7 % en 2025 y 15,2 % de promedio, por encima del 12 % que se pide a un banco.",
-    "Ganancia por acción creciente: de 12,09 en 2022 a 20,02 en 2025 y 23,84 en los últimos 12 meses.",
-    "Patrimonio que crece (de 292.332 M a 374.598 M desde 2022) y acciones que bajan (8,8 % menos desde 2022).",
-    "Dividendo que creció 12,7 % por año en 10 años."
+   "formato": "v4",
+   "titulo": "JPMorgan: el banco que mejor gana con las tasas altas, y el mercado ya paga por esa calidad",
+   "resumen": [
+    "JPMorgan es el banco más grande de EE.UU.: cuentas y tarjetas para millones de personas, préstamos a empresas, banca de inversión y administración de fortunas. **Su ventaja es la escala y la confianza**: es el lugar al que va la plata cuando hay miedo.",
+    "En el tercer trimestre de 2026 ganó **15.300 M (+6 %)**, con un ingreso por intereses que creció 13 % y un retorno sobre el patrimonio de 17 %. Su colchón de capital (13,9 %) es holgado.",
+    "Excelente banco, el mejor manejado de su tamaño, con retornos altos y estables, capital de sobra y un dividendo creciente, en un momento en que las tasas altas lo favorecen."
    ],
-   "debilidades": [
-    "El riesgo de crédito: un ciclo de préstamos malos puede borrar años de ganancias de un banco, y la ganancia de JPMorgan depende de que sus clientes sigan pagando.",
-    "Sensibilidad a las tasas de interés: la ganancia neta cayó 2,4 % en 2025 tras dos años de fuertes aumentos; si bajan las tasas el margen por prestar podría achicarse.",
-    "Los ingresos de los mercados y la banca de inversión suben y bajan con el humor del mercado, lo que vuelve irregular una parte de las ganancias.",
-    "El apalancamiento aumentó en el último dato (activo sobre patrimonio de 13,39 veces contra 12,21 en 2025).",
-    "Dependencia de una figura central: la sucesión de James Dimon, de 69 años, es una incógnita."
+   "introduccion": "Cuando las tasas suben, a la mayoría de las empresas les cuesta más financiarse. A un banco como JPMorgan, en cambio, le puede convenir: presta más caro y, si maneja bien lo que paga por los depósitos, gana más en cada préstamo.\n\nEso es lo que está pasando. Con la Reserva Federal subiendo la tasa en septiembre y el bono a 10 años cerca de 5 %, el ingreso por intereses de JPMorgan creció 13 % en el último trimestre, a 27.100 M.\n\nPero la tasa alta tiene otra cara: cuanto más caro es el crédito, más gente y empresas pueden tener problemas para pagar. Y un banco vive o muere por la calidad de lo que presta.\n\nJamie Dimon, su CEO, lo resumió con su prudencia habitual: estos riesgos \"pueden ser manejables, pero seguimos preparados para una amplia gama de resultados\".\n\nEntonces, la pregunta es: ¿puede JPMorgan seguir ganando como ahora si la economía se enfría?",
+   "secciones": [
+    {
+     "titulo": "Un banco para cada necesidad, y todos ganan plata",
+     "texto": "JPMorgan tiene tres grandes negocios, y en el tercer trimestre de 2026 los tres crecieron:\n\n- **Banca de consumo** (cuentas, tarjetas, hipotecas, préstamos para autos): ganó 5.700 M (+13 %).\n- **Banca corporativa y de inversión** (préstamos a empresas, emisiones de acciones y bonos, compra y venta de instrumentos): ganó 8.200 M (+20 %).\n- **Administración de patrimonios** (fondos de inversión y gestión de fortunas): ganó 1.800 M (+11 %).\n\nSus clientes son millones de personas, pymes, grandes empresas, gobiernos e inversores, sin uno que pese demasiado.\n\nUn banco gana plata, sobre todo, cobrando más por lo que presta que lo que paga por los depósitos. Esa diferencia se llama **margen de intermediación**. Y suma comisiones: por tarjetas, por asesorar a empresas, por administrar plata.\n\n¿Cuál es su **ventaja**? La **escala** y la **confianza**. Es tan grande que sus costos por cliente son más bajos que los de bancos chicos, y es tan sólido que, en las crisis, la gente le lleva sus depósitos. Eso le da plata barata para prestar cuando otros sufren. Lo vimos en 2023, cuando quebraron varios bancos regionales: JPMorgan terminó comprando uno de ellos, First Republic.\n\nLa inteligencia artificial, para un banco de este tamaño, es más una herramienta (para reducir costos y detectar fraudes) que una amenaza."
+    },
+    {
+     "titulo": "Retornos altos y estables, que es lo más difícil en un banco",
+     "texto": "En un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nJPMorgan tuvo un ROE de **17 %** en el último trimestre, y fue de 15,7 % en 2025. El promedio de su industria (los grandes bancos de EE.UU.) es 12,9 %. Y si se descuenta lo que pagó de más al comprar otros bancos, el retorno sobre el patrimonio tangible fue de 20 %.\n\n[[grafico:roe]]\n\nLo más importante no es un buen año, sino la **estabilidad**. La ganancia por acción pasó de 12,09 dólares en 2022 a **23,84** en los últimos 12 meses, sin un solo año de caída.\n\n[[grafico:eps]]\n\nAhora, la cara del riesgo. Un banco gana mucho cuando todos pagan. El momento de probarlo es cuando la economía se frena. Por ahora, las señales son buenas: en el trimestre, lo que tuvo que reservar para préstamos incobrables bajó 19 %, y la morosidad de las tarjetas (2,91 % de los saldos se dio por perdido) está en niveles normales.\n\nEl crecimiento de los gastos (+12 %) es más rápido que el de los ingresos (+8 %): está invirtiendo mucho en tecnología y en sueldos. Es un punto para seguir."
+    },
+    {
+     "titulo": "Capital de sobra, dividendo creciente y menos acciones",
+     "texto": "La regla de oro de un banco es tener suficiente capital propio para aguantar pérdidas sin quebrar.\n\nEl indicador que miran los reguladores es el **CET1**: el capital de mejor calidad sobre los activos ajustados por riesgo. JPMorgan está en **13,9 %**, holgado frente a lo que le exige el regulador. Ese exceso le permite devolver plata a los accionistas sin poner en riesgo el banco.\n\nY la devuelve de dos formas. El dividendo es de **1,65 dólares por trimestre** y viene creciendo 11,5 % por año en los últimos tres. Y recompra acciones: la cantidad en circulación bajó de 2.970 M en 2022 a **2.709 M**, casi 9 % menos. Cada dueño se queda con una porción más grande.\n\n[[grafico:acciones]]\n\nEn los últimos 12 meses devolvió el 61 % de lo que ganó, y aun así su capital creció.\n\nLa conduce Jamie Dimon, CEO desde 2005 y uno de los banqueros más respetados del mundo. Tiene 69 años, y la sucesión es la gran pregunta pendiente."
+    }
    ],
-   "vigilar": [
-    "ROE (retorno sobre el patrimonio): hoy es 15,7 % en 2025, por encima del 12 % que se le pide a un banco; si baja de ese nivel, se debilita la calidad del negocio.",
-    "Activo sobre patrimonio: es 13,39 veces contra 12,21 en 2025; es el colchón de capital del banco, y si sigue subiendo, el banco queda más expuesto a una pérdida.",
-    "Morosidad y reservas por préstamos incobrables: se ven en los informes trimestrales (10-Q) de la empresa; si suben con rapidez, es la primera señal de un ciclo de créditos malos.",
-    "Ganancia neta con tasas más bajas: cayó 2,4 % en 2025; si vuelve a crecer aunque las tasas bajen, se confirma que no dependía solo de las tasas altas."
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción. Un banco promedio vale cerca de una vez y media su patrimonio; uno excepcional, más.\n\nCon el precio de {precio} dólares, JPMorgan cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces).\n\n¿Por qué pagar más que el patrimonio? Porque el patrimonio rinde: un banco que gana 17 % sobre su patrimonio vale más que uno que gana 10 %. La pregunta es cuánto más.\n\nEl PER (cuántos años de ganancia se pagan) cuenta algo parecido: {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nCuando un banco cotiza por encima de su historia, el mercado está pagando por un momento muy bueno del ciclo. El riesgo es que, si llega una recesión y las ganancias bajan, el múltiplo también baje.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "JPMorgan es un banco excelente. Tiene la escala y la confianza que pocos tienen, un ROE de 17 % muy por encima de su industria, ganancias que crecieron todos los años desde 2022 y un colchón de capital holgado. Es, probablemente, el banco mejor manejado de su tamaño.\n\nSu punto débil es que un banco depende de la economía. Las tasas altas hoy lo ayudan, pero si la economía se enfría, los préstamos impagos suben y la ganancia baja. El crítico más duro diría que el mercado está pagando por JPMorgan como si este momento fuera a durar para siempre, y que la sucesión de Dimon es un riesgo real. Es un argumento razonable.\n\nEncaja con quien busca una empresa financiera de primera línea, con dividendo creciente, para el largo plazo. No es para quien quiere comprar bancos baratos.\n\nEs recomendable revisar la morosidad y las reservas para préstamos incobrables en el informe trimestral de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga por encima de 15 % aun si la economía se enfría.",
+   "pros": [
+    "Rentabilidad superior: ROE de 17 %, contra 12,9 % del promedio de su industria.",
+    "Fortaleza: capital (CET1) de 13,9 %, holgado frente a lo que exige el regulador.",
+    "Devolución constante: dividendo +11,5 % por año y casi 9 % menos acciones desde 2022."
    ],
+   "contras": [
+    "Depende del ciclo: si la economía se frena, suben los préstamos impagos.",
+    "Gastos en alza: crecieron 12 %, más rápido que los ingresos (+8 %).",
+    "Sucesión: Jamie Dimon tiene 69 años y su relevo es la gran pregunta pendiente."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "bajo",
+   "clientes": [
+    "Personas con cuentas, tarjetas e hipotecas, sin un cliente dominante",
+    "Empresas de todos los tamaños y gobiernos",
+    "Inversores que le confían su patrimonio"
+   ],
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia de 15.300 M (+6 %), 5,57 dólares por acción (+10 %); ingresos de 50.900 M (+8 %); ingreso por intereses de 27.100 M (+13 %); gastos de 27.300 M (+12 %)",
+     "fuente": "Comunicado de resultados del 3T26 (8-K, anexo 99.1), 13/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000019617/000162828026065582/a3q26erfexhibit991narrative.htm"
+    },
+    {
+     "dato": "Provisión para préstamos incobrables de 2.700 M (-19 %); pérdidas en tarjetas de 2,91 %; ROE de 17 % y sobre patrimonio tangible de 20 %; CET1 de 13,9 %",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000019617/000162828026065582/a3q26erfexhibit991narrative.htm"
+    },
+    {
+     "dato": "Ganancia por segmento: consumo 5.700 M (+13 %), corporativa y de inversión 8.200 M (+20 %), patrimonios 1.800 M (+11 %); dividendo de 1,65 dólares; devolvió el 61 % de la ganancia de los últimos 12 meses; frase de Jamie Dimon",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000019617/000162828026065582/a3q26erfexhibit991narrative.htm"
+    }
+   ],
+   "ticker": "JPM",
    "perfil": "banco",
    "capas": [],
-   "ticker": "JPM",
-   "fecha": "28/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
-   "ideal_para": [
-    "Quieren un banco líder y diversificado (banca personal, empresas, mercados y patrimonios) para la parte financiera de su cartera.",
-    "Valoran un ROE sostenido por encima del 12 % que se le pide a un banco.",
-    "Aceptan seguir de cerca el ciclo de crédito y las tasas de interés."
-   ],
-   "menos_ideal": [
-    "Buscan estabilidad total: la ganancia de un banco sube y baja con el crédito y las tasas (la ganancia neta cayó 2,4 % en 2025)."
-   ],
-   "clientes": [
-    "Familias y pequeños comercios (cuentas, tarjetas, hipotecas y préstamos)",
-    "Empresas, instituciones y gobiernos (préstamos, pagos y banca de inversión)",
-    "Clientes de alto patrimonio e instituciones (gestión de inversiones)"
-   ],
    "base": {
     "periodo": "2026 (TTM)",
     "ingresos": null,
@@ -1037,56 +1054,74 @@
    }
   },
   "LLY": {
-   "resumen": "Eli Lilly es la farmacéutica detrás de Mounjaro y Zepbound, los medicamentos para la diabetes tipo 2 y la obesidad que hoy están entre los más vendidos y comentados del mundo, además de insulinas conocidas (Humalog, Humulin), Jardiance, Trulicity y una línea de oncología. Gana plata vendiendo medicamentos protegidos por patentes, que nadie más puede copiar mientras duren. Tiene un **foso amplio, de patentes y activos intangibles**, y ahora tiene en sus manos un producto de los que se ven una vez cada tantos años. Los números lo muestran: los ingresos pasaron de 28.541 M en 2022 a 65.179 M en 2025 y a 79.666 M en los últimos 12 meses, y el margen operativo llegó a **49,7 %**. Su punto débil es que **depende cada vez más de pocos medicamentos** (los de diabetes y obesidad), y que esas ventas se enfrentan a la competencia de Novo Nordisk y a la presión de los gobiernos por bajar los precios. Con tasas cerca de 5 %, la deuda, que se triplicó desde 2022, cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque le sirve para descubrir medicamentos. Conclusión: **muy buena empresa, con foso amplio, rentabilidad extraordinaria y un crecimiento fuera de lo común, aunque concentrada en pocos productos.**",
-   "veredicto": "Muy buena empresa: foso de patentes y rentabilidad extraordinaria, concentrada en pocos productos",
-   "conclusion": "Eli Lilly es una muy buena empresa, no una excelente: un negocio de patentes con margen operativo de 49,7 %, ROIC de 35,4 % y ventas que más que se duplicaron en tres años, pero concentrado en pocos medicamentos y con la deuda triplicada. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos de diabetes y obesidad sigan creciendo y que el margen operativo no se deteriore.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Lilly descubre, desarrolla, fabrica y vende medicamentos para personas. Su línea más importante es la **cardiometabólica**: insulinas (Humalog, Humulin, Basaglar) y medicamentos para la diabetes tipo 2 (Jardiance, Mounjaro, Trulicity) y para la obesidad (Zepbound). También vende productos de oncología (como Cyramza) y de otras áreas. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar; lo que sí se ve es que **los ingresos más que se duplicaron en tres años**.\n\nEs un negocio indispensable para quien lo necesita y se repite: los pacientes con diabetes u obesidad usan los medicamentos de forma continua. **Los ingresos crecieron 19,6 % en 2023, 32,0 % en 2024 y 44,7 % en 2025**, impulsados por Mounjaro y Zepbound. Para que siga así tienen que pasar dos cosas: que la demanda de estos tratamientos continúe y que Lilly produzca lo suficiente, para lo cual invierte en fábricas (14.523 M en los últimos 12 meses).\n\n**A quién le vende.** Sobre todo a distribuidores mayoristas que abastecen farmacias y hospitales (en Estados Unidos, McKesson, Cencora y Cardinal Health son los tres grandes), y los pacientes lo compran a través de seguros y farmacias. Yahoo no da los porcentajes, pero **pocos distribuidores concentran las ventas**.",
-   "foso": "La ventaja de Lilly **es de patentes y de activos intangibles**. Una patente da el derecho exclusivo de vender un medicamento durante años: nadie puede copiarlo mientras dura, y por eso Lilly puede cobrar precios altos. Además, producir estos medicamentos a gran escala es difícil, y la experiencia con los médicos y los pacientes también cuenta. Se ve en el **margen bruto, que subió de 76,8 % en 2022 a 83,4 % en los últimos 12 meses**.\n\nCompite con Novo Nordisk (Ozempic y Wegovy), con Pfizer, Merck, Amgen y otras farmacéuticas. Es un foso **amplio pero con fecha de vencimiento**: las patentes se acaban y entonces entran las copias baratas, y las farmacéuticas que dependen de pocos productos sufren cuando llega ese momento. Los gobiernos también pueden fijar precios más bajos. La inteligencia artificial no amenaza este negocio: ayuda a encontrar y probar medicamentos nuevos.",
-   "numeros": "Los números de Lilly cuentan **un crecimiento extraordinario, y de buena calidad**. Los ingresos crecieron 44,7 % en 2025 y llegaron a 79.666 M en los últimos 12 meses. Lo importante es que las ganancias crecieron más rápido que las ventas: el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 29,0 % en 2022 a 49,7 % en los últimos 12 meses, y la ganancia por acción pasó de 5,80 en 2023 a 22,95 en 2025 y a 29,80 en los últimos 12 meses.\n\nLa caja siguió el mismo camino, con retraso: el flujo libre (lo que sobra después de invertir) fue de -3.152 M en 2023, 414 M en 2024, 5.964 M en 2025 y 13.560 M en los últimos 12 meses (17,0 % de las ventas; Yahoo marca ese último salto como dato a verificar). El ROIC, cuánto gana por cada dólar puesto en el negocio, **es de 35,4 %**, un retorno excepcional.\n\nLa mirada crítica: el margen operativo de hoy es el más alto de la tabla, 15,5 puntos por encima de 2022, y depende de pocos productos. Además, el flujo operativo fue de apenas 53,0 % del EBITDA en 2025: la caja venía rezagada respecto de la ganancia.",
-   "balance": "**La deuda de Lilly es importante pero cómoda para lo que gana.** La deuda total es de 54.908 M en los últimos 12 meses (era de 16.239 M en 2022) y la caja es de 8.950 M, así que la deuda neta es de 45.958 M, **1,06 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con poco más de un año de ganancia operativa. Ese ratio bajó desde 1,89 veces en 2023, porque la ganancia creció más rápido que la deuda.\n\nLa cobertura de intereses fue de 21,8 veces en 2024, y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,35 veces: cómoda. Con tasas cerca de 5 %, la deuda nueva le cuesta más, pero su ganancia operativa la absorbe sin problemas. El patrimonio creció de 10.650 M en 2022 a 33.879 M.",
-   "gerencia": "La conduce David Ricks, presidente y CEO (57 años, pago de 8,9 M según Yahoo), con Lucas Montarce como director financiero y Daniel Skovronsky al frente de la ciencia y los productos. Es un equipo estable, y los resultados de estos años hablan por él.\n\nEn lo que importa, **el uso del capital, es de reinversión y de retorno al accionista**: construye fábricas para producir más (14.523 M en los últimos 12 meses, 54,4 % del resultado neto), paga un dividendo de 6,92 por acción (creciendo 15,2 % por año en los últimos 3 años, y pagado desde 1972) y recompra acciones (6.173 M en los últimos 12 meses, contra 1.500 M en 2022). Las acciones diluidas pasaron de 950 M en 2022 a 897 M en los últimos 12 meses, **5,6 % menos**. La deuda, en cambio, se triplicó: es la contrapartida de ese crecimiento.",
-   "fortalezas": [
-    "Foso amplio de patentes: el margen bruto subió de 76,8 % en 2022 a 83,4 % en los últimos 12 meses.",
-    "Crecimiento extraordinario: ingresos de 28.541 M en 2022 a 79.666 M en los últimos 12 meses.",
-    "Rentabilidad altísima: margen operativo de 49,7 % y ROIC de 35,4 % en los últimos 12 meses.",
-    "Deuda neta baja contra lo que gana: 1,06 veces el EBITDA, bajando desde 1,89 veces en 2023.",
-    "Dividendo creciente (6,92 por acción, +15,2 % por año en 3 años) y 5,6 % menos acciones desde 2022."
+   "formato": "v4",
+   "titulo": "Eli Lilly: vende más que nunca sus remedios para la obesidad, aunque cada dosis sale más barata",
+   "resumen": [
+    "Lilly es la farmacéutica más grande del mundo por valor de mercado gracias a **Mounjaro y Zepbound**, sus medicamentos para la diabetes y la obesidad. Su ventaja son las **patentes** y una fábrica que pocos pueden igualar.",
+    "En el tercer trimestre de 2026, **los ingresos crecieron 39 %** (a 24.397 M), con 53 % más de volumen pero precios **15 % más bajos**. Y volvió a subir lo que espera vender en el año: entre 91.000 y 92.000 M.",
+    "Excelente empresa, con productos líderes protegidos por patentes, márgenes y retornos muy por encima de su industria, en pleno crecimiento explosivo, aunque cada vez más dependiente de una sola familia de medicamentos."
    ],
-   "debilidades": [
-    "Concentración: gran parte del crecimiento viene de pocos medicamentos (diabetes y obesidad); un competidor o una baja de precios les pega fuerte.",
-    "Presión sobre los precios: los gobiernos y los seguros pueden obligar a vender más barato.",
-    "Foso con vencimiento: las patentes expiran y las copias entran; el crítico más duro diría que hoy se ven los mejores años del producto estrella.",
-    "Deuda que se triplicó desde 2022 (de 16.239 M a 54.908 M) con tasas cerca de 5 %.",
-    "Mucha inversión en fábricas: 14.523 M en los últimos 12 meses; si la demanda se frena, quedan con capacidad cara."
+   "introduccion": "Hace cinco años, Eli Lilly facturaba unos 28.000 M por año y era una farmacéutica grande, pero una más. Hoy factura casi 80.000 M en los últimos 12 meses y es la más valiosa del mundo.\n\n¿Qué pasó? Una molécula: la tirzepatida, que se vende como **Mounjaro** para la diabetes y como **Zepbound** para la obesidad. Entre las dos, en el tercer trimestre de 2026, vendieron más de 16.000 M. Dos de cada tres dólares que factura la empresa.\n\nEs el tipo de producto que aparece pocas veces por década: millones de personas lo necesitan, no hay muchas alternativas y lo toman por años.\n\nPero el último trimestre trajo una señal que hay que mirar. Lilly vendió 53 % más dosis que un año antes, pero cobró **15 % menos** por cada una. Los precios están bajando, por acuerdos con el gobierno de EE.UU. y por la competencia.\n\nEntonces, la pregunta es: ¿puede Lilly seguir creciendo lo suficiente en volumen para compensar que cada dosis valga menos?",
+   "secciones": [
+    {
+     "titulo": "Dos medicamentos que cambiaron una empresa centenaria",
+     "texto": "Lilly gana plata descubriendo, fabricando y vendiendo medicamentos. En el tercer trimestre de 2026, Mounjaro facturó **10.723 M (+65 %)** y Zepbound **5.352 M (+49 %)**. El resto del portafolio incluye tratamientos para el cáncer (Verzenio), el Alzheimer (Kisunla, que creció 175 %) y enfermedades de la piel y las articulaciones.\n\nY ya lanzó la siguiente apuesta: **Foundayo** (orforglipron), una versión en pastilla para la obesidad, que en su primer trimestre vendió 184 M. Una pastilla es más fácil de fabricar y de tomar que una inyección, lo que podría llevar el tratamiento a muchos más pacientes.\n\nSus clientes directos son las grandes distribuidoras de medicamentos de EE.UU., y quienes deciden qué se cubre son las aseguradoras, las administradoras de recetas y el gobierno. Por eso los acuerdos de precios pesan tanto.\n\n¿Cuál es su **ventaja**? Primero, las **patentes**: nadie puede copiar la tirzepatida por varios años. Segundo, la **fabricación**: producir estos medicamentos a escala requiere plantas especiales que cuestan miles de millones. Lilly está invirtiendo fortunas en construirlas, y eso es una barrera para quien quiera competir.\n\nSu gran competidor es Novo Nordisk (NVO), el fabricante de Ozempic y Wegovy. Hoy Lilly le está ganando la carrera.\n\nLa inteligencia artificial no es una amenaza para este negocio; en todo caso, puede ayudar a descubrir medicamentos más rápido."
+    },
+    {
+     "titulo": "Un crecimiento que casi no tiene comparación",
+     "texto": "Los ingresos de Lilly pasaron de **28.541 M en 2022 a 79.666 M** en los últimos 12 meses. Casi se triplicaron.\n\n[[grafico:ingresos]]\n\nY la empresa gana más con cada venta. El margen operativo, lo que queda después de todos los costos de funcionar, subió de 29 % en 2022 a **49,7 %**. El promedio de su industria se queda con 29,5 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido, mide cuánto gana por cada dólar que pusieron sus dueños y acreedores. Por encima de 15 % se considera muy bueno. Lilly está en **35,4 %**, más del doble que el promedio de su industria (16,9 %).\n\nAhora, el dato incómodo del trimestre: **el precio**. El volumen creció 53 %, pero los precios cayeron 15 %. Fuera de EE.UU. la baja fue de 29 %. Cuando una empresa vende más barato, necesita vender mucho más para seguir creciendo. Por ahora lo logra con holgura, pero es la variable a vigilar.\n\nUna aclaración sobre la ganancia contable: en el trimestre, Lilly anotó 4.181 M de gastos por compras de proyectos de investigación de otras empresas. Es plata que invierte en futuros medicamentos, pero la contabilidad la descuenta de golpe. Por eso la ganancia ajustada creció solo 7 % en el trimestre, aunque el negocio creció mucho más."
+    },
+    {
+     "titulo": "Invierte en fábricas como nunca, y la caja lo siente",
+     "texto": "Para vender más dosis, hay que fabricarlas. Lilly invirtió **14.523 M** en los últimos 12 meses en plantas y equipos, contra 2.985 M en 2022.\n\nPor eso el **flujo libre de caja** (lo que queda después de invertir) fue durante años muy chico para una empresa de su tamaño: en 2023 fue negativo y en 2024, de apenas 414 M. Ahora mejora: **13.560 M** en los últimos 12 meses.\n\n[[grafico:flujo_vs_inversion]]\n\nParte de esas inversiones se financió con deuda. La deuda neta (lo que debe menos la caja) es de 45.958 M, unas **1,06 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Es decir: con lo que genera en un año, la pagaría entera. Por debajo de 2 veces se considera cómodo.\n\nEl dividendo tiene historia: Lilly lo paga desde hace más de 50 años y lo viene subiendo 15,2 % por año en los últimos tres. Rinde poco porque la acción subió mucho, no porque el dividendo sea chico.\n\nLa conduce David Ricks, CEO desde 2017, que estuvo al frente de toda la apuesta por la obesidad. Su resumen del trimestre: \"Lilly tuvo otro trimestre fuerte, por encima de lo que esperábamos\"."
+    }
    ],
-   "vigilar": [
-    "Ingresos: crecen 44,7 % (2025); si el ritmo cae de forma fuerte, hay que ver si es por competencia o por saturación del mercado.",
-    "Margen operativo: hoy 49,7 %; si baja, es señal de presión de precios o de costos.",
-    "Flujo libre: 13.560 M en los últimos 12 meses (a verificar); hay que ver que se confirme.",
-    "Deuda neta sobre EBITDA: hoy 1,06 veces; si vuelve a subir, la expansión se está financiando con más deuda."
+   "valuacion": {
+    "texto": "En una farmacéutica, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. En Lilly conviene usar la ganancia que la propia empresa y los analistas usan para comparar: la ajustada, que deja afuera las compras de proyectos de investigación y la amortización de intangibles.\n\nPara 2026, la empresa espera una ganancia ajustada de entre 35 y 36 dólares por acción. Tomando el medio (35,5) y el precio de {precio} dólares, Lilly cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nPagar más que el promedio de la industria tiene una explicación: Lilly crece mucho más rápido que casi cualquier otra farmacéutica. La pregunta es cuánto dura ese crecimiento. Si los precios siguen bajando y el volumen se frena, el PER que hoy se justifica puede dejar de hacerlo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 35.5,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (35 a 36 dólares)"
+   },
+   "conclusion": "Eli Lilly es una empresa excelente. Tiene los medicamentos más exitosos del momento, protegidos por patentes y por una capacidad de fabricación difícil de copiar, un margen operativo de 49,7 % y un ROIC de 35,4 %, más del doble de su industria. Y sigue creciendo a un ritmo de casi 40 % por año.\n\nSu punto débil es la concentración y el precio. Dos de cada tres dólares vienen de una sola molécula, y cada dosis se vende más barata que un año antes. El crítico más duro diría que la obesidad se va a volver un mercado de precios bajos, con más competidores y gobiernos presionando, y que el crecimiento de hoy no se va a repetir. Es un argumento a tener en cuenta.\n\nEncaja con quien busca crecimiento en una empresa de salud de primera línea y acepta pagar un múltiplo alto por ese crecimiento. No es para quien busca renta ni para quien no tolera que una sola noticia regulatoria mueva fuerte la acción.\n\nPara que la tesis se mantenga, lo más importante es que el volumen siga creciendo bastante más rápido de lo que bajan los precios.",
+   "pros": [
+    "Productos líderes: Mounjaro (+65 %) y Zepbound (+49 %) dominan el mercado de la obesidad.",
+    "Rentabilidad de elite: margen operativo de 49,7 % y ROIC de 35,4 %.",
+    "Próxima ola: la pastilla Foundayo ya está en el mercado."
    ],
+   "contras": [
+    "Precios en baja: cobró 15 % menos por dosis que un año antes.",
+    "Concentración: dos de cada tres dólares vienen de una sola molécula.",
+    "Competencia: Novo Nordisk y nuevos laboratorios pelean el mismo mercado."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Distribuidores mayoristas de medicamentos (McKesson, Cencora, Cardinal Health)",
-    "Farmacias y hospitales",
-    "Pacientes a través de seguros de salud y programas públicos"
+    "Distribuidoras de medicamentos de EE.UU.",
+    "Aseguradoras, administradoras de recetas y programas del gobierno que deciden la cobertura",
+    "Sistemas de salud fuera de EE.UU."
    ],
-   "ideal_para": [
-    "Buscan crecimiento fuerte en un sector con foso de patentes.",
-    "Valoran retornos altos sobre el capital y un dividendo que crece.",
-    "Aceptan concentrarse en pocos productos exitosos."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 24.397 M (+39 %), con volumen +53 % y precios -15 %; EE.UU. 15.100 M (+34 %); fuera de EE.UU. 9.300 M (+47 %, precios -29 %)",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://investor.lilly.com/static-files/ef6bbff3-8d3c-4ca0-a5e9-1e49403f031e"
+    },
+    {
+     "dato": "Mounjaro 10.723 M (+65 %); Zepbound 5.352 M (+49 %); Kisunla 193 M (+175 %); Foundayo (orforglipron) 184 M en su lanzamiento",
+     "fuente": "Ídem",
+     "url": "https://investor.lilly.com/static-files/ef6bbff3-8d3c-4ca0-a5e9-1e49403f031e"
+    },
+    {
+     "dato": "Ganancia por acción contable de 7,22 dólares y ajustada de 7,48 (+7 %); gastos por compras de proyectos de investigación de 4.181 M; guía 2026: ingresos de 91.000 a 92.000 M (antes 85.000 a 87.000 M) y ganancia ajustada de 35 a 36 dólares por acción; frase de David Ricks",
+     "fuente": "Ídem",
+     "url": "https://investor.lilly.com/static-files/ef6bbff3-8d3c-4ca0-a5e9-1e49403f031e"
+    }
    ],
-   "menos_ideal": [
-    "No toleran la dependencia de pocos medicamentos.",
-    "Buscan una empresa con poca deuda."
-   ],
+   "ticker": "LLY",
    "perfil": "salud",
    "capas": [
     "compounder"
    ],
-   "ticker": "LLY",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1101,57 +1136,73 @@
    }
   },
   "MU": {
-   "resumen": "Micron fabrica la memoria de las computadoras y de los teléfonos: los chips DRAM, que guardan lo que el aparato está usando, y los NAND, que guardan archivos, además de la memoria de alto ancho de banda que necesitan los chips de inteligencia artificial. Es una de las tres grandes fabricantes del mundo, junto con Samsung y SK Hynix. Tiene un **foso estrecho, de escala y costos**: hacer memoria requiere fábricas carísimas, pero el producto es casi una materia prima, y su precio sube y baja con la oferta y la demanda. Los números muestran ese vaivén: en 2023 perdió 5.833 M con un margen operativo de -34,8 %, y en el año fiscal 2026 ganó **84.969 M con un margen operativo de 74,6 %**, porque la inteligencia artificial disparó la demanda de memoria. Su punto débil es que **ese nivel es un pico**: cuando la oferta se pone al día, los precios caen, y el 22 de octubre los semiconductores cayeron 6,7 % por dudas sobre el gasto en esa tecnología. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque le compra memoria. Conclusión: **buena empresa en el mejor momento de su ciclo, con foso estrecho, caja récord y balance holgado, pero con resultados que pueden volver a niveles mucho más bajos.**",
-   "veredicto": "Buena empresa en el mejor momento de su ciclo: caja récord, resultados muy cíclicos",
-   "conclusion": "Micron es una buena empresa, no una excelente: fabrica un producto indispensable, con una caja de 43.434 M, márgenes operativos de 74,6 % y retorno sobre el capital de 60,0 %, pero esos resultados son los del mejor momento de un ciclo extremo, y en 2023 perdió dinero. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen bruto se mantenga muy por encima del de 2025 (39,8 %).",
+   "formato": "v4",
+   "titulo": "Micron: la memoria para IA la llevó del rojo a ganar como nunca, pero es un negocio de ciclos",
+   "resumen": [
+    "Micron fabrica **memoria**: los chips donde las computadoras guardan datos mientras trabajan. Es uno de solo tres fabricantes grandes del mundo, y la IA necesita cantidades enormes de memoria rápida.",
+    "En el trimestre que cerró en agosto de 2026, **facturó 54.230 M, casi cinco veces lo de un año antes**, con un margen bruto de 86,8 %. En 2023, la misma empresa perdía plata.",
+    "Buena empresa en una industria de pocos jugadores, con números récord y un balance con mucha más caja que deuda, pero en un negocio que vive de ciclos de auge y caída."
+   ],
+   "introduccion": "En 2023, Micron perdió 5.833 M. Su margen bruto era negativo: vendía la memoria por menos de lo que le costaba fabricarla.\n\nTres años después, en el año fiscal que cerró en agosto de 2026, ganó **84.969 M**. Su margen operativo pasó de -34,8 % a **74,6 %**. Es uno de los giros más violentos que se hayan visto en una empresa de este tamaño.\n\n¿Qué pasó? La inteligencia artificial. Los chips de IA, como los de NVIDIA, necesitan a su lado una memoria especial, muy rápida, llamada HBM. Fabricarla es dificilísimo, solo tres empresas en el mundo pueden hacerlo a escala, y la demanda supera largamente a la oferta. Cuando eso pasa, los precios se disparan.\n\nEl 22 de octubre, los semiconductores cayeron 6,7 % en un día por dudas sobre el gasto en IA. Para una empresa como Micron, esa duda es central.\n\nEntonces, la pregunta es: ¿la IA cambió para siempre el negocio de la memoria, o estamos viendo el pico de un ciclo más?",
+   "secciones": [
+    {
+     "titulo": "Un negocio de tres jugadores que vende algo parecido a una materia prima",
+     "texto": "Micron fabrica dos grandes tipos de memoria. La **DRAM** es la memoria de trabajo de las computadoras, los celulares y los servidores; dentro de ella está la HBM, la memoria de alta velocidad para la IA. La **NAND** guarda datos de forma permanente, como los discos de estado sólido.\n\nSus clientes son los fabricantes de chips de IA (NVIDIA usa memoria HBM de Micron), las grandes nubes, los fabricantes de servidores, de celulares y de computadoras. Es un **cruce clave**: lo que gastan Microsoft, Meta o Alphabet en centros de datos termina, en parte, en Micron.\n\n¿Tiene **ventaja** competitiva? Algo, sí: el mercado de memoria quedó en manos de tres empresas (Samsung, SK hynix y Micron), porque una fábrica cuesta decenas de miles de millones y pocos pueden competir. Es lo que se llama un mercado que da para pocos.\n\nPero hay un problema de fondo: la memoria se parece a una **materia prima**. Un chip de memoria de Micron hace lo mismo que uno de Samsung. Cuando sobra, el precio se derrumba; cuando falta, se dispara. Por eso su ventaja es, como mucho, **estrecha**.\n\nLa inteligencia artificial, hoy, es su mejor cliente."
+    },
+    {
+     "titulo": "Números de auge, y la lección de los ciclos",
+     "texto": "Los ingresos pasaron de **15.540 M en 2023 a 133.188 M** en el año fiscal 2026. Y en el último trimestre, 54.230 M: más que todo lo que facturó en el año fiscal 2025.\n\n[[grafico:ingresos]]\n\nEl margen operativo (lo que queda de cada venta después de todos los costos de funcionar) fue de **74,6 %**. El promedio de su industria se queda con 35,3 %. Pero mirá el gráfico: en 2023 era -34,8 %.\n\n[[grafico:margen_operativo]]\n\nEsa es la gran lección de las empresas cíclicas. Cuando los números están en su mejor momento, la tentación es pensar que siempre van a ser así. En la memoria, la historia muestra lo contrario: los precios altos invitan a todos a fabricar más, en uno o dos años sobra memoria y los precios se derrumban.\n\n¿Esta vez es distinto? Hay un argumento a favor: la memoria para IA (HBM) es mucho más difícil de fabricar, y los clientes firman contratos más largos. Hay un argumento en contra: Samsung y SK hynix también están invirtiendo fortunas para fabricar más.\n\nEl **ROIC**, el retorno sobre el capital invertido, pasó de -7,1 % en 2023 a **60 %** en 2026. Mide cuánto gana por cada dólar que pusieron dueños y acreedores; por encima de 15 % se considera muy bueno. Hoy es extraordinario, pero en un negocio cíclico lo que importa es el promedio de todo el ciclo, no el pico."
+    },
+    {
+     "titulo": "La caja del auge se está guardando, y eso es inteligente",
+     "texto": "Lo mejor que puede hacer una empresa cíclica en el auge es prepararse para la caída. Micron lo está haciendo.\n\nEn el año fiscal 2026, la operación generó **89.680 M** de caja. Invirtió 27.370 M en fábricas y le quedó un flujo libre de unos 62.300 M.\n\nCon esa plata, **bajó la deuda**: pasó de 14.577 M en 2025 a apenas **5.180 M**. Y acumuló **73.480 M en caja e inversiones**. Tiene más de 14 veces más plata que deuda.\n\n[[grafico:roic]]\n\nEso le da algo muy valioso: la capacidad de atravesar la próxima caída sin problemas, y hasta de seguir invirtiendo cuando los competidores frenen.\n\nNo devuelve mucho a los accionistas: recompró apenas 650 M de acciones en el año y el dividendo es simbólico (0,15 dólares por trimestre). La cantidad de acciones incluso subió un poco desde 2023, por las que entrega como parte de los sueldos.\n\nLa conduce Sanjay Mehrotra, CEO desde 2017 y cofundador de SanDisk. Para el próximo trimestre espera facturar 61.500 M, otro récord."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una empresa cíclica, el PER (cuántos años de ganancia se pagan al comprar la acción) puede ser una trampa. Y Micron es el ejemplo perfecto para entender por qué.\n\nCon el precio de {precio} dólares, Micron cotiza a {per_ref} veces la ganancia de su último año fiscal. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nUn PER bajo en el pico de un ciclo no significa que la acción esté barata. Significa que el mercado cree que esta ganancia no va a durar. Si los precios de la memoria caen, la ganancia puede bajar a la mitad o menos, y entonces el mismo precio equivale a un PER dos o tres veces más alto.\n\nPor eso, en las cíclicas, los inversores experimentados suelen hacer lo contrario de lo intuitivo: mirar con interés cuando la empresa pierde plata y el PER no existe, y con cautela cuando gana como nunca.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo usa múltiplos históricos y no distingue si la ganancia de hoy es un pico. El dividendo rinde {dy}."
+   },
+   "conclusion": "Micron es una buena empresa, no una excelente. Está en una industria de solo tres jugadores, fabrica algo que la inteligencia artificial necesita con desesperación y hoy tiene números extraordinarios: un margen operativo de 74,6 %, un ROIC de 60 % y mucha más caja que deuda.\n\nSu punto débil es la naturaleza de su negocio: la memoria es casi una materia prima, y su precio sube y baja con violencia. En 2023 perdía plata. El crítico más duro diría que estamos en el pico de un superciclo, que Samsung y SK hynix van a inundar el mercado, y que en dos años las ganancias pueden ser una fracción de las de hoy. La historia de la industria le da la razón muchas veces.\n\nEncaja con quien entiende los ciclos y tolera caídas fuertes. No es para quien busca estabilidad, renta, ni para quien compra una empresa pensando que sus mejores números son permanentes.\n\nPara que la tesis se mantenga, lo más importante es que el margen bruto se mantenga alto aun cuando los competidores sumen capacidad: esa es la prueba de que la IA cambió el ciclo.",
+   "pros": [
+    "Industria de pocos: solo tres fabricantes de memoria a escala en el mundo.",
+    "Auge histórico: ventas de 54.230 M en un trimestre, casi cinco veces más que un año antes.",
+    "Balance blindado: 73.480 M en caja e inversiones contra 5.180 M de deuda."
+   ],
+   "contras": [
+    "Negocio cíclico: en 2023 perdió 5.833 M con un margen operativo de -34,8 %.",
+    "Producto parecido a una materia prima: cuando sobra memoria, el precio se derrumba.",
+    "Competidores invirtiendo: Samsung y SK hynix también suman capacidad."
+   ],
    "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Micron produce **memoria y almacenamiento**: DRAM (memoria de trabajo, incluida la de alto ancho de banda para inteligencia artificial y la de bajo consumo para teléfonos), NAND (discos de estado sólido y memoria para dispositivos). Los vende a través de cuatro unidades: memoria para la nube, centros de datos, teléfonos y computadoras, y autos y equipos industriales. Yahoo no informa cuánto pesa cada una, y no lo vamos a inventar.\n\nEs un negocio indispensable pero muy cíclico: todos los aparatos necesitan memoria, pero el precio de cada chip cambia con la oferta. **Los ingresos pasaron de 15.540 M en 2023 a 37.378 M en 2025 y a 133.188 M en el año fiscal 2026** (todas las cifras son de años fiscales de la empresa). Lo que impulsó ese salto fue la demanda de memoria para centros de datos de inteligencia artificial.\n\n**A quién le vende.** A fabricantes de servidores y de nube, de teléfonos, computadoras y autos. Entre los clientes más conocidos están Nvidia y Apple; Yahoo no da los porcentajes, pero **es un negocio donde pocos clientes grandes compran mucho**.",
-   "foso": "La ventaja de Micron **es de escala y de costos, y es estrecha**. Fabricar memoria exige fábricas de decenas de miles de millones de dólares, y solo tres empresas pueden hacerlo en el mundo: eso limita la competencia. Quien produce más barato por chip gana más en los años buenos y pierde menos en los malos. El programa estima el foso como amplio; nuestra lectura es más cauta, porque **el producto es casi una materia prima**: el cliente compra al que ofrece mejor precio, y sin diferencia propia, la ganancia depende del ciclo y no de la empresa.\n\nSe ve en el **margen bruto: -9,1 % en 2023, 39,8 % en 2025 y 80,7 % en 2026**. Un foso fuerte no produce esos saltos. Compite con Samsung y SK Hynix, y con fabricantes chinas que quieren entrar. La inteligencia artificial hoy la favorece: necesita muchísima memoria.",
-   "numeros": "Los números de Micron cuentan **un ciclo extremo**. Los ingresos crecieron 61,6 % en 2024, 48,9 % en 2025 y 256,3 % en 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de -34,8 % en 2023, 5,2 % en 2024, 26,1 % en 2025 y 74,6 % en 2026. La ganancia por acción pasó de -5,34 en 2023 a 7,59 en 2025 y a 74,33 en 2026.\n\nLa caja acompañó: el flujo libre (lo que sobra después de invertir) fue de -6.117 M en 2023, 1.668 M en 2025 y **58.963 M en 2026, 44,3 % de las ventas**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de -7,1 % en 2023 a **60,0 %** en 2026.\n\nLa mirada crítica: **2026 es un año extraordinario y no representa a una empresa normal**. Un margen operativo de 74,6 % es difícil de sostener cuando la oferta de memoria crece, y en 2023 la empresa perdió dinero. Mirar un solo año de esta tabla sería un error.",
-   "balance": "**El balance de Micron es sólido hoy: tiene mucha más caja que deuda.** En 2026 tiene 43.434 M en caja y una deuda total de 5.179 M, y la deuda bajó desde 14.577 M en 2025. La ganancia operativa cubre los intereses de forma holgada (el gasto en intereses fue de 106 M en 2026). La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 3,31 veces. El patrimonio creció de 54.165 M en 2025 a 138.378 M en 2026.\n\nCon tasas altas, a Micron casi no le importa: no necesita prestado y gana intereses sobre su caja. Lo que sí importa es que la industria invierte mucho en fábricas (30.712 M en 2026) y, en los años malos, esa caja se gasta rápido: en 2023 el flujo libre fue negativo en 6.117 M.",
-   "gerencia": "La conduce Sanjay Mehrotra, CEO y presidente (66 años, pago de 5,6 M según Yahoo), con Mark Murphy como director financiero y Manish Bhatia como director de operaciones. Es un equipo con experiencia en una industria de ciclos duros, y los números del último año muestran buena ejecución.\n\nEn lo que importa, **el uso del capital, es de inversión intensa**: puso 30.712 M en fábricas en 2026 (36,1 % del resultado neto), pagó un dividendo chico (0,60 por acción, casi sin crecer: 1,1 % por año en 3 años) y recompró poco (650 M en 2026). Las acciones diluidas aumentaron de 1.093 M en 2023 a 1.143 M en 2026, **4,6 % más**: una dilución chica por el pago a empleados. En una industria cíclica, lo que más importa es no invertir de más en el pico.",
-   "fortalezas": [
-    "Una de solo tres grandes fabricantes de memoria del mundo, con fábricas difíciles de replicar.",
-    "Rentabilidad extraordinaria en el año fiscal 2026: margen operativo de 74,6 % y ROIC de 60,0 %.",
-    "Caja de 43.434 M contra deuda total de 5.179 M en 2026.",
-    "Flujo libre de 58.963 M en 2026, 44,3 % de las ventas.",
-    "Demanda estructural de memoria para inteligencia artificial."
-   ],
-   "debilidades": [
-    "Negocio muy cíclico: en 2023 perdió 5.833 M con margen operativo de -34,8 %, y el 2026 es un pico.",
-    "Producto casi de materia prima: el precio lo fijan la oferta y la demanda, y el crítico más duro diría que sus márgenes de hoy no son su estado normal.",
-    "Inversión récord: 30.712 M en 2026; si la demanda baja, la capacidad sobrante hunde los precios.",
-    "Foso estrecho: sin marca ni costos de cambio, compite por precio con Samsung y SK Hynix.",
-    "Depende del gasto en inteligencia artificial, que el mercado ya está cuestionando (semiconductores -6,7 % el 22 de octubre)."
-   ],
-   "vigilar": [
-    "Margen bruto: hoy 80,7 % (año fiscal 2026) contra 39,8 % en 2025; si cae de golpe, el ciclo está cambiando.",
-    "Inversión en fábricas: 30.712 M en 2026; si sube mucho más, la oferta se pone al día y los precios caen.",
-    "Ingresos: 133.188 M en 2026; hay que ver si se sostienen o si el año fue un pico.",
-    "Flujo libre: 58.963 M en 2026; confirmar que se mantiene alto."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "NVIDIA (NVDA)",
-    "Apple (AAPL)",
-    "Fabricantes de servidores y proveedores de nube",
-    "Fabricantes de teléfonos, computadoras y autos"
+    "NVIDIA (NVDA): usa memoria HBM de Micron en sus chips de IA",
+    "Grandes nubes y fabricantes de servidores",
+    "Fabricantes de celulares y computadoras"
    ],
-   "ideal_para": [
-    "Buscan exposición a la memoria que necesita la inteligencia artificial.",
-    "Aceptan que los resultados suban y bajen mucho con el ciclo.",
-    "Valoran un balance con mucha caja y poca deuda."
+   "hechos": [
+    {
+     "dato": "Cuarto trimestre fiscal 2026 (cerrado el 03/09/2026): ingresos de 54.230 M (11.320 M un año antes; 41.460 M el trimestre anterior); margen bruto de 86,8 %",
+     "fuente": "Comunicado de resultados, 30/09/2026",
+     "url": "https://www.globenewswire.com/news-release/2026/09/30/3372366/14450/en/micron-technology-inc-reports-record-fiscal-fourth-quarter-and-full-year-2026-results.html"
+    },
+    {
+     "dato": "Año fiscal 2026: flujo operativo de 89.680 M; inversiones netas de 27.370 M; flujo libre ajustado de 62.310 M; recompras por 650 M; dividendo trimestral de 0,15 dólares",
+     "fuente": "Ídem",
+     "url": "https://www.globenewswire.com/news-release/2026/09/30/3372366/14450/en/micron-technology-inc-reports-record-fiscal-fourth-quarter-and-full-year-2026-results.html"
+    },
+    {
+     "dato": "Caja e inversiones por 73.480 M y deuda de 5.180 M; guía para el primer trimestre fiscal 2027: ingresos de 61.500 M (±1.500 M)",
+     "fuente": "Ídem",
+     "url": "https://www.globenewswire.com/news-release/2026/09/30/3372366/14450/en/micron-technology-inc-reports-record-fiscal-fourth-quarter-and-full-year-2026-results.html"
+    }
    ],
-   "menos_ideal": [
-    "Buscan resultados estables año a año.",
-    "No toleran empresas sin una ventaja clara frente a la competencia."
-   ],
+   "mes_cierre_fiscal": 8,
+   "ticker": "MU",
    "perfil": "hardware",
    "capas": [
     "compounder"
    ],
-   "ticker": "MU",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -1165,56 +1216,75 @@
    }
   },
   "WMT": {
-   "resumen": "Walmart es el supermercado y tienda de descuento más grande del mundo: vende alimentos, ropa, electrodomésticos y casi todo lo que una familia compra en una semana, a precios bajos, en miles de tiendas, en Sam's Club y por internet. Su negocio es vender muchísimo con un margen chico. Tiene un **foso amplio, de escala y costos**: compra tanto que consigue mejores precios que casi cualquier competidor, y se los traslada al cliente, que vuelve. Los números son parejos: los ingresos pasaron de 611.289 M en el año fiscal 2023 a 735.840 M en los últimos 12 meses, y el margen operativo subió de 3,3 % a 4,4 %. Su punto débil es que **gana poco por cada dólar vendido y está invirtiendo más de lo que le sobra**: el flujo libre fue de 13.509 M en los últimos 12 meses, 1,8 % de las ventas. Con la inflación en 3,7 % y la nafta 9,1 % más cara, los clientes buscan precios bajos y le llegan más compradores, pero su propio costo de transporte también sube. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente compra alimentos y productos de todos los días en tiendas físicas. Conclusión: **muy buena empresa de comercio, con foso amplio, ventas parejas y balance cómodo, aunque con márgenes finos y una inversión que le come la caja.**",
-   "veredicto": "Muy buena empresa de comercio: foso amplio y ventas parejas, con márgenes finos",
-   "conclusion": "Walmart es una muy buena empresa de comercio, no una excelente: tiene un foso amplio de escala, ingresos que crecen parejo (4,7 %), ROIC de 16,6 % y un balance cómodo, pero su margen operativo es de apenas 4,4 % y su flujo libre, 1,8 % de las ventas. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo no baje y que la inversión empiece a dar retorno.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "Walmart: el supermercado que se convirtió en empresa de tecnología, y la bolsa ya lo cobra",
+   "resumen": [
+    "Walmart es el mayor comercio del mundo: **vende 735.840 M por año** en supermercados, Sam's Club y su tienda online. Su ventaja es el costo: compra tanto que puede vender más barato que casi todos.",
+    "En el trimestre que cerró en julio de 2026, las ventas crecieron 5,9 %, pero lo que más crece es lo nuevo: **comercio online +23 %, publicidad +38 % y membresías +17 %**. Y volvió a subir lo que espera ganar en el año.",
+    "Excelente empresa, con una ventaja de costos enorme y negocios nuevos muy rentables que mejoran sus retornos, aunque con un margen de venta finito y un precio que ya descuenta mucho de esa transformación."
+   ],
+   "introduccion": "Cuando la inflación aprieta, la gente busca precio. Y cuando busca precio, va a Walmart.\n\nCon la inflación de EE.UU. otra vez en 3,7 % anual y la nafta 9,1 % más cara solo en septiembre, Walmart está en su terreno. Pero lo interesante no es eso. Lo interesante es que el Walmart de hoy ya no es solo un supermercado.\n\nEn el último trimestre, sus ventas online crecieron 23 %. Su negocio de publicidad, que vende espacios a las marcas para aparecer primero en su web y su aplicación, creció 38 %. Y las membresías (Sam's Club y Walmart+) subieron 17 %.\n\nSon negocios de margen alto metidos adentro de un negocio de margen bajo. Y el mercado lo notó: la acción cotiza a múltiplos que antes se pagaban por empresas de tecnología.\n\nEntonces, la pregunta es: ¿Walmart cambió de verdad, o se está pagando demasiado por un supermercado?",
+   "secciones": [
+    {
+     "titulo": "La ventaja de ser el comprador más grande del mundo",
+     "texto": "El negocio de Walmart es vender muchísimo, muy barato. Tiene supermercados en EE.UU. y en otros países (como México y Canadá), los clubes de compra Sam's Club y una tienda online que ya compite con Amazon.\n\nSus clientes son cientos de millones de consumidores, sin ninguno que pese. Pero hay otro tipo de cliente que crece: las **marcas** que pagan por publicidad dentro de Walmart, que muchas veces son las mismas que le venden sus productos.\n\nLa **ventaja** de Walmart es la **ventaja de costos**. Compra en volúmenes tan grandes que consigue precios que nadie más consigue, y su red de depósitos y camiones es de las más eficientes del mundo. Eso le permite vender más barato y, aun así, ganar plata. Es muy difícil competir contra eso.\n\nY ahora suma un **efecto de red** chico pero creciente: más compradores online atraen más vendedores externos y más anunciantes, que a su vez mejoran la oferta para los compradores.\n\nLa inteligencia artificial, para Walmart, es más una herramienta que una amenaza: la usa para manejar inventarios, precios y entregas. El riesgo sería que los asistentes de IA cambien cómo compra la gente online, pero su red física es difícil de reemplazar."
+    },
+    {
+     "titulo": "Un margen finito, pero un retorno que mejora",
+     "texto": "Lo primero que hay que entender de Walmart: gana poco por cada venta. El margen operativo (lo que queda después de todos los costos de funcionar) es de **4,4 %**. De cada 100 dólares que cobra, le quedan 4,40. El promedio de su industria se queda con 6,8.\n\nEso no es malo en sí: es el modelo. Walmart gana por volumen, no por margen.\n\nPor eso, en un comercio, el número que mejor muestra la calidad es el **ROIC**, el retorno sobre el capital invertido: cuánto gana por cada dólar que pusieron dueños y acreedores. Por encima de 15 % se considera muy bueno. Walmart pasó de 11,7 % en 2023 a **16,6 %**, y está por encima del promedio de su industria (13,6 %).\n\n[[grafico:roic]]\n\n¿Por qué mejora? Porque los negocios nuevos dejan mucho más margen que vender un paquete de arroz. Un aviso en la web de Walmart casi no tiene costo; una membresía se cobra todos los años. Cuantos más pesan, más sube la rentabilidad.\n\nEn el último trimestre, el resultado operativo creció 28,8 %. Pero ojo: parte de eso vino de devoluciones de aranceles, algo que no se repite. Sin ese efecto, el crecimiento fue de 17,4 %, que igual es muy bueno para un comercio de este tamaño."
+    },
+    {
+     "titulo": "Invierte cada vez más, y eso achica la caja libre",
+     "texto": "Walmart genera mucha plata con su operación: **42.923 M** en los últimos 12 meses. Pero invierte cada vez más en automatizar depósitos, en tecnología y en tiendas: **29.414 M** en el mismo período, contra 16.857 M en 2023.\n\n[[grafico:flujo_vs_inversion]]\n\nPor eso el flujo libre de caja (lo que queda después de invertir) se mantiene relativamente chico para su tamaño: 13.509 M en los últimos 12 meses, menos de 2 dólares de cada 100 que vende. Y la empresa ya avisó que este año invertirá más: cerca de 4 % de las ventas.\n\nEl balance es cómodo. La deuda neta (lo que debe menos la caja) es de 38.882 M, apenas **0,83 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Y su ganancia operativa paga los intereses del año casi 14 veces.\n\nA los accionistas les devuelve capital de dos formas: el dividendo, que paga desde hace más de 50 años y viene creciendo 8 % por año en los últimos tres, y las recompras, que van achicando de a poco la cantidad de acciones.\n\nDesde febrero de 2026 la conduce John Furner, que reemplazó a Doug McMillon que estuvo al frente más de una década."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Walmart, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la propia empresa para este año fiscal: entre 2,80 y 2,87 dólares por acción (tomamos el medio, 2,835).\n\nCon el precio de {precio} dólares, Walmart cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nPara un comercio que crece cerca de 5 % por año en ventas, cotizar por encima de su PER histórico es exigente. El mercado está pagando por la transformación: publicidad, comercio online y membresías. Si esos negocios siguen creciendo fuerte y la rentabilidad mejora, el precio se puede justificar con el tiempo. Si no, el riesgo es que el mercado vuelva a valorarla como el supermercado que siempre fue.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).",
+    "ganancia_ref": 2.835,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción del año fiscal 2027 (2,80 a 2,87 dólares)"
+   },
+   "conclusion": "Walmart es una empresa excelente. Tiene una ventaja de costos que nadie iguala, un balance cómodo, más de 50 años pagando dividendos y una transformación que funciona: el comercio online, la publicidad y las membresías crecen a doble dígito y hacen que el ROIC suba (16,6 %, por encima de su industria).\n\nSu punto débil es el margen finito del negocio principal y el precio que ya se paga por la transformación. El crítico más duro diría que, en el fondo, sigue siendo un supermercado que crece 5 % por año, y que pagarlo como una empresa de tecnología deja poco margen de error. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa defensiva de alta calidad, que suele aguantar bien las épocas de inflación y de consumo flojo. No es para quien busca renta alta ni para quien quiere comprar barato.\n\nPara que la tesis se mantenga, lo más importante es que la publicidad y el comercio online sigan creciendo a doble dígito y que eso se vea en un margen operativo en suba.",
+   "pros": [
+    "Ventaja de costos: compra tanto que puede vender más barato que casi todos.",
+    "Negocios nuevos que rinden: publicidad +38 %, comercio online +23 %, membresías +17 %.",
+    "Defensiva: cuando la inflación aprieta, la gente busca precio."
+   ],
+   "contras": [
+    "Margen finito: le quedan 4,40 dólares de cada 100 que vende.",
+    "Inversión creciente: el flujo libre es menos de 2 dólares de cada 100 de ventas.",
+    "Precio exigente: el mercado ya paga por la transformación."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "Walmart opera tres segmentos: **Walmart U.S.** (supercentros, supermercados y tiendas de descuento, más walmart.com), **Walmart International** (México, Canadá, India con Flipkart y PhonePe, entre otros) y **Sam's Club U.S.** (clubes de compra mayorista para socios). Vende alimentos, artículos del hogar, ropa y electrónica, y suma servicios como publicidad y membresías. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable y estable: la gente compra alimentos y artículos básicos todo el año, y cuando la economía aprieta, busca precios bajos, lo que juega a favor. **Los ingresos crecieron 6,0 % en 2024, 5,1 % en 2025 y 4,7 % en 2026**, con 735.840 M en los últimos 12 meses.\n\n**A quién le vende.** A consumidores finales, de todos los niveles de ingreso, y a socios de Sam's Club. **Ningún cliente pesa de forma decisiva.** La dependencia está del lado de los proveedores y del consumo de las familias.",
-   "foso": "La ventaja de Walmart **es de escala y de costos**. Como compra enormes volúmenes, consigue precios más bajos de los proveedores; con eso puede vender barato y aun así ganar, y las tiendas baratas atraen a más compradores, lo que le da todavía más poder de compra. Es **un círculo que se refuerza**. Su logística y su red de tiendas, difíciles de copiar, completan la ventaja. Se ve en el **margen bruto, que subió de 24,1 % en 2023 a 25,2 % en los últimos 12 meses**, algo difícil para un comercio que vende barato.\n\nCompite con Amazon, Costco, Target y los supermercados regionales. Es frágil en lo de siempre en el comercio: el cliente no paga nada por cambiar de tienda, y la competencia online y de descuento nunca descansa. La inteligencia artificial no amenaza el modelo de ir a comprar comida; lo que podría cambiar es cuánta gente compra por internet, y ahí Walmart también compite.",
-   "numeros": "Los números de Walmart cuentan **un crecimiento parejo y una mejora lenta de la rentabilidad**. Los ingresos crecieron 4,7 % en el año fiscal 2026 y el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 3,3 % en 2023 a 4,2 % en 2026 y 4,4 % en los últimos 12 meses. La ganancia por acción pasó de 1,42 a 2,73 entre 2023 y 2026, 2,77 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo operativo fue de 42.923 M en los últimos 12 meses, 194,4 % del resultado neto, en parte porque algunos gastos contables, como la depreciación de las tiendas, no son una salida de dinero. Pero **la inversión creció más rápido: 29.414 M en los últimos 12 meses contra 16.857 M en 2023**, y el flujo libre (lo que sobra después de invertir) quedó en 13.509 M, apenas 1,8 % de las ventas. El ROIC es de **16,6 %**, un retorno muy bueno para un comercio.\n\nLa mirada crítica: con un margen operativo de 4,4 %, un error de costos de apenas un punto la golpea fuerte. Y el margen casi no mejoró desde 2025 (4,3 %).",
-   "balance": "**La deuda de Walmart es cómoda.** La deuda total que informa Yahoo es de 73.755 M en los últimos 12 meses, pero incluye en buena parte los alquileres de sus tiendas, un compromiso fijo como una deuda aunque no sea un préstamo. Con 11.529 M en caja, la deuda neta es de 38.882 M, **0,83 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con menos de un año de ganancia operativa. La cobertura de intereses es de 13,7 veces.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,77 veces: ajustada, pero normal en un supermercado que cobra al contado y paga a sus proveedores más tarde. La deuda de corto plazo subió de 6.603 M en 2023 a 16.543 M en los últimos 12 meses; con tasas cerca de 5 %, refinanciarla cuesta más.",
-   "gerencia": "La conduce John Furner, presidente y CEO (50 años, pago de 4,6 M según Yahoo), que sucedió a Doug McMillon (hoy figura como directivo), con John David Rainey como director financiero. Es un equipo con larga trayectoria en la empresa, y hay un responsable de aceleración de inteligencia artificial (Daniel Danker), señal de que le da importancia.\n\nEn lo que importa, **el uso del capital, es prudente**: reinvierte mucho en tiendas, logística y automatización (29.414 M en los últimos 12 meses), paga un dividendo de 0,99 por acción (creciendo 8,0 % por año en 3 años y pagado desde 1974) y recompra acciones (6.992 M en los últimos 12 meses). Las acciones diluidas pasaron de 8.202 M en 2023 a 7.999 M en los últimos 12 meses, **2,5 % menos**. No diluye al accionista.",
-   "fortalezas": [
-    "Foso amplio de escala y costos; el margen bruto subió de 24,1 % en 2023 a 25,2 % en los últimos 12 meses.",
-    "Crecimiento parejo: ingresos +4,7 % en el año fiscal 2026 sobre una base de 713.163 M.",
-    "Retornos muy buenos para un comercio: ROIC de 16,6 % en los últimos 12 meses.",
-    "Dividendo creciente (0,99 por acción, +8,0 % por año en 3 años, pagado desde 1974) y 2,5 % menos acciones desde 2023.",
-    "Balance cómodo: deuda neta de 0,83 veces el EBITDA."
-   ],
-   "debilidades": [
-    "Márgenes finos: margen operativo de 4,4 % y flujo libre de 1,8 % de las ventas; cualquier suba de costos pega fuerte.",
-    "Inversión que supera lo que gana: 29.414 M en los últimos 12 meses, 133,2 % del resultado neto.",
-    "Costos de transporte y de operación: con el petróleo en máximos de cinco meses y la nafta 9,1 % más cara, sube el costo de mover mercadería.",
-    "Comercio sin costos de cambio: el crítico más duro diría que Amazon, Costco y los descuentos online pueden quitarle clientes en cualquier momento.",
-    "Deuda de corto plazo creciente (16.543 M en los últimos 12 meses contra 6.603 M en 2023) con tasas altas."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 4,4 %; si baja, es la señal de que el costo de transporte o la guerra de precios se come la ganancia.",
-    "Flujo libre: hoy 13.509 M (1,8 % de las ventas); si baja más mientras la inversión crece, la empresa se financia con deuda.",
-    "Ingresos: crecen 4,7 %; si baja de 3 %, se pierde tráfico frente a Amazon o Costco.",
-    "Deuda de corto plazo: 16.543 M; si sigue subiendo con tasas cerca de 5 %, aumenta el costo financiero."
-   ],
    "clientes": [
-    "Consumidores finales de todos los niveles de ingreso: no depende de un cliente en particular",
-    "Socios de Sam's Club",
-    "Clientes de Walmart International (México, Canadá, India)"
+    "Consumidores de EE.UU., México, Canadá y otros países, sin uno dominante",
+    "Socios de Sam's Club y Walmart+",
+    "Marcas que pagan publicidad en su web y su aplicación"
    ],
-   "ideal_para": [
-    "Buscan una empresa defensiva de consumo masivo.",
-    "Valoran un dividendo que crece desde hace décadas.",
-    "Quieren estabilidad en ventas y un balance cómodo."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (cerrado el 31/07/2026): ingresos de 187.900 M (+5,9 %); ventas comparables de Walmart EE.UU. +2,6 %; comercio online global +23 %; publicidad global +38 %; membresías +17 %",
+     "fuente": "Comunicado de resultados del 2T del año fiscal 2027, 20/08/2026",
+     "url": "https://mms.businesswire.com/media/20260819458603/en/2879243/1/Earnings_Release_FY27_Q2.pdf?download=1"
+    },
+    {
+     "dato": "Resultado operativo de 9.400 M (+28,8 %), con devoluciones de aranceles; ajustado +17,4 %; recompras por 5.100 M en el año",
+     "fuente": "Ídem",
+     "url": "https://mms.businesswire.com/media/20260819458603/en/2879243/1/Earnings_Release_FY27_Q2.pdf?download=1"
+    },
+    {
+     "dato": "Guía del año fiscal 2027 (subida): ventas +4 % a +5 %; ganancia ajustada por acción de 2,80 a 2,87 dólares; inversiones de cerca de 4 % de las ventas",
+     "fuente": "Ídem",
+     "url": "https://mms.businesswire.com/media/20260819458603/en/2879243/1/Earnings_Release_FY27_Q2.pdf?download=1"
+    }
    ],
-   "menos_ideal": [
-    "Buscan alto crecimiento de ganancias.",
-    "No toleran márgenes finos que dependen de costos y de precios."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "WMT",
    "perfil": "consumo",
    "capas": [
     "compounder"
    ],
-   "ticker": "WMT",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1229,55 +1299,72 @@
    }
   },
   "AMD": {
-   "resumen": "AMD diseña procesadores para computadoras (Ryzen), para servidores de centros de datos (EPYC), placas gráficas para juegos (Radeon), los chips de las consolas de videojuegos y, cada vez más, aceleradores para inteligencia artificial que compiten de frente con los de Nvidia. No fabrica sus chips: los diseña y los fabrica otra empresa. Tiene un **foso estrecho**: en procesadores de servidor le fue ganando terreno a Intel, pero esa ventaja es tecnológica y la tecnología sola dura poco. Los números mejoraron fuerte: los ingresos pasaron de 22.680 M en 2023 a 34.639 M en 2025 y a 41.305 M en los últimos 12 meses, y el margen operativo subió de 1,8 % a 15,7 %. Su punto débil es que **todavía rinde poco sobre el capital que puso en el negocio**: el ROIC es de apenas 7,9 %, porque el capital invertido (70.450 M) incluye compras de empresas como Xilinx. Además, su crecimiento depende del gasto en inteligencia artificial, y el 22 de octubre los semiconductores cayeron 6,7 % por dudas sobre ese gasto. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque le vende los chips que esa tecnología usa. Conclusión: **buena empresa en mejora, con foso estrecho, más caja que deuda y crecimiento fuerte, pero con retornos sobre el capital todavía bajos.**",
-   "veredicto": "Buena empresa en mejora: crecimiento fuerte y caja, pero foso estrecho y retorno bajo",
-   "conclusion": "AMD es una buena empresa en mejora, no una excelente: tiene crecimiento fuerte (41.305 M en los últimos 12 meses), más caja que deuda y un flujo libre de 20,3 % de las ventas, pero un foso estrecho y un retorno sobre el capital de apenas 7,9 %. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo (15,7 %) y el ROIC sigan subiendo.",
+   "formato": "v4",
+   "titulo": "AMD: el gran retador de NVIDIA duplica su negocio de IA, pero el precio ya cuenta la victoria",
+   "resumen": [
+    "AMD diseña procesadores para computadoras y servidores (le ganó mercado a Intel durante una década) y **chips para inteligencia artificial**, donde es la principal alternativa a NVIDIA. Su ventaja es el diseño: pocas empresas en el mundo saben hacer estos chips.",
+    "En el segundo trimestre de 2026, **sus ventas crecieron 50 %** y el negocio de centros de datos se duplicó (+107 %). Espera unos 13.000 M para el tercer trimestre y ya firmó con Anthropic para instalar hasta 2 gigavatios de sus chips de IA.",
+    "Buena empresa, con un crecimiento muy fuerte, un balance con más caja que deuda y una gestión que demostró saber ejecutar, pero con márgenes y retornos todavía por debajo de su industria y un precio que exige mucho."
+   ],
+   "introduccion": "En 2014, cuando Lisa Su asumió como CEO, AMD estaba en serios problemas. Sus procesadores habían quedado muy atrás de los de Intel y la empresa perdía plata.\n\nDoce años después, AMD le sacó a Intel una parte enorme del mercado de procesadores para servidores, y ahora va por algo mucho más grande: ser la alternativa a NVIDIA en los chips de inteligencia artificial.\n\nEn el segundo trimestre de 2026, su negocio de centros de datos facturó 6.718 M, más del doble que un año antes. Y las grandes empresas de IA, que no quieren depender de un solo proveedor, empezaron a apostar en serio por AMD: Anthropic acordó instalar hasta 2 gigavatios de sus nuevos chips MI450, y OpenAI está entre los que ya los están desplegando.\n\nPero el 22 de octubre, los semiconductores cayeron 6,7 % en un día por las dudas sobre el gasto en IA. Y AMD es una de las empresas por las que el mercado más paga en relación con lo que gana hoy.\n\nEntonces, la pregunta es: ¿puede AMD crecer lo suficiente para justificar lo que ya se paga por ella?",
+   "secciones": [
+    {
+     "titulo": "De los problemas a desafiar a los dos gigantes",
+     "texto": "AMD tiene tres negocios. El más importante hoy es **centros de datos**: procesadores para servidores (EPYC) y chips para IA (Instinct). En el segundo trimestre facturó 6.718 M (+107 %) y ganó 2.103 M, cuando un año antes perdía plata.\n\nEl segundo es **computadoras y consolas**: procesadores para notebooks y PCs (+23 %) y chips para videojuegos (-31 %, por la caída en la demanda de consolas). El tercero, **embebidos**, son chips para autos, industrias y telecomunicaciones (+19 %).\n\nSus clientes son las grandes nubes (Microsoft, Meta, Oracle, entre otras), los laboratorios de IA como OpenAI y Anthropic, y los fabricantes de computadoras. Es un **cruce interesante**: las mismas empresas que le compran a NVIDIA le compran a AMD, justamente para no depender de una sola.\n\n¿Tiene **ventaja** competitiva? En los procesadores para servidores, sí: el mercado es prácticamente de dos (AMD e Intel), y diseñar estos chips lleva años de experiencia. En los chips de IA es más discutible: NVIDIA tiene CUDA, el software que usan casi todos los programadores, y AMD todavía corre de atrás. Su ventaja, siendo justos, es **estrecha**.\n\nLa inteligencia artificial no la amenaza: es su gran oportunidad."
+    },
+    {
+     "titulo": "Crece como pocas, pero todavía gana menos que sus pares",
+     "texto": "Los ingresos de AMD pasaron de **22.680 M en 2023 a 41.305 M** en los últimos 12 meses. Y el ritmo se acelera: 50 % en el último trimestre.\n\n[[grafico:ingresos]]\n\nEl margen operativo, lo que queda de cada venta después de todos los costos de funcionar, también mejora: de 1,8 % en 2023 a **15,7 %**. Pero el promedio de su industria se queda con 35,3 %. AMD todavía gana bastante menos por cada venta que sus pares.\n\n[[grafico:margen_operativo]]\n\nHay una explicación contable que conviene entender. En 2022, AMD compró Xilinx por una suma enorme pagada con acciones. Esa compra genera todos los años un costo llamado **amortización de intangibles**: una parte del precio pagado se descuenta de la ganancia, aunque no sale plata. En el segundo trimestre fueron 544 M. Por eso la empresa informa una ganancia ajustada (1,66 dólares por acción en el trimestre) más alta que la contable (1,38).\n\nLo mismo pasa con el **ROIC**, el retorno sobre el capital invertido: cuánto gana por cada dólar que pusieron sus dueños y acreedores. Está en 7,9 %, lejos del 27,2 % de su industria, en parte porque el precio pagado por Xilinx infla el capital. Por encima de 15 % se considera muy bueno: AMD todavía no llegó."
+    },
+    {
+     "titulo": "Un balance limpio para pelear una guerra cara",
+     "texto": "Competir con NVIDIA cuesta muchísimo en investigación. La buena noticia es que AMD puede pagarlo.\n\nTiene **13.111 M en caja** y una deuda de 4.276 M: su deuda neta es negativa, tiene más plata que deuda. Su ganancia operativa paga los intereses del año 44 veces (por encima de 3 ya se considera sano).\n\nY genera caja: el flujo libre (lo que queda después de invertir) fue de **8.403 M** en los últimos 12 meses, 20 dólares de cada 100 que vende. Como no fabrica sus chips (los hace TSMC), necesita invertir poco en fábricas.\n\n[[grafico:flujo_libre]]\n\nUn punto a mirar: la cantidad de acciones. Subió de 1.571 M en 2022 a 1.650 M, por la compra de Xilinx y por las acciones que entrega como parte de los sueldos. Las recompras compensan solo una parte. Además, en su acuerdo de 2025 con OpenAI, AMD le dio la opción de comprar hasta 160 millones de acciones a futuro, lo que puede sumar todavía más.\n\nLa conduce Lisa Su, CEO desde 2014, una de las ejecutivas más respetadas de la industria. Su resumen del trimestre: \"Tuvimos un trimestre excelente, con ingresos y rentabilidad récord\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En AMD, el PER (cuántos años de ganancia se pagan al comprar la acción) está inflado por la amortización de Xilinx, que achica la ganancia contable. Aun así, es útil para entender qué espera el mercado.\n\nCon el precio de {precio} dólares, AMD cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nOtra forma de verlo: el precio sobre el flujo libre de caja (cuántos dólares se pagan por cada dólar de caja que genera) es de {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nUn múltiplo muy alto significa que el precio ya cuenta con años de crecimiento fuerte. Si AMD logra convertirse en el segundo gran proveedor de chips de IA, la ganancia puede crecer lo suficiente. Si se queda corta, el precio queda muy expuesto.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. AMD no paga dividendo."
+   },
+   "conclusion": "AMD es una buena empresa, no una excelente. Tiene una gestión que demostró saber ejecutar, un balance con más caja que deuda, una caja que crece y una posición real en el negocio más importante de la década. Sus ventas crecen 50 %.\n\nSu punto débil es que todavía no es tan rentable como sus pares: margen operativo de 15,7 % contra 35,3 % de su industria y un ROIC de 7,9 %. Y en los chips de IA compite contra NVIDIA, que tiene una ventaja enorme en software. El crítico más duro diría que el mercado paga por AMD como si ya hubiera ganado una carrera en la que todavía es claramente segunda. Es un argumento serio.\n\nEncaja con quien busca crecimiento ligado a la IA y tolera mucha volatilidad. No es para quien busca renta ni para quien no soporta caídas fuertes.\n\nPara que la tesis se mantenga, lo más importante es que el margen operativo siga subiendo hacia el de su industria mientras el negocio de centros de datos sigue creciendo.",
+   "pros": [
+    "Crecimiento explosivo: ventas +50 % y centros de datos +107 % en el último trimestre.",
+    "Grandes clientes de IA: Anthropic y OpenAI están desplegando sus chips.",
+    "Balance limpio: más caja que deuda y 8.403 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "Rentabilidad todavía baja: margen operativo de 15,7 % contra 35,3 % de su industria.",
+    "Competidor gigante: NVIDIA domina los chips de IA y tiene una ventaja enorme en software.",
+    "Más acciones: la cantidad en circulación subió desde 2022."
+   ],
    "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "AMD tiene tres segmentos. **Data Center** vende procesadores para servidores y aceleradores de inteligencia artificial a empresas de nube y centros de datos. **Client and Gaming** vende procesadores para PC, placas gráficas y los chips semipersonalizados de las consolas de videojuegos. **Embedded** vende chips para equipos industriales, comunicaciones y autos. Yahoo no informa cuánto pesa cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable pero competido: todos los aparatos necesitan procesadores, pero el cliente elige el que rinde más por el precio. **Los ingresos cayeron 3,9 % en 2023 y crecieron 13,7 % en 2024, 34,3 % en 2025, con 41.305 M en los últimos 12 meses.** Lo que impulsa el crecimiento es la demanda de servidores y de aceleradores para inteligencia artificial.\n\n**A quién le vende.** A fabricantes de computadoras (Dell, HP, Lenovo), a grandes empresas de nube (Microsoft, Meta, Oracle y otras) y a fabricantes de consolas como Sony y Microsoft. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
-   "foso": "El foso de AMD **es estrecho y todavía no se ve en los números**. Sus ventajas son tecnológicas: diseñó procesadores que rinden mejor y gastan menos que los de Intel, y los grandes de la nube los eligieron. Pero la tecnología sola no es una ventaja sostenible: Intel y Nvidia invierten tanto como ella, y el cliente no paga ningún costo grande por cambiar de proveedor en la próxima generación. El programa estima que no tiene foso; nuestra lectura es apenas más generosa, por el avance sostenido en servidores, pero **el retorno sobre el capital de 7,9 % no es el de una empresa con foso**.\n\nSe ve en el margen bruto, que subió de 44,9 % en 2022 a 53,2 % en los últimos 12 meses: mejora, pero lejos del 65 % a 80 % de las empresas con foso amplio. Compite con Nvidia (aceleradores de inteligencia artificial y placas gráficas), con Intel (procesadores) y con Qualcomm y Apple en PC. La inteligencia artificial es su oportunidad, pero también la razón de que Nvidia, que va adelante, defienda su terreno con todo.",
-   "numeros": "Los números de AMD cuentan **una recuperación fuerte desde un piso muy bajo**. Los ingresos cayeron 3,9 % en 2023 y luego crecieron 13,7 %, 34,3 % y llegaron a 41.305 M en los últimos 12 meses. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) pasó de 1,8 % en 2023 a 8,1 % en 2024, 10,7 % en 2025 y 15,7 % en los últimos 12 meses. La ganancia por acción pasó de 0,53 en 2023 a 2,65 en 2025 y a 3,89 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 8.403 M en los últimos 12 meses, **20,3 % de las ventas**, con una inversión chica (1.677 M). Pero el retorno sobre el capital invertido (ROIC), cuánto gana por cada dólar puesto en el negocio, **es de 7,9 %**: bajo, porque el capital invertido es de 70.450 M, buena parte de compras de empresas.\n\nLa mirada crítica: el margen operativo de 15,7 % está 5,9 puntos por encima del promedio de la tabla, y en 2023 había caído a 1,8 %. La empresa todavía no mostró un ciclo completo con estos márgenes.",
-   "balance": "**El balance de AMD es muy sólido: tiene más caja que deuda.** En los últimos 12 meses tiene 13.111 M en caja y una deuda total de 4.276 M, así que la deuda neta es negativa en 8.835 M (le sobra plata aun pagando todo lo que debe). La ganancia operativa cubre 44,1 veces los intereses, y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,61 veces.\n\nCon tasas cerca de 5 %, a AMD casi no le afecta su propia deuda; sí le afecta, de forma indirecta, que sus clientes (las empresas de nube) tengan que financiar sus inversiones en centros de datos con dinero más caro.",
-   "gerencia": "La conduce Lisa Su, presidenta y CEO (55 años, pago de 4,5 M según Yahoo), con Jean Hu como directora financiera y Mark Papermaster como director de tecnología. Es un equipo estable y con buen historial: llevó a la empresa de ser una fabricante en problemas a competir por los mejores contratos de servidores.\n\nEn lo que importa, **el uso del capital, fue de crecer comprando**: el capital invertido pasó de 57.217 M en 2022 a 70.450 M en los últimos 12 meses, sobre todo por la compra de Xilinx. No paga dividendo y recompra poco (1.182 M en los últimos 12 meses). **Las acciones diluidas aumentaron de 1.571 M en 2022 a 1.650 M, un 5,0 % más**, en parte por la compra y por el pago a empleados con acciones.",
-   "fortalezas": [
-    "Crecimiento fuerte: ingresos de 22.680 M en 2023 a 41.305 M en los últimos 12 meses.",
-    "Mejora de márgenes: margen operativo de 1,8 % en 2023 a 15,7 % en los últimos 12 meses.",
-    "Más caja que deuda: deuda neta negativa en 8.835 M y cobertura de intereses de 44,1 veces.",
-    "Flujo libre de 8.403 M en los últimos 12 meses, 20,3 % de las ventas, con inversión baja.",
-    "Posición ganada en procesadores de servidores y presencia en inteligencia artificial."
-   ],
-   "debilidades": [
-    "Retorno sobre el capital bajo: 7,9 % en los últimos 12 meses, porque el capital incluye compras de empresas.",
-    "Foso estrecho: el crítico más duro diría que sus ventajas son tecnológicas y que Nvidia e Intel pueden alcanzarla o superarla en cada nueva generación.",
-    "Dependencia de pocos clientes grandes y del gasto en inteligencia artificial, que el mercado cuestionó el 22 de octubre.",
-    "Negocio cíclico: en 2023 el resultado operativo cayó 68,3 %.",
-    "Dilución: 5,0 % más acciones desde 2022."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 15,7 %; si se mantiene arriba de 15 % cuando se enfríe el ciclo, la mejora es de fondo.",
-    "ROIC: hoy 7,9 %; tiene que seguir subiendo para justificar el capital invertido.",
-    "Ingresos de centros de datos y de inteligencia artificial: son la base del crecimiento y no se informan en detalle.",
-    "Competencia con Nvidia: cualquier pérdida de contratos en aceleradores de inteligencia artificial debilita la tesis."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
     "Microsoft (MSFT)",
-    "Meta Platforms (META)",
-    "Fabricantes de computadoras (Dell, HP, Lenovo)",
-    "Fabricantes de consolas (Sony y Microsoft)"
+    "Meta (META)",
+    "Oracle (ORCL)",
+    "Laboratorios de IA como OpenAI y Anthropic",
+    "Fabricantes de computadoras y consolas"
    ],
-   "ideal_para": [
-    "Buscan crecimiento en chips para servidores e inteligencia artificial.",
-    "Valoran un balance con más caja que deuda.",
-    "Toleran que el negocio sea cíclico y que el foso sea estrecho."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ingresos de 11.536 M (+50 %); centros de datos 6.718 M (+107 %) con ganancia operativa de 2.103 M; computadoras 3.062 M (+23 %); videojuegos 779 M (-31 %); embebidos 977 M (+19 %)",
+     "fuente": "Comunicado de resultados del 2T26 (8-K, anexo 99.1), 04/08/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000121/q22026991.htm"
+    },
+    {
+     "dato": "Ganancia por acción contable de 1,38 dólares y ajustada de 1,66; amortización de intangibles de 544 M; flujo libre de 1.558 M; guía para el tercer trimestre: ingresos de unos 13.000 M",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000121/q22026991.htm"
+    },
+    {
+     "dato": "Acuerdo estratégico con Anthropic para instalar hasta 2 gigavatios de chips MI450 en racks Helios; OpenAI entre los que despliegan Helios; frase de Lisa Su",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000002488/000000248826000121/q22026991.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan empresas con foso amplio y retornos altos demostrados.",
-    "No toleran la competencia directa con una empresa líder como Nvidia."
-   ],
+   "ticker": "AMD",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "AMD",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1292,56 +1379,71 @@
    }
   },
   "V": {
-   "resumen": "Visa no presta plata ni emite las tarjetas: es la red por donde viaja el pago. Cada vez que pagás con una tarjeta Visa o con el celular, Visa autoriza y liquida la operación en segundos, y se queda con una pequeña comisión de cada una. Como no toma riesgo de crédito, casi todo lo que cobra es ganancia. Tiene un **foso amplio, de efecto de red**: los comercios aceptan Visa porque la tienen millones de clientes, y los clientes la quieren porque la aceptan en todos lados. Los números lo muestran: el margen operativo es de 66,4 %, el retorno sobre el capital invertido de 35,3 % y los ingresos crecieron cerca de 11 % por año, y recompra tantas acciones que **las de circulación bajaron 17,6 % desde 2022**. Su punto débil es la regulación: las comisiones que cobra son discutidas por gobiernos y comercios. La inflación en 3,7 % ayuda de manera mecánica, porque cuando todo cuesta más, el total de pagos sube y ella cobra un porcentaje. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la IA puede usar su red de pagos y no reemplazarla. Conclusión: **excelente empresa, con foso amplio, márgenes de 66 %, retornos extraordinarios y balance cómodo, expuesta a la regulación de sus comisiones.**",
-   "veredicto": "Excelente empresa: foso de efecto de red, márgenes de 66 % y retornos extraordinarios",
-   "conclusion": "Visa es una empresa excelente: una red de pagos con foso de efecto de red, margen operativo de 66,4 %, ROIC de 35,3 % y 17,6 % menos acciones desde 2022. Su punto débil es la regulación de las comisiones. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo no baje y que los ingresos sigan creciendo a dos dígitos.",
+   "formato": "v4",
+   "titulo": "Visa: el peaje de los pagos con tarjeta, uno de los mejores negocios del mundo",
+   "resumen": [
+    "Visa no presta plata ni emite tarjetas: **es la red por la que viajan los pagos**. Cobra una comisión chica cada vez que alguien paga con una tarjeta Visa. Su ventaja es el **efecto de red**: todos los comercios la aceptan porque todos la tienen, y todos la tienen porque todos la aceptan.",
+    "En su año fiscal 2026 (cerrado en septiembre), **los ingresos crecieron 15 %** a 45.900 M y la ganancia ajustada por acción, 16 %. Los pagos entre países subieron 13 %.",
+    "Excelente empresa, con una de las ventajas más sólidas del mercado, márgenes de 66 % y una devolución de capital enorme, con riesgos regulatorios y tecnológicos que hay que seguir."
+   ],
+   "introduccion": "Cada vez que pagás con tarjeta un café, un pasaje o una compra online, alguien se lleva una fracción de centavo de esa operación. Muchas veces, ese alguien es Visa.\n\nEs uno de los mejores negocios jamás inventados. Visa no corre el riesgo de que no le paguen (eso lo asume el banco que emite la tarjeta), no necesita fábricas ni depósitos, y cobra por cada una de las 281.300 millones de transacciones que procesó en su último año fiscal.\n\nEl resultado son números que parecen de otro planeta: de cada 100 dólares que factura, le quedan 66 de ganancia operativa.\n\nY la inflación, curiosamente, la ayuda: como cobra un porcentaje de lo que se paga, si los precios suben 3,7 % por año, sus ingresos suben con ellos sin hacer nada.\n\nPero ningún negocio así está libre de amenazas. Los gobiernos quieren bajar las comisiones, y las nuevas formas de pago (transferencias instantáneas, monedas digitales, compras hechas por asistentes de IA) buscan saltear a las redes de tarjetas.\n\nEntonces, la pregunta es: ¿puede Visa seguir cobrando su peaje en un mundo donde cada vez hay más caminos alternativos?",
+   "secciones": [
+    {
+     "titulo": "El peaje de los pagos con tarjeta",
+     "texto": "El negocio de Visa es simple de explicar. Opera **VisaNet**, la red que conecta al banco del comprador con el banco del comercio y que autoriza, compensa y liquida cada pago. Por eso cobra comisiones a los bancos según el volumen que pasa por su red y la cantidad de operaciones que procesa.\n\nSus clientes directos son los bancos y las financieras que emiten tarjetas Visa y las que procesan los pagos de los comercios. Ninguno pesa demasiado por sí solo, aunque los grandes bancos, como JPMorgan (JPM), son socios muy importantes.\n\nEn el año fiscal 2026, el volumen de pagos creció 9 %, la cantidad de operaciones 9 % y los **pagos entre países** (cuando alguien usa la tarjeta en otro país o compra en un sitio extranjero) 13 %. Estos últimos son los más rentables, porque Visa cobra más por ellos.\n\n¿Por qué nadie puede competirle fácilmente? Por el **efecto de red**: un comercio acepta Visa porque la tiene todo el mundo, y la gente la tiene porque la acepta todo el mundo. Una red nueva tendría que convencer a millones de comercios y de personas al mismo tiempo. Con Mastercard (MA), Visa forma un duopolio en buena parte del mundo.\n\nLa inteligencia artificial es un desafío a vigilar: si los asistentes de IA empiezan a comprar por nosotros, la pregunta es qué red de pago van a usar. Visa ya está trabajando para que sea la suya, y la confianza (la protección contra fraudes) es su gran argumento."
+    },
+    {
+     "titulo": "Márgenes que casi ninguna empresa del mundo tiene",
+     "texto": "El margen operativo mide lo que queda de cada venta después de todos los costos de funcionar. Visa se queda con **66,4 dólares de cada 100**. El promedio de su industria (servicios financieros no bancarios) se queda con 18,5.\n\n[[grafico:margen_operativo]]\n\nY lo sostiene año tras año: estuvo entre 66 % y 67 % desde 2022. Esa estabilidad es la prueba de que su ventaja es real: si hubiera competencia de verdad, los márgenes bajarían.\n\nEl **ROIC**, el retorno sobre el capital invertido, mide cuánto gana por cada dólar que pusieron sus dueños y acreedores. Por encima de 15 % se considera muy bueno. Visa está en **35,3 %**, y subiendo desde 29,1 % en 2022.\n\n[[grafico:roic]]\n\nY casi no necesita invertir para crecer: sus inversiones en equipos y sistemas son de apenas unos 1.500 M por año, contra un flujo libre de caja (lo que queda después de invertir) de **21.013 M**. Eso es lo que permite devolver tanta plata a los accionistas.\n\nUna aclaración sobre la ganancia contable: Visa reserva cada año plata para juicios por las comisiones que cobra (1.700 M en el último año fiscal). Por eso informa también una ganancia ajustada, que en el año fue de 13,27 dólares por acción (+16 %)."
+    },
+    {
+     "titulo": "Una máquina de recomprar acciones, con riesgos que no hay que ignorar",
+     "texto": "¿Qué hace Visa con tanta caja? La devuelve. En el año fiscal 2026 destinó **25.600 M** a recompras y dividendos. Y acaba de subir el dividendo **16 %**, a 0,78 dólares por trimestre.\n\nLas recompras se notan: la cantidad de acciones bajó de 2.558 M en 2022 a **2.109 M**, un 17,6 % menos. Cada accionista que se quedó tiene hoy una porción bastante más grande de la empresa.\n\n[[grafico:acciones]]\n\nTiene algo de deuda (23.858 M), pero su ganancia operativa paga los intereses del año 45 veces. Por encima de 3 ya se considera sano.\n\nAhora, los riesgos. El principal es **regulatorio**: en EE.UU. hay juicios y proyectos de ley para bajar las comisiones de las tarjetas, y en otros países los gobiernos impulsan pagos instantáneos baratos (como el Pix en Brasil) que compiten con las tarjetas. Ninguno amenaza el negocio de un día para el otro, pero pueden ir comiendo el margen.\n\nTambién está comprando BioCatch, una empresa de prevención de fraude, por 2.400 M: una apuesta a que la seguridad sea su próximo motor.\n\nLa conduce Ryan McInerney, CEO desde 2023: \"Mirando hacia 2027 y más allá, la confianza es el próximo motor de crecimiento de Visa\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Visa, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada del año fiscal 2026 (13,27 dólares por acción), que deja afuera las reservas para juicios y otros gastos extraordinarios.\n\nCon el precio de {precio} dólares, Visa cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nVisa casi siempre cotizó más cara que el promedio de las empresas financieras, y tiene sentido: crece de forma pareja, tiene márgenes enormes y casi no necesita invertir. La pregunta no es si merece una prima, sino cuánta.\n\nUna forma simple de pensarlo: si la ganancia por acción sigue creciendo cerca de 13 % por año (lo que creció en promedio entre 2022 y 2025) y el PER se mantiene, el accionista ganaría ese crecimiento más el dividendo, unos {retorno} por año. No es una promesa: es la cuenta de qué pasa si todo sigue igual.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 13.27,
+    "crecimiento_ref": 13.0,
+    "ganancia_ref_txt": "ganancia ajustada por acción del año fiscal 2026"
+   },
+   "conclusion": "Visa es una empresa excelente. Tiene una de las ventajas más sólidas del mercado, el efecto de red de los pagos con tarjeta, un margen operativo de 66,4 % que se mantiene año tras año, un ROIC de 35,3 % y una devolución de capital enorme: 17,6 % menos acciones desde 2022 y un dividendo que crece fuerte.\n\nSu punto débil no está en los números, sino en el entorno: gobiernos que quieren bajar las comisiones y nuevas formas de pago que buscan saltear a las tarjetas. El crítico más duro diría que Visa cobra un peaje que la tecnología va a volver innecesario. Hasta ahora, cada nueva forma de pago terminó usando sus rieles, pero el riesgo existe.\n\nEncaja con quien busca una empresa de calidad excepcional para el largo plazo, con crecimiento parejo y un dividendo en suba. No es para quien busca renta alta hoy.\n\nPara que la tesis se mantenga, lo más importante es que el volumen de pagos siga creciendo cerca de 9 % por año sin que las comisiones bajen.",
+   "pros": [
+    "Efecto de red: todos los comercios la aceptan porque todos la tienen, y al revés.",
+    "Rentabilidad de elite: margen operativo de 66,4 % y ROIC de 35,3 %.",
+    "Devolución de capital: 17,6 % menos acciones desde 2022 y dividendo +16 %."
+   ],
+   "contras": [
+    "Riesgo regulatorio: juicios y leyes para bajar las comisiones de las tarjetas.",
+    "Pagos alternativos: transferencias instantáneas y nuevas tecnologías buscan saltear a las tarjetas.",
+    "Juicios recurrentes: 1.700 M reservados para litigios en el último año fiscal."
+   ],
    "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "Visa opera **VisaNet**, la red que autoriza, compensa y liquida los pagos con tarjeta de crédito, débito y prepaga, y con celular (pago por aproximación). También ofrece Visa Direct (envío de dinero entre personas y empresas), herramientas para prevenir fraude y servicios para los bancos que emiten tarjetas. Yahoo no informa cuánto aporta cada servicio, y no lo vamos a inventar.\n\nEs un negocio indispensable y estable: mientras la gente compre, Visa cobra. **Los ingresos pasaron de 29.310 M en el año fiscal 2022 a 40.000 M en 2025**, un crecimiento de cerca de 11 % por año. Lo que lo impulsa es que cada vez más compras pasan del efectivo a la tarjeta o al celular y que el comercio internacional sigue creciendo.\n\n**A quién le vende.** A bancos que emiten tarjetas, a bancos que atienden comercios y a los comercios; los consumidores son quienes pagan las comisiones de forma indirecta. **Ningún cliente pesa de forma decisiva**, pero sí depende de unos pocos bancos grandes que emiten muchas de las tarjetas.",
-   "foso": "La ventaja de Visa **es de efecto de red**. Cuantos más comercios la aceptan, más útil es para los consumidores, y cuantos más consumidores la usan, más comercios la quieren aceptar. Es un círculo que se refuerza y es casi imposible de copiar: una red nueva tendría que convencer, a la vez, a millones de comercios y de clientes. Se ve en el **margen operativo, de 67,1 % en 2022 y 66,4 % en 2025**, estable durante años, algo que casi ninguna empresa logra.\n\nCompite con Mastercard (igual de fuerte), con American Express y con alternativas que crecen: pagos directos entre cuentas bancarias, billeteras digitales como PayPal y Apple Pay, y monedas digitales. Es frágil en la regulación: los gobiernos y los comercios discuten el nivel de las comisiones, y si los obligan a bajarlas, afecta directo el margen. La inteligencia artificial hoy no la amenaza: los asistentes que paguen por la gente igual van a usar una red.",
-   "numeros": "Los números de Visa cuentan **una máquina de ganar plata muy pareja**. Los ingresos crecieron 11,4 % en el año fiscal 2023, 10,0 % en 2024 y 11,3 % en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) se mantuvo en 67,1 %, 67,2 %, 67,0 % y 66,4 %. La ganancia por acción pasó de 7,00 en 2022 a 10,20 en 2025, y a 12,33 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 21.577 M en 2025, **53,9 % de las ventas**, con una inversión muy chica (1.482 M). El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 29,1 % a **35,3 %**, un retorno extraordinario.\n\nLa mirada crítica: el margen neto bajó de 55,0 % en 2024 a 50,1 % en 2025, mientras que el margen operativo casi no cambió (66,4 %), así que la diferencia viene de otras partidas que Yahoo no aclara. Además, el crecimiento de la ganancia por acción en 2025 (+4,8 %) fue más flojo que el de años anteriores.",
-   "balance": "**El balance de Visa es cómodo.** En 2025 tiene una deuda total de 25.171 M y 18.997 M en caja, así que la deuda neta es de 8.007 M, **0,31 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con unos tres meses de ganancia operativa. La ganancia operativa cubre 45,1 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, bajó de 1,45 veces en 2022 a 0,99 veces en los últimos 12 meses: ajustada, pero normal para una red que cobra al instante y paga a sus clientes en plazos cortos. La caja bajó de 18.997 M en 2025 a 13.792 M, porque devuelve casi todo a los accionistas.",
-   "gerencia": "La conduce Ryan McInerney, CEO (50 años, pago de 7,1 M según Yahoo), con Chris Suh como director financiero. Es un equipo estable y con experiencia.\n\nEn lo que importa, **el uso del capital, es disciplinado**: invierte poco (1.482 M en 2025) y devuelve casi todo. Paga un dividendo de 2,68 por acción (creciendo 15,7 % por año en 3 años; 4.998 M en los últimos 12 meses) y recompra acciones por montos enormes (21.357 M en los últimos 12 meses, contra 11.589 M en 2022). **Las acciones diluidas bajaron de 2.558 M a 2.109 M, un 17,6 % menos.** Cada acción que queda se lleva una porción mayor de la ganancia.",
-   "fortalezas": [
-    "Foso amplio de efecto de red: margen operativo estable en 66-67 % desde 2022.",
-    "Retornos extraordinarios: ROIC de 35,3 % en 2025, subiendo desde 29,1 % en 2022.",
-    "Caja enorme con inversión mínima: flujo libre de 21.577 M en 2025, 53,9 % de las ventas.",
-    "Recompras fuertes: 17,6 % menos acciones desde 2022.",
-    "Dividendo creciente: 2,68 por acción, +15,7 % por año en 3 años."
-   ],
-   "debilidades": [
-    "Regulación de las comisiones: gobiernos y comercios presionan para bajarlas; es el riesgo principal.",
-    "Competencia de nuevas formas de pago: transferencias directas entre cuentas, billeteras digitales y monedas digitales; el crítico más duro diría que, con el tiempo, pueden saltearse la red.",
-    "Dependencia de un consumo sano: cuando la gente gasta menos, cobra menos.",
-    "Crecimiento de la ganancia por acción que se frena: +4,8 % en 2025 contra +17,5 % en 2024.",
-    "Liquidez corriente ajustada: 0,99 veces en los últimos 12 meses."
-   ],
-   "vigilar": [
-    "Ingresos: crecen cerca de 11 %; si baja de 8 % de forma sostenida, el efecto de red pierde fuerza o el consumo se frena.",
-    "Margen operativo: hoy 66,4 %; si baja, es señal de que la regulación o la competencia empiezan a pegar.",
-    "Regulación de comisiones: resoluciones de gobiernos y juicios de comercios.",
-    "Margen neto: bajó de 55,0 % a 50,1 % en 2025; hay que ver si se recupera."
-   ],
    "clientes": [
-    "Bancos emisores de tarjetas",
-    "Bancos que atienden a los comercios",
-    "Comercios de todo el mundo (a través de los bancos)"
+    "Bancos y financieras que emiten tarjetas Visa, como JPMorgan (JPM)",
+    "Procesadores de pagos de los comercios",
+    "Indirectamente, consumidores y comercios de todo el mundo"
    ],
-   "ideal_para": [
-    "Buscan una empresa de calidad con foso amplio y márgenes muy altos.",
-    "Valoran recompras y un dividendo que crece.",
-    "Quieren exposición al consumo global sin tomar riesgo de crédito."
+   "hechos": [
+    {
+     "dato": "Año fiscal 2026 (cerrado el 30/09/2026): ingresos de 45.900 M (+15 %); ganancia por acción contable de 12,32 dólares (+21 %) y ajustada de 13,27 (+16 %); volumen de pagos +9 %; pagos entre países +13 %; 281.300 millones de operaciones (+9 %)",
+     "fuente": "Comunicado de resultados del 4T del año fiscal 2026, 27/10/2026",
+     "url": "https://s1.q4cdn.com/050606653/files/content_files/4Q26-Earnings-Release_vFINAL.pdf"
+    },
+    {
+     "dato": "25.600 M en recompras y dividendos en el año; dividendo trimestral de 0,78 dólares (+16 %); reservas para juicios de 1.700 M en el año; compra de BioCatch por 2.400 M; frase de Ryan McInerney",
+     "fuente": "Ídem",
+     "url": "https://s1.q4cdn.com/050606653/files/content_files/4Q26-Earnings-Release_vFINAL.pdf"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo regulatorio sobre las comisiones.",
-    "Buscan crecimiento acelerado: es un negocio maduro que crece cerca de 11 % por año."
-   ],
+   "mes_cierre_fiscal": 9,
+   "ticker": "V",
    "perfil": "pagos",
    "capas": [
     "compounder"
    ],
-   "ticker": "V",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1356,56 +1458,67 @@
    }
   },
   "XOM": {
-   "resumen": "ExxonMobil es una de las petroleras más grandes del mundo: extrae petróleo y gas, refina combustibles y fabrica productos químicos y lubricantes. Su ganancia sube y baja con el precio del petróleo, y este año el petróleo se volvió protagonista: desde marzo de 2026 hay guerra con Irán y problemas en el estrecho de Ormuz, el Brent llegó a 126 dólares en abril, bajó a unos 74 en junio y en octubre volvió a máximos de cinco meses. Tiene un **foso estrecho, de escala y costos**: es tan grande y integrada que produce a costos más bajos que las petroleras chicas, pero el precio del petróleo no lo controla. Los números muestran el ciclo: el margen operativo bajó de 16,1 % en 2022 a 10,7 % en los últimos 12 meses y el ROIC, de 18,4 % a 9,3 %. Su punto débil es que **devuelve más plata de la que le sobra**: pagó 17.241 M en dividendos y 20.512 M en recompras, contra un flujo libre de 30.553 M, y por eso la deuda neta subió de 8.254 M en 2022 a 31.780 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque vende un producto físico que usa toda la economía. Conclusión: **buena empresa, con foso estrecho, balance cómodo y un dividendo de 65 años, pero con ganancias que dependen del petróleo y un retorno sobre el capital a la baja.**",
-   "veredicto": "Buena empresa: escala y dividendo histórico, pero ganancias atadas al petróleo",
-   "conclusion": "ExxonMobil es una buena empresa, no una excelente: una petrolera integrada de escala enorme, con un dividendo pagado desde 1962, flujo libre de 30.553 M y deuda cómoda (0,42 veces el EBITDA), pero con ganancias atadas al precio del petróleo, un ROIC de 9,3 % y pagos a los accionistas que superan lo que le sobra. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo y las recompras.",
+   "formato": "v4",
+   "titulo": "ExxonMobil: la guerra disparó sus ganancias, pero su negocio sigue atado al precio del petróleo",
+   "resumen": [
+    "ExxonMobil es la petrolera más grande de Occidente: **saca petróleo y gas, lo refina y fabrica químicos**. Su ventaja son los costos bajos en sus mejores yacimientos (la cuenca Pérmica en EE.UU. y Guyana) y la escala.",
+    "En el segundo trimestre de 2026, con el petróleo disparado por la guerra con Irán, **ganó 14.525 M, más de tres veces lo del trimestre anterior**, y su producción en EE.UU. llegó a récord.",
+    "Buena empresa, una de las petroleras mejor manejadas del mundo, con poca deuda y décadas de dividendos crecientes, pero en un negocio donde la ganancia depende de un precio que nadie controla."
+   ],
+   "introduccion": "En marzo de 2026 empezó la guerra con Irán. El estrecho de Ormuz, por donde pasa una parte enorme del petróleo del mundo, quedó bajo amenaza, y el barril de Brent llegó a 126 dólares en abril.\n\nPara una petrolera, eso es una lluvia de plata. En el segundo trimestre de 2026, ExxonMobil ganó 14.525 M. En el primero había ganado 4.183 M.\n\nPero el petróleo es así: sube y baja. En junio, el Brent ya había vuelto a unos 74 dólares, y en octubre volvió a subir por ataques en Arabia Saudita. Las ganancias de una petrolera siguen ese ritmo, y no hay gestión que lo evite.\n\nPor eso, para entender a ExxonMobil, no alcanza con mirar un trimestre bueno. Hay que preguntarse cómo le va cuando el petróleo está barato.\n\nEntonces, la pregunta es: ¿es ExxonMobil un buen negocio por sí mismo, o solo una apuesta al precio del petróleo?",
+   "secciones": [
+    {
+     "titulo": "Del pozo al surtidor y a la planta química",
+     "texto": "ExxonMobil es una petrolera **integrada**: hace todo el recorrido. En el segundo trimestre de 2026, así se repartió su ganancia ajustada:\n\n- **Producción** (sacar petróleo y gas): 9.189 M.\n- **Productos energéticos** (refinar y vender combustibles): 4.099 M.\n- **Químicos**: 1.214 M.\n- **Productos especiales** (lubricantes y otros): 969 M.\n\nSus clientes son de todo tipo y sin uno dominante: estaciones de servicio, aerolíneas, industrias, fabricantes de plásticos.\n\nEstar integrada tiene una ventaja: cuando el petróleo está barato, la producción gana menos, pero las refinerías y la química (que compran petróleo como materia prima) suelen ganar más. No elimina los ciclos, pero los suaviza.\n\n¿Tiene **ventaja** competitiva? En un negocio de materias primas, la única ventaja real es tener **costos más bajos** que los demás: así, cuando el precio cae, uno sigue ganando mientras otros pierden. ExxonMobil la tiene en sus mejores activos. En la **cuenca Pérmica** (Texas y Nuevo México), donde la compra de Pioneer en 2024 la convirtió en el mayor productor, produjo un récord de más de 1,8 millones de barriles equivalentes por día. Y en **Guyana**, uno de los descubrimientos más grandes de las últimas décadas, sumará su quinta plataforma de producción en el cuarto trimestre de 2026.\n\nLa inteligencia artificial no amenaza este negocio; en todo caso, los centros de datos necesitan energía, y parte de ella sale del gas."
+    },
+    {
+     "titulo": "Un retorno que sube y baja con el barril",
+     "texto": "El mejor número para juzgar a una petrolera es el **ROIC**, el retorno sobre el capital invertido: cuánto gana por cada dólar que pusieron sus dueños y acreedores. Por encima de 15 % se considera muy bueno.\n\nEn 2022, con el petróleo alto por la guerra en Ucrania, ExxonMobil tuvo un ROIC de **18,4 %**. En 2025, con el petróleo más barato, bajó a **7,9 %**. En los últimos 12 meses, 9,3 %. El promedio de su industria (las grandes petroleras integradas) es 8,4 %.\n\n[[grafico:roic]]\n\nEsa es la lección de las empresas cíclicas: el retorno de un año bueno no es el retorno del negocio. Lo que importa es el promedio de todo el ciclo. Y en el caso de ExxonMobil, ese promedio está apenas por encima de su industria.\n\nLo mismo pasa con los ingresos y las ganancias: la ganancia por acción pasó de 13,26 dólares en 2022 a 6,70 en 2025, sin que la empresa hiciera nada mal. Simplemente bajó el precio del petróleo.\n\nLo que sí depende de la gerencia es la eficiencia: producir más con lo mismo y bajar costos. En eso, ExxonMobil viene cumpliendo: su producción fuera de Medio Oriente está en el nivel más alto en más de dos décadas."
+    },
+    {
+     "titulo": "Un balance para atravesar los años malos",
+     "texto": "Las petroleras que sobreviven a los ciclos son las que no se endeudan en los años buenos. ExxonMobil es de esas.\n\nSu deuda neta (lo que debe menos la caja) es de 31.780 M, apenas **0,42 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Y su ganancia operativa paga los intereses del año casi 50 veces.\n\nEn el segundo trimestre generó **17.236 M de flujo libre de caja** (lo que queda después de invertir) y repartió 9.400 M: 4.300 M en dividendos y 5.100 M en recompras.\n\n[[grafico:flujo_vs_inversion]]\n\nEl dividendo es su gran orgullo: lo paga hace más de 60 años sin interrupciones, y en los últimos tres años creció 4,1 % por año. Crece despacio, pero es de los más confiables del mercado.\n\nUn detalle: la cantidad de acciones subió 6,1 % en 2024, porque la compra de Pioneer se pagó con acciones. Desde entonces, las recompras la vienen bajando.\n\nLa conduce Darren Woods, CEO desde 2017. Su resumen del trimestre: \"El segundo trimestre estuvo marcado por la disrupción, pero definido por la ejecución\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una petrolera, el PER (cuántos años de ganancia se pagan al comprar la acción) engaña mucho, porque la ganancia cambia con el precio del petróleo. Cuando el petróleo está alto, el PER parece bajo; cuando está bajo, parece alto.\n\nCon el precio de {precio} dólares, ExxonMobil cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nPor eso conviene mirar también el **precio sobre valor libros** (cuántas veces el patrimonio contable se paga al comprar la acción): {v:p_b} veces, {vs:p_b} su mediana histórica ({med:p_b} veces).\n\nCuando una petrolera cotiza por encima de su historia, el mercado suele estar apostando a que el petróleo se mantiene caro. Si la guerra se calma y el barril baja, la ganancia baja con él.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "ExxonMobil es una buena empresa, no una excelente. Es una de las petroleras mejor manejadas del mundo: tiene yacimientos de costo bajo en la cuenca Pérmica y Guyana, un balance con muy poca deuda (0,42 veces su EBITDA) y más de 60 años pagando dividendos.\n\nSu punto débil es el que tiene toda petrolera: su ganancia depende del precio del petróleo. Su retorno sobre el capital fue de 18,4 % en 2022 y de 7,9 % en 2025, sin que cambiara nada en la empresa. El crítico más duro diría que, en el largo plazo, la transición energética va a ir achicando la demanda de petróleo y que comprar una petrolera con el barril alto por una guerra es comprar en el peor momento. Es un argumento a tener en cuenta.\n\nEncaja con quien busca un dividendo confiable y una cobertura contra las subas del petróleo en su cartera. No es para quien busca crecimiento parejo ni para quien no tolera los ciclos.\n\nPara que la tesis se mantenga, lo más importante es que siga bajando su costo por barril, para ganar plata incluso cuando el petróleo esté barato.",
+   "pros": [
+    "Costos bajos: la cuenca Pérmica y Guyana están entre los yacimientos más baratos del mundo.",
+    "Balance sólido: deuda neta de 0,42 veces su EBITDA.",
+    "Dividendo histórico: lo paga hace más de 60 años."
+   ],
+   "contras": [
+    "Depende del petróleo: la ganancia por acción cayó de 13,26 a 6,70 dólares entre 2022 y 2025.",
+    "Retorno modesto: ROIC promedio apenas por encima de su industria.",
+    "Transición energética: a largo plazo, la demanda de petróleo puede achicarse."
+   ],
    "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "ExxonMobil tiene cuatro segmentos. **Upstream** explora y produce petróleo y gas. **Energy Products** vende combustibles y otros productos de la refinación. **Chemical Products** fabrica plásticos y productos químicos. **Specialty Products** vende lubricantes y otros productos de especialidad. Yahoo no informa cuánto aporta cada uno, y no lo vamos a inventar.\n\nEs un negocio indispensable hoy y por décadas: el mundo sigue consumiendo petróleo y gas. Pero su ganancia depende del precio. **Los ingresos fueron de 398.675 M en 2022, bajaron a 323.905 M en 2025 y subieron a 361.060 M en los últimos 12 meses**, junto con el precio del petróleo. Lo que impulsa su crecimiento es producir más a bajo costo y sacar más valor de lo que refina.\n\n**A quién le vende.** A refinerías, distribuidores, industrias, empresas de transporte y estaciones de servicio: **ningún cliente pesa de forma decisiva**. La dependencia está en el precio de los productos que vende, que no controla.",
-   "foso": "La ventaja de ExxonMobil **es de escala y de costos, y es estrecha**. Es una de las pocas petroleras capaces de encarar proyectos enormes y de integrar producción, refinación y química: la química y la refinación aprovechan lo que extrae, lo que le baja el costo. Pero el producto es una materia prima: nadie paga más por el petróleo de una empresa que por el de otra, y **la ganancia la decide el precio, no la empresa**. Se ve en el margen bruto: de 25,9 % en 2022 a 20,6 % en los últimos 12 meses.\n\nCompite con Chevron, Shell, BP, TotalEnergies y con las petroleras estatales de Arabia Saudita y otros países. Es frágil por la transición energética: si el mundo gasta menos petróleo, a la larga la demanda baja. La inteligencia artificial no la amenaza: el combustible y los químicos se siguen necesitando.",
-   "numeros": "Los números de ExxonMobil cuentan **un ciclo que se está desinflando después de un año extraordinario**. Los ingresos cayeron 16,0 % en 2023 y 4,5 % en 2025, y subieron a 361.060 M en los últimos 12 meses. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 16,1 % en 2022 a 13,3 %, 11,7 %, 10,5 % y 10,7 % en los últimos 12 meses. La ganancia por acción pasó de 13,26 en 2022 a 6,70 en 2025 y 7,77 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo operativo fue de 59.727 M en los últimos 12 meses, 182,3 % del resultado neto, en parte porque algunos gastos contables, como la depreciación de los equipos, no son una salida de dinero. Pero la inversión sube (29.174 M en los últimos 12 meses contra 18.407 M en 2022), y el flujo libre (lo que sobra después de invertir) bajó de 58.390 M a 30.553 M. El retorno sobre el capital invertido (ROIC) pasó de 18,4 % a **9,3 %**.\n\nLa mirada crítica: 2022 fue un año extraordinario por el precio del petróleo, y comparar todo contra ese año exagera la caída. Pero la tendencia de márgenes y retornos hacia abajo es de varios años.",
-   "balance": "**La deuda de ExxonMobil es cómoda, aunque subió.** La deuda total es de 42.368 M en los últimos 12 meses y la caja bajó de 29.640 M en 2022 a 10.588 M, así que la deuda neta es de 31.780 M, **0,42 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con unos cinco meses de ganancia operativa antes de intereses, impuestos y depreciaciones, pero **el ratio era de 0,08 veces en 2022**: se multiplicó por cinco. La ganancia operativa cubre 50 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, bajó de 1,41 veces en 2022 a 1,13 veces. Con tasas cerca de 5 %, refinanciar pesa más, pero la empresa tiene una escala enorme y un balance fuerte.",
-   "gerencia": "La conduce Darren Woods, presidente y CEO (60 años, pago de 7,1 M según Yahoo). Es un equipo estable, con décadas en la empresa.\n\nEn lo que importa, **el uso del capital, es el punto de debate**: paga un dividendo de 4,12 por acción (pagado desde 1962; crece apenas 4,1 % por año en los últimos 3 años: 17.241 M en los últimos 12 meses), recompra acciones (20.512 M) e invierte 29.174 M. Entre dividendos y recompras devolvió 37.753 M, más que el flujo libre de 30.553 M: **la diferencia salió de la caja y de la deuda**. Las acciones diluidas pasaron de 4.205 M en 2022 a 4.228 M en los últimos 12 meses: las recompras apenas compensan lo que entrega a empleados y compró de otras empresas.",
-   "fortalezas": [
-    "Escala enorme e integración entre producción, refinación y química: costos más bajos que las petroleras chicas.",
-    "Dividendo pagado desde 1962 (4,12 por acción) y 20.512 M en recompras en los últimos 12 meses.",
-    "Flujo libre positivo en todo el ciclo: 30.553 M en los últimos 12 meses, 8,5 % de las ventas.",
-    "Deuda neta baja contra lo que gana: 0,42 veces el EBITDA y cobertura de intereses de 50 veces.",
-    "Ingresos y ganancia que suben cuando el petróleo sube, como en los últimos 12 meses (EBIT de 38.723 M)."
-   ],
-   "debilidades": [
-    "Ganancia atada al precio del petróleo: el margen operativo bajó de 16,1 % a 10,7 % y el ROIC de 18,4 % a 9,3 % desde 2022.",
-    "Devuelve más de lo que le sobra: dividendos más recompras (37.753 M) superan el flujo libre (30.553 M), y la deuda neta se multiplicó por cinco.",
-    "Inversión creciente: 29.174 M en los últimos 12 meses, 89,1 % del resultado neto.",
-    "Transición energética: el crítico más duro diría que a largo plazo la demanda de petróleo y gas baja y deja activos caros.",
-    "Dividendo que casi no crece: +4,1 % por año en 3 años."
-   ],
-   "vigilar": [
-    "Flujo libre contra dividendos y recompras: hoy los pagos superan el flujo libre; si sigue así, la deuda sigue subiendo.",
-    "Margen operativo: hoy 10,7 %; si el petróleo baja, vuelve a presión.",
-    "ROIC: hoy 9,3 %; si no se recupera, la inversión récord no está rindiendo.",
-    "Deuda neta: 31.780 M en los últimos 12 meses, contra 8.254 M en 2022."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Refinerías, distribuidores y estaciones de servicio",
-    "Industrias químicas y de transporte",
-    "Consumidores finales de combustibles y lubricantes: sin cliente dominante"
+    "Estaciones de servicio, aerolíneas e industrias, sin un cliente dominante",
+    "Fabricantes de plásticos y químicos",
+    "Compradores de gas natural y gas licuado"
    ],
-   "ideal_para": [
-    "Buscan un dividendo histórico de una empresa grande y diversificada.",
-    "Quieren exposición al precio del petróleo y del gas.",
-    "Toleran un negocio cíclico a cambio de escala y balance cómodo."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ganancia de 14.525 M (3,48 dólares por acción; 4.183 M en el primer trimestre); ganancia ajustada por segmento: producción 9.189 M, productos energéticos 4.099 M, químicos 1.214 M, especiales 969 M",
+     "fuente": "Comunicado de resultados del 2T26 (8-K, anexo 99.1), 31/07/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0002115436/000211543626000006/livef8k2q26991.htm"
+    },
+    {
+     "dato": "Flujo operativo de 23.555 M y flujo libre de 17.236 M; reparto de 9.400 M (4.300 M en dividendos y 5.100 M en recompras); producción en la cuenca Pérmica de más de 1,8 millones de barriles equivalentes por día; quinta plataforma de Guyana con inicio previsto para el 4T26; frase de Darren Woods",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0002115436/000211543626000006/livef8k2q26991.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento sostenido de ganancias.",
-    "No toleran que el resultado dependa de un precio que la empresa no controla."
-   ],
+   "ticker": "XOM",
    "perfil": "energia",
    "capas": [
     "ciclica"
    ],
-   "ticker": "XOM",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
