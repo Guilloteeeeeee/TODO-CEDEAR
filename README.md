@@ -577,9 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.96 (31/10/2026): Análisis Fundamental nuevo, tanda 4
+
+- Reescritas con el formato v4: CSCO, KO, PG, UNH, ORCL y BAC. Van 28 de 166.
+- Control de palabras prohibidas con límites de palabra ("vendé" ya no salta en "vendérselo").
+- Pendientes de leer su informe oficial: MA, ABBV, INTC, CVX, MRK; XOM (renovar con el 3T26); ORCL (renovar con el 1T del año fiscal 2027).
+
 ### v1.2.95 (31/10/2026): Análisis Fundamental nuevo, tanda 3
 
-- Reescritas con el formato v4: JNJ, ASML, PLTR y COST. Van 23 de 166.
+- Reescritas con el formato v4: JNJ, ASML, PLTR y COST. Van 22 de 166.
 - Pendientes de leer su informe del 3T26 (la SEC no respondió el 31/10): MA, ABBV, INTC, CVX; y XOM para renovar con el 3T26.
 
 ### v1.2.94 (31/10/2026): Análisis Fundamental nuevo, tanda 2

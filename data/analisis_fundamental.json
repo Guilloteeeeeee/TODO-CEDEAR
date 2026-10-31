@@ -2095,57 +2095,75 @@
    }
   },
   "CSCO": {
-   "resumen": "Cisco es la empresa de los equipos que hacen funcionar internet dentro de las empresas y los centros de datos: los conmutadores y enrutadores por donde viaja la información, además de software de seguridad, de redes y de observabilidad (compró Splunk). Vende equipos, y cada vez más suscripciones y servicios que se renuevan. Tiene un **foso estrecho, de costos de cambio**: una empresa que armó toda su red con Cisco y entrenó a su gente no cambia de proveedor sin un costo grande. El programa lo estima como amplio; nuestra lectura es más cauta, porque los ingresos casi no crecieron entre 2023 y 2025 y el ROIC cayó de 24,3 % a 16,7 %. Los números mejoraron en el último año fiscal: ingresos de 63.325 M (+11,8 %) y margen operativo de 25,4 %. Su punto débil es la **deuda que tomó para comprar Splunk**: 29.533 M, con una deuda neta de 1,11 veces el EBITDA, y que devuelve más de lo que le sobra. Con tasas cerca de 5 %, esa deuda cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque las redes de los centros de datos de inteligencia artificial necesitan sus equipos. Conclusión: **buena empresa madura, con foso estrecho, caja constante y un dividendo creciente, pero con crecimiento modesto y deuda más alta desde la compra de Splunk.**",
-   "veredicto": "Buena empresa madura: foso estrecho, caja constante y deuda más alta tras una compra",
-   "conclusion": "Cisco es una buena empresa, no una excelente: un negocio maduro con costos de cambio, ingresos de 63.325 M, margen operativo de 25,4 % y flujo libre de 12.767 M, pero con foso estrecho, crecimiento modesto y una deuda que subió con la compra de Splunk. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo y que la deuda neta baje.",
+   "formato": "v4",
+   "titulo": "Cisco: el viejo gigante de las redes volvió a crecer gracias a los centros de datos de IA",
+   "resumen": [
+    "Cisco fabrica los equipos que conectan las computadoras entre sí: **routers y switches** para empresas, operadoras y, ahora, para los centros de datos de inteligencia artificial. También vende software de seguridad y monitoreo. Su ventaja es que las redes de miles de empresas ya están armadas con sus equipos.",
+    "En su año fiscal 2026 (cerrado en julio), **facturó 63.300 M (+12 %)**, el mejor año de su historia, y recibió **9.300 M en pedidos de IA** de las grandes nubes. Para el año fiscal 2027 espera entre 72.200 y 73.400 M.",
+    "Buena empresa, con clientes muy fieles, caja estable y un dividendo de más de 15 años, que encontró en la IA un motor de crecimiento después de una década lenta, aunque con retornos por debajo de su industria."
+   ],
+   "introduccion": "Durante buena parte de la última década, Cisco fue la típica empresa que la gente tiene en cartera por el dividendo, pero de la que no espera mucho. Entre 2023 y 2025, sus ventas incluso bajaron.\n\nLa inteligencia artificial le cambió el ánimo. Los centros de datos de IA necesitan conectar miles de chips entre sí a velocidades enormes, y eso requiere equipos de red de última generación. Cisco, que hace eso hace 40 años, volvió a estar en el lugar correcto.\n\nEn el último trimestre de su año fiscal, los pedidos de productos crecieron 35 %, y los de redes, 40 %. Solo de las grandes nubes recibió unos 4.000 M en pedidos de IA en el trimestre.\n\nPero conviene no entusiasmarse de más: Cisco compite en este negocio contra empresas muy fuertes, como Arista y la propia NVIDIA, que también vende equipos de red.\n\nEntonces, la pregunta es: ¿es el comienzo de una nueva etapa de crecimiento, o un buen ciclo de recambio de equipos?",
+   "secciones": [
+    {
+     "titulo": "Las redes de medio mundo están armadas con sus equipos",
+     "texto": "Cisco tiene cuatro grandes negocios. En el último trimestre del año fiscal 2026, todos crecieron:\n\n- **Redes** (routers, switches, Wi-Fi): +28 %.\n- **Seguridad** (firewalls y software de protección): +14 %.\n- **Colaboración** (Webex, equipos para reuniones): +12 %.\n- **Observabilidad** (software que monitorea si los sistemas funcionan bien, como Splunk): +6 %.\n\nSus clientes son empresas de todos los tamaños, gobiernos, operadoras de telecomunicaciones y, cada vez más, las grandes nubes que construyen centros de datos de IA, sin uno que pese demasiado.\n\n¿Cuál es su **ventaja**? El **costo de cambiarse**. Las redes de miles de empresas están armadas con equipos Cisco, configuradas por técnicos que estudiaron con certificaciones Cisco y conectadas al software de Cisco. Cambiar de proveedor significa reentrenar al personal y arriesgarse a fallas. La mayoría prefiere quedarse.\n\nEn los centros de datos de IA, en cambio, la ventaja es más chica: ahí las nubes compran a quien ofrezca más velocidad al mejor precio, y la competencia es feroz.\n\nLa inteligencia artificial, para Cisco, es sobre todo una oportunidad: más centros de datos significan más equipos de red."
+    },
+    {
+     "titulo": "Un crecimiento que vuelve, con un retorno que todavía no",
+     "texto": "Los ingresos de Cisco pasaron de 53.803 M en 2024 a **63.325 M** en el año fiscal 2026. Y la empresa espera llegar a unos 72.800 M en 2027 (el medio de su guía): otro salto de casi 15 %.\n\n[[grafico:ingresos]]\n\nEl margen operativo (lo que queda de cada venta después de todos los costos de funcionar) es de **25,4 %**, y se recuperó después de dos años en baja.\n\nAhora, el número que muestra los límites: el **ROIC**, el retorno sobre el capital invertido. Mide cuánto gana por cada dólar que pusieron sus dueños y acreedores. Cisco está en **16,7 %**. Por encima de 15 % se considera muy bueno, pero el promedio de su industria es 25,5 %, y la propia Cisco tenía 24,3 % en 2023.\n\n[[grafico:roic]]\n\n¿Por qué bajó? Por la compra de **Splunk** en 2024, que pagó con unos 28.000 M en gran parte prestados. Sumó mucho capital y, por ahora, menos ganancia en proporción. Si Splunk crece, el retorno debería mejorar.\n\nUna aclaración sobre la ganancia: la contable (3,33 dólares por acción en el año fiscal) es bastante menor que la ajustada (4,33), sobre todo por la amortización de lo pagado por Splunk y los sueldos pagados con acciones."
+    },
+    {
+     "titulo": "Más deuda por Splunk, pero una caja que la aguanta",
+     "texto": "Antes de Splunk, Cisco casi no tenía deuda neta. Hoy su deuda neta (lo que debe menos la caja) es de 22.315 M, unas **1,11 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo, y va bajando desde 1,49 en 2024.\n\n[[grafico:deuda_neta]]\n\nSu ganancia operativa paga los intereses del año casi 11 veces (por encima de 3 se considera sano).\n\nLa caja es estable: la operación generó 14.200 M en el año fiscal y el flujo libre (lo que queda después de invertir) fue de unos 12.767 M. Con eso paga el dividendo (0,42 dólares por trimestre) y recompra acciones: en el año fiscal devolvió unos 12.700 M entre las dos cosas.\n\nEl dividendo crece despacio: 2,6 % por año en los últimos tres. Es un dividendo seguro, pero no es una máquina de aumentos.\n\nLa conduce Chuck Robbins, CEO desde 2015: \"Cerramos muy fuerte el año fiscal 2026, otro año récord para Cisco\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Cisco, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la propia empresa para el año fiscal 2027: entre 5,05 y 5,11 dólares por acción (tomamos el medio, 5,08).\n\nCon el precio de {precio} dólares, Cisco cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nDurante años, Cisco cotizó como una empresa madura que crece poco. Si cotiza por encima de esa historia, el mercado está pagando por la nueva etapa de crecimiento ligada a la IA. Si ese crecimiento se sostiene, el precio puede justificarse; si fue un ciclo de recambio, el PER vuelve a su lugar.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos históricos de Cisco, cuando crecía poco. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).",
+    "ganancia_ref": 5.08,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción del año fiscal 2027 (5,05 a 5,11 dólares)"
+   },
+   "conclusion": "Cisco es una buena empresa, no una excelente. Tiene clientes muy fieles, porque cambiar una red armada con sus equipos cuesta muchísimo, una caja estable, un dividendo seguro y, por fin, un motor de crecimiento: los centros de datos de inteligencia artificial.\n\nSu punto débil es la rentabilidad sobre el capital. Desde la compra de Splunk, su ROIC (16,7 %) quedó bastante por debajo del de su industria. Y en el negocio de la IA, la competencia es durísima. El crítico más duro diría que Cisco es una empresa de crecimiento lento que vivió un buen ciclo, y que el mercado la está pagando como si fuera algo más. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una tecnológica madura, con dividendo y algo de exposición a la IA. No es para quien busca crecimiento explosivo.\n\nPara que la tesis se mantenga, lo más importante es que los pedidos de IA de las grandes nubes sigan creciendo y que la empresa cumpla su guía de 2027.",
+   "pros": [
+    "Clientes fieles: cambiar una red armada con Cisco cuesta tiempo, plata y riesgo.",
+    "Crecimiento que vuelve: ventas +12 % en el año fiscal y 9.300 M en pedidos de IA.",
+    "Caja estable: unos 12.700 M devueltos a los accionistas en el año fiscal."
+   ],
+   "contras": [
+    "Retorno debajo de su industria: ROIC de 16,7 % contra 25,5 %.",
+    "Competencia dura en IA: Arista y NVIDIA pelean los mismos centros de datos.",
+    "Dividendo lento: crece apenas 2,6 % por año."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "bajo",
-   "negocio": "Cisco vende tecnología para redes de datos: conmutación para centros de datos, seguridad de redes y de identidades, acceso seguro a la nube, conectividad entre redes fijas y móviles, y software y servicios para observar y proteger sistemas (incluida la plataforma Splunk). Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio indispensable: toda empresa necesita una red que funcione y esté protegida. **Los ingresos cayeron 5,6 % en el año fiscal 2024, crecieron 5,3 % en 2025 y 11,8 % en 2026, hasta 63.325 M** (los años fiscales de Cisco terminan en julio). Lo que impulsa el crecimiento es la renovación de equipos, los centros de datos de inteligencia artificial y la seguridad.\n\n**A quién le vende.** A empresas, gobiernos, proveedores de telecomunicaciones y grandes empresas de nube, a menudo a través de distribuidores y socios. Yahoo no da los porcentajes, pero **no hay un cliente que pese de forma decisiva**.",
-   "foso": "La ventaja de Cisco **es de costos de cambio, y es estrecha**. Una empresa cuya red completa funciona con Cisco, con técnicos entrenados en sus equipos y software que se conecta con ellos, pierde mucho tiempo y plata si se pasa a otro proveedor. Eso protege sus ventas de renovación. Se ve en el **margen bruto, estable entre 62,7 % y 64,9 %**.\n\nCompite con Arista, Juniper (hoy parte de HPE), Huawei y con las nubes públicas, y en seguridad con Palo Alto, Fortinet y Microsoft. Es frágil porque la tecnología cambia: las grandes empresas de nube arman sus propias redes con equipos más baratos, y el software le saca terreno al hardware. La inteligencia artificial hoy la favorece (más datos, más redes), pero las nubes son clientes y competidores a la vez.",
-   "numeros": "Los números de Cisco cuentan **una empresa madura que se estancó y volvió a crecer**. Los ingresos cayeron 5,6 % en 2024, crecieron 5,3 % en 2025 y 11,8 % en 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 27,3 % en 2023, 24,1 % en 2024, 22,1 % en 2025 y 25,4 % en 2026. La ganancia por acción pasó de 3,07 en 2023 a 2,61 en 2025.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 12.767 M en 2026, **20,2 % de las ventas**, aunque bajó desde 19.037 M en 2023. El ROIC, cuánto gana por cada dólar puesto en el negocio, cayó de 24,3 % en 2023 a 14,3 % en 2024 (por la compra de Splunk) y se recuperó a 16,7 % en 2026.\n\nLa mirada crítica: el ingreso de 2026 es un máximo y la mejora es reciente. Y el flujo libre de 2023 (19.037 M) fue casi 50 % mayor que el de hoy, así que todavía no recuperó el nivel anterior a la compra.",
-   "balance": "**La deuda de Cisco subió con la compra de Splunk, pero es manejable.** La deuda total pasó de 8.391 M en 2023 a 29.533 M en 2026 y la caja bajó de 26.146 M a 15.918 M, así que la deuda neta es de 22.315 M, **1,11 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Podría pagarla con poco más de un año de ganancia operativa. Ese ratio bajó desde 1,49 veces en 2024. La ganancia operativa cubre 10,9 veces los intereses (1.470 M en 2026).\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,93 veces: ajustada, porque tiene deuda a vencer dentro del año (10.161 M). Con tasas cerca de 5 %, refinanciarla cuesta más.",
-   "gerencia": "La conduce Chuck Robbins, presidente y CEO (59 años, pago de 7,0 M según Yahoo), con Jeetu Patel como presidente y director de producto y Mark Patterson como director financiero. Es un equipo estable, y la compra de Splunk es la gran decisión reciente.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista financiado en parte con deuda**: invierte poco (1.410 M en 2026), paga un dividendo de 1,68 por acción (pagado desde 2011; crece apenas 2,6 % por año en 3 años; 6.553 M en 2026) y recompra acciones (7.979 M en 2026). Entre dividendos y recompras devolvió 14.532 M, más que el flujo libre de 12.767 M: **la diferencia salió de la caja y de la deuda**. Las acciones diluidas bajaron de 4.105 M en 2023 a 3.998 M en 2025, **2,6 % menos**.",
-   "fortalezas": [
-    "Costos de cambio altos: clientes con redes y personal entrenado en sus equipos.",
-    "Margen bruto estable de 62-65 % y margen operativo de 25,4 % en 2026.",
-    "Caja constante: flujo libre de 12.767 M en 2026, 20,2 % de las ventas.",
-    "Recuperación de ingresos: +11,8 % en 2026, hasta 63.325 M.",
-    "Dividendo (1,68 por acción) y 2,6 % menos acciones desde 2023."
-   ],
-   "debilidades": [
-    "Crecimiento modesto: ingresos casi planos entre 2023 y 2025 (56.998 M a 56.654 M).",
-    "Deuda alta desde Splunk: 29.533 M con deuda neta de 1,11 veces el EBITDA y tasas cerca de 5 %.",
-    "Devuelve más de lo que le sobra: dividendos más recompras (14.532 M) superan el flujo libre (12.767 M).",
-    "Foso estrecho: el crítico más duro diría que las grandes empresas de nube arman sus propias redes y el software le saca terreno al hardware.",
-    "ROIC en baja desde 2023: 24,3 % a 16,7 %."
-   ],
-   "vigilar": [
-    "Ingresos: crecen 11,8 % en 2026; hay que ver si se sostienen o si fue una renovación de equipos de un solo año.",
-    "Flujo libre: hoy 12.767 M contra 14.532 M devueltos a los accionistas; si no mejora, se financia con deuda.",
-    "Deuda neta sobre EBITDA: hoy 1,11 veces; tiene que seguir bajando.",
-    "ROIC: hoy 16,7 %; tiene que seguir recuperándose para justificar la compra de Splunk."
-   ],
    "clientes": [
-    "Empresas de todos los tamaños: sin cliente dominante",
-    "Gobiernos y proveedores de telecomunicaciones",
-    "Grandes empresas de nube",
-    "Distribuidores y socios de canal"
+    "Empresas de todos los tamaños y gobiernos, sin un cliente dominante",
+    "Operadoras de telecomunicaciones",
+    "Grandes nubes que construyen centros de datos de IA"
    ],
-   "ideal_para": [
-    "Buscan una empresa madura con caja constante y dividendo.",
-    "Quieren exposición a las redes de los centros de datos y a la seguridad.",
-    "Valoran un negocio con costos de cambio altos."
+   "hechos": [
+    {
+     "dato": "Cuarto trimestre fiscal 2026 (cerrado el 25/07/2026): ingresos de 17.300 M (+18 %); pedidos de productos +35 %; redes +28 % (pedidos +40 %); seguridad +14 %; unos 4.000 M en pedidos de IA de grandes nubes",
+     "fuente": "Comunicado de resultados del 4T y año fiscal 2026, 12/08/2026",
+     "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m08/cisco-reports-fourth-quarter-earnings.html"
+    },
+    {
+     "dato": "Año fiscal 2026: ingresos de 63.300 M (+12 %); ganancia por acción contable de 3,33 dólares y ajustada de 4,33; pedidos de IA de grandes nubes por 9.300 M; flujo operativo de 14.200 M",
+     "fuente": "Ídem",
+     "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m08/cisco-reports-fourth-quarter-earnings.html"
+    },
+    {
+     "dato": "Guía del año fiscal 2027: ingresos de 72.200 a 73.400 M; ganancia ajustada de 5,05 a 5,11 dólares por acción; dividendo trimestral de 0,42 dólares; frase de Chuck Robbins",
+     "fuente": "Ídem",
+     "url": "https://newsroom.cisco.com/c/r/newsroom/en/us/a/y2026/m08/cisco-reports-fourth-quarter-earnings.html"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido de ganancias.",
-    "No toleran que la empresa devuelva más de lo que le sobra con deuda en aumento."
-   ],
+   "mes_cierre_fiscal": 7,
+   "ticker": "CSCO",
    "perfil": "hardware",
    "capas": [
     "compounder"
    ],
-   "ticker": "CSCO",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -2159,57 +2177,67 @@
    }
   },
   "KO": {
-   "resumen": "Coca-Cola vende la bebida más reconocida del planeta, y con ella Sprite, Fanta, Powerade, Fuze Tea, aguas y jugos. Lo curioso de su negocio es que la mayor parte no embotella: vende el concentrado y los jarabes a embotelladores y a restaurantes, y ellos llenan las botellas y las distribuyen. Tiene un **foso amplio, de marca**: la gente la elige por costumbre y confianza, y puede cobrar algo más por la misma gaseosa. Los números son estables: el margen operativo subió de 28,0 % en 2022 a 31,1 % en 2025, con ingresos de 47.941 M y un dividendo pagado desde 1962. Su punto débil es que **crece despacio** (los ingresos subieron apenas 1,9 % en 2025) y que el flujo libre fue irregular: 9.747 M en 2023, 4.741 M en 2024 y 5.296 M en 2025. La inflación en 3,7 % le permite subir precios, pero también encarece el azúcar, los envases y el transporte, y los consumidores con menos plata eligen marcas más baratas. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque la gente seguirá tomando gaseosas. Conclusión: **muy buena empresa de consumo masivo, con foso amplio de marca, márgenes en alza y dividendo histórico, aunque con crecimiento modesto y deuda moderada.**",
-   "veredicto": "Muy buena empresa de consumo: marca con foso amplio y dividendo histórico, crecimiento modesto",
-   "conclusion": "Coca-Cola es una muy buena empresa de consumo masivo, no una excelente: tiene un foso amplio de marca, márgenes que subieron a 31,1 % y un dividendo pagado desde 1962, pero crece apenas 1,9 % y su flujo libre fue irregular en los últimos años. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el flujo libre se recupere y que el margen operativo no baje.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "Coca-Cola: vende jarabe y marca, no botellas, y por eso gana tanto con tan poco capital",
+   "resumen": [
+    "Coca-Cola es dueña de las marcas de bebidas más conocidas del mundo, pero **no embotella casi nada**: le vende el concentrado a embotelladoras independientes. Su ventaja es la **marca** y una red de distribución que llega a cada rincón del planeta.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 7 %** y vendió 5 % más cajas de bebidas. Y volvió a subir lo que espera ganar en el año: la ganancia comparable por acción crecería al menos 11 %.",
+    "Excelente empresa, de las más estables del mundo, con una marca imbatible, márgenes altos y más de 60 años subiendo el dividendo, aunque con un crecimiento modesto y algo de deuda."
+   ],
+   "introduccion": "Hay algo que la inflación no logra cambiar: la gente sigue tomando Coca-Cola. Y la paga un poco más cara cada año.\n\nEsa es la esencia de una gran marca. Coca-Cola puede subir sus precios sin perder clientes, porque nadie va a cambiar su gaseosa favorita por una diferencia de centavos. Con la inflación de EE.UU. en 3,7 %, eso vale oro: muchas empresas sufren para trasladar sus costos; Coca-Cola, no tanto.\n\nPero lo más interesante del último trimestre no fue el precio, sino el volumen. Vendió 5 % más cajas de bebidas en el mundo, una señal de que el consumo sigue firme incluso con precios más altos.\n\nEs una empresa que no va a duplicarse en cinco años. Nadie la compra para eso. Se la compra por algo más raro: la estabilidad.\n\nEntonces, la pregunta es: ¿cuánto vale pagar por una de las empresas más estables del mundo cuando el bono del Tesoro rinde cerca de 5 %?",
+   "secciones": [
+    {
+     "titulo": "Un negocio de marca, no de fábricas",
+     "texto": "Esto es lo que mucha gente no sabe de Coca-Cola: no fabrica la mayoría de las botellas que ves en el supermercado.\n\nLo que hace es producir el **concentrado** (el jarabe con la fórmula) y vendérselo a **embotelladoras**, que lo mezclan, lo envasan y lo distribuyen. Coca-Cola se queda con la parte más rentable: la marca y la fórmula. Las embotelladoras se quedan con las fábricas, los camiones y los márgenes más bajos.\n\nEso explica por qué gana tanto con tan poco capital. Y la empresa sigue en ese camino: está vendiendo sus operaciones de embotellado en África, una venta que espera cerrar en el cuarto trimestre de 2026.\n\nSus clientes directos son esas embotelladoras en todo el mundo, y a través de ellas, supermercados, restaurantes, cines y kioscos. Ningún cliente pesa demasiado.\n\nSu **ventaja** es la **marca**, uno de los activos intangibles más valiosos del planeta. Coca-Cola, Sprite, Fanta, Powerade, Schweppes: la gente las pide por el nombre. A eso se suma una red de distribución que llega a más de 200 países y que ninguna marca nueva puede igualar.\n\nLa inteligencia artificial no amenaza este negocio: nadie va a dejar de tomar una gaseosa por un algoritmo."
+    },
+    {
+     "titulo": "Márgenes que crecen de a poco, como todo en Coca-Cola",
+     "texto": "El margen operativo (lo que queda de cada venta después de todos los costos de funcionar) pasó de 28 % en 2022 a **31,1 %** en 2025, y en el último trimestre fue de 33,4 %. Para una empresa de consumo masivo, es altísimo: muchas se quedan con la mitad.\n\n[[grafico:margen_operativo]]\n\nLos ingresos, en cambio, crecen despacio: de 43.004 M en 2022 a 47.941 M en 2025, cerca de 4 % por año. En el tercer trimestre de 2026 crecieron 7 %: 7 puntos por mayor volumen vendido a las embotelladoras y 1 por precios.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron sus dueños y acreedores), es de **15,8 %**. Por encima de 15 % se considera muy bueno. Está por debajo del promedio de su industria (29,0 %), en parte porque parte de su capital son marcas y embotelladoras compradas a lo largo de los años.\n\nLa caja tuvo años raros: en 2024 y 2025 el flujo libre (lo que queda después de invertir) fue mucho más bajo por pagos extraordinarios. En 2026 se normalizó: en nueve meses generó 11.400 M, y la empresa espera al menos 13.000 M en el año.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Más de 60 años subiendo el dividendo",
+     "texto": "Coca-Cola es una de las pocas empresas del mundo que sube su dividendo hace más de 60 años seguidos. En los últimos tres creció 5 % por año: no es rápido, pero es tan confiable como pocos.\n\nTiene algo de deuda. Su deuda neta (lo que debe menos la caja) es de 30.636 M, cerca de **1,9 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; Coca-Cola está en el límite, algo normal para una empresa tan estable. Su ganancia operativa paga los intereses del año unas 9 veces (por encima de 3 se considera sano).\n\nHay un riesgo que conviene conocer: un **juicio impositivo con el IRS** (el organismo de impuestos de EE.UU.) por cómo la empresa repartió sus ganancias entre países. Si lo pierde, podría tener que pagar una suma importante. La propia empresa lo menciona en su informe.\n\nOtro riesgo, más lento: la gente toma menos bebidas con azúcar, y los gobiernos les ponen impuestos. Coca-Cola responde con versiones sin azúcar, agua, jugos, lácteos (Fairlife) y bebidas deportivas.\n\nDesde 2026 la conduce Henrique Braun, que reemplazó a James Quincey."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Coca-Cola, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Es una empresa con ganancias muy estables, así que el PER refleja bien lo que se paga.\n\nCon el precio de {precio} dólares, Coca-Cola cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó una prima por Coca-Cola: es de las acciones que menos sufren en las crisis. Pero esa prima tiene un límite cuando la renta fija rinde mucho. Hoy el dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}). Cuando el bono paga más, algunos inversores que buscan renta prefieren el bono.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Coca-Cola es una empresa excelente. Tiene una de las marcas más valiosas del mundo, un modelo que gana mucho con poco capital, márgenes operativos de más de 31 % y más de 60 años subiendo el dividendo. Y en 2026 está creciendo mejor de lo esperado.\n\nSu punto débil es el crecimiento: los ingresos crecen cerca de 4 % por año en promedio. Y tiene dos riesgos de fondo: el juicio impositivo con el IRS y la tendencia a consumir menos azúcar. El crítico más duro diría que Coca-Cola es un bono disfrazado de acción, y que con la renta fija rindiendo cerca de 5 %, pagar casi 30 veces su ganancia no tiene sentido. Es un argumento a tener en cuenta.\n\nEncaja con quien busca estabilidad, un dividendo confiable y una empresa que aguanta las crisis. No es para quien busca crecimiento.\n\nPara que la tesis se mantenga, lo más importante es que siga creciendo en volumen, no solo en precio.",
+   "pros": [
+    "Marca imbatible: la gente pide Coca-Cola por el nombre y acepta pagar más.",
+    "Modelo liviano: vende concentrado y deja las fábricas a las embotelladoras.",
+    "Dividendo legendario: lo sube hace más de 60 años seguidos."
+   ],
+   "contras": [
+    "Crecimiento lento: los ingresos crecen cerca de 4 % por año en promedio.",
+    "Juicio con el IRS: si lo pierde, podría pagar una suma importante.",
+    "Menos azúcar: la tendencia y los impuestos a las bebidas azucaradas juegan en contra."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "muy bajo",
-   "negocio": "Coca-Cola fabrica y vende bebidas sin alcohol: la marca Coca-Cola y sus variantes, otras gaseosas, aguas, bebidas deportivas, café y té, jugos, lácteos y bebidas de origen vegetal. Su modelo es particular: **vende concentrados y jarabes** a embotelladores y a minoristas (restaurantes y tiendas con máquinas de fuente), y ellos producen, embotellan y distribuyen. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio indispensable en el sentido de que se repite todos los días: la gente toma bebidas en cualquier circunstancia. **Los ingresos crecieron 6,4 % en 2023, 2,9 % en 2024 y 1,9 % en 2025, hasta 47.941 M.** Lo que impulsa el crecimiento es vender más en mercados emergentes y lanzar bebidas nuevas.\n\n**A quién le vende.** A embotelladores, distribuidores, minoristas y restaurantes, que a su vez le venden al consumidor. **Ningún cliente pesa de forma decisiva.** La dependencia está del lado de los embotelladores y de que los consumidores sigan eligiendo la marca.",
-   "foso": "La ventaja de Coca-Cola **es de marca**, un activo intangible. La marca está en la cabeza de la gente: la compra por costumbre, no solo por el sabor, y por eso puede subir precios sin perder muchos clientes. Eso se multiplica con una red de distribución mundial difícil de copiar. Se ve en el **margen bruto, que subió de 58,1 % en 2022 a 61,6 % en 2025**, y en el margen operativo, de 28,0 % a 31,1 %.\n\nCompite con PepsiCo, con las marcas de supermercado (que son más baratas) y con bebidas nuevas. Es frágil en un punto: el consumo de gaseosas azucaradas viene bajo presión por el cuidado de la salud, y los impuestos a las bebidas azucaradas pueden crecer. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de Coca-Cola cuentan **un crecimiento chico con una rentabilidad que sube**. Los ingresos crecieron 6,4 %, 2,9 % y 1,9 % en los últimos tres años. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) pasó de 28,0 % en 2022 a 31,1 % en 2025, y la ganancia por acción, de 2,19 a 3,04 (3,40 en los últimos 12 meses).\n\nLa caja es más irregular que la ganancia: el flujo libre (lo que sobra después de invertir) fue de 9.747 M en 2023, **4.741 M en 2024 y 5.296 M en 2025**, bastante menos que el resultado neto (13.107 M en 2025). En los últimos 12 meses fue de 14.297 M, pero Yahoo marca ese salto como dato a verificar. El ROIC, cuánto gana por cada dólar puesto en el negocio, es de 15,8 %, estable.\n\nLa mirada crítica: la ganancia neta de 2025 (13.107 M) subió mucho más que el resultado operativo (14.911 M), y la caja no lo acompañó, así que no hay que leer ese salto como mejora del negocio.",
-   "balance": "**La deuda de Coca-Cola es moderada.** La deuda total es de 43.543 M en los últimos 12 meses y la caja, de 16.371 M, así que la deuda neta es de 30.636 M. En 2025 equivalía a **1,88 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con un poco menos de dos años de ganancia operativa. La ganancia operativa cubre 9,0 veces los intereses (1.654 M en 2025).\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,30 veces: cómoda. Con tasas cerca de 5 %, la deuda nueva cuesta más: el gasto de intereses pasó de 882 M en 2022 a 1.654 M en 2025.",
-   "gerencia": "La conduce Henrique Braun, CEO (56 años, pago de 4,2 M según Yahoo), con James Quincey como presidente ejecutivo del directorio y John Murphy como presidente y director financiero. Es un equipo con larga trayectoria dentro de la empresa, y el cambio de CEO es reciente.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: invierte poco (2.045 M en los últimos 12 meses), paga un dividendo de 2,12 por acción (pagado desde 1962; crece 5,0 % por año en 3 años; 11.058 M en los últimos 12 meses) y recompra algo de acciones (937 M en los últimos 12 meses). Las acciones diluidas bajaron de 4.350 M en 2022 a 4.314 M, **0,8 % menos**: casi no cambian. No diluye al accionista.",
-   "fortalezas": [
-    "Foso amplio de marca, con una red de distribución mundial.",
-    "Márgenes en alza: margen bruto de 58,1 % a 61,6 % y operativo de 28,0 % a 31,1 % entre 2022 y 2025.",
-    "Dividendo pagado desde 1962 (2,12 por acción) y creciendo 5,0 % por año.",
-    "Modelo liviano en capital: invierte apenas 2.045 M al año y vende concentrados.",
-    "Ingresos estables en todos los años de la tabla, con 47.941 M en 2025."
-   ],
-   "debilidades": [
-    "Crecimiento chico: ingresos +1,9 % en 2025 y +2,9 % en 2024.",
-    "Flujo libre irregular: 9.747 M en 2023, 4.741 M en 2024 y 5.296 M en 2025, por debajo de la ganancia neta.",
-    "Consumo de gaseosas azucaradas bajo presión: el crítico más duro diría que la salud y los impuestos achican el negocio central.",
-    "Deuda moderada (1,88 veces el EBITDA en 2025) con tasas cerca de 5 %, y gasto de intereses que casi se duplicó desde 2022.",
-    "Inflación y petróleo: suben el costo de azúcar, envases y transporte; el consumidor con menos plata busca marcas baratas."
-   ],
-   "vigilar": [
-    "Ingresos: crecen 1,9 %; si bajan de forma sostenida, el negocio pierde tracción.",
-    "Flujo libre: hoy es mucho menor que la ganancia neta; hay que ver si el dato de los últimos 12 meses (14.297 M) se confirma.",
-    "Margen operativo: hoy 31,1 %; si baja, es señal de que los costos o la competencia se comen la mejora.",
-    "Deuda neta sobre EBITDA: hoy 1,88 veces; no debería subir."
-   ],
    "clientes": [
-    "Embotelladores independientes",
-    "Minoristas y supermercados",
-    "Restaurantes y tiendas de conveniencia (jarabes de fuente)",
-    "Consumidores finales: sin cliente dominante"
+    "Embotelladoras independientes de todo el mundo",
+    "A través de ellas, supermercados, restaurantes y kioscos",
+    "Consumidores de más de 200 países, sin uno dominante"
    ],
-   "ideal_para": [
-    "Buscan una empresa defensiva con marca fuerte y dividendo de décadas.",
-    "Valoran márgenes estables y poca inversión necesaria.",
-    "Quieren exposición al consumo masivo mundial."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 13.400 M (+7 %); ingresos orgánicos +7 % (volumen de concentrado +7 %, precio +1 %); cajas vendidas +5 %; margen operativo de 33,4 %; ganancia por acción de 0,93 dólares (+8 %) y comparable de 0,91 (+11 %)",
+     "fuente": "Comunicado de resultados del 3T26, 27/10/2026",
+     "url": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1176/coca-cola-reports-third-quarter-2026-results-and-raises-full-year-guidance"
+    },
+    {
+     "dato": "Flujo libre de 11.400 M en nueve meses; guía 2026 (subida): ganancia comparable por acción +11 % o más; flujo libre de al menos 13.000 M; venta de las operaciones de embotellado en África prevista para el 4T26; juicio impositivo con el IRS en curso; frase de Henrique Braun",
+     "fuente": "Ídem",
+     "url": "https://investors.coca-colacompany.com/news-events/press-releases/detail/1176/coca-cola-reports-third-quarter-2026-results-and-raises-full-year-guidance"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido de ventas y ganancias.",
-    "No toleran que la deuda sea moderada y que la caja sea irregular."
-   ],
+   "ticker": "KO",
    "perfil": "consumo",
    "capas": [
     "compounder"
    ],
-   "ticker": "KO",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2224,56 +2252,75 @@
    }
   },
   "PG": {
-   "resumen": "Procter & Gamble es la dueña de marcas que están en casi todas las casas: Pantene, Head & Shoulders, Gillette, Oral-B, Pampers, Ariel, Tide, Always, Olay, Vicks. Vende productos baratos que la gente compra una y otra vez, sin importar cómo esté la economía. Tiene un **foso amplio, de marca y de escala**: son marcas en las que la gente confía y que los supermercados necesitan tener en la góndola, y como compra y distribuye a gran escala, tiene costos más bajos que las marcas chicas. Los números son estables: el margen operativo fue de 22,6 % en los últimos 12 meses, el flujo libre de 15.340 M y el dividendo se paga desde 1962. Su punto débil es que **casi no crece**: los ingresos subieron 0,3 % en 2025 y 3,3 % en 2026, y el ROIC bajó de 22,1 % a 16,8 %. Con la inflación en 3,7 % y el petróleo en máximos de cinco meses, le suben los costos de envases y transporte, y los consumidores con menos plata buscan marcas de supermercado. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque la gente seguirá comprando shampoo y pañales. Conclusión: **muy buena empresa de consumo masivo, con foso amplio, márgenes estables y caja constante, aunque con ventas casi planas y retornos en baja.**",
-   "veredicto": "Muy buena empresa de consumo: foso amplio y caja constante, con ventas casi planas",
-   "conclusion": "Procter & Gamble es una muy buena empresa de consumo masivo, no una excelente: tiene un foso amplio de marca, margen operativo de 22,6 %, flujo libre de 15.340 M y un dividendo pagado desde 1962, pero sus ventas casi no crecen y el ROIC bajó a 16,8 %. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos crezcan y que los márgenes no se achiquen más.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "Procter & Gamble: marcas que entran en todas las casas, con el petróleo caro mordiendo sus márgenes",
+   "resumen": [
+    "Procter & Gamble fabrica productos que se usan todos los días: **Pampers, Ariel, Gillette, Head & Shoulders, Oral-B, Pantene**. Su ventaja son las marcas líderes y una red de distribución que llega a casi todos los comercios del mundo.",
+    "En el trimestre que cerró en septiembre de 2026, **las ventas orgánicas crecieron 4 %** con más volumen, pero la ganancia por acción creció solo 1 %: las materias primas más caras (petróleo, resinas, papel) le restan unos 1.400 M en el año.",
+    "Excelente empresa, de las más estables del mundo, con marcas líderes, retornos altos y más de 60 años pagando dividendos, en un año en que los costos le aprietan el margen."
+   ],
+   "introduccion": "Pensá en tu baño y en tu lavadero. Es muy probable que haya al menos tres productos de Procter & Gamble: un pañal, un detergente, una afeitadora, un shampoo o un cepillo de dientes.\n\nEso es lo que hace a P&G una empresa tan estable: vende cosas que la gente compra igual, haya crisis o no. Nadie deja de lavar la ropa porque suben las tasas.\n\nPero estabilidad no significa inmunidad. Muchos de sus productos se hacen con derivados del petróleo: plásticos para los envases, resinas, químicos para los detergentes. Y el petróleo, con la guerra con Irán, volvió a estar caro. La empresa calcula que los costos de las materias primas le van a restar unos 1.400 M de ganancia en su año fiscal 2027.\n\nPor eso, en el último trimestre vendió más, pero ganó casi lo mismo.\n\nEntonces, la pregunta es: ¿puede P&G seguir subiendo precios y vendiendo más, sin que los costos se coman su ganancia?",
+   "secciones": [
+    {
+     "titulo": "Las marcas que la gente compra sin pensar",
+     "texto": "P&G tiene cinco grandes negocios. En el trimestre que cerró en septiembre de 2026, todos crecieron en ventas orgánicas (sin contar compras de empresas ni el efecto del dólar):\n\n- **Belleza** (Pantene, Head & Shoulders, Olay): +5,4 %.\n- **Cuidado de la ropa y el hogar** (Ariel, Tide, Downy): +4,8 %.\n- **Afeitado** (Gillette, Venus): +4,5 %.\n- **Bebés, cuidado femenino y papel** (Pampers, Always): +3,0 %.\n- **Salud** (Oral-B, Crest, Vicks): +2,7 %.\n\nSus clientes son las grandes cadenas: supermercados, farmacias y tiendas online. **Walmart (WMT)** es, por lejos, el más importante. Y acá hay un cruce interesante: Walmart puede presionar a P&G para bajar precios, pero también necesita sus marcas en las góndolas. Es una relación de dependencia mutua.\n\n¿Cuál es su **ventaja**? Las **marcas**. Cuando una mamá elige Pampers o un hombre elige Gillette, no lo piensa: confía. Eso le permite cobrar más que las segundas marcas. A eso se suma la **escala**: gasta en publicidad y en investigación lo que pocos competidores pueden.\n\nLa inteligencia artificial no amenaza este negocio: nadie va a dejar de comprar pañales por un algoritmo. En todo caso, la ayuda a producir y distribuir de forma más eficiente."
+    },
+    {
+     "titulo": "Vende más, pero los costos le comen el margen",
+     "texto": "Lo bueno del último trimestre: las ventas crecieron con **más volumen** (2,4 %), no solo con precios. Es la mejor señal para una empresa de consumo: la gente compra más.\n\nLo malo: el margen bruto (lo que queda de cada venta después de pagar lo que cuesta fabricar) bajó 1,6 puntos, a 49,8 %. Las materias primas más caras le restaron 1,4 puntos, y la empresa además decidió invertir en mejorar sus productos.\n\nPor eso, la ganancia por acción creció apenas 1 %.\n\nEl margen operativo (lo que queda después de todos los costos de funcionar) es de **22,6 %** en los últimos 12 meses. Viene estable, entre 22 % y 24 % en los últimos años.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **16,8 %**. Por encima de 15 % se considera muy bueno, aunque viene bajando desde 22,1 % en 2023 y está por debajo del promedio de su industria (34,4 %).\n\n[[grafico:roic]]\n\nEsa baja se explica en parte por compras de empresas y por la reestructuración que la empresa está haciendo: un plan de unos 2.000 M para simplificar su portafolio y bajar costos."
+    },
+    {
+     "titulo": "Una de las mejores devolvedoras de capital del mundo",
+     "texto": "P&G genera mucha caja: **15.340 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. Convierte en caja más del 90 % de lo que gana, una señal de ganancias de muy buena calidad.\n\n[[grafico:flujo_libre]]\n\nY la devuelve casi toda. Para su año fiscal 2027 planea pagar **más de 10.000 M en dividendos** y recomprar unos 5.000 M en acciones. El dividendo lo paga desde hace más de 130 años y lo sube hace más de 60 años seguidos; en los últimos tres creció 5 % por año.\n\nEl balance es cómodo. La deuda neta (lo que debe menos la caja) es de 23.560 M, menos de **1 vez su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Y su ganancia operativa paga los intereses del año 22 veces.\n\nLa conduce Shailesh Jejurikar, CEO desde 2026, que hizo su carrera en la empresa: \"Tenemos confianza en el corto plazo y entusiasmo por el futuro\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una empresa de consumo como P&G, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada (sin la reestructuración) que espera la empresa para su año fiscal 2027: unos 7,00 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, P&G cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nP&G casi siempre cotizó por encima de sus competidores, y tiene lógica: sus marcas son las líderes y su ganancia es de las más estables del mercado. Lo que la hace menos atractiva hoy es el crecimiento: la empresa espera que su ganancia ajustada crezca entre 0 % y 3 % este año.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}). Para muchos inversores que buscan renta, esa comparación pesa.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}.",
+    "ganancia_ref": 7.0,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada (core) por acción del año fiscal 2027 (6,89 a 7,11 dólares)"
+   },
+   "conclusion": "Procter & Gamble es una empresa excelente. Tiene marcas líderes que la gente compra sin pensar, una caja enorme y de muy buena calidad, un balance cómodo y una historia de dividendos que pocas empresas del mundo pueden mostrar. Y en el último trimestre creció con más volumen, la señal más sana.\n\nSu punto débil es este año: las materias primas más caras le restan unos 1.400 M de ganancia y el crecimiento esperado es casi nulo. Además, su retorno sobre el capital viene bajando. El crítico más duro diría que P&G es una empresa que crece poco, que depende de subir precios y que pagar más de 20 veces su ganancia por eso no deja margen. Es un argumento a tener en cuenta.\n\nEncaja con quien busca la parte más defensiva de una cartera: estabilidad y un dividendo creciente. No es para quien busca crecimiento.\n\nPara que la tesis se mantenga, lo más importante es que el volumen siga creciendo mientras los costos de las materias primas se normalizan.",
+   "pros": [
+    "Marcas líderes: Pampers, Ariel, Gillette y otras que la gente compra sin pensar.",
+    "Crecimiento sano: el último trimestre creció con más volumen, no solo con precios.",
+    "Dividendo histórico: lo sube hace más de 60 años seguidos."
+   ],
+   "contras": [
+    "Costos en suba: las materias primas le restan unos 1.400 M de ganancia en el año fiscal.",
+    "Crecimiento casi nulo: espera una ganancia ajustada entre 0 % y 3 % más alta.",
+    "Retorno en baja: el ROIC pasó de 22,1 % en 2023 a 16,8 %."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "muy bajo",
-   "negocio": "P&G opera cinco segmentos: **Beauty** (Pantene, Head & Shoulders, Olay, SK-II), **Grooming** (Gillette, Braun), **Health Care** (Oral-B, Vicks y otros), **Fabric & Home Care** (Tide, Ariel, Downy, Fairy) y **Baby, Feminine & Family Care** (Pampers, Always, Bounty, Charmin). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable y estable: pañales, detergente, desodorantes y shampoo se compran todo el año. **Los ingresos crecieron 2,5 % en el año fiscal 2024, 0,3 % en 2025 y 3,3 % en 2026, hasta 87.923 M en los últimos 12 meses** (los años fiscales de P&G terminan en junio). Lo que impulsa el crecimiento es subir precios y lanzar productos nuevos en sus marcas.\n\n**A quién le vende.** Principalmente a minoristas y cadenas de supermercados; entre ellos, Walmart es su mayor cliente, y la empresa también vende por internet y a mayoristas. **La concentración en pocos grandes minoristas es la dependencia más importante.**",
-   "foso": "La ventaja de P&G **es de marca y de escala**. Cada marca tiene años de confianza, y el supermercado necesita tenerla en la góndola porque los clientes la piden. Eso le permite subir precios cuando suben los costos sin perder muchos clientes. Además, comprar insumos y distribuir a gran escala le baja el costo por unidad. Se ve en el **margen bruto, que subió de 47,9 % en el año fiscal 2023 a 50,2 % en 2026**, y en el margen operativo, que se mantiene entre 22 % y 24 %.\n\nCompite con Unilever, Colgate-Palmolive, Kimberly-Clark, Henkel, L'Oréal y, cada vez más, con las marcas propias de los supermercados, que son más baratas. Es frágil en lo que le importa: los grandes minoristas tienen poder de negociación y empujan las marcas propias. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de P&G cuentan **una estabilidad notable con muy poco crecimiento**. Los ingresos crecieron 2,5 %, 0,3 % y 3,3 % en los últimos tres años fiscales. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 22,1 % en 2023 a 24,3 % en 2025 y bajó a 22,7 % en 2026. La ganancia por acción pasó de 5,90 en 2023 a 6,62 en 2026, un crecimiento chico.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 15.340 M en los últimos 12 meses, **17,4 % de las ventas**, parejo desde 2023. El ROIC, cuánto gana por cada dólar puesto en el negocio, es de 16,8 %: bueno, pero bajó desde 22,1 % en 2023.\n\nLa mirada crítica: el resultado operativo de 2026 (19.748 M) cayó 3,4 % contra 2025, el margen bruto bajó de 51,4 % a 49,8 % y la inversión sube (4.575 M en los últimos 12 meses contra 3.062 M en 2023). La empresa mantiene la caja, pero con un margen que se está achicando.",
-   "balance": "**La deuda de P&G es cómoda.** La deuda total es de 38.925 M en los últimos 12 meses y la caja, de 15.365 M, así que la deuda neta es de 23.560 M, **0,96 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con menos de un año de ganancia operativa. La ganancia operativa cubre 22 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,72 veces: ajustada, pero normal en una empresa que cobra rápido a los supermercados y paga más tarde a los proveedores. Con tasas cerca de 5 %, la deuda de corto plazo (17.028 M) cuesta más al refinanciarla.",
-   "gerencia": "La conduce Shailesh Jejurikar, CEO, presidente y presidente del directorio (58 años, pago de 3,4 M según Yahoo), con Andre Schulten como director financiero. Es un equipo con décadas en la empresa y bajo en pagos.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: invierte moderadamente (4.575 M en los últimos 12 meses), paga un dividendo de 4,35 por acción (pagado desde 1962; sube 5,0 % por año en 3 años; 10.286 M en los últimos 12 meses) y recompra acciones (5.028 M en los últimos 12 meses). Las acciones diluidas pasaron de 2.484 M en 2023 a 2.415 M, **2,8 % menos**. No diluye al accionista.",
-   "fortalezas": [
-    "Foso amplio de marca y de escala, con marcas conocidas en cada categoría.",
-    "Margen operativo estable de 22-24 % y margen bruto de 49,8 % en los últimos 12 meses.",
-    "Caja constante: flujo libre de 15.340 M en los últimos 12 meses, 17,4 % de las ventas.",
-    "Dividendo pagado desde 1962 (4,35 por acción) y 2,8 % menos acciones desde 2023.",
-    "Deuda neta de 0,96 veces el EBITDA y cobertura de intereses de 22 veces."
-   ],
-   "debilidades": [
-    "Crecimiento muy bajo: ingresos +0,3 % en 2025 y +3,3 % en 2026.",
-    "Retorno sobre el capital en baja: 16,8 % en los últimos 12 meses contra 22,1 % en 2023.",
-    "Costos más altos: con el petróleo en máximos de cinco meses y la inflación en 3,7 %, suben envases, transporte y materias primas.",
-    "Marcas propias de los supermercados: el crítico más duro diría que el consumidor con menos plata cambia a lo más barato y la empresa pierde poder para subir precios.",
-    "Dependencia de pocos grandes minoristas: Walmart es el mayor cliente."
-   ],
-   "vigilar": [
-    "Ingresos: crecen 3,3 %; si no se aceleran, el foso no está dando crecimiento.",
-    "Margen bruto: hoy 49,8 % contra 51,4 % en 2024; si sigue bajando, los costos le ganan a los precios.",
-    "ROIC: hoy 16,8 %; tiene que dejar de bajar.",
-    "Flujo libre: 15.340 M; hay que ver que no baje mientras crece la inversión."
-   ],
    "clientes": [
-    "Walmart (WMT): su mayor cliente",
-    "Otras cadenas de supermercados y minoristas",
-    "Plataformas de venta por internet y mayoristas"
+    "Walmart (WMT), su cliente más importante",
+    "Supermercados, farmacias y cadenas de todo el mundo",
+    "Tiendas online, como Amazon (AMZN)"
    ],
-   "ideal_para": [
-    "Buscan una empresa defensiva con marcas conocidas y dividendo de décadas.",
-    "Valoran la estabilidad y la caja constante.",
-    "Quieren exposición al consumo masivo mundial."
+   "hechos": [
+    {
+     "dato": "Primer trimestre del año fiscal 2027 (cerrado el 30/09/2026): ventas de 23.276 M (+4 %); ventas orgánicas +4 % (volumen +2,4 %, mezcla +1,1 %, precio +0,4 %); belleza +5,4 %, ropa y hogar +4,8 %, afeitado +4,5 %, bebés y papel +3,0 %, salud +2,7 %",
+     "fuente": "Comunicado de resultados del 1T del año fiscal 2027, 22/10/2026",
+     "url": "https://s204.q4cdn.com/332108499/files/content_files/FY2627-Q1-JAS-Press-Release-Final.pdf"
+    },
+    {
+     "dato": "Ganancia por acción de 1,97 dólares (+1 %) y ajustada de 2,00 (+1 %); margen bruto de 49,8 % (-1,6 puntos; materias primas -1,4 puntos); flujo libre de 4.400 M; plan de reestructuración de unos 2.000 M",
+     "fuente": "Ídem",
+     "url": "https://s204.q4cdn.com/332108499/files/content_files/FY2627-Q1-JAS-Press-Release-Final.pdf"
+    },
+    {
+     "dato": "Guía del año fiscal 2027: ventas orgánicas +1 % a +3 %; ganancia ajustada de 6,89 a 7,11 dólares; costo de materias primas de unos 1.400 M después de impuestos; dividendos de más de 10.000 M y recompras de unos 5.000 M; frase de Shailesh Jejurikar",
+     "fuente": "Ídem",
+     "url": "https://s204.q4cdn.com/332108499/files/content_files/FY2627-Q1-JAS-Press-Release-Final.pdf"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido de ventas y ganancias.",
-    "No toleran márgenes que se achican por costos o por marcas propias."
-   ],
+   "mes_cierre_fiscal": 6,
+   "ticker": "PG",
    "perfil": "consumo",
    "capas": [
     "compounder"
    ],
-   "ticker": "PG",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2288,54 +2335,72 @@
    }
   },
   "UNH": {
-   "resumen": "UnitedHealth es la empresa de salud más grande de Estados Unidos: tiene el seguro médico (UnitedHealthcare), que cobra una cuota a empleadores, a personas y a programas del gobierno como Medicare y Medicaid, y Optum, que maneja farmacias, clínicas, servicios de pago y software para hospitales. La idea del negocio es que le cobran una cuota fija y ella paga los gastos médicos de los asegurados: gana si cobra más de lo que paga. Tiene un **foso estrecho, de escala e integración**: es tan grande que negocia mejores precios con médicos y hospitales, y la unión del seguro con las clínicas y las farmacias le da información y control. Los números cambiaron para mal: **el margen operativo bajó de 8,8 % en 2022 a 4,2 % en 2025, el resultado operativo cayó 41,3 % en 2025 y el ROIC de 17,0 % a 9,6 %**, porque los gastos médicos subieron más de lo que cobró. Con ingresos de 447.567 M, un margen de 1 punto es muchísima plata. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque puede reducir sus costos administrativos. Conclusión: **buena empresa en un momento difícil, con foso estrecho, caja de 23.617 M en los últimos 12 meses y dividendo creciente, pero con márgenes y retornos que se achicaron mucho.**",
-   "veredicto": "Buena empresa en un momento difícil: foso estrecho, márgenes y retornos en baja",
-   "conclusion": "UnitedHealth es una buena empresa, no una excelente: tiene escala enorme, 23.617 M de flujo libre en los últimos 12 meses y un dividendo creciente, pero su margen operativo se achicó a 4,2 % y el ROIC bajó a 9,6 %, con un foso estrecho. Hay que seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva a subir.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "UnitedHealth: la mayor aseguradora de EE.UU. sale de su peor crisis, con riesgos abiertos",
+   "resumen": [
+    "UnitedHealth es la mayor empresa de salud de EE.UU.: **una aseguradora (UnitedHealthcare) y Optum**, que tiene clínicas, maneja recetas y vende tecnología para el sistema de salud. Su ventaja es la escala: nadie negocia con médicos, hospitales y laboratorios con su volumen.",
+    "En el tercer trimestre de 2026, **su ganancia ajustada por acción subió 61 %** y gastó en atención médica 88,4 de cada 100 dólares que cobró, contra 89,9 un año antes. Y volvió a subir lo que espera ganar en el año: al menos 20,50 dólares por acción.",
+    "Muy buena empresa en plena recuperación, con una escala imposible de copiar y una caja enorme, después de un 2025 desastroso que todavía obliga a mirar de cerca sus costos y sus problemas con el gobierno."
+   ],
+   "introduccion": "En 2025, UnitedHealth vivió el peor año de su historia moderna. Los costos médicos se dispararon, la empresa retiró su previsión de ganancias, su CEO renunció, el gobierno de EE.UU. abrió una investigación y la acción perdió más de la mitad de su valor.\n\nUn año después, la historia es otra. En el tercer trimestre de 2026, su ganancia ajustada por acción fue de 4,69 dólares, un 61 % más que un año antes, y la empresa volvió a subir lo que espera ganar.\n\nEl hombre detrás del giro es Stephen Hemsley, el ex CEO que volvió en 2025 para ordenar la casa. Su fórmula: subir las cuotas, salir de los planes que perdían plata y cuidar cada dólar de gasto médico.\n\nPero recuperarse no es lo mismo que estar curado. La investigación del gobierno sigue, y en un negocio regulado como la salud de EE.UU., la política siempre pesa.\n\nEntonces, la pregunta es: ¿volvió UnitedHealth a ser la máquina de ganar plata que fue durante décadas?",
+   "secciones": [
+    {
+     "titulo": "Una aseguradora y un gigante de servicios bajo el mismo techo",
+     "texto": "UnitedHealth tiene dos grandes negocios.\n\n**UnitedHealthcare** es la aseguradora: cobra cuotas a empresas, personas y al gobierno (por los planes Medicare y Medicaid) y paga la atención médica de sus afiliados. En el tercer trimestre facturó 86.300 M y cubría a 48,3 millones de personas, 1,8 millones menos que un año antes: dejó ir a los clientes que le hacían perder plata.\n\n**Optum** son tres negocios de servicios: **Optum Health** (clínicas y médicos propios), **Optum Rx** (administra recetas: negocia con los laboratorios y procesa los medicamentos de millones de personas) y **Optum Insight** (tecnología y datos para hospitales y aseguradoras).\n\nSus clientes son empresas que contratan seguros para sus empleados, el gobierno de EE.UU. a través de Medicare y Medicaid, y personas individuales. El gobierno es, por lejos, el que más pesa.\n\n¿Cuál es su **ventaja**? La **escala**. Con decenas de millones de afiliados, negocia precios con médicos, hospitales y laboratorios que ningún competidor chico puede conseguir. Y la integración: cuando el paciente se atiende en una clínica de Optum, con un medicamento de Optum Rx y un seguro de UnitedHealthcare, la empresa controla mejor el costo.\n\nLa inteligencia artificial es más una herramienta que una amenaza: sirve para procesar reclamos y detectar fraudes. El riesgo real es regulatorio."
+    },
+    {
+     "titulo": "El número que define a una aseguradora de salud",
+     "texto": "En una aseguradora de salud, el indicador clave es la **tasa de gasto médico**: de cada 100 dólares que cobra en cuotas, cuántos gasta en pagar la atención de sus afiliados. Lo que queda es lo que tiene para sus gastos y su ganancia. Cuanto más baja, mejor; en las grandes aseguradoras suele rondar entre 80 y 85.\n\nEn 2025 esa tasa se disparó, y con ella se derrumbaron las ganancias. En el tercer trimestre de 2026 fue de **88,4**, contra 89,9 un año antes. Sigue alta, pero va en la dirección correcta. Ojo: incluye 610 M a favor por reservas de períodos anteriores que resultaron mayores de lo necesario, una ayuda que no se repite.\n\nLa mejora se ve en todos lados. El resultado operativo del trimestre fue de 6.563 M, un 52 % más. Optum Health pasó de ganar 41 M a 735 M.\n\nPero el daño de 2025 sigue en las cifras anuales. El margen operativo cayó de 8,8 % en 2022 a **4,2 %** en 2025, y el **ROIC** (el retorno sobre el capital invertido: cuánto gana por cada dólar que pusieron sus dueños y acreedores) bajó de 17 % a **9,6 %**. Por encima de 15 % se considera muy bueno.\n\n[[grafico:roic]]\n\nLa pregunta para los próximos trimestres es cuánto de ese terreno recupera."
+    },
+    {
+     "titulo": "Una caja que no se cortó ni en la crisis",
+     "texto": "Lo más llamativo de UnitedHealth es que, aun en su peor año, siguió generando mucha plata. El flujo libre de caja (lo que queda después de invertir) fue de 16.075 M en 2025 y de **23.617 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nEso le permitió seguir pagando el dividendo (que creció 10,9 % por año en los últimos tres) y recomprar acciones: en los primeros nueve meses de 2026 destinó 6.200 M a dividendos y 5.000 M a recompras.\n\nLa deuda subió en los últimos años por compras de empresas. La deuda neta (lo que debe menos la caja) es de 44.743 M; en 2025 equivalía a **2,3 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo: está un poco por encima, pero con la recuperación de las ganancias debería bajar.\n\nEl riesgo que no aparece en los balances es el **regulatorio**: el gobierno de EE.UU. investiga cómo la empresa cobró ciertos planes de Medicare, y además discute reformas para limitar la integración entre aseguradoras, clínicas y administradoras de recetas. Cualquiera de las dos cosas puede afectar el negocio.\n\nHemsley lo resume así: \"Nuestros resultados reflejan la disciplina y la ejecución que nuestros equipos aplican en cada parte del negocio\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En UnitedHealth, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para 2026: al menos 20,50 dólares por acción.\n\nCon el precio de {precio} dólares, UnitedHealth cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nLa clave para valuar a UnitedHealth es cuánto de la ganancia de antes de la crisis puede recuperar. En 2023 ganó 23,86 dólares por acción. Si vuelve a ese nivel en los próximos años, la ganancia de 2026 es un punto de partida, no un techo. Si los costos médicos vuelven a subir o el gobierno le pone límites, la recuperación se frena.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 20.5,
+    "ganancia_ref_txt": "guía de ganancia ajustada por acción para 2026 (al menos 20,50 dólares)"
+   },
+   "conclusion": "UnitedHealth es una muy buena empresa en recuperación. Tiene una escala imposible de copiar, un modelo integrado que le da control sobre los costos, una caja que no se cortó ni en su peor año y una gestión que en 2026 demostró que puede ordenar la casa: la ganancia ajustada creció 61 % en el último trimestre.\n\nSu punto débil es la incertidumbre. Su tasa de gasto médico (88,4) sigue alta, su retorno sobre el capital (9,6 % en 2025) está lejos del que tenía, y la investigación del gobierno y las posibles reformas son un riesgo real. El crítico más duro diría que el negocio de las aseguradoras de salud en EE.UU. cambió para peor y que UnitedHealth nunca va a volver a ganar como antes. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa de calidad en un momento de recuperación y tolera el riesgo regulatorio. No es para quien busca tranquilidad.\n\nPara que la tesis se mantenga, lo más importante es que la tasa de gasto médico siga bajando hacia la zona de 85.",
+   "pros": [
+    "Escala imbatible: negocia con médicos, hospitales y laboratorios como nadie.",
+    "Recuperación en marcha: ganancia ajustada +61 % y guía del año en suba.",
+    "Caja firme: 23.617 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "Gasto médico alto: 88,4 de cada 100 dólares de cuotas se van en atención.",
+    "Riesgo regulatorio: investigación del gobierno y posibles reformas a la integración.",
+    "Retorno caído: el ROIC bajó de 17 % en 2023 a 9,6 % en 2025."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "UnitedHealth opera cuatro segmentos. **UnitedHealthcare** es el seguro médico: cobra primas y paga la atención de sus asegurados (empleadores, personas, Medicare y Medicaid). **Optum Health** presta atención médica y administra el cuidado de pacientes. **Optum Rx** administra farmacia y medicamentos. **Optum Insight** vende software y servicios de datos a hospitales y aseguradoras. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable pero de margen fino: el seguro cobra por adelantado y paga después, y todo depende de cuánto gasten los asegurados en atención. **Los ingresos crecieron 14,6 % en 2023, 7,7 % en 2024 y 11,8 % en 2025, hasta 447.567 M.** Lo que impulsa el crecimiento es sumar asegurados y los servicios de Optum.\n\n**A quién le vende.** A empleadores, personas, y programas del gobierno de Estados Unidos (Medicare, Medicaid), además de hospitales y aseguradoras que usan Optum. Yahoo no da los porcentajes, pero **los programas públicos son una parte grande del negocio**, y por eso las decisiones del gobierno importan mucho.",
-   "foso": "La ventaja de UnitedHealth **es de escala y de integración, y es estrecha**. Como cubre a decenas de millones de personas, negocia mejores precios con hospitales y médicos, y tiene datos para pronosticar costos. La integración con Optum (clínicas, farmacias, software) le da control de más partes del gasto. Pero **es un foso que no la protege de lo más importante, el costo médico**: los asegurados pueden gastar más de lo previsto, y el seguro no controla los precios de los tratamientos. Se ve en el margen bruto, que bajó de 24,6 % en 2022 a 18,5 % en 2025, y en el margen operativo, de 8,8 % a 4,2 %.\n\nCompite con Elevance, Cigna, CVS (Aetna), Humana y Centene. Es frágil en tres cosas: los gastos médicos, la regulación del gobierno y las críticas por los métodos de cobro y aprobación de tratamientos. La inteligencia artificial puede ayudarla a bajar costos administrativos.",
-   "numeros": "Los números de UnitedHealth cuentan **un crecimiento de ingresos fuerte con una rentabilidad que se desplomó**. Los ingresos crecieron 14,6 %, 7,7 % y 11,8 % en los últimos tres años. Pero el margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 8,7 % en 2023 a 8,1 % en 2024 y a **4,2 % en 2025**, y el resultado operativo cayó de 32.287 M a 18.964 M. La ganancia por acción pasó de 23,86 en 2023 a 15,51 en 2024 y a 13,23 en 2025, y a 17,51 en los últimos 12 meses, una mejora.\n\nLa caja siguió la misma curva: el flujo libre (lo que sobra después de invertir) pasó de 25.682 M en 2023 a 16.075 M en 2025 y a 23.617 M en los últimos 12 meses. El ROIC, cuánto gana por cada dólar puesto en el negocio, bajó de 17,0 % en 2023 a **9,6 %** en 2025.\n\nLa mirada crítica: la caída de 2025 es fuerte y reciente, y los últimos 12 meses muestran una mejora que todavía no se confirma como tendencia. Con un margen de 4,2 %, un error de pronóstico de apenas un punto pega muy fuerte.",
-   "balance": "**La deuda de UnitedHealth subió, pero es manejable.** La deuda total es de 73.328 M en los últimos 12 meses y la caja, de 31.468 M, así que la deuda neta es de 44.743 M. En 2025 era de 54.024 M, **2,34 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), contra 1,02 veces en 2023. La ganancia operativa cubre 4,7 veces los intereses en 2025 (4.002 M), contra 13,6 veces en 2022: el margen se achicó.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,78 veces: ajustada, porque cobra las primas por adelantado y paga la atención después. Con tasas cerca de 5 %, la deuda nueva cuesta más.",
-   "gerencia": "La conduce Stephen Hemsley, CEO y presidente del directorio (72 años, pago de 1,3 M según Yahoo), con Wayne DeVeydt como director financiero, Tim Noel al frente de UnitedHealthcare y Patrick Conway al frente de Optum. Es un equipo con mucha experiencia, y la vuelta de Hemsley al mando es parte de la respuesta a los problemas de rentabilidad.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista y de compras**: paga un dividendo de 9,28 por acción (pagado desde 1990; sube 10,9 % por año en 3 años; 8.096 M en los últimos 12 meses), invierte poco (3.400 M en los últimos 12 meses) y ya recompró acciones (9.000 M en 2024; 1.646 M en los últimos 12 meses). Las acciones diluidas pasaron de 950 M en 2022 a 907 M, **4,5 % menos**. La deuda subió para financiar compras.",
-   "fortalezas": [
-    "Escala enorme: ingresos de 447.567 M en 2025, con segmentos de seguro, farmacia, clínicas y software.",
-    "Caja grande: flujo libre de 23.617 M en los últimos 12 meses.",
-    "Dividendo creciente: 9,28 por acción, +10,9 % por año en 3 años, pagado desde 1990.",
-    "4,5 % menos acciones desde 2022.",
-    "Señal de recuperación: ganancia por acción de 17,51 en los últimos 12 meses contra 13,23 en 2025."
-   ],
-   "debilidades": [
-    "Margen operativo en caída: de 8,8 % en 2022 a 4,2 % en 2025, y ROIC de 17,0 % a 9,6 %.",
-    "Costos médicos que suben más que las primas: es el riesgo principal, y el crítico más duro diría que el negocio de seguro no controla lo que más pesa en sus costos.",
-    "Dependencia de programas del gobierno (Medicare y Medicaid): un cambio de reglas o de pagos pega directo.",
-    "Deuda que subió: neta de 2,34 veces el EBITDA en 2025 contra 1,02 veces en 2023, con tasas cerca de 5 %.",
-    "Liquidez corriente de 0,78 veces: poco colchón."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 4,2 % (2025); tiene que recuperarse para confirmar que fue un mal año.",
-    "Costos médicos frente a las primas cobradas: se ve en el margen y es lo más importante del negocio.",
-    "Deuda neta sobre EBITDA: 2,34 veces en 2025; tiene que bajar.",
-    "Decisiones del gobierno sobre Medicare y Medicaid: pueden cambiar la rentabilidad del segmento más grande."
-   ],
    "clientes": [
-    "Empleadores y personas aseguradas",
-    "Programas del gobierno de Estados Unidos (Medicare, Medicaid)",
-    "Hospitales y aseguradoras que usan Optum"
+    "Gobierno de EE.UU. (planes Medicare y Medicaid)",
+    "Empresas que contratan seguros para sus empleados",
+    "Personas individuales y otras aseguradoras y hospitales (Optum)"
    ],
-   "ideal_para": [
-    "Buscan una empresa líder del sector de salud con caja grande y dividendo creciente.",
-    "Aceptan una recuperación de márgenes todavía por confirmar.",
-    "Valoran la escala y la integración entre seguro y servicios."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 112.700 M; resultado operativo de 6.563 M (4.300 M un año antes); ganancia ajustada por acción de 4,69 dólares (2,92); tasa de gasto médico de 88,4 % (89,9 %), con 610 M a favor de reservas anteriores",
+     "fuente": "Comunicado de resultados del 3T26 (8-K), 13/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000255/earningsrelease3q26unh.htm"
+    },
+    {
+     "dato": "UnitedHealthcare: 86.300 M de ingresos y 48,3 millones de personas (50,1 millones un año antes); Optum Health ganó 735 M (41 M); Optum Rx 1.700 M; Optum Insight 1.300 M",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000255/earningsrelease3q26unh.htm"
+    },
+    {
+     "dato": "Guía 2026: ganancia ajustada de al menos 20,50 dólares por acción; nueve meses: 6.200 M en dividendos y 5.000 M en recompras; frase de Stephen Hemsley",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000731766/000073176626000255/earningsrelease3q26unh.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo regulatorio de los programas públicos de salud.",
-    "Buscan resultados estables año a año."
-   ],
+   "ticker": "UNH",
    "perfil": "salud",
    "capas": [],
-   "ticker": "UNH",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2350,54 +2415,68 @@
    }
   },
   "ORCL": {
-   "resumen": "Oracle es la empresa de las bases de datos y de los sistemas de gestión que usan los bancos, los gobiernos y las grandes empresas para llevar su contabilidad, sus clientes y su personal, y desde hace poco también una nube que alquila capacidad de cómputo a las empresas que entrenan modelos de inteligencia artificial. Tiene un **foso estrecho, de costos de cambio**: una empresa que armó todos sus sistemas sobre Oracle no los cambia fácil, y por eso le paga licencias y soporte año tras año. Los números crecieron fuerte: los ingresos pasaron de 49.954 M en el año fiscal 2023 a 67.357 M en 2026 (+17,3 %) y el margen operativo subió a 34,2 % en los últimos 12 meses. Su punto débil es lo que está haciendo ahora: **invierte tanto en centros de datos que el flujo libre es de -28.720 M en los últimos 12 meses**, con una inversión de 75.660 M y una deuda total de 155.931 M, con tasas cerca de 5 %. Es una apuesta grande a que los clientes de inteligencia artificial le paguen, y el 22 de octubre el mercado se puso a dudar de ese gasto. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: la usa en sus servicios, pero también puede cambiar cómo las empresas usan sus programas. Conclusión: **buena empresa, con foso estrecho, ingresos y márgenes en alza, pero con una apuesta de inversión enorme que dejó la caja en rojo y la deuda en niveles altos.**",
-   "veredicto": "Buena empresa con una apuesta enorme: ingresos y márgenes en alza, caja en rojo y deuda alta",
-   "conclusion": "Oracle es una buena empresa, no una excelente: tiene costos de cambio altos, ingresos que crecen 17,3 % y un margen operativo de 34,2 %, pero un flujo libre de -28.720 M, una deuda de 155.931 M y un foso estrecho. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la inversión en inteligencia artificial se transforme en ingresos y que el flujo libre vuelva a ser positivo.",
+   "formato": "v4",
+   "titulo": "Oracle: apostó todo a ser la nube de la IA, y ahora tiene que pagar la cuenta",
+   "resumen": [
+    "Oracle vende las **bases de datos** con las que funcionan bancos, gobiernos y grandes empresas, y en los últimos años se transformó en una **nube para inteligencia artificial**. Su ventaja histórica es que cambiar de base de datos es dificilísimo.",
+    "En su año fiscal 2026 (cerrado en mayo) firmó contratos por **638.000 M a cobrar en el futuro**, 363 % más que un año antes, pero invirtió 55.700 M en centros de datos y su **flujo libre de caja fue de -23.700 M**. Tuvo que salir a pedir prestado y a emitir acciones.",
+    "Buena empresa con un negocio de bases de datos de primera, en medio de una apuesta gigante y arriesgada: depende de pocos clientes de IA y financia el crecimiento con deuda y acciones nuevas."
+   ],
+   "introduccion": "En septiembre de 2025, Oracle anunció contratos de nube por cientos de miles de millones de dólares, en gran parte con OpenAI. La acción subió en un día como no lo hacía desde hacía décadas, y Larry Ellison llegó a ser, por un rato, el hombre más rico del mundo.\n\nUn año después, la acción vale menos de la mitad de lo que llegó a valer.\n\n¿Qué pasó en el medio? La realidad de la cuenta. Para cumplir esos contratos, Oracle tiene que construir centros de datos a un ritmo impresionante, y eso cuesta fortunas. En su año fiscal 2026 invirtió 55.700 M, mucho más de lo que generó. Para pagarlo, tomó 43.000 M de deuda y emitió 5.000 M en acciones, y planea levantar otros 40.000 M este año.\n\nAl mismo tiempo, el mercado empezó a dudar de cuánto pueden gastar las empresas de IA, y si van a poder pagar todo lo que prometieron.\n\nEntonces, la pregunta es: ¿es Oracle la gran ganadora de la nube de IA, o una empresa que se endeudó demasiado para atender a pocos clientes?",
+   "secciones": [
+    {
+     "titulo": "Un negocio viejo y sólido, y uno nuevo que crece a lo loco",
+     "texto": "Oracle tiene dos mundos.\n\nEl primero es el de siempre: **bases de datos y programas de gestión** (para finanzas, recursos humanos, logística) que usan bancos, gobiernos y grandes empresas desde hace décadas. Es un negocio estable y muy rentable.\n\nEl segundo es la **nube de infraestructura (OCI)**: alquila capacidad de cómputo, sobre todo para entrenar y usar modelos de IA. En el año fiscal 2026 facturó 18.100 M, un 77 % más que el año anterior.\n\nSus clientes en el negocio tradicional son miles de grandes organizaciones, sin una que pese demasiado. En la nube de IA es al revés: unos pocos clientes enormes, con OpenAI a la cabeza, explican la mayor parte de los contratos. Es un **cruce importante**: lo que le pase a OpenAI le pasa a Oracle.\n\n¿Cuál es su **ventaja**? En las bases de datos, el **costo de cambiarse**: migrar la base de datos de un banco es una operación de años, carísima y riesgosa. Muy pocos lo hacen. En la nube de IA, en cambio, la ventaja es mucho más chica: compite con Amazon, Microsoft y Google, que tienen más escala y más caja.\n\nLa inteligencia artificial es su gran apuesta: si sale bien, Oracle se convierte en una de las nubes más grandes del mundo; si sale mal, carga con centros de datos caros y deuda."
+    },
+    {
+     "titulo": "Contratos gigantes, caja negativa",
+     "texto": "Los números cuentan dos historias a la vez.\n\nLa buena: los ingresos crecen cada vez más rápido. Pasaron de 49.954 M en el año fiscal 2023 a **71.777 M** en los últimos 12 meses, y la empresa espera unos 90.000 M para su año fiscal 2027. Y los **contratos firmados a cobrar en el futuro** llegaron a 638.000 M: casi diez años de las ventas actuales.\n\n[[grafico:ingresos]]\n\nLa mala: la caja. El **flujo libre de caja** (lo que queda de la plata que genera la operación después de invertir) pasó de 11.807 M en 2024 a **-28.720 M** en los últimos 12 meses. La operación genera mucho (32.000 M en el año fiscal 2026), pero las inversiones en centros de datos se llevan todo y más.\n\n[[grafico:flujo_vs_inversion]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), bajó de 15 % en 2024 a **11,4 %**. Por encima de 15 % se considera muy bueno, y el promedio de su industria es 29,3 %. Es lo esperable en plena construcción: el capital ya se puso y la ganancia todavía no llegó. La pregunta es si va a llegar.\n\nY hay algo que el accionista no puede ignorar: las acciones en circulación pasaron de 2.766 M a 2.937 M, y la empresa emite más para financiarse."
+    },
+    {
+     "titulo": "Una deuda que cambia el perfil de la empresa",
+     "texto": "Oracle siempre tuvo bastante deuda, por recompras y compras de empresas. Pero lo de ahora es otra escala: la deuda total pasó de 104.104 M en el año fiscal 2025 a **155.931 M**.\n\n[[grafico:deuda_neta]]\n\nLa deuda neta (lo que debe menos la caja) equivale a **2,4 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3 ya es exigente. Oracle está en el medio, y con caja negativa.\n\nLa **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año) es de 4,8 veces. Por encima de 3 se considera sano, así que todavía hay margen. Pero con el bono del Tesoro a 10 años cerca de 5 %, cada dólar nuevo que pide prestado le cuesta más.\n\nPor eso la empresa dijo que no planea tomar más deuda en lo que queda de 2026 y que va a financiarse en parte con acciones nuevas: un programa de hasta 20.000 M. Eso protege el balance, pero diluye al accionista.\n\nSigue pagando un dividendo (0,50 dólares por trimestre), que creció 14,1 % por año en los últimos tres.\n\nLa empresa la conducen dos co-CEOs desde 2025, Clay Magouyrk y Mike Sicilia, con Larry Ellison, su fundador, como presidente y director de tecnología."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Oracle, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para su año fiscal 2027: unos 8,05 dólares por acción.\n\nCon el precio de {precio} dólares, Oracle cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nCuando una empresa que crece así cotiza por debajo de su historia, el mercado está diciendo que duda. No de las ventas, sino de la caja: de cuánto más va a tener que invertir, de cuánta deuda y cuántas acciones nuevas va a necesitar, y de si sus grandes clientes de IA van a poder pagar todo lo que firmaron.\n\nEl PER, en este caso, no muestra el riesgo principal. Una empresa puede parecer barata por su ganancia y, al mismo tiempo, quemar caja y endeudarse.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos históricos de Oracle, de cuando no tenía este nivel de inversión ni de deuda: hay que tomarlo con mucho cuidado. El dividendo rinde {dy}.",
+    "ganancia_ref": 8.05,
+    "ganancia_ref_txt": "guía de ganancia ajustada por acción del año fiscal 2027"
+   },
+   "conclusion": "Oracle es una buena empresa, no una excelente, en medio de una apuesta arriesgada. Tiene un negocio de bases de datos de primera, con clientes que difícilmente se van, y una nube que crece a un ritmo impresionante, con 638.000 M en contratos firmados.\n\nSu punto débil es cómo financia ese crecimiento: flujo libre de -28.720 M, deuda de 155.931 M y acciones nuevas para pagar centros de datos que dependen de unos pocos clientes de IA, con OpenAI a la cabeza. El crítico más duro diría que esos contratos son promesas de empresas que todavía pierden plata, y que si alguno no paga, Oracle queda con la deuda y los centros de datos. Es un argumento muy serio.\n\nEncaja con quien cree en la nube de IA y tolera un riesgo alto. No es para quien busca estabilidad, ni para quien no soporta caídas fuertes.\n\nPara que la tesis se mantenga, lo más importante es que el flujo libre deje de caer y que los contratos firmados se conviertan en ingresos y en caja en los tiempos prometidos.",
+   "pros": [
+    "Bases de datos de primera: migrar fuera de Oracle es una operación de años.",
+    "Contratos gigantes: 638.000 M firmados a cobrar en el futuro.",
+    "Nube en explosión: la infraestructura creció 77 % en el año fiscal 2026."
+   ],
+   "contras": [
+    "Caja negativa: flujo libre de -28.720 M en los últimos 12 meses.",
+    "Deuda en alza: pasó de 104.104 M a 155.931 M en un año.",
+    "Clientes concentrados: pocos clientes de IA, con OpenAI a la cabeza, explican la mayoría de los contratos."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "moderado",
-   "negocio": "Oracle vende tres cosas. **Aplicaciones en la nube** (Oracle Fusion para finanzas, personal y cadena de suministro, y NetSuite para empresas medianas). **Infraestructura en la nube** (Oracle Cloud Infrastructure): computación, almacenamiento y bases de datos alquilados, hoy muy ligados a la inteligencia artificial. Y **licencias y soporte** de sus bases de datos y software tradicional, un ingreso muy estable que se paga todos los años. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio indispensable para quien lo usa y se repite: las empresas no cambian su base de datos ni su sistema de contabilidad cada año. **Los ingresos crecieron 6,0 % en el año fiscal 2024, 8,4 % en 2025 y 17,3 % en 2026, hasta 71.777 M en los últimos 12 meses** (los años fiscales de Oracle terminan en mayo). Lo que impulsa el crecimiento es la demanda de infraestructura para inteligencia artificial.\n\n**A quién le vende.** A grandes empresas, bancos, gobiernos y, cada vez más, a desarrolladores de modelos de inteligencia artificial (OpenAI es el más conocido). Yahoo no da los porcentajes, pero **pocos clientes grandes de inteligencia artificial concentran buena parte del crecimiento nuevo**.",
-   "foso": "La ventaja de Oracle **es de costos de cambio, y es estrecha**. Una empresa que corre su contabilidad, su personal y su cadena de suministro sobre Oracle, con millones de líneas de código y empleados entrenados, pierde años y dinero si se muda. Eso protege la parte vieja del negocio. Se ve en el **margen operativo, que subió de 27,6 % en el año fiscal 2023 a 34,2 % en los últimos 12 meses**.\n\nPero el margen bruto bajó de 72,8 % a 64,0 %, porque alquilar capacidad de cómputo deja menos margen que vender licencias. Compite con Microsoft, Amazon y Google en nube, con SAP y Workday en aplicaciones, y con Snowflake y las nubes en bases de datos. Es un foso **estrecho** en la parte nueva: alquilar servidores no tiene costos de cambio altos, y los clientes de inteligencia artificial pueden irse a otra nube. La inteligencia artificial es su oportunidad y su apuesta, y también su riesgo.",
-   "numeros": "Los números de Oracle cuentan **un crecimiento que se acelera con una inversión desmedida**. Los ingresos crecieron 17,3 % en el año fiscal 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 27,6 % a 33,3 % entre 2023 y 2026 y llegó a 34,2 % en los últimos 12 meses. La ganancia por acción pasó de 3,07 en 2023 a 5,83 en 2026 y 6,38 en los últimos 12 meses.\n\nLa caja, en cambio, cambió de signo: el flujo libre (lo que sobra después de invertir) fue de 11.807 M en 2024, -394 M en 2025, **-23.686 M en 2026 y -28.720 M en los últimos 12 meses**, porque la inversión en centros de datos pasó de 6.866 M a 75.660 M. El retorno sobre el capital invertido (ROIC) bajó de 15,0 % en 2024 a **11,4 %**, y el capital invertido pasó de 95.573 M a 187.155 M.\n\nLa mirada crítica: el flujo operativo creció (46.940 M en los últimos 12 meses), pero la inversión creció mucho más. Es una apuesta en la que se gasta primero y se cobra después, y todo depende de que los contratos de inteligencia artificial se concreten.",
-   "balance": "**La deuda de Oracle es alta y creció rápido.** La deuda total pasó de 93.124 M en 2024 a 155.931 M en los últimos 12 meses; con 37.077 M en caja, la deuda neta es de 88.968 M, **2,36 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). Es un nivel exigente, que mejoró desde 4,31 veces en 2023 porque el EBITDA creció. La ganancia operativa cubre apenas 4,8 veces los intereses (5.104 M en los últimos 12 meses).\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,17 veces. Con tasas cerca de 5 %, cada dólar de deuda nueva cuesta caro, y como el flujo libre es negativo, la inversión se financia con deuda y con el aporte de nuevos fondos. El patrimonio neto subió a 66.772 M, pero era de apenas 1.073 M en el año fiscal 2023.",
-   "gerencia": "La conduce un equipo de codirectores ejecutivos, según Yahoo: Mike Sicilia y Clay Magouyrk (54 y 39 años), con el cofundador Larry Ellison (81 años) como presidente ejecutivo y director de tecnología, y Hilary Maxson como directora financiera. Ellison sigue siendo la figura central, y eso es una fortaleza y un riesgo de continuidad.\n\nEn lo que importa, **el uso del capital, es una apuesta de alto riesgo**: invirtió 75.660 M en los últimos 12 meses (399,9 % del resultado neto) y tomó deuda para hacerlo. Paga un dividendo de 2,00 por acción (pagado desde 2009; sube 14,1 % por año en 3 años; 5.939 M en los últimos 12 meses). Las recompras bajaron de 3.242 M en 2024 a 206 M en 2026, señal de que la plata se va a inversión. Las acciones diluidas pasaron de 2.766 M en 2023 a 2.937 M en los últimos 12 meses, **6,2 % más**.",
-   "fortalezas": [
-    "Costos de cambio altos en bases de datos y aplicaciones: ingresos de soporte y licencias muy estables.",
-    "Crecimiento que se acelera: ingresos +17,3 % en 2026 y 71.777 M en los últimos 12 meses.",
-    "Margen operativo de 34,2 % en los últimos 12 meses, subiendo desde 27,6 % en 2023.",
-    "Flujo operativo de 46.940 M en los últimos 12 meses.",
-    "Dividendo creciente: 2,00 por acción, +14,1 % por año en 3 años."
-   ],
-   "debilidades": [
-    "Flujo libre muy negativo: -28.720 M en los últimos 12 meses, por una inversión de 75.660 M.",
-    "Deuda alta y creciente: 155.931 M, con deuda neta de 2,36 veces el EBITDA y cobertura de intereses de 4,8 veces, con tasas cerca de 5 %.",
-    "Dependencia de pocos clientes grandes de inteligencia artificial: el crítico más duro diría que la inversión se hizo antes de que esos contratos se transformaran en caja.",
-    "Retorno sobre el capital en baja: 11,4 % contra 15,0 % en 2024, y margen bruto que bajó de 72,8 % a 64,0 %.",
-    "Foso estrecho en la parte nueva: alquilar capacidad no tiene costos de cambio altos."
-   ],
-   "vigilar": [
-    "Flujo libre: hoy -28.720 M; tiene que volver a positivo cuando la inversión se estabilice, o la deuda sigue subiendo.",
-    "Deuda neta sobre EBITDA: hoy 2,36 veces; si sube de nuevo, el balance se ajusta con tasas cerca de 5 %.",
-    "Ingresos de infraestructura para inteligencia artificial: son los que justifican el gasto.",
-    "Margen operativo: hoy 34,2 %; si cae, la nueva infraestructura rinde menos que el negocio viejo."
-   ],
    "clientes": [
-    "Grandes empresas, bancos y gobiernos",
-    "Desarrolladores de modelos de inteligencia artificial (OpenAI es el más conocido)",
-    "Empresas medianas que usan NetSuite"
+    "Bancos, gobiernos y grandes empresas que usan sus bases de datos",
+    "Desarrolladores de IA que alquilan su nube, con OpenAI a la cabeza",
+    "Otras nubes que ofrecen sus bases de datos (Microsoft, Google, Amazon)"
    ],
-   "ideal_para": [
-    "Buscan exposición a la infraestructura de inteligencia artificial y a un negocio de software muy arraigado.",
-    "Aceptan una caja negativa y una deuda alta mientras la empresa invierte.",
-    "Valoran un dividendo creciente."
+   "hechos": [
+    {
+     "dato": "Año fiscal 2026 (cerrado el 31/05/2026): flujo operativo de 32.000 M (+54 %); inversiones de 55.700 M; flujo libre de -23.700 M; nube de infraestructura 18.100 M (+77 %); contratos a cobrar (RPO) de 638.000 M (+363 %)",
+     "fuente": "Comunicado de resultados del 4T del año fiscal 2026 (8-K, anexo 99.1), 10/06/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526265848/orcl-ex99_1.htm"
+    },
+    {
+     "dato": "Financiamiento: 43.000 M de deuda y 5.000 M de acciones en el año fiscal 2026; unos 40.000 M previstos para el año fiscal 2027 (incluye un programa de acciones de 20.000 M); sin más deuda prevista en el resto de 2026; guía del año fiscal 2027: ingresos de unos 90.000 M y ganancia ajustada de 8,05 dólares por acción",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001341439/000119312526265848/orcl-ex99_1.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran flujo libre negativo ni deuda alta.",
-    "Buscan una empresa con un foso amplio en todo su negocio."
-   ],
+   "mes_cierre_fiscal": 5,
+   "ticker": "ORCL",
    "perfil": "software",
    "capas": [],
-   "ticker": "ORCL",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2474,54 +2553,65 @@
    }
   },
   "BAC": {
-   "resumen": "Bank of America es el segundo banco de Estados Unidos por tamaño: tiene cuentas y tarjetas para millones de personas, préstamos para empresas chicas y grandes, un negocio de inversiones y de patrimonio (Merrill) y una mesa de operaciones en los mercados. Gana plata cobrando por prestar más de lo que paga por los depósitos, más las comisiones de todos esos servicios. Tiene un **foso estrecho, de escala y costos de cambio**: la gente rara vez cambia el banco donde cobra el sueldo y tiene sus ahorros, y su tamaño le da depósitos baratos. Los números son parejos: los ingresos pasaron de 94.950 M en 2022 a 113.097 M en 2025, la ganancia neta de 27.528 M a 30.509 M, y la ganancia por acción de 3,19 a 3,81 (4,21 en los últimos 12 meses), ayudada porque **las acciones en circulación bajaron 9,8 % desde 2022**. Su punto débil es que **el retorno sobre el patrimonio (ROE) fue de 10,1 % en 2025**, por debajo de los 12 % que se toman como referencia. Con las tasas altas y el bono a 10 años cerca de 5 %, cobra más por prestar, pero sus bonos pierden valor y sus clientes pagan más por los préstamos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa, un banco grande y estable, con foso estrecho, recompras fuertes y ganancias parejas, aunque con retorno sobre el patrimonio moderado.**",
-   "veredicto": "Buena empresa: banco grande y estable, con recompras fuertes y retorno moderado",
-   "conclusion": "Bank of America es una buena empresa, no una excelente: un banco grande, con ganancias parejas (30.509 M en 2025), recompras que bajaron 9,8 % las acciones y un dividendo creciente, pero con foso estrecho y un ROE de 10,1 %. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por préstamos incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE suba hacia 12 %.",
+   "formato": "v4",
+   "titulo": "Bank of America: un gigante de los depósitos que gana bien, pero no tanto como su gran rival",
+   "resumen": [
+    "Bank of America es el segundo banco de EE.UU.: **más de 2 billones de dólares en depósitos** de decenas de millones de personas y empresas, tarjetas, préstamos, banca de inversión y Merrill, su gestora de patrimonios. Su ventaja es la escala y la plata barata de sus depósitos.",
+    "En el tercer trimestre de 2026 **ganó 6.900 M** (8.100 M sin una multa de 1.200 M por fallas en sus controles contra el lavado de dinero) y su ingreso por intereses creció 8 %.",
+    "Buena empresa, sólida y con un dividendo creciente, pero con un retorno sobre el patrimonio cercano a 10 %, bastante por debajo de los mejores bancos, y un colchón de capital más justo."
+   ],
+   "introduccion": "Cuando las tasas suben, un banco con muchos depósitos baratos debería ganar más: presta más caro, mientras paga poco por la plata de sus clientes.\n\nBank of America es justamente eso: un banco con una de las bases de depósitos más grandes del mundo, más de 2 billones de dólares. Y con la Reserva Federal subiendo la tasa en septiembre, su ingreso por intereses creció 8 % en el último trimestre.\n\nPero la comparación con su gran rival, JPMorgan, es inevitable, y no le sienta bien. Con un tamaño parecido, JPMorgan gana 17 dólares por cada 100 de patrimonio; Bank of America, cerca de 10.\n\nY el último trimestre trajo una mancha: una multa de 1.200 M de los reguladores por fallas en sus controles contra el lavado de dinero y en el cumplimiento de sanciones internacionales.\n\nEntonces, la pregunta es: ¿qué le falta a Bank of America para ganar como los mejores?",
+   "secciones": [
+    {
+     "titulo": "La fortaleza está en los depósitos",
+     "texto": "Bank of America tiene cuatro grandes negocios: **banca de consumo** (cuentas, tarjetas, hipotecas para millones de personas), **gestión de patrimonios** (Merrill y la banca privada), **banca corporativa** (préstamos a empresas) y **mercados** (compra y venta de acciones, bonos y divisas para clientes).\n\nSus clientes son decenas de millones de personas, pymes, grandes empresas y gobiernos, sin uno que pese demasiado.\n\nUn banco gana plata, sobre todo, cobrando más por lo que presta que lo que paga por los depósitos: el **margen de intermediación**. En el último trimestre, ese ingreso fue de 16.400 M, un 8 % más que un año antes.\n\n¿Cuál es su **ventaja**? Los **depósitos** y la **escala**. Cerró el trimestre con 2,04 billones de dólares en depósitos, muchos en cuentas corrientes que pagan poco o nada de interés. Esa es plata barata para prestar. Y su red de sucursales y su banca digital son difíciles de igualar.\n\nLa inteligencia artificial es más una herramienta que una amenaza para un banco de este tamaño: sirve para bajar costos y atender mejor."
+    },
+    {
+     "titulo": "Gana bien, pero no tan bien",
+     "texto": "En un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nBank of America tuvo un ROE de **10,1 %** en 2025 y de 9,4 % en el último trimestre (11,1 % sin la multa). El promedio de su industria es 12,9 %. Gana, pero menos que los mejores.\n\n[[grafico:roe]]\n\n¿Por qué? Una razón es su eficiencia: gasta 62 dólares (sin la multa) por cada 100 que genera, y sus gastos crecieron 7 % en el trimestre, casi el doble que los ingresos (3 %). Otra es histórica: en 2020 y 2021, con tasas casi en cero, invirtió gran parte de sus depósitos en bonos de largo plazo a tasas muy bajas. Esos bonos todavía le rinden poco, y los va reemplazando de a poco por otros que pagan más.\n\nLa buena noticia: la ganancia por acción crece. Pasó de 3,19 dólares en 2022 a **4,21** en los últimos 12 meses.\n\n[[grafico:eps]]\n\nY la calidad de los préstamos está bien: las pérdidas por préstamos incobrables bajaron levemente, a 1.300 M en el trimestre."
+    },
+    {
+     "titulo": "Capital suficiente, recompras fuertes y una multa que conviene no ignorar",
+     "texto": "La regla de oro de un banco es tener suficiente capital propio para aguantar pérdidas. El indicador que miran los reguladores es el **CET1**: el capital de mejor calidad sobre los activos ajustados por riesgo. Bank of America está en **10,9 %**, por encima del mínimo que le exigen, pero con menos colchón que JPMorgan (13,9 %).\n\nAun así, devuelve mucho a los accionistas. En el último trimestre pagó 2.200 M en dividendos y recompró acciones por 6.000 M. El dividendo creció 7,9 % por año en los últimos tres.\n\n[[grafico:acciones]]\n\nLa multa de 1.200 M merece un párrafo. No es un problema financiero (Bank of America gana eso en menos de dos semanas), pero sí una señal: los reguladores encontraron fallas en sus controles contra el lavado de dinero y en el cumplimiento de sanciones. En un banco, los controles débiles pueden derivar en restricciones para crecer o en multas mayores. Es algo a seguir.\n\nLo conduce Brian Moynihan, CEO desde 2010, uno de los banqueros con más años al frente de un gran banco de EE.UU."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares, Bank of America cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio más de lo que le cuesta conseguir capital (para un banco grande, alrededor de 10 % a 12 %) merece cotizar por encima de una vez su patrimonio. Bank of America está justo en esa zona. Por eso el mercado no le paga la prima que le paga a JPMorgan.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Bank of America es una buena empresa, no una excelente. Tiene una de las bases de depósitos más grandes del mundo, una escala difícil de igualar, préstamos de buena calidad, una ganancia por acción que crece y una devolución de capital fuerte.\n\nSu punto débil es la rentabilidad: un ROE cercano a 10 %, por debajo del promedio de su industria y muy lejos de JPMorgan. Además, su colchón de capital es más justo y la multa por fallas de control es una señal a vigilar. El crítico más duro diría que Bank of America es un banco enorme que gana apenas lo que cuesta su capital, y que por eso no merece más que lo que hoy se paga. Es un argumento razonable.\n\nEncaja con quien busca un banco grande y estable, con dividendo creciente. No es para quien busca el banco más rentable del sector.\n\nEs recomendable revisar la morosidad y las reservas para préstamos incobrables en el informe trimestral de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE suba sostenidamente por encima de 12 %, a medida que vence la cartera de bonos viejos.",
+   "pros": [
+    "Depósitos gigantes: 2,04 billones de dólares, mucha plata barata para prestar.",
+    "Ganancia en suba: de 3,19 dólares por acción en 2022 a 4,21.",
+    "Devolución fuerte: 6.000 M en recompras en el último trimestre."
+   ],
+   "contras": [
+    "Rentabilidad por debajo de su industria: ROE de 10,1 % en 2025, contra 12,9 %.",
+    "Multa regulatoria: 1.200 M por fallas en controles contra el lavado de dinero.",
+    "Colchón de capital más justo: CET1 de 10,9 %, contra 13,9 % de JPMorgan."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "bajo",
-   "negocio": "Bank of America opera cuatro segmentos. **Consumer Banking** ofrece cuentas, tarjetas, hipotecas y préstamos a personas y a pequeñas empresas. **Global Wealth & Investment Management** (incluye Merrill y el banco privado) administra el dinero de clientes de patrimonio alto. **Global Banking** presta a empresas y les ofrece servicios financieros. **Global Markets** opera en mercados para inversores institucionales. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 8,2 % en 2023, 3,0 % en 2024 y 6,8 % en 2025, hasta 113.097 M.** Lo que impulsa el crecimiento es la demanda de crédito y de servicios, y el nivel de las tasas.\n\n**A quién le vende.** A millones de consumidores, pequeñas y medianas empresas, grandes corporaciones, inversores institucionales y gobiernos. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Bank of America **es de escala y de costos de cambio, y es estrecha**. Con decenas de millones de clientes y sucursales, cajeros y una app, consigue depósitos baratos, y la gente casi no cambia el banco donde tiene el sueldo y las tarjetas. Esa base de depósitos es la materia prima barata para prestar. Pero un banco vende dinero, que es igual en todos lados, y las diferencias entre bancos grandes son chicas. Se ve en el ROE, de 9,0 % a 10,1 % entre 2023 y 2025: es decente, pero no el de un negocio con foso amplio.\n\nCompite con JPMorgan, Wells Fargo y Citigroup, y con bancos digitales y plataformas de pago. Es frágil en el riesgo de crédito (que los préstamos no se paguen en una recesión) y en la regulación, que le exige mucho capital. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de Bank of America cuentan **una ganancia pareja que mejora de a poco**. Los ingresos crecieron 8,2 %, 3,0 % y 6,8 % en los últimos tres años. La ganancia neta fue de 27.528 M en 2022, 26.305 M en 2023, 26.973 M en 2024 y 30.509 M en 2025. La ganancia por acción pasó de 3,19 en 2022 a 3,81 en 2025 y a 4,21 en los últimos 12 meses.\n\nEl indicador más importante en un banco es el ROE (cuánto gana por cada dólar de patrimonio): **9,0 % en 2023, 9,2 % en 2024 y 10,1 % en 2025**, con un promedio similar en toda la tabla, algo por debajo de la referencia de 12 %. El capital invertido pasó de 547.714 M en 2022 a 659.266 M en los últimos 12 meses (20 % más).\n\nLa mirada crítica: la ganancia por acción creció más rápido que la ganancia neta gracias a las recompras: **las acciones en circulación bajaron 9,8 %** (de 8.168 M a 7.370 M). Sin eso, el crecimiento por acción habría sido bastante menor.",
-   "balance": "**El capital del banco es amplio y crece de a poco.** El capital invertido (lo que financia el negocio) pasó de 547.714 M en 2022 a 643.155 M en 2025 y a 659.266 M en los últimos 12 meses, un 20 % más, mientras los ingresos subieron 19 %. Es un banco grande, de los que los reguladores vigilan de cerca, y con la mirada puesta en los depósitos, que son su materia prima.\n\nCon tasas altas, el banco gana más al prestar, pero también paga más por los depósitos y sufre pérdidas no realizadas en los bonos que tiene en cartera cuando el bono a 10 años ronda 5 %. Es un efecto que aparece en el patrimonio y no en la ganancia, y por eso conviene seguirlo.",
-   "gerencia": "La conduce Brian Moynihan, presidente y CEO (66 años, pago de 2,1 M según Yahoo), con Alastair Borthwick como director financiero y dos copresidentes, Dean Athanasia y Jim DeMare. Es un equipo con larga trayectoria, y Moynihan lleva más de una década al frente.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: paga un dividendo de 1,28 por acción (pagado desde 1986; sube 7,9 % por año en 3 años) y recompra acciones por montos enormes (24.102 M en 2025 y 25.152 M en los últimos 12 meses, contra 5.727 M en 2022). **Las acciones diluidas bajaron de 8.168 M a 7.370 M, un 9,8 % menos.** Cada acción que queda se lleva una porción mayor de la ganancia.",
-   "fortalezas": [
-    "Escala enorme: ingresos de 113.097 M en 2025 y negocios en consumo, patrimonio, empresas y mercados.",
-    "Ganancia pareja y en alza: 30.509 M en 2025, la más alta de la tabla.",
-    "Recompras fuertes: 9,8 % menos acciones desde 2022 y ganancia por acción de 4,21 en los últimos 12 meses.",
-    "Dividendo creciente: 1,28 por acción, pagado desde 1986.",
-    "Depósitos baratos por su base de clientes y diversificación entre varios negocios."
-   ],
-   "debilidades": [
-    "ROE moderado: 10,1 % en 2025, por debajo de la referencia de 12 %.",
-    "Sensibilidad a las tasas: con el bono a 10 años cerca de 5 %, pierde valor la cartera de bonos y los clientes pagan más por los préstamos.",
-    "Riesgo de crédito: el crítico más duro diría que, en una recesión, los préstamos incobrables suben rápido y la ganancia cae.",
-    "Foso estrecho: el dinero es igual en todos lados y compite con otros bancos grandes.",
-    "Una parte importante del crecimiento por acción viene de recompras y no del negocio."
-   ],
-   "vigilar": [
-    "ROE: hoy 10,1 %; tiene que subir hacia 12 % para justificar el capital que tiene.",
-    "Ganancia neta: 30.509 M en 2025; si baja en un año con empleo fuerte, algo se está deteriorando.",
-    "Morosidad y reservas para préstamos incobrables: es lo que más cambia en una recesión.",
-    "Efecto de las tasas en el patrimonio: pérdidas no realizadas en bonos mientras el bono a 10 años rinda cerca de 5 %."
-   ],
    "clientes": [
-    "Millones de consumidores y pequeñas empresas",
-    "Grandes corporaciones",
-    "Inversores institucionales y gobiernos"
+    "Decenas de millones de personas con cuentas, tarjetas e hipotecas",
+    "Pymes, grandes empresas y gobiernos",
+    "Inversores que le confían su patrimonio (Merrill)"
    ],
-   "ideal_para": [
-    "Buscan un banco grande y estable con ganancias parejas y recompras.",
-    "Valoran un dividendo creciente.",
-    "Quieren exposición al ciclo económico de Estados Unidos a través del crédito y los servicios financieros."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia de 6.900 M (0,91 dólares por acción); ajustada de 8.100 M (1,08) sin el cargo de 1.200 M por multas de la OCC y FinCEN; ingresos de 30.000 M (+3 %); ingreso por intereses de 16.400 M (+8 %); gastos ajustados +7 %",
+     "fuente": "Resultados del 3T26 (8-K, anexo 99.2), 14/10/2026",
+     "url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000481/bac09302026ex992.htm"
+    },
+    {
+     "dato": "Pérdidas netas por préstamos de 1.300 M; ROE de 9,4 % (11,1 % ajustado); CET1 de 10,9 %; dividendos por 2.200 M y recompras por 6.000 M; depósitos de 2,04 billones de dólares",
+     "fuente": "Ídem",
+     "url": "https://investor.bankofamerica.com/regulatory-and-other-filings/select-sec-filings/content/0000070858-26-000481/bac09302026ex992.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran que la ganancia dependa de las tasas y del riesgo de crédito.",
-    "Buscan retornos altos sobre el patrimonio."
-   ],
+   "ticker": "BAC",
    "perfil": "banco",
    "capas": [],
-   "ticker": "BAC",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",

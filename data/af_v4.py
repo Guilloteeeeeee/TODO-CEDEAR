@@ -543,7 +543,7 @@ def validar(d):
             pr.append("los marcadores del día solo van en 'valuacion.texto'")
             break
     todo = json.dumps(d, ensure_ascii=False).lower()
-    mal = [w for w in PROHIBIDAS if w in todo]
+    mal = [w for w in PROHIBIDAS if re.search(r"(?<!\w)" + re.escape(w) + r"(?!\w)", todo)]
     if mal:
         pr.append("frases o nombres prohibidos: " + ", ".join(mal))
     tot = sum(_palabras(t) for t in textos + o["resumen"])
