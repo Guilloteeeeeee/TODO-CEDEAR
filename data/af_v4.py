@@ -227,6 +227,7 @@ def rellenar(texto, ctx, marca=True):
                 continue
             oks.append(RE_MARCADOR.sub(lambda m: ("\x01" + ctx[m.group(1) + (f":{m.group(2)}" if m.group(2) else "")] + "\x02") if marca
                                        else ctx[m.group(1) + (f":{m.group(2)}" if m.group(2) else "")], o))
+            oks[-1] = re.sub(r"\bde(\x02?) el\b", r"del\1", oks[-1])   # "por encima de el promedio" -> "por encima del promedio"
         if oks:
             out.append(" ".join(oks))
     return "\n\n".join(out)

@@ -2626,56 +2626,75 @@
    }
   },
   "HD": {
-   "resumen": "Home Depot es la mayor cadena de ferreterías y materiales para el hogar de Estados Unidos: vende desde clavos y pintura hasta cocinas completas, a quienes arreglan su casa y a contratistas y profesionales. Gana plata con el volumen: compra enorme, vende en miles de tiendas y entrega a obra. Tiene un **foso estrecho, de escala y logística**; el cálculo del programa lo estima amplio, pero yo lo leo más cerca de estrecho porque el margen operativo viene bajando cuatro años seguidos, de 15,3 % a 12,4 %. Los ingresos crecen (157.403 M a 169.176 M en los últimos 12 meses), pero la ganancia neta cayó de 17.105 M a 14.227 M y la ganancia por acción de 16,69 a 14,29. Es un negocio muy ligado al mercado de vivienda: con el bono a 10 años cerca de 5 %, las hipotecas siguen caras, la gente se muda menos y la nafta más cara (+9,1 %) le deja menos plata para reformas grandes. Además la deuda subió a 62.567 M y dejó de recomprar acciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque se compra con las manos, con la obra y con el camión en la puerta. Conclusión: **buena empresa, con escala y marca fuertes y 8,9 % de flujo libre, pero con márgenes que bajan hace cuatro años, deuda más alta y mucha dependencia del mercado de vivienda.**",
-   "veredicto": "Buena empresa: escala enorme y mucha caja, pero márgenes en baja y dependiente de la vivienda",
-   "conclusion": "Home Depot es una buena empresa, no una excelente: tiene escala, ROIC de 23,0 % y un flujo libre de 15.099 M, pero el margen operativo cae hace cuatro años, la ganancia por acción está por debajo de la de 2023 y la deuda subió. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo deje de bajar.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Home Depot vende materiales de construcción, productos para mejoras del hogar, jardín, decoración y productos de mantenimiento, y además ofrece servicios de instalación (pisos, calefones, baños, cocinas, aire acondicionado, ventanas y otros). Yahoo no informa cuánto aporta cada línea ni cada tipo de cliente, y no lo vamos a inventar.\n\nEs un negocio de compra frecuente, pero ligado al ciclo de la vivienda: se arregla la casa cuando hay plata y cuando se mueve el mercado inmobiliario. **Los ingresos cayeron 3,0 % en el año fiscal 2024, subieron 4,5 % en 2025 y 3,2 % en 2026, hasta 169.176 M en los últimos 12 meses** (el año fiscal de Home Depot termina en enero).\n\n**A quién le vende.** A personas que arreglan su casa y a contratistas y profesionales. **Ningún cliente concentra una parte decisiva de las ventas.**",
-   "foso": "La ventaja de Home Depot **es de escala y logística, y es estrecha**. Comprar en volumen le da mejores precios que el comercio chico, miles de tiendas y centros de distribución le permiten tener stock y entregar rápido, y los profesionales vuelven donde saben que van a encontrar lo que necesitan. Se ve en el **margen bruto, estable en 33,2 % - 33,5 % durante cinco períodos**, y en el ROIC de 23,0 %, muy por encima del costo de capital.\n\nPero el margen operativo bajó de 15,3 % a 12,4 %, señal de que los costos suben más rápido que lo que cobra. Compite con Lowe's, con Amazon y con ferreterías locales. Es frágil en el ciclo de la vivienda y en la competencia de precios online en productos estándar. La inteligencia artificial no la amenaza: nadie compra un inodoro desde un chat.",
-   "numeros": "Los números de Home Depot cuentan **un negocio grande que vende más pero gana menos**. Los ingresos crecieron 3,2 % en 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 15,3 % en 2023 a 14,2 %, 13,5 %, 12,7 % y 12,4 % en los últimos 12 meses. La ganancia neta cayó de 17.105 M a 14.227 M (-16,8 %) y la ganancia por acción de 16,69 a 14,29.\n\nLa caja es sólida pero menor que hace tres años: el flujo libre (lo que sobra después de invertir) fue de 17.946 M en 2024, 12.646 M en 2026 y **15.099 M en los últimos 12 meses (8,9 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, bajó de 40,9 % a **23,0 %**, porque el capital invertido subió 55 % (de 44.755 M a 69.513 M) mientras la ganancia operativa bajó.\n\nLa mirada crítica: el ROE (85,6 %) no sirve para comparar, porque el patrimonio es muy chico por las recompras de años anteriores. Hay que mirar el ROIC.",
-   "balance": "**La deuda de Home Depot es manejable, pero subió.** La deuda total pasó de 50.364 M en 2023 a 62.567 M en los últimos 12 meses y la caja es de 2.085 M, así que la deuda neta es de 50.811 M, **1,99 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con unos 24 meses de ganancia operativa. Era de 1,49 veces en 2023. La ganancia operativa cubre 8,7 veces los intereses (2.416 M en los últimos 12 meses).\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, bajó de 1,41 a 1,08 veces: justa. Con tasas cerca de 5 %, refinanciar deuda cuesta más. El patrimonio neto es chico (16.617 M) frente a la deuda por las recompras de años anteriores.",
-   "gerencia": "Yahoo lista a Edward Decker (62 años, pago de 4,2 M) como presidente y CEO, con la aclaración de que está en licencia, y a Richard McPhail como director financiero (55 años). Conviene seguir quién conduce la empresa en este período.\n\nEn lo que importa, **el uso del capital, es de dividendo y de deuda en aumento**: paga un dividendo de 9,32 por acción (pagado desde 1987; sube 6,6 % por año en 3 años, contra 14,6 % por año en 10 años; 9.221 M en los últimos 12 meses, 61 % del flujo libre). Las recompras pasaron de 7.951 M en 2024 a 649 M en 2025 y 0 en 2026: **frenó las recompras**. Las acciones diluidas bajaron de 1.025 M a 996 M, **2,8 % menos**.",
-   "fortalezas": [
-    "Escala y logística enormes: ingresos de 169.176 M en los últimos 12 meses y clientes profesionales fieles.",
-    "Flujo libre de 15.099 M en los últimos 12 meses, 8,9 % de las ventas.",
-    "ROIC de 23,0 %, todavía alto aunque en baja.",
-    "Dividendo pagado desde 1987 (9,32 por acción), con 2,8 % menos acciones que en 2023.",
-    "Margen bruto estable en torno a 33 % durante cinco períodos."
+   "formato": "v4",
+   "titulo": "Home Depot: la ferretería más grande del mundo espera que la gente vuelva a mudarse",
+   "resumen": [
+    "Home Depot es la mayor cadena de **materiales y herramientas para el hogar** del mundo: 2.364 tiendas y más de 1.340 locales de SRS, su distribuidora para profesionales. Su ventaja es la escala: compra más barato que nadie y tiene el producto cuando el cliente lo necesita.",
+    "En el segundo trimestre de su año fiscal 2026 (cerrado en agosto), **las ventas crecieron 5,7 %**, sobre todo por compras de empresas: en las tiendas comparables crecieron apenas 1,7 % y vinieron menos clientes (-0,8 %), que gastaron más cada uno.",
+    "Muy buena empresa, de gran calidad y muy rentable, en un ciclo flojo: con las hipotecas caras, la gente se muda y remodela menos, y su margen y su retorno sobre el capital vienen bajando."
    ],
-   "debilidades": [
-    "Margen operativo en baja cuatro años seguidos: de 15,3 % a 12,4 %.",
-    "Ganancia por acción 14,29 contra 16,69 en 2023: vende más pero gana menos.",
-    "Deuda más alta: 62.567 M y liquidez corriente de 1,08 veces, con tasas cerca de 5 %.",
-    "Muy ligada al mercado de vivienda: el crítico más duro diría que, con hipotecas caras, la gente pospone reformas grandes.",
-    "Dejó de recomprar acciones y el dividendo es 61 % del flujo libre."
+   "introduccion": "Cuando alguien compra una casa, casi siempre la arregla: pinta, cambia el piso, remodela la cocina. Y muchas de esas compras terminan en una ferretería.\n\nPor eso a Home Depot le va bien cuando se venden muchas casas. Y hoy se venden pocas.\n\nCon el bono del Tesoro a 10 años cerca de 5 %, las tasas de las hipotecas siguen altas. Quien tiene una hipoteca vieja a tasa baja no quiere mudarse y perderla. Menos mudanzas significan menos remodelaciones grandes.\n\nHome Depot lleva más de tres años en ese ciclo flojo. Sus ventas en tiendas comparables apenas crecen, y su ganancia por acción bajó de 16,69 dólares a 14,29.\n\nMientras espera que el ciclo cambie, la empresa hizo una apuesta grande: comprar distribuidoras para profesionales de la construcción, como SRS y GMS. Eso le sumó ventas, pero también deuda.\n\nEntonces, la pregunta es: ¿qué tan bien está preparada Home Depot para cuando la gente vuelva a mudarse?",
+   "secciones": [
+    {
+     "titulo": "Dos clientes: el que arregla su casa y el profesional",
+     "texto": "Home Depot vende de todo para la casa: madera, pintura, herramientas, pisos, electricidad, plomería, jardín y electrodomésticos.\n\nTiene dos tipos de clientes:\n\n- El **que lo hace él mismo**: el dueño de casa que cambia una canilla o pinta un cuarto.\n- El **profesional**: contratistas, plomeros, electricistas, constructores. Compran más, con más frecuencia, y no dejan de trabajar aunque el mercado de la vivienda esté flojo.\n\nPor eso compró **SRS** en 2024, por unos 18.000 M, y **GMS** en 2025: distribuidoras de materiales para techos, piscinas, paredes y paisajismo que le venden directamente a los profesionales. Hoy SRS tiene más de 1.340 locales.\n\nSus clientes son millones de personas y empresas, sin uno que pese demasiado. Su gran competidor es Lowe's.\n\n¿Cuál es su **ventaja**? La **escala**. Home Depot compra volúmenes que le permiten conseguir mejores precios que cualquier competidor chico, y tiene una red logística que pone el producto en la tienda o en la obra rápido. Para un profesional, que pierde plata si espera un material, eso vale mucho.\n\nLa inteligencia artificial no amenaza este negocio: nadie va a comprar un bolsón de cemento por un algoritmo. En todo caso, ayuda a manejar el inventario."
+    },
+    {
+     "titulo": "Un ciclo flojo que se ve en el margen",
+     "texto": "En el último trimestre, Home Depot vendió 47.861 M, un 5,7 % más que un año antes. Pero gran parte de ese crecimiento vino de las empresas compradas. Las **ventas comparables** (las de tiendas que ya existían un año antes) crecieron apenas **1,7 %**.\n\nY el detalle es revelador: vinieron menos clientes (-0,8 %), pero cada uno gastó más (+2,8 %). Es decir, la gente compra lo necesario, sin grandes proyectos.\n\nEso se nota en el **margen operativo**: lo que queda de cada venta después de todos los costos de funcionar. Pasó de 15,3 % a **12,4 %** en los últimos 12 meses. Sigue arriba del promedio de su industria (11,9 %), pero lejos de lo que era.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), cayó de 40,9 % a **23,0 %**. Por encima de 15 % se considera muy bueno, así que sigue siendo alto. Pero bajó por dos razones: el ciclo flojo y las compras de SRS y GMS, que agregaron mucho capital y todavía no rinden lo mismo que las tiendas. El promedio de su industria es 35,0 %.\n\n[[grafico:roic]]\n\nPara su año fiscal 2026, la empresa espera ventas en tiendas comparables entre 0 % y 2 % más, y una ganancia ajustada por acción entre 0 % y 4 % más alta."
+    },
+    {
+     "titulo": "Más deuda, pero el dividendo no se toca",
+     "texto": "Las compras se pagaron en gran parte con deuda. La deuda neta (lo que debe menos la caja) pasó de 40.436 M a **50.811 M**.\n\n[[grafico:deuda_neta]]\n\nEquivale a **2 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Home Depot está justo en el límite.\n\nLa **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año) bajó de 14,9 a **8,7 veces**. Por encima de 3 se considera sano, así que todavía hay mucho margen.\n\nUn dato que confunde: el patrimonio contable de Home Depot es muy chico para su tamaño (16.617 M). No es una señal de problemas: durante años recompró tantas acciones que el patrimonio casi desapareció. Por eso, en esta empresa, indicadores como el precio sobre valor libros no sirven para nada.\n\nLa caja sigue fuerte: **15.099 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. Alcanza para el dividendo, que paga desde 1987: hoy son 9,32 dólares por acción por año, y creció 6,6 % por año en los últimos tres y 14,6 % en los últimos diez.\n\n[[grafico:dividendo]]\n\nDesde agosto de 2026, su CEO, Ted Decker, está de licencia temporal. La empresa la conducen mientras tanto Ann-Marie Campbell, en las operaciones, y Richard McPhail, el director financiero: \"Nuestros resultados del segundo trimestre superaron nuestras expectativas\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 12,4 %; si sigue bajando, la escala no alcanza para sostener la rentabilidad.",
-    "Flujo libre: hoy 15.099 M; tiene que cubrir con holgura el dividendo de 9.221 M.",
-    "Deuda neta sobre EBITDA: hoy 1,99 veces; si sube, el balance se ajusta con tasas cerca de 5 %.",
-    "Ingresos comparables: crecen 3,2 %; si se frenan, el mercado de vivienda sigue pesando."
+   "valuacion": {
+    "texto": "En Home Depot, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada (sin la amortización de las empresas compradas) que espera la empresa para su año fiscal 2026: unos 14,98 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, Home Depot cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEsto dice algo importante: el mercado no está pagando a Home Depot como si estuviera en crisis. Paga lo de siempre, con la ganancia de un ciclo flojo. Es decir, ya da por hecho que el ciclo de la vivienda va a mejorar en algún momento. Si las tasas siguen altas por mucho más tiempo, esa espera puede hacerse larga.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}.",
+    "ganancia_ref": 14.98,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción del año fiscal 2026 (14,69 a 15,28 dólares)"
+   },
+   "conclusion": "Home Depot es una muy buena empresa. Tiene una escala imposible de igualar, un retorno sobre el capital que sigue siendo alto aun en un mal momento, una caja enorme y un dividendo que crece hace décadas.\n\nSu punto débil es el ciclo. Con las hipotecas caras, la gente se muda y remodela menos, y la empresa lleva más de tres años con ventas comparables casi planas, márgenes en baja y una ganancia por acción menor que hace tres años. Además, las compras de SRS y GMS sumaron deuda y bajaron el retorno sobre el capital. El crítico más duro diría que el mercado ya paga por una recuperación de la vivienda que nadie sabe cuándo llega. Es un argumento razonable.\n\nEncaja con quien busca una empresa de calidad y un dividendo creciente, y tiene paciencia para esperar un ciclo mejor. No es para quien espera crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que las ventas comparables vuelvan a crecer con más clientes, no solo con un ticket más alto.",
+   "pros": [
+    "Escala imbatible: compra más barato y tiene el producto cuando el cliente lo necesita.",
+    "Retorno alto: ROIC de 23,0 % aun en un ciclo flojo.",
+    "Dividendo sólido: lo paga desde 1987 y creció 14,6 % por año en diez años."
    ],
+   "contras": [
+    "Ciclo de vivienda flojo: ventas comparables +1,7 % y menos clientes.",
+    "Margen en baja: el margen operativo pasó de 15,3 % a 12,4 %.",
+    "Más deuda: la deuda neta pasó de 40.436 M a 50.811 M por las compras."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Personas que arreglan su casa",
-    "Contratistas y profesionales de la construcción",
-    "Quienes contratan instalaciones (pisos, cocinas, aire acondicionado)"
+    "Dueños de casa que arreglan y remodelan",
+    "Profesionales: contratistas, plomeros, electricistas, constructores",
+    "Empresas de techos, piscinas y paisajismo (SRS y GMS)"
    ],
-   "ideal_para": [
-    "Buscan una empresa de escala enorme ligada a la vivienda y a las reformas.",
-    "Valoran un dividendo pagado desde 1987.",
-    "Aceptan que los márgenes sean cíclicos."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2026 (cerrado el 02/08/2026): ventas de 47.861 M (+5,7 %); ventas comparables +1,7 % (+1,3 % en EE.UU.); transacciones -0,8 %; ticket promedio +2,8 % (92,50 dólares); margen operativo de 14,3 %; ganancia por acción de 4,79 dólares (+4,6 %) y ajustada de 4,92 (+5,1 %)",
+     "fuente": "Comunicado de resultados del 2T del año fiscal 2026 (8-K, anexo 99.1), 18/08/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm"
+    },
+    {
+     "dato": "Guía del año fiscal 2026 (reafirmada): ventas +2,5 % a +4,5 %; comparables 0 % a +2 %; ganancia ajustada por acción 0 % a +4 % desde 14,69 dólares; 2.364 tiendas y más de 1.340 locales de SRS; frase de Richard McPhail",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000145/hd_exhibit991x08022026.htm"
+    },
+    {
+     "dato": "Licencia temporal del CEO Ted Decker; Ann-Marie Campbell y Richard McPhail a cargo de la oficina del CEO",
+     "fuente": "Comunicado de la empresa (8-K), 12/08/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000354950/000035495026000141/exhibit991august2026.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran que los márgenes bajen varios años seguidos.",
-    "Buscan crecimiento rápido de la ganancia por acción."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "HD",
    "perfil": "consumo",
    "capas": [
     "compounder"
    ],
-   "ticker": "HD",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2690,57 +2709,68 @@
    }
   },
   "CAT": {
-   "resumen": "Caterpillar fabrica las máquinas amarillas que se ven en cualquier obra o mina: excavadoras, topadoras, camiones de minería, motores y turbinas, y vende además repuestos, servicios y financiación a sus clientes. Gana plata con la venta de equipos nuevos y, de forma más estable, con repuestos y servicios sobre la enorme cantidad de máquinas que ya están en uso. Tiene un **foso de red de distribuidores y base instalada**: el cálculo del programa lo estima amplio, pero yo lo leo más cerca de estrecho, porque es un negocio cíclico y el ROIC se movió entre 12,7 % y 18,1 %. Los ingresos pasaron de 59.427 M en 2022 a 74.729 M en los últimos 12 meses y la ganancia por acción de 12,64 a 23,24, ayudada porque **las acciones en circulación bajaron 11,9 %**. Con el petróleo en máximos de cinco meses sus clientes de energía y minería tienen caja, y con el bono a 10 años cerca de 5 % la construcción se financia más cara. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, y puede incluso beneficiarse por la demanda de generación de energía de los centros de datos. Conclusión: **buena empresa, líder en máquinas pesadas, con 12,0 % de flujo libre y recompras fuertes, pero cíclica y devolviendo más de lo que genera.**",
-   "veredicto": "Buena empresa: líder en máquinas pesadas, rentable y con recompras, pero cíclica",
-   "conclusion": "Caterpillar es una buena empresa, no una excelente: tiene una red de distribuidores difícil de copiar, flujo libre de 8.994 M y 11,9 % menos acciones, pero es cíclica y devuelve más de lo que genera. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga cerca de 17 % cuando el ciclo se enfríe.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Caterpillar vende equipos de construcción y minería, motores diésel y a gas para uso fuera de ruta, turbinas industriales y locomotoras. Sus segmentos principales son **Construction Industries** (excavadoras, topadoras, motoniveladoras y más), **Resource Industries** (minería y canteras) y **Energy & Transportation** (motores, turbinas, generación de energía), más servicios financieros a clientes. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio que depende del ciclo de la obra y la minería, con una parte más estable en repuestos y servicios. **Los ingresos crecieron 12,8 % en 2023, cayeron 3,4 % en 2024 y subieron 4,3 % en 2025, y los últimos 12 meses están 10,6 % arriba de 2025, en 74.729 M.**\n\n**A quién le vende.** A constructoras, mineras, empresas de energía y ferrocarriles, mayormente a través de una red de concesionarios independientes. Yahoo no da los porcentajes, pero **ningún cliente concentra una parte decisiva de las ventas**.",
-   "foso": "La ventaja de Caterpillar **es de red de distribuidores y de base instalada, y es estrecha según mi lectura**. Un constructor o una minera que tiene su flota amarilla necesita repuestos, mecánicos y servicio cerca de la obra, y la red de concesionarios de Caterpillar es muy difícil de copiar. Eso protege los repuestos y servicios, que dependen menos del ciclo. Se ve en el **margen operativo, de 14,9 % en 2022 a 20,2 % en 2024 y 17,5 % en los últimos 12 meses**.\n\nCompite con Komatsu, Deere, Volvo y fabricantes chinos. Pero el margen bruto bajó de 36,0 % en 2024 a 32,5 % en los últimos 12 meses, y la ganancia sube y baja con el ciclo. El cálculo del programa lo ve amplio; yo lo veo estrecho porque en un año malo (2025) el ROIC cayó a 13,1 %.",
-   "numeros": "Los números de Caterpillar cuentan **un negocio cíclico en una fase fuerte**. Los ingresos pasaron de 59.427 M en 2022 a 67.589 M en 2025 y a 74.729 M en los últimos 12 meses. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 14,9 %, 19,3 %, 20,2 %, 16,5 % y 17,5 %. La ganancia por acción pasó de 12,64 a 20,12, 22,05, 18,81 y **23,24 en los últimos 12 meses**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 5.167 M en 2022, 8.820 M en 2024, 7.453 M en 2025 y **8.994 M en los últimos 12 meses (12,0 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 15,5 %, y el ROE de 55,9 % está inflado por el uso de deuda.\n\nLa mirada crítica: la inversión en planta subió de 2.599 M a 4.575 M, y en 2025 la ganancia cayó 14,7 %. Es un negocio que en un año malo se resiente y que hoy está en una fase buena.",
-   "balance": "**La deuda de Caterpillar es cómoda para lo que genera, aunque subió.** La deuda total pasó de 36.993 M en 2022 a 45.146 M en los últimos 12 meses (+22,0 %), con 6.713 M en caja: la deuda neta es de 38.433 M, **2,28 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 27 meses de ganancia operativa. Parte de esa deuda financia los préstamos que su brazo financiero da a los clientes. La ganancia operativa cubre 24,8 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,37 veces. Con tasas cerca de 5 %, la deuda nueva cuesta más, pero el flujo libre de 8.994 M la sostiene.",
-   "gerencia": "La conduce Joseph Creed, presidente y CEO (49 años, pago de 4,4 M según Yahoo), con Kyle Epley como director financiero (52 años). Es un equipo joven para una empresa de más de un siglo.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: paga un dividendo de 6,52 por acción (pagado desde 1962; sube 8,1 % por año en 3 años; 2.812 M en los últimos 12 meses) y recompra acciones (7.302 M en los últimos 12 meses). Las acciones diluidas bajaron de 530 M en 2022 a 467 M, **11,9 % menos**. Pero entre dividendo y recompras devolvió 10.114 M, más que el flujo libre de 8.994 M: la diferencia sale de la caja y de deuda.",
-   "fortalezas": [
-    "Líder mundial en máquinas pesadas, con red de concesionarios y base instalada difícil de copiar.",
-    "Flujo libre de 8.994 M en los últimos 12 meses, 12,0 % de las ventas.",
-    "Ganancia por acción de 23,24 en los últimos 12 meses, contra 12,64 en 2022.",
-    "Recompras fuertes: 11,9 % menos acciones desde 2022.",
-    "Dividendo pagado desde 1962 (6,52 por acción), con cobertura de intereses de 24,8 veces."
+   "formato": "v4",
+   "titulo": "Caterpillar: la empresa de las topadoras se volvió una pieza clave de la energía para la IA",
+   "resumen": [
+    "Caterpillar es el mayor fabricante del mundo de **máquinas para construcción y minería, motores y turbinas**. Su ventaja es la marca, la calidad y una red de concesionarios que repara y abastece sus máquinas en cualquier rincón del planeta.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 17 %** y su ganancia ajustada por acción pasó de 4,95 a 7,20 dólares. El motor fue la generación de energía para centros de datos: esas ventas crecieron 30 %.",
+    "Muy buena empresa, en su mejor momento en años gracias a la demanda de energía de la IA, pero es un negocio cíclico y hoy el mercado la paga muy por encima de lo que pagaba históricamente."
    ],
-   "debilidades": [
-    "Negocio cíclico: la ganancia por acción cayó 14,7 % en 2025.",
-    "Margen bruto bajó de 36,0 % a 32,5 % en los últimos 12 meses.",
-    "Devuelve más (10.114 M) de lo que genera (8.994 M): el crítico más duro diría que la diferencia se paga con deuda.",
-    "Deuda de 45.146 M, 22 % más que en 2022, con tasas cerca de 5 %.",
-    "Inversión en planta en alza: 4.575 M contra 2.599 M en 2022."
+   "introduccion": "Si pensás en Caterpillar, seguramente imaginás una topadora amarilla en una obra. Y es cierto: es su negocio más conocido.\n\nPero el motor de la empresa en 2026 es otro. Los centros de datos para inteligencia artificial necesitan cantidades enormes de electricidad, y muchas veces la red eléctrica no da abasto. La solución: generar la energía en el lugar, con turbinas y grandes motores a gas. Caterpillar fabrica justamente eso.\n\nEn el tercer trimestre, sus ventas de generación de energía crecieron 30 %, \"principalmente en aplicaciones para centros de datos\", según la propia empresa. Y la ganancia por acción subió 46 %.\n\nEl mercado lo festejó. La acción cotiza hoy a un múltiplo de ganancias muy superior al de su historia, como si Caterpillar hubiera dejado de ser una empresa cíclica.\n\nEntonces, la pregunta es: ¿cambió Caterpillar para siempre, o es un buen ciclo que el mercado está pagando como si fuera eterno?",
+   "secciones": [
+    {
+     "titulo": "Tres negocios, y uno que despegó",
+     "texto": "Caterpillar tiene tres grandes negocios. En el tercer trimestre de 2026:\n\n- **Energía** (motores, turbinas y generadores para centros de datos, petróleo y gas, barcos y trenes): vendió 8.784 M, un 18 % más. Es hoy el más grande y el más rentable, con un margen de 24,4 %.\n- **Construcción** (topadoras, excavadoras, cargadoras): 7.983 M, un 18 % más, con un margen de 22,9 %.\n- **Minería** (camiones gigantes y equipos para minas): 4.615 M, un 15 % más, con un margen de 13,5 %, afectado por materiales más caros y aranceles.\n\nSus clientes son constructoras, mineras, petroleras, empresas de energía, gobiernos y, cada vez más, los dueños de centros de datos. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **red de concesionarios**. Una máquina de Caterpillar trabaja muchos años, y cada hora que está parada le cuesta plata al dueño. Los concesionarios de Caterpillar tienen repuestos y técnicos en casi cualquier lugar del mundo. Eso hace que el cliente vuelva a elegirla, y le da a la empresa un negocio estable de repuestos y servicios.\n\nLa inteligencia artificial, lejos de amenazarla, la favorece: los centros de datos necesitan la energía que ella produce."
+    },
+    {
+     "titulo": "Un negocio cíclico en su mejor momento",
+     "texto": "Caterpillar es una empresa **cíclica**: le va muy bien cuando se construye, se extrae y se invierte mucho, y mal cuando la economía frena. Eso se ve en su ganancia por acción: 12,64 dólares en 2022, 22,05 en 2024, 18,81 en 2025 y **23,24** en los últimos 12 meses.\n\n[[grafico:eps]]\n\nEl tercer trimestre de 2026 fue extraordinario. Las ventas crecieron 17 % (sobre todo por mayor volumen y algo por precios) y el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 17,3 % a **20,4 %**. Cuando una empresa vende más con las mismas fábricas, cada venta extra deja más ganancia.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **15,5 %**. Por encima de 15 % se considera muy bueno. Está por debajo del promedio de su industria (24,4 %), pero en parte porque incluye a Cat Financial, su brazo financiero, que presta a los clientes para comprar máquinas: un negocio con mucho capital y retornos más bajos.\n\nLa empresa habla de una cartera de pedidos récord, lo que da visibilidad para los próximos trimestres."
+    },
+    {
+     "titulo": "Una deuda que engaña, y recompras fuertes",
+     "texto": "La deuda total de Caterpillar es de 45.146 M, y la deuda neta (lo que debe menos la caja) equivale a **2,3 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente.\n\nPero ese número engaña. Gran parte de esa deuda es de **Cat Financial**, que pide prestado para financiar a los clientes que compran máquinas. Esa deuda está respaldada por los préstamos que cobra. La deuda del negocio de máquinas en sí es mucho menor.\n\nLa prueba está en la **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año): **24,8 veces**. Por encima de 3 se considera sano. Caterpillar no tiene ningún problema de deuda.\n\nY devuelve mucho al accionista. En los primeros nueve meses de 2026 recompró acciones por 7.745 M, contra 4.850 M un año antes. Las acciones en circulación vienen bajando.\n\n[[grafico:acciones]]\n\nEl dividendo (6,52 dólares por acción por año) lo sube hace más de 30 años seguidos, y creció 8,1 % por año en los últimos tres.\n\nLa conduce Joe Creed, CEO desde 2025, que hizo toda su carrera en la empresa: \"Nuestros resultados del tercer trimestre reflejan la solidez de nuestros mercados, con fuertes pedidos y una cartera récord\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 17,5 %; si cae hacia 15 %, el ciclo está girando.",
-    "Flujo libre: hoy 8.994 M; tiene que cubrir dividendo y recompras sin más deuda.",
-    "Deuda neta sobre EBITDA: hoy 2,28 veces; si sube, el balance se ajusta.",
-    "ROIC: hoy 15,5 %; tiene que mantenerse por encima de 13 % en un año flojo."
+   "valuacion": {
+    "texto": "En Caterpillar, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero en una empresa cíclica hay que leerlo con cuidado: en los buenos años la ganancia es alta y el PER parece bajo; en los malos, al revés.\n\nCon el precio de {precio} dólares, Caterpillar cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEsto es lo llamativo: Caterpillar está en uno de sus mejores momentos de ganancias, y aun así el mercado paga un múltiplo alto. Eso significa que espera que esta ganancia siga creciendo, gracias a la energía para centros de datos. Si la demanda de los centros de datos se enfría, o la construcción y la minería entran en un ciclo bajo, la ganancia y el múltiplo pueden caer juntos.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos históricos de Caterpillar, de cuando era vista solo como una empresa cíclica. El dividendo rinde {dy}."
+   },
+   "conclusion": "Caterpillar es una muy buena empresa. Tiene una marca líder, una red de concesionarios imposible de copiar, un negocio de repuestos y servicios estable y un balance sólido, aunque su deuda total parezca alta. Y hoy está en su mejor momento en años, con la energía para centros de datos como nuevo motor.\n\nSu punto débil es el ciclo y el precio. Es un negocio que siempre tuvo años buenos y malos, y hoy el mercado lo paga como si los malos no fueran a volver. El crítico más duro diría que se está pagando la cima del ciclo con un múltiplo de empresa de crecimiento. Es un argumento muy serio.\n\nEncaja con quien cree que la demanda de energía para la IA va a durar años y tolera las subas y bajas de una empresa industrial. No es para quien busca estabilidad.\n\nPara que la tesis se mantenga, lo más importante es que el negocio de energía siga creciendo y que los pedidos se mantengan fuertes cuando la construcción y la minería se enfríen.",
+   "pros": [
+    "Energía para la IA: las ventas de generación para centros de datos crecieron 30 %.",
+    "Red de concesionarios: repuestos y técnicos en todo el mundo, imposible de copiar.",
+    "Devolución fuerte: 7.745 M en recompras en nueve meses."
    ],
+   "contras": [
+    "Negocio cíclico: la ganancia por acción cayó de 22,05 a 18,81 dólares en 2025.",
+    "Precio exigente: cotiza a un múltiplo muy superior a su historia.",
+    "Costos y aranceles: el margen de minería bajó por materiales más caros."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Constructoras y empresas de infraestructura",
-    "Mineras y canteras",
-    "Empresas de energía y ferrocarriles"
+    "Constructoras, mineras, petroleras y gobiernos",
+    "Dueños de centros de datos que generan su propia energía",
+    "Navieras, ferrocarriles y empresas de energía"
    ],
-   "ideal_para": [
-    "Buscan un líder industrial con dividendo y recompras.",
-    "Aceptan que los resultados suban y bajen con el ciclo de la construcción y la minería.",
-    "Quieren exposición a la demanda de energía y minería."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas e ingresos de 20.700 M (+17 %); margen operativo de 20,4 % (17,3 %); ganancia por acción de 7,13 dólares (4,88) y ajustada de 7,20 (4,95); energía 8.784 M (+18 %, margen 24,4 %); construcción 7.983 M (+18 %, margen 22,9 %); minería 4.615 M (+15 %, margen 13,5 %)",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://www.prnewswire.com/news-releases/caterpillar-reports-third-quarter-2026-results-302922760.html"
+    },
+    {
+     "dato": "Generación de energía: 3.421 M (+30 %), principalmente por centros de datos; recompras de 7.745 M en nueve meses (4.850 M un año antes); frase de Joe Creed sobre la cartera de pedidos récord",
+     "fuente": "Ídem",
+     "url": "https://www.caterpillar.com/content/dam/caterpillarDotCom/releases/3q26/3q26-caterpillar-inc-financial-results.pdf"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias que dependen del ciclo.",
-    "Buscan una empresa con ganancias muy estables año a año."
-   ],
+   "ticker": "CAT",
    "perfil": "general",
    "capas": [
     "compounder",
     "ciclica"
    ],
-   "ticker": "CAT",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2755,54 +2785,65 @@
    }
   },
   "HSBC": {
-   "resumen": "HSBC es uno de los bancos más grandes del mundo, con base en Londres y un peso enorme en Hong Kong y Asia: banca para personas, para empresas, comercio exterior y gestión de patrimonio. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones por mover dinero entre países. Tiene un **foso estrecho, de escala y red internacional**: pocos bancos conectan tantos mercados, y eso le da clientes empresariales que operan en varios países. Los ingresos pasaron de 53.719 M en 2022 a 71.020 M en 2025 y la ganancia neta de 15.559 M a 22.285 M, aunque en 2025 bajó 7,1 %. Su punto débil es que **el retorno sobre el patrimonio (ROE) fue de 11,2 % en 2025**, por debajo del 12 % de referencia, y que depende mucho de Hong Kong y de China. Con las tasas altas gana más al prestar, y las recompras fueron enormes: **las acciones bajaron 12,2 % desde 2022**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa, un banco global con ganancias altas y recompras fuertes, aunque con retorno moderado y mucha dependencia de Asia.**",
-   "veredicto": "Buena empresa: banco global con ganancias altas y recompras fuertes, retorno moderado",
-   "conclusion": "HSBC es una buena empresa, no una excelente: un banco global con ganancia neta de 22.285 M, 12,2 % menos acciones desde 2022 y un dividendo pagado desde 1999, pero con ROE de 11,2 % y dependencia de Hong Kong y China. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por préstamos incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE vuelva a 12 % o más.",
+   "formato": "v4",
+   "titulo": "HSBC: el banco que se achicó en Occidente para concentrarse en Asia, y ahora gana más",
+   "resumen": [
+    "HSBC es uno de los bancos más grandes del mundo, con sede en Londres pero con **el corazón del negocio en Hong Kong y Asia**. Su ventaja es la red: conecta a empresas y fortunas entre Asia, Medio Oriente y Occidente como pocos bancos pueden.",
+    "En el tercer trimestre de 2026 **ganó 9.600 M antes de impuestos** (+32 %) y su rentabilidad sobre el patrimonio tangible llegó a 17,7 %. La empresa apunta a sostenerla en 17 % o más hasta 2028.",
+    "Buena empresa en plena mejora, con una rentabilidad que ya supera al promedio de su industria y un capital sólido, pero muy expuesta a Hong Kong, China y la tensión entre las grandes potencias."
+   ],
+   "introduccion": "En 2024, HSBC vendió su filial argentina al Grupo Galicia. No fue una decisión aislada: ese mismo año vendió su negocio en Canadá, y después salió de otros países donde no era líder.\n\nLa idea detrás es simple. HSBC decidió dejar de querer estar en todos lados y concentrarse donde gana: Hong Kong, Asia y los flujos de plata entre Oriente y Occidente.\n\nEl cambio se ve en los números. En el tercer trimestre de 2026, su rentabilidad sobre el patrimonio tangible fue de 17,7 %, contra 12,3 % un año antes. Y el mercado lo premió con una fuerte suba de la acción.\n\nPero concentrarse en Asia también significa concentrar riesgos: los problemas inmobiliarios de Hong Kong y China, y un mundo donde EE.UU. y China cada vez se miran con más desconfianza.\n\nEntonces, la pregunta es: ¿es HSBC un banco transformado, o uno que cambió unos riesgos por otros?",
+   "secciones": [
+    {
+     "titulo": "Un banco británico que vive de Asia",
+     "texto": "HSBC nació en Hong Kong en 1865 y, aunque hoy tiene sede en Londres, la mayor parte de su ganancia sigue viniendo de Asia.\n\nTiene cuatro grandes negocios:\n\n- **Hong Kong**: la banca de personas y empresas en su mercado más importante, donde es líder. En enero de 2026 terminó de comprar el 100 % de Hang Seng Bank, el otro gran banco local.\n- **Reino Unido**: su banco minorista británico, separado del resto por ley.\n- **Banca corporativa e institucional**: préstamos, pagos y comercio exterior para grandes empresas que operan entre países.\n- **Patrimonios internacionales**: gestión de inversiones para personas con mucho dinero, sobre todo en Asia y Medio Oriente.\n\nSus clientes son millones de personas, pymes y grandes empresas en decenas de países, sin uno que pese demasiado.\n\n¿Cuál es su **ventaja**? La **red internacional**. Una empresa china que exporta a Europa, o una familia de Medio Oriente que invierte en Asia, encuentra en HSBC un banco que opera en todos esos lugares. Eso es muy difícil de copiar.\n\nLa inteligencia artificial es más una herramienta que una amenaza para un banco de este tamaño. El riesgo real es geopolítico."
+    },
+    {
+     "titulo": "Más rentable que antes, y que su industria",
+     "texto": "En un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno para un banco. Una variante muy usada es el **retorno sobre el patrimonio tangible**, que no cuenta los activos intangibles, como el valor pagado de más al comprar otros bancos.\n\nHSBC tuvo un ROE de 8,7 % en 2022, 13,0 % en 2024 y **11,2 %** en 2025, afectado por cargos extraordinarios. El promedio de su industria es 13,0 %.\n\n[[grafico:roe]]\n\nEn el tercer trimestre de 2026, su retorno sobre el patrimonio tangible fue de **17,7 %** (18,2 % sin partidas extraordinarias). La empresa apunta a 17 % o más en 2026, 2027 y 2028.\n\n¿De dónde sale la mejora? De dos lados:\n\n- **Ingresos**: crecieron 5 %, a 18.600 M, con el ingreso por intereses 6 % arriba. Con las tasas de EE.UU. altas, las de Hong Kong también lo están (su moneda está atada al dólar), y eso ayuda.\n- **Gastos**: los controla con dureza. Sin partidas extraordinarias, crecieron apenas 1,4 %, y la empresa apunta a alrededor de 1 % en el año.\n\nLa ganancia por acción pasó de 3,70 dólares en 2022 a 6,00 en 2025 (por cada ADR, el certificado que cotiza en EE.UU.).\n\n[[grafico:eps]]"
+    },
+    {
+     "titulo": "Capital fuerte, mucha devolución y un riesgo que no se va",
+     "texto": "La regla de oro de un banco es tener suficiente capital propio para aguantar pérdidas. El indicador que miran los reguladores es el **CET1**: el capital de mejor calidad sobre los activos ajustados por riesgo. HSBC está en **13,9 %**, un nivel sólido, aunque bajó desde 14,9 % un año antes. La empresa apunta a un rango de 14 % a 14,5 %.\n\nCon ese capital, devuelve mucho. Reparte como dividendo la mitad de lo que gana, y acaba de terminar una recompra de acciones de 1.000 M y anunció otra de hasta 1.000 M.\n\nEl riesgo que no se va es **Hong Kong y China**. HSBC sigue teniendo pérdidas por préstamos a inmobiliarias de Hong Kong: 300 M en los primeros nueve meses de 2026. Y su posición es incómoda: necesita llevarse bien con los gobiernos de Londres, Washington y Pekín al mismo tiempo. Si la tensión entre EE.UU. y China escala, HSBC queda en el medio.\n\nLas pérdidas por préstamos incobrables del trimestre fueron de 800 M, un 17 % menos que un año antes.\n\nLo conduce Georges Elhedery, CEO desde 2024, el que impulsó la reorganización. Él lo resume como \"la ejecución constante de nuestras prioridades estratégicas, con rapidez, precisión y disciplina\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, HSBC cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio más de lo que le cuesta conseguir capital (para un banco grande, alrededor de 10 % a 12 %) merece cotizar por encima de una vez su patrimonio. Durante años, HSBC ganaba menos que eso, y el mercado lo pagaba por debajo de su patrimonio. Hoy gana bastante más, y el mercado cambió de opinión.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos históricos de HSBC, de cuando era un banco mucho menos rentable. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "HSBC es una buena empresa en plena mejora. Tiene una red internacional difícil de copiar, el liderazgo en Hong Kong, un capital sólido, gastos bajo control y una rentabilidad que hoy supera con claridad al promedio de su industria. Y devuelve mucho al accionista.\n\nSu punto débil es la concentración del riesgo: depende mucho de Hong Kong y China, todavía tiene pérdidas por inmobiliarias de Hong Kong, y queda en el medio de cualquier tensión entre EE.UU. y China. Además, su historia de rentabilidad alta es corta. El crítico más duro diría que el mercado ya paga por una rentabilidad que HSBC nunca sostuvo en el tiempo. Es un argumento razonable.\n\nEncaja con quien busca un banco con buen dividendo y exposición a Asia, y tolera el riesgo geopolítico. No es para quien busca un banco sin sobresaltos políticos.\n\nEs recomendable revisar las pérdidas por préstamos inmobiliarios de Hong Kong en el informe trimestral de la empresa. Para que la tesis se mantenga, lo más importante es que el retorno sobre el patrimonio tangible se sostenga en 17 % o más, como promete la empresa.",
+   "pros": [
+    "Rentabilidad en alza: retorno sobre patrimonio tangible de 17,7 % en el último trimestre.",
+    "Red internacional: conecta empresas y fortunas entre Asia, Medio Oriente y Occidente.",
+    "Devolución fuerte: reparte la mitad de lo que gana y recompra acciones."
+   ],
+   "contras": [
+    "Riesgo geopolítico: queda en el medio de la tensión entre EE.UU. y China.",
+    "Inmobiliarias de Hong Kong: 300 M de pérdidas por esos préstamos en nueve meses.",
+    "Historia corta: la rentabilidad alta es reciente; en 2025 el ROE fue de 11,2 %."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "bajo",
-   "negocio": "HSBC opera cuatro segmentos. **Hong Kong** (banca de personas, patrimonio y empresas, incluido Hang Seng Bank). **Reino Unido** (banca de personas y de empresas, first direct, M&S Bank). **Corporate and Institutional Banking** (grandes empresas, comercio exterior y mercados). **International Wealth and Premier Banking** (clientes de patrimonio con cuentas en varios países). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 20,1 % en 2023, 4,4 % en 2024 y 5,4 % en 2025, hasta 71.020 M.** El salto de 2023 refleja tasas más altas, que le permiten cobrar más por prestar.\n\n**A quién le vende.** A personas, empresas y gobiernos, sobre todo en Hong Kong, el Reino Unido y Asia. **Ningún cliente pesa de forma decisiva**, pero sí pesa una región.",
-   "foso": "La ventaja de HSBC **es de escala y de red internacional, y es estrecha**. Una empresa que exporta o importa entre Asia, Europa y el resto del mundo necesita un banco que opere en todos esos lugares, y HSBC es de los pocos con esa red. Además, tiene depósitos baratos en Hong Kong y el Reino Unido. Se ve en el ROE, de 12,7 % y 13,0 % en 2023 y 2024: es decente, pero no el de un negocio con foso amplio.\n\nCompite con JPMorgan, Citigroup, Standard Chartered y los bancos locales. Es frágil en la concentración en Hong Kong y China (riesgo político y de crédito, por ejemplo en inmuebles) y en el riesgo de crédito en general. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de HSBC cuentan **ganancias altas que se estabilizaron**. Los ingresos crecieron 20,1 %, 4,4 % y 5,4 % en los últimos tres años. La ganancia neta fue de 15.559 M en 2022, 23.533 M en 2023, 23.979 M en 2024 y 22.285 M en 2025. La ganancia por acción pasó de 3,70 en 2022 a 5,70, 6,20 y 6,00 en 2025.\n\nEl indicador más importante en un banco es el ROE (cuánto gana por cada dólar de patrimonio): **8,7 % en 2022, 12,7 % en 2023, 13,0 % en 2024 y 11,2 % en 2025**, un promedio de 11,4 %, algo por debajo de la referencia de 12 %. El capital invertido pasó de 379.305 M a 451.044 M (18,9 % más).\n\nLa mirada crítica: el salto de 2022 a 2023 vino de las tasas altas y no de un negocio mejor, y en 2025 la ganancia ya bajó. Si las tasas bajan, la ganancia sufre.",
-   "balance": "**El capital del banco es amplio y las recompras lo achican de a poco.** El capital invertido (lo que financia el negocio) pasó de 379.305 M en 2022 a 451.044 M en 2025, un 18,9 % más, mientras los ingresos subieron 32 %. Es un banco grande y vigilado de cerca por los reguladores.\n\nCon tasas altas, el banco gana más al prestar, pero también paga más por los depósitos y le cuesta más a sus clientes devolver los préstamos. Las recompras, de 12.664 M en 2025 (57 % de la ganancia neta) y 15.322 M en 2024, muestran que el banco sobra capital para devolver, y a la vez achican el colchón de patrimonio que tiene frente a una recesión.",
-   "gerencia": "La conduce Georges Elhedery, CEO del grupo (51 años, pago de 7,2 M según Yahoo), con Manveen Kaur como directora financiera (61 años). Es un equipo relativamente nuevo en la cima.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: paga un dividendo de 3,75 por acción (pagado desde 1999; el 34,7 % anual de crecimiento a 3 años refleja una recuperación desde un piso bajo, no un ritmo repetible) y recompra acciones por montos enormes (10.429 M en 2023, 15.322 M en 2024 y 12.664 M en 2025). **Las acciones bajaron de 3.997 M a 3.509 M, un 12,2 % menos.** Cada acción que queda se lleva una porción mayor de la ganancia.",
-   "fortalezas": [
-    "Red internacional difícil de copiar, con clientes en Hong Kong, Reino Unido y comercio exterior.",
-    "Ganancia neta alta: 22.285 M en 2025, contra 15.559 M en 2022.",
-    "Recompras fuertes: 12,2 % menos acciones desde 2022 y ganancia por acción de 6,00 en 2025.",
-    "ROE de 12,7 % y 13,0 % en 2023 y 2024, por encima de la referencia de 12 %.",
-    "Dividendo pagado desde 1999 (3,75 por acción)."
-   ],
-   "debilidades": [
-    "ROE de 11,2 % en 2025, por debajo de la referencia de 12 %.",
-    "La ganancia neta bajó 7,1 % en 2025, después de subir con las tasas altas.",
-    "Mucha dependencia de Hong Kong y China: el crítico más duro diría que un problema político o inmobiliario allí pega fuerte.",
-    "Sensibilidad a las tasas: si bajan, el margen que cobra por prestar se achica.",
-    "Foso estrecho: el dinero es igual en todos lados y compite con otros bancos grandes."
-   ],
-   "vigilar": [
-    "ROE: hoy 11,2 %; tiene que volver a 12 % o más para justificar el capital que tiene.",
-    "Ganancia neta: 22.285 M en 2025; si sigue bajando con las tasas altas, algo se está deteriorando.",
-    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión, sobre todo en Hong Kong y China.",
-    "Recompras: 12.664 M en 2025; si bajan, la ganancia por acción pierde un empuje importante."
-   ],
    "clientes": [
-    "Personas y pequeñas empresas en Hong Kong y el Reino Unido",
-    "Grandes empresas con comercio internacional",
-    "Clientes de patrimonio con cuentas en varios países"
+    "Personas y empresas de Hong Kong y el Reino Unido",
+    "Grandes empresas que comercian entre países",
+    "Familias con grandes patrimonios en Asia y Medio Oriente"
    ],
-   "ideal_para": [
-    "Buscan un banco global con exposición a Asia y al comercio internacional.",
-    "Valoran un dividendo y recompras fuertes.",
-    "Aceptan que la ganancia dependa de las tasas."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia antes de impuestos de 9.600 M (+32 %); ingresos de 18.600 M (+5 %); ingreso por intereses de 9.300 M (+6 %); pérdidas por préstamos de 800 M (-17 %); gastos ajustados +1,4 %; retorno sobre patrimonio tangible de 17,7 % (12,3 %), 18,2 % sin partidas extraordinarias; CET1 de 13,9 % (14,9 %)",
+     "fuente": "Comunicado de resultados del 3T26, 27/10/2026",
+     "url": "https://www.hsbc.com/-/files/hsbc/investors/results-and-announcements/stock-exchange-announcements/2026/october/sea-271026-e-earnings-release-3q26.pdf"
+    },
+    {
+     "dato": "Objetivos: retorno sobre patrimonio tangible de 17 % o más en 2026, 2027 y 2028; reparto de 50 % de la ganancia; CET1 de 14 % a 14,5 %; recompra de 1.000 M terminada y otra de hasta 1.000 M anunciada; privatización de Hang Seng Bank completada el 26/01/2026; 300 M de pérdidas por inmobiliarias de Hong Kong en nueve meses; frase de Georges Elhedery",
+     "fuente": "Ídem",
+     "url": "https://www.hsbc.com/-/files/hsbc/investors/results-and-announcements/stock-exchange-announcements/2026/october/sea-271026-e-earnings-release-3q26.pdf"
+    }
    ],
-   "menos_ideal": [
-    "No toleran la concentración en Hong Kong y China.",
-    "Buscan retornos altos y estables sobre el patrimonio."
-   ],
+   "ticker": "HSBC",
    "perfil": "banco",
    "capas": [],
-   "ticker": "HSBC",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2817,56 +2858,69 @@
    }
   },
   "PM": {
-   "resumen": "Philip Morris International vende cigarrillos y, cada vez más, productos de nicotina sin humo: IQOS (tabaco calentado), VEEV (vapeo) y ZYN (bolsitas de nicotina). Gana plata vendiendo un producto que el cliente repite todos los días, con marcas muy fuertes y con costos de producción bajos frente al precio que cobra. Tiene un **foso amplio, de marcas y de hábito de consumo**, protegido además por regulaciones que le ponen barreras a cualquier competidor nuevo. Los números son muy buenos: los ingresos pasaron de 31.762 M en 2022 a 40.648 M en 2025 (+28,0 %), el margen operativo fue de 36,7 % y el ROIC de 30,9 %. Su punto débil es la deuda y la regulación: **la deuda neta es de 43.114 M, unas 2,5 veces el EBITDA, y el patrimonio neto es negativo (-8.583 M)**, con intereses que se duplicaron a 1.587 M por las tasas altas. Además, dos años seguidos la ganancia por acción cayó (de 5,81 a 4,53) antes de saltar a 7,26 en 2025 por partidas que Yahoo no detalla. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se vende un producto físico de consumo diario. Conclusión: **muy buena empresa, con márgenes de 36,7 %, ROIC de 30,9 % y ventas en alza, pero con deuda de 2,5 veces el EBITDA, patrimonio negativo y la nicotina bajo presión regulatoria.**",
-   "veredicto": "Muy buena empresa: márgenes y retorno muy altos, pero con deuda alta y presión regulatoria",
-   "conclusion": "Philip Morris es una muy buena empresa: tiene marcas fuertes, márgenes de 36,7 %, ROIC de 30,9 % y un flujo libre de 12.722 M, pero con una deuda de 2,52 veces el EBITDA, patrimonio negativo y la regulación como riesgo permanente. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los productos sin humo sigan reemplazando a los cigarrillos sin perder margen.",
+   "formato": "v4",
+   "titulo": "Philip Morris: la tabacalera que quiere dejar de vender cigarrillos, y cobra por la transición",
+   "resumen": [
+    "Philip Morris International vende **Marlboro fuera de EE.UU.**, pero su apuesta es otra: **IQOS** (tabaco que se calienta, sin combustión) y **ZYN** (bolsitas de nicotina). Su ventaja son marcas que los fumadores no cambian y el poder de subir precios sin perder clientes.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 7,1 % orgánico** y su ganancia ajustada por acción, 5,4 %. Los productos sin humo ya son más del 40 % de las ventas, aunque ZYN creció apenas 4,2 % en EE.UU.",
+    "Muy buena empresa, con márgenes enormes, mucha caja y un dividendo alto, pero con bastante deuda, un crecimiento de ZYN que se frenó y un precio muy por encima de su historia."
+   ],
+   "introduccion": "Pocas empresas en el mundo dicen públicamente que quieren dejar de vender su producto principal. Philip Morris International es una de ellas.\n\nSu meta es que los fumadores pasen del cigarrillo a alternativas sin humo: IQOS, un aparato que calienta el tabaco en lugar de quemarlo, y ZYN, unas bolsitas de nicotina que se ponen entre la encía y el labio. Más allá de lo que cada uno piense sobre la nicotina, para la empresa es un gran negocio: estos productos dejan márgenes más altos y enfrentan menos impuestos que el cigarrillo en muchos países.\n\nY va avanzando. En el tercer trimestre de 2026, los productos sin humo ya fueron más del 40 % de sus ingresos.\n\nPero el último año trajo una duda: ZYN, la estrella que la empresa compró en 2022 y que crecía a toda velocidad en EE.UU., se frenó. En el último trimestre sus envíos crecieron apenas 4,2 %.\n\nEntonces, la pregunta es: ¿puede Philip Morris seguir creciendo si su gran apuesta pierde velocidad?",
+   "secciones": [
+    {
+     "titulo": "Un negocio viejo que financia uno nuevo",
+     "texto": "Philip Morris International tiene dos mundos.\n\nEl primero es el **cigarrillo**: Marlboro, Chesterfield, L&M y otras marcas, que vende en casi todo el mundo menos en EE.UU. (allí Marlboro es de Altria, una empresa separada desde 2008). En el tercer trimestre vendió 158.000 millones de cigarrillos, igual que un año antes. El volumen no crece, pero la empresa sube los precios todos los años, y los fumadores pagan.\n\nEl segundo son los **productos sin humo**:\n\n- **IQOS**: calienta tabaco sin quemarlo. Envió 41.500 millones de unidades de tabaco para calentar, un 1,5 % más. Ya es casi el 10 % del mercado de cigarrillos y tabaco para calentar donde opera.\n- **ZYN**: bolsitas de nicotina, sin tabaco. Las compró con Swedish Match en 2022 y son un éxito en EE.UU. Envió 3.200 millones de bolsitas allí, un 4,2 % más.\n\nSus clientes son distribuidores y comercios de más de 180 países, y a través de ellos, millones de fumadores adultos. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? Las **marcas** y el **poder de fijar precios**. La nicotina genera hábito, y el fumador de Marlboro no cambia de marca por unos centavos. Además, en muchos países las regulaciones prohíben la publicidad, lo que hace muy difícil que una marca nueva le saque clientes a una establecida.\n\nLa inteligencia artificial no amenaza este negocio. El riesgo real es regulatorio: impuestos y prohibiciones."
+    },
+    {
+     "titulo": "Márgenes enormes y una ganancia que confunde",
+     "texto": "Los ingresos crecen de forma constante: pasaron de 31.762 M en 2022 a **40.648 M** en 2025, con subas de entre 7 % y 11 % por año.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **36,7 %**: de cada 100 dólares que vende, le quedan casi 37. Es altísimo para cualquier empresa, aunque está por debajo del promedio de su industria (43,5 %). En el último trimestre, el margen ajustado subió a 44,7 %.\n\nLa ganancia por acción, en cambio, salta de un año a otro: 5,81 dólares en 2022, 4,53 en 2024 y 7,26 en 2025. No es que el negocio suba y baje así. Son cargos contables: por ejemplo, en 2024 la empresa registró una pérdida por su filial canadiense, envuelta en juicios del tabaco. Por eso la empresa y los analistas del mercado miran la ganancia ajustada, que sin esos cargos viene creciendo de forma pareja. Para 2026, la empresa espera entre 8,29 y 8,44 dólares por acción, entre 9,9 % y 11,9 % más que en 2025.\n\nLo que no engaña es la caja. El **flujo libre de caja** (lo que queda después de invertir) fue de **12.722 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **30,9 %**. Por encima de 15 % se considera muy bueno."
+    },
+    {
+     "titulo": "Patrimonio negativo, deuda alta y un dividendo que se lleva casi todo",
+     "texto": "Hay un dato que asusta en los balances de Philip Morris: su patrimonio es **negativo** (-8.583 M). Es decir, debe más de lo que tiene en sus libros.\n\nNo es una señal de quiebra. Pasa en empresas muy rentables que durante años devolvieron a sus accionistas más plata de la que ganaron, con dividendos y recompras, y se financiaron con deuda. El negocio genera caja suficiente para sostenerlo. Pero significa que hay que mirar la deuda con atención.\n\nLa deuda neta (lo que debe menos la caja) es de 43.114 M y equivale a **2,5 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Bajó desde 3,35 veces en 2023, después de endeudarse para comprar Swedish Match.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año) es de **9,4 veces**. Por encima de 3 se considera sano.\n\nEl dividendo es de 6,40 dólares por acción por año. Eso es cerca del 76 % de la ganancia ajustada que espera para 2026: la mayor parte de lo que gana se va en dividendos. Ese porcentaje se llama **tasa de reparto**: por encima de 80 % deja poco margen para crecer o para un mal año. Por eso el dividendo crece despacio: 3,8 % por año en los últimos tres.\n\nLo conduce Jacek Olczak, CEO desde 2021: \"Entregamos otro trimestre excelente, con volúmenes totales en crecimiento y una suba de dos dígitos en la ganancia operativa orgánica\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Philip Morris, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para 2026: unos 8,37 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, Philip Morris cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nDurante muchos años, el mercado pagó a las tabacaleras poco, porque las veía como un negocio que se achica. Lo que cambió con Philip Morris es la historia de los productos sin humo: el mercado empezó a pagarla como una empresa de crecimiento. Si IQOS y ZYN siguen creciendo, puede tener sentido. Si ZYN sigue frenándose, ese múltiplo queda exigente.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos históricos de Philip Morris, de cuando era vista como una tabacalera tradicional.",
+    "ganancia_ref": 8.37,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (8,29 a 8,44 dólares)"
+   },
+   "conclusion": "Philip Morris es una muy buena empresa. Tiene marcas que los fumadores no cambian, el poder de subir precios todos los años, márgenes altísimos, mucha caja y un plan claro para pasar del cigarrillo a productos sin humo, que ya son más del 40 % de sus ventas.\n\nSu punto débil es el balance y el precio. Tiene patrimonio negativo y una deuda considerable, reparte casi toda su ganancia como dividendo y el mercado ya la paga como empresa de crecimiento, justo cuando ZYN se frenó. Además, es un negocio expuesto a impuestos y prohibiciones. El crítico más duro diría que se está pagando caro por una transición que todavía depende del cigarrillo para financiarse. Es un argumento razonable.\n\nEncaja con quien busca un dividendo alto de una empresa muy rentable y no tiene reparos éticos con el sector. No es para quien busca un balance sin deuda ni un precio bajo.\n\nPara que la tesis se mantenga, lo más importante es que los productos sin humo sigan ganando peso en las ventas y que ZYN vuelva a crecer con fuerza en EE.UU.",
+   "pros": [
+    "Poder de precio: sube precios todos los años y los fumadores pagan.",
+    "Transición en marcha: los productos sin humo ya son más del 40 % de las ventas.",
+    "Mucha caja: 12.722 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "ZYN se frenó: sus envíos en EE.UU. crecieron apenas 4,2 % en el trimestre.",
+    "Balance exigido: patrimonio negativo y deuda neta de 2,5 veces su EBITDA.",
+    "Riesgo regulatorio: impuestos y prohibiciones sobre la nicotina en todo el mundo."
+   ],
    "calidad": "Muy buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Philip Morris International vende cigarrillos y productos sin humo: **IQOS** (tabaco calentado), **VEEV** (vapeo electrónico) y **ZYN** (nicotina oral), además de accesorios para consumidores y productos de bienestar. Vende sobre todo fuera de Estados Unidos, aunque Yahoo no informa cuánto aporta cada región ni cada producto, y no lo vamos a inventar.\n\nEs un negocio de consumo diario y muy repetitivo. **Los ingresos crecieron 10,7 % en 2023, 7,7 % en 2024 y 7,3 % en 2025, hasta 40.648 M.** El crecimiento viene de precios más altos y de los productos sin humo, que compensan que fuman menos personas.\n\n**A quién le vende.** A fumadores adultos, a través de distribuidores y comercios. **Ningún cliente concentra una parte decisiva de las ventas**, pero los gobiernos pesan mucho: ponen los impuestos y las reglas.",
-   "foso": "La ventaja de Philip Morris **es de marcas y de hábito de consumo, y es amplia**. Un fumador no cambia de marca por unos centavos, y las regulaciones (publicidad prohibida, empaques estrictos, permisos para productos nuevos) hacen muy difícil que entre un competidor. Se ve en el **margen bruto, de 64,1 % a 67,1 %**, y en el **margen operativo, entre 34,7 % y 38,6 %**: cobra mucho más de lo que le cuesta fabricar.\n\nCompite con British American Tobacco, Imperial Brands, Japan Tobacco y Altria. Es frágil en la regulación (impuestos, prohibiciones, sabores), en los juicios y en que cada año fuman menos personas. La inteligencia artificial no la amenaza: nadie reemplaza un cigarrillo con un asistente virtual.",
-   "numeros": "Los números de Philip Morris cuentan **un negocio muy rentable y que crece parejo**. Los ingresos crecieron 28,0 % entre 2022 y 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 38,6 %, 34,7 %, 35,4 % y 36,7 %. La ganancia por acción fue de 5,81, 5,02, 4,53 y **7,26 en 2025**, y de 6,85 en los últimos 12 meses.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 9.726 M en 2022, 10.773 M en 2024, 10.664 M en 2025 y **12.722 M en los últimos 12 meses**; en 2025 fue 26,2 % de las ventas. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 28,9 % a **30,9 %**.\n\nLa mirada crítica: en 2025 el EBIT subió 11,4 % pero la ganancia neta subió 60,8 %, así que ese año incluye partidas extraordinarias que Yahoo no detalla. El ROE negativo no sirve para comparar: el patrimonio es negativo.",
-   "balance": "**La deuda de Philip Morris es alta, aunque la caja la sostiene.** La deuda total pasó de 43.123 M en 2022 a 49.113 M en los últimos 12 meses (+13,9 %), con 5.999 M en caja: la deuda neta es de 43.114 M, **2,52 veces el EBITDA** en 2025 (la ganancia antes de intereses, impuestos y depreciaciones), o unos 30 meses de ganancia operativa. Era de 3,35 veces en 2023. La ganancia operativa cubre 9,4 veces los intereses, que se duplicaron de 768 M a 1.587 M por las tasas altas.\n\nEl patrimonio neto es negativo (-8.583 M) porque pagó más a los accionistas de lo que acumuló, y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,98 veces: justa. Con tasas cerca de 5 %, refinanciar deuda cuesta más.",
-   "gerencia": "La conduce Jacek Olczak, CEO del grupo (60 años, pago de 7,1 M según Yahoo), con Massimo Andolina como director financiero (56 años). Es un equipo estable y con experiencia en el negocio.\n\nEn lo que importa, **el uso del capital, es de dividendo antes que de recompras**: paga un dividendo de 6,40 por acción (pagado desde 2008; sube 3,8 % por año en 3 años; 9.006 M en los últimos 12 meses, 71 % del flujo libre). En 2023 el dividendo pagado (7.964 M) superó el flujo libre (7.883 M). Casi no recompra acciones (209 M en 2022): las acciones diluidas pasaron de 1.552 M a 1.559 M, **0,5 % más**. No achica la cantidad de acciones.",
-   "fortalezas": [
-    "Marcas muy fuertes y consumo diario: ingresos de 40.648 M en 2025, con ventas en alza tres años seguidos.",
-    "Márgenes de 67,1 % bruto y 36,7 % operativo en 2025.",
-    "ROIC de 30,9 % y flujo libre de 12.722 M en los últimos 12 meses.",
-    "Productos sin humo (IQOS, VEEV, ZYN) que reemplazan al cigarrillo.",
-    "Dividendo pagado desde 2008 (6,40 por acción)."
-   ],
-   "debilidades": [
-    "Deuda neta de 43.114 M (2,52 veces el EBITDA) y patrimonio negativo de -8.583 M.",
-    "Intereses duplicados (768 M a 1.587 M) y liquidez corriente de 0,98 veces, con tasas cerca de 5 %.",
-    "Regulación e impuestos: el crítico más duro diría que un solo cambio de reglas en un país grande pega fuerte.",
-    "Ganancia por acción irregular: 5,81, 5,02, 4,53 y 7,26, con partidas extraordinarias en 2025.",
-    "Dividendo de 71 % del flujo libre y acciones sin bajar (0,5 % más)."
-   ],
-   "vigilar": [
-    "Deuda neta sobre EBITDA: hoy 2,52 veces; si sube de nuevo, el balance se ajusta con tasas cerca de 5 %.",
-    "Ingresos de productos sin humo: tienen que compensar la caída de cigarrillos; Yahoo no los separa, hay que buscarlos en el informe.",
-    "Flujo libre: hoy 12.722 M; tiene que cubrir con holgura el dividendo de 9.006 M.",
-    "Margen operativo: hoy 36,7 %; si cae, el poder de fijar precios se está debilitando."
-   ],
    "clientes": [
-    "Fumadores adultos, sobre todo fuera de Estados Unidos",
-    "Distribuidores y comercios minoristas",
-    "Usuarios de productos sin humo (IQOS, VEEV, ZYN)"
+    "Distribuidores y comercios de más de 180 países",
+    "Fumadores adultos fuera de EE.UU. (cigarrillos e IQOS)",
+    "Consumidores de bolsitas de nicotina en EE.UU. (ZYN)"
    ],
-   "ideal_para": [
-    "Buscan un negocio defensivo, con marcas muy fuertes y flujo libre alto.",
-    "Valoran un dividendo pagado desde 2008.",
-    "Aceptan el riesgo regulatorio y una deuda alta."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 11.438 M (+5,5 %; +7,1 % orgánico); productos sin humo más del 40 % de los ingresos; tabaco para calentar 41.500 millones de unidades (+1,5 %); ZYN en EE.UU. 3.200 millones de bolsitas (+4,2 %); cigarrillos 158.000 millones (sin cambio); margen operativo ajustado de 44,7 %; ganancia por acción de 2,12 dólares (-4,9 %) y ajustada de 2,36 (+5,4 %)",
+     "fuente": "Comunicado de resultados del 3T26, 21/10/2026",
+     "url": "https://www.uniindia.com/prnewswire/philip-morris-international-reports-2026-third-quarter-first-nine-months-results-and-updates-2026-fu/223434"
+    },
+    {
+     "dato": "Guía 2026: ganancia ajustada por acción de 8,29 a 8,44 dólares (+9,9 % a +11,9 %); flujo operativo de unos 13.500 M; frase de Jacek Olczak",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001413329/000162828026066596/earningsreleasepm-ex991xq3.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran invertir en tabaco.",
-    "Buscan una empresa con deuda baja y patrimonio positivo."
-   ],
+   "ticker": "PM",
    "perfil": "consumo",
    "capas": [
     "compounder"
    ],
-   "ticker": "PM",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2881,54 +2935,67 @@
    }
   },
   "GE": {
-   "resumen": "GE Aerospace fabrica los motores de aviones comerciales y militares, y gana mucho más dando mantenimiento y vendiendo repuestos durante las décadas que esos motores vuelan. Después de separar sus negocios de salud y de energía, quedó convertida en una empresa de motores. Tiene un **foso amplio, de base instalada y costos de cambio**: un avión viaja con el mismo motor durante 25 años o más y quien lo compró necesita servicio y repuestos de GE. Los números mejoraron fuerte: los ingresos pasaron de 29.139 M en 2022 a 52.575 M en los últimos 12 meses, el margen operativo de 12,3 % a 18,2 %, y el flujo libre fue de 8.018 M (15,3 % de las ventas). Su punto débil es que la historia es corta y movida: el resultado neto está distorsionado por la separación, el dividendo se recortó en el pasado (-10,6 % por año a 10 años) y en los últimos 12 meses devolvió más (10.246 M) que el flujo libre. Hoy el petróleo está en máximos de cinco meses y la guerra con Irán encarece el combustible de aviones, lo que puede frenar vuelos y servicios. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se fabrican motores físicos con certificaciones. Conclusión: **muy buena empresa, con un foso amplio, ROIC de 22,5 % y deuda baja, aunque con un historial reciente irregular y una demanda atada a los vuelos.**",
-   "veredicto": "Muy buena empresa: motores con foso amplio y mucha caja, historial reciente irregular",
-   "conclusion": "GE Aerospace es una muy buena empresa: tiene un foso amplio, ROIC de 22,5 %, margen operativo de 18,2 % y deuda de 0,81 veces el EBITDA, pero su historial reciente es irregular y devuelve más de lo que genera. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los vuelos y el servicio de motores sigan creciendo con márgenes altos.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "GE Aerospace: vende motores de avión, pero el gran negocio es mantenerlos durante décadas",
+   "resumen": [
+    "GE Aerospace es uno de los mayores fabricantes de **motores de avión** del mundo: solo o junto a la francesa Safran, mueve una parte enorme de los aviones comerciales. Su ventaja es que cada motor vendido le deja décadas de **repuestos y mantenimiento**, un negocio muy rentable y difícil de quitarle.",
+    "En el tercer trimestre de 2026, **sus pedidos crecieron 49 %** y su ganancia ajustada por acción, 36 %. Volvió a subir lo que espera ganar en el año: entre 8,00 y 8,10 dólares por acción.",
+    "Excelente empresa, transformada en pocos años, con márgenes muy superiores a su industria, poca deuda y una cartera de servicios de más de 170.000 M, aunque el mercado ya la paga cara."
+   ],
+   "introduccion": "Hace diez años, General Electric era un conglomerado gigante que hacía de todo: turbinas eléctricas, equipos médicos, motores de avión, préstamos, seguros. Y le iba mal. En 2018 recortó su dividendo casi a cero.\n\nLo que siguió fue una de las transformaciones más grandes de la historia empresarial de EE.UU. GE vendió su negocio financiero, separó su división de salud (GE HealthCare) en 2023 y la de energía (GE Vernova) en 2024. Lo que quedó es GE Aerospace: solo motores de avión.\n\nY resultó ser la mejor parte. En el tercer trimestre de 2026, los pedidos crecieron 49 % y la ganancia ajustada por acción, 36 %.\n\nEl secreto está en un modelo de negocio que pocos conocen. GE no gana mucho cuando vende un motor nuevo. Gana durante los 20 o 30 años siguientes, cada vez que ese motor necesita mantenimiento o repuestos.\n\nEntonces, la pregunta es: ¿cuánto vale un negocio así, cuando el mercado ya sabe lo bueno que es?",
+   "secciones": [
+    {
+     "titulo": "Un negocio como el de las impresoras, pero en el aire",
+     "texto": "¿Conocés el negocio de las impresoras? La impresora se vende barata, y la empresa gana con los cartuchos durante años. GE Aerospace funciona parecido, pero a lo grande.\n\nTiene dos negocios. En el tercer trimestre de 2026:\n\n- **Motores comerciales y servicios**: motores para aviones de pasajeros y carga, y su mantenimiento. Vendió 10.300 M, un 21 % más, con un margen de alrededor de 28 %. Sus servicios crecieron 17 %, y los repuestos, más de 20 %.\n- **Defensa y propulsión**: motores para aviones militares y helicópteros. Vendió 3.500 M, un 7 % más, con un margen de alrededor de 14 %.\n\nSu motor más vendido es el **LEAP**, que fabrica con Safran a través de una sociedad 50 y 50 (CFM International) y que usan los Airbus A320neo y los Boeing 737 MAX. Cuando una aerolínea elige un avión con un motor LEAP, queda atada a GE y Safran para el mantenimiento durante toda la vida del avión.\n\nSus clientes son aerolíneas, empresas que alquilan aviones, Airbus, Boeing y el gobierno de EE.UU. Ninguno pesa demasiado por sí solo.\n\n¿Cuál es su **ventaja**? La **base instalada**: decenas de miles de motores volando en todo el mundo, que necesitan revisiones y repuestos de forma obligatoria y regulada. Desarrollar un motor de avión nuevo lleva más de una década y miles de millones de dólares, y certificarlo es todavía más difícil. Por eso solo hay tres grandes jugadores en el mundo.\n\nLa inteligencia artificial no amenaza este negocio: un avión necesita motores, haya IA o no."
+    },
+    {
+     "titulo": "Más pedidos, mejores márgenes y una cartera enorme",
+     "texto": "Los ingresos crecieron con fuerza: de 35.348 M en 2023 a **52.575 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nLa demanda tiene una explicación interesante. Airbus y Boeing tienen problemas para fabricar todos los aviones que les piden. Entonces, las aerolíneas siguen usando aviones viejos más tiempo, y los aviones viejos necesitan más mantenimiento. Para GE, eso es más servicios.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 12,3 % en 2022 a **18,2 %** en los últimos 12 meses. El promedio de su industria es 8,7 %: GE gana el doble que una empresa típica del sector.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), subió de 5,5 % a **22,5 %**. Por encima de 15 % se considera muy bueno, y el promedio de su industria es 16,0 %.\n\n[[grafico:roic]]\n\nY lo que viene está asegurado en buena parte: la cartera de servicios comerciales ya firmados supera los **170.000 M**, más de tres años de sus ventas totales.\n\nUn aviso: la ganancia por acción de los años anteriores (0,05 dólares en 2022, 8,36 en 2023, 5,99 en 2024) salta mucho por las separaciones de GE HealthCare y GE Vernova. No sirve para comparar."
+    },
+    {
+     "titulo": "Poca deuda y mucha caja",
+     "texto": "La vieja GE estaba muy endeudada. GE Aerospace, no.\n\nLa deuda neta (lo que debe menos la caja) es de 10.561 M y equivale a **0,8 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo.\n\nLa **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año) es de **8,8 veces**. Por encima de 3 se considera sano.\n\nGenera mucha caja: **8.018 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses, y la empresa espera entre 9.100 M y 9.400 M en 2026. En el último trimestre, el flujo libre bajó 14 %, a 2.000 M.\n\n[[grafico:flujo_libre]]\n\nEl dividendo, que en 2018 había quedado en un centavo por trimestre, hoy es de 1,88 dólares por acción por año. Pero rinde poco, porque la acción subió mucho.\n\nLa conduce Larry Culp, CEO desde 2018, el artífice de la transformación: \"Tuvimos resultados sólidos este trimestre, con una demanda firme que hizo crecer los pedidos 49 %\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En GE Aerospace, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para 2026: unos 8,05 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, GE Aerospace cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEs un múltiplo alto, de empresa de crecimiento. El mercado lo paga porque buena parte de la ganancia futura de GE es muy previsible: los motores ya vendidos van a necesitar mantenimiento durante décadas. Pero un múltiplo alto deja poco margen: un problema con un motor, una caída en los vuelos o una recesión pueden pesar mucho en el precio.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos de GE, que durante años reflejaron un conglomerado muy distinto del actual: conviene tomarlo con cuidado. El dividendo rinde {dy}.",
+    "ganancia_ref": 8.05,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (8,00 a 8,10 dólares)"
+   },
+   "conclusion": "GE Aerospace es una empresa excelente. Tiene un modelo de negocio de los mejores del mundo: vende motores y después cobra durante décadas por mantenerlos. Tiene márgenes que duplican a su industria, poca deuda, mucha caja y una cartera de servicios de más de 170.000 M.\n\nSu punto débil es el precio y la dependencia de los vuelos. El mercado ya la paga como una empresa de crecimiento, y cualquier problema serio con un motor, una caída en el tráfico aéreo o una recesión podría golpear fuerte. El crítico más duro diría que GE es una gran empresa a un precio que ya descuenta años de buenas noticias. Es un argumento razonable.\n\nEncaja con quien busca una empresa de muy alta calidad con ingresos previsibles, y acepta pagar un múltiplo alto. No es para quien busca un precio bajo o un dividendo alto.\n\nPara que la tesis se mantenga, lo más importante es que los servicios sigan creciendo a doble dígito y que la empresa pueda fabricar y entregar los motores LEAP que le piden.",
+   "pros": [
+    "Modelo envidiable: cada motor vendido le deja décadas de mantenimiento y repuestos.",
+    "Márgenes superiores: margen operativo de 18,2 %, contra 8,7 % de su industria.",
+    "Pedidos en alza: crecieron 49 % en el último trimestre."
+   ],
+   "contras": [
+    "Precio exigente: el mercado la paga como empresa de crecimiento.",
+    "Depende de los vuelos: una recesión o una crisis en el tráfico aéreo la golpearían.",
+    "Cadena de suministro: fabricar todos los motores que le piden sigue siendo un desafío."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "muy bajo",
-   "negocio": "GE Aerospace diseña y fabrica motores de aviones comerciales y militares, componentes y sistemas. Opera en dos segmentos: **Commercial Engines & Services** (motores a reacción, mantenimiento, reparación y revisión general, y repuestos para aviación comercial y de negocios) y **Defense & Propulsion Technologies** (motores y sistemas para defensa). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio que se repite: cada motor vendido genera servicios por décadas. **Los ingresos crecieron 21,3 % en 2023, 9,5 % en 2024 y 18,5 % en 2025, hasta 52.575 M en los últimos 12 meses.** El crecimiento viene de más vuelos y de más servicio sobre los motores en uso.\n\n**A quién le vende.** A fabricantes de aviones, aerolíneas, empresas de aviación de negocios y gobiernos. Yahoo no da los porcentajes, pero **pocos fabricantes de aviones y pocas aerolíneas grandes concentran buena parte de las ventas**.",
-   "foso": "La ventaja de GE Aerospace **es de base instalada y costos de cambio, y es amplia**. Hay muy pocos fabricantes de motores grandes (GE, Pratt & Whitney de RTX y Rolls-Royce), certificar uno nuevo lleva años y miles de millones, y una aerolínea que compró motores de GE no los cambia a mitad de camino. Cada motor funcionando es un contrato de repuestos y servicio. Se ve en el **margen operativo, que subió de 12,3 % en 2022 a 18,2 % en los últimos 12 meses**, y en el ROIC de 22,5 %.\n\nEs frágil en el ciclo de los vuelos (si cae el tráfico, caen los servicios), en el precio del combustible y en las demoras de producción de los fabricantes de aviones. La inteligencia artificial no la amenaza: nadie reemplaza un motor con software.",
-   "numeros": "Los números de GE Aerospace cuentan **un negocio que crece fuerte y mejora sus márgenes**. Los ingresos crecieron 21,3 %, 9,5 % y 18,5 % en los últimos tres años. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 12,3 %, 13,3 %, 17,5 %, 18,9 % y 18,2 % en los últimos 12 meses. La ganancia por acción fue de 8,14 en 2025 y 8,67 en los últimos 12 meses.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 5.255 M en 2022, 3.678 M en 2024, 7.264 M en 2025 y **8.018 M en los últimos 12 meses (15,3 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 5,5 % a **22,5 %**, en parte porque el capital invertido bajó de 57.749 M a 36.847 M.\n\nLa mirada crítica: el resultado neto de 2022 (336 M) y de 2023 (9.482 M) está distorsionado por la separación de sus otros negocios, y por eso la ganancia por acción de esos años no sirve para comparar. Hay que mirar EBIT y flujo libre.",
-   "balance": "**La deuda de GE Aerospace es baja para lo que genera.** La deuda total pasó de 26.148 M en 2022 a 19.325 M en los últimos 12 meses; con 8.764 M en caja, la deuda neta es de 10.561 M, **0,81 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones): podría pagarla con unos 10 meses de ganancia operativa. La ganancia operativa cubre 8,8 veces los intereses.\n\nPero la caja bajó de 23.419 M a 8.764 M y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, bajó de 1,33 a 0,98 veces. El dinero no se perdió: se fue a recomprar acciones y a pagar deuda. Con tasas cerca de 5 %, el margen de maniobra conviene cuidarlo.",
-   "gerencia": "La conduce Larry Culp, presidente y CEO (62 años, pago de 10,3 M según Yahoo), con Rahul Ghai como director financiero (53 años). Culp condujo la separación en tres empresas y la mejora de márgenes, y es la figura central de esta etapa.\n\nEn lo que importa, **el uso del capital, es de recompras y dividendo**: recompró acciones por 7.551 M en 2025 y 8.503 M en los últimos 12 meses, y paga un dividendo de 1,88 por acción (pagado desde 1962; 1.743 M en los últimos 12 meses; el 93,3 % anual a 3 años refleja la recuperación luego de recortes, y el -10,6 % anual a 10 años muestra esos recortes). Las acciones diluidas bajaron de 1.096 M a 1.050 M, **4,2 % menos**. Pero devolvió 10.246 M frente a un flujo libre de 8.018 M.",
-   "fortalezas": [
-    "Pocos competidores y motores en uso por décadas: servicios y repuestos recurrentes.",
-    "Margen operativo de 18,2 % y ROIC de 22,5 % en los últimos 12 meses.",
-    "Ingresos de 52.575 M en los últimos 12 meses y flujo libre de 8.018 M (15,3 % de las ventas).",
-    "Deuda neta de 0,81 veces el EBITDA y cobertura de intereses de 8,8 veces.",
-    "Recompras: 4,2 % menos acciones desde 2022."
-   ],
-   "debilidades": [
-    "Historial reciente movido: el resultado neto de 2022 y 2023 está distorsionado por la separación.",
-    "Dividendo recortado en el pasado (-10,6 % por año a 10 años): el crítico más duro diría que no es un pagador confiable.",
-    "Devuelve más (10.246 M) de lo que genera (8.018 M): la caja bajó de 23.419 M a 8.764 M.",
-    "Demanda atada a los vuelos y al combustible, con el petróleo en máximos de cinco meses.",
-    "Liquidez corriente de 0,98 veces y dependencia de pocos fabricantes de aviones."
-   ],
-   "vigilar": [
-    "Flujo libre: hoy 8.018 M; tiene que cubrir recompras y dividendo para que la caja deje de bajar.",
-    "Margen operativo: hoy 18,2 %; si cae, los costos suben más rápido que los precios.",
-    "Ingresos de servicios: son lo que da estabilidad y margen; Yahoo no los separa, hay que buscarlos en el informe.",
-    "Tráfico aéreo y precio del combustible: si los vuelos caen, caen los servicios."
-   ],
    "clientes": [
-    "Fabricantes de aviones comerciales",
-    "Aerolíneas y empresas de aviación de negocios",
-    "Gobiernos y fuerzas armadas"
+    "Aerolíneas y empresas que alquilan aviones",
+    "Airbus y Boeing (BA), a través de CFM International",
+    "Gobierno de EE.UU. y fuerzas armadas aliadas"
    ],
-   "ideal_para": [
-    "Buscan un fabricante de motores con servicios recurrentes y pocos competidores.",
-    "Valoran recompras y un dividendo creciente.",
-    "Aceptan que la demanda dependa del tráfico aéreo."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: pedidos de 19.000 M (+49 %); ingresos ajustados de 13.300 M (+18 %); ganancia operativa de 3.000 M (+30 %) y margen de 22,5 %; ganancia ajustada por acción de 2,25 dólares (+36 %); flujo libre de 2.000 M (-14 %); motores comerciales y servicios 10.300 M (+21 %), servicios +17 %; defensa 3.500 M (+7 %); cartera de servicios comerciales de más de 170.000 M; frase de Larry Culp",
+     "fuente": "Comunicado de resultados del 3T26, 20/10/2026",
+     "url": "https://www.geaerospace.com/news/press-releases/ge-aerospace-announces-third-quarter-2026-results"
+    },
+    {
+     "dato": "Guía 2026 (subida): ganancia ajustada por acción de 8,00 a 8,10 dólares (antes 7,65 a 7,85); flujo libre de 9.100 M a 9.400 M; ingresos ajustados +19 % a +20 %",
+     "fuente": "Resumen de la guía publicada con los resultados del 3T26, 20/10/2026",
+     "url": "https://capital.com/en-int/news/ge-aerospace-raises-2026-adjusted-eps-forecast-to-8-8-10"
+    }
    ],
-   "menos_ideal": [
-    "No toleran que la demanda dependa de las aerolíneas y del combustible.",
-    "Buscan un historial largo y sin cambios de estructura."
-   ],
+   "ticker": "GE",
    "perfil": "general",
    "capas": [],
-   "ticker": "GE",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -2943,57 +3010,69 @@
    }
   },
   "AMAT": {
-   "resumen": "Applied Materials fabrica las máquinas que las fábricas de chips usan para depositar, grabar y moldear materiales sobre el silicio, y vende además servicios y repuestos para esas máquinas. Cuando alguien quiere fabricar más chips, de inteligencia artificial o de cualquier otro tipo, tiene que comprarle equipos a ella o a pocos competidores. Tiene un **foso amplio, de tecnología y costos de cambio**: una fábrica de chips califica sus herramientas durante años y no las cambia fácil. Los ingresos pasaron de 25.785 M en 2022 a 30.837 M en los últimos 12 meses, el margen operativo fue de 31,1 % y el ROIC de 25,7 %. Tiene **más caja (9.233 M) que deuda (7.346 M)** y recompró acciones: hoy hay 8,9 % menos que en 2022. Su punto débil es el ciclo: los clientes compran equipos en oleadas, y el 22 de octubre los semiconductores cayeron 6,7 %. Además la inversión en planta se triplicó (de 787 M a 2.773 M) y bajó el flujo libre de 7.594 M a 5.623 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la impulsa; el riesgo es más bien que el gasto en chips de inteligencia artificial se frene. Conclusión: **muy buena empresa, con foso amplio, ROIC de 25,7 % y más caja que deuda, aunque cíclica y con mucho de su futuro atado al gasto en chips.**",
-   "veredicto": "Muy buena empresa: foso amplio, más caja que deuda, pero muy cíclica",
-   "conclusion": "Applied Materials es una muy buena empresa: tiene un foso amplio, margen operativo de 31,1 %, ROIC de 25,7 % y más caja que deuda, pero es muy cíclica y su flujo libre bajó mientras la inversión crecía. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el gasto de los clientes en equipos para chips se sostenga.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Applied Materials vende equipos, servicios y software para la fabricación de semiconductores y de industrias afines. Opera en dos segmentos: **Semiconductor Systems** (máquinas para grabado, procesamiento térmico rápido, depósito y otras etapas) y **Applied Global Services** (servicios, repuestos y mejoras para las máquinas ya instaladas). Vende en Estados Unidos, China, Corea, Taiwán, Japón, el Sudeste Asiático y Europa. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio de bienes de capital: sus clientes compran cuando amplían fábricas. **Los ingresos crecieron 2,8 % en 2023, 2,5 % en 2024 y 4,4 % en 2025, y los últimos 12 meses están 8,7 % arriba de 2025, en 30.837 M.**\n\n**A quién le vende.** A las grandes fábricas de chips del mundo. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**, y una parte importante es China.",
-   "foso": "La ventaja de Applied Materials **es de tecnología y de costos de cambio, y es amplia**. Fabricar estas máquinas exige décadas de ingeniería y miles de patentes, y las fábricas de chips pasan años calificando cada herramienta para su proceso; una vez instalada, la usan y pagan servicio por años. Se ve en el **margen bruto, de 46,5 % a 49,4 %**, en el **margen operativo, de 28,9 % a 31,1 %** y en el ROIC, siempre arriba de 23 %.\n\nCompite con Lam Research, Tokyo Electron, KLA y ASML. Es frágil en el ciclo (los clientes recortan inversión cuando baja la demanda), en las restricciones de exportación de Estados Unidos a China y en que sus clientes son pocos y muy grandes. El ROIC bajó de 37,9 % a 25,7 % porque el capital invertido casi se duplicó.",
-   "numeros": "Los números de Applied Materials cuentan **un negocio muy rentable que acelera hacia el final**. Los ingresos crecieron 2,8 %, 2,5 % y 4,4 %, y los últimos 12 meses están 19,6 % arriba de 2022. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 30,2 %, 28,9 %, 28,9 %, 29,9 % y **31,1 %** en los últimos 12 meses. La ganancia por acción pasó de 7,44 a 8,66 en 2025 y a **11,60 en los últimos 12 meses**.\n\nLa caja es alta pero se achicó: el flujo libre (lo que sobra después de invertir) fue de 7.594 M en 2023, 5.698 M en 2025 y **5.623 M en los últimos 12 meses (18,2 % de las ventas)**, porque la inversión en planta pasó de 787 M a 2.773 M. El ROIC, cuánto gana por cada dólar puesto en el negocio, bajó de 37,9 % a **25,7 %**; el capital invertido subió de 17.651 M a 32.170 M.\n\nLa mirada crítica: en los últimos 12 meses la ganancia neta subió 32 % contra 2025 pero el EBIT solo 13 %, así que ese tramo incluye partidas que Yahoo no detalla. La ganancia por acción de 11,60 no es la medida pura del negocio.",
-   "balance": "**El balance de Applied Materials es muy sólido.** La caja es de 9.233 M y la deuda total de 7.346 M, así que tiene **más caja que deuda**, con una cobertura de intereses de 25,4 veces. La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,42 veces: holgada. El patrimonio neto subió de 12.194 M a 25.626 M.\n\nCon tasas cerca de 5 %, tener más caja que deuda es una ventaja: gana intereses en lugar de pagarlos. Es una buena base para aguantar un ciclo malo de los semiconductores.",
-   "gerencia": "La conduce Gary Dickerson, presidente y CEO (68 años, pago de 2,7 M según Yahoo), con Brice Hill como director financiero (58 años). Dickerson lleva años al frente y la edad hace que la sucesión sea un punto para seguir.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: paga un dividendo de 2,12 por acción (pagado desde 2005; sube 20,4 % por año en 3 años; 1.515 M en los últimos 12 meses, 27 % del flujo libre) y recompra acciones (4.895 M en 2025 y 2.028 M en los últimos 12 meses). Las acciones diluidas bajaron de 877 M en 2022 a 799 M, **8,9 % menos**.",
-   "fortalezas": [
-    "Foso amplio de tecnología y costos de cambio, con servicio recurrente sobre las máquinas instaladas.",
-    "Margen operativo de 31,1 % y margen bruto de 49,4 % en los últimos 12 meses.",
-    "ROIC de 25,7 % y flujo libre de 5.623 M (18,2 % de las ventas).",
-    "Más caja (9.233 M) que deuda (7.346 M) y cobertura de intereses de 25,4 veces.",
-    "8,9 % menos acciones desde 2022 y dividendo creciente (20,4 % anual en 3 años)."
+   "formato": "v4",
+   "titulo": "Applied Materials: fabrica las máquinas que fabrican los chips, y la IA le llenó la agenda",
+   "resumen": [
+    "Applied Materials es el mayor fabricante del mundo de **equipos para producir chips**: las máquinas que depositan, graban y modifican capas de material de pocos átomos de espesor. Su ventaja es la tecnología y que sus equipos están en casi todas las fábricas de chips del mundo.",
+    "En el trimestre que cerró en julio de 2026, **vendió un récord de 9.115 M** (+25 %) y su ganancia ajustada por acción creció 41 %. Para el trimestre siguiente espera unos 10.250 M.",
+    "Excelente empresa, líder en un negocio clave para la IA, con márgenes altos y caja neta, pero cíclica, expuesta a las restricciones de EE.UU. sobre China y cotizando muy por encima de su historia."
    ],
-   "debilidades": [
-    "Muy cíclica: los clientes compran en oleadas y el 22 de octubre los semiconductores cayeron 6,7 %.",
-    "Inversión en planta en alza: 2.773 M contra 787 M en 2022, y flujo libre en baja desde 2023.",
-    "ROIC en baja: de 37,9 % a 25,7 %.",
-    "Pocos clientes grandes y exposición a China: el crítico más duro diría que una restricción de exportación pega directo en las ventas.",
-    "Parte de la mejora reciente de la ganancia viene de partidas que Yahoo no detalla."
+   "introduccion": "Para fabricar un chip de inteligencia artificial hacen falta cientos de pasos. En muchos de ellos, hay que agregar o sacar capas de material de apenas unos átomos de espesor, con una precisión casi imposible de imaginar.\n\nLas máquinas que hacen eso las fabrican muy pocas empresas en el mundo. Applied Materials es la más grande.\n\nCuando TSMC, Samsung, Intel o Micron construyen o amplían una fábrica de chips, una parte importante de lo que gastan va a máquinas de Applied Materials. Y hoy, con la carrera de la inteligencia artificial, están gastando como nunca.\n\nEn el trimestre que cerró en julio de 2026, la empresa vendió un récord de 9.115 M. Y espera superarlo en el siguiente.\n\nPero hay un detalle importante: hace un año, China era el 35 % de sus ventas. Hoy es el 28 %. EE.UU. restringe cada vez más qué puede venderle a China.\n\nEntonces, la pregunta es: ¿puede Applied Materials crecer con la IA mientras pierde parte de su mercado más grande?",
+   "secciones": [
+    {
+     "titulo": "Las máquinas detrás de cada chip",
+     "texto": "Applied Materials tiene dos grandes negocios. En el trimestre que cerró en julio de 2026:\n\n- **Equipos para chips**: las máquinas que usan las fábricas de semiconductores. Vendió 7.040 M, un 27 % más, con un margen operativo de 37,7 %. Dos de cada tres dólares vinieron de fábricas de chips de lógica (procesadores), y el resto de memorias.\n- **Servicios**: repuestos, mantenimiento y mejoras para los miles de equipos que ya instaló. Vendió 1.781 M, un 22 % más. Es un ingreso más estable, porque las fábricas necesitan mantener sus máquinas funcionando aunque no compren nuevas.\n\nSus clientes son pocos y enormes: **TSMC (TSM)**, **Samsung**, **Intel (INTC)**, **Micron (MU)** y los fabricantes chinos. Que unos pocos clientes expliquen gran parte de las ventas es un riesgo: si uno frena su inversión, se nota.\n\nSus competidores también son pocos: **Lam Research (LRCX)**, **Tokyo Electron** y, en otras etapas del proceso, **ASML (ASML)** y **KLA (KLAC)**.\n\n¿Cuál es su **ventaja**? La **tecnología** y la **base instalada**. Desarrollar estas máquinas lleva décadas de investigación, y una fábrica de chips no cambia de proveedor fácilmente: cada máquina está integrada a un proceso que costó años ajustar.\n\nLa inteligencia artificial es su gran motor: los chips para IA y las memorias de alta velocidad (HBM) necesitan más pasos de fabricación, y más máquinas."
+    },
+    {
+     "titulo": "Un año récord, en un negocio que sube y baja",
+     "texto": "Durante 2023, 2024 y 2025, las ventas de Applied Materials crecieron poco: entre 2 % y 5 % por año. Pero en los últimos 12 meses llegaron a **30.837 M**, y el último trimestre creció 25 %.\n\n[[grafico:ingresos]]\n\nEso es lo que pasa en una industria **cíclica**: las fábricas de chips invierten en oleadas. Cuando sobra capacidad, frenan las compras; cuando falta, compran todo junto. Hoy la IA generó una de esas oleadas.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **31,1 %** en los últimos 12 meses, y llegó a 33,7 % en el último trimestre. El promedio de su industria es 26,2 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **25,7 %**. Por encima de 15 % se considera muy bueno. Viene bajando desde 37,9 % en 2022 y está por debajo del promedio de su industria (28,4 %).\n\n[[grafico:roic]]\n\nLa ganancia por acción pasó de 8,66 dólares en 2025 a **11,60** en los últimos 12 meses."
+    },
+    {
+     "titulo": "Caja neta, dividendo creciente y el riesgo de China",
+     "texto": "Applied Materials tiene más caja (9.233 M) que deuda (7.346 M). Es decir, tiene **caja neta**: podría pagar toda su deuda mañana. Su ganancia operativa paga los intereses del año 25 veces (por encima de 3 se considera sano).\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **5.623 M** en los últimos 12 meses, menos que los 7.594 M de 2023, en parte porque invierte más: 707 M en el último trimestre, contra 584 M un año antes.\n\nEl dividendo es chico en rendimiento, pero crece rápido: 20,4 % por año en los últimos tres. Además, recompra acciones.\n\nEl riesgo más importante es **China**. EE.UU. restringe la venta de equipos avanzados para fabricar chips a China, y las reglas se endurecen cada año. En el último trimestre, China fue el 28 % de las ventas, contra 35 % un año antes. Y la empresa pagó 253 M para cerrar un caso con el Departamento de Comercio de EE.UU. por incumplir controles de exportación.\n\nLo conduce Gary Dickerson, CEO desde 2013: \"Applied Materials logró otro trimestre récord\", con \"una demanda sin precedentes\" impulsada por la adopción de la IA en todo el mundo."
+    }
    ],
-   "vigilar": [
-    "Ingresos: hoy 30.837 M en los últimos 12 meses; si se frenan, el gasto de los clientes en chips se enfría.",
-    "Flujo libre: hoy 5.623 M; la inversión en planta no puede seguir creciendo más rápido que la caja.",
-    "Margen operativo: hoy 31,1 %; si cae, la competencia o el ciclo están pegando.",
-    "Ventas a China: pesan en los ingresos y dependen de las reglas de exportación."
+   "valuacion": {
+    "texto": "En Applied Materials, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero en una empresa cíclica hay que leerlo con cuidado: en los años buenos la ganancia es alta y el PER parece razonable; cuando el ciclo se da vuelta, la ganancia cae y el PER se dispara.\n\nCon el precio de {precio} dólares, Applied Materials cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nCuando el mercado paga un múltiplo alto en la parte buena del ciclo, está apostando a que la oleada de inversión por la IA dure varios años. Si dura, la ganancia puede seguir creciendo y el múltiplo bajar solo. Si las fábricas frenan la inversión, la ganancia y el múltiplo pueden caer juntos.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Applied Materials es una empresa excelente. Es líder en un negocio con muy pocos competidores, tiene tecnología difícil de copiar, márgenes por encima de su industria, un negocio de servicios estable, caja neta y un dividendo que crece rápido. Y hoy vive una de las mejores oleadas de su historia gracias a la IA.\n\nSu punto débil es el ciclo, China y el precio. Las fábricas de chips invierten en oleadas, y cuando frenan, las ventas caen. China, su mercado más grande, se achica por las restricciones de EE.UU. Y el mercado la paga muy por encima de lo que pagaba históricamente. El crítico más duro diría que se está pagando la cima de un ciclo como si fuera permanente. Es un argumento serio.\n\nEncaja con quien cree que la inversión en fábricas de chips para IA va a durar años y tolera caídas fuertes. No es para quien busca estabilidad.\n\nPara que la tesis se mantenga, lo más importante es que la inversión en chips para IA y memorias compense con creces la caída de las ventas a China.",
+   "pros": [
+    "Líder tecnológico: sus equipos están en casi todas las fábricas de chips del mundo.",
+    "Impulso de la IA: ventas récord de 9.115 M en el último trimestre (+25 %).",
+    "Balance sólido: tiene más caja que deuda."
    ],
+   "contras": [
+    "Negocio cíclico: las fábricas invierten en oleadas y frenan sin aviso.",
+    "China en baja: pasó de 35 % a 28 % de las ventas por las restricciones de EE.UU.",
+    "Precio exigente: cotiza muy por encima de su historia."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Grandes fábricas de chips del mundo",
-    "Fabricantes de memorias y de procesadores",
-    "Empresas que usan sus servicios de mantenimiento y mejora"
+    "TSMC (TSM), Samsung e Intel (INTC)",
+    "Fabricantes de memorias como Micron (MU)",
+    "Fabricantes de chips de China"
    ],
-   "ideal_para": [
-    "Buscan exposición a la fabricación de chips y a la inteligencia artificial.",
-    "Valoran un balance con más caja que deuda, recompras y un dividendo creciente.",
-    "Aceptan que los resultados suban y bajen con el ciclo."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre del año fiscal 2026 (cerrado el 26/07/2026): ingresos de 9.115 M (+25 %, récord); margen operativo de 33,7 %; ganancia por acción de 3,17 dólares (+43 %) y ajustada de 3,50 (+41 %); equipos para chips 7.040 M; servicios 1.781 M; China 28 % de las ventas (35 %); flujo libre de 2.330 M; acuerdo de 253 M con el Departamento de Comercio por controles de exportación",
+     "fuente": "Comunicado de resultados del 3T del año fiscal 2026, 13/08/2026",
+     "url": "https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-announces-third-quarter-2026-results"
+    },
+    {
+     "dato": "Guía del 4T del año fiscal 2026: ingresos de unos 10.250 M y ganancia ajustada por acción de unos 4,02 dólares; frase de Gary Dickerson",
+     "fuente": "Ídem",
+     "url": "https://ir.appliedmaterials.com/news-releases/news-release-details/applied-materials-announces-third-quarter-2026-results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias cíclicas ni caídas fuertes en el sector.",
-    "Buscan una empresa sin exposición a China."
-   ],
+   "mes_cierre_fiscal": 10,
+   "ticker": "AMAT",
    "perfil": "hardware",
    "capas": [
     "compounder",
     "ciclica"
    ],
-   "ticker": "AMAT",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -3008,56 +3087,67 @@
    }
   },
   "SHEL": {
-   "resumen": "Shell es una de las mayores petroleras del mundo: extrae petróleo y gas, licúa gas natural para transportarlo en barco (GNL), refina combustibles, vende nafta en estaciones de servicio, fabrica productos químicos y tiene un negocio chico de renovables y soluciones de energía. Gana plata con la diferencia entre lo que cuesta sacar y procesar la energía y el precio al que se vende, y ese precio no lo controla. **No tiene un foso de precios claro**: su ventaja es la escala y el negocio de gas licuado, que no alcanza para protegerla de las subas y bajas del petróleo. Se nota en los números: el margen operativo fue de 16,6 % en 2022, 10,3 % en 2025 y 12,3 % en los últimos 12 meses, y el ROIC se movió entre 7,6 % y 16,9 %. Con el petróleo en máximos de cinco meses por la guerra con Irán, el EBIT de los últimos 12 meses (36.436 M) subió 32 % frente a 2025. Su punto fuerte es la caja y el retorno al accionista: **flujo libre de 31.545 M en los últimos 12 meses y 22,2 % menos acciones que en 2022**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**; el riesgo grande es que el mundo use menos petróleo con los años. Conclusión: **empresa de calidad regular, sin foso de precios, con mucha caja, deuda baja y recompras fuertes, pero atada al precio del petróleo y con inversión en baja.**",
-   "veredicto": "Regular: mucha caja y deuda baja, pero sin foso y atada al precio del petróleo",
-   "conclusion": "Shell es una empresa de calidad regular: tiene escala, flujo libre de 31.545 M, deuda baja y 22,2 % menos acciones, pero no tiene foso de precios y su ROIC osciló entre 7,6 % y 16,9 %. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el flujo libre siga cubriendo las recompras y el dividendo cuando baje el precio del petróleo.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "Shell: la guerra disparó sus ganancias, y la empresa las usa para recomprar acciones y crecer en gas",
+   "resumen": [
+    "Shell es una de las mayores petroleras del mundo y **el gran jugador del gas natural licuado (GNL)**: lo produce, lo transporta en barcos y lo vende en todo el planeta. Su ventaja es la escala y una red de gas difícil de igualar.",
+    "En el tercer trimestre de 2026, con el petróleo caro por la guerra con Irán, **su ganancia ajustada se duplicó, a 10.814 M**, y su flujo libre de caja llegó a 16.322 M. Anunció una nueva recompra de acciones de 5.000 M y compró la canadiense ARC Resources.",
+    "Buena empresa, con mucha caja, poca deuda y una devolución de capital generosa, pero con ganancias que dependen del precio del petróleo y del gas, que hoy está alto por una guerra."
+   ],
+   "introduccion": "Desde marzo de 2026, la guerra con Irán y los problemas en el estrecho de Ormuz, por donde pasa una parte enorme del petróleo y el gas del mundo, tienen a la energía cara. El Brent llegó a 126 dólares en abril, bajó y en octubre volvió a subir.\n\nPara una petrolera, eso es una lluvia de dólares.\n\nEn el tercer trimestre, Shell ganó 10.814 M ajustados, el doble que un año antes. Su flujo libre de caja fue de 16.322 M en solo tres meses.\n\nLa pregunta clásica con las petroleras no es cuánto ganan en los años buenos, sino qué hacen con esa plata. Muchas, en el pasado, la gastaron en proyectos caros que después perdieron valor. Shell, bajo su CEO Wael Sawan, eligió otro camino: devolver mucho a los accionistas, invertir con disciplina y apostar por el gas.\n\nEntonces, la pregunta es: ¿está Shell aprovechando bien su buen momento, o es solo el precio del petróleo el que la hace lucir bien?",
+   "secciones": [
+    {
+     "titulo": "Petróleo, gas y una apuesta por el GNL",
+     "texto": "Shell tiene varios negocios. Su ganancia ajustada del tercer trimestre de 2026 se repartió así:\n\n- **Químicos y refinación**: 3.855 M, contra 550 M un año antes. Con la guerra, los márgenes de refinación se dispararon.\n- **Producción de petróleo y gas**: 3.189 M, contra 1.804 M.\n- **Gas integrado (GNL)**: 3.037 M, contra 2.143 M. Licúa gas natural, lo lleva en barcos y lo vende.\n- **Estaciones de servicio y lubricantes**: 1.164 M.\n- **Renovables**: 289 M.\n\nEl **gas natural licuado** es su gran apuesta. Al enfriarlo a -162 grados, el gas se vuelve líquido y puede viajar en barco a cualquier país. Para Europa y Asia, que no tienen gas propio suficiente, es clave. Shell es uno de los mayores comercializadores de GNL del mundo.\n\nPor eso compró en septiembre de 2026 **ARC Resources**, una productora de gas canadiense, por 14.000 M. Le asegura gas propio en Canadá, donde Shell es socia principal de un gran proyecto de licuado (LNG Canada).\n\nSus clientes son gobiernos, empresas de energía, industrias, aerolíneas y millones de automovilistas en sus estaciones de servicio. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **escala** en gas: barcos, plantas de licuado, contratos de largo plazo y una red comercial global que pocos pueden igualar.\n\nLa inteligencia artificial, en todo caso, la ayuda: los centros de datos necesitan mucha energía, y el gas es una de las fuentes principales."
+    },
+    {
+     "titulo": "Ganancias que suben y bajan con el petróleo",
+     "texto": "Una petrolera no controla su precio de venta: lo fija el mercado. Por eso sus ganancias suben y bajan con el petróleo y el gas.\n\nSe ve en el **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores): 16,9 % en 2022, cuando la guerra en Ucrania disparó los precios; 7,6 % en 2025, con precios más bajos; y **13,1 %** en los últimos 12 meses. Por encima de 15 % se considera muy bueno. El promedio de su industria es 17,0 %.\n\n[[grafico:roic]]\n\nLo mismo pasa con el **flujo libre de caja** (lo que queda después de invertir): 45.814 M en 2022, 23.916 M en 2025 y **31.545 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nLa clave para juzgar a una petrolera es qué tan bien le va cuando el precio está bajo. En 2025, con el Brent bastante más barato, Shell igual generó casi 24.000 M de flujo libre. Eso habla de un negocio sólido.\n\nSu producción bajó: de 2,8 millones de barriles equivalentes por día a 2,6 millones en un año, porque vendió activos que rendían poco. La compra de ARC Resources la va a hacer subir."
+    },
+    {
+     "titulo": "Poca deuda y recompras sin pausa",
+     "texto": "Shell tiene un balance sólido. Su deuda neta (lo que debe menos la caja) es de 39.733 M, y equivale a solo **0,3 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo.\n\nOtra forma de verlo es el **endeudamiento** (la deuda neta sobre la suma de deuda neta y patrimonio): **16,6 %**. Por debajo de 25 % se considera bajo para una petrolera.\n\nCon esa caja, Shell devuelve mucho. Su política es repartir entre 40 % y 50 % del flujo operativo a lo largo del ciclo, entre dividendos y recompras. Acaba de anunciar una nueva recompra de 5.000 M para el cuarto trimestre. Las acciones en circulación bajan año tras año.\n\n[[grafico:acciones]]\n\nEl dividendo (3,12 dólares por año por cada ADR) creció 24,1 % por año en los últimos tres, después de que Shell lo recortara en 2020, en la pandemia.\n\nLo conduce Wael Sawan, CEO desde 2023, que reorientó la empresa: menos proyectos renovables de baja rentabilidad, más foco en el gas y más devolución al accionista."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una petrolera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: en los años de petróleo caro la ganancia es alta y el PER parece bajo; cuando el precio cae, la ganancia baja y el PER sube.\n\nCon el precio de {precio} dólares por ADR, Shell cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nOtro número útil es el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan. Shell cotiza a {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nLas petroleras europeas cotizaron durante años más baratas que las de EE.UU., en parte por la incertidumbre sobre su futuro en un mundo que quiere menos petróleo. Shell viene achicando esa diferencia con recompras y con su foco en el gas.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Shell es una buena empresa. Tiene una de las mayores redes de gas natural licuado del mundo, un balance con poca deuda, mucha caja y una política clara de devolver plata al accionista. Y está aprovechando el petróleo caro para recomprar acciones y comprar gas a largo plazo.\n\nSu punto débil es lo que no controla: el precio del petróleo y del gas. Hoy está alto por una guerra, y cuando eso cambie, las ganancias van a bajar. Además, su retorno sobre el capital está por debajo del promedio de su industria, y la transición energética es una incertidumbre de largo plazo. El crítico más duro diría que los números de hoy son los de una guerra, no los de un negocio normal. Es un argumento razonable.\n\nEncaja con quien busca dividendo y recompras de una empresa sólida, y acepta que sus ganancias dependan del petróleo. No es para quien busca resultados estables.\n\nPara que la tesis se mantenga, lo más importante es que Shell siga generando buena caja cuando el petróleo vuelva a bajar, y que la compra de ARC Resources rinda lo esperado.",
+   "pros": [
+    "Líder en gas licuado: una red global de barcos, plantas y contratos difícil de copiar.",
+    "Balance sólido: deuda neta de 0,3 veces su EBITDA y endeudamiento de 16,6 %.",
+    "Devolución generosa: nueva recompra de 5.000 M y acciones en baja."
+   ],
+   "contras": [
+    "Depende del petróleo: hoy gana mucho por una guerra que no va a durar para siempre.",
+    "Retorno por debajo de su industria: ROIC de 13,1 %, contra 17,0 %.",
+    "Producción en baja: pasó de 2,8 a 2,6 millones de barriles equivalentes por día."
+   ],
+   "calidad": "Buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Shell opera cinco segmentos. **Integrated Gas** (gas natural licuado y combustibles de gas a líquidos). **Upstream** (explora y extrae petróleo, gas y líquidos). **Marketing** (estaciones de servicio y lubricantes). **Chemicals and Products** (refinerías y petroquímica). **Renewables and Energy Solutions** (energía renovable y soluciones de energía). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable, pero de precios que suben y bajan. **Los ingresos cayeron 17,0 % en 2023, 10,2 % en 2024 y 6,1 % en 2025, hasta 266.886 M, y los últimos 12 meses (296.601 M) están 11,1 % arriba de 2025.** Lo que mueve el número es el precio del petróleo y del gas.\n\n**A quién le vende.** A automovilistas, empresas, industrias, generadoras de electricidad y gobiernos de todo el mundo. **Ningún cliente concentra una parte decisiva de las ventas.**",
-   "foso": "**Shell no tiene un foso de precios claro.** El petróleo y el gas se venden al precio del mercado, y ninguna petrolera puede cobrar más por una nafta igual a la de al lado. Su ventaja es la **escala** (grandes campos, refinerías y estaciones) y un negocio de gas licuado integrado, que da algo de estabilidad. Eso es una ventaja estrecha, que no se ve en los números: el **margen bruto fue de 20,7 % en 2022, 15,9 % en 2025 y 17,1 % en los últimos 12 meses**, y el ROIC osciló entre 7,6 % y 16,9 %.\n\nCompite con ExxonMobil, Chevron, TotalEnergies, BP y petroleras estatales. Es frágil en el precio del petróleo, en la transición energética (menos demanda a largo plazo) y en la regulación ambiental. La inteligencia artificial no la amenaza: nadie reemplaza el combustible con software.",
-   "numeros": "Los números de Shell cuentan **un negocio que sube y baja con el precio de la energía**. Los ingresos cayeron de 381.314 M en 2022 a 266.886 M en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 16,6 %, 9,7 %, 10,5 %, 10,3 % y **12,3 % en los últimos 12 meses**. La ganancia por acción fue de 11,42 en 2022, 5,06 en 2024, 6,00 en 2025 y **9,06 en los últimos 12 meses**.\n\nLa caja es grande y también irregular: el flujo libre (lo que sobra después de invertir) fue de 45.814 M en 2022, 35.086 M en 2024, 23.916 M en 2025 y **31.545 M en los últimos 12 meses (10,6 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 16,9 %, 7,7 %, 9,9 %, 7,6 % y 13,1 %. El capital invertido bajó de 246.624 M a 180.788 M.\n\nLa mirada crítica: la inversión en planta bajó de 22.600 M a 17.594 M mientras la empresa devuelve plata. Eso mejora la caja de hoy, y puede achicar la producción de mañana.",
-   "balance": "**El balance de Shell es sólido.** La deuda total pasó de 83.795 M en 2022 a 73.076 M en los últimos 12 meses, con 31.374 M en caja. Según Yahoo, la deuda neta de 2025 fue de 17.080 M, **0,30 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 4 meses de ganancia operativa. La ganancia operativa cubre 7,1 veces los intereses (5.134 M) en los últimos 12 meses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,43 veces: cómoda. Con tasas cerca de 5 %, la deuda cuesta más, pero la caja la sostiene. El patrimonio neto es de 180.788 M.",
-   "gerencia": "La conduce Wael Sawan, CEO (51 años, pago de 6,2 M según Yahoo), con Sinead Gorman como directora financiera (48 años). Es un equipo joven.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: recompró acciones por 18.437 M en 2022 y 13.218 M en los últimos 12 meses, y paga un dividendo de 3,12 por acción (pagado desde 1985; 8.436 M en los últimos 12 meses; el 24,1 % anual a 3 años refleja la recuperación luego del recorte, y el -2,7 % anual a 10 años muestra ese recorte). Las acciones diluidas bajaron de 3.705 M a 2.881 M, **22,2 % menos**. Entre recompras y dividendo devolvió 21.654 M, 69 % del flujo libre.",
-   "fortalezas": [
-    "Escala enorme y un negocio de gas licuado integrado.",
-    "Flujo libre de 31.545 M en los últimos 12 meses, 10,6 % de las ventas.",
-    "Recompras fuertes: 22,2 % menos acciones desde 2022.",
-    "Deuda neta de 0,30 veces el EBITDA en 2025 y liquidez corriente de 1,43 veces.",
-    "Dividendo pagado desde 1985 (3,12 por acción)."
-   ],
-   "debilidades": [
-    "Sin foso de precios: toma el precio de mercado del petróleo y del gas.",
-    "Ingresos y ganancias muy irregulares: el EBIT fue de 63.109 M en 2022 y de 27.582 M en 2025.",
-    "ROIC bajo en varios años: 7,7 %, 9,9 % y 7,6 % entre 2023 y 2025.",
-    "Inversión en planta en baja (22.600 M a 17.594 M): el crítico más duro diría que devuelve plata en lugar de reponer producción.",
-    "Transición energética: la demanda de petróleo y gas puede caer en los próximos 10 años, y el dividendo se recortó en el pasado."
-   ],
-   "vigilar": [
-    "Precio del petróleo y del gas: es lo que más mueve el resultado; hoy el petróleo está en máximos de cinco meses.",
-    "Flujo libre: hoy 31.545 M; tiene que cubrir recompras y dividendo (21.654 M) sin más deuda.",
-    "Inversión en planta: hoy 17.594 M; si sigue bajando, la producción futura se achica.",
-    "ROIC: hoy 13,1 %; tiene que mantenerse sobre 10 % incluso con petróleo más barato."
-   ],
    "clientes": [
-    "Automovilistas y estaciones de servicio",
-    "Industrias y generadoras de electricidad",
-    "Empresas y gobiernos que compran gas natural licuado"
+    "Gobiernos y empresas de energía de Europa y Asia (gas licuado)",
+    "Industrias, aerolíneas y refinadoras",
+    "Automovilistas en sus estaciones de servicio"
    ],
-   "ideal_para": [
-    "Buscan una petrolera integrada con gas licuado, dividendo y recompras.",
-    "Aceptan que la ganancia suba y baje con el precio de la energía.",
-    "Quieren exposición al petróleo y al gas sin deuda alta."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia de 12.057 M (5.322 M un año antes); ganancia ajustada de 10.814 M (5.432 M); flujo operativo de 21.043 M; flujo libre de 16.322 M; deuda neta de 39.733 M; endeudamiento de 16,6 %; químicos y refinación 3.855 M (550 M); producción de 2,574 millones de barriles equivalentes por día (2,821 millones)",
+     "fuente": "Comunicado de resultados del 3T26 (6-K, anexo 99.2), 29/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001306965/000162828026068044/quarterlyexhibit992-q32026.htm"
+    },
+    {
+     "dato": "Nueva recompra de 5.000 M; compra de ARC Resources cerrada el 02/09/2026 (14.000 M); inversiones de 23.000 M a 25.000 M previstas en 2026",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001306965/000162828026068044/quarterlyexhibit992-q32026.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias atadas al precio del petróleo.",
-    "Buscan inversiones alineadas con la transición energética."
-   ],
+   "ticker": "SHEL",
    "perfil": "energia",
    "capas": [
     "ciclica"
    ],
-   "ticker": "SHEL",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -3072,54 +3162,65 @@
    }
   },
   "NVS": {
-   "resumen": "Novartis es la farmacéutica suiza que vende Entresto (insuficiencia cardíaca), Cosentyx (psoriasis y artritis), Kisqali (cáncer de mama) y Promacta, entre otros, después de haber separado su negocio de genéricos (Sandoz). Gana plata con medicamentos protegidos por patentes. Tiene un **foso de patentes**; el cálculo del programa lo estima amplio, pero yo lo leo más cerca de estrecho, porque varios de sus productos grandes pierden protección y necesita reponerlos. Los números operativos son muy buenos: los ingresos pasaron de 43.461 M en 2022 a 56.674 M en 2025, el margen operativo subió a 31,1 % y el flujo libre fue de 15.244 M. Pero los últimos 12 meses muestran un cambio: **el margen operativo bajó a 25,2 %, la ganancia por acción cayó a 5,24 (contra 7,15 en 2025) y la deuda neta subió de 23.843 M a 39.335 M**. Con tasas cerca de 5 %, esa deuda cuesta más. Y entre dividendo y recompras devolvió más de lo que generó. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la ayuda a investigar. Conclusión: **buena empresa, con patentes, caja de 14.001 M y dividendo creciente, pero con deuda en alza, ganancias en baja en el último año y productos que pierden protección.**",
-   "veredicto": "Buena empresa: patentes y mucha caja, pero deuda en alza y ganancia en baja en el último año",
-   "conclusion": "Novartis es una buena empresa, no una excelente: tiene patentes, margen operativo de 31,1 % en 2025 y flujo libre de 14.001 M, pero la ganancia por acción cayó en los últimos 12 meses y la deuda neta subió a 39.335 M. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que sus productos nuevos reemplacen a los que pierden protección y que la deuda deje de subir.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Novartis: pierde patentes de sus viejos éxitos, y los nuevos medicamentos ya compensan la caída",
+   "resumen": [
+    "Novartis es uno de los mayores laboratorios del mundo, con sede en Suiza, enfocado solo en **medicamentos innovadores**: cáncer, corazón, inmunología y neurociencia. Su ventaja son las patentes y un portafolio de lanzamientos que crece rápido.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 4 %**: los medicamentos nuevos sumaron 14 puntos y los genéricos de sus viejos éxitos, como Entresto, restaron 9. Su ganancia operativa ajustada creció 11 % y subió lo que espera ganar en el año.",
+    "Muy buena empresa, con márgenes altos y mucha caja, que atraviesa bien la pérdida de patentes, aunque su deuda subió por compras de empresas y la ganancia contable está distorsionada por cargos."
+   ],
+   "introduccion": "Todo laboratorio vive con un reloj en contra. Cuando una patente vence, aparecen copias más baratas (los genéricos) y las ventas de ese medicamento se desploman en pocos meses.\n\nNovartis está justo en ese momento con Entresto, su medicamento para la insuficiencia cardíaca y durante años su mayor éxito. En el tercer trimestre de 2026, sus ventas cayeron 38 %.\n\nPero las ventas totales de la empresa crecieron 4 %. ¿Cómo? Porque los medicamentos nuevos crecen más rápido de lo que caen los viejos. Kisqali, para el cáncer de mama, creció 37 %. Kesimpta, para la esclerosis múltiple, 22 %. Leqvio, para el colesterol, 63 %.\n\nEsa es la prueba de fuego de un laboratorio: atravesar el vencimiento de patentes sin que la empresa se achique. Novartis la está pasando.\n\nEntonces, la pregunta es: ¿alcanzan sus medicamentos nuevos para volver a crecer con fuerza, o solo para tapar el agujero?",
+   "secciones": [
+    {
+     "titulo": "Un laboratorio que se concentró en lo que más gana",
+     "texto": "En los últimos años, Novartis se achicó para enfocarse. En 2023 separó a Sandoz, su negocio de genéricos, en una empresa aparte. Hoy solo vende **medicamentos innovadores**, protegidos por patentes.\n\nSus medicamentos más importantes en el tercer trimestre de 2026:\n\n- **Cosentyx** (psoriasis y artritis): 1.857 M, +9 %.\n- **Kisqali** (cáncer de mama): 1.821 M, +37 %.\n- **Kesimpta** (esclerosis múltiple): 1.484 M, +22 %.\n- **Entresto** (insuficiencia cardíaca): 1.165 M, -38 % por la llegada de genéricos.\n- **Pluvicto** (cáncer de próstata, con radiación dirigida): 674 M, +20 %.\n- **Scemblix** (leucemia): 593 M, +67 %.\n- **Leqvio** (colesterol, dos inyecciones por año): 506 M, +63 %.\n\nSus clientes son sistemas de salud, gobiernos, aseguradoras, hospitales y farmacias de todo el mundo. EE.UU. es su mercado más grande.\n\n¿Cuál es su **ventaja**? Las **patentes**: mientras están vigentes, nadie puede copiar sus medicamentos. A eso se suma la capacidad de investigación y una red comercial global. La debilidad de esa ventaja es que vence: por eso un laboratorio vale lo que valen sus próximos medicamentos.\n\nLa inteligencia artificial es más una herramienta que una amenaza: puede acelerar el descubrimiento de medicamentos, y Novartis la usa."
+    },
+    {
+     "titulo": "Márgenes que suben, aunque la ganancia contable confunda",
+     "texto": "Los ingresos crecieron de forma pareja: de 43.461 M en 2022 a **57.364 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 18,3 % en 2022 a 31,1 % en 2025. En los últimos 12 meses bajó a **25,2 %**, por un cargo puntual: en el tercer trimestre, la empresa redujo en 1.900 M el valor de un medicamento en desarrollo que había comprado, para una enfermedad muscular. Es un cargo contable, no una salida de plata.\n\n[[grafico:margen_operativo]]\n\nPor eso, la empresa y los analistas del mercado miran la **ganancia operativa ajustada** (sin esos cargos). En el tercer trimestre creció 11 %, con un margen de **41,6 %**: de cada 100 dólares que vende, le quedan casi 42. Para todo 2026, la empresa ahora espera que esa ganancia crezca o se mantenga, cuando antes esperaba una leve baja.\n\nLa caja es fuerte: **14.001 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **14,0 %** en los últimos 12 meses, afectado por el cargo; en 2025 fue de 18,9 %. Por encima de 15 % se considera muy bueno. El promedio de su industria es 18,5 %."
+    },
+    {
+     "titulo": "Compras de empresas que suben la deuda",
+     "texto": "Para llenar el hueco que dejan las patentes vencidas, Novartis compra empresas con medicamentos prometedores. En los primeros nueve meses de 2026 gastó 16.700 M en compras y licencias.\n\nEso subió la deuda. La deuda neta (lo que debe menos la caja) pasó de 23.843 M a fines de 2025 a **39.335 M**.\n\n[[grafico:deuda_neta]]\n\nAun así, equivale a **1,8 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; Novartis está cerca del límite. Su ganancia operativa paga los intereses del año 9,2 veces (por encima de 3 se considera sano).\n\nY sigue devolviendo plata: en nueve meses recompró acciones por 4.700 M, y le quedan hasta 4.900 M por recomprar del programa anunciado en 2025. El dividendo (4,74 dólares por ADR por año) lo sube todos los años, en francos suizos, desde hace casi tres décadas.\n\nComprar medicamentos en desarrollo tiene un riesgo: algunos fracasan. El cargo de 1.900 M del último trimestre es un ejemplo.\n\nLo conduce Vas Narasimhan, médico, CEO desde 2018: \"Novartis logró un sólido crecimiento de ventas en el tercer trimestre, ya que las marcas prioritarias y los lanzamientos compensaron con creces la erosión por genéricos\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Novartis, el PER (cuántos años de ganancia se pagan al comprar la acción) engaña, porque la ganancia contable está achicada por cargos como el del último trimestre. Por eso conviene mirar el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y esos cargos contables.\n\nCon el precio de {precio} dólares por ADR, Novartis cotiza a {v:ev_ebitda} veces su EBITDA. Eso está {vs:ev_ebitda} su propia mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl PER contable es de {per_ref} veces, contra una mediana histórica de {med:per} veces, pero por lo explicado, ese número exagera lo que se paga.\n\nDurante años, el mercado pagó poco por Novartis por miedo a la caída de Entresto. Hoy la ve atravesando esa caída con éxito, y la paga más. Lo que va a definir el precio de los próximos años es si sus lanzamientos siguen creciendo a este ritmo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Novartis es una muy buena empresa. Tiene márgenes ajustados de más de 40 %, mucha caja, un dividendo que sube hace décadas y, sobre todo, un grupo de medicamentos nuevos que crecen lo suficiente para compensar la pérdida de patentes de sus viejos éxitos.\n\nSu punto débil es que el crecimiento total es modesto (4 % en el último trimestre) y que, para sostenerlo, compra empresas: su deuda subió con fuerza en 2026, y alguna de esas compras ya generó un cargo de 1.900 M. Además, más genéricos van a llegar en los próximos años, y en EE.UU. hay presión política sobre los precios de los medicamentos. El crítico más duro diría que Novartis corre para quedarse en el mismo lugar. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa de salud defensiva, con buen dividendo y crecimiento moderado. No es para quien busca un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que Kisqali, Kesimpta, Pluvicto, Leqvio y Scemblix sigan creciendo a doble dígito mientras caen las ventas de Entresto.",
+   "pros": [
+    "Lanzamientos fuertes: Kisqali +37 %, Leqvio +63 %, Scemblix +67 %.",
+    "Márgenes altos: ganancia operativa ajustada de 41,6 % de las ventas.",
+    "Mucha caja: 14.001 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "Patentes vencidas: Entresto cayó 38 % y los genéricos restaron 9 puntos de crecimiento.",
+    "Deuda en alza: la deuda neta pasó de 23.843 M a 39.335 M por compras de empresas.",
+    "Riesgo de las compras: un cargo de 1.900 M por un medicamento en desarrollo."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Novartis investiga, desarrolla, fabrica y vende medicamentos. Entre sus productos están **Entresto** (insuficiencia cardíaca crónica), **Cosentyx** (psoriasis en placas, artritis psoriásica y otras enfermedades), **Kisqali** (cáncer de mama) y **Promacta/Revolade** (trombocitopenia), además de otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio indispensable para los pacientes y se repite: los tratamientos crónicos se compran de forma continua. **Los ingresos crecieron 7,4 % en 2023, 10,8 % en 2024 y 9,6 % en 2025, hasta 57.364 M en los últimos 12 meses.** Las cifras de 2022 y 2023 están ajustadas por la separación de Sandoz.\n\n**A quién le vende.** A hospitales, médicos, sistemas de salud y gobiernos, directamente o por mayoristas. Yahoo no da los porcentajes, pero **ningún cliente individual concentra una parte decisiva de las ventas**.",
-   "foso": "La ventaja de Novartis **es de patentes, y es estrecha**. Una patente da el derecho exclusivo de vender un medicamento por años, y mientras dura, nadie lo copia. Se ve en el **margen bruto, entre 73,3 % y 75,8 %**, y en el margen operativo, que subió de 18,3 % a 31,1 % entre 2022 y 2025. Pero las patentes vencen: cuando eso pasa, las copias baratas le restan ventas, y la empresa necesita productos nuevos que reemplacen a los viejos (conviene confirmar el calendario en el informe de la empresa).\n\nCompite con Roche, Pfizer, Merck, AstraZeneca y Sanofi. Es frágil en los vencimientos de patentes y en la presión de los gobiernos sobre los precios. El cálculo del programa lo ve amplio; yo lo veo estrecho porque en los últimos 12 meses el margen operativo ya bajó a 25,2 %.",
-   "numeros": "Los números de Novartis cuentan **un negocio muy rentable, con un último año más flojo**. Los ingresos crecieron 7,4 %, 10,8 % y 9,6 % en los últimos tres años. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 18,3 % a 20,9 %, 28,1 % y **31,1 % en 2025, y bajó a 25,2 % en los últimos 12 meses**. La ganancia por acción fue de 7,10 en 2023, 5,87 en 2024, 7,15 en 2025 y **5,24 en los últimos 12 meses** (el resultado neto de 2023 está distorsionado por la separación de Sandoz).\n\nLa caja es sólida: el flujo libre (lo que sobra después de invertir) fue de 11.997 M en 2022, 13.805 M en 2024, 15.244 M en 2025 y **14.001 M en los últimos 12 meses (24,4 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 7,8 % a 18,9 % y bajó a **14,0 %** en los últimos 12 meses.\n\nLa mirada crítica: Yahoo no detalla por qué cayeron las ganancias en los últimos 12 meses (productos que pierden protección, costos de compras o partidas extraordinarias). Hay que mirar el informe de la empresa.",
-   "balance": "**La deuda de Novartis subió rápido.** La deuda total pasó de 26.348 M en 2023 a 35.376 M en 2025 y a 48.310 M en los últimos 12 meses, casi 13.000 M más en un año (señal de compras de empresas o de pagos grandes, que Yahoo no detalla). Con 8.975 M en caja, la deuda neta es de 39.335 M, **1,79 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 21 meses de ganancia operativa. Era de 0,63 veces en 2022. La ganancia operativa cubre 9,2 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, bajó de 1,29 a 0,88 veces: justa. El patrimonio neto bajó de 59.342 M a 37.228 M. Con tasas cerca de 5 %, la deuda nueva cuesta más.",
-   "gerencia": "La conduce Vasant Narasimhan, CEO (49 años, pago de 9,2 M según Yahoo), con Mukul Mehta como director financiero (52 años). Narasimhan condujo la separación de Sandoz y el foco en medicamentos innovadores.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista y de compras**: paga un dividendo de 4,74 por acción (pagado desde 2000; sube 6,0 % por año en 3 años; 7.818 M en 2025) y recompró acciones por 10.652 M en 2022, 9.212 M en 2025 y 6.252 M en los últimos 12 meses. Las acciones diluidas bajaron de 2.197 M a 1.916 M, **12,8 % menos**. En 2025 devolvió 17.030 M, más que el flujo libre de 15.244 M, y la deuda subió.",
-   "fortalezas": [
-    "Margen bruto de 74,9 % en los últimos 12 meses y operativo de 31,1 % en 2025.",
-    "Flujo libre de 14.001 M en los últimos 12 meses, 24,4 % de las ventas.",
-    "Ingresos creciendo 7,4 %, 10,8 % y 9,6 % en los últimos tres años.",
-    "Recompras: 12,8 % menos acciones desde 2022.",
-    "Dividendo pagado desde 2000 (4,74 por acción)."
-   ],
-   "debilidades": [
-    "Ganancia en baja en los últimos 12 meses: 5,24 por acción contra 7,15 en 2025.",
-    "Deuda neta de 39.335 M, de 0,63 veces el EBITDA en 2022 a 1,79 veces, con tasas cerca de 5 %.",
-    "Liquidez corriente de 0,88 veces y patrimonio neto en baja.",
-    "Productos grandes que pierden protección: el crítico más duro diría que necesita reponer ingresos con compras caras.",
-    "En 2025 devolvió más (17.030 M) de lo que generó (15.244 M)."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 25,2 % en los últimos 12 meses; tiene que volver cerca de 30 % para que la tesis siga.",
-    "Deuda neta sobre EBITDA: hoy 1,79 veces; si sigue subiendo por compras, el balance se ajusta.",
-    "Productos nuevos: tienen que reemplazar a los que pierden protección; Yahoo no los separa, hay que buscarlos en el informe.",
-    "Flujo libre: hoy 14.001 M; tiene que cubrir dividendo y recompras sin más deuda."
-   ],
    "clientes": [
-    "Hospitales y médicos",
-    "Sistemas de salud y gobiernos",
-    "Mayoristas de medicamentos"
+    "Sistemas de salud y gobiernos de todo el mundo",
+    "Aseguradoras y administradoras de recetas de EE.UU.",
+    "Hospitales y farmacias"
    ],
-   "ideal_para": [
-    "Buscan una farmacéutica grande con dividendo y recompras.",
-    "Valoran los medicamentos innovadores y el foco en patentes.",
-    "Aceptan una deuda en alza mientras la empresa compra crecimiento."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 14.522 M (+4 %; volumen +14 puntos, genéricos -9, precio -1); ganancia operativa ajustada de 6.036 M (+11 %), margen de 41,6 %; ganancia operativa de 1.843 M (-59 %) por un deterioro parcial de 1.900 M de del-desiran; ganancia ajustada por acción de 2,46 dólares (+9 %); flujo libre de 5.100 M (-18 %)",
+     "fuente": "Comunicado de resultados del 3T26, 27/10/2026",
+     "url": "https://www.novartis.com/news/media-releases/novartis-delivered-sales-growth-and-core-margin-expansion-q3-raised-fy-core-operating-income-guidance"
+    },
+    {
+     "dato": "Kisqali 1.821 M (+37 %); Kesimpta 1.484 M (+22 %); Cosentyx 1.857 M (+9 %); Pluvicto 674 M (+20 %); Scemblix 593 M (+67 %); Leqvio 506 M (+63 %); Entresto 1.165 M (-38 %); guía 2026: ganancia operativa ajustada estable a leve suba; 16.700 M en compras y licencias en nueve meses; recompras de 4.700 M; frase de Vas Narasimhan",
+     "fuente": "Ídem",
+     "url": "https://www.novartis.com/news/media-releases/novartis-delivered-sales-growth-and-core-margin-expansion-q3-raised-fy-core-operating-income-guidance"
+    }
    ],
-   "menos_ideal": [
-    "No toleran que la ganancia por acción baje un año.",
-    "Buscan una empresa con deuda baja y sin vencimientos de patentes."
-   ],
+   "ticker": "NVS",
    "perfil": "salud",
    "capas": [],
-   "ticker": "NVS",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -3134,54 +3235,68 @@
    }
   },
   "PANW": {
-   "resumen": "Palo Alto Networks vende ciberseguridad a empresas y gobiernos: firewalls, acceso seguro a la red desde la nube (Prisma Access), seguridad para aplicaciones en la nube, gestión de redes y, más nuevo, protección de los sistemas de inteligencia artificial de sus clientes. Gana plata con suscripciones y servicios que se renuevan todos los años. Tiene un **foso estrecho, de costos de cambio**: una empresa que armó su seguridad sobre una plataforma no la cambia fácil; el cálculo del programa dice que no tiene foso, y yo lo veo estrecho por los costos de cambio, aunque los números contables todavía no lo demuestran. Los ingresos pasaron de 6.893 M en el año fiscal 2023 a 11.480 M en 2026 (+24,5 % el último año) y el flujo libre fue de 4.113 M, 35,8 % de las ventas. Pero **la ganancia contable se desplomó**: el margen operativo bajó de 13,5 % a 6,1 %, la ganancia neta a 307 M y el ROIC a 1,4 %, después de que el capital invertido se multiplicara por casi cuatro (de 7.824 M a 29.266 M). Y las acciones aumentaron 11,5 % desde 2023. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: aumenta los ataques y la demanda de seguridad, pero también permite que nuevos competidores y grandes proveedores ofrezcan seguridad dentro de sus plataformas. Conclusión: **buena empresa en crecimiento, con mucha caja y balance sin deuda neta, pero con ganancias contables bajas, acciones que se diluyen y un foso todavía por demostrar.**",
-   "veredicto": "Buena empresa en crecimiento: mucha caja, pero ganancia contable baja y acciones en aumento",
-   "conclusion": "Palo Alto Networks es una buena empresa en crecimiento, no una excelente: tiene ingresos de 11.480 M, flujo libre de 4.113 M y sin deuda neta, pero un margen operativo de 6,1 %, ROIC de 1,4 % y 11,5 % más acciones que en 2023. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la compra reciente se integre y el margen operativo vuelva a subir.",
-   "calidad": "Buena",
-   "riesgo_ia": "moderado",
-   "negocio": "Palo Alto Networks ofrece soluciones de ciberseguridad. Entre ellas están **Prisma Access** (acceso seguro a la red desde la nube), **Strata Cloud Manager** (gestión de seguridad de redes), **Prisma AIRS** (protección de los sistemas de inteligencia artificial de los clientes), una plataforma de protección de aplicaciones nativas de la nube (**Code to Cloud**) y firewalls virtuales. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de suscripciones: las empresas pagan por adelantado y renuevan. **Los ingresos crecieron 16,5 % en el año fiscal 2024, 14,9 % en 2025 y 24,5 % en 2026, hasta 11.480 M** (el año fiscal termina en julio). Es probable que parte de la aceleración de 2026 venga de una compra grande (el patrimonio y el capital invertido se multiplicaron), que Yahoo no detalla.\n\n**A quién le vende.** A grandes empresas, gobiernos y proveedores de servicios en América, Europa, Medio Oriente, África y Asia-Pacífico. **Ningún cliente concentra una parte decisiva de las ventas.**",
-   "foso": "La ventaja de Palo Alto **es de costos de cambio, y es estrecha**. Una empresa que instaló sus firewalls y su acceso seguro, y entrenó a su equipo en esa plataforma, tiene un costo alto de cambiarla, y los proveedores de seguridad se ofrecen cada vez más como una plataforma única. Se ve en el **margen bruto, entre 70,4 % y 74,3 %**, y en un flujo libre de 35,8 % de las ventas.\n\nPero los números contables todavía no confirman un foso: el ROIC cayó a 1,4 % en 2026 (después de 11,3 % en 2025), y el margen bruto bajó de 74,3 % a 70,4 %. Compite con Fortinet, CrowdStrike, Zscaler, Check Point, Cisco y Microsoft, que ofrece seguridad dentro de sus propios productos. El cálculo del programa dice que no tiene foso; yo lo veo estrecho, pero con la rentabilidad actual no es difícil entender esa duda.",
-   "numeros": "Los números de Palo Alto cuentan **un negocio que crece fuerte y gana mucha caja, con ganancias contables flojas**. Los ingresos crecieron 16,5 %, 14,9 % y 24,5 % en los últimos tres años fiscales. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 5,6 %, 8,5 %, 13,5 % y **6,1 % en 2026**. La ganancia por acción fue de 3,64 en 2024, 1,60 en 2025 y **0,40 en 2026**.\n\nLa caja es otra historia: el flujo libre (lo que sobra después de invertir) fue de 2.631 M en 2023, 3.469 M en 2025 y **4.113 M en 2026 (35,8 % de las ventas)**. El flujo operativo (4.553 M) es mucho mayor que la ganancia neta (307 M) porque una parte grande del costo, la paga en acciones a sus empleados, no sale de la caja. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 8,0 %, 8,3 %, 11,3 % y **1,4 %**.\n\nLa mirada crítica: el flujo libre no cuenta lo que cuesta pagar en acciones, y por eso el número real para el accionista es menor al que muestra la caja. Las acciones pasaron de 685 M a 764 M, 11,5 % más.",
-   "balance": "**El balance de Palo Alto es muy sólido.** La caja es de 3.071 M y la deuda total de 2.500 M, así que no tiene deuda neta. El patrimonio neto subió de 7.824 M en 2025 a 27.492 M en 2026, y los intereses son cero. La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,87 veces; en una empresa de suscripciones, que cobra por adelantado, ese número es normal y no preocupa.\n\nCon tasas cerca de 5 %, tener más caja que deuda es una ventaja. Pero el aumento de 3,7 veces del capital invertido (de 7.824 M a 29.266 M) significa que la empresa pagó mucho por crecer, y el retorno de esa plata todavía no apareció.",
-   "gerencia": "La conduce Nikesh Arora, presidente y CEO (57 años, pago de 4,3 M según Yahoo), con Dipak Golechha como director financiero (51 años). Arora es la figura central desde hace años; el fundador, Yuming Mao, sigue como arquitecto jefe.\n\nEn lo que importa, **el uso del capital, es de compras y de pago en acciones, más que de retorno al accionista**: no paga dividendo, recompró acciones por 1.000 M en 2026 y 567 M en 2024 (y 0 en 2025), y el capital invertido se multiplicó, señal de una compra grande que Yahoo no detalla. Las acciones diluidas pasaron de 685 M a 764 M, **11,5 % más**: la compra y el pago en acciones diluyen al accionista.",
-   "fortalezas": [
-    "Ingresos de 11.480 M en el año fiscal 2026, +24,5 %.",
-    "Flujo libre de 4.113 M, 35,8 % de las ventas.",
-    "Sin deuda neta: caja de 3.071 M y deuda de 2.500 M.",
-    "Costos de cambio altos en seguridad de redes y de la nube.",
-    "Margen bruto de 70,4 % y plataforma que incluye protección de sistemas de inteligencia artificial."
+   "formato": "v4",
+   "titulo": "Palo Alto Networks: quiere ser tu única empresa de ciberseguridad, y lo paga con acciones",
+   "resumen": [
+    "Palo Alto Networks es la mayor empresa de **ciberseguridad** del mundo: protege redes, nubes, computadoras e identidades de grandes empresas y gobiernos. Su ventaja es ofrecer casi todo en una sola **plataforma**, y que cambiar de proveedor de seguridad es caro y riesgoso.",
+    "En su año fiscal 2026 (cerrado en julio), **sus ingresos crecieron 24,5 %, a 11.480 M**, y generó 4.113 M de flujo libre de caja. Pero gran parte del crecimiento vino de comprar CyberArk, pagada sobre todo con acciones nuevas.",
+    "Muy buena empresa, líder de un sector que no para de crecer, con mucha caja, pero con una ganancia contable mínima, accionistas que se diluyen y un precio muy exigente."
    ],
-   "debilidades": [
-    "Ganancia contable muy baja: margen operativo de 6,1 %, ganancia por acción de 0,40 y ROIC de 1,4 %.",
-    "Acciones en alza 11,5 %: el crítico más duro diría que el flujo libre alto es en parte pago en acciones.",
-    "Capital invertido multiplicado por casi cuatro: la compra todavía no demostró su retorno.",
-    "Foso todavía por demostrar y competencia fuerte de Microsoft, Fortinet y CrowdStrike.",
-    "No paga dividendo."
+   "introduccion": "Una empresa grande suele usar muchos productos de ciberseguridad distintos: uno para la red, otro para las computadoras, otro para la nube, otro para controlar quién entra a cada sistema. Cada uno de un proveedor diferente, y que no hablan entre sí.\n\nLa idea de Palo Alto Networks es simple: reemplazarlos a todos por una sola plataforma. La empresa lo llama \"plataformización\".\n\nPara eso, compró. Su compra más grande fue CyberArk, líder en proteger identidades y accesos, por unos 25.000 M. La pagó en gran parte con acciones nuevas: el patrimonio de la empresa pasó de 7.824 M a 27.492 M en un año.\n\nEl resultado: ingresos que crecieron 34 % en el último trimestre y una cartera de contratos de 21.200 M. Pero también una ganancia contable de apenas 0,40 dólares por acción en todo el año, y más acciones en circulación.\n\nEntonces, la pregunta es: ¿está construyendo la plataforma de seguridad dominante, o está comprando crecimiento a costa de sus accionistas?",
+   "secciones": [
+    {
+     "titulo": "La ciberseguridad como un servicio que no se puede apagar",
+     "texto": "Palo Alto Networks vende tres grandes cosas:\n\n- **Seguridad de redes**: sus clásicos firewalls (equipos y programas que controlan qué entra y qué sale de una red) y la protección del acceso remoto.\n- **Seguridad en la nube**: protege las aplicaciones y los datos que las empresas tienen en Amazon, Microsoft o Google.\n- **Operaciones de seguridad**: detecta y responde a ataques, cada vez más con inteligencia artificial. Con CyberArk sumó la **protección de identidades**: quién puede entrar a qué sistema.\n\nEl número que la empresa usa para medir su crecimiento es el **ingreso recurrente anual** de sus productos nuevos (todo lo que no es el firewall clásico). Llegó a **9.100 M**, un 63 % más que un año antes, en parte por la compra de CyberArk.\n\nSus clientes son grandes empresas y gobiernos de todo el mundo, sin uno que pese demasiado.\n\n¿Cuál es su **ventaja**? El **costo de cambiarse**. Reemplazar el sistema de seguridad de un banco o de un gobierno es caro, lento y riesgoso: nadie quiere quedar desprotegido durante la mudanza. Y cuantos más productos de Palo Alto usa un cliente, más difícil le resulta irse.\n\nCompite con **CrowdStrike (CRWD)**, Fortinet, Zscaler y Microsoft, entre otros.\n\nLa inteligencia artificial es un arma de doble filo para el sector: los atacantes la usan para atacar mejor, y eso obliga a las empresas a gastar más en defensa. Para Palo Alto, hoy suma más de lo que resta."
+    },
+    {
+     "titulo": "Mucha caja, poca ganancia contable",
+     "texto": "Los ingresos crecen fuerte: de 6.893 M en el año fiscal 2023 a **11.480 M** en el año fiscal 2026.\n\n[[grafico:ingresos]]\n\nPero hay dos números de ganancia muy distintos, y conviene entender por qué.\n\nEl **margen operativo contable** (lo que queda de cada venta después de todos los costos de funcionar) fue de apenas **6,1 %** en el año fiscal 2026. El promedio de su industria es 33,0 %.\n\n[[grafico:margen_operativo]]\n\nLa empresa y los analistas del mercado miran el **margen ajustado**, que fue de alrededor de 29 %. La diferencia son sobre todo dos cosas: los costos de las compras de empresas y el **pago en acciones a los empleados**. Este último es un costo real: la empresa no pone plata, pero emite acciones nuevas, y cada accionista queda con una porción un poco más chica de la empresa.\n\nLo que sí es muy sólido es la caja: **4.113 M** de flujo libre (lo que queda después de invertir) en el año fiscal 2026, un 36 % de las ventas. Muchos clientes pagan por adelantado contratos de varios años.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), cayó a **1,4 %**: con las compras, el capital se multiplicó y la ganancia contable todavía no lo acompaña. Por encima de 15 % se considera muy bueno."
+    },
+    {
+     "titulo": "Más acciones, y un balance tranquilo",
+     "texto": "Las acciones en circulación pasaron de 685 millones en el año fiscal 2023 a **764 millones** en 2026, y la empresa espera unos 845 millones en el año fiscal 2027. Es un 23 % más en cuatro años.\n\n[[grafico:acciones]]\n\nEso se llama **dilución**: si la empresa crece 25 % pero las acciones también aumentan 25 %, la porción de cada accionista no crece. Por eso, en Palo Alto, conviene mirar la ganancia y la caja **por acción**, no en total.\n\nEl balance, en cambio, está tranquilo. Tiene una deuda de 2.500 M y una caja de 3.071 M: más caja que deuda.\n\nNo paga dividendo.\n\nPara el año fiscal 2027, la empresa espera ingresos de 14.100 M a 14.200 M (+23 % a +24 %), una ganancia ajustada de 4,16 a 4,19 dólares por acción y un flujo libre ajustado de 38 % de las ventas.\n\nLa conduce Nikesh Arora, CEO desde 2018, ex Google, el arquitecto de la estrategia de plataforma: \"Cerramos el año con un cuarto trimestre fuerte, sumando casi 1.000 M de nuevo ingreso recurrente anual en un solo trimestre\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 6,1 %; tiene que volver a 13 % o más para justificar el capital que invirtió.",
-    "ROIC: hoy 1,4 %; tiene que recuperarse hacia 10 % o más cuando la compra se integre.",
-    "Acciones en circulación: hoy 764 M; si siguen subiendo, el crecimiento por acción se achica.",
-    "Flujo libre: hoy 4.113 M; tiene que seguir creciendo aunque se pague menos en acciones."
+   "valuacion": {
+    "texto": "En Palo Alto Networks, el PER contable no sirve: la ganancia contable es tan chica que el número da varios cientos de veces. Usamos la ganancia ajustada que espera la empresa para su año fiscal 2027: unos 4,18 dólares por acción, el medio de su guía. Ojo: esa ganancia no descuenta el pago en acciones a los empleados.\n\nCon el precio de {precio} dólares, Palo Alto cotiza a {per_ref} veces esa ganancia ajustada. El promedio de su industria es {ind:per} veces.\n\nOtro número útil es el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan. Palo Alto cotiza a {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nSon múltiplos altos, de empresa de crecimiento. El mercado paga por la idea de que la ciberseguridad va a seguir creciendo durante años y de que Palo Alto va a quedarse con una parte cada vez más grande. Si el crecimiento se frena una vez que se absorba CyberArk, esos múltiplos quedan muy exigentes.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}.",
+    "ganancia_ref": 4.18,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción del año fiscal 2027 (4,16 a 4,19 dólares)"
+   },
+   "conclusion": "Palo Alto Networks es una muy buena empresa. Es líder en un sector que crece por necesidad (ningún directorio quiere ser el próximo hackeado), tiene clientes que difícilmente se van, una caja muy fuerte y una estrategia clara de convertirse en la plataforma única de seguridad.\n\nSu punto débil es cómo crece y cuánto cuesta. Gran parte del crecimiento reciente vino de compras pagadas con acciones, la ganancia contable es mínima, el pago en acciones a los empleados es alto y cada año hay más acciones. Y el mercado ya la paga como si todo saliera bien. El crítico más duro diría que la empresa compra crecimiento con la plata de sus accionistas. Es un argumento serio.\n\nEncaja con quien cree en la ciberseguridad como tendencia de largo plazo y tolera un precio alto y caídas fuertes. No es para quien busca ganancias contables sólidas o un precio razonable.\n\nPara que la tesis se mantenga, lo más importante es que el flujo libre de caja por acción siga creciendo, a pesar de la dilución.",
+   "pros": [
+    "Líder del sector: la mayor empresa de ciberseguridad del mundo.",
+    "Mucha caja: 4.113 M de flujo libre, un 36 % de las ventas.",
+    "Clientes atados: cambiar de proveedor de seguridad es caro y riesgoso."
    ],
+   "contras": [
+    "Dilución: las acciones pasaron de 685 a 764 millones y van a seguir subiendo.",
+    "Ganancia contable mínima: margen operativo de 6,1 %, contra 33,0 % de su industria.",
+    "Precio exigente: cotiza a un múltiplo alto aun sobre la ganancia ajustada."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
    "clientes": [
-    "Grandes empresas",
-    "Gobiernos",
-    "Proveedores de servicios y operadores de nube"
+    "Grandes empresas de todos los sectores",
+    "Gobiernos y organismos públicos",
+    "Bancos, aseguradoras y hospitales"
    ],
-   "ideal_para": [
-    "Buscan exposición a ciberseguridad y a la protección de la inteligencia artificial.",
-    "Valoran el crecimiento de ingresos y el flujo libre alto.",
-    "Aceptan ganancias contables bajas y dilución a cambio de crecimiento."
+   "hechos": [
+    {
+     "dato": "Cuarto trimestre del año fiscal 2026 (cerrado el 31/07/2026): ingresos de 3.410 M (+34 %); ingreso recurrente anual de productos nuevos de 9.100 M (+63 %); cartera de contratos de 21.200 M (+34 %); año fiscal 2026: ingresos de 11.480 M, ganancia por acción de 0,40 dólares y ajustada de 3,84; flujo libre ajustado de 4.414 M (38,4 %)",
+     "fuente": "Comunicado de resultados del 4T del año fiscal 2026, 08/2026",
+     "url": "https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-reports-fiscal-fourth-quarter-and-fiscal-year-2026-financial-results"
+    },
+    {
+     "dato": "Guía del año fiscal 2027: ingresos de 14.100 M a 14.200 M (+23 % a +24 %); ganancia ajustada por acción de 4,16 a 4,19 dólares con 844 a 847 millones de acciones; margen de flujo libre ajustado de 38 %; frase de Nikesh Arora",
+     "fuente": "Ídem",
+     "url": "https://www.paloaltonetworks.com/company/press/2026/palo-alto-networks-reports-fiscal-fourth-quarter-and-fiscal-year-2026-financial-results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran que la ganancia contable sea baja ni que las acciones aumenten.",
-    "Buscan dividendo o un foso ya demostrado en los números."
-   ],
+   "mes_cierre_fiscal": 7,
+   "ticker": "PANW",
    "perfil": "software",
    "capas": [],
-   "ticker": "PANW",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -3195,57 +3310,69 @@
    }
   },
   "LRCX": {
-   "resumen": "Lam Research fabrica las máquinas que las fábricas de chips usan para depositar y grabar capas de material sobre el silicio, y vende servicios, repuestos y mejoras para esas máquinas. Cuando alguien quiere fabricar más chips de memoria o de lógica, incluidos los que usa la inteligencia artificial, necesita comprarle equipos a ella o a pocos competidores. Tiene un **foso amplio, de tecnología y costos de cambio**: una fábrica de chips califica cada herramienta durante años y no la cambia fácil. Los números son excelentes: los ingresos pasaron de 17.429 M en el año fiscal 2023 a 26.128 M en los últimos 12 meses, el margen operativo subió a 37,0 % y el ROIC a 47,8 %. Tiene **más caja (7.437 M) que deuda (3.735 M)** y recompró acciones: hoy hay 7,4 % menos que en 2023. Su punto débil es el ciclo: en el año fiscal 2024 los ingresos cayeron 14,5 %, y el 22 de octubre los semiconductores cayeron 6,7 %. Además depende de pocos clientes grandes y de China. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la impulsa; el riesgo es que ese gasto en chips se frene. Conclusión: **muy buena empresa, con foso amplio, ROIC de 47,8 %, más caja que deuda y recompras, pero muy cíclica y atada al gasto de pocos clientes.**",
-   "veredicto": "Muy buena empresa: retorno altísimo y más caja que deuda, pero muy cíclica",
-   "conclusion": "Lam Research es una muy buena empresa: tiene un foso amplio, margen operativo de 37,0 %, ROIC de 47,8 % y más caja que deuda, pero es muy cíclica y hoy está en la parte alta del ciclo. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el gasto de los clientes en equipos para chips se sostenga cuando el ciclo se enfríe.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Lam Research diseña, fabrica, reacondiciona y da servicio a equipos de procesamiento de semiconductores. Entre sus productos están los sistemas **ALTUS** (depósito de películas de tungsteno o molibdeno) y los productos de depósito electroquímico **SABRE** (interconexiones de cobre), además de equipos de grabado. Vende en Estados Unidos, China, Corea, Taiwán, Japón, el Sudeste Asiático y Europa. Yahoo no informa cuánto aporta cada línea ni cada región, y no lo vamos a inventar.\n\nEs un negocio de bienes de capital: sus clientes compran cuando amplían fábricas. **Los ingresos cayeron 14,5 % en el año fiscal 2024, y subieron 23,7 % en 2025 y 26,0 % en 2026, hasta 26.128 M en los últimos 12 meses** (el año fiscal termina en junio).\n\n**A quién le vende.** A las grandes fábricas de chips del mundo. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
-   "foso": "La ventaja de Lam Research **es de tecnología y de costos de cambio, y es amplia**. Fabricar estas máquinas exige décadas de ingeniería, y las fábricas de chips pasan años calificando cada herramienta para su proceso; una vez instalada, pagan servicio y repuestos por años. Se ve en el **margen bruto, de 44,6 % a 51,1 %**, en el **margen operativo, de 29,9 % a 37,0 %** y en el ROIC, siempre arriba de 27 %.\n\nCompite con Applied Materials, Tokyo Electron, KLA y ASML. Es frágil en el ciclo (los clientes recortan inversión cuando baja la demanda), en las restricciones de exportación a China y en que sus clientes son pocos y muy grandes.",
-   "numeros": "Los números de Lam Research cuentan **un negocio muy rentable que sube y baja con el ciclo, ahora en la parte alta**. Los ingresos fueron de 17.429 M, 14.905 M, 18.436 M y 23.233 M, y de 26.128 M en los últimos 12 meses, 49,9 % más que en 2023. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 29,9 %, 28,7 %, 32,0 %, 35,3 % y **37,0 %**. La ganancia por acción pasó de 3,32 a 2,90, 4,15, 5,76 y **6,71 en los últimos 12 meses**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 4.677 M en 2023, 4.891 M en 2026 y **6.537 M en los últimos 12 meses (25,0 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 35,0 % a **47,8 %**, con un capital invertido de 17.644 M.\n\nLa mirada crítica: estas son cifras de un momento fuerte del ciclo. En el año fiscal 2024 los ingresos cayeron 14,5 % y la ganancia por acción 12,7 %. Los márgenes de hoy no son un piso.",
-   "balance": "**El balance de Lam Research es muy sólido.** La caja es de 7.437 M y la deuda total de 3.735 M, así que tiene **más caja que deuda** (deuda neta de -3.702 M según Yahoo, que es una caja neta). La cobertura de intereses es de 63,9 veces y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 2,48 veces: holgada. El patrimonio neto subió de 8.210 M a 13.908 M.\n\nCon tasas cerca de 5 %, tener más caja que deuda es una ventaja: gana intereses en lugar de pagarlos. Es una buena base para aguantar un ciclo malo.",
-   "gerencia": "La conduce Tim Archer, presidente y CEO (58 años, pago de 6,8 M según Yahoo), con Doug Bettinger como director financiero (58 años). Es un equipo con años en el negocio.\n\nEn lo que importa, **el uso del capital, es de retorno al accionista**: paga un dividendo de 1,32 por acción (pagado desde 2014; sube 15,0 % por año en 3 años; 1.304 M en los últimos 12 meses, 20 % del flujo libre) y recompra acciones (3.422 M en 2025 y 3.901 M en los últimos 12 meses). Las acciones diluidas bajaron de 1.358 M a 1.258 M, **7,4 % menos**.",
-   "fortalezas": [
-    "Foso amplio de tecnología y costos de cambio, con servicios recurrentes sobre las máquinas instaladas.",
-    "Margen operativo de 37,0 % y margen bruto de 51,1 % en los últimos 12 meses.",
-    "ROIC de 47,8 % y flujo libre de 6.537 M (25,0 % de las ventas).",
-    "Más caja (7.437 M) que deuda (3.735 M) y cobertura de intereses de 63,9 veces.",
-    "7,4 % menos acciones desde 2023 y dividendo creciente (15,0 % anual en 3 años)."
+   "formato": "v4",
+   "titulo": "Lam Research: graba los chips átomo por átomo, y la IA la llevó a ventas récord",
+   "resumen": [
+    "Lam Research fabrica **equipos para producir chips**, sobre todo los que **graban y depositan** capas microscópicas de material sobre las obleas de silicio. Es líder en las máquinas para fabricar memorias. Su ventaja es la tecnología y que sus equipos están integrados en los procesos de las grandes fábricas.",
+    "En el trimestre que cerró en septiembre de 2026, **vendió un récord de 8.220 M** (+54 % contra un año antes), con un margen operativo de 40 %. Y espera vender todavía más en el trimestre siguiente.",
+    "Excelente empresa, con márgenes y retornos muy por encima de su industria y más caja que deuda, pero muy cíclica, con un tercio de sus ventas en China y un precio que ya descuenta un ciclo largo."
    ],
-   "debilidades": [
-    "Muy cíclica: en el año fiscal 2024 los ingresos cayeron 14,5 % y la ganancia por acción 12,7 %.",
-    "Pocos clientes grandes y exposición a China: el crítico más duro diría que una restricción de exportación pega directo en las ventas.",
-    "Los márgenes y el ROIC de hoy están en la parte alta del ciclo.",
-    "El 22 de octubre los semiconductores cayeron 6,7 %: el sector reacciona fuerte a dudas sobre el gasto en inteligencia artificial.",
-    "Inversión en planta en alza: 1.039 M contra 502 M en 2023."
+   "introduccion": "Un chip moderno se construye como un edificio de cientos de pisos, cada uno de pocos átomos de alto. En cada piso hay que poner material (depositar) y después sacar con precisión lo que sobra (grabar).\n\nLam Research es la líder mundial en esa segunda tarea, el grabado, y una de las principales en la primera.\n\nEso la vuelve clave para dos cosas que hoy explotan con la inteligencia artificial: las memorias, que se fabrican apilando cada vez más capas, y los chips más avanzados, que necesitan estructuras cada vez más complejas.\n\nEl resultado está en los números. En el trimestre que cerró en septiembre de 2026, vendió 8.220 M, un 54 % más que un año antes, y su margen operativo llegó a 40 %.\n\nEntonces, la pregunta es: ¿cuánto puede durar esta oleada, en un negocio que históricamente sube y baja con fuerza?",
+   "secciones": [
+    {
+     "titulo": "La especialista en memorias y en chips de muchas capas",
+     "texto": "Lam Research tiene dos fuentes de ingresos. En el trimestre que cerró en septiembre de 2026:\n\n- **Equipos nuevos**: las máquinas de grabado y depósito que compran las fábricas de chips. Vendió 5.733 M, contra 3.548 M un año antes.\n- **Servicios y repuestos**: mantenimiento, repuestos y mejoras de los equipos ya instalados. Vendió 2.487 M, contra 1.777 M. Es un ingreso más estable, porque las fábricas necesitan mantener sus máquinas aunque no compren nuevas.\n\nSus clientes son pocos y enormes: **Samsung**, **SK Hynix**, **Micron (MU)**, **TSMC (TSM)**, **Intel (INTC)** y los fabricantes chinos. Por región, China fue el 35 % de sus ventas, Corea el 20 % y Taiwán el 18 %.\n\nSus competidores son pocos: **Applied Materials (AMAT)** y **Tokyo Electron**, sobre todo.\n\n¿Cuál es su **ventaja**? La **especialización tecnológica**. Grabar agujeros de decenas de capas de profundidad, perfectamente derechos y del ancho de unos pocos átomos, es algo que muy pocas empresas pueden hacer. Una vez que una fábrica ajusta su proceso con las máquinas de Lam, cambiarlas es caro y riesgoso.\n\nLa inteligencia artificial es su gran motor: las memorias de alta velocidad (HBM) que usan los chips de IA se fabrican apilando chips de memoria uno sobre otro, y eso requiere más pasos de grabado y depósito."
+    },
+    {
+     "titulo": "Un ciclo fuerte, con márgenes que suben",
+     "texto": "Lam Research vive de un negocio **cíclico**. Las fábricas de chips invierten en oleadas: cuando falta capacidad, compran todo junto; cuando sobra, frenan. Se vio en el año fiscal 2024 (cerrado en junio), cuando las ventas cayeron 14,5 %. Desde entonces, la IA trajo una oleada nueva: los ingresos llegaron a **26.128 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 28,7 % a **37,0 %** en los últimos 12 meses, y llegó a 40,0 % en el último trimestre. El promedio de su industria es 26,2 %. Cuando una empresa vende mucho más con las mismas fábricas, cada venta extra deja más ganancia.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **47,8 %**. Por encima de 15 % se considera muy bueno. Lam está entre las empresas más rentables del mercado, muy por encima del promedio de su industria (28,4 %).\n\n[[grafico:roic]]\n\nLa ganancia por acción pasó de 2,90 dólares en el año fiscal 2024 a **6,71** en los últimos 12 meses. Para el trimestre que termina en diciembre, la empresa espera ventas de unos 8.600 M y una ganancia de unos 2,33 dólares por acción."
+    },
+    {
+     "titulo": "Más caja que deuda, y una dependencia de China",
+     "texto": "Lam Research tiene más caja (7.437 M) que deuda (3.735 M): **caja neta** de 3.702 M. Su ganancia operativa paga los intereses del año 64 veces. No tiene ningún problema financiero.\n\nGenera mucha caja: **6.537 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nY la devuelve. En el último trimestre recompró acciones por 1.025 M y subió el dividendo de 0,26 a 0,33 dólares por trimestre, un 27 %.\n\nEl riesgo más importante es **China**: fue el 35 % de sus ventas en el último trimestre. EE.UU. restringe la venta de equipos avanzados para fabricar chips a China, y las reglas pueden endurecerse. Además, parte de esas compras chinas podrían ser adelantos de compras futuras, por miedo a nuevas restricciones, y no repetirse.\n\nLa conduce Tim Archer, CEO desde 2018: \"Con la IA impulsando una mayor demanda de semiconductores y una mayor complejidad de los dispositivos\", Lam logró \"ventas, ganancias y ganancia por acción récord en el trimestre de septiembre\"."
+    }
    ],
-   "vigilar": [
-    "Ingresos: hoy 26.128 M en los últimos 12 meses; si se frenan, el gasto de los clientes en chips se enfría.",
-    "Margen operativo: hoy 37,0 %; si cae, el ciclo o la competencia están pegando.",
-    "Ventas a China: pesan en los ingresos y dependen de las reglas de exportación; Yahoo no da el porcentaje.",
-    "Flujo libre: hoy 6.537 M; tiene que cubrir con holgura recompras y dividendo."
+   "valuacion": {
+    "texto": "En Lam Research, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero en una empresa cíclica hay que leerlo con cuidado: en la parte alta del ciclo la ganancia es alta, y si el ciclo se da vuelta, cae rápido.\n\nCon el precio de {precio} dólares, Lam cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nHay un detalle que ayuda a ponerlo en contexto: la ganancia está creciendo muy rápido. Si la empresa cumple lo que espera para el trimestre de diciembre, la ganancia de los últimos 12 meses va a seguir subiendo, y el PER va a bajar solo. Lo que el mercado está pagando es la confianza en que la oleada de inversión por la IA dure varios años.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Lam Research es una empresa excelente. Es líder en una tecnología con muy pocos competidores, tiene márgenes y retornos sobre el capital de los más altos del mercado, más caja que deuda, un dividendo que crece rápido y un negocio de servicios que da estabilidad. Y hoy vive una oleada de ventas récord por la IA.\n\nSu punto débil es el ciclo y China. Las fábricas de chips invierten en oleadas y frenan sin aviso, y un tercio de sus ventas va a China, un mercado expuesto a restricciones de EE.UU. y a posibles compras adelantadas. El crítico más duro diría que se está pagando la cima de un ciclo como si fuera permanente. Es un argumento serio.\n\nEncaja con quien cree que la inversión en memorias y chips para IA va a durar años y tolera caídas fuertes. No es para quien busca estabilidad.\n\nPara que la tesis se mantenga, lo más importante es que la inversión en memorias y chips avanzados siga creciendo aun si las ventas a China bajan.",
+   "pros": [
+    "Rentabilidad excepcional: ROIC de 47,8 %, contra 28,4 % de su industria.",
+    "Ventas récord: 8.220 M en el último trimestre, +54 % contra un año antes.",
+    "Balance impecable: caja neta de 3.702 M."
    ],
+   "contras": [
+    "Negocio cíclico: en el año fiscal 2024 las ventas cayeron 14,5 %.",
+    "China pesa mucho: fue el 35 % de las ventas del último trimestre.",
+    "Precio exigente: cotiza por encima de su historia."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Grandes fábricas de chips del mundo",
-    "Fabricantes de memorias y de procesadores",
-    "Empresas que usan sus servicios de mantenimiento y mejora"
+    "Fabricantes de memorias: Samsung, SK Hynix y Micron (MU)",
+    "Fabricantes de chips de lógica: TSMC (TSM) e Intel (INTC)",
+    "Fabricantes de chips de China"
    ],
-   "ideal_para": [
-    "Buscan exposición a la fabricación de chips y a la inteligencia artificial.",
-    "Valoran un balance con más caja que deuda, recompras y un dividendo creciente.",
-    "Aceptan que los resultados suban y bajen con el ciclo."
+   "hechos": [
+    {
+     "dato": "Trimestre cerrado el 27/09/2026 (1T del año fiscal 2027): ingresos de 8.220 M (5.320 M un año antes); margen operativo de 40,0 % (34,4 %); ganancia por acción de 2,19 dólares (1,24); equipos 5.733 M, servicios 2.487 M; China 35 %, Corea 20 %, Taiwán 18 %; recompras de 1.025 M; dividendo trimestral de 0,33 dólares (0,26)",
+     "fuente": "Comunicado de resultados del 1T del año fiscal 2027 (8-K, anexo 99.1), 21/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000707549/000070754926000052/lrcx_exhibitx991xq1x2027.htm"
+    },
+    {
+     "dato": "Guía del trimestre de diciembre de 2026: ingresos de unos 8.600 M; margen operativo de unos 40,5 %; ganancia por acción de unos 2,33 dólares; frase de Tim Archer",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000707549/000070754926000052/lrcx_exhibitx991xq1x2027.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias cíclicas ni caídas fuertes en el sector.",
-    "Buscan una empresa sin exposición a China."
-   ],
+   "mes_cierre_fiscal": 6,
+   "ticker": "LRCX",
    "perfil": "hardware",
    "capas": [
     "compounder",
     "ciclica"
    ],
-   "ticker": "LRCX",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -4085,54 +4212,65 @@
    }
   },
   "MS": {
-   "resumen": "Morgan Stanley es un banco de inversión y gestor de patrimonio de Estados Unidos: asesora a empresas y gobiernos en compras y emisiones, opera en los mercados para inversores institucionales, administra el dinero de personas con patrimonio alto y gestiona fondos. Gana plata con comisiones sobre activos que administra y con el volumen que opera, y por eso sus resultados siguen al mercado. Tiene un **foso estrecho, de base de clientes pegajosa**: el dinero que un cliente deja en su gestión de patrimonio no se mueve fácil, y eso estabiliza las comisiones. Los números son muy buenos: los ingresos pasaron de 50.210 M en 2022 a 65.966 M en 2025, la ganancia neta de 11.029 M a 16.861 M y la ganancia por acción de 6,15 a 10,21 (12,60 en los últimos 12 meses). El ROE subió de 11,0 % a **15,1 %**, por encima de la referencia de 12 %, y **las acciones bajaron 8,1 %** por recompras. Su punto débil es que depende de los mercados: en 2023 la ganancia neta cayó 17,6 %, y el 22 de octubre el Nasdaq cayó 2,6 %, un recordatorio de cuánto se mueve su negocio con la bolsa. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos y atender más clientes. Conclusión: **muy buena empresa financiera, con ROE de 15,1 %, ganancias en alza y recompras, aunque con resultados que dependen de los mercados.**",
-   "veredicto": "Muy buena empresa financiera: ROE alto y ganancias en alza, pero dependiente de los mercados",
-   "conclusion": "Morgan Stanley es una muy buena empresa financiera: tiene una base de clientes pegajosa, ROE de 15,1 %, ganancia por acción de 12,60 en los últimos 12 meses y 8,1 % menos acciones, pero sus resultados dependen de los mercados. Vale la pena seguirla de cerca. Es recomendable investigar los activos que administra y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando el mercado se enfríe.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "Morgan Stanley: el banco de inversión que se convirtió en un gigante de la gestión de patrimonios",
+   "resumen": [
+    "Morgan Stanley es uno de los grandes **bancos de inversión** de Wall Street, pero hoy su corazón es la **gestión de patrimonios**: administra 10,5 billones de dólares de sus clientes. Su ventaja es la marca y una base de clientes con mucho dinero que difícilmente se va.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 12 %, a 20.300 M**, con un récord en gestión de patrimonios, y ganó 22,6 dólares por cada 100 de patrimonio tangible.",
+    "Excelente empresa, con una rentabilidad muy alta y un negocio mucho más estable que el de un banco de inversión clásico, aunque el mercado ya la paga con una prima importante sobre su historia."
+   ],
+   "introduccion": "En 2008, Morgan Stanley estuvo cerca de caer. Era un banco de inversión clásico: vivía de comprar y vender acciones y bonos, de asesorar fusiones y de apostar con su propio capital. Cuando los mercados se desplomaron, sus ganancias también.\n\nLo que hizo en los años siguientes cambió la empresa. Compró Smith Barney, una enorme red de asesores financieros; después E*TRADE, la plataforma de inversión online; y Eaton Vance, una gestora de fondos.\n\nHoy, Morgan Stanley es sobre todo un administrador de patrimonios. Y eso la volvió mucho más estable: cobra comisiones por administrar plata de sus clientes, haya o no fusiones.\n\nEn el tercer trimestre de 2026, ese negocio tuvo ingresos récord de 9.065 M. Y sus clientes le trajeron 232.400 M de plata nueva en solo tres meses.\n\nEntonces, la pregunta es: ¿vale Morgan Stanley lo que hoy se paga por ella?",
+   "secciones": [
+    {
+     "titulo": "Tres negocios, uno que da estabilidad",
+     "texto": "Morgan Stanley tiene tres negocios. En el tercer trimestre de 2026:\n\n- **Banca de inversión y mercados**: compra y venta de acciones y bonos para grandes inversores, y asesoramiento en fusiones y salidas a bolsa. Ingresos de 10.000 M, un 18 % más. La compra y venta de acciones creció 41 %.\n- **Gestión de patrimonios**: asesores financieros y E*TRADE, para personas con dinero para invertir. Ingresos récord de 9.065 M, un 10 % más, con un margen antes de impuestos de 30,4 %.\n- **Gestión de inversiones**: fondos que administran plata de terceros. Ingresos de 1.459 M, un 12 % menos.\n\nEntre los tres, administra **10,5 billones de dólares** de clientes.\n\nSus clientes son personas con patrimonios grandes y medianos, empresas, gobiernos y grandes inversores institucionales. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **marca** y la **relación con el cliente**. Una familia que confía su patrimonio a un asesor de Morgan Stanley rara vez se cambia: le cuesta tiempo, impuestos y confianza. Y una empresa que sale a bolsa quiere un banco con prestigio.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la empresa la usa para que sus asesores atiendan más clientes y mejor."
+    },
+    {
+     "titulo": "Una rentabilidad que pocos bancos alcanzan",
+     "texto": "En un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nMorgan Stanley tuvo un ROE de 9,2 % en 2023, 15,1 % en 2025 y **17,8 %** en el tercer trimestre de 2026. Si se mira el retorno sobre el patrimonio tangible (sin contar los activos intangibles, como el valor pagado de más al comprar E*TRADE y Eaton Vance), llega a **22,6 %**. El promedio de su industria es 17,8 %.\n\n[[grafico:roe]]\n\nLa clave está en la gestión de patrimonios. A diferencia de las fusiones o la compra y venta de acciones, que suben y bajan con los mercados, las comisiones por administrar plata son recurrentes: el cliente paga un porcentaje de lo que tiene invertido, todos los años.\n\nLos ingresos totales pasaron de 50.667 M en 2023 a **65.966 M** en 2025.\n\n[[grafico:ingresos]]\n\nEl punto a mirar es la **eficiencia**: gasta 67 dólares por cada 100 que genera. Es un nivel normal para un banco de inversión, que paga sueldos y bonos muy altos."
+    },
+    {
+     "titulo": "Capital sólido y devolución creciente",
+     "texto": "La regla de oro de un banco es tener suficiente capital propio para aguantar pérdidas. El indicador que miran los reguladores es el **CET1**: el capital de mejor calidad sobre los activos ajustados por riesgo. Morgan Stanley está en **14,9 %**, un nivel holgado.\n\nCon ese capital devuelve mucho. En el tercer trimestre recompró acciones por 1.540 M, y paga un dividendo de 1,15 dólares por acción por trimestre. El dividendo creció 9,3 % por año en los últimos tres.\n\n[[grafico:acciones]]\n\nEl valor libros por acción (el patrimonio contable dividido por la cantidad de acciones) creció 9 % en un año, a 68,59 dólares.\n\nEl riesgo principal es el de cualquier banco de inversión: si los mercados caen fuerte, bajan las comisiones, las fusiones y la compra y venta de acciones. La gestión de patrimonios amortigua el golpe, pero no lo elimina: si las bolsas caen, el patrimonio de los clientes también cae, y con él las comisiones.\n\nLo conduce Ted Pick, CEO desde 2024, que hizo toda su carrera en la empresa: \"Morgan Stanley reportó otro trimestre sólido, con ingresos de 20.300 M, una ganancia por acción de 3,03 dólares y un retorno sobre el patrimonio tangible de 22,6 %\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares, Morgan Stanley cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio mucho más de lo que le cuesta conseguir capital (para un banco grande, alrededor de 10 % a 12 %) merece cotizar varias veces su patrimonio. Morgan Stanley gana cerca de 18 %, así que una prima tiene sentido. Lo que el mercado está diciendo es que cree que esa rentabilidad es duradera, gracias a la gestión de patrimonios.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Morgan Stanley es una empresa excelente. Se transformó de un banco de inversión volátil en un administrador de patrimonios con ingresos recurrentes, una rentabilidad que pocos bancos alcanzan, un capital holgado y una devolución creciente al accionista.\n\nSu punto débil es su sensibilidad a los mercados: si las bolsas caen fuerte, caen las comisiones, el patrimonio de los clientes y la actividad de banca de inversión, todo al mismo tiempo. Además, el mercado ya la paga con una prima importante sobre su historia. El crítico más duro diría que sus ganancias récord dependen de un mercado alcista que no va a durar para siempre. Es un argumento razonable.\n\nEncaja con quien busca una empresa financiera de calidad, con dividendo creciente y exposición al crecimiento de los patrimonios. No es para quien busca un precio bajo o una empresa que no sufra con las caídas de la bolsa.\n\nEs recomendable revisar la plata nueva que traen los clientes cada trimestre en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la gestión de patrimonios siga creciendo y sosteniendo un margen de 30 % o más.",
+   "pros": [
+    "Rentabilidad alta: retorno sobre patrimonio tangible de 22,6 %.",
+    "Ingresos recurrentes: la gestión de patrimonios tuvo ingresos récord de 9.065 M.",
+    "Capital holgado: CET1 de 14,9 % y recompras de 1.540 M en el trimestre."
+   ],
+   "contras": [
+    "Sensible a los mercados: una caída fuerte de las bolsas afecta a casi todos sus negocios.",
+    "Gestión de inversiones floja: sus ingresos cayeron 12 % en el trimestre.",
+    "Prima de valuación: cotiza muy por encima de su historia respecto de su patrimonio."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "Morgan Stanley es una sociedad controlante financiera con tres segmentos: **Institutional Securities** (asesoramiento financiero, colocación de deuda y acciones, y operaciones en mercados para empresas, gobiernos e instituciones), **Wealth Management** (asesoramiento y gestión del patrimonio de personas) e **Investment Management** (gestión de fondos). Opera en América, Asia, Europa, Medio Oriente y África. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al mercado: cuando suben las bolsas y hay compras de empresas, gana más. **Los ingresos crecieron 0,9 % en 2023, 13,7 % en 2024 y 14,5 % en 2025, hasta 65.966 M.**\n\n**A quién le vende.** A personas con patrimonio alto, a empresas, a gobiernos e instituciones financieras. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Morgan Stanley **es de base de clientes pegajosa, y es estrecha**. En su gestión de patrimonio, el cliente deja el dinero con un asesor que conoce su situación y no lo mueve fácil; las comisiones sobre esos activos son más estables que las de operar en mercados. Se ve en el ROE, que subió de 11,0 % a 15,1 % entre 2022 y 2025.\n\nCompite con Goldman Sachs, JPMorgan, Bank of America (Merrill) y gestoras independientes. Es frágil en el ciclo de los mercados (menos compras de empresas y menos operaciones en años malos), en el riesgo de crédito y en la competencia por talento. La inteligencia artificial puede ayudar a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de Morgan Stanley cuentan **ganancias en fuerte alza ayudadas por el mercado**. Los ingresos fueron de 50.210 M, 50.667 M, 57.621 M y 65.966 M. La ganancia neta fue de 11.029 M en 2022, 9.087 M en 2023, 13.390 M en 2024 y 16.861 M en 2025. La ganancia por acción pasó de 6,15 a 5,18, 7,95, 10,21 y **12,60 en los últimos 12 meses**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **11,0 %, 9,2 %, 12,8 % y 15,1 %**, por encima de la referencia de 12 % en los últimos dos años. El margen neto fue de 22,0 %, 17,9 %, 23,2 % y 25,6 %. El capital invertido pasó de 337.607 M a 528.954 M.\n\nLa mirada crítica: el salto reciente viene en buena parte de mercados fuertes; el año 2023, con menos operaciones, mostró cómo cae la ganancia. Los números de hoy no son un piso.",
-   "balance": "**El capital del banco crece con el negocio.** El capital invertido (lo que financia el negocio) pasó de 337.607 M en 2022 a 528.954 M en los últimos 12 meses, un 57 % más, mientras los ingresos subieron 31 %. Es un banco de los que los reguladores vigilan de cerca, con una parte grande de su capital en operaciones de mercado.\n\nCon el bono a 10 años cerca de 5 %, sus clientes pagan más por el dinero y los valores de los bonos que tiene en cartera se mueven; en un día de caída fuerte de las bolsas como el 22 de octubre, el negocio de mercados se ve afectado. Es un efecto que no aparece en la ganancia anual, y por eso conviene seguir de cerca el capital y las reservas.",
-   "gerencia": "La conduce Ted Pick, presidente del directorio y CEO (56 años, pago de 12,7 M según Yahoo), con dos copresidentes (Dan Simkowitz y Andy Saperstein) y Sharon Yeshaya como directora financiera (45 años). Los pagos son altos, y están ligados al desempeño del banco.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 4,60 por acción (pagado desde 1993; sube 9,3 % por año en 3 años) y recompra acciones (10.871 M en 2022, 5.835 M en 2025 y 7.223 M en los últimos 12 meses). **Las acciones diluidas bajaron de 1.713 M a 1.574 M, un 8,1 % menos.** Cada acción que queda se lleva una porción mayor de la ganancia.",
-   "fortalezas": [
-    "Base de clientes pegajosa en gestión de patrimonio, con comisiones sobre activos.",
-    "ROE en alza hasta 15,1 %, por encima de la referencia de 12 %.",
-    "Ganancia por acción de 12,60 en los últimos 12 meses, más del doble que en 2022.",
-    "Recompras: 8,1 % menos acciones desde 2022.",
-    "Dividendo creciente: 4,60 por acción, 9,3 % anual en 3 años."
-   ],
-   "debilidades": [
-    "Resultados atados al mercado: la ganancia neta cayó 17,6 % en 2023.",
-    "Parte del salto reciente viene de mercados fuertes y no se puede dar por sostenido.",
-    "Pagos ejecutivos altos (12,7 M al CEO).",
-    "Foso estrecho: compite con Goldman, JPMorgan y Bank of America, con servicios parecidos.",
-    "El crítico más duro diría que gran parte de la ganancia depende de operaciones y comisiones que se reducen en un mercado flojo."
-   ],
-   "vigilar": [
-    "ROE: hoy 15,1 %; si baja de 12 %, el negocio perdió la ventaja de los años buenos.",
-    "Ganancia neta: 16.861 M en 2025; si cae con mercados estables, algo se está deteriorando.",
-    "Activos que administra en gestión de patrimonio: Yahoo no los informa, hay que buscarlos en el informe de la empresa.",
-    "Reservas por incobrables y capital regulatorio: son lo que más cambia en una crisis."
-   ],
    "clientes": [
-    "Personas con patrimonio alto",
-    "Empresas y gobiernos",
-    "Inversores institucionales y gestoras de fondos"
+    "Personas y familias con patrimonios para invertir",
+    "Grandes inversores institucionales y fondos",
+    "Empresas y gobiernos (fusiones, salidas a bolsa, deuda)"
    ],
-   "ideal_para": [
-    "Buscan un banco de inversión y gestor de patrimonio con ROE alto y recompras.",
-    "Valoran un dividendo creciente.",
-    "Aceptan que los resultados suban y bajen con los mercados."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 20.300 M (+12 %); ganancia de 4.900 M (+6 %); ganancia por acción de 3,03 dólares (2,80); ROE de 17,8 %; retorno sobre patrimonio tangible de 22,6 %; eficiencia de 67 %; banca de inversión y mercados 10.000 M (+18 %), acciones +41 %; gestión de patrimonios 9.065 M (+10 %, récord), margen de 30,4 %, plata nueva de clientes de 232.400 M; gestión de inversiones 1.459 M (-12 %)",
+     "fuente": "Comunicado de resultados del 3T26, 10/2026",
+     "url": "https://www.morganstanley.com/content/dam/msdotcom/en/about-us-ir/shareholder/3q2026.pdf"
+    },
+    {
+     "dato": "Activos de clientes de 10,5 billones de dólares; CET1 de 14,9 %; recompras de 1.540 M; dividendo trimestral de 1,15 dólares; valor libros por acción de 68,59 dólares (+9 %); frase de Ted Pick",
+     "fuente": "Ídem",
+     "url": "https://www.morganstanley.com/content/dam/msdotcom/en/about-us-ir/shareholder/3q2026.pdf"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias que dependen de la bolsa.",
-    "Buscan resultados estables año a año."
-   ],
+   "ticker": "MS",
    "perfil": "mercados",
    "capas": [],
-   "ticker": "MS",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",

@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.97 (31/10/2026): Análisis Fundamental nuevo, tanda 5
+
+- Reescritas con el formato v4: HD, CAT, HSBC, PM, GE, AMAT, SHEL, NVS, PANW, LRCX y MS. Van 39 de 166.
+- Valuación del día: "por encima de el promedio" ahora sale "por encima del promedio".
+
 ### v1.2.96 (31/10/2026): Análisis Fundamental nuevo, tanda 4
 
 - Reescritas con el formato v4: CSCO, KO, PG, UNH, ORCL y BAC. Van 28 de 166.
