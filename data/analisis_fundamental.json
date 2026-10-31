@@ -4341,54 +4341,70 @@
    }
   },
   "GS": {
-   "resumen": "Goldman Sachs es el banco de inversión más famoso del mundo: asesora a empresas y gobiernos en compras, fusiones y emisiones de deuda y acciones, opera en los mercados para inversores institucionales y administra el patrimonio de clientes ricos e instituciones. Gana plata con comisiones por asesorar y operar, y con una parte de gestión de activos, por lo que sus resultados siguen al mercado. Tiene un **foso estrecho, de marca y de relaciones**: las grandes empresas que van a comprar o vender un negocio llaman primero a los bancos de mayor prestigio, y Goldman está en la punta. Los números mejoraron fuerte: los ingresos pasaron de 47.365 M en 2022 a 58.283 M en 2025, la ganancia neta de 11.261 M a 17.176 M y la ganancia por acción de 30,06 a 51,32 (69,55 en los últimos 12 meses). El ROE subió de 9,6 % a **13,7 %**, y **las acciones bajaron 14,2 %** por recompras (16.125 M en los últimos 12 meses). Su punto débil es la dependencia de los mercados: en 2023 la ganancia neta cayó 24,4 %, y el 22 de octubre el Nasdaq cayó 2,6 %, un recordatorio de lo que pasa cuando hay menos operaciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa financiera, con marca fuerte, ROE de 13,7 % y recompras fuertes, aunque con resultados muy atados al ciclo de los mercados.**",
-   "veredicto": "Buena empresa financiera: marca fuerte y recompras, pero resultados atados al ciclo de mercados",
-   "conclusion": "Goldman Sachs es una buena empresa financiera, no una excelente: tiene una marca de primer nivel, ROE de 13,7 %, ganancia por acción de 69,55 en los últimos 12 meses y 14,2 % menos acciones, pero sus resultados siguen al ciclo de los mercados. Vale la pena seguirla de cerca. Es recomendable investigar el capital regulatorio y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando el mercado se enfríe.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Goldman Sachs: el banco de Wall Street vive su mejor momento en años, y busca ingresos más estables",
+   "resumen": [
+    "Goldman Sachs es uno de los bancos de inversión más prestigiosos del mundo: asesora en fusiones y salidas a bolsa, compra y vende acciones y bonos para grandes inversores y **administra 4,1 billones de dólares** de clientes. Su ventaja es la marca y las relaciones con las empresas y los inversores más grandes del mundo.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 23 %**, a 18.680 M, y su ganancia por acción pasó de 12,25 a 17,01 dólares. Ganó 18,7 dólares por cada 100 de patrimonio.",
+    "Excelente empresa, en un muy buen momento de los mercados, con un negocio de gestión de patrimonios que crece y le da estabilidad, aunque sus ganancias siguen dependiendo mucho de la actividad de Wall Street."
+   ],
+   "introduccion": "Cuando una gran empresa quiere comprar a otra, salir a bolsa o emitir deuda, muchas veces la primera llamada es a Goldman Sachs. Y cuando un fondo gigante quiere comprar o vender millones de acciones sin mover el precio, también.\n\nEse es el negocio clásico de Goldman: vive de la actividad de los mercados. Cuando hay muchas fusiones, salidas a bolsa y movimiento, gana mucho. Cuando los mercados se paralizan, gana poco.\n\nY 2026 viene siendo un gran año. En el tercer trimestre, Goldman tuvo un récord en asesoramiento de fusiones, su segundo mejor trimestre de la historia en compra y venta de acciones, y una ganancia por acción 39 % mayor que un año antes.\n\nPero Goldman aprendió que depender solo de Wall Street es riesgoso. Por eso está haciendo crecer su negocio de gestión de patrimonios, que cobra comisiones recurrentes haya o no fusiones.\n\nEntonces, la pregunta es: ¿cuánto de esta ganancia es duradera, y cuánto es un buen momento de los mercados?",
+   "secciones": [
+    {
+     "titulo": "Banca de inversión y gestión de patrimonios",
+     "texto": "Goldman Sachs tiene dos grandes negocios:\n\n- **Banca global y mercados**: asesoramiento en fusiones y adquisiciones, salidas a bolsa y emisiones de deuda, y compra y venta de acciones, bonos, monedas y materias primas para grandes inversores. En el tercer trimestre tuvo un récord en asesoramiento y su segundo mejor trimestre en acciones.\n- **Gestión de activos y patrimonios**: administra plata de fondos, instituciones y familias ricas. Ingresos de 5.050 M, un 14 % más, con comisiones récord de 3.600 M (+22 %). Administra **4,1 billones de dólares**, y lleva 35 trimestres seguidos recibiendo plata nueva.\n\nSus clientes son grandes empresas, gobiernos, fondos de inversión, fondos de pensión y personas con grandes patrimonios. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **marca** y las **relaciones**. En las operaciones más grandes del mundo, el prestigio del asesor importa, y Goldman es de los primeros que llaman. Además, su tamaño en los mercados le permite mover volúmenes que pocos bancos pueden.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la usa para hacer más eficiente el trabajo de sus analistas y programadores."
+    },
+    {
+     "titulo": "Una rentabilidad que sube con los mercados",
+     "texto": "En un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nGoldman tuvo un ROE de 7,3 % en 2023, un año flojo para los mercados; 13,7 % en 2025; y **18,7 %** en el tercer trimestre de 2026. El promedio de su industria es 17,8 %.\n\n[[grafico:roe]]\n\nEsa variación muestra el gran riesgo de Goldman: sus ganancias suben y bajan con la actividad de los mercados. Por eso la gestión de patrimonios es tan importante: sus comisiones crecieron 22 % y son mucho más estables.\n\nLos ingresos totales pasaron de 46.254 M en 2023 a **58.283 M** en 2025, y en los primeros nueve meses de 2026 ya suman 56.240 M.\n\n[[grafico:ingresos]]\n\nLa ganancia por acción de los primeros nueve meses fue de 55,56 dólares, contra 37,33 un año antes."
+    },
+    {
+     "titulo": "Mucha devolución al accionista",
+     "texto": "Goldman devuelve mucho de lo que gana. En el tercer trimestre de 2026 recompró acciones por 3.000 M y pagó 1.490 M en dividendos.\n\nEl dividendo es de 5,00 dólares por acción por trimestre, y creció 15,9 % por año en los últimos tres.\n\n[[grafico:acciones]]\n\nComo todo banco de inversión, trabaja con mucho apalancamiento: sus activos son unas 17 veces su patrimonio. Eso multiplica la ganancia en los buenos años, pero también las pérdidas en los malos. Los reguladores le exigen un colchón de capital alto para compensarlo.\n\nEl riesgo principal es el de cualquier banco de inversión: si los mercados se paralizan, por una crisis o una recesión, las fusiones, las salidas a bolsa y la compra y venta de acciones caen al mismo tiempo.\n\nLo conduce David Solomon, CEO desde 2018."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares, Goldman cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio más de lo que le cuesta conseguir capital (para un banco grande, alrededor de 10 % a 12 %) merece cotizar por encima de una vez su patrimonio. Goldman gana hoy cerca de 19 %, así que una prima tiene sentido. La pregunta es si esa rentabilidad es duradera o si depende de un buen momento de los mercados.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Goldman Sachs es una empresa excelente. Tiene una de las marcas más fuertes de Wall Street, relaciones con las empresas e inversores más grandes del mundo, una rentabilidad que hoy supera a su industria y un negocio de gestión de patrimonios que crece y le da estabilidad. Y devuelve mucho al accionista.\n\nSu punto débil es la dependencia de los mercados. Sus ganancias suben y bajan con la actividad de Wall Street, y 2026 es un año excepcional. El crítico más duro diría que el mercado paga por Goldman como si los buenos años fueran a durar para siempre. Es un argumento razonable.\n\nEncaja con quien busca una empresa financiera de primer nivel, con dividendo creciente, y tolera los ciclos de los mercados. No es para quien busca ganancias estables.\n\nEs recomendable revisar en cada informe cuánto crecen las comisiones de gestión de patrimonios. Para que la tesis se mantenga, lo más importante es que ese negocio siga creciendo y que el ROE se sostenga por encima de 15 % aun en un año flojo para los mercados.",
+   "pros": [
+    "Marca líder: la primera llamada en las grandes fusiones y salidas a bolsa.",
+    "Patrimonios en alza: comisiones récord de 3.600 M (+22 %).",
+    "Devolución fuerte: 4.490 M entre recompras y dividendos en un trimestre."
+   ],
+   "contras": [
+    "Depende de los mercados: el ROE fue de 7,3 % en 2023.",
+    "Mucho apalancamiento: sus activos son unas 17 veces su patrimonio.",
+    "Año excepcional: parte de la ganancia de 2026 puede no repetirse."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "Goldman Sachs provee servicios financieros a corporaciones, instituciones financieras, gobiernos y personas en América, Europa, Medio Oriente, África y Asia. Opera tres segmentos: **Global Banking & Markets** (asesoría en fusiones y adquisiciones, emisiones de deuda y acciones, y operaciones en mercados), **Asset & Wealth Management** (gestión de activos y patrimonio) y **Platform Solutions**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al mercado: cuando suben las bolsas y hay compras de empresas, gana más. **Los ingresos cayeron 2,3 % en 2023, subieron 15,7 % en 2024 y 8,9 % en 2025, hasta 58.283 M.**\n\n**A quién le vende.** A grandes empresas, gobiernos, instituciones financieras y personas con patrimonio alto. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Goldman Sachs **es de marca y de relaciones, y es estrecha**. Un directorio que va a vender la empresa o a salir a bolsa quiere el banco con más historia y más contactos, y eso le permite cobrar más y tener acceso a las operaciones más grandes. Se ve en el ROE, que subió de 9,6 % a 13,7 % entre 2022 y 2025, por encima de la referencia de 12 %.\n\nCompite con Morgan Stanley, JPMorgan, Bank of America y bancos europeos. Es frágil en el ciclo de los mercados (menos compras y emisiones en años malos), en el riesgo de operar con capital propio y en la competencia por talento. La inteligencia artificial puede ayudar a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de Goldman cuentan **ganancias en fuerte alza, ayudadas por el mercado**. Los ingresos fueron de 47.365 M, 46.254 M, 53.512 M y 58.283 M. La ganancia neta fue de 11.261 M en 2022, 8.516 M en 2023, 14.276 M en 2024 y 17.176 M en 2025. La ganancia por acción pasó de 30,06 a 22,87, 40,54, 51,32 y **69,55 en los últimos 12 meses**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **9,6 %, 7,3 %, 11,7 % y 13,7 %**. El margen neto fue de 23,8 %, 18,4 %, 26,7 % y 29,5 %. El capital invertido pasó de 428.531 M a 582.669 M (+36 %).\n\nLa mirada crítica: la ganancia por acción creció más que la ganancia neta porque las acciones bajaron 14,2 %, y el último año refleja mercados muy favorables. En 2023, con menos operaciones, la ganancia por acción cayó 23,9 %.",
-   "balance": "**El capital del banco crece con el negocio.** El capital invertido (lo que financia el negocio) pasó de 428.531 M en 2022 a 582.669 M en los últimos 12 meses, un 36 % más, mientras los ingresos subieron 23 %. Es un banco de los que los reguladores vigilan de cerca, y con una parte grande de su capital dedicada a operar en mercados.\n\nCon el bono a 10 años cerca de 5 %, los valores de los bonos que tiene se mueven y sus clientes pagan más por el dinero; en un día de caída fuerte de las bolsas como el 22 de octubre, el negocio de mercados se resiente. Eso aparece en el patrimonio y en las reservas más que en la ganancia anual, y por eso conviene seguirlo.",
-   "gerencia": "La conduce David Solomon, presidente del directorio y CEO (63 años, pago de 13,6 M según Yahoo), con John Waldron como presidente y director de operaciones (55 años, pago de 17,0 M) y Denis Coleman como director financiero (50 años). Los pagos son altos, ligados al desempeño del banco.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 20,00 por acción al año (pagado desde 1999; sube 15,9 % por año en 3 años) y recompra acciones por montos crecientes (3.500 M en 2022, 12.360 M en 2025 y 16.125 M en los últimos 12 meses, casi toda la ganancia neta de 2025). **Las acciones diluidas bajaron de 358 M a 307 M, un 14,2 % menos.**",
-   "fortalezas": [
-    "Marca y relaciones de primer nivel en asesoría de compras, emisiones y mercados.",
-    "ROE en alza hasta 13,7 %, por encima de la referencia de 12 %.",
-    "Ganancia por acción de 69,55 en los últimos 12 meses, más del doble que en 2022.",
-    "Recompras fuertes: 14,2 % menos acciones desde 2022.",
-    "Dividendo creciente: 20,00 por acción al año, 15,9 % anual en 3 años."
-   ],
-   "debilidades": [
-    "Resultados atados al mercado: la ganancia neta cayó 24,4 % en 2023.",
-    "Parte del salto reciente viene de mercados muy favorables y no se puede dar por sostenido.",
-    "Recompras de 16.125 M en los últimos 12 meses: el crítico más duro diría que devuelve casi toda la ganancia y deja poco colchón para un año malo.",
-    "Foso estrecho: compite con Morgan Stanley y JPMorgan, con servicios parecidos.",
-    "Pagos ejecutivos altos."
-   ],
-   "vigilar": [
-    "ROE: hoy 13,7 %; si baja de 12 %, el negocio perdió la ventaja de los años buenos.",
-    "Ganancia neta: 17.176 M en 2025; si cae con mercados estables, algo se está deteriorando.",
-    "Activos que administra en gestión de patrimonio: Yahoo no los informa, hay que buscarlos en el informe de la empresa.",
-    "Capital regulatorio y reservas por incobrables: son lo que más cambia en una crisis."
-   ],
    "clientes": [
-    "Grandes empresas y gobiernos",
-    "Instituciones financieras e inversores institucionales",
-    "Personas y familias con patrimonio alto"
+    "Grandes empresas y gobiernos (fusiones, salidas a bolsa, deuda)",
+    "Fondos de inversión y de pensión",
+    "Familias con grandes patrimonios"
    ],
-   "ideal_para": [
-    "Buscan un banco de inversión con marca fuerte, ROE alto y recompras.",
-    "Valoran un dividendo creciente.",
-    "Aceptan que los resultados suban y bajen con los mercados."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 18.680 M (15.180 M un año antes); ganancia de 5.290 M; ganancia por acción de 17,01 dólares (12,25); gestión de activos y patrimonios 5.050 M (+14 %), comisiones récord de 3.600 M (+22 %); activos supervisados de 4,1 billones de dólares; recompras de 3.000 M y dividendos de 1.490 M; dividendo trimestral de 5,00 dólares",
+     "fuente": "Resumen de los resultados del 3T26, 10/2026",
+     "url": "https://www.familywealthreport.com/article.php/Goldman-Sachs-Asset%2C-Wealth-Revenues-Rise-14-Per-Cent-In-Q3-2026"
+    },
+    {
+     "dato": "ROE de 18,7 % y sobre patrimonio tangible de 20,5 %; récord en asesoramiento; segundo mejor trimestre en acciones",
+     "fuente": "Resumen de la conferencia de resultados del 3T26",
+     "url": "https://www.allinvestview.com/earnings/GS/q3-2026/"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de Goldman Sachs",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000886982/000088698226000529/a3q26gsearningsresults.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias que dependen de la bolsa.",
-    "Buscan resultados estables año a año."
-   ],
+   "ticker": "GS",
    "perfil": "mercados",
    "capas": [],
-   "ticker": "GS",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -5642,54 +5658,66 @@
    }
   },
   "BABA": {
-   "resumen": "Alibaba es el mayor grupo de comercio electrónico de China: sus plataformas Taobao y Tmall conectan a marcas y comerciantes con cientos de millones de compradores, y además tiene comercio internacional (AliExpress, Lazada), la nube Alibaba Cloud y otros negocios. Gana plata con publicidad y comisiones que cobra a los comerciantes, con las ventas de su comercio directo y con los servicios de nube. Tiene un **foso estrecho, de efecto de red**: muchos comerciantes están en sus plataformas porque están los compradores, y viceversa, aunque la competencia de Pinduoduo, JD y Douyin le quitó fuerza. Los números de los últimos años se deterioraron: los ingresos crecieron cada vez menos (8,3 %, 5,9 %, 2,7 %), el margen operativo bajó de 14,8 % a **4,2 %** en los últimos 12 meses y el flujo libre pasó de +165.400 M a **-48.451 M de yuanes**, porque la inversión en capital se disparó de 34.352 M a 126.937 M. Lo bueno es que tiene mucha caja (385.697 M contra una deuda de 266.530 M), paga dividendo y **recompró acciones: hay 8,7 % menos que en 2023**. Todas las cifras están en yuanes. Su punto débil es la competencia, la regulación y el riesgo político de ser una empresa china. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: invierte fuerte en nube e inteligencia artificial, y puede ganar o perder. Conclusión: **empresa de calidad regular, con foso estrecho, margen operativo en caída y flujo libre negativo por una inversión récord.**",
-   "veredicto": "Regular: foso estrecho, margen operativo en caída a 4,2 % y flujo libre negativo por una inversión récord",
-   "conclusion": "Alibaba es una empresa de calidad regular: tiene un foso estrecho de efecto de red, mucha caja y 8,7 % menos acciones, pero el margen operativo cayó a 4,2 %, el flujo libre es negativo por una inversión récord y compite con rivales fuertes. Hay que seguirla de cerca. Es recomendable investigar el rendimiento de la inversión en nube e inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre vuelva a ser positivo.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "Alibaba: su nube de IA crece 45 %, pero la guerra del delivery en China le quema la caja",
+   "resumen": [
+    "Alibaba es el gigante del **comercio electrónico** de China (Taobao, Tmall) y dueña de la **mayor nube del país**, hoy volcada a la inteligencia artificial con sus propios modelos (Qwen). Su ventaja es la escala de sus plataformas y su posición en la nube china, donde los gigantes de EE.UU. casi no pueden competir.",
+    "En el trimestre que cerró en junio de 2026, **sus ingresos crecieron 9 %** y la nube creció 45 %. Pero su ganancia ajustada cayó 30 % por la guerra de precios en las entregas rápidas, y su flujo libre de caja es negativo.",
+    "Buena empresa, con un negocio de nube de IA que crece con fuerza y un balance con mucha caja, pero quemando plata en una guerra comercial, con un retorno sobre el capital muy bajo y el riesgo de invertir en China."
+   ],
+   "introduccion": "En China, pedir algo por una aplicación y recibirlo en 30 minutos se volvió una guerra. Meituan, JD.com y Alibaba gastan miles de millones en descuentos y subsidios para ganar clientes en las **entregas rápidas**: comida, bebidas, productos del supermercado.\n\nPara Alibaba, esa guerra tiene un costo enorme. En el trimestre que cerró en junio de 2026, su ganancia ajustada cayó 30 %, y su flujo libre de caja de los últimos 12 meses fue negativo: -48.451 M de yuanes.\n\nAl mismo tiempo, Alibaba tiene otro negocio que vive su mejor momento: la **nube**. Es la mayor de China, y con la inteligencia artificial crece a toda velocidad: 45 % en el último trimestre. Sus productos de IA crecen a más de tres dígitos desde hace 12 trimestres.\n\nEs decir, Alibaba hoy es dos historias a la vez: una que quema caja y otra que la promete.\n\nEntonces, la pregunta es: ¿vale la pena la apuesta, o Alibaba está gastando de más en una pelea que no puede ganar?",
+   "secciones": [
+    {
+     "titulo": "Comercio, entregas rápidas y nube",
+     "texto": "Las cifras de Alibaba están en yuanes chinos. En el trimestre que cerró en junio de 2026:\n\n- **Comercio electrónico en China** (Taobao y Tmall): 110.900 M de yuanes, un 8 % menos. Es el negocio que siempre financió todo lo demás.\n- **Entregas rápidas en China**: 53.300 M de yuanes, un 45 % más. Crece rápido, pero a pérdida.\n- **Nube**: 48.440 M de yuanes, un 45 % más. Los productos de IA ya facturan 12.380 M de yuanes por trimestre.\n- **Comercio internacional** (AliExpress y venta mayorista): AliExpress ya da ganancia.\n\nSus clientes son cientos de millones de consumidores chinos, millones de comerciantes que venden en sus plataformas y miles de empresas que usan su nube.\n\n¿Cuál es su **ventaja**? La **escala** de sus plataformas, que todavía son el lugar donde más se compra en China, y su liderazgo en la **nube china**. Las empresas chinas, por razones políticas y de seguridad, prefieren nubes locales, y Alibaba es la más grande. Además, desarrolla sus propios modelos de IA (Qwen), entre los más usados del mundo en código abierto.\n\nLa inteligencia artificial es su gran oportunidad, pero también una carrera cara: los centros de datos cuestan fortunas."
+    },
+    {
+     "titulo": "Más ventas, menos ganancia",
+     "texto": "Los ingresos crecieron despacio: de 868.687 M de yuanes en su año fiscal 2023 a **1.044.971 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) era de 14,8 % en el año fiscal 2025. En los últimos 12 meses bajó a **4,2 %**. El promedio de su industria es 6,1 %.\n\n[[grafico:margen_operativo]]\n\n¿Qué pasó? Dos cosas a la vez: la guerra de precios en las entregas rápidas, y la inversión en IA. Su división de aplicaciones de IA perdió 13.860 M de yuanes en el último trimestre.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada yuan que pusieron dueños y acreedores), bajó a **2,5 %**. Por encima de 15 % se considera muy bueno; por debajo de lo que cuesta conseguir capital (alrededor de 8 % a 10 %), la empresa no crea valor. Alibaba hoy no lo está creando.\n\nY lo más preocupante es la caja: el **flujo libre** (lo que queda después de invertir) pasó de 165.400 M de yuanes en el año fiscal 2023 a **-48.451 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Un colchón enorme, y el riesgo China",
+     "texto": "Lo que le permite dar esta pelea es su balance. Tiene 385.697 M de yuanes en caja, y su deuda neta (lo que debe menos la caja) equivale a **1,1 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Pero la caja viene bajando: tenía 571.029 M en el año fiscal 2024.\n\nPaga un dividendo chico y recompra acciones, aunque con la caja negativa ese margen se achica.\n\nInvertir en Alibaba tiene riesgos que no aparecen en los balances:\n\n- **El gobierno chino**: en 2020 frenó la salida a bolsa de su filial Ant Group y en 2021 le aplicó una multa récord. La relación mejoró, pero el riesgo sigue.\n- **La tensión entre EE.UU. y China**: restricciones a la venta de chips avanzados para IA, y la posibilidad de que se limite la inversión en empresas chinas.\n- **La estructura legal**: quien compra la acción en EE.UU. no es dueño directo de la empresa china, sino de una sociedad en las Islas Caimán con contratos sobre ella.\n\nLa conduce Eddie Wu, CEO desde 2023: \"Tuvimos un trimestre sólido, impulsado por la mejora en la comercialización de nuestras capacidades de IA\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Alibaba, el PER (cuántos años de ganancia se pagan al comprar la acción) hoy está distorsionado: la ganancia cayó por la guerra de las entregas rápidas y por la inversión en IA.\n\nCon el precio de {precio} dólares por ADR, Alibaba cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nOtro número útil es el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. Alibaba cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces).\n\nLas empresas chinas suelen cotizar con un descuento frente a las de EE.UU. por el riesgo político. Lo que el mercado está pagando en Alibaba es la nube de IA: si sigue creciendo así y la guerra de las entregas termina, la ganancia puede recuperarse rápido. Si la guerra sigue, la caja seguirá negativa.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Alibaba es una buena empresa en un momento difícil. Tiene la mayor nube de China, que crece 45 % con la IA, plataformas de comercio que siguen siendo líderes y un balance con mucha caja para aguantar.\n\nSu punto débil es lo que está gastando y dónde opera. La guerra de las entregas rápidas le derrumbó la ganancia y la caja, su retorno sobre el capital es muy bajo y su negocio principal de comercio en China se achica. Además, invertir en China implica riesgos políticos difíciles de medir. El crítico más duro diría que Alibaba está quemando su caja en una pelea sin ganador claro. Es un argumento serio.\n\nEncaja con quien cree en la nube de IA china y tolera un riesgo político alto. No es para quien busca estabilidad o caja positiva.\n\nPara que la tesis se mantenga, lo más importante es que la nube siga creciendo a ese ritmo y que las pérdidas en las entregas rápidas empiecen a bajar.",
+   "pros": [
+    "Nube de IA: creció 45 % y los productos de IA crecen a más de tres dígitos.",
+    "Líder en China: la mayor nube del país y plataformas de comercio dominantes.",
+    "Colchón de caja: 385.697 M de yuanes para aguantar la pelea."
+   ],
+   "contras": [
+    "Caja negativa: flujo libre de -48.451 M de yuanes en los últimos 12 meses.",
+    "Guerra de precios: la ganancia ajustada cayó 30 % por las entregas rápidas.",
+    "Riesgo China: gobierno, tensión con EE.UU. y estructura legal."
+   ],
+   "calidad": "Buena",
    "riesgo_ia": "moderado",
-   "negocio": "Alibaba provee infraestructura tecnológica y alcance de marketing a comerciantes, marcas y minoristas en China y en el exterior. Opera cuatro segmentos: **Alibaba China E-Commerce Group** (Taobao y Tmall), **Alibaba International Digital Commerce Group**, **Cloud Intelligence Group** y **All Others**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Yahoo etiqueta los años como 2023 a 2026; el ejercicio de Alibaba cierra en marzo, dato público.\n\nEs un negocio de consumo muy ligado a la economía china: **los ingresos crecieron 8,3 % en 2024, 5,9 % en 2025 y 2,7 % en 2026, hasta 1.023.670 M de yuanes**, y llegaron a 1.044.971 M en los últimos 12 meses.\n\n**A quién le vende.** A cientos de millones de consumidores y a millones de comerciantes y marcas. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Alibaba **es de efecto de red, y es estrecha y se erosiona**. Los comerciantes publicitan donde están los compradores y los compradores buscan donde están los comerciantes, y esa red es difícil de armar desde cero. Pero en China hay competidores fuertes (Pinduoduo, JD.com, Douyin de ByteDance, Meituan) y la rentabilidad cayó: el margen operativo pasó de 14,8 % a 4,2 % y el ROIC (retorno sobre el capital) es de solo 2,5 % en los últimos 12 meses.\n\nEs frágil en la competencia de precios de China, en la regulación, en la economía y el consumo chinos y en el riesgo político, por ejemplo la estructura legal con la que las empresas chinas cotizan en Estados Unidos. La nube es un negocio con potencial, pero exige inversión muy grande.",
-   "numeros": "Los números de Alibaba cuentan **un negocio grande y estable en ingresos, pero con la rentabilidad en baja**. Los ingresos fueron de 868.687 M, 941.168 M, 996.347 M y 1.023.670 M de yuanes. El margen operativo fue de 11,9 %, 13,2 %, 14,8 %, 5,8 % y **4,2 %** en los últimos 12 meses. La ganancia neta fue de 72.783 M, 80.009 M, 130.109 M y 103.592 M, y de 73.557 M en los últimos 12 meses.\n\nLa ganancia neta es mayor que el EBIT (44.296 M en los últimos 12 meses), un indicio de ganancias no operativas, por ejemplo de sus inversiones en otras empresas; Yahoo no las detalla. El ROE fue de 7,4 %, 8,1 %, 12,9 %, 9,8 % y **7,0 %**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 165.400 M, 149.664 M, 77.537 M, **-50.724 M** y -48.451 M en los últimos 12 meses. La inversión en capital pasó de 34.352 M a 126.937 M, probablemente por nube e inteligencia artificial, aunque Yahoo no lo detalla.",
-   "balance": "**Balance con mucha caja, pero con la plata saliendo más rápido de lo que entra.** La caja es de 385.697 M y la deuda total de 266.530 M de yuanes en los últimos 12 meses; los intereses se cubren 4,6 veces con el EBIT, contra 15,3 veces en 2025. Yahoo muestra una deuda neta positiva que no cuadra con esas cifras, así que no la usamos.\n\nEl problema no es la deuda, sino que la inversión (126.937 M) supera al flujo operativo (76.213 M), y por eso el flujo libre es negativo y la caja bajó de 571.029 M en 2024 a 385.697 M. Si la inversión no rinde, la caja se sigue gastando.",
-   "gerencia": "La conduce Eddie Wu (Yongming Wu), CEO (50 años, pago de 9,7 M según Yahoo), con Joseph Tsai como presidente ejecutivo (61 años, pago de 5,8 M) y Hong Xu como director financiero (52 años). Es un equipo que apostó fuerte a la nube y la inteligencia artificial.\n\nEn lo que importa, **el uso del capital cambió**: pasó de recomprar mucho (74.746 M, 88.745 M y 86.662 M de yuanes) a una inversión récord en capital; Yahoo muestra solo 7.638 M de recompras en el último ejercicio, dato a verificar. Paga un dividendo de 1,05 por acción (por ADS, en dólares; desde 2023). **Las acciones bajaron de 2.639 M a 2.410 M, un 8,7 % menos.**",
-   "fortalezas": [
-    "Mayor plataforma de comercio electrónico de China, con efecto de red.",
-    "Caja de 385.697 M de yuanes, más que la deuda.",
-    "8,7 % menos acciones desde 2023 y dividendo desde 2023.",
-    "Ingresos de más de 1 billón de yuanes.",
-    "Nube con potencial de crecimiento."
-   ],
-   "debilidades": [
-    "Margen operativo de 14,8 % a 4,2 % en los últimos 12 meses.",
-    "Flujo libre negativo: -48.451 M de yuanes en los últimos 12 meses.",
-    "Crecimiento que se frena: 8,3 %, 5,9 %, 2,7 %.",
-    "Competencia fuerte en China y riesgo regulatorio y político: el crítico más duro diría que la inversión en inteligencia artificial puede no rendir.",
-    "ROIC de 2,5 %, muy bajo."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 4,2 %; si no se recupera, la inversión no está generando rentabilidad.",
-    "Flujo libre: hoy -48.451 M de yuanes; si sigue negativo, la caja de 385.697 M se va gastando.",
-    "Inversión de capital: 126.937 M; si sigue subiendo sin que crezcan los ingresos, el retorno es dudoso.",
-    "Ingresos de la nube: es donde está la apuesta; Yahoo no los informa, hay que buscarlos en el informe."
-   ],
    "clientes": [
     "Cientos de millones de consumidores chinos",
-    "Millones de comerciantes y marcas",
-    "Empresas clientes de la nube y compradores internacionales"
+    "Millones de comerciantes que venden en Taobao y Tmall",
+    "Empresas que usan su nube y sus modelos de IA"
    ],
-   "ideal_para": [
-    "Buscan exposición al consumo y a la nube de China.",
-    "Aceptan riesgo político y regulatorio.",
-    "Valoran una caja grande y un dividendo."
+   "hechos": [
+    {
+     "dato": "Trimestre cerrado en junio de 2026 (en yuanes): ingresos de 268.950 M (+9 %); nube 48.440 M (+45 %); productos de IA 12.380 M; comercio en China 110.900 M (-8 %); entregas rápidas 53.300 M (+45 %); ganancia ajustada antes de intereses (EBITA) de 27.330 M (-30 %); ganancia neta de 10.440 M (-75 %); aplicaciones de IA con pérdida de 13.860 M; frase de Eddie Wu",
+     "fuente": "Resumen del comunicado de resultados del trimestre de junio de 2026, 08/2026",
+     "url": "https://www.retailsector.co.uk/744206-alibaba-revenue-rises-9-to-rmb268-95bn-as-ai-cloud-sales-surge-45/"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del trimestre de junio de 2026",
+     "fuente": "6-K de Alibaba, anexo 99.1",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001577552/000110465926099220/tm2623667d1_ex99-1.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo político y regulatorio de China.",
-    "Buscan flujo libre positivo y márgenes estables."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "BABA",
    "perfil": "consumo",
    "capas": [],
-   "ticker": "BABA",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -6526,56 +6554,67 @@
    }
   },
   "NFLX": {
-   "resumen": "Netflix es el mayor servicio de streaming de series, películas, documentales, juegos y programación en vivo del mundo: los clientes pagan una suscripción mensual para verlo en televisores, celulares y otros dispositivos, con planes con publicidad. Gana plata con las suscripciones y, cada vez más, con la publicidad. Tiene un **foso amplio, de escala y datos**: con cientos de millones de suscriptores reparte el costo de producir contenido y conoce lo que mira cada uno, algo que un competidor chico no puede igualar. Los números son excelentes: los ingresos pasaron de 31.616 M en 2022 a 45.183 M en 2025 (49.735 M en los últimos 12 meses), el margen operativo de 17,8 % a **31,3 %**, la ganancia por acción de 0,99 a 3,46 y el flujo libre es de **11.375 M**, 22,9 % de los ingresos. El ROE es de 50,4 % y **hay 5,4 % menos acciones** que en 2022, con recompras crecientes (12.861 M en los últimos 12 meses). Su punto débil es la competencia de YouTube, Disney, Amazon y otros por el tiempo y la plata de las personas, y que gasta miles de millones por año en contenido. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque puede bajar la barrera para crear contenido. Conclusión: **excelente empresa, con foso amplio, margen operativo de 31,3 % y recompras fuertes, aunque con competencia intensa y gasto alto en contenido.**",
-   "veredicto": "Excelente: foso amplio, margen operativo de 31,3 % y recompras fuertes, con competencia intensa",
-   "conclusion": "Netflix es una excelente empresa: tiene un foso amplio de escala y datos, margen operativo de 31,3 %, flujo libre de 11.375 M, ROE de 50,4 % y 5,4 % menos acciones, pero compite con gigantes y gasta miles de millones en contenido. Vale la pena seguirla de cerca. Es recomendable investigar el origen de la ganancia neta de los últimos 12 meses en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 28 %.",
+   "formato": "v4",
+   "titulo": "Netflix: ganó la guerra del streaming, y el mercado duda de cuánto más puede crecer",
+   "resumen": [
+    "Netflix es el mayor servicio de **streaming** del mundo: series, películas, documentales, juegos y cada vez más eventos en vivo, en más de 190 países. Su ventaja es la escala: reparte el costo de su contenido entre cientos de millones de suscriptores, algo que ningún competidor logra.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 11,8 %**, a 12.874 M, y su ganancia operativa, 37,2 %, con un margen de 34,6 %. Recompró acciones por 4.797 M, un récord. Pero recortó lo que espera de publicidad y de caja para el año.",
+    "Excelente empresa, con márgenes en alza, mucha caja y poca deuda, a la que el mercado hoy paga con mucha más cautela que antes, porque duda de cuánto más puede crecer."
+   ],
+   "introduccion": "Hace unos años, todo Hollywood quiso copiar a Netflix. Disney, Warner, Paramount, Apple, Amazon: todos lanzaron su propio servicio de streaming y gastaron fortunas en contenido. Muchos perdieron miles de millones.\n\nNetflix ganó esa guerra. Hoy es, por lejos, la que más gana con el streaming: en el tercer trimestre de 2026, de cada 100 dólares que facturó, le quedaron casi 35 de ganancia operativa.\n\nY sin embargo, el mercado la paga con mucha más cautela que antes.\n\n¿Por qué? Porque Netflix ya está en casi todas las casas que pueden pagarla. Para seguir creciendo necesita subir precios, vender publicidad y sumar eventos en vivo. Y en el último trimestre, la publicidad creció menos de lo esperado.\n\nEntonces, la pregunta es: ¿el mercado tiene razón en dudar, o está pagando poco por una de las mejores empresas del mundo?",
+   "secciones": [
+    {
+     "titulo": "El negocio de la escala",
+     "texto": "Netflix cobra una suscripción mensual en más de 190 países. Con eso produce y compra contenido: series y películas propias, documentales, juegos, y cada vez más **eventos en vivo**, como partidos de la NFL y peleas de boxeo.\n\nTiene tres formas de crecer:\n\n- **Más suscriptores**, sobre todo fuera de EE.UU.\n- **Precios más altos**: según la empresa, los aumentos de 2026 fueron bien recibidos y la tasa de abandono mejoró.\n- **Publicidad**: un plan más barato, con anuncios. Es la apuesta más nueva, pero creció menos de lo esperado: la empresa bajó lo que espera facturar por publicidad en 2026, de unos 3.000 M a unos 2.700 M.\n\nSus clientes son cientos de millones de hogares en todo el mundo, sin uno que pese.\n\n¿Cuál es su **ventaja**? La **escala**. Una serie cuesta lo mismo si la ven 10 millones o 300 millones de personas. Netflix reparte ese costo entre muchísimos más suscriptores que cualquier competidor, así que puede gastar más en contenido y, aun así, ganar más. Es un círculo virtuoso difícil de romper.\n\nLa inteligencia artificial es un riesgo moderado: puede abaratar la producción de contenido (lo que la ayuda), pero también puede llenar internet de videos gratis que compitan por el tiempo de la gente, como ya hace YouTube."
+    },
+    {
+     "titulo": "Márgenes que no paran de subir",
+     "texto": "Los ingresos crecen de forma pareja: de 31.616 M en 2022 a **49.735 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nLo más impresionante es el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar): pasó de 17,8 % en 2022 a **31,3 %** en los últimos 12 meses, y llegó a 34,6 % en el último trimestre. El promedio de su industria es 10,6 %.\n\n[[grafico:margen_operativo]]\n\n¿Por qué sube? Porque el gasto en contenido crece más despacio que los ingresos. Cada suscriptor nuevo o cada aumento de precio deja casi todo como ganancia.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), pasó de 13,6 % a **29,6 %**. Por encima de 15 % se considera muy bueno.\n\nY la caja acompaña: **11.375 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara todo 2026, la empresa espera ingresos de unos 51.100 M (+13 %), un margen operativo de 31,5 % y un flujo libre de unos 12.000 M, algo menos que los 12.500 M que esperaba antes. Para el cuarto trimestre espera un margen más bajo, de 26 %."
+    },
+    {
+     "titulo": "Recompras récord y poca deuda",
+     "texto": "Netflix usa su caja para recomprar acciones. En el tercer trimestre recompró por **4.797 M**, el trimestre más grande de su historia, y le quedan unos 22.300 M autorizados. Las acciones en circulación bajaron 3,3 % en un año.\n\n[[grafico:acciones]]\n\nNo paga dividendo: prefiere recomprar.\n\nLa deuda es baja. La deuda neta (lo que debe menos la caja) es de 6.938 M y equivale a **0,2 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 18 veces (por encima de 3 se considera sano).\n\nEl riesgo principal no está en el balance, sino en la competencia por el tiempo de la gente: YouTube, las redes sociales, los videojuegos y los otros servicios de streaming. Netflix no compite solo contra Disney; compite contra todo lo que se puede mirar en una pantalla.\n\nLa conducen dos co-CEOs, Ted Sarandos (contenido) y Greg Peters (producto y negocio)."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Netflix, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Netflix cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nDurante años, el mercado pagó por Netflix múltiplos altísimos, porque crecía muy rápido. Con un crecimiento más moderado, la pregunta es cuánto pagar: una empresa con márgenes en alza, ganancia por acción creciendo fuerte y recompras récord merece una prima; una que ya llegó a su techo, no. Esa es la duda del mercado.\n\nTambién conviene mirar el **precio sobre el flujo libre de caja** (cuántos años de caja libre se pagan): {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Netflix es una empresa excelente. Ganó la guerra del streaming, tiene una escala que ningún competidor iguala, márgenes que suben año tras año, un retorno sobre el capital alto, mucha caja, poca deuda y recompras récord.\n\nSu punto débil es el crecimiento futuro. Ya está en la mayoría de los hogares que pueden pagarla, la publicidad creció menos de lo esperado y compite por el tiempo de la gente con YouTube, las redes y los videojuegos. El crítico más duro diría que Netflix es un negocio que ya llegó a su techo, y que de acá en más solo puede crecer subiendo precios. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa de altísima calidad que el mercado hoy paga por debajo de su historia, y tolera la incertidumbre sobre su crecimiento. No es para quien busca dividendos.\n\nPara que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo a doble dígito y que la publicidad empiece a acelerar.",
+   "pros": [
+    "Escala imbatible: reparte el costo del contenido entre más suscriptores que nadie.",
+    "Márgenes en alza: margen operativo de 34,6 % en el último trimestre.",
+    "Recompras récord: 4.797 M en un solo trimestre."
+   ],
+   "contras": [
+    "Crecimiento más lento: ingresos +11,8 % en el último trimestre.",
+    "Publicidad floja: bajó su meta de 2026 de unos 3.000 M a unos 2.700 M.",
+    "Competencia por el tiempo: YouTube, redes sociales y videojuegos."
+   ],
    "calidad": "Excelente",
    "riesgo_ia": "moderado",
-   "negocio": "Netflix presta servicios de entretenimiento a nivel mundial. Ofrece series de televisión, documentales, largometrajes, juegos y programación en vivo de diversos géneros e idiomas. Los miembros reciben el contenido en streaming en televisores, reproductores y otros dispositivos conectados a internet. Yahoo no informa cuánto viene de suscripciones y cuánto de publicidad, y no lo vamos a inventar. Las cifras por acción están ajustadas por la división de acciones.\n\nEs un negocio de suscripción que volvió a crecer rápido: **los ingresos crecieron 6,7 % en 2023, 15,6 % en 2024 y 15,9 % en 2025, hasta 45.183 M**, y llegaron a 49.735 M en los últimos 12 meses.\n\n**A quién le vende.** A cientos de millones de suscriptores en más de cien países, y a anunciantes. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Netflix **es de escala y datos, y es amplia**. Con tantos suscriptores, el costo de cada producción se reparte entre más gente, y el conocimiento de lo que mira cada uno ayuda a elegir qué producir y a recomendar. Se ve en los números: el margen bruto subió de 39,4 % a 50,7 % y el ROIC (retorno sobre el capital) de 13,6 % a 29,6 %.\n\nCompite con YouTube, Disney+, Amazon Prime Video, Max, Apple TV y con las redes sociales por el tiempo de las personas. Es frágil en la inversión creciente en contenido y derechos deportivos, en que los suscriptores cambien de servicio con facilidad y en la saturación de los mercados maduros. La inteligencia artificial puede bajar los costos de producir contenido, lo que también facilita la entrada de competidores.",
-   "numeros": "Los números de Netflix cuentan **un negocio que creció y ganó mucho margen**. Los ingresos fueron de 31.616 M, 33.723 M, 39.001 M y 45.183 M, y de 49.735 M en los últimos 12 meses. El margen operativo pasó de 17,8 % a 20,6 %, 26,7 %, 29,5 % y **31,3 %**. La ganancia neta fue de 4.492 M, 5.408 M, 8.712 M y 10.981 M, y de 14.767 M en los últimos 12 meses. La ganancia por acción fue de 0,99, 1,20, 1,98, 2,53 y **3,46**.\n\nLa ganancia neta de los últimos 12 meses (14.767 M) es casi igual al EBIT (15.565 M), algo poco común porque hay impuestos; probablemente incluye una partida no operativa que Yahoo no explica, y conviene verificarlo. El flujo libre (lo que queda después de las inversiones) fue de 1.619 M, 6.926 M, 6.922 M y 9.461 M, y de **11.375 M en los últimos 12 meses**. El ROE pasó de 21,6 % a 50,4 %.\n\nLa mirada crítica: parte de la mejora viene de los aumentos de precio y de la publicidad, que tienen un límite.",
-   "balance": "**Balance sólido y deuda bajando.** La deuda total es de 15.132 M y la caja de 8.223 M en los últimos 12 meses; la deuda neta/EBITDA es de 0,19x, que multiplicado por 12 son unos 2 meses de EBITDA. Los intereses se cubren 18 veces con el EBIT.\n\nEl patrimonio neto creció de 20.777 M a 29.286 M. Con estos números, la empresa puede financiar contenido y recomprar acciones sin presión financiera.",
-   "gerencia": "La conducen dos copresidentes y co-CEO: Ted Sarandos (60 años, pago de 12,5 M según Yahoo) y Greg Peters (54 años, pago de 11,8 M), con Spencer Neumann como director financiero (55 años, pago de 6,8 M). Son pagos altos, pero acompañados de resultados.\n\nEn lo que importa, **el uso del capital es de recompras fuertes**: no recompró en 2022, y luego 6.045 M, 6.264 M, 9.127 M y 12.861 M en los últimos 12 meses. No paga dividendo. **Las acciones bajaron de 4.513 M a 4.268 M, un 5,4 % menos.** Las recompras de los últimos 12 meses (12.861 M) fueron superiores al flujo libre (11.375 M).",
-   "fortalezas": [
-    "Margen operativo de 17,8 % a 31,3 %.",
-    "Flujo libre de 11.375 M en los últimos 12 meses, 22,9 % de los ingresos.",
-    "ROE de 50,4 % y ROIC de 29,6 %.",
-    "Ingresos creciendo cerca de 16 % por año en 2024 y 2025.",
-    "5,4 % menos acciones y deuda neta de solo 0,19 veces el EBITDA."
-   ],
-   "debilidades": [
-    "Competencia intensa de YouTube, Disney, Amazon y otros.",
-    "Gasto enorme en contenido: el crítico más duro diría que un par de años flojos de producciones pueden costar suscriptores.",
-    "Ganancia neta de los últimos 12 meses con una posible partida única.",
-    "Recompras mayores que el flujo libre.",
-    "Crecimiento apoyado en aumentos de precio y publicidad."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 31,3 %; si baja, el gasto en contenido o la competencia pesan más.",
-    "Ingresos: crecen cerca de 16 %; si bajan de 10 %, el crecimiento madura.",
-    "Gasto en contenido: Yahoo no lo informa, hay que buscarlo en el informe.",
-    "Flujo libre: hoy 11.375 M; tiene que cubrir las recompras."
-   ],
    "clientes": [
-    "Cientos de millones de suscriptores en el mundo",
-    "Anunciantes que pagan por el plan con publicidad",
-    "Jugadores de juegos incluidos en la suscripción"
+    "Cientos de millones de hogares suscriptores",
+    "Anunciantes (plan con publicidad)",
+    "Socios de distribución: operadores de cable y telefonía"
    ],
-   "ideal_para": [
-    "Buscan un negocio de suscripción con margen en alza y flujo libre alto.",
-    "Valoran recompras fuertes sin deuda relevante.",
-    "Aceptan competir contra gigantes tecnológicos."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 12.874 M (+11,8 %); ganancia operativa de 4.459 M (+37,2 %), margen de 34,6 %; ganancia de 3.664 M; ganancia por acción de 0,87 dólares (0,59); flujo libre de 2.884 M; recompras de 4.797 M (récord); publicidad 2026 esperada en unos 2.700 M (antes unos 3.000 M)",
+     "fuente": "Análisis de la carta a los accionistas del 3T26, 20/10/2026",
+     "url": "https://beancount.io/blog/2026/10/20/netflix-fy2026-q3-earnings-analysis"
+    },
+    {
+     "dato": "Guía: 4T26 ingresos de unos 13.400 M y margen de 26 %; 2026 ingresos de unos 51.100 M, margen operativo de 31,5 % y flujo libre de unos 12.000 M (antes 12.500 M)",
+     "fuente": "Carta a los accionistas (8-K, anexo 99.1)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001065280/000106528026000290/ex991_q326.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendos.",
-    "Les preocupa el gasto en contenido y la competencia."
-   ],
+   "ticker": "NFLX",
    "perfil": "general",
    "capas": [
     "compounder"
    ],
-   "ticker": "NFLX",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -6962,54 +7001,67 @@
    }
   },
   "RTX": {
-   "resumen": "RTX es una de las mayores empresas aeroespaciales y de defensa del mundo: fabrica motores de aviones (Pratt & Whitney), sistemas y piezas para aeronaves (Collins Aerospace) y misiles, radares y sistemas de defensa (Raytheon), y vende después años de repuestos y servicios. Gana plata con la venta de motores y sistemas, y sobre todo con el mantenimiento y los repuestos durante la vida de cada motor, que dura décadas. Tiene un **foso estrecho, de base instalada y contratos de largo plazo**: cada motor vendido genera ingresos de servicio durante 20 o 30 años, y los programas de defensa tardan décadas en reemplazarse. Los números mejoraron fuerte tras un 2023 flojo: los ingresos pasaron de 67.074 M en 2022 a 88.603 M en 2025 (95.987 M en los últimos 12 meses), el margen operativo de 5,2 % a **11,8 %**, la ganancia por acción de 2,23 a **6,16** y el flujo libre llegó a **9.127 M**. Hay 8,1 % menos acciones que en 2022 y el dividendo se paga desde 1962. Su punto débil es el ROIC bajo (8,6 %), los problemas de calidad en motores que costaron miles de millones en 2023 (dato público) y que la deuda aún pesa (**la deuda neta es 1,67 veces el EBITDA**). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **buena empresa, con foso estrecho, margen operativo en alza y flujo libre creciente, aunque con ROIC de 8,6 % y riesgo de calidad en motores.**",
-   "veredicto": "Buena: margen operativo en alza y flujo libre creciente, con ROIC de 8,6 % y riesgo de calidad en motores",
-   "conclusion": "RTX es una buena empresa: tiene un foso estrecho de base instalada, margen operativo de 11,8 %, ganancia por acción de 6,16 y flujo libre de 9.127 M, pero el ROIC es de solo 8,6 % y los problemas de calidad de 2023 muestran que el riesgo existe. Vale la pena seguirla de cerca. Es recomendable investigar la cartera de pedidos y los cargos por calidad en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo siga subiendo sin nuevos cargos.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "RTX Corporation es una empresa aeroespacial y de defensa que provee sistemas y servicios a clientes comerciales, militares y gubernamentales en todo el mundo. Opera tres segmentos: **Collins Aerospace** (productos aeroespaciales y de defensa, y servicios de posventa para fabricantes de aviones y aerolíneas), **Pratt & Whitney** (motores de aviones) y **Raytheon** (defensa, misiles y radares). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de ciclo largo: **los ingresos crecieron 2,8 % en 2023, 17,1 % en 2024 y 9,7 % en 2025, hasta 88.603 M**, y llegaron a 95.987 M en los últimos 12 meses.\n\n**A quién le vende.** A fabricantes de aviones, aerolíneas, gobiernos y ministerios de defensa. **Ningún cliente pesa de forma decisiva**, aunque el gobierno de Estados Unidos es el mayor, dato público.",
-   "foso": "La ventaja de RTX **es de base instalada y contratos de largo plazo, y es estrecha**. Cada motor vendido genera ingresos de repuestos y mantenimiento durante décadas, y las aerolíneas no pueden cambiar de proveedor sin cambiar de motor. En defensa, los programas de misiles y radares tardan años en reemplazarse y exigen homologación. Pero la rentabilidad no es la de un foso ancho: el ROIC es de 8,6 % y el margen operativo es de 11,8 %.\n\nCompite con GE Aerospace, Rolls-Royce, Boeing, Lockheed Martin y Northrop. Es frágil en los problemas de calidad (costó miles de millones en 2023), en la dependencia del gasto de defensa de los gobiernos y en el ciclo de la aviación comercial. El contexto actual, con la guerra con Irán, puede favorecer la demanda de defensa. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de RTX cuentan **una recuperación fuerte desde un 2023 flojo**. Los ingresos fueron de 67.074 M, 68.920 M, 80.738 M y 88.603 M, y de 95.987 M en los últimos 12 meses. El margen operativo fue de 8,2 %, 5,2 %, 8,1 %, 10,5 % y **11,8 %**. La ganancia neta fue de 5.197 M, 3.195 M, 4.774 M y 6.732 M, y de 8.403 M en los últimos 12 meses. La ganancia por acción fue de 3,50, 2,23, 3,55, 4,96 y **6,16** (+76 % desde 2022).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 4.393 M, 4.717 M, 3.923 M y 7.448 M, y de **9.127 M en los últimos 12 meses**, 9,5 % de los ingresos. El ROE fue de 7,2 %, 5,3 %, 7,9 %, 10,3 % y 12,1 %, y el ROIC de 3,0 % a 8,6 %.\n\nLa mirada crítica: el capital invertido (106.629 M) es enorme, y con un ROIC de 8,6 % apenas rinde lo que cuesta.",
-   "balance": "**Deuda moderada y bajando.** La deuda total es de 38.874 M y la caja de 9.173 M en los últimos 12 meses; la deuda neta/EBITDA es de 1,67x, que multiplicado por 12 son unos 20 meses de EBITDA. Los intereses se cubren 7,0 veces con el EBIT, contra 2,2 veces en 2023.\n\nLa deuda total bajó de 45.239 M a 38.874 M, y el patrimonio neto subió de 59.798 M a 69.250 M. Con el flujo libre creciendo, el balance se fortalece. Hay un capital invertido grande, parte de él en valores de compras anteriores (llamadas 'plusvalías' o goodwill).",
-   "gerencia": "La conduce Chris Calio, presidente y CEO (51 años, pago de 7,2 M según Yahoo), con Neil Mitchill como director financiero (49 años, pago de 3,9 M). Es un equipo que tuvo que resolver los problemas de calidad de los motores.\n\nEn lo que importa, **el uso del capital es de dividendo y reducción de deuda**: paga un dividendo de 2,92 por acción (pagado desde 1962, 65 años; sube 7,3 % por año en 3 años; 3.796 M en los últimos 12 meses, 42 % del flujo libre) y recompró 2.803 M en 2022 y 12.870 M en 2023, luego casi nada. **Las acciones bajaron de 1.486 M a 1.365 M, un 8,1 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 5,2 % a 11,8 % y ganancia por acción de 2,23 a 6,16.",
-    "Flujo libre de 9.127 M en los últimos 12 meses, el más alto de los últimos años.",
-    "Ingresos de servicio sobre una base instalada de décadas.",
-    "Dividendo pagado desde 1962 y creciendo 7,3 % por año.",
-    "Deuda total bajando de 45.239 M a 38.874 M."
+   "formato": "v4",
+   "titulo": "RTX: misiles, motores y sistemas de avión, con una cartera de pedidos de 340.000 M",
+   "resumen": [
+    "RTX es uno de los mayores grupos de **defensa y aviación** del mundo: fabrica el sistema de defensa aérea Patriot y misiles (Raytheon), motores de avión (Pratt & Whitney) y sistemas para aviones comerciales y militares (Collins). Su ventaja es una base instalada enorme y contratos de décadas con gobiernos y aerolíneas.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 11 %**, a 25.000 M, y su ganancia ajustada por acción, 33 %. Recibió pedidos nuevos por más de 81.000 M y su cartera llegó a **340.000 M**. Subió lo que espera ganar en el año.",
+    "Muy buena empresa, con una cartera de pedidos de más de tres años de ventas y márgenes en alza, aunque su retorno sobre el capital todavía es bajo y el problema de los motores GTF sigue pesando en Pratt & Whitney."
    ],
-   "debilidades": [
-    "ROIC de solo 8,6 %.",
-    "Problemas de calidad en motores: el crítico más duro diría que el costo de 2023 puede repetirse.",
-    "Dependencia del gasto de defensa de los gobiernos.",
-    "Margen bruto de 21,1 %, bajo para una empresa tecnológica.",
-    "Sin recompras desde 2023."
+   "introduccion": "El sistema de defensa aérea Patriot, que protege ciudades y bases de los ataques con misiles, lo fabrica Raytheon. Con la guerra con Irán, la de Ucrania y el rearme de Europa, los gobiernos del mundo están comprando misiles y defensas aéreas como hacía décadas no compraban.\n\nRaytheon es una de las tres partes de RTX. Las otras dos son Pratt & Whitney, que fabrica motores para aviones comerciales y militares (incluido el del caza F-35), y Collins Aerospace, que hace de todo dentro de un avión: frenos, trenes de aterrizaje, aviónica, asientos.\n\nEn el tercer trimestre de 2026, RTX recibió pedidos nuevos por más de 81.000 M, más de tres veces lo que vendió. Su cartera de pedidos pendientes llegó a 340.000 M.\n\nPero RTX también carga con un problema que le costó caro: en 2023 descubrió una falla en un material de sus motores GTF, que obligó a retirar cientos de motores para revisarlos.\n\nEntonces, la pregunta es: ¿puede RTX convertir esa cartera gigante en ganancias de calidad?",
+   "secciones": [
+    {
+     "titulo": "Tres negocios que viven de contratos largos",
+     "texto": "RTX tiene tres negocios. En el tercer trimestre de 2026:\n\n- **Collins Aerospace** (sistemas para aviones comerciales y militares): 8.382 M, +10 %, con un margen ajustado de 21,3 %, contra 15,7 % un año antes.\n- **Pratt & Whitney** (motores): 9.231 M, +10 %, con un margen ajustado de 10,5 %. Tuvo un cargo de 363 M por la quiebra de un cliente.\n- **Raytheon** (misiles, radares y defensa aérea): 8.031 M, +14 %, con un margen ajustado de 14,1 %.\n\nDe los 340.000 M de cartera, 176.000 M son de aviación comercial y 164.000 M de defensa.\n\nSus clientes son el gobierno de EE.UU. (su cliente más grande) y gobiernos aliados, aerolíneas, Airbus, Boeing (BA) y empresas que alquilan aviones. En defensa, el gobierno de EE.UU. pesa mucho: es un cliente seguro, pero también decide cuánto paga.\n\n¿Cuál es su **ventaja**? La **base instalada** y los **contratos largos**. Un motor de avión o un sistema de misiles se usa durante décadas, y necesita repuestos, mantenimiento y mejoras que solo el fabricante puede dar. Y los gobiernos rara vez cambian de proveedor de misiles: lleva años certificar uno nuevo.\n\nLa inteligencia artificial no amenaza este negocio; en todo caso, la usa en sus sistemas de defensa."
+    },
+    {
+     "titulo": "Márgenes que se recuperan",
+     "texto": "Los ingresos crecieron de 67.074 M en 2022 a **95.987 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) cayó a 5,2 % en 2023 por los cargos del problema de los motores GTF, y desde entonces se recupera: **11,8 %** en los últimos 12 meses. El promedio de su industria es 8,7 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de apenas **8,6 %**. Por encima de 15 % se considera muy bueno; por debajo de lo que cuesta conseguir capital (alrededor de 8 % a 10 %), la empresa no crea valor. ¿Por qué tan bajo? Porque RTX nació en 2020 de la fusión de United Technologies y Raytheon, y carga con mucho capital registrado de esa operación. El promedio de su industria es 16,0 %.\n\nLa ganancia ajustada por acción del trimestre creció 33 %, a 2,26 dólares. Ojo: 0,25 dólares vinieron de la recuperación de aranceles pagados, algo que no se repite.\n\nPara 2026, la empresa ahora espera ventas de 97.000 M a 97.500 M y una ganancia ajustada de 7,65 a 7,75 dólares por acción."
+    },
+    {
+     "titulo": "Deuda en baja y una caja que crece",
+     "texto": "La deuda neta (lo que debe menos la caja) bajó de 37.240 M en 2023 a **28.206 M**, y equivale a **1,7 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año) subió de 2,2 a **7,0 veces**. Por encima de 3 se considera sano.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **9.127 M** en los últimos 12 meses, más del doble que en 2024. La empresa espera entre 9.000 M y 9.200 M en 2026. En el tercer trimestre bajó a 2.119 M, frente a 4.025 M un año antes.\n\n[[grafico:flujo_libre]]\n\nEn 2026 no recompró acciones: usa la caja para bajar deuda y pagar el dividendo (2,92 dólares por acción por año), que creció 7,3 % por año en los últimos tres.\n\nLo conduce Chris Calio, CEO desde 2024: \"Nuestra sólida ejecución y foco operativo en el tercer trimestre le permitieron a RTX lograr un crecimiento orgánico de ventas de dos dígitos\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 11,8 %; si vuelve a bajar, los costos de calidad o de inflación pesan.",
-    "Flujo libre: hoy 9.127 M; tiene que seguir creciendo para pagar dividendo y deuda.",
-    "Cartera de pedidos: Yahoo no la informa, hay que buscarla en el informe.",
-    "Cargos por calidad en Pratt & Whitney: Yahoo no los informa, hay que buscarlos en el informe."
+   "valuacion": {
+    "texto": "En RTX, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para 2026: unos 7,70 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, RTX cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nLas empresas de defensa suelen cotizar a múltiplos estables, porque sus ingresos dependen de presupuestos de gobierno que se fijan con años de anticipación. Lo que hoy sostiene el precio es la cartera de pedidos: 340.000 M asegura ventas por varios años. Lo que lo puede bajar es un recorte del gasto en defensa o un nuevo problema con los motores.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 7.7,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (7,65 a 7,75 dólares)"
+   },
+   "conclusion": "RTX es una muy buena empresa. Tiene posiciones dominantes en misiles, motores y sistemas de avión, una cartera de pedidos de 340.000 M, márgenes que se recuperan, una deuda que baja y una demanda de defensa en máximos por las guerras y el rearme.\n\nSu punto débil es la calidad del retorno: un ROIC de 8,6 %, por debajo de su industria, y un negocio de motores que todavía arrastra el problema de los GTF. Además, depende mucho del presupuesto de defensa de EE.UU. El crítico más duro diría que RTX vende mucho, pero gana poco sobre el capital que tiene invertido. Es un argumento a tener en cuenta.\n\nEncaja con quien busca exposición a defensa y aviación, con ingresos asegurados por años. No es para quien busca un retorno sobre el capital alto o un dividendo alto.\n\nPara que la tesis se mantenga, lo más importante es que los márgenes sigan subiendo y que la cartera de pedidos se convierta en caja.",
+   "pros": [
+    "Cartera gigante: 340.000 M en pedidos, más de tres años de ventas.",
+    "Defensa en auge: pedidos nuevos por más de 81.000 M en un trimestre.",
+    "Márgenes en alza: Collins pasó de 15,7 % a 21,3 % de margen ajustado."
    ],
+   "contras": [
+    "Retorno bajo: ROIC de 8,6 %, contra 16,0 % de su industria.",
+    "Motores GTF: el problema de 2023 todavía pesa en Pratt & Whitney.",
+    "Dependencia: el gobierno de EE.UU. es su mayor cliente y fija los precios."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Fabricantes de aviones y aerolíneas",
-    "Gobiernos y ministerios de defensa",
-    "Operadores de aeronaves militares"
+    "Gobierno de EE.UU. y gobiernos aliados",
+    "Aerolíneas y empresas que alquilan aviones",
+    "Airbus y Boeing (BA)"
    ],
-   "ideal_para": [
-    "Buscan exposición a aviación comercial y defensa.",
-    "Valoran dividendo de 65 años y flujo libre creciente.",
-    "Aceptan un ROIC todavía modesto."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 24.965 M (+11 %; +12 % orgánico); ganancia por acción de 1,89 dólares y ajustada de 2,26 (+33 %), con 0,25 por recuperación de aranceles; Collins 8.382 M (margen ajustado de 21,3 %); Pratt & Whitney 9.231 M (10,5 %), cargo de 363 M por la quiebra de un cliente; Raytheon 8.031 M (14,1 %); cartera de 340.000 M (176.000 M comercial, 164.000 M defensa); pedidos de más de 81.000 M; flujo libre de 2.119 M",
+     "fuente": "Comunicado de resultados del 3T26, 20/10/2026",
+     "url": "https://www.rtx.com/news/news-center/2026/10/20/rtx-reports-q3-2026-results"
+    },
+    {
+     "dato": "Guía 2026 (subida): ventas de 97.000 M a 97.500 M; ganancia ajustada por acción de 7,65 a 7,75 dólares; flujo libre de 9.000 M a 9.200 M; sin recompras en 2026; frase de Chris Calio",
+     "fuente": "Ídem",
+     "url": "https://www.rtx.com/news/news-center/2026/10/20/rtx-reports-q3-2026-results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo de fallas de calidad.",
-    "Buscan recompras fuertes."
-   ],
+   "ticker": "RTX",
    "perfil": "general",
    "capas": [],
-   "ticker": "RTX",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7839,56 +7891,67 @@
    }
   },
   "TXN": {
-   "resumen": "Texas Instruments diseña, fabrica y vende semiconductores a diseñadores y fabricantes de productos electrónicos en Estados Unidos, China, el resto de Asia, Europa, Medio Oriente, África y Japón. Opera dos segmentos: Analog, con chips de energía y de señal, y Embedded Processing, con microcontroladores y procesadores. Gana plata vendiendo chips baratos y duraderos que quedan diseñados dentro de productos que se fabrican durante años. Tiene un **foso amplio, de costo de fabricación y portfolio**: fabrica gran parte de sus chips en plantas propias, lo que le baja el costo, y sus clientes ya diseñaron sus productos con esos chips, por lo que cambiar es caro. Los números muestran una empresa de alta rentabilidad en un ciclo bajo y ahora en recuperación: el margen operativo fue de 51,9 % en 2022, cayó a 34,1 % en 2024 y llegó a **41,1 %** en los últimos 12 meses, con ROIC de **22,7 %**. Los ingresos de los últimos 12 meses (20.766 M) ya superan el pico de 2022. Pagó dividendo desde 1972, pero entre 2023 y 2025 los dividendos (4.557 M, 4.795 M y 4.999 M) superaron al flujo libre (1.349 M, 1.498 M y 2.603 M) porque invirtió 4.500 M a 5.000 M por año en nuevas plantas; la deuda subió a 13.555 M. Su punto débil es esa presión sobre el flujo libre y el ciclo de la industria. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso amplio, margen operativo de 41,1 % y ROIC de 22,7 %, aunque con dividendo que superó el flujo libre durante tres años y deuda en alza.**",
-   "veredicto": "Muy buena: foso amplio, margen operativo de 41,1 % y ROIC de 22,7 %, con dividendo que superó el flujo libre tres años y deuda en alza",
-   "conclusion": "Texas Instruments es una empresa de muy buena calidad: tiene un foso amplio de costo y portfolio, margen operativo de 41,1 %, ROIC de 22,7 % y dividendo desde 1972, pero entre 2023 y 2025 el dividendo superó al flujo libre y la deuda subió a 13.555 M. Vale la pena seguirla de cerca. Es recomendable investigar el plan de inversiones y el flujo libre normalizado en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo de forma sostenida.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Texas Instruments diseña, fabrica y vende semiconductores a diseñadores y fabricantes de productos electrónicos en Estados Unidos, China, el resto de Asia, Europa, Medio Oriente, África, Japón y a nivel internacional. Opera dos segmentos: **Analog** (chips de energía para gestionar los requerimientos de potencia y otros) y **Embedded Processing**. Yahoo no informa cuánto aporta cada segmento ni cada industria final, y no lo vamos a inventar.\n\nEs un negocio de chips con ciclo: **los ingresos cayeron 12,5 % en 2023 y 10,7 % en 2024, y subieron 13,0 % en 2025, hasta 17.682 M**, y llegan a 20.766 M en los últimos 12 meses.\n\n**A quién le vende.** A miles de fabricantes de productos electrónicos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Texas Instruments **es de costo y de portfolio, y es amplia**. Fabricar sus propios chips en plantas modernas le da un costo por chip menor que el de competidores que dependen de terceros, y su catálogo de decenas de miles de productos estándar permite a un cliente comprar casi todo a un solo proveedor. Los chips analógicos duran años en cada producto y sus clientes no los cambian sin necesidad. Se ve en el margen operativo, que en el punto más bajo del ciclo (2024) todavía fue de 34,1 %, y en el ROIC de 15,4 % a 38,9 %.\n\nCompite con Analog Devices, Infineon, STMicroelectronics, NXP, Microchip y fabricantes chinos que bajan precios. Es frágil en el ciclo de la industria, en los precios de los competidores chinos y en la exigencia de inversión en plantas. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de Texas Instruments cuentan **un ciclo de baja y una recuperación en marcha**. Los ingresos fueron de 20.028 M, 17.519 M, 15.641 M y 17.682 M, y de 20.766 M en los últimos 12 meses. El EBIT fue de 10.397 M, 7.331 M, 5.341 M y 6.140 M, y de 8.538 M (margen operativo de 41,1 %). La ganancia neta fue de 8.749 M, 6.510 M, 4.799 M y 5.001 M, y de 7.113 M. La ganancia por acción fue de 9,41, 7,07, 5,20, 5,45 y **7,71**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 5.923 M, 1.349 M, 1.498 M, 2.603 M y **7.318 M** en los últimos 12 meses; Yahoo marca ese último valor como fuera de lo común y se explica porque las inversiones bajaron de 4.550 M a 2.578 M. El ROIC fue de 38,9 %, 22,9 %, 15,4 %, 17,7 % y 22,7 %.\n\nLa mirada crítica: el flujo libre de 7.318 M sigue sin ser un nivel firme hasta que se confirme que las inversiones en plantas se estabilizan en 2.500 M.",
-   "balance": "**Deuda en alza pero cómoda.** La deuda total es de 13.555 M y la caja de 8.142 M; la deuda neta es de 9.344 M y la deuda neta/EBITDA es de 0,85x, que multiplicado por 12 son unos 10 meses de EBITDA. Los intereses se cubren 15,1 veces con el EBIT.\n\nLa deuda total subió de 8.735 M a 13.555 M desde 2022 para financiar nuevas plantas y el dividendo, mientras el patrimonio neto se mantuvo en 16.273 M a 19.185 M. Conviene mirar que la deuda no siga subiendo.",
-   "gerencia": "La conduce Haviv Ilan, presidente, CEO y presidente del directorio (56 años, pago de 4,7 M según Yahoo), con Julie Knecht como directora financiera y de contabilidad (53 años). Ilan lleva el plan de inversión en plantas propias, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras reducidas**: paga un dividendo de 6,08 por acción (pagado desde 1972; sube 5,5 % por año en 3 años; 5.174 M en los últimos 12 meses, 71 % del flujo libre) y recompró 3.615 M en 2022, 293 M, 929 M, 1.477 M y 636 M en los últimos 12 meses. **Las acciones bajaron de 926 M a 916 M, un 1,1 % menos.** El dividendo superó al flujo libre en 2023, 2024 y 2025.",
-   "fortalezas": [
-    "Margen operativo de 41,1 % y ROIC de 22,7 % en los últimos 12 meses.",
-    "Fabricación propia que baja el costo por chip.",
-    "Dividendo pagado desde 1972.",
-    "Ingresos de 20.766 M, por encima del pico de 2022.",
-    "Intereses cubiertos 15,1 veces."
+   "formato": "v4",
+   "titulo": "Texas Instruments: invirtió fortunas en fábricas durante el ciclo malo, y ahora cosecha",
+   "resumen": [
+    "Texas Instruments es el mayor fabricante del mundo de **chips analógicos**: los que manejan la energía, las señales y los sensores en autos, fábricas, electrodomésticos y centros de datos. Su ventaja son sus propias fábricas, las más eficientes del sector, y un catálogo de decenas de miles de productos.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 28 %**, a 6.050 M, y su ganancia operativa, 73 %. Después de años de inversión fuerte, su flujo libre de caja se multiplicó.",
+    "Excelente empresa, en la fase buena de su ciclo y de su plan de inversiones, con márgenes altos y un dividendo que sube hace décadas, aunque el mercado ya la paga por encima de su historia."
    ],
-   "debilidades": [
-    "Dividendo mayor que el flujo libre durante 2023, 2024 y 2025: el crítico más duro diría que lo financió con deuda.",
-    "Deuda que subió de 8.735 M a 13.555 M.",
-    "Inversiones de 4.500 M a 5.000 M por año durante tres años.",
-    "Muy sensible al ciclo de los semiconductores.",
-    "Recompras casi detenidas."
+   "introduccion": "Entre 2022 y 2025, Texas Instruments hizo algo que muchos inversores criticaron: con las ventas cayendo, en lugar de recortar, invirtió miles de millones de dólares en nuevas fábricas de chips en Texas y Utah. Su flujo libre de caja se desplomó, de 5.923 M en 2022 a 1.349 M en 2023.\n\nLa apuesta era de largo plazo: fabricar sus chips en obleas de silicio más grandes (de 300 milímetros), lo que baja mucho el costo por chip, y tener capacidad propia cuando la demanda volviera.\n\nLa demanda volvió. En el tercer trimestre de 2026, sus ventas crecieron 28 % y su ganancia operativa, 73 %. Y como las grandes inversiones ya están hechas, el flujo libre de caja de los últimos 12 meses llegó a 7.318 M.\n\nEs la historia de una empresa que sembró en el ciclo malo y ahora cosecha en el bueno.\n\nEntonces, la pregunta es: ¿cuánto vale pagar por esa cosecha?",
+   "secciones": [
+    {
+     "titulo": "Los chips que nadie ve, pero están en todo",
+     "texto": "Cuando se habla de chips, se piensa en los procesadores de Nvidia o de Apple. Pero en cada auto, cada lavarropas o cada máquina industrial hay decenas de chips más simples: los **analógicos**, que convierten señales del mundo real (temperatura, sonido, movimiento) en datos, y manejan la energía. Texas Instruments es la líder mundial en ese tipo de chips.\n\nTiene dos negocios. En el tercer trimestre de 2026:\n\n- **Analógicos**: vendió 4.910 M, un 32 % más.\n- **Procesadores embebidos** (pequeños procesadores que controlan aparatos): creció 21 %.\n\nLos motores del crecimiento fueron la industria, los autos y los centros de datos, que necesitan muchos chips para manejar la energía.\n\nSus clientes son más de 100.000 empresas en todo el mundo, sin una que pese demasiado. Esa diversificación es una fortaleza.\n\n¿Cuál es su **ventaja**? Sus **propias fábricas** y su **escala**. A diferencia de muchos competidores que tercerizan la fabricación, TI fabrica casi todo en sus plantas, y cada vez más en obleas de 300 milímetros, que bajan el costo de cada chip alrededor de 40 % según la propia empresa. Y un chip analógico, una vez que se diseña dentro de un auto o una máquina, se vende durante 10 o 20 años.\n\nLa inteligencia artificial no la amenaza; en todo caso, los centros de datos de IA son un mercado nuevo para sus chips de energía."
+    },
+    {
+     "titulo": "Un ciclo que se dio vuelta",
+     "texto": "Los chips analógicos tienen ciclos: cuando los clientes acumulan inventario, dejan de comprar durante un tiempo. Eso pasó en 2023 y 2024, cuando las ventas de TI cayeron 12,5 % y 10,7 %. Desde 2025, el ciclo se dio vuelta: las ventas llegaron a **20.766 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) bajó de 51,9 % en 2022 a 34,1 % en 2024, y volvió a **41,1 %** en los últimos 12 meses. El promedio de su industria es 35,3 %. Cuando una fábrica trabaja a pleno, el costo fijo se reparte entre más chips y cada venta deja más ganancia.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), pasó de 15,4 % en 2024 a **22,7 %**. Por encima de 15 % se considera muy bueno.\n\nLo más llamativo es la caja. Mientras construía las fábricas, invertía casi todo lo que generaba. Ahora que la inversión baja, el **flujo libre de caja** (lo que queda después de invertir) se multiplicó.\n\n[[grafico:flujo_vs_inversion]]\n\nPara el cuarto trimestre, la empresa espera ventas de 5.800 M a 6.300 M y una ganancia de 2,45 a 2,79 dólares por acción."
+    },
+    {
+     "titulo": "Un dividendo que sube hace más de 20 años",
+     "texto": "La deuda neta (lo que debe menos la caja) es de 9.344 M y equivale a **0,85 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 15 veces (por encima de 3 se considera sano).\n\nEl dividendo es de 6,08 dólares por acción por año (1,52 por trimestre). Lo sube hace más de 20 años seguidos, y creció 14,7 % por año en los últimos diez. Durante los años de inversión fuerte, la empresa siguió pagándolo aunque el flujo libre no alcanzaba: lo cubrió con deuda y caja. Ahora, con la caja recuperada, vuelve a estar holgado.\n\n[[grafico:dividendo]]\n\nEl riesgo principal es el ciclo: si los clientes vuelven a acumular inventario, las ventas pueden caer otra vez. Y en China, un mercado importante para TI, los fabricantes locales de chips analógicos crecen rápido y compiten con precios bajos.\n\nLa conduce Haviv Ilan, CEO desde 2023."
+    }
    ],
-   "vigilar": [
-    "Inversiones: hoy 2.578 M; si vuelven a subir, el dividendo se aprieta.",
-    "Flujo libre: hoy 7.318 M en los últimos 12 meses; tiene que cubrir el dividendo de 5.174 M.",
-    "Deuda total: hoy 13.555 M; define cuánto margen queda.",
-    "Margen operativo: hoy 41,1 %; si baja, la competencia china está presionando precios."
+   "valuacion": {
+    "texto": "En Texas Instruments, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero en una empresa cíclica hay que leerlo con cuidado: en la parte baja del ciclo la ganancia cae y el PER sube; en la parte alta, al revés.\n\nCon el precio de {precio} dólares, Texas Instruments cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nLa ganancia de los últimos 12 meses todavía incluye trimestres flojos. Si la empresa sigue vendiendo al ritmo actual, la ganancia va a subir y el PER va a bajar solo. Lo que el mercado paga es la confianza en que el ciclo bueno dure y en que las nuevas fábricas den márgenes más altos que antes.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Texas Instruments es una empresa excelente. Es la líder mundial en chips analógicos, tiene sus propias fábricas, las más eficientes del sector, clientes muy diversificados, productos que se venden durante décadas y un dividendo que sube hace más de 20 años. Y hoy cosecha lo que sembró: ventas, márgenes y caja en fuerte suba.\n\nSu punto débil es el ciclo y la competencia china. Las ventas de chips analógicos suben y bajan con los inventarios de los clientes, y los fabricantes chinos ganan terreno con precios bajos. El crítico más duro diría que se está pagando la parte buena del ciclo con un múltiplo alto. Es un argumento razonable.\n\nEncaja con quien busca una empresa industrial de calidad, con dividendo creciente, y tolera los ciclos. No es para quien busca estabilidad en las ventas.\n\nPara que la tesis se mantenga, lo más importante es que el flujo libre de caja siga creciendo ahora que las grandes inversiones quedaron atrás.",
+   "pros": [
+    "Fábricas propias: producir en obleas de 300 milímetros baja mucho el costo.",
+    "Ciclo a favor: ventas +28 % y ganancia operativa +73 % en el trimestre.",
+    "Dividendo histórico: lo sube hace más de 20 años seguidos."
    ],
+   "contras": [
+    "Negocio cíclico: las ventas cayeron 12,5 % en 2023 y 10,7 % en 2024.",
+    "Competencia china: fabricantes locales con precios bajos.",
+    "Precio exigente: cotiza por encima de su historia."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Fabricantes de productos electrónicos de todo el mundo",
-    "Empresas industriales y automotrices",
-    "Diseñadores de equipos de comunicación y de consumo"
+    "Fabricantes industriales de todo el mundo",
+    "Fabricantes de autos y sus proveedores",
+    "Centros de datos y fabricantes de electrónica"
    ],
-   "ideal_para": [
-    "Buscan una empresa de semiconductores con dividendo de décadas.",
-    "Valoran la fabricación propia y los márgenes altos.",
-    "Aceptan el ciclo de la industria."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 6.050 M (+28 %); ganancia operativa de 2.870 M (+73 %); ganancia por acción de 2,62 dólares; analógicos 4.910 M (+32 %); procesadores embebidos +21 %; flujo libre de los últimos 12 meses de 8.400 M; guía del 4T26: ventas de 5.800 M a 6.300 M y ganancia por acción de 2,45 a 2,79 dólares",
+     "fuente": "Resumen de los resultados del 3T26, 21/10/2026",
+     "url": "https://247wallst.com/cards/texas-instruments-q3-2026-earnings-txn-01m5g1n6r3j45hcsgta6qbhjgw"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de Texas Instruments, anexo 99",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000097476/000009747626000165/q32026txnex99-eredgar.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan flujo libre estable año a año.",
-    "No toleran la deuda en alza."
-   ],
+   "ticker": "TXN",
    "perfil": "hardware",
    "capas": [
     "compounder"
    ],
-   "ticker": "TXN",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8215,54 +8278,65 @@
    }
   },
   "SAP": {
-   "resumen": "SAP es una empresa alemana de software empresarial: vende aplicaciones para que las compañías manejen sus finanzas, compras, producción, cadena de suministro, recursos humanos y relaciones con clientes, entre ellas S/4HANA y SuccessFactors, con funciones de inteligencia artificial integradas. Gana plata con suscripciones en la nube, licencias y mantenimiento, con contratos de varios años. Tiene un **foso estrecho, de costos de cambio y de integración**: el software de gestión de una gran empresa está conectado a todo lo demás, y cambiarlo lleva años, cuesta mucho y arriesga parar la operación. Los datos están en euros. Los números muestran una mejora clara: los ingresos pasaron de 29.519 M en 2022 a **39.387 M** en los últimos 12 meses, el margen operativo subió de 20,5 % a **27,1 %**, el ROIC de 8,0 % a **16,7 %** y el flujo libre llegó a **9.182 M** (23,3 % de los ingresos). Paga dividendo desde 1999 y las recompras se aceleraron a 4.124 M en los últimos 12 meses. La ganancia neta sube y baja demasiado (de 6.139 M en 2023 a 3.124 M en 2024 y 7.161 M en 2025) por resultados no operativos que Yahoo no explica, dato a verificar. Tiene más caja (10.997 M) que deuda (10.588 M). Su punto débil es la competencia de software en la nube y de nuevos agentes de inteligencia artificial que podrían cambiar cómo se usa el software de gestión. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**. Conclusión: **empresa de muy buena calidad, con foso estrecho, margen operativo de 27,1 % y flujo libre de 9.182 M, aunque con ganancias netas irregulares y el desafío de la inteligencia artificial.**",
-   "veredicto": "Muy buena: foso estrecho, margen operativo de 27,1 % y flujo libre de 9.182 M (en euros), con ganancias netas irregulares",
-   "conclusion": "SAP es una empresa de muy buena calidad: tiene un foso estrecho de costos de cambio, margen operativo de 27,1 %, ROIC de 16,7 %, flujo libre de 9.182 M (en euros) y dividendo desde 1999, pero la ganancia neta es irregular y la inteligencia artificial puede cambiar la forma de usar el software de gestión. Vale la pena seguirla de cerca. Es recomendable investigar el crecimiento de la nube y los resultados no operativos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga mientras migra a la nube.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "SAP: el sistema que usan las grandes empresas para funcionar se muda a la nube, y cobra más por eso",
+   "resumen": [
+    "SAP, la gran empresa de software de Europa, vende el **software de gestión** (ERP) con el que funcionan miles de grandes empresas: finanzas, compras, producción, logística, recursos humanos. Su ventaja es que cambiar ese sistema es carísimo y arriesgado: los clientes se quedan décadas.",
+    "En el tercer trimestre de 2026, **sus ingresos de la nube crecieron 26 %**, a 6.670 M de euros, y la nube ya es dos tercios de sus ventas. Los contratos de nube a cobrar en los próximos 12 meses llegaron a 24.140 M de euros (+28 %).",
+    "Excelente empresa, en una transición a la nube que le sube los márgenes y la caja, aunque la inteligencia artificial abre una duda sobre cómo se cobrará el software en el futuro."
+   ],
+   "introduccion": "Cuando una gran empresa factura, compra materia prima, paga sueldos o despacha un camión, hay una buena chance de que todo eso pase por un sistema de SAP. Fabricantes, bancos, cadenas de supermercados, gobiernos y miles de empresas dependen de él para funcionar todos los días.\n\nDurante décadas, SAP vendió ese sistema como una licencia: el cliente pagaba una vez, lo instalaba en sus propias computadoras y después pagaba mantenimiento. Hoy SAP está mudando a todos sus clientes a la **nube**: el sistema corre en los servidores de SAP, y el cliente paga una suscripción todos los años.\n\nPara SAP, el cambio es un gran negocio. Cobra más por cliente, los ingresos son más previsibles y el cliente queda todavía más atado.\n\nY los números lo muestran. En el tercer trimestre de 2026, sus ingresos de la nube crecieron 26 %, y su ganancia operativa, 18 %.\n\nEntonces, la pregunta es: ¿puede la inteligencia artificial cambiar las reglas de un negocio que parecía intocable?",
+   "secciones": [
+    {
+     "titulo": "El sistema nervioso de las grandes empresas",
+     "texto": "SAP vende tres cosas:\n\n- **Nube**: el sistema de gestión y otras aplicaciones como suscripción. En el tercer trimestre de 2026 facturó 6.670 M de euros, un 26 % más. Su núcleo, el ERP en la nube, creció 29 %.\n- **Mantenimiento** de los sistemas instalados con licencias viejas: un negocio grande y muy rentable, que se va achicando a medida que los clientes pasan a la nube.\n- **Licencias** nuevas: ya casi no vende (147 M de euros en el trimestre, -9 %).\n\nEn total, facturó 10.270 M de euros, un 13 % más.\n\nSus clientes son grandes y medianas empresas y gobiernos de todo el mundo, sin uno que pese demasiado.\n\n¿Cuál es su **ventaja**? El **costo de cambiarse**. Reemplazar el sistema de gestión de una gran empresa lleva años, cuesta cientos de millones y puede paralizar la operación si sale mal. Por eso los clientes de SAP se quedan décadas. Además, SAP tiene una fecha a favor: deja de dar soporte estándar a su sistema viejo en 2027, lo que empuja a los clientes a mudarse a la nube.\n\nLa inteligencia artificial es su riesgo y su oportunidad. SAP suma asistentes de IA (Joule) a su sistema y busca cobrar por ellos. Pero si en el futuro los agentes de IA hacen el trabajo que hoy hacen personas con licencias de usuario, el modelo de cobro del software podría cambiar."
+    },
+    {
+     "titulo": "La nube sube los márgenes",
+     "texto": "Las cifras de SAP están en euros.\n\nLos ingresos crecieron de 29.519 M de euros en 2022 a **39.387 M** en los últimos 12 meses.\n\nLo más interesante es el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar): pasó de 20,5 % en 2022 a **27,1 %** en los últimos 12 meses. El promedio de su industria es 19,3 %. Al principio, la mudanza a la nube bajó los márgenes (SAP tenía que pagar los servidores); a medida que la nube crece, los márgenes suben.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada euro que pusieron dueños y acreedores), pasó de 8,0 % a **16,7 %**. Por encima de 15 % se considera muy bueno. Está por debajo del promedio de su industria (23,2 %), pero viene subiendo.\n\n[[grafico:roic]]\n\nLo que mejor anticipa el futuro es la **cartera de nube**: los contratos de nube que va a cobrar en los próximos 12 meses. Llegó a **24.140 M de euros**, un 28 % más. Esa cartera ya está firmada.\n\nPara 2026, la empresa espera ingresos de nube cerca del techo de su rango (25.800 a 26.200 M de euros) y una ganancia operativa ajustada de 11.800 a 12.200 M de euros."
+    },
+    {
+     "titulo": "Caja creciente, poca deuda y recompras",
+     "texto": "El **flujo libre de caja** (lo que queda después de invertir) se duplicó: de 4.410 M de euros en 2024 a **9.182 M** en los últimos 12 meses. La empresa espera unos 10.000 M en 2026.\n\n[[grafico:flujo_libre]]\n\nEl balance es sólido: tiene casi tanta caja (10.997 M de euros) como deuda (10.588 M). Su ganancia operativa paga los intereses del año 20 veces (por encima de 3 se considera sano).\n\nCon esa caja, recompra acciones: tiene un programa de hasta 10.000 M de euros hasta fines de 2027, del que ya usó unos 4.200 M. Y paga un dividendo modesto.\n\nUn aviso: parte del crecimiento de la nube del último trimestre vino de cobros atrasados de clientes que habían tenido problemas financieros, que no se repiten.\n\nLo conduce Christian Klein, CEO desde 2020 y el impulsor de la mudanza a la nube: \"El tercer trimestre fue excepcional, con la cartera de nube creciendo 26 % a moneda constante\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En SAP, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, SAP cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl mercado paga un múltiplo alto por SAP porque sus ingresos son muy previsibles y sus clientes difícilmente se van. Lo que puede mover ese múltiplo es la inteligencia artificial: si el mercado se convence de que la IA amenaza el modelo de suscripción del software, el múltiplo baja; si SAP demuestra que la IA le suma ingresos, sube.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "SAP es una empresa excelente. Tiene uno de los productos más difíciles de reemplazar del mundo del software, una mudanza a la nube que le sube los márgenes y la caja, una cartera de contratos que crece 28 % y un balance sólido.\n\nSu punto débil es la incertidumbre de largo plazo: la inteligencia artificial podría cambiar la forma en que las empresas pagan por el software, y el mercado no sabe todavía si SAP va a ganar o perder con eso. Además, parte del último trimestre se apoyó en cobros que no se repiten. El crítico más duro diría que pagar un múltiplo alto por una empresa de software tradicional, con la IA en el horizonte, es un riesgo. Es un argumento razonable.\n\nEncaja con quien busca una empresa de software de calidad, con ingresos previsibles, para el largo plazo. No es para quien busca dividendo o un precio bajo.\n\nPara que la tesis se mantenga, lo más importante es que la cartera de nube siga creciendo cerca de 25 % y que la IA se convierta en una fuente de ingresos adicional.",
+   "pros": [
+    "Clientes atados: cambiar el sistema de gestión de una gran empresa lleva años.",
+    "Nube en alza: ingresos de nube +26 % y cartera de nube +28 %.",
+    "Márgenes en suba: margen operativo de 27,1 %, contra 20,5 % en 2022."
+   ],
+   "contras": [
+    "Duda por la IA: podría cambiar la forma de cobrar el software.",
+    "Ayudas puntuales: parte del crecimiento vino de cobros atrasados.",
+    "Precio exigente: el mercado siempre la pagó con un múltiplo alto."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "moderado",
-   "negocio": "SAP provee aplicaciones empresariales y soluciones de negocios en todo el mundo. Ofrece SAP Business AI; SAP S/4HANA, con capacidades de software para finanzas, gestión de riesgos y de proyectos, compras, manufactura, cadena de suministro y gestión de activos; y soluciones SuccessFactors para recursos humanos, entre otras. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar. **Las cifras de SAP están en euros.**\n\nEs un negocio de software maduro con buen crecimiento: **los ingresos subieron 5,7 % en 2023, 9,5 % en 2024 y 7,7 % en 2025, hasta 36.800 M de euros**, y llegan a 39.387 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes y medianas empresas de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de SAP **es de costos de cambio e integración, y es estrecha**. Una gran empresa que maneja sus finanzas, compras, producción y recursos humanos con SAP tiene miles de procesos conectados, personal entrenado y datos acumulados durante años, y cambiar de sistema es un proyecto de años con riesgo de parar la operación. Se ve en el margen bruto estable de 72 % a 73 % y en el margen operativo que sube a 27,1 %.\n\nCompite con Oracle, Microsoft Dynamics, Workday, Salesforce y proveedores especializados. Es frágil en la migración de clientes a la nube (donde pueden elegir otros proveedores), en la competencia de grandes empresas de software y en que la inteligencia artificial puede cambiar la forma en que se usa el software de gestión, con agentes que automatizan tareas y reducen el número de usuarios por contrato. Por eso el riesgo es moderado.",
-   "numeros": "Los números de SAP, en euros, cuentan **un negocio que crece y gana más margen, con ganancias netas irregulares**. Los ingresos fueron de 29.519 M, 31.207 M, 34.176 M y 36.800 M, y de 39.387 M en los últimos 12 meses. El EBIT fue de 6.051 M, 6.014 M, 7.808 M y 9.620 M, y de 10.673 M (margen operativo de 27,1 %). La ganancia neta fue de 2.284 M, 6.139 M, 3.124 M y 7.161 M, y de 8.041 M. La ganancia por acción fue de 1,95, 5,17, 2,65, 6,10 y **7,04**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 4.770 M, 5.461 M, 4.410 M y 8.417 M, y de **9.182 M** en los últimos 12 meses. El ROIC fue de 8,0 %, 8,1 %, 9,5 %, 13,6 % y 16,7 %, y el ROE de 17,5 %.\n\nLa mirada crítica: la ganancia neta no sigue al EBIT (en 2023 fue casi igual al EBIT y en 2024 fue menos de la mitad), señal de resultados no operativos que Yahoo no detalla (por ejemplo, ventas de participaciones o costos de reestructuración, dato a verificar). Es más fiable mirar el EBIT y el flujo libre.",
-   "balance": "**Balance equilibrado: caja y deuda similares.** La caja es de 10.997 M y la deuda total de 10.588 M, de modo que tiene algo más de plata que deudas (unos 409 M de caja neta, cálculo propio con los datos de Yahoo). El patrimonio neto es de 45.948 M y la deuda equivale a 0,23 veces el patrimonio. Los intereses se cubren casi 20 veces con el EBIT.\n\nLa deuda total bajó de 13.085 M en 2022 a 10.588 M, con un patrimonio que subió de 40.186 M a 45.948 M. Parte de ese patrimonio es plusvalía de compras anteriores, por eso el ROIC fue bajo durante años.",
-   "gerencia": "La conduce Christian Klein, CEO y miembro del directorio ejecutivo (45 años, pago de 5,9 M según Yahoo), con Dominik Asam como director financiero (56 años, pago de 2,8 M). Klein condujo el giro hacia la nube y la reestructuración de 2024, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras crecientes**: paga un dividendo de 2,93 por acción (pagado desde 1999, en la moneda que informa Yahoo; 10 años de crecimiento a 8,3 % por año, pero -0,4 % en los últimos 3; 2.883 M en los últimos 12 meses, 31 % del flujo libre) y recompró 1.500 M en 2022, 949 M, 2.106 M, 1.937 M y 4.124 M en los últimos 12 meses. **Las acciones bajaron de 1.175 M a 1.164 M, un 0,9 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 27,1 %, subiendo desde 20,5 %.",
-    "ROIC de 16,7 %, duplicado en tres años.",
-    "Flujo libre de 9.182 M, 23,3 % de los ingresos.",
-    "Dividendo pagado desde 1999 y recompras de 4.124 M.",
-    "Costos de cambio altos en sus clientes."
-   ],
-   "debilidades": [
-    "Ganancia neta irregular.",
-    "Crecimiento de ingresos de 7 % a 10 % por año, moderado.",
-    "Los agentes de inteligencia artificial pueden cambiar cómo se usa el software de gestión: el crítico más duro diría que la base instalada es menos segura de lo que parece.",
-    "Dividendo con crecimiento de -0,4 % por año en 3 años.",
-    "Competencia de Oracle, Microsoft y Workday."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 27,1 %; si baja, la migración a la nube cuesta más.",
-    "Ingresos de la nube: Yahoo no los informa, hay que buscarlos en el informe.",
-    "Ganancia neta contra EBIT: hoy 8.041 M contra 10.673 M; hay que entender qué es no operativo.",
-    "Cantidad de contratos y usuarios: define si la inteligencia artificial la afecta."
-   ],
    "clientes": [
-    "Grandes empresas multinacionales",
-    "Medianas empresas industriales y de servicios",
-    "Organismos públicos"
+    "Grandes y medianas empresas de todo el mundo",
+    "Gobiernos y organismos públicos",
+    "Socios que implementan sus sistemas (consultoras)"
    ],
-   "ideal_para": [
-    "Buscan software empresarial con costos de cambio altos.",
-    "Valoran la mejora de márgenes y el dividendo.",
-    "Aceptan analizar cifras en euros."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026 (en euros): ingresos de 10.270 M (+13 %); nube 6.670 M (+26 %); ERP en la nube 5.920 M (+29 %); cartera de nube a 12 meses de 24.140 M (+28 %); licencias 147 M (-9 %); ganancia operativa de 2.930 M (+18 %); flujo libre de 7.970 M en nueve meses; recompras de unos 4.200 M de un programa de hasta 10.000 M; frase de Christian Klein",
+     "fuente": "Comunicado trimestral del 3T26, 21/10/2026",
+     "url": "https://investingnews.com/sap-quarterly-statement-q3-2026/"
+    },
+    {
+     "dato": "Guía 2026: ingresos de nube cerca del techo de 25.800 a 26.200 M de euros; ganancia operativa ajustada de 11.800 a 12.200 M de euros; flujo libre de unos 10.000 M de euros",
+     "fuente": "Ídem",
+     "url": "https://investingnews.com/sap-quarterly-statement-q3-2026/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan ganancias netas estables.",
-    "No toleran el desafío de los agentes de inteligencia artificial."
-   ],
+   "ticker": "SAP",
    "perfil": "software",
    "capas": [],
-   "ticker": "SAP",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8837,54 +8911,68 @@
    }
   },
   "DELL": {
-   "resumen": "Dell es una empresa estadounidense de hardware: fabrica y vende servidores, almacenamiento y redes para centros de datos (segmento ISG), y computadoras, monitores y accesorios para empresas y consumidores (segmento CSG), con servicios de soporte y financiamiento. Gana plata vendiendo equipos con márgenes bajos pero a escala enorme, comprando componentes de forma eficiente y entregando directo al cliente. Tiene un **foso débil, de escala, cadena de suministro y relaciones con clientes empresariales**: es de los mayores compradores de componentes del mundo y vende a la mayoría de las grandes empresas, pero el hardware es un producto comparable y sus competidores pueden copiar la mayoría de sus ventajas. Los números cambiaron mucho en el último año: los ingresos pasaron de 95.567 M en el ejercicio 2025 a 113.538 M en 2026 y a **151.197 M** en los últimos 12 meses, impulsados probablemente por servidores de inteligencia artificial (dato a verificar). El margen operativo subió de 7,0 % a **9,6 %** pero el margen bruto bajó de 23,8 % a **19,8 %**, porque esos servidores dejan menos margen. El flujo libre es de **8.560 M** (5,7 % de los ingresos), pero fue de solo 562 M y 1.869 M en dos de los últimos cuatro años. Tiene patrimonio negativo (-1.427 M), la deuda total es de 34.466 M (en parte de su brazo financiero) y devolvió 10.672 M entre recompras y dividendos, 125 % del flujo libre. Las acciones bajaron **11,8 %**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: es la principal fuente de demanda, aunque el 22/10 los semiconductores cayeron 6,7 %. Conclusión: **empresa de calidad regular: ventas en fuerte alza y flujo libre de 8.560 M, pero con margen bruto en baja, patrimonio negativo, deuda de 34.466 M y retornos mayores que el flujo libre.**",
-   "veredicto": "Regular: ventas en fuerte alza y flujo libre de 8.560 M, con margen bruto en baja, patrimonio negativo y retornos mayores que el flujo libre",
-   "conclusion": "Dell es una empresa de calidad regular: tiene ventas en fuerte alza, flujo libre de 8.560 M, ROIC de 36,1 % y 11,8 % menos acciones, pero el margen bruto bajó a 19,8 %, el patrimonio es negativo, la deuda llega a 34.466 M y las recompras más el dividendo superaron al flujo libre. Hay que seguirla de cerca. Es recomendable investigar la cartera de pedidos de servidores de inteligencia artificial y la deuda del brazo financiero en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen bruto deje de bajar.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "Dell: de vender computadoras a armar los servidores de la IA, y las ventas casi se duplican",
+   "resumen": [
+    "Dell es uno de los mayores fabricantes del mundo de **computadoras, servidores y sistemas de almacenamiento**. Hoy su gran negocio son los **servidores para inteligencia artificial**, armados con chips de Nvidia. Su ventaja es la escala, la cadena de suministro y la relación con miles de grandes empresas.",
+    "En el segundo trimestre de su año fiscal 2027 (cerrado en julio de 2026), **vendió 47.000 M, un 58 % más**, y recibió pedidos de servidores de IA por 60.900 M en solo tres meses. Para el año entero ahora espera vender 192.000 M.",
+    "Muy buena empresa en pleno auge, con una cartera de pedidos enorme y mucha caja, pero en un negocio de márgenes finos, que depende de la inversión en IA y de los chips que le vende Nvidia."
+   ],
+   "introduccion": "Durante décadas, Dell fue sinónimo de computadoras personales. Michael Dell fundó la empresa en 1984 en su habitación de la universidad, vendiendo computadoras armadas a pedido.\n\nHoy, la parte más importante de Dell es otra: los **servidores para inteligencia artificial**. Son máquinas gigantes, con chips de Nvidia adentro, que las empresas y las nubes especializadas compran para entrenar y usar modelos de IA.\n\nY la demanda es impresionante. En el segundo trimestre de su año fiscal 2027, Dell recibió pedidos de servidores de IA por 60.900 M. Su cartera de pedidos pendientes llegó a 95.000 M. Para todo el año, espera vender 192.000 M, el doble que hace dos años.\n\nPero hay un detalle importante: Dell no fabrica los chips. Los compra a Nvidia y arma los equipos. En ese negocio, la mayor parte de la ganancia se la queda quien hace los chips.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa que vende muchísimo, pero gana poco por cada venta?",
+   "secciones": [
+    {
+     "titulo": "Servidores para la IA y computadoras para las empresas",
+     "texto": "Dell tiene dos grandes negocios. En el segundo trimestre del año fiscal 2027:\n\n- **Infraestructura** (servidores, almacenamiento y redes): vendió 31.800 M, un 89 % más, con un margen operativo de 15 %. De eso, 16.400 M fueron servidores para IA, el doble que un año antes; 10.500 M servidores tradicionales; y 4.900 M almacenamiento.\n- **Computadoras** (notebooks y PCs para empresas y personas): vendió 15.000 M, un 20 % más, con un margen de 7,6 %. Casi todo son ventas a empresas.\n\nSus clientes son grandes empresas, gobiernos, nubes especializadas en IA y millones de personas y pymes. Algunos clientes de servidores de IA hacen pedidos enormes, lo que concentra el riesgo.\n\n¿Cuál es su **ventaja**? La **escala** y la **cadena de suministro**. Armar un centro de datos de IA requiere conseguir chips, memorias, refrigeración líquida y redes, integrarlos y entregarlos funcionando en semanas. Pocas empresas pueden hacerlo a este volumen. Y Dell tiene relación con casi todas las grandes empresas del mundo, que le compran computadoras desde hace décadas.\n\nCompite con Super Micro, HPE y fabricantes asiáticos que arman servidores para las grandes nubes.\n\nLa inteligencia artificial es su gran motor de crecimiento."
+    },
+    {
+     "titulo": "Vender mucho, ganar poco por venta",
+     "texto": "Los ingresos crecieron de 88.425 M en el año fiscal 2024 a **151.197 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nPero el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de apenas **9,6 %**. El promedio de su industria es 22,5 %. ¿Por qué tan bajo? Porque gran parte de lo que Dell vende son componentes de otros, sobre todo chips de Nvidia, que cobra caro. Dell suma el armado, la integración y el servicio, y se queda con una parte chica.\n\n[[grafico:margen_operativo]]\n\nAun así, el margen viene subiendo: era de 5,6 % hace tres años. Cuando una empresa vende muchísimo más con la misma estructura, cada venta extra deja más ganancia.\n\nY lo que importa al final es la ganancia total: la ganancia por acción pasó de 4,55 dólares en el año fiscal 2024 a **17,23** en los últimos 12 meses. La empresa espera una ganancia ajustada de 25,50 dólares por acción para el año fiscal 2027.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **36,1 %**. Por encima de 15 % se considera muy bueno. Un margen bajo puede convivir con un retorno alto si la empresa necesita poco capital, y Dell necesita poco: arma, no fabrica chips."
+    },
+    {
+     "titulo": "Caja fuerte y patrimonio negativo",
+     "texto": "El **flujo libre de caja** (lo que queda después de invertir) fue de **8.560 M** en los últimos 12 meses. En el negocio de servidores, la caja puede ser irregular: Dell tiene que comprar los componentes antes de cobrar, y un pedido grande puede inmovilizar mucha plata durante meses.\n\n[[grafico:flujo_libre]]\n\nLa deuda neta (lo que debe menos la caja) es de 22.897 M y equivale a **1,2 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Viene bajando desde 2,7 veces.\n\nSu patrimonio contable es **negativo**. Es herencia de 2013, cuando Michael Dell sacó la empresa de la bolsa con mucha deuda, y de las recompras de acciones de los últimos años. No es una señal de quiebra, pero hay que mirar la deuda con atención.\n\nDevuelve mucho al accionista: en el último trimestre, 4.300 M entre recompras y dividendos, un récord. El dividendo es de 0,63 dólares por trimestre.\n\nMichael Dell sigue siendo el presidente, CEO y principal accionista. El director de operaciones, Jeff Clarke, destacó \"un récord de 60.900 M en pedidos\" de servidores de IA en el trimestre."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Dell, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para su año fiscal 2027: unos 25,50 dólares por acción.\n\nCon el precio de {precio} dólares, Dell cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nDurante años, el mercado pagó muy poco por Dell: la veía como una vendedora de computadoras, un negocio maduro y de márgenes finos. Con la IA, la empezó a pagar más. La pregunta es si la ganancia de este año es el nuevo piso o un pico: si la inversión en centros de datos de IA se frena, los pedidos pueden caer rápido.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos de cuando Dell era vista como una empresa de computadoras: conviene tomarlo con cuidado. El dividendo rinde {dy}.",
+    "ganancia_ref": 25.5,
+    "ganancia_ref_txt": "guía de ganancia ajustada por acción del año fiscal 2027 (25,50 dólares)"
+   },
+   "conclusion": "Dell es una muy buena empresa en pleno auge. Tiene la escala y la cadena de suministro para armar centros de datos de IA a un volumen que pocos alcanzan, una cartera de pedidos de 95.000 M, un retorno sobre el capital alto y mucha caja. Y su negocio de computadoras para empresas sigue creciendo.\n\nSu punto débil es la calidad del margen y la dependencia. Gana poco por cada venta, depende de los chips de Nvidia y de unos pocos clientes enormes, y su crecimiento está atado a cuánto quieran seguir invirtiendo las empresas en IA. Además, tiene patrimonio negativo. El crítico más duro diría que Dell es un intermediario en la fiebre de la IA, y que los intermediarios son los primeros en sufrir cuando la fiebre baja. Es un argumento serio.\n\nEncaja con quien cree que la inversión en centros de datos de IA va a durar años y tolera caídas fuertes. No es para quien busca márgenes altos o estabilidad.\n\nPara que la tesis se mantenga, lo más importante es que los pedidos de servidores de IA sigan llegando y que el margen siga subiendo de a poco.",
+   "pros": [
+    "Pedidos récord: 60.900 M en servidores de IA en un trimestre y 95.000 M pendientes.",
+    "Crecimiento explosivo: espera vender 192.000 M en el año fiscal 2027.",
+    "Retorno alto: ROIC de 36,1 % con poco capital."
+   ],
+   "contras": [
+    "Márgenes finos: margen operativo de 9,6 %, contra 22,5 % de su industria.",
+    "Dependencia: de los chips de Nvidia y de pocos clientes grandes de IA.",
+    "Patrimonio negativo: herencia de la deuda y las recompras."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Dell diseña, desarrolla, fabrica, comercializa, vende y brinda soporte a soluciones, productos y servicios integrales en América, Europa, Medio Oriente, Asia y a nivel internacional. Opera dos segmentos: **Infrastructure Solutions Group (ISG)**, que ofrece soluciones de almacenamiento y servidores, y **Client Solutions Group (CSG)**, con computadoras y accesorios. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de hardware cíclico: **los ingresos cayeron 13,6 % en 2024, subieron 8,1 % en 2025 y 18,8 % en 2026, hasta 113.538 M** (el ejercicio cierra a fines de enero), y saltan a 151.197 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas, organismos públicos y consumidores de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque algunos pedidos de servidores de inteligencia artificial son muy grandes (dato a verificar).",
-   "foso": "La ventaja de Dell **es de escala y cadena de suministro, y es débil**. Comprar millones de componentes por año le da poder de negociación, y su red de ventas y servicio llega a casi todas las grandes empresas del mundo. Eso le permite mantener un margen operativo de 5,6 % a 9,6 % en un negocio donde otros pierden plata.\n\nPero el hardware es comparable: el cliente puede comprar el mismo servidor a Hewlett Packard Enterprise, Supermicro, Lenovo, Cisco o directo a fabricantes taiwaneses. El margen bruto cayó de 23,8 % a 19,8 % en los últimos 12 meses, señal de que el crecimiento actual viene con menor rentabilidad por dólar vendido. Es frágil en la concentración de pedidos de servidores de inteligencia artificial, en el ciclo de computadoras y en la dependencia de pocos proveedores de chips. La inteligencia artificial hoy impulsa la demanda.",
-   "numeros": "Los números de Dell cuentan **un salto fuerte de ingresos con margen bruto en baja**. Los ingresos fueron de 102.301 M, 88.425 M, 95.567 M y 113.538 M, y de 151.197 M en los últimos 12 meses. El EBIT fue de 5.771 M, 5.933 M, 6.656 M y 8.446 M, y de **14.547 M** (margen operativo de 9,6 %). La ganancia neta fue de 2.442 M, 3.388 M, 4.592 M y 5.936 M, y de 11.378 M. La ganancia por acción fue de 3,24, 4,55, 6,38, 8,68 y **17,23**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 562 M, 5.920 M, 1.869 M y 8.552 M, y de **8.560 M** en los últimos 12 meses (5,7 % de los ingresos). Las inversiones subieron de 2.633 M a 3.592 M. El ROIC fue de 16,4 %, 20,6 %, 26,1 %, 23,8 % y 36,1 %. El ROE no sirve porque el patrimonio es negativo.\n\nLa mirada crítica: el flujo libre fluctúa mucho por el capital de trabajo (cobros y pagos a proveedores): fue de 562 M en 2023 y de 8.552 M en 2026. Los números de los últimos 12 meses reflejan un pico de ventas de servidores que puede no repetirse.",
-   "balance": "**Deuda alta, patrimonio negativo y mucha de la deuda pertenece al brazo financiero.** La deuda total es de 34.466 M y la caja de 11.569 M; la deuda neta es de 22.897 M y la deuda neta/EBITDA es de 1,24x, que multiplicado por 12 son unos 15 meses de EBITDA. Esa deuda incluye la del brazo financiero que presta a clientes, por lo que no es comparable con una empresa industrial pura. En 2026 los intereses se cubrían 5,4 veces con el EBIT.\n\nEl patrimonio neto es negativo (-1.427 M) por años de recompras mayores a las ganancias retenidas, aunque mejoró desde -3.122 M en 2023. El ratio corriente (0,96x) indica que Dell cobra rápido y paga a proveedores con plazo.",
-   "gerencia": "La conduce Michael Dell, presidente y CEO (60 años, pago de 3,4 M según Yahoo), fundador y principal accionista (dato público), con David Kennedy como director financiero (47 años, pago de 1,1 M) y Jeff Clarke como director de operaciones y vicepresidente del directorio (62 años, pago de 4,0 M).\n\nEn lo que importa, **el uso del capital es de recompras fuertes y dividendo reciente**: paga un dividendo de 2,52 por acción desde 2022 (1.566 M en los últimos 12 meses) y recompró 3.281 M en 2023, 2.452 M, 3.165 M, 6.404 M y 9.106 M en los últimos 12 meses. **Las acciones bajaron de 753 M a 664 M, un 11,8 % menos.** Recompras más dividendos (10.672 M) superaron al flujo libre (8.560 M).",
-   "fortalezas": [
-    "Ingresos de 151.197 M en los últimos 12 meses, en fuerte alza.",
-    "Flujo libre de 8.560 M.",
-    "11,8 % menos acciones desde 2023.",
-    "ROIC de 36,1 % en los últimos 12 meses.",
-    "Escala de compras y red de ventas empresarial."
-   ],
-   "debilidades": [
-    "Margen bruto bajó de 23,8 % a 19,8 %.",
-    "Patrimonio negativo (-1.427 M).",
-    "Deuda total de 34.466 M, con parte del brazo financiero: el crítico más duro diría que devuelve más capital del que genera.",
-    "Flujo libre muy irregular.",
-    "Depende del ciclo de servidores de inteligencia artificial."
-   ],
-   "vigilar": [
-    "Margen bruto: hoy 19,8 %; si sigue bajando, los servidores de inteligencia artificial dejan poco.",
-    "Flujo libre: hoy 8.560 M; tiene que cubrir recompras y dividendo.",
-    "Deuda total: hoy 34.466 M; no debería seguir subiendo.",
-    "Pedidos de servidores: Yahoo no los informa, hay que buscarlos en el informe."
-   ],
    "clientes": [
-    "Empresas y operadores de centros de datos",
-    "Organismos públicos",
-    "Consumidores y empresas que compran computadoras"
+    "Grandes empresas y gobiernos de todo el mundo",
+    "Nubes especializadas en IA",
+    "Pymes y consumidores (computadoras)"
    ],
-   "ideal_para": [
-    "Buscan exposición al hardware de infraestructura de inteligencia artificial.",
-    "Valoran las recompras y el flujo libre.",
-    "Aceptan márgenes finos y balance apalancado."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027: ingresos de 47.000 M (+58 %); infraestructura 31.800 M (+89 %, margen de 15 %): servidores de IA 16.400 M, servidores tradicionales 10.500 M, almacenamiento 4.900 M; computadoras 15.000 M (+20 %, margen de 7,6 %); pedidos de IA de 60.900 M y cartera de 95.000 M; ganancia por acción de 6,34 dólares y ajustada de 7,04; 4.300 M devueltos al accionista",
+     "fuente": "Resumen del comunicado de resultados del 2T del año fiscal 2027, 01/09/2026",
+     "url": "https://pulse2.com/dell-technologies-q2-revenue-hits-record-47-billion-as-ai-server-backlog-reaches-95-billion-and-fy27-outlook-rises-to-192-billion/"
+    },
+    {
+     "dato": "Guía del año fiscal 2027 (subida): ingresos de 192.000 M (antes 167.000 M); servidores de IA 74.000 M; ganancia ajustada por acción de 25,50 dólares; frase de Jeff Clarke",
+     "fuente": "Comunicado oficial (8-K, anexo 99.1)",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001571996/000157199626000039/exhibit991earnings8kq2fy27.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan un foso claro.",
-    "No toleran el ciclo del hardware ni el patrimonio negativo."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "DELL",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "DELL",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10719,54 +10807,60 @@
    }
   },
   "AZN": {
-   "resumen": "AstraZeneca es una empresa británica biofarmacéutica: descubre, desarrolla, fabrica y vende medicamentos con receta, con foco en oncología (Tagrisso, Imfinzi, Lynparza, Calquence, Enhertu y otros según Yahoo), además de productos cardiometabólicos como Farxiga. Gana plata vendiendo medicamentos protegidos por patentes, sobre todo contra el cáncer. Tiene un **foso estrecho, de patentes y liderazgo en oncología**, con una cartera amplia que reduce la dependencia de un solo producto (dato público). Los números muestran una mejora fuerte: los ingresos crecieron 18,0 % en 2024 y 8,6 % en 2025 (de 44.351 M a **61.366 M** en los últimos 12 meses), el margen operativo subió de 10,2 % a **22,8 %**, la ganancia neta pasó de 3.288 M a **10.446 M** y el ROIC de 5,6 % a **14,7 %**. Pero las inversiones subieron de 2.571 M a 7.656 M, por lo que el flujo libre de los últimos 12 meses bajó a **6.044 M** (9,8 % de los ingresos) y el dividendo (4.902 M) absorbe 81 % de ese flujo; las acciones no bajaron (1.560 M a 1.562 M). La deuda neta es de 24.598 M, moderada. Su punto débil es depender de lanzamientos nuevos mientras vencen patentes de productos maduros (dato público a verificar). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con ingresos creciendo y ROIC de 14,7 %, pero con flujo libre presionado por inversiones, dividendo que absorbe 81 % del flujo y patentes por vencer.**",
-   "veredicto": "Buena: ingresos +8 % a +18 %, ROIC en alza a 14,7 %, pero flujo libre presionado por inversiones y dividendo de 81 % del flujo",
-   "conclusion": "AstraZeneca es una empresa de buena calidad: tiene un foso estrecho de patentes y oncología, ingresos creciendo, margen operativo de 22,8 % y ROIC de 14,7 %, pero el flujo libre bajó a 6.044 M por las inversiones, el dividendo absorbe 81 % de ese flujo y varios productos maduros pierden patente. Vale la pena seguirla de cerca. Es recomendable investigar el peso de cada producto y el destino de las inversiones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre se recupere cuando terminen las inversiones.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "AstraZeneca: el laboratorio del cáncer que se puso como meta facturar 80.000 M en 2030",
+   "resumen": [
+    "AstraZeneca es uno de los mayores laboratorios del mundo, con sede en el Reino Unido, líder en **medicamentos contra el cáncer** y fuerte en enfermedades del corazón, respiratorias y raras. Su ventaja es un portafolio amplio de medicamentos patentados y uno de los programas de investigación más productivos de la industria.",
+    "En los primeros nueve meses de 2026, **sus ingresos crecieron 7 %**, a 46.881 M, y su ganancia ajustada por acción, 14 %. En el tercer trimestre, su margen operativo ajustado llegó a 36 %.",
+    "Muy buena empresa, que crece por encima de la mayoría de sus pares con muchos lanzamientos en camino, aunque algunos medicamentos ya pierden patente, China le presiona los precios y su caja crece menos que sus ganancias."
+   ],
+   "introduccion": "Cuando Pascal Soriot asumió como CEO de AstraZeneca, en 2012, la empresa estaba en problemas. Sus grandes medicamentos perdían patente y no tenía reemplazos. En 2014, Pfizer intentó comprarla, y AstraZeneca rechazó la oferta.\n\nLo que siguió fue una de las reconstrucciones más exitosas de la industria. AstraZeneca apostó todo a la investigación, sobre todo en cáncer, y hoy es líder en ese campo.\n\nLos números lo muestran. Sus ingresos pasaron de 44.351 M en 2022 a 61.366 M en los últimos 12 meses. Y la empresa se puso una meta ambiciosa: facturar 80.000 M en 2030.\n\nPero no todo es crecimiento. Algunos de sus medicamentos importantes, como Farxiga (diabetes y corazón), ya enfrentan copias, y en China, uno de sus mercados grandes, el gobierno presiona los precios a la baja.\n\nEntonces, la pregunta es: ¿alcanzan sus lanzamientos para llegar a la meta de 2030?",
+   "secciones": [
+    {
+     "titulo": "Un laboratorio con muchas apuestas a la vez",
+     "texto": "AstraZeneca trabaja en cinco grandes áreas:\n\n- **Cáncer**: su área más importante, con medicamentos como Tagrisso (cáncer de pulmón), Imfinzi (inmunoterapia) y Enhertu (cáncer de mama, desarrollado junto a la japonesa Daiichi Sankyo). Creció a doble dígito en los primeros nueve meses.\n- **Corazón, riñón y metabolismo**: Farxiga, para diabetes e insuficiencia cardíaca, que empieza a enfrentar copias.\n- **Respiratorias e inmunología**: medicamentos para asma y EPOC. Creció a doble dígito.\n- **Enfermedades raras**: medicamentos de precio muy alto para pocos pacientes. Creció a doble dígito.\n- **Vacunas e infecciosas**.\n\nUna parte de sus ingresos son **ingresos por alianzas**: lo que le pagan socios con los que desarrolla medicamentos en conjunto. Crecieron 32 % en nueve meses.\n\nSus clientes son sistemas de salud, gobiernos, aseguradoras y hospitales de todo el mundo. EE.UU. es su mercado más grande, y China, uno de los principales.\n\n¿Cuál es su **ventaja**? Un portafolio **diversificado** de medicamentos patentados (ninguno pesa tanto como Keytruda en Merck) y una investigación que viene produciendo lanzamientos a un ritmo alto. Según la empresa, tiene varios posibles medicamentos de más de 1.000 M de ventas anuales en las últimas etapas de desarrollo.\n\nLa inteligencia artificial es más una herramienta que una amenaza: puede acelerar la investigación."
+    },
+    {
+     "titulo": "Crece y gana más por cada venta",
+     "texto": "Los ingresos crecieron con fuerza: de 44.351 M en 2022 a **61.366 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nUn dato para entender sus informes: AstraZeneca mide su crecimiento **a tipo de cambio constante**, es decir, sin el efecto de las monedas. Como vende en todo el mundo, una suba o baja del dólar puede cambiar mucho las cifras sin que cambie el negocio.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 10,2 % en 2022 a **22,8 %** en los últimos 12 meses. El promedio de su industria es 26,2 %. El margen ajustado (sin amortizaciones de compras y cargos puntuales), que es el que usan la empresa y los analistas del mercado, llegó a 36 % en el tercer trimestre.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), pasó de 5,6 % a **14,7 %**. Por encima de 15 % se considera muy bueno: AstraZeneca está muy cerca. Sigue por debajo del promedio de su industria (18,5 %), en parte por el capital que puso en compras grandes, como la de Alexion en 2021.\n\n[[grafico:roic]]\n\nPara 2026, la empresa confirmó que espera una suba de ingresos de un dígito medio a alto, y una ganancia ajustada por acción con una suba de doble dígito bajo."
+    },
+    {
+     "titulo": "Deuda razonable y un dividendo que crece poco",
+     "texto": "La deuda neta (lo que debe menos la caja) es de 24.598 M y equivale a **1,2 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Bajó desde 2,4 veces en 2022.\n\n[[grafico:deuda_neta]]\n\nSu ganancia operativa paga los intereses del año 8 veces (por encima de 3 se considera sano).\n\nUn punto a mirar es la caja. El **flujo libre de caja** (lo que queda después de invertir) fue de 6.044 M en los últimos 12 meses, menos que los 8.670 M de 2025. Es decir, la caja viene creciendo menos que la ganancia.\n\nEl dividendo crece poco: 2,6 % por año en los últimos tres. AstraZeneca prefiere reinvertir en investigación.\n\nLo conduce Pascal Soriot, CEO desde 2012: \"En los primeros nueve meses vimos un fuerte impulso comercial, con ingresos totales 7 % más altos y una ganancia ajustada por acción 14 % mayor\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En AstraZeneca, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero la ganancia contable está achicada por la amortización de compras como Alexion, así que el PER contable exagera lo que se paga.\n\nCon el precio de {precio} dólares, AstraZeneca cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nUn número más limpio es el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. AstraZeneca cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl mercado suele pagar por AstraZeneca una prima frente a otros laboratorios europeos, por su crecimiento y su investigación. Lo que puede mover el precio es el avance de sus medicamentos en desarrollo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "AstraZeneca es una muy buena empresa. Tiene un portafolio diversificado, liderazgo en cáncer, un crecimiento superior al de la mayoría de sus pares, márgenes en alza y una investigación que produce lanzamientos a buen ritmo. Y su deuda viene bajando.\n\nSu punto débil es la caja y algunos frentes abiertos: el flujo libre bajó, algunos medicamentos importantes ya enfrentan copias y China presiona sus precios. Además, la meta de 80.000 M para 2030 exige que muchos lanzamientos salgan bien. El crítico más duro diría que el mercado ya paga por esos lanzamientos antes de que estén aprobados. Es un argumento a tener en cuenta.\n\nEncaja con quien busca un laboratorio que crece, con diversificación y foco en investigación. No es para quien busca un dividendo alto o creciente.\n\nPara que la tesis se mantenga, lo más importante es que sus medicamentos nuevos sigan llegando al mercado y que la caja vuelva a crecer al ritmo de la ganancia.",
+   "pros": [
+    "Líder en cáncer: Tagrisso, Imfinzi y Enhertu, entre otros.",
+    "Crecimiento sólido: ingresos +7 % y ganancia ajustada +14 % en nueve meses.",
+    "Diversificado: ningún medicamento pesa demasiado."
+   ],
+   "contras": [
+    "Caja en baja: flujo libre de 6.044 M, contra 8.670 M en 2025.",
+    "Patentes y China: Farxiga enfrenta copias y China presiona los precios.",
+    "Dividendo lento: creció 2,6 % por año en los últimos tres."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "AstraZeneca es una compañía biofarmacéutica que se centra en el descubrimiento, el desarrollo, la fabricación y la comercialización de medicamentos con receta. Según Yahoo, ofrece **Imjudo, Datroway, Iressa, Tagrisso, Imfinzi, Lynparza, Calquence, Enhertu, Orpathys, Truqap, Zoladex, Faslodex** (oncología), **Farxiga/Forxiga** y otros productos cardiometabólicos, entre una lista larga. Yahoo no informa cuánto aporta cada producto ni cada región, y no lo vamos a inventar.\n\nEs un negocio grande en crecimiento: **los ingresos subieron 3,3 % en 2023, 18,0 % en 2024 y 8,6 % en 2025, hasta 58.739 M**, y llegan a 61.366 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, hospitales, farmacias y sistemas de salud. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de AstraZeneca **es de patentes y liderazgo en oncología, y es estrecha**. Un medicamento patentado no tiene copia directa mientras dura la protección y los oncólogos prefieren tratamientos con evidencia clínica. Su cartera es amplia, lo que reduce el riesgo de un solo vencimiento. Se ve en el margen bruto de 81,9 % y en el margen operativo, que subió de 10,2 % a 22,8 %.\n\nPero varios productos maduros enfrentan vencimiento de patentes en los próximos años (dato público a verificar), y la presión de precios de Medicare en Estados Unidos puede recortar ingresos. Compite con Merck, Roche, Bristol-Myers, Pfizer y Novartis. Es frágil en el vencimiento de patentes, en los resultados de ensayos clínicos y en los aranceles. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de AstraZeneca cuentan **un salto de rentabilidad con flujo libre presionado por inversiones**. Los ingresos fueron de 44.351 M, 45.811 M, 54.073 M y 58.739 M, y de 61.366 M en los últimos 12 meses. El EBIT fue de 4.512 M, 8.722 M, 10.251 M y 13.327 M, y de **13.971 M** (margen operativo de 22,8 %). La ganancia neta fue de 3.288 M, 5.955 M, 7.035 M y 10.225 M, y de 10.446 M. La ganancia por acción fue de 2,11, 3,81, 4,50 y 6,54.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 7.237 M, 6.567 M, 7.275 M y 8.670 M, y de **6.044 M** en los últimos 12 meses (9,8 %), porque las inversiones subieron de 2.571 M a 7.656 M. El ROIC fue de 5,6 %, 11,3 %, 12,0 %, 14,5 % y 14,7 %, y el ROE de 20,8 %.\n\nLa mirada crítica: el flujo operativo (13.700 M) apenas crece mientras el EBIT sube; la diferencia son impuestos y capital de trabajo. Yahoo no explica el aumento de inversiones (probable ampliación de fábricas, dato a verificar).",
-   "balance": "**Deuda moderada y cobertura sólida.** La deuda total es de 32.239 M y la caja de 4.968 M; la deuda neta es de 24.598 M y la deuda neta/EBITDA es de 1,20x, que multiplicado por 12 son unos 14 meses de EBITDA. Los intereses se cubren 8,0 veces con el EBIT.\n\nEl patrimonio neto es de 50.295 M y la deuda equivale a 64 % del patrimonio. La liquidez corriente es de 0,89x, menor a 1, con 6.234 M de deuda de corto plazo. La deuda total subió de 28.407 M en 2023 a 32.239 M.",
-   "gerencia": "La conduce Pascal Soriot, CEO y director ejecutivo (66 años, pago de 8,2 M según Yahoo), con Aradhana Sarin como directora financiera (51 años, pago de 3,6 M). Soriot es CEO desde 2012, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo estable y sin recompras**: paga un dividendo de 3,20 por acción según Yahoo (desde 1993; sube 2,6 % por año en 3 años y 1,1 % en 10 años; 4.902 M en los últimos 12 meses, 81 % del flujo libre). **Las acciones quedaron en 1.562 M, igual que en 2022.**",
-   "fortalezas": [
-    "Ingresos de 61.366 M, creciendo entre 8 % y 18 % por año.",
-    "Margen operativo de 22,8 %, el doble que en 2022.",
-    "ROIC en alza (de 5,6 % a 14,7 %).",
-    "Margen bruto de 81,9 % y cartera de oncología amplia.",
-    "Deuda neta moderada de 1,20x EBITDA."
-   ],
-   "debilidades": [
-    "Flujo libre de 6.044 M, 9,8 % de los ingresos.",
-    "Dividendo que absorbe 81 % del flujo libre: el crítico más duro diría que el pago deja poco margen mientras invierte tanto.",
-    "Inversiones de 7.656 M, tres veces las de 2022.",
-    "Acciones sin bajar y dividendo creciendo solo 1,1 % en 10 años.",
-    "Liquidez corriente de 0,89x."
-   ],
-   "vigilar": [
-    "Inversiones: hoy 7.656 M; tienen que bajar para que el flujo libre se recupere.",
-    "Dividendo contra flujo libre: hoy 4.902 M contra 6.044 M.",
-    "Ingresos por producto: Yahoo no los informa, hay que buscarlos en el informe.",
-    "Margen operativo: hoy 22,8 %; si baja de 20 %, pierde apalancamiento operativo."
-   ],
    "clientes": [
-    "Mayoristas y distribuidores de medicamentos",
-    "Hospitales y centros de oncología",
-    "Sistemas de salud y aseguradoras"
+    "Sistemas de salud y gobiernos de todo el mundo",
+    "Aseguradoras y hospitales de EE.UU.",
+    "Socios de desarrollo (ingresos por alianzas)"
    ],
-   "ideal_para": [
-    "Buscan oncología con crecimiento y márgenes en alza.",
-    "Aceptan flujo libre presionado por inversiones.",
-    "Entienden el riesgo de vencimiento de patentes."
+   "hechos": [
+    {
+     "dato": "Nueve meses de 2026: ingresos de 46.881 M (+7 % a tipo de cambio constante); ingresos por alianzas de 2.806 M (+32 %); ganancia ajustada por acción de 8,00 dólares (+14 %) y contable de 5,62 (+11 %); tercer trimestre: ingresos de 16.209 M (+7 %), margen operativo ajustado de 36 %; guía 2026 confirmada: ingresos de un dígito medio a alto y ganancia ajustada por acción de doble dígito bajo; frase de Pascal Soriot",
+     "fuente": "Resultados de 9M y 3T26, 30/10/2026",
+     "url": "https://www.biospace.com/press-releases/astrazeneca-results-9m-and-q3-2026"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendo con holgura de flujo libre.",
-    "No toleran el vencimiento de patentes."
-   ],
+   "ticker": "AZN",
    "perfil": "salud",
    "capas": [],
-   "ticker": "AZN",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",

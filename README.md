@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.99 (31/10/2026): Análisis Fundamental nuevo, tanda 7
+
+- Reescritas con el formato v4: DELL, NFLX, SAP, AZN, RTX, GS, TXN y BABA. Van 52 de 166.
+
 ### v1.2.98 (31/10/2026): Análisis Fundamental nuevo, tanda 6
 
 - Reescritas con el formato v4: MA, ABBV, INTC, CVX y MRK (las que estaban pendientes porque la SEC no respondía; se leyeron los comunicados oficiales en otras fuentes). Van 44 de 166.
