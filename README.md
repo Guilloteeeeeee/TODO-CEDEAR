@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.2.95 (31/10/2026): Análisis Fundamental nuevo, tanda 3
+
+- Reescritas con el formato v4: JNJ, ASML, PLTR y COST. Van 23 de 166.
+- Pendientes de leer su informe del 3T26 (la SEC no respondió el 31/10): MA, ABBV, INTC, CVX; y XOM para renovar con el 3T26.
+
 ### v1.2.94 (31/10/2026): Análisis Fundamental nuevo, tanda 2
 
 - Reescritas con el formato v4 y su último informe oficial: LLY, MU, WMT, JPM, AMD, V y XOM (más BRK-B de la v1.2.93). Van 19 de 166.

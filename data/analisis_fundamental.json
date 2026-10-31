@@ -1533,54 +1533,72 @@
    }
   },
   "JNJ": {
-   "resumen": "Johnson & Johnson es la empresa de salud más diversificada del mercado: vende medicamentos con receta (oncología, inmunología, neurociencias) y productos médicos como los que se usan en cirugías, ortopedia y cardiología. Su ganancia viene de patentes y de equipos que los hospitales usan y no cambian fácil. Tiene un **foso estrecho, de patentes y costos de cambio**: es sólido, pero los medicamentos pierden la patente tarde o temprano y obligan a reemplazar las ventas con productos nuevos. Los números son parejos: los ingresos crecieron de 79.990 M en 2022 a 94.193 M en 2025 y a 99.335 M en los últimos 12 meses, el margen operativo se mantiene entre 24 % y 27 %, y el flujo libre es de 19.595 M. Su punto débil es que **la ganancia neta salta de un año a otro por partidas extraordinarias** (35.153 M en 2023, 14.066 M en 2024, 16.095 M en los últimos 12 meses), y por juicios que le pueden costar muchos miles de millones. Con tasas cerca de 5 %, la deuda, que subió, cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque le sirve para investigar y fabricar mejor. Conclusión: **buena empresa, estable y diversificada, con foso estrecho, caja constante y un dividendo de 65 años, aunque con crecimiento modesto y un resultado neto que no se puede leer de un año a otro.**",
-   "veredicto": "Buena empresa: diversificada y estable, con crecimiento modesto y foso estrecho",
-   "conclusion": "Johnson & Johnson es una buena empresa, no una excelente: un negocio diversificado y estable, con 99.335 M de ingresos, margen operativo de 25,7 %, flujo libre de 19.595 M y un dividendo pagado desde 1962, pero con foso estrecho, crecimiento modesto y la deuda neta multiplicada por tres desde 2023. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los medicamentos nuevos reemplacen los que pierden patente.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "J&J tiene dos segmentos. **Innovative Medicine** vende medicamentos con receta en áreas como oncología, inmunología, neurociencias, hipertensión pulmonar, enfermedades infecciosas y cardiovascular, a través de mayoristas, distribuidores, hospitales y farmacias. **MedTech** vende equipos y productos médicos, sobre todo para cirugía, ortopedia y cardiología. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable y estable: la gente necesita tratamientos y los hospitales necesitan equipos todos los años. **Los ingresos crecieron 6,5 % en 2023, 4,3 % en 2024 y 6,0 % en 2025, con 99.335 M en los últimos 12 meses.** Lo que lo impulsa es el lanzamiento de medicamentos nuevos y la renovación de equipos médicos.\n\n**A quién le vende.** A distribuidores mayoristas de medicamentos (en Estados Unidos, McKesson, Cencora y Cardinal Health), a hospitales y a profesionales de la salud. Yahoo no da los porcentajes, pero **los pocos distribuidores grandes concentran buena parte de las ventas de medicamentos**.",
-   "foso": "La ventaja de J&J **es de patentes y de costos de cambio, y es estrecha**. En medicamentos, una patente impide que otros copien el producto durante años. En MedTech, un cirujano entrenado en un equipo o un hospital con una flota instalada no cambia de proveedor sin un costo grande. Se ve en el **margen bruto, que se mantiene en torno a 68-69 %**, estable aun con los cambios del mercado.\n\nCompite con Pfizer, Merck, AbbVie, Novartis y Roche en medicamentos, y con Medtronic, Abbott y Stryker en equipos médicos. Es frágil porque **las patentes vencen** y entonces entran las copias baratas, y porque los gobiernos presionan los precios de los medicamentos. Además, los juicios por sus productos pueden costarle muchos miles de millones, aun cuando el negocio funcione bien. La inteligencia artificial no la amenaza: la ayuda a descubrir y fabricar.",
-   "numeros": "Los números de J&J cuentan **una empresa estable, con un resultado neto que no hay que leer a la letra**. Los ingresos crecieron 6,5 %, 4,3 % y 6,0 % en los últimos tres años. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 26,3 % en 2022, 25,8 % en 2023, 23,9 % en 2024, 27,2 % en 2025 y 25,7 % en los últimos 12 meses: estable. La ganancia por acción, en cambio, pasó de 6,73 en 2022 a 13,72 en 2023, 5,79 en 2024, 11,03 en 2025 y 6,60 en los últimos 12 meses: el salto es por partidas extraordinarias que Yahoo no detalla, así que el resultado operativo es mejor guía.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 19.595 M en los últimos 12 meses, **19,7 % de las ventas**, parejo desde 2022. El ROIC, cuánto gana por cada dólar puesto en el negocio, es de 15,4 %: bueno, pero no extraordinario.\n\nLa mirada crítica: el margen bruto bajó de 69,3 % en 2022 a 67,6 %, y el flujo operativo de 2025 fue de 59,7 % del EBITDA, bajo en comparación con otros años.",
-   "balance": "**La deuda de J&J subió, pero sigue siendo manejable.** La deuda total es de 44.651 M en los últimos 12 meses (era de 29.332 M en 2023) y la caja es de 17.228 M, así que la deuda neta es de 27.741 M, **1,03 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), contra 0,32 veces en 2023. Podría pagarla con poco más de un año de ganancia operativa. La ganancia operativa cubre 25,9 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,02 veces: justa, pero normal para una empresa de esta escala. Con tasas cerca de 5 %, la deuda nueva cuesta más: el gasto de intereses pasó de 276 M en 2022 a 984 M en los últimos 12 meses.",
-   "gerencia": "La conduce Joaquin Duato, CEO y presidente (62 años, pago de 6,5 M según Yahoo), con Joseph Wolk como director financiero y John Reed al frente de la investigación y de medicamentos. Es un equipo con larga trayectoria en la empresa.\n\nEn lo que importa, **el uso del capital, es prudente**: invierte en investigación y fábricas (6.564 M en los últimos 12 meses), paga un dividendo de 5,36 por acción (pagado desde 1962; sube 4,9 % por año en 3 años: 12.716 M en los últimos 12 meses) y recompra acciones (7.882 M en los últimos 12 meses). Las acciones diluidas pasaron de 2.664 M en 2022 a 2.443 M en los últimos 12 meses, **8,3 % menos**. No diluye al accionista.",
-   "fortalezas": [
-    "Diversificación: medicamentos y equipos médicos, con áreas terapéuticas distintas que no vencen todas a la vez.",
-    "Margen operativo estable de 25,7 % y margen bruto de 67,6 % en los últimos 12 meses.",
-    "Caja constante: flujo libre de 19.595 M en los últimos 12 meses, 19,7 % de las ventas.",
-    "Dividendo pagado desde 1962 (5,36 por acción) y 8,3 % menos acciones desde 2022.",
-    "Cobertura de intereses de 25,9 veces y liquidez corriente de 1,02 veces."
+   "formato": "v4",
+   "titulo": "Johnson & Johnson: crece pese a perder su mayor medicamento, con los juicios del talco de fondo",
+   "resumen": [
+    "Johnson & Johnson es hoy dos empresas: **medicamentos innovadores** (cáncer, inmunología, neurociencia) y **dispositivos médicos** (cirugía, cardiología, ortopedia, visión). Su ventaja son las patentes, la escala y uno de los balances más sólidos del mundo.",
+    "En el tercer trimestre de 2026, **las ventas crecieron 5,9 %** a 25.399 M aunque su ex medicamento estrella, Stelara, perdió la patente. Pero la ganancia contable casi desapareció por un cargo extraordinario para cerrar los juicios del talco.",
+    "Muy buena empresa, diversificada, con un portafolio de medicamentos nuevos que reemplaza a los viejos y un balance de primera, cuyos puntos débiles son los juicios y el vencimiento de patentes."
    ],
-   "debilidades": [
-    "Juicios y litigios: pueden costarle miles de millones y explican parte de los saltos del resultado neto.",
-    "Crecimiento modesto: ingresos +4 % a +6 % por año, sin la aceleración de otras farmacéuticas.",
-    "Patentes que vencen: el crítico más duro diría que debe reemplazar ventas importantes con productos nuevos, y que eso no está asegurado.",
-    "Deuda que subió: la deuda neta pasó de 0,32 veces el EBITDA en 2023 a 1,03 veces, con tasas cerca de 5 %.",
-    "Retorno moderado: ROIC de 15,4 %, estable pero sin mejora."
+   "introduccion": "Toda farmacéutica vive con una bomba de tiempo: las patentes. Cuando vencen, aparecen copias más baratas y las ventas del medicamento se derrumban.\n\nA Johnson & Johnson le está pasando con **Stelara**, un tratamiento para enfermedades inflamatorias que durante años fue su producto más vendido. En el tercer trimestre de 2026, su caída le restó casi 7 puntos de crecimiento a la división de medicamentos.\n\nY sin embargo, esa división creció 7,7 %. ¿Cómo? Porque los medicamentos nuevos (Tremfya, Darzalex, Carvykti y otros) crecen más rápido de lo que caen los viejos. Es exactamente lo que tiene que hacer una buena farmacéutica: reemplazar.\n\nLa otra noticia del trimestre es menos feliz: la empresa anotó un cargo extraordinario para resolver los juicios por el talco de sus antiguos productos para bebés, y su ganancia contable cayó a casi cero.\n\nEntonces, la pregunta es: ¿alcanza la fuerza de sus medicamentos nuevos para dejar atrás los juicios y las patentes vencidas?",
+   "secciones": [
+    {
+     "titulo": "Dos negocios que se complementan",
+     "texto": "La división más grande es **Medicina Innovadora**: medicamentos con patente para el cáncer (Darzalex, Carvykti, Rybrevant), la inmunología (Tremfya) y la salud mental (Spravato, Caplyta). En el tercer trimestre facturó **16.757 M (+7,7 %)**.\n\nLa otra es **MedTech**: dispositivos para cardiología (como los de Shockwave, que compró en 2024), cirugía, ortopedia y lentes de contacto. Facturó **8.642 M (+2,5 %)**. La empresa además está separando su negocio de ortopedia.\n\nSus clientes son hospitales, distribuidoras de medicamentos, aseguradoras y sistemas de salud de todo el mundo, sin uno dominante.\n\nSu **ventaja** tiene tres patas. Las **patentes** protegen sus medicamentos durante años. En los dispositivos, los **costos de cambiarse**: un cirujano entrenado con un sistema no cambia fácilmente a otro. Y la **escala**: puede investigar, fabricar y vender en todo el mundo como pocas empresas.\n\nSu CEO, Joaquín Duato, dice que la empresa tiene \"una línea más clara hacia un crecimiento de dos dígitos para el final de la década\". Es una promesa ambiciosa para una empresa de este tamaño.\n\nLa inteligencia artificial no amenaza este negocio; más bien puede acelerar el descubrimiento de medicamentos."
+    },
+    {
+     "titulo": "La ganancia contable miente, la caja no",
+     "texto": "Si mirás la ganancia por acción de los últimos años, parece una montaña rusa: 6,73 dólares en 2022, 13,72 en 2023, 5,79 en 2024, 11,03 en 2025. ¿Tan inestable es el negocio?\n\nNo. Lo que sube y baja son las **partidas extraordinarias**: la separación de Kenvue (su ex negocio de productos de consumo) en 2023, las compras de empresas y, sobre todo, los **juicios del talco**. En el tercer trimestre de 2026, la ganancia contable fue de apenas 0,09 dólares por acción, contra una ganancia ajustada de 2,59.\n\nPor eso, para ver el negocio de verdad, conviene mirar dos cosas. La primera, el margen operativo, lo que queda de cada venta después de todos los costos de funcionar: estuvo entre 24 % y 27 % todos estos años.\n\n[[grafico:margen_operativo]]\n\nLa segunda, la caja. El **flujo libre de caja** (lo que queda después de invertir) creció de forma pareja: de 17.185 M en 2022 a **19.595 M** en los últimos 12 meses. Esa estabilidad es la verdadera cara del negocio.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido, es de 15,4 %, apenas por debajo del promedio de su industria (16,9 %). Por encima de 15 % se considera muy bueno."
+    },
+    {
+     "titulo": "Un balance de los más fuertes del mundo, y un dividendo de seis décadas",
+     "texto": "Johnson & Johnson es una de las muy pocas empresas del mundo con la calificación crediticia más alta posible, mejor que la de muchos países. Eso significa que puede pedir prestado más barato que casi nadie.\n\nSu deuda neta (lo que debe menos la caja) es de 27.741 M, unas **1,03 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Y su ganancia operativa paga los intereses del año 26 veces.\n\nEl dividendo es su marca registrada: lo paga desde hace más de 60 años y lo sube todos los años. En los últimos tres creció 4,9 % por año. Despacio, pero sin fallar. Además, la empresa recompra acciones: la cantidad bajó de 2.664 M en 2022 a 2.443 M, en parte por el canje de acciones con Kenvue.\n\nLos riesgos son conocidos. Los **juicios del talco** llevan años, y aunque la empresa busca cerrarlos con un acuerdo, todavía pueden costar más. Y el **vencimiento de patentes** es permanente: Stelara hoy, otros mañana. Además, en EE.UU. el gobierno presiona para bajar los precios de los medicamentos.\n\nPara 2026, la empresa espera vender entre 101.000 y 101.400 M y una ganancia ajustada de entre 11,05 y 11,15 dólares por acción."
+    }
    ],
-   "vigilar": [
-    "Ingresos de medicamentos nuevos: tienen que compensar los que pierden patente; si el crecimiento baja de 4 %, la tesis se debilita.",
-    "Margen operativo: hoy 25,7 %; si baja de 24 %, es señal de presión de precios o de costos legales.",
-    "Deuda neta sobre EBITDA: hoy 1,03 veces; si sigue subiendo, el balance se ajusta.",
-    "Resultado de los juicios: lo que se informe sobre provisiones y acuerdos."
+   "valuacion": {
+    "texto": "En una farmacéutica como J&J, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero con la ganancia contable de los últimos 12 meses, achicada por el cargo del talco, el PER sale muy inflado. Por eso usamos la ganancia ajustada que espera la empresa para 2026: unos 11,10 dólares por acción.\n\nCon el precio de {precio} dólares, J&J cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nPara una empresa que crece cerca de 6 % por año en ventas, con un dividendo seguro y un balance de primera, el mercado suele pagar un PER cercano al de su historia. Cuando lo supera, está apostando a que los medicamentos nuevos van a acelerar el crecimiento, como promete la empresa.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).",
+    "ganancia_ref": 11.1,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (11,05 a 11,15 dólares)"
+   },
+   "conclusion": "Johnson & Johnson es una muy buena empresa, no una excelente. Tiene un portafolio diversificado, medicamentos nuevos que crecen más rápido de lo que caen los viejos, un flujo de caja estable de casi 20.000 M por año y uno de los balances más sólidos del mundo. Y paga dividendos crecientes hace más de seis décadas.\n\nSu punto débil son los juicios del talco, que todavía pueden costar más, y el vencimiento permanente de patentes, que obliga a reemplazar productos sin parar. Su retorno sobre el capital (15,4 %) es apenas el de su industria. El crítico más duro diría que J&J es una empresa grande y lenta, que crece poco más que la inflación y que vive apagando incendios legales. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa defensiva, con dividendo confiable, para la parte estable de la cartera. No es para quien busca crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que Medicina Innovadora siga creciendo a un ritmo cercano a 7 % pese a las patentes que vencen.",
+   "pros": [
+    "Reemplazo que funciona: los medicamentos nuevos compensan la caída de Stelara.",
+    "Caja estable: flujo libre de 19.595 M en los últimos 12 meses.",
+    "Dividendo y balance de primera: lo sube hace más de 60 años."
    ],
+   "contras": [
+    "Juicios del talco: un cargo extraordinario borró la ganancia contable del trimestre.",
+    "Patentes que vencen: Stelara hoy, otros productos mañana.",
+    "Presión sobre precios: el gobierno de EE.UU. busca abaratar los medicamentos."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Distribuidores mayoristas de medicamentos (McKesson, Cencora, Cardinal Health)",
-    "Hospitales y sistemas de salud",
-    "Farmacias y profesionales de la salud"
+    "Hospitales y sistemas de salud de todo el mundo",
+    "Distribuidoras de medicamentos y aseguradoras",
+    "Consumidores de lentes de contacto"
    ],
-   "ideal_para": [
-    "Buscan una empresa defensiva y diversificada del sector de salud.",
-    "Valoran un dividendo creciente y pagado desde hace décadas.",
-    "Quieren estabilidad en ventas y caja."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 25.399 M (+5,9 %); Medicina Innovadora 16.757 M (+7,7 %); MedTech 8.642 M (+2,5 %); Stelara restó cerca de 6,9 puntos al crecimiento de Medicina Innovadora",
+     "fuente": "Comunicado de resultados del 3T26, 13/10/2026",
+     "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q3-2026-results-raises-2026-guidance"
+    },
+    {
+     "dato": "Ganancia por acción contable de 0,09 dólares (2,12 un año antes) por un cargo extraordinario para resolver los juicios del talco y compras de empresas; ajustada de 2,59 (2,80)",
+     "fuente": "Ídem",
+     "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q3-2026-results-raises-2026-guidance"
+    },
+    {
+     "dato": "Guía 2026 (subida): ventas de 101.000 a 101.400 M; ganancia ajustada de 11,05 a 11,15 dólares por acción; frase de Joaquín Duato",
+     "fuente": "Ídem",
+     "url": "https://www.jnj.com/media-center/press-releases/johnson-johnson-reports-q3-2026-results-raises-2026-guidance"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido de ganancias.",
-    "No toleran el riesgo de juicios que afecten el resultado."
-   ],
+   "ticker": "JNJ",
    "perfil": "salud",
    "capas": [],
-   "ticker": "JNJ",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1595,59 +1613,74 @@
    }
   },
   "ASML": {
-   "resumen": "ASML fabrica las máquinas que imprimen los circuitos dentro de los chips: sin sus equipos de litografía, TSMC, Samsung o Intel no podrían hacer los procesadores más avanzados del mundo. Es la única empresa que fabrica las máquinas de ultravioleta extremo (EUV), que cuestan cientos de millones de euros cada una y que los clientes encargan con años de anticipación. Tiene un **foso amplio, de activos intangibles y escala**: la tecnología es tan difícil que ninguna otra empresa pudo copiarla en décadas. Los números lo muestran: el margen operativo subió de 30,7 % en 2022 a 38,6 % en los últimos 12 meses, el ROIC de 2025 fue de 38,7 % y tiene más caja que deuda (todas las cifras están en euros). Su punto débil es que **sus clientes son pocos y gastan según el ciclo**: en 2023 el flujo libre cayó 54,7 %, y el 22 de octubre los semiconductores cayeron 6,7 % por dudas sobre el gasto en inteligencia artificial. También depende de permisos de exportación, sobre todo hacia China. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque cuanta más inteligencia artificial, más chips y más máquinas. Conclusión: **excelente empresa, con foso amplio, rentabilidad extraordinaria y más caja que deuda, aunque con ciclos y pocos clientes grandes.**",
-   "veredicto": "Excelente empresa: casi monopolio tecnológico, rentabilidad extraordinaria y más caja que deuda",
-   "conclusion": "ASML es una empresa excelente: fabrica las máquinas que ninguna otra puede hacer, con margen operativo de 38,6 %, ROIC de 38,7 % y más caja que deuda. Su punto débil es el ciclo y la dependencia de pocos clientes grandes. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que sus clientes sigan pidiendo máquinas y que el margen bruto (54,3 %) no se deteriore.",
+   "formato": "v4",
+   "titulo": "ASML: el único fabricante del mundo de las máquinas que hacen los chips más avanzados",
+   "resumen": [
+    "ASML fabrica las máquinas de **litografía** con las que se \"imprimen\" los chips. En las más avanzadas, las EUV, **es el único proveedor del mundo**: sin ASML no hay chips de última generación, ni para la IA ni para los celulares.",
+    "En el tercer trimestre de 2026 **vendió 11.662 M de euros** con un margen bruto de 57,5 %, espera entre 44.000 y 45.000 M para todo el año y dice que su capacidad para 2027 y 2028 no alcanza para cubrir lo que le piden.",
+    "Excelente empresa, con un monopolio tecnológico casi imposible de romper, márgenes y retornos de primera y una cartera de pedidos que crece, aunque atada a los ciclos de inversión de pocos clientes y a las tensiones con China."
+   ],
+   "introduccion": "Hay empresas con ventajas difíciles de copiar. Y hay empresas como ASML.\n\nSus máquinas de litografía EUV usan luz ultravioleta extrema para dibujar circuitos de unos pocos nanómetros sobre una oblea de silicio. Cada una cuesta cientos de millones de euros, se transporta en varios aviones de carga y tardó décadas en desarrollarse. Ninguna otra empresa del mundo sabe fabricarlas.\n\nEso significa algo muy concreto: TSMC, Samsung e Intel, los grandes fabricantes de chips del mundo, necesitan a ASML. No tienen alternativa.\n\nY con la inteligencia artificial, la demanda de chips avanzados explotó. En su último informe, ASML dijo que lo que puede fabricar en 2027 y 2028 no va a alcanzar para lo que piden sus clientes, y que algunos ya quieren hacer pedidos para 2029 y 2030.\n\nEntonces, la pregunta es: ¿qué puede salir mal con un monopolio que tiene más demanda de la que puede atender?",
+   "secciones": [
+    {
+     "titulo": "Un monopolio construido en tres décadas",
+     "texto": "ASML vende dos cosas. La primera, **máquinas nuevas** de litografía: en el tercer trimestre vendió 113 nuevas y 8 usadas. La segunda, **servicio y mejoras** sobre las máquinas ya instaladas: 3.289 M de euros en el trimestre. Esa segunda parte es muy valiosa, porque es un ingreso recurrente que no depende de que los clientes compren máquinas nuevas.\n\nSus clientes son pocos y gigantes: **TSMC (TSM)**, Samsung, **Intel (INTC)** y los fabricantes de memoria como SK hynix y **Micron (MU)**. Es un **cruce clave**: cuando TSMC o Micron anuncian que van a invertir más en fábricas, una parte importante de esa plata termina en ASML.\n\n¿Por qué nadie la alcanza? Por una combinación de **activos intangibles** (miles de patentes y conocimiento acumulado en décadas) y una cadena de proveedores exclusivos que costó años armar. Es probablemente uno de los fosos más amplios de todo el mercado de acciones.\n\nLa inteligencia artificial no la amenaza: la necesita. Cada chip de IA más avanzado requiere más pasos de litografía, y eso significa más máquinas de ASML."
+    },
+    {
+     "titulo": "Números de monopolio",
+     "texto": "Una aclaración: ASML presenta sus estados en euros, así que las cifras están en esa moneda. Los porcentajes se comparan igual.\n\nLos ingresos pasaron de **21.173 M de euros en 2022 a 39.474 M** en los últimos 12 meses. Para todo 2026, la empresa espera entre 44.000 y 45.000 M.\n\n[[grafico:ingresos]]\n\nEl margen operativo (lo que queda de cada venta después de todos los costos de funcionar) subió de 30,7 % en 2022 a **38,6 %**. Y el margen bruto del último trimestre fue de 57,5 %, el más alto del año.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido, mide cuánto gana por cada euro que pusieron dueños y acreedores. Por encima de 15 % se considera muy bueno. En 2025, ASML tuvo **38,7 %**, por encima del promedio de su industria (32,7 %). Las tablas muestran un número mucho más alto para los últimos 12 meses, pero es un error del dato del capital invertido: conviene mirar el de 2025.\n\nY la caja acompaña: el flujo libre de caja (lo que queda después de invertir) fue de **20.999 M de euros** en los últimos 12 meses, casi el doble que en 2025."
+    },
+    {
+     "titulo": "Caja de sobra y los riesgos que sí existen",
+     "texto": "ASML tiene **más caja que deuda**: su deuda neta es negativa. Y devuelve mucho a los accionistas: en el tercer trimestre recompró acciones por unos 4.100 M de euros y paga un dividendo creciente. La cantidad de acciones bajó de 398 M en 2022 a 385 M.\n\n[[grafico:flujo_libre]]\n\nAhora, lo que puede salir mal. Primero, **los ciclos**: sus clientes compran máquinas en oleadas. En 2024, cuando frenaron las inversiones, los ingresos crecieron apenas 2,6 %. Hoy la IA empuja todo, pero si los fabricantes de chips frenan, los pedidos caen.\n\nSegundo, **China**. Los gobiernos de EE.UU. y de los Países Bajos limitan qué máquinas puede venderle ASML a China, que llegó a ser uno de sus mayores mercados. Cada nueva restricción le recorta ventas.\n\nTercero, **la concentración**: con pocos clientes, la decisión de uno solo (como TSMC) pesa muchísimo.\n\nLa conduce Christophe Fouquet, CEO desde 2024, que habló de \"una visibilidad muy fuerte y una cartera de pedidos que sigue creciendo trimestre a trimestre\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una empresa como ASML, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Su ganancia es limpia, sin grandes partidas extraordinarias, así que el PER contable sirve.\n\nCon el precio de {precio} dólares por acción, ASML cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nASML casi siempre cotizó cara, y tiene lógica: un monopolio con crecimiento y retornos altos merece una prima. La pregunta es si el precio de hoy ya cuenta con años de pedidos récord. Si la demanda de chips de IA se mantiene hasta 2028, como dice la empresa, la ganancia puede seguir creciendo fuerte. Si el ciclo se da vuelta, incluso un monopolio sufre.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "ASML es una empresa excelente. Tiene uno de los fosos más amplios del mercado: es el único fabricante del mundo de las máquinas EUV, sin las cuales no existen los chips más avanzados. Sus números lo confirman: margen operativo de 38,6 %, ROIC de 38,7 % en 2025, más caja que deuda y una cartera de pedidos que la propia empresa no puede atender.\n\nSu punto débil es que vende bienes de inversión a pocos clientes en una industria cíclica, y que la política entre EE.UU. y China le limita uno de sus mercados. El crítico más duro diría que ASML está en el punto más alto del ciclo de inversión en IA y que, cuando se dé vuelta, los pedidos van a caer aunque siga siendo un monopolio. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa de calidad excepcional para el largo plazo y tolera ciclos fuertes. No es para quien busca renta.\n\nPara que la tesis se mantenga, lo más importante es que la cartera de pedidos siga creciendo y que el margen bruto se sostenga cerca de 56 % a 57 %.",
+   "pros": [
+    "Monopolio tecnológico: es el único fabricante de máquinas EUV del mundo.",
+    "Demanda de sobra: su capacidad para 2027 y 2028 no alcanza para todos los pedidos.",
+    "Caja y recompras: más caja que deuda y unos 4.100 M de euros recomprados en el trimestre."
+   ],
+   "contras": [
+    "Industria cíclica: en 2024 sus ventas crecieron apenas 2,6 % cuando sus clientes frenaron.",
+    "China: las restricciones a la exportación le recortan un mercado grande.",
+    "Pocos clientes: TSMC, Samsung e Intel pesan muchísimo."
+   ],
    "calidad": "Excelente",
    "riesgo_ia": "muy bajo",
-   "negocio": "ASML vende sistemas de **litografía** (las máquinas que dibujan los circuitos sobre las obleas de silicio), con su tecnología de ultravioleta extremo (EUV) y de ultravioleta profundo (DUV, por inmersión y en seco), además de sistemas de metrología e inspección para controlar que los chips salgan bien. También cobra por instalación, mantenimiento y actualización de las máquinas, un ingreso que se repite durante años. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar. Las cifras de este informe están en euros.\n\nEs un negocio indispensable para fabricar chips avanzados: **los ingresos pasaron de 21.173 M en 2022 a 32.667 M en 2025 y a 39.474 M en los últimos 12 meses**. Lo que impulsa el crecimiento es que los fabricantes de chips construyen fábricas nuevas y necesitan más máquinas para inteligencia artificial.\n\n**A quién le vende.** A los fabricantes de chips más grandes: entre los más conocidos están TSMC, Samsung, Intel, SK Hynix y Micron. Yahoo no da los porcentajes, pero **son pocos clientes enormes**, y que alguno posponga una fábrica se nota en el año.",
-   "foso": "La ventaja de ASML **es de activos intangibles y de escala**. Construir una máquina EUV exige miles de proveedores, décadas de investigación y patentes: ninguna competidora lo logró. Además, sus clientes diseñan sus fábricas alrededor de las máquinas de ASML, y cambiar de proveedor no es una opción porque no hay otro. Se ve en el **margen bruto, que subió de 50,5 % en 2022 a 54,3 % en los últimos 12 meses**, y en el ROIC, que se mantuvo entre 31,7 % y 42,3 % en los años completos.\n\nCompite en litografía con Nikon y Canon, que quedaron atrás en las máquinas más avanzadas. Es frágil en dos cosas: el ciclo (el gasto de los fabricantes de chips sube y baja) y la política: los permisos de exportación hacia China pueden cortar una parte de sus ventas. La inteligencia artificial la favorece: más chips avanzados significan más máquinas.",
-   "numeros": "Los números de ASML cuentan **un crecimiento fuerte, con un ciclo claro**. Los ingresos crecieron 30,2 % en 2023, 2,6 % en 2024 y 15,6 % en 2025, y llegaron a 39.474 M en los últimos 12 meses. El margen operativo (lo que queda de cada euro vendido después de todos los costos del negocio) pasó de 30,7 % en 2022 a 34,6 % en 2025 y a 38,6 % en los últimos 12 meses. La ganancia por acción pasó de 20,59 en 2023 a 24,71 en 2025 y a 35,00 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 11.027 M en 2025, 33,8 % de las ventas. En los últimos 12 meses fue de 20.999 M, 1,9 veces el de 2025, y Yahoo lo marca como dato a verificar. El ROIC fue de **38,7 % en 2025**, un retorno extraordinario.\n\nLa mirada crítica: en 2023 el flujo libre cayó 54,7 % (a 3.247 M) aun con ingresos récord, porque los clientes pagan por adelantado y el calendario de cobros cambia. Y el margen operativo de hoy, 38,6 %, es el más alto de la tabla.",
-   "balance": "**El balance de ASML es sólido: tiene más caja que deuda.** En los últimos 12 meses tiene 12.735 M en caja y una deuda total de 1.963 M, así que la deuda neta es negativa en 10.772 M (le sobra plata aun pagando todo lo que debe). En 2025 la ganancia operativa cubría 95,5 veces los intereses, y la liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,49 veces.\n\nCon tasas altas, a ASML casi no le afecta su deuda, y lo que importa es el costo de capital de sus clientes: si las fábricas cuestan más por el dinero caro, algunos pospondrían pedidos.",
-   "gerencia": "La conduce Christophe Fouquet, presidente y CEO (52 años, pago de 4,2 M según Yahoo), con Roger Dassen como director financiero. Es un equipo técnico y estable, con experiencia en una industria muy compleja.\n\nEn lo que importa, **el uso del capital, es disciplinado**: invierte poco (1.726 M en los últimos 12 meses, 12,8 % del resultado neto), paga un dividendo de 9,32 por acción (2.996 M en los últimos 12 meses) y recompra acciones (7.848 M en los últimos 12 meses). Las acciones diluidas pasaron de 398 M en 2022 a 385 M, **3,3 % menos**. No diluye al accionista.",
-   "fortalezas": [
-    "Foso amplio de activos intangibles y escala: única proveedora de las máquinas EUV, difíciles de copiar.",
-    "Rentabilidad extraordinaria: margen operativo de 38,6 % y ROIC de 38,7 % en 2025.",
-    "Más caja que deuda: deuda neta negativa en 10.772 M y cobertura de intereses de 95,5 veces en 2025.",
-    "Crecimiento fuerte: ingresos de 21.173 M en 2022 a 39.474 M en los últimos 12 meses.",
-    "3,3 % menos acciones desde 2022 y un dividendo de 9,32 por acción."
-   ],
-   "debilidades": [
-    "Pocos clientes enormes: si uno pospone una fábrica, el efecto en los ingresos se nota.",
-    "Negocio cíclico: en 2023 el flujo libre cayó 54,7 % y el resultado de 2024 casi no creció (-0,2 %).",
-    "Dependencia de la política: las restricciones de exportación hacia China pueden cortarle ventas.",
-    "El crítico más duro diría que hoy los márgenes están en máximos y que el gasto en inteligencia artificial, que el mercado ya cuestionó el 22 de octubre, puede no sostenerse.",
-    "Dividendo que casi no crece en los últimos años (+3,6 % por año en 3 años)."
-   ],
-   "vigilar": [
-    "Pedidos de los grandes fabricantes de chips: si TSMC, Samsung o Intel recortan inversión, es la primera señal.",
-    "Margen bruto: hoy 54,3 %; si baja de forma sostenida, es presión de precios o de mezcla de productos.",
-    "Ingresos: crecen 15,6 % (2025); si el ritmo se frena, hay que ver si es el ciclo.",
-    "Restricciones de exportación hacia China: cualquier cambio de reglas afecta una parte de las ventas."
-   ],
    "clientes": [
     "TSMC (TSM)",
     "Samsung",
     "Intel (INTC)",
-    "SK Hynix",
-    "Micron (MU)"
+    "Fabricantes de memoria como SK hynix y Micron (MU)"
    ],
-   "ideal_para": [
-    "Buscan exposición a la cadena de chips a través de quien fabrica las máquinas.",
-    "Valoran un foso amplio, retornos altos y caja.",
-    "Aceptan ciclos y pocos clientes grandes."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 11.662 M de euros; margen bruto de 57,5 % (54,0 % en el segundo); ganancia neta de 4.960 M; 113 máquinas nuevas y 8 usadas; servicio y mejoras 3.289 M",
+     "fuente": "Comunicado de resultados del 3T26 (6-K), 14/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000937966/000162828026065813/pressreleasefinancialresul.htm"
+    },
+    {
+     "dato": "Guía: cuarto trimestre de 14.200 a 15.200 M de euros; año 2026 de 44.000 a 45.000 M con margen bruto cercano a 56 %; capacidad 2027-2028 que no cubre toda la demanda; pedidos de clientes para 2029 y 2030",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000937966/000162828026065813/pressreleasefinancialresul.htm"
+    },
+    {
+     "dato": "Recompras por unos 4.100 M de euros en el trimestre; dividendo a cuenta de 1,88 euros por acción; frase de Christophe Fouquet",
+     "fuente": "Ídem",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000937966/000162828026065813/pressreleasefinancialresul.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran riesgos políticos de exportación.",
-    "Buscan resultados estables año a año."
-   ],
+   "ticker": "ASML",
    "perfil": "hardware",
    "capas": [
     "compounder",
     "ciclica"
    ],
-   "ticker": "ASML",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1788,54 +1821,65 @@
    }
   },
   "PLTR": {
-   "resumen": "Palantir vende programas que cruzan enormes cantidades de datos para tomar decisiones: Gotham, usado por agencias de inteligencia y fuerzas armadas, Foundry, para grandes empresas, y su plataforma de inteligencia artificial (AIP). Sus clientes más importantes son el gobierno de Estados Unidos y gobiernos aliados, y una lista creciente de empresas. Tiene un **foso estrecho que se está ensanchando, de costos de cambio**: una vez que una agencia o una empresa conectó todos sus datos a Palantir, cambiar es caro y lento. El programa estima el foso como amplio; nuestra lectura es más cauta, porque solo lleva tres años de rentabilidad. Los números son extraordinarios: los ingresos pasaron de 2.225 M en 2023 a 4.475 M en 2025 y a 6.156 M en los últimos 12 meses, con un margen operativo de 42,8 % y 9.409 M en caja y casi sin deuda. Su punto débil es que **depende de contratos del gobierno** y que **las acciones aumentaron 24,7 % desde 2022**, en buena parte por el pago a empleados con acciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque la IA que ella vende también puede permitir que clientes grandes construyan sus propias soluciones. Conclusión: **muy buena empresa joven, con rentabilidad extraordinaria, caja y sin deuda, pero con un historial de ganancias corto y una dilución importante.**",
-   "veredicto": "Muy buena empresa joven: rentabilidad y caja extraordinarias, historial corto y dilución",
-   "conclusion": "Palantir es una muy buena empresa, no una excelente: crece 56,2 %, tiene margen operativo de 42,8 %, flujo libre de 3.358 M y 9.409 M en caja sin deuda, pero lleva solo tres años de ganancias y las acciones aumentaron 24,7 % desde 2022. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo y que el margen operativo no baje de forma sostenida.",
+   "formato": "v4",
+   "titulo": "Palantir: el software de IA que nadie puede dejar de usar, al precio más alto del mercado",
+   "resumen": [
+    "Palantir vende software que **junta todos los datos de una organización y le permite decidir con inteligencia artificial**: desde un ejército hasta un hospital o una fábrica. Su ventaja es que, una vez instalado, cambiarlo es casi imposible.",
+    "En el segundo trimestre de 2026 **sus ingresos crecieron 93 %** a 1.935 M, con las ventas a empresas de EE.UU. subiendo 149 %, y ganó 47 dólares de cada 100 que facturó. Para todo el año espera unos 8.150 M.",
+    "Muy buena empresa, con un crecimiento excepcional, márgenes muy altos y mucha caja, pero con una dilución histórica para el accionista y un precio que ya descuenta años de éxito."
+   ],
+   "introduccion": "Durante años, Palantir fue una empresa misteriosa que trabajaba para agencias de inteligencia y el Pentágono, crecía despacio y perdía plata. En 2022 todavía perdía.\n\nLa inteligencia artificial lo cambió todo. Las empresas descubrieron que para usar la IA en serio no alcanza con un chatbot: hace falta ordenar todos sus datos, conectarlos y darle a la IA permiso para actuar sobre ellos. Eso es exactamente lo que Palantir sabía hacer para los gobiernos.\n\nEl resultado son números que casi no tienen comparación. En el segundo trimestre de 2026, sus ingresos crecieron 93 % y los de clientes empresas en EE.UU., 149 %. Y no solo crece: gana muchísima plata.\n\nEl problema, como casi siempre con las empresas que crecen así, está en otro lado: en lo que se paga por la acción.\n\nEntonces, la pregunta es: ¿cuánto tiempo puede crecer Palantir a este ritmo, y cuánto de eso ya está en el precio?",
+   "secciones": [
+    {
+     "titulo": "Un software que se vuelve parte de la organización",
+     "texto": "Palantir vende tres plataformas. **Gotham**, para defensa e inteligencia; **Foundry**, para que las empresas integren sus datos; y **AIP**, que permite poner modelos de inteligencia artificial a trabajar sobre esos datos.\n\nEn el segundo trimestre, sus ventas en EE.UU. fueron 1.573 M: 809 M del **gobierno** (+90 %) y 764 M de **empresas** (+149 %).\n\nSus clientes son gobiernos (sobre todo el de EE.UU. y sus aliados) y grandes empresas de industria, salud, energía y finanzas. El gobierno de EE.UU. es, por lejos, su cliente más importante: eso le da estabilidad, pero también la expone a los cambios de presupuesto y de política.\n\n¿Cuál es su **ventaja**? El **costo de cambiarse**. Cuando una organización pone todos sus datos y sus procesos en Palantir, el software pasa a ser el sistema nervioso de la operación. Sacarlo significaría rehacer años de trabajo. Además, trabajar con gobiernos exige permisos de seguridad que pocas empresas tienen.\n\nLa inteligencia artificial no es una amenaza para Palantir: es su gran motor. El riesgo es otro: que las grandes nubes (Microsoft, Amazon, Google) ofrezcan herramientas parecidas, más baratas y ya integradas."
+    },
+    {
+     "titulo": "Crecer y ganar plata al mismo tiempo",
+     "texto": "Los ingresos de Palantir pasaron de **1.906 M en 2022 a 6.156 M** en los últimos 12 meses. Más que se triplicaron.\n\n[[grafico:ingresos]]\n\nY a diferencia de muchas empresas que crecen rápido, gana mucha plata. El margen operativo (lo que queda de cada venta después de todos los costos de funcionar) pasó de -8,5 % en 2022 a **42,8 %**. El promedio de su industria se queda con 33.\n\n[[grafico:margen_operativo]]\n\nEn el software hay una regla que se usa para medir el equilibrio entre crecer y ganar: la **Regla del 40**. Se suma el crecimiento de las ventas y el margen; si da más de 40, se considera excelente. Palantir informó 155 en el segundo trimestre. Es un número casi sin antecedentes.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron sus dueños), es de **26,6 %**, apenas por debajo del promedio de su industria (29,3 %). Por encima de 15 % se considera muy bueno.\n\nY la caja acompaña: generó **3.358 M** de flujo libre de caja (lo que queda después de invertir) en los últimos 12 meses, tiene 9.200 M en caja y bonos del Tesoro, y casi no tiene deuda."
+    },
+    {
+     "titulo": "El costo oculto: cada año, más acciones",
+     "texto": "Hay un número que el accionista de Palantir tiene que mirar con atención: la **cantidad de acciones**.\n\nPasó de **2.061 M en 2022 a 2.570 M**: un 24,7 % más. ¿Por qué? Porque Palantir paga una parte muy grande de los sueldos con acciones. Solo en el segundo trimestre de 2026, ese costo fue de 265 M.\n\n[[grafico:acciones]]\n\n¿Qué significa para el accionista? Que la torta se reparte entre más porciones. Si la empresa crece 50 % pero emite 5 % más acciones, lo que le toca a cada accionista crece menos. En los últimos años, el crecimiento fue tan fuerte que compensó con creces la dilución. Pero si el crecimiento se frena, la dilución se va a sentir mucho más.\n\nLa buena noticia es que el ritmo de emisión bajó: en 2025 la cantidad subió 4,8 % y en los últimos 12 meses casi no cambió.\n\nLa conduce Alex Karp, cofundador y CEO desde hace más de 20 años, una figura polémica con convicciones políticas fuertes. Su lectura del momento: \"La demanda de soberanía en IA ya se desató\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Palantir, el PER (cuántos años de ganancia se pagan al comprar la acción) es de {per_ref} veces su ganancia de los últimos 12 meses. Es uno de los más altos de todo el mercado: el promedio de su industria es {ind:per} veces. Su propia mediana histórica es de {med:per} veces, pero esa historia incluye años en los que casi no ganaba plata, así que sirve poco como referencia.\n\nUn PER así significa que, aun si la ganancia se duplicara, la acción seguiría cotizando muy por encima del promedio del mercado. El precio no se paga por lo que Palantir gana hoy, sino por lo que podría ganar dentro de muchos años si sigue creciendo a este ritmo.\n\nOtra forma de verlo es el **precio sobre ventas**: cuántos dólares se pagan por cada dólar que factura. Palantir cotiza a {v:ps} veces sus ventas, contra {ind:ps} veces del promedio de su industria.\n\nCon múltiplos así, cualquier trimestre que decepcione puede provocar caídas muy fuertes, aunque la empresa siga creciendo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Palantir no paga dividendo."
+   },
+   "conclusion": "Palantir es una muy buena empresa, no una excelente todavía. Tiene un producto que los clientes no pueden sacar una vez instalado, un crecimiento de 93 % con márgenes operativos de 42,8 %, mucha caja y casi nada de deuda. Pocas empresas en el mundo combinan crecimiento y rentabilidad así.\n\nSus puntos débiles son dos. La dilución: las acciones subieron 24,7 % desde 2022 porque paga muchos sueldos con acciones. Y la dependencia del gobierno de EE.UU., su mayor cliente. El crítico más duro diría que ni el mejor crecimiento justifica pagar tantas veces la ganancia, y que la competencia de las grandes nubes va a llegar. Es un argumento serio.\n\nEncaja con quien busca crecimiento extremo y tolera caídas de 30 % o 40 % en el camino. No es para quien busca renta, ni para quien quiere comprar empresas a precios razonables.\n\nPara que la tesis se mantenga, lo más importante es que las ventas a empresas de EE.UU. sigan creciendo a más de 100 % por año y que la dilución siga bajando.",
+   "pros": [
+    "Crecimiento excepcional: ingresos +93 % y ventas a empresas de EE.UU. +149 % en el trimestre.",
+    "Clientes que no se van: una vez instalado, cambiar Palantir significa rehacer años de trabajo.",
+    "Rentable y con caja: margen operativo de 42,8 % y 9.200 M en caja y bonos."
+   ],
+   "contras": [
+    "Dilución: 24,7 % más acciones desde 2022 por los sueldos pagados con acciones.",
+    "Precio extremo: cotiza a muchas veces su ganancia y sus ventas.",
+    "Dependencia del gobierno: el de EE.UU. es su mayor cliente."
+   ],
    "calidad": "Muy buena",
-   "riesgo_ia": "moderado",
-   "negocio": "Palantir vende software que integra datos de muchas fuentes para que quien lo usa pueda entenderlos y actuar. **Gotham** está pensado para defensa e inteligencia (ver el campo de batalla, integrar datos y sensores casi en tiempo real). **Foundry** lo usan empresas y gobiernos para organizar sus datos y operaciones. **AIP** (su plataforma de inteligencia artificial) permite usar modelos de lenguaje sobre esos datos. Yahoo no informa cuánto aporta cada línea ni cada tipo de cliente, y no lo vamos a inventar.\n\nEs un negocio de ingresos recurrentes por suscripción y contratos de largo plazo. **Los ingresos crecieron 16,7 % en 2023, 28,8 % en 2024 y 56,2 % en 2025, y llegaron a 6.156 M en los últimos 12 meses.** Lo que lo impulsa es la demanda de inteligencia artificial en empresas y el gasto en defensa.\n\n**A quién le vende.** Sobre todo al gobierno de Estados Unidos (defensa e inteligencia) y a gobiernos aliados, y a grandes empresas. Yahoo no da los porcentajes, pero **los contratos públicos son una parte grande de las ventas**, y eso la hace sensible a los presupuestos del gobierno.",
-   "foso": "La ventaja de Palantir **es de costos de cambio, y todavía es estrecha**. Cuando una agencia o una gran empresa conecta sus sistemas y datos a Palantir y entrena a su gente, cambiar de proveedor lleva años y riesgos. Además, la confianza que logró con organismos de defensa y de inteligencia es difícil de copiar. Se ve en el **margen bruto, que subió de 78,6 % en 2022 a 84,8 % en los últimos 12 meses**.\n\nCompite con Microsoft, Google, Amazon, Snowflake, Databricks y empresas especializadas en defensa. Es frágil en dos cosas: su historial de ganancias es corto (perdía plata hasta 2022) y la inteligencia artificial puede permitir que clientes grandes armen soluciones propias con herramientas de las nubes. Hasta ahora los números no muestran ese daño: crecen más rápido que nunca.",
-   "numeros": "Los números de Palantir cuentan **un cambio extraordinario en tres años**. Los ingresos crecieron 56,2 % en 2025 y 6.156 M en los últimos 12 meses. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) pasó de -8,5 % en 2022 a 5,4 % en 2023, 10,8 % en 2024, 31,6 % en 2025 y 42,8 % en los últimos 12 meses. La ganancia por acción pasó de -0,18 en 2022 a 0,63 en 2025 y a 1,17 en los últimos 12 meses.\n\nLa ganancia se convierte en caja: el flujo libre (lo que sobra después de invertir) fue de 3.358 M en los últimos 12 meses, **54,6 % de las ventas**, con una inversión mínima (42 M). El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 3,2 % en 2023 a **26,6 %**.\n\nLa mirada crítica: **este es un cambio muy rápido y reciente**, con solo tres años de ganancias; un margen operativo de 42,8 % no se ha probado en un ciclo malo. Además, parte del flujo libre viene de pagar al personal con acciones (no sale caja), lo que se ve en la dilución.",
-   "balance": "**El balance de Palantir es excepcionalmente sólido: casi no tiene deuda.** En los últimos 12 meses tiene 9.409 M en caja y una deuda total de 211 M, así que la deuda neta es negativa en 9.198 M (le sobra plata aun pagando todo lo que debe). La liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 7,23 veces: muy holgada.\n\nCon tasas altas, a Palantir casi no le importa: gana intereses sobre su caja. Lo que sí puede importarle es que sus clientes del gobierno y las empresas recorten presupuestos.",
-   "gerencia": "La conduce Alexander Karp, cofundador y CEO (58 años, pago de 8,6 M según Yahoo), con Stephen Cohen como cofundador y presidente, David Glazer como director financiero y Shyam Sankar como director de tecnología. Es un equipo fundador, muy ligado a la visión de la empresa, lo cual es una fortaleza y también un riesgo.\n\nEn lo que importa, **el uso del capital, es de reinversión mínima y acumulación de caja**: invierte muy poco (42 M en los últimos 12 meses), no paga dividendo y recompra casi nada (75 M en 2025). **Las acciones diluidas pasaron de 2.061 M en 2022 a 2.570 M en los últimos 12 meses, un 24,7 % más**, porque parte del pago a empleados se hace con acciones. El crítico más duro diría que gran parte de la ganancia del accionista se la lleva el personal.",
-   "fortalezas": [
-    "Crecimiento muy fuerte y acelerado: ingresos +56,2 % en 2025 y 6.156 M en los últimos 12 meses.",
-    "Rentabilidad extraordinaria: margen operativo de 42,8 % y ROIC de 26,6 % en los últimos 12 meses.",
-    "Caja enorme: flujo libre de 3.358 M, 54,6 % de las ventas, con inversión mínima.",
-    "Balance impecable: 9.409 M en caja contra 211 M de deuda total.",
-    "Costos de cambio altos con clientes de defensa y grandes empresas."
-   ],
-   "debilidades": [
-    "Historial de ganancias corto: con pérdidas en 2022, solo tiene tres años de rentabilidad y no pasó por una recesión.",
-    "Dilución: 24,7 % más acciones desde 2022, por el pago a empleados con acciones.",
-    "Dependencia de contratos del gobierno: un cambio de presupuesto o de prioridades afecta directo las ventas.",
-    "Competencia de gigantes: el crítico más duro diría que Microsoft, Google y Amazon pueden ofrecer algo parecido dentro de sus nubes.",
-    "Ganancias muy sensibles al entusiasmo por la inteligencia artificial, que el mercado ya cuestionó el 22 de octubre (Nasdaq -2,6 %)."
-   ],
-   "vigilar": [
-    "Ingresos: crecen 56,2 % (2025); si el ritmo cae de forma fuerte, la historia de crecimiento se debilita.",
-    "Margen operativo: hoy 42,8 %; si baja de 30 %, el cambio no era de fondo.",
-    "Acciones en circulación: +24,7 % desde 2022; si sigue subiendo, la dilución le quita valor a cada acción.",
-    "Contratos del gobierno: renovaciones y presupuestos de defensa e inteligencia."
-   ],
+   "riesgo_ia": "bajo",
    "clientes": [
-    "Gobierno de Estados Unidos (defensa e inteligencia)",
+    "Gobierno de EE.UU. (defensa, inteligencia y otras agencias)",
     "Gobiernos aliados",
-    "Grandes empresas de distintos sectores"
+    "Grandes empresas de industria, salud, energía y finanzas"
    ],
-   "ideal_para": [
-    "Buscan crecimiento muy fuerte con rentabilidad ya demostrada.",
-    "Valoran un balance con caja y sin deuda.",
-    "Aceptan un historial corto y una dilución importante."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ingresos de 1.935 M (+93 %); EE.UU. 1.573 M (+115 %); gobierno de EE.UU. 809 M (+90 %); empresas de EE.UU. 764 M (+149 %); resultado operativo de 912 M (47 % de margen); Regla del 40: 155 %",
+     "fuente": "Comunicado de resultados del 2T26, 03/08/2026",
+     "url": "https://www.businesswire.com/news/home/20260802523449/en/"
+    },
+    {
+     "dato": "Flujo libre ajustado de 1.220 M en el trimestre; 9.200 M en caja y bonos del Tesoro de corto plazo; costo de sueldos pagados con acciones de 265 M en el trimestre; guía 2026 (subida): ingresos de 8.150 a 8.158 M; frase de Alex Karp",
+     "fuente": "Ídem",
+     "url": "https://www.businesswire.com/news/home/20260802523449/en/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan empresas con décadas de resultados probados.",
-    "No toleran depender de contratos del gobierno."
-   ],
+   "ticker": "PLTR",
    "perfil": "software",
    "capas": [],
-   "ticker": "PLTR",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -1912,56 +1956,68 @@
    }
   },
   "COST": {
-   "resumen": "Costco es el club donde pagás una membresía anual para comprar en grandes cantidades y a precios bajos: alimentos, electrodomésticos, ropa, combustible y hasta anteojos. La empresa gana muy poco por cada producto que vende, y buena parte de su ganancia viene de la cuota de los socios, que casi siempre renuevan. Tiene un **foso amplio, de escala y costos bajos**: como vende volúmenes enormes de pocos productos, negocia mejores precios con los proveedores, se los traslada a los socios, y los socios siguen pagando la membresía. Los números son parejos y fuertes: los ingresos crecieron de 242.290 M en el año fiscal 2023 a 303.154 M en 2026 (+10,1 % en el último), el margen operativo subió de 3,3 % a 3,9 % y el retorno sobre el capital invertido es de 21,0 %. Su punto débil es que **gana apenas 3,9 centavos de ganancia operativa por dólar vendido**, un margen tan fino que cualquier error de costos lo golpea. Con la inflación en 3,7 % y la nafta 9,1 % más cara, a Costco le llegan socios que buscan ahorrar, aunque su costo de transporte también sube. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque la gente va a comprar en grandes cantidades a un local físico. Conclusión: **excelente empresa de comercio, con foso amplio, crecimiento a dos dígitos, retornos altos y más caja que deuda.**",
-   "veredicto": "Excelente empresa de comercio: foso amplio, crecimiento a dos dígitos y más caja que deuda",
-   "conclusion": "Costco es una empresa excelente: un comercio con foso amplio de escala y membresías, ingresos que crecen 10,1 %, ROIC de 21,0 % y más caja que deuda. Su punto débil es un margen operativo de apenas 3,9 %. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el margen operativo no baje y que los socios sigan renovando.",
+   "formato": "v4",
+   "titulo": "Costco: gana poco vendiendo y mucho con la membresía, y el mercado paga caro esa fórmula",
+   "resumen": [
+    "Costco es una cadena de clubes de compra: **para entrar hay que pagar una membresía anual**, y adentro todo es más barato porque Costco casi no le gana a lo que vende. Su ventaja es esa fórmula: precios imbatibles y socios que renuevan año tras año.",
+    "En su año fiscal 2026 (cerrado en agosto), **vendió 297.247 M (+10,1 %)**, cobró 5.907 M en membresías (+11 %) y ganó 9.226 M. Sus ventas online crecieron cerca de 21 %.",
+    "Excelente empresa, con una ventaja de costos y de lealtad muy difícil de copiar, retornos altos y caja de sobra, a un precio que el mercado paga como si fuera una tecnológica."
+   ],
+   "introduccion": "Imaginá un comercio que te cobra por dejarte entrar. Y que después te vende todo casi al costo.\n\nParece un mal negocio, pero es uno de los mejores del mundo. Costco cobra una membresía anual a millones de socios, y con esa plata paga buena parte de su ganancia. Lo que vende adentro (comida, electrodomésticos, nafta) lo vende con un margen tan chico que nadie puede competirle en precio.\n\nEl resultado es una rueda que se alimenta sola: precios bajísimos atraen socios, los socios renuevan porque ahorran, y con más socios Costco compra en más volumen y baja todavía más los precios.\n\nCon la inflación de EE.UU. en 3,7 % y la nafta cada vez más cara, la gente busca ahorrar, y Costco es el lugar. Sus ventas comparables en EE.UU. crecieron 10,7 % en el último trimestre (7,2 % sin contar los cambios en el precio de la nafta y el dólar).\n\nEntonces, la pregunta no es si Costco es un buen negocio. Es otra: ¿cuánto vale la pena pagar por él?",
+   "secciones": [
+    {
+     "titulo": "Una membresía que paga la cuenta",
+     "texto": "Costco tiene **939 clubes** en 14 países, la mayoría en EE.UU. (647) y Canadá (115). También vende online, y esas ventas crecieron 20,9 % en el último año fiscal.\n\nSus clientes son familias y pequeños negocios que pagan la membresía, sin uno que pese demasiado.\n\nAcá está la clave del modelo. En el año fiscal 2026, Costco cobró **5.907 M en membresías** y ganó 9.226 M en total. Es decir: las membresías equivalen a casi dos tercios de su ganancia. Lo que vende adentro deja muy poco margen; la cuota es casi pura ganancia.\n\n¿Cuál es su **ventaja**? Dos cosas que se refuerzan. Primero, una **ventaja de costos**: vende pocos productos (unos miles, contra decenas de miles de un supermercado común) en volúmenes enormes, así que negocia precios que nadie más consigue. Segundo, la **lealtad**: el socio que pagó la cuota quiere aprovecharla, y la gran mayoría renueva todos los años.\n\nUna cadena nueva que quisiera copiar el modelo tendría que vender casi sin margen durante años antes de tener los socios y el volumen de Costco. Muy pocos podrían aguantarlo.\n\nLa inteligencia artificial no amenaza este negocio: la gente sigue yendo a comprar en persona, y Costco gana justamente por precio."
+    },
+    {
+     "titulo": "Un margen ínfimo, un retorno altísimo",
+     "texto": "El margen operativo de Costco (lo que queda de cada venta después de todos los costos de funcionar) es de apenas **3,9 %**. De cada 100 dólares que vende, le quedan menos de 4. El promedio de su industria se queda con 6,8.\n\n[[grafico:margen_operativo]]\n\nEso, en Costco, es a propósito. Si ganara más por cada venta, perdería su ventaja de precio.\n\nPor eso, el número que mejor muestra la calidad del negocio es el **ROIC**, el retorno sobre el capital invertido: cuánto gana por cada dólar que pusieron sus dueños y acreedores. Por encima de 15 % se considera muy bueno. Costco está en **21 %**, muy por encima del promedio de su industria (13,6 %). Gana poco por venta, pero vende tanto con tan poco capital que el retorno es excelente.\n\n[[grafico:roic]]\n\nLas ganancias crecen de forma muy pareja: la ganancia por acción pasó de 14,16 dólares en 2023 a **20,76** en el último año fiscal. En el último trimestre hubo una ayuda que no se repite (0,15 dólares por acción por devoluciones de aranceles), pero sin ella el crecimiento igual fue fuerte."
+    },
+    {
+     "titulo": "Más caja que deuda, y un dividendo con sorpresas",
+     "texto": "Costco tiene un balance muy cómodo. Tiene **21.301 M en caja** y una deuda de 8.576 M: su deuda neta es negativa, tiene más plata que deuda. Y su ganancia operativa paga los intereses del año 80 veces (por encima de 3 se considera sano).\n\nGenera caja de forma pareja: el flujo libre (lo que queda después de invertir en clubes nuevos y depósitos) fue de **9.382 M** en el último año fiscal.\n\nA los accionistas les devuelve plata de una forma particular. Paga un dividendo regular que viene creciendo 13,2 % por año en los últimos tres. Y cada tanto, cuando acumula demasiada caja, paga un **dividendo extraordinario** grande. Por eso, si mirás el crecimiento del dividendo a 10 años, parece negativo: el punto de partida tenía uno de esos dividendos especiales.\n\nTambién tiene un detalle que muchos inversores valoran: sube la cuota de la membresía cada cinco o seis años, y casi nadie se va cuando lo hace. Es la prueba de su poder sobre los precios.\n\nLa conduce Ron Vachris, CEO desde 2024, que hizo toda su carrera en la empresa."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Costco, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Su ganancia es muy limpia y pareja, así que el PER contable sirve bien.\n\nCon el precio de {precio} dólares, Costco cotiza a {per_ref} veces la ganancia de su último año fiscal. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nCostco es, desde hace años, una de las acciones más caras del comercio minorista. El mercado paga una prima por su estabilidad: es de las empresas que menos sufren en las crisis, porque cuando la gente tiene menos plata, busca ahorrar.\n\nPero un PER tan alto tiene un costo: deja poco margen de error. Si el crecimiento se frena aunque sea un poco, la acción puede caer aunque la empresa siga siendo excelente. Es el clásico caso de una gran empresa que no necesariamente es una gran inversión a cualquier precio.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo regular rinde {dy}."
+   },
+   "conclusion": "Costco es una empresa excelente. Su modelo de membresía crea una ventaja de costos y una lealtad muy difíciles de copiar, su ROIC (21 %) está muy por encima de su industria, sus ganancias crecen de forma pareja y tiene más caja que deuda.\n\nSu punto débil no está en el negocio sino en el precio. El crítico más duro diría que Costco crece cerca de 8 % o 10 % por año y se paga como si creciera el doble, y que incluso la mejor empresa puede ser una mala inversión si se compra demasiado cara. Es un argumento serio.\n\nEncaja con quien busca una empresa defensiva de altísima calidad para muchos años y está dispuesto a pagar por esa estabilidad. No es para quien busca renta ni para quien quiere comprar empresas a precios razonables.\n\nPara que la tesis se mantenga, lo más importante es que la cantidad de socios y lo que cobra en membresías sigan creciendo cerca de 10 % por año.",
+   "pros": [
+    "Modelo de membresía: cobró 5.907 M en cuotas, casi dos tercios de su ganancia.",
+    "Retorno alto: ROIC de 21 %, contra 13,6 % del promedio de su industria.",
+    "Defensiva: cuando la plata alcanza menos, la gente busca precio en Costco."
+   ],
+   "contras": [
+    "Precio exigente: cotiza a un PER muy alto para un comercio.",
+    "Margen ínfimo: le quedan menos de 4 dólares de cada 100 que vende.",
+    "Crecimiento moderado: cerca de 10 % por año, bueno pero no espectacular."
+   ],
    "calidad": "Excelente",
    "riesgo_ia": "muy bajo",
-   "negocio": "Costco opera clubes de compra mayorista por membresía en Estados Unidos, Canadá, México, Japón, Reino Unido, Corea, Australia, Taiwán, China, España, Francia y otros países. Vende alimentos, bebidas, artículos del hogar, electrónica, electrodomésticos y combustible, en una selección chica de productos para que cada uno se venda en enormes cantidades. Gana de dos maneras: el pequeño margen sobre la mercadería y **las cuotas de membresía**. Yahoo no informa cuánto aporta cada una, y no lo vamos a inventar.\n\nEs un negocio indispensable y estable: la gente compra alimentos y artículos de la casa todo el año. **Los ingresos crecieron 5,0 % en el año fiscal 2024, 8,2 % en 2025 y 10,1 % en 2026, hasta 303.154 M** (los años fiscales de Costco terminan en agosto). Lo impulsa abrir clubes nuevos y vender más en los que ya existen.\n\n**A quién le vende.** A socios, consumidores y pequeños comercios que compran en cantidad. **Ningún cliente pesa de forma decisiva.** La dependencia está del lado de los proveedores y de que los socios sigan renovando la membresía.",
-   "foso": "La ventaja de Costco **es de escala y de costos, reforzada por la membresía**. Como vende volúmenes enormes de pocos productos, consigue precios más bajos de los proveedores; se los traslada a los socios, que ven que ahí ahorran y siguen pagando la cuota; y la cuota financia los precios bajos. Es **un círculo que se refuerza**. Se ve en el **margen bruto, estable entre 12,3 % y 12,8 %**, muy bajo a propósito: Costco elige ganar poco por producto para que el socio vuelva.\n\nCompite con Walmart (Sam's Club), Amazon, BJ's y supermercados regionales. Es frágil en lo que le es propio: el modelo depende de que los socios sigan sintiendo que ahorran, y un error de precios puede romper esa confianza. La inteligencia artificial no la amenaza: la gente no compra una caja de 24 unidades por inteligencia artificial.",
-   "numeros": "Los números de Costco cuentan **un crecimiento que se acelera con una rentabilidad estable**. Los ingresos crecieron 5,0 %, 8,2 % y 10,1 % en los últimos tres años fiscales. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) subió de 3,3 % en 2023 a 3,9 % en 2026, y la ganancia neta, de 6.292 M a 9.226 M. La ganancia por acción pasó de 14,16 en 2023 a 18,21 en 2025.\n\nLa ganancia se convierte en caja: el flujo operativo fue de 15.817 M en 2026, 171,4 % del resultado neto, en parte porque algunos gastos contables, como la depreciación de los locales, no son una salida de dinero. El flujo libre (lo que sobra después de invertir) fue de 9.382 M, **3,1 % de las ventas**. El ROIC, cuánto gana por cada dólar puesto en el negocio, es de 21,0 %, un retorno excelente para un comercio.\n\nLa mirada crítica: con márgenes tan finos, el margen operativo (3,9 %) está en el máximo de la tabla; si se normaliza, la ganancia crece más despacio. Y el ROIC bajó de 23,9 % en 2024 a 21,0 % porque el capital invertido creció más rápido que la ganancia.",
-   "balance": "**El balance de Costco es muy sólido: tiene más caja que deuda.** En 2026 tiene 21.301 M en caja y una deuda total de 8.576 M, así que la deuda neta es negativa en 12.725 M (le sobra plata aun pagando todo lo que debe). La ganancia operativa cubre 80,6 veces los intereses. La deuda total incluye en buena parte los alquileres de algunos locales, un compromiso fijo como una deuda aunque no sea un préstamo.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,06 veces: ajustada, pero normal en un comercio que cobra al contado y paga a sus proveedores más tarde. Con tasas cerca de 5 %, a Costco casi no le afecta su propia deuda.",
-   "gerencia": "La conduce Ron Vachris, presidente y CEO (60 años, pago de 1,8 M según Yahoo), con Gary Millerchip como director financiero. Es un equipo con larga trayectoria dentro de la empresa y con pagos moderados, algo poco común en una empresa de este tamaño.\n\nEn lo que importa, **el uso del capital, es prudente**: reinvierte en locales nuevos (6.435 M en 2026, 69,7 % del resultado neto) y devuelve el resto con un dividendo de 5,88 por acción (creciendo 13,2 % por año en los últimos 3 años) y, en 2024, con un dividendo extraordinario (los dividendos pagados fueron de 9.041 M ese año contra 2.458 M en 2026). Las recompras son chicas (848 M en 2026) y las acciones diluidas no cambiaron (444 M en 2023, 445 M en 2025). No diluye al accionista.",
-   "fortalezas": [
-    "Foso amplio de escala y costos, reforzado por las membresías: margen bruto estable en 12-13 %.",
-    "Crecimiento que se acelera: ingresos +10,1 % en 2026, hasta 303.154 M.",
-    "ROIC alto para un comercio: 21,0 % en 2026.",
-    "Más caja que deuda: deuda neta negativa en 12.725 M y cobertura de intereses de 80,6 veces.",
-    "Dividendo creciente (5,88 por acción, +13,2 % por año en 3 años) sin diluir a nadie."
-   ],
-   "debilidades": [
-    "Margen operativo muy fino (3,9 %): un error de precios o de costos pega fuerte.",
-    "Costos de transporte y de energía: con el petróleo en máximos de cinco meses y la nafta 9,1 % más cara, sube el costo de mover mercadería, y Costco vende combustible.",
-    "Dependencia de la confianza de los socios: el crítico más duro diría que, si el socio deja de sentir que ahorra, la membresía se resiente.",
-    "ROIC en baja desde 2024 (23,9 % a 21,0 %), porque el capital crece más rápido que la ganancia.",
-    "Inversión creciente en locales: 6.435 M en 2026, contra 4.323 M en 2023."
-   ],
-   "vigilar": [
-    "Ingresos: crecen 10,1 %; si bajan de 6 % de forma sostenida, el modelo pierde tracción.",
-    "Margen operativo: hoy 3,9 %; si baja, es la señal de que los costos o la guerra de precios se comen la ganancia.",
-    "ROIC: hoy 21,0 %; si sigue bajando, los locales nuevos rinden menos que los viejos.",
-    "Costos de transporte y combustible: pueden afectar los márgenes si el petróleo sigue subiendo."
-   ],
    "clientes": [
-    "Socios y consumidores finales: no depende de un cliente en particular",
-    "Pequeños comercios que compran en cantidad",
-    "Clientes de las estaciones de combustible de Costco"
+    "Familias socias, sin un cliente dominante",
+    "Pequeños negocios con membresía empresarial",
+    "Compradores online"
    ],
-   "ideal_para": [
-    "Buscan una empresa defensiva de consumo con foso amplio y crecimiento.",
-    "Valoran un balance con más caja que deuda y un dividendo creciente.",
-    "Quieren un comercio que se beneficie cuando el consumidor busca ahorrar."
+   "hechos": [
+    {
+     "dato": "Año fiscal 2026 (52 semanas al 30/08/2026): ventas de 297.247 M (+10,1 %); membresías 5.907 M (5.323 M el año anterior); ganancia de 9.226 M (20,76 dólares por acción, contra 18,21); ventas online +20,9 %",
+     "fuente": "Comunicado de resultados del 4T y año fiscal 2026, 24/09/2026",
+     "url": "https://s201.q4cdn.com/287523651/files/doc_news/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results-2026.pdf"
+    },
+    {
+     "dato": "Cuarto trimestre: ventas comparables de EE.UU. +10,7 % (+7,2 % sin nafta ni tipo de cambio); beneficio no recurrente de 0,15 dólares por acción por devoluciones de aranceles; 939 clubes (647 en EE.UU. y Puerto Rico)",
+     "fuente": "Ídem",
+     "url": "https://s201.q4cdn.com/287523651/files/doc_news/Costco-Wholesale-Corporation-Reports-Fourth-Quarter-and-Fiscal-Year-2026-Operating-Results-2026.pdf"
+    }
    ],
-   "menos_ideal": [
-    "Buscan márgenes altos: en Costco son por diseño muy finos.",
-    "No toleran que el resultado dependa de costos de transporte y combustible."
-   ],
+   "mes_cierre_fiscal": 8,
+   "ticker": "COST",
    "perfil": "consumo",
    "capas": [
     "compounder"
    ],
-   "ticker": "COST",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
