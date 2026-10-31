@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.0 (31/10/2026): Análisis Fundamental nuevo, tanda 8
+
+- Reescritas con el formato v4: TMO, CRWD, AMGN, MUFG, LIN, IBM, TM y ARM. Van 60 de 166.
+- AMGN queda para renovar con su informe del 3T26 (sale el 03/11).
+
 ### v1.2.99 (31/10/2026): Análisis Fundamental nuevo, tanda 7
 
 - Reescritas con el formato v4: DELL, NFLX, SAP, AZN, RTX, GS, TXN y BABA. Van 52 de 166.

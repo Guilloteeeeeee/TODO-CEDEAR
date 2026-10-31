@@ -3443,56 +3443,64 @@
    }
   },
   "LIN": {
-   "resumen": "Linde es la mayor empresa de gases industriales del mundo: produce oxígeno, nitrógeno, argón, hidrógeno, helio y gases especiales para chips, y los entrega por cañerías desde plantas construidas al lado de sus clientes o en camiones. Gana plata con contratos largos, muchos de ellos con un consumo mínimo asegurado, y también diseña y construye plantas para terceros. Tiene un **foso amplio, de escala y contratos de largo plazo**: pocos competidores en el mundo y una planta propia al lado de la fábrica del cliente, que no se muda. Los números lo muestran: el margen operativo subió de 19,4 % en 2022 a 27,1 % en los últimos 12 meses y la ganancia por acción de 8,23 a 15,48. Su punto débil es la caja: **el flujo libre bajó a 4.975 M (14,0 % de las ventas) porque la inversión en plantas subió de 3.173 M a 5.514 M**, y la deuda subió 49 % a 28.013 M. Con el bono a 10 años cerca de 5 %, esas inversiones y esa deuda cuestan más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**; hasta puede ayudarla, porque vende gases para fabricar chips. Conclusión: **muy buena empresa, con foso amplio, márgenes en alza y recompras, pero con flujo libre en baja, deuda en alza y ROIC de solo 11,1 %.**",
-   "veredicto": "Muy buena empresa: foso amplio y márgenes en alza, pero flujo libre en baja y deuda en alza",
-   "conclusion": "Linde es una muy buena empresa: tiene un foso amplio, margen operativo de 27,1 %, ganancia por acción en alza y 7,1 % menos acciones, pero el flujo libre bajó a 14,0 % de las ventas y la deuda subió 49 %. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la inversión en plantas se transforme en más ventas y en flujo libre.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "Linde: vende gases industriales con contratos de 15 años, y sube precios aun con la industria floja",
+   "resumen": [
+    "Linde es la mayor empresa de **gases industriales** del mundo: oxígeno, nitrógeno, argón, hidrógeno y otros gases que usan las acerías, las refinerías, las fábricas de chips, los hospitales y la industria alimenticia. Su ventaja son los contratos largos y que, en este negocio, solo hay tres grandes jugadores.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 9 %**, a un récord de 9.404 M, y su ganancia ajustada por acción, 9 %, con un margen ajustado de 29,4 %. Espera ganar entre 17,82 y 17,92 dólares por acción ajustados en el año.",
+    "Excelente empresa, de las más estables del mundo industrial, que sube precios todos los años y tiene una cartera de proyectos de 11.000 M, aunque el mercado siempre la pagó cara."
+   ],
+   "introduccion": "Una acería necesita oxígeno para fundir el hierro. Una fábrica de chips necesita nitrógeno ultra puro. Un hospital necesita oxígeno medicinal. Una refinería necesita hidrógeno. Sin esos gases, todas se paran.\n\nLinde los fabrica y los vende. Y lo hace con un modelo de negocio muy particular: para los clientes grandes, construye una planta al lado de la fábrica del cliente y le vende el gas con un **contrato de 15 a 20 años**, con un pago mínimo garantizado aunque el cliente use menos.\n\nEso hace a Linde una de las empresas más estables del mundo industrial. En 2026, la industria anda floja en muchos países. Aun así, Linde subió sus ventas 9 % en el tercer trimestre, con precios 3 % más altos.\n\nY tiene trabajo asegurado: una cartera de proyectos de 11.000 M.\n\nEntonces, la pregunta es: ¿cuánto vale pagar por una estabilidad así?",
+   "secciones": [
+    {
+     "titulo": "Un negocio de pocos jugadores y contratos largos",
+     "texto": "Linde vende sus gases de tres formas:\n\n- **Plantas en el lugar**: para los clientes que usan mucho gas (acerías, refinerías, químicas, fábricas de chips), construye una planta junto a la del cliente y le vende el gas por 15 a 20 años, con un mínimo garantizado.\n- **A granel**: lleva gas licuado en camiones cisterna a clientes medianos.\n- **En cilindros**: para talleres, hospitales y pequeñas empresas.\n\nTambién diseña y construye plantas de gases para terceros.\n\nSus clientes son de todo tipo: industria química y energía, acero, electrónica, salud, alimentos, manufactura. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? Tres cosas. Los **contratos largos**, que aseguran ingresos durante décadas. La **geografía**: transportar gas es caro, así que quien tiene una planta en una zona domina ese mercado local. Y la **estructura del sector**: en el mundo hay solo tres grandes empresas de gases industriales (Linde, Air Liquide y Air Products), y Linde es la más grande. Eso les permite subir precios año tras año.\n\nLa inteligencia artificial no la amenaza; en todo caso, las fábricas de chips y los centros de datos necesitan sus gases."
+    },
+    {
+     "titulo": "Márgenes que suben aun sin crecer mucho",
+     "texto": "Los ingresos de Linde crecen poco: de 33.364 M en 2022 a **35.449 M** en los últimos 12 meses. No es una empresa de crecimiento rápido.\n\nLo notable es el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar): pasó de 19,4 % en 2022 a **27,1 %** en los últimos 12 meses. El promedio de su industria es 12,2 %. El margen ajustado, que usan la empresa y los analistas del mercado, llegó a 29,4 % en el tercer trimestre.\n\n[[grafico:margen_operativo]]\n\n¿Cómo sube el margen sin crecer mucho? Subiendo precios por encima de la inflación de sus costos, y siendo cada vez más eficiente.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **11,1 %**. Parece modesto, pero tiene una explicación: Linde nació en 2018 de la fusión de la alemana Linde con la estadounidense Praxair, y ese capital quedó registrado con un valor muy alto. Sin ese efecto, la empresa calcula un retorno de **23,5 %**. El promedio de su industria es 10,9 %.\n\n[[grafico:roic]]\n\nLa ganancia ajustada por acción del tercer trimestre fue de 4,59 dólares, un 9 % más. Para todo 2026, la empresa espera entre 17,82 y 17,92 dólares."
+    },
+    {
+     "titulo": "Inversión constante y devolución creciente",
+     "texto": "Linde invierte mucho: construir plantas de gases cuesta caro. En el tercer trimestre invirtió 1.392 M. Aun así, genera mucha caja: **4.975 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_vs_inversion]]\n\nLa deuda neta (lo que debe menos la caja) es de 23.115 M y equivale a **1,7 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 21 veces (por encima de 3 se considera sano).\n\nDevuelve mucho: en el tercer trimestre, 1.685 M entre dividendos y recompras. El dividendo es de 1,60 dólares por trimestre (antes 1,50) y creció 8,6 % por año en los últimos tres.\n\n[[grafico:dividendo]]\n\nLo conduce Sanjiv Lamba, CEO desde 2022: \"El desempeño financiero de Linde siguió mejorando en el tercer trimestre, con ventas récord de 9.400 M\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Linde, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para 2026: unos 17,87 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, Linde cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl mercado siempre pagó una prima por Linde: sus ganancias crecen todos los años, casi sin importar cómo esté la economía. Es una empresa que se compra por su calidad y su previsibilidad, no por un precio bajo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 17.87,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (17,82 a 17,92 dólares)"
+   },
+   "conclusion": "Linde es una empresa excelente. Es la líder de un sector con solo tres grandes jugadores, vende con contratos de 15 a 20 años, sube precios todos los años, tiene márgenes que duplican a su industria, mucha caja y un dividendo creciente.\n\nSu punto débil es el crecimiento y el precio. Sus ventas crecen poco, depende en parte de la actividad industrial, que hoy está floja, y el mercado siempre la paga con una prima. El crítico más duro diría que pagar un múltiplo alto por una empresa que crece cerca de 8 % por año deja poco margen. Es un argumento razonable.\n\nEncaja con quien busca una empresa industrial de altísima calidad y estabilidad para el largo plazo. No es para quien busca un precio bajo o un dividendo alto.\n\nPara que la tesis se mantenga, lo más importante es que siga subiendo precios por encima de sus costos y que su cartera de proyectos se convierta en ventas.",
+   "pros": [
+    "Contratos largos: 15 a 20 años, con pagos mínimos garantizados.",
+    "Sector concentrado: solo tres grandes jugadores en el mundo.",
+    "Márgenes altos: margen ajustado de 29,4 % en el último trimestre."
+   ],
+   "contras": [
+    "Crecimiento lento: sus ventas crecen pocos puntos por año.",
+    "Industria floja: parte de su negocio depende de la actividad industrial.",
+    "Precio con prima: el mercado siempre la pagó cara."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "muy bajo",
-   "negocio": "Linde produce y entrega **gases atmosféricos** (oxígeno, nitrógeno, argón, gases raros) y **gases de proceso** (hidrógeno, helio, dióxido de carbono, monóxido de carbono, gases electrónicos, gases especiales y acetileno). También diseña y construye plantas llave en mano (separación de aire, hidrógeno, síntesis, olefinas y gas natural) para terceros y para sus propios negocios. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio indispensable y de contratos largos: la industria usa gases todos los años. **Los ingresos cayeron 1,5 % en 2023, subieron 0,5 % en 2024 y 3,0 % en 2025, hasta 35.449 M en los últimos 12 meses.** El crecimiento es lento y parejo, con precios que suben y volumen estable.\n\n**A quién le vende.** A industrias muy variadas: manufactura, salud, electrónica, alimentos, energía y químicos. **Ningún cliente concentra una parte decisiva de las ventas.**",
-   "foso": "La ventaja de Linde **es de escala y de contratos de largo plazo, y es amplia**. Los gases industriales se producen en plantas grandes y se entregan por cañería a clientes que no pueden cambiar de proveedor de un día para otro; en muchos contratos el cliente asegura un consumo mínimo. Hay muy pocos jugadores en el mundo (Linde, Air Liquide, Air Products). Se ve en el **margen bruto, de 41,7 % a 48,3 %**, y en el **margen operativo, que subió de 19,4 % a 27,1 %**.\n\nCompite con Air Liquide, Air Products y proveedores regionales. Es frágil en el ciclo industrial (si baja la producción, baja el volumen), en los costos de energía que usa para producir y en la inversión que necesita para crecer. Y el ROIC, de 8,3 % a 11,1 %, es modesto porque pagó caro por sus plantas.",
-   "numeros": "Los números de Linde cuentan **un negocio muy estable que mejora sus márgenes**. Los ingresos pasaron de 33.364 M en 2022 a 33.986 M en 2025 y a 35.449 M en los últimos 12 meses. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 19,4 %, 24,7 %, 26,0 %, 27,2 % y **27,1 % en los últimos 12 meses**. La ganancia por acción fue de 8,23 en 2022 (año con partidas que Yahoo no detalla), 12,59, 13,62, 14,61 y **15,48 en los últimos 12 meses**.\n\nLa caja, en cambio, flojea: el flujo libre (lo que sobra después de invertir) fue de 5.691 M en 2022, 4.926 M en 2024, 5.089 M en 2025 y **4.975 M en los últimos 12 meses (14,0 % de las ventas)**, contra 17,1 % en 2022. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 8,3 %, 10,6 %, 11,0 %, 11,0 % y **11,1 %**.\n\nLa mirada crítica: la inversión en planta subió 74 % en cuatro años mientras el flujo libre bajó. Es plata para crecer, pero todavía no se transformó en más ventas.",
-   "balance": "**La deuda de Linde subió, pero se banca.** La deuda total pasó de 18.791 M en 2022 a 28.013 M en los últimos 12 meses (+49 %), con 4.898 M en caja: la deuda neta es de 23.115 M, **1,70 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 20 meses de ganancia operativa. Era de 1,25 veces en 2022. La ganancia operativa cubre 20,9 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,88 veces: justa, y bastante estable en los últimos años. Con tasas cerca de 5 %, la deuda nueva cuesta más.",
-   "gerencia": "La conduce Sanjiv Lamba, CEO y presidente del directorio (61 años, pago de 5,0 M según Yahoo), con Matthew White como director financiero (53 años). Es un equipo estable.\n\nEn lo que importa, **el uso del capital, es de inversión en plantas y de retorno al accionista**: paga un dividendo de 6,40 por acción (pagado desde 1992; sube 8,6 % por año en 3 años; 2.878 M en los últimos 12 meses) y recompra acciones (4.601 M en 2025 y 4.057 M en los últimos 12 meses). Las acciones diluidas bajaron de 504 M a 468 M, **7,1 % menos**. Entre recompras y dividendo devolvió 6.935 M, más que el flujo libre de 4.975 M, y la diferencia se financia con deuda.",
-   "fortalezas": [
-    "Líder mundial en gases industriales, con contratos largos y plantas junto al cliente.",
-    "Margen operativo de 27,1 % y margen bruto de 48,3 % en los últimos 12 meses.",
-    "Ganancia por acción de 15,48 en los últimos 12 meses, contra 8,23 en 2022.",
-    "Recompras: 7,1 % menos acciones desde 2022.",
-    "Dividendo pagado desde 1992 (6,40 por acción) y cobertura de intereses de 20,9 veces."
-   ],
-   "debilidades": [
-    "Flujo libre en baja: 4.975 M, 14,0 % de las ventas, contra 17,1 % en 2022.",
-    "Devuelve más (6.935 M) de lo que genera (4.975 M): el crítico más duro diría que la diferencia se paga con deuda.",
-    "Deuda en alza: 28.013 M, 49 % más que en 2022, con tasas cerca de 5 %.",
-    "ROIC modesto (11,1 %) para un foso amplio.",
-    "Ingresos casi sin crecer: +3,0 % en 2025."
-   ],
-   "vigilar": [
-    "Flujo libre: hoy 4.975 M; tiene que recuperar los 15 % o más de las ventas cuando las plantas nuevas produzcan.",
-    "Deuda neta sobre EBITDA: hoy 1,70 veces; si sigue subiendo, el balance se ajusta con tasas cerca de 5 %.",
-    "ROIC: hoy 11,1 %; tiene que subir hacia 13 % o más para justificar la inversión.",
-    "Margen operativo: hoy 27,1 %; si cae, el poder de fijar precios se debilita."
-   ],
    "clientes": [
-    "Industrias de manufactura, químicas y energéticas",
-    "Hospitales y empresas de salud",
-    "Fabricantes de chips y electrónica"
+    "Acerías, refinerías y químicas",
+    "Fábricas de chips y electrónica",
+    "Hospitales, industria alimenticia y talleres"
    ],
-   "ideal_para": [
-    "Buscan un negocio industrial estable con contratos largos y márgenes en alza.",
-    "Valoran un dividendo pagado desde 1992 y recompras.",
-    "Aceptan un crecimiento lento a cambio de estabilidad."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 9.404 M (+9 %; +5 % subyacente: precio +3 %, volumen +2 %); ganancia operativa ajustada de 2.763 M (+8 %), margen de 29,4 %; ganancia por acción de 3,66 dólares y ajustada de 4,59 (+9 %); flujo operativo de 3.169 M; inversiones de 1.392 M; retorno ajustado sobre el capital de 23,5 %; cartera de proyectos de 11.000 M; 1.685 M devueltos al accionista; dividendo trimestral de 1,60 dólares; guía 2026: ganancia ajustada de 17,82 a 17,92 dólares; frase de Sanjiv Lamba",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://assets.linde.com/-/media/global/corporate/corporate/documents/press-releases/2026/linde-3q26-earnings-release-tables.pdf"
+    }
    ],
-   "menos_ideal": [
-    "No toleran un flujo libre en baja ni una deuda en alza.",
-    "Buscan crecimiento rápido de ingresos."
-   ],
+   "ticker": "LIN",
    "perfil": "materiales",
    "capas": [
     "ciclica"
    ],
-   "ticker": "LIN",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -4206,54 +4214,61 @@
    }
   },
   "MUFG": {
-   "resumen": "Mitsubishi UFJ Financial Group es el mayor grupo bancario de Japón: banca de personas, de empresas, de inversiones y de mercados, con presencia en Estados Unidos, Europa, Asia y Medio Oriente. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones por sus servicios, y es el banco de casi todas las grandes empresas japonesas. Tiene un **foso estrecho, de escala y de relaciones con grandes empresas**: pocos bancos en el mundo tienen una base tan grande de depósitos y clientes corporativos. Los números mejoraron: los ingresos subieron 10,0 % a ¥7.521.125 M en el año fiscal 2026, la ganancia neta 30,3 % a ¥2.427.229 M (¥2.690.588 M en los últimos 12 meses), la ganancia por acción pasó de ¥159,47 a ¥212,33 y el ROE de 9,1 % a 11,9 %. Hay que tener cuidado con la lectura: **Yahoo solo informa dos años fiscales completos, así que las tendencias son poco confiables**, y las cifras están en yenes, por lo que el rendimiento en dólares depende también del tipo de cambio. Las acciones bajaron 2,2 % y el banco recompra fuerte. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa, el mayor banco de Japón, con ROE y ganancias en alza y recompras, aunque con pocos años de datos y el riesgo del yen.**",
-   "veredicto": "Buena empresa: el mayor banco de Japón, con ganancia y ROE en alza, pero con pocos años de datos",
-   "conclusion": "MUFG es una buena empresa, no una excelente: es el mayor banco de Japón, con ganancia por acción en alza (¥212,33), ROE de 11,9 % y recompras, pero Yahoo trae solo dos años completos y las cifras están en yenes. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por préstamos incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando cambie el ciclo de tasas.",
+   "formato": "v4",
+   "titulo": "MUFG: el banco más grande de Japón gana más ahora que el país volvió a tener tasas de interés",
+   "resumen": [
+    "Mitsubishi UFJ Financial Group es el **mayor grupo bancario de Japón** y uno de los más grandes del mundo: banca para personas y empresas, gestión de fortunas, bancos en el Sudeste Asiático y una participación importante en Morgan Stanley. Su ventaja es la escala y su base de depósitos en Japón.",
+    "En el primer trimestre de su año fiscal 2026 (abril a junio), **ganó 809.427 M de yenes, cerca de 48 % más** que un año antes, con ingresos 20 % mayores.",
+    "Buena empresa, que se beneficia de que Japón salió de décadas de tasas en cero, con una rentabilidad que sube, aunque todavía cerca del promedio de su industria y con los riesgos de un banco global muy grande."
+   ],
+   "introduccion": "Durante casi 25 años, los bancos japoneses vivieron en un mundo raro: las tasas de interés estaban en cero, o incluso por debajo. Prestar plata dejaba un margen mínimo. Los bancos de Japón ganaban poco y sus acciones cotizaban por debajo de su patrimonio.\n\nEn 2024, el Banco de Japón empezó a subir las tasas por primera vez en 17 años. Para un banco con una montaña de depósitos que pagan casi nada, como MUFG, eso es una muy buena noticia: puede prestar más caro sin pagar mucho más por la plata de sus clientes.\n\nSe nota en los números. En el primer trimestre de su año fiscal 2026, MUFG ganó cerca de 48 % más que un año antes. Su rentabilidad sobre el patrimonio pasó de 9,1 % a 11,9 % en los últimos 12 meses.\n\nA eso se suma otro cambio: las empresas japonesas, presionadas por la bolsa de Tokio, están devolviendo más plata a sus accionistas.\n\nEntonces, la pregunta es: ¿es este el comienzo de una nueva era para los bancos japoneses?",
+   "secciones": [
+    {
+     "titulo": "Un banco japonés con alcance mundial",
+     "texto": "MUFG tiene varios negocios:\n\n- **Banca en Japón**: cuentas, préstamos, tarjetas e hipotecas para millones de personas y empresas. Es la base del grupo.\n- **Banca corporativa global**: préstamos y servicios para grandes empresas en todo el mundo.\n- **Bancos en Asia**: es dueño de bancos en Tailandia (Krungsri) e Indonesia (Danamon), mercados que crecen más que Japón.\n- **Gestión de inversiones y fortunas**.\n- **Morgan Stanley (MS)**: tiene cerca de una quinta parte de la empresa, una alianza que le da presencia en la banca de inversión de EE.UU.\n\nSus clientes son millones de personas y empresas en Japón y Asia, y grandes empresas de todo el mundo. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **escala** y los **depósitos**. Es el banco más grande de una de las mayores economías del mundo, con una base de depósitos enorme y barata. Ahora que las tasas suben, esa base vale mucho más.\n\nLa inteligencia artificial es más una herramienta que una amenaza para un banco de este tamaño."
+    },
+    {
+     "titulo": "La rentabilidad sube con las tasas",
+     "texto": "Las cifras de MUFG están en yenes.\n\nEn un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada yen que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nMUFG tuvo un ROE de **9,1 %** en el año fiscal 2024 (cerrado en marzo de 2025), de 10,9 % en el año fiscal 2025 y de **11,9 %** en los últimos 12 meses. El promedio de su industria es 12,9 %. Todavía está algo por debajo, pero acercándose rápido.\n\nLa ganancia neta pasó de 1.862.946 M de yenes en el año fiscal 2024 a **2.690.588 M** en los últimos 12 meses.\n\nEn el primer trimestre del año fiscal 2026, los ingresos crecieron 20 % y la ganancia por acción pasó de 47,45 a 71,59 yenes.\n\nUn dato para entender un banco: sus activos son unas **19 veces su patrimonio**. Es normal en la banca, pero significa que una pérdida chica sobre los préstamos puede pesar mucho sobre el capital de los dueños."
+    },
+    {
+     "titulo": "Más devolución al accionista, y los riesgos de un gigante",
+     "texto": "Los bancos japoneses, durante años, acumularon capital y devolvieron poco. Eso cambió. La bolsa de Tokio presiona a las empresas que cotizan por debajo de su patrimonio para que mejoren su rentabilidad y devuelvan más plata. MUFG respondió con recompras de acciones y dividendos más altos, y vendiendo las acciones de otras empresas japonesas que tenía por tradición.\n\nLos riesgos son los de un banco global muy grande:\n\n- **Las tasas**: si el Banco de Japón da marcha atrás con las subas, el margen vuelve a achicarse.\n- **La economía japonesa**: una recesión aumentaría los préstamos impagos.\n- **Los bonos**: como muchos bancos, tiene bonos que pierden valor cuando las tasas suben.\n- **Asia y EE.UU.**: sus inversiones fuera de Japón la exponen a otras economías y a otros reguladores."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, MUFG cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio más de lo que le cuesta conseguir capital merece cotizar por encima de una vez su patrimonio. Durante años, MUFG ganaba poco y el mercado lo pagaba por debajo de su patrimonio. Con las tasas en suba y una rentabilidad cerca de 12 %, el mercado cambió de opinión.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos de los años de tasas en cero. El dividendo rinde {dy}."
+   },
+   "conclusion": "MUFG es una buena empresa en un momento favorable. Es el banco más grande de Japón, con una base de depósitos enorme que gana valor ahora que las tasas suben, presencia en Asia, una alianza con Morgan Stanley y una rentabilidad que mejora rápido. Y devuelve más plata al accionista que antes.\n\nSu punto débil es que su rentabilidad todavía está algo por debajo del promedio de su industria, y que su mejora depende mucho de que el Banco de Japón siga subiendo las tasas. El crítico más duro diría que el mercado ya pagó por esa mejora, y que si las tasas japonesas se estancan, MUFG vuelve a ser un banco de rentabilidad modesta. Es un argumento razonable.\n\nEncaja con quien busca exposición a Japón y a la suba de sus tasas, con un dividendo creciente. No es para quien busca un banco de rentabilidad muy alta.\n\nEs recomendable revisar en cada informe el margen entre lo que cobra por sus préstamos y lo que paga por los depósitos. Para que la tesis se mantenga, lo más importante es que el ROE siga subiendo por encima de 12 %.",
+   "pros": [
+    "Tasas a favor: Japón salió de casi 25 años de tasas en cero.",
+    "Ganancia en alza: +48 % en el primer trimestre del año fiscal.",
+    "Más devolución: recompras y dividendos crecientes."
+   ],
+   "contras": [
+    "Rentabilidad todavía justa: ROE de 11,9 %, contra 12,9 % de su industria.",
+    "Depende del Banco de Japón: si frena las subas, el margen se achica.",
+    "Mucho apalancamiento: sus activos son unas 19 veces su patrimonio."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "bajo",
-   "negocio": "Mitsubishi UFJ Financial Group ofrece productos y servicios financieros en Japón, Estados Unidos, Europa, Medio Oriente, Asia y Oceanía. Opera siete segmentos: **Retail and Digital Business**, **Corporate and Wealth Management Business**, **Corporate Banking Business**, **Global Commercial Banking Business**, **Asset Management Business**, **Global CIB Business** y **Market Business**. Yahoo no informa cuánto aporta cada segmento ni cada país, y no lo vamos a inventar.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 10,0 % en el año fiscal 2026 y llegaron a ¥7.863.006 M en los últimos 12 meses.** Todas las cifras están en yenes.\n\n**A quién le vende.** A millones de personas, a pequeñas y medianas empresas, a grandes corporaciones japonesas y a clientes internacionales. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de MUFG **es de escala y de relaciones con grandes empresas, y es estrecha**. Con una enorme base de depósitos en Japón y décadas de relación con las grandes corporaciones, tiene financiamiento barato y clientes que rara vez cambian. Un banco vende dinero, que es igual en todos lados, y las diferencias entre bancos grandes son chicas. Se ve en el ROE, que subió de 9,1 % a 11,9 %: decente, pero todavía debajo de la referencia de 12 %.\n\nCompite con Sumitomo Mitsui, Mizuho y bancos globales. Es frágil en el riesgo de crédito (que los préstamos no se paguen), en las tasas de interés de Japón (que durante años fueron muy bajas y recién ahora suben) y en el tipo de cambio. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de MUFG cuentan **un banco gigante con ganancias en fuerte alza, vistas con pocos años de datos**. Los ingresos fueron de ¥6.838.439 M en el año fiscal 2025, ¥7.521.125 M en 2026 y ¥7.863.006 M en los últimos 12 meses. La ganancia neta fue de ¥1.862.946 M, ¥2.427.229 M y ¥2.690.588 M. La ganancia por acción pasó de ¥159,47 a **¥212,33** (+33,1 %).\n\nEl indicador más importante en un banco es el ROE (cuánto gana por cada dólar de patrimonio): **9,1 % en el año fiscal 2025, 10,9 % en 2026 y 11,9 % en los últimos 12 meses**, algo por debajo de la referencia de 12 %. El capital invertido pasó de ¥44.460.544 M a ¥55.454.958 M (+24,7 %).\n\nLa mirada crítica: con solo dos años completos no se puede saber si estas ganancias son estables en distintos ciclos. Parte de la mejora viene de que las tasas en Japón salieron de niveles muy bajos, y eso puede dar vuelta.",
-   "balance": "**El capital del banco es amplio y crece.** El capital invertido (lo que financia el negocio) pasó de ¥44.460.544 M a ¥55.454.958 M en los últimos 12 meses, un 24,7 % más, mientras los ingresos subieron 15 %. Es un banco grande, de los que los reguladores vigilan de cerca, y con la mirada puesta en los depósitos, que son su materia prima.\n\nCon las tasas de Japón subiendo, el banco gana más al prestar, pero también pierde valor en los bonos que tiene en cartera. Es un efecto que aparece en el patrimonio y no en la ganancia, y por eso conviene seguirlo. Al estar en yenes, el valor en dólares también depende del tipo de cambio.",
-   "gerencia": "La conduce Junichi Hanzawa, CEO y presidente del grupo (60 años, pago de 1,3 M según Yahoo), con directivos al frente de los grupos de banca corporativa y de inversión, y de banca minorista y digital. En Japón los pagos ejecutivos son mucho más bajos que en Estados Unidos.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 0,54 por acción (en dólares por ADS) y recompra acciones (¥418.546 M en el año fiscal 2025 y ¥500.212 M en 2026,). **Las acciones bajaron de 11.643 M a 11.387 M, un 2,2 % menos.**",
-   "fortalezas": [
-    "Mayor grupo bancario de Japón, con escala y relaciones con grandes empresas.",
-    "Ganancia por acción de ¥212,33, 33,1 % más en un año.",
-    "ROE en alza: 9,1 % a 11,9 % en los últimos 12 meses.",
-    "Recompras: 2,2 % menos acciones en un año.",
-    "Diversificación entre banca minorista, corporativa, inversión y mercados."
-   ],
-   "debilidades": [
-    "Solo dos años fiscales completos en los datos: las tendencias son poco confiables.",
-    "Cifras en yenes: el rendimiento en dólares depende del tipo de cambio.",
-    "ROE de 11,9 %, todavía debajo de la referencia de 12 %.",
-    "Sensibilidad a las tasas de Japón: el crítico más duro diría que una parte de la mejora viene de la salida de tasas muy bajas y puede dar vuelta.",
-    "Foso estrecho: el dinero es igual en todos lados y compite con otros bancos grandes."
-   ],
-   "vigilar": [
-    "ROE: hoy 11,9 %; tiene que mantenerse sobre 12 % para justificar el capital que tiene.",
-    "Ganancia neta: ¥2.690.588 M en los últimos 12 meses; si baja con tasas estables, algo se está deteriorando.",
-    "Tasas de Japón y valor de los bonos que tiene en cartera: afectan el patrimonio.",
-    "Tipo de cambio yen-dólar: un yen más débil resta valor en dólares."
-   ],
    "clientes": [
-    "Millones de personas y pequeñas empresas en Japón",
-    "Grandes corporaciones japonesas e internacionales",
-    "Inversores institucionales y gestoras de activos"
+    "Millones de personas y empresas en Japón",
+    "Grandes empresas de todo el mundo",
+    "Clientes de sus bancos en Tailandia e Indonesia"
    ],
-   "ideal_para": [
-    "Buscan un banco grande de Japón con recompras y ganancias en alza.",
-    "Quieren diversificar fuera de Estados Unidos.",
-    "Aceptan el riesgo del yen y de las tasas de Japón."
+   "hechos": [
+    {
+     "dato": "Primer trimestre del año fiscal 2026 (abril a junio de 2026, en yenes): ganancia de 809.427 M (546.068 M un año antes); ganancia por acción de 71,59 yenes (47,45); ingresos de 3,908 billones de yenes (+20,1 %)",
+     "fuente": "Resumen de los resultados del 1T del año fiscal 2026, 08/2026",
+     "url": "https://www.rttnews.com/3674324/mitsubishi-ufj-financial-group-inc-q1-income-rises.aspx"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo de tipo de cambio.",
-    "Buscan un historial largo y completo de resultados."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "MUFG",
    "perfil": "banco",
    "capas": [],
-   "ticker": "MUFG",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -5732,54 +5747,66 @@
    }
   },
   "TM": {
-   "resumen": "Toyota es la mayor automotriz del mundo por volumen: diseña, fabrica y vende autos de pasajeros, minivans, utilitarios y vehículos comerciales, con fuerza en Japón, América del Norte, Asia y Europa, y además tiene un brazo financiero que da crédito para comprar sus autos. Gana plata con la venta de vehículos y repuestos y con los intereses del crédito. Tiene un **foso estrecho, de escala y reputación de confiabilidad**: fabrica a una escala que reparte costos, y sus clientes confían en que el auto dura y conserva valor. Los números muestran un año más flojo: los ingresos crecieron 5,5 % hasta 50.684.952 M de yenes, pero el margen operativo bajó de 10,0 % a **7,4 %** (7,1 % en los últimos 12 meses) y la ganancia por acción de 3.595,60 a 2.952,50 yenes. El ROE es de 12,0 %. Yahoo muestra solo 2 años completos, así que las tendencias son poco confiables. La deuda es alta porque incluye el negocio de crédito, y **el flujo libre es negativo** en los últimos 12 meses por una inversión de 5,4 billones de yenes. Todas las cifras están en yenes. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, por la conducción autónoma y los vehículos eléctricos de rivales. Conclusión: **buena empresa, con foso estrecho y 34 años de dividendo, aunque con margen en baja, flujo libre negativo y datos de solo dos años.**",
-   "veredicto": "Buena: foso estrecho y dividendo de 34 años, pero con margen en baja y flujo libre negativo",
-   "conclusion": "Toyota es una buena empresa: tiene un foso estrecho de escala y confiabilidad, ingresos de 51.957.026 M de yenes y dividendo desde hace 34 años, pero el margen operativo cayó a 7,1 %, el flujo libre es negativo y solo hay dos años completos de datos. Vale la pena seguirla de cerca. Es recomendable investigar los márgenes por segmento en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se recupere hacia 10 %.",
+   "formato": "v4",
+   "titulo": "Toyota: apostó a los híbridos y ganó, pero los aranceles de EE.UU. le muerden la ganancia",
+   "resumen": [
+    "Toyota es la **mayor fabricante de autos del mundo**: vende cerca de 10,5 millones de vehículos por año con las marcas Toyota y Lexus. Su ventaja es una eficiencia de fabricación legendaria y su liderazgo en **híbridos**, la tecnología que hoy eligen muchos compradores.",
+    "En su último año fiscal (cerrado en marzo de 2026), **sus ingresos crecieron 5,5 %, pero su ganancia operativa cayó 21,5 %**: los aranceles de EE.UU. le costaron 1,38 billones de yenes. En agosto de 2026 subió lo que espera ganar en el año y anunció recompras por hasta 1 billón de yenes.",
+    "Buena empresa, la más sólida de su industria, con una apuesta a los híbridos que salió bien, pero en un negocio de márgenes finos, golpeado por los aranceles y con un retorno sobre el capital bajo."
+   ],
+   "introduccion": "Hace unos años, el mundo automotor parecía tener un solo camino: el auto eléctrico. Tesla subía sin parar, y todas las automotrices anunciaban que en pocos años solo venderían eléctricos.\n\nToyota fue la excepción. Dijo que el eléctrico iba a tardar más de lo que todos creían, y siguió apostando a los **híbridos**: autos que combinan un motor a nafta con uno eléctrico, gastan mucho menos combustible y no necesitan enchufe. La criticaron mucho.\n\nEl tiempo le dio la razón, al menos por ahora. La venta de eléctricos creció menos de lo esperado, y la de híbridos explotó. En su último año fiscal, Toyota vendió 4,62 millones de híbridos.\n\nPero 2025 trajo otro problema: los aranceles de EE.UU. a los autos importados. A Toyota le costaron 1,38 billones de yenes en su año fiscal, y su ganancia operativa cayó 21,5 %.\n\nEntonces, la pregunta es: ¿puede Toyota proteger su ganancia mientras los aranceles siguen y la competencia china avanza?",
+   "secciones": [
+    {
+     "titulo": "La fábrica de autos más eficiente del mundo",
+     "texto": "Toyota vende autos, camionetas y camiones de todo tipo: desde el Corolla y la Hilux hasta la RAV4 y los Lexus de lujo. Fabrica en Japón, EE.UU., Europa, Asia y América Latina (incluida la Argentina, donde produce la Hilux).\n\nTiene además un brazo financiero, que presta plata a los compradores de sus autos.\n\nSus clientes son millones de personas, empresas y flotas en todo el mundo, sin uno que pese demasiado. EE.UU. es uno de sus mercados más importantes.\n\n¿Cuál es su **ventaja**? El **sistema de producción de Toyota**, que inventó la fabricación \"justo a tiempo\" y la mejora continua, y que copiaron fábricas de todo el mundo. Le permite fabricar autos confiables a costos bajos. A eso se suma la **reputación de durabilidad**, que hace que sus autos usados valgan más, y el **liderazgo en híbridos**, con más de 20 años de experiencia.\n\nLa inteligencia artificial es más una herramienta que una amenaza, aunque la carrera por los autos autónomos y con mucho software la obliga a invertir fuerte."
+    },
+    {
+     "titulo": "Vende más, gana menos",
+     "texto": "Las cifras de Toyota están en yenes.\n\nEn su último año fiscal (cerrado en marzo de 2026), los ingresos crecieron 5,5 %, a 50,68 billones de yenes. Pero la ganancia operativa cayó 21,5 %, a 3,76 billones.\n\nLa razón principal fueron los **aranceles** de EE.UU. a los autos importados: 1,38 billones de yenes de costo en el año. Toyota fabrica muchos autos en EE.UU., pero también exporta desde Japón y México.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) bajó de 10,0 % a **7,1 %** en los últimos 12 meses. Para una automotriz, sigue siendo alto: el promedio de su industria es 2,3 %.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada yen que pusieron dueños y acreedores), es de **3,6 %**. Por encima de 15 % se considera muy bueno; por debajo de lo que cuesta conseguir capital, la empresa no crea valor. Es bajo en parte porque incluye su brazo financiero, que tiene mucho capital y retornos más bajos. Hacer autos es, en general, un negocio de retornos bajos.\n\nLo positivo: en agosto de 2026, Toyota subió su previsión para el año fiscal que cierra en marzo de 2027. Ahora espera ingresos de 54 billones de yenes y una ganancia operativa de 3,4 billones, mejor que los 3 billones que esperaba antes, en parte por el tipo de cambio."
+    },
+    {
+     "titulo": "Una deuda que engaña y recompras grandes",
+     "texto": "La deuda de Toyota parece alta: la deuda neta (lo que debe menos la caja) equivale a **3,9 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente.\n\nPero ese número engaña. Gran parte de esa deuda es de su **brazo financiero**, que pide prestado para prestarles a los compradores de autos. Esa deuda está respaldada por los préstamos que cobra. El negocio de fabricar autos, por sí solo, tiene mucha caja.\n\nCon esa caja, devuelve plata al accionista. En agosto de 2026 anunció una recompra de acciones de hasta 1 billón de yenes y la cancelación del 1,37 % de sus acciones.\n\nLos riesgos:\n\n- **Aranceles**: siguen pesando sobre sus exportaciones a EE.UU.\n- **Competencia china**: BYD y otras automotrices chinas venden eléctricos e híbridos baratos y le quitan mercado en Asia y otros países.\n- **El yen**: Toyota gana más cuando el yen está débil, porque vende en dólares y fabrica en yenes. Si el yen se fortalece, su ganancia baja.\n\nLa conduce Koji Sato, CEO desde 2023, con Akio Toyoda, nieto del fundador, como presidente del directorio."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Toyota, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, Toyota cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces).\n\nEl promedio de su industria no sirve para compararla: ahí está Tesla, que cotiza a múltiplos altísimos y distorsiona el número.\n\nTambién conviene mirar el **precio sobre valor libros** (cuántas veces el patrimonio contable se paga): {v:p_b} veces, {vs:p_b} su mediana histórica ({med:p_b} veces).\n\nEl mercado siempre pagó poco por las automotrices, incluso por las mejores: es un negocio cíclico, de márgenes finos, que necesita invertir mucho. Toyota no es la excepción.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Toyota es una buena empresa, la más sólida de su industria. Tiene la fábrica más eficiente del mundo, una reputación de calidad que vale oro, el liderazgo en híbridos, márgenes muy superiores a sus competidores y un balance fuerte en su negocio de autos. Y devuelve plata al accionista.\n\nSu punto débil es la industria en la que juega: márgenes finos, retornos bajos sobre el capital, mucha inversión, aranceles que le costaron 1,38 billones de yenes y una competencia china que avanza rápido. El crítico más duro diría que Toyota es la mejor de un negocio malo. Es un argumento razonable.\n\nEncaja con quien busca una automotriz sólida, barata en múltiplos, con dividendo y recompras. No es para quien busca crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que Toyota recupere su margen a pesar de los aranceles y que los híbridos sigan ganando terreno frente a los eléctricos chinos.",
+   "pros": [
+    "Líder en híbridos: vendió 4,62 millones en su último año fiscal.",
+    "Eficiencia legendaria: márgenes muy superiores a los de su industria.",
+    "Recompras grandes: hasta 1 billón de yenes anunciados en agosto de 2026."
+   ],
+   "contras": [
+    "Aranceles: le costaron 1,38 billones de yenes en su último año fiscal.",
+    "Retorno bajo: ROIC de 3,6 %.",
+    "Competencia china: BYD y otras avanzan con autos baratos."
+   ],
    "calidad": "Buena",
-   "riesgo_ia": "moderado",
-   "negocio": "Toyota Motor Corporation diseña, fabrica, ensambla y vende vehículos de pasajeros, minivans y vehículos comerciales, con sus repuestos y accesorios, en Japón, América del Norte, Europa, Asia, América Central y del Sur, Oceanía, África y Medio Oriente. Opera tres segmentos: **Automotive**, **Financial Services** y **All Other**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Yahoo etiqueta los años de forma repetida y trae solo 2 ejercicios completos (que cierran en marzo), por lo que las tendencias son poco confiables.\n\nEs un negocio cíclico y de capital intensivo: **los ingresos crecieron 5,5 % en el último ejercicio, hasta 50.684.952 M de yenes**, y llegaron a 51.957.026 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de personas y empresas en todo el mundo, a través de concesionarios. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Toyota **es de escala y de reputación de confiabilidad, y es estrecha**. Al fabricar a gran escala reparte los costos de desarrollo y compra de piezas, y su fama de autos duraderos y con buen valor de reventa hace que muchos clientes repitan la marca. Pero los autos son un negocio competido y con mucho capital: el margen bruto bajó de 19,9 % a 16,7 % y el ROIC (retorno sobre el capital) es de solo 3,6 %.\n\nCompite con Volkswagen, Hyundai, General Motors, Tesla y fabricantes chinos como BYD, que avanzan en eléctricos. Es frágil en el ciclo de ventas de autos, en la transición a eléctricos y en la conducción autónoma, en el yen y en los costos de materiales. La inteligencia artificial puede cambiar el valor del software dentro del auto, y eso puede ayudar o perjudicar según quién lo domine.",
-   "numeros": "Los números de Toyota cuentan **ventas en alza con márgenes en baja**, y solo dos años completos. Los ingresos fueron de 48.036.704 M y 50.684.952 M de yenes, y de 51.957.026 M en los últimos 12 meses. El margen operativo pasó de 10,0 % a **7,4 %** y a 7,1 % en los últimos 12 meses. La ganancia neta fue de 4.765.086 M y 3.848.098 M, y de 4.483.797 M en los últimos 12 meses. La ganancia por acción (por ADR, equivalente a 10 acciones) pasó de 3.595,60 a **2.952,50 yenes**.\n\nEl ROE fue de 13,3 %, 9,6 % y 12,0 % en los últimos 12 meses. El flujo libre fue de -1.560.993 M, +179.572 M y -1.222.968 M en los últimos 12 meses, porque la inversión (unos 5,3 billones de yenes por año) supera al flujo operativo. Ese flujo no es comparable al de una automotriz simple, porque incluye el crédito que su brazo financiero da a los compradores.\n\nLa mirada crítica: con solo dos años completos no se puede hablar de tendencia, y la caída de márgenes de este período todavía no se sabe si es pasajera.",
-   "balance": "**La deuda parece alta, pero incluye el negocio de crédito.** La deuda total es de 43.953.168 M de yenes y la caja de 13.350.561 M en los últimos 12 meses; la deuda neta/EBITDA es de 3,87x, que multiplicado por 12 son unos 46 meses. Esa cifra no es comparable a la de una automotriz sin brazo financiero, porque una parte grande de la deuda financia créditos a clientes.\n\nLa cobertura de intereses bajó de 62,5 veces a 10,8 veces en los últimos 12 meses, un cambio grande que Yahoo no explica y que conviene verificar. El patrimonio neto es de 37.308.828 M.",
-   "gerencia": "La conduce Kenta Kon, presidente y CEO (57 años, pago de 0,7 M según Yahoo), con Koji Sato como vicepresidente (56 años, pago de 2,4 M) y Yoichi Miyazaki como director financiero (62 años, pago de 1,7 M). Yahoo no informa la fecha de cada cambio de cargo, y no lo vamos a inventar.\n\nEn lo que importa, **el uso del capital es de dividendo**: paga 6,27 por acción (por ADR, en dólares; pagado desde 1992, 34 años) y 1.238.225 M de yenes en los últimos 12 meses. **Las acciones (equivalentes ADR) bajaron de 1.325 M a 1.303 M, un 1,7 % menos.**",
-   "fortalezas": [
-    "Mayor automotriz del mundo, con escala y reputación de confiabilidad.",
-    "Ingresos de más de 50 billones de yenes.",
-    "Dividendo pagado desde 1992 (34 años).",
-    "ROE de 12,0 % en los últimos 12 meses.",
-    "Cobertura de intereses de 10,8 veces."
-   ],
-   "debilidades": [
-    "Margen operativo de 10,0 % a 7,1 %.",
-    "Flujo libre negativo en los últimos 12 meses (-1.222.968 M de yenes).",
-    "ROIC de 3,6 %, bajo.",
-    "Solo 2 años completos de datos: las tendencias son poco confiables.",
-    "Exposición a la transición a eléctricos y a la competencia china: el crítico más duro diría que el margen de hoy es una señal temprana."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 7,1 %; si sigue bajando, el poder de precio se está perdiendo.",
-    "Flujo libre: negativo; si no se recupera, el dividendo depende de la deuda.",
-    "Cobertura de intereses: hoy 10,8x contra 62,5x antes; el cambio hay que entenderlo en el informe.",
-    "Ventas de eléctricos e híbridos: define si mantiene su posición en la próxima etapa."
-   ],
+   "riesgo_ia": "bajo",
    "clientes": [
-    "Millones de compradores de autos en el mundo",
-    "Empresas con flotas y vehículos comerciales",
-    "Clientes de crédito y financiación del brazo financiero"
+    "Millones de compradores de autos en todo el mundo",
+    "Empresas y flotas (camionetas y camiones)",
+    "Compradores que financian su auto con Toyota"
    ],
-   "ideal_para": [
-    "Buscan una automotriz grande con dividendo largo.",
-    "Valoran la escala y la reputación de confiabilidad.",
-    "Aceptan el riesgo del yen y de la transición a eléctricos."
+   "hechos": [
+    {
+     "dato": "Año fiscal cerrado en marzo de 2026 (en yenes): ingresos de 50,68 billones (+5,5 %); ganancia operativa de 3,76 billones (-21,5 %); costo de los aranceles de EE.UU. de 1,38 billones; ganancia neta de 3,84 billones (-19,2 %); 4,62 millones de híbridos vendidos (+4,4 %)",
+     "fuente": "Resumen de los resultados anuales, 05/2026",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/toyota-operating-profits-drop-21-152020806.html"
+    },
+    {
+     "dato": "Primer trimestre del año fiscal que cierra en marzo de 2027 (abril a junio de 2026): ingresos de 13,525 billones de yenes (+10,4 %); previsión anual subida: ingresos de 54 billones, ganancia operativa de 3,4 billones (antes 3 billones) y ganancia neta de 3,25 billones; recompra de hasta 1 billón de yenes y cancelación del 1,37 % de las acciones",
+     "fuente": "Resumen de los resultados del 1T, 04/08/2026",
+     "url": "https://www.bernama.com/en/news.php?id=2590193"
+    }
    ],
-   "menos_ideal": [
-    "No toleran márgenes en baja ni flujo libre negativo.",
-    "Buscan crecimiento acelerado."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "TM",
    "perfil": "consumo",
    "capas": [],
-   "ticker": "TM",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7829,54 +7856,61 @@
    }
   },
   "ARM": {
-   "resumen": "Arm es una empresa británica que diseña y licencia propiedad intelectual de procesadores: núcleos de CPU, aceleradores gráficos y de redes neuronales, subsistemas de cómputo completos y herramientas de software. No fabrica chips: les vende a las empresas de semiconductores el derecho a usar sus diseños y cobra una licencia inicial y una regalía por cada chip que se vende. Tiene un **foso estrecho, de ecosistema y estándar de la industria**: millones de programas, herramientas y desarrolladores ya están escritos para su arquitectura, y cambiar a otra exige reescribir y probar todo. Los números son de un negocio de licencias: el margen bruto es de **97,5 %** y los ingresos pasaron de 2.679 M en el ejercicio 2023 a **5.156 M** en los últimos 12 meses. Sin embargo, el margen operativo bajó de 25,3 % a **17,3 %**, el ROIC es de 7,8 % y las inversiones subieron de 93 M a 622 M. Tiene más caja (3.888 M) que deuda (464 M) y no paga dividendo. Su punto débil es que los gastos suben más rápido que los ingresos, que las acciones aumentaron 4,4 % y que depende de pocos clientes grandes que también pueden diseñar sus propios chips (dato público). El 22/10 los semiconductores cayeron 6,7 %, y Arm es muy sensible a ese ánimo. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho, margen bruto de 97,5 % y caja neta de 3.424 M, aunque con margen operativo en baja, ROIC de 7,8 % y acciones en alza.**",
-   "veredicto": "Buena: foso estrecho, margen bruto de 97,5 % y caja neta de 3.424 M, con margen operativo en baja, ROIC de 7,8 % y acciones en alza",
-   "conclusion": "Arm es una empresa de buena calidad: tiene un foso estrecho de ecosistema, margen bruto de 97,5 %, ingresos que crecen cerca de 20 % por año y caja neta de 3.424 M, pero el margen operativo bajó a 17,3 %, el ROIC es de 7,8 % y las acciones aumentaron 4,4 %. Hay que seguirla de cerca. Es recomendable investigar la concentración de clientes y el plan de inversiones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva a subir.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Arm: diseña el corazón de casi todos los celulares, y ahora empieza a vender sus propios chips",
+   "resumen": [
+    "Arm diseña la **arquitectura de procesadores** que usan casi todos los celulares del mundo y, cada vez más, computadoras, autos y servidores de centros de datos. No fabrica chips: cobra licencias y una **regalía por cada chip** que usan sus diseños. Su ventaja es que todo el software móvil del mundo está escrito para su arquitectura.",
+    "En el trimestre que cerró en junio de 2026, **sus ingresos crecieron 22 %**, a un récord de 1.290 M, y las regalías de centros de datos más que se duplicaron. Además, empezó a vender su propio chip para IA, con una demanda que según la empresa supera los 2.000 M.",
+    "Muy buena empresa, con una posición casi imposible de copiar y sin deuda, pero chica en ganancias para lo que vale en bolsa, con una ganancia contable baja y el riesgo de competir con sus propios clientes."
+   ],
+   "introduccion": "Si tenés un celular, sea iPhone o Android, adentro hay un procesador diseñado sobre la arquitectura de Arm. Es así en más del 99 % de los teléfonos inteligentes del mundo. Y cada vez más en computadoras (las Mac de Apple), autos y servidores.\n\nArm no fabrica esos chips. Hace algo más sutil: diseña las reglas básicas (la \"arquitectura\") y los bloques con los que otras empresas, como Apple, Qualcomm, Nvidia o Amazon, arman sus propios procesadores. A cambio cobra una licencia por usar el diseño y una regalía por cada chip vendido.\n\nEs un negocio con márgenes enormes y casi sin capital. Pero también con un techo: Arm cobra apenas unos centavos o pocos dólares por chip.\n\nPor eso, en 2026, Arm dio un paso arriesgado: empezó a vender su **propio chip** para centros de datos de IA. Según la empresa, la demanda ya supera los 2.000 M para los próximos dos años.\n\nEntonces, la pregunta es: ¿puede Arm crecer vendiendo chips propios sin enojar a los clientes que hoy le pagan regalías?",
+   "secciones": [
+    {
+     "titulo": "Licencias, regalías y ahora chips propios",
+     "texto": "Arm tiene dos fuentes clásicas de ingresos. En el trimestre que cerró en junio de 2026:\n\n- **Regalías**: lo que cobra por cada chip vendido con su diseño. 715 M, un 22 % más. Crecen porque los chips nuevos usan versiones más avanzadas de su arquitectura (Armv9), por las que cobra más, y porque las regalías de centros de datos se duplicaron.\n- **Licencias**: lo que cobra por adelantado a una empresa que quiere usar sus diseños. 574 M, un 23 % más.\n\nY una nueva: su **propio chip** para centros de datos de IA, lanzado en marzo de 2026. Ya lo entregó a varios clientes.\n\nSus clientes son los mayores fabricantes de chips y tecnológicas del mundo: Apple (AAPL), Qualcomm (QCOM), Nvidia (NVDA), Amazon (AMZN), Microsoft (MSFT), Google (GOOGL), Samsung, MediaTek y cientos más.\n\n¿Cuál es su **ventaja**? El **ecosistema**. Todo el software de celulares del mundo (iOS y Android) está escrito para la arquitectura de Arm, y millones de programadores la conocen. Cambiar a otra arquitectura implicaría reescribir todo. Es una de las ventajas más sólidas de toda la tecnología.\n\nSu principal amenaza a largo plazo es **RISC-V**, una arquitectura abierta y gratuita que algunas empresas, sobre todo chinas, empiezan a usar.\n\nLa inteligencia artificial es su gran oportunidad: los centros de datos usan cada vez más procesadores con diseño de Arm."
+    },
+    {
+     "titulo": "Crece rápido, pero gana poco en los papeles",
+     "texto": "Los ingresos crecieron más de 20 % por año: de 2.679 M en su año fiscal 2023 a **5.156 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **17,3 %** en los últimos 12 meses. Es bajo para un negocio de licencias. ¿Por qué? Por dos gastos grandes: la investigación (diseñar chips cada vez más complejos, y ahora el chip propio) y el **pago en acciones a los empleados**. El margen ajustado (sin ese pago), que usan la empresa y los analistas del mercado, fue de 41,2 % en el último trimestre.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **7,8 %**. Por encima de 15 % se considera muy bueno. Es bajo por lo mismo: los gastos en investigación y en acciones para los empleados se comen buena parte de la ganancia.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **1.472 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Sin deuda, y con un dueño casi absoluto",
+     "texto": "Arm tiene un balance impecable: 3.888 M de caja y apenas 464 M de deuda.\n\nNo paga dividendo.\n\nUn dato que muchos inversores no conocen: **SoftBank**, el grupo japonés de Masayoshi Son, es dueño de cerca del 90 % de Arm. Solo una pequeña parte de las acciones cotiza en bolsa. Eso hace que el precio pueda moverse mucho con poco volumen, y que las decisiones las tome, en la práctica, un solo accionista.\n\nEl gran riesgo estratégico es el **chip propio**. Al vender chips, Arm pasa a competir con algunos de sus propios clientes, como Qualcomm o Nvidia. Si esos clientes se enojan, podrían acelerar su paso a RISC-V. Arm apuesta a que el negocio nuevo valga más que ese riesgo.\n\nLa conduce Rene Haas, CEO desde 2022, el impulsor de las versiones más caras de su arquitectura y del chip propio."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Arm, el PER (cuántos años de ganancia se pagan al comprar la acción) da números altísimos, porque la ganancia contable es chica. Por eso conviene mirar el **precio sobre ventas**: cuántas veces sus ventas anuales se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, Arm cotiza a {v:ps} veces sus ventas. Eso está {vs:ps} su propia mediana histórica ({med:ps} veces).\n\nEl PER es de {per_ref} veces.\n\nSon de los múltiplos más altos del mercado. El mercado paga por la idea de que Arm va a cobrar cada vez más por chip, que va a ganar los centros de datos y que su chip propio va a sumar miles de millones. Si todo eso pasa, la ganancia puede multiplicarse. Si no, el precio actual queda muy expuesto.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Arm es una muy buena empresa. Tiene una de las posiciones más sólidas de la tecnología: casi todo el mundo móvil depende de su arquitectura, crece más de 20 % por año, no tiene deuda y avanza con fuerza en los centros de datos.\n\nSu punto débil es la relación entre lo que gana y lo que vale. Su ganancia contable es baja, paga mucho en acciones a sus empleados, tiene un dueño que controla casi todo y ahora compite con sus propios clientes. Y el mercado la paga a múltiplos de los más altos de todos. El crítico más duro diría que Arm es un gran negocio con una ganancia chica, y que el precio supone que esa ganancia se va a multiplicar. Es un argumento serio.\n\nEncaja con quien cree en Arm como la arquitectura dominante de la próxima década y tolera caídas fuertes. No es para quien busca ganancias firmes o un precio razonable.\n\nPara que la tesis se mantenga, lo más importante es que las regalías sigan creciendo más de 20 % y que el chip propio no le haga perder clientes.",
+   "pros": [
+    "Ecosistema imbatible: todo el software móvil está escrito para Arm.",
+    "Centros de datos: las regalías de ese mercado más que se duplicaron.",
+    "Sin deuda: 3.888 M de caja y apenas 464 M de deuda."
+   ],
+   "contras": [
+    "Ganancia baja: margen operativo de 17,3 % y ROIC de 7,8 %.",
+    "Compite con sus clientes: el chip propio puede empujarlos a RISC-V.",
+    "Precio altísimo: de los múltiplos más altos del mercado."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Arm Holdings investiga, desarrolla, licencia y comercializa propiedad intelectual de unidades centrales de procesamiento (CPU), de unidades gráficas, de sistemas y subsistemas de cómputo (CSS) y software, herramientas y servicios relacionados. Su cartera incluye diseños de CPU, aceleradores de GPU y de redes neuronales (NPU). Yahoo no informa cuánto aporta cada línea, ni cuánto viene de licencias y cuánto de regalías, y no lo vamos a inventar.\n\nEs un negocio de licencias que crece rápido: **los ingresos subieron 20,7 % en 2024, 23,9 % en 2025 y 22,8 % en 2026, hasta 4.920 M**, y llegan a 5.156 M en los últimos 12 meses (el ejercicio cierra a fines de marzo).\n\n**A quién le vende.** A fabricantes de chips y empresas de tecnología que diseñan procesadores para teléfonos, autos, servidores y otros dispositivos. **Yahoo no informa la concentración de clientes**, y se trata de un dato a verificar en el informe.",
-   "foso": "La ventaja de Arm **es de ecosistema y de estándar, y es estrecha**. Su arquitectura se usa en una enorme cantidad de dispositivos, y miles de programas, herramientas y desarrolladores están escritos para ella; cambiar de arquitectura implica reescribir software y repetir pruebas, algo que casi ninguna empresa quiere hacer. Se ve en el margen bruto de 97,5 %.\n\nPero esa fortaleza todavía no se traduce en una rentabilidad alta sobre el capital: el margen operativo es de 17,3 % y el ROIC de 7,8 %. Compite con arquitecturas abiertas como RISC-V y con x86 de Intel y AMD, y sus propios clientes pueden desarrollar diseños internos. Es frágil en la dependencia de pocos clientes grandes y en el ciclo de los teléfonos y chips. La inteligencia artificial no la amenaza de forma directa; hoy es parte de la demanda.",
-   "numeros": "Los números de Arm cuentan **un negocio que crece al 20 % con un margen bruto casi perfecto, pero con gastos que suben**. Los ingresos fueron de 2.679 M, 3.233 M, 4.007 M y 4.920 M, y de 5.156 M en los últimos 12 meses. El EBIT fue de 678 M, 117 M, 831 M y 908 M, y de 892 M (margen operativo de 17,3 %). La ganancia neta fue de 524 M, 306 M, 792 M y 904 M, y de 1.044 M. La ganancia por acción fue de 0,51, 0,29, 0,61, 0,85 y **0,97**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 646 M, 947 M, 158 M, 949 M y **1.472 M** en los últimos 12 meses (28,5 % de los ingresos). Las inversiones subieron de 93 M a 575 M en 2026. El ROIC fue de 13,1 %, 1,6 %, 9,0 %, 8,6 % y 7,8 %.\n\nLa mirada crítica: el margen operativo de 2024 (3,6 %) coincide con el año de la salida a bolsa, y probablemente refleja un gasto único en compensación (dato público a verificar). La ganancia neta de los últimos 12 meses supera al EBIT porque cobra intereses sobre la caja.",
-   "balance": "**Balance de caja neta.** La caja es de 3.888 M y la deuda total de solo 464 M (probablemente arrendamientos, dato a verificar), de modo que la deuda neta es de -3.424 M: tiene más plata que deudas. El patrimonio neto es de 8.630 M y la deuda equivale a 0,05 veces el patrimonio.\n\nYahoo no trae el gasto por intereses, así que no calculamos la cobertura. El patrimonio se duplicó de 4.051 M a 8.630 M, y la caja pasó de 2.215 M a 3.888 M.",
-   "gerencia": "La conduce Rene Haas, CEO (63 años, pago de 5,1 M según Yahoo), con Jason Child como director financiero (56 años). Haas dirige la empresa desde 2022 y la llevó a la bolsa en 2023, dato público; SoftBank sigue siendo el accionista mayoritario, dato público.\n\nEn lo que importa, **el uso del capital es de reinversión: no paga dividendo ni recompra**. **Las acciones subieron de 1.026 M a 1.071 M, un 4,4 % más**, por la compensación en acciones, y las inversiones crecen: 575 M en 2026 y 622 M en los últimos 12 meses, contra 93 M en 2023.",
-   "fortalezas": [
-    "Margen bruto de 97,5 %.",
-    "Ingresos creciendo cerca de 20 % por año.",
-    "Más caja (3.888 M) que deuda (464 M).",
-    "Flujo libre de 1.472 M en los últimos 12 meses.",
-    "Ecosistema de software difícil de reemplazar."
-   ],
-   "debilidades": [
-    "Margen operativo bajó de 25,3 % a 17,3 %.",
-    "ROIC de 7,8 %, bajo para un negocio de licencias: el crítico más duro diría que la ventaja de ecosistema todavía no se ve en la rentabilidad.",
-    "4,4 % más acciones desde 2023.",
-    "Inversiones que subieron más de seis veces.",
-    "Posible dependencia de pocos clientes grandes y de SoftBank como accionista mayoritario."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 17,3 %; tiene que recuperar el nivel de 2023 (25,3 %).",
-    "Inversiones: hoy 622 M; si siguen subiendo, el flujo libre se achica.",
-    "Cantidad de acciones: hoy 1.071 M; si suben más, la dilución se acumula.",
-    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe."
-   ],
    "clientes": [
-    "Fabricantes de chips para teléfonos y dispositivos",
-    "Empresas de servidores y centros de datos",
-    "Fabricantes de autos y otros equipos electrónicos"
+    "Apple (AAPL), Qualcomm (QCOM), Samsung y MediaTek (celulares)",
+    "Nvidia (NVDA), Amazon (AMZN), Microsoft (MSFT) y Google (GOOGL) (centros de datos)",
+    "Fabricantes de chips para autos y electrónica"
    ],
-   "ideal_para": [
-    "Buscan una empresa de licencias con margen bruto altísimo.",
-    "Valoran el crecimiento y la caja neta.",
-    "Aceptan que no paga dividendo."
+   "hechos": [
+    {
+     "dato": "Primer trimestre del año fiscal 2027 (cerrado el 30/06/2026): ingresos de 1.290 M (+22 %, récord); regalías de 715 M (+22 %); licencias de 574 M (+23 %); ganancia operativa de 91 M (margen de 7,1 %) y ajustada de 531 M (41,2 %); regalías de centros de datos más del doble; demanda del chip propio de más de 2.000 M entre los años fiscales 2027 y 2028",
+     "fuente": "Comunicado de resultados del 1T del año fiscal 2027, 07/2026",
+     "url": "https://newsroom.arm.com/news/arm-q1-fye27-results"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendos.",
-    "No toleran la volatilidad de los semiconductores."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "ARM",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "ARM",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8216,54 +8250,63 @@
    }
   },
   "CRWD": {
-   "resumen": "CrowdStrike es una empresa estadounidense de ciberseguridad en la nube: su plataforma protege los dispositivos de una empresa (computadoras, servidores), las cargas de trabajo en la nube, las identidades y los datos, mediante una suscripción de software que se cobra por año. Gana plata con contratos recurrentes que los clientes renuevan cada año. Tiene un **foso débil a estrecho, de datos de la plataforma y costos de cambio**: cuantos más dispositivos protege, más datos de amenazas junta para detectar ataques nuevos, y cambiar de plataforma de seguridad implica reinstalar agentes y reentrenar al personal. Los números son de una empresa que crece rápido y es rentable en caja pero no en la contabilidad: los ingresos pasaron de 2.241 M en el ejercicio 2023 a **5.396 M** en los últimos 12 meses, con margen bruto de **75,2 %** y flujo libre de **1.523 M** (28,2 % de los ingresos). Pero el EBIT es negativo en todos los años (-119 M en los últimos 12 meses), el ROIC es de **-1,3 %** y las acciones aumentaron **10,2 %**. La diferencia entre el flujo libre positivo y el EBIT negativo se explica en gran parte por la compensación en acciones y por cobros adelantados de suscripciones (Yahoo no lo detalla). Tiene más caja (5.014 M) que deuda (820 M). Su punto débil es que hay que confiar en el flujo de caja, no en la ganancia, y que un error técnico propio puede afectar a todos sus clientes a la vez (dato público: incidente de julio de 2024). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: ayuda a defender, pero también a atacar y a nuevos competidores. Conclusión: **empresa de calidad regular: crecimiento de 20 % por año, margen bruto de 75 % y caja neta de 4.194 M, pero con EBIT negativo, ROIC de -1,3 % y 10,2 % más acciones.**",
-   "veredicto": "Regular: crecimiento fuerte, margen bruto de 75 % y caja neta de 4.194 M, con EBIT negativo, ROIC de -1,3 % y 10,2 % más acciones",
-   "conclusion": "CrowdStrike es una empresa de calidad regular: tiene un foso débil a estrecho de datos y costos de cambio, ingresos que crecen cerca de 20 % por año, margen bruto de 75 %, flujo libre de 1.523 M y caja neta de 4.194 M, pero su EBIT es negativo, el ROIC es de -1,3 % y las acciones aumentaron 10,2 %. Hay que seguirla de cerca. Es recomendable investigar la compensación en acciones y la retención de clientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo pase a positivo sin frenar el crecimiento.",
-   "calidad": "Regular",
-   "riesgo_ia": "moderado",
-   "negocio": "CrowdStrike provee soluciones de ciberseguridad en Estados Unidos y a nivel internacional. Su plataforma unificada brinda protección entregada desde la nube para puntos finales, cargas de trabajo en la nube, identidad y datos, mediante un modelo de software como servicio basado en suscripciones. Yahoo no informa cuánto aporta cada módulo, y no lo vamos a inventar.\n\nEs un negocio de suscripciones en fuerte crecimiento: **los ingresos subieron 36,3 % en 2024, 29,4 % en 2025 y 21,7 % en 2026, hasta 4.812 M** (el ejercicio cierra a fines de enero), y llegan a 5.396 M en los últimos 12 meses. El ritmo se desacelera.\n\n**A quién le vende.** A empresas de todos los tamaños y a organismos públicos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de CrowdStrike **es de datos de la plataforma y costos de cambio, y es débil a estrecha**. Cada dispositivo protegido le aporta información sobre ataques, que mejora la detección para todos los clientes, y los clientes que instalaron su agente en miles de equipos y armaron sus procesos de respuesta no lo cambian fácilmente. Se ve en el margen bruto estable de 75 % y en los ingresos que crecen más de 20 %.\n\nPero el foso no se traduce todavía en ganancias contables: el margen operativo es de -2,2 % y el ROIC de -1,3 %. Compite con Microsoft, Palo Alto Networks, SentinelOne, Zscaler y otras. Es frágil en la competencia de plataformas integradas de grandes empresas, en la presión de precios y en el riesgo de una falla técnica propia. La inteligencia artificial puede reforzar la defensa, pero también acelera los ataques y favorece a competidores con más datos.",
-   "numeros": "Los números de CrowdStrike cuentan **un crecimiento fuerte con rentabilidad contable todavía ausente**. Los ingresos fueron de 2.241 M, 3.056 M, 3.954 M y 4.812 M, y de 5.396 M en los últimos 12 meses. El margen bruto fue de 73,2 %, 75,2 %, 75,0 %, 74,7 % y 75,2 %. El EBIT fue de -190 M, -19 M, -116 M y -293 M, y de -119 M (margen operativo de -2,2 %). La ganancia neta fue de -183 M, 72 M, -15 M y -163 M, y de 58 M. La ganancia por acción fue de -0,20, 0,09, -0,02, -0,16 y 0,04.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 675 M, 929 M, 1.068 M y 1.241 M, y de **1.523 M** en los últimos 12 meses (28,2 % de los ingresos). El flujo operativo de 2.017 M contrasta con una ganancia de 58 M.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (58 M) es positiva a pesar del EBIT negativo, probablemente por los intereses que cobra sobre su caja. El flujo libre no resta la compensación en acciones, que diluye al accionista: las acciones aumentaron de 933 M a 1.028 M.",
-   "balance": "**Balance de caja neta, sin riesgo de deuda.** La caja es de 5.014 M y la deuda total de 820 M, de modo que la deuda neta es de -4.194 M: tiene más plata que deudas. El patrimonio neto es de 5.102 M y la deuda equivale a 0,16 veces el patrimonio. La cobertura de intereses no es calculable con un EBIT negativo.\n\nLa caja creció de 2.705 M en 2023 a 5.014 M. Por la regla de las empresas con pérdidas: no quema caja, genera 1.523 M por año, así que el tiempo de aguante no es un problema.",
-   "gerencia": "La conduce George Kurtz, cofundador, presidente y CEO (54 años, pago de 5,5 M según Yahoo), con Burt Podbere como director financiero (59 años, pago de 1,5 M) y Michael Sentonas como presidente (51 años). El cofundador sigue al frente desde 2011, dato público.\n\nEn lo que importa, **el uso del capital es de reinversión: no paga dividendo y Yahoo no informa recompras**. **Las acciones subieron de 933 M a 1.028 M, un 10,2 % más**, por la compensación en acciones. Las inversiones suben: 266 M en 2023 y 494 M en los últimos 12 meses.",
-   "fortalezas": [
-    "Ingresos de 5.396 M, creciendo más de 20 % por año.",
-    "Margen bruto de 75,2 %, estable.",
-    "Flujo libre de 1.523 M, 28,2 % de los ingresos.",
-    "Más caja (5.014 M) que deuda (820 M).",
-    "Ingresos recurrentes por suscripción."
+   "formato": "v4",
+   "titulo": "CrowdStrike: sobrevivió al apagón que ella misma causó, y crece más rápido que antes",
+   "resumen": [
+    "CrowdStrike es una de las mayores empresas de **ciberseguridad** del mundo: protege las computadoras, servidores, nubes e identidades de miles de empresas desde una sola plataforma (Falcon). Su ventaja es la tecnología y los datos de millones de equipos protegidos, que le permiten detectar ataques antes que otros.",
+    "En el segundo trimestre de su año fiscal 2027 (cerrado en julio de 2026), **sus ingresos crecieron 26 %** y el ingreso recurrente nuevo creció 51 %, un récord. Generó 377 M de flujo libre de caja en el trimestre.",
+    "Muy buena empresa, que crece fuerte y genera mucha caja, pero todavía sin ganancia contable relevante, con accionistas que se diluyen y un precio de los más altos del mercado."
    ],
-   "debilidades": [
-    "EBIT negativo todos los años: -119 M en los últimos 12 meses.",
-    "ROIC de -1,3 %: el crítico más duro diría que el flujo libre es posible por pagar con acciones.",
-    "10,2 % más acciones desde 2023.",
-    "Crecimiento que se desacelera (de 36,3 % a 21,7 %).",
-    "Competencia de plataformas integradas de grandes empresas."
+   "introduccion": "El 19 de julio de 2024, millones de computadoras con Windows en todo el mundo se apagaron de golpe con una pantalla azul. Aeropuertos, bancos, hospitales y canales de televisión quedaron paralizados. La causa: una actualización defectuosa de CrowdStrike.\n\nFue uno de los mayores apagones informáticos de la historia. Muchos pensaron que la empresa no se recuperaría: ¿quién iba a confiar su seguridad en quien había causado el desastre?\n\nDos años después, la respuesta está en los números. En el trimestre que cerró en julio de 2026, CrowdStrike sumó un récord de 333 M de ingreso recurrente anual nuevo, un 51 % más que un año antes. Su CEO lo resumió así: \"Fue el mejor trimestre de la historia de CrowdStrike\".\n\nLos clientes se quedaron, en parte porque cambiar de sistema de seguridad es caro y riesgoso, y en parte porque la empresa les ofreció descuentos y nuevas formas de contratar.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa que crece así, pero todavía casi no gana plata contable?",
+   "secciones": [
+    {
+     "titulo": "Una plataforma, muchos módulos",
+     "texto": "CrowdStrike instala un pequeño programa (un \"agente\") en cada computadora o servidor del cliente. Ese agente vigila todo lo que pasa y envía la información a la nube de CrowdStrike, donde la inteligencia artificial detecta ataques.\n\nCon ese mismo agente, la empresa vende muchos módulos: protección de computadoras, de la nube, de identidades, gestión de registros y más. Cuantos más módulos compra un cliente, más difícil le resulta irse.\n\nSu nuevo modelo, **Falcon Flex**, permite a los clientes contratar un paquete y usar los módulos que quieran. Las cuentas que lo usan ya suman 2.290 M de ingreso recurrente anual, el doble que un año antes.\n\nEl número clave es el **ingreso recurrente anual**: lo que la empresa va a facturar en un año con los contratos vigentes. Llegó a **5.840 M**, un 25 % más.\n\nSus clientes son grandes empresas, gobiernos y pymes de todo el mundo, sin uno que pese demasiado.\n\n¿Cuál es su **ventaja**? Los **datos** y el **costo de cambiarse**. Al proteger millones de equipos, CrowdStrike ve más ataques que casi nadie, y eso entrena a su inteligencia artificial. Y reemplazar el sistema de seguridad de una gran empresa es caro y riesgoso.\n\nCompite con **Palo Alto Networks (PANW)**, Microsoft, SentinelOne y otras.\n\nLa inteligencia artificial es su mayor oportunidad: según su CEO, \"cada empresa va a funcionar con IA, y protegerla es la mayor oportunidad de mercado de nuestra historia\"."
+    },
+    {
+     "titulo": "Crece mucho, gana poco en los papeles",
+     "texto": "Los ingresos crecieron de 2.241 M en el año fiscal 2023 a **5.396 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen bruto** (lo que queda de cada venta después del costo directo de dar el servicio) es de **75,2 %**, típico de una empresa de software.\n\nPero el **margen operativo** (lo que queda después de todos los costos de funcionar) es **negativo**: -2,2 % en los últimos 12 meses. El promedio de su industria es 33,0 %.\n\n[[grafico:margen_operativo]]\n\n¿Cómo puede ser que pierda plata y genere caja? La principal diferencia es el **pago en acciones a los empleados**. Contablemente es un gasto, pero no sale plata de la caja: la empresa emite acciones nuevas. Por eso la empresa y los analistas del mercado miran la ganancia ajustada, que fue de 0,31 dólares por acción en el trimestre. Pero ese pago es un costo real para el accionista, porque cada año hay más acciones.\n\nLa caja sí es sólida: **1.523 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. Muchos clientes pagan por adelantado.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Caja de sobra, y acciones que se multiplican",
+     "texto": "CrowdStrike tiene un balance muy cómodo: 5.014 M de caja y apenas 820 M de deuda.\n\nNo paga dividendo.\n\nEl punto débil es la **dilución**: las acciones en circulación pasaron de 933 millones en el año fiscal 2023 a **1.028 millones**, un 10 % más. Cada año, cada accionista es dueño de una porción un poco más chica de la empresa.\n\n[[grafico:acciones]]\n\nPara su año fiscal 2027, la empresa espera ingresos de unos 6.000 M y una ganancia ajustada de 1,25 a 1,26 dólares por acción, y subió lo que espera de crecimiento del ingreso recurrente nuevo.\n\nLa conduce George Kurtz, cofundador y CEO desde 2011."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy -2,2 %; tiene que pasar a positivo de forma sostenida.",
-    "Cantidad de acciones: hoy 1.028 M; si siguen subiendo, la dilución se acumula.",
-    "Crecimiento de ingresos: hoy +21,7 %; si baja de 15 %, el negocio cambia de etapa.",
-    "Fallas técnicas propias: Yahoo no las informa, hay que buscarlas en el informe."
+   "valuacion": {
+    "texto": "En CrowdStrike, el PER contable no sirve: la ganancia contable es casi cero. Usamos la ganancia ajustada que espera la empresa para su año fiscal 2027: unos 1,26 dólares por acción. Ojo: esa ganancia no descuenta el pago en acciones a los empleados.\n\nCon el precio de {precio} dólares, CrowdStrike cotiza a {per_ref} veces esa ganancia ajustada. El promedio de su industria es {ind:per} veces.\n\nEn empresas que crecen rápido y todavía ganan poco, se usa el **precio sobre ventas**: cuántas veces sus ventas anuales se pagan al comprar la acción. CrowdStrike cotiza a {v:ps} veces, {vs:ps} su mediana histórica ({med:ps} veces) y {vsind:ps} el promedio de su industria ({ind:ps} veces).\n\nSon de los múltiplos más altos del mercado. El mercado paga hoy por la ganancia que espera que CrowdStrike tenga dentro de muchos años. Si el crecimiento se mantiene cerca de 25 % por año y los márgenes suben, puede justificarse. Si el crecimiento se frena, la caída puede ser fuerte.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}.",
+    "ganancia_ref": 1.255,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción del año fiscal 2027 (1,25 a 1,26 dólares)"
+   },
+   "conclusion": "CrowdStrike es una muy buena empresa. Tiene una de las plataformas de ciberseguridad más avanzadas del mundo, clientes que se quedaron aun después del apagón de 2024, un crecimiento que se acelera, mucha caja y un balance impecable.\n\nSu punto débil es la rentabilidad contable y el precio. Todavía pierde plata en los papeles, paga mucho a sus empleados en acciones, cada año hay más acciones, y el mercado la paga a múltiplos de los más altos de todos. El crítico más duro diría que se está pagando hoy una ganancia que tal vez nunca llegue al nivel que el precio supone. Es un argumento serio.\n\nEncaja con quien cree en la ciberseguridad como tendencia de largo plazo y tolera caídas fuertes. No es para quien busca ganancias contables firmes o un precio razonable.\n\nPara que la tesis se mantenga, lo más importante es que el ingreso recurrente siga creciendo cerca de 25 % y que el margen operativo contable se vuelva positivo de forma sostenida.",
+   "pros": [
+    "Crecimiento acelerado: el ingreso recurrente nuevo creció 51 %, un récord.",
+    "Mucha caja: 1.523 M de flujo libre y 5.014 M en el banco.",
+    "Clientes fieles: se quedaron aun después del apagón de 2024."
    ],
+   "contras": [
+    "Sin ganancia contable: margen operativo de -2,2 %.",
+    "Dilución: las acciones pasaron de 933 a 1.028 millones.",
+    "Precio altísimo: cotiza a múltiplos de los más altos del mercado."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
    "clientes": [
-    "Empresas de todos los tamaños",
-    "Organismos públicos",
-    "Equipos de seguridad informática"
+    "Grandes empresas de todos los sectores",
+    "Gobiernos y organismos públicos",
+    "Pymes (a través de socios y distribuidores)"
    ],
-   "ideal_para": [
-    "Buscan una empresa de ciberseguridad en crecimiento.",
-    "Valoran la caja neta y el flujo libre.",
-    "Aceptan que la ganancia contable todavía no aparece."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (cerrado el 31/07/2026): ingresos de 1.470,9 M (+26 %); ingreso recurrente anual de 5.840 M (+25 %); ingreso recurrente nuevo de 332,8 M (+51 %, récord); Falcon Flex más de 2.290 M (+101 %); pérdida operativa de 33,2 M y ganancia operativa ajustada de 371,6 M; ganancia por acción de 0,01 dólares y ajustada de 0,31; flujo libre de 377,4 M; caja de 5.010 M; guía del año fiscal 2027: ingresos de 5.991 M a 6.011 M y ganancia ajustada de 1,25 a 1,26 dólares por acción; frases de George Kurtz",
+     "fuente": "Comunicado de resultados del 2T del año fiscal 2027, 26/08/2026",
+     "url": "https://ir.crowdstrike.com/news-releases/news-release-details/crowdstrike-reports-second-quarter-fiscal-year-2027-financial"
+    }
    ],
-   "menos_ideal": [
-    "Buscan ganancias contables y dividendo.",
-    "No toleran la dilución por acciones de compensación."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "CRWD",
    "perfil": "joven",
    "capas": [],
-   "ticker": "CRWD",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8727,54 +8770,60 @@
    }
   },
   "IBM": {
-   "resumen": "IBM es una de las mayores empresas de tecnología empresarial del mundo: vende software de nube híbrida y de inteligencia artificial (Software), servicios de consultoría y tercerización (Consulting), computadoras y servidores, incluidos los mainframes (Infrastructure), y financiamiento para sus clientes (Financing). Gana plata con contratos de largo plazo, licencias, suscripciones, servicios y equipos que los clientes mantienen durante años. Tiene un **foso estrecho, de base instalada y costos de cambio**: bancos, aseguradoras y gobiernos corren sus operaciones críticas en sistemas IBM, y migrarlos es lento, caro y riesgoso. Los números mejoraron: los ingresos pasaron de 60.530 M en 2022 a **69.870 M** en los últimos 12 meses, el margen operativo subió de 13,5 % a **18,3 %** y el flujo libre es de **14.018 M** (20,1 % de los ingresos). Paga dividendo desde 1962 (6.336 M, 45 % del flujo libre). Pero el crecimiento fue bajo durante años (2,2 % y 1,4 % en 2023 y 2024), el ROIC es de apenas **10,9 %**, las acciones aumentaron **4,5 %** y la deuda total es de 67.140 M (en parte de su brazo financiero). La ganancia neta (11.170 M) es 87 % del EBIT, una proporción alta que sugiere beneficios impositivos o resultados no operativos, dato a verificar. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: IBM la vende, pero la consultoría y el desarrollo de software pueden reducirse con ella. Conclusión: **empresa de buena calidad, con foso estrecho, dividendo de 65 años y flujo libre de 14.018 M, aunque con ROIC de 10,9 %, deuda alta y crecimiento histórico bajo.**",
-   "veredicto": "Buena: foso estrecho, dividendo de 65 años y flujo libre de 14.018 M, con ROIC de 10,9 %, deuda alta y crecimiento histórico bajo",
-   "conclusion": "IBM es una empresa de buena calidad: tiene un foso estrecho de base instalada, dividendo desde 1962, flujo libre de 14.018 M y margen operativo de 18,3 %, pero el ROIC es de 10,9 %, la deuda total llega a 67.140 M y las acciones aumentaron 4,5 %. Hay que seguirla de cerca. Es recomendable investigar la composición de ingresos por segmento y la deuda del brazo financiero en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo con márgenes estables.",
+   "formato": "v4",
+   "titulo": "IBM: el gigante que dejó de vender hardware para vivir del software, y vuelve a crecer",
+   "resumen": [
+    "IBM es una de las empresas tecnológicas más antiguas del mundo. Hoy vive sobre todo del **software** (Red Hat, bases de datos, automatización), la **consultoría** y sus **mainframes**, las computadoras que usan los bancos para procesar millones de operaciones. Su ventaja son clientes que dependen de sus sistemas desde hace décadas.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 5 %**, a 17.100 M, y el software, 8 %. Su ganancia operativa por acción subió 11 % y la empresa subió lo que espera generar de caja en el año.",
+    "Buena empresa, con mucha caja y un dividendo alto, que volvió a crecer con el software, pero con una deuda que subió por compras y un retorno sobre el capital todavía modesto."
+   ],
+   "introduccion": "Durante gran parte del siglo XX, IBM fue la empresa tecnológica más importante del mundo. Inventó buena parte de la informática moderna. Pero en las décadas siguientes se fue quedando atrás: perdió el negocio de las computadoras personales, llegó tarde a la nube y durante años sus ventas cayeron.\n\nEn 2019 compró Red Hat, la empresa de software de código abierto, por unos 34.000 M. Fue su apuesta para reinventarse. En 2021 separó su negocio de mantenimiento de infraestructura (Kyndryl), que crecía poco. Lo que quedó es una IBM más chica, pero más enfocada en software.\n\nY está funcionando. En 2025 sus ingresos crecieron 7,6 %, un ritmo poco habitual para IBM. En el tercer trimestre de 2026, el software creció 8 %.\n\nSu CEO, Arvind Krishna, apuesta a que las grandes empresas van a necesitar su software para usar la inteligencia artificial con sus propios datos.\n\nEntonces, la pregunta es: ¿es este el renacimiento de IBM, o un buen momento en una historia de crecimiento lento?",
+   "secciones": [
+    {
+     "titulo": "Software, consultoría y las computadoras de los bancos",
+     "texto": "IBM tiene tres grandes negocios. En el tercer trimestre de 2026:\n\n- **Software**: 7.800 M, un 8 % más. Incluye Red Hat (+11 %), que ayuda a las empresas a manejar sus sistemas en distintas nubes; software de datos (+19 %); procesamiento de operaciones (+9 %); y automatización (-3 %). Es el negocio más rentable y el que más crece.\n- **Consultoría**: 5.300 M, sin cambios. Ayuda a las empresas a implementar tecnología, cada vez más inteligencia artificial.\n- **Infraestructura**: 3.700 M, un 4 % más. Incluye los **mainframes** (IBM Z), que bajaron 20 %. Es normal: los clientes renuevan sus mainframes en ciclos, y el último modelo salió en 2025.\n\nSus clientes son grandes empresas, bancos, aseguradoras, aerolíneas y gobiernos de todo el mundo. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? Los **costos de cambiarse**. La mayoría de los grandes bancos del mundo procesan sus operaciones en mainframes de IBM, y migrar esos sistemas es tan riesgoso que casi nadie lo hace. Lo mismo pasa con su software: una vez instalado en el corazón de una empresa, se queda años.\n\nLa inteligencia artificial es su apuesta y su riesgo. IBM vende herramientas para que las empresas usen la IA con sus datos. Pero la IA también puede automatizar parte del trabajo de consultoría que hoy cobra por hora."
+    },
+    {
+     "titulo": "De crecer poco a crecer algo",
+     "texto": "Los ingresos crecieron despacio entre 2022 y 2024 (de 60.530 M a 62.753 M) y se aceleraron en 2025: **67.536 M**, un 7,6 % más. En los últimos 12 meses llegan a 69.870 M.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 13,5 % en 2022 a **18,3 %** en los últimos 12 meses. El promedio de su industria es 7,4 %. A medida que el software pesa más, el margen sube.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **10,9 %**. Por encima de 15 % se considera muy bueno. Es modesto, en parte por el capital que puso en compras como Red Hat. El promedio de su industria es 26,4 %.\n\nLo mejor de IBM es la caja: **14.018 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. La empresa espera que en 2026 crezca más de 1.000 M.\n\n[[grafico:flujo_libre]]\n\nPara 2026, espera que sus ingresos crezcan entre 4 % y 5 % a tipo de cambio constante."
+    },
+    {
+     "titulo": "Más deuda por compras, y un dividendo que crece poco",
+     "texto": "IBM sigue comprando empresas de software: en 2026 ya invirtió 11.400 M en compras. Eso subió la deuda.\n\nLa deuda neta (lo que debe menos la caja) pasó de 41.026 M en 2024 a **54.584 M**, y equivale a **3,1 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Parte de esa deuda financia a clientes que compran sus equipos, y está respaldada por lo que esos clientes le deben.\n\n[[grafico:deuda_neta]]\n\nSu ganancia operativa paga los intereses del año 6,6 veces (por encima de 3 se considera sano).\n\nEl dividendo es de 6,76 dólares por acción por año. Lo sube hace más de 30 años seguidos, pero muy poco: 0,6 % por año en los últimos tres. Se lleva una parte importante de la caja, y deja poco para bajar deuda y comprar empresas a la vez.\n\nLo conduce Arvind Krishna, CEO desde 2020, el impulsor de la compra de Red Hat: \"Nuestros clientes ya están usando la superinteligencia de formas que transforman modelos operativos completos\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En IBM, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, IBM cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nOtro número útil es el **precio sobre el flujo libre de caja** (cuántos años de caja libre se pagan), porque la caja de IBM es más estable que su ganancia contable: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nDurante años, el mercado pagó poco por IBM porque no crecía. Lo que define cuánto paga ahora es si el crecimiento del software se sostiene o si fue un buen momento.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "IBM es una buena empresa. Se reinventó alrededor del software, tiene clientes que dependen de sus sistemas desde hace décadas, márgenes que suben, una caja fuerte y un dividendo que lleva más de 30 años en suba.\n\nSu punto débil es el crecimiento todavía modesto, un retorno sobre el capital bajo, una deuda que subió por las compras y un dividendo que casi no crece. Además, la inteligencia artificial puede presionar a su negocio de consultoría. El crítico más duro diría que IBM compra el crecimiento que no logra generar sola. Es un argumento a tener en cuenta.\n\nEncaja con quien busca un dividendo alto de una tecnológica estable. No es para quien busca un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que el software siga creciendo cerca de 10 % y que el flujo libre de caja siga subiendo.",
+   "pros": [
+    "Software en alza: creció 8 %, con Red Hat +11 % y datos +19 %.",
+    "Mucha caja: 14.018 M de flujo libre en los últimos 12 meses.",
+    "Clientes atados: los bancos procesan sus operaciones en sus mainframes."
+   ],
+   "contras": [
+    "Deuda en alza: 3,1 veces su EBITDA, por las compras.",
+    "Retorno modesto: ROIC de 10,9 %, contra 26,4 % de su industria.",
+    "Dividendo lento: creció 0,6 % por año en los últimos tres."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "moderado",
-   "negocio": "IBM ofrece soluciones y servicios integrados en América, Europa, Medio Oriente, África y Asia-Pacífico. Opera cuatro segmentos: **Software** (plataformas de nube híbrida y de inteligencia artificial), **Consulting**, **Infrastructure** y **Financing**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio maduro con crecimiento bajo y una aceleración reciente: **los ingresos subieron 2,2 % en 2023, 1,4 % en 2024 y 7,6 % en 2025, hasta 67.536 M**, y llegan a 69.870 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes empresas, bancos, aseguradoras y gobiernos de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de IBM **es de base instalada y costos de cambio, y es estrecha**. Sus mainframes y su software corren procesos que no se pueden detener (pagos, reservas, seguros), con programas escritos durante décadas, de modo que migrar es un proyecto de años con riesgo. Se ve en el margen bruto, que subió de 54,0 % a 58,0 %, y en los contratos de largo plazo.\n\nPero la ventaja no se traduce en una rentabilidad alta sobre el capital: el ROIC es de 10,9 % y el crecimiento promedió 3 % durante años. Compite con Microsoft, Amazon, Oracle, SAP, Accenture, Infosys y TCS. Es frágil en la consultoría, un negocio de personas que la inteligencia artificial puede automatizar en parte, y en la presión de los clientes a migrar a la nube de otros proveedores. IBM vende su propia inteligencia artificial (watsonx), por eso el riesgo es moderado.",
-   "numeros": "Los números de IBM cuentan **un negocio maduro que mejora márgenes**. Los ingresos fueron de 60.530 M, 61.860 M, 62.753 M y 67.536 M, y de 69.870 M en los últimos 12 meses. El EBIT fue de 8.174 M, 9.382 M, 10.074 M y 12.492 M, y de **12.808 M** (margen operativo de 18,3 %). La ganancia neta fue de 1.640 M, 7.502 M, 6.023 M y 10.593 M, y de 11.170 M. La ganancia por acción fue de 1,80, 8,14, 6,43, 11,17 y **11,73**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.463 M, 12.121 M, 11.760 M y 11.455 M, y de **14.018 M** en los últimos 12 meses (20,1 % de los ingresos). El ROIC fue de 8,3 %, 10,3 %, 9,1 %, 9,9 % y 10,9 %, y el ROE de 31,4 %, inflado por el patrimonio chico en relación con la deuda.\n\nLa mirada crítica: la ganancia neta salta de año en año por resultados no operativos (1.640 M en 2022 por la separación de Kyndryl, dato público; 11.170 M hoy, 87 % del EBIT). Es más fiable mirar el EBIT y el flujo libre. El capital invertido subió de 72.893 M a 99.354 M (compras de empresas, a verificar), con un ROIC que apenas avanzó.",
-   "balance": "**Deuda alta, parte explicada por el financiamiento a clientes.** La deuda total es de 67.140 M y la caja de 11.058 M; Yahoo informa una deuda neta de 54.584 M y la deuda neta/EBITDA es de 3,08x, que multiplicado por 12 son unos 37 meses de EBITDA. Esa cifra incluye la deuda del brazo financiero que presta a los clientes de IBM, por lo que no es comparable con una empresa de software pura. Los intereses se cubren 6,6 veces con el EBIT.\n\nEl patrimonio neto es de 35.537 M, subió desde 21.944 M, y la deuda equivale a 1,89 veces el patrimonio. La deuda total subió de 54.013 M a 67.140 M desde 2022, y la caja bajó en el último año de 14.417 M a 11.058 M.",
-   "gerencia": "La conduce Arvind Krishna, CEO, presidente y presidente del directorio (62 años, pago de 7,4 M según Yahoo), con Jim Kavanaugh como director financiero (58 años, pago de 4,1 M). Krishna lidera la empresa desde 2020 y condujo la separación de Kyndryl y la compra de Red Hat, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo y compras de empresas, con recompras chicas**: paga un dividendo de 6,76 por acción (pagado desde 1962; sube 0,6 % por año en 3 años; 6.336 M en los últimos 12 meses, 45 % del flujo libre) y recompró 407 M en 2022, 402 M, 651 M, 1.018 M y 984 M en los últimos 12 meses. **Las acciones subieron de 912 M a 953 M, un 4,5 % más.**",
-   "fortalezas": [
-    "Dividendo pagado desde 1962.",
-    "Flujo libre de 14.018 M, 20,1 % de los ingresos.",
-    "Margen operativo de 18,3 %, subiendo desde 13,5 %.",
-    "Base instalada de mainframes y software crítico.",
-    "Ingresos que aceleran (+7,6 % en 2025)."
-   ],
-   "debilidades": [
-    "ROIC de 10,9 %, bajo.",
-    "Deuda total de 67.140 M: el crítico más duro diría que la deuda del brazo financiero oculta la deuda real.",
-    "4,5 % más acciones desde 2022.",
-    "Dividendo con crecimiento de solo 0,6 % por año en 3 años.",
-    "Ganancia neta con resultados no operativos que complican la lectura."
-   ],
-   "vigilar": [
-    "Ingresos: hoy +7,6 % en 2025; si vuelven a 1 % a 2 %, la aceleración fue pasajera.",
-    "Margen operativo: hoy 18,3 %; si baja, la inteligencia artificial presiona la consultoría.",
-    "Deuda neta: hoy 54.584 M; tiene que bajar con el flujo libre.",
-    "Cantidad de acciones: hoy 953 M; si siguen subiendo, la dilución continúa."
-   ],
    "clientes": [
-    "Bancos y aseguradoras",
-    "Gobiernos y grandes empresas",
-    "Empresas que operan sistemas críticos"
+    "Bancos y aseguradoras de todo el mundo",
+    "Grandes empresas de todos los sectores",
+    "Gobiernos y organismos públicos"
    ],
-   "ideal_para": [
-    "Buscan un dividendo de décadas en tecnología empresarial.",
-    "Valoran la base instalada y los contratos largos.",
-    "Aceptan una deuda alta explicada en parte por el financiamiento."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 17.100 M (+5 %; +6 % a tipo de cambio constante); software 7.800 M (+8 %): Red Hat +11 %, datos +19 %, procesamiento de operaciones +9 %, automatización -3 %; consultoría 5.300 M (sin cambios); infraestructura 3.700 M (+4 %), IBM Z -20 %; ganancia por acción de 2,31 dólares (+26 %) y operativa de 2,95 (+11 %); flujo libre de 7.800 M en nueve meses; 11.400 M invertidos en compras en 2026; guía 2026: ingresos +4 % a +5 % y flujo libre más de 1.000 M por encima de 2025; frase de Arvind Krishna",
+     "fuente": "Comunicado de resultados del 3T26, 21/10/2026",
+     "url": "https://newsroom.ibm.com/2026-10-21-IBM-RELEASES-THIRD-QUARTER-RESULTS"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido.",
-    "No toleran el desafío de la inteligencia artificial en consultoría."
-   ],
+   "ticker": "IBM",
    "perfil": "software",
    "capas": [],
-   "ticker": "IBM",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10057,54 +10106,67 @@
    }
   },
   "TMO": {
-   "resumen": "Thermo Fisher Scientific es una empresa estadounidense que provee instrumentos, reactivos, consumibles, diagnósticos y servicios a laboratorios de ciencias de la vida, biofarmacéuticas, hospitales y universidades de todo el mundo. Gana plata vendiendo equipos y, sobre todo, los productos y servicios que esos laboratorios usan todos los días. Tiene un **foso estrecho, de escala, base instalada y costos de cambio**: un laboratorio que validó su proceso con sus equipos y reactivos rara vez lo cambia, y pocas rivales cubren tantas áreas a la vez (dato público). Los números son estables: el margen operativo es de **18,2 %**, la ganancia por acción subió de 15,45 a **17,74** entre 2023 y 2025 y el flujo libre fue de **6.293 M** en 2025 (7.318 M en los últimos 12 meses), con 5,3 % menos acciones desde 2022 y dividendo creciente. Pero el ROIC es de apenas **8,1 %**, porque la empresa compra otras empresas: el capital invertido pasó de 78.466 M a 95.229 M y la deuda neta de 25.964 M en 2022 a 38.485 M en los últimos 12 meses. Los ingresos casi no crecieron (de 44.915 M a 44.557 M). Su punto débil es esa dependencia de adquisiciones y del gasto de la industria farmacéutica y de la investigación pública. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: es más una herramienta que usan sus clientes. Conclusión: **empresa de buena calidad, líder en su industria y con márgenes estables, pero con ROIC de 8,1 %, ingresos sin crecer desde 2022 y deuda neta en alza por adquisiciones.**",
-   "veredicto": "Buena: líder con márgenes estables, pero ROIC de 8,1 %, ingresos sin crecer desde 2022 y deuda en alza por adquisiciones",
-   "conclusion": "Thermo Fisher es una empresa de buena calidad: tiene un foso estrecho de escala y base instalada, margen operativo de 18,2 %, flujo libre de 7.318 M, dividendo creciente y 5,3 % menos acciones, pero el ROIC es de 8,1 %, los ingresos no crecen desde 2022 y la deuda neta subió a 38.485 M. Vale la pena seguirla de cerca. Es recomendable investigar qué compró en los últimos 12 meses y cuánto aporta al flujo. Para que la tesis se mantenga, lo más importante es que el ROIC suba y la deuda baje.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Thermo Fisher provee soluciones para las ciencias de la vida, instrumentos analíticos, diagnósticos especializados y productos de laboratorio y servicios biofarmacéuticos a nivel internacional. Opera cuatro segmentos: **Life Sciences Solutions**, **Analytical Instruments**, **Specialty Diagnostics** y **Laboratory Products and Biopharma Services**. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio grande y maduro: **los ingresos cayeron 4,6 % en 2023, subieron 0,1 % en 2024 y 3,9 % en 2025, hasta 44.557 M**. Tras el auge de la pandemia, volvió a un nivel parecido al de 2022.\n\n**A quién le vende.** A empresas biofarmacéuticas y biotecnológicas, laboratorios de diagnóstico, hospitales, universidades, institutos de investigación y gobiernos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Thermo Fisher **es de escala, base instalada y costos de cambio, y es estrecha**. Un laboratorio o una farmacéutica que validó un proceso con sus equipos y reactivos tiene que repetir pruebas y trámites regulatorios para cambiar de proveedor, y pocas rivales ofrecen un catálogo tan amplio (dato público). Se ve en el margen bruto, que se mantiene entre 39,9 % y 42,2 %, y en el margen operativo, entre 17,1 % y 18,9 %.\n\nPero el ROIC es de 8,1 %, bajo para un foso fuerte, porque parte del crecimiento se compró a precios altos. Compite con Danaher, Agilent, Waters, Revvity, Merck KGaA y Sartorius. Es frágil en el gasto en investigación de las farmacéuticas y del gobierno, en China y en los aranceles (dato público). La inteligencia artificial más bien le abre demanda de equipos y reactivos.",
-   "numeros": "Los números de Thermo Fisher cuentan **un negocio estable, con márgenes constantes y baja rentabilidad sobre el capital**. Los ingresos fueron de 44.915 M, 42.857 M, 42.879 M y 44.557 M. El EBIT fue de 8.507 M, 7.318 M, 7.717 M y 8.110 M (margen operativo de 18,2 %). La ganancia neta fue de 6.950 M, 5.995 M, 6.335 M y 6.704 M. La ganancia por acción fue de 17,63, 15,45, 16,53 y 17,74, y de **18,96** en los últimos 12 meses.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 6.911 M, 6.927 M, 7.267 M y **6.293 M**, y de 7.318 M en los últimos 12 meses (inversiones de 1.695 M). El ROIC bajó de 9,9 % a 8,1 % y el ROE fue de 12,6 %, apenas sobre el 12 % de referencia.\n\nLa mirada crítica: el flujo libre de 2025 cayó 13,4 % y la ganancia por acción creció por las recompras (3.000 M a 4.000 M por año) más que por el negocio.",
-   "balance": "**Deuda en alza y cobertura aceptable.** En 2025, la deuda total era de 39.385 M, la caja de 10.105 M y la deuda neta de 29.533 M, con deuda neta/EBITDA de 2,57x, que multiplicado por 12 son unos 31 meses de EBITDA. Los intereses se cubrían 5,7 veces con el EBIT.\n\nEn los últimos 12 meses, la caja bajó a 4.064 M y la deuda total subió a 42.549 M, así que la deuda neta llegó a **38.485 M**; con el EBITDA de 2025 (11.507 M) serían unos 3,3x, un cálculo nuestro porque Yahoo no lo informa. Yahoo no detalla el motivo, y es probable que sea una adquisición (dato a verificar). El patrimonio es de 52.680 M y la liquidez corriente de 1,55x.",
-   "gerencia": "La conduce Marc Casper, presidente del directorio y CEO (57 años, pago de 6,2 M según Yahoo), con Gianluca Pettiti como presidente y director de operaciones (46 años, pago de 2,4 M) y James Meyer como director financiero (46 años). Casper es CEO desde 2009, dato público.\n\nEn lo que importa, **el uso del capital combina recompras grandes, dividendo chico y adquisiciones**: recompró 3.000 M en 2022 y 2023, 4.000 M en 2024, 3.000 M en 2025 y 5.000 M en los últimos 12 meses, y paga un dividendo de 1,88 por acción (desde 1993; sube 12,7 % por año en 3 años; 662 M en los últimos 12 meses, 9 % del flujo libre). **Las acciones bajaron de 394 M a 373 M, un 5,3 % menos.**",
-   "fortalezas": [
-    "Margen operativo estable cerca de 18 %.",
-    "Flujo libre de 7.318 M en los últimos 12 meses.",
-    "5,3 % menos acciones desde 2022.",
-    "Dividendo creciente a 12,7 % por año con payout bajo.",
-    "Catálogo amplio y base instalada con costos de cambio."
+   "formato": "v4",
+   "titulo": "Thermo Fisher: le vende las palas a todos los que buscan oro en la biotecnología",
+   "resumen": [
+    "Thermo Fisher es el mayor proveedor del mundo de **equipos, insumos y servicios para laboratorios**: lo que usan los laboratorios farmacéuticos, las biotecnológicas, los hospitales y las universidades para investigar, fabricar y diagnosticar. Su ventaja es la escala y un catálogo que nadie más ofrece completo.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 9 %** (6 % sin contar compras), a 12.140 M, y su ganancia ajustada por acción, alrededor de 15 %. Subió lo que espera ganar en el año: entre 25,13 y 25,43 dólares por acción.",
+    "Muy buena empresa, de las más estables de la salud, que sale de dos años de crecimiento flojo, aunque su retorno sobre el capital es modesto por las compras que hizo y su deuda subió."
    ],
-   "debilidades": [
-    "ROIC de 8,1 %, bajo para su tamaño.",
-    "Ingresos sin crecer desde 2022.",
-    "Deuda neta de 38.485 M en alza por adquisiciones: el crítico más duro diría que compra crecimiento caro.",
-    "Flujo libre 2025 en baja de 13,4 %.",
-    "Depende del gasto en investigación de farmacéuticas y gobiernos."
+   "introduccion": "En la fiebre del oro de California, muchos de los que se hicieron ricos no fueron los buscadores, sino los que les vendían palas, picos y pantalones.\n\nThermo Fisher es eso para la industria de la salud. No apuesta a que un medicamento en particular funcione. Le vende a todos los que lo intentan: los equipos para analizar muestras, los reactivos para los experimentos, los servicios para fabricar medicamentos y para hacer ensayos clínicos.\n\nEse modelo la hace muy estable. Pero no inmune. Entre 2023 y 2024, sus ventas no crecieron: terminó el boom de la pandemia, las biotecnológicas consiguieron menos financiamiento y China se frenó. Después, en EE.UU. se recortaron fondos públicos para la investigación.\n\nEn 2026 el crecimiento empieza a volver. En el tercer trimestre, sus ventas sin contar compras crecieron 6 %, y la empresa espera 4 % en el año.\n\nEntonces, la pregunta es: ¿vuelve Thermo Fisher a crecer como antes, o el mundo de la investigación cambió?",
+   "secciones": [
+    {
+     "titulo": "Un supermercado para laboratorios",
+     "texto": "Thermo Fisher tiene cuatro grandes negocios:\n\n- **Ciencias de la vida**: reactivos, insumos y equipos para investigar células, genes y proteínas.\n- **Instrumentos analíticos**: equipos de alta precisión, como espectrómetros de masa y microscopios electrónicos.\n- **Diagnóstico especializado**: pruebas para hospitales y laboratorios clínicos.\n- **Productos de laboratorio y servicios farmacéuticos**: fabrica medicamentos para otros laboratorios y hace ensayos clínicos (con PPD, comprada en 2021). Fue el que más creció en el trimestre: 10 % sin contar compras.\n\nSus clientes son laboratorios farmacéuticos y biotecnológicos, hospitales, universidades, gobiernos e industrias. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **escala** y la **amplitud**. Un laboratorio puede comprarle casi todo lo que necesita a un solo proveedor, con entrega rápida en todo el mundo. Y una vez que un equipo de Thermo Fisher entra a un laboratorio, sigue comprando sus insumos durante años, igual que con una impresora y sus cartuchos.\n\nLa inteligencia artificial es más una oportunidad que una amenaza: acelera la investigación de medicamentos, y la investigación necesita sus equipos y reactivos."
+    },
+    {
+     "titulo": "Crecimiento que vuelve, márgenes que suben",
+     "texto": "Los ingresos estuvieron estancados: 44.915 M en 2022, 42.857 M en 2023 y 42.879 M en 2024. En 2025 volvieron a crecer, a **44.557 M**.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) se mantuvo cerca de **18 %**, por encima del promedio de su industria (15,3 %). El margen ajustado (sin amortizaciones de compras), que usan la empresa y los analistas del mercado, llegó a 24,5 % en el tercer trimestre, contra 23,3 % un año antes.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **8,1 %**. Por encima de 15 % se considera muy bueno. Es bajo porque Thermo Fisher creció comprando empresas, y pagó mucho por ellas. El promedio de su industria es 17,0 %.\n\n[[grafico:roic]]\n\nUn aviso sobre el último trimestre: unos 0,15 dólares de la ganancia ajustada por acción vinieron de la devolución de aranceles, algo que no se repite. Sin eso, la ganancia creció cerca de 13 %.\n\nPara 2026, la empresa espera crecer 4 % sin contar compras y ganar entre 25,13 y 25,43 dólares por acción ajustados. Su CEO espera volver a crecer alrededor de 7 % por año hacia fines de 2027 o 2028."
+    },
+    {
+     "titulo": "Más deuda por las compras",
+     "texto": "Thermo Fisher es una empresa que crece comprando. La deuda neta (lo que debe menos la caja) pasó de 29.533 M a fines de 2025 a **38.485 M**.\n\n[[grafico:deuda_neta]]\n\nEn 2025 equivalía a **2,6 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Thermo Fisher está en el medio. Su ganancia operativa pagaba los intereses del año 5,7 veces (por encima de 3 se considera sano).\n\nLa caja es fuerte: **7.318 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. En los primeros nueve meses de 2026 subió 39 %, y la empresa espera entre 7.000 M y 7.500 M en el año.\n\nEl dividendo es chico en rendimiento, pero crece: 12,7 % por año en los últimos tres.\n\nLa conduce Marc Casper, CEO desde 2009, que multiplicó el tamaño de la empresa con compras."
+    }
    ],
-   "vigilar": [
-    "Ingresos: hoy +3,9 % en 2025; tienen que crecer sin adquisiciones.",
-    "ROIC: hoy 8,1 %; si no sube, las compras no crean valor.",
-    "Deuda neta: hoy 38.485 M; tiene que bajar con el flujo libre.",
-    "Margen operativo: hoy 18,2 %; si baja de 17 %, pierde poder de precio."
+   "valuacion": {
+    "texto": "En Thermo Fisher, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada (sin la amortización de las compras) que espera la empresa para 2026: unos 25,28 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, Thermo Fisher cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl mercado siempre pagó un múltiplo alto por Thermo Fisher, porque es de las empresas más estables de la salud. Lo que puede moverlo es el crecimiento: si vuelve a crecer cerca de 7 % por año, como espera su CEO, el múltiplo se justifica; si se queda en 3 % o 4 %, queda exigente.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 25.28,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (25,13 a 25,43 dólares)"
+   },
+   "conclusion": "Thermo Fisher es una muy buena empresa. Es el proveedor más grande y completo de los laboratorios del mundo, con clientes muy diversificados, ingresos recurrentes por los insumos, márgenes por encima de su industria y una caja fuerte. Y el crecimiento empieza a volver.\n\nSu punto débil es el retorno sobre el capital: 8,1 %, bajo, porque creció comprando empresas caras. Además, la deuda subió, y la investigación en EE.UU. tiene menos fondos públicos. El crítico más duro diría que Thermo Fisher es una gran empresa que ya no crece como antes y que gana poco sobre todo lo que invirtió. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa de salud estable para el largo plazo. No es para quien busca dividendo o un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que el crecimiento sin contar compras vuelva a acercarse a 7 % y que la deuda baje.",
+   "pros": [
+    "Líder del sector: el proveedor más grande y completo de los laboratorios.",
+    "Ingresos recurrentes: los insumos se compran una y otra vez.",
+    "Caja fuerte: 7.318 M de flujo libre en los últimos 12 meses."
    ],
+   "contras": [
+    "Retorno bajo: ROIC de 8,1 %, contra 17,0 % de su industria.",
+    "Deuda en alza: la deuda neta pasó de 29.533 M a 38.485 M.",
+    "Crecimiento flojo: las ventas no crecieron entre 2022 y 2024."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Empresas biofarmacéuticas y biotecnológicas",
+    "Laboratorios farmacéuticos y biotecnológicos",
     "Hospitales y laboratorios de diagnóstico",
-    "Universidades, institutos de investigación y gobiernos"
+    "Universidades, gobiernos e industrias"
    ],
-   "ideal_para": [
-    "Buscan un líder de ciencias de la vida con márgenes estables.",
-    "Valoran recompras y dividendo creciente.",
-    "Aceptan crecimiento moderado y adquisiciones."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 12.140 M (+9 %; +6 % orgánico); ganancia ajustada por acción de 6,68 dólares, con unos 0,15 por devolución de aranceles; margen operativo ajustado de 24,5 % (23,3 %); productos de laboratorio y servicios farmacéuticos +10 % orgánico; flujo libre de 4.600 M en nueve meses (+39 %); guía 2026: ganancia ajustada por acción de 25,13 a 25,43 dólares, crecimiento orgánico de 4 %, flujo libre de 7.000 M a 7.500 M",
+     "fuente": "Análisis de los resultados del 3T26, 10/2026",
+     "url": "https://www.tikr.com/blog/thermo-fisher-stock-shrugs-off-a-beat-heres-what-it-looks-like-without-tariff-refunds"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de Thermo Fisher, anexo 99.1",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000097745/000009774526000173/q32026earnings8kex99_1.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan alto crecimiento de ingresos.",
-    "No toleran la deuda en alza ni el ROIC bajo."
-   ],
+   "ticker": "TMO",
    "perfil": "salud",
    "capas": [],
-   "ticker": "TMO",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10119,54 +10181,62 @@
    }
   },
   "AMGN": {
-   "resumen": "Amgen es una empresa estadounidense de biotecnología: descubre, desarrolla, fabrica y vende medicamentos biológicos para artritis reumatoide, psoriasis, osteoporosis y otras enfermedades, con productos como Enbrel, Otezla y Prolia (según Yahoo), entre otros. Gana plata vendiendo medicamentos protegidos por patentes y de fabricación compleja. Tiene un **foso amplio pero con fecha de vencimiento, de patentes y complejidad de fabricación**: los biológicos son difíciles de copiar, pero cada producto pierde protección en algún momento (dato público a verificar). Los números mejoraron: los ingresos subieron de 26.323 M a **38.095 M** en los últimos 12 meses, el margen operativo volvió a **30,0 %**, la ganancia por acción llegó a **16,09** y el flujo libre fue de **10.175 M** (26,7 % de los ingresos). Pero el ROIC es de **14,2 %**, tras una gran compra en 2023 (Yahoo no la detalla) que llevó la deuda de 38.945 M a 57.304 M; la deuda neta es de 43.315 M, las recompras se frenaron desde 2023 y las acciones no bajaron (541 M a 543 M). El dividendo, de 10,08 por acción, absorbe 52 % del flujo libre. Su punto débil es esa deuda y el vencimiento de patentes. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: la empresa misma la integra en investigación. Conclusión: **empresa de buena calidad, con flujo libre de 10.175 M y márgenes en recuperación, pero con deuda neta de 43.315 M, sin recompras y con patentes que vencen.**",
-   "veredicto": "Buena: flujo libre de 10.175 M y márgenes en recuperación, con deuda neta de 43.315 M y patentes que vencen",
-   "conclusion": "Amgen es una empresa de buena calidad: tiene un foso amplio de patentes y fabricación de biológicos, margen operativo de 30,0 %, flujo libre de 10.175 M y dividendo creciente, pero la deuda neta es de 43.315 M, no recompra desde 2023 y sus productos maduros enfrentan vencimiento de patentes. Vale la pena seguirla de cerca. Es recomendable investigar el peso de cada producto y los lanzamientos nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los productos nuevos reemplacen a los que pierden protección.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Amgen: la biotecnológica que reemplaza a sus viejos éxitos y apuesta a la obesidad",
+   "resumen": [
+    "Amgen es una de las mayores **biotecnológicas** del mundo: fabrica medicamentos biológicos para el colesterol, la osteoporosis, el cáncer, el asma y enfermedades raras. Su ventaja es la capacidad de producir medicamentos biológicos complejos a gran escala y un portafolio amplio.",
+    "En el segundo trimestre de 2026, **sus ingresos crecieron 10 %**, a 10.054 M, impulsados por medicamentos nuevos como Repatha (+37 %), Evenity (+38 %) y Tezspire (+42 %), mientras Prolia y Xgeva caen por las copias. Espera ganar entre 22,30 y 23,50 dólares por acción ajustados en 2026.",
+    "Muy buena empresa, con mucha caja y un dividendo alto y creciente, pero con bastante deuda por la compra de Horizon y una gran apuesta a la obesidad que todavía tiene que demostrar resultados."
+   ],
+   "introduccion": "Todo laboratorio enfrenta el mismo problema: las patentes vencen. Para Amgen, 2025 y 2026 son años de prueba. Prolia y Xgeva, dos de sus medicamentos más vendidos para los huesos, ya tienen copias (biosimilares), y sus ventas caen más de 30 %.\n\nAun así, los ingresos de Amgen crecieron 10 % en el segundo trimestre de 2026. ¿Cómo? Porque una camada de medicamentos más nuevos crece con fuerza: Repatha para el colesterol, Evenity para la osteoporosis, Tezspire para el asma, Imdelltra para un cáncer de pulmón.\n\nY Amgen tiene una apuesta más grande todavía: **MariTide**, un medicamento contra la obesidad que se aplica una vez por mes, en lugar de una vez por semana como los de Eli Lilly y Novo Nordisk. Está en la última etapa de ensayos clínicos.\n\nSi funciona, puede cambiar la historia de la empresa. Si no, Amgen seguirá siendo una biotecnológica sólida, pero de crecimiento moderado.\n\nEntonces, la pregunta es: ¿alcanzan sus nuevos medicamentos para compensar los que pierden patente, mientras espera el resultado de su gran apuesta?",
+   "secciones": [
+    {
+     "titulo": "Lo que crece y lo que cae",
+     "texto": "En el segundo trimestre de 2026, Amgen vendió 9.500 M en productos, un 9 % más, por mayor volumen. Pero detrás de ese número hay dos grupos muy distintos.\n\nLos que crecen:\n\n- **Repatha** (colesterol): 953 M, +37 %.\n- **Evenity** (osteoporosis): 714 M, +38 %.\n- **Tepezza** (enfermedad ocular de la tiroides): 576 M, +14 %.\n- **Tezspire** (asma grave): 486 M, +42 %.\n- **Blincyto** (leucemia): 472 M, +23 %.\n- **Imdelltra** (cáncer de pulmón): 288 M, +115 %.\n\nLos que caen:\n\n- **Prolia** (osteoporosis): 759 M, -32 %, por las copias.\n- **Xgeva** (huesos en pacientes con cáncer): 352 M, -34 %, por las copias.\n- **Otezla** (psoriasis): 491 M, -21 %.\n- **Enbrel** (artritis): 580 M, -4 %, afectado por la ley que permite al gobierno de EE.UU. negociar precios de medicamentos.\n\nSus clientes son distribuidores, sistemas de salud, aseguradoras y hospitales, sobre todo en EE.UU.\n\n¿Cuál es su **ventaja**? La **fabricación de biológicos**: medicamentos hechos con células vivas, mucho más difíciles de producir y copiar que una pastilla. Amgen fue pionera en eso y tiene una escala que pocos igualan.\n\nLa inteligencia artificial es más una herramienta que una amenaza: puede acelerar el diseño de nuevos medicamentos."
+    },
+    {
+     "titulo": "Mucha caja, márgenes que se recuperan",
+     "texto": "Los ingresos crecieron de 26.323 M en 2022 a **38.095 M** en los últimos 12 meses. Gran parte de ese salto vino de la compra de **Horizon**, en 2023, por unos 28.000 M, que sumó Tepezza y Krystexxa.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) cayó de 36,3 % en 2022 a 21,7 % en 2024, en parte por la amortización de Horizon, y se recuperó a **30,0 %** en los últimos 12 meses. El promedio de su industria es 9,0 %: muchas biotecnológicas todavía pierden plata.\n\n[[grafico:margen_operativo]]\n\nLa ganancia contable salta por esos cargos. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**, que fue de 6,29 dólares por acción en el trimestre (+4 %).\n\nLa caja es fuerte: **10.175 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **14,2 %**. Por encima de 15 % se considera muy bueno: Amgen está cerca, después de haber bajado a 9,5 % con la compra de Horizon."
+    },
+    {
+     "titulo": "Deuda alta y un dividendo generoso",
+     "texto": "La compra de Horizon se pagó con deuda. La deuda neta (lo que debe menos la caja) es de **43.315 M** y equivale a **2,5 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Bajó desde 3,6 veces en 2023.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses** (cuántas veces la ganancia operativa paga los intereses del año) es de **4,3 veces**. Por encima de 3 se considera sano, aunque no deja mucho margen.\n\nEl dividendo es de 10,08 dólares por acción por año, y creció 7,1 % por año en los últimos tres.\n\nEl gran interrogante es **MariTide**. El mercado de la obesidad es enorme, pero Eli Lilly (LLY) y Novo Nordisk (NVO) llevan años de ventaja. Amgen apuesta a una aplicación mensual, más cómoda. Los resultados de la última etapa de ensayos van a definir buena parte del valor de la empresa en los próximos años.\n\nLo conduce Bob Bradway, CEO desde 2012: \"Seguimos confiando en nuestra capacidad de crecer hasta bien entrada la próxima década\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Amgen, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada (sin la amortización de las compras) que espera la empresa para 2026: unos 22,90 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, Amgen cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl mercado suele pagar a Amgen un múltiplo moderado: crece poco, pero gana mucho y paga dividendo. Lo que podría cambiarlo es MariTide: un éxito en la obesidad haría que el mercado la viera como una empresa de crecimiento; un fracaso dejaría el foco en las patentes que vencen.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).",
+    "ganancia_ref": 22.9,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (22,30 a 23,50 dólares)"
+   },
+   "conclusion": "Amgen es una muy buena empresa. Tiene medicamentos nuevos que crecen a doble dígito y compensan a los que pierden patente, márgenes muy por encima de su industria, mucha caja y un dividendo alto y creciente.\n\nSu punto débil es la deuda que dejó la compra de Horizon, las copias que erosionan a Prolia y Xgeva, la presión del gobierno de EE.UU. sobre los precios y una gran apuesta a la obesidad en la que llega tarde frente a Lilly y Novo. El crítico más duro diría que Amgen crece apenas lo suficiente para no achicarse. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una biotecnológica madura, con dividendo, y con una opción de crecimiento en la obesidad. No es para quien busca un balance sin deuda.\n\nPara que la tesis se mantenga, lo más importante es que los medicamentos nuevos sigan compensando la caída de Prolia y Xgeva y que MariTide muestre buenos resultados en su última etapa de ensayos.",
+   "pros": [
+    "Nuevos medicamentos: Repatha +37 %, Evenity +38 %, Tezspire +42 %.",
+    "Márgenes altos: margen operativo de 30,0 %, contra 9,0 % de su industria.",
+    "Dividendo generoso: 10,08 dólares por acción por año."
+   ],
+   "contras": [
+    "Patentes vencidas: Prolia y Xgeva caen más de 30 % por las copias.",
+    "Deuda alta: 2,5 veces su EBITDA, por la compra de Horizon.",
+    "Obesidad: llega tarde frente a Eli Lilly y Novo Nordisk."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Amgen descubre, desarrolla, fabrica y entrega terapias humanas en todo el mundo. Según Yahoo, entre sus productos principales están **Enbrel** (artritis reumatoide, psoriasis en placas y artritis psoriásica), **Otezla** (psoriasis en placas, artritis psoriásica y úlceras orales de la enfermedad de Behçet) y **Prolia** (osteoporosis), además de otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio maduro que volvió a crecer: **los ingresos subieron 7,1 % en 2023, 18,6 % en 2024 y 10,0 % en 2025, hasta 36.751 M**, y llegan a 38.095 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, hospitales, farmacias y sistemas de salud; en Estados Unidos, pocos distribuidores concentran las compras (dato público a verificar).",
-   "foso": "La ventaja de Amgen **es de patentes y complejidad de fabricación de biológicos, y es amplia pero con vencimientos**. Un medicamento biológico es difícil de copiar, y los médicos prefieren productos con años de uso. Se ve en el margen bruto de 69,5 % y en el margen operativo de 30,0 % en los últimos 12 meses.\n\nPero la protección tiene fecha: los productos maduros enfrentan biosimilares (copias de biológicos) y la negociación de precios de Medicare en Estados Unidos (dato público a verificar). Compite con AbbVie, Pfizer, Novartis, Sanofi y Lilly. Es frágil en el vencimiento de patentes, en el precio de los medicamentos y en que su producto nuevo no reemplace los viejos. La inteligencia artificial más bien ayuda a la investigación: Yahoo muestra un directivo de investigación a cargo también de IA y datos.",
-   "numeros": "Los números de Amgen cuentan **un año de caída por una compra grande y una recuperación fuerte**. Los ingresos fueron de 26.323 M, 28.190 M, 33.424 M y 36.751 M, y de 38.095 M en los últimos 12 meses. El EBIT fue de 9.566 M, 7.897 M, 7.258 M y 9.080 M, y de **11.426 M** (margen operativo de 30,0 %). La ganancia neta fue de 6.552 M, 6.717 M, 4.090 M y 7.711 M, y de 8.743 M. La ganancia por acción fue de 12,11, 12,49, 7,56, 14,23 y **16,09**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.785 M, 7.359 M, 10.394 M y 8.100 M, y de **10.175 M** (26,7 % de los ingresos), con inversiones que subieron de 936 M a 2.303 M. El ROIC fue de 20,0 %, 9,5 %, 9,8 %, 12,3 % y 14,2 %. El ROE de 74,8 % no sirve para comparar porque el patrimonio es chico.\n\nLa mirada crítica: el margen bruto bajó de 75,7 % a 61,5 % en 2024 y se recuperó a 69,5 %; Yahoo no explica el motivo (es probable que sea la amortización de lo comprado, dato a verificar).",
-   "balance": "**Deuda alta pero con cobertura razonable.** En los últimos 12 meses, la deuda total es de 57.304 M y la caja de 13.989 M; la deuda neta es de 43.315 M y la deuda neta/EBITDA es de 2,46x, que multiplicado por 12 son unos 30 meses de EBITDA. Los intereses se cubren 4,3 veces con el EBIT (3,3 veces en 2025).\n\nEl patrimonio neto es de 11.688 M y la deuda equivale a 4,9 veces el patrimonio, un nivel alto, consecuencia de la compra de 2023: la deuda total pasó de 38.945 M en 2022 a 64.613 M en 2023 y bajó a 57.304 M. La liquidez corriente es de 1,37x.",
-   "gerencia": "La conduce Robert Bradway, presidente del directorio y CEO (62 años, pago de 6,7 M según Yahoo), con Thomas Dittrich como director financiero (61 años), Murdo Gordon al frente de mercados globales (58 años, pago de 3,2 M) y James Bradner a cargo de investigación, inteligencia artificial y datos (53 años, pago de 3,8 M). Bradway es CEO desde 2012, dato público.\n\nEn lo que importa, **el uso del capital priorizó bajar deuda y pagar dividendo**: paga un dividendo de 10,08 por acción (desde 2011; sube 7,1 % por año en 3 años y 11,7 % en 10 años; 5.285 M en los últimos 12 meses, 52 % del flujo libre) y no recompra desde 2023 (recompró 6.360 M en 2022 y 200 M en 2024). **Las acciones quedaron igual: 541 M en 2022 y 543 M ahora.**",
-   "fortalezas": [
-    "Flujo libre de 10.175 M y margen operativo de 30,0 %.",
-    "Ingresos creciendo 10 % en 2025.",
-    "Dividendo creciente: 11,7 % por año en 10 años.",
-    "Productos biológicos difíciles de copiar.",
-    "ROIC en recuperación (de 9,5 % a 14,2 %)."
-   ],
-   "debilidades": [
-    "Deuda neta de 43.315 M y deuda de 4,9 veces el patrimonio.",
-    "Sin recompras desde 2023 y acciones sin bajar.",
-    "Patentes que vencen y precios regulados: el crítico más duro diría que los ingresos nuevos tienen que compensar productos viejos.",
-    "Inversiones en alza (2.303 M).",
-    "Ganancia por acción muy volátil (7,56 en 2024)."
-   ],
-   "vigilar": [
-    "Ingresos por producto: Yahoo no los informa, hay que buscarlos en el informe.",
-    "Deuda neta: hoy 43.315 M; tiene que bajar con el flujo libre.",
-    "Margen operativo: hoy 30,0 %; si baja de 25 %, pierde poder de precio.",
-    "Dividendo contra flujo libre: hoy 5.285 M contra 10.175 M."
-   ],
    "clientes": [
-    "Mayoristas y distribuidores de medicamentos",
-    "Hospitales y farmacias",
-    "Sistemas de salud y aseguradoras"
+    "Distribuidores y sistemas de salud de EE.UU.",
+    "Aseguradoras y programas del gobierno (Medicare)",
+    "Hospitales y sistemas de salud de todo el mundo"
    ],
-   "ideal_para": [
-    "Buscan salud con flujo libre alto y dividendo creciente.",
-    "Aceptan deuda alta tras una gran compra.",
-    "Valoran biológicos difíciles de copiar."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ingresos de 10.054 M (+10 %); ventas de productos de 9.500 M (+9 %); Repatha 953 M (+37 %), Evenity 714 M (+38 %), Tezspire 486 M (+42 %), Imdelltra 288 M (+115 %), Prolia 759 M (-32 %), Xgeva 352 M (-34 %), Otezla 491 M (-21 %), Enbrel 580 M (-4 %); ganancia por acción de 4,37 dólares y ajustada de 6,29 (+4 %); flujo libre de 3.500 M; guía 2026: ingresos de 38.200 M a 39.400 M y ganancia ajustada de 22,30 a 23,50 dólares; MariTide en ensayos de fase 3; frase de Bob Bradway",
+     "fuente": "Comunicado de resultados del 2T26, 04/08/2026",
+     "url": "https://www.amgen.com/newsroom/press-releases/2026/08/amgen-reports-second-quarter-2026-financial-results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el vencimiento de patentes.",
-    "Buscan recompras o balance muy liviano."
-   ],
+   "ticker": "AMGN",
    "perfil": "salud",
    "capas": [],
-   "ticker": "AMGN",
-   "fecha": "29/10/2026",
+   "fecha": "31/10/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
