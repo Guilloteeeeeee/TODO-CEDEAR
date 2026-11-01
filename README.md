@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.8 (01/11/2026): Análisis Fundamental nuevo, tanda 16
+
+- Reescritas con el formato v4: SPOT, NEM, SBUX, PSX, EQNR, GSK, USB, ING, FCX, GM, PYPL y VALE. Van 123 de 166.
+- HON queda para más adelante: separó su negocio aeroespacial y los datos todavía mezclan negocios.
+
 ### v1.3.7 (01/11/2026): Análisis Fundamental nuevo, tanda 15
 
 - Reescritas con el formato v4: LMT, SPGI, WDC, BMY, BP, MO, PLD y ADP. Van 111 de 166.
