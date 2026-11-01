@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.3 (01/11/2026): Análisis Fundamental nuevo, tanda 11
+
+- Reescritas con el formato v4: VZ, QCOM, MCD, ABT y UNP. Van 81 de 166.
+- QCOM y MCD quedan para renovar con su próximo informe (salen el 04/11).
+
 ### v1.3.2 (01/11/2026): Análisis Fundamental nuevo, tanda 10
 
 - Reescritas con el formato v4: GILD, DIS, KLAC, PEP, ADI y SAN. Van 76 de 166.
