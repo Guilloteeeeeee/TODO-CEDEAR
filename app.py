@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.5"
+APP_VERSION = "1.4.6"
 
 import re
 import contextlib
@@ -1506,10 +1506,29 @@ def render_cartera(df, pagina=True):
 
 
 _INTRO_EVAL = (
-    "Armar una cartera lleva tiempo, estudio y esfuerzo, y eso se nota. Esta herramienta mira tu portfolio y te devuelve una evaluación gratuita, con empatía y con ánimo de ayudarte a seguir mejorando: "
-    "cómo está repartido, qué está bien y qué ajustaría.\n\n"
-    "Es una orientación educativa, hecha con reglas fijas a partir de lo que cargues. No es una recomendación de compra o venta ni un consejo personalizado."
+    "Armar una cartera lleva tiempo y esfuerzo y muchas veces una mirada sobre lo que estamos haciendo ayuda mucho. Esta evaluación gratuita te puede aportar ideas para ajustar lo que venís haciendo.\n\n"
+    "Es una orientación educativa, basada en reglas de inversión que nos fueron útiles en los más de 10 años que tenemos de experiencia bursátil. "
+    "Recordá que no es una recomendación de compra o venta ni un consejo personalizado."
 )
+_INTRO_RENT = (
+    "Saber cuánto rindió tu cartera te ayuda a decidir con más tranquilidad cómo seguir. Contanos cuándo empezaste, cuánto pusiste (y si retiraste algo) y cuánto vale hoy, y te calculamos el rendimiento.\n\n"
+    "Es un cálculo orientativo con fines educativos, que depende de los datos que cargues. No es una recomendación de inversión."
+)
+_CSS_COMENZAR = """<style>
+[class*="st-key-cr_comenzar"] button{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%)!important;color:#fff!important;border:0!important;border-radius:14px;padding:.8em 2.6em;
+ box-shadow:0 4px 14px rgba(232,102,143,.35);min-height:3.2rem}
+[class*="st-key-cr_comenzar"] button p{font-size:1.2rem!important;font-weight:800!important;color:#fff!important}
+[class*="st-key-cr_comenzar"] button:hover{filter:brightness(1.05);box-shadow:0 6px 18px rgba(232,102,143,.45)}
+</style>"""
+
+
+def _presentacion(intro, key_btn, key_estado):
+    """Texto de presentación + botón «Comencemos» bien visible. True si ya se tocó."""
+    if st.session_state.get(key_estado):
+        return True
+    st.markdown(_CSS_COMENZAR + f'<div class="cv-intro">{intro.replace(chr(10) * 2, "<br><br>")}</div>', unsafe_allow_html=True)
+    st.button("Comencemos", key=key_btn, on_click=lambda: st.session_state.update({key_estado: True}))
+    return False
 
 
 def _leer_archivos(archivos, C):
@@ -1559,22 +1578,23 @@ def _tabla_a_mano(pos, key):
 def _evaluar_cartera(df, C, CV):
     import datetime as _dt
     import json as _json
-    if not st.session_state.get("cr_empezo"):
-        st.markdown(f'<div class="cv-intro">{_INTRO_EVAL.replace(chr(10) * 2, "<br><br>")}</div>', unsafe_allow_html=True)
-        st.button("Comencemos", key="cr_comenzar", type="primary", on_click=lambda: st.session_state.update(cr_empezo=True))
+    if not _presentacion(_INTRO_EVAL, "cr_comenzar_eval", "cr_empezo"):
         return
     perfiles = ["Conservador", "Moderado", "Agresivo"]
     with st.container(key="cr_p1"):
-        n1, n2, n3 = st.columns([1.3, 0.8, 2.2], gap="medium")
+        n1, n2, n3 = st.columns([1.3, 1.1, 2.2], gap="medium")
         with n1:
-            nombre = st.text_input("Tu nombre (opcional)", key="cr_nombre", placeholder="Ej.: Guille")
+            nombre = st.text_input("Nombre (opcional)", key="cr_nombre", placeholder="Ej.: Guille")
         with n2:
-            edad = st.number_input("Tu edad *", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
+            edad = st.number_input("Edad (obligatorio)", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
         with n3:
             try:
-                perfil = st.segmented_control("Tu perfil de inversor *", perfiles, default=None, key="cr_perfil")
+                perfil = st.segmented_control("Perfil de Inversor (obligatorio)", perfiles, default=None, key="cr_perfil")
             except Exception:  # noqa: BLE001
-                perfil = st.radio("Tu perfil de inversor *", perfiles, index=None, horizontal=True, key="cr_perfil")
+                perfil = st.radio("Perfil de Inversor (obligatorio)", perfiles, index=None, horizontal=True, key="cr_perfil")
+        st.markdown('<div class="cv-ayuda">A continuación subí el Excel o el PDF que descargaste de tu broker. Si tenés instrumentos que no son CEDEARs, indicá la categoría a la que pertenecen en una columna «Tipo» '
+                    '(Renta fija, Oro, Cripto, Efectivo…). Si no tenés un Excel o PDF y querés cargarlo a mano, usá el Excel de ejemplo. '
+                    '<b>No intentes subir capturas de pantalla</b>, dado que el análisis se vuelve dificultoso e inexacto.</div>', unsafe_allow_html=True)
         lugar_tc = st.container()
         try:
             from ui import cartera_ocr as OCR
@@ -1584,34 +1604,28 @@ def _evaluar_cartera(df, C, CV):
         tipos = ["xlsx", "xlsm", "xls", "csv", "tsv", "txt", "pdf"] + (["png", "jpg", "jpeg", "webp"] if hay_ocr else [])
         u1, u2 = st.columns([3, 1], gap="medium")
         with u1:
-            archivos = st.file_uploader("Tu cartera (podés subir más de un archivo, por ejemplo uno por broker)", type=tipos, accept_multiple_files=True, key="cr_archivo")
+            archivos = st.file_uploader("Tu cartera (Excel o PDF; podés subir más de un archivo)", type=tipos, accept_multiple_files=True, key="cr_archivo", label_visibility="collapsed")
         with u2:
             try:
                 st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
                                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
             except Exception:  # noqa: BLE001
                 pass
-        st.markdown('<div class="cv-ayuda">Subí el Excel o el PDF de tu broker tal como lo bajás: busco solo las columnas, la moneda y el efectivo (<span class="cv-cols">ticker</span> y <span class="cv-cols">monto</span>, o <span class="cv-cols">cantidad</span> y <span class="cv-cols">precio</span>). '
-                    'Si tenés instrumentos que no son CEDEARs (bonos, ONs, fondos, cripto…), indicá la <b>categoría</b> en una columna «Tipo» (Renta fija, Oro, Cripto, Efectivo…) para que los ubique bien. '
-                    + ('Las <b>capturas de pantalla</b> también se pueden leer, pero te las desaconsejamos: el sistema puede confundir números y letras. Si usás una, vas a poder corregir a mano lo que leyó antes de analizar.' if hay_ocr else 'Si no se entiende, usá el Excel de ejemplo.')
-                    + '</div>', unsafe_allow_html=True)
-        with st.expander("¿No tenés archivo? Pegá tu cartera como texto", expanded=False):
-            texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=120, key="cr_texto", label_visibility="collapsed",
-                                 placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
         with st.expander("¿Ya te evaluaste antes? Subí tu evaluación anterior para compararla", expanded=False):
             previa_arch = st.file_uploader("Evaluación anterior (archivo .json que bajaste la última vez)", type=["json"], key="cr_previa")
-        acepto = st.checkbox("Entendido: esta evaluación es una orientación educativa, automática y puede cometer errores. No es una recomendación de inversión y yo soy responsable de mis decisiones.", key="cr_acepto")
+        acepto = st.checkbox("Acepto que esta evaluación es una orientación educativa, automática y puede cometer errores. No constituye una recomendación ni asesoría personalizada de inversión. "
+                             "Finanzas para Médicos se deslinda de cualquier responsabilidad y acciones que puedan derivar de la mala interpretación del análisis, siendo el inversor el único responsable de sus propias decisiones financieras.", key="cr_acepto")
     # --- lo que falta (el botón queda gris hasta que esté todo)
     falta = []
     if edad is None:
         falta.append("tu edad")
     if not perfil:
         falta.append("tu perfil de inversor")
-    if not archivos and not (texto or "").strip():
-        falta.append("tu cartera (un archivo o el texto)")
+    if not archivos:
+        falta.append("subir tu cartera (Excel o PDF)")
     if not acepto:
-        falta.append("marcar «Entendido»")
-    _firma = (nombre or "", edad, perfil, tuple((a.name, a.size) for a in archivos or ()), (texto or "").strip())
+        falta.append("aceptar las condiciones")
+    _firma = (nombre or "", edad, perfil, tuple((a.name, a.size) for a in archivos or ()))
     listo = not falta
     st.markdown("<style>.st-key-cr_go button:disabled{background:#cbd5e1!important;color:#fff!important;box-shadow:none!important;cursor:not-allowed}</style>", unsafe_allow_html=True)
     if st.button("Análisis de Cartera de Inversión", key="cr_go", type="primary", disabled=not listo):
@@ -1627,21 +1641,13 @@ def _evaluar_cartera(df, C, CV):
     if err:
         st.error(err)
         return
-    if (texto or "").strip():
-        try:
-            p_t, n_t = C.leer_texto_info(texto)
-            pos += p_t
-            notas += list(n_t)
-        except ValueError as e:
-            st.error(str(e))
-            return
     if hay_img:
         st.info("Leí tu captura. Revisá la tabla y corregí lo que haga falta (podés editar, borrar o agregar filas): el sistema puede confundir números y letras.")
         base_img = [q for q in pos if q.get("_img")]
         resto = [q for q in pos if not q.get("_img")]
         pos = resto + _tabla_a_mano(base_img, "cr_tabla_img_" + str(abs(hash(_firma)) % 10**8))
     if not pos:
-        st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo o pegá tu cartera como texto.")
+        st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo.")
         return
     for n in notas:
         st.caption(n)
@@ -1720,6 +1726,8 @@ def _rentabilidad_anual(C):
     """"Conocé tu rentabilidad" (v1.2.83; rehecha en v1.4.4): dos caminos. (1) ESTIMADA: fecha de inicio + dinero aportado (+ retirado) + capital final.
     (2) EXACTA: una tabla con la fecha y el monto de cada aporte y cada retiro. Con menos de un año NO se pasa a "por año": se muestra lo que rindió en ese tiempo, diciendo cuánto tiempo fue."""
     import datetime as _dt
+    if not _presentacion(_INTRO_RENT, "cr_comenzar_rent", "cr_empezo_rent"):
+        return
     st.markdown("""<style>
 .rt-card{border:1px solid #fbd5e1;background:linear-gradient(180deg,#fff7fa 0%,#fff 70%);border-radius:16px;padding:18px 20px;margin:12px 0 6px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
 .rt-big{font-size:2.3rem;font-weight:800;color:#be185d;line-height:1.1}

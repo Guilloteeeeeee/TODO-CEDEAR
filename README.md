@@ -577,7 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.4.5 — "Evaluá tu Cartera de Inversiones" rehecha
+### v1.4.6 — textos de la evaluación y la rentabilidad
+- Presentación nueva en ambas herramientas (evaluación y «Conocé tu Rentabilidad») con el botón «Comencemos» grande y rosa.
+- Campos: Nombre (opcional), Edad (obligatorio), Perfil de Inversor (obligatorio). Instrucción de carga debajo; se sacó «pegar como texto». Casilla «Acepto…» con el deslinde de responsabilidad.
+- El PDF/HTML se llama «Evaluación de tu Portfolio»; saludo: «Hola {nombre}. Gracias por tomarte el tiempo de evaluar tu cartera con nosotros…».
+
+## v1.4.5 — "Evaluá tu Cartera de Inversiones" rehecha
 - Entrada: texto de presentación + botón «Comencemos». Nombre opcional, edad y perfil obligatorios (sin perfil por defecto), tilde «Entendido» obligatoria; el botón «Análisis de Cartera de Inversión» queda gris hasta que esté todo y avisa qué falta.
 - Más de un archivo (un broker por archivo): las posiciones repetidas se suman. Capturas de pantalla leídas con RapidOCR (opcional; si no está instalado, la app sigue sin esa opción) → tabla editable para corregir a mano antes de analizar. Se desaconseja la captura.
 - Devolución con saludo y fecha, dos tortas por grandes grupos (referencia teórica por edad y la tuya; la liquidez NO entra en el 100%, es un extra con guía de 5–15 %), renta fija (soberanos AR / ONs / EE.UU.; no se opina sobre emisores), sectores, empresas y ETFs, geografía, liquidez, oro y cripto, beta aproximado (solo si hay dato; requiere correr generar_cache), conclusiones con reconocimiento del esfuerzo y ajustes ordenados. Sin nombres de autores.

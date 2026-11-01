@@ -13,7 +13,7 @@ _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
 NOMBRE = "Finanzas para Médicos Argentina"
 AUTORES = "Guillermo Di Palma AP 2372 y María Laura García"
-TITULO = "Informe de orientación de cartera"
+TITULO = "Evaluación de tu Portfolio"
 NOTA_PRIVACIDAD = "Este informe se armó en el momento con los datos que cargaste. No guardamos tu cartera ni este informe: solo existe en tu dispositivo."
 
 
@@ -178,7 +178,7 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"])]
     perfil_txt = f", perfil {str(perfil).lower()}" if perfil else ""
     el += [Paragraph(f"Persona de {int(edad)} años{perfil_txt}", st["sub"]), Spacer(1, 6),
-           Paragraph(f"<b>Hola {html.escape(quien)}.</b> Gracias por tomarte el tiempo de evaluar tu portfolio. Te felicitamos y te alentamos a seguir haciéndolo: es la mejor forma de ir mejorando como inversor.", st["p"])]
+           Paragraph(f"<b>Hola {html.escape(quien)}.</b> Gracias por tomarte el tiempo de evaluar tu cartera con nosotros. Esperamos que nuestros aportes te ayuden a lograr tus objetivos financieros.", st["p"])]
 
     # --- punto de partida: dos tortas por grandes grupos (la liquidez no entra en el 100 %)
     def torta(titulo, peso, centro, con_liq):

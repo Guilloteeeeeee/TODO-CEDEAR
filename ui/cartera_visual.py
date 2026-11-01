@@ -153,8 +153,8 @@ def visual_html(res, edad, perfil, nombre="", fecha="", previa=None):
     out = []
     # --- 0. Saludo
     quien = html.escape(nombre.strip()) if nombre and nombre.strip() else "colega inversor"
-    out.append(_card("👋", "Tu evaluación", f'<p class="cv-sal">Hola <b>{quien}</b>. Gracias por tomarte el tiempo de evaluar tu portfolio. Te felicitamos y te alentamos a seguir haciéndolo: '
-                     f'es la mejor forma de ir mejorando como inversor.</p>', "#e8668f", "#fff1f5", pie=html.escape(str(fecha))))
+    out.append(_card("👋", "Evaluación de tu Portfolio", f'<p class="cv-sal">Hola <b>{quien}</b>. Gracias por tomarte el tiempo de evaluar tu cartera con nosotros. '
+                     f'Esperamos que nuestros aportes te ayuden a lograr tus objetivos financieros.</p>', "#e8668f", "#fff1f5", pie=html.escape(str(fecha))))
     # --- 1. Punto de partida y de un vistazo
     ref = CM.referencia(edad, perfil)
     bloques = ""
