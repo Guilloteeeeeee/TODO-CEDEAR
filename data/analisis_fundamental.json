@@ -4133,54 +4133,62 @@
    }
   },
   "PLD": {
-   "resumen": "Prologis es la mayor dueña de galpones y centros de distribución del mundo: alquila espacio de almacenamiento a empresas de comercio electrónico, minoristas, fabricantes y operadores logísticos. Es un REIT, una inmobiliaria que reparte buena parte de sus ganancias como dividendo, y por eso crece comprando propiedades con deuda y capital nuevo. Tiene un **foso estrecho, de ubicación y escala**: sus galpones están cerca de grandes puertos y ciudades, donde casi no hay terreno nuevo, y un cliente que ya armó su red logística ahí no se muda fácil. Los números son estables: el margen operativo fue de 38,8 % en 2025 y el flujo operativo de 5.008 M. El FFO, el indicador típico de los REITs, no figura en los datos de Yahoo; uso el flujo operativo como aproximación. Su punto débil es la deuda y las tasas: **los intereses se triplicaron (de 292 M a 972 M) y la ganancia operativa cubre solo 3,5 veces los intereses**, con una deuda neta de 4,60 veces el EBITDA y un ROIC de 3,7 %. Además hay 17,9 % más acciones que en 2022. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque los clientes siguen necesitando galpones físicos. Conclusión: **buena empresa en su rubro, con foso estrecho y flujo operativo creciente, pero con deuda alta, intereses en alza, ROIC de 3,7 % y 17,9 % más acciones.**",
-   "veredicto": "Buena empresa inmobiliaria: ubicación de primera, pero deuda alta e intereses en alza",
-   "conclusion": "Prologis es una buena empresa en su rubro: tiene ubicaciones de primera, margen operativo de 38,8 % y un flujo operativo de 5.241 M, pero los intereses se triplicaron, la deuda neta es de 4,60 veces el EBITDA y las acciones aumentaron 17,9 %. Vale la pena seguirla de cerca. Es recomendable investigar la ocupación y el FFO en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo operativo cubra con holgura los intereses y el dividendo.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Prologis desarrolla, es dueña y administra propiedades de logística: galpones, centros de distribución y la infraestructura que usan las cadenas de suministro; Yahoo también menciona soluciones de energía limpia. Yahoo no informa cuánto aporta cada tipo de propiedad ni cada región, y no lo vamos a inventar.\n\nEs un negocio de alquileres: contratos de varios años y renovaciones. **Los ingresos crecieron 34,3 % en 2023 (por una compra grande que Yahoo no detalla), 2,2 % en 2024 y 7,2 % en 2025, hasta 8.790 M.**\n\n**A quién le vende.** A empresas de comercio electrónico, minoristas, fabricantes y operadores logísticos. Yahoo no da los porcentajes, pero **ningún inquilino concentra una parte decisiva de los ingresos**.",
-   "foso": "La ventaja de Prologis **es de ubicación y de escala, y es estrecha**. Sus galpones están en los mercados donde más cuesta conseguir terreno y permisos, y sus inquilinos no se mudan fácil porque su logística depende de esa ubicación. Se ve en el **margen operativo, estable entre 37,8 % y 38,8 %**, y en el margen bruto, de 74,6 % a 74,9 %.\n\nCompite con otras dueñas de galpones y con desarrolladores locales. Es frágil en la demanda de espacio (si baja el comercio, baja la ocupación), en las tasas de interés (que encarecen la deuda y bajan el valor de los inmuebles) y en la oferta nueva de galpones. El ROIC de 3,7 % es bajo porque el capital invertido (88.166 M) está valuado a costo.",
-   "numeros": "Los números de Prologis cuentan **un negocio de alquileres estable con una carga de intereses creciente**. Los ingresos fueron de 5.974 M en 2022, 8.023 M en 2023, 8.202 M en 2024 y 8.790 M en 2025. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 38,2 %, 38,4 %, 37,8 % y **38,8 %**. La ganancia por acción fue de 4,25, 3,29, 4,01 y 3,56, y la ganancia neta de 3.365 M, 3.059 M, 3.732 M y 3.328 M.\n\nEl flujo operativo (que uso en lugar del FFO) fue de 4.126 M en 2022, 4.912 M en 2024, 5.008 M en 2025 y **5.241 M en los últimos 12 meses**. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 2,9 %, 3,5 %, 3,5 % y **3,7 %**.\n\nLa mirada crítica: el flujo operativo crece, pero la ganancia por acción no: las acciones aumentaron 17,9 % desde 2022 (de 812 M a 957 M) y los intereses se triplicaron.",
-   "balance": "**La deuda de Prologis es alta y los intereses pesan cada vez más.** La deuda total pasó de 24.515 M en 2022 a 36.442 M en los últimos 12 meses (+49 %), con 1.765 M en caja: la deuda neta es de 34.677 M, **4,60 veces el EBITDA** en 2025 (la ganancia antes de intereses, impuestos y depreciaciones), o unos 55 meses de ganancia operativa; es un nivel habitual en un REIT, pero exigente. Los intereses pasaron de 292 M a 972 M y la ganancia operativa los cubre solo 3,5 veces, contra 7,8 veces en 2022.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 0,74 veces (normal en un REIT, que refinancia deuda con frecuencia). Con el bono a 10 años cerca de 5 %, refinanciar cuesta más y los inmuebles valen menos.",
-   "gerencia": "La conduce Dan Letter, CEO (47 años, pago de 2,7 M según Yahoo), con el cofundador Hamid Moghadam como presidente ejecutivo (68 años) y Tim Arndt como director financiero (51 años). Moghadam construyó la empresa, y ahora el relevo está en manos de Letter.\n\nEn lo que importa, **el uso del capital es de dividendo y crecimiento con deuda**: paga un dividendo de 4,28 por acción (pagado desde 1997; sube 8,5 % por año en 3 años; 3.885 M en los últimos 12 meses, 74 % del flujo operativo) y crece comprando propiedades. No recompra acciones: las acciones diluidas pasaron de 812 M a 957 M, **17,9 % más**.",
-   "fortalezas": [
-    "Ubicaciones de primera cerca de puertos y grandes ciudades, con inquilinos que no se mudan fácil.",
-    "Margen operativo estable en torno a 38 %.",
-    "Flujo operativo creciente: 5.241 M en los últimos 12 meses contra 4.126 M en 2022.",
-    "Dividendo pagado desde 1997 (4,28 por acción) y creciente: 8,5 % anual en 3 años.",
-    "Escala global y diversificación entre muchos inquilinos."
+   "formato": "v4",
+   "titulo": "Prologis: el mayor dueño de depósitos del mundo, por donde pasa buena parte del comercio",
+   "resumen": [
+    "Prologis es el mayor dueño de **depósitos logísticos** del mundo: galpones cerca de las grandes ciudades donde las empresas guardan y distribuyen mercadería, en América, Europa y Asia. Es un **REIT**, una empresa de inmuebles que reparte la mayor parte de lo que gana. Ahora también construye **centros de datos**. Su ventaja son ubicaciones que ya casi no se consiguen.",
+    "En el tercer trimestre de 2026, **su FFO central por acción creció 7 %**, a 1,60 dólares, con una ocupación de 95,6 %. Los contratos que renovó subieron 38 % frente a los anteriores. Subió el piso de lo que espera ganar en el año.",
+    "Muy buena empresa, líder de su sector, con alquileres que todavía están por debajo del mercado y un balance sólido, aunque con una deuda importante, como todo REIT, y un sector que depende del comercio mundial."
    ],
-   "debilidades": [
-    "Intereses triplicados (292 M a 972 M) y cobertura de 3,5 veces, contra 7,8 veces en 2022.",
-    "Deuda neta de 4,60 veces el EBITDA y liquidez corriente de 0,74 veces.",
-    "ROIC de 3,7 %: el crítico más duro diría que invierte mucho capital con poco retorno.",
-    "17,9 % más acciones desde 2022.",
-    "Dividendo de 74 % del flujo operativo: deja poco margen para reinvertir sin más deuda ni acciones."
+   "introduccion": "Cuando comprás algo por internet y te llega al otro día, ese producto estuvo guardado en un depósito cerca de tu ciudad. Y cuando un supermercado repone sus góndolas, la mercadería sale de un centro de distribución.\n\nPrologis es dueño de muchos de esos depósitos. Es el mayor propietario de inmuebles logísticos del mundo, con galpones en las afueras de las grandes ciudades de EE.UU., Europa, México, Brasil, Japón y China. Por sus instalaciones pasa una parte enorme de los bienes que se consumen en el mundo.\n\nEl negocio es simple: construye o compra depósitos y los alquila a empresas por varios años. Cobra el alquiler, lo sube con el tiempo y reparte la mayor parte entre sus accionistas.\n\nLo interesante es que muchos de sus contratos se firmaron hace años, cuando los alquileres eran mucho más bajos. Cada vez que uno vence y se renueva, Prologis cobra bastante más. En el tercer trimestre de 2026, los contratos renovados subieron 38 % frente a los anteriores.\n\nEntonces, la pregunta es: ¿cuánto vale el dueño de los depósitos del mundo cuando todavía tiene alquileres por debajo del mercado?",
+   "secciones": [
+    {
+     "titulo": "Galpones, inquilinos y centros de datos",
+     "texto": "Prologis tiene tres negocios:\n\n- **Alquiler de depósitos**: es casi todo el negocio. Su ocupación fue de 95,6 % al cierre del tercer trimestre, y en el trimestre empezaron contratos por 55,9 millones de pies cuadrados (unos 5,2 millones de metros cuadrados).\n- **Desarrollo**: construye nuevos depósitos y los alquila o los vende a fondos. En el trimestre inició obras por 964 M, con un retorno esperado de 6,6 % por año.\n- **Gestión de fondos**: administra fondos de inversión que también son dueños de depósitos, y cobra comisiones.\n\nAdemás, está convirtiendo terrenos y edificios en **centros de datos**, donde tiene inversiones previstas por unos 2.900 M. Su ventaja ahí es que ya tiene terrenos bien ubicados y conexiones a la red eléctrica, algo escaso.\n\nSus clientes son miles de empresas: comercios electrónicos (Amazon es uno de sus mayores inquilinos), supermercados, fabricantes, empresas de logística y transporte.\n\n¿Cuál es su **ventaja**? La **ubicación**. Sus depósitos están cerca de las grandes ciudades, donde casi no quedan terrenos disponibles y los permisos para construir son difíciles de conseguir. Un competidor no puede replicar esa red. A eso se suman la **escala** y la relación con los grandes inquilinos, que alquilan en muchos países a la vez.\n\nLa inteligencia artificial no la amenaza; en todo caso, la ayuda, porque los centros de datos que la hacen funcionar necesitan terrenos y energía."
+    },
+    {
+     "titulo": "Cómo se mide un REIT: el FFO",
+     "texto": "En una empresa de inmuebles, la ganancia contable engaña, porque descuenta la **amortización** de los edificios como si perdieran valor todos los años, aunque en la práctica suelen valer cada vez más. Por eso se usa el **FFO** (fondos de las operaciones): la ganancia sin la amortización de los inmuebles ni las ganancias por ventas de propiedades. Prologis usa una versión propia, el **FFO central**.\n\nEl FFO central por acción fue de **1,60 dólares** en el tercer trimestre, contra 1,49 un año antes. Para todo 2026 espera entre 6,25 y 6,29 dólares.\n\nLos ingresos crecieron de 5.974 M en 2022 a **8.790 M** en 2025.\n\n[[grafico:ingresos]]\n\nUn concepto clave en Prologis es el **cambio de alquiler**: cuánto más cobra en un contrato nuevo que en el que vence. En el trimestre fue de **38 %** (23,4 % en efectivo). Un ejemplo: si un depósito se alquilaba por 100 hace cinco años y hoy el mercado paga 138, al renovar Prologis sube 38 % ese alquiler. Mientras sus contratos viejos estén por debajo del mercado, tiene crecimiento asegurado. Si ese número bajara cerca de cero, sería señal de que el mercado de depósitos dejó de subir.\n\nEl resultado operativo de sus propiedades comparables creció 5,9 % en efectivo."
+    },
+    {
+     "titulo": "Deuda, dividendo y riesgos",
+     "texto": "Como todo REIT, Prologis usa deuda para crecer. Su deuda neta (lo que debe menos la caja) es de **34.677 M**. Según la empresa, su deuda equivale a **4,5 veces su EBITDA ajustado**, lo que genera el negocio antes de intereses, impuestos y amortizaciones. Para un REIT, por debajo de 5 o 6 veces se considera cómodo, porque sus ingresos son estables y sus inmuebles respaldan la deuda. Paga una tasa promedio de solo 3,3 %, con un plazo de 7,6 años, y tiene 8.800 M de liquidez.\n\n[[grafico:deuda_neta]]\n\nEl dividendo trimestral es de 1,07 dólares por acción, 6 % más que un año antes. Creció 10,3 % por año en los últimos diez años.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **El comercio mundial**: aranceles o una recesión reducen la demanda de depósitos.\n- **La oferta nueva**: si se construyen muchos depósitos, los alquileres dejan de subir.\n- **Las tasas**: si suben, la deuda se encarece y los inmuebles valen menos.\n- **Los centros de datos**: es un negocio nuevo para Prologis, que exige mucha inversión.\n\nLo conduce Dan Letter, CEO desde 2025: \"Ejecutamos bien nuestro plan este trimestre\"."
+    }
    ],
-   "vigilar": [
-    "Cobertura de intereses: hoy 3,5 veces; si sigue bajando, el dividendo y la deuda se tensan.",
-    "Flujo operativo: hoy 5.241 M; tiene que cubrir el dividendo de 3.885 M con holgura.",
-    "Deuda neta sobre EBITDA: hoy 4,60 veces en 2025; si sube, el balance se ajusta con tasas cerca de 5 %.",
-    "Ocupación y alquileres: Yahoo no los informa, hay que buscarlos en el informe de la empresa."
+   "valuacion": {
+    "texto": "En un REIT, el número que conviene mirar es el **precio sobre FFO**: cuántos años de FFO (la caja que genera el negocio) se pagan al comprar la acción. Usamos el FFO central que espera la empresa para 2026: unos 6,27 dólares por acción.\n\nCon el precio de {precio} dólares, Prologis cotiza a {per_ref} veces su FFO.\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl mercado suele pagar por Prologis más que por un REIT promedio, porque es el líder de su sector, tiene crecimiento asegurado por los alquileres por debajo del mercado y un balance sólido. Si el cambio de alquiler sigue alto y los centros de datos rinden, ese premio se justifica. Si el mercado de depósitos se enfría, el crecimiento se frena.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo usa múltiplos contables que no sirven bien para un REIT: conviene tomarlo con cuidado.",
+    "ganancia_ref": 6.27,
+    "ganancia_ref_txt": "FFO central por acción esperado para 2026 (medio de la guía de 6,25 a 6,29 dólares)"
+   },
+   "conclusion": "Prologis es una muy buena empresa. Es el mayor dueño de depósitos del mundo, con ubicaciones que ya casi no se consiguen, una ocupación alta, alquileres viejos que todavía están por debajo del mercado y un balance sólido, con deuda barata y de largo plazo. Además, tiene una oportunidad nueva en los centros de datos.\n\nSu punto débil es que depende del comercio y del consumo: una recesión, aranceles altos o demasiados depósitos nuevos pueden frenar los alquileres. Además, como todo REIT, carga con una deuda importante. El crítico más duro diría que el gran salto de alquileres de los últimos años ya pasó, y que el crecimiento futuro será más lento. Es un argumento razonable.\n\nEncaja con quien busca un REIT de calidad, con dividendo creciente y exposición al comercio y a los centros de datos. No es para quien busca un dividendo muy alto.\n\nPara que la tesis se mantenga, lo más importante es que la ocupación se mantenga cerca de 95 % y que el cambio de alquiler siga siendo claramente positivo.",
+   "pros": [
+    "Líder mundial: el mayor dueño de depósitos logísticos.",
+    "Alquileres por debajo del mercado: suben 38 % al renovar.",
+    "Deuda barata: tasa promedio de 3,3 % a 7,6 años."
    ],
+   "contras": [
+    "Depende del comercio: aranceles y recesión pegan en la demanda.",
+    "Deuda importante: 4,5 veces su EBITDA ajustado.",
+    "Centros de datos: un negocio nuevo y exigente."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Empresas de comercio electrónico",
-    "Minoristas y fabricantes",
-    "Operadores logísticos y de transporte"
+    "Comercios electrónicos, como Amazon",
+    "Supermercados y fabricantes",
+    "Empresas de logística y transporte"
    ],
-   "ideal_para": [
-    "Buscan una inmobiliaria de logística con dividendo creciente.",
-    "Valoran un negocio de alquileres con ubicaciones difíciles de replicar.",
-    "Aceptan una deuda alta típica de un REIT."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia por acción de 0,86 dólares (0,82); FFO central de 1,60 dólares (1,49); ocupación de 95,6 % al cierre; cambio de alquiler de 38,0 % (23,4 % en efectivo); resultado operativo comparable +5,9 % en efectivo; 55,9 millones de pies cuadrados en contratos iniciados; obras iniciadas por 964 M con retorno estimado de 6,6 %; centros de datos con inversión prevista de unos 2.900 M; guía 2026: FFO central de 6,25 a 6,29 dólares (antes 6,22 a 6,30); dividendo de 1,07 dólares (1,01); liquidez de 8.800 M; deuda de 4,5 veces el EBITDA ajustado, tasa promedio de 3,3 % a 7,6 años; frase de Dan Letter",
+     "fuente": "Comunicado de resultados del 3T26, 15/10/2026",
+     "url": "https://finviz.com/news/402919/prologis-reports-third-quarter-2026-results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran intereses crecientes ni deuda alta.",
-    "Buscan retornos altos sobre el capital invertido."
-   ],
+   "ticker": "PLD",
    "perfil": "reit",
    "capas": [],
-   "ticker": "PLD",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -5473,54 +5481,65 @@
    }
   },
   "SPGI": {
-   "resumen": "S&P Global es una empresa de datos y calificaciones financieras: califica la deuda de empresas y gobiernos (S&P Ratings), vende datos y herramientas de análisis a bancos y fondos (Market Intelligence), precios de energía y materias primas (Energy, el negocio de Platts) y administra índices como el S&P 500 y el Dow Jones (S&P Dow Jones Indices). Gana plata con suscripciones a datos, comisiones por calificar emisiones de deuda y licencias de índices. Tiene un **foso estrecho, de marca y costos de cambio**: los inversores y reguladores usan sus calificaciones e índices como referencia, y los clientes que integran sus datos en sus sistemas rara vez se van. Los números son muy buenos: los ingresos pasaron de 11.181 M en 2022 a 15.336 M en 2025 (15.911 M en los últimos 12 meses), el margen operativo de 27,0 % a **42,7 %**, la ganancia por acción de 10,20 a 16,81 y el flujo libre es de 5.270 M en los últimos 12 meses. Además **hay 6,6 % menos acciones**. Su punto débil es que las calificaciones dependen de que las empresas emitan deuda, y que el crecimiento se desacelera (13,7 % en 2024 y 7,9 % en 2025). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, porque puede abaratar el análisis de datos que vende. Conclusión: **muy buena empresa, con foso estrecho, margen operativo de 42,7 % y recompras, aunque con crecimiento que se frena y un riesgo moderado por la inteligencia artificial.**",
-   "veredicto": "Muy buena empresa: marca de referencia, margen operativo de 42,7 % y recompras, con riesgo moderado por la IA",
-   "conclusion": "S&P Global es una muy buena empresa: tiene un foso estrecho de marca y costos de cambio, margen operativo de 42,7 %, ganancia por acción de 16,81 en los últimos 12 meses y 6,6 % menos acciones, pero su crecimiento se frena y la inteligencia artificial puede presionar a los datos más simples. Vale la pena seguirla de cerca. Es recomendable investigar la renovación de suscripciones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 40 %.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "S&P Global: la calificadora de riesgo y dueña del S&P 500, un peaje sobre los mercados financieros",
+   "resumen": [
+    "S&P Global es la mayor **calificadora de riesgo** del mundo (le pone nota a la deuda de empresas y países), dueña de los **índices S&P**, como el S&P 500, y proveedora de **datos financieros** y de energía. Cobra cada vez que alguien emite deuda, invierte en un fondo que sigue sus índices o consulta sus datos. Su ventaja es una marca y una posición que casi nadie puede desafiar.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 7 %**, a 3.680 M, y su ganancia ajustada por acción, 9 %, a 4,58 dólares. El negocio de índices creció 20 %. Subió lo que espera ganar en el año y anunció que revisará el futuro de Capital IQ, una de sus bases de datos.",
+    "Excelente empresa, con márgenes altísimos y un negocio muy difícil de copiar, aunque una parte depende de que se emita deuda y la inteligencia artificial puede cambiar el negocio de los datos."
+   ],
+   "introduccion": "Cuando la Argentina, una empresa como YPF o el Tesoro de EE.UU. salen a pedir prestado en los mercados, los inversores quieren saber una cosa: ¿qué tan probable es que me devuelvan la plata? Para eso miran la **calificación**: una nota, como AAA, BB o CCC, que resume el riesgo de esa deuda.\n\nS&P Global es la calificadora más grande del mundo. Junto con Moody's, domina un mercado en el que casi ningún emisor grande puede salir a vender deuda sin su nota.\n\nPero ese no es su único negocio. S&P Global también es dueña del **S&P 500**, el índice de las 500 mayores empresas de EE.UU. Cada vez que alguien invierte en un fondo que lo replica, S&P cobra una pequeña comisión. Con billones de dólares invertidos en esos fondos, esa comisión suma mucho.\n\nEs un negocio que funciona como un **peaje**: S&P cobra cada vez que el sistema financiero se mueve.\n\nEn julio de 2026 separó su negocio de datos para la industria automotriz (Mobility), que hoy cotiza aparte, para concentrarse en lo financiero.\n\nEntonces, la pregunta es: ¿cuánto vale un peaje sobre los mercados financieros cuando la inteligencia artificial cambia cómo se usan los datos?",
+   "secciones": [
+    {
+     "titulo": "Calificaciones, índices, datos y energía",
+     "texto": "S&P Global tiene cuatro negocios. En el tercer trimestre de 2026 (ingresos, crecimiento y margen operativo ajustado):\n\n- **Calificaciones** (1.270 M, +2 %, margen de 65,7 %): le pone nota a la deuda de empresas, bancos, provincias y países. Cobra al emisor.\n- **Inteligencia de mercado** (1.260 M, +7 %, margen de 36,2 %): datos y herramientas para bancos, fondos y empresas, como Capital IQ.\n- **Índices** (554 M, +20 %, margen de 71,9 %): el S&P 500, el Dow Jones y miles de otros índices. Cobra a los fondos que los siguen, según cuánta plata administran.\n- **Energía** (645 M, +6 %, margen de 48,1 %): precios de referencia del petróleo, el gas y otras materias primas (Platts), que se usan para fijar precios en contratos de todo el mundo.\n\nSus clientes son empresas y gobiernos que emiten deuda, bancos, fondos de inversión, administradoras de fondos indexados y empresas de energía.\n\n¿Cuál es su **ventaja**? La **marca** y el **estándar**. Una calificación de S&P vale porque todo el mercado la reconoce; una calificadora nueva no tendría ese valor aunque fuera igual de buena. Lo mismo pasa con el S&P 500: es la referencia contra la que se mide casi todo el mundo, y ningún fondo que lo sigue puede cambiarlo por otro índice.\n\nLa **inteligencia artificial** es su riesgo principal en el negocio de datos: puede facilitar que los clientes obtengan información de otras formas. Por eso abrió una revisión estratégica de Capital IQ, que podría terminar en su separación."
+    },
+    {
+     "titulo": "Márgenes de primer nivel",
+     "texto": "Los ingresos crecieron de 11.181 M en 2022 a **15.911 M** en los últimos 12 meses, en parte por la fusión con IHS Markit, otra empresa de datos, en 2022.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 27,0 % a **42,7 %**. El promedio de su industria es 11,9 %. De cada 100 dólares que factura, le quedan casi 43 de ganancia operativa. Con el margen ajustado, que usan la empresa y los analistas del mercado, fue de 53,5 % en el trimestre.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), subió de 4,8 % a **15,8 %**. Por encima de 15 % se considera muy bueno. Era bajo porque la compra de IHS Markit, pagada con acciones, sumó mucho capital invertido. A medida que la ganancia crece, el número mejora.\n\n[[grafico:roic]]\n\nLa ganancia por acción pasó de 10,20 dólares en 2022 a **16,81** en los últimos 12 meses. Para 2026 espera entre 17,70 y 17,95 dólares ajustados.\n\n[[grafico:eps]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **5.270 M** en los últimos 12 meses. Casi no necesita invertir en activos físicos.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Recompras, deuda moderada y riesgos",
+     "texto": "Casi toda la caja vuelve a los accionistas. En el tercer trimestre recompró 2.600 M en acciones y espera recomprar más de 7.000 M en todo 2026. La cantidad de acciones bajó de 319 M en 2023 a **297 M**.\n\n[[grafico:acciones]]\n\nLa deuda neta (lo que debe menos la caja) es de **10.621 M** y equivale a **1,23 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 21 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nEl dividendo es de 3,88 dólares por acción por año, y creció 11,3 % por año en los últimos diez. Rinde poco, porque la empresa prefiere recomprar acciones.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **La emisión de deuda**: si las empresas y los gobiernos emiten menos, las calificaciones facturan menos. En el trimestre crecieron solo 2 %.\n- **La inteligencia artificial**: puede cambiar cómo se consumen los datos financieros.\n- **La regulación**: las calificadoras fueron muy criticadas tras la crisis de 2008 por dar buenas notas a deudas que después cayeron.\n- **Los mercados**: si las bolsas caen, los fondos que siguen sus índices administran menos plata y le pagan menos.\n\nLa conduce Martina Cheung, CEO desde 2024."
+    }
+   ],
+   "valuacion": {
+    "texto": "En S&P Global, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, S&P Global cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó mucho por S&P Global, por sus márgenes y la solidez de su posición. En 2026 pagó algo menos, por el miedo a que la inteligencia artificial afecte el negocio de los datos. Si las calificaciones y los índices siguen creciendo y la IA no le quita clientes, el múltiplo puede volver a sus niveles históricos. Si la IA erosiona el negocio de datos, el mercado puede pagar menos de forma permanente.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "S&P Global es una excelente empresa. Es la mayor calificadora del mundo, dueña del índice más seguido del planeta y de precios de referencia de la energía, con márgenes que más que triplican a los de su industria, poca necesidad de invertir y una caja que devuelve casi entera a sus accionistas.\n\nSu punto débil es que una parte del negocio depende de la emisión de deuda, que va y viene, y que la inteligencia artificial puede cambiar el negocio de los datos, como muestra la revisión de Capital IQ. El crítico más duro diría que el negocio de datos es el eslabón débil y que la IA lo va a abaratar. Es un argumento que el mercado está tomando en serio.\n\nEncaja con quien busca una empresa de altísima calidad, con recompras y crecimiento estable, para mantener muchos años. No es para quien busca dividendos altos.\n\nPara que la tesis se mantenga, lo más importante es que calificaciones e índices sigan creciendo y que el negocio de datos mantenga a sus clientes frente a la inteligencia artificial.",
+   "pros": [
+    "Posición única: calificaciones con Moody's y el S&P 500.",
+    "Márgenes altísimos: 42,7 % operativo, 53,5 % ajustado en el trimestre.",
+    "Recompras: más de 7.000 M esperados en 2026."
+   ],
+   "contras": [
+    "Riesgo de la IA: puede cambiar el negocio de los datos.",
+    "Calificaciones cíclicas: dependen de la emisión de deuda.",
+    "Revisión de Capital IQ: futuro incierto de una parte del negocio."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "moderado",
-   "negocio": "S&P Global provee índices de referencia, datos, analíticas y soluciones de flujo de trabajo en los mercados de capitales, energía y materias primas, y automotriz. Opera cuatro segmentos: **S&P Global Market Intelligence** (datos y análisis para bancos y fondos), **S&P Global Ratings** (calificaciones de deuda), **S&P Global Energy** (precios y datos de energía y materias primas) y **S&P Dow Jones Indices** (índices como el S&P 500). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de información que los clientes necesitan para operar. **Los ingresos crecieron 11,8 % en 2023, 13,7 % en 2024 y 7,9 % en 2025, hasta 15.336 M.**\n\n**A quién le vende.** A bancos, fondos de inversión, aseguradoras, empresas emisoras de deuda, gobiernos y empresas de energía. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de S&P Global **es de marca y de costos de cambio, y es estrecha**. En las calificaciones de deuda hay pocas empresas con la reputación y el reconocimiento regulatorio para que el mercado confíe en su nota, y un índice como el S&P 500 es una referencia que fondos de todo el mundo copian, por lo que nadie lo puede reemplazar fácil. Los clientes que integraron sus datos a sus sistemas tampoco cambian rápido. Se ve en el margen operativo, de 27,0 % a 42,7 %.\n\nCompite con Moody's y Fitch en calificaciones, y con Bloomberg, LSEG y FactSet en datos. Es frágil en las emisiones de deuda (si el mercado se frena, bajan las calificaciones), en la regulación y en la competencia por datos. La inteligencia artificial puede abaratar el análisis de información, lo que presiona a la parte de datos más simples, aunque los datos propios y las calificaciones siguen siendo difíciles de copiar.",
-   "numeros": "Los números de S&P Global cuentan **un negocio de márgenes en alza y ganancia por acción creciente**. Los ingresos fueron de 11.181 M, 12.497 M, 14.208 M y 15.336 M, y de 15.911 M en los últimos 12 meses. El margen operativo pasó de 27,0 % a 32,4 %, 38,6 %, 40,3 % y **42,7 %**. La ganancia neta fue de 3.248 M, 2.626 M, 3.852 M, 4.471 M y 4.986 M en los últimos 12 meses. La ganancia por acción fue de 10,20, 8,23, 12,35, 14,66 y **16,81** (+65 %).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.514 M, 3.567 M, 5.565 M y 5.456 M, y de 5.270 M en los últimos 12 meses, es decir, un 33 % de los ingresos. El ROIC (retorno sobre el capital) subió de 4,8 % a 10,8 % en 2025, aunque es bajo porque la empresa pagó mucho por sus compras, sobre todo IHS Markit.\n\nLa mirada crítica: el crecimiento baja (13,7 % a 7,9 %) y el ROE de 25,3 % de los últimos 12 meses está inflado porque el patrimonio cayó a 19.710 M.",
-   "balance": "**Deuda manejable, pero con mucho capital invertido en compras.** La deuda total es de 13.465 M y la caja de 2.441 M en los últimos 12 meses; la deuda neta/EBITDA es de 1,23x, que multiplicado por 12 son unos 15 meses de EBITDA. Los intereses se cubren 21 veces con el EBIT.\n\nEl patrimonio neto cayó de 36.388 M en 2022 a 31.127 M en 2025 y a 19.710 M en los últimos 12 meses, mientras la empresa recompraba acciones por miles de millones. Yahoo no explica toda la caída del último período, y conviene verificarla en el informe. Es un dato a vigilar, porque achica el colchón para tiempos difíciles.",
-   "gerencia": "La conduce Martina Cheung, presidenta y CEO (49 años, pago de 3,9 M según Yahoo). Yahoo no lista otros directivos.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 3,88 por acción (pagado desde 1985; sube 5,0 % por año en 3 años) y recompra acciones por montos grandes (12.004 M en 2022, 3.301 M en 2023 y 2024, 5.001 M en 2025 y 6.600 M en los últimos 12 meses). **Las acciones bajaron de 318 M a 297 M, un 6,6 % menos.** En los últimos 12 meses las recompras (6.600 M) superaron al flujo libre (5.270 M), un ritmo que la empresa no puede sostener sin más deuda.",
-   "fortalezas": [
-    "Margen operativo de 27,0 % a 42,7 % en tres años.",
-    "Ganancia por acción de 10,20 a 16,81 (+65 %).",
-    "Flujo libre de 5.270 M en los últimos 12 meses, 33 % de los ingresos.",
-    "6,6 % menos acciones y dividendo pagado desde 1985.",
-    "Marca de referencia en calificaciones e índices, con clientes que rara vez cambian."
-   ],
-   "debilidades": [
-    "Crecimiento que se frena: 13,7 % en 2024 y 7,9 % en 2025.",
-    "Recompras de 6.600 M superiores al flujo libre de 5.270 M: el crítico más duro diría que el ritmo se financia con deuda.",
-    "Patrimonio que cayó a 19.710 M, lo que infla el ROE.",
-    "Calificaciones atadas a las emisiones de deuda y a la regulación.",
-    "La inteligencia artificial puede abaratar los datos más simples."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 42,7 %; si baja, la presión competitiva o el costo de la tecnología está pesando.",
-    "Ingresos: crecen 7,9 %; si bajan de 5 %, la empresa pasó a una etapa de crecimiento bajo.",
-    "Deuda neta/EBITDA: hoy 1,23x; si sube por recompras, el balance pierde margen.",
-    "Suscripciones de Market Intelligence: es donde la inteligencia artificial puede presionar el precio de los datos."
-   ],
    "clientes": [
-    "Bancos, fondos de inversión y aseguradoras",
     "Empresas y gobiernos que emiten deuda",
-    "Empresas de energía y materias primas, y fondos que copian sus índices"
+    "Bancos y fondos de inversión",
+    "Administradoras de fondos que siguen sus índices"
    ],
-   "ideal_para": [
-    "Buscan una empresa de datos y calificaciones con márgenes altos.",
-    "Valoran recompras y dividendo pagado desde 1985.",
-    "Aceptan que el crecimiento baje a un ritmo de un dígito."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 3.680 M (+7 %); ganancia ajustada por acción de 4,58 dólares (+9 %); Calificaciones 1.270 M (+2 %; margen de 65,7 %); Inteligencia de mercado 1.260 M (+7 %; 36,2 %); Índices 554 M (+20 %; 71,9 %); Energía 645 M (+6 %; 48,1 %); margen ajustado de 53,5 %; flujo libre ajustado de 1.520 M; recompras de 2.600 M y más de 7.000 M esperados en 2026; guía 2026: ganancia ajustada de 17,70 a 17,95 dólares; separación de Mobility el 01/07/2026",
+     "fuente": "Zacks, 27/10/2026",
+     "url": "https://www.zacks.com/stock/news/3016376/s&p-global-beats-q3-earnings-on-indices-&-market-intelligence"
+    },
+    {
+     "dato": "Revisión estratégica de Capital IQ y de los datos de Kensho; caída de la acción de cerca de 5 % el día del informe",
+     "fuente": "24/7 Wall St., 27/10/2026",
+     "url": "https://247wallst.com/cards/s-p-global-q3-2026-earnings-spgi-01m5yhcebwetwexwxqdf1xs784"
+    }
    ],
-   "menos_ideal": [
-    "Les preocupa el efecto de la inteligencia artificial sobre los datos financieros.",
-    "Buscan crecimiento acelerado."
-   ],
+   "ticker": "SPGI",
    "perfil": "pagos",
    "capas": [],
-   "ticker": "SPGI",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7554,56 +7573,62 @@
    }
   },
   "LMT": {
-   "resumen": "Lockheed Martin es la mayor contratista de defensa de Estados Unidos: fabrica el caza F-35, misiles y sistemas de defensa antimisiles (Missiles and Fire Control), helicópteros (Sikorsky) y sistemas de misión, y satélites y sistemas espaciales. Gana plata con contratos de varios años, sobre todo del gobierno de Estados Unidos y de aliados, y con el mantenimiento de los sistemas durante décadas. Tiene un **foso amplio, de programas exclusivos y contratos de largo plazo**: el F-35, por ejemplo, no tiene reemplazo cercano y exige décadas de repuestos y servicio, y los clientes no pueden cambiar de proveedor sin rehacer toda su flota. Los números están algo desparejos: los ingresos pasaron de 65.984 M en 2022 a 75.048 M en 2025 (79.116 M en los últimos 12 meses), pero el margen operativo cayó de 12,7 % a 9,9 % en 2024 por cargos en programas y volvió a **11,8 %**, y la ganancia por acción pasó de 27,55 en 2023 a 21,49 en 2025 y 28,15 en los últimos 12 meses. El ROIC es de 26,0 %, el flujo libre de **8.381 M** y **hay 12,8 % menos acciones** que en 2022. Su punto débil es la dependencia del gobierno de Estados Unidos y del F-35, los cargos por programas con precio fijo y el patrimonio chico (10.063 M) por las recompras. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **muy buena empresa, con foso amplio, ROIC de 26,0 % y dividendo de 43 años, aunque con cargos por programas y dependencia de un único cliente.**",
-   "veredicto": "Muy buena: foso amplio, ROIC de 26,0 % y dividendo de 43 años, con cargos por programas y dependencia del gobierno",
-   "conclusion": "Lockheed Martin es una muy buena empresa: tiene un foso amplio de programas exclusivos, ROIC de 26,0 %, flujo libre de 8.381 M, 12,8 % menos acciones y dividendo desde 1962, pero depende del gobierno de Estados Unidos y sufrió cargos por programas en 2024 y 2025. Vale la pena seguirla de cerca. Es recomendable investigar la cartera de pedidos y los cargos por programas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 10 %.",
+   "formato": "v4",
+   "titulo": "Lockheed Martin: el mayor contratista de defensa del mundo, con pedidos récord de misiles",
+   "resumen": [
+    "Lockheed Martin es el mayor **contratista de defensa** del mundo. Fabrica el avión de combate **F-35**, los misiles interceptores **PAC-3** del sistema Patriot, helicópteros Black Hawk, satélites y sistemas espaciales. Su gran cliente es el gobierno de EE.UU. Su ventaja es una tecnología que pocos dominan y contratos de décadas.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 11 %**, a 20.711 M, y su ganancia por acción subió de 6,95 a 7,97 dólares. Sus pedidos pendientes llegaron a un récord de **292.000 M**, impulsados por un gran contrato de misiles PAC-3. Subió lo que espera ganar en el año.",
+    "Muy buena empresa, con un negocio muy previsible, un retorno sobre el capital alto y un dividendo que sube hace 24 años, pero con márgenes limitados por contratos con el gobierno y cargos por programas que salieron mal."
+   ],
+   "introduccion": "Cuando un país se siente amenazado, compra armas. Y en los últimos años, el mundo se volvió más peligroso: la guerra en Ucrania, la tensión con China por Taiwán y los conflictos en Medio Oriente empujaron a casi todos los países a gastar más en defensa.\n\nLockheed Martin es uno de los grandes beneficiados. Su producto estrella es el **F-35**, un avión de combate furtivo (difícil de detectar por los radares) que usan EE.UU. y más de una docena de países aliados. Es el programa de armas más caro de la historia.\n\nPero la demanda que más creció es la de **misiles**. Las guerras recientes mostraron que los países necesitan muchos más misiles interceptores de los que tenían. Lockheed fabrica el PAC-3, el misil que usa el sistema de defensa Patriot para derribar misiles enemigos. En 2026 firmó un contrato de varios años por 52.500 M para fabricarlos.\n\nEl resultado: pedidos pendientes por 292.000 M, un récord, más de tres años y medio de ventas asegurados.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa con un cliente casi único, el gobierno de EE.UU., pero con trabajo asegurado por años?",
+   "secciones": [
+    {
+     "titulo": "Aviones, misiles, helicópteros y satélites",
+     "texto": "Lockheed tiene cuatro negocios. En el tercer trimestre de 2026 (ventas y crecimiento):\n\n- **Aeronáutica** (8.214 M, +13 %): el F-35, el F-16 y el avión de transporte C-130. Es el negocio más grande.\n- **Misiles y control de fuego** (4.501 M, +24 %): el PAC-3, el sistema de cohetes HIMARS y otros misiles. Es el que más crece.\n- **Sistemas rotativos y de misión** (4.511 M, +3 %): helicópteros Sikorsky (Black Hawk) y radares.\n- **Espacio** (3.485 M, +4 %): satélites, misiles balísticos para submarinos y la cápsula Orion de la NASA.\n\nSu gran cliente es el **gobierno de EE.UU.**, que le compra directamente y también a nombre de gobiernos aliados. El resto son ventas directas a otros países.\n\n¿Cuál es su **ventaja**? La **tecnología** y la **relación con el gobierno**. Diseñar un avión furtivo o un misil interceptor lleva décadas de conocimiento que muy pocas empresas tienen. Y una vez que un país compra el F-35, lo usa durante décadas y necesita repuestos, mantenimiento y mejoras: es un cliente cautivo. Además, la defensa es un sector donde los gobiernos casi no cambian de proveedor.\n\nLa inteligencia artificial no la amenaza; en todo caso, la usa en sus sistemas de armas y en la producción."
+    },
+    {
+     "titulo": "Márgenes estables y cargos que pesaron",
+     "texto": "Las ventas crecen de forma estable: de 65.984 M en 2022 a **79.116 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **11,8 %**. El promedio de su industria es 8,7 %. Es un margen moderado porque los contratos con el gobierno de EE.UU. limitan cuánto puede ganar sobre sus costos. Bajó a 9,9 % en 2024 por cargos: programas, algunos secretos, que le costaron más de lo previsto.\n\n[[grafico:margen_operativo]]\n\nEsos cargos son el riesgo típico de un contratista de defensa: en los **contratos de precio fijo**, si el desarrollo sale más caro, la pérdida la absorbe la empresa. En el tercer trimestre registró ajustes negativos menores en el F-16, el C-130 y algunos helicópteros.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **26,0 %**. Por encima de 15 % se considera muy bueno. El promedio de su industria es 16,0 %. Es alto porque el gobierno financia buena parte del desarrollo y le paga a medida que avanza el trabajo, así que necesita poco capital propio.\n\n[[grafico:roic]]\n\nLa ganancia por acción pasó de 21,66 dólares en 2022 a **28,15** en los últimos 12 meses. Para 2026 espera entre 30,35 y 30,75 dólares.\n\n[[grafico:eps]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **8.381 M** en los últimos 12 meses. Para 2026 espera entre 7.800 M y 8.000 M.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Deuda, dividendo y el F-35",
+     "texto": "La deuda neta (lo que debe menos la caja) es de **14.538 M** y equivale a **1,39 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 8,5 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nSu patrimonio contable es chico para su tamaño, porque durante años devolvió a sus accionistas más de lo que ganaba, con recompras de acciones. Por eso no conviene mirar su ROE, que se ve inflado.\n\nEl dividendo es de 14,40 dólares por acción por año. Lo subió por 24.º año consecutivo, y creció 8,1 % por año en los últimos diez.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **El presupuesto de EE.UU.**: si el Congreso recorta defensa o se demora en aprobarlo, Lockheed cobra menos o más tarde.\n- **El F-35**: la negociación de los próximos lotes con el gobierno sigue abierta, y Lockheed ya gastó más de lo que tiene autorizado en el lote 20.\n- **Los contratos de precio fijo**: pueden generar nuevos cargos.\n- **La competencia**: RTX (RTX), Northrop Grumman, General Dynamics y nuevas empresas tecnológicas de defensa.\n\nLo conduce Jim Taiclet, CEO desde 2020: \"Nuestro fuerte desempeño en el tercer trimestre subraya el liderazgo continuo de Lockheed Martin\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Lockheed, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Lockheed cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nEl mercado paga por Lockheed menos que por el promedio de su industria porque crece menos que otras empresas aeroespaciales y depende de un solo cliente. A cambio, ofrece previsibilidad: 292.000 M de pedidos pendientes equivalen a más de tres años y medio de ventas.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Lockheed Martin es una muy buena empresa. Es el mayor contratista de defensa del mundo, con el F-35, los misiles PAC-3 y una lista de pedidos récord que le asegura trabajo por años, un retorno sobre el capital alto y un dividendo que sube hace 24 años.\n\nSu punto débil es la dependencia del gobierno de EE.UU., que limita sus márgenes y decide su presupuesto, y los contratos de precio fijo, que en 2024 y 2025 le costaron caro. Además, la negociación del F-35 sigue abierta. El crítico más duro diría que Lockheed crece poco para lo que se paga, y que su margen tiene un techo. Es un argumento razonable.\n\nEncaja con quien busca una empresa previsible, con dividendo creciente y exposición al aumento del gasto en defensa. No es para quien busca un crecimiento alto.\n\nPara que la tesis se mantenga, lo más importante es que el negocio de misiles siga creciendo, que no haya nuevos cargos grandes y que el acuerdo por los próximos lotes del F-35 se cierre en buenos términos.",
+   "pros": [
+    "Pedidos récord: 292.000 M, más de tres años y medio de ventas.",
+    "Misiles en auge: ventas +24 % en el trimestre.",
+    "Dividendo creciente: 24 años seguidos de aumentos."
+   ],
+   "contras": [
+    "Un cliente casi único: el gobierno de EE.UU.",
+    "Contratos de precio fijo: generaron cargos en 2024 y 2025.",
+    "F-35: la negociación de los próximos lotes sigue abierta."
+   ],
    "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Lockheed Martin es una compañía aeroespacial y de defensa que investiga, diseña, desarrolla, fabrica, integra y mantiene sistemas, productos y servicios tecnológicos en Estados Unidos, Europa, Asia, Medio Oriente y a nivel internacional. Opera cuatro segmentos: **Aeronautics**, **Missiles and Fire Control**, **Rotary and Mission Systems** y **Space**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar; es un dato público que el F-35 es el programa más grande y que el gobierno de Estados Unidos es el cliente dominante.\n\nEs un negocio de contratos de largo plazo: **los ingresos crecieron 2,4 % en 2023, 5,1 % en 2024 y 5,6 % en 2025, hasta 75.048 M**, y llegaron a 79.116 M en los últimos 12 meses.\n\n**A quién le vende.** Al gobierno de Estados Unidos, a gobiernos aliados y a otras empresas de defensa. **Un cliente (el gobierno de Estados Unidos) pesa de forma decisiva.**",
-   "foso": "La ventaja de Lockheed **es de programas exclusivos y contratos de largo plazo, y es amplia**. El F-35, los misiles y los sistemas espaciales son programas de décadas, con decenas de países que ya invirtieron en la flota y necesitan repuestos y mantenimiento; reemplazarlos exige años y una inversión que casi nadie puede hacer. Se ve en el ROIC de 26,0 %.\n\nPero el margen es limitado por el tipo de contrato: gran parte son contratos de costo más ganancia fija o de precio fijo, y cuando un programa se complica, los cargos reducen el margen, como pasó en 2024. Compite con RTX, Boeing, Northrop Grumman y General Dynamics. Es frágil en el presupuesto de defensa de Estados Unidos, en los cargos por programas y en los reclamos de clientes por demoras. El contexto actual, con la guerra con Irán, puede favorecer la demanda de misiles y defensa antiaérea. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de Lockheed cuentan **ingresos en alza y márgenes que sufrieron cargos por programas**. Los ingresos fueron de 65.984 M, 67.571 M, 71.043 M y 75.048 M, y de 79.116 M en los últimos 12 meses. El margen operativo fue de 12,7 %, 12,6 %, 9,9 %, 10,3 % y **11,8 %**. La ganancia neta fue de 5.732 M, 6.920 M, 5.336 M y 5.017 M, y de 6.513 M en los últimos 12 meses. La ganancia por acción fue de 21,66, 27,55, 22,31, 21,49 y **28,15**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 6.132 M, 6.229 M, 5.287 M y 6.908 M, y de **8.381 M en los últimos 12 meses**, 10,6 % de los ingresos. El ROIC fue de 28,9 %, 29,9 %, 22,6 %, 23,0 % y 26,0 %. El ROE de 64,7 % no sirve como referencia porque el patrimonio es chico.\n\nLa mirada crítica: la caída de 2024 y 2025 se atribuyó públicamente a cargos en programas con precio fijo, un riesgo que puede volver.",
-   "balance": "**Deuda moderada y patrimonio chico por recompras.** La deuda total es de 20.498 M y la caja de 5.960 M en los últimos 12 meses; la deuda neta/EBITDA es de 1,39x, que multiplicado por 12 son unos 17 meses de EBITDA. Los intereses se cubren 8,6 veces con el EBIT.\n\nEl patrimonio neto bajó de 9.266 M en 2022 a 6.333 M en 2024 y subió a 10.063 M. Es chico frente al tamaño de la empresa porque devolvió mucho capital y por obligaciones de jubilación, dato público. Con un flujo libre de 8.381 M, el balance es cómodo.",
-   "gerencia": "La conduce Jim Taiclet, presidente y CEO (64 años, pago de 9,8 M según Yahoo), con Evan Scott como director financiero (48 años, pago de 2,4 M) y Frank St. John como director de operaciones (58 años). Es un equipo que impulsó la inversión en nuevas tecnologías de defensa.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras que se achican**: paga un dividendo de 14,40 por acción (pagado desde 1962, 43 años; sube 5,4 % por año en 3 años; 3.207 M en los últimos 12 meses, 38 % del flujo libre) y recompró 7.900 M en 2022, 6.000 M, 3.700 M, 3.000 M y 750 M en los últimos 12 meses. **Las acciones bajaron de 265 M a 231 M, un 12,8 % menos.**",
-   "fortalezas": [
-    "Programas exclusivos de décadas, como el F-35.",
-    "ROIC de 26,0 % y flujo libre de 8.381 M en los últimos 12 meses.",
-    "12,8 % menos acciones desde 2022.",
-    "Dividendo pagado desde 1962 y creciendo 5,4 % por año.",
-    "Demanda de defensa en alza por el contexto geopolítico."
-   ],
-   "debilidades": [
-    "Cargos por programas con precio fijo: margen operativo de 12,7 % a 9,9 % en 2024.",
-    "Dependencia del gobierno de Estados Unidos y del F-35.",
-    "Ganancia por acción irregular: 27,55, 22,31, 21,49 y 28,15.",
-    "Patrimonio neto chico (10.063 M).",
-    "Recompras casi detenidas: el crítico más duro diría que la prioridad cambió al balance."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 11,8 %; si baja de 10 %, vuelven los cargos por programas.",
-    "Flujo libre: hoy 8.381 M; tiene que cubrir con holgura el dividendo de 3.207 M.",
-    "Cartera de pedidos: Yahoo no la informa, hay que buscarla en el informe.",
-    "Cargos en programas con precio fijo: Yahoo no los informa, hay que buscarlos en el informe."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Gobierno de Estados Unidos y fuerzas armadas",
-    "Gobiernos aliados",
-    "Otras empresas de defensa y aeroespaciales"
+    "Departamento de Defensa de EE.UU.",
+    "Gobiernos aliados de Europa, Asia y Medio Oriente",
+    "NASA"
    ],
-   "ideal_para": [
-    "Buscan un líder de defensa con dividendo largo y flujo libre alto.",
-    "Valoran un ROIC de 26,0 % y recompras.",
-    "Aceptan depender del presupuesto de defensa."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 20.711 M (+11 %); ganancia de 1.845 M (+14 %); ganancia por acción de 7,97 dólares (6,95); flujo libre de 2.999 M (3.347 M); Aeronáutica 8.214 M (+13 %), Misiles 4.501 M (+24 %), Sistemas rotativos 4.511 M (+3 %), Espacio 3.485 M (+4 %); pedidos pendientes récord de 292.000 M, con 52.500 M del contrato plurianual de PAC-3; ajustes negativos en F-16 (40 M), C-130 (40 M) y helicópteros (45 M); costos del lote 20 del F-35 por encima de lo autorizado; dividendo subido por 24.º año; guía 2026: ventas de 80.000 M a 82.000 M, ganancia por acción de 30,35 a 30,75 dólares, flujo libre de 7.800 M a 8.000 M; frase de Jim Taiclet",
+     "fuente": "Comunicado de resultados del 3T26, 22/10/2026",
+     "url": "https://news.lockheedmartin.com/2026-10-22-Lockheed-Martin-Reports-Third-Quarter-2026-Financial-Results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran la dependencia de un único cliente.",
-    "Buscan crecimiento acelerado."
-   ],
+   "ticker": "LMT",
    "perfil": "general",
    "capas": [
     "compounder"
    ],
-   "ticker": "LMT",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -9208,54 +9233,66 @@
    }
   },
   "ADP": {
-   "resumen": "ADP es una empresa estadounidense de gestión del capital humano: procesa sueldos, impuestos, beneficios, tiempo y asistencia de millones de empleados para empresas de todos los tamaños, con plataformas en la nube y tercerización de recursos humanos. Opera dos segmentos: Employer Services y PEO, en el que se convierte en empleador conjunto de los empleados de sus clientes. Gana plata con comisiones por empleado que se repiten cada período de pago y con los intereses que obtiene sobre los fondos de clientes que maneja entre el cobro y el pago (dato público). Tiene un **foso estrecho a amplio, de costos de cambio y cumplimiento normativo**: pagar sueldos e impuestos mal tiene consecuencias legales, y las empresas rara vez cambian de proveedor de nómina. Los números son excelentes y estables: los ingresos crecen cerca de 7 % por año hasta 21.947 M, el margen operativo es de **26,3 %**, el ROIC de **40,5 %** y el flujo libre de **4.776 M** (21,8 % de los ingresos). Paga dividendo desde 1983 y crece 13,1 % por año en 3 años. Tiene una deuda neta baja (734 M, 0,11x EBITDA). Su punto débil es que parte de las ganancias depende de las tasas de interés (con la Fed en 3,75 % a 4,00 % el 28/10, hoy son favorables), que las compras recientes subieron el capital invertido y que el ROE de 73,2 % no es comparable porque el patrimonio es chico. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad, con foso estrecho a amplio, ROIC de 40,5 %, flujo libre de 4.776 M y dividendo creciente, aunque sensible a las tasas de interés.**",
-   "veredicto": "Muy buena: foso estrecho a amplio, ROIC de 40,5 % y flujo libre de 4.776 M, con dividendo creciente y sensibilidad a las tasas",
-   "conclusion": "ADP es una empresa de muy buena calidad: tiene un foso estrecho a amplio de costos de cambio y cumplimiento normativo, margen operativo de 26,3 %, ROIC de 40,5 %, flujo libre de 4.776 M y dividendo desde 1983 que crece 13,1 % por año, pero parte de sus ganancias depende de las tasas de interés. Vale la pena seguirla de cerca. Es recomendable investigar el aporte de los intereses sobre fondos de clientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga con tasas más bajas.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "ADP: la empresa que paga los sueldos de millones de personas, y gana con la plata en tránsito",
+   "resumen": [
+    "ADP (Automatic Data Processing) es la mayor empresa de **liquidación de sueldos** de EE.UU.: calcula y paga los salarios de los empleados de cientos de miles de empresas, retiene impuestos y maneja recursos humanos y beneficios. Cobra por cada empleado y, además, gana intereses con la plata de los sueldos mientras está en tránsito. Su ventaja es que cambiar de proveedor de sueldos es riesgoso y engorroso.",
+    "En el primer trimestre de su año fiscal 2027 (julio a septiembre de 2026), **sus ingresos crecieron 6,1 %**, a 5.491 M, y su ganancia ajustada por acción, 13,3 %, a 2,82 dólares. Tuvo un récord de ventas nuevas para un primer trimestre y subió lo que espera ganar en el año.",
+    "Excelente empresa, con ingresos muy previsibles, márgenes altos, poca deuda y un dividendo que sube hace décadas, aunque crece a un ritmo moderado y depende en parte de las tasas de interés y del empleo."
+   ],
+   "introduccion": "Pagar sueldos parece simple, pero no lo es. Una empresa de EE.UU. tiene que calcular cuánto le corresponde a cada empleado, descontar impuestos federales, estatales y a veces municipales, aportes de salud y jubilación, embargos y adelantos. Las reglas cambian todo el tiempo y cada estado tiene las suyas. Un error significa multas o empleados enojados.\n\nPor eso cientos de miles de empresas le dejan ese trabajo a ADP. Fundada en 1949, hoy liquida los sueldos de una parte enorme de los trabajadores de EE.UU. y de muchos otros países. Su informe mensual de empleo privado es seguido por los mercados de todo el mundo.\n\nEl negocio tiene un detalle muy interesante. Cuando una empresa le manda a ADP la plata de los sueldos, ADP la tiene unos días antes de pagarla a los empleados y al fisco. Con miles de empresas a la vez, esa plata en tránsito suma decenas de miles de millones, y ADP la invierte. Solo en su año fiscal 2027 espera ganar unos 1.600 M en intereses con esos fondos.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa aburrida, previsible y muy rentable, en un mundo que cambia rápido con la inteligencia artificial?",
+   "secciones": [
+    {
+     "titulo": "Sueldos, recursos humanos y la plata en tránsito",
+     "texto": "ADP tiene dos grandes negocios:\n\n- **Servicios al empleador**: liquidación de sueldos, impuestos, recursos humanos, beneficios, planes de retiro y cumplimiento de normas, para empresas de todos los tamaños. Es el negocio más grande. En el trimestre tuvo un récord de ventas nuevas para un primer trimestre.\n- **PEO (organización profesional de empleadores)**: ADP se convierte en el empleador formal de los trabajadores de pymes y se ocupa de todo lo administrativo, incluido el seguro de salud. Sus empleados cubiertos crecieron 2 %.\n\nY suma un tercer ingreso: los **intereses sobre los fondos de clientes**, la plata de los sueldos que guarda unos días antes de pagarla. Crecieron 15 % en el trimestre.\n\nUn indicador que conviene seguir es **pagos por cliente**: cuántos empleados tiene, en promedio, cada empresa cliente. Creció 2 %. Si baja, significa que sus clientes están despidiendo gente, y ADP cobra menos.\n\nSus clientes son cientos de miles de empresas, desde pymes de pocos empleados hasta multinacionales.\n\n¿Cuál es su **ventaja**? El **costo de cambiar**. Una empresa que paga sueldos con ADP tiene sus datos, sus reglas y sus integraciones armadas ahí. Cambiar de proveedor implica arriesgarse a pagar mal los sueldos, algo que ningún gerente quiere. Por eso sus clientes casi no se van. A eso se suman la **escala** y el **conocimiento de las normas** de cada estado y país.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la usa para atender clientes y automatizar tareas. El riesgo es que nuevos competidores con software más simple le ganen clientes chicos."
+    },
+    {
+     "titulo": "Crecimiento constante y márgenes altos",
+     "texto": "Los ingresos crecen con mucha regularidad: de 18.012 M en su año fiscal 2023 a **21.947 M** en 2026, entre 6 % y 7 % por año.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **26,3 %**. El promedio de su industria es 7,4 %. En el primer trimestre de su año fiscal 2027, su margen ajustado subió 1,3 puntos.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **40,5 %**. Por encima de 15 % se considera muy bueno. Es altísimo porque el negocio necesita muy poco capital: no tiene fábricas ni grandes inventarios.\n\n[[grafico:roic]]\n\nLos intereses sobre los fondos de clientes funcionan así: si ADP guarda en promedio 40.000 M de sueldos en tránsito y los invierte al 3,8 %, gana unos 1.500 M por año sin hacer nada extra. Para su año fiscal 2027 espera entre 1.590 M y 1.610 M. Es plata muy rentable, pero depende de las tasas: si bajan, ese ingreso baja.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **4.776 M** en su año fiscal 2026.\n\n[[grafico:flujo_libre]]\n\nPara su año fiscal 2027 espera que los ingresos crezcan cerca de 6 % y la ganancia ajustada por acción, entre 10 % y 12 %."
+    },
+    {
+     "titulo": "Poca deuda y un dividendo que sube hace décadas",
+     "texto": "La deuda neta (lo que debe menos la caja) es de apenas **734 M** y equivale a **0,11 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 12,6 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nEl dividendo es de 6,80 dólares por acción por año, y lo sube hace décadas: creció 12,2 % por año en los últimos diez años. Además, recompra acciones: la cantidad bajó de 416 M a 409 M entre sus años fiscales 2023 y 2025.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **El empleo**: si las empresas despiden gente, ADP liquida menos sueldos y cobra menos.\n- **Las tasas**: si bajan, gana menos con los fondos de clientes.\n- **La competencia**: Paychex, Workday y empresas nuevas de software de recursos humanos.\n- **El precio**: el mercado ya paga una prima por su calidad.\n\nLa conduce Maria Black, CEO desde 2023."
+    }
+   ],
+   "valuacion": {
+    "texto": "En ADP, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, ADP cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó una prima por ADP por su previsibilidad: crece año tras año con mucha regularidad, con un dividendo creciente. Esa prima se sostiene mientras la ganancia por acción siga creciendo cerca de 10 % por año. Si las tasas bajan mucho o el empleo se enfría, el crecimiento puede frenarse.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "ADP es una excelente empresa. Hace algo que ninguna empresa quiere hacer mal, pagar sueldos, y eso le da clientes que casi no se van. Tiene ingresos muy previsibles, márgenes que más que triplican a los de su industria, un retorno sobre el capital altísimo, poca deuda y un dividendo que sube hace décadas.\n\nSu punto débil es que crece a un ritmo moderado, y que una parte de su ganancia depende de las tasas de interés y del empleo, que no controla. Además, el mercado ya paga una prima por su calidad. El crítico más duro diría que ADP es un negocio maduro, con poco espacio para sorprender. Es un argumento razonable.\n\nEncaja con quien busca una empresa defensiva, de altísima calidad, con un dividendo creciente para mantener muchos años. No es para quien busca un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que las ventas nuevas sigan creciendo, que la retención de clientes se mantenga alta y que la ganancia por acción siga creciendo cerca de 10 % por año.",
+   "pros": [
+    "Clientes cautivos: cambiar de proveedor de sueldos es riesgoso.",
+    "Márgenes altos: 26,3 % operativo, ROIC de 40,5 %.",
+    "Dividendo creciente: +12,2 % por año en diez años."
+   ],
+   "contras": [
+    "Crecimiento moderado: cerca de 6 % por año.",
+    "Depende de las tasas: intereses sobre fondos de clientes.",
+    "Depende del empleo: menos empleados, menos ingresos."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "ADP provee soluciones de gestión del capital humano basadas en la nube en todo el mundo. Opera dos segmentos: **Employer Services**, que ofrece plataformas en la nube y tercerización de recursos humanos, y **PEO** (organización de empleadores profesionales). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de ingresos recurrentes y crecimiento estable: **los ingresos subieron 6,6 % en 2024, 7,1 % en 2025 y 6,7 % en 2026, hasta 21.947 M** (el ejercicio cierra a fines de junio).\n\n**A quién le vende.** A empresas de todos los tamaños, desde pequeñas hasta multinacionales. **Ningún cliente pesa de forma decisiva**: la base es muy atomizada.",
-   "foso": "La ventaja de ADP **es de costos de cambio y cumplimiento normativo, y es estrecha a amplia**. Procesar sueldos exige cumplir leyes laborales e impositivas que cambian por país, estado y municipio, y un error implica multas; por eso las empresas, una vez integrado el sistema con su contabilidad y sus empleados, casi no cambian de proveedor. Se ve en el margen bruto que sube de 44,7 % a 46,4 %, en el margen operativo de 26,3 % y en el ROIC de 40,5 %.\n\nCompite con Paychex, Workday, Paycom, Paylocity, Gusto y proveedores locales. Es frágil en el recorte de empleo (menos empleados en las empresas clientes, menos ingresos) y en las tasas de interés, porque parte de la ganancia viene del rendimiento de los fondos de clientes (dato público a verificar). La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de ADP cuentan **un negocio muy estable que crece con márgenes altos**. Los ingresos fueron de 18.012 M, 19.203 M, 20.561 M y 21.947 M. El EBIT fue de 4.507 M, 4.947 M, 5.412 M y 5.779 M, con margen operativo de 25,0 %, 25,8 %, 26,3 % y 26,3 %. La ganancia neta fue de 3.412 M, 3.752 M, 4.080 M y 4.414 M. La ganancia por acción fue de 8,21, 9,10 y 9,98 (Yahoo no trae la de 2026).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.636 M, 3.594 M, 4.393 M y **4.776 M** (21,8 % de los ingresos). El ROIC fue de 53,3 %, 50,5 %, 27,8 % y 40,5 %; la baja de 2025 coincide con la compra de otra empresa (el capital invertido saltó a 14.932 M). El ROE de 73,2 % no sirve para comparar porque el patrimonio es chico (6.031 M).\n\nLa mirada crítica: el crecimiento de la ganancia depende en parte del rendimiento de los fondos de clientes; si las tasas bajan, ese aporte baja.",
-   "balance": "**Deuda baja y bien cubierta.** La deuda total es de 5.271 M y la caja de 4.230 M; la deuda neta es de 734 M y la deuda neta/EBITDA es de 0,11x, que multiplicado por 12 es poco más de 1 mes de EBITDA. Los intereses se cubren 12,6 veces con el EBIT.\n\nEl patrimonio neto es de 6.031 M. En 2025 la deuda total subió a 9.065 M (con 4.770 M de corto plazo) y bajó en 2026 a 5.271 M, un movimiento que coincide con una compra y su posterior repago (a verificar en el informe).",
-   "gerencia": "La conduce María Black, presidente y CEO (51 años, pago de 4,8 M según Yahoo), con Peter Hadley como director financiero (52 años, pago de 2,0 M). Black asumió en 2023, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras**: paga un dividendo de 6,80 por acción (pagado desde 1983; sube 13,1 % por año en 3 años; 2.626 M en 2026, 55 % del flujo libre) y recompró 1.121 M en 2023, 1.232 M, 1.280 M y 2.083 M. **Las acciones bajaron de 416 M a 409 M hasta 2025, un 1,7 % menos** (Yahoo no trae el dato de 2026).",
-   "fortalezas": [
-    "Ingresos recurrentes creciendo cerca de 7 % por año.",
-    "Margen operativo de 26,3 % y ROIC de 40,5 %.",
-    "Flujo libre de 4.776 M, 21,8 % de los ingresos.",
-    "Dividendo creciendo 13,1 % por año en 3 años.",
-    "Costos de cambio y cumplimiento normativo altos."
-   ],
-   "debilidades": [
-    "Parte de las ganancias depende de las tasas de interés: el crítico más duro diría que una baja de tasas la golpearía.",
-    "Sensible al empleo de sus clientes.",
-    "Dividendo que absorbe 55 % del flujo libre.",
-    "Patrimonio chico (6.031 M).",
-    "Recompras moderadas: las acciones bajaron poco."
-   ],
-   "vigilar": [
-    "Ingresos: hoy +6,7 %; si bajan de 5 %, el empleo de los clientes se debilita.",
-    "Margen operativo: hoy 26,3 %; si baja, las tasas o los costos pesan.",
-    "Tasas de interés: la Fed está en 3,75 % a 4,00 %; una baja reduce el aporte de los fondos de clientes.",
-    "Deuda total: hoy 5.271 M; debería mantenerse baja."
-   ],
    "clientes": [
-    "Empresas de todos los tamaños",
-    "Multinacionales con nómina en varios países",
-    "Pequeñas empresas que tercerizan recursos humanos"
+    "Pymes de EE.UU.",
+    "Grandes empresas y multinacionales",
+    "Empresas que tercerizan su gestión de empleados (PEO)"
    ],
-   "ideal_para": [
-    "Buscan un negocio recurrente con dividendo creciente.",
-    "Valoran los márgenes altos y la estabilidad.",
-    "Entienden el efecto de las tasas de interés en el negocio."
+   "hechos": [
+    {
+     "dato": "Primer trimestre del año fiscal 2027 (julio a septiembre de 2026): ingresos de 5.491 M (+6,1 %); ganancia ajustada por acción de 2,82 dólares (+13,3 %); margen ajustado +1,3 puntos; intereses sobre fondos de clientes +15 %; pagos por cliente +2 %; récord de ventas nuevas para un primer trimestre; empleados cubiertos por el PEO +2 %; guía del año fiscal 2027: ingresos de cerca de +6 %, ganancia ajustada por acción de +10 % a +12 %, intereses sobre fondos de clientes de 1.590 M a 1.610 M con un rendimiento promedio de cerca de 3,8 %",
+     "fuente": "Earnings Whispers, 28/10/2026",
+     "url": "https://www.earningswhispers.com/article/ADP/r559"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 1T del año fiscal 2027",
+     "fuente": "8-K de ADP, anexo 99",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000008670/000000867026000033/q1fy27exhibit99.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido.",
-    "No toleran la sensibilidad al empleo y a las tasas."
-   ],
+   "mes_cierre_fiscal": 6,
+   "ticker": "ADP",
    "perfil": "software",
    "capas": [],
-   "ticker": "ADP",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -9471,54 +9508,61 @@
    }
   },
   "WDC": {
-   "resumen": "Western Digital es una empresa estadounidense que fabrica discos rígidos (HDD) para almacenar datos: unidades internas, discos para centros de datos, plataformas de almacenamiento para centros de datos, unidades externas y portátiles, y sistemas para el hogar y la oficina. Tras separar su negocio de memorias flash a comienzos de 2025 (dato público), hoy se concentra en discos rígidos. Gana plata vendiendo discos a las grandes empresas de nube y a fabricantes de computadoras y equipos. Tiene un **foso débil a estrecho, de tecnología y oligopolio**: fabricar discos de gran capacidad exige décadas de ingeniería y casi solo hay tres productores en el mundo, lo que limita la competencia, pero el producto es un componente que se compra por capacidad y precio. Los números cambiaron de golpe: los ingresos pasaron de 6.317 M en el ejercicio 2024 a **14.482 M** en los últimos 12 meses, el margen bruto de 28,1 % a **52,6 %**, el margen operativo de 1,5 % a **40,7 %** y el flujo libre de -781 M a **4.289 M**. Pero hasta 2024 perdió plata, la ganancia neta de 9.895 M es mucho mayor que el EBIT de 5.893 M (probablemente por ganancias de la separación o de su participación en la empresa separada, dato a verificar) y las acciones aumentaron **21 %** desde 2023. Su punto débil es que está en el pico del ciclo: los discos son un negocio que sube y baja con el gasto de los grandes clientes de nube. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: hoy la impulsa, aunque el 22/10 los semiconductores cayeron 6,7 %. Conclusión: **empresa de calidad regular: números de pico de ciclo y deuda casi nula, pero con dos años previos de pérdidas, ganancia neta no comparable y 21 % más acciones.**",
-   "veredicto": "Regular: números de pico de ciclo y deuda casi nula, con dos años previos de pérdidas, ganancia neta no comparable y 21 % más acciones",
-   "conclusion": "Western Digital es una empresa de calidad regular: tiene un foso débil a estrecho de oligopolio, márgenes y flujo libre en un pico (margen operativo de 40,7 %, flujo libre de 4.289 M) y deuda casi nula, pero perdió plata hasta 2024, la ganancia neta incluye resultados no operativos y las acciones aumentaron 21 %. Hay que seguirla de cerca. Es recomendable investigar el origen de la ganancia neta y la concentración de clientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los márgenes se sostengan cuando el ciclo se normalice.",
-   "calidad": "Regular",
-   "riesgo_ia": "bajo",
-   "negocio": "Western Digital se dedica al desarrollo, la fabricación y la venta de dispositivos y soluciones de almacenamiento de datos basados en discos rígidos (HDD) en Estados Unidos, Asia, Europa, Medio Oriente y África. Ofrece discos internos, unidades para centros de datos, plataformas para centros de datos, unidades externas, unidades portátiles y sistemas de almacenamiento para el hogar y la oficina. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de ciclo marcado: **los ingresos subieron 1,0 % en 2024, 50,7 % en 2025 y 35,7 % en 2026, hasta 12.919 M** (el ejercicio cierra a fines de junio), y llegan a 14.482 M en los últimos 12 meses. Las cifras de años anteriores parecen reexpresadas sin el negocio separado (a verificar).\n\n**A quién le vende.** A grandes empresas de nube y centros de datos, fabricantes de computadoras y consumidores. **Yahoo no informa la concentración de clientes**, un dato clave a verificar en el informe.",
-   "foso": "La ventaja de Western Digital **es de tecnología y oligopolio, y es débil a estrecha**. Fabricar discos rígidos de gran capacidad requiere cabezas de lectura, medios magnéticos y procesos de fabricación que tardaron décadas en desarrollarse, y solo tres empresas en el mundo lo hacen, lo que limita la guerra de precios. Se ve en el margen bruto, que subió de 22,2 % a 52,6 %.\n\nPero el mismo producto perdió plata en 2023 y 2024 (margen operativo de -6,4 % y 1,5 %), señal de que el poder de fijar precios depende del ciclo. Compite con Seagate y Toshiba, y con las memorias flash que reemplazan discos en algunos usos. Es frágil en el ciclo de gasto de las grandes nubes, en la concentración de pocos clientes y en la dilución de acciones. La inteligencia artificial hoy impulsa la demanda de almacenamiento de datos.",
-   "numeros": "Los números de Western Digital cuentan **un giro extremo de pérdidas a ganancias de pico**. Los ingresos fueron de 6.255 M, 6.317 M, 9.520 M y 12.919 M, y de 14.482 M en los últimos 12 meses. El EBIT fue de -402 M, 97 M, 2.130 M y 4.599 M, y de **5.893 M** (margen operativo de 40,7 %). La ganancia neta fue de -1.684 M, -798 M, 1.861 M y 9.298 M, y de 9.895 M. La ganancia por acción fue de -5,44, -1,72, 5,12, 26,92 y 25,77.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -1.229 M, -781 M, 1.279 M y 3.511 M, y de **4.289 M** en los últimos 12 meses (29,6 % de los ingresos). El ROIC fue de -1,7 %, 0,4 %, 15,8 %, 44,1 % y 54,4 %.\n\nLa mirada crítica: la ganancia neta de 9.895 M casi duplica el EBIT (5.893 M), lo que indica una ganancia no operativa (probablemente por la separación del negocio de memorias flash o por su participación en esa empresa, dato público a verificar). La ganancia por acción de 25,77 no es repetible. Los márgenes de los últimos 12 meses están en un pico de ciclo.",
-   "balance": "**Deuda casi eliminada.** La caja es de 1.314 M y la deuda total de 789 M (toda de corto plazo), de modo que la caja supera la deuda. Los intereses se cubren 50 veces con el EBIT. El patrimonio neto es de 9.348 M y la deuda equivale a 0,08 veces el patrimonio.\n\nLa deuda total bajó de 7.434 M en 2024 a 789 M, mientras el patrimonio pasó de 11.047 M a 5.540 M en 2025 (por la separación) y a 9.348 M hoy. Es un balance muy distinto al de hace dos años.",
-   "gerencia": "La conduce Irving Tan, CEO y director (55 años, pago de 4,5 M según Yahoo), con Kris Sennesael como director financiero (56 años, pago de 2,2 M). Yahoo lo lista como Tiang Yew Tan. Tan asumió la conducción de la empresa tras la separación, dato público.\n\nEn lo que importa, **el uso del capital cambió de cero a recompras y dividendo reciente**: paga un dividendo de 0,70 por acción (Yahoo dice que paga desde 2012, con 2 años de continuidad; 201 M en los últimos 12 meses) y recompró nada en 2023, 5 M, 149 M, 2.592 M y 3.040 M en los últimos 12 meses. **Las acciones aun así subieron de 318 M a 385 M, un 21 % más**, por conversión de deuda y compensación (a verificar en el informe).",
-   "fortalezas": [
-    "Margen operativo de 40,7 % y margen bruto de 52,6 % en los últimos 12 meses.",
-    "Flujo libre de 4.289 M, 29,6 % de los ingresos.",
-    "Deuda casi eliminada.",
-    "Oligopolio de tres productores de discos.",
-    "ROIC de 54,4 %, aunque en pico de ciclo."
+   "formato": "v4",
+   "titulo": "Western Digital: los viejos discos rígidos se volvieron el depósito de datos de la IA",
+   "resumen": [
+    "Western Digital fabrica **discos rígidos** de gran capacidad, el lugar donde los grandes centros de datos guardan la mayor parte de la información del mundo. Después de separar su negocio de memorias flash (Sandisk) en 2025, se dedica solo a esto. Su ventaja es que solo tres empresas en el mundo fabrican estos discos.",
+    "En el primer trimestre de su año fiscal 2027 (julio a septiembre de 2026), **sus ingresos crecieron 55 %**, a 4.381 M, y su margen bruto subió de 43,5 % a **57,8 %**. Espera crecer cerca de 70 % en el próximo trimestre y subió el dividendo 17 %.",
+    "Muy buena empresa en su mejor momento, con márgenes récord, sin deuda neta y una demanda impulsada por la IA, pero en un negocio históricamente muy cíclico, que hace tres años perdía plata."
    ],
-   "debilidades": [
-    "Pico de ciclo: el crítico más duro diría que estos márgenes no son normales.",
-    "Pérdidas en 2023 y 2024.",
-    "21 % más acciones desde 2023.",
-    "Ganancia neta inflada por resultados no operativos.",
-    "Dependencia de pocos clientes de nube."
+   "introduccion": "Cada foto que subís a una red social, cada video que mirás en streaming y cada pregunta que le hacés a una inteligencia artificial generan datos. Y esos datos se guardan en algún lado.\n\nMucha gente cree que los discos rígidos, esos aparatos con platos que giran, ya desaparecieron, reemplazados por las memorias flash de los celulares y las notebooks. En las computadoras personales es así. Pero en los grandes centros de datos, los discos rígidos siguen guardando la mayor parte de la información, porque son mucho más baratos por cada terabyte.\n\nY la inteligencia artificial disparó la demanda. Los modelos se entrenan con cantidades enormes de datos, y las empresas guardan todo lo que generan para usarlo después. Los grandes proveedores de nube compran discos como nunca.\n\nPara Western Digital, el cambio fue dramático. En su año fiscal 2023 perdió 5,44 dólares por acción. En los últimos 12 meses ganó **25,77**. Su margen bruto pasó de niveles bajos a casi 58 %.\n\nEntonces, la pregunta es: ¿la IA convirtió a los discos rígidos en un negocio estructuralmente mejor, o es la parte alta de otro ciclo?",
+   "secciones": [
+    {
+     "titulo": "Un oligopolio de tres",
+     "texto": "Western Digital fabrica discos rígidos para tres tipos de clientes:\n\n- **La nube**: los grandes centros de datos de las empresas de nube y de inteligencia artificial. Es, por lejos, el negocio más grande, y el que más crece.\n- **Empresas**: servidores y sistemas de almacenamiento.\n- **Consumidores**: discos externos y para videovigilancia.\n\nEn 2025 separó su negocio de memorias flash, que hoy cotiza aparte como Sandisk. Así quedó como una empresa enfocada en discos rígidos.\n\n¿Cuál es su **ventaja**? El **oligopolio**. Solo tres empresas en el mundo fabrican discos rígidos: Western Digital, Seagate y Toshiba. Fabricar un disco que guarda decenas de terabytes requiere una precisión extrema: el cabezal que lee los datos vuela a nanómetros del plato. Construir esa capacidad desde cero llevaría años y miles de millones. Con tan pocos fabricantes y una demanda que crece, los precios suben.\n\nOtra ventaja: los discos rígidos siguen siendo mucho más baratos por terabyte que las memorias flash. Mientras eso siga así, los centros de datos los van a necesitar para guardar la mayor parte de sus datos.\n\nLa **inteligencia artificial** es su gran motor: cuantos más datos genera y usa la IA, más discos se necesitan. El riesgo es que, a largo plazo, las memorias flash bajen tanto de precio que reemplacen a los discos también en los centros de datos."
+    },
+    {
+     "titulo": "De pérdidas a márgenes récord",
+     "texto": "Los ingresos pasaron de 6.255 M en su año fiscal 2023 a **14.482 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de -6,4 % en su año fiscal 2023 a **40,7 %** en los últimos 12 meses. El promedio de su industria es 22,5 %. Es un cambio enorme: en tres años pasó de perder plata a ganar más de 40 dólares por cada 100 que vende.\n\n[[grafico:margen_operativo]]\n\nEsto muestra cómo funciona un negocio con **costos fijos altos**: las fábricas cuestan lo mismo produzcan mucho o poco. Cuando la demanda cae, el margen se desploma; cuando sube, el margen se dispara. Por eso conviene mirar el margen bruto de cada trimestre: si empezara a bajar, sería una señal temprana de que el ciclo da la vuelta.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **54,4 %**. Por encima de 15 % se considera muy bueno. Hace tres años era negativo.\n\n[[grafico:roic]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) pasó de -1.229 M en su año fiscal 2023 a **4.289 M** en los últimos 12 meses. En el último trimestre fue de 1.380 M.\n\n[[grafico:flujo_libre]]\n\nPara el segundo trimestre de su año fiscal 2027, espera ingresos de unos 5.100 M (cerca de 70 % más que un año antes), un margen bruto de 60 % a 61 % y una ganancia ajustada de unos 5,80 dólares por acción."
+    },
+    {
+     "titulo": "Sin deuda neta y riesgos del ciclo",
+     "texto": "Western Digital usó la caja de estos años para pagar deuda. Hoy tiene más caja (1.314 M) que deuda (789 M). Su ganancia operativa paga los intereses del año 50 veces (por encima de 3 se considera sano).\n\nVolvió a pagar dividendo, y lo subió 17 %, a 0,175 dólares por trimestre. Rinde muy poco.\n\nUn detalle sobre la ganancia contable: en los últimos 12 meses incluye ganancias que no vienen del negocio. En el primer trimestre del año anterior, por ejemplo, la ganancia contable fue de 3,07 dólares por acción, pero la ajustada, solo de 1,78. Por eso conviene mirar también la ganancia ajustada, que la empresa y los analistas del mercado usan para seguir el negocio.\n\nLos riesgos:\n\n- **El ciclo**: los discos rígidos tuvieron subas y caídas fuertes. Si los grandes clientes de la nube frenan sus compras, los precios y los márgenes pueden caer rápido.\n- **Pocos clientes**: un puñado de gigantes de la nube compra la mayor parte de sus discos.\n- **La tecnología**: tiene que seguir aumentando la capacidad de cada disco al ritmo de Seagate.\n- **Las memorias flash**: si se abaratan mucho, pueden ganarle terreno.\n\nLo conduce Irving Tan, CEO desde 2025: \"Estamos ejecutando bien nuestras transiciones tecnológicas para atender la creciente demanda de almacenamiento\"."
+    }
    ],
-   "vigilar": [
-    "Margen bruto: hoy 52,6 %; si baja, el ciclo se está dando vuelta.",
-    "Ingresos: hoy +35 %; el cambio de ritmo anticipa el ciclo.",
-    "Cantidad de acciones: hoy 385 M; las recompras tienen que reducirla.",
-    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe."
+   "valuacion": {
+    "texto": "En una empresa cíclica, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo al revés de lo normal: en la parte alta del ciclo, la ganancia es altísima y el PER parece bajo; en la parte baja, la ganancia desaparece y el PER se dispara.\n\nCon el precio de {precio} dólares, Western Digital cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre ventas**, que no depende de los márgenes del momento: {v:ps} veces, {vs:ps} su mediana histórica ({med:ps} veces). Cuando este número está muy por encima de su historia, el mercado está apostando a que los márgenes altos llegaron para quedarse.\n\n[[grafico:per_historico]]\n\nLo que define el precio es si la IA cambió el negocio para siempre. Si la demanda de los centros de datos sigue creciendo varios años, la ganancia actual puede sostenerse o crecer. Si es otro ciclo, la ganancia puede caer, y el PER bajo de hoy resultaría engañoso.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Western Digital es hoy una muy buena empresa. Es parte de un oligopolio de tres fabricantes, en un producto que la inteligencia artificial volvió indispensable. Sus ingresos y márgenes están en récord, genera mucha caja y ya no tiene deuda neta.\n\nSu punto débil es la historia: los discos rígidos son un negocio muy cíclico, con pocos clientes muy grandes y costos fijos altos. Hace tres años perdía plata. El crítico más duro diría que esto es la parte alta de un ciclo más, y que el mercado está pagando márgenes que no van a durar. Es un argumento serio.\n\nEncaja con quien cree que la IA va a sostener la demanda de almacenamiento durante años y tolera la volatilidad. No es para quien busca estabilidad o un dividendo.\n\nPara que la tesis se mantenga, lo más importante es que el margen bruto se mantenga cerca de 60 % y que los grandes clientes de la nube sigan aumentando sus compras.",
+   "pros": [
+    "Oligopolio: solo tres fabricantes de discos rígidos en el mundo.",
+    "Demanda de la IA: ingresos +55 % en el trimestre.",
+    "Sin deuda neta: más caja que deuda."
    ],
+   "contras": [
+    "Muy cíclico: hace tres años perdía plata.",
+    "Pocos clientes: dependen de los gigantes de la nube.",
+    "Precio exigente: el mercado ya paga márgenes récord."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Operadores de nube y centros de datos",
-    "Fabricantes de computadoras y equipos",
-    "Consumidores de almacenamiento externo"
+    "Grandes proveedores de nube y de inteligencia artificial",
+    "Empresas con servidores y sistemas de almacenamiento",
+    "Consumidores y sistemas de videovigilancia"
    ],
-   "ideal_para": [
-    "Buscan exposición al almacenamiento de datos para inteligencia artificial.",
-    "Valoran un balance casi sin deuda.",
-    "Entienden que los márgenes actuales son de pico de ciclo."
+   "hechos": [
+    {
+     "dato": "Primer trimestre del año fiscal 2027 (cerrado el 02/10/2026): ingresos de 4.381 M (+55 %); margen bruto de 57,8 % (43,5 %); ganancia por acción de 4,63 dólares (3,07) y ajustada de 4,64 (1,78); flujo de caja operativo de 1.600 M y libre de 1.380 M; dividendo trimestral de 0,175 dólares (+17 %); guía del segundo trimestre: ingresos de unos 5.100 M, margen bruto de 60 % a 61 %, ganancia ajustada de unos 5,80 dólares; frase de Irving Tan",
+     "fuente": "Comunicado de resultados del 1T del año fiscal 2027, 22/10/2026",
+     "url": "https://westerndigital.com/company/newsroom/press-releases/2026/2026-10-22-wd-reports-fiscal-first-quarter-2027-financial-results"
+    }
    ],
-   "menos_ideal": [
-    "Buscan resultados estables.",
-    "No toleran la dilución ni el ciclo."
-   ],
+   "mes_cierre_fiscal": 6,
+   "ticker": "WDC",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "WDC",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -9678,56 +9722,67 @@
    }
   },
   "BP": {
-   "resumen": "BP es una petrolera integrada británica: produce y vende petróleo y gas, comercializa y opera energía, refina y vende combustibles en estaciones de servicio, y tiene negocios de energía solar, eólica e hidrógeno. Opera tres segmentos: Gas & Low Carbon Energy, Oil Production & Operations y Customers & Products. Gana plata extrayendo y vendiendo energía a precios que fija el mercado, más márgenes de refinación y comercialización. Tiene un **foso débil, de escala y activos de bajo costo**: algunos de sus yacimientos y contratos de gas son rentables aun con precios bajos, pero el precio de lo que vende no lo decide ella y, a diferencia de otras petroleras, su rentabilidad es más baja. Los números muestran un negocio golpeado: el EBIT bajó de 41.447 M en 2022 a **15.808 M** en 2025 y subió a **24.366 M** en los últimos 12 meses con el Brent en máximos de cinco meses por la guerra con Irán y Ormuz, pero la ganancia neta fue de apenas **381 M en 2024 y 55 M en 2025** (5.492 M en los últimos 12 meses) por cargos y deterioros que Yahoo no detalla. El patrimonio bajó de 70.283 M a 58.428 M, el flujo libre cayó a 16.143 M (7,4 % de los ingresos) y las recompras se redujeron de 9.996 M a 4.486 M. Hay 17,8 % menos acciones que en 2022. Su punto débil es la baja rentabilidad, la deuda total de 72.693 M y un cambio reciente de conducción. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de calidad regular: dividendo desde 1962 y 17,8 % menos acciones, pero con ganancia neta casi nula, patrimonio en baja y rentabilidad muy inferior a la de sus pares.**",
-   "veredicto": "Regular: dividendo desde 1962 y 17,8 % menos acciones, con ganancia neta casi nula, patrimonio en baja y rentabilidad baja",
-   "conclusion": "BP es una empresa de calidad regular: tiene dividendo desde 1962, flujo libre de 16.143 M y 17,8 % menos acciones, pero la ganancia neta fue casi nula en 2024 y 2025, el patrimonio bajó, la deuda total llega a 72.693 M y hay un cambio de conducción. Hay que seguirla de cerca. Es recomendable investigar los cargos que explican la brecha entre EBIT y ganancia neta en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la ganancia neta se acerque al EBIT y la deuda baje.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "BP: la petrolera británica volvió al petróleo después de su apuesta verde, y baja su deuda",
+   "resumen": [
+    "BP es una de las grandes **petroleras integradas** del mundo: produce petróleo y gas, los refina y los vende en estaciones de servicio, además de comercializar energía en todo el mundo. Tiene una de las mayores operaciones de trading de energía. Después de años apostando a las energías renovables, volvió a concentrarse en el petróleo y el gas.",
+    "En el tercer trimestre de 2026, con precios y márgenes de refinación altos, **su ganancia ajustada casi se cuadruplicó**, a 8.458 M, y su **deuda neta bajó de 22.251 M a 13.870 M** en solo tres meses. Pero registró 4.000 M de deterioros, lo que achicó su ganancia contable.",
+    "Buena empresa en recuperación, con activos de calidad, una deuda que baja rápido y un dividendo alto, pero con una historia de cambios de estrategia, una ganancia muy atada al precio del petróleo y un nuevo plan que se presentará en diciembre."
+   ],
+   "introduccion": "En 2020, BP anunció una de las apuestas más audaces de la industria: iba a dejar de ser una petrolera para convertirse en una empresa de energía. Prometió bajar su producción de petróleo y gas 40 % hacia 2030 e invertir miles de millones en energía eólica y solar. Al mismo tiempo, recortó su dividendo a la mitad.\n\nEl plan no funcionó como se esperaba. Las renovables daban retornos más bajos que el petróleo, y cuando los precios de la energía subieron tras la invasión rusa a Ucrania, sus competidores que se habían quedado con el petróleo, como ExxonMobil (XOM) y Chevron (CVX), ganaron mucho más. La acción de BP quedó rezagada y llegaron los inversores activistas.\n\nEn 2025, BP dio marcha atrás: recortó la inversión en renovables, volvió a apostar al petróleo y al gas y se propuso bajar su deuda vendiendo activos, como Castrol, su marca de lubricantes.\n\nEn abril de 2026 llegó una nueva CEO, Meg O'Neill, que venía de la petrolera australiana Woodside. Y los números empezaron a acompañar: en el tercer trimestre de 2026, con precios altos, ganó como pocas veces en los últimos años.\n\nEntonces, la pregunta es: ¿la nueva BP, de vuelta al petróleo, puede cerrar la brecha con sus competidores?",
+   "secciones": [
+    {
+     "titulo": "Del pozo al surtidor, y el trading",
+     "texto": "BP tiene tres grandes negocios:\n\n- **Producción de petróleo y gas**: unos 2,2 millones de barriles equivalentes por día, en el Golfo de México, el Mar del Norte, Medio Oriente, África y la Argentina, donde participa en Pan American Energy. Su confiabilidad operativa subió a 95,3 %.\n- **Refinación y clientes**: refinerías, estaciones de servicio y lubricantes Castrol, que está vendiendo. Sus refinerías trabajaron al 96,5 % de su disponibilidad.\n- **Gas y energía baja en carbono**: gas natural licuado, comercialización y lo que queda de su negocio de renovables.\n\nAdemás, tiene uno de los mayores negocios de **trading de energía** del mundo: compra y vende petróleo, gas y combustibles aprovechando diferencias de precio entre mercados. En épocas de disrupción, como la actual, ese negocio gana mucho.\n\nSus clientes son refinerías, distribuidoras, aerolíneas, industrias y millones de conductores.\n\n¿Cuál es su **ventaja**? La **escala** y la **integración**: produce, refina, vende y comercializa, y eso le permite ganar en distintas partes de la cadena según cómo se muevan los precios. A eso se suma la experiencia en aguas profundas, como el Golfo de México.\n\nLa inteligencia artificial no la amenaza; en todo caso, la ayuda en exploración y operación."
+    },
+    {
+     "titulo": "Una ganancia que sigue al petróleo",
+     "texto": "Los ingresos siguen al precio del petróleo: 241.392 M en 2022, 189.335 M en 2025 y **217.163 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) bajó de 17,2 % en 2022 a 7,2 % en 2024, y se recuperó a **11,2 %**. El promedio de su industria es 21,4 %. BP gana menos por cada venta que sus competidores, en parte porque una porción grande de sus ventas viene de refinar y comercializar, negocios de márgenes más chicos.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), subió a **15,7 %**. Por encima de 15 % se considera muy bueno. El promedio de su industria es 17,0 %.\n\n[[grafico:roic]]\n\nEn una petrolera, la empresa y los analistas del mercado miran la **ganancia ajustada a costo de reposición**: la ganancia sin el efecto de los cambios en el valor de los inventarios ni los cargos extraordinarios. En el tercer trimestre de 2026 fue de **8.458 M**, contra 2.210 M un año antes. La ganancia contable fue menor por 4.000 M de deterioros: BP bajó el valor de algunos activos.\n\nLa caja operativa fue de 14.829 M en el trimestre, y el **flujo libre de caja** (lo que queda después de invertir), de **16.143 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Una deuda que baja rápido",
+     "texto": "La gran noticia del trimestre fue la deuda. La deuda neta (lo que debe menos la caja) bajó de 26.054 M hace un año a **13.870 M**. Equivale a **0,53 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Y todavía falta cobrar la venta de Castrol, que según la empresa le aportará unos 6.000 M.\n\n[[grafico:deuda_neta]]\n\nOjo: BP también tiene **bonos híbridos**, una deuda perpetua que no entra en ese número. Por eso conviene mirar la deuda total con algo de cuidado.\n\nSu ganancia operativa paga los intereses del año 5 veces (por encima de 3 se considera sano).\n\nEl dividendo trimestral es de 8,66 centavos de dólar por acción (cada ADR representa 6 acciones), un 4 % más que un año antes. Pero todavía no recuperó el nivel previo al recorte de 2020: en los últimos diez años bajó en promedio 2 % por año.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **El precio del petróleo**: hoy alto; si baja, la ganancia cae.\n- **La estrategia**: BP cambió de rumbo varias veces; el 15 de diciembre presentará su nuevo plan.\n- **Los accidentes**: en 2010, la explosión de la plataforma Deepwater Horizon en el Golfo de México causó uno de los peores derrames de la historia y le costó decenas de miles de millones.\n- **La transición energética**: a largo plazo, la demanda de petróleo puede bajar.\n\nLa conduce Meg O'Neill, CEO desde 2026: \"Son tiempos dinámicos, con volatilidad y disrupciones en el comercio que siguen definiendo los mercados de energía\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En BP, el PER contable (cuántos años de ganancia se pagan al comprar la acción) sirve poco, porque la ganancia contable salta con los deterioros y el valor de los inventarios.\n\nConviene mirar el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio. Con el precio de {precio} dólares por ADR, BP cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nDurante años, el mercado pagó por BP menos que por ExxonMobil, Chevron o Shell, por sus cambios de estrategia y su deuda. Si la nueva gestión baja la deuda, mantiene la disciplina y el plan de diciembre convence, esa brecha puede achicarse. Si el petróleo cae, la ganancia y la caja bajan rápido.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "BP es una buena empresa en recuperación. Tiene activos de calidad, uno de los mayores negocios de trading de energía del mundo, una deuda que bajó muy rápido y un dividendo alto. Volvió a concentrarse en lo que mejor sabe hacer, y la nueva gestión arrancó con buenos números.\n\nSu punto débil es la historia: cambió de estrategia varias veces, quedó rezagada frente a sus competidores y sus márgenes son más bajos. Además, sus resultados actuales se apoyan en precios del petróleo y márgenes de refinación altos, que no van a durar para siempre. El crítico más duro diría que BP es una petrolera que todavía no sabe bien qué quiere ser. Es un argumento razonable, y el plan de diciembre debería responderlo.\n\nEncaja con quien busca un dividendo alto de una petrolera en recuperación, con potencial de achicar su brecha con los competidores. No es para quien busca estabilidad o una estrategia probada.\n\nPara que la tesis se mantenga, lo más importante es que la deuda siga bajando, que la venta de Castrol se cierre y que el plan del 15 de diciembre muestre disciplina en las inversiones.",
+   "pros": [
+    "Deuda en baja: de 26.054 M a 13.870 M en un año.",
+    "Trading de energía: gana en tiempos de disrupción.",
+    "Dividendo alto: en alza desde el recorte de 2020."
+   ],
+   "contras": [
+    "Depende del petróleo: hoy en precios altos.",
+    "Estrategia cambiante: nuevo plan en diciembre.",
+    "Márgenes más bajos: 11,2 % contra 21,4 % de su industria."
+   ],
+   "calidad": "Buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "BP se dedica al negocio del petróleo y el gas en todo el mundo. Opera tres segmentos: **Gas & Low Carbon Energy**, **Oil Production & Operations** y **Customers & Products**. Participa en la producción de gas natural, en actividades de comercialización y de trading, y en energía solar, eólica e hidrógeno. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al precio de la energía: **los ingresos cayeron 13,0 % en 2023 y 10,0 % en 2024, y subieron 0,1 % en 2025 hasta 189.335 M**, y llegan a 217.163 M en los últimos 12 meses.\n\n**A quién le vende.** A industrias, distribuidores, empresas de energía y consumidores de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de BP **es de escala y activos de bajo costo, y es débil**. Tiene yacimientos de petróleo y gas con costos competitivos, contratos de gas natural licuado, una red de estaciones de servicio y un negocio de trading de energía que aprovecha la volatilidad. Se ve en el margen bruto de 16,0 % a 22,9 % y en el ROIC que llegó a 29,3 % en 2022.\n\nPero el ROIC cayó a 8,6 % y 10,7 % en 2024 y 2025, y la ganancia neta casi desapareció, señal de que la ventaja no alcanza para sostener la rentabilidad cuando baja el precio. Compite con Shell, TotalEnergies, Exxon, Chevron y Eni. Es frágil en el precio de la energía, en la geopolítica, en el cambio de estrategia entre petróleo y renovables y en la presión de inversores activistas (dato público). La inteligencia artificial casi no la afecta.",
-   "numeros": "Los números de BP cuentan **un ciclo de precios con ganancia neta casi inexistente**. Los ingresos fueron de 241.392 M, 210.130 M, 189.185 M y 189.335 M, y de 217.163 M en los últimos 12 meses. El EBIT fue de 41.447 M, 31.049 M, 13.615 M y 15.808 M, y de **24.366 M** (margen operativo de 11,2 %). La ganancia neta fue de -2.487 M, 15.239 M, 381 M y 55 M, y de 5.492 M. La ganancia por acción fue de -0,79, 5,15, 0,14, 0,02 y **2,05**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 28.863 M, 17.754 M, 12.000 M y 11.272 M, y de **16.143 M** en los últimos 12 meses (7,4 % de los ingresos). El ROIC fue de 29,3 %, 17,0 %, 8,6 %, 10,7 % y 15,7 %.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (5.492 M) es solo 23 % del EBIT (24.366 M). La diferencia es por impuestos altos del sector, intereses y cargos que Yahoo no detalla (en 2022 también hubo una pérdida por la salida de Rusia, dato público). Mirar solo el EBIT sobrestima lo que le queda al accionista.",
-   "balance": "**Deuda alta en términos absolutos y patrimonio en baja.** La deuda total es de 72.693 M y la caja de 37.225 M. Yahoo informa una deuda neta de 21.169 M, que no coincide con la resta simple (35.468 M) porque probablemente usa la definición de la empresa, que excluye arrendamientos y otras partidas; con ese dato, la deuda neta/EBITDA es de 0,53x, unos 6 meses de EBITDA, y con la resta simple da unos 11 meses (cálculo propio). Los intereses se cubren 5,0 veces con el EBIT.\n\nEl patrimonio neto bajó de 70.283 M en 2023 a 58.428 M y la deuda equivale a 1,24 veces el patrimonio. La deuda total subió de 55.493 M a 72.693 M desde 2022.",
-   "gerencia": "Yahoo lista a Meg O'Neill como CEO y directora (55 años; sin dato de pago) y a Murray Auchincloss como asesor (55 años, pago de 6,0 M), lo que indica un cambio reciente de conducción, dato a verificar. Kate Thomson es la directora financiera (57 años, pago de 3,5 M).\n\nEn lo que importa, **el uso del capital cambió de recompras a dividendo**: paga un dividendo de 2,02 por acción (pagado desde 1962; sube 12,5 % por año en 3 años, pero cayó 2,0 % por año en 10; 5.144 M en los últimos 12 meses, 32 % del flujo libre) y recompró 9.996 M en 2022, 7.918 M, 7.127 M y 4.486 M en 2025. **Las acciones bajaron de 3.165 M a 2.603 M, un 17,8 % menos.**",
-   "fortalezas": [
-    "17,8 % menos acciones desde 2022.",
-    "Flujo libre de 16.143 M en los últimos 12 meses.",
-    "Dividendo pagado desde 1962 y creciendo 12,5 % por año en 3 años.",
-    "EBIT de 24.366 M en los últimos 12 meses, en rebote.",
-    "Caja de 37.225 M."
-   ],
-   "debilidades": [
-    "Ganancia neta casi nula en 2024 y 2025.",
-    "Patrimonio que bajó de 70.283 M a 58.428 M: el crítico más duro diría que los cargos destruyen más valor del que muestra el EBIT.",
-    "Deuda total que subió de 55.493 M a 72.693 M.",
-    "Recompras reducidas a menos de la mitad.",
-    "Cambio de conducción y de estrategia."
-   ],
-   "vigilar": [
-    "Ganancia neta: hoy 5.492 M en los últimos 12 meses; tiene que acercarse al EBIT.",
-    "Precio del Brent: hoy en máximos de cinco meses; si baja, el EBIT vuelve hacia 16.000 M.",
-    "Deuda total: hoy 72.693 M; no debería seguir subiendo.",
-    "Estrategia del nuevo CEO: Yahoo no la informa, hay que buscarla en el informe."
-   ],
    "clientes": [
-    "Industrias y empresas de energía",
-    "Distribuidores y estaciones de servicio",
-    "Consumidores de combustibles"
+    "Refinerías, distribuidoras y comercializadoras de energía",
+    "Aerolíneas e industrias",
+    "Conductores en sus estaciones de servicio"
    ],
-   "ideal_para": [
-    "Buscan una petrolera integrada con dividendo de décadas.",
-    "Valoran la recompra de acciones del pasado y el rebote actual.",
-    "Aceptan un caso de recuperación con cambio de conducción."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia ajustada a costo de reposición de 8.458 M (5.732 M en el 2T26; 2.210 M en el 3T25); ganancia a costo de reposición de 3.098 M; deterioros de 4.000 M; caja operativa de 14.829 M; deuda neta de 13.870 M (22.251 M en el 2T26; 26.054 M en el 3T25); la venta de Castrol aportará unos 6.000 M; dividendo de 8,660 centavos por acción (8,320); producción de unos 2,2 millones de barriles equivalentes por día; confiabilidad de 95,3 %; disponibilidad de refinación de 96,5 %; plan estratégico el 15/12/2026; frase de Meg O'Neill",
+     "fuente": "Comunicado de resultados del 3T26, 30/10/2026",
+     "url": "https://news.europawire.eu/bp-reports-8-5-billion-underlying-rc-profit-and-reduces-net-debt-to-13-9-billion-in-q3-2026/eu-press-release/2026/10/30/16/43/03/185233/"
+    },
+    {
+     "dato": "Llegada de Meg O'Neill desde Woodside en abril de 2026",
+     "fuente": "AJ Bell, 04/08/2026",
+     "url": "https://www.ajbell.co.uk/news/articles/bp-hails-balance-sheet-progress-quarterly-profit-beats-expectations"
+    }
    ],
-   "menos_ideal": [
-    "Buscan ganancias estables.",
-    "No toleran la exposición al precio de la energía ni los cargos extraordinarios."
-   ],
+   "ticker": "BP",
    "perfil": "energia",
    "capas": [
     "ciclica"
    ],
-   "ticker": "BP",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10278,54 +10333,60 @@
    }
   },
   "MO": {
-   "resumen": "Altria es una empresa estadounidense de tabaco: fabrica y vende cigarrillos (sobre todo la marca Marlboro), cigarros (Black & Mild), tabaco oral sin humo (Copenhagen, Skoal), bolsitas orales de nicotina (on!) y productos de vapeo, solo en Estados Unidos. Gana plata vendiendo un producto que genera hábito, con precios que sube cada año para compensar la baja en la cantidad de cigarrillos. Tiene un **foso estrecho, de marca y distribución**: Marlboro es la marca líder del mercado estadounidense (dato público), las restricciones a la publicidad hacen casi imposible lanzar una marca nueva y su red llega a cientos de miles de comercios. Los números son de un negocio extremadamente rentable que se achica: el margen operativo es de **59,9 %**, el ROIC de **42,8 %** y el flujo libre de **9.112 M** (44,6 % de los ingresos), con inversiones de solo 296 M. Pero los ingresos cayeron todos los años (de 20.688 M a 20.139 M en 2025), la ganancia neta salta por resultados no operativos (de 5.764 M en 2022 a 11.264 M en 2024 y 6.947 M en 2025, dato a verificar) y el patrimonio es negativo (-2.668 M). Hay 6,7 % menos acciones que en 2022, el dividendo se paga desde 1962 y el rendimiento es alto, pero absorbe 77 % del flujo libre y la deuda neta es de 22.210 M. Su punto débil es la caída estructural del consumo de cigarrillos y la regulación. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de buena calidad financiera, con márgenes extraordinarios y dividendo de 65 años, pero en un mercado que se achica, con patrimonio negativo y riesgo regulatorio.**",
-   "veredicto": "Buena: márgenes extraordinarios, ROIC de 42,8 % y dividendo de 65 años, en un mercado que se achica y con riesgo regulatorio",
-   "conclusion": "Altria es una empresa de buena calidad financiera: tiene un foso estrecho de marca, margen operativo de 59,9 %, ROIC de 42,8 %, flujo libre de 9.112 M y dividendo desde 1962, pero los ingresos caen todos los años, el patrimonio es negativo y la regulación es una amenaza permanente. Hay que seguirla de cerca. Es recomendable investigar la caída de volúmenes y los productos de nicotina nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los aumentos de precio sigan compensando la baja de volúmenes.",
+   "formato": "v4",
+   "titulo": "Altria: Marlboro vende cada año menos cigarrillos, pero gana más y paga un dividendo muy alto",
+   "resumen": [
+    "Altria es la mayor **tabacalera** de EE.UU.: vende los cigarrillos **Marlboro** en ese país, además de tabaco para mascar, bolsitas de nicotina (**on!**) y cigarrillos electrónicos. No vende fuera de EE.UU. Su ventaja es la marca más fuerte de su industria, que le permite subir precios aunque venda menos.",
+    "En el tercer trimestre de 2026, **sus ventas de cigarrillos cayeron 2,9 %**, pero su ganancia ajustada por acción **subió 4,8 %**, a 1,52 dólares, gracias a las subas de precio y a las recompras. Subió lo que espera ganar en el año y amplió su programa de recompras.",
+    "Buena empresa, con márgenes altísimos, mucha caja y un dividendo que sube hace décadas, pero en un negocio que se achica año tras año y que todavía no encontró un reemplazo para el cigarrillo."
+   ],
+   "introduccion": "En EE.UU., cada año se fuman menos cigarrillos. La industria vende entre 3 % y 5 % menos por año, y en 2026 la caída se acercó a 5 %. Es la consecuencia de décadas de campañas de salud, impuestos altos y prohibiciones de fumar en lugares públicos.\n\nUno pensaría que una empresa que vende cigarrillos está condenada. Pero Altria lleva décadas siendo una de las acciones más rentables de la bolsa de EE.UU.\n\n¿Cómo puede ser? Por el **poder de precios**. Los fumadores son muy fieles a su marca, y la adicción hace que la demanda cambie poco cuando sube el precio. Entonces Altria sube los precios todos los años más de lo que caen sus ventas, y su ganancia sigue creciendo. Además, casi no necesita invertir, así que reparte casi toda la caja.\n\nPero ese truco tiene un límite: algún día, los fumadores van a ser tan pocos que subir precios no alcanzará. Por eso las tabacaleras buscan reemplazos: bolsitas de nicotina, cigarrillos electrónicos, tabaco calentado. Ahí, Altria llegó tarde. Su apuesta a JUUL, por 12.800 M en 2018, terminó casi en cero.\n\nEntonces, la pregunta es: ¿cuánto tiempo más puede Altria crecer vendiendo un producto que cada año se consume menos?",
+   "secciones": [
+    {
+     "titulo": "Marlboro y la búsqueda del reemplazo",
+     "texto": "Altria tiene dos grandes negocios:\n\n- **Productos para fumar**: cigarrillos (Marlboro, Parliament, Basic) y cigarros. Es casi todo el negocio. Marlboro tiene el 39,5 % del mercado de cigarrillos de EE.UU., un punto menos que hace un año, y el 60 % de las marcas premium.\n- **Tabaco oral**: tabaco para mascar (Copenhagen, Skoal) y bolsitas de nicotina **on!**, que vendió 47,8 millones de latas en el trimestre, un 13,3 % más.\n\nTambién tiene **NJOY**, una marca de cigarrillos electrónicos que compró en 2023, pero su producto principal está fuera del mercado por un litigio de patentes con Juul, y no espera que vuelva en 2026. Y tiene una participación en la cervecera Anheuser-Busch InBev.\n\nSus clientes son mayoristas y comercios de EE.UU. (estaciones de servicio, kioscos, supermercados), y a través de ellos, decenas de millones de consumidores adultos.\n\n¿Cuál es su **ventaja**? La **marca** y la **regulación**. Marlboro es la marca de cigarrillos más valiosa del mundo. Y la regulación, paradójicamente, la protege: en EE.UU. está prohibido hacer publicidad de cigarrillos en televisión, así que es casi imposible que una marca nueva le gane clientes.\n\nLa inteligencia artificial no la amenaza."
+    },
+    {
+     "titulo": "Menos volumen, más precio",
+     "texto": "Los ingresos están estables: 20.688 M en 2022 y **20.444 M** en los últimos 12 meses. Vende menos cigarrillos, pero más caros.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **59,9 %**. El promedio de su industria es 43,5 %. De cada 100 dólares que vende, casi 60 son ganancia operativa: muy pocas empresas del mundo llegan a eso.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **42,8 %**. Por encima de 15 % se considera muy bueno. Es altísimo porque un negocio de cigarrillos necesita muy poco capital: las fábricas ya existen y la marca ya está construida.\n\n[[grafico:roic]]\n\nPara entender el modelo, un ejemplo: si Altria vende 4 % menos cigarrillos, pero sube el precio 8 %, sus ingresos crecen cerca de 4 %. Si los costos casi no cambian, la ganancia crece aún más. Eso funciona mientras los fumadores acepten pagar más. Si la caída de ventas se acelera, el modelo se resiente: por eso conviene mirar el volumen en cada informe.\n\nPara 2026 espera una ganancia ajustada de 5,66 a 5,74 dólares por acción, entre 4,5 % y 6,0 % más que en 2025.\n\nEl **flujo libre de caja** (lo que queda después de invertir) es de **9.112 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Un dividendo muy alto y un patrimonio negativo",
+     "texto": "Casi toda la caja vuelve a los accionistas. El dividendo es de 4,44 dólares por acción por año: lo subió por 61.ª vez en 57 años. Creció 6,7 % por año en los últimos diez.\n\n[[grafico:dividendo]]\n\nAdemás, amplió en 1.000 M su programa de recompra de acciones. En el tercer trimestre recompró 5,9 millones de acciones por 400 M.\n\nLa deuda neta (lo que debe menos la caja) es de **22.210 M** y equivale a **1,88 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 10 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nUn detalle: su **patrimonio contable es negativo**. No significa que esté quebrada: devolvió a sus accionistas, durante años, más plata de la que ganaba, con dividendos y recompras, y además registró grandes pérdidas por JUUL. Es posible porque su caja es muy estable.\n\nLos riesgos:\n\n- **El volumen**: si la caída de cigarrillos se acelera, subir precios ya no alcanza.\n- **Los productos ilegales**: los cigarrillos electrónicos ilegales, muchos importados de China, le quitan clientes.\n- **La regulación**: un límite a la nicotina o la prohibición del mentol golpearía sus ventas.\n- **Los reemplazos**: llegó tarde y con poco éxito a los productos sin humo.\n\nLo conduce Sal Mancuso, su CEO: \"Altria tuvo un fuerte desempeño financiero en el tercer trimestre\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Altria, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Altria cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**, porque en Altria casi toda la caja va a los accionistas: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nEl mercado paga poco por Altria porque su negocio se achica: nadie sabe cuántos años más puede crecer subiendo precios. A cambio, ofrece un dividendo muy alto. Para muchos inversores, Altria funciona casi como un bono: compran por el dividendo, no por el crecimiento.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Altria es una buena empresa. Tiene la marca de cigarrillos más fuerte de su industria, un poder de precios que le permite ganar más vendiendo menos, márgenes que casi ninguna empresa del mundo alcanza, una caja muy estable y un dividendo que sube hace décadas.\n\nSu punto débil es que vende un producto que se consume cada vez menos, y que todavía no encontró un reemplazo: JUUL fue un fracaso, NJOY está trabado y on! pierde participación en las bolsitas de nicotina. El crítico más duro diría que Altria es un negocio en lenta liquidación, que reparte lo que queda. Es un argumento razonable, aunque esa liquidación lleva décadas.\n\nEncaja con quien busca un dividendo muy alto y estable, y acepta un negocio sin crecimiento real. No es para quien busca crecimiento o tiene reparos éticos con el tabaco.\n\nPara que la tesis se mantenga, lo más importante es que la caída de cigarrillos no supere el 5 % o 6 % anual y que la empresa pueda seguir subiendo precios.",
+   "pros": [
+    "Poder de precios: gana más aunque venda menos.",
+    "Márgenes altísimos: 59,9 % operativo.",
+    "Dividendo muy alto: 61 aumentos en 57 años."
+   ],
+   "contras": [
+    "Negocio en declive: los cigarrillos caen cerca de 5 % por año.",
+    "Sin reemplazo: JUUL fracasó y NJOY está trabado.",
+    "Regulación: límites a la nicotina o al mentol."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Altria fabrica y vende productos de tabaco para fumar y orales en Estados Unidos. Ofrece cigarrillos, principalmente bajo la marca Marlboro; cigarros y tabaco para pipa (Black & Mild); tabaco sin humo húmedo y oral (Copenhagen, Skoal, Red Seal y Husky); bolsitas orales de nicotina (on!); y productos de vapeo. Yahoo no informa cuánto aporta cada categoría, y no lo vamos a inventar.\n\nEs un negocio en retroceso suave: **los ingresos cayeron 0,9 % en 2023, 0,3 % en 2024 y 1,5 % en 2025, hasta 20.139 M**, y se mantienen en 20.444 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas y minoristas de Estados Unidos, que a su vez venden a los fumadores. **Ningún cliente pesa de forma decisiva**, aunque pocos distribuidores concentran las ventas (dato público a verificar).",
-   "foso": "La ventaja de Altria **es de marca y distribución, y es estrecha**. Marlboro es la marca de cigarrillos más vendida de Estados Unidos (dato público), las restricciones a la publicidad hacen casi imposible que una marca nueva compita, y su red de distribución llega a cientos de miles de comercios. Eso le permite subir precios año tras año y compensar la caída en la cantidad de cigarrillos vendidos. Se ve en el margen bruto, que subió de 68,9 % a 72,2 %, y en el margen operativo de 59,9 %.\n\nPero el mercado se achica de forma estructural y la regulación es una amenaza permanente (por ejemplo, posibles prohibiciones de mentolados o límites a la nicotina, dato público). Compite con Reynolds (British American Tobacco), Philip Morris International (en productos de nicotina nuevos) y con vapeadores ilegales. Es frágil en la caída de volúmenes, en la regulación y en los juicios. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de Altria cuentan **un negocio de márgenes extraordinarios que no crece**. Los ingresos fueron de 20.688 M, 20.502 M, 20.444 M y 20.139 M, y de 20.444 M en los últimos 12 meses. El EBIT fue de 11.919 M, 11.547 M, 11.630 M y 12.035 M, y de **12.256 M** (margen operativo de 59,9 %). La ganancia neta fue de 5.764 M, 8.130 M, 11.264 M y 6.947 M, y de 7.973 M. La ganancia por acción fue de 3,19, 4,57, 6,54 y 4,12.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.051 M, 9.091 M, 8.611 M y 9.074 M, y de **9.112 M** en los últimos 12 meses (44,6 % de los ingresos), con inversiones de solo 296 M. El ROIC fue de 40,9 %, 37,9 %, 42,3 %, 40,1 % y 42,8 %. El ROE es negativo y no sirve porque el patrimonio es negativo.\n\nLa mirada crítica: la ganancia neta salta mucho por resultados no operativos (por ejemplo, ganancias o pérdidas de inversiones en otras empresas; Yahoo no lo detalla, dato a verificar). El EBIT y el flujo libre son los números confiables.",
-   "balance": "**Deuda moderada, patrimonio negativo y cobertura sólida.** La deuda total es de 24.577 M y la caja de 2.367 M; la deuda neta es de 22.210 M y la deuda neta/EBITDA es de 1,88x, que multiplicado por 12 son unos 23 meses de EBITDA. Los intereses se cubren 10,3 veces con el EBIT.\n\nEl patrimonio neto es negativo (-2.668 M) por años de dividendos y recompras mayores que las ganancias retenidas, algo habitual en empresas que devuelven casi todo el flujo libre. La deuda total se mantuvo entre 24.577 M y 26.680 M.",
-   "gerencia": "La conduce Sal Mancuso, CEO y director (60 años, pago de 3,6 M según Yahoo), con Heather Newman como directora financiera (48 años, pago de 2,3 M). Yahoo lista a Billy Gifford, el CEO anterior, como consultor (pago de 10,3 M), lo que indica un cambio reciente de conducción, dato a verificar.\n\nEn lo que importa, **el uso del capital es de dividendo muy alto y recompras moderadas**: paga un dividendo de 4,44 por acción (pagado desde 1962; sube 4,2 % por año en 3 años; 7.062 M en los últimos 12 meses, 77 % del flujo libre) y recompró 1.825 M en 2022, 1.000 M, 3.400 M, 1.000 M y 735 M en los últimos 12 meses. **Las acciones bajaron de 1.804 M a 1.683 M, un 6,7 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 59,9 % y ROIC de 42,8 %.",
-    "Flujo libre de 9.112 M, 44,6 % de los ingresos.",
-    "Dividendo pagado desde 1962 y creciendo 4,2 % por año.",
-    "6,7 % menos acciones desde 2022.",
-    "Marca líder con barreras a la publicidad de competidores."
-   ],
-   "debilidades": [
-    "Ingresos en baja todos los años.",
-    "Mercado que se achica y regulación permanente: el crítico más duro diría que la rentabilidad actual financia un negocio en declive.",
-    "Patrimonio negativo (-2.668 M).",
-    "Dividendo que absorbe 77 % del flujo libre.",
-    "Ganancia neta con resultados no operativos."
-   ],
-   "vigilar": [
-    "Volumen de cigarrillos: Yahoo no lo informa, hay que buscarlo en el informe.",
-    "Ingresos: hoy -1,5 % en 2025; si la caída se acelera, los aumentos de precio no alcanzan.",
-    "Regulación de mentolados y nicotina: define el futuro del negocio.",
-    "Flujo libre contra dividendo: hoy 9.112 M contra 7.062 M."
-   ],
    "clientes": [
-    "Mayoristas y distribuidores de tabaco",
-    "Minoristas y comercios de conveniencia",
-    "Fumadores y consumidores de nicotina en Estados Unidos"
+    "Mayoristas y distribuidores de EE.UU.",
+    "Estaciones de servicio, kioscos y supermercados",
+    "Decenas de millones de consumidores adultos"
    ],
-   "ideal_para": [
-    "Buscan flujo libre alto y dividendo de décadas.",
-    "Aceptan un negocio en declive suave.",
-    "Entienden el riesgo regulatorio."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 6.132 M (+1,0 %); ingresos sin impuestos especiales de 5.441 M (+3,6 %); ganancia por acción de 1,51 dólares (+7,1 %) y ajustada de 1,52 (+4,8 %); cigarrillos -2,9 % (industria, cerca de -5 %); Marlboro con 39,5 % del mercado (-1,0 punto) y 60 % del segmento premium; on! 47,8 millones de latas (+13,3 %), 13,5 % de las bolsitas de nicotina (-1,3 puntos); NJOY ACE fuera del mercado en 2026; dividendo de 4,44 dólares anuales, 61.º aumento en 57 años; recompras ampliadas en 1.000 M y 400 M recomprados en el trimestre; guía 2026: ganancia ajustada de 5,66 a 5,74 dólares; frase de Sal Mancuso",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://www.stocktitan.net/news/MO/altria-reports-2026-third-quarter-and-nine-months-results-announces-peiw4394x8ei.html"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento de ingresos.",
-    "No toleran la exposición al tabaco ni a la regulación."
-   ],
+   "ticker": "MO",
    "perfil": "consumo",
    "capas": [],
-   "ticker": "MO",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -11093,54 +11154,72 @@
    }
   },
   "BMY": {
-   "resumen": "Bristol-Myers Squibb es una empresa estadounidense farmacéutica: descubre, desarrolla, fabrica y vende medicamentos para oncología, hematología, inmunología, enfermedades cardiovasculares y neurociencias, con productos como Opdivo y su versión subcutánea Opdivo Qvantig (según Yahoo). Gana plata vendiendo medicamentos protegidos por patentes, sobre todo contra el cáncer. Tiene un **foso estrecho, de patentes y escala en inmunooncología**, con vencimientos que se acercan en los próximos años (dato público a verificar). Los números mezclan fortaleza y cautela: el flujo libre fue de **11.440 M** en los últimos 12 meses (23,3 % de los ingresos), el margen operativo de **28,1 %** y el ROIC de **16,3 %**, con 4,8 % menos acciones que en 2022. Pero los ingresos están planos (de 46.159 M a 49.187 M en cuatro años), el margen bruto cayó de 78,0 % a 70,2 %, en 2024 hubo una pérdida de 8.948 M por un cargo que Yahoo no detalla (probable compra de empresas de investigación, dato a verificar) y la deuda neta es de 34.398 M. El salto del EBIT de 2025 sobre ingresos planos refleja la ausencia de cargos, no un negocio que mejore. El dividendo, de 2,52 por acción desde 1972, absorbe 45 % del flujo libre. Su punto débil es depender de productos cuyas patentes vencen. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con flujo libre de 11.440 M y ROIC de 16,3 %, pero con ingresos planos, deuda neta de 34.398 M y patentes importantes por vencer.**",
-   "veredicto": "Buena: flujo libre de 11.440 M y ROIC de 16,3 %, pero ingresos planos, deuda neta de 34.398 M y patentes por vencer",
-   "conclusion": "Bristol-Myers Squibb es una empresa de buena calidad: tiene un foso estrecho de patentes, flujo libre de 11.440 M, ROIC de 16,3 %, margen operativo de 28,1 % y dividendo desde 1972, pero los ingresos están planos, la deuda neta es de 34.398 M y varias patentes importantes vencen en los próximos años. Hay que seguirla de cerca. Es recomendable investigar el peso de cada producto y los lanzamientos nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los productos nuevos reemplacen a los que pierden protección.",
+   "formato": "v4",
+   "titulo": "Bristol Myers Squibb: una carrera contra el vencimiento de sus patentes, con un dividendo alto",
+   "resumen": [
+    "Bristol Myers Squibb es uno de los grandes **laboratorios** de EE.UU. Sus medicamentos más vendidos son **Eliquis** (anticoagulante, compartido con Pfizer) y **Opdivo** (inmunoterapia contra el cáncer). Apuesta a una nueva generación de medicamentos para cáncer, sangre, corazón y enfermedades psiquiátricas. Su ventaja es una cartera amplia de medicamentos protegidos por patentes y una gran capacidad de investigación.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 7 %**, a 13.070 M, y sus medicamentos nuevos, 12 %. Subió lo que espera vender en el año, pero bajó su guía de ganancia por un cargo de 0,58 dólares por acción vinculado a compras de investigación.",
+    "Buena empresa, con un dividendo alto y medicamentos nuevos que crecen, pero que enfrenta el vencimiento de las patentes de sus dos grandes productos en los próximos años, con una deuda importante."
+   ],
+   "introduccion": "Un laboratorio vive de sus patentes. Mientras un medicamento está protegido, solo esa empresa puede venderlo, y a buen precio. Cuando la patente vence, aparecen las copias (los genéricos o, en medicamentos biológicos, los biosimilares) y las ventas pueden caer más de la mitad en pocos años.\n\nBristol Myers Squibb conoce bien ese golpe. En 2019 compró Celgene por unos 74.000 M, en gran parte por **Revlimid**, un tratamiento para un cáncer de la sangre que vendía más de 10.000 M por año. Desde que llegaron las copias, sus ventas se derrumbaron: en el segundo trimestre de 2026 cayeron 49 %.\n\nY el próximo desafío ya está a la vista. Eliquis empieza a perder su protección en Europa, y Opdivo enfrentará copias hacia el final de la década. Entre los dos (con la nueva versión de Opdivo), suman más de la mitad de sus ventas.\n\nLa respuesta de Bristol es su **cartera de crecimiento**: medicamentos nuevos que ya superan a los viejos en ventas. Y una apuesta fuerte a la psiquiatría con Cobenfy, un tratamiento para la esquizofrenia que obtuvo al comprar Karuna por unos 14.000 M.\n\nEntonces, la pregunta es: ¿alcanzan los medicamentos nuevos para compensar las patentes que vencen?",
+   "secciones": [
+    {
+     "titulo": "Dos carteras: la que crece y la que se va",
+     "texto": "Bristol Myers divide sus ventas en dos grandes grupos. En el tercer trimestre de 2026:\n\n- **Cartera de crecimiento** (7.700 M, +12 %): medicamentos nuevos o con patente larga. Entre ellos, **Breyanzi** (terapia celular contra el cáncer, +48 %), **Camzyos** (para una enfermedad del corazón, +42 %), **Reblozyl** (anemia), **Opdivo Qvantig** (la versión de Opdivo que se aplica bajo la piel, 334 M) y **Cobenfy** (esquizofrenia, 57 M). Opdivo también cuenta acá: cayó 6 %, a unos 2.400 M, en parte porque los pacientes se pasan a Qvantig.\n- **Cartera tradicional** (+1 %): medicamentos maduros. El principal es **Eliquis**, que creció 26 %, a unos 4.700 M. Revlimid y otros siguen cayendo.\n\nSus clientes son hospitales, farmacias, aseguradoras, administradoras de recetas y sistemas de salud de todo el mundo.\n\n¿Cuál es su **ventaja**? Las **patentes** y la **investigación**. Mientras sus medicamentos están protegidos, nadie puede copiarlos. Y su gran presupuesto de investigación le permite desarrollar o comprar los próximos.\n\nLa inteligencia artificial no la amenaza; la empresa dice que ya la usa para acelerar su investigación."
+    },
+    {
+     "titulo": "Una ganancia que salta con las compras",
+     "texto": "Los ingresos están estables: 46.159 M en 2022 y **49.187 M** en los últimos 12 meses. Para 2026 espera entre 49.750 M y 50.250 M.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **28,1 %**. El promedio de su industria es 29,5 %.\n\n[[grafico:margen_operativo]]\n\nLa ganancia contable salta mucho por las compras de empresas. En 2024 perdió 4,41 dólares por acción, sobre todo por el cargo de la compra de Karuna: cuando un laboratorio compra un medicamento todavía en investigación, registra casi todo el precio como gasto de una vez. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**: para 2026 espera entre 6,35 y 6,55 dólares por acción, menos que lo que esperaba antes por un nuevo cargo de este tipo.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **16,3 %**. Por encima de 15 % se considera muy bueno.\n\nLo más sólido es la **caja**: **11.440 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. Además, espera ahorrar 2.000 M por año en costos hacia fines de 2027.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Deuda, dividendo y el reloj de las patentes",
+     "texto": "La deuda neta (lo que debe menos la caja) es de **34.398 M** y equivale a **2,05 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; está justo en el límite. Su ganancia operativa paga los intereses del año 8 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nEl dividendo es de 2,52 dólares por acción por año. Lo paga desde 1972 y creció 5,2 % por año en los últimos diez. Con la caja que genera, alcanza para pagarlo con holgura.\n\n[[grafico:dividendo]]\n\nEl gran tema es el **reloj de las patentes**:\n\n- **Eliquis**: la empresa espera que sus ventas caigan entre 1.500 M y 2.000 M en 2027, cuando pierda la protección en Europa.\n- **Opdivo**: enfrentará copias hacia el final de la década; Qvantig busca retener a parte de esos pacientes.\n- **Precios en EE.UU.**: el gobierno negocia precios más bajos para los medicamentos más vendidos.\n- **La investigación**: varios estudios clave de milvexian (anticoagulante) y de Cobenfy en Alzheimer tienen resultados en 2026 y 2027. Un fracaso pesaría mucho.\n\nLo conduce Chris Boerner, CEO desde 2023."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Bristol Myers, el PER contable (cuántos años de ganancia se pagan al comprar la acción) sirve poco, porque la ganancia contable salta con cada compra. Usamos la ganancia ajustada que espera la empresa para 2026: unos 6,45 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, Bristol cotiza a {per_ref} veces esa ganancia.\n\nTambién sirve el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces). Y el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl mercado paga poco por Bristol porque descuenta que la ganancia va a bajar cuando venzan las patentes de Eliquis y Opdivo. Un múltiplo bajo solo es barato si los medicamentos nuevos logran compensar esa caída.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}.",
+    "ganancia_ref": 6.45,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (6,35 a 6,55 dólares)"
+   },
+   "conclusion": "Bristol Myers Squibb es una buena empresa. Tiene medicamentos nuevos que crecen a doble dígito y ya superan a los viejos, una caja muy fuerte, un plan de ahorro de costos y un dividendo alto que paga hace más de 50 años.\n\nSu punto débil es el reloj de las patentes. Eliquis y Opdivo, sus dos grandes productos, van a enfrentar copias en los próximos años, y la empresa tiene una deuda en el límite de lo cómodo. Además, sus grandes compras, como Celgene y Karuna, todavía tienen que demostrar que valieron lo que costaron. El crítico más duro diría que Bristol compra crecimiento caro para tapar lo que pierde. Es un argumento serio.\n\nEncaja con quien busca un dividendo alto y acepta varios años de incertidumbre por las patentes. No es para quien busca crecimiento estable.\n\nPara que la tesis se mantenga, lo más importante es que la cartera de crecimiento siga creciendo a doble dígito y que los estudios clave de milvexian y Cobenfy salgan bien.",
+   "pros": [
+    "Medicamentos nuevos: la cartera de crecimiento sube 12 %.",
+    "Mucha caja: 11.440 M de flujo libre en los últimos 12 meses.",
+    "Dividendo alto: lo paga desde 1972."
+   ],
+   "contras": [
+    "Patentes por vencer: Eliquis y Opdivo en los próximos años.",
+    "Deuda en el límite: 2,05 veces su EBITDA.",
+    "Compras caras: cargos que golpean la ganancia."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "bajo",
-   "negocio": "Bristol-Myers Squibb descubre, desarrolla, otorga licencias, fabrica, comercializa, distribuye y vende productos biofarmacéuticos a nivel mundial. Ofrece productos para oncología, hematología, inmunología, enfermedades cardiovasculares y neurociencias. Según Yahoo, sus productos incluyen **Opdivo** (oncología) y **Opdivo Qvantig**, un inhibidor de PD-1 subcutáneo para tumores sólidos, entre otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio maduro con ingresos casi planos: **los ingresos cayeron 2,5 % en 2023, subieron 7,3 % en 2024 y bajaron 0,2 % en 2025, hasta 48.195 M**, y llegan a 49.187 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, hospitales, farmacias y sistemas de salud; en Estados Unidos, pocos distribuidores concentran las compras (dato público a verificar).",
-   "foso": "La ventaja de Bristol-Myers **es de patentes y escala en oncología e inmunología, y es estrecha**. Un medicamento patentado no tiene copia directa mientras dura la protección y los oncólogos prefieren tratamientos con años de evidencia clínica. Se ve en el margen bruto de 70,2 % y en el margen operativo de 28,1 %.\n\nPero el margen bruto bajó de 78,0 % a 70,2 % en cuatro años y varios productos importantes enfrentan vencimiento de patentes en los próximos años (dato público a verificar). Compite con Merck, Roche, AstraZeneca, Pfizer y AbbVie. Es frágil en el vencimiento de patentes, en la presión de precios (Medicare) y en que sus lanzamientos nuevos no alcancen para reemplazar lo que se pierde. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de Bristol-Myers cuentan **un negocio plano con cargos extraordinarios que distorsionan los años**. Los ingresos fueron de 46.159 M, 45.006 M, 48.300 M y 48.195 M, y de 49.187 M en los últimos 12 meses. El EBIT fue de 9.104 M, 8.195 M, 5.887 M y 13.724 M, y de **13.842 M** (margen operativo de 28,1 %). La ganancia neta fue de 6.327 M, 8.025 M, **-8.948 M** y 7.054 M, y de 9.282 M. La ganancia por acción fue de 2,95, 3,86, -4,41, 3,46 y **4,54**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 11.948 M, 12.651 M, 13.942 M y 12.845 M, y de **11.440 M** (23,3 %), en baja en los últimos 12 meses. El ROIC fue de 10,6 %, 11,3 %, 6,6 %, 16,3 % y 16,3 %. El ROE de 41,6 % no sirve para comparar porque el patrimonio es chico (22.319 M).\n\nLa mirada crítica: con ingresos planos, el EBIT saltó de 5.887 M a 13.724 M; la diferencia se explica por cargos de 2024 que Yahoo no detalla. El flujo libre, que no se mueve tanto, es la medida más confiable.",
-   "balance": "**Deuda alta pero con cobertura sólida.** La deuda total es de 45.053 M y la caja de 11.067 M; la deuda neta es de 34.398 M y la deuda neta/EBITDA es de 2,05x, que multiplicado por 12 son unos 25 meses de EBITDA. Los intereses se cubren 8,0 veces con el EBIT.\n\nEl patrimonio neto es de 22.319 M y la deuda equivale a 2,0 veces el patrimonio. La deuda total subió de 41.464 M en 2023 a 51.200 M en 2024, y bajó a 45.053 M. La liquidez corriente es de 1,53x.",
-   "gerencia": "La conduce Christopher Boerner, CEO y presidente del directorio (54 años, pago de 5,8 M según Yahoo), con David Elkins como director financiero (57 años, pago de 3,2 M). Boerner es CEO desde 2023, dato público.\n\nEn lo que importa, **el uso del capital priorizó el dividendo y frenó las recompras**: paga un dividendo de 2,52 por acción (desde 1972; sube 4,7 % por año en 3 años; 5.095 M en los últimos 12 meses, 45 % del flujo libre) y recompró 8.001 M en 2022 y 5.155 M en 2023, y nada desde 2024. **Las acciones bajaron de 2.146 M a 2.044 M, un 4,8 % menos.**",
-   "fortalezas": [
-    "Flujo libre de 11.440 M, 23,3 % de los ingresos.",
-    "ROIC de 16,3 % y margen operativo de 28,1 %.",
-    "Dividendo pagado desde 1972 con payout de 45 %.",
-    "4,8 % menos acciones desde 2022.",
-    "Cobertura de intereses de 8,0 veces."
-   ],
-   "debilidades": [
-    "Ingresos planos en cuatro años.",
-    "Margen bruto bajó de 78,0 % a 70,2 %.",
-    "Patentes importantes por vencer: el crítico más duro diría que la rentabilidad actual no está asegurada.",
-    "Deuda neta de 34.398 M.",
-    "Cargos extraordinarios que distorsionan los resultados."
-   ],
-   "vigilar": [
-    "Ingresos: hoy +2 % en 12 meses; tienen que crecer para compensar los vencimientos.",
-    "Margen bruto: hoy 70,2 %; si baja de 68 %, hay presión de precios.",
-    "Deuda neta: hoy 34.398 M; tiene que bajar con el flujo libre.",
-    "Ingresos por producto: Yahoo no los informa, hay que buscarlos en el informe."
-   ],
    "clientes": [
-    "Mayoristas y distribuidores de medicamentos",
-    "Hospitales y centros de oncología",
-    "Sistemas de salud y aseguradoras"
+    "Hospitales y farmacias",
+    "Aseguradoras y administradoras de recetas de EE.UU.",
+    "Sistemas de salud de todo el mundo"
    ],
-   "ideal_para": [
-    "Buscan dividendo de décadas y flujo libre alto.",
-    "Aceptan el riesgo de vencimiento de patentes.",
-    "Valoran un caso de recuperación en ingresos."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 13.070 M (+7 %); cartera de crecimiento de 7.700 M (+12 %); cartera tradicional +1 %; Eliquis unos 4.700 M (+26 %); Opdivo unos 2.400 M (-6 %); Qvantig 334 M; Breyanzi 526 M (+48 %); Camzyos 420 M (+42 %); Cobenfy 57 M (+33 %); ganancia ajustada de 1,35 dólares por acción, con un cargo de 0,58; ahorros de 2.000 M hacia fines de 2027; caída de Eliquis de 1.500 M a 2.000 M esperada en 2027; estudios de milvexian y Cobenfy en 2026 y 2027",
+     "fuente": "Resumen de la conferencia del 3T26, 10/2026",
+     "url": "https://finance.yahoo.com/healthcare/articles/bristol-myers-squibb-q3-earnings-031406674.html"
+    },
+    {
+     "dato": "Guía 2026: ventas de 49.750 M a 50.250 M (antes 49.000 M a 50.000 M); ganancia ajustada de 6,35 a 6,55 dólares (antes 6,75 a 7,00) por el cargo del trimestre",
+     "fuente": "Reuters, vía SRN News, 29/10/2026",
+     "url": "https://srnnews.com/bristol-myers-raises-2026-revenue-forecast-lowers-eps-due-to-charge/"
+    },
+    {
+     "dato": "Segundo trimestre de 2026: Revlimid -49 %",
+     "fuente": "Pulse 2.0, 02/08/2026",
+     "url": "https://pulse2.com/bristol-myers-squibb-growth-portfolio-surpasses-legacy-medicines-as-revenue-outlook-rises-by-up-to-3-billion/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento de ingresos.",
-    "No toleran los cargos extraordinarios ni la deuda alta."
-   ],
+   "ticker": "BMY",
    "perfil": "salud",
    "capas": [],
-   "ticker": "BMY",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",

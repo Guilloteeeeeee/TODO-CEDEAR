@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.7 (01/11/2026): Análisis Fundamental nuevo, tanda 15
+
+- Reescritas con el formato v4: LMT, SPGI, WDC, BMY, BP, MO, PLD y ADP. Van 111 de 166.
+- Las empresas que publican resultados en las próximas semanas se escriben después de su informe.
+
 ### v1.3.6 (01/11/2026): Análisis Fundamental nuevo, tanda 14
 
 - Reescritas con el formato v4: SCCO, T, ACN, SONY, BA, UL, IBKR, BX, BBVA y RIO. Van 103 de 166.
