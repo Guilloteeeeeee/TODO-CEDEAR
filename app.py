@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.1"
+APP_VERSION = "1.4.2"
 
 import re
 import contextlib
@@ -298,6 +298,9 @@ def _extras_empresa(ticker: str) -> dict:
     # v1.2.59: lo que Yahoo no contesto desde la nube se completa con el archivo data/paquetes_yahoo.json (lo baja bajar_paquetes_yahoo.bat)
     guardado, fecha_g = _paquetes_guardados()
     res, usadas = _py.completar(res, guardado.get(ticker.upper()))
+    if isinstance(res.get("estados"), dict) and res["estados"]:       # v1.4.2: Yahoo rotula mal la moneda de algunas (VALE: dice reales y está en dólares)
+        from data import moneda as _mon
+        res["estados"] = {**res["estados"], "moneda": _mon.moneda_estados(ticker, res["estados"].get("moneda"))}
     res["archivo"] = {"fecha": fecha_g, "claves": usadas, "foto": (guardado.get(ticker.upper()) or {}).get("foto_ceo")} if usadas or guardado.get(ticker.upper()) else None
     if res["historial"] or paq.get("info_ok") or res["gobierno"] or res["dividendos"]:
         if len(m) > 300:
@@ -356,9 +359,10 @@ def _af_para_ficha(ticker: str):
 
 def _boton_pdf_analisis(tk, af, rd, extra, pares):
     """v1.4.1: botón para bajar el Análisis Fundamental (formato v4) en PDF, con los números del día. Se arma en memoria y se guarda un rato por empresa y por precio.
-    Si algo falla (por ejemplo, no está reportlab), no se muestra el botón y el resto de la página sigue igual."""
+    v1.4.2: va en la misma fila que la fecha ("Escrito el ..."), con el ícono de PDF y el texto "Descargar en PDF". Devuelve True si mostró la fila (entonces la fecha
+    ya no va dentro del mosaico del título). Si algo falla (por ejemplo, no está reportlab), no muestra nada y devuelve False: el resto de la página sigue igual."""
     if not (af and af.get("formato") == "v4" and af.get("titulo")):
-        return
+        return False
     try:
         m = _memo_extras()
         clave = ("afpdf", tk, str(af.get("fecha")), str(rd.get("precio_actual")), str(rd.get("fair_value")), bool(extra.get("estados")))
@@ -372,14 +376,22 @@ def _boton_pdf_analisis(tk, af, rd, extra, pares):
                 m.clear()
             m[clave] = (time.time(), datos)
     except Exception:  # noqa: BLE001
-        return
+        return False
     args = dict(data=datos, file_name=f"analisis_fundamental_{tk}_{(str(af.get('fecha') or '')).replace('/', '-')}.pdf", mime="application/pdf", key=f"pdf_af_{tk}", on_click="ignore",
                 help="Baja este análisis en PDF, con los números de hoy. Es información con fines educativos, no una recomendación.")
     try:
-        st.download_button("⬇ Descargar este análisis en PDF", type="tertiary", **args)
-    except TypeError:       # Streamlit viejo, sin type="tertiary" o sin on_click="ignore"
-        args.pop("on_click", None)
-        st.download_button("⬇ Descargar este análisis en PDF", **args)
+        fila = st.container(horizontal=True, vertical_alignment="center", gap="small")
+    except TypeError:       # Streamlit viejo, sin filas horizontales: la fecha y el botón quedan uno debajo del otro
+        fila = st.container()
+    with fila:
+        st.markdown(f'<span style="font-size:.85rem;color:#64748b;white-space:nowrap">Escrito el {html.escape(str(af.get("fecha") or ""))}</span>', unsafe_allow_html=True)
+        try:
+            st.download_button("Descargar en PDF", icon=":material/picture_as_pdf:", type="tertiary", **args)
+        except TypeError:       # Streamlit viejo, sin icon, type="tertiary" u on_click="ignore"
+            for k in ("on_click",):
+                args.pop(k, None)
+            st.download_button("Descargar en PDF", **args)
+    return True
 
 
 @st.cache_data(ttl=900, show_spinner=False)
@@ -964,6 +976,7 @@ def render_menu_estatico(caja, home=False, filtro="Filtro de Empresas"):
     (Nuestras Redes, Contactános, Abrí una cuenta, Comentarios). Los paneles con widgets (Filtro, Noticias, Calendario Financiero) se arman en main() cuando hay datos."""
     with caja:
         st.markdown(menu_cabecera_html() + menu_lista_html(home, filtro=filtro, version=APP_VERSION), unsafe_allow_html=True)
+        st.toggle("Modo oscuro", key="modo_oscuro", help="Cambia los colores de la página a un fondo oscuro. Dura mientras tengas la app abierta.")      # v1.4.2
     st.markdown(menu_flyouts_html() + quienes_panel_html(), unsafe_allow_html=True)
 
 
@@ -1336,8 +1349,8 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
         _af_ficha = _af_para_ficha(tk)
-        _boton_pdf_analisis(tk, _af_ficha, rd, extra, pares)      # v1.4.1: el análisis (formato v4) se puede bajar en PDF
-        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_ficha, estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]}, historial=pares, dividendos=extra.get("dividendos"), bono10=_bono10_hoy())), unsafe_allow_html=True)
+        _fecha_arriba = _boton_pdf_analisis(tk, _af_ficha, rd, extra, pares)      # v1.4.1: el análisis (formato v4) se puede bajar en PDF; v1.4.2: junto a la fecha
+        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_ficha, estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]}, historial=pares, dividendos=extra.get("dividendos"), bono10=_bono10_hoy(), fecha_en_tile=not _fecha_arriba)), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ficha.con_intro("grafico", _ficha.tab_grafico_tabla(pares)), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)
@@ -1670,8 +1683,12 @@ def main():
     en_ideas = st.query_params.get("pagina") == "ideas"
     en_inicio = not (en_quienes or en_cartera or en_ideas or etf_sel or st.query_params.get("empresa"))
     activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas) else "empresas"))
+    if "modo_oscuro" not in st.session_state:       # v1.4.2: ?tema=oscuro en el link arranca en modo oscuro
+        st.session_state["modo_oscuro"] = str(st.query_params.get("tema", "")).lower() in ("oscuro", "dark")
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
                 + encabezado_html(NOMBRE_APP, menu_abierto=st.query_params.get("menu") == "1"), unsafe_allow_html=True)
+    from ui.tema import css_oscuro
+    st.markdown(css_oscuro(st.session_state.get("modo_oscuro")), unsafe_allow_html=True)      # v1.4.2: modo oscuro
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
     # v1.2.83: menu lateral (las 3 rayitas). Fuera del inicio se llena ya; en el inicio se llena mas abajo, cuando estan los datos (Filtro, Noticias, Calendario)
     menu_box = st.container(key="menu_lateral")

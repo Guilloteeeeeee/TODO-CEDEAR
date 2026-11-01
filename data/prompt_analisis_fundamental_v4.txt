@@ -81,6 +81,7 @@ PROHIBIDO
      {dy} rendimiento del dividendo de hoy · {bono10} bono del Tesoro a 10 años · {vs_bono}: "menos que" / "más que" / "casi lo mismo que" (el dividendo contra el bono)
      {fv} Fair Value por múltiplos · {dist_fv}: cláusula que arma el código con el margen de seguridad (se mide sobre el Fair Value: de 15 a 25 % por debajo, "margen de seguridad aceptable"; 26 % o más, "gran margen de seguridad"; con el precio por encima, "sin margen de seguridad"), p. ej. "el precio de hoy está un 17 % por debajo de ese valor, lo que da un margen de seguridad aceptable" · {retorno} retorno teórico = crecimiento_ref + dividendo de hoy
      Los números del día vienen en VALUACIÓN DE HOY (abajo), para que escribas sabiendo qué va a decir hoy, pero en el texto van los marcadores, nunca los números. Escribí cada oración para que tenga sentido con cualquier resultado de la comparación: "Eso está {vs_ref_med} su mediana histórica ({med:per} veces)".
+   - NO uses múltiplos en un extremo, distorsionados o raros (por ejemplo, un P/FCF de 800 veces porque el flujo libre es casi cero, o un EV/EBITDA de 150): enseñan poco y confunden. Elegí los del sector que den un número con sentido; la app ya no los muestra si superan estos topes (P/FCF fuera de 5 a 60 veces, EV/EBITDA fuera de 3 a 40, P/S fuera de 0,3 a 30, o más de 3 veces o menos de un tercio de su mediana). Si el PER mismo es extremo (empresas muy caras o con ganancia casi nula), explicalo con una oración y apoyate en otro múltiplo.
    - Si la ganancia contable está distorsionada, poné "ganancia_ref" con la ganancia ajustada que guía la empresa (con su fuente en "hechos") y explicá por qué.
    - Retorno teórico: si hay una guía de crecimiento creíble, poné "crecimiento_ref" (en %, ej. 8) y explicá la cuenta: si la ganancia crece eso y el múltiplo se mantiene, el accionista ganaría ese crecimiento más el dividendo, "{retorno} por año. No es una promesa: es la cuenta de qué pasa si todo sale según el plan." Nunca nombres de quién es la idea.
    - Cerrá la valuación con el Fair Value de la app y el dividendo contra el bono cuando aporte (siempre con esta frase: "Según la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}.").
@@ -132,3 +133,5 @@ ANÁLISIS ANTERIOR:
 
 DATOS DE LA EMPRESA:
 {BLOQUE_DATOS}
+
+REDACCIÓN (pedido de Guille, 01/11/2026): respetá las normas de escritura del castellano. No repitas la misma palabra (ni la misma raíz) dentro de una oración ni en el título (mal: "la gigante del hierro, con el hierro en baja"); usá sinónimos o reformulá. Sin muletillas, sin oraciones largas con tres "que" seguidos, concordancia de género y número, puntuación correcta. Releé cada oración antes de entregarla.

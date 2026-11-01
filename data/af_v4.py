@@ -428,7 +428,7 @@ def _grafico(clave, estados, row, dam, ctx, historial, dps):
 
 CSS = ('<style>.af4{max-width:760px}.af4 .af4-t{font-size:1.65rem;line-height:1.2;font-weight:800;color:#0f172a;margin:0 0 .3em;text-wrap:balance}'
        '.af4 .af4-f{font-size:.82rem;color:#64748b;margin:0 0 1em}.af4 h3{font-size:1.18rem;line-height:1.3;font-weight:800;color:#0f172a;margin:1.6em 0 .55em;text-wrap:balance}'
-       '.af4 p{margin:0 0 .85em;font-size:15.5px;line-height:1.65;color:#1f2937;text-align:left}.af4 ul{margin:0 0 .6em 1.1em;padding:0}'
+       '.af4 p,.af4 li{text-align:justify;text-justify:inter-word;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}.af4 p{margin:0 0 .85em;font-size:15.5px;line-height:1.65;color:#1f2937}.af4 ul{margin:0 0 .6em 1.1em;padding:0}'
        '.af4 li{margin:0 0 .5em;font-size:15.5px;line-height:1.6;color:#1f2937}.af4 b{color:#0f172a}.af4-rs li:last-child{font-weight:700}'
        '.af-vv{border-bottom:1px dotted #64748b;cursor:help;white-space:nowrap}.af-fig{max-width:600px;margin:.6em 0 1.2em;padding:10px 12px;border:1px solid #e5e7eb;border-radius:12px;background:#fafbfc}'
        '.af-fig figcaption{font-size:.84rem;font-weight:700;color:#334155;margin:0 0 4px}.af-g{width:100%;height:auto;display:block}'
@@ -437,7 +437,7 @@ CSS = ('<style>.af4{max-width:760px}.af4 .af4-t{font-size:1.65rem;line-height:1.
        '.af4-cal{display:inline-block;padding:2px 12px;border-radius:999px;font-weight:700;font-size:.9rem;margin-left:6px;vertical-align:middle}'
        '.af4-pc{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.af4-pc{grid-template-columns:1fr}}.af4-pc>div{min-width:0}'
        '.af4-pc h4{margin:0 0 .5em;font-size:.95rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase}.af4-pc .p h4{color:#15803d}.af4-pc .c h4{color:#b91c1c}'
-       '.af4-fu{font-size:.85rem;color:#475569}.af4-fu li{font-size:.85rem;line-height:1.5;margin:0 0 .35em}</style>')
+       '.af4-pc li,.af4-fu li,.af4-rs li{text-align:left;hyphens:manual}.af4-fu{font-size:.85rem;color:#475569}.af4-fu li{font-size:.85rem;line-height:1.5;margin:0 0 .35em}</style>')
 
 
 def texto_html(txt, ctx=None, graficos=None):

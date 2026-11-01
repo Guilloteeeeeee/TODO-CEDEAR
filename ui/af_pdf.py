@@ -12,6 +12,27 @@ LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
 NOMBRE = "Finanzas para Médicos Argentina"
 AUTORES = "Guillermo Di Palma AP 2372 y María Laura García"
 
+_FUENTES = os.path.join(_RAIZ, "assets", "fuentes")
+_FUENTE = {}
+
+
+def _fuentes():
+    """(normal, negrita, caracteres que tiene). La tipografía de la app (Roboto Condensed, assets/fuentes); si faltan los archivos, Helvetica."""
+    if "f" not in _FUENTE:
+        try:
+            from fontTools.ttLib import TTFont as _TT
+            from reportlab.pdfbase import pdfmetrics
+            from reportlab.pdfbase.ttfonts import TTFont
+            n, b = os.path.join(_FUENTES, "RobotoCondensed-400.ttf"), os.path.join(_FUENTES, "RobotoCondensed-700.ttf")
+            pdfmetrics.registerFont(TTFont("RobotoCond", n))
+            pdfmetrics.registerFont(TTFont("RobotoCond-B", b))
+            pdfmetrics.registerFontFamily("RobotoCond", normal="RobotoCond", bold="RobotoCond-B", italic="RobotoCond", boldItalic="RobotoCond-B")
+            _FUENTE["f"] = ("RobotoCond", "RobotoCond-B", set(_TT(n).getBestCmap().keys()))
+        except Exception:  # noqa: BLE001
+            _FUENTE["f"] = ("Helvetica", "Helvetica-Bold", None)
+    return _FUENTE["f"]
+
+
 # Caracteres que la letra estándar del PDF (Helvetica, cp1252) no tiene
 _CAMBIOS = {"≈": "~", "→": "->", "←": "<-", "≥": ">=", "≤": "<=", "−": "-", "‑": "-", " ": " ", " ": " ", "​": "", "✓": "", "•": "-"}
 
@@ -20,7 +41,10 @@ def _limpio(t):
     t = str(t or "")
     for a, b in _CAMBIOS.items():
         t = t.replace(a, b)
-    return t.encode("cp1252", "replace").decode("cp1252")
+    cm = _fuentes()[2]
+    if cm is None:
+        return t.encode("cp1252", "replace").decode("cp1252")
+    return "".join(c if (ord(c) in cm or c in "\n\t") else "?" for c in t)
 
 
 def _md(t):
@@ -68,7 +92,7 @@ def _dibujo(grafico_html, ancho_pt):
                 txt = html.unescape(re.sub(r"<[^>]+>", "", inner))
                 fs = float(_attr(a, "font-size", "13")) * esc
                 ancla = {"end": "end", "middle": "middle"}.get(_attr(a, "text-anchor"), "start")
-                d.add(String(float(_attr(a, "x")) * esc, Y(_attr(a, "y")), _limpio(txt), fontName="Helvetica-Bold" if _attr(a, "font-weight") else "Helvetica",
+                d.add(String(float(_attr(a, "x")) * esc, Y(_attr(a, "y")), _limpio(txt), fontName=B if _attr(a, "font-weight") else "Helvetica",
                              fontSize=fs, textAnchor=ancla, fillColor=_color(_attr(a, "fill"), colors, "#111827")))
         ley = []
         lg = re.search(r'<div class="af-gl">(.*?)</div>', grafico_html, re.S)
@@ -90,6 +114,7 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
     """Bytes del PDF del análisis v4. Lanza ImportError si no está reportlab."""
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
+    from reportlab.lib.enums import TA_JUSTIFY
     from reportlab.lib.styles import ParagraphStyle
     from reportlab.lib.units import mm
     from reportlab.platypus import Image, KeepTogether, ListFlowable, ListItem, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
@@ -108,22 +133,23 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
     dps = ((dividendos or {}).get("trayectoria") or {}).get("anuales")
     graf = lambda k: V.grafico(k, estados, row, dam, ctx, historial, dps)
     cal = af.get("calidad") if af.get("calidad") in AF.CALIDADES else "Buena"
+    R, B, _ = _fuentes()
     azul, gris, tinta = colors.HexColor("#1e3a8a"), colors.HexColor("#64748b"), colors.HexColor("#1f2937")
     verde = colors.HexColor("#15803d")
     st = {
-        "marca": ParagraphStyle("marca", fontName="Helvetica-Bold", fontSize=13, leading=16, textColor=colors.HexColor("#111827")),
-        "sub": ParagraphStyle("sub", fontName="Helvetica", fontSize=9.5, leading=13, textColor=gris),
-        "tit": ParagraphStyle("tit", fontName="Helvetica-Bold", fontSize=18, leading=22, textColor=colors.HexColor("#0f172a"), spaceAfter=3),
-        "h": ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=13, leading=16.5, textColor=colors.HexColor("#0f172a"), spaceBefore=12, spaceAfter=5, keepWithNext=1),
-        "p": ParagraphStyle("p", fontName="Helvetica", fontSize=10.2, leading=14.6, textColor=tinta, spaceAfter=6),
-        "li": ParagraphStyle("li", fontName="Helvetica", fontSize=10.2, leading=14.2, textColor=tinta),
-        "fig": ParagraphStyle("fig", fontName="Helvetica-Bold", fontSize=9, leading=12, textColor=colors.HexColor("#334155"), spaceBefore=4, keepWithNext=1),
-        "ley": ParagraphStyle("ley", fontName="Helvetica", fontSize=8, leading=10.5, textColor=gris, spaceAfter=6),
-        "peq": ParagraphStyle("peq", fontName="Helvetica", fontSize=8, leading=11, textColor=gris),
-        "fu": ParagraphStyle("fu", fontName="Helvetica", fontSize=8.5, leading=11.5, textColor=colors.HexColor("#475569")),
-        "ph": ParagraphStyle("ph", fontName="Helvetica-Bold", fontSize=9.5, leading=12, textColor=verde, spaceAfter=3),
-        "ch": ParagraphStyle("ch", fontName="Helvetica-Bold", fontSize=9.5, leading=12, textColor=colors.HexColor("#b91c1c"), spaceAfter=3),
-        "cp": ParagraphStyle("cp", fontName="Helvetica", fontSize=10.2, leading=14.4, textColor=tinta, spaceBefore=4, backColor=colors.HexColor("#f1f5f9"), borderPadding=6),
+        "marca": ParagraphStyle("marca", fontName=B, fontSize=13, leading=16, textColor=colors.HexColor("#111827")),
+        "sub": ParagraphStyle("sub", fontName=R, fontSize=10.5, leading=14, textColor=gris),
+        "tit": ParagraphStyle("tit", fontName=B, fontSize=21, leading=25.5, textColor=colors.HexColor("#0f172a"), spaceBefore=4, spaceAfter=9),
+        "h": ParagraphStyle("h", fontName=B, fontSize=14.5, leading=18, textColor=colors.HexColor("#0f172a"), spaceBefore=22, spaceAfter=8, keepWithNext=1),
+        "p": ParagraphStyle("p", fontName=R, fontSize=11.2, leading=16, textColor=tinta, spaceAfter=8, alignment=TA_JUSTIFY),
+        "li": ParagraphStyle("li", fontName=R, fontSize=11.2, leading=15.6, textColor=tinta, alignment=TA_JUSTIFY),
+        "fig": ParagraphStyle("fig", fontName=B, fontSize=10, leading=13, textColor=colors.HexColor("#334155"), spaceBefore=4, keepWithNext=1),
+        "ley": ParagraphStyle("ley", fontName=R, fontSize=9, leading=11.5, textColor=gris, spaceAfter=6),
+        "peq": ParagraphStyle("peq", fontName=R, fontSize=9, leading=12, textColor=gris),
+        "fu": ParagraphStyle("fu", fontName=R, fontSize=9.5, leading=12.5, textColor=colors.HexColor("#475569")),
+        "ph": ParagraphStyle("ph", fontName=B, fontSize=9.5, leading=12, textColor=verde, spaceAfter=3),
+        "ch": ParagraphStyle("ch", fontName=B, fontSize=9.5, leading=12, textColor=colors.HexColor("#b91c1c"), spaceAfter=3),
+        "cp": ParagraphStyle("cp", fontName=R, fontSize=11.2, leading=15.6, textColor=tinta, spaceBefore=10, backColor=colors.HexColor("#f1f5f9"), borderPadding=6),
     }
     buf = io.BytesIO()
     fecha_ahora = __import__("datetime").date.today().strftime("%d/%m/%Y")
@@ -132,7 +158,7 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
         canvas.saveState()
         canvas.setStrokeColor(colors.HexColor("#e5e9f0"))
         canvas.line(18 * mm, 15 * mm, A4[0] - 18 * mm, 15 * mm)
-        canvas.setFont("Helvetica", 7.5)
+        canvas.setFont(R, 8)
         canvas.setFillColor(gris)
         canvas.drawString(18 * mm, 10 * mm, _limpio(f"{NOMBRE} · TodoCedears · Información con fines educativos, no es una recomendación de inversión"))
         canvas.drawRightString(A4[0] - 18 * mm, 10 * mm, f"Página {doc.page}")
@@ -150,16 +176,17 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
         cab = Table([[marca, fch]], colWidths=[ancho - 40 * mm, 40 * mm])
     cab.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
                              ("LINEBELOW", (0, 0), (-1, 0), 2, verde), ("BOTTOMPADDING", (0, 0), (-1, 0), 6)]))
-    el = [cab, Spacer(1, 9)]
+    el = [cab, Spacer(1, 26)]
     quien = f"{nombre_empresa} ({tk})" if nombre_empresa and tk else (tk or nombre_empresa)
     if quien:
         el.append(Paragraph(_md("Análisis Fundamental · " + quien), st["sub"]))
+        el.append(Spacer(1, 6))
     el.append(Paragraph(_md(af.get("titulo")), st["tit"]))
     el.append(Paragraph(_md(f"Escrito el {af.get('fecha') or ''}"), st["sub"]))
-    el.append(Spacer(1, 5))
+    el.append(Spacer(1, 16))
     res = af.get("resumen") if isinstance(af.get("resumen"), list) else []
     if res:
-        el.append(ListFlowable([ListItem(Paragraph(_md(x), st["li"]), leftIndent=10, spaceAfter=3) for x in res], bulletType="bullet", start="•", leftIndent=10, bulletFontSize=8))
+        el.append(ListFlowable([ListItem(Paragraph(_md(x), st["li"]), leftIndent=10, spaceAfter=3) for x in res], bulletType="bullet", start="•", leftIndent=10, bulletFontSize=9, bulletFontName=R))
     if af.get("desde_el_ultimo"):
         el.append(Spacer(1, 6))
         el.append(Paragraph(_md("**Desde el último análisis:** " + af["desde_el_ultimo"]), st["cp"]))
@@ -187,14 +214,14 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
                 continue
             lineas = [l.strip() for l in par.split("\n") if l.strip()]
             if lineas and all(l.startswith(("- ", "• ")) for l in lineas):
-                out.append(ListFlowable([ListItem(Paragraph(_md(l[2:].strip()), st["li"]), leftIndent=10, spaceAfter=2) for l in lineas], bulletType="bullet", start="•",
+                out.append(ListFlowable([ListItem(Paragraph(_md(l[2:].strip()), st["li"]), leftIndent=10, spaceAfter=2) for l in lineas], bulletType="bullet", start="•", bulletFontName=R,
                                         leftIndent=10, bulletFontSize=8))
                 out.append(Spacer(1, 5))
             else:
                 out.append(Paragraph(_md(" ".join(lineas)), st["p"]))
         return out
 
-    el.append(Spacer(1, 6))
+    el.append(Spacer(1, 24))
     el += texto(af.get("introduccion"))
     for s in af.get("secciones") or []:
         el.append(Paragraph(_md(s.get("titulo")), st["h"]))

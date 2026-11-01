@@ -261,3 +261,12 @@ def decidir_contexto(info: dict, precio: Optional[float], mc: Optional[float], e
 
     ctx.update(activo=True, fxr=fxr, fx_anio=fx_anio, n_inv=n_inv, nota=" ".join(notas))
     return ctx
+
+
+# v1.4.2: Yahoo rotula en reales (BRL) los estados de VALE, que ya vienen en dólares (Vale informa en dólares). Se corrige la etiqueta que se muestra.
+MONEDA_ESTADOS_CORREGIDA = {"VALE": "USD"}
+
+
+def moneda_estados(ticker, moneda):
+    """Moneda en que se rotulan los estados de la empresa en pantalla: la de Yahoo, salvo las que se sabe que la rotula mal."""
+    return MONEDA_ESTADOS_CORREGIDA.get(str(ticker or "").upper(), moneda)

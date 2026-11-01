@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.4.2 (01/11/2026): segunda tanda de pedidos de Guille sobre el Análisis Fundamental
+
+- **Sin múltiplos extremos o raros.** Se sacaron de los informes los múltiplos agregados en la v1.4.1 que daban valores distorsionados (P/FCF de AMZN en 805 veces, y los de TSLA, PLTR y otros). Regla (`extremo()` en el parche y en el prompt): P/FCF fuera de 5 a 60 veces, EV/EBITDA fuera de 3 a 40, P/S fuera de 0,3 a 30, o más de 3 veces / menos de un tercio de su mediana. Los textos escritos a mano antes de la v1.4.1 (PLTR, CRWD, ARM, PANW, AMD, TSLA y algunos más) siguen usando sus múltiplos altos: quedan para revisar cuando Guille decida.
+- **PDF del análisis**: con la tipografía de la app (Roboto Condensed, TTF en `assets/fuentes`, licencia Apache 2.0), texto justificado y más espacio entre el membrete, el título, el resumen, la introducción y los títulos de sección. El botón es "Descargar en PDF" con el ícono de PDF y va en la misma fila que la fecha ("Escrito el ..."); la fecha ya no se repite dentro del mosaico.
+- **Texto justificado** en el artículo (y con corte de palabras en castellano en pantallas angostas); los puntos de A favor / En contra y las fuentes quedan alineados a la izquierda.
+- **Noticias de la empresa:** primero el link a Yahoo Finance y después el de CNBC.
+- **VALE:** Yahoo rotulaba "reales" a estados que están en dólares; ahora las Estados Financieros dicen "Cifras en dólares" (`data/moneda.py`, `MONEDA_ESTADOS_CORREGIDA`). Título de VALE sin repetir "hierro".
+- **Modo oscuro:** interruptor "Modo oscuro" en el menú (las 3 rayitas), o `?tema=oscuro` en el link. Invierte la luminosidad de la página manteniendo los tonos y deja como están los logos, banderas y la franja de arriba (`ui/tema.py`). Dura mientras dure la sesión.
+- El prompt v4 suma la regla de redacción (sin repetir palabras en una oración) y la de no usar múltiplos extremos.
+
 ### v1.4.1 (01/11/2026): mejoras al Análisis Fundamental pedidas por Guille
 
 - **Fair Value al revés, con margen de seguridad.** La última oración de la valuación (los 139 análisis) ahora dice: "Según la valoración por múltiplos, el Fair Value se ubica en torno a X dólares: el precio de hoy está un N % por debajo de ese valor…". El porcentaje se mide sobre el Fair Value (margen = (Fair Value - precio) / Fair Value). De 15 a 25 %: "margen de seguridad aceptable"; 26 % o más: "gran margen de seguridad"; menos de 15 %: "margen de seguridad chico"; con el precio por encima del Fair Value: "sin margen de seguridad". Lo arma el código (`af_v4.frase_margen`), así que siempre está al día. La valuación explica en una línea qué es el margen de seguridad. La frase de la conclusión del v3 (`precio_vs_fv`) usa la misma regla.

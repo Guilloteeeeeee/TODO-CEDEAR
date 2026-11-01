@@ -1114,7 +1114,7 @@ def tiles_analisis(af, estados=None, row=None, universo=None):
     return t
 
 
-def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None, dividendos=None, bono10=None):
+def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None, dividendos=None, bono10=None, fecha_en_tile=True):
     """Análisis Fundamental v4 (data/af_v4.py): un artículo con tesis. Arriba el título, la fecha y el resumen de 3 puntos (con el Score a la derecha);
     después el artículo entero en un solo mosaico (introducción, secciones con gráficos, valuación con datos del día y conclusión con la calidad);
     pros y contras; y las fuentes (los datos del informe oficial, con su link). El análisis queda escrito; los números del día los completa la app."""
@@ -1134,8 +1134,8 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     fecha = html.escape(str(af.get("fecha") or ""))
     res = af.get("resumen") if isinstance(af.get("resumen"), list) else []
     lis = "".join(f"<li>{_negrita(x)}</li>" for x in res)
-    cab = (f'<div class="af4"><div class="af4-t">{html.escape(str(af.get("titulo") or ""))}</div>'
-           f'<div class="af4-f">Escrito el {fecha}</div><ul class="af4-rs">{lis}</ul></div>')
+    cab = (f'<div class="af4" lang="es"><div class="af4-t">{html.escape(str(af.get("titulo") or ""))}</div>'
+           + (f'<div class="af4-f">Escrito el {fecha}</div>' if fecha_en_tile else '<div style="height:.5em"></div>') + f'<ul class="af4-rs">{lis}</ul></div>')
     cuerpo = f'<div class="af"><div class="af-rs"><div class="af-rt">{cab}</div>{_score_af(row) if row is not None else ""}</div></div>'
     t = [_tile("s12", "En pocas palabras", _CSS_AF + V.CSS + cuerpo, ac=color)]
     art = ""
@@ -1155,7 +1155,7 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
     art += (f'<h3>Conclusión <span class="af4-cal" style="background:{color};color:{_TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")}">Calidad del Negocio: {html.escape(cal)}</span></h3>'
             + V.texto_html(af.get("conclusion")) + (f'<p class="af-cp"><b>Calidad y Precio Hoy:</b> {html.escape(cr)}</p>' if cr else ""))
-    t.append(_tile("s12", "El análisis", f'<div class="af af4">{art}</div>', ac="#8b5cf6"))
+    t.append(_tile("s12", "El análisis", f'<div class="af af4" lang="es">{art}</div>', ac="#8b5cf6"))
     pc = ('<div class="af af4"><div class="af4-pc"><div class="p"><h4>A favor</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("pros") or [])
           + '</ul></div><div class="c"><h4>En contra</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("contras") or []) + "</ul></div></div></div>")
     t.append(_tile("s12", "A favor y en contra", pc, ac="#16a34a"))
@@ -1179,12 +1179,12 @@ def _negrita_dos(x):
     return f"<b>{html.escape(m.group(1).strip())}:</b> {_negrita(m.group(2))}" if m else _negrita(x)
 
 
-def tab_analisis(row, envolver=True, af=None, estados=None, universo=None, historial=None, dividendos=None, bono10=None):
+def tab_analisis(row, envolver=True, af=None, estados=None, universo=None, historial=None, dividendos=None, bono10=None, fecha_en_tile=True):
     """Análisis Fundamental: Resumen, parte cualitativa, los números punto por punto, fortalezas/debilidades, tesis y conclusión (ver data/analisis_fundamental.py); al final,
     el puntaje actual del modelo (el Score de calidad llega más adelante). Sin análisis guardado para la empresa: 'Próximamente'.
     v1.2.91: los análisis en formato v4 (artículo con tesis, data/af_v4.py) se muestran con tiles_analisis_v4."""
     if af and af.get("formato") == "v4" and af.get("titulo"):
-        t = tiles_analisis_v4(af, estados, row, universo, historial, dividendos, bono10)
+        t = tiles_analisis_v4(af, estados, row, universo, historial, dividendos, bono10, fecha_en_tile)
     elif af and af.get("resumen"):
         t = tiles_analisis(af, estados, row, universo)
     else:
@@ -1601,9 +1601,9 @@ def tab_gobierno(g):
 
 
 def tab_noticias(ticker, items):
-    """Noticias de la empresa: titulares de Yahoo Finance y links a CNBC y Yahoo Finance."""
+    """Noticias de la empresa: titulares de Yahoo Finance y links a Yahoo Finance (primero) y CNBC."""
     t = quote_plus(str(ticker))
-    enl = [(f"https://www.cnbc.com/quotes/{t}?tab=news", "Ver más noticias en CNBC"), (f"https://finance.yahoo.com/quote/{t}/news/", "Ver más noticias en Yahoo Finance")]
+    enl = [(f"https://finance.yahoo.com/quote/{t}/news/", "Ver más noticias en Yahoo Finance"), (f"https://www.cnbc.com/quotes/{t}?tab=news", "Ver más noticias en CNBC")]
     botones = '<div class="fch-links">' + "".join(f'<a href="{html.escape(u, quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(n)} ↗</a>' for u, n in enl) + "</div>"
     if items:
         li = "".join(f'<li><a href="{html.escape(i["link"], quote=True)}" target="_blank" rel="noopener noreferrer">{html.escape(i["titulo"])}</a>'
