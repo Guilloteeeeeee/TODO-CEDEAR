@@ -1,0 +1,52 @@
+Presentación al abrir el mosaico (Revisala si te parece bien, que cosas cambiarias y que cosas sacarias, presentamela antes de hacer nada)
+
+Te presentamos nuestro evaluador de carteras de inversión automatizado. El mismo se construyo sobre estándares cuidadosamente seleccionados para el armado de una cartera de mediano y largo plazo que permita transitar todos los ciclos del mercado con la menor volatilidad. Esto es rentabilidad ajustada al riesgo; porque la clave no solo es ganar dinero, sino ganar dinero sufriendo lo menos posible..
+
+Tené en cuenta que la revisión se basa en una estructura que puede no ser adecuada a tus necesidades individuales. Puede q tu cartera este estrucutrada intencionalmente asi y lo respetamos. La evaluación no busca q cambies tu forma de proceder sino hacer pensar que la rentabilidad debe ajustarse al riesgo que se corre. Según la teoría financiera los parametros  que establecimos cumplen con esa premisaSi hay algo de la evaluación que te genera dudas podés consultarnos por nuestras vías de comunicación. 
+
+Comencemos (botón)
+
+Para empezar pone tu nombre de pila (o pseudonimo), tu edad y perfil de riesgo
+
+*******              *******             *******
+
+Subí tus tenencias en excel, pdf o captura de pantalla (este último no recomendado). Esta info la sacás del broker.
+
+Subir aca ****
+Si tenés instrumentos que no cotizan como cedear, detallá en el excel a que categoría pertenecen (Renta Fija, Variable, Commoidities, Criptomonedas, Etc). Es importante, sino el sistema no los detecta.
+
+Recordá que este análisis es meramente informativo, no constituye una recomendación (afinar el aviso legal) y darle ok si o si al "Estoy de acuerdo o Entendido" como caracater de declaracion jurada (si selecciona estoy de acuerdo puede avanzar, la tecla de "Análisis de Cartera de Inversión" se vuelve de color pudiendosé apretar sino queda en gris inapretable, lo mismo si no completa edad o perfil de riesgo, el cual no tiene q tener ninguno por default. La app tiene q avisar que falta completar. El nombre es opcional para el encabezado de la devolución)
+
+Devolución. 
+Membrete con fecha
+
+Hola ***** (o colega inversor sino escribió nombre/ pseudonimo) 
+Gracias por tomarte el tiempo y evaluar tu portfolio.
+Te felicitamos y alentamos a seguir haciendolo, es la mejor forma de lograr el éxito en las inversiones.
+
+Con 43 años y un perfil **** el objetivo es ... (aca subo lo de objetivos por edades) con una composición teórica de cartera aproximada a: (y ahi va un grafico de torta con las proporciones que te pase y que ya tenés guardadas en esta charla, eso lo tenes? o te lo tengo q mandar de nuevo?). 
+
+Según el analisis vemos que tu cartera tiene xx de RF, xx de RV y asi, enumerando cada posicion en un grafico de torta (no hay que escribirlos sino solo poner el grafico de torta, tb debe figurar la liquidez).
+
+La RF debería contemplar bonos soberanos y corporativos grado de inversión (los mas seguros y con menos riesgos de default). En tu caso vemos ONs bla bla, nombrar las empresas emisoras y si son buenas remarcarlo sino decirlo y Soberanos bla bla (Aca hay que remarcar el riesgo que puede tener un bono argentino , tené en cuenta quie los q vencen antes de fin 2027 son los mas seguros como asi tb los de USA o Europa grado de inversión)
+
+Para la parte de RV nos basamos en la estructura de Chowder de diversificacion sectorial, donde las empresas cíclicas ocupan el %, las sensibles el % y las defensivas el 50% (tb te lo pase). En tu caso notamos que (y ahi se describe donde esta mas ponderado y q tiene menos) haciendo un breve veredicto. Por ej, en tu caso vemos que la parte sensible esta mas poderada a expensas de empresas tecnologicas mientras que el ala defensivo de la cartera esta muy infraponderado, no se algo asi.
+
+Respecto a las empresas individuales, según los estudios de Malkiel, Lynch y Buffett (esto medio q lo estoy inventando tras años de lectura pero fijate asi no queda mentiroso) lo ideal es tener entre 20 y 30 empresas individuales para estar bien diversificado con una ponderacion de entre el 2 y 5% por posicion. En tu caso tal cosa, remarcando si alguna empresa pasa del 5%. Si tiene ETFs hay q destacar que la diversificacion esta bien hecha en ese sentido y que no deberia preocuparse pero por supuesto corre la misma premisa que para la diversificacion sectorial.
+
+Es clave la diversificacion geográfica. Graham y Malkiel sostienen (lo mismo, revisa esto) q si bien Estados Unidos debe ser el país mas ponderado de la cartera, no hay que dejar de invertir en países desarrollados fuera de USA y en mercados emergentes. En tu caso la cartera se compone de...
+
+Liquidez, y ahi hablar de la liquidez. Si tiene entre un 5 y 15% esta perfecto. Mas y menos de eso destacarlo y explicar porque podria mejorarlo.
+
+Oro y Criptomonedas lo mismo.
+
+Conclusiones finales y ajustes sugeridos segun lo analizado. Primero reconocer lo bien que esta haciendo las cosas y luego los ajustes que harias / propondrias
+
+Disclaimer y la posibilidad de contactarnos para una devolucion personalizada.Tb avisar que podes cometer errores. Aclarar q el informe es personal , q no pude ser usado por nosotros y q no queda guardado. 
+
+Descargar el informe (un botón, para descargar pdf)
+
+Siempre con un tono empatico las devoluciones. Como que las cosas las hace bien x mas que sean un desastre pero remarcando como deberia mejorarlas sin ser critico ni autoritario. Siempre que describas la parte de la cartera del inversor describi lo que ves usando porcentajes siempre q sea posible y en las conclusiones le decis lo q ajustarias
+
+Lo otro que me gustaria es que haya la posilidad de comparar el informe anterior con el la nueva cartera para ver si fue mejorando, que opinas? se puede? tendria que ser al principio tipo: "si ya tuviste una evaluacion previa subila aca".
+// Es posible.calcular el beta aproximado de la cartera del inversor ? / Csrtera en pesos a precio dolar ccl se puede? Xq en definitiva lo q queremos son las ponderaciones... / Y si tienen mas denun broker? (XQ CAPAZ TE SUBEN DOS EXCELS O PDFS) / CAPTURA DE PANTALLA SE PODRIA O ES MUY DICFICIL? / 
