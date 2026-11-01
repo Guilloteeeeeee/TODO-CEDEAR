@@ -577,7 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.4.4 (01/11/2026): valuación atada al precio del informe, rentabilidad con fechas y retiros, 6 ETFs nuevos
+### v1.4.5 — "Evaluá tu Cartera de Inversiones" rehecha
+- Entrada: texto de presentación + botón «Comencemos». Nombre opcional, edad y perfil obligatorios (sin perfil por defecto), tilde «Entendido» obligatoria; el botón «Análisis de Cartera de Inversión» queda gris hasta que esté todo y avisa qué falta.
+- Más de un archivo (un broker por archivo): las posiciones repetidas se suman. Capturas de pantalla leídas con RapidOCR (opcional; si no está instalado, la app sigue sin esa opción) → tabla editable para corregir a mano antes de analizar. Se desaconseja la captura.
+- Devolución con saludo y fecha, dos tortas por grandes grupos (referencia teórica por edad y la tuya; la liquidez NO entra en el 100%, es un extra con guía de 5–15 %), renta fija (soberanos AR / ONs / EE.UU.; no se opina sobre emisores), sectores, empresas y ETFs, geografía, liquidez, oro y cripto, beta aproximado (solo si hay dato; requiere correr generar_cache), conclusiones con reconocimiento del esfuerzo y ajustes ordenados. Sin nombres de autores.
+- Comparación con una evaluación anterior: se baja un .json al final y se vuelve a subir la próxima vez (no se guarda nada en el servidor).
+- Aviso legal (los dos textos hechos con su abogado, adaptados) + "puede cometer errores", informe personal no guardado, contacto. Va en pantalla y en el PDF (con nombre y membrete).
+- `data/fetcher.py` guarda `beta`. `requirements.txt`: `rapidocr-onnxruntime` (si diera problemas al instalar, borrar esa línea: la app sigue andando sin capturas).
+- Pendiente de Guille: el texto de «objetivo» por rango de edad (`CM.OBJETIVOS`).
+
+## v1.4.4 (01/11/2026): valuación atada al precio del informe, rentabilidad con fechas y retiros, 6 ETFs nuevos
 
 - **Valuación con el precio con el que se escribió el informe.** Cada análisis v4 guarda una "foto" (`valuacion.foto`: el precio, los múltiplos, el Fair Value y el margen de seguridad de ese día) y la sección Valuación se muestra siempre con esa foto: "Con el precio de X dólares al momento de escribir este informe (dd/mm/aaaa), …". El gráfico del PER marca "Al dd/mm" en lugar de "Hoy". El resto de la ficha (tiles, "Calidad y Precio Hoy") sigue con el precio del día. Los 139 informes existentes quedaron con la foto del caché del 22/10/2026 (el último juego completo de precios que usó quien escribió los textos). Los informes nuevos toman la foto solos al guardarlos (`generar_analisis_fundamental.py --agregar`), y el validador no deja guardar uno sin esa frase. `data/af_v4.py`: `tomar_foto`, `contexto(..., vivo=)`, `frase_margen(..., hoy=)`.
 - **Una sola columna** otra vez en el informe (se sacaron las dos columnas de v1.4.3).

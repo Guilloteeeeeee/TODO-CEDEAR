@@ -183,6 +183,7 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         "pais": None,
         "sector_yf": None,
         "market_cap": None,
+        "beta": None,
         "precio_actual": None,
         "precio_max_52s": None,
         "precio_min_52s": None,
@@ -242,6 +243,7 @@ def fetch_ticker_data(ticker: str, modo_sa: Optional[str] = None) -> dict:
         result["pais"] = info.get("country") or _pais_manual(ticker)
         result["sector_yf"] = info.get("sector")
         result["market_cap"] = _safe_float(info.get("marketCap"))
+        result["beta"] = _safe_float(info.get("beta"))
         result["precio_actual"] = precio
         result["precio_max_52s"] = _safe_float(info.get("fiftyTwoWeekHigh"))
         result["precio_min_52s"] = _safe_float(info.get("fiftyTwoWeekLow"))

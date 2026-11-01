@@ -44,3 +44,7 @@ def referencia(edad, perfil):
         if d <= e <= h:
             return nombre, (carts.get(perfil) or carts.get(None) or carts["Moderado"])
     return None
+
+
+# Texto de "objetivo" de cada rango de edad (lo pasa Guille; si falta, la devolución no lo muestra). Clave = nombre del rango (ver RANGOS).
+OBJETIVOS = {}

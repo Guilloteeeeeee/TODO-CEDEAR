@@ -7,7 +7,7 @@ import io
 import os
 import re
 
-from ui.cartera import CLASES, devolucion
+from ui.cartera import AVISO_CARTERA, CLASES, devolucion
 
 _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
@@ -15,6 +15,11 @@ NOMBRE = "Finanzas para Médicos Argentina"
 AUTORES = "Guillermo Di Palma AP 2372 y María Laura García"
 TITULO = "Informe de orientación de cartera"
 NOTA_PRIVACIDAD = "Este informe se armó en el momento con los datos que cargaste. No guardamos tu cartera ni este informe: solo existe en tu dispositivo."
+
+
+def _saludo(nombre):
+    n = (nombre or "").strip()
+    return f"Hola {n}" if n else "Hola, colega inversor"
 
 
 def _fecha(f=None):
@@ -31,7 +36,7 @@ def _md(t):
     return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t), quote=False))
 
 
-def pdf_informe(res, edad, perfil, aviso="", hoy=None):
+def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre=""):
     """Bytes del PDF. Lanza ImportError si no está reportlab."""
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
@@ -73,7 +78,9 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None):
                              ("LINEBELOW", (0, 0), (-1, 0), 2, verde), ("BOTTOMPADDING", (0, 0), (-1, 0), 6)]))
     el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"])]
     perfil_txt = f", perfil {str(perfil).lower()}" if perfil else ""
-    el += [Paragraph(f"Persona de {int(edad)} años{perfil_txt}", st["sub"]), Spacer(1, 4)]
+    el += [Paragraph(f"Persona de {int(edad)} años{perfil_txt}", st["sub"]), Spacer(1, 6),
+           Paragraph(f"<b>{html.escape(_saludo(nombre))}.</b> Gracias por tomarte el tiempo de evaluar tu portfolio. Te felicitamos y te alentamos a seguir haciéndolo: es la mejor forma de ir mejorando como inversor.", st["p"]),
+           Spacer(1, 4)]
     # --- cartera cargada
     filas = _filas_cartera(res)
     if filas:
@@ -87,20 +94,21 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None):
         if len(filas) > 40:
             el.append(Paragraph(f"(se muestran las 40 posiciones más grandes de {len(filas)})", st["pq"]))
     # --- devolucion
-    for titulo, frases in devolucion(res, edad, perfil):
+    for titulo, frases in devolucion(res, edad, perfil, nombre):
         el.append(Paragraph(html.escape(titulo), st["h"]))
         el.append(ListFlowable([ListItem(Paragraph(_md(x), st["p"]), leftIndent=10) for x in frases], bulletType="bullet", start="•", leftIndent=10, bulletFontSize=8))
     # --- avisos
     el += [Spacer(1, 12), Paragraph("<b>Cómo leer este informe.</b> Es una orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. "
                                     "No es una recomendación de compra o venta ni un consejo personalizado: cada situación (objetivos, plazos, impuestos, otros ingresos) es distinta.", st["pq"]),
            Spacer(1, 4), Paragraph(f"<b>Privacidad.</b> {html.escape(NOTA_PRIVACIDAD)}", st["pq"])]
+    el += [Spacer(1, 6)] + [Paragraph(html.escape(t), st["pq"]) for t in AVISO_CARTERA for _ in (0,)]
     if aviso:
         el += [Spacer(1, 4), Paragraph(f"<b>Aviso legal.</b> {html.escape(str(aviso))}", st["pq"])]
     doc.build(el, onFirstPage=pie, onLaterPages=pie)
     return buf.getvalue()
 
 
-def html_informe(res, edad, perfil, aviso="", hoy=None):
+def html_informe(res, edad, perfil, aviso="", hoy=None, nombre=""):
     """Mismo informe como página HTML con el membrete (para imprimir como PDF si no hay reportlab)."""
     import base64
     from ui.cartera import devolucion_html
@@ -116,8 +124,10 @@ def html_informe(res, edad, perfil, aviso="", hoy=None):
             ".q{color:#64748b;font-size:11.5px;margin-top:12px}</style></head><body>"
             f"<div class='mb'>{logo}<div><b>{html.escape(NOMBRE)}</b><small>{html.escape(AUTORES)}</small></div><div style='margin-left:auto;color:#64748b'>Fecha: {_fecha(hoy)}</div></div>"
             f"<h1>{html.escape(TITULO)}</h1><div style='color:#64748b'>Persona de {int(edad)} años{perfil_txt}</div>"
+            f"<p><b>{html.escape(_saludo(nombre))}.</b> Gracias por tomarte el tiempo de evaluar tu portfolio. Te felicitamos y te alentamos a seguir haciéndolo: es la mejor forma de ir mejorando como inversor.</p>"
             f"<h4>Tu cartera tal como la cargaste</h4><table><tr><th>Activo</th><th>Tipo</th><th style='text-align:right'>% de la cartera</th></tr>{filas}</table>"
-            + devolucion_html(devolucion(res, edad, perfil)) +
+            + devolucion_html(devolucion(res, edad, perfil, nombre)) +
             f"<p class='q'><b>Cómo leer este informe.</b> Orientación general con fines informativos y educativos; no es una recomendación de compra o venta ni un consejo personalizado.</p>"
             f"<p class='q'><b>Privacidad.</b> {html.escape(NOTA_PRIVACIDAD)}</p>"
+            + "".join(f"<p class='q'>{html.escape(t)}</p>" for t in AVISO_CARTERA)
             + (f"<p class='q'><b>Aviso legal.</b> {html.escape(str(aviso))}</p>" if aviso else "") + "</body></html>").encode("utf-8")

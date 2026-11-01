@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.4"
+APP_VERSION = "1.4.5"
 
 import re
 import contextlib
@@ -1505,61 +1505,147 @@ def render_cartera(df, pagina=True):
         _rentabilidad_anual(C)
 
 
+_INTRO_EVAL = (
+    "Armar una cartera lleva tiempo, estudio y esfuerzo, y eso se nota. Esta herramienta mira tu portfolio y te devuelve una evaluación gratuita, con empatía y con ánimo de ayudarte a seguir mejorando: "
+    "cómo está repartido, qué está bien y qué ajustaría.\n\n"
+    "Es una orientación educativa, hecha con reglas fijas a partir de lo que cargues. No es una recomendación de compra o venta ni un consejo personalizado."
+)
+
+
+def _leer_archivos(archivos, C):
+    """Lee todos los archivos subidos (Excel, csv, txt, PDF, imagen). Devuelve (posiciones, notas, tc_resumen, hubo_imagen, error)."""
+    pos, notas, tc_res, hay_img = [], [], None, False
+    for a in archivos:
+        n = a.name.lower()
+        try:
+            if n.endswith(".pdf"):
+                p, nt, tc = C.leer_pdf_info(a.getvalue())
+                tc_res = tc_res or tc
+                nt = [" ".join(nt)] if nt else []
+            elif n.endswith((".png", ".jpg", ".jpeg", ".webp")):
+                from ui import cartera_ocr as OCR
+                p, nt = OCR.posiciones_de_imagen(a.getvalue(), C)
+                hay_img = True
+                for q in p:
+                    q["_img"] = True
+            else:
+                p, nt = C.leer_archivo_info(a.name, a.getvalue())
+                nt = [nt] if nt else []
+        except (ValueError, RuntimeError) as e:
+            return [], [], None, False, f"{a.name}: {e}"
+        pos += p
+        notas += [f"{a.name}: {x}" if len(archivos) > 1 else x for x in nt if x]
+    return pos, notas, tc_res, hay_img, ""
+
+
+def _tabla_a_mano(pos, key):
+    """Tabla editable para revisar / ajustar a mano lo que se leyó (obligatoria con capturas: el OCR se equivoca)."""
+    filas = [{"Activo": p["ticker"], "Monto": round(float(p["monto"]), 2), "Moneda": {"usd": "Dólares", "ars": "Pesos"}.get(p.get("moneda") or "", "Sin dato"), "Tipo": p.get("tipo") or ""} for p in pos]
+    ed = st.data_editor(
+        pd.DataFrame(filas, columns=["Activo", "Monto", "Moneda", "Tipo"]), num_rows="dynamic", use_container_width=True, hide_index=True, key=key,
+        column_config={"Activo": st.column_config.TextColumn("Activo (ticker o nombre)"), "Monto": st.column_config.NumberColumn("Monto", min_value=0.0, format="%.2f"),
+                       "Moneda": st.column_config.SelectboxColumn("Moneda", options=["Dólares", "Pesos", "Sin dato"]),
+                       "Tipo": st.column_config.TextColumn("Tipo (opcional: Renta fija, Oro, Cripto, Efectivo…)")})
+    out = []
+    for _, r in ed.iterrows():
+        tk, mt = str(r.get("Activo") or "").strip(), r.get("Monto")
+        if not tk or tk.lower() == "nan" or mt is None or pd.isna(mt) or float(mt) <= 0:
+            continue
+        tp = str(r.get("Tipo") or "").strip()
+        out.append({"ticker": tk, "monto": float(mt), "tipo": "" if tp.lower() == "nan" else tp, "moneda": {"Dólares": "usd", "Pesos": "ars"}.get(r.get("Moneda"))})
+    return out
+
+
 def _evaluar_cartera(df, C, CV):
+    import datetime as _dt
+    import json as _json
+    if not st.session_state.get("cr_empezo"):
+        st.markdown(f'<div class="cv-intro">{_INTRO_EVAL.replace(chr(10) * 2, "<br><br>")}</div>', unsafe_allow_html=True)
+        st.button("Comencemos", key="cr_comenzar", type="primary", on_click=lambda: st.session_state.update(cr_empezo=True))
+        return
+    perfiles = ["Conservador", "Moderado", "Agresivo"]
     with st.container(key="cr_p1"):
-        e1, e2 = st.columns([1, 2.4], gap="medium")
-        with e1:
-            edad = st.number_input("Tu edad", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
-        with e2:
+        n1, n2, n3 = st.columns([1.3, 0.8, 2.2], gap="medium")
+        with n1:
+            nombre = st.text_input("Tu nombre (opcional)", key="cr_nombre", placeholder="Ej.: Guille")
+        with n2:
+            edad = st.number_input("Tu edad *", min_value=18, max_value=100, value=None, step=1, placeholder="Ej.: 45", key="cr_edad")
+        with n3:
             try:
-                perfil = st.segmented_control("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], default="Moderado", key="cr_perfil") or "Moderado"
+                perfil = st.segmented_control("Tu perfil de inversor *", perfiles, default=None, key="cr_perfil")
             except Exception:  # noqa: BLE001
-                perfil = st.radio("Tu perfil de inversor", ["Conservador", "Moderado", "Agresivo"], index=1, horizontal=True, key="cr_perfil")
+                perfil = st.radio("Tu perfil de inversor *", perfiles, index=None, horizontal=True, key="cr_perfil")
         lugar_tc = st.container()
+        try:
+            from ui import cartera_ocr as OCR
+            hay_ocr = OCR.disponible()
+        except Exception:  # noqa: BLE001
+            hay_ocr = False
+        tipos = ["xlsx", "xlsm", "xls", "csv", "tsv", "txt", "pdf"] + (["png", "jpg", "jpeg", "webp"] if hay_ocr else [])
         u1, u2 = st.columns([3, 1], gap="medium")
         with u1:
-            arch = st.file_uploader("Tu cartera (Excel, .csv o PDF del broker)", type=["xlsx", "xlsm", "xls", "csv", "tsv", "txt", "pdf"], key="cr_archivo", label_visibility="collapsed")
+            archivos = st.file_uploader("Tu cartera (podés subir más de un archivo, por ejemplo uno por broker)", type=tipos, accept_multiple_files=True, key="cr_archivo")
         with u2:
             try:
                 st.download_button("⬇ Excel de ejemplo", C.plantilla_excel(), file_name="cartera_ejemplo.xlsx",
                                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
             except Exception:  # noqa: BLE001
                 pass
-        st.markdown('<div class="cv-ayuda">Subí el Excel o el PDF de tu broker tal como lo bajás: busco solo las columnas, la moneda y el efectivo (<span class="cv-cols">ticker</span> y <span class="cv-cols">monto</span>, o <span class="cv-cols">cantidad</span> y <span class="cv-cols">precio</span>). Si no se entiende, usá el de ejemplo.</div>', unsafe_allow_html=True)
-        with st.expander("¿No tenés Excel? Pegá tu cartera como texto", expanded=False):
+        st.markdown('<div class="cv-ayuda">Subí el Excel o el PDF de tu broker tal como lo bajás: busco solo las columnas, la moneda y el efectivo (<span class="cv-cols">ticker</span> y <span class="cv-cols">monto</span>, o <span class="cv-cols">cantidad</span> y <span class="cv-cols">precio</span>). '
+                    'Si tenés instrumentos que no son CEDEARs (bonos, ONs, fondos, cripto…), indicá la <b>categoría</b> en una columna «Tipo» (Renta fija, Oro, Cripto, Efectivo…) para que los ubique bien. '
+                    + ('Las <b>capturas de pantalla</b> también se pueden leer, pero te las desaconsejamos: el sistema puede confundir números y letras. Si usás una, vas a poder corregir a mano lo que leyó antes de analizar.' if hay_ocr else 'Si no se entiende, usá el Excel de ejemplo.')
+                    + '</div>', unsafe_allow_html=True)
+        with st.expander("¿No tenés archivo? Pegá tu cartera como texto", expanded=False):
             texto = st.text_area("Una posición por línea, por ejemplo: AAPL 1500", height=120, key="cr_texto", label_visibility="collapsed",
                                  placeholder="AAPL 1500\nSPY 3000\nAL30;2000;renta fija\nBTC 300")
-    if arch is None and not (texto or "").strip():
-        return
+        with st.expander("¿Ya te evaluaste antes? Subí tu evaluación anterior para compararla", expanded=False):
+            previa_arch = st.file_uploader("Evaluación anterior (archivo .json que bajaste la última vez)", type=["json"], key="cr_previa")
+        acepto = st.checkbox("Entendido: esta evaluación es una orientación educativa, automática y puede cometer errores. No es una recomendación de inversión y yo soy responsable de mis decisiones.", key="cr_acepto")
+    # --- lo que falta (el botón queda gris hasta que esté todo)
+    falta = []
     if edad is None:
-        st.info("Poné tu edad para ver la evaluación.")
+        falta.append("tu edad")
+    if not perfil:
+        falta.append("tu perfil de inversor")
+    if not archivos and not (texto or "").strip():
+        falta.append("tu cartera (un archivo o el texto)")
+    if not acepto:
+        falta.append("marcar «Entendido»")
+    _firma = (nombre or "", edad, perfil, tuple((a.name, a.size) for a in archivos or ()), (texto or "").strip())
+    listo = not falta
+    st.markdown("<style>.st-key-cr_go button:disabled{background:#cbd5e1!important;color:#fff!important;box-shadow:none!important;cursor:not-allowed}</style>", unsafe_allow_html=True)
+    if st.button("Análisis de Cartera de Inversión", key="cr_go", type="primary", disabled=not listo):
+        st.session_state["cr_ok"] = _firma
+    if not listo:
+        st.warning("Para habilitar el análisis te falta: " + ", ".join(falta) + ".")
         return
-    # v1.2.87: antes de analizar, un botón para confirmar (se vuelve a pedir si cambia el archivo o el texto)
-    _firma = (arch.name, arch.size) if arch is not None else ("texto", (texto or "").strip())
     if st.session_state.get("cr_ok") != _firma:
-        if st.button("Analizar mi cartera", key="cr_go", type="primary"):
-            st.session_state["cr_ok"] = _firma
-        else:
-            st.caption("Cuando tengas cargados tu edad, tu perfil y tu cartera, tocá el botón para ver la evaluación.")
+        st.caption("Tocá «Análisis de Cartera de Inversión» para ver la devolución.")
+        return
+    # --- lectura
+    pos, notas, tc_resumen, hay_img, err = _leer_archivos(archivos or [], C)
+    if err:
+        st.error(err)
+        return
+    if (texto or "").strip():
+        try:
+            p_t, n_t = C.leer_texto_info(texto)
+            pos += p_t
+            notas += list(n_t)
+        except ValueError as e:
+            st.error(str(e))
             return
-    tc_resumen = None
-    try:
-        if arch is not None and arch.name.lower().endswith(".pdf"):
-            pos, _n, tc_resumen = C.leer_pdf_info(arch.getvalue())
-            nota_hoja = " ".join(_n)
-        elif arch is not None:
-            pos, nota_hoja = C.leer_archivo_info(arch.name, arch.getvalue())
-        else:
-            pos, nota_hoja = (lambda r: (r[0], " ".join(r[1])))(C.leer_texto_info(texto))
-    except ValueError as e:
-        st.error(str(e))
-        return
+    if hay_img:
+        st.info("Leí tu captura. Revisá la tabla y corregí lo que haga falta (podés editar, borrar o agregar filas): el sistema puede confundir números y letras.")
+        base_img = [q for q in pos if q.get("_img")]
+        resto = [q for q in pos if not q.get("_img")]
+        pos = resto + _tabla_a_mano(base_img, "cr_tabla_img_" + str(abs(hash(_firma)) % 10**8))
     if not pos:
-        st.warning("No encontré posiciones en ese archivo. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo o pegá tu cartera como texto.")
+        st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo o pegá tu cartera como texto.")
         return
-    if nota_hoja:
-        st.caption(nota_hoja)
-    # v1.2.83: la moneda se detecta sola (columna Moneda, símbolo $ / USD, encabezado, bonos en D/C, título del archivo). Solo si algún monto no la dice, se pregunta (y es una pregunta, no un dato obligatorio)
+    for n in notas:
+        st.caption(n)
+    # moneda: se detecta sola; solo si algún monto no la dice, se pregunta
     sin_moneda = [p for p in pos if not p.get("moneda")]
     base_k = "usd"
     if sin_moneda:
@@ -1578,9 +1664,10 @@ def _evaluar_cartera(df, C, CV):
             st.info("Hay montos en pesos: poné el dólar con el que querés convertirlos (por ejemplo, el CCL de hoy).")
             return
     pos, n_conv, _falta = C.convertir(pos, base_k, tc)
+    pos, n_fus = C.fusionar(pos)
     empresas = {}
     for _, r in df.iterrows():
-        empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria")}
+        empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta")}
     try:
         etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
     except Exception:  # noqa: BLE001
@@ -1592,20 +1679,32 @@ def _evaluar_cartera(df, C, CV):
     if n_conv:
         tc_txt = f"{tc:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
         st.caption(f"Pasamos a dólares {n_conv} posición(es) en pesos, a $ {tc_txt} por dólar" + (" (el dólar MEP de tu resumen)." if tc_resumen and abs(tc - tc_resumen) < 0.01 else "."))
-    st.markdown(CV.visual_html(res, edad, perfil)
-                + '<div class="cr"><div class="cr-av">Orientación general con fines informativos y educativos, armada con reglas fijas a partir de lo que cargaste. '
-                'No es una recomendación de compra o venta ni un consejo personalizado: cada situación (objetivos, plazos, impuestos, otros ingresos) es distinta. '
-                'Tu cartera se procesa en el momento y no se guarda.</div></div>', unsafe_allow_html=True)
-    # v1.2.74: informe descargable con el membrete de Finanzas para Médicos Argentina (se arma en memoria y se baja al dispositivo)
+    if n_fus:
+        st.caption(f"Sumamos {n_fus} posición(es) repetida(s) (el mismo activo en más de un archivo o broker).")
+    previa = None
+    if previa_arch is not None:
+        try:
+            previa = _json.loads(previa_arch.getvalue().decode("utf-8"))
+        except Exception:  # noqa: BLE001
+            st.caption("No pude leer el archivo de la evaluación anterior: tiene que ser el .json que bajaste en tu última evaluación.")
+    hoy = _dt.date.today()
+    fecha_txt = hoy.strftime("%d/%m/%Y")
+    st.markdown(CV.visual_html(res, edad, perfil, nombre or "", fecha_txt, previa), unsafe_allow_html=True)
+    # informe descargable (PDF con membrete) y resumen para comparar la próxima vez: se arman en memoria y se bajan al dispositivo
     try:
         from ui import cartera_informe as CI
         av = texto_aviso_legal()
         try:
-            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or ""), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
         except ImportError:
-            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
-        st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe")
-        st.caption("El informe se arma en el momento y se baja a tu dispositivo: no guardamos tu cartera ni el informe.")
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av, nombre=nombre or ""), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
+        d1, d2 = st.columns(2, gap="medium")
+        with d1:
+            st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe", use_container_width=True)
+        with d2:
+            st.download_button("Guardar resumen para comparar la próxima vez", _json.dumps(C.resumen_guardable(res, edad, perfil, hoy.isoformat()), ensure_ascii=False, indent=1).encode("utf-8"),
+                               file_name=f"mi_evaluacion_{hoy.isoformat()}.json", mime="application/json", key="cr_resumen", use_container_width=True)
+        st.caption("El informe y el resumen se arman en el momento y se bajan a tu dispositivo: no guardamos tu cartera ni tu evaluación.")
     except Exception:  # noqa: BLE001
         pass
 
