@@ -1679,7 +1679,8 @@ def _rentabilidad_anual(C):
                     aviso="Pasó menos de un año, así que no te lo pasamos a «por año»: con tan poco tiempo ese número exagera. Mirá el resultado del período.")
         return
 
-    st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">No hace falta que cargues tus posiciones.</p></div>', unsafe_allow_html=True)
+    st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">Si no sabés las fechas exactas de tus aportes y retiros, lo calculamos igual: te damos un <b>rango estimado</b> (un número mínimo y uno máximo) justamente porque falta ese dato. '
+                'Si las sabés, elegí la otra opción y el resultado sale exacto.</p></div>', unsafe_allow_html=True)
     c1, c2 = st.columns(2, gap="medium")
     with c1:
         inicio = st.date_input("¿Cuándo empezaste a invertir?", value=None, min_value=_dt.date(1990, 1, 1), max_value=hoy, format="DD/MM/YYYY", key="rt_inicio")
