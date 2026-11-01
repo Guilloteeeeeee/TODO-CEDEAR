@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.6 (01/11/2026): Análisis Fundamental nuevo, tanda 14
+
+- Reescritas con el formato v4: SCCO, T, ACN, SONY, BA, UL, IBKR, BX, BBVA y RIO. Van 103 de 166.
+- SONY queda para renovar con su próximo informe (sale el 05/11).
+
 ### v1.3.5 (01/11/2026): Análisis Fundamental nuevo, tanda 13
 
 - Reescritas con el formato v4: WELL, TMUS, PBR, TJX, NOW, DHR, SCHW e ISRG. Van 93 de 166.

@@ -3594,56 +3594,72 @@
    }
   },
   "RIO": {
-   "resumen": "Rio Tinto es una de las mayores mineras del mundo: saca mineral de hierro en Australia Occidental (la base de su ganancia), aluminio (de la bauxita al metal reciclado), litio y cobre. Gana plata con la diferencia entre lo que cuesta sacar y procesar el mineral y un precio de mercado que no controla. Tiene un **foso estrecho, de bajo costo y de minas de gran escala**: sus minas de hierro son de las más baratas de operar y eso la protege en los años flojos. Los ingresos pasaron de 55.554 M en 2022 a 57.638 M en 2025, y el margen operativo fue de 26,8 % en 2025. El problema es la tendencia: **el margen operativo bajó de 34,9 % a 26,8 %, el ROIC de 22,0 % a 12,9 % y el flujo libre de 9.384 M a 4.497 M**, porque la inversión en minas casi se duplicó (de 6.750 M a 12.335 M). La deuda total se duplicó a 23.517 M, con tasas cerca de 5 %. Y en 2025 pagó de dividendo (6.145 M) más de lo que generó de flujo libre. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se saca roca de la tierra. Conclusión: **buena empresa, con minas de bajo costo y deuda todavía baja, pero con retorno y flujo libre en baja, inversión en alza y un dividendo que ya supera lo que genera.**",
-   "veredicto": "Buena empresa: minas de bajo costo y deuda baja, pero retorno y flujo libre en baja",
-   "conclusion": "Rio Tinto es una buena empresa, no una excelente: tiene minas de bajo costo, margen operativo de 26,8 % y deuda neta de 0,65 veces el EBITDA, pero el flujo libre y el ROIC vienen bajando y el dividendo ya supera lo que genera. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la inversión en minas nuevas se transforme en más flujo libre.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Rio Tinto: la gigante del hierro se vuelve minera de cobre y litio, con un pie en la Argentina",
+   "resumen": [
+    "Rio Tinto es una de las mayores **mineras** del mundo. Su gran negocio es el **mineral de hierro** de Australia, que vende sobre todo a China para fabricar acero. Pero cada vez pesa más el **cobre** (Mongolia, EE.UU., Chile), el **aluminio** (Canadá) y el **litio**, con proyectos en Salta, Catamarca y Jujuy. Su ventaja son yacimientos enormes y de bajo costo.",
+    "En el primer semestre de 2026, **su ganancia ajustada creció 43 %**, a 6.850 M, y su EBITDA, 28 %, impulsados por el cobre. Subió su dividendo 43 %. En el tercer trimestre, su producción de cobre en Mongolia creció 27 %.",
+    "Muy buena empresa, con activos de primer nivel, márgenes muy superiores a su industria y un dividendo alto, pero que depende de China y de los precios de los metales, con un dividendo que sube y baja."
+   ],
+   "introduccion": "Si alguna vez viste una foto de un tren de más de dos kilómetros de largo atravesando el desierto rojo del oeste de Australia, probablemente era de Rio Tinto. En la región de Pilbara, la empresa saca mineral de hierro de minas a cielo abierto, lo lleva en tren hasta el puerto y lo embarca a China, donde se convierte en acero para edificios, autos y barcos.\n\nEse negocio fue durante décadas una máquina de hacer plata. Pero tiene un problema: depende de un solo cliente, China, y de un solo motor, la construcción china, que lleva años en crisis.\n\nPor eso Rio Tinto está cambiando. Invirtió miles de millones en **cobre**, el metal de la electrificación, con la mina subterránea de Oyu Tolgoi, en Mongolia. Y en 2025 compró Arcadium Lithium, lo que la convirtió en uno de los grandes productores de **litio** del mundo, con operaciones y proyectos en el norte argentino.\n\nEn el primer semestre de 2026, el cobre y el aluminio ya aportaron más ganancia que el hierro.\n\nEntonces, la pregunta es: ¿puede Rio Tinto dejar de depender del hierro y de China sin perder su rentabilidad?",
+   "secciones": [
+    {
+     "titulo": "Hierro, cobre, aluminio y litio",
+     "texto": "Rio Tinto tiene cuatro grandes negocios:\n\n- **Mineral de hierro**: las minas de Pilbara, en Australia, y desde fines de 2025, **Simandou**, en Guinea, uno de los mayores yacimientos de hierro de alta calidad del mundo, que todavía está arrancando. Vendió 90,8 millones de toneladas en el tercer trimestre de 2026, un 3 % más.\n- **Cobre**: Oyu Tolgoi (Mongolia), Kennecott (EE.UU.) y una participación en Escondida (Chile). Oyu Tolgoi produjo 114.000 toneladas en el tercer trimestre, un 27 % más.\n- **Aluminio**: fundiciones en Canadá que funcionan con energía hidroeléctrica, más limpia y barata.\n- **Litio**: con la compra de Arcadium, tiene operaciones en Catamarca y Jujuy, y construye el proyecto Rincón, en Salta. Su producción de litio creció 33 % en los primeros nueve meses de 2026.\n\nSus clientes son acerías (sobre todo chinas), fabricantes de cables, autos, latas y baterías de todo el mundo.\n\n¿Cuál es su **ventaja**? La **calidad de sus yacimientos**. Las minas de Pilbara están entre las de menor costo del mundo, con trenes y puertos propios. Oyu Tolgoi es uno de los mayores depósitos de cobre descubiertos en décadas. Y el aluminio canadiense, hecho con energía hidroeléctrica, tiene una huella de carbono mucho menor que el chino.\n\nLa inteligencia artificial no la amenaza; en todo caso, la ayuda: sus trenes y camiones en Australia ya funcionan sin conductor, y los centros de datos necesitan cobre y aluminio."
+    },
+    {
+     "titulo": "Márgenes que su industria no alcanza",
+     "texto": "Los ingresos se mantuvieron estables: 55.554 M en 2022 y **57.638 M** en 2025.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) bajó de 34,9 % en 2022 a **26,8 %** en 2025, por un hierro más barato. Aun así, el promedio de su industria es 7,2 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), bajó de 22,0 % a **12,9 %**. Por encima de 15 % se considera muy bueno. Bajó porque invirtió mucho en Simandou, Oyu Tolgoi y el litio, proyectos que todavía no producen a pleno. Si esas inversiones no rinden, el ROIC seguiría bajo.\n\n[[grafico:roic]]\n\nEn el primer semestre de 2026, con el cobre caro, las cosas mejoraron: sus ingresos crecieron 15 %, su EBITDA ajustado (lo que genera el negocio antes de intereses, impuestos y amortizaciones) creció 28 %, a 14.800 M, y su ganancia ajustada, 43 %. El cobre aportó 5.700 M de EBITDA, un 84 % más, casi lo mismo que el hierro (6.800 M).\n\nEl **flujo libre de caja** (lo que queda después de invertir) bajó a **4.497 M** en 2025, por las grandes inversiones. En el primer semestre de 2026 fue de 3.800 M, un 75 % más.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Poca deuda y un dividendo que sigue al ciclo",
+     "texto": "La deuda neta (lo que debe menos la caja) subió con la compra de Arcadium, a **14.100 M** a mediados de 2026. Equivalía a **0,65 veces su EBITDA** a fines de 2025, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 8 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nReparte la mitad de su ganancia ajustada como dividendo. Por eso el dividendo **sigue al precio de los metales**: el de mitad de 2026 fue de 2,11 dólares por acción, un 43 % más. Pero en los últimos tres años bajó en promedio 20,6 % por año.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **China**: compra la mayor parte de su hierro, y su construcción sigue débil.\n- **Los precios**: hierro, cobre, aluminio y litio suben y bajan con la economía mundial.\n- **Los proyectos**: Simandou, Oyu Tolgoi y Rincón son enormes y pueden demorarse o encarecerse.\n- **Los países**: Guinea, Mongolia y la Argentina tienen riesgos políticos y regulatorios.\n- **La reputación**: en 2020 destruyó cuevas aborígenes de 46.000 años en Juukan Gorge, Australia, lo que le costó el puesto a su CEO de entonces.\n\nLa conduce Simon Trott, CEO desde 2025: \"Seguimos en camino a un beneficio por productividad de 1.800 M anuales para fines de 2026\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una minera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: con los metales caros, la ganancia es alta y el PER parece bajo; con los metales baratos, pasa lo contrario.\n\nCon el precio de {precio} dólares por ADR, Rio Tinto cotiza a {per_ref} veces su ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl mercado siempre pagó poco por Rio Tinto, porque la veía como una empresa de hierro dependiente de China. Si el cobre y el litio siguen ganando peso, el mercado podría pagar más, como paga por las mineras de cobre. Si el hierro se derrumba, la ganancia caería.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}), aunque varía con los metales.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Rio Tinto es una muy buena empresa. Tiene algunas de las minas de hierro de menor costo del mundo, uno de los mayores depósitos de cobre, aluminio hecho con energía limpia y una posición creciente en litio. Sus márgenes multiplican a los de su industria, tiene poca deuda y reparte la mitad de lo que gana.\n\nSu punto débil es la dependencia: de China, que compra la mayor parte de su hierro, y de los precios de los metales, que no controla. Además, está en plena etapa de grandes inversiones que todavía no rinden del todo, y su dividendo sube y baja. El crítico más duro diría que Rio Tinto sigue siendo una apuesta a la construcción china. Es un argumento razonable, aunque cada vez menos cierto.\n\nEncaja con quien busca exposición a los metales de la electrificación con un dividendo alto, y tolera la volatilidad. No es para quien busca un dividendo estable.\n\nPara que la tesis se mantenga, lo más importante es que el cobre y el litio sigan ganando peso, que Simandou llegue a su capacidad sin problemas y que el hierro no se derrumbe.",
+   "pros": [
+    "Activos de primer nivel: hierro de bajo costo y cobre de clase mundial.",
+    "Márgenes altos: 26,8 % contra 7,2 % de su industria.",
+    "Diversificación: el cobre ya casi iguala al hierro en ganancias."
+   ],
+   "contras": [
+    "Depende de China: compra la mayor parte de su hierro.",
+    "Dividendo variable: bajó en promedio 20,6 % por año en tres años.",
+    "Proyectos grandes: Simandou y Rincón pueden demorarse."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Rio Tinto opera tres segmentos: **Iron Ore** (mineral de hierro, más sal y yeso, en Australia Occidental), **Aluminium and lithium** (bauxita, refinación de alúmina, fundición y reciclaje de aluminio, y litio) y **Copper**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de materias primas: vende lo que el mundo necesita para construir, pero a precios que suben y bajan. **Los ingresos cayeron 2,7 % en 2023 y 0,7 % en 2024, y subieron 7,4 % en 2025, hasta 57.638 M.**\n\n**A quién le vende.** Sobre todo a acerías y fundiciones de Asia, y a industrias que usan aluminio. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
-   "foso": "La ventaja de Rio Tinto **es de bajo costo y de escala, y es estrecha**. Sus minas de hierro en Australia Occidental son grandes y baratas de operar, y eso le permite ganar plata cuando los precios caen y a otros les cuesta. Se ve en el **margen bruto, entre 56,4 % y 61,7 %**, y en el **margen operativo, entre 26,8 % y 34,9 %**.\n\nPero el precio de los metales lo fija el mercado, y la ventaja de costo no la protege de un mal año: la ganancia por acción fue de 7,62 en 2022, 6,17 en 2023, 7,07 en 2024 y 6,08 en 2025. Compite con BHP, Vale, Anglo American y Glencore. Es frágil en el precio del hierro, en China y en que las minas nuevas (litio, cobre) cuestan mucho y tardan en rendir.",
-   "numeros": "Los números de Rio Tinto cuentan **un negocio muy rentable, con un deterioro gradual en caja y retorno**. Los ingresos fueron de 55.554 M, 54.041 M, 53.658 M y 57.638 M. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) bajó de 34,9 % a 29,1 %, 27,6 % y **26,8 % en 2025**. La ganancia por acción fue de 7,62, 6,17, 7,07 y 6,08.\n\nLa caja es lo que más cambió: el flujo libre (lo que sobra después de invertir) fue de 9.384 M en 2022, 5.978 M en 2024 y **4.497 M en 2025 (7,8 % de las ventas)**, porque la inversión en planta pasó de 6.750 M a 12.335 M (183 % del nivel de 2022). El ROIC, cuánto gana por cada dólar puesto en el negocio, bajó de 22,0 % a **12,9 %**, y el capital invertido subió de 61.705 M a 84.134 M.\n\nLa mirada crítica: en 2025 la inversión (12.335 M) superó a la ganancia neta (9.966 M) y al flujo operativo menos el dividendo. Es una apuesta a que las minas nuevas rindan.",
-   "balance": "**La deuda de Rio Tinto se duplicó, pero sigue siendo cómoda.** La deuda total pasó de 12.271 M en 2022 a 23.517 M en 2025 (+92 %), con 7.452 M en caja: la deuda neta es de 15.027 M, **0,65 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 8 meses de ganancia operativa. Era de 0,21 veces en 2022. La ganancia operativa cubre 8,5 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,44 veces: cómoda. Con tasas cerca de 5 %, la deuda nueva cuesta más y la tendencia de deuda en alza conviene seguirla.",
-   "gerencia": "La conduce Simon Trott, CEO (50 años, pago de 3,4 M según Yahoo), con Peter Cunningham como director financiero (59 años). Hay un jefe por negocio (hierro, aluminio y litio, cobre).\n\nEn lo que importa, **el uso del capital, es de inversión en minas y de dividendo**: paga un dividendo de 4,65 por acción (pagado desde 1990; el -20,6 % por año en 3 años muestra que se recortó desde el pico de 2022; 6.145 M en 2025) e invierte cada vez más. No recompra acciones: las acciones diluidas pasaron de 1.630 M a 1.638 M, **0,5 % más**. En 2025 el dividendo (6.145 M) fue 137 % del flujo libre (4.497 M), y la diferencia se cubre con deuda.",
-   "fortalezas": [
-    "Minas de hierro de bajo costo y gran escala: margen bruto de 57,4 % en 2025.",
-    "Margen operativo de 26,8 % y ganancia neta de 9.966 M en 2025.",
-    "Deuda neta de 15.027 M, 0,65 veces el EBITDA, y liquidez corriente de 1,44 veces.",
-    "Dividendo pagado desde 1990 (4,65 por acción).",
-    "Diversificación hacia cobre, aluminio y litio."
-   ],
-   "debilidades": [
-    "Flujo libre en baja: 4.497 M en 2025 contra 9.384 M en 2022.",
-    "ROIC en baja: de 22,0 % a 12,9 %, con un capital invertido que subió 36 %.",
-    "Dividendo (6.145 M) por encima del flujo libre: el crítico más duro diría que lo paga con deuda.",
-    "Deuda que se duplicó a 23.517 M, con tasas cerca de 5 %.",
-    "Dependencia de China y del precio del hierro; inversión en minas nuevas que todavía no rinde."
-   ],
-   "vigilar": [
-    "Flujo libre: hoy 4.497 M; tiene que volver a cubrir el dividendo de 6.145 M.",
-    "Inversión en planta: hoy 12.335 M; si sigue subiendo más rápido que el flujo operativo, la deuda sigue creciendo.",
-    "ROIC: hoy 12,9 %; tiene que dejar de bajar para justificar el capital que invirtió.",
-    "Deuda neta sobre EBITDA: hoy 0,65 veces; si se acerca a 1,0 veces, el balance empieza a ajustarse."
-   ],
    "clientes": [
-    "Acerías y fundiciones de Asia",
-    "Industrias que usan aluminio",
-    "Fabricantes que compran cobre y litio"
+    "Acerías, sobre todo de China",
+    "Fabricantes de cables, autos y latas",
+    "Fabricantes de baterías"
    ],
-   "ideal_para": [
-    "Buscan una minera diversificada de bajo costo con dividendo.",
-    "Aceptan que la ganancia dependa del precio del hierro y de China.",
-    "Quieren exposición a cobre, aluminio y litio."
+   "hechos": [
+    {
+     "dato": "Primer semestre de 2026: ingresos de 31.000 M (+15 %); EBITDA ajustado de 14.800 M (+28 %); ganancia de 6.700 M (+47 %) y ajustada de 6.900 M (+43 %); flujo libre de 3.800 M (+75 %); deuda neta de 14.100 M; dividendo de 2,11 dólares por acción (1,48), 50 % de la ganancia ajustada",
+     "fuente": "Kalkine Media, 07/2026",
+     "url": "https://kalkinemedia.com/au/news/announcements/rio-tinto-boosts-interim-dividend-by-43-to-34-billion-amid-28-surge-in-h1-2026-ebitda"
+    },
+    {
+     "dato": "Primer semestre de 2026: EBITDA del cobre de 5.700 M (+84 %) y del hierro de 6.800 M (-1 %); cobre y aluminio, cerca del 56 % de la ganancia del grupo",
+     "fuente": "SMM, 30/07/2026",
+     "url": "https://news.metal.com/newscontent/104031887-rio-tinto-posts-highest-half-year-earnings-in-four-years-as-copper-and-aluminum-overtake-iron-ore"
+    },
+    {
+     "dato": "Tercer trimestre de 2026: ventas de hierro de 90,8 millones de toneladas (+3 %); Simandou a un ritmo de unos 10 millones de toneladas anuales; Oyu Tolgoi 114.000 toneladas de cobre (+27 %); litio +33 % en nueve meses; frase de Simon Trott",
+     "fuente": "The Motley Fool Australia, 14/10/2026",
+     "url": "https://www.fool.com.au/2026/10/14/rio-tinto-provides-q3-2026-production-update/"
+    }
    ],
-   "menos_ideal": [
-    "No toleran un dividendo que supera el flujo libre.",
-    "Buscan ganancias estables año a año."
-   ],
+   "ticker": "RIO",
    "perfil": "materiales",
    "capas": [
     "ciclica"
    ],
-   "ticker": "RIO",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2025",
@@ -3657,56 +3673,67 @@
    }
   },
   "SCCO": {
-   "resumen": "Southern Copper extrae, funde y refina cobre (y molibdeno, plata y zinc) en minas de México y Perú, con operaciones también en Estados Unidos, Brasil y Chile. Gana plata con la diferencia entre lo que cuesta sacar el mineral y el precio de mercado del cobre, que no controla. Tiene un **foso estrecho, de reservas enormes y bajo costo**: sus minas son de las que más cobre guardan bajo tierra y de las más baratas de operar. Se ve en los números: los ingresos pasaron de 10.048 M en 2022 a 13.420 M en 2025, el margen operativo subió de 44,1 % a 52,2 % y el ROIC de 19,3 % a 25,0 %. Los últimos 12 meses mejoraron más: **la ganancia por acción llegó a 7,50 y el flujo libre a 5.100 M**. Tiene poca deuda: la deuda neta de 2025 fue 0,30 veces el EBITDA. Sus puntos débiles son que su resultado depende del precio de un solo metal, que opera en países con riesgo político y de permisos, y que su controlante, Grupo México, decide casi todo. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se extrae roca. Conclusión: **buena empresa, con minas de bajo costo, márgenes de 52,2 % y deuda baja, pero atada al precio del cobre, al riesgo país y a un accionista controlante.**",
-   "veredicto": "Buena empresa: minas de bajo costo, márgenes muy altos y deuda baja, atada al precio del cobre",
-   "conclusion": "Southern Copper es una buena empresa, no una excelente: tiene minas de bajo costo, margen operativo de 52,2 %, ROIC de 25,0 % y deuda neta de 0,30 veces el EBITDA, pero depende del precio del cobre, del riesgo país y de un accionista controlante. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que el precio del cobre se sostenga y que los proyectos nuevos avancen sin conflictos.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Southern Copper: la minera de cobre más barata de operar, con el cobre en precios récord",
+   "resumen": [
+    "Southern Copper es una de las mayores **mineras de cobre** del mundo, con minas en **Perú** y **México**. También produce molibdeno, plata y zinc. Está controlada por Grupo México. Su ventaja son reservas enormes y costos de producción de los más bajos de la industria, gracias a lo que gana con esos otros metales.",
+    "En el tercer trimestre de 2026, con el cobre en precios muy altos, **sus ventas crecieron 39 %**, a 4.697 M, y **su ganancia, 63 %**, a 1.802 M, un récord. Pero produjo 1 % menos cobre que un año antes.",
+    "Muy buena empresa, con márgenes altísimos, poca deuda y un dividendo atado al cobre, pero con una ganancia que depende del precio del metal, una producción que hoy no crece y riesgos políticos en Perú y México."
+   ],
+   "introduccion": "Cada auto eléctrico lleva unos cuantos kilos de cobre más que uno a nafta. Cada parque solar, cada red eléctrica nueva y cada centro de datos para inteligencia artificial necesitan toneladas de cobre en cables, transformadores y equipos de refrigeración. El mundo se está electrificando, y el cobre es el metal de la electricidad.\n\nEl problema es la oferta: abrir una mina nueva lleva más de diez años entre permisos, estudios y construcción, y los yacimientos que quedan son cada vez más pobres o están en lugares difíciles. Con más demanda y una oferta que crece lento, el precio subió con fuerza: en el tercer trimestre de 2026, el cobre promedió 6,41 dólares por libra en Londres, un 44 % más que un año antes.\n\nSouthern Copper es una de las grandes beneficiadas. Con minas en Perú y México, ganó 1.802 M en el trimestre, un récord.\n\nPero tiene un desafío: su producción de cobre no crece. En los primeros nueve meses de 2026 bajó casi 3 %. Y su gran proyecto en Perú, Tía María, lleva años de demoras por la oposición de comunidades locales.\n\nEntonces, la pregunta es: ¿cuánto vale una minera excelente cuando el precio del metal está en máximos y su producción no sube?",
+   "secciones": [
+    {
+     "titulo": "Cobre, y todo lo demás",
+     "texto": "Southern Copper extrae y procesa minerales en dos países:\n\n- **Perú**: las minas de Toquepala y Cuajone, en el sur del país. En el tercer trimestre su producción de cobre bajó 6 %.\n- **México**: las minas de Buenavista y La Caridad, en Sonora, entre otras. Su producción de cobre subió 2,5 %.\n\nEn total produjo 232.396 toneladas de cobre en el trimestre, y espera cerrar 2026 con algo menos de 920.000 toneladas. Además produce **molibdeno** (para aceros especiales), **plata** y **zinc**.\n\nSus clientes son fundiciones, fabricantes de cables y productos de cobre, y comercializadoras de metales de todo el mundo.\n\n¿Cuál es su **ventaja**? Dos cosas. Las **reservas**: la empresa afirma tener las mayores reservas de cobre de la industria, que le alcanzan para décadas de producción. Y el **costo**: lo que le cuesta producir cada libra de cobre es de los más bajos del mundo.\n\nPara entenderlo hay que conocer el **costo neto de subproductos**. Cuando Southern Copper saca cobre de la mina, también obtiene molibdeno, plata y zinc, que vende aparte. Un ejemplo: si producir una libra de cobre le cuesta 2,46 dólares, pero vende los otros metales que salieron con ella por 2,36, el costo neto de esa libra es de apenas 0,10. Eso fue casi exactamente lo que pasó en el tercer trimestre: su costo neto fue de 0,09 dólares por libra, con el cobre a más de 6 dólares. Si los precios de esos otros metales cayeran, el costo neto subiría.\n\nLa inteligencia artificial no la amenaza: los centros de datos que la hacen funcionar consumen cobre."
+    },
+    {
+     "titulo": "Márgenes que pocas empresas del mundo tienen",
+     "texto": "Los ingresos crecieron de 10.048 M en 2022 a **13.420 M** en 2025, y en los primeros nueve meses de 2026 subieron 39 %.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) fue de **52,2 %** en 2025. Más de la mitad de lo que vende es ganancia operativa. El promedio de su industria es 23,9 %. En el tercer trimestre de 2026, su EBITDA ajustado (lo que genera el negocio antes de intereses, impuestos y amortizaciones) fue de unos 3.000 M, el 65 % de sus ventas.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **25,0 %**. Por encima de 15 % se considera muy bueno. El promedio de su industria es 27,0 %.\n\n[[grafico:roic]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) pasó de 1.854 M en 2022 a **5.100 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nOjo: estos números reflejan un cobre caro. Una minera no controla el precio de lo que vende. Si el cobre bajara a los niveles de hace dos años, la ganancia caería mucho, aunque Southern Copper seguiría ganando plata gracias a su costo bajo."
+    },
+    {
+     "titulo": "Poca deuda, dividendo variable y riesgo político",
+     "texto": "La deuda no es un problema. La deuda neta (lo que debe menos la caja) es de **2.329 M**, y equivalía a **0,30 veces su EBITDA** a fines de 2025, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Tiene 7.330 M en caja.\n\n[[grafico:deuda_neta]]\n\nReparte buena parte de lo que gana. Declaró un dividendo trimestral de 1,30 dólares por acción, más un pequeño dividendo en acciones. Pero el dividendo **sube y baja con el cobre**: en los últimos tres años cayó en promedio 3,4 % por año, aunque en los últimos diez creció 24,9 % por año.\n\n[[grafico:dividendo]]\n\nPara volver a crecer, invierte en nuevos proyectos: **Tía María**, en Perú, con 120.000 toneladas de cobre por año, está construida en un 50 %; **Los Chancas** y **Michiquillay**, también en Perú, y **El Pilar**, en México. Pero son proyectos de largo plazo, y en Perú las comunidades locales se opusieron durante años a Tía María.\n\nLos riesgos:\n\n- **El precio del cobre**: hoy en niveles muy altos.\n- **Perú y México**: cambios de gobierno, impuestos a la minería, conflictos con comunidades.\n- **La producción**: no crece hasta que entren los nuevos proyectos.\n- **El controlante**: Grupo México decide, y los accionistas minoritarios tienen poco peso.\n\nSu director financiero, Raúl Jacob, destacó que alcanzaron \"récords de ventas, EBITDA ajustado y ganancia por segundo trimestre consecutivo\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una minera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: con el metal caro, la ganancia es alta y el PER parece razonable; con el metal barato, pasa lo contrario.\n\nCon el precio de {precio} dólares, Southern Copper cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó más por Southern Copper que por otras mineras, por sus reservas y su costo bajo. Pero hoy el múltiplo se calcula sobre una ganancia muy alta, impulsada por un cobre muy caro. Si el precio se sostiene, el múltiplo puede tener sentido. Si el cobre baja, la ganancia baja y la acción queda cara.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Southern Copper es una muy buena empresa. Tiene reservas enormes de un metal que el mundo necesita cada vez más, uno de los costos de producción más bajos de la industria, márgenes que pocas empresas del mundo alcanzan, poca deuda y un dividendo generoso.\n\nSu punto débil es que su suerte depende del precio del cobre, hoy en niveles muy altos, y de dos países con riesgos políticos. Además, su producción no crece, y sus proyectos nuevos llevan años de demoras. El crítico más duro diría que comprar una minera con el metal en máximos es comprar en la parte alta del ciclo. Es un argumento serio.\n\nEncaja con quien quiere exposición al cobre y a la electrificación con una empresa de costos bajos, y tolera la volatilidad. No es para quien busca un dividendo estable o previsibilidad.\n\nPara que la tesis se mantenga, lo más importante es que el cobre se sostenga en niveles altos y que Tía María entre en producción sin nuevas demoras.",
+   "pros": [
+    "Costo bajísimo: 0,09 dólares por libra neto de subproductos.",
+    "Reservas enormes: para décadas de producción.",
+    "Poca deuda: 0,30 veces su EBITDA a fines de 2025."
+   ],
+   "contras": [
+    "Depende del cobre: hoy en precios muy altos.",
+    "Producción estancada: bajó casi 3 % en nueve meses.",
+    "Riesgo político: Perú, México y un accionista controlante."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Southern Copper hace minería, molienda, flotación, fundición y refinación de cobre, y produce concentrados de cobre y molibdeno, cobre blíster, ánodos y cátodos, además de otros productos (como plata y zinc). Opera en México, Estados Unidos, Perú, Brasil, Chile y otros países de América. Yahoo no informa cuánto aporta cada metal ni cada país, y no lo vamos a inventar.\n\nEs un negocio de materias primas: el cobre se vende al precio del mercado. **Los ingresos cayeron 1,5 % en 2023, subieron 15,5 % en 2024 y 17,4 % en 2025, hasta 13.420 M.**\n\n**A quién le vende.** A fundiciones, fabricantes de cables y de productos de cobre de todo el mundo. Yahoo no da los porcentajes, pero **pocos clientes grandes concentran buena parte de las ventas**.",
-   "foso": "La ventaja de Southern Copper **es de reservas y de bajo costo, y es estrecha**. Sus minas están entre las de mayor reserva de cobre del mundo, y producir cada tonelada le sale barato frente a otros mineros; eso permite ganar plata aun con precios flojos. Se ve en el **margen bruto, de 44,2 % a 53,6 %**, en el **margen operativo, entre 42,4 % y 52,2 %**, y en el ROIC, siempre arriba de 18 %.\n\nPero el precio del cobre lo fija el mercado, y la ventaja de costo no evita un mal año: la ganancia por acción fue de 3,12 en 2022, 2,88 en 2023 y 5,08 en 2025. Compite con Freeport, Codelco, Antofagasta y las grandes mineras diversificadas. Es frágil en el precio del cobre, en el riesgo político de México y Perú (permisos, conflictos con comunidades, impuestos) y en que sus decisiones las toma su controlante.",
-   "numeros": "Los números de Southern Copper cuentan **un negocio muy rentable que mejora con el precio del cobre**. Los ingresos fueron de 10.048 M, 9.896 M, 11.433 M y 13.420 M. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 44,1 %, 42,4 %, 48,6 % y **52,2 % en 2025**. La ganancia por acción fue de 3,12, 2,88, 4,05, 5,08 y **7,50 en los últimos 12 meses**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 1.854 M en 2022, 3.394 M en 2024, 3.427 M en 2025 y **5.100 M en los últimos 12 meses**. El ROIC, cuánto gana por cada dólar puesto en el negocio, subió de 19,3 % a **25,0 %** en 2025. La inversión en planta subió de 948 M a 1.636 M en los últimos 12 meses.\n\nLa mirada crítica: en un minero, la mejora reciente suele reflejar precios más altos del cobre más que un negocio mejor, y Yahoo no detalla el motivo. Estos números no son un piso.",
-   "balance": "**El balance de Southern Copper es muy sólido.** La deuda total pasó de 7.103 M en 2022 a 8.624 M en los últimos 12 meses, con 7.330 M en caja. En 2025 la deuda neta fue de 2.446 M, **0,30 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 4 meses de ganancia operativa. Era de 1,00 veces en 2023. La ganancia operativa cubre 19,0 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 5,06 veces: muy holgada. Con tasas cerca de 5 %, tener tanta caja es una ventaja. El patrimonio neto subió de 8.084 M a 12.632 M.",
-   "gerencia": "La conduce Leonardo Contreras Lerdo de Tejada, CEO (39 años, pago de 0,1 M según Yahoo), con Raúl Jacob Ruisanchez como director financiero (67 años). Yahoo lo marca como director no independiente, y es un dato público que el accionista controlante es Grupo México: las decisiones de dividendos y de inversión siguen sus intereses, que no siempre coinciden con los de los accionistas minoritarios.\n\nEn lo que importa, **el uso del capital, es de dividendo alto**: paga 5,20 por acción (pagado desde 1996; 3.020 M en los últimos 12 meses, 59 % del flujo libre; sube y baja con el ciclo, -3,4 % anual a 3 años). En 2022 y 2023 el dividendo superó al flujo libre. No recompra acciones: las acciones diluidas pasaron de 844 M a 848 M, **0,5 % más**.",
-   "fortalezas": [
-    "Reservas enormes de cobre y minas de bajo costo.",
-    "Margen operativo de 52,2 % y ROIC de 25,0 % en 2025.",
-    "Flujo libre de 5.100 M en los últimos 12 meses.",
-    "Deuda neta de 0,30 veces el EBITDA en 2025 y liquidez corriente de 5,06 veces.",
-    "Dividendo alto, pagado desde 1996 (5,20 por acción)."
-   ],
-   "debilidades": [
-    "Resultado atado al precio de un solo metal: la ganancia por acción fue de 2,88 en 2023 y de 5,08 en 2025.",
-    "Riesgo país en México y Perú: el crítico más duro diría que un conflicto con comunidades o un impuesto nuevo pega directo en las ventas.",
-    "Accionista controlante: Grupo México decide en lo que importa.",
-    "Dividendo que sube y baja y que superó al flujo libre en 2022 y 2023.",
-    "Foso estrecho: la ventaja de costo no evita un mal año."
-   ],
-   "vigilar": [
-    "Precio del cobre: es lo que más mueve el resultado.",
-    "Flujo libre: hoy 5.100 M en los últimos 12 meses; tiene que cubrir con holgura el dividendo de 3.020 M.",
-    "Inversión en planta: hoy 1.636 M; si sigue subiendo, el flujo libre se achica.",
-    "Permisos y conflictos en México y Perú: son el riesgo que más puede frenar nuevos proyectos."
-   ],
    "clientes": [
     "Fundiciones y refinerías de cobre",
     "Fabricantes de cables y productos de cobre",
-    "Compradores de molibdeno, plata y zinc"
+    "Comercializadoras de metales de todo el mundo"
    ],
-   "ideal_para": [
-    "Buscan exposición pura al cobre con dividendo alto.",
-    "Aceptan que el resultado dependa del precio del cobre.",
-    "Toleran el riesgo político de México y Perú."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 4.697 M (+39,1 %); ganancia de 1.802 M (+62,7 %); ganancia por acción de 2,15 dólares; producción de cobre de 232.396 toneladas (-1,1 %); flujo de caja operativo de 2.224 M; inversiones de 516 M; dividendo de 1,30 dólares por acción más 0,0106 acciones por acción",
+     "fuente": "Resumen de los resultados del 3T26, 21/10/2026",
+     "url": "https://www.quiverquant.com/news/Southern+Copper+Posts+Record+%244.7+Billion+Third-Quarter+Sales"
+    },
+    {
+     "dato": "Conferencia del 3T26: cobre a 6,41 dólares por libra en Londres (+44 %); producción en Perú -6 % y en México +2,5 %; producción de nueve meses -2,9 %; guía 2026 de algo menos de 920.000 toneladas; EBITDA ajustado de unos 3.000 M (65 % de las ventas); costo neto de subproductos de 0,09 dólares por libra (2,46 antes de subproductos, con créditos de 2,36); Tía María al 50 % de avance, con 120.000 toneladas por año; Los Chancas, Michiquillay y El Pilar; frase de Raúl Jacob",
+     "fuente": "Transcripción de la conferencia del 3T26",
+     "url": "https://bullfincher.io/companies/southern-copper-corporation/earnings-call/fy2026-q3"
+    }
    ],
-   "menos_ideal": [
-    "No toleran un accionista controlante que decide el dividendo.",
-    "Buscan ganancias estables año a año."
-   ],
+   "ticker": "SCCO",
    "perfil": "materiales",
    "capas": [
     "ciclica"
    ],
-   "ticker": "SCCO",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -4730,54 +4757,65 @@
    }
   },
   "BX": {
-   "resumen": "Blackstone es la mayor gestora de activos alternativos del mundo: administra fondos de capital privado, bienes raíces, crédito, fondos de cobertura y estrategias secundarias, con dinero de fondos de pensión, aseguradoras y grandes inversores. Gana plata de dos formas: comisiones fijas sobre los activos que administra y una parte de las ganancias cuando vende las inversiones. Tiene un **foso estrecho, de marca y de capital a largo plazo**: sus fondos inmovilizan el dinero de los inversores por años, y eso le da ingresos estables, y su historia le permite juntar fondos más grandes que cualquier competidor. Los números son muy buenos: los ingresos pasaron de 7.133 M en 2022 a 12.410 M en 2025, la ganancia neta de 1.748 M a 3.019 M, la ganancia por acción de 2,36 a 3,87 (4,50 en los últimos 12 meses) y el ROE subió a **34,8 %**. Su punto débil es que depende de los mercados y de las tasas: en 2023 la ganancia neta cayó 20,4 %, porque con tasas altas se venden menos empresas e inmuebles, que es donde cobra la mayor parte de su ganancia variable. Además las acciones subieron 6,9 % desde 2022 y su dividendo varía con las ganancias. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **muy buena empresa financiera, con marca fuerte, ROE de 34,8 % y ganancias en alza, aunque con resultados que dependen del mercado y una remuneración muy alta de sus ejecutivos.**",
-   "veredicto": "Muy buena empresa financiera: marca fuerte y ROE altísimo, pero dependiente de mercados y tasas",
-   "conclusion": "Blackstone es una muy buena empresa financiera: tiene una marca de primer nivel, capital inmovilizado por años, ROE de 34,8 % y ganancia por acción de 4,50 en los últimos 12 meses, pero depende del mercado y de las tasas, y las acciones subieron 6,9 %. Vale la pena seguirla de cerca. Es recomendable investigar los activos que administra y el flujo de fondos nuevos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los inversores sigan dándole más capital y que se reactiven las ventas de activos.",
+   "formato": "v4",
+   "titulo": "Blackstone: el mayor gestor de inversiones alternativas cobra por cada dólar que administra",
+   "resumen": [
+    "Blackstone es el mayor **administrador de inversiones alternativas** del mundo: maneja 1,37 billones de dólares de fondos de pensión, aseguradoras, fondos soberanos y personas con mucho patrimonio, y los invierte en empresas, inmuebles, préstamos e infraestructura. Cobra comisiones por administrarlos y una parte de las ganancias. Su ventaja es la escala y una trayectoria de 40 años.",
+    "En el tercer trimestre de 2026, **recibió 63.300 M de dólares nuevos** para administrar, y sus ganancias por comisiones crecieron 6 %. Pero su ganancia distribuible por acción bajó de 1,52 a 1,32 dólares, porque vendió menos inversiones.",
+    "Muy buena empresa, con ingresos por comisiones cada vez más estables y un dividendo alto, aunque una parte de su ganancia depende de vender inversiones a buen precio, y el inmobiliario sigue flojo."
+   ],
+   "introduccion": "Un fondo de pensión que tiene que pagar jubilaciones dentro de 30 años, o una aseguradora que cobra primas hoy para pagar siniestros dentro de décadas, necesita que su plata rinda. Comprar bonos o acciones de bolsa no siempre alcanza. Por eso muchos le confían una parte a gestores que invierten en lo que no cotiza en bolsa: empresas privadas, edificios, centros de datos, préstamos a empresas.\n\nBlackstone es el más grande de esos gestores. Fue fundado en 1985 por Stephen Schwarzman y Peter Peterson con 400.000 dólares. Hoy administra 1,37 billones de dólares (un billón es un millón de millones).\n\nLo clave para entender a Blackstone es que **no invierte su propia plata**, salvo una parte chica. Invierte la de sus clientes y cobra por eso. Cuanto más plata le confían, más gana.\n\nEn los últimos años sumó una fuente nueva de clientes: las **personas con alto patrimonio**, que acceden a sus fondos a través de bancos y asesores. Y las aseguradoras, que le dan a administrar sus inversiones en préstamos.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa que gana cobrando comisiones sobre la plata de otros?",
+   "secciones": [
+    {
+     "titulo": "Cuatro negocios y dos tipos de comisiones",
+     "texto": "Blackstone invierte en cuatro grandes áreas. Entre paréntesis, la plata que administra en cada una:\n\n- **Crédito y seguros** (480.000 M): préstamos a empresas y administración de inversiones de aseguradoras. Es la que más crece: recibió 35.800 M nuevos en el trimestre.\n- **Capital privado** (465.400 M): compra empresas, las mejora y las vende años después. Incluye infraestructura, como centros de datos y energía.\n- **Inmuebles** (309.000 M): depósitos, viviendas en alquiler, centros de datos, hoteles. Fue su gran negocio durante años, pero las tasas altas lo golpearon.\n- **Inversión en múltiples activos** (113.900 M): fondos que invierten en otros fondos y estrategias.\n\nGana con dos tipos de comisiones:\n\n- **Comisiones de gestión**: un porcentaje fijo de la plata que administra, todos los años. Son estables y previsibles. En el trimestre cobró 1.990 M.\n- **Comisiones por desempeño**: una parte de las ganancias de sus fondos, que cobra cuando vende inversiones con ganancia. Son grandes pero irregulares.\n\nSus clientes son fondos de pensión, aseguradoras, fondos soberanos, universidades y personas con alto patrimonio de todo el mundo.\n\n¿Cuál es su **ventaja**? La **escala** y la **trayectoria**. Un fondo de pensión que va a confiar miles de millones prefiere al gestor con más historia y más resultados. Además, el 41 % de la plata que administra (562.300 M) es **capital permanente**: fondos sin fecha de vencimiento, que no hay que devolver ni volver a recaudar.\n\nLa inteligencia artificial no la amenaza: en todo caso, es una oportunidad, porque Blackstone es uno de los mayores inversores en centros de datos."
+    },
+    {
+     "titulo": "Cómo se mide un gestor de inversiones",
+     "texto": "Los ingresos contables saltan mucho, porque incluyen las ganancias o pérdidas de valor de las inversiones aunque no se hayan vendido: 7.133 M en 2022 y **12.410 M** en 2025.\n\n[[grafico:ingresos]]\n\nPor eso la empresa y los analistas del mercado miran dos números propios del negocio:\n\n- **Ganancias por comisiones**: lo que gana con las comisiones de gestión, menos los costos de funcionar. Es la parte más estable. Fue de 1.572 M en el trimestre, un 6 % más.\n- **Ganancia distribuible**: lo que gana en efectivo y puede repartir a sus accionistas, incluidas las comisiones por desempeño ya cobradas. Fue de **1,32 dólares por acción**, contra 1,52 un año antes, porque vendió menos inversiones: las ventas con ganancia cayeron 34 %.\n\nUn ejemplo: si Blackstone administra un fondo de 10.000 M y cobra 1,5 % por año, recibe 150 M de comisiones de gestión, pase lo que pase. Si después vende las empresas del fondo con una ganancia de 3.000 M, puede cobrar 20 % de esa ganancia: 600 M más. Lo primero es seguro; lo segundo depende del mercado.\n\nEl **ROE**, el retorno sobre el patrimonio (cuánto gana por cada dólar que pusieron los accionistas), fue de **34,8 %** en 2025. Por encima de 15 % se considera muy bueno. Es alto porque el negocio casi no necesita capital propio: invierte la plata de otros.\n\n[[grafico:roe]]\n\nLa plata que administra creció 10 % en un año, a 1,37 billones de dólares, y la que le paga comisiones, 9 %, a 989.700 M."
+    },
+    {
+     "titulo": "Un dividendo alto pero variable",
+     "texto": "Blackstone reparte casi toda su ganancia distribuible como dividendo. Por eso el dividendo **cambia cada trimestre**: fue de 1,12 dólares por acción en el tercer trimestre de 2026. Cuando vende muchas inversiones con ganancia, sube; cuando vende pocas, baja. En los últimos tres años bajó en promedio 1,7 % por año.\n\n[[grafico:dividendo]]\n\nEl balance es sólido: como casi no invierte plata propia, no necesita mucha deuda. Su riesgo no está en el balance, sino en los resultados de sus fondos.\n\nLos riesgos:\n\n- **Los inmuebles**: su fondo inmobiliario oportunista perdió 3,2 % en el trimestre. Las tasas altas bajan el valor de los edificios.\n- **Las ventas**: si los mercados están flojos, vende menos inversiones y cobra menos comisiones por desempeño.\n- **Los clientes particulares**: si se asustan, pueden pedir rescates, como pasó en 2022 con su fondo inmobiliario para particulares, que tuvo que limitar los retiros.\n- **La regulación y la competencia**: Apollo, KKR, Brookfield y otros pelean por los mismos clientes.\n\nLo conduce Stephen Schwarzman, cofundador y CEO; Jon Gray es el presidente. Schwarzman destacó que los ingresos de plata nueva \"llegaron a 63.000 M, con impulso positivo en todos nuestros grandes canales de recaudación\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Blackstone, el PER contable (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado, porque la ganancia contable sube y baja con el valor de las inversiones aunque no se vendan.\n\nCon el precio de {precio} dólares, Blackstone cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nLo que el mercado mira es cuánto paga por las ganancias por comisiones, la parte estable del negocio. Cuanto más pesan las comisiones de gestión y el capital permanente, más se parece Blackstone a una empresa de ingresos recurrentes, y más está dispuesto a pagar el mercado.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}), aunque varía cada trimestre.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Blackstone es una muy buena empresa. Es el mayor gestor de inversiones alternativas del mundo, con una marca que atrae plata nueva a un ritmo de más de 60.000 M por trimestre, un capital permanente que crece, un ROE alto y un negocio que casi no necesita capital propio.\n\nSu punto débil es la parte variable de su ganancia: depende de vender inversiones a buen precio, y en el trimestre vendió poco. Además, el negocio inmobiliario, que fue su estrella, sigue golpeado por las tasas altas. El crítico más duro diría que los fondos privados no publican precios de mercado, y que sus valuaciones podrían ser optimistas. Es un argumento que conviene tener presente.\n\nEncaja con quien busca un dividendo alto ligado al crecimiento de las inversiones alternativas y acepta que varíe. No es para quien busca un dividendo estable.\n\nPara que la tesis se mantenga, lo más importante es que siga recaudando plata nueva a buen ritmo y que las ganancias por comisiones sigan creciendo.",
+   "pros": [
+    "Líder mundial: 1,37 billones de dólares administrados.",
+    "Capital permanente: 562.300 M que no hay que devolver.",
+    "Plata nueva: 63.300 M recibidos en el trimestre."
+   ],
+   "contras": [
+    "Ganancia variable: depende de vender inversiones a buen precio.",
+    "Inmuebles flojos: su fondo oportunista perdió 3,2 % en el trimestre.",
+    "Dividendo cambiante: sube y baja cada trimestre."
+   ],
    "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Blackstone es una gestora de activos alternativos que se especializa en capital privado, capital de riesgo, bienes raíces, fondos de cobertura, crédito, fondos de fondos secundarios, y deuda y capital públicos. Invierte en empresas de todas las etapas y en inmuebles. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de comisiones sobre dinero que los inversores dejan por años. **Los ingresos cayeron 1,8 % en 2023, subieron 56,0 % en 2024 y 13,5 % en 2025, hasta 12.410 M.** El salto de 2024 viene en buena parte de ganancias variables.\n\n**A quién le vende.** A fondos de pensión, aseguradoras, fondos soberanos y grandes inversores, y cada vez más a personas con patrimonio alto. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Blackstone **es de marca y de capital a largo plazo, y es estrecha**. Sus fondos mantienen el dinero de los inversores por años, lo que da un flujo de comisiones estable, y su historial hace que los grandes fondos de pensión le confíen más capital que a la competencia. Se ve en el ROE, que subió de 22,8 % a 34,8 %, y en un margen neto estable en torno a 24-25 %.\n\nCompite con KKR, Apollo, Carlyle y Brookfield. Es frágil en el ciclo de los mercados (menos ventas de empresas e inmuebles en años de tasas altas), en el valor de los inmuebles y en que sus inversores cuestionen las comisiones. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de Blackstone cuentan **un negocio muy rentable y muy ligado al mercado**. Los ingresos fueron de 7.133 M, 7.007 M, 10.931 M y 12.410 M. La ganancia neta fue de 1.748 M en 2022, 1.391 M en 2023, 2.777 M en 2024 y 3.019 M en 2025. La ganancia por acción pasó de 2,36 a 1,84, 3,62, 3,87 y **4,50 en los últimos 12 meses**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **22,8 %, 20,4 %, 33,8 % y 34,8 %**. El margen neto fue de 24,5 %, 19,9 %, 25,4 % y 24,3 %. El capital invertido es chico (22.209 M): es un negocio con poco capital.\n\nLa mirada crítica: las ganancias de 2024 y 2025 vienen de un mercado favorable y de ganancias variables, que no se pueden dar por sostenidas. En 2023, con tasas altas, la ganancia por acción cayó 22,0 %.",
-   "balance": "**Blackstone necesita poco capital.** El capital invertido (lo que financia el negocio) es de 22.209 M, contra ingresos de 12.410 M: es un negocio de pocos activos propios, que gana plata con el dinero de otros. Eso explica el ROE tan alto.\n\nLa exposición a las tasas llega por el lado de los inmuebles y de las empresas que compra: con el bono a 10 años cerca de 5 %, valen menos y es más difícil venderlas. Eso reduce las ganancias variables. Es un efecto que no aparece en el balance de la gestora sino en sus fondos, y por eso conviene seguirlo en el informe de la empresa.",
-   "gerencia": "La conduce Stephen Schwarzman, cofundador, presidente y CEO (78 años, pago de 125,6 M según Yahoo), con Jon Gray como presidente y director de operaciones (56 años, pago de 59,3 M) y Michael Chae como director financiero (57 años). La remuneración es muy alta y la edad del fundador hace que la sucesión (con Gray como candidato natural) sea un punto para seguir.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 5,23 por acción (pagado desde 2007; -1,7 % por año en 3 años, porque varía con las ganancias) y recompra poco (466 M en 2022, 312 M en 2025). Las acciones diluidas pasaron de 741 M a 792 M, **6,9 % más**: la remuneración en acciones diluye al accionista.",
-   "fortalezas": [
-    "Mayor gestora de activos alternativos del mundo, con capital inmovilizado por años.",
-    "ROE de 34,8 % y ganancia por acción de 4,50 en los últimos 12 meses.",
-    "Ingresos de 12.410 M en 2025, 74 % más que en 2022.",
-    "Poco capital propio necesario: 22.209 M contra ingresos de 12.410 M.",
-    "Dividendo pagado desde 2007 (5,23 por acción)."
-   ],
-   "debilidades": [
-    "Muy ligada al mercado y a las tasas: la ganancia neta cayó 20,4 % en 2023.",
-    "Parte del salto reciente viene de ganancias variables y no se puede dar por sostenido.",
-    "Remuneración de ejecutivos muy alta (125,6 M al CEO): el crítico más duro diría que se llevan una parte grande de lo que el negocio gana.",
-    "Acciones 6,9 % más que en 2022.",
-    "Dividendo variable: -1,7 % por año en 3 años."
-   ],
-   "vigilar": [
-    "ROE: hoy 34,8 % en 2025; si cae hacia 20 %, las ganancias variables se están secando.",
-    "Ganancia neta: 3.019 M en 2025; si cae con mercados estables, algo se está deteriorando.",
-    "Activos que administra y fondos nuevos que levanta: Yahoo no los informa, hay que buscarlos en el informe de la empresa.",
-    "Acciones en circulación: hoy 792 M; si siguen subiendo, la dilución se come el crecimiento."
-   ],
    "clientes": [
-    "Fondos de pensión y aseguradoras",
-    "Fondos soberanos y grandes inversores",
-    "Personas con patrimonio alto"
+    "Fondos de pensión y fondos soberanos",
+    "Aseguradoras",
+    "Personas con alto patrimonio"
    ],
-   "ideal_para": [
-    "Buscan una gestora de activos alternativos con ROE altísimo y marca fuerte.",
-    "Valoran un negocio con poco capital propio y comisiones recurrentes.",
-    "Aceptan que las ganancias varíen con el mercado y las tasas."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: plata administrada de 1,368 billones de dólares (+10 %); con comisiones, 989.700 M (+9 %); capital permanente de 562.300 M; ingresos de plata nueva de 63.300 M; crédito y seguros 480.000 M, capital privado 465.400 M, inmuebles 309.000 M, múltiples activos 113.900 M; ganancias por comisiones de 1.572 M (+6,2 %); ganancia distribuible de 1,32 dólares por acción (-9,2 %); fondo inmobiliario oportunista -3,2 % en el trimestre; dividendo de 1,12 dólares; frase de Stephen Schwarzman",
+     "fuente": "Análisis de los resultados del 3T26, 25/10/2026",
+     "url": "https://beancount.io/blog/2026/10/25/blackstone-fy2026-q3-earnings-analysis"
+    },
+    {
+     "dato": "Ganancia distribuible de 1,32 dólares (1,52); comisiones de gestión de 1.990 M (+4 %); ventas netas con ganancia -34 %; ingresos de plata nueva de 63.300 M; frase de Stephen Schwarzman",
+     "fuente": "TIKR, 22/10/2026",
+     "url": "https://www.tikr.com/blog/blackstone-soars-6-on-earnings-beat-as-schwarzman-says-inflows-reached-63-billion"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias variables ni dividendos que cambian.",
-    "Buscan una remuneración ejecutiva moderada."
-   ],
+   "ticker": "BX",
    "perfil": "mercados",
    "capas": [],
-   "ticker": "BX",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -4984,54 +5022,60 @@
    }
   },
   "BBVA": {
-   "resumen": "BBVA es uno de los mayores bancos de España, con un peso enorme en México, y presencia en Turquía, Sudamérica, Europa y Estados Unidos: cuentas, tarjetas y préstamos para personas y empresas, banca de inversión y una banca digital muy desarrollada. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones y seguros. Tiene un **foso estrecho, de escala en mercados clave y banca digital**: en España y México tiene una base grande de clientes y depósitos, y su app le permite atender más gente con menos costo. Los números son muy buenos: los ingresos pasaron de €28.065 M en 2022 a €39.415 M en 2025, la ganancia neta de €6.358 M a €10.511 M (€11.115 M en los últimos 12 meses), la ganancia por acción de 0,98 a 1,76 y el ROE de 13,6 % a **18,9 %**, el más alto entre los grandes bancos. **Las acciones bajaron 5,1 %**. Su punto débil es que parte de esas ganancias viene de México, Turquía y Sudamérica, con monedas y economías más inestables, y que en 2025 los ingresos casi no crecieron (+0,5 %). Las cifras están en euros, por lo que el rendimiento en dólares depende del tipo de cambio. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para atender más clientes con menos costo. Conclusión: **muy buena empresa, un banco con ROE de 18,9 %, ganancia en alza y recompras, aunque con exposición a mercados emergentes y ingresos que se frenaron en 2025.**",
-   "veredicto": "Muy buena empresa: ROE de 18,9 % y ganancia en alza, pero expuesta a mercados emergentes y monedas",
-   "conclusion": "BBVA es una muy buena empresa: tiene un ROE de 18,9 %, ganancia por acción de 1,88 en los últimos 12 meses (+92 % desde 2022) y 5,1 % menos acciones, pero depende de mercados emergentes y los ingresos se frenaron en 2025. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando bajen las tasas.",
+   "formato": "v4",
+   "titulo": "BBVA: el banco español que gana más en México que en España, con el mayor retorno de Europa",
+   "resumen": [
+    "BBVA es uno de los mayores **bancos** de España y el mayor de **México**, con operaciones en Turquía, Colombia, Perú y la **Argentina** (el ex Banco Francés). Presta a personas y empresas, toma depósitos y cobra comisiones. Su ventaja es su posición líder en México, un mercado muy rentable, y una digitalización de las más avanzadas de la banca europea.",
+    "En los primeros nueve meses de 2026, **ganó 9.070 M de euros, un 13,6 % más**, un récord. Su retorno sobre el capital tangible fue de **22 %**, que el banco presenta como el más alto de Europa, y sus préstamos crecieron 20 %.",
+    "Muy buena empresa, muy rentable, con un dividendo creciente y recompras, pero con gran parte de su ganancia en países emergentes, expuesta a sus monedas y a sus crisis."
+   ],
+   "introduccion": "Si sos cliente del BBVA en la Argentina, quizás no sepas que tu banco gana mucho más plata en México que en España, su país de origen.\n\nEn 2000, BBVA compró Bancomer, uno de los grandes bancos mexicanos. Fue una apuesta que muchos consideraban arriesgada. Veinticinco años después, BBVA México es el mayor banco del país y la mayor fuente de ganancias del grupo: 4.520 M de euros en los primeros nueve meses de 2026, más que España (3.110 M).\n\nMéxico es un mercado muy rentable para los bancos: mucha gente todavía no tiene cuenta bancaria ni crédito, y los bancos cobran tasas más altas que en Europa. BBVA lo aprovechó con una fuerte apuesta digital.\n\nEn 2025 quiso crecer en España con la compra del Banco Sabadell, pero la oferta fracasó: muy pocos accionistas del Sabadell aceptaron. Después de eso, volvió a concentrarse en crecer por su cuenta y en devolver capital a sus accionistas con recompras.\n\nEntonces, la pregunta es: ¿cuánto vale un banco europeo que gana como un banco emergente, con los riesgos de un banco emergente?",
+   "secciones": [
+    {
+     "titulo": "De Bilbao a México, Turquía y la Argentina",
+     "texto": "BBVA tiene cinco grandes negocios. Entre paréntesis, cuánto ganó cada uno en los primeros nueve meses de 2026:\n\n- **México** (4.520 M de euros, +8,4 %): el mayor banco del país. Sus préstamos crecieron 12 %.\n- **España** (3.110 M): uno de los mayores bancos del país.\n- **Turquía** (789 M, +21,8 %): Garanti BBVA, uno de los grandes bancos turcos.\n- **América del Sur** (821 M, +42,1 %): Colombia (278 M), Perú (276 M) y la **Argentina** (102 M).\n- **Resto de negocios** (801 M, +58,5 %): banca para grandes empresas en Europa, EE.UU. y Asia.\n\nSus clientes son decenas de millones de personas, pymes, grandes empresas y gobiernos.\n\n¿Cuál es su **ventaja**? El **liderazgo en México** y la **tecnología**. En México, su tamaño le permite captar depósitos muy baratos (cuentas sueldo, cuentas corrientes) y prestar a tasas altas. Y su apuesta digital, que empezó hace más de una década, le permite atender a millones de clientes con menos sucursales y menos costos.\n\nLa inteligencia artificial no la amenaza: en todo caso, la ayuda a atender clientes y evaluar créditos con menos costo."
+    },
+    {
+     "titulo": "Cómo se mide un banco",
+     "texto": "Las cifras de BBVA están en **euros**.\n\nLos ingresos crecieron de 28.065 M de euros en 2022 a **41.401 M** en los últimos 12 meses. En los primeros nueve meses de 2026, su margen de intereses (lo que gana prestando, menos lo que paga por los depósitos) creció 17,8 %, y sus comisiones, 14,5 %.\n\n[[grafico:ingresos]]\n\nEn un banco hay tres números que conviene aprender:\n\n- **ROE**, el retorno sobre el patrimonio: cuánto gana por cada euro que pusieron los accionistas. Fue de **20,8 %** en los primeros nueve meses de 2026. Por encima de 15 % se considera muy bueno; el promedio de su industria es 13,0 %. Si el ROE bajara de forma sostenida, sería señal de que el banco gana menos con el mismo capital.\n- **Eficiencia**: cuánto gasta para generar cada 100 euros de ingresos. Fue de **37,9 %**. Cuanto más bajo, mejor; por debajo de 50 % se considera muy eficiente.\n- **CET1**: el capital de mejor calidad sobre los activos ponderados por riesgo. Es el colchón para absorber pérdidas. Fue de **12,21 %**. Los reguladores le exigen alrededor de 9 %; si se acercara a ese mínimo, el banco tendría que dejar de recomprar acciones o pagar menos dividendos.\n\n[[grafico:roe]]\n\nTambién importa el **costo del riesgo**: cuánto reserva para préstamos que no se cobrarán. Fue de 1,44 % de sus préstamos, más alto que el de un banco europeo típico, porque presta mucho en países emergentes. En México fue de 3,19 %. La morosidad fue de 2,6 %."
+    },
+    {
+     "titulo": "Dividendos, recompras y riesgos emergentes",
+     "texto": "BBVA devuelve mucho a sus accionistas. Pagó un dividendo a cuenta de 0,37 euros por acción en octubre, casi 16 % más que el año anterior y el más alto de su historia. Y lanzó una recompra extraordinaria de 2.000 M de euros.\n\nSu ganancia por acción pasó de 0,98 euros en 2022 a **1,88** en los últimos 12 meses. Creció más que la ganancia total porque las recompras achican la cantidad de acciones.\n\nLos riesgos:\n\n- **Las monedas emergentes**: una devaluación del peso mexicano, la lira turca o el peso argentino achica lo que gana medido en euros.\n- **Turquía**: una inflación muy alta y una economía inestable.\n- **México**: si la economía se frena o cambian las reglas para los bancos, pega directo en su mayor fuente de ganancias.\n- **Las tasas**: si bajan, gana menos con la diferencia entre lo que cobra y lo que paga.\n\nLo conduce Onur Genç, CEO desde 2018, junto al presidente Carlos Torres Vila: \"Mantenemos un retorno sobre el capital de 22 %, el más alto de Europa\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuánto se paga por cada euro de patrimonio. Con el precio de {precio} dólares por ADR, BBVA cotiza a {v:p_b} veces su patrimonio, {vs:p_b} su mediana histórica ({med:p_b} veces).\n\nPagar más de 1 vez el patrimonio tiene sentido cuando el banco gana mucho sobre ese patrimonio. Un ejemplo: un banco con un ROE de 20 % que cotiza a 2 veces su patrimonio le rinde al inversor algo parecido a uno con ROE de 10 % que cotiza a 1 vez. Por eso, un P/B alto con un ROE alto puede ser razonable.\n\nEl PER (cuántos años de ganancia se pagan al comprar la acción) es de {per_ref} veces, {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nDurante años, el mercado pagó muy poco por BBVA por miedo a Turquía, México y América del Sur. Con un ROE de más de 20 %, ese descuento se achicó mucho. Lo que define si el precio actual se sostiene es que el ROE siga alto y que no haya una crisis en sus mercados emergentes.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo no captura bien a un banco con un ROE tan alto: conviene tomarlo con cuidado."
+   },
+   "conclusion": "BBVA es una muy buena empresa. Es el mayor banco de México, uno de los grandes de España, con un ROE de más de 20 %, una eficiencia de las mejores de Europa, un capital holgado y un dividendo y recompras en alza.\n\nSu punto débil es que gran parte de su ganancia viene de países emergentes, con monedas que se devalúan, economías volátiles y un costo del riesgo más alto. Una crisis en México o Turquía le pegaría fuerte. El crítico más duro diría que BBVA es un banco emergente con sede en Europa, y que su precio ya no descuenta esos riesgos. Es un argumento razonable.\n\nEncaja con quien busca un banco muy rentable, con dividendo creciente y exposición a América Latina. No es para quien busca un banco europeo tradicional y sin sobresaltos.\n\nEs recomendable revisar en cada informe el ROE, el CET1 y el costo del riesgo en México y Turquía. Para que la tesis se mantenga, lo más importante es que el ROE se mantenga por encima de 18 % y que el CET1 siga por encima de 12 %.",
+   "pros": [
+    "Líder en México: su mayor y más rentable mercado.",
+    "Muy rentable: ROE de 20,8 % y eficiencia de 37,9 %.",
+    "Devuelve mucho: dividendo récord y recompra de 2.000 M de euros."
+   ],
+   "contras": [
+    "Riesgo emergente: México, Turquía y América del Sur.",
+    "Monedas: las devaluaciones achican su ganancia en euros.",
+    "Costo del riesgo alto: 1,44 % de sus préstamos."
+   ],
    "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "BBVA presta servicios financieros en España, México, Turquía, Sudamérica, Europa, Estados Unidos y Asia. Ofrece banca minorista, mayorista, de inversión y transaccional, además de seguros, gestión de activos, mercados de capitales y banca digital. Yahoo no informa cuánto aporta cada país, y no lo vamos a inventar; es un dato público que México y España son los dos mercados que más pesan.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 19,1 % en 2023, 17,4 % en 2024 y 0,5 % en 2025, hasta €39.415 M.** Todas las cifras están en euros.\n\n**A quién le vende.** A millones de personas, pequeñas y medianas empresas, grandes corporaciones y gobiernos. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de BBVA **es de escala en sus mercados clave y de banca digital, y es estrecha**. Con una base grande de clientes en España y México, consigue depósitos baratos, y una app muy usada le permite atender más gente con menos sucursales. Pero un banco vende dinero, que es igual en todos lados. Se ve en el ROE, de 13,6 % a 18,9 %, por encima de la referencia de 12 % y de varios competidores.\n\nCompite con Santander, CaixaBank, Banorte, Citibanamex y bancos digitales. Es frágil en el riesgo de crédito, en las monedas de los países emergentes donde opera (México, Turquía, Sudamérica), en la inflación alta que distorsiona los números de algunos países y en las tasas de interés. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de BBVA cuentan **ganancias en fuerte alza, con ingresos que se frenaron en 2025**. Los ingresos fueron de €28.065 M, €33.427 M, €39.235 M y €39.415 M. La ganancia neta fue de €6.358 M en 2022, €8.019 M, €10.054 M y €10.511 M, y de €11.115 M en los últimos 12 meses. La ganancia por acción pasó de 0,98 a 1,29, 1,68, 1,76 y **1,88 en los últimos 12 meses** (+92 %).\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **13,6 %, 15,5 %, 18,1 %, 18,3 % y 18,9 %**. El capital invertido pasó de €105.613 M a €171.916 M (+63 %).\n\nLa mirada crítica: el crecimiento de la ganancia por acción se frenó de 30 % a 4,8 % en 2025, y parte de lo ganado viene de países con inflación alta, donde la contabilidad se ajusta distinto. Con tasas más bajas, el margen de intereses se achica.",
-   "balance": "**El capital del banco crece con el negocio.** El capital invertido (lo que financia el negocio) pasó de €105.613 M en 2022 a €171.916 M en los últimos 12 meses, un 63 % más, mientras la ganancia neta subió 75 %. Es un banco grande, de los que los reguladores vigilan de cerca, y con la mirada puesta en los depósitos, que son su materia prima.\n\nCon tasas altas, el banco gana más al prestar, pero también paga más por los depósitos y sufre pérdidas en los bonos que tiene en cartera. Al estar las cifras en euros, el valor en dólares también depende del tipo de cambio, y las monedas emergentes donde opera suman riesgo.",
-   "gerencia": "La conduce Onur Genç, CEO (51 años, pago de 7,5 M según Yahoo), con Carlos Torres Vila como presidente ejecutivo del grupo (59 años, pago de 7,9 M) y Gonzalo Rodríguez como director financiero. Es un equipo que apostó fuerte a la banca digital.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 1,13 por acción (por ADS, en dólares; pagado desde 1989; sube 29,8 % por año en 3 años) y recompra acciones (€2.983 M en 2022, €1.529 M en 2024 y €1.995 M en 2025). **Las acciones bajaron de 6.189 M a 5.873 M, un 5,1 % menos.**",
-   "fortalezas": [
-    "ROE de 18,9 % en los últimos 12 meses, el más alto entre los grandes bancos.",
-    "Ganancia neta de €11.115 M en los últimos 12 meses, 75 % más que en 2022.",
-    "Ganancia por acción de 1,88, 92 % más que en 2022.",
-    "Recompras: 5,1 % menos acciones desde 2022.",
-    "Banca digital muy desarrollada y presencia en México, España y más países."
-   ],
-   "debilidades": [
-    "Ingresos casi sin crecer en 2025 (+0,5 %).",
-    "Exposición a monedas y economías emergentes (México, Turquía, Sudamérica): el crítico más duro diría que parte de la ganancia puede evaporarse con una devaluación.",
-    "Sensibilidad a las tasas: si bajan, el margen de intereses se achica.",
-    "Cifras en euros: el valor en dólares depende del tipo de cambio.",
-    "Foso estrecho: el dinero es igual en todos lados y compite con otros bancos grandes."
-   ],
-   "vigilar": [
-    "ROE: hoy 18,9 %; si cae hacia 12 %, el ciclo favorable de tasas se está agotando.",
-    "Ganancia neta: €11.115 M en los últimos 12 meses; si baja con tasas estables, algo se está deteriorando.",
-    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión, sobre todo en mercados emergentes.",
-    "Tipo de cambio peso mexicano-euro y lira turca: afectan la ganancia convertida a euros."
-   ],
    "clientes": [
-    "Millones de personas y pequeñas empresas",
-    "Grandes corporaciones y gobiernos",
-    "Clientes de banca digital, seguros y gestión de activos"
+    "Personas y familias de España, México y América del Sur",
+    "Pymes y grandes empresas",
+    "Clientes de Garanti BBVA en Turquía"
    ],
-   "ideal_para": [
-    "Buscan un banco global con exposición a España y México.",
-    "Valoran un ROE alto, recompras y banca digital.",
-    "Aceptan el riesgo de monedas emergentes."
+   "hechos": [
+    {
+     "dato": "Enero a septiembre de 2026: ganancia de 9.070 M de euros (+13,6 %); tercer trimestre de 3.020 M (+14,4 %); ganancia por acción +17,5 %; préstamos +20,4 %; ROTE de 22 %; ROE de 20,8 %; eficiencia de 37,9 %; CET1 de 12,21 %; margen de intereses de 23.240 M (+17,8 %); comisiones de 6.910 M (+14,5 %); costo del riesgo de 1,44 %; morosidad de 2,6 %; ganancia de España 3.110 M, México 4.520 M (+8,4 %; costo del riesgo de 3,19 %), Turquía 789 M (+21,8 %), América del Sur 821 M (+42,1 %; Colombia 278 M, Perú 276 M, Argentina 102 M), Resto 801 M; dividendo a cuenta de 0,37 euros; recompra extraordinaria de 2.000 M; frase de Onur Genç",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://www.bbva.com/en/economy-and-finance/earnings-3q2026/"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo de tipo de cambio.",
-    "Buscan ingresos en crecimiento sostenido."
-   ],
+   "ticker": "BBVA",
    "perfil": "banco",
    "capas": [],
-   "ticker": "BBVA",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -5356,54 +5400,65 @@
    }
   },
   "IBKR": {
-   "resumen": "Interactive Brokers es un corredor de bolsa electrónico y casi totalmente automatizado: permite a inversores, fondos y asesores operar acciones, opciones, futuros, divisas, bonos y criptomonedas en decenas de mercados desde una sola cuenta. Gana plata con comisiones por operación, intereses sobre los saldos y préstamos de margen de sus clientes, y por servicios de custodia. Tiene un **foso estrecho, de costo bajo**: su plataforma automatizada atiende a millones de cuentas con muy poco personal, y eso le permite cobrar menos que los competidores y aun así tener un margen operativo de **86,0 %**. Los números muestran un negocio muy rentable y en fuerte alza: los ingresos pasaron de 4.192 M en 2022 a 10.222 M en 2025, la ganancia por acción de 0,94 a 2,22 (**2,60 en los últimos 12 meses**) y el ROE de 13,3 % a 18,3 %. Su punto débil es que una parte importante del ingreso viene de intereses sobre los saldos de los clientes, de modo que una baja de tasas lo golpearía, y que sus resultados siguen el ánimo de los mercados. Además **las acciones aumentaron 11,9 %** desde 2022. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque su ventaja es justamente la automatización. Conclusión: **muy buena empresa, con foso estrecho de costo bajo, margen operativo de 86,0 % y ROE de 18,3 %, aunque sensible a las tasas y a los mercados.**",
-   "veredicto": "Muy buena empresa: costo bajo, margen operativo de 86,0 % y ROE de 18,3 %, sensible a tasas y mercados",
-   "conclusion": "Interactive Brokers es una muy buena empresa: tiene un foso estrecho de costo bajo, margen operativo de 86,0 %, ROE de 18,3 % y ganancia por acción de 2,60 en los últimos 12 meses, pero depende de las tasas y de los mercados, y las acciones aumentaron 11,9 %. Vale la pena seguirla de cerca. Es recomendable investigar cuánto del ingreso viene de intereses en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga cuando bajen las tasas.",
-   "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Interactive Brokers opera como corredor electrónico automatizado en Estados Unidos y en el exterior. Se dedica a la ejecución, compensación y liquidación de operaciones con acciones, opciones, futuros, divisas, bonos, metales preciosos y criptomonedas, y ofrece custodia, prime brokerage, valores y préstamos con margen. También atiende a fondos de cobertura (hedge funds), fondos comunes y asesores. Yahoo no desglosa cuánto viene de comisiones y cuánto de intereses, y no lo vamos a inventar; es un dato público que los intereses sobre saldos de clientes pesan mucho.\n\nEs un negocio ligado a la actividad de los mercados: **los ingresos crecieron 85,8 % en 2023, 19,6 % en 2024 y 9,7 % en 2025, hasta 10.222 M.** El salto de 2023 coincide con el aumento de las tasas.\n\n**A quién le vende.** A inversores individuales activos, asesores financieros, fondos de cobertura y brokers de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Interactive Brokers **es de costo bajo, y es estrecha**. Su plataforma está automatizada de punta a punta, así que cada cuenta nueva le cuesta muy poco, y eso se ve en el margen operativo, que pasó de 74,6 % a 86,0 %. Puede cobrar menos que otros brokers y aun así ganar mucho, y los clientes activos que ya operan en varios mercados desde su cuenta no cambian fácil.\n\nPero el negocio de los brokers es muy competido: Charles Schwab, Fidelity, Robinhood y otros pelean por los mismos clientes, y las comisiones por operar tendieron a cero. Es frágil en las tasas (el interés sobre los saldos es una fuente grande de ingresos), en los mercados (si baja la actividad, bajan las comisiones) y en los errores de riesgo, porque presta con margen. La inteligencia artificial no la amenaza, ya que la automatización es su modelo.",
-   "numeros": "Los números de Interactive Brokers cuentan **un negocio muy rentable que creció rápido y ahora se desacelera**. Los ingresos fueron de 4.192 M, 7.787 M, 9.316 M y 10.222 M. El margen operativo pasó de 74,6 % a 83,8 %, 84,2 % y **86,0 %**. La ganancia por acción fue de 0,94, 1,42, 1,73 y 2,22, y de **2,60 en los últimos 12 meses** (+177 % desde 2022).\n\nEl ROE (cuánto gana por cada dólar de patrimonio) fue de **13,3 %, 16,7 %, 17,6 % y 18,3 %**. El capital invertido pasó de 2.866 M a 5.917 M.\n\nLa mirada crítica: el resultado neto que se ve (984 M en 2025) es mucho menor que el EBIT (8.789 M) porque gran parte de la ganancia le corresponde a otros dueños de la sociedad operativa y a impuestos, un dato público que Yahoo no detalla. Por eso conviene mirar la ganancia por acción y no el EBIT. Y el crecimiento de los ingresos baja: 85,8 %, 19,6 %, 9,7 %.",
-   "balance": "**Es un broker, no un banco clásico, y su balance se maneja distinto.** Tiene mucha plata de clientes en custodia y presta con margen, así que lo importante es la gestión del riesgo más que la deuda. El capital invertido (lo que financia el negocio) pasó de 2.866 M a 5.917 M en los últimos 12 meses, y el ROE subió, lo cual es buena señal: el capital rinde más.\n\nYahoo no informa deuda ni flujo de caja de forma comparable para este tipo de empresa, y por eso no los usamos. Lo que sí importa vigilar es que los clientes que operan con margen no generen pérdidas en una caída fuerte del mercado.",
-   "gerencia": "La conduce Milan Galik, presidente y CEO (58 años, pago de 5,1 M según Yahoo), con el fundador Thomas Peterffy como presidente del directorio (81 años, pago de 0,8 M) y Paul Brody como director financiero (65 años). Que el fundador siga ahí con un pago bajo es una señal de alineación con los accionistas.\n\nEn lo que importa, **el uso del capital es de crecimiento, dividendo chico y recompras chicas**: paga un dividendo de 0,35 por acción (pagado desde 2010) y recompró 84 M en 2025. **Las acciones aumentaron de 405 M a 453 M, un 11,9 %**, algo que puede reflejar que socios de la sociedad operativa convierten sus participaciones en acciones, pero Yahoo no lo detalla y conviene verificarlo en el informe.",
-   "fortalezas": [
-    "Margen operativo de 86,0 %, entre los más altos de cualquier empresa del mercado.",
-    "ROE de 18,3 % en 2025, desde 13,3 % en 2022.",
-    "Ganancia por acción de 0,94 a 2,60 en los últimos 12 meses.",
-    "Plataforma automatizada que atiende a millones de cuentas con costo bajo.",
-    "Dividendo pagado desde 2010."
+   "formato": "v4",
+   "titulo": "Interactive Brokers: el bróker más automatizado del mundo, con márgenes que nadie iguala",
+   "resumen": [
+    "Interactive Brokers es una **plataforma de inversiones** global: permite comprar acciones, bonos, opciones, futuros y monedas en más de 150 mercados de todo el mundo, desde una sola cuenta. Muchos inversores argentinos la usan para invertir en el exterior. Su ventaja es una automatización casi total, que le permite cobrar menos que sus rivales y ganar más.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 16 %**, a 1.914 M, y su ganancia por acción, 17 %. Las cuentas de clientes crecieron 35 %, a 5,58 millones, y subió el dividendo 71 %.",
+    "Excelente empresa, con un crecimiento de clientes muy alto, márgenes únicos en su industria y un balance muy sólido, aunque su ganancia depende de las tasas y de la actividad de los mercados, y el mercado ya la paga cara."
    ],
-   "debilidades": [
-    "Parte importante de los ingresos depende de las tasas: el crítico más duro diría que una baja de tasas puede reducir mucho la ganancia.",
-    "Resultados atados a la actividad de los mercados.",
-    "Las acciones aumentaron 11,9 % desde 2022.",
-    "Crecimiento de ingresos que se frena: 85,8 %, 19,6 %, 9,7 %.",
-    "Competencia fuerte de brokers con grandes bases de clientes."
+   "introduccion": "En los años 70, Thomas Peterffy, un inmigrante húngaro que había llegado a Nueva York sin hablar inglés, empezó a operar opciones en la bolsa. Pero no lo hacía como los demás. Programaba computadoras para calcular precios, en una época en que todo se hacía a los gritos en el recinto.\n\nEsa obsesión por la automatización se convirtió en Interactive Brokers. Mientras otros brókers necesitan miles de empleados para atender clientes, abrir cuentas y controlar riesgos, Interactive Brokers lo hace casi todo con software. El resultado es una empresa con unos márgenes que casi ningún otro negocio financiero del mundo alcanza.\n\nY está creciendo muy rápido. La cantidad de cuentas de clientes creció 35 % en un año, a 5,58 millones. Muchas son de inversores de fuera de EE.UU., incluidos muchos argentinos, que buscan una forma barata de invertir en bolsas de todo el mundo.\n\nPeterffy, hoy de más de 80 años, sigue siendo el dueño de la mayor parte de la empresa.\n\nEntonces, la pregunta es: ¿cuánto vale un bróker que crece como una tecnológica y gana como pocos?",
+   "secciones": [
+    {
+     "titulo": "Cómo gana plata un bróker",
+     "texto": "Interactive Brokers gana plata de dos formas principales. En el tercer trimestre de 2026:\n\n- **Intereses** (1.154 M, +19 %): gana con la plata que sus clientes dejan en efectivo en sus cuentas (176.600 M en promedio, +25 %), que invierte, y con lo que les cobra a los que piden prestado para invertir (104.000 M en promedio, +47 %). Es su mayor ingreso.\n- **Comisiones** (602 M, +12 %): lo que cobra por cada operación. Sus clientes hicieron en promedio 4,27 millones de operaciones por día, un 18 % más que un año antes.\n\nSus clientes son inversores individuales activos, asesores financieros, fondos de inversión y otros brókers que usan su plataforma, en más de 200 países. Sus clientes tienen 964.700 M de dólares en sus cuentas, un 27 % más que un año antes.\n\n¿Cuál es su **ventaja**? La **automatización**. Como casi todo lo hace un software, sus costos por cliente son muy bajos. Eso le permite cobrar menos comisiones y tasas más bajas por los préstamos, y pagar más intereses por el efectivo que sus rivales. Eso atrae a los clientes más activos y sofisticados. Y cuantos más clientes suma, más se diluyen sus costos fijos.\n\nLa inteligencia artificial no la amenaza; en todo caso, la usa para automatizar aún más."
+    },
+    {
+     "titulo": "Márgenes únicos",
+     "texto": "Los ingresos crecieron de 4.192 M en 2022 a **10.222 M** en 2025, ayudados por las tasas de interés más altas y por la llegada de clientes.\n\n[[grafico:ingresos]]\n\nEl número que conviene mirar en un bróker es el **margen antes de impuestos**: lo que queda de cada venta antes de pagar impuestos. El de Interactive Brokers fue de **78 %** (ajustado) en el tercer trimestre. Es decir, de cada 100 dólares que factura, le quedan 78 antes de impuestos. Para comparar, Charles Schwab (SCHW), otro bróker muy eficiente, tuvo alrededor de 53 %. Si este margen bajara de forma sostenida, sería señal de que sus costos crecen más que sus ingresos.\n\nEl **ROE**, el retorno sobre el patrimonio (cuánto gana por cada dólar que pusieron los accionistas), es de **18,3 %**. Por encima de 15 % se considera muy bueno. Interactive Brokers mantiene mucho más capital del que exige la regulación, y eso modera el ROE: prefiere un balance muy sólido.\n\n[[grafico:roe]]\n\nLa ganancia por acción fue de 0,69 dólares en el tercer trimestre, un 17 % más que un año antes.\n\nUn detalle: la empresa que cotiza (IBKR) es dueña de solo una parte del negocio; el resto pertenece a Peterffy. Por eso la ganancia que corresponde a los accionistas es menor que la del negocio total."
+    },
+    {
+     "titulo": "Un balance muy sólido y un dividendo en alza",
+     "texto": "Interactive Brokers es conocida por su **prudencia**. Controla en tiempo real el riesgo de cada cuenta y, si un cliente que pidió prestado pierde demasiado, vende automáticamente sus posiciones para que la deuda no quede sin cubrir. Ese sistema busca que una caída brusca de los mercados no le deje pérdidas.\n\nAdemás, mantiene un capital muy por encima de lo que le exigen los reguladores. Prefiere ganar algo menos de ROE a cambio de no correr riesgos.\n\nSubió el dividendo trimestral de 0,0875 a 0,15 dólares por acción, un 71 % más. Aun así, rinde poco: la empresa prefiere reinvertir y mantener capital.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **Las tasas**: si bajan mucho, gana menos con el efectivo de sus clientes.\n- **Los mercados**: en el tercer trimestre, las operaciones por día cayeron 11 % frente al trimestre anterior. Si los mercados se calman, sus clientes operan menos.\n- **La sucesión**: Peterffy es la figura central de la empresa y tiene más de 80 años.\n- **La competencia**: brókers con aplicaciones más simples atraen a los inversores novatos.\n\nLa conduce Milan Galik, CEO desde 2019; Peterffy es el presidente del directorio."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 86,0 %; si baja hacia 75 %, el costo bajo está perdiendo ventaja o las tasas ya no ayudan.",
-    "Ingresos: 10.222 M en 2025 con +9,7 %; si se estancan, el crecimiento depende solo del ciclo.",
-    "Cantidad de acciones: hoy 453 M; si siguen subiendo, la ganancia por acción crece menos que el negocio.",
-    "Pérdidas por préstamos con margen: en una caída fuerte del mercado muestran si el control de riesgo funciona."
+   "valuacion": {
+    "texto": "En Interactive Brokers, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEl mercado paga más por Interactive Brokers que por otros brókers porque crece mucho más rápido: sus cuentas crecen más de 30 % por año. Si ese ritmo sigue, la ganancia puede crecer lo suficiente para justificar el precio. Pero hay un riesgo: parte de la ganancia actual viene de tasas de interés altas. Si las tasas bajan, la ganancia crece menos.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Interactive Brokers es una excelente empresa. Construyó el bróker más automatizado del mundo, con costos que nadie iguala, márgenes únicos en su industria, un crecimiento de clientes de más de 30 % por año y una gestión del riesgo muy prudente.\n\nSu punto débil es que su ganancia depende de factores que no controla: las tasas de interés y la actividad de los mercados. Además, el mercado ya paga un múltiplo alto, y la empresa depende mucho de su fundador, que tiene más de 80 años. El crítico más duro diría que se paga como tecnológica un negocio atado a las tasas. Es un argumento razonable.\n\nEncaja con quien busca crecimiento en el sector financiero, con una empresa muy eficiente y prudente. No es para quien busca un dividendo alto o un precio bajo.\n\nEs recomendable revisar en cada informe el crecimiento de las cuentas y el margen antes de impuestos. Para que la tesis se mantenga, lo más importante es que las cuentas sigan creciendo a doble dígito y que el margen se mantenga cerca de 75 %.",
+   "pros": [
+    "Automatización: costos por cliente que nadie iguala.",
+    "Crecimiento: cuentas +35 % en un año, a 5,58 millones.",
+    "Márgenes únicos: 78 % antes de impuestos."
    ],
+   "contras": [
+    "Depende de las tasas: el interés es su mayor ingreso.",
+    "Precio exigente: el mercado ya paga un múltiplo alto.",
+    "Sucesión: su fundador tiene más de 80 años."
+   ],
+   "calidad": "Excelente",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Inversores individuales activos de todo el mundo",
-    "Asesores financieros y gestoras",
-    "Fondos de cobertura y brokers"
+    "Inversores individuales activos de más de 200 países",
+    "Asesores financieros y fondos de inversión",
+    "Otros brókers que usan su plataforma"
    ],
-   "ideal_para": [
-    "Buscan un broker automatizado con margen muy alto.",
-    "Valoran un negocio de costo bajo y ROE en alza.",
-    "Aceptan que el resultado depende de tasas y mercados."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 1.914 M (+16 %); ganancia antes de impuestos de 1.496 M (+14 %); margen antes de impuestos ajustado de 78 % (79 %); ganancia por acción de 0,69 dólares (0,59); comisiones de 602 M (+12 %); intereses de 1.154 M (+19 %); préstamos a clientes de 104.000 M en promedio (+47 %); efectivo de clientes de 176.600 M en promedio (+25 %); 4,27 millones de operaciones por día (+18 %; -11 % frente al trimestre anterior); 5,58 millones de cuentas (+35 %); 964.700 M de patrimonio de clientes (+27 %); dividendo trimestral de 0,15 dólares (0,0875)",
+     "fuente": "Finance Magnates, 15/10/2026",
+     "url": "https://www.financemagnates.com/forex/brokers/interactive-brokers-raises-dividend-71-as-net-interest-income-offsets-trading-slowdown/"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de Interactive Brokers, anexo 99.1",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001381197/000138119726000154/ibkr-ex99_1.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran resultados ligados a los mercados.",
-    "Buscan recompras fuertes para achicar la cantidad de acciones."
-   ],
+   "ticker": "IBKR",
    "perfil": "mercados",
    "capas": [],
-   "ticker": "IBKR",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -6066,54 +6121,66 @@
    }
   },
   "SONY": {
-   "resumen": "Sony es un grupo japonés de entretenimiento y tecnología: PlayStation y servicios de juegos (Game & Network Services), música grabada y editada (Music), cine y televisión (Pictures), televisores, audio y cámaras (Entertainment Technology & Services), y sensores de imagen para celulares y autos (Imaging & Sensing Solutions). Gana plata vendiendo consolas, juegos y suscripciones, cobrando derechos de música y películas, y vendiendo equipos y sensores. Tiene un **foso estrecho, de catálogos de contenido, ecosistema de PlayStation y liderazgo en sensores de imagen**: sus catálogos de música y películas no se pueden copiar, y los jugadores de PlayStation están atados a sus juegos y amigos. Los números operativos mejoran: los ingresos pasaron de 10.974.373 M de yenes a 12.479.620 M, el margen operativo de 11,6 % a **13,3 %** en los últimos 12 meses y el ROIC (retorno sobre el capital) es de 13,1 %. Pero **la ganancia neta del último ejercicio fue negativa (-326.865 M de yenes)** pese a un EBIT positivo, algo que Yahoo no explica. Además, **hay 3,7 % menos acciones** que en 2023 y las recompras crecieron (556.230 M en los últimos 12 meses). Todas las cifras están en yenes. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**, por su efecto sobre la creación de música, imágenes y juegos. Conclusión: **buena empresa, con foso estrecho y márgenes en alza, aunque con una pérdida neta contable sin explicar y un balance que cambió mucho.**",
-   "veredicto": "Buena: foso estrecho y márgenes en alza, con una pérdida neta contable sin explicar",
-   "conclusion": "Sony es una buena empresa: tiene un foso estrecho de contenido y ecosistema, margen operativo de 13,3 %, más caja que deuda y 3,7 % menos acciones, pero la ganancia neta fue negativa en el último ejercicio por un efecto contable sin explicar. Vale la pena seguirla de cerca. Es recomendable investigar el origen de esa pérdida y la escisión del negocio financiero en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la ganancia neta vuelva a ser positiva.",
-   "calidad": "Buena",
-   "riesgo_ia": "moderado",
-   "negocio": "Sony Group desarrolla, diseña, produce y vende equipos electrónicos, instrumentos y dispositivos para uso de consumo, profesional e industrial en Japón, Estados Unidos, Europa, China, Asia-Pacífico y a nivel internacional. Opera a través de **Game & Network Services**, **Music**, **Pictures**, **Entertainment Technology & Services** e **Imaging & Sensing Solutions**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Yahoo etiqueta los años como 2023 a 2026; el ejercicio de Sony cierra en marzo, dato público.\n\nEs un negocio diversificado: **los ingresos crecieron 2,6 % en 2024, 6,9 % en 2025 y 3,7 % en 2026, hasta 12.479.620 M de yenes**, y llegaron a 12.695.776 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de consumidores, a fabricantes de celulares que compran sensores, y a plataformas y cines que pagan por contenido. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Sony **es de contenido y de ecosistema, y es estrecha**. Su catálogo de música y los derechos de películas y series son activos propios que ganan plata durante años; los jugadores de PlayStation tienen sus juegos, amigos y suscripciones atados a la plataforma; y en sensores de imagen es un líder mundial, con clientes como los grandes fabricantes de celulares. Se ve en el margen bruto, de 29,5 % a 31,8 %.\n\nPero el conjunto es heterogéneo: la electrónica de consumo es un negocio competido y de márgenes chicos, y el sensor depende de pocos grandes clientes. Compite con Microsoft y Nintendo, Universal y Warner en música y cine, y Samsung en sensores y televisores. Es frágil en el ciclo de las consolas, en el yen y en los cambios de hábitos de consumo. La inteligencia artificial generativa puede afectar a la música y las imágenes, y eso es un riesgo real.",
-   "numeros": "Los números de Sony cuentan **un negocio que gana margen operativo, con una pérdida neta contable en el último ejercicio**. Los ingresos fueron de 10.974.373 M, 11.260.037 M, 12.034.917 M y 12.479.620 M de yenes. El margen operativo fue de 11,6 %, 9,0 %, 10,6 %, 12,4 % y **13,3 %** en los últimos 12 meses. La ganancia neta fue de 1.005.277 M, 970.573 M, 1.141.600 M, -326.865 M y -221.613 M en los últimos 12 meses. La ganancia por acción fue de 150,99, 157,14, 187,92, -54,70 y -37,22.\n\nQue el EBIT (1.553.690 M) sea positivo y la ganancia neta negativa indica un efecto contable único; probablemente se vincule con la escisión de su negocio financiero (dato público), pero Yahoo no lo explica y conviene verificarlo en el informe. El balance cambió mucho: el activo sobre patrimonio pasó de 4,3x a 1,9x.\n\nEl flujo libre fue de 1.700.690 M en 2025, 1.487.936 M en 2026 y 1.590.266 M en los últimos 12 meses, 12,5 % de los ingresos, aunque los años anteriores incluían el negocio financiero y no son comparables.",
-   "balance": "**Balance más liviano después del cambio.** La deuda total es de 1.870.598 M y la caja de 2.201.889 M de yenes en los últimos 12 meses, es decir, más caja que deuda. Los intereses se cubren 40 veces con el EBIT. El patrimonio neto es de 8.369.259 M.\n\nLa deuda total bajó desde 4.198.246 M en 2025, un movimiento que coincide con el cambio contable que mencionamos. Hasta entonces, la deuda incluía la del negocio financiero, que no es comparable con la de una empresa de consumo.",
-   "gerencia": "La conduce Hiroki Totoki, presidente y CEO (61 años, pago de 3,9 M según Yahoo), con Kenichiro Yoshida como presidente ejecutivo (66 años) y Lin Tao como directora financiera (52 años). Es el equipo que transformó a Sony de una fabricante de electrónica a una empresa de contenido y sensores.\n\nEn lo que importa, **el uso del capital es de recompras crecientes y dividendo**: recompró 99.248 M de yenes en 2023, 202.974 M, 285.548 M, 522.089 M y 556.230 M en los últimos 12 meses, y paga un dividendo de 0,16 por acción (por ADR, en dólares; desde 1973). **Las acciones bajaron de 6.207 M a 5.978 M, un 3,7 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 11,6 % a 13,3 % en los últimos 12 meses.",
-    "Catálogos de música y películas, ecosistema PlayStation y liderazgo en sensores.",
-    "Más caja (2.201.889 M) que deuda (1.870.598 M).",
-    "Recompras en alza hasta 556.230 M y 3,7 % menos acciones.",
-    "Flujo libre de 1.590.266 M de yenes en los últimos 12 meses."
+   "formato": "v4",
+   "titulo": "Sony: de fabricante de televisores a gigante del entretenimiento, con PlayStation, música y anime",
+   "resumen": [
+    "Sony es un conglomerado japonés que hoy gana sobre todo con el **entretenimiento**: la consola y la red **PlayStation**, **Sony Music** (una de las tres grandes discográficas del mundo), películas y series, y el anime de Crunchyroll. También es el mayor fabricante del mundo de **sensores de imagen** para celulares, y vende televisores, cámaras y audio. Su ventaja es una colección de marcas y contenidos difícil de igualar.",
+    "En el primer trimestre de su año fiscal 2026 (abril a junio), **sus ventas crecieron 8 %** y su ganancia operativa, **40 %**, ambas récord para un primer trimestre. Subió lo que espera ganar en el año.",
+    "Muy buena empresa, que se transformó con éxito y tiene más caja que deuda, pero con negocios muy distintos entre sí, algunos ligados a ciclos (consolas, celulares) y resultados que se mueven con el yen."
    ],
-   "debilidades": [
-    "Pérdida neta contable de 326.865 M en el último ejercicio, sin explicación en Yahoo.",
-    "Conglomerado heterogéneo: el crítico más duro diría que es difícil de analizar y que la electrónica diluye al conjunto.",
-    "Ingresos que crecen poco (3,7 %).",
-    "Dependencia de pocos grandes clientes en sensores y del ciclo de consolas.",
-    "La inteligencia artificial generativa puede afectar a la música y las imágenes."
+   "introduccion": "Para muchos que crecieron en los años 80 y 90, Sony era el walkman, el televisor Trinitron y el discman. Era la empresa de electrónica más admirada del mundo.\n\nPero a principios de este siglo, la electrónica de consumo se volvió un negocio de márgenes mínimos, con fabricantes coreanos y chinos que vendían más barato. Sony perdió plata durante años, y muchos la dieron por terminada.\n\nLa respuesta fue una transformación profunda. Sony vendió su negocio de computadoras, achicó el de televisores y apostó a lo que no se copia fácil: **contenidos y propiedad intelectual**. Videojuegos de PlayStation, catálogos de música con miles de artistas, películas, series y anime. Y sumó un negocio tecnológico donde es líder: los sensores que tienen las cámaras de la mayoría de los celulares de alta gama.\n\nEn octubre de 2025 dio otro paso: separó su negocio financiero (seguros y banco), que hoy cotiza aparte. Lo que queda es una empresa de entretenimiento y tecnología.\n\nEntonces, la pregunta es: ¿cuánto vale un conglomerado que se reinventó, pero que todavía junta negocios muy distintos bajo un mismo techo?",
+   "secciones": [
+    {
+     "titulo": "Cinco negocios bajo una misma marca",
+     "texto": "Sony tiene cinco grandes negocios. Entre paréntesis, cuánto creció su ganancia operativa en el primer trimestre de su año fiscal 2026:\n\n- **Juegos y red** (+37 %): la consola PlayStation 5, los juegos propios y la red PlayStation, con 125 millones de cuentas activas por mes. Es el negocio más grande.\n- **Música** (+14 %): Sony Music y su editorial musical, dueña de los derechos de millones de canciones. Gana cada vez que una canción suena en una plataforma de streaming.\n- **Sensores de imagen** (algo más del doble): los sensores de las cámaras de celulares, autos y equipos industriales.\n- **Películas** (+33 %): Sony Pictures, series de televisión y Crunchyroll, la mayor plataforma de anime fuera de Japón.\n- **Electrónica** (sin cambios): televisores Bravia, cámaras Alpha y equipos de audio.\n\nSus clientes son decenas de millones de jugadores, oyentes y espectadores de todo el mundo, plataformas de streaming, fabricantes de celulares (Apple es uno de los más importantes) y compradores de electrónica.\n\n¿Cuál es su **ventaja**? La **propiedad intelectual**: personajes, juegos, canciones y películas que generan ingresos durante décadas. Y en sensores, la **tecnología**: es el líder mundial, con años de ventaja.\n\nLa inteligencia artificial tiene dos caras para Sony. Puede abaratar la creación de juegos, música y películas, lo que ayuda a sus costos. Pero también puede facilitar que otros creen contenidos que compitan con los suyos."
+    },
+    {
+     "titulo": "Más rentable que nunca",
+     "texto": "Las cifras de Sony están en **yenes**. Un billón de yenes es un millón de millones.\n\nLos ingresos crecieron de 10,97 billones de yenes en su año fiscal 2023 a **12,70 billones** en los últimos 12 meses (sin el negocio financiero).\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 11,6 % a **13,3 %**. Para una empresa que hace veinte años perdía plata, es un cambio enorme.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), subió a **13,1 %**. Por encima de 15 % se considera muy bueno; Sony se está acercando.\n\n[[grafico:roic]]\n\nUn detalle sobre la ganancia por acción: la tabla muestra un número negativo en su último año fiscal (cerrado en marzo de 2026) porque incluye el negocio financiero que separó, contabilizado aparte. Sin ese negocio, Sony ganó 1,03 billones de yenes, 171,44 yenes por acción.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **1,59 billones de yenes** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara todo su año fiscal 2026, Sony espera una ganancia operativa de 1,72 billones de yenes, un 8 % más, y una ganancia de 1,21 billones."
+    },
+    {
+     "titulo": "Más caja que deuda y riesgos a vigilar",
+     "texto": "Después de separar el negocio financiero, Sony tiene **más caja que deuda**: unos 2,2 billones de yenes en caja contra 1,87 billones de deuda. Su ganancia operativa paga los intereses del año 40 veces (por encima de 3 se considera sano).\n\nDevuelve cada vez más a sus accionistas. Recompró unos 120.000 M de yenes en acciones hasta junio, y planea subir el dividendo anual de 25 a 35 yenes por acción. Aun así, el dividendo rinde poco.\n\nLos riesgos:\n\n- **El ciclo de las consolas**: la PlayStation 5 ya lleva varios años en el mercado; las ventas de consolas suelen bajar antes de que llegue la siguiente.\n- **El precio de las memorias**: subió mucho y encarece la consola. Sony dice que aseguró las memorias que necesita para este año.\n- **Los celulares**: si se venden menos celulares de alta gama, vende menos sensores.\n- **El yen**: un yen más débil infla sus resultados, y uno más fuerte los achica. Parte de la mejora del pronóstico vino de un yen más débil.\n- **Los desaciertos**: en su último año fiscal registró pérdidas por la compra de Bungie (juegos) y por su proyecto de autos eléctricos con Honda, que se abandonó.\n\nLa conduce Hiroki Totoki, CEO desde 2025. Su director financiero, Lin Tao, dijo que la actividad de los jugadores \"se mantuvo sólida y podría mejorar\" con los grandes lanzamientos de fin de año."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 13,3 %; si baja, los negocios de consumo vuelven a pesar.",
-    "Ganancia neta: negativa en los últimos 12 meses; tiene que volver a positiva una vez entendido el efecto contable.",
-    "Ventas de PlayStation y de suscripciones: son el motor del segmento de juegos; Yahoo no las informa, hay que buscarlas en el informe.",
-    "Recompras: 556.230 M en los últimos 12 meses; tienen que seguir cubiertas por el flujo libre de 1.590.266 M."
+   "valuacion": {
+    "texto": "En Sony, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, Sony cotiza a {per_ref} veces su ganancia, {vs_ref_med} su propia mediana histórica ({med:per} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces). Y el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nNo la comparamos con el promedio de su industria, porque las empresas de electrónica de consumo con las que se la agrupa son muy distintas a la Sony actual, que gana sobre todo con entretenimiento.\n\nDurante años, el mercado aplicó a Sony un **descuento de conglomerado**: paga menos por una empresa con muchos negocios distintos que por la suma de esos negocios por separado. La separación del negocio financiero fue un paso para achicar ese descuento. Si Sony sigue simplificándose y su ganancia sigue creciendo, el descuento podría bajar.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Sony es una muy buena empresa. Se transformó de un fabricante de electrónica en problemas en un gigante del entretenimiento y la tecnología, con PlayStation, una de las mayores discográficas del mundo, el anime de Crunchyroll y el liderazgo mundial en sensores de imagen. Hoy es más rentable que nunca y tiene más caja que deuda.\n\nSu punto débil es la complejidad. Junta negocios muy distintos, algunos ligados a ciclos (las consolas, los celulares), y sus resultados se mueven con el yen. Además, tuvo desaciertos caros, como la compra de Bungie y el proyecto de autos con Honda. El crítico más duro diría que Sony sigue siendo un conglomerado que el mercado nunca va a valorar del todo. Es un argumento razonable.\n\nEncaja con quien busca exposición al entretenimiento (juegos, música, anime) con una empresa sólida y diversificada. No es para quien busca un dividendo alto o un negocio simple de seguir.\n\nPara que la tesis se mantenga, lo más importante es que el margen operativo siga subiendo y que PlayStation mantenga su base de jugadores a medida que avanza el ciclo de la consola.",
+   "pros": [
+    "Propiedad intelectual: juegos, música, películas y anime que rinden durante décadas.",
+    "Líder en sensores: el mayor fabricante de sensores de imagen para celulares.",
+    "Más caja que deuda: tras separar el negocio financiero."
    ],
+   "contras": [
+    "Conglomerado: negocios muy distintos que el mercado valora con descuento.",
+    "Ciclos: consolas y celulares suben y bajan.",
+    "El yen: sus resultados se mueven con el tipo de cambio."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "bajo",
    "clientes": [
-    "Millones de jugadores de PlayStation",
-    "Fabricantes de celulares y autos que compran sensores",
-    "Plataformas, cines y oyentes de música y películas"
+    "Jugadores de PlayStation de todo el mundo",
+    "Plataformas de streaming de música y video",
+    "Fabricantes de celulares, como Apple"
    ],
-   "ideal_para": [
-    "Buscan una empresa de entretenimiento y sensores con contenido propio.",
-    "Valoran recompras crecientes y caja mayor que la deuda.",
-    "Aceptan analizar un grupo con muchas líneas de negocio."
+   "hechos": [
+    {
+     "dato": "Primer trimestre del año fiscal 2026 (abril a junio de 2026): ventas de 2,84 billones de yenes (+8 %) y ganancia operativa de 476.500 M de yenes (+40 %), récords para un primer trimestre; ganancia de 342.200 M de yenes (+32 %); ganancia operativa por negocio: Juegos +37 %, Música +14 %, Sensores unas 2,3 veces, Películas +33 %, Electrónica sin cambios; 125 millones de cuentas activas de PlayStation; recompras de unos 120.000 M de yenes; pronóstico del año: ganancia operativa de 1,72 billones de yenes (+8 %) y ganancia de 1,21 billones; frase de Lin Tao",
+     "fuente": "Resumen de la conferencia del 1T del año fiscal 2026, 07/2026",
+     "url": "https://www.nasdaq.com/articles/sony-q1-earnings-call-highlights"
+    },
+    {
+     "dato": "Año fiscal 2025 (cerrado el 31/03/2026), sin el negocio financiero: ventas de 12,48 billones de yenes (+4 %); ganancia operativa de 1,45 billones (+13 %); ganancia de 1,03 billones; 171,44 yenes por acción; separación de Sony Financial Group el 01/10/2025; deterioros por Bungie (120.100 M de yenes) y pérdida por Sony Honda Mobility; dividendo de 25 yenes y plan de 35 yenes para el año fiscal 2026",
+     "fuente": "Informe de resultados del año fiscal 2025, 05/2026",
+     "url": "https://investgame.net/news/pdf/2026-05-08-25q4_sony_earnings_clean_wp/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan una empresa simple y fácil de seguir.",
-    "No toleran el riesgo del yen ni el ciclo de las consolas."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "SONY",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "SONY",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -6910,54 +6977,67 @@
    }
   },
   "T": {
-   "resumen": "AT&T es uno de los tres grandes operadores de telefonía celular de Estados Unidos, y además vende internet de fibra para hogares y servicios de comunicaciones para empresas; tiene también una operación en México (segmento Latin America). Gana plata con abonos mensuales de celulares, internet y servicios a empresas, más la venta de equipos. Tiene un **foso estrecho, de espectro y red**: tener licencias de espectro y una red nacional cuesta decenas de miles de millones, y pocos pueden hacerlo, lo que limita la competencia nueva. Los números son estables y previsibles: los ingresos pasaron de 120.741 M en 2022 a 125.648 M en 2025 (128.852 M en los últimos 12 meses), el margen operativo de 19,0 % a **21,4 %** y el flujo libre es de **17.816 M**, 13,8 % de los ingresos. Retomó las recompras (9.303 M en los últimos 12 meses) y **hay 8,0 % menos acciones** que en 2022. Su punto débil es la deuda (**la deuda neta es 3,26 veces el EBITDA**), el crecimiento casi nulo y las inversiones altas (22.419 M por año). En 2022 recortó el dividendo (cayó 6,4 % por año en 3 años). Con el bono a 10 años cerca de 5 %, refinanciar deuda cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **buena empresa, con foso estrecho de espectro, flujo libre de 13,8 % de los ingresos y recompras, aunque con deuda alta y crecimiento casi nulo.**",
-   "veredicto": "Buena: foso estrecho de espectro y flujo libre estable, con deuda alta y crecimiento casi nulo",
-   "conclusion": "AT&T es una buena empresa: tiene un foso estrecho de espectro y red, flujo libre de 17.816 M, margen operativo de 21,4 % y 8,0 % menos acciones, pero la deuda neta es 3,26 veces el EBITDA y los ingresos casi no crecen. Vale la pena seguirla de cerca. Es recomendable investigar el origen del aumento de la deuda en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda neta/EBITDA no suba de 3,5x.",
+   "formato": "v4",
+   "titulo": "AT&T: la vieja telefónica apuesta todo a la fibra y al celular, con una deuda enorme a cuestas",
+   "resumen": [
+    "AT&T es una de las tres grandes empresas de **telefonía celular** de EE.UU. y la mayor proveedora de **internet por fibra óptica** del país. Después de años de compras fallidas, volvió a concentrarse en conectividad. Su ventaja es una red nacional que nadie puede replicar fácilmente y la combinación de celular y fibra en el mismo hogar.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 5,3 %**, a 32.300 M, y su ganancia ajustada por acción subió de 0,54 a 0,65 dólares. Sumó 379.000 líneas de celular con abono y 442.000 clientes de fibra, y subió lo que espera ganar en el año.",
+    "Buena empresa, con un negocio estable que volvió a crecer, mucha caja y un dividendo alto, pero con una deuda enorme que tardará años en bajar a su objetivo."
+   ],
+   "introduccion": "Durante los últimos quince años, AT&T quiso ser mucho más que una telefónica. En 2015 compró DirecTV, la empresa de televisión satelital, por unos 49.000 M. En 2018 compró Time Warner (CNN, HBO, Warner Bros.) por unos 85.000 M. Iba a ser un gigante de los medios.\n\nNo funcionó. La gente dejó la televisión satelital por el streaming, y AT&T se endeudó como pocas empresas del mundo. En 2021 y 2022 deshizo casi todo: separó WarnerMedia y la fusionó con Discovery, y vendió parte de DirecTV. Y en 2022 recortó su dividendo casi a la mitad, de 2,08 a 1,11 dólares por acción. Para muchos jubilados que la tenían por su dividendo, fue un golpe duro.\n\nDesde entonces, AT&T volvió a lo básico: **celulares y fibra óptica**. Y le está yendo bien: en el tercer trimestre de 2026 tuvo su mejor crecimiento de ingresos por servicios en más de cuatro años.\n\nPero para crecer en fibra y en espectro (las frecuencias por donde viajan las señales del celular), volvió a endeudarse: compró la red de fibra de Lumen y espectro de EchoStar.\n\nEntonces, la pregunta es: ¿la nueva AT&T, enfocada en conectividad, justifica cargar con tanta deuda?",
+   "secciones": [
+    {
+     "titulo": "Celular y fibra, en el mismo hogar",
+     "texto": "AT&T tiene tres negocios:\n\n- **Celulares**: planes con abono y prepagos en EE.UU. Sumó 379.000 líneas con abono en el trimestre, y su tasa de bajas (el porcentaje de clientes que se va cada mes) fue de 0,92 %.\n- **Internet para el hogar**: sobre todo por **fibra óptica**, que llega a más de 39 millones de hogares y empresas. Sumó 442.000 clientes de fibra y 327.000 de internet inalámbrico en el trimestre.\n- **Telefonía fija y redes de cobre**: el negocio viejo, que se achica rápido. Sus ingresos cayeron 24,5 % en el trimestre, y AT&T quiere apagar la mayor parte de su red de cobre hacia 2029.\n\nAdemás, acordó vender AT&T México, su operación de celulares en ese país.\n\nSus clientes son decenas de millones de personas, familias y empresas de EE.UU., y organismos de gobierno.\n\n¿Cuál es su **ventaja**? La **red**. Construir una red de fibra o una red de celulares nacional cuesta cientos de miles de millones y lleva décadas. Solo tres empresas tienen redes móviles nacionales en EE.UU. (con Verizon, VZ, y T-Mobile, TMUS). Y AT&T suma algo que sus rivales tienen menos: la **convergencia**. Un hogar que tiene fibra y celular de AT&T paga una sola factura, recibe un descuento y casi nunca se va. El 42,8 % de los hogares con su internet (fibra o inalámbrico) también tiene su celular.\n\nLa inteligencia artificial, en todo caso, la ayuda: los centros de datos y las empresas necesitan más fibra para mover datos."
+    },
+    {
+     "titulo": "Un negocio estable que volvió a crecer",
+     "texto": "Los ingresos crecen poco pero de forma estable: de 120.741 M en 2022 a **128.852 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 19,0 % a **21,4 %**. El promedio de su industria es 20,5 %.\n\n[[grafico:margen_operativo]]\n\nLa ganancia contable salta mucho por cargos y ventas de negocios: en el tercer trimestre de 2026 fue de 0,13 dólares por acción, por un cargo de 2.600 M por la venta de AT&T México. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**: 0,65 dólares, contra 0,54 un año antes. Para todo 2026, AT&T espera unos 2,40 dólares ajustados.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **8,3 %**. Por encima de 15 % se considera muy bueno. Es bajo, como en todas las telefónicas, porque las redes y el espectro necesitan muchísimo capital.\n\nLo mejor es la **caja**: **17.816 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses, y espera más de 18.000 M en 2026.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "La deuda, el gran tema",
+     "texto": "La deuda neta (lo que debe menos la caja) es de **149.800 M**, una de las mayores entre las empresas de EE.UU.. Equivale a **3,26 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. AT&T está en zona exigente, y no espera volver a su objetivo de 2,5 veces hasta 2029.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses** (cuántas veces su ganancia operativa paga los intereses del año) es de **3,7 veces**. Por encima de 3 se considera sano. Está justo por encima: si la ganancia operativa cayera o las tasas subieran mucho, quedaría en zona de riesgo. Paga unos 7.500 M de intereses por año.\n\nAun así, devuelve mucho: en el tercer trimestre recompró acciones por 2.800 M y pagó dividendos, en total unos 4.800 M. El dividendo es de 1,11 dólares por acción por año, sin cambios desde el recorte de 2022.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **La deuda**: limita lo que puede hacer y la expone a las tasas.\n- **La competencia**: T-Mobile, Verizon y las empresas de cable que también venden celulares.\n- **Los precios de la fibra**: el ingreso promedio por cliente de fibra empezó a bajar.\n- **La historia**: las grandes compras de la década pasada destruyeron mucho valor.\n\nLo conduce John Stankey, CEO desde 2020: \"Nuestra base de activos nos posiciona bien para la era de la IA, con una posición de liderazgo en fibra, la mejor tecnología disponible\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En AT&T, el PER contable (cuántos años de ganancia se pagan al comprar la acción) sirve poco, porque la ganancia contable salta con cada cargo y cada venta de negocios. Usamos la ganancia ajustada que espera la empresa para 2026: unos 2,40 dólares por acción.\n\nCon el precio de {precio} dólares, AT&T cotiza a {per_ref} veces esa ganancia.\n\nEn una telefónica también conviene mirar el **precio sobre el flujo libre de caja**, porque la caja es lo que paga los dividendos y la deuda: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nY el **EV/EBITDA**, que suma la deuda al precio de la acción, algo clave en una empresa tan endeudada: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl mercado paga poco por las telefónicas: crecen poco y tienen mucha deuda. Lo que podría cambiar cómo ve a AT&T es que la fibra y la convergencia sostengan un crecimiento mayor y que la deuda baje más rápido de lo previsto.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}.",
+    "ganancia_ref": 2.4,
+    "ganancia_ref_txt": "ganancia ajustada por acción que espera la empresa para 2026 (unos 2,40 dólares)"
+   },
+   "conclusion": "AT&T es una buena empresa. Volvió a concentrarse en lo que sabe hacer, tiene una red de fibra líder en EE.UU., una de las tres redes móviles nacionales, una estrategia de convergencia que retiene clientes, mucha caja y un dividendo alto.\n\nSu punto débil es la deuda. Debe casi 150.000 M, su cobertura de intereses está apenas por encima del nivel sano y no espera volver a su objetivo de deuda hasta 2029. Además, su historia de compras que destruyeron valor pesa en la confianza del mercado. El crítico más duro diría que AT&T es una empresa que trabaja para sus acreedores antes que para sus accionistas. Es un argumento a tener en cuenta.\n\nEncaja con quien busca un dividendo alto de una empresa con un negocio estable, y acepta un crecimiento lento y una deuda alta. No es para quien busca crecimiento o un balance sólido.\n\nPara que la tesis se mantenga, lo más importante es que la fibra siga sumando clientes, que la caja se mantenga por encima de 18.000 M por año y que la deuda empiece a bajar.",
+   "pros": [
+    "Fibra líder: llega a más de 39 millones de hogares y empresas.",
+    "Mucha caja: 17.816 M de flujo libre en los últimos 12 meses.",
+    "Convergencia: el 42,8 % de sus hogares con internet tiene su celular."
+   ],
+   "contras": [
+    "Deuda enorme: 149.800 M, 3,26 veces su EBITDA.",
+    "Cobertura justa: paga los intereses solo 3,7 veces.",
+    "Dividendo sin aumentos: igual desde el recorte de 2022."
+   ],
    "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "AT&T presta servicios de telecomunicaciones y tecnología a nivel mundial. Opera dos segmentos: **Communications** y **Latin America**. Communications ofrece servicios inalámbricos de voz y datos y vende teléfonos, dispositivos y accesorios en sus tiendas y por otros canales; también ofrece internet de fibra y servicios a empresas. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de infraestructura con abonados recurrentes: **los ingresos crecieron 1,4 % en 2023, cayeron 0,1 % en 2024 y crecieron 2,7 % en 2025, hasta 125.648 M**, y llegaron a 128.852 M en los últimos 12 meses.\n\n**A quién le vende.** A decenas de millones de personas, empresas y organismos públicos. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de AT&T **es de espectro y red, y es estrecha**. Las licencias de espectro y una red nacional de antenas y fibra cuestan decenas de miles de millones, y por eso en Estados Unidos hay solo tres grandes operadores. Los clientes rara vez cambian de operador por unos pocos dólares, y la combinación de celular y fibra en un solo abono refuerza la fidelidad. Pero los números no muestran un foso fuerte: el ROIC (retorno sobre el capital) es de 8,3 %, apenas por encima del costo del capital.\n\nCompite con Verizon, T-Mobile y operadores de cable que ofrecen celular barato. Es frágil en las guerras de precios, en la inversión constante que exige la red y en la deuda (con el bono a 10 años cerca de 5 %, refinanciarla cuesta más). La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de AT&T cuentan **un negocio estable de crecimiento bajo y flujo libre sólido**. Los ingresos fueron de 120.741 M, 122.428 M, 122.336 M y 125.648 M, y de 128.852 M en los últimos 12 meses. El margen operativo fue de 19,0 %, 20,1 %, 19,7 %, 19,9 % y 21,4 %. La ganancia neta fue de -8.524 M en 2022, 14.400 M, 10.948 M y 21.953 M, y de 13.135 M en los últimos 12 meses. Las de 2022 y 2025 incluyen partidas extraordinarias que Yahoo no detalla, por lo que miramos mejor el EBIT. La ganancia por acción fue de -1,13, 1,97, 1,49, 3,04 y 1,85.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 12.397 M, 20.461 M, 18.508 M y 19.442 M, y de **17.816 M en los últimos 12 meses**. Las inversiones suben: de 19.626 M a 22.419 M. El ROE fue de 12,3 % y el ROIC de 8,3 %.\n\nLa mirada crítica: el flujo libre de los últimos 12 meses bajó frente a 2025 por más inversión.",
-   "balance": "**La deuda es alta y subió en el último año.** La deuda total es de 178.147 M y la caja de 10.767 M en los últimos 12 meses; la deuda neta/EBITDA es de 3,26x, que multiplicado por 12 son unos 39 meses de EBITDA. Los intereses se cubren 3,7 veces con el EBIT.\n\nLa deuda subió de 155.043 M en 2025 a 178.147 M en los últimos 12 meses, probablemente por compras de espectro y fibra (dato público a verificar). El patrimonio neto es de 106.775 M. Con tasas altas, cada refinanciación cuesta más, así que es un punto a seguir de cerca.",
-   "gerencia": "La conduce John Stankey, presidente, CEO y presidente del directorio (62 años, pago de 8,9 M según Yahoo), con Pascal Desroches como director financiero (61 años, pago de 5,1 M). Stankey condujo el recorte del dividendo y la separación del negocio de medios en 2022, dato público.\n\nEn lo que importa, **el uso del capital cambió**: paga un dividendo de 1,11 por acción (pagado desde 1984; 7.935 M en los últimos 12 meses, 45 % del flujo libre) y volvió a recomprar acciones (890 M en 2022, 194 M, 215 M, 6.575 M en 2025 y 9.303 M en los últimos 12 meses). **Las acciones bajaron de 7.587 M a 6.981 M, un 8,0 % menos.** Las recompras y el dividendo de los últimos 12 meses (17.238 M) igualan al flujo libre (17.816 M).",
-   "fortalezas": [
-    "Flujo libre de 17.816 M en los últimos 12 meses, 13,8 % de los ingresos.",
-    "Margen operativo de 19,0 % a 21,4 %.",
-    "8,0 % menos acciones desde 2022, con recompras de 9.303 M.",
-    "Espectro y red que cuestan decenas de miles de millones.",
-    "Dividendo pagado desde 1984."
-   ],
-   "debilidades": [
-    "Deuda de 178.147 M, 3,26 veces el EBITDA.",
-    "Crecimiento de ingresos casi nulo.",
-    "Dividendo recortado en 2022: el crítico más duro diría que la deuda limita la capacidad de crecer más.",
-    "Inversiones de 22.419 M por año.",
-    "Cobertura de intereses de 3,7 veces."
-   ],
-   "vigilar": [
-    "Deuda neta/EBITDA: hoy 3,26x; si pasa de 3,5x, el balance queda ajustado.",
-    "Flujo libre: hoy 17.816 M; tiene que cubrir dividendo y recompras.",
-    "Cobertura de intereses: hoy 3,7x; si baja de 3x, los intereses pesan demasiado.",
-    "Abonados de celular y fibra: Yahoo no los informa, hay que buscarlos en el informe."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Decenas de millones de usuarios de celular",
-    "Hogares con internet de fibra",
-    "Empresas y organismos públicos"
+    "Decenas de millones de personas y familias en EE.UU.",
+    "Empresas y organismos de gobierno",
+    "Hogares con internet por fibra o inalámbrico"
    ],
-   "ideal_para": [
-    "Buscan un negocio de flujo estable con dividendo.",
-    "Valoran recompras y flujo libre sólido.",
-    "Aceptan deuda alta a cambio de ingresos recurrentes."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 32.300 M (+5,3 %); ingresos por servicios de conectividad de 23.900 M (+6,1 %); 379.000 líneas con abono nuevas; tasa de bajas de 0,92 %; 442.000 clientes de fibra y 327.000 de internet inalámbrico nuevos; fibra en más de 39 millones de hogares y empresas; convergencia de 42,8 %; EBITDA ajustado de 12.500 M (+5,4 %); ganancia por acción de 0,13 dólares (1,29) y ajustada de 0,65 (0,54); cargo de 2.600 M por la venta de AT&T México; flujo libre de 5.000 M; deuda neta de 149.800 M, con objetivo de 2,5 veces el EBITDA durante 2029; recompras de 2.800 M; ingresos del negocio viejo -24,5 %; guía 2026: ganancia ajustada de unos 2,40 dólares y flujo libre de más de 18.000 M; frase de John Stankey",
+     "fuente": "Comunicado de resultados del 3T26, 21/10/2026",
+     "url": "https://about.att.com/story/2026/3q-earnings.html"
+    },
+    {
+     "dato": "Caída del ingreso promedio por cliente de fibra; mejor crecimiento de ingresos por servicios en más de cuatro años",
+     "fuente": "Notas sobre los resultados del 3T26, 10/2026",
+     "url": "https://finviz.com/news/405593/att-beats-and-raises-as-service-growth-accelerates-but-fiber-arpu-erosion-and-higher-leverage-temper-the-upgrade"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento acelerado.",
-    "No toleran deuda alta ni tasas altas."
-   ],
+   "ticker": "T",
    "perfil": "general",
    "capas": [],
-   "ticker": "T",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7600,54 +7680,75 @@
    }
   },
   "BA": {
-   "resumen": "Boeing es una de las dos grandes fabricantes de aviones comerciales del mundo (con Airbus) y una de las mayores contratistas de defensa y espacio de Estados Unidos: fabrica los aviones 737, 787 y 777, aviones militares, satélites, sistemas de defensa y cohetes, y presta servicios de mantenimiento y repuestos (Global Services). Gana plata con la entrega de cada avión y con servicios que duran décadas. En teoría tiene un **foso estrecho, de duopolio y base instalada**: construir aviones grandes exige décadas de certificaciones, y solo Airbus compite en serio. Pero los números muestran una empresa en dificultades: **perdió dinero en 2022, 2023 y 2024** (-4.935 M, -2.222 M y -11.817 M), el flujo libre fue de **-14.398 M en 2024 y -1.886 M en 2025**, y el margen operativo de 2025 fue de -6,1 % aunque los ingresos subieron a 89.463 M. La ganancia neta positiva de 2025 (2.235 M) probablemente incluye una ganancia por venta de negocios, dato a verificar. **Las acciones aumentaron 33 %** desde 2022 por una emisión para reforzar la caja. Su deuda es alta (45.920 M) y el patrimonio recién volvió a ser positivo. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad pobre hoy: duopolio valioso, pero con pérdidas operativas, flujo libre negativo, deuda alta y 33 % más acciones.**",
-   "veredicto": "Pobre hoy: duopolio valioso, pero con pérdidas operativas, flujo libre negativo, deuda alta y 33 % más acciones",
-   "conclusion": "Boeing es una empresa de calidad pobre hoy: tiene un duopolio valioso y una base instalada enorme, pero perdió plata operativa todos los años, el flujo libre es negativo, la deuda es de 45.920 M y las acciones aumentaron 33,4 %. Hay que seguirla de cerca. Es recomendable investigar las entregas y la cartera de pedidos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo y el flujo libre pasen a ser positivos.",
-   "calidad": "Pobre",
-   "riesgo_ia": "bajo",
-   "negocio": "Boeing diseña, desarrolla, fabrica, vende, presta servicios y da soporte a aviones comerciales, aeronaves militares, satélites, sistemas de defensa antimisiles, vuelos espaciales tripulados y sistemas de lanzamiento, a nivel mundial. Opera tres segmentos: **Commercial Airplanes**, **Defense, Space & Security** y **Global Services**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Yahoo no trae datos de los últimos 12 meses para los ingresos.\n\nEs un negocio de ciclo largo y capital intensivo: **los ingresos crecieron 16,8 % en 2023, cayeron 14,5 % en 2024 y crecieron 34,5 % en 2025, hasta 89.463 M**. La caída de 2024 se vincula públicamente con problemas de producción y con una huelga.\n\n**A quién le vende.** A aerolíneas, empresas de leasing y gobiernos. **Ningún cliente pesa de forma decisiva**, aunque el gobierno de Estados Unidos es el mayor de defensa.",
-   "foso": "La ventaja de Boeing **es de duopolio y base instalada, y en la práctica es débil hoy**. Fabricar aviones grandes requiere décadas de certificaciones, una cadena de suministro enorme y una base de aerolíneas con pilotos y repuestos adaptados a cada modelo, de modo que solo Boeing y Airbus compiten en aviones de pasillo único y de doble pasillo. Pero un foso se mide en rentabilidad, y Boeing lleva años perdiendo plata: el margen bruto fue de 5,3 %, 9,9 %, -3,0 % y 4,8 %, y el ROIC fue negativo en todos los años.\n\nCompite con Airbus, Embraer y COMAC (China). Es frágil en los problemas de calidad y seguridad (que llevaron a limitar la producción del 737 MAX, dato público), en las certificaciones demoradas de nuevos modelos, en la cadena de suministro, en los precios fijos de programas de defensa y en la liquidez. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de Boeing cuentan **tres años de pérdidas y un 2025 de recuperación parcial**. Los ingresos fueron de 66.608 M, 77.794 M, 66.517 M y 89.463 M. El EBIT fue de -3.509 M, -821 M, -10.824 M y -5.416 M, con margen operativo de -5,3 %, -1,1 %, -16,3 % y -6,1 %. La ganancia neta fue de -4.935 M, -2.222 M, -11.817 M y 2.235 M; la de 2025 es positiva a pesar del EBIT negativo, lo que indica una ganancia no operativa (probablemente por venta de negocios, dato público a verificar). La ganancia por acción fue de -8,30, -3,67, -18,36 y 2,48.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.290 M, 4.433 M, **-14.398 M** y **-1.886 M**. Las inversiones suben: de 1.222 M a 2.951 M. El ROIC fue negativo todos los años (-6,4 %, -1,8 %, -21,1 % y -7,8 %).\n\nLa mirada crítica: más ingresos no se tradujeron en ganancias operativas, y la empresa no demostró todavía que pueda producir con rentabilidad.",
-   "balance": "**Deuda alta y poco colchón, aunque mejoró.** La deuda total es de 45.920 M y la caja de 20.714 M en los últimos 12 meses. Los intereses no se cubren con el EBIT porque este es negativo. La deuda neta/EBITDA no tiene sentido con ganancias operativas negativas.\n\nEl patrimonio neto fue negativo durante años (-15.883 M en 2022, -17.233 M, -3.908 M) y recién en 2025 pasó a 5.454 M, y a 6.547 M en los últimos 12 meses, tras emitir acciones nuevas (dato público). La deuda bajó de 54.433 M a 45.920 M, lo que ayuda.",
-   "gerencia": "La conduce Kelly Ortberg, presidente y CEO (65 años, pago de 6,1 M según Yahoo), con Jay Malave como director financiero (56 años, pago de 10,7 M). Ortberg asumió en 2024 para reformar la cultura de producción y calidad, dato público.\n\nEn lo que importa, **la prioridad es recuperar la caja y no devolver capital al accionista**: no hay recompras ni dividendo común en los datos. **Las acciones aumentaron de 595 M a 794 M, un 33,4 %**, por una emisión de acciones para financiar la recuperación.",
-   "fortalezas": [
-    "Duopolio con Airbus en aviones comerciales grandes.",
-    "Ingresos que se recuperaron a 89.463 M en 2025.",
-    "Base instalada de miles de aviones con servicios por décadas.",
-    "Caja de 20.714 M y deuda total bajando.",
-    "Patrimonio neto de nuevo positivo (6.547 M)."
+   "formato": "v4",
+   "titulo": "Boeing: la mitad de un duopolio que todavía no logra volver a fabricar aviones sin tropiezos",
+   "resumen": [
+    "Boeing es uno de los dos grandes fabricantes de **aviones comerciales** del mundo (el otro es Airbus). También fabrica aviones militares, satélites y helicópteros, y da servicios y repuestos a las aerolíneas. Su ventaja es el duopolio: fabricar un avión de pasajeros grande es tan difícil que casi nadie más puede hacerlo.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 4 %**, a 24.200 M, y entregó 161 aviones, pero **perdió 116 M** y avisó que no llegará a su meta de producción del 737 este año. La acción cayó cerca de 10 % ese día.",
+    "Empresa regular hoy, aunque con un negocio de gran valor: tiene pedidos récord por 745.000 M, pero años de problemas de calidad, mucha deuda y una recuperación que avanza más lento de lo prometido."
    ],
-   "debilidades": [
-    "Pérdidas operativas todos los años: EBIT de -5.416 M en 2025.",
-    "Flujo libre negativo: -14.398 M en 2024 y -1.886 M en 2025.",
-    "33,4 % más acciones desde 2022.",
-    "Deuda de 45.920 M: el crítico más duro diría que la empresa no podría financiarse sola si algo sale mal.",
-    "Problemas de calidad y de certificación."
+   "introduccion": "Durante casi un siglo, Boeing fue sinónimo de ingeniería norteamericana. El 707 inauguró la era de los jets, el 747 hizo masivos los vuelos largos y el 737 se convirtió en uno de los aviones más vendidos de la historia.\n\nEntre 2018 y 2019, dos aviones 737 MAX se estrellaron en Indonesia y Etiopía, y murieron 346 personas. Las investigaciones mostraron fallas de diseño y que la empresa había ocultado información a los reguladores. El MAX estuvo casi dos años sin volar.\n\nEn enero de 2024, a un 737 MAX de Alaska Airlines se le desprendió en pleno vuelo un panel del fuselaje: le faltaban unos tornillos que nunca se colocaron en la fábrica. Desde entonces, la autoridad aeronáutica de EE.UU. limitó cuántos aviones puede fabricar. Ese mismo año vino una huelga de casi dos meses, y Boeing tuvo que emitir acciones para no quedarse sin caja.\n\nEn agosto de 2024 llegó un nuevo CEO, Kelly Ortberg, con un mandato: volver a fabricar bien. La empresa mejoró, pero más lento de lo prometido.\n\nEntonces, la pregunta es: ¿cuánto vale la mitad de un duopolio que todavía no termina de ordenarse?",
+   "secciones": [
+    {
+     "titulo": "Aviones comerciales, defensa y servicios",
+     "texto": "Boeing tiene tres negocios. En el tercer trimestre de 2026:\n\n- **Aviones comerciales**: el 737, el 787 y el 777, entre otros. Facturó 10.700 M y perdió 697 M. Entregó 161 aviones.\n- **Defensa, espacio y seguridad**: aviones militares, helicópteros, satélites y misiles. Ganó 492 M, ayudado por la venta de un laboratorio.\n- **Servicios**: repuestos, mantenimiento y entrenamiento para aerolíneas y fuerzas armadas. Ganó 1.019 M, y es su negocio más estable y rentable.\n\nSus clientes son aerolíneas de todo el mundo, empresas que alquilan aviones, el Departamento de Defensa de EE.UU. y gobiernos aliados.\n\n¿Cuál es su **ventaja**? El **duopolio**. Diseñar y certificar un avión de pasajeros nuevo cuesta decenas de miles de millones y lleva más de una década. Por eso, en aviones grandes, las aerolíneas solo pueden elegir entre Boeing y Airbus. Y la demanda supera lo que ambos pueden fabricar: Boeing tiene pedidos por **745.000 M**, un récord, con más de 6.300 aviones comerciales esperando ser fabricados. Eso es trabajo para muchos años.\n\nEl problema no es vender aviones: es **fabricarlos**. La cadena de proveedores sigue con dificultades, y en 2025 Boeing compró Spirit AeroSystems, la fábrica que hace sus fuselajes, en parte por defectos de fabricación.\n\nLa inteligencia artificial no la amenaza; en todo caso, la ayuda a diseñar y a controlar la calidad."
+    },
+    {
+     "titulo": "Años de pérdidas",
+     "texto": "Los ingresos suben y bajan con las entregas: 66.517 M en 2024, el peor año, y **89.463 M** en 2025.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es **negativo** desde hace años: -6,1 % en 2025. Es decir, Boeing pierde plata con su negocio. El promedio de su industria es 8,7 %. Para que una empresa industrial esté sana, ese número tiene que ser positivo y estable.\n\n[[grafico:margen_operativo]]\n\nUna buena noticia del trimestre: la pérdida del negocio de aviones comerciales se achicó mucho, de 5.353 M hace un año (cuando registró un cargo por el atraso del 777X) a 697 M.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue muy negativo en 2024, con -14.398 M, y casi neutro en 2025. En el tercer trimestre de 2026 fue positivo, de 464 M. Para todo 2026 espera unos 2.000 M, y para 2027 unos 3.000 M, menos de lo que esperaba el mercado. Su meta de 10.000 M por año quedó para 2029.\n\n[[grafico:flujo_libre]]\n\nPara cubrir las pérdidas, en 2024 emitió acciones nuevas. La cantidad de acciones subió de 595 M en 2022 a **794 M**: cada accionista quedó con una parte más chica de la empresa.\n\n[[grafico:acciones]]"
+    },
+    {
+     "titulo": "Deuda, producción y lo que falta",
+     "texto": "La deuda neta (lo que debe menos la caja) bajó de 30.400 M hace un año a **25.200 M**. Pero como la empresa todavía pierde plata, no se puede medir con el EBITDA. Su **patrimonio** (lo que quedaría para los accionistas si vendiera todo y pagara sus deudas) fue negativo entre 2022 y 2024, y hoy apenas es positivo.\n\nLo que define el futuro es la **producción**:\n\n- **737**: Boeing quería llegar a fabricar 47 por mes este año. Ahora espera lograrlo a principios de 2027, y no llegará a las unas 500 entregas que esperaba para 2026.\n- **787**: estable en 8 por mes, aunque todavía con dificultades.\n- **777X**: su nuevo avión grande lleva años de atraso. Espera la primera entrega en 2027.\n\nCada avión adicional por mes significa más ingresos y mejores márgenes, porque los costos fijos de la fábrica se reparten entre más aviones.\n\nLos riesgos:\n\n- **La calidad**: otro accidente o defecto grave sería devastador.\n- **Los proveedores**: alas, fuselajes y motores siguen frenando la producción.\n- **El 777X**: más atrasos significan más cargos.\n- **Los costos legales**: en el trimestre pagó unos 700 M por un acuerdo con el Departamento de Justicia.\n\nLo conduce Kelly Ortberg, CEO desde 2024: \"Las expectativas están subiendo, y así debe ser\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy negativo; tiene que volverse positivo para justificar la deuda.",
-    "Flujo libre: negativo en 2025; tiene que pasar a positivo de forma sostenida.",
-    "Entregas del 737 MAX y del 787: Yahoo no las informa, hay que buscarlas en el informe.",
-    "Cantidad de acciones: hoy 794 M; si siguen subiendo, la dilución continúa."
+   "valuacion": {
+    "texto": "En Boeing, el PER (cuántos años de ganancia se pagan al comprar la acción) no sirve: la empresa pierde plata con su negocio, y la ganancia de los últimos 12 meses es positiva solo porque incluye la venta de negocios, como Jeppesen. Por eso no lo usamos.\n\nSirve más el **precio sobre ventas**: cuánto se paga por cada dólar que factura. Con el precio de {precio} dólares, Boeing cotiza a {v:ps} veces sus ventas, {vs:ps} su mediana histórica ({med:ps} veces) y {vsind:ps} el promedio de su industria ({ind:ps} veces).\n\nEl mercado no paga por la ganancia de hoy, que no existe, sino por la que podría tener Boeing si vuelve a fabricar como antes. La empresa apunta a 10.000 M de flujo libre por año hacia 2029. Si lo logra, el precio actual puede tener sentido. Si la recuperación se sigue demorando, la acción depende de una promesa.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo usa múltiplos que no reflejan bien a una empresa en recuperación: conviene tomarlo con mucho cuidado. No paga dividendo."
+   },
+   "conclusion": "Boeing es hoy una empresa regular, con un negocio de gran valor. Es la mitad de un duopolio, tiene pedidos récord por 745.000 M que le aseguran trabajo durante años, un negocio de servicios rentable y estable, y una gestión que está ordenando la fábrica.\n\nSu punto débil es que todavía pierde plata con su negocio principal. Años de problemas de calidad, una deuda importante, accionistas diluidos y una recuperación que avanza más lento de lo prometido: no llegará a sus metas de producción de 2026, y su meta de caja quedó para 2029. El crítico más duro diría que Boeing promete una recuperación hace seis años. Es un argumento serio.\n\nEncaja con quien cree en la recuperación de Boeing y tiene paciencia para esperar varios años. No es para quien busca ganancias actuales, dividendos o previsibilidad.\n\nPara que la tesis se mantenga, lo más importante es que el 737 llegue a 47 aviones por mes a principios de 2027, sin problemas de calidad, y que el flujo libre siga subiendo.",
+   "pros": [
+    "Duopolio: solo Boeing y Airbus fabrican aviones grandes.",
+    "Pedidos récord: 745.000 M, con más de 6.300 aviones.",
+    "Servicios rentables: 1.019 M de ganancia en el trimestre."
    ],
+   "contras": [
+    "Pierde plata: margen operativo negativo desde hace años.",
+    "Producción atrasada: no llegará a sus metas del 737 en 2026.",
+    "Accionistas diluidos: las acciones subieron de 595 M a 794 M."
+   ],
+   "calidad": "Regular",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Aerolíneas y empresas de leasing de aviones",
-    "Gobierno de Estados Unidos y fuerzas armadas",
-    "Operadores de satélites y de lanzamientos"
+    "Aerolíneas de todo el mundo",
+    "Empresas que alquilan aviones",
+    "Departamento de Defensa de EE.UU. y gobiernos aliados"
    ],
-   "ideal_para": [
-    "Buscan una apuesta de recuperación en un duopolio.",
-    "Aceptan pérdidas actuales a cambio de una posible mejora.",
-    "Entienden el riesgo de calidad y certificación."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 24.188 M; pérdida de 116 M; aviones comerciales: ingresos de 10.720 M y pérdida operativa de 697 M (5.353 M un año antes); defensa: ganancia de 492 M, con 252 M por la venta de HRL Laboratories; servicios: ganancia de 1.019 M; 161 entregas (160); flujo libre de 464 M (238 M); unos 700 M pagados por el acuerdo con el Departamento de Justicia; 787 a 8 por mes; primera entrega del 777-9 esperada en 2027",
+     "fuente": "Airways Magazine, 27/10/2026",
+     "url": "https://airwaysmag.com/new-post/boeing-q3-2026-commercial-loss-cash-flow"
+    },
+    {
+     "dato": "Meta de 47 aviones 737 por mes postergada a principios de 2027; no llegará a unas 500 entregas del 737 en 2026; flujo libre esperado de unos 2.000 M en 2026 y unos 3.000 M en 2027; meta de 10.000 M en 2029; deuda neta de 25.200 M (30.400 M un año antes); pérdida ajustada de 0,34 dólares por acción; caída de la acción de 9,6 %; frase de Kelly Ortberg",
+     "fuente": "Reuters, vía BusinessDay, 27/10/2026",
+     "url": "https://www.businessday.co.za/world/international-companies/2026-10-27-boeing-misses-737-targets-as-production-obstacles-persist/"
+    },
+    {
+     "dato": "Pedidos por 745.000 M, récord, con más de 6.300 aviones comerciales; ingresos +4 %",
+     "fuente": "Aviation A2Z, 28/10/2026",
+     "url": "https://aviationa2z.com/index.php/2026/10/28/boeings-745-billion-backlog-cannot-shield-shares-from-production-delays/"
+    },
+    {
+     "dato": "Ganancia en el cuarto trimestre de 2025 por la venta de un negocio (Jeppesen)",
+     "fuente": "AVweb, 01/2026",
+     "url": "https://avweb.com/aviation-news/boeing-q4-profit-asset-sale-deliveries/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan ganancias estables.",
-    "No toleran la dilución ni la deuda alta."
-   ],
+   "ticker": "BA",
    "perfil": "joven",
    "capas": [],
-   "ticker": "BA",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -9034,54 +9135,66 @@
    }
   },
   "ACN": {
-   "resumen": "Accenture es una empresa de consultoría y servicios gestionados con sede legal en Irlanda: ayuda a las grandes empresas a diseñar, construir y operar sus sistemas de tecnología, nube, ciberseguridad, datos e inteligencia artificial, y también a transformar sus finanzas, operaciones y gestión de riesgos. Gana plata cobrando por horas de profesionales y por contratos de servicios gestionados a varios años. Tiene un **foso estrecho, de relaciones con grandes clientes, escala y talento**: trabaja con la mayoría de las grandes empresas del mundo, conoce sus sistemas por dentro y tiene decenas de miles de profesionales en cada región. Los números son sólidos y estables: los ingresos pasaron de 64.112 M en el ejercicio 2023 a **74.183 M** en 2026 (+6,5 %), el margen operativo subió de 13,7 % a **15,4 %**, el ROIC es de **20,5 %** y el flujo libre de **11.621 M** (15,7 % de los ingresos). Hay 3,4 % menos acciones que en 2023 y el dividendo se paga desde 2005. Tiene poca deuda neta (559 M). Su punto débil es que el margen bruto es bajo y estable en 32 %, el ROIC bajó de 26,1 % a 20,5 % por las compras (el capital invertido pasó de 25.841 M a 41.679 M) y que la deuda total subió de 3.149 M a 13.397 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **alto**: su negocio se basa en horas de personas, y la inteligencia artificial puede automatizar buena parte de ese trabajo, aunque Accenture también vende servicios de inteligencia artificial. Conclusión: **empresa de muy buena calidad, con ROIC de 20,5 % y flujo libre de 11.621 M, pero con un modelo de horas de personas que la inteligencia artificial pone en cuestión.**",
-   "veredicto": "Muy buena: ROIC de 20,5 % y flujo libre de 11.621 M, con un modelo de horas de personas que la inteligencia artificial pone en cuestión",
-   "conclusion": "Accenture es una empresa de muy buena calidad: tiene un foso estrecho de relaciones con grandes clientes, ROIC de 20,5 %, flujo libre de 11.621 M, deuda neta casi nula y 3,4 % menos acciones, pero su negocio se basa en horas de personas y la inteligencia artificial puede reducir esa demanda. Vale la pena seguirla de cerca. Es recomendable investigar la composición de los contratos y las compras recientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo con margen operativo estable.",
+   "formato": "v4",
+   "titulo": "Accenture: la mayor consultora tecnológica del mundo, en el centro del debate sobre la IA",
+   "resumen": [
+    "Accenture es la mayor **consultora de tecnología** del mundo: ayuda a grandes empresas y gobiernos a modernizar sus sistemas, mudarse a la nube, adoptar inteligencia artificial y tercerizar procesos. Trabaja con cientos de miles de empleados en decenas de países. Su ventaja son las relaciones de largo plazo con las mayores empresas del mundo y una escala que pocos igualan.",
+    "En su año fiscal 2026 (cerrado en agosto), **sus ingresos crecieron 6 %**, a 74.183 M, y su ganancia por acción subió 12 %, a 13,56 dólares. Firmó contratos nuevos por 84.540 M y devolvió un récord de 11.500 M a sus accionistas.",
+    "Muy buena empresa, con un retorno sobre el capital alto, casi sin deuda y mucha caja, pero con la gran duda de si la inteligencia artificial va a reducir la demanda de consultores."
+   ],
+   "introduccion": "Cuando un banco quiere cambiar su sistema central, una cadena de supermercados quiere mudar sus datos a la nube o un gobierno quiere digitalizar un trámite, muchas veces no lo hace solo. Contrata a una consultora que pone cientos o miles de personas a trabajar en el proyecto durante meses o años.\n\nAccenture es la más grande de esas consultoras. Trabaja para la mayoría de las empresas más grandes del mundo, muchas de ellas desde hace décadas.\n\nEl negocio es simple de entender: Accenture vende horas de trabajo de personas muy calificadas. Y ahí está la gran pregunta de 2026. Si la inteligencia artificial puede escribir código, revisar documentos y atender clientes, ¿cuántos consultores van a necesitar sus clientes? La acción llegó a caer más de un tercio desde sus máximos por ese miedo.\n\nAccenture responde que la IA es su próxima gran ola de negocio: las empresas necesitan a alguien que la integre en sus sistemas y procesos. Y sus últimos números le dieron algo de razón: en el cuarto trimestre de su año fiscal firmó un récord de 141 contratos de más de 100 M cada uno, y la acción subió con fuerza después del informe.\n\nEntonces, la pregunta es: ¿la inteligencia artificial es una amenaza para Accenture o su próxima oportunidad?",
+   "secciones": [
+    {
+     "titulo": "Consultoría y tercerización",
+     "texto": "Accenture tiene dos grandes tipos de servicios:\n\n- **Consultoría**: proyectos para transformar una empresa (estrategia, tecnología, nube, datos, inteligencia artificial). Son contratos de meses o pocos años.\n- **Servicios administrados**: Accenture se hace cargo de una parte del trabajo de su cliente, como mantener sus sistemas o manejar sus procesos administrativos, en contratos de varios años. Es la parte más estable de sus ingresos.\n\nSus clientes son grandes empresas de todas las industrias (bancos, telefónicas, laboratorios, energía, consumo) y gobiernos, en América, Europa y Asia.\n\n¿Cuál es su **ventaja**? La **confianza** y la **escala**. Cuando una empresa encara un proyecto que puede salir muy mal, como cambiar el sistema con el que factura, prefiere a alguien que ya lo hizo cientos de veces. Accenture conoce por dentro a sus clientes, tiene acuerdos con todos los grandes proveedores de tecnología (Microsoft, Google, Amazon, Salesforce, SAP) y puede poner miles de personas en un proyecto en poco tiempo.\n\nUn número que conviene conocer es el **book-to-bill**: los contratos nuevos firmados dividido lo que facturó en el período. Si es mayor a 1, está firmando más de lo que factura, y eso anticipa crecimiento. En el cuarto trimestre fue de 1,2. Si bajara de 1 de forma sostenida, sería una señal de alerta.\n\nLa **inteligencia artificial** es su gran riesgo: si sus clientes pueden hacer con IA el trabajo que hoy le pagan a Accenture, sus ingresos podrían achicarse. También es su oportunidad, si logra ser quien la implementa."
+    },
+    {
+     "titulo": "Una máquina de caja",
+     "texto": "Los ingresos crecieron de 64.112 M en su año fiscal 2023 a **74.183 M** en 2026.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 13,7 % a **15,4 %**. Parece bajo, pero es el doble del promedio de su industria (7,4 %): en una consultora, casi todo el costo son los sueldos.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **20,5 %**. Por encima de 15 % se considera muy bueno. Bajó desde 26,1 %. Accenture compra muchas empresas cada año para sumar capacidades, y cada compra aumenta el capital invertido.\n\n[[grafico:roic]]\n\nLa ganancia por acción pasó de 10,77 dólares a **13,56**.\n\n[[grafico:eps]]\n\nLo mejor es la **caja**: **11.621 M** de flujo libre (lo que queda después de invertir) en su año fiscal 2026. Una consultora casi no necesita fábricas ni máquinas, así que casi toda la ganancia se convierte en caja.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Casi sin deuda y con récord de devoluciones",
+     "texto": "La deuda neta (lo que debe menos la caja) es de apenas **559 M**, prácticamente nada para una empresa de este tamaño: **0,04 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 37 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nEn su año fiscal 2026 devolvió un récord de **11.500 M** a sus accionistas: 7.500 M en recompras y 4.000 M en dividendos. La cantidad de acciones bajó de 639 M a 617 M.\n\n[[grafico:acciones]]\n\nSubió el dividendo trimestral 5 %, a 1,71 dólares. Creció 7,7 % por año en los últimos diez años.\n\n[[grafico:dividendo]]\n\nPara su año fiscal 2027 espera crecer entre 3 % y 6 % en moneda local, una ganancia por acción de 14,39 a 14,81 dólares y devolver al menos 9.500 M.\n\nLos riesgos:\n\n- **La IA**: que reduzca la cantidad de consultores que necesitan sus clientes.\n- **La economía**: en tiempos difíciles, las empresas recortan primero los proyectos de consultoría.\n- **Los gobiernos**: recortes en contratos públicos, sobre todo en EE.UU.\n- **La competencia**: consultoras de la India, como Infosys (INFY), con costos más bajos.\n\nLa conduce Julie Sweet, CEO desde 2019, que destacó \"otro año de crecimiento amplio en todo nuestro negocio\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Accenture, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Accenture cotiza a {per_ref} veces su ganancia de su último año fiscal. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**, porque en una consultora la caja es casi igual a la ganancia: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nDurante años, el mercado pagó por Accenture una prima por su crecimiento estable. En 2026 esa prima se achicó por el miedo a la IA. Si Accenture demuestra que la IA le suma negocio, el múltiplo puede volver a sus niveles históricos. Si la IA le quita trabajo, el múltiplo actual puede seguir siendo el nuevo normal.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Accenture es una muy buena empresa. Es la mayor consultora tecnológica del mundo, con relaciones de décadas con las mayores empresas, márgenes que duplican a su industria, un retorno sobre el capital alto, casi nada de deuda y una caja que devuelve casi entera a sus accionistas.\n\nSu punto débil es la incertidumbre sobre la inteligencia artificial. Su negocio es vender trabajo de personas, y la IA puede hacer parte de ese trabajo. Además, su crecimiento se moderó: espera crecer entre 3 % y 6 % en su próximo año fiscal. El crítico más duro diría que Accenture vende algo que la IA está volviendo más barato. Es un argumento que el mercado toma en serio.\n\nEncaja con quien busca una empresa de calidad, con caja y dividendo creciente, y cree que la IA va a necesitar integradores. No es para quien busca un crecimiento alto o certezas sobre el impacto de la IA.\n\nPara que la tesis se mantenga, lo más importante es que el book-to-bill se mantenga por encima de 1 y que los contratos de IA compensen cualquier baja en los servicios tradicionales.",
+   "pros": [
+    "Líder mundial: la mayor consultora tecnológica, con clientes de décadas.",
+    "Casi sin deuda: 0,04 veces su EBITDA.",
+    "Récord de devoluciones: 11.500 M en su año fiscal 2026."
+   ],
+   "contras": [
+    "Riesgo de la IA: podría reducir la demanda de consultores.",
+    "Crecimiento moderado: 3 % a 6 % esperado para su año fiscal 2027.",
+    "Ciclo económico: los proyectos de consultoría son lo primero que se recorta."
+   ],
    "calidad": "Muy buena",
    "riesgo_ia": "alto",
-   "negocio": "Accenture presta servicios de consultoría y servicios gestionados en América, Europa, Medio Oriente, África y Asia-Pacífico. Ofrece inteligencia artificial y datos, consultoría en la nube, ciberseguridad, ingeniería y manufactura digitales, finanzas y gestión de riesgos, entre otros servicios. Yahoo no informa cuánto aporta cada línea ni cada región, y no lo vamos a inventar.\n\nEs un negocio de servicios con crecimiento moderado: **los ingresos subieron 1,2 % en 2024, 7,4 % en 2025 y 6,5 % en 2026, hasta 74.183 M** (el ejercicio cierra a fines de agosto).\n\n**A quién le vende.** A grandes empresas y organismos públicos de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Accenture **es de relaciones con grandes clientes, escala y talento, y es estrecha**. Una gran empresa que confía su transformación de tecnología a Accenture la tiene dentro de sus procesos, y la compañía puede mover a miles de profesionales con las habilidades necesarias a cualquier región. Se ve en un margen operativo estable que sube de 13,7 % a 15,4 % y en un ROIC de 20,5 % a 26,1 %.\n\nPero el margen bruto de 32 % es bajo y no mejora: el negocio depende de vender horas de personas. Compite con IBM, Deloitte, PwC, McKinsey, Cognizant, Infosys, TCS y consultoras especializadas. Es frágil en la presión de precios, en el ciclo de gasto en tecnología de las empresas y, sobre todo, en que la inteligencia artificial puede reducir las horas que los clientes compran, porque automatiza programación, pruebas y análisis. Por eso el riesgo es alto.",
-   "numeros": "Los números de Accenture cuentan **un negocio estable que crece al 6 % a 7 % con rentabilidad alta**. Los ingresos fueron de 64.112 M, 64.896 M, 69.673 M y 74.183 M. El EBIT fue de 8.810 M, 9.596 M, 10.226 M y 11.406 M, con margen operativo de 13,7 %, 14,8 %, 14,7 % y 15,4 %. La ganancia neta fue de 6.872 M, 7.265 M, 7.678 M y 8.367 M. La ganancia por acción fue de 10,77, 11,44, 12,15 y **13,56**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.996 M, 8.615 M, 10.874 M y **11.621 M** (15,7 % de los ingresos), con inversiones livianas (743 M). El ROIC fue de 26,1 %, 25,0 %, 21,5 % y 20,5 %, y el ROE de 26,5 %.\n\nLa mirada crítica: el ROIC bajó porque el capital invertido subió 61 % (de 25.841 M a 41.679 M) por compras de empresas, y las ganancias no subieron al mismo ritmo. La compra de empresas es una apuesta que hay que seguir en el informe.",
-   "balance": "**Deuda subió pero la deuda neta es casi nula.** La deuda total es de 13.397 M y la caja de 12.838 M; la deuda neta es de apenas 559 M y la deuda neta/EBITDA es de 0,04x, que multiplicado por 12 es menos de 1 mes de EBITDA. Los intereses se cubren 37,6 veces con el EBIT.\n\nEl patrimonio neto es de 31.567 M y la deuda equivale a 0,42 veces el patrimonio. La deuda total subió de 3.149 M a 13.397 M en tres años, un movimiento a seguir; el aumento de la caja amortigua el efecto.",
-   "gerencia": "La conduce Julie Sweet, presidenta del directorio y CEO (58 años, pago de 6,8 M según Yahoo), con Angie Park como directora financiera (52 años, pago de 2,0 M). Sweet lleva la empresa desde 2019 y ha reorientado el negocio hacia la nube y la inteligencia artificial, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente, recompras y compras de empresas**: paga un dividendo de 6,84 por acción (pagado desde 2005; sube 3,3 % por año en 3 años; 3.987 M en 2026, 34 % del flujo libre) y recompró 4.330 M en 2023, 4.525 M, 4.619 M y 7.521 M. **Las acciones bajaron de 639 M a 617 M, un 3,4 % menos.**",
-   "fortalezas": [
-    "ROIC de 20,5 % y flujo libre de 11.621 M.",
-    "Ingresos de 74.183 M creciendo cerca de 7 % por año.",
-    "Deuda neta casi nula (559 M).",
-    "3,4 % menos acciones y dividendo desde 2005.",
-    "Relaciones profundas con las grandes empresas del mundo."
-   ],
-   "debilidades": [
-    "La inteligencia artificial puede reducir las horas que se venden: el crítico más duro diría que su modelo es el más expuesto al cambio.",
-    "Margen bruto bajo (32 %) y sin mejora.",
-    "ROIC en baja desde 26,1 %.",
-    "Deuda total que se cuadruplicó.",
-    "Dependencia del ciclo de gasto en tecnología."
-   ],
-   "vigilar": [
-    "Ingresos: hoy +6,5 %; si bajan a 2 % a 3 %, la inteligencia artificial está reduciendo la demanda.",
-    "Margen operativo: hoy 15,4 %; si baja, la presión de precios aumenta.",
-    "ROIC: hoy 20,5 %; las compras tienen que rendir.",
-    "Deuda total: hoy 13.397 M; no debería seguir subiendo."
-   ],
    "clientes": [
-    "Grandes empresas multinacionales",
-    "Organismos públicos",
-    "Empresas que tercerizan operaciones de tecnología"
+    "Grandes empresas de todas las industrias",
+    "Gobiernos y organismos públicos",
+    "Bancos, telefónicas, laboratorios y empresas de energía"
    ],
-   "ideal_para": [
-    "Buscan una consultora global con retornos altos.",
-    "Valoran el dividendo y las recompras.",
-    "Aceptan el riesgo de la inteligencia artificial sobre los servicios."
+   "hechos": [
+    {
+     "dato": "Año fiscal 2026 (cerrado en agosto): ingresos de 74.180 M (+6 %); contratos nuevos de 84.540 M; ganancia por acción de 13,56 dólares (+12 %) y ajustada de 13,97 (+8 %); margen operativo de 15,4 %; flujo libre de 11.620 M; 7.500 M en recompras y 4.000 M en dividendos (récord de 11.500 M); dividendo trimestral de 1,71 dólares (+5 %). Cuarto trimestre: ingresos de 18.680 M (+6 %); contratos nuevos de 22.170 M (book-to-bill de 1,2). Guía del año fiscal 2027: ingresos +3 % a +6 % en moneda local, ganancia por acción de 14,39 a 14,81 dólares, al menos 9.500 M de devoluciones",
+     "fuente": "Resumen de los resultados del 4T del año fiscal 2026, 01/10/2026",
+     "url": "https://pulse2.com/accenture-reports-q4-revenue-of-18-7-billion-and-fy2026-revenue-of-74-2-billion/"
+    },
+    {
+     "dato": "Récord de 141 contratos de más de 100 M en el trimestre; suba fuerte de la acción tras el informe; caída previa de más de un tercio desde sus máximos; frases de Julie Sweet",
+     "fuente": "TIKR, 10/2026",
+     "url": "https://www.tikr.com/blog/accenture-soars-23-as-q4-beat-eases-ai-fears-another-year-of-broad-based-growth"
+    }
    ],
-   "menos_ideal": [
-    "Buscan márgenes brutos altos.",
-    "No toleran el cambio tecnológico en servicios basados en personas."
-   ],
+   "mes_cierre_fiscal": 8,
+   "ticker": "ACN",
    "perfil": "software",
    "capas": [],
-   "ticker": "ACN",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -10088,54 +10201,70 @@
    }
   },
   "UL": {
-   "resumen": "Unilever es una empresa británica de bienes de consumo masivo con presencia en Asia-Pacífico, África, América y Europa. Opera cuatro segmentos: Beauty & Wellbeing (cuidado del cabello y de la piel), Personal Care (higiene personal), Home Care (limpieza del hogar) y Foods (alimentos). Gana plata vendiendo productos de uso diario, con marcas como Dove, Axe, Hellmann's, Knorr y Omo (dato público), a través de supermercados y comercios en más de cien países. Los datos están en euros. Tiene un **foso estrecho, de marcas y distribución**: sus marcas se reconocen en todo el mundo y llega a millones de comercios en mercados emergentes, algo que un competidor nuevo tarda décadas en armar. Los números muestran un negocio estable que mejoró márgenes: el margen bruto subió de 40,2 % a 46,9 %, el margen operativo de 16,2 % a **20,1 %** y el flujo libre fue de **6.759 M** en 2025 (13,4 % de los ingresos). Hay 3,5 % menos acciones que en 2022 (recompras de unos 1.500 M por año) y el dividendo se paga desde 1987. Pero los ingresos no crecen (de 60.073 M en 2022 a 50.503 M en 2025, con una caída de 14 % en 2023 que sugiere que los años previos no están reexpresados tras separar el negocio de helados, dato a verificar), la ganancia neta de 2025 (9.469 M) incluye resultados de esa separación y el ROIC de 46,6 % no es comparable porque el capital invertido que informa Yahoo cayó de 49.159 M a 15.530 M. La deuda neta es de 22.330 M (2,0x EBITDA). El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho de marcas, margen operativo de 20,1 % y flujo libre de 6.759 M (en euros), aunque con ingresos sin crecimiento y cifras de 2025 poco comparables.**",
-   "veredicto": "Buena: foso estrecho de marcas, margen operativo de 20,1 % y flujo libre de 6.759 M (euros), con ingresos sin crecimiento",
-   "conclusion": "Unilever es una empresa de buena calidad: tiene un foso estrecho de marcas y distribución, margen operativo de 20,1 %, flujo libre de 6.759 M (en euros), dividendo desde 1987 y 3,5 % menos acciones, pero los ingresos no crecen, las cifras de 2025 no son comparables con las anteriores y la deuda neta llega a 22.330 M. Hay que seguirla de cerca. Es recomendable investigar los resultados reexpresados tras la separación en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos vuelvan a crecer con el margen operativo estable.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Unilever opera como una compañía de bienes de consumo masivo en Asia-Pacífico, África, América y Europa. Opera cuatro segmentos: **Beauty & Wellbeing** (cuidado del cabello, de la piel y productos de bienestar), **Personal Care**, **Home Care** y **Foods**. Yahoo no informa cuánto aporta cada segmento ni cuánto viene de mercados emergentes, y no lo vamos a inventar. **Las cifras de Unilever están en euros.**\n\nEs un negocio maduro sin crecimiento: **los ingresos cayeron 14,0 % en 2023, subieron 1,5 % en 2024 y cayeron 3,8 % en 2025, hasta 50.503 M de euros**. La caída de 2023 sugiere un cambio de perímetro (a verificar).\n\n**A quién le vende.** A supermercados, comercios y distribuidores de todo el mundo, con fuerte presencia en mercados emergentes. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Unilever **es de marcas y distribución, y es estrecha**. Sus marcas de higiene, limpieza y alimentos tienen décadas de presencia y su red de distribución llega a millones de pequeños comercios en India, Indonesia, Brasil y África, un acceso que los competidores locales no pueden igualar. Se ve en el margen bruto, que subió de 40,2 % a 46,9 %, y en el margen operativo de 20,1 %.\n\nCompite con Procter & Gamble, Nestlé, Colgate-Palmolive, L'Oréal, Henkel y marcas propias de los supermercados. Es frágil en la presión de precios de los consumidores, en el crecimiento de las marcas propias, en las monedas de los mercados emergentes (que bajan frente al euro) y en el costo de materias primas. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de Unilever, en euros, cuentan **un negocio sin crecimiento que gana más margen**. Los ingresos fueron de 60.073 M, 51.680 M, 52.479 M y 50.503 M. El EBIT fue de 9.727 M, 9.275 M, 10.278 M y 10.127 M, con margen operativo de 16,2 %, 17,9 %, 19,6 % y 20,1 %. La ganancia neta fue de 7.642 M, 6.487 M, 5.744 M y 9.469 M. La ganancia por acción fue de 3,36, 2,88, 2,58 y 4,32.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 5.573 M, 7.991 M, 7.905 M y **6.759 M** (13,4 % de los ingresos). Las inversiones son de 1.591 M. El ROIC informado por Yahoo fue de 16,9 %, 15,5 %, 15,1 % y 46,6 %.\n\nLa mirada crítica: la ganancia neta de 2025 (9.469 M) casi iguala al EBIT, porque incluye resultados no operativos, probablemente de la separación del negocio de helados (dato público a verificar). El ROIC de 46,6 % no es comparable con los años anteriores porque el capital invertido que informa Yahoo cayó de 49.159 M a 15.530 M, igual al patrimonio, lo que parece un cambio de criterio contable.",
-   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 27.597 M y la caja de 5.012 M; la deuda neta es de 22.330 M y la deuda neta/EBITDA es de 2,00x, que multiplicado por 12 son unos 24 meses de EBITDA. Los intereses se cubren 9,2 veces con el EBIT.\n\nEl patrimonio neto es de 15.530 M y la deuda equivale a 1,78 veces el patrimonio. La deuda total se mantuvo entre 27.597 M y 30.655 M durante los cuatro años, y el patrimonio bajó de 19.021 M a 15.530 M.",
-   "gerencia": "La conduce Fernando Fernández, CEO y director (59 años, pago de 4,3 M según Yahoo), con Srinivas Phatak como director financiero (54 años, pago de 1,9 M). Yahoo lista además a Hein Schumacher como directivo (54 años), lo que indica un cambio reciente de CEO, dato a verificar.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras constantes**: paga un dividendo de 2,12 por acción según Yahoo (pagado desde 1987; sube 4,2 % por año en 3 años; 4.453 M en 2025, 66 % del flujo libre) y recompró 1.509 M en 2022, 1.507 M, 1.508 M y 1.510 M en 2025. **Las acciones bajaron de 2.275 M a 2.195 M, un 3,5 % menos.** Dividendo y recompras (5.963 M) son 88 % del flujo libre.",
-   "fortalezas": [
-    "Margen operativo de 20,1 %, subiendo desde 16,2 %.",
-    "Marcas globales y distribución en mercados emergentes.",
-    "Flujo libre de 6.759 M en 2025, 13,4 % de los ingresos.",
-    "Dividendo pagado desde 1987 y 3,5 % menos acciones.",
-    "Intereses cubiertos 9,2 veces."
+   "formato": "v4",
+   "titulo": "Unilever: la dueña de Dove, Rexona y Skip se achica para crecer más, sin helados ni Knorr",
+   "resumen": [
+    "Unilever es uno de los mayores fabricantes del mundo de **productos de consumo masivo**: cuidado personal (Dove, Rexona, Axe, Vaseline), limpieza (Skip, Ala, Cif) y alimentos (Knorr, Hellmann's). Vende en unos 190 países y gana más de la mitad de sus ventas en **mercados emergentes**. Su ventaja son sus marcas y una distribución que llega hasta el último almacén.",
+    "En el tercer trimestre de 2026, **sus ventas comparables crecieron 5,2 %**, con un 2,9 % de aumento en volumen. Los emergentes crecieron 9,5 %, pero los desarrollados cayeron 0,9 %. Acordó combinar casi todo su negocio de alimentos con McCormick.",
+    "Muy buena empresa, con marcas fuertes, un dividendo que crece y una estrategia más enfocada, pero con un crecimiento modesto, una deuda moderada y una transformación que todavía no terminó."
    ],
-   "debilidades": [
-    "Ingresos sin crecimiento: el crítico más duro diría que el margen mejoró achicando el negocio.",
-    "Cifras de 2025 poco comparables por la separación de negocios.",
-    "Deuda neta de 22.330 M (2,0x EBITDA).",
-    "Patrimonio que bajó de 19.021 M a 15.530 M.",
-    "Dividendo y recompras que absorben 88 % del flujo libre."
+   "introduccion": "Si vivís en la Argentina, es casi seguro que tenés algo de Unilever en tu casa: un jabón de lavar Skip o Ala, un desodorante Rexona o Axe, un jabón Dove, una mayonesa Hellmann's o un caldo Knorr.\n\nDurante décadas, Unilever fue un gigante que vendía de todo: desde helados y té hasta jabón en polvo y champú. Pero tanto tamaño tenía un costo: muchas marcas, crecimiento lento y una empresa difícil de manejar. Entre 2020 y 2024, su acción casi no subió, y un fondo activista entró en su directorio.\n\nLa respuesta fue achicarse para enfocarse. En 2025 separó su negocio de **helados** (Magnum, Ben & Jerry's), que hoy cotiza aparte. Y en 2026 acordó combinar la mayor parte de su negocio de **alimentos** (Knorr, Hellmann's) con McCormick, la empresa de especias de EE.UU.\n\nLo que queda es una Unilever concentrada en **belleza, cuidado personal y limpieza del hogar**: negocios que crecen más y ganan más.\n\nEntonces, la pregunta es: ¿una Unilever más chica y más enfocada vale más que la Unilever gigante de antes?",
+   "secciones": [
+    {
+     "titulo": "Cuatro negocios, pronto tres",
+     "texto": "Unilever tiene cuatro grandes negocios. Entre paréntesis, cuánto crecieron sus ventas comparables en el tercer trimestre de 2026:\n\n- **Belleza y bienestar** (+5,7 %): Dove, Vaseline, champús, cuidado de la piel y vitaminas. Es el 26 % de sus ventas.\n- **Cuidado personal** (+6,3 %): desodorantes (Rexona, Axe), jabones y pasta dental. Es el 27 %.\n- **Cuidado del hogar** (+9,1 %): jabones para la ropa (Skip, Ala, Omo), limpiadores (Cif, Domestos). Es el 23 %, y fue el que más creció.\n- **Alimentos** (+0,1 %): Knorr, Hellmann's. Es el 23 %, y el que menos crece. Por eso lo combina con McCormick.\n\nEn el acuerdo con McCormick, los accionistas de Unilever se quedan con el 55,1 % de la nueva empresa, y Unilever recibe 15.700 M de dólares en efectivo y un 9,9 % de las acciones, que piensa vender de a poco. Se espera cerrar a mediados de 2027. Unilever se queda con su negocio de alimentos en la India.\n\nSus clientes son supermercados, mayoristas, almacenes y tiendas online de todo el mundo, y a través de ellos, miles de millones de consumidores.\n\n¿Cuál es su **ventaja**? Las **marcas** y la **distribución**. Marcas que la gente conoce y elige hace décadas, y una red que lleva sus productos a millones de pequeños comercios en países como la India, Indonesia o Brasil, algo que a un competidor nuevo le costaría años construir.\n\nLa inteligencia artificial no la amenaza: nadie va a dejar de comprar jabón. En todo caso, la ayuda en publicidad y en la cadena de abastecimiento."
+    },
+    {
+     "titulo": "Más volumen, márgenes en alza",
+     "texto": "Las cifras de Unilever están en **euros**.\n\nLos ingresos que muestra la tabla bajan de 60.073 M de euros en 2022 a **50.503 M** en 2025, pero esa caída engaña: los años más recientes ya no incluyen los helados. Además, las devaluaciones de los países emergentes achican lo que factura medido en euros.\n\n[[grafico:ingresos]]\n\nUn dato que conviene aprender a leer es el **crecimiento comparable**, que separa el **volumen** (cuántas unidades más vende) del **precio** (cuánto más cobra por cada una). En el tercer trimestre de 2026, el volumen creció 2,9 % y el precio, 2,3 %. Crecer por volumen es más sano: significa que la gente compra más, no solo que paga más. Si una empresa crece solo subiendo precios, tarde o temprano los consumidores se pasan a marcas más baratas.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 16,2 % a **20,1 %**. El promedio de su industria es 17,6 %.\n\n[[grafico:margen_operativo]]\n\nLa ganancia contable de 2025 fue de 4,32 euros por acción, pero incluye una ganancia de 3.373 M de euros por la separación de los helados. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**: 3,08 euros por acción en 2025, apenas 0,7 % más que en 2024.\n\nEl **flujo libre de caja** (lo que queda después de invertir) es estable, de **6.759 M de euros** en 2025.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Deuda moderada y un dividendo que crece",
+     "texto": "La deuda neta (lo que debe menos la caja) es de **22.330 M de euros** y equivale a **2,0 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; está justo en el límite. Su ganancia operativa paga los intereses del año 9 veces (por encima de 3 se considera sano). El efectivo que recibirá de McCormick le dará espacio para bajar deuda o recomprar acciones.\n\n[[grafico:deuda_neta]]\n\nEl dividendo trimestral es de 0,4664 euros por acción, 3 % más que un año antes. Lo paga sin interrupción hace décadas, y creció 4,5 % por año en los últimos diez. Además, planea recomprar hasta 1.500 M de euros en acciones en 2026.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **Los países desarrollados**: sus ventas cayeron 0,9 % en el trimestre, con menos volumen.\n- **Las monedas emergentes**: más de la mitad de sus ventas está en países cuyas monedas se devalúan seguido.\n- **La competencia**: Procter & Gamble (PG), L'Oréal y marcas propias de los supermercados.\n- **La transformación**: separar negocios distrae a la gerencia y cuesta plata.\n\nLa conduce Fernando Fernández, CEO desde 2025: \"Logramos otro trimestre de crecimiento competitivo, liderado por un volumen fuerte\"."
+    }
    ],
-   "vigilar": [
-    "Ingresos: hoy -3,8 % en 2025; tiene que volver a crecer para sostener la tesis.",
-    "Margen operativo: hoy 20,1 %; si baja, la presión de precios aumenta.",
-    "Cifras posteriores a la separación: Yahoo no las reexpresa, hay que buscarlas en el informe.",
-    "Deuda neta: hoy 22.330 M; no debería subir."
+   "valuacion": {
+    "texto": "En Unilever, el PER (cuántos años de ganancia se pagan al comprar la acción) hoy engaña: la ganancia contable de 2025 incluye la ganancia por la separación de los helados, que no se repite. Con esa ganancia, el PER se ve más bajo de lo que es.\n\nPor eso conviene mirar el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nY el **precio sobre el flujo libre de caja**: con el precio de {precio} dólares por ADR, {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nDurante años, el mercado pagó por Unilever menos que por Procter & Gamble, porque crecía menos y era más complicada. Lo que podría cambiar eso es que la nueva Unilever, sin helados ni alimentos, crezca de forma sostenida entre 4 % y 6 % por año, con más volumen.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Unilever es una muy buena empresa. Tiene marcas que miles de millones de personas compran todos los días, una distribución que llega hasta el último almacén de los países emergentes, márgenes en alza y un dividendo que paga sin interrupción hace décadas. Y está ejecutando una transformación de fondo para quedarse con sus negocios más rentables.\n\nSu punto débil es el crecimiento: depende mucho de los emergentes, con monedas volátiles, mientras en los países desarrollados vende menos. Además, la deuda está en el límite de lo cómodo y la transformación todavía no terminó. El crítico más duro diría que Unilever lleva años prometiendo crecer más rápido. Es un argumento razonable.\n\nEncaja con quien busca una empresa defensiva, con dividendo y exposición a los mercados emergentes. No es para quien busca un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que el volumen siga creciendo cerca de 3 % y que la combinación de alimentos con McCormick se cierre según lo previsto.",
+   "pros": [
+    "Marcas fuertes: Dove, Rexona, Axe, Skip, Vaseline.",
+    "Más volumen: +2,9 % en el trimestre.",
+    "Más enfocada: sin helados y pronto sin la mayor parte de alimentos."
    ],
+   "contras": [
+    "Crecimiento modesto: ventas comparables de 4 % a 6 % por año.",
+    "Países desarrollados flojos: -0,9 % en el trimestre.",
+    "Monedas emergentes: más de la mitad de sus ventas, expuestas a devaluaciones."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Supermercados y comercios minoristas",
-    "Pequeños comercios de mercados emergentes",
-    "Consumidores de higiene, limpieza y alimentos"
+    "Supermercados y cadenas minoristas",
+    "Mayoristas y almacenes de países emergentes",
+    "Tiendas online"
    ],
-   "ideal_para": [
-    "Buscan consumo básico global con dividendo y recompras.",
-    "Valoran la presencia en mercados emergentes.",
-    "Aceptan cifras en euros y crecimiento bajo."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 13.300 M de euros (+6,7 %); crecimiento comparable de 5,2 % (volumen +2,9 %, precio +2,3 %); Belleza y bienestar +5,7 %, Cuidado personal +6,3 %, Cuidado del hogar +9,1 %, Alimentos +0,1 %; emergentes +9,5 %, desarrollados -0,9 %; dividendo trimestral de 0,4664 euros (+3,0 %); guía 2026: crecimiento comparable de 4 % a 6 % y volumen de al menos 3 %; frase de Fernando Fernández",
+     "fuente": "Comunicado de resultados del 3T26, 28/10/2026",
+     "url": "https://www.unilever.com/news/press-and-media/press-releases/2026/continued-strong-performance-in-the-third-quarter/"
+    },
+    {
+     "dato": "Combinación de alimentos con McCormick por unos 44.800 M de dólares: accionistas de Unilever con el 55,1 %, 15.700 M de dólares en efectivo y 9,9 % para Unilever; excluye la India; cierre esperado a mediados de 2027",
+     "fuente": "Financier Worldwide, 02/04/2026",
+     "url": "https://www.financierworldwide.com/fw-news/2026/4/2/mccormick-combines-with-unilever-food-units-in-448bn-deal"
+    },
+    {
+     "dato": "Año 2025: ganancia por acción de 4,32 euros, incluida una ganancia de 3.373 M por la separación de los helados; ajustada de 3,08 (+0,7 %); margen operativo ajustado de 20,0 %; deuda neta de 2,0 veces el EBITDA ajustado; recompra de hasta 1.500 M de euros prevista para 2026",
+     "fuente": "Resultados del año 2025, 12/02/2026",
+     "url": "https://data.fca.org.uk/artefacts/NSM/RNS/b82e96e8-7680-4ddf-8c41-f0bb2a051dd5.html"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento de ingresos.",
-    "No toleran la comparación difícil de cifras tras la separación."
-   ],
+   "ticker": "UL",
    "perfil": "consumo",
    "capas": [],
-   "ticker": "UL",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2025",
