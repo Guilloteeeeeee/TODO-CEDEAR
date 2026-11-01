@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.1 (01/11/2026): Análisis Fundamental nuevo, tanda 9
+
+- Reescritas con el formato v4: AXP, GEV, SIEGY, ANET, SHOP, CRM, C, TTE, MRVL y BHP. Van 70 de 166.
+- ANET y SHOP quedan para renovar con su informe del 3T26 (salen el 03/11).
+
 ### v1.3.0 (31/10/2026): Análisis Fundamental nuevo, tanda 8
 
 - Reescritas con el formato v4: TMO, CRWD, AMGN, MUFG, LIN, IBM, TM y ARM. Van 60 de 166.

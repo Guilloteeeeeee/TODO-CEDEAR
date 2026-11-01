@@ -1,5 +1,5 @@
 {
- "fecha": "31/10/2026",
+ "fecha": "01/11/2026",
  "datos": {
   "TJX": {
    "resumen": "TJX vende ropa, calzado y artículos para el hogar de marcas conocidas a precios más bajos que los de una tienda tradicional, a través de cadenas como T.J. Maxx, Marshalls y HomeGoods en Estados Unidos, Canadá, Europa y Australia. Su ventaja está en cómo compra: es tan grande que los proveedores le ofrecen primero la mercadería que les sobró, y eso le permite vender barato y aun así ganar más que antes. Tiene un **foso estrecho, de costos y escala**: es real, pero más frágil que el de una marca. Los números lo confirman: los ingresos crecieron 6,5 % por año entre 2023 y 2026, el margen operativo subió de 9,7 % a 12,7 % en los últimos 12 meses y el retorno sobre el capital invertido supera el 40 %. Su debilidad es la de todo comercio: si el cliente deja de encontrar buenas ofertas, **se va a otra tienda sin pagar ningún costo**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente va a las tiendas a buscar sorpresas y eso es difícil de reemplazar con tecnología. Conclusión: **muy buena empresa de comercio, con foso estrecho, retornos excepcionales, balance cómodo y márgenes en máximos.**",
@@ -3515,56 +3515,63 @@
    }
   },
   "BHP": {
-   "resumen": "BHP es una de las mayores mineras del mundo: saca mineral de hierro (el insumo del acero), cobre, carbón siderúrgico y otros metales, sobre todo de minas en Australia, Chile y otros países. Gana plata con la diferencia entre lo que cuesta sacar y procesar el mineral y el precio de mercado, que no controla. Tiene un **foso estrecho, de bajo costo**: sus minas de hierro y cobre son de las más baratas de operar, y por eso gana plata incluso con precios flojos. Se ve en los márgenes: el margen operativo fue de 43,4 % en el año fiscal 2026, y el ROIC de 24,7 %. Los ingresos pasaron de 53.817 M en 2023 a 58.760 M en 2026 y el flujo libre fue de 11.929 M (20,3 % de las ventas). Su punto débil es el ciclo y la dependencia de China: **el dividendo se redujo a casi la mitad desde 2023 (de 13.268 M a 6.756 M)** y la inversión en minas subió de 6.733 M a 9.849 M. Tiene poca deuda: la deuda neta es de 4.290 M, 0,14 veces el EBITDA. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se saca roca de la tierra. Conclusión: **buena empresa, con minas de bajo costo, márgenes altos y deuda baja, pero atada al precio de los metales, a China y con un dividendo que sube y baja con el ciclo.**",
-   "veredicto": "Buena empresa: minas de bajo costo y deuda baja, pero atada al precio de los metales y a China",
-   "conclusion": "BHP es una buena empresa, no una excelente: tiene minas de bajo costo, margen operativo de 43,4 %, flujo libre de 11.929 M y deuda de 0,14 veces el EBITDA, pero depende del precio de los metales y de China, y su dividendo sube y baja con el ciclo. Vale la pena seguirla de cerca. Para que la tesis se mantenga, lo más importante es que la demanda de hierro y cobre se sostenga.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "BHP: la mayor minera del mundo ya gana más con el cobre que con el hierro",
+   "resumen": [
+    "BHP es la **mayor empresa minera del mundo**, con sede en Australia: produce **cobre** (en Chile, Australia y otros países), **mineral de hierro** y, pronto, **potasa** para fertilizantes. Su ventaja son yacimientos enormes y de bajo costo, que ganan plata aun con precios bajos.",
+    "En su año fiscal 2026 (cerrado en junio), **su ganancia subyacente creció 30 %, a 13.200 M**, y el cobre explicó más de la mitad de su resultado operativo. Pagó el dividendo más alto en cuatro años.",
+    "Muy buena empresa, con costos de los más bajos de la industria, poca deuda y un dividendo alto, aunque sus ganancias dependen de precios que no controla y su producción de cobre bajaría en el año fiscal 2027."
+   ],
+   "introduccion": "Durante décadas, BHP fue sinónimo de mineral de hierro: las montañas de Australia Occidental que alimentaban el crecimiento de China. Cada edificio, puente y auto que se construía en China tenía algo de hierro australiano.\n\nPero China ya no construye como antes, y el hierro dejó de ser el futuro. El futuro es el **cobre**: está en cada auto eléctrico, cada panel solar, cada línea de transmisión y cada centro de datos. Y el mundo no tiene suficientes minas nuevas para producir todo el cobre que va a necesitar.\n\nBHP vio el cambio y se movió. En su año fiscal 2026, el cobre explicó el 54 % de su resultado operativo, con un precio que subió 35 %. Su ganancia de cobre fue récord: 18.200 M.\n\nPara un lector argentino, hay un dato cercano: BHP es socia, junto con Lundin, de los grandes proyectos de cobre de Vicuña, en San Juan, en el límite con Chile.\n\nEntonces, la pregunta es: ¿es BHP una buena forma de invertir en el cobre, o sigue atada a un ciclo de materias primas que nadie controla?",
+   "secciones": [
+    {
+     "titulo": "Cobre, hierro y potasa",
+     "texto": "BHP tiene tres grandes negocios:\n\n- **Cobre**: sus minas principales están en Chile (Escondida, la mayor mina de cobre del mundo) y Australia. En su año fiscal 2026 produjo 1,95 millones de toneladas, con un margen de 70 %.\n- **Mineral de hierro**: sus minas de Australia Occidental producen a un costo de unos 19 dólares por tonelada, de los más bajos del mundo. Tuvo producción récord.\n- **Potasa**: está construyendo Jansen, en Canadá, una de las mayores minas de potasa del mundo, para fertilizantes. Espera la primera producción en su año fiscal 2027.\n\nSus clientes son acerías (sobre todo en China), fundiciones y refinerías de cobre, y fabricantes de fertilizantes. China es, por lejos, su mayor comprador.\n\n¿Cuál es su **ventaja**? Los **costos bajos**. En la minería no se puede fijar el precio: lo fija el mercado. La única ventaja duradera es producir más barato que los demás, para seguir ganando cuando los precios caen. BHP tiene algunos de los yacimientos más grandes y baratos del mundo.\n\nLa inteligencia artificial, en todo caso, la ayuda: los centros de datos y las redes eléctricas necesitan mucho cobre."
+    },
+    {
+     "titulo": "Ganancias que siguen a los precios",
+     "texto": "Los ingresos de BHP siguen a los precios de los metales: 55.658 M en su año fiscal 2024, 51.262 M en 2025 y **58.760 M** en 2026.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **43,4 %**. El promedio de su industria es 21,1 %. Pocas empresas en el mundo tienen un margen así, y se explica por los costos bajos.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), fue de **24,7 %**. Por encima de 15 % se considera muy bueno. Pero cambia con los precios: en 2025, con precios más bajos, fue de 17,1 %.\n\n[[grafico:roic]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **11.929 M** en su año fiscal 2026.\n\nUn dato a mirar: la empresa espera producir entre 1,65 y 1,80 millones de toneladas de cobre en su año fiscal 2027, alrededor de 12 % menos que en 2026."
+    },
+    {
+     "titulo": "Poca deuda y un dividendo que sube y baja",
+     "texto": "BHP tiene un balance muy sólido. Su deuda neta (lo que debe menos la caja) es de 8.700 M, por debajo del rango de 10.000 M a 20.000 M que la empresa se fija como objetivo, y equivale a apenas **0,14 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo.\n\n[[grafico:deuda_neta]]\n\nReparte como dividendo una parte fija de lo que gana: en su año fiscal 2026, el 72 % de la segunda mitad del año. Por eso el dividendo sube y baja con los precios. El total del año fue de 1,72 dólares por acción, el más alto en cuatro años.\n\nLos riesgos:\n\n- **China**: es su mayor cliente. Si su economía o su construcción se frenan más, el hierro sufre.\n- **Los precios**: cobre, hierro y potasa los fija el mercado.\n- **La producción de cobre**: va a bajar en el año fiscal 2027.\n- **Los costos de Jansen**: un proyecto enorme y caro que todavía no produce.\n\nLa conduce Brandon Craig, el nuevo CEO: \"Cumplimos o superamos lo previsto en gran parte del portafolio y logramos posiciones de costos líderes en la industria\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una minera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: con precios altos de los metales la ganancia sube y el PER parece bajo; con precios bajos pasa lo contrario.\n\nCon el precio de {precio} dólares por ADR, BHP cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nUn número más estable es el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. BHP cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces).\n\nEl mercado empieza a pagar a BHP más como una empresa de cobre que como una de hierro. El cobre se paga más caro, porque su demanda crece con la electrificación.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "BHP es una muy buena empresa. Tiene algunos de los yacimientos más grandes y baratos del mundo, márgenes que duplican a su industria, un balance con poca deuda y un dividendo alto. Y se está transformando en una empresa de cobre, el metal de la electrificación.\n\nSu punto débil es lo que no controla: los precios de los metales y la economía china. Su dividendo sube y baja con ellos, su producción de cobre va a bajar en el año fiscal 2027 y su gran proyecto de potasa todavía no produce. El crítico más duro diría que BHP es, en el fondo, una apuesta al precio del cobre y del hierro. Es un argumento razonable.\n\nEncaja con quien busca exposición al cobre y un dividendo alto, y tolera los ciclos de las materias primas. No es para quien busca resultados estables.\n\nPara que la tesis se mantenga, lo más importante es que BHP mantenga sus costos bajos y que el cobre siga ganando peso en sus resultados.",
+   "pros": [
+    "Costos bajos: hierro a unos 19 dólares por tonelada y cobre con 70 % de margen.",
+    "Cobre en auge: ganancia récord de 18.200 M en ese negocio.",
+    "Balance sólido: deuda neta de 0,14 veces su EBITDA."
+   ],
+   "contras": [
+    "Depende de los precios: los metales los fija el mercado.",
+    "China: su mayor cliente, con la construcción en baja.",
+    "Menos cobre: la producción bajaría cerca de 12 % en el año fiscal 2027."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "BHP opera tres segmentos: **Cobre**, **Mineral de hierro** y **Carbón**. Explora y extrae cobre, mineral de hierro, carbón siderúrgico y energético, níquel, potasa y otros metales, y participa en servicios, comercialización y trading. Vende a Australia, Europa, China, Japón, India, Corea del Sur y el resto de Asia, y a América. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio de materias primas: vende lo que el mundo necesita para construir, pero a precios que suben y bajan. **Los ingresos crecieron 3,4 % en el año fiscal 2024, cayeron 7,9 % en 2025 y subieron 14,6 % en 2026, hasta 58.760 M** (el año fiscal termina en junio).\n\n**A quién le vende.** Sobre todo a acerías y fundiciones de Asia, y China pesa mucho (Yahoo la lista entre las regiones, sin dar el porcentaje). **Pocos clientes grandes concentran buena parte de las ventas.**",
-   "foso": "La ventaja de BHP **es de bajo costo, y es estrecha**. Sus minas de hierro y de cobre son grandes, de buena ley y de bajo costo por tonelada, y eso le permite ganar plata cuando los precios caen y a otros les cuesta. Se ve en el **margen bruto, entre 70,4 % y 75,6 %**, y en el **margen operativo, entre 37,2 % y 43,4 %**.\n\nPero el precio de los metales lo fija el mercado, y esa ventaja de costo no la protege de un mal año: la ganancia por acción fue de 5,09 en 2023, 3,11 en 2024 y 3,86 en 2026. Compite con Rio Tinto, Vale, Anglo American y Glencore. Es frágil en el precio del hierro y del cobre, en China y en que cada mina nueva cuesta más.",
-   "numeros": "Los números de BHP cuentan **un negocio muy rentable con ganancias que suben y bajan con los precios**. Los ingresos fueron de 53.817 M en 2023, 55.658 M, 51.262 M y 58.760 M en 2026. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 40,8 %, 41,2 %, 37,2 % y **43,4 %**. La ganancia por acción fue de 5,09, 3,11, 3,55 y **3,86**.\n\nLa caja acompaña: el flujo libre (lo que sobra después de invertir) fue de 11.968 M en 2023, 9.294 M en 2025 y **11.929 M en 2026 (20,3 % de las ventas)**. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 25,7 %, 26,5 %, 17,1 % y **24,7 %**.\n\nLa mirada crítica: en 2026 el EBIT subió 33,7 % pero la ganancia neta solo 9,0 %, porque entre uno y otro están los impuestos y las participaciones de socios en las minas, que Yahoo no detalla. El margen neto (16,7 %) es mucho menor que el operativo.",
-   "balance": "**El balance de BHP es muy sólido.** La deuda total pasó de 22.345 M en 2023 a 27.121 M en 2026, con 18.602 M en caja: la deuda neta es de 4.290 M, **0,14 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o menos de 2 meses de ganancia operativa. La ganancia operativa cubre 12,1 veces los intereses.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,88 veces: cómoda. Con tasas cerca de 5 %, la deuda cuesta más, pero la caja y el flujo libre la sostienen.",
-   "gerencia": "Yahoo lista a Brandon Craig como CEO (pago de 2,0 M) y a Vandita Pant como directora financiera (54 años). Mike Henry, que condujo la empresa antes, figura ahora como ejecutivo: conviene seguir cómo sigue la transición.\n\nEn lo que importa, **el uso del capital, es de dividendo y de inversión en minas**: paga un dividendo de 3,96 por acción (pagado desde 1987; 6.756 M en 2026). El dividendo cayó -45,5 % por año en 3 años: sube y baja con los precios. Invierte mucho (9.849 M en 2026, 100,2 % de la ganancia neta) y no recompra acciones: las acciones diluidas pasaron de 2.536 M a 2.544 M, **0,3 % más**.",
-   "fortalezas": [
-    "Minas de hierro y cobre de bajo costo: margen operativo de 43,4 % en 2026.",
-    "Flujo libre de 11.929 M en 2026, 20,3 % de las ventas.",
-    "Deuda neta de 4.290 M, 0,14 veces el EBITDA, y liquidez corriente de 1,88 veces.",
-    "ROIC de 24,7 % en 2026.",
-    "Dividendo pagado desde 1987 (3,96 por acción) y acciones sin dilución."
-   ],
-   "debilidades": [
-    "Sin control sobre el precio de los metales: la ganancia por acción fue de 5,09 en 2023 y de 3,86 en 2026.",
-    "Dependencia de China: el crítico más duro diría que una caída de su construcción pega directo en las ventas.",
-    "Dividendo que sube y baja: -45,5 % por año en 3 años.",
-    "Inversión en minas en alza: 9.849 M contra 6.733 M en 2023.",
-    "Foso estrecho: la ventaja de costo no evita un mal año."
-   ],
-   "vigilar": [
-    "Precios del hierro y del cobre: son lo que más mueve el resultado.",
-    "Ventas a China: pesan en los ingresos; Yahoo no da el porcentaje, hay que buscarlo en el informe.",
-    "Inversión en planta: hoy 9.849 M; si sigue subiendo más rápido que el flujo libre, se achica la plata para el dividendo.",
-    "ROIC: hoy 24,7 %; tiene que mantenerse sobre 15 % incluso con metales más baratos."
-   ],
    "clientes": [
-    "Acerías y fundiciones de Asia, sobre todo China",
-    "Compradores de cobre y carbón en Europa, Japón e India",
-    "Empresas de trading de materias primas"
+    "Acerías de China y Asia",
+    "Fundiciones y refinerías de cobre",
+    "Fabricantes de fertilizantes (potasa)"
    ],
-   "ideal_para": [
-    "Buscan una minera de bajo costo con balance sólido y dividendo.",
-    "Aceptan que la ganancia dependa del precio de los metales y de China.",
-    "Quieren exposición al hierro y al cobre."
+   "hechos": [
+    {
+     "dato": "Año fiscal 2026 (cerrado el 30/06/2026): ingresos de 58.800 M (+15 %); EBITDA subyacente de 32.900 M (+27 %); ganancia subyacente de 13.200 M (+30 %); flujo libre de 9.800 M; cobre: 54 % del EBITDA, ganancia récord de 18.200 M, margen de 70 %, precio +35 %, producción de 1.953.000 toneladas; guía del año fiscal 2027: 1,65 a 1,80 millones de toneladas; hierro a unos 19 dólares por tonelada; deuda neta de 8.700 M; dividendo total de 1,72 dólares por acción; Jansen: primera potasa prevista en el año fiscal 2027; frase de Brandon Craig",
+     "fuente": "Resumen de los resultados del año fiscal 2026, 18/08/2026",
+     "url": "https://www.marketindex.com.au/news/bhp-pays-highest-dividend-in-four-years-as-fy26-profits-soar-30"
+    }
    ],
-   "menos_ideal": [
-    "No toleran un dividendo que sube y baja con el ciclo.",
-    "Buscan ganancias estables año a año."
-   ],
+   "mes_cierre_fiscal": 6,
+   "ticker": "BHP",
    "perfil": "materiales",
    "capas": [
     "ciclica"
    ],
-   "ticker": "BHP",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -4434,54 +4441,67 @@
    }
   },
   "AXP": {
-   "resumen": "American Express es la empresa de tarjetas de crédito y de cargo de clientes de ingresos altos y de empresas: emite las tarjetas, opera su propia red de pagos y se las cobra a los comercios. Gana plata de tres formas: comisiones que cobra a los comercios por cada compra, cuotas anuales que pagan los clientes y los intereses de los saldos que no se cancelan. Tiene un **foso amplio, de red cerrada y marca**: al ser banco emisor y red a la vez, conoce a cada cliente y cada comercio, y los clientes de sus tarjetas premium pagan una cuota anual por beneficios que no encuentran en otro lado. Los números son excelentes: los ingresos pasaron de 52.862 M en 2022 a 75.952 M en los últimos 12 meses (+43,7 %), la ganancia neta de 7.514 M a 11.445 M, la ganancia por acción de 9,85 a 16,48 y el ROE se mantiene entre 29,8 % y 33,5 %. **Las acciones bajaron 8,8 %** por recompras. Su punto débil es el ciclo de crédito: si sube la morosidad, las reservas por incobrables le pegan a la ganancia; hoy los pedidos de subsidio por desempleo están cerca de mínimos de décadas, pero eso puede cambiar. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para detectar fraudes. Conclusión: **muy buena empresa, con foso amplio, ROE de 33,4 %, ingresos en alza y recompras, aunque expuesta al ciclo de crédito y a la regulación de comisiones.**",
-   "veredicto": "Muy buena empresa: foso amplio, ROE altísimo y crecimiento parejo, expuesta al ciclo de crédito",
-   "conclusion": "American Express es una muy buena empresa: tiene un foso amplio, ROE de 33,4 %, ingresos 43,7 % más que en 2022 y 8,8 % menos acciones, pero depende del ciclo de crédito y de la regulación de comisiones. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la morosidad se mantenga baja.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "American Express: cobra caro por sus tarjetas, y sus clientes de altos ingresos pagan sin chistar",
+   "resumen": [
+    "American Express es a la vez **red de pagos y emisora de tarjetas**: emite sus propias tarjetas, procesa los pagos y presta a sus clientes. Su ventaja es una marca premium y una base de clientes de altos ingresos que gastan mucho y pagan bien.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 8,9 %**, a 20.062 M, y lo que cobra por las cuotas anuales de sus tarjetas, 16,4 %. Su ganancia ajustada por acción subió 13 % y la empresa espera ganar entre 17,60 y 17,90 dólares ajustados en el año.",
+    "Excelente empresa, con una rentabilidad altísima y clientes fieles, aunque, a diferencia de Visa y Mastercard, corre el riesgo de que sus clientes no le paguen."
+   ],
+   "introduccion": "Una tarjeta American Express Platinum cuesta cientos de dólares por año, solo por tenerla. Y aun así, cada año más gente la quiere.\n\n¿Por qué alguien pagaría tanto por una tarjeta? Por lo que viene con ella: salas VIP en los aeropuertos, créditos para viajes, hoteles y restaurantes, puntos que se convierten en pasajes. Para una persona que viaja y gasta mucho, la cuota se paga sola.\n\nEse es el negocio de American Express: no busca a todos, busca a los que más gastan. Y les cobra caro.\n\nEn el tercer trimestre de 2026, lo que cobró por cuotas anuales creció 16,4 %, el doble que sus ingresos totales. Sus clientes gastaron 454.000 M con sus tarjetas, un 7,8 % más.\n\nPero American Express tiene una diferencia importante con Visa y Mastercard: además de procesar los pagos, presta la plata. Si la economía se complica y sus clientes no pagan, la pérdida es suya.\n\nEntonces, la pregunta es: ¿es tan buen negocio como el de Visa y Mastercard, o tiene un riesgo que ellas no tienen?",
+   "secciones": [
+    {
+     "titulo": "Red, emisor y prestamista a la vez",
+     "texto": "La mayoría de las tarjetas funcionan con cuatro partes: el banco que emite la tarjeta, la red (Visa o Mastercard), el banco del comercio y el comercio. American Express hace casi todo sola: emite la tarjeta, opera la red y le cobra al comercio. Se llama **red cerrada**.\n\nEso le da tres fuentes de ingresos. En el tercer trimestre de 2026:\n\n- **Comisiones a los comercios** por cada compra, más altas que las de Visa y Mastercard.\n- **Cuotas anuales** de las tarjetas: 2.969 M, un 16,4 % más.\n- **Intereses** de los saldos que financian sus clientes: 4.940 M netos, un 10,1 % más.\n\nSus clientes son personas de ingresos medios y altos, pequeñas empresas y grandes corporaciones (tarjetas para viajes de negocios). Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **marca** y los **clientes**. Una tarjeta de American Express es un símbolo, y sus clientes gastan mucho más que el promedio. Además, como opera su propia red, sabe exactamente en qué gasta cada cliente, y diseña beneficios a medida. Eso atrae cada vez más a clientes jóvenes.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la usa para detectar fraudes y decidir a quién prestarle."
+    },
+    {
+     "titulo": "Una rentabilidad que pocas financieras tienen",
+     "texto": "En una empresa financiera, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno.\n\nAmerican Express tiene un ROE de **33,4 %** en los últimos 12 meses, y se mantuvo entre 30 % y 34 % en los últimos años. El promedio de su industria es 28,8 %.\n\n[[grafico:roe]]\n\nLos ingresos crecen de forma pareja: de 52.862 M en 2022 a **75.952 M** en los últimos 12 meses, cerca de 10 % por año.\n\n[[grafico:ingresos]]\n\nLa ganancia por acción pasó de 9,85 dólares en 2022 a **16,48** en los últimos 12 meses.\n\nUn aviso sobre el último trimestre: la ganancia contable por acción (5,42 dólares) incluye 1,11 dólares por la venta de una participación en una empresa de viajes de negocios, algo que no se repite, y descuenta un cargo de reestructuración. Sin esas dos cosas, la ganancia fue de **4,68 dólares**, un 13 % más.\n\nLa calidad de los préstamos sigue buena: las pérdidas por préstamos incobrables fueron de 1,8 % del total, contra 1,9 % un año antes, y las provisiones bajaron 23,5 %."
+    },
+    {
+     "titulo": "Devolución fuerte y un riesgo que conviene vigilar",
+     "texto": "American Express devuelve mucho al accionista. En los primeros nueve meses de 2026 recompró acciones por 5.805 M. El dividendo es de 3,80 dólares por acción por año y creció 16,7 % por año en los últimos tres.\n\n[[grafico:acciones]]\n\nEl riesgo que la separa de Visa y Mastercard es el **crédito**. Sus clientes financian parte de lo que gastan, y si la economía entra en recesión y muchos dejan de pagar, las pérdidas las absorbe American Express. Hasta ahora, sus clientes de altos ingresos pagan mejor que el promedio, pero en una crisis fuerte nadie está a salvo.\n\nOtro riesgo es la **competencia** en tarjetas premium: bancos como JPMorgan (JPM) lanzan tarjetas con beneficios parecidos para quedarse con los mismos clientes.\n\nLa conduce Stephen Squeri, CEO desde 2018: \"El impulso de nuestro negocio continúa, con fortaleza en el gasto, en la captación de clientes nuevos y en la retención de los actuales\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En American Express, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Usamos la ganancia ajustada que espera la empresa para 2026: unos 17,75 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares, American Express cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl mercado paga a American Express menos que a Visa y Mastercard, porque tiene riesgo de crédito: en una recesión, sus ganancias pueden caer. A cambio, su rentabilidad y su crecimiento están entre los mejores del sector financiero.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}.",
+    "ganancia_ref": 17.75,
+    "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (17,60 a 17,90 dólares)"
+   },
+   "conclusion": "American Express es una empresa excelente. Tiene una marca premium, clientes de altos ingresos que gastan y pagan bien, una red propia que le da información valiosa, un ROE de más de 30 % y una devolución creciente al accionista. Y sigue sumando clientes jóvenes.\n\nSu punto débil es el crédito: a diferencia de Visa y Mastercard, si sus clientes no pagan, la pérdida es suya. Además, la competencia en tarjetas premium es cada vez más dura. El crítico más duro diría que American Express está más expuesta a una recesión de lo que parece. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa financiera de alta calidad, con crecimiento y recompras. No es para quien busca un dividendo alto o un negocio sin riesgo de crédito.\n\nEs recomendable revisar en cada informe las pérdidas por préstamos incobrables y los atrasos de pago. Para que la tesis se mantenga, lo más importante es que las cuotas anuales sigan creciendo a doble dígito y que la morosidad se mantenga baja.",
+   "pros": [
+    "Clientes premium: gastan mucho y pagan bien.",
+    "Cuotas en alza: lo que cobra por cuotas anuales creció 16,4 %.",
+    "Rentabilidad altísima: ROE de 33,4 %."
+   ],
+   "contras": [
+    "Riesgo de crédito: si sus clientes no pagan, la pérdida es suya.",
+    "Competencia premium: bancos grandes lanzan tarjetas con beneficios parecidos.",
+    "Sensible al consumo: una recesión bajaría el gasto y subiría la morosidad."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "American Express es una empresa integrada de pagos que opera cuatro segmentos: **U.S. Consumer Services** (tarjetas para personas en Estados Unidos), **Commercial Services** (tarjetas y servicios para empresas), **International Card Services** (tarjetas fuera de Estados Unidos) y **Global Merchant and Network Services** (el negocio con comercios y la red de pagos). Ofrece tarjetas de crédito y de cargo y servicios relacionados en Estados Unidos, Europa, Medio Oriente y África, Asia-Pacífico, Australia, Nueva Zelanda, América Latina, Canadá y el Caribe. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al consumo y a los viajes. **Los ingresos crecieron 14,5 % en 2023, 9,0 % en 2024 y 9,5 % en 2025, y llegaron a 75.952 M en los últimos 12 meses.**\n\n**A quién le vende.** A personas de ingresos altos, a empresas y a comercios que aceptan sus tarjetas. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de American Express **es de red cerrada y marca, y es amplia**. Al emitir sus tarjetas y operar su red, tiene los datos de cada compra, elige a sus clientes (gente con ingresos altos que gasta mucho) y cobra a los comercios una comisión más alta porque sus clientes compran más. Los beneficios (viajes, salas VIP, reintegros) hacen que el cliente pague una cuota anual y no cambie. Se ve en el **ROE, siempre entre 29,8 % y 33,5 %**, muy por encima de la referencia de 12 %.\n\nCompite con Visa, Mastercard, JPMorgan (Chase), Capital One y Citi. Es frágil en el ciclo de crédito (más morosidad en una recesión), en la regulación de las comisiones y en que parte del ROE se explica por el uso de deuda. La inteligencia artificial puede ayudarla a bajar fraude, y no la amenaza de forma directa.",
-   "numeros": "Los números de American Express cuentan **un negocio que crece parejo y rinde muchísimo**. Los ingresos fueron de 52.862 M, 60.515 M, 65.949 M y 72.230 M, y de 75.952 M en los últimos 12 meses. La ganancia neta fue de 7.514 M en 2022, 8.374 M, 10.129 M y 10.833 M, y de 11.445 M en los últimos 12 meses. La ganancia por acción pasó de 9,85 a 11,21, 14,01, 15,38 y **16,48**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **30,4 %, 29,8 %, 33,5 %, 32,4 % y 33,4 %**. El capital invertido pasó de 68.629 M a 93.329 M (+36 %).\n\nLa mirada crítica: la ganancia por acción creció más que la ganancia neta (+67 % contra +52 %) por las recompras. Y un ROE de 33 % en una empresa que presta con tarjetas depende de que la morosidad se mantenga baja.",
-   "balance": "**El capital del banco crece con el negocio.** El capital invertido (lo que financia el negocio) pasó de 68.629 M en 2022 a 93.329 M en los últimos 12 meses, un 36 % más, mientras los ingresos subieron 44 %. Es una empresa de crédito, vigilada de cerca por los reguladores, y financia sus préstamos con depósitos y deuda.\n\nCon el bono a 10 años cerca de 5 %, financiarse cuesta más, pero la empresa cobra cuotas y comisiones que no dependen de la tasa. Con una inflación de 3,7 % anual, el gasto con tarjeta sube en valor, y con el desempleo bajo la morosidad se mantiene sana; si eso cambia, es el primer riesgo.",
-   "gerencia": "La conduce Stephen Squeri, presidente del directorio y CEO (65 años, pago de 17,3 M según Yahoo), con Christophe Le Caillec como director financiero (59 años). Squeri lleva años al frente y la edad hace que la sucesión sea un punto para seguir.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 3,80 por acción (pagado desde 1977; sube 16,7 % por año en 3 años) y recompra acciones (3.502 M en 2022, 5.814 M en 2025 y 7.465 M en los últimos 12 meses). **Las acciones diluidas bajaron de 752 M a 686 M, un 8,8 % menos.**",
-   "fortalezas": [
-    "Red cerrada y marca premium: clientes de ingresos altos que pagan cuota anual.",
-    "ROE entre 29,8 % y 33,5 % durante cinco períodos.",
-    "Ingresos de 75.952 M en los últimos 12 meses, 43,7 % más que en 2022.",
-    "Ganancia por acción de 16,48, 67 % más que en 2022, y 8,8 % menos acciones.",
-    "Dividendo pagado desde 1977 (3,80 por acción), con 16,7 % anual de crecimiento a 3 años."
-   ],
-   "debilidades": [
-    "Expuesta al ciclo de crédito: una recesión sube la morosidad y las reservas.",
-    "Regulación de las comisiones de tarjetas: el crítico más duro diría que un tope a esas comisiones pega directo en los ingresos.",
-    "Parte del ROE se explica por el uso de deuda.",
-    "Clientes de gasto alto son sensibles a viajes y consumo discrecional.",
-    "Foso amplio que depende de mantener beneficios que cuestan caros."
-   ],
-   "vigilar": [
-    "Morosidad y reservas por incobrables: es lo que más cambia en una recesión.",
-    "ROE: hoy 33,4 %; si baja de 25 %, el modelo pierde la ventaja.",
-    "Ganancia neta: 11.445 M en los últimos 12 meses; si cae con consumo estable, algo se está deteriorando.",
-    "Regulación de comisiones y de tasas de las tarjetas: puede cambiar los ingresos."
-   ],
    "clientes": [
-    "Personas de ingresos altos",
-    "Empresas que usan tarjetas corporativas",
-    "Comercios que aceptan sus tarjetas"
+    "Personas de ingresos medios y altos",
+    "Pequeñas empresas",
+    "Grandes corporaciones (viajes de negocios)"
    ],
-   "ideal_para": [
-    "Buscan un negocio de pagos con foso amplio, ROE altísimo y recompras.",
-    "Valoran un dividendo creciente pagado desde 1977.",
-    "Aceptan el riesgo del ciclo de crédito."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 20.062 M (+8,9 %); ganancia de 3.712 M y ajustada de 3.214 M (+10,8 %); ganancia por acción de 5,42 dólares (incluye 1,11 por la venta de su participación en Global Business Travel Group) y ajustada de 4,68 (+13 %); gasto con tarjetas de 454.000 M (+7,8 %); cuotas anuales de 2.969 M (+16,4 %); ingreso neto por intereses de 4.940 M (+10,1 %); provisiones de 985 M (-23,5 %); pérdidas por préstamos de 1,8 %; recompras de 5.805 M en nueve meses; guía 2026: ganancia ajustada de 17,60 a 17,90 dólares; frase de Stephen Squeri",
+     "fuente": "Análisis de los resultados del 3T26, 23/10/2026",
+     "url": "https://beancount.io/blog/2026/10/23/american-express-fy2026-q3-earnings-analysis"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de American Express, anexo 99.1",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000004962/000000496226000405/q326exhibit991.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran empresas expuestas al crédito de consumo.",
-    "Buscan una empresa con poca regulación."
-   ],
+   "ticker": "AXP",
    "perfil": "banco",
    "capas": [],
-   "ticker": "AXP",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -4496,54 +4516,60 @@
    }
   },
   "C": {
-   "resumen": "Citigroup es uno de los mayores bancos de Estados Unidos y el más internacional: presta servicios de tesorería y comercio exterior a empresas multinacionales, opera en los mercados, hace banca de inversión, tiene tarjetas y banca para personas en Estados Unidos y gestiona patrimonio. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones por mover dinero entre países. Tiene un **foso estrecho, de red internacional**: su negocio de servicios a multinacionales funciona en decenas de países y es difícil de replicar. Pero los números todavía no lo muestran: **el ROE fue de 4,5 % a 7,4 % entre 2022 y 2025 (6,7 % en 2025), muy por debajo del 12 % de referencia**, y la ganancia neta de 2025 (14.306 M) es menor que la de 2022 (14.845 M), aunque los ingresos subieron 14,4 % a 85.213 M. La ganancia por acción de 2025 (6,99) es igual a la de 2022 (7,00), y subió a 10,25 en los últimos 12 meses. Lo que mejora el número por acción es una recompra enorme: **18.250 M en 2025, 128 % de la ganancia neta, y 10,9 % menos acciones**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **empresa de calidad regular, un banco global en reestructuración, con ROE de 6,7 %, ganancia estancada y recompras que superan la ganancia.**",
-   "veredicto": "Regular: banco global con ROE bajo y ganancia estancada, que mejora el número recomprando",
-   "conclusion": "Citigroup es una empresa de calidad regular: tiene una red internacional difícil de replicar y 10,9 % menos acciones, pero su ROE fue de 6,7 % en 2025 y su ganancia neta sigue por debajo de la de 2022. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE suba hacia 12 % sin depender de recompras.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "Citigroup: el banco que durante años valió menos que su patrimonio está terminando de ordenarse",
+   "resumen": [
+    "Citigroup es el **banco más global de EE.UU.**: opera en casi 100 países y su fuerte son los servicios para grandes empresas que mueven plata entre países (pagos, cuentas, custodia). Su ventaja es una red internacional que ningún otro banco estadounidense tiene.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 8 %**, a 23.800 M, y su ganancia, 40 % (17 % sin una partida extraordinaria del año anterior). Su rentabilidad sobre el patrimonio tangible subió a 11,5 % y devolvió 16.500 M a sus accionistas en nueve meses.",
+    "Buena empresa en plena recuperación, con gastos en baja y una devolución de capital muy fuerte, pero con una rentabilidad todavía por debajo de los mejores bancos."
+   ],
+   "introduccion": "Durante más de una década, Citigroup fue el banco grande que no terminaba de arreglarse. Rescatado en la crisis de 2008, con negocios en demasiados países, sistemas viejos y problemas con los reguladores, ganaba poco. Su acción llegó a cotizar a la mitad de su patrimonio contable: el mercado decía que valía más desarmado que funcionando.\n\nEn 2021 asumió Jane Fraser como CEO, la primera mujer al frente de un gran banco de EE.UU. Su plan: vender la banca minorista en 14 países, simplificar la estructura, recortar miles de puestos y ordenar los controles que le pedían los reguladores.\n\nEl plan empieza a verse en los números. En el tercer trimestre de 2026, su eficiencia mejoró 6 puntos, su rentabilidad subió y el mercado empezó a pagarlo bastante más caro.\n\nEntonces, la pregunta es: ¿puede Citigroup llegar a ganar como sus grandes rivales?",
+   "secciones": [
+    {
+     "titulo": "Un banco para empresas que operan en el mundo",
+     "texto": "Citigroup tiene cinco grandes negocios. En el tercer trimestre de 2026:\n\n- **Servicios**: pagos, cuentas, manejo de caja y custodia de inversiones para grandes empresas e inversores en todo el mundo. Ingresos de 6.600 M, +15 %. Es su joya: pocos bancos pueden mover la plata de una multinacional en 100 países.\n- **Mercados**: compra y venta de acciones, bonos y monedas. 6.100 M, +6 %.\n- **Banca de inversión**: fusiones, salidas a bolsa y deuda. 1.700 M, +6 %.\n- **Patrimonios**: gestión de fortunas. 3.300 M, +15 %.\n- **Tarjetas en EE.UU.**: 4.700 M, sin cambios.\n\nAdemás, está saliendo de **Banamex**, su banco en México: ya vendió una parte y hoy tiene el 51 %. Planea dejar de consolidarlo a principios de 2027 y evalúa sacarlo a bolsa.\n\nSus clientes son grandes empresas, gobiernos, inversores institucionales y millones de usuarios de tarjetas en EE.UU.\n\n¿Cuál es su **ventaja**? La **red internacional**. Ningún otro banco de EE.UU. tiene presencia local en tantos países. Para una multinacional que necesita pagar sueldos, cobrar y manejar caja en decenas de países, Citi es difícil de reemplazar.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la usa para bajar costos y modernizar sus sistemas."
+    },
+    {
+     "titulo": "Una rentabilidad que sube, pero todavía no alcanza",
+     "texto": "En un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nCitigroup tuvo un ROE de 4,5 % en 2023 y 6,7 % en 2025. En el tercer trimestre de 2026 llegó a **10,1 %**, y su retorno sobre el patrimonio tangible (sin contar activos intangibles) a **11,5 %**. El promedio de su industria es 12,9 %. Mejoró mucho, pero sigue por debajo de los mejores.\n\n[[grafico:roe]]\n\nLa clave de la mejora es la **eficiencia**: cuánto gasta por cada 100 dólares que genera. Bajó a **58,5**, desde casi 65 un año antes. Los ingresos crecen y los gastos no.\n\nLa ganancia por acción pasó de 4,04 dólares en 2023 a **10,25** en los últimos 12 meses (incluye partidas extraordinarias).\n\n[[grafico:eps]]\n\nLa calidad de los préstamos está estable: las pérdidas netas fueron de 2.200 M, sin cambios contra un año antes. En tarjetas, la empresa espera pérdidas de alrededor de 4 % en el año."
+    },
+    {
+     "titulo": "Devolución récord con un capital sólido",
+     "texto": "La regla de oro de un banco es tener suficiente capital propio para aguantar pérdidas. El indicador que miran los reguladores es el **CET1**: el capital de mejor calidad sobre los activos ajustados por riesgo. Citigroup está en **12,8 %**, un nivel sólido.\n\nCon ese capital devuelve mucho: recompró acciones por 13.300 M en nueve meses y subió el dividendo 12 %, a 0,67 dólares por trimestre. Al recomprar acciones cuando cotizaban por debajo de su patrimonio, cada recompra aumentaba el valor libros de los que se quedaban.\n\n[[grafico:acciones]]\n\nEl valor libros tangible por acción (el patrimonio sin intangibles, dividido por la cantidad de acciones) llegó a 101,59 dólares, un 6 % más.\n\nPara 2026, la empresa apunta a una rentabilidad sobre el patrimonio tangible de más de 11 %, y para 2027 y 2028, de 11 % a 13 %.\n\nLos riesgos: la salida de Banamex (le va a generar una pérdida contable de unos 9.000 M, aunque la empresa dice que no afecta su capital), la dependencia de los mercados y el costo de seguir modernizando sus sistemas.\n\nLa conduce Jane Fraser, CEO desde 2021."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares, Citigroup cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces) y {vsind:p_b} el promedio de su industria ({ind:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio menos de lo que le cuesta conseguir capital (para un banco grande, alrededor de 10 % a 12 %) cotiza por debajo de una vez su patrimonio. Durante años, ese fue Citi. Ahora que se acerca a ese nivel de rentabilidad, el mercado lo paga más. Si llega a 13 %, podría pagarlo más; si se estanca, no.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Citigroup es una buena empresa en plena recuperación. Tiene una red internacional única, un negocio de servicios para empresas que crece 15 %, gastos en baja, un capital sólido y una devolución de capital muy fuerte. Y su rentabilidad sube año tras año.\n\nSu punto débil es que todavía gana menos que los mejores bancos, que la salida de Banamex trae una pérdida contable grande y que su historia de problemas con los reguladores pide cautela. El crítico más duro diría que Citi lleva años prometiendo una rentabilidad que nunca termina de llegar. Es un argumento razonable.\n\nEncaja con quien busca un banco en recuperación, con recompras grandes y dividendo creciente. No es para quien busca el banco más rentable del sector.\n\nEs recomendable revisar en cada informe la eficiencia y la rentabilidad sobre el patrimonio tangible. Para que la tesis se mantenga, lo más importante es que esa rentabilidad siga subiendo hacia 13 %.",
+   "pros": [
+    "Red global: presencia local en casi 100 países, difícil de reemplazar.",
+    "Eficiencia en alza: gasta 58,5 por cada 100 que genera, contra casi 65.",
+    "Devolución fuerte: 16.500 M devueltos en nueve meses."
+   ],
+   "contras": [
+    "Rentabilidad justa: ROE de 10,1 %, por debajo de los mejores bancos.",
+    "Banamex: su salida le genera una pérdida contable de unos 9.000 M.",
+    "Historia regulatoria: años de problemas con los controles."
+   ],
+   "calidad": "Buena",
    "riesgo_ia": "bajo",
-   "negocio": "Citigroup es una sociedad controlante de servicios financieros diversificados. Opera cinco segmentos: **Services** (tesorería, comercio exterior, administración de efectivo y capital de trabajo para multinacionales, bancos y organismos), **Markets** (operaciones en mercados), **Banking** (banca de inversión y de empresas), **U.S. Personal Banking** (tarjetas y banca de personas en Estados Unidos) y **Wealth** (gestión de patrimonio). Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las empresas necesitan mover dinero y las personas, cuentas y crédito. **Los ingresos crecieron 4,8 % en 2023, 3,3 % en 2024 y 5,6 % en 2025, hasta 85.213 M.**\n\n**A quién le vende.** A multinacionales, instituciones financieras, gobiernos y personas. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Citigroup **es de red internacional, y es estrecha**. Una multinacional que opera en decenas de países necesita un banco que le maneje el efectivo y el comercio exterior en cada uno, y pocos pueden hacerlo. Pero **los números no muestran todavía el foso**: el ROE fue de 7,4 %, 4,5 %, 6,1 % y 6,7 %, siempre por debajo de la referencia de 12 %.\n\nCompite con JPMorgan, Bank of America, HSBC y bancos locales. Es frágil en el riesgo de crédito (tarjetas, préstamos corporativos), en los costos de reestructuración y en el riesgo de operar en muchos países. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de Citigroup cuentan **un banco enorme cuya ganancia no crece**. Los ingresos fueron de 74.480 M, 78.090 M, 80.672 M y 85.213 M. La ganancia neta fue de 14.845 M en 2022, 9.228 M en 2023, 12.682 M en 2024 y 14.306 M en 2025. La ganancia por acción pasó de 7,00 a 4,04, 5,94, 6,99 y **10,25 en los últimos 12 meses**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **7,4 %, 4,5 %, 6,1 % y 6,7 %**. El capital invertido pasó de 500.896 M a 595.192 M (+19 %).\n\nLa mirada crítica: la ganancia neta de 2025 es 3,6 % menor que la de 2022, y la ganancia por acción se sostiene por las recompras. Sin ellas, el crecimiento por acción sería negativo.",
-   "balance": "**El capital del banco crece, pero rinde poco.** El capital invertido (lo que financia el negocio) pasó de 500.896 M en 2022 a 595.192 M en los últimos 12 meses, un 19 % más, mientras la ganancia neta no creció. Es un banco de los que los reguladores vigilan de cerca.\n\nEl banco recompra más de lo que gana (18.250 M en 2025 contra 14.306 M de ganancia neta), lo que reduce el capital propio. Con el bono a 10 años cerca de 5 %, los bonos que tiene se desvalorizan y sus clientes pagan más por el dinero. Es un efecto que aparece en el patrimonio y no en la ganancia, y por eso conviene seguirlo.",
-   "gerencia": "La conduce Jane Fraser, presidenta del directorio y CEO (57 años, pago de 7,6 M según Yahoo), con Viswas Raghavan (pago de 23,5 M) al frente de banca de inversión y Andrew Morton al frente de mercados. Fraser condujo la reestructuración del banco desde que asumió.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 2,68 por acción (pagado desde 1987; sube 4,4 % por año en 3 años) y recompra acciones por montos crecientes (3.250 M en 2022, 18.250 M en 2025 y 23.600 M en los últimos 12 meses). **Las acciones diluidas bajaron de 1.964 M a 1.750 M, un 10,9 % menos.**",
-   "fortalezas": [
-    "Red internacional difícil de replicar en servicios a multinacionales.",
-    "Ingresos de 85.213 M en 2025, con ventas en alza tres años seguidos.",
-    "Ganancia por acción de 10,25 en los últimos 12 meses.",
-    "10,9 % menos acciones desde 2022.",
-    "Dividendo pagado desde 1987 (2,68 por acción)."
-   ],
-   "debilidades": [
-    "ROE bajo y estancado: 4,5 % a 7,4 % entre 2022 y 2025, contra la referencia de 12 %.",
-    "Ganancia neta de 14.306 M en 2025, menor que la de 2022 (14.845 M).",
-    "Recompras (18.250 M en 2025) que superan la ganancia neta: el crítico más duro diría que el crecimiento por acción es financiero y no del negocio.",
-    "Banco en reestructuración, con riesgos de ejecución en muchos países.",
-    "Foso estrecho que todavía no se refleja en los números."
-   ],
-   "vigilar": [
-    "ROE: hoy 6,7 % en 2025; tiene que subir hacia 12 % para justificar el capital que tiene.",
-    "Ganancia neta: 14.306 M en 2025; tiene que superar la de 2022 sin depender de recompras.",
-    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión, sobre todo en tarjetas.",
-    "Recompras: si bajan, la ganancia por acción pierde un empuje importante."
-   ],
    "clientes": [
-    "Multinacionales e instituciones financieras",
-    "Gobiernos y organismos",
-    "Personas con tarjetas y cuentas en Estados Unidos"
+    "Multinacionales y grandes empresas",
+    "Gobiernos e inversores institucionales",
+    "Usuarios de tarjetas y clientes de patrimonio en EE.UU."
    ],
-   "ideal_para": [
-    "Buscan un banco global en reestructuración con recompras y dividendo.",
-    "Aceptan un ROE bajo hoy a cambio de una mejora esperada.",
-    "Quieren exposición al comercio y a las finanzas internacionales."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 23.800 M (+8 %); ganancia de 5.200 M (+40 %; +17 % sin partida extraordinaria); ganancia por acción de 2,85 dólares; eficiencia de 58,5 % (-620 puntos básicos); ROE de 10,1 %; retorno sobre patrimonio tangible de 11,5 %; CET1 de 12,8 %; servicios 6.600 M (+15 %), mercados 6.100 M (+6 %), banca de inversión 1.700 M (+6 %), patrimonios 3.300 M (+15 %), tarjetas 4.700 M; recompras de 13.300 M en nueve meses; dividendo trimestral de 0,67 dólares (+12 %); Banamex: 51 % en manos de Citi, desconsolidación prevista a principios de 2027, pérdida contable de unos 9.000 M; meta 2026 de más de 11 % de retorno sobre patrimonio tangible",
+     "fuente": "Presentación de resultados del 3T26, 13/10/2026",
+     "url": "https://www.citigroup.com/rcs/citigpa/storage/public/Earnings/Q32026/2026psqtr3rslt.pdf"
+    }
    ],
-   "menos_ideal": [
-    "No toleran un ROE persistentemente bajo.",
-    "Buscan una empresa con ganancias en alza sostenida por el negocio."
-   ],
+   "ticker": "C",
    "perfil": "banco",
    "capas": [],
-   "ticker": "C",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7103,54 +7129,61 @@
    }
   },
   "SIEGY": {
-   "resumen": "Siemens es un grupo industrial alemán de automatización y digitalización: fabrica sistemas de control y software para fábricas (Digital Industries), equipos eléctricos y automatización de edificios (Smart Infrastructure), trenes y señalización (Mobility), equipos médicos (Siemens Healthineers) y servicios financieros (SFS). Gana plata vendiendo equipos, software y servicios, con contratos de mantenimiento de largo plazo. Tiene un **foso estrecho, de base instalada y costos de cambio**: una fábrica que funciona con sus sistemas de control y software no los cambia fácil, porque sería caro y riesgoso. Los números son estables: los ingresos pasaron de €71.977 M en 2022 a €78.914 M en 2025 (€81.116 M en los últimos 12 meses), el margen operativo de 10,1 % a **13,0 %** y el flujo libre es de **€11.848 M**, 14,6 % de los ingresos. Hay 3,0 % menos acciones y el ROE es de 11,6 %. Su punto débil es que el crecimiento es bajo (1,4 % y 3,9 %), el ciclo industrial afecta a Digital Industries y la ganancia neta incluye resultados extraordinarios que dificultan comparar años. Las cifras están en euros, por lo que el rendimiento en dólares depende del tipo de cambio. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la industria necesita más automatización. Conclusión: **buena empresa, con foso estrecho de base instalada, margen operativo en alza y flujo libre de 14,6 % de los ingresos, aunque con crecimiento bajo y ganancia neta difícil de comparar.**",
-   "veredicto": "Buena: foso estrecho de base instalada, margen en alza y flujo libre sólido, con crecimiento bajo",
-   "conclusion": "Siemens es una buena empresa: tiene un foso estrecho de base instalada, margen operativo de 13,0 %, flujo libre de €11.848 M y 3,0 % menos acciones, pero el crecimiento es bajo y la ganancia neta incluye resultados extraordinarios. Vale la pena seguirla de cerca. Es recomendable investigar el origen del cambio en el capital invertido en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga sobre 12 %.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Siemens: el gigante industrial alemán se convierte en una empresa de software y redes eléctricas",
+   "resumen": [
+    "Siemens es el mayor grupo industrial de Europa: **automatización de fábricas y software industrial**, **equipos para edificios y redes eléctricas**, **trenes** y, a través de Siemens Healthineers, **equipos médicos**. Su ventaja es una base instalada enorme en fábricas de todo el mundo y un software que las conecta.",
+    "En el tercer trimestre de su año fiscal 2026 (abril a junio), **sus pedidos crecieron 14 %**, a 27.900 M de euros, y su ganancia industrial, 25 %, con un margen de 17,3 %. Su cartera de pedidos llegó al récord de 132.000 M de euros y subió lo que espera ganar en el año.",
+    "Muy buena empresa, que se beneficia de la demanda de electricidad y centros de datos y de la digitalización de las fábricas, aunque con un retorno sobre el capital modesto y parte de su negocio atado a la industria europea."
+   ],
+   "introduccion": "Cuando pensás en Siemens, quizás pensás en heladeras o celulares viejos. Ese Siemens ya no existe. En los últimos años, la empresa vendió o separó todo lo que no era su núcleo: los electrodomésticos, los celulares, la energía (Siemens Energy, separada en 2020).\n\nLo que quedó es un grupo con un foco claro: la **automatización y digitalización** de fábricas, edificios, redes eléctricas y trenes. Y cada vez más software: programas que diseñan productos y simulan fábricas enteras antes de construirlas.\n\nEl momento le sonríe. Los centros de datos de IA necesitan tableros eléctricos, transformadores y sistemas de control, y Siemens los fabrica. En el tercer trimestre de su año fiscal 2026, los pedidos de su división de infraestructura crecieron 42 %.\n\nY la empresa subió lo que espera ganar: entre 11,20 y 11,50 euros por acción, sin efectos contables de compras.\n\nEntonces, la pregunta es: ¿puede Siemens pasar de ser un fabricante industrial clásico a una empresa de tecnología, y cobrar como tal?",
+   "secciones": [
+    {
+     "titulo": "Cuatro negocios con un mismo hilo",
+     "texto": "Las cifras de Siemens están en euros. En el tercer trimestre de su año fiscal 2026:\n\n- **Infraestructura inteligente** (equipos eléctricos para edificios, redes y centros de datos): pedidos récord de 8.000 M de euros (+42 %), ventas de 6.400 M (+13 %) y un margen de 20,0 %.\n- **Industrias digitales** (automatización de fábricas y software industrial): ventas de 4.900 M (+10 %) y un margen de 18,7 %. El software creció 15 %.\n- **Movilidad** (trenes y señalización): ventas de 3.200 M (+6 %) y un margen de 8,6 %.\n- **Siemens Healthineers** (equipos de diagnóstico por imágenes, laboratorio y tratamiento del cáncer): ventas de 5.760 M (+2 %) y un margen de 18,2 %.\n\nSus clientes son fábricas de todos los sectores, empresas eléctricas, constructoras, dueños de centros de datos, gobiernos (trenes) y hospitales. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? La **base instalada** y el **software**. Los controladores de Siemens están en miles de fábricas del mundo, y cambiarlos implica rehacer líneas de producción enteras. Y su software industrial, que diseña y simula productos y fábricas, es líder en su campo.\n\nLa inteligencia artificial es más una oportunidad que una amenaza: los centros de datos necesitan sus equipos eléctricos, y la IA se suma a su software para diseñar y operar fábricas."
+    },
+    {
+     "titulo": "Márgenes en suba, crecimiento moderado",
+     "texto": "Los ingresos crecen despacio: de 71.977 M de euros en su año fiscal 2022 a **81.116 M** en los últimos 12 meses.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 10,1 % a **13,0 %** en los últimos 12 meses. El promedio de su industria es 10,8 %. Y el margen de sus negocios industriales llegó a 17,3 % en el último trimestre, contra 14,9 % un año antes.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada euro que pusieron dueños y acreedores), es de **11,7 %**. Por encima de 15 % se considera muy bueno. Es modesto, en parte porque Siemens pagó mucho por compras de empresas de software.\n\n[[grafico:roic]]\n\nLo que mejor anticipa el futuro es la **cartera de pedidos**: 132.000 M de euros, un récord. En el trimestre, por cada euro que vendió recibió 1,34 euros en pedidos nuevos.\n\nLa caja es fuerte: **11.848 M de euros** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Deuda razonable y un dividendo estable",
+     "texto": "La deuda neta de Siemens (lo que debe menos la caja) equivalía en su último año fiscal a **2,4 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Parte de esa deuda es de su brazo financiero, que financia a los clientes que compran sus equipos. Su ganancia operativa paga los intereses del año 6,4 veces (por encima de 3 se considera sano).\n\nEl dividendo creció 6,3 % por año en los últimos tres.\n\nLos riesgos:\n\n- **La industria europea**, especialmente la alemana, que lleva años floja.\n- **China**, un mercado importante para su automatización, donde la competencia local crece.\n- **Los trenes**, un negocio de márgenes bajos con contratos grandes y riesgosos.\n\nLo conduce Roland Busch, CEO desde 2021: \"Vamos camino a otro año fiscal exitoso y estamos subiendo nuestras previsiones\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Siemens, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, Siemens cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nLos conglomerados europeos suelen cotizar con descuento: el mercado prefiere empresas enfocadas en un solo negocio. Siemens viene achicando ese descuento a medida que se vuelve más una empresa de software y equipos eléctricos. Lo que puede mover el precio es la demanda de los centros de datos y la recuperación de la industria.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Siemens es una muy buena empresa. Tiene una base instalada enorme en fábricas de todo el mundo, un software industrial líder, márgenes que suben, una cartera de pedidos récord y una caja fuerte. Y está bien posicionada para la demanda de electricidad de los centros de datos.\n\nSu punto débil es que crece poco, que su retorno sobre el capital es modesto y que parte de su negocio depende de la industria europea, que lleva años floja. El crítico más duro diría que Siemens es un conglomerado que crece al ritmo de Europa. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa industrial europea de calidad, con dividendo y exposición a la electrificación. No es para quien busca un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que los pedidos de infraestructura sigan creciendo y que el margen industrial se sostenga cerca de 17 %.",
+   "pros": [
+    "Cartera récord: 132.000 M de euros en pedidos.",
+    "Electricidad para la IA: pedidos de infraestructura +42 %.",
+    "Márgenes en suba: margen industrial de 17,3 %, contra 14,9 %."
+   ],
+   "contras": [
+    "Crecimiento lento: los ingresos crecen pocos puntos por año.",
+    "Retorno modesto: ROIC de 11,7 %.",
+    "Europa floja: parte de su negocio depende de la industria alemana."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Siemens Aktiengesellschaft es una compañía de tecnología que se centra en automatización y digitalización en todo el mundo. Opera cinco segmentos: **Digital Industries** (automatización y software para fábricas, control numérico, motores), **Smart Infrastructure** (electrificación y automatización de edificios), **Mobility** (trenes y señalización), **Siemens Healthineers** (equipos médicos) y **Siemens Financial Services**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar. Reporta en euros.\n\nEs un negocio industrial y cíclico: **los ingresos crecieron 4,0 % en 2023, 1,4 % en 2024 y 3,9 % en 2025, hasta €78.914 M**, y llegaron a €81.116 M en los últimos 12 meses.\n\n**A quién le vende.** A fábricas, empresas de energía, ferrocarriles, hospitales y constructoras de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Siemens **es de base instalada y costos de cambio, y es estrecha**. Una fábrica que automatizó sus procesos con equipos y software de Siemens tiene personal capacitado, programas escritos y repuestos compatibles, y cambiar a otro proveedor implica parar la producción y asumir riesgos. En trenes y redes eléctricas hay pocos proveedores con su capacidad. Se ve en el margen bruto de 39,4 % y en el margen operativo en alza.\n\nCompite con Schneider Electric, ABB, Rockwell, Emerson, Alstom y GE. Es frágil en el ciclo de inversión industrial (si las empresas postergan inversiones, Digital Industries sufre), en la complejidad de ser un conglomerado y en los cambios de estructura. La inteligencia artificial no la amenaza; la automatización industrial es parte de su oferta.",
-   "numeros": "Los números de Siemens cuentan **un negocio estable con margen en alza**. Los ingresos fueron de €71.977 M, €74.882 M, €75.930 M y €78.914 M, y de €81.116 M en los últimos 12 meses. El margen operativo fue de 10,1 %, 12,6 %, 12,5 %, 11,5 % y **13,0 %**. La ganancia neta fue de €3.723 M, €7.949 M, €8.301 M y €9.620 M, y de €7.946 M en los últimos 12 meses, pero incluye resultados por ventas de negocios que Yahoo no detalla, por lo que miramos mejor el EBIT. La ganancia por acción (por ADR) fue de 2,29, 4,96, 5,19, 6,05 y 5,06.\n\nEl flujo libre (lo que queda después de las inversiones) fue de €8.157 M, €10.093 M, €9.577 M y €10.812 M, y de **€11.848 M en los últimos 12 meses**. El ROE fue de 7,6 %, 16,6 %, 16,2 %, 15,5 % y 11,6 %, y el ROIC de 11,7 % en los últimos 12 meses.\n\nLa mirada crítica: el capital invertido cambió mucho en el último período (de €115.010 M a €68.260 M), algo que Yahoo no explica y que conviene verificar en el informe.",
-   "balance": "**Deuda moderada, con un negocio financiero adentro.** La deuda total es de €49.924 M y la caja de €22.813 M en los últimos 12 meses. Una parte importante de la deuda corresponde a Siemens Financial Services, que presta plata a clientes, y por eso la deuda neta/EBITDA de Yahoo (2,41x en 2025) no es comparable con la de una industrial pura. Los intereses se cubren 6,4 veces con el EBIT.\n\nEl patrimonio neto subió de €48.895 M a €68.260 M. Con el flujo libre de €11.848 M, el balance es cómodo.",
-   "gerencia": "La conduce Roland Busch, presidente y CEO (61 años, pago de 6,1 M según Yahoo), con Veronika Bienert como directora financiera (52 años, pago de 3,3 M) y Cedrik Neike al frente de Digital Industries (52 años). Es un equipo que simplificó el conglomerado en los últimos años, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras**: paga un dividendo de 3,17 por acción (por ADR, en dólares; desde 2002; sube 6,3 % por año en 3 años; €4.093 M en 2025) y recompró €1.870 M en 2022, €1.298 M, €3.765 M, €2.269 M y €3.469 M en los últimos 12 meses. **Las acciones (equivalentes ADR) bajaron de 1.619 M a 1.571 M, un 3,0 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 10,1 % a 13,0 %.",
-    "Flujo libre de €11.848 M en los últimos 12 meses, 14,6 % de los ingresos.",
-    "Base instalada y costos de cambio altos en automatización.",
-    "Dividendo creciente y recompras de €3.469 M.",
-    "Patrimonio neto de €68.260 M y balance cómodo."
-   ],
-   "debilidades": [
-    "Crecimiento bajo (1,4 % y 3,9 %).",
-    "Ganancia neta que mezcla resultados extraordinarios: el crítico más duro diría que cuesta saber cuánto gana el negocio de verdad.",
-    "Conglomerado complejo, con negocios financieros y médicos.",
-    "ROE de 11,6 %, apenas por debajo de la referencia de 12 %.",
-    "Cifras en euros: el valor en dólares depende del tipo de cambio."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 13,0 %; si baja, el ciclo industrial está golpeando.",
-    "Ingresos de Digital Industries: son los de mayor margen; Yahoo no los informa, hay que buscarlos en el informe.",
-    "Flujo libre: hoy €11.848 M; tiene que cubrir dividendo y recompras.",
-    "Cambios de estructura (como la separación de negocios): conviene entender el efecto sobre el capital invertido."
-   ],
    "clientes": [
-    "Fábricas y empresas industriales",
-    "Empresas de energía y constructoras",
-    "Ferrocarriles y hospitales"
+    "Fábricas de todos los sectores",
+    "Empresas eléctricas y dueños de centros de datos",
+    "Gobiernos (trenes) y hospitales (Healthineers)"
    ],
-   "ideal_para": [
-    "Buscan un líder industrial europeo en automatización.",
-    "Valoran dividendo creciente, recompras y flujo libre alto.",
-    "Aceptan el riesgo del euro y del ciclo industrial."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre del año fiscal 2026 (abril a junio, en euros): pedidos de 27.900 M (+14 %); ventas de 20.800 M (+8 %); pedidos sobre ventas de 1,34; cartera de 132.000 M; ganancia industrial de 3.500 M (+25 %), margen de 17,3 %; ganancia por acción sin efectos de compras de 3,14 euros (2,78); flujo libre de 4.100 M (+42 %); infraestructura: pedidos de 8.000 M (+42 %), margen de 20,0 %; industrias digitales: margen de 18,7 %; guía del año fiscal: ganancia por acción de 11,20 a 11,50 euros; frase de Roland Busch",
+     "fuente": "Resumen del comunicado de resultados del 3T del año fiscal 2026, 08/2026",
+     "url": "https://www.industrial-production.de/economy---business/q3-2026--siemens-raises-forecast-after-record-quarter.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan alto crecimiento.",
-    "Prefieren una empresa simple, de un solo negocio."
-   ],
+   "mes_cierre_fiscal": 9,
+   "ticker": "SIEGY",
    "perfil": "general",
    "capas": [],
-   "ticker": "SIEGY",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7668,54 +7701,60 @@
    }
   },
   "GEV": {
-   "resumen": "GE Vernova es una empresa de energía, separada de General Electric, que fabrica y da servicio a turbinas de gas, equipos nucleares, hidráulicos y de vapor (Power), turbinas eólicas (Wind) y equipos de red eléctrica y electrificación (Electrification). Gana plata vendiendo equipos grandes y, sobre todo, servicios de mantenimiento y repuestos sobre su base instalada. Tiene un **foso estrecho, de base instalada y conocimiento técnico**: una central con sus turbinas necesita repuestos, ajustes y servicio del fabricante durante décadas, y construir una turbina de gas grande exige décadas de ingeniería. Los números mejoran mucho, pero con una advertencia: los ingresos subieron de 29.654 M en 2022 a **44.040 M** en los últimos 12 meses, el margen bruto pasó de 11,7 % a 21,7 % y el margen operativo de -9,7 % a **6,4 %**. Aun así, la ganancia neta (10.368 M) es casi cuatro veces el EBIT (2.830 M) y el flujo libre (17.115 M) es 4,6 veces el de 2025; Yahoo marca ambos como fuera de lo común y probablemente incluyen ganancias no operativas y cobros anticipados de clientes, dato a verificar. Tiene más caja (16.764 M) que deuda (2.795 M). Su punto débil es que el EBIT sigue siendo chico, que hasta 2023 perdió plata y que gran parte de la demanda actual depende de la inversión en centros de datos de inteligencia artificial, que puede enfriarse. Conclusión: **empresa de buena calidad en mejora, con foso estrecho y caja neta de 13.969 M, aunque con 6,4 % de margen operativo y cifras recientes poco comparables.**",
-   "veredicto": "Buena y en mejora: foso estrecho y caja neta de 13.969 M, con margen operativo de 6,4 % y cifras recientes poco comparables",
-   "conclusion": "GE Vernova es una empresa de buena calidad en mejora: tiene un foso estrecho de base instalada, más caja que deuda (13.969 M de caja neta), margen bruto de 21,7 % y ROIC de 15,5 %, pero su margen operativo es de solo 6,4 % y las cifras recientes de ganancia y flujo libre no son comparables. Hay que seguirla de cerca. Es recomendable investigar el detalle de la caja y de los resultados no operativos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el EBIT siga creciendo.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "GE Vernova provee productos y servicios que generan, transfieren, orquestan, convierten y almacenan electricidad en Estados Unidos, Europa, Asia, Medio Oriente y África. Opera tres segmentos: **Power** (tecnologías de gas, nuclear, hidráulica y vapor), **Wind** y **Electrification**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de equipos y servicios con ciclo largo: **los ingresos crecieron 12,1 % en 2023, 5,1 % en 2024 y 9,0 % en 2025, hasta 38.068 M**, y llegan a 44.040 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas eléctricas, generadores de energía y operadores de redes de distintos países. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de GE Vernova **es de base instalada y conocimiento técnico, y es estrecha**. Las turbinas de gas grandes tardan años en diseñarse y certificarse, y una vez instaladas el propietario depende del fabricante para repuestos, actualizaciones y mantenimiento durante décadas. Eso genera ingresos de servicio que se repiten y explica en parte la mejora del margen bruto de 11,7 % a 21,7 % en los últimos 12 meses.\n\nCompite con Siemens Energy, Mitsubishi Heavy Industries, Hitachi Energy, Schneider Electric y fabricantes chinos. Es frágil en el negocio eólico, que hasta ahora le restó rentabilidad (dato público a verificar), en las demoras de la cadena de suministro y en que el pedido de turbinas hoy se apoya en el apuro de las empresas eléctricas por abastecer centros de datos. El 22/10 los semiconductores cayeron 6,7 %, un recordatorio de que el entusiasmo por la inteligencia artificial puede revertirse. La inteligencia artificial no la amenaza de forma directa; es parte de la demanda.",
-   "numeros": "Los números de GE Vernova cuentan **una recuperación fuerte desde las pérdidas**. Los ingresos fueron de 29.654 M, 33.239 M, 34.935 M y 38.068 M, y de 44.040 M en los últimos 12 meses. El EBIT fue de -2.881 M, -923 M, 471 M y 1.389 M, y de **2.830 M** en los últimos 12 meses (margen operativo de 6,4 %). La ganancia neta fue de -2.736 M, -438 M, 1.552 M y 4.884 M, y de 10.368 M en los últimos 12 meses. La ganancia por acción fue de -10,06, -1,60, 5,58, 17,69 y 38,11.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -627 M, 442 M, 1.700 M, 3.710 M y **17.115 M** en los últimos 12 meses (38,9 % de los ingresos). El ROIC pasó de -19,2 % a 15,5 %.\n\nLa mirada crítica: la ganancia neta supera al EBIT en 2024, 2025 y los últimos 12 meses, lo que indica resultados no operativos (venta de participaciones, intereses sobre la caja o ajustes impositivos; Yahoo no lo detalla). Tampoco el flujo libre de 17.115 M es un nivel repetible: probablemente incluye anticipos de clientes. Conviene tomar como referencia el EBIT de 2.830 M.",
-   "balance": "**Balance de caja neta, el más cómodo posible.** La caja es de 16.764 M y la deuda total de 2.795 M, de modo que la deuda neta es de -13.969 M: tiene más plata que deudas. El patrimonio neto es de 11.382 M, la deuda equivale a 0,25 veces el patrimonio, y los intereses no son un problema.\n\nLa caja pasó de 2.067 M en 2022 a 16.764 M, mientras la deuda total se mantuvo entre 1.144 M y 2.795 M. Conviene confirmar en el informe cuánto de esa caja corresponde a anticipos de clientes y no a ganancia acumulada.",
-   "gerencia": "La conduce Scott Strazik, CEO y presidente (46 años, pago de 6,3 M según Yahoo), con Kenneth Parks como director financiero (62 años, pago de 2,9 M). Strazik condujo la separación de General Electric y la mejora de márgenes, dato público.\n\nEn lo que importa, **el uso del capital cambió a recompras y dividendo apenas empezó a generar caja**: paga un dividendo de 2,00 por acción desde 2024 (474 M en los últimos 12 meses) y recompró 3.316 M en 2025 y 6.371 M en los últimos 12 meses. **Las acciones casi no se movieron: 272 M en 2022 y 271 M hoy**, porque la emisión de acciones para compensación absorbe parte de las recompras.",
-   "fortalezas": [
-    "Más caja (16.764 M) que deuda (2.795 M).",
-    "Margen bruto de 11,7 % a 21,7 % y margen operativo de -9,7 % a 6,4 %.",
-    "Base instalada con servicios por décadas.",
-    "Ingresos de 44.040 M, creciendo todos los años.",
-    "ROIC de 15,5 % en los últimos 12 meses."
+   "formato": "v4",
+   "titulo": "GE Vernova: fabrica las turbinas que pide la electricidad de la IA, y tiene fila de espera",
+   "resumen": [
+    "GE Vernova es uno de los mayores fabricantes del mundo de **equipos para generar y transportar electricidad**: turbinas a gas, turbinas eólicas, transformadores y equipos para las redes eléctricas. Su ventaja es una base instalada enorme de turbinas que necesitan mantenimiento durante décadas.",
+    "En el tercer trimestre de 2026, **sus pedidos crecieron 96 %**, a 29.000 M, y sus ingresos, 27 %. Su cartera de pedidos llegó a **197.000 M** y generó 5.400 M de flujo libre de caja en solo tres meses.",
+    "Muy buena empresa, en el centro del auge de la demanda de electricidad, con caja de sobra y sin deuda neta, pero con márgenes todavía bajos para su industria y un precio que ya descuenta muchos años de crecimiento."
    ],
-   "debilidades": [
-    "Margen operativo de solo 6,4 %.",
-    "Ganancia neta y flujo libre recientes poco repetibles: el crítico más duro diría que el EBIT es el número real.",
-    "Perdió plata hasta 2023.",
-    "Demanda atada en parte al gasto en centros de datos de inteligencia artificial.",
-    "Recompras fuertes que apenas bajan la cantidad de acciones."
+   "introduccion": "Durante casi dos décadas, la demanda de electricidad en EE.UU. casi no creció. Las empresas eléctricas no necesitaban centrales nuevas, y los fabricantes de turbinas vivían años flojos.\n\nEso cambió de golpe. Los centros de datos para inteligencia artificial consumen cantidades enormes de electricidad. A eso se suma la vuelta de fábricas a EE.UU., los autos eléctricos y la necesidad de modernizar redes viejas. De repente, todo el mundo necesita más electricidad, y la necesita ya.\n\nGE Vernova, que se separó de General Electric en 2024, fabrica justamente lo que hace falta: turbinas a gas para generar, y transformadores y equipos para llevar la electricidad. Y hay fila de espera. Sus turbinas a gas comprometidas, entre pedidos firmes y reservas de lugar en la línea de producción, llegan a 122 gigavatios.\n\nEn el tercer trimestre de 2026, sus pedidos casi se duplicaron, y su cartera llegó a 197.000 M.\n\nEntonces, la pregunta es: ¿cuánto vale pagar por una empresa con trabajo asegurado por años, pero que todavía gana poco por cada venta?",
+   "secciones": [
+    {
+     "titulo": "Tres negocios: generar, transportar y el viento",
+     "texto": "GE Vernova tiene tres grandes negocios:\n\n- **Energía**: turbinas a gas, turbinas de vapor, equipos para centrales nucleares e hidroeléctricas, y sobre todo el mantenimiento de las miles de turbinas que ya instaló en todo el mundo. Es el corazón de la empresa.\n- **Electrificación**: transformadores, equipos de alta tensión y software para las redes eléctricas. Crece rápido, porque las redes de todo el mundo necesitan ampliarse.\n- **Eólica**: turbinas de viento en tierra y en el mar. Es el negocio más difícil: las turbinas en el mar tuvieron problemas y costos altos.\n\nSus clientes son empresas eléctricas, gobiernos, dueños de centros de datos y grandes industrias de todo el mundo.\n\n¿Cuál es su **ventaja**? La **base instalada** y la **escala**. Una gran parte de la electricidad del mundo se genera con equipos de GE Vernova, y cada turbina necesita mantenimiento y repuestos durante 30 años o más. Además, solo hay tres grandes fabricantes de turbinas a gas grandes en el mundo (GE Vernova, Siemens Energy y Mitsubishi), y todos tienen la producción comprometida por años. Eso les da poder para subir precios.\n\nLa inteligencia artificial, lejos de amenazarla, es su gran motor: los centros de datos necesitan la electricidad que sus equipos generan y transportan."
+    },
+    {
+     "titulo": "Crece fuerte, y los márgenes empiezan a subir",
+     "texto": "Los ingresos crecieron de 29.654 M en 2022 a **44.040 M** en los últimos 12 meses. En el tercer trimestre de 2026 crecieron 27 % (18 % sin contar compras de empresas).\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) era negativo en 2022 y 2023, por las pérdidas del negocio eólico. En los últimos 12 meses es de **6,4 %**. El promedio de su industria es 9,5 %. Mejora rápido, pero todavía es bajo. El margen ajustado del tercer trimestre (antes de intereses, impuestos y amortizaciones) fue de 15,4 %, casi 7 puntos más que un año antes.\n\n[[grafico:margen_operativo]]\n\n¿Por qué sube? Porque los pedidos que firma hoy tienen precios mucho más altos que los de hace unos años, cuando la demanda era floja. A medida que se entregan, el margen sube.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), pasó de -19,2 % en 2022 a **15,5 %** en los últimos 12 meses. Por encima de 15 % se considera muy bueno.\n\n[[grafico:roic]]"
+    },
+    {
+     "titulo": "Una montaña de caja",
+     "texto": "GE Vernova casi no tiene deuda (2.795 M) y tiene **16.764 M en caja**.\n\nEl **flujo libre de caja** (lo que queda después de invertir) se disparó: de 3.710 M en 2025 a **17.115 M** en los últimos 12 meses, y 5.400 M solo en el tercer trimestre. Parte de esa caja son anticipos: cuando un cliente reserva un lugar en la línea de producción de turbinas, paga una parte por adelantado. Es plata real, pero corresponde a equipos que todavía tiene que fabricar.\n\n[[grafico:flujo_libre]]\n\nCon esa caja, devuelve plata: en los primeros nueve meses de 2026 devolvió 5.700 M a los accionistas, y en octubre duplicó su programa de recompras, a 20.000 M. Paga un dividendo chico.\n\nLos riesgos: que la demanda de los centros de datos se enfríe, que el negocio eólico vuelva a dar pérdidas, y que no pueda fabricar a tiempo todo lo que vendió.\n\nLo conduce Scott Strazik, CEO desde la separación de 2024: \"Logramos sólidos resultados financieros en el tercer trimestre, a medida que crece la demanda de infraestructura eléctrica en todo el mundo\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 6,4 %; tiene que seguir subiendo para justificar el cambio.",
-    "Ganancia neta contra EBIT: hoy 10.368 M contra 2.830 M; hay que entender qué es no operativo.",
-    "Flujo libre: hoy 17.115 M; hay que ver cuánto son anticipos de clientes.",
-    "Resultado del negocio eólico: Yahoo no lo informa, hay que buscarlo en el informe."
+   "valuacion": {
+    "texto": "En GE Vernova, el PER (cuántos años de ganancia se pagan al comprar la acción) puede engañar. La ganancia contable de los últimos 12 meses es mucho más alta de lo que sugiere el margen operativo del negocio, así que el PER sale más bajo de lo que realmente se paga por la operación.\n\nPor eso conviene mirar el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta, o menos caja neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. GE Vernova cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nCon el precio de {precio} dólares, el PER contable es de {per_ref} veces.\n\nEs un múltiplo de empresa de crecimiento. El mercado paga por los márgenes que espera dentro de unos años, cuando se entreguen los pedidos firmados a precios altos. Si eso pasa, la ganancia puede multiplicarse. Si la demanda se enfría o los costos suben, el precio queda muy exigente.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "GE Vernova es una muy buena empresa en el lugar justo y en el momento justo. Fabrica lo que el mundo necesita para producir y transportar más electricidad, tiene una cartera de pedidos de 197.000 M, márgenes que suben rápido, una montaña de caja y casi nada de deuda.\n\nSu punto débil es que todavía gana poco por cada venta, que el negocio eólico sigue siendo un problema, y que el mercado ya la paga como si todos esos pedidos fueran a convertirse en márgenes altos. El crítico más duro diría que se está pagando la cima de un ciclo de inversión en electricidad. Es un argumento serio.\n\nEncaja con quien cree que la demanda de electricidad va a crecer durante muchos años y tolera caídas fuertes. No es para quien busca un precio bajo o un dividendo.\n\nPara que la tesis se mantenga, lo más importante es que el margen siga subiendo a medida que se entregan los pedidos firmados a precios altos.",
+   "pros": [
+    "Fila de espera: pedidos +96 % y cartera de 197.000 M.",
+    "Caja de sobra: 16.764 M y casi nada de deuda.",
+    "Base instalada: décadas de mantenimiento de sus turbinas."
    ],
+   "contras": [
+    "Márgenes todavía bajos: margen operativo de 6,4 %, contra 9,5 % de su industria.",
+    "Negocio eólico: costoso y con problemas en el mar.",
+    "Precio exigente: el mercado ya paga por los márgenes futuros."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Empresas eléctricas y generadores de energía",
-    "Operadores de redes de distribución",
-    "Desarrolladores de parques eólicos"
+    "Empresas eléctricas y gobiernos de todo el mundo",
+    "Dueños de centros de datos",
+    "Grandes industrias"
    ],
-   "ideal_para": [
-    "Buscan exposición a la inversión en energía eléctrica.",
-    "Valoran un balance con más caja que deuda.",
-    "Aceptan analizar cifras no operativas con cuidado."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: pedidos de 29.000 M (+96 % orgánico); ingresos de 12.600 M (+27 %; +18 % orgánico); ganancia de 1.300 M; margen EBITDA ajustado de 15,4 % (+690 puntos básicos orgánicos); flujo libre de 5.400 M; caja de 16.800 M; cartera de 197.000 M; turbinas a gas comprometidas (pedidos y reservas) de 122 gigavatios; 5.700 M devueltos en nueve meses; recompras ampliadas a 20.000 M; frase de Scott Strazik",
+     "fuente": "Comunicado de resultados del 3T26, 28/10/2026",
+     "url": "https://www.gevernova.com/news/ge-vernova-reports-strong-third-quarter-2026-financial-performance"
+    }
    ],
-   "menos_ideal": [
-    "Buscan datos limpios y comparables.",
-    "No toleran la dependencia del gasto en centros de datos."
-   ],
+   "ticker": "GEV",
    "perfil": "general",
    "capas": [],
-   "ticker": "GEV",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8000,54 +8039,61 @@
    }
   },
   "MRVL": {
-   "resumen": "Marvell es una empresa estadounidense de semiconductores de infraestructura de datos: diseña chips que mueven, procesan y almacenan información desde el núcleo de los centros de datos hasta el borde de las redes, integrando funciones analógicas, digitales y de memoria en un solo chip. No fabrica: diseña y terceros producen. Gana plata vendiendo chips a medida y estándar a empresas de centros de datos, redes y telecomunicaciones. Tiene un **foso débil a estrecho, de diseños a medida y relaciones de largo plazo**: un chip diseñado para el equipo de un cliente grande se usa durante años y cambiarlo exige rediseñar el producto, pero esa relación depende de pocos clientes y de que Marvell siga ganando cada generación. Los números mejoraron mucho: los ingresos pasaron de 5.767 M en el ejercicio 2025 a **8.195 M** en 2026 (+42,1 %) y 9.450 M en los últimos 12 meses, el margen operativo pasó de -6,4 % a **16,8 %** y el flujo libre es de 1.723 M. Pero hasta 2025 acumuló tres años de pérdidas operativas o netas, el ROIC de los últimos 12 meses es de solo **4,9 %** y la ganancia neta de 2026 (2.670 M) supera al EBIT (1.338 M), lo que sugiere una ganancia por la venta de un negocio, dato a verificar. Las acciones aumentaron 3,9 % desde 2023. Su punto débil es que el crecimiento actual depende en gran parte del gasto de centros de datos para inteligencia artificial, y el 22/10 los semiconductores cayeron 6,7 %. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular en mejora, con crecimiento fuerte y caja suficiente, pero con ROIC de 4,9 %, tres años previos de pérdidas y demanda concentrada en la inteligencia artificial.**",
-   "veredicto": "Regular y en mejora: crecimiento fuerte y flujo libre de 1.723 M, con ROIC de 4,9 %, tres años previos de pérdidas y demanda concentrada",
-   "conclusion": "Marvell es una empresa de calidad regular y en mejora: pasó de pérdidas a un margen operativo de 16,8 %, tiene ingresos de 9.450 M y flujo libre de 1.723 M, pero su ROIC es de 4,9 %, la ganancia neta incluye un resultado no operativo y el crecimiento depende de la demanda de inteligencia artificial. Hay que seguirla de cerca. Es recomendable investigar la concentración de clientes y el detalle de la ganancia no operativa en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo y el ROIC sigan subiendo.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "Marvell: diseña chips a medida para las grandes nubes y conecta los centros de datos de IA",
+   "resumen": [
+    "Marvell diseña **chips para centros de datos**: los que mueven datos a toda velocidad dentro y entre los centros de datos (conectividad óptica, redes, almacenamiento) y **chips de IA a medida** para las grandes nubes. Su ventaja es la tecnología para mover datos rápido y su experiencia en diseñar chips a pedido.",
+    "En el segundo trimestre de su año fiscal 2027 (cerrado a fines de julio de 2026), **vendió un récord de 2.739 M, un 37 % más**, con los centros de datos creciendo 46 %. Para el trimestre siguiente espera unos 3.150 M.",
+    "Muy buena empresa en plena aceleración por la IA, con poca deuda, pero con una ganancia contable todavía chica, clientes muy concentrados y un precio que ya descuenta mucho crecimiento."
+   ],
+   "introduccion": "Cuando se habla de chips para IA, todos piensan en Nvidia. Pero un centro de datos de IA necesita mucho más que los chips que hacen los cálculos.\n\nNecesita mover cantidades enormes de datos entre esos chips, entre servidores y entre centros de datos enteros, a velocidades que hace unos años eran impensables. Para eso hacen falta chips especiales que convierten señales eléctricas en luz y viceversa, y redes ultrarrápidas. Marvell es una de las líderes en eso.\n\nAdemás, las grandes nubes, como Amazon y Microsoft, quieren dejar de depender solo de Nvidia y diseñar sus propios chips de IA. Muchas no tienen todo el conocimiento para hacerlo solas. Marvell las ayuda a diseñarlos.\n\nEsa combinación hizo despegar sus ventas: en el último trimestre crecieron 37 %, y la empresa espera que se aceleren todavía más.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa que vende cada vez más, pero que todavía gana poco en los papeles?",
+   "secciones": [
+    {
+     "titulo": "Mover datos y diseñar chips a medida",
+     "texto": "Marvell tiene dos grandes áreas en los centros de datos:\n\n- **Conectividad**: chips que convierten señales eléctricas en luz para mover datos por fibra óptica entre servidores y centros de datos, y chips para redes y almacenamiento. Es el negocio que más tracción tiene hoy.\n- **Chips a medida**: ayuda a las grandes nubes a diseñar sus propios chips de IA. La empresa espera que este negocio se acelere mucho en la segunda mitad de su año fiscal 2027.\n\nTiene también negocios más chicos, para empresas, telecomunicaciones y consumo, que pesan cada vez menos.\n\nSus clientes principales son las grandes nubes, como Amazon (AMZN) y Microsoft (MSFT), y los fabricantes de equipos de red. Unos pocos clientes explican gran parte de las ventas.\n\n¿Cuál es su **ventaja**? La **tecnología para mover datos** y la **experiencia en chips a medida**. Diseñar un chip de IA lleva años y cientos de millones de dólares, y requiere conocimientos que pocas empresas tienen. Una vez que un cliente diseña su chip con Marvell, suele seguir con ella en las versiones siguientes.\n\nCompite con **Broadcom (AVGO)**, la líder en chips a medida, y con otras empresas en conectividad.\n\nLa inteligencia artificial es su gran motor: según su CEO, los pedidos relacionados con la IA \"siguen siendo excepcionalmente fuertes\"."
+    },
+    {
+     "titulo": "Crecimiento fuerte, ganancia contable chica",
+     "texto": "Los ingresos estuvieron estancados entre su año fiscal 2023 y 2025 (cerca de 5.500 M a 5.900 M), y después despegaron: **9.450 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) fue negativo en los años fiscales 2024 y 2025, por la amortización de empresas compradas. En los últimos 12 meses es de **16,8 %**. El promedio de su industria es 35,3 %. Mejora rápido, pero todavía está lejos.\n\n[[grafico:margen_operativo]]\n\nLa diferencia entre la ganancia contable y la ajustada es grande: en el último trimestre, 0,33 dólares por acción contable contra 0,94 ajustada. La ajustada no cuenta la amortización de compras ni el pago en acciones a los empleados, que la empresa y los analistas del mercado excluyen.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de apenas **4,9 %**. Por encima de 15 % se considera muy bueno. Es bajo porque Marvell creció comprando empresas, y ese capital todavía no rinde lo suficiente.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **1.723 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Poca deuda y una apuesta fuerte",
+     "texto": "La deuda neta (lo que debe menos la caja) es de apenas 1.030 M, unas **0,2 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 3,6 veces (por encima de 3 se considera sano).\n\nPaga un dividendo simbólico.\n\nLos riesgos:\n\n- **Concentración**: unos pocos clientes enormes explican gran parte de las ventas. Si uno cambia de proveedor o diseña el chip solo, el golpe es fuerte.\n- **Broadcom**: compite por los mismos contratos de chips a medida, y es más grande.\n- **El ciclo de la IA**: si las grandes nubes recortan su inversión, las ventas caen.\n\nPara el tercer trimestre de su año fiscal 2027, espera vender unos 3.150 M y ganar alrededor de 1,10 dólares por acción ajustados.\n\nLo conduce Matt Murphy, CEO desde 2016: \"Esperamos que nuestro crecimiento de ingresos se acelere todavía más durante el resto del año fiscal 2027\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Marvell, el PER (cuántos años de ganancia se pagan al comprar la acción) es engañoso: la ganancia contable de los últimos 12 meses incluye una ganancia extraordinaria por la venta de un negocio, y a la vez está achicada por la amortización de compras. Por eso conviene mirar el **precio sobre ventas**: cuántas veces sus ventas anuales se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Marvell cotiza a {v:ps} veces sus ventas. Eso está {vs:ps} su propia mediana histórica ({med:ps} veces) y {vsind:ps} el promedio de su industria ({ind:ps} veces).\n\nEl PER contable es de {per_ref} veces.\n\nEl mercado paga un múltiplo alto porque espera que las ventas sigan creciendo rápido con los chips a medida y la conectividad para IA. Si la empresa cumple, las ventas y la ganancia pueden multiplicarse. Si pierde un cliente grande, el precio queda muy expuesto.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Marvell es una muy buena empresa en pleno despegue. Tiene tecnología clave para mover datos en los centros de datos de IA, experiencia en chips a medida para las grandes nubes, ventas que crecen 37 % y se aceleran, y poca deuda.\n\nSu punto débil es la calidad de la ganancia y la concentración. Su ganancia contable es chica, su retorno sobre el capital es bajo, depende de pocos clientes enormes y compite con Broadcom, que es más grande. Y el mercado ya paga un múltiplo alto. El crítico más duro diría que Marvell depende de que dos o tres clientes sigan eligiéndola. Es un argumento serio.\n\nEncaja con quien cree en la inversión en centros de datos de IA y tolera caídas fuertes. No es para quien busca estabilidad o dividendos.\n\nPara que la tesis se mantenga, lo más importante es que el negocio de chips a medida se acelere como promete la empresa y que el margen operativo siga subiendo.",
+   "pros": [
+    "Ventas récord: 2.739 M en el trimestre, +37 %.",
+    "Centros de datos en alza: crecieron 46 %.",
+    "Poca deuda: deuda neta de 0,2 veces su EBITDA."
+   ],
+   "contras": [
+    "Ganancia contable chica: margen operativo de 16,8 %, contra 35,3 % de su industria.",
+    "Pocos clientes: unos pocos gigantes explican gran parte de las ventas.",
+    "Competencia: Broadcom lidera los chips a medida."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Marvell provee soluciones de semiconductores de infraestructura de datos, que abarcan desde el núcleo del centro de datos hasta el borde de la red, en Estados Unidos, Argentina, China, India, Israel, Japón, Singapur, Corea del Sur, Taiwán, Vietnam y a nivel internacional. Desarrolla y escala arquitecturas de sistema en un chip. Yahoo no informa cuánto aporta cada línea de producto ni cada cliente, y no lo vamos a inventar.\n\nEs un negocio de chips con un ciclo reciente muy marcado: **los ingresos cayeron 7,0 % en 2024, subieron 4,7 % en 2025 y 42,1 % en 2026, hasta 8.195 M** (el ejercicio cierra a fines de enero), y llegan a 9.450 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas de centros de datos, fabricantes de equipos de red y de telecomunicaciones. **Yahoo no informa la concentración de clientes**, un dato a verificar en el informe porque suele ser alta en este tipo de negocio.",
-   "foso": "La ventaja de Marvell **es de diseños a medida y relaciones de largo plazo, y es débil a estrecha**. Cuando diseña un chip para el equipo de un cliente grande, ese chip queda dentro del producto durante varios años y cambiarlo exige rediseñar y volver a probar todo. Se ve en el margen bruto de 52,2 % en los últimos 12 meses, contra 41,3 % en 2025.\n\nPero la rentabilidad sobre el capital es baja (ROIC de 4,9 %) y el margen operativo recién volvió a ser positivo en 2026, así que el foso todavía no se demostró en los resultados. Compite con Broadcom, Nvidia, Intel y diseñadores propios de los grandes clientes. Es frágil en la concentración de clientes, en la posibilidad de que un cliente grande diseñe sus chips por su cuenta y en que el gasto de centros de datos se enfríe. La inteligencia artificial no la amenaza de forma directa; hoy es la principal fuente de demanda.",
-   "numeros": "Los números de Marvell cuentan **un giro fuerte desde pérdidas a ganancias**. Los ingresos fueron de 5.920 M, 5.508 M, 5.767 M y 8.195 M, y de 9.450 M en los últimos 12 meses. El EBIT fue de 360 M, -437 M, -366 M y 1.338 M, y de 1.588 M (margen operativo de 16,8 %). La ganancia neta fue de -164 M, -933 M, -885 M y **2.670 M**, y de 2.640 M. La ganancia por acción fue de -0,19, -1,08, -1,02, 3,07 y 3,03.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 1.072 M, 1.020 M, 1.390 M y 1.392 M, y de **1.723 M** en los últimos 12 meses (18,2 % de los ingresos). El ROIC fue de 1,3 %, -1,7 %, -2,1 %, 6,2 % y 4,9 %.\n\nLa mirada crítica: la ganancia neta de 2026 es el doble del EBIT, lo que indica una ganancia no operativa probablemente por la venta de un negocio (dato público a verificar), y no se repite. El número que mejor refleja el negocio es el EBIT de 1.588 M.",
-   "balance": "**Deuda moderada y bien cubierta ahora.** La deuda total es de 5.286 M y la caja de 3.933 M; la deuda neta es de 1.030 M y la deuda neta/EBITDA es de 0,22x, que multiplicado por 12 son unos 3 meses de EBITDA. Los intereses se cubren 3,6 veces con el EBIT, un colchón modesto.\n\nEl patrimonio neto es de 18.532 M, gran parte originado en compras de empresas anteriores (dato público), y la deuda equivale a 0,29 veces el patrimonio. La caja subió de 948 M en 2025 a 3.933 M, pero la cobertura de intereses era negativa en 2024 y 2025.",
-   "gerencia": "La conduce Matt Murphy, CEO y presidente del directorio (52 años, pago de 4,9 M según Yahoo), con Daniel Durn como director financiero (59 años) y Chris Koopmans como presidente y director de operaciones (48 años, pago de 2,1 M). Murphy lidera la empresa desde 2016 y orientó el negocio hacia centros de datos, dato público.\n\nEn lo que importa, **el uso del capital cambió de dividendo a recompras**: paga un dividendo de 0,24 por acción desde 2012 (209 M en los últimos 12 meses, sin crecimiento en 10 años) y recompró 115 M en 2023, 150 M, 725 M, 2.040 M y 1.900 M en los últimos 12 meses. **Las acciones aun así aumentaron de 851 M a 884 M, un 3,9 % más**, por la compensación en acciones y las compras.",
-   "fortalezas": [
-    "Ingresos de 9.450 M en los últimos 12 meses, +42,1 % en el ejercicio 2026.",
-    "Margen bruto de 52,2 % y margen operativo de 16,8 %.",
-    "Flujo libre de 1.723 M, 18,2 % de los ingresos.",
-    "Deuda neta baja (0,22x EBITDA).",
-    "Diseños a medida que quedan años dentro de los productos."
-   ],
-   "debilidades": [
-    "ROIC de 4,9 %: el crítico más duro diría que sigue sin crear valor pese al giro.",
-    "Tres años previos de pérdidas operativas o netas.",
-    "Ganancia neta de 2026 inflada por un resultado no operativo.",
-    "Posible concentración en pocos clientes y en el gasto de inteligencia artificial.",
-    "3,9 % más acciones desde 2023."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 16,8 %; tiene que sostenerse por encima de 15 %.",
-    "ROIC: hoy 4,9 %; tiene que subir por encima del costo del capital.",
-    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe.",
-    "Cantidad de acciones: hoy 884 M; si siguen subiendo, la dilución continúa."
-   ],
    "clientes": [
-    "Empresas de centros de datos",
-    "Fabricantes de equipos de red",
+    "Grandes nubes como Amazon (AMZN) y Microsoft (MSFT)",
+    "Fabricantes de equipos de red y almacenamiento",
     "Empresas de telecomunicaciones"
    ],
-   "ideal_para": [
-    "Buscan exposición a chips de centros de datos.",
-    "Aceptan una empresa en transición de pérdidas a ganancias.",
-    "Entienden el riesgo de depender de pocos clientes."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027: ingresos de 2.739 M (+37 %, récord); centros de datos +46 %; margen bruto de 53,1 % (ajustado 58,9 %); ganancia por acción de 0,33 dólares y ajustada de 0,94; flujo operativo de 605,5 M; guía del 3T: ingresos de unos 3.150 M y ganancia ajustada de unos 1,10 dólares por acción; frases de Matt Murphy",
+     "fuente": "Comunicado de resultados del 2T del año fiscal 2027, 08/2026",
+     "url": "https://www.telecomtv.com/content/digital-platforms-services/marvell-technology-inc-reports-second-quarter-of-fiscal-year-2027-financial-results-56145/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan rentabilidad sobre el capital ya probada.",
-    "No toleran la volatilidad de los semiconductores."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "MRVL",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "MRVL",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8394,54 +8440,60 @@
    }
   },
   "SHOP": {
-   "resumen": "Shopify es una empresa canadiense de tecnología de comercio: ofrece a comerciantes de cualquier tamaño una plataforma para abrir y administrar una tienda online y física, con herramientas para productos e inventario, pedidos, pagos, envíos, marketing y más. Gana plata con suscripciones mensuales y, sobre todo, con soluciones que cobran un porcentaje de lo que vende cada comerciante (pagos, envíos, financiamiento). Tiene un **foso estrecho, de ecosistema y costos de cambio**: miles de aplicaciones y desarrolladores se construyeron alrededor de la plataforma, y un comerciante que ya cargó su catálogo, sus clientes y sus pagos rara vez migra. Los números muestran un giro fuerte: los ingresos pasaron de 5.600 M en 2022 a **13.269 M** en los últimos 12 meses (creciendo más de 25 % por año), el EBIT pasó de -687 M a **2.363 M** (17,8 %), el ROIC es de **16,1 %** y el flujo libre de **2.352 M** (17,7 %), con inversiones casi nulas (25 M). Tiene mucha más caja (4.947 M) que deuda (178 M). Pero el margen bruto bajó de 50,4 % a 47,8 % porque los pagos pesan más en el mix, las acciones aumentaron 3,0 % y las ganancias netas incluyen resultados de inversiones (de 2.019 M en 2024 a 1.231 M en 2025) que no son del negocio. Su punto débil es que depende del gasto de los comerciantes y que Yahoo no trae recompras ni dividendos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: los agentes de compra pueden cambiar cómo llegan los clientes a las tiendas. Conclusión: **empresa de buena calidad, con foso estrecho, ingresos que crecen más de 25 % por año, ROIC de 16,1 % y caja neta de 4.769 M, aunque con margen bruto en baja.**",
-   "veredicto": "Buena: foso estrecho, ingresos creciendo más de 25 % por año, ROIC de 16,1 % y caja neta de 4.769 M, con margen bruto en baja",
-   "conclusion": "Shopify es una empresa de buena calidad: tiene un foso estrecho de ecosistema, ingresos que crecen más de 25 % por año, margen operativo de 17,8 %, ROIC de 16,1 % y caja neta de 4.769 M, pero el margen bruto baja, las acciones aumentaron 3,0 % y su ganancia neta incluye resultados de inversiones. Vale la pena seguirla de cerca. Es recomendable investigar la composición de ingresos entre suscripciones y pagos en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el crecimiento siga siendo alto con márgenes que suban.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Shopify: la plataforma detrás de millones de tiendas online crece 30 % y ya gana plata de verdad",
+   "resumen": [
+    "Shopify es la **plataforma de comercio electrónico** que usan millones de comercios, desde emprendedores hasta marcas grandes, para armar su tienda online, cobrar, enviar y vender en redes sociales. Su ventaja es un ecosistema completo y fácil de usar, que crece junto con sus clientes.",
+    "En el segundo trimestre de 2026, **sus ingresos crecieron 34 %**, y el volumen vendido por sus comercios, la ganancia bruta y el flujo libre de caja crecieron más de 30 %. Su flujo libre fue de 18 % de las ventas.",
+    "Muy buena empresa, que combina un crecimiento alto con caja positiva y sin deuda, aunque el mercado la paga a múltiplos altísimos y su ganancia contable salta por sus inversiones en otras empresas."
+   ],
+   "introduccion": "Si alguna vez compraste en la tienda online de una marca chica, o incluso de una grande, es muy probable que detrás estuviera Shopify, aunque no lo hayas notado.\n\nShopify le da a cualquier comercio todo lo que necesita para vender por internet: la tienda, los pagos, los envíos, la conexión con Instagram, TikTok o Amazon, y ahora también herramientas de inteligencia artificial. El comercio paga una suscripción mensual y una comisión por cada venta.\n\nLa idea de su fundador, Tobi Lütke, fue siempre ser el aliado de los comercios frente a Amazon: que cada marca pueda tener su propia tienda y su propia relación con sus clientes.\n\nY le está saliendo bien. En el segundo trimestre de 2026, sus ingresos crecieron 34 %, y su presidente lo describió como \"un trimestre monstruoso\".\n\nPero el mercado ya lo sabe: Shopify cotiza a múltiplos de los más altos de la bolsa.\n\nEntonces, la pregunta es: ¿puede crecer lo suficiente para justificar lo que se paga por ella?",
+   "secciones": [
+    {
+     "titulo": "Un sistema operativo para vender",
+     "texto": "Shopify tiene dos fuentes de ingresos:\n\n- **Suscripciones**: lo que cada comercio paga por mes para usar la plataforma, desde planes básicos hasta Shopify Plus para marcas grandes.\n- **Soluciones para comercios**: sobre todo los **pagos** (Shopify Payments y Shop Pay). Cobra un porcentaje de cada venta que procesa. Es la parte más grande y la que más crece, porque sube junto con lo que venden sus clientes.\n\nSus clientes son millones de comercios en todo el mundo, desde emprendedores que recién empiezan hasta grandes marcas. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? El **ecosistema**. Miles de aplicaciones, diseñadores y agencias trabajan sobre Shopify, y un comercio que crece encuentra todo ahí sin tener que mudarse. Además, Shop Pay, su botón de pago rápido, guarda los datos de millones de compradores y hace que comprar sea más fácil, lo que ayuda a vender más.\n\nCompite con Amazon, con plataformas como WooCommerce y BigCommerce, y en América Latina con Tiendanube y MercadoLibre (MELI).\n\nLa inteligencia artificial es oportunidad y riesgo. Shopify la usa para ayudar a los comercios a crear su tienda y vender. Pero si en el futuro las compras pasan por asistentes de IA, la tienda online podría perder protagonismo. Shopify apuesta a ser la que conecte a los comercios con esos asistentes."
+    },
+    {
+     "titulo": "Crece rápido y ahora genera caja",
+     "texto": "Los ingresos crecieron más de 25 % por año: de 5.600 M en 2022 a **13.269 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nDurante años, Shopify perdió plata. En 2022 tuvo un margen operativo de -12,3 %, porque había intentado armar su propia red de logística, que después vendió. Desde entonces, se enfocó y se volvió rentable: el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **17,8 %** en los últimos 12 meses. El promedio de su industria es 10,6 %.\n\n[[grafico:margen_operativo]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) pasó de -186 M en 2022 a **2.352 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nUn aviso: la ganancia contable de Shopify salta mucho (1,56 dólares por acción en 2024 y 0,94 en 2025). No es el negocio: Shopify tiene acciones de otras empresas, y cuando suben o bajan en la bolsa, eso se registra como ganancia o pérdida. Por eso conviene mirar el margen operativo y la caja.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), pasó de negativo a **16,1 %**. Por encima de 15 % se considera muy bueno.\n\nPara el tercer trimestre, la empresa espera que sus ingresos crezcan a un ritmo de 30 % y pico."
+    },
+    {
+     "titulo": "Sin deuda y con caja",
+     "texto": "Shopify casi no tiene deuda (178 M) y tiene **4.947 M en caja**. No paga dividendo.\n\nLas acciones en circulación casi no crecen (1.304 millones), algo poco común en una tecnológica que paga parte de los sueldos en acciones.\n\nLos riesgos:\n\n- **El consumo**: si la gente compra menos, sus comercios venden menos y Shopify cobra menos comisiones.\n- **La competencia**: Amazon y otras plataformas pelean por los mismos comercios.\n- **La IA**: puede cambiar la forma de comprar por internet.\n- **El precio**: con múltiplos tan altos, cualquier decepción en el crecimiento puede pegar fuerte en la acción.\n\nLa conduce Tobi Lütke, su fundador y CEO. Su presidente, Harley Finkelstein, resumió el trimestre así: \"Fue un trimestre monstruoso: más de 30 % de crecimiento en volumen vendido, en ingresos, en ganancia bruta y en flujo libre de caja\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Shopify, el PER (cuántos años de ganancia se pagan al comprar la acción) engaña, porque la ganancia contable salta con el valor de sus inversiones en otras empresas. Por eso conviene mirar el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Shopify cotiza a {v:p_fcf} veces su flujo libre de caja. Eso está {vs:p_fcf} su propia mediana histórica ({med:p_fcf} veces).\n\nEl PER contable es de {per_ref} veces.\n\nSon múltiplos muy altos. El mercado paga por la idea de que Shopify va a seguir creciendo cerca de 25 % o 30 % por año durante mucho tiempo, y de que sus márgenes van a seguir subiendo. Si eso pasa, la caja puede multiplicarse. Si el crecimiento se frena, el precio queda muy expuesto.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Shopify es una muy buena empresa. Tiene un ecosistema difícil de copiar, crece más de 30 %, pasó de perder plata a generar caja, no tiene deuda y casi no diluye a sus accionistas.\n\nSu punto débil es el precio y la incertidumbre. El mercado la paga a múltiplos altísimos, su crecimiento depende del consumo, compite con gigantes como Amazon y la IA puede cambiar la forma de comprar. El crítico más duro diría que, aunque Shopify siga creciendo fuerte, el precio ya descuenta muchos años de éxito. Es un argumento serio.\n\nEncaja con quien cree en el comercio electrónico como tendencia de largo plazo y tolera caídas fuertes. No es para quien busca un precio razonable o dividendos.\n\nPara que la tesis se mantenga, lo más importante es que siga creciendo cerca de 25 % o más mientras el flujo libre de caja sube como porcentaje de las ventas.",
+   "pros": [
+    "Crecimiento alto: ingresos +34 % en el segundo trimestre.",
+    "Caja positiva: 2.352 M de flujo libre en los últimos 12 meses.",
+    "Sin deuda: 4.947 M en caja y casi nada de deuda."
+   ],
+   "contras": [
+    "Precio altísimo: de los múltiplos más altos de la bolsa.",
+    "Ganancia contable volátil: salta con sus inversiones en otras empresas.",
+    "Depende del consumo: si la gente compra menos, cobra menos."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "moderado",
-   "negocio": "Shopify es una compañía de tecnología de comercio que ofrece herramientas para iniciar, escalar, promocionar y administrar un negocio de cualquier tamaño en Canadá, Estados Unidos, Europa, Medio Oriente, África, Asia-Pacífico y América Latina. Su plataforma permite administrar productos e inventario, procesar pedidos y pagos, preparar y enviar pedidos, entre otras funciones. Yahoo no informa cuánto aporta cada línea (suscripciones o soluciones comerciales), y no lo vamos a inventar.\n\nEs un negocio de crecimiento sostenido: **los ingresos subieron 26,1 % en 2023, 25,8 % en 2024 y 30,1 % en 2025, hasta 11.556 M**, y llegan a 13.269 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de comerciantes de todos los tamaños. **Ningún cliente pesa de forma decisiva**: la base es muy atomizada.",
-   "foso": "La ventaja de Shopify **es de ecosistema y costos de cambio, y es estrecha**. Alrededor de su plataforma hay miles de aplicaciones, temas y desarrolladores, y los comerciantes que ya cargaron su catálogo, sus clientes y sus medios de pago pierden tiempo y ventas si migran. Su red de pagos y envíos le da además datos para ofrecer financiamiento y servicios.\n\nPero el margen bruto de 47,8 % es bajo para un negocio de software porque cobra pagos, que tienen costos asociados, y bajó de 50,4 % en 2024. Compite con Amazon, WooCommerce, Wix, Squarespace, BigCommerce y plataformas de grandes empresas. Es frágil en el gasto de los comerciantes (si las ventas de sus clientes bajan, bajan sus ingresos), en la competencia de precios y en que las compras podrían migrar a canales controlados por otras plataformas. La inteligencia artificial puede ayudarla y también cambiar cómo llegan los compradores a las tiendas; por eso el riesgo es moderado.",
-   "numeros": "Los números de Shopify cuentan **un giro de pérdidas a una rentabilidad creciente**. Los ingresos fueron de 5.600 M, 7.060 M, 8.880 M y 11.556 M, y de 13.269 M en los últimos 12 meses. El EBIT fue de -687 M, 74 M, 1.302 M y 1.885 M, y de **2.363 M** (margen operativo de 17,8 %). La ganancia neta fue de -3.460 M, 132 M, 2.019 M y 1.231 M, y de 1.928 M. La ganancia por acción fue de -2,73, 0,10, 1,56, 0,94 y 1,48.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -186 M, 905 M, 1.597 M y 2.007 M, y de **2.352 M** en los últimos 12 meses (17,7 % de los ingresos), con inversiones de solo 25 M. El ROIC fue de -7,2 %, 0,5 %, 9,5 %, 11,4 % y 16,1 %.\n\nLa mirada crítica: las ganancias netas de 2022 (-3.460 M) y 2024 (2.019 M, por encima del EBIT de 1.302 M) incluyen resultados de inversiones en otras empresas que no son del negocio (dato público a verificar). Es más fiable mirar el EBIT y el flujo libre.",
-   "balance": "**Balance de caja neta, sin riesgo de deuda.** La caja es de 4.947 M y la deuda total de apenas 178 M (probablemente arrendamientos), de modo que la deuda neta es de -4.769 M: tiene más plata que deudas. El patrimonio neto es de 12.684 M y la deuda equivale a 0,01 veces el patrimonio. La cobertura de intereses no es relevante con una deuda tan baja.\n\nLa deuda total bajó de 1.396 M en 2022 a 178 M, y la caja se mantuvo entre 4.947 M y 5.767 M. Es un balance muy cómodo.",
-   "gerencia": "La conduce Tobias Lütke, fundador, CEO y director de investigación y desarrollo (44 años, pago de 0,0 M según Yahoo), con Harley Finkelstein como presidente (42 años, pago de 1,0 M) y Jeff Hoffmeister como director financiero (55 años, pago de 1,0 M). El fundador conduce la empresa desde su origen y casi no cobra salario, dato que Yahoo muestra.\n\nEn lo que importa, **el uso del capital es de reinversión: no paga dividendo y Yahoo no informa recompras**. **Las acciones subieron de 1.266 M a 1.304 M, un 3,0 % más**, por la compensación en acciones. Las inversiones son mínimas (25 M).",
-   "fortalezas": [
-    "Ingresos de 13.269 M, creciendo más de 25 % por año.",
-    "Margen operativo de 17,8 % y ROIC de 16,1 %, subiendo.",
-    "Flujo libre de 2.352 M con inversiones mínimas.",
-    "Más caja (4.947 M) que deuda (178 M).",
-    "Ecosistema de aplicaciones y comerciantes difícil de reemplazar."
-   ],
-   "debilidades": [
-    "Margen bruto de 47,8 % y en baja, bajo para software.",
-    "Ganancias netas con resultados de inversiones que no son del negocio.",
-    "3,0 % más acciones desde 2022.",
-    "Depende del gasto de los comerciantes: el crítico más duro diría que una caída del consumo golpea directamente.",
-    "Competencia fuerte de Amazon y de otras plataformas."
-   ],
-   "vigilar": [
-    "Margen bruto: hoy 47,8 %; si sigue bajando, los pagos pesan más y el negocio vale menos.",
-    "Margen operativo: hoy 17,8 %; tiene que sostenerse mientras crece.",
-    "Crecimiento de ingresos: hoy cerca de 25 % a 30 %; si baja de 20 %, el negocio cambia de etapa.",
-    "Cantidad de acciones: hoy 1.304 M; si siguen subiendo, la dilución se acumula."
-   ],
    "clientes": [
-    "Comerciantes de todos los tamaños",
-    "Marcas que venden online y en tiendas físicas",
-    "Desarrolladores de aplicaciones para la plataforma"
+    "Millones de comercios y emprendedores",
+    "Marcas grandes (Shopify Plus)",
+    "Compradores que usan Shop Pay"
    ],
-   "ideal_para": [
-    "Buscan una empresa de comercio electrónico en crecimiento.",
-    "Valoran la caja neta y la baja deuda.",
-    "Aceptan que no paga dividendo."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ingresos +34 % (+33 % a tipo de cambio constante); volumen vendido, ganancia bruta y flujo libre de caja +30 % o más; margen de flujo libre de 18 %; guía del 3T26: ingresos con un crecimiento de 30 % y pico; frase de Harley Finkelstein",
+     "fuente": "Comunicado de resultados del 2T26, 08/2026",
+     "url": "https://www.shopify.com/news/shopify-q2-2026-financial-results"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendos.",
-    "No toleran la sensibilidad al consumo."
-   ],
+   "ticker": "SHOP",
    "perfil": "software",
    "capas": [],
-   "ticker": "SHOP",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8518,54 +8570,61 @@
    }
   },
   "CRM": {
-   "resumen": "Salesforce es una empresa estadounidense de software de gestión de relaciones con clientes: vende en la nube herramientas para ventas, servicio al cliente, marketing, análisis de datos y agentes de inteligencia artificial autónomos (Agentforce), con el objetivo de que las empresas administren todo lo que hacen con sus clientes en un solo lugar. Gana plata con suscripciones anuales que los clientes renuevan. Tiene un **foso estrecho, de costos de cambio y datos de clientes**: una empresa que cargó años de historial de clientes, procesos y conexiones con otros sistemas en Salesforce no cambia con facilidad. Los números son de una empresa grande que ganó eficiencia: los ingresos pasaron de 31.352 M en el ejercicio 2023 a **43.938 M** en los últimos 12 meses, el margen operativo subió de 5,9 % a **21,5 %** y el flujo libre llegó a **15.154 M** (34,5 % de los ingresos). Las recompras fueron enormes: **35.070 M en los últimos 12 meses**, mucho más que el flujo libre, y para financiarlas la deuda total saltó de 17.176 M a 41.743 M (dato a verificar en el informe). Las acciones bajaron 10,1 %. Su punto débil es que el ROIC es de apenas 9,5 % porque el capital invertido (77.666 M) viene de compras grandes anteriores, el crecimiento de ingresos es de 9 % a 10 % y el patrimonio bajó de 59.142 M a 38.378 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: los agentes pueden automatizar tareas y reducir el número de usuarios por contrato. Conclusión: **empresa de buena calidad, con foso estrecho, margen operativo de 21,5 % y flujo libre de 15.154 M, aunque con ROIC de 9,5 %, deuda que se multiplicó para recomprar acciones y crecimiento moderado.**",
-   "veredicto": "Buena: foso estrecho, margen operativo de 21,5 % y flujo libre de 15.154 M, con ROIC de 9,5 % y deuda en alza",
-   "conclusion": "Salesforce es una empresa de buena calidad: tiene un foso estrecho de costos de cambio, margen operativo de 21,5 %, flujo libre de 15.154 M y 10,1 % menos acciones, pero el ROIC es de 9,5 %, la deuda neta subió a 30.978 M para financiar recompras y los ingresos crecen cerca de 10 %. Hay que seguirla de cerca. Es recomendable investigar el origen de la deuda y la estrategia de agentes de inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la deuda baje y el margen operativo se sostenga.",
-   "calidad": "Buena",
-   "riesgo_ia": "moderado",
-   "negocio": "Salesforce presta servicios tecnológicos de gestión de relaciones con clientes en Estados Unidos, Europa y Asia-Pacífico. Ofrece Agentforce, para crear, implementar y administrar agentes de inteligencia artificial autónomos de nivel empresarial, y Agentforce Sales, una plataforma de ventas, entre otros productos. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de software maduro con crecimiento moderado: **los ingresos subieron 11,2 % en 2024, 8,7 % en 2025 y 9,6 % en 2026, hasta 41.525 M** (el ejercicio cierra a fines de enero), y llegan a 43.938 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas de todos los tamaños y sectores. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Salesforce **es de costos de cambio y datos de clientes, y es estrecha**. Una empresa que registró años de historial de clientes, oportunidades de venta y casos de servicio en la plataforma, y que la conectó con su sistema de facturación, marketing y análisis, tendría que migrar todo para cambiar. Se ve en el margen bruto, que subió de 73,3 % a 77,7 %.\n\nPero el ROIC de 9,5 % indica que la ventaja no genera rentabilidad extraordinaria sobre el capital invertido, inflado por compras. Compite con Microsoft Dynamics, HubSpot, Oracle, SAP y ServiceNow. Es frágil en la competencia de Microsoft, que incluye sus productos en paquetes, y en que la inteligencia artificial puede cambiar la forma de trabajar con clientes: si los agentes automatizan tareas, se necesitan menos usuarios con licencia. Por eso el riesgo es moderado.",
-   "numeros": "Los números de Salesforce cuentan **un salto de márgenes en tres años**. Los ingresos fueron de 31.352 M, 34.857 M, 37.895 M y 41.525 M, y de 43.938 M en los últimos 12 meses. El EBIT fue de 1.858 M, 5.999 M, 7.666 M y 8.917 M, y de **9.455 M** (margen operativo de 21,5 %). La ganancia neta fue de 208 M, 4.136 M, 6.197 M y 7.457 M, y de 9.662 M. La ganancia por acción fue de 0,21, 4,20, 6,36, 7,80 y **10,97**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 6.313 M, 9.498 M, 12.434 M y 14.402 M, y de **15.154 M** en los últimos 12 meses (34,5 % de los ingresos). El ROIC fue de 2,0 %, 7,3 %, 9,2 %, 9,5 % y 9,5 %.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (9.662 M) supera al EBIT (9.455 M), lo que indica un resultado no operativo (por ejemplo, ganancias de inversiones o impuestos; Yahoo no lo detalla). El flujo libre no resta la compensación en acciones. El ROE de 25,2 % está inflado porque el patrimonio bajó por las recompras.",
-   "balance": "**La deuda se multiplicó en el último año.** En los últimos 12 meses, la deuda total es de 41.743 M y la caja de 11.403 M; la deuda neta es de 30.978 M. Un año antes, la deuda total era de 17.176 M y la deuda neta de 7.112 M. Esa deuda neta equivale a unos 3,3 veces el EBIT, unos 39 meses de EBIT (cálculo propio, porque Yahoo no trae el EBITDA de los últimos 12 meses).\n\nEl patrimonio neto bajó de 59.142 M a 38.378 M y la deuda equivale a 1,09 veces el patrimonio. Yahoo no trae el gasto por intereses, así que no calculamos la cobertura. El salto de deuda coincide con recompras de 35.070 M (a verificar en el informe).",
-   "gerencia": "La conduce Marc Benioff, cofundador, presidente del directorio y CEO (60 años, pago de 11,4 M según Yahoo), con Miguel Milano como presidente y director de operaciones (56 años, pago de 4,3 M). Benioff fundó la empresa en 1999, dato público.\n\nEn lo que importa, **el uso del capital cambió a recompras gigantes y un dividendo nuevo**: paga un dividendo de 1,76 por acción desde 2024 (1.515 M en los últimos 12 meses, 10 % del flujo libre) y recompró 4.000 M en 2023, 7.620 M, 7.829 M, 12.596 M y 35.070 M en los últimos 12 meses. **Las acciones bajaron de 997 M a 896 M, un 10,1 % menos.** Las recompras de los últimos 12 meses superaron más de dos veces al flujo libre.",
-   "fortalezas": [
-    "Margen operativo de 21,5 %, subiendo desde 5,9 %.",
-    "Flujo libre de 15.154 M, 34,5 % de los ingresos.",
-    "10,1 % menos acciones desde 2023.",
-    "Dividendo nuevo desde 2024.",
-    "Costos de cambio altos en sus clientes."
+   "formato": "v4",
+   "titulo": "Salesforce: el mercado teme que la IA la reemplace, y ella responde con agentes y recompras",
+   "resumen": [
+    "Salesforce es la mayor empresa del mundo de **software para gestionar clientes** (CRM): ventas, atención al cliente, marketing y comercio, además de Slack, Tableau y ahora Informatica. Su ventaja es que miles de empresas tienen toda la información de sus clientes en su sistema.",
+    "En el segundo trimestre de su año fiscal 2027 (cerrado en julio de 2026), **sus ingresos crecieron 11 %**, a 11.300 M, y sus productos de IA (Agentforce) ya facturan a un ritmo de más de 1.500 M por año, 240 % más. Está recomprando acciones por 25.000 M.",
+    "Muy buena empresa, con mucha caja y clientes muy atados, a la que el mercado hoy paga barato porque teme que la IA cambie el negocio del software; para recomprar acciones se endeudó fuerte."
    ],
-   "debilidades": [
-    "Deuda total que pasó de 17.176 M a 41.743 M para recomprar acciones: el crítico más duro diría que compró sus propias acciones con plata prestada.",
-    "ROIC de 9,5 %, bajo para su margen.",
-    "Crecimiento de ingresos de 9 % a 10 %.",
-    "Patrimonio que bajó de 59.142 M a 38.378 M.",
-    "Los agentes de inteligencia artificial pueden reducir el número de usuarios por contrato."
+   "introduccion": "Durante 25 años, Salesforce fue sinónimo de software en la nube. Marc Benioff la fundó en 1999 con una idea revolucionaria para la época: que las empresas no instalaran programas, sino que los usaran por internet, pagando una suscripción por cada usuario.\n\nEse modelo, cobrar por usuario, es justamente lo que hoy preocupa al mercado. Si los agentes de inteligencia artificial hacen el trabajo que antes hacían muchas personas, las empresas van a necesitar menos usuarios, y van a pagar menos licencias.\n\nPor eso la acción de Salesforce viene cotizando a múltiplos mucho más bajos que en su historia, aunque la empresa sigue creciendo y gana más que nunca.\n\nBenioff responde con dos jugadas. Primero, vender sus propios agentes de IA (Agentforce), que ya crecen más de 200 %. Segundo, recomprar acciones a lo grande: un programa de 25.000 M, en buena parte con deuda.\n\nEntonces, la pregunta es: ¿la IA es una amenaza para Salesforce, o una oportunidad que el mercado no está viendo?",
+   "secciones": [
+    {
+     "titulo": "Donde viven los datos de los clientes",
+     "texto": "Salesforce vende software por suscripción para que las empresas gestionen su relación con los clientes:\n\n- **Ventas**: seguimiento de clientes y oportunidades.\n- **Servicio**: atención al cliente, centros de llamadas.\n- **Marketing y comercio**: campañas y tiendas online.\n- **Plataforma, Slack y datos**: herramientas para construir aplicaciones, comunicarse y, con Informatica y Data 360, ordenar los datos de la empresa.\n- **Agentforce**: agentes de IA que atienden clientes, venden o resuelven tareas por su cuenta.\n\nEn el segundo trimestre del año fiscal 2027 facturó 11.300 M, un 11 % más (3 puntos vinieron de la compra de Informatica). Agentforce y Data 360 juntos ya facturan a un ritmo de casi 3.900 M por año, un 210 % más.\n\nSus clientes son empresas de todos los tamaños y sectores en todo el mundo. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? Los **datos** y el **costo de cambiarse**. Una empresa que tiene años de información de sus clientes en Salesforce, con procesos armados alrededor, difícilmente se muda. Y para que un agente de IA funcione bien, necesita esos datos. Salesforce apuesta a que eso la convierte en el lugar natural para los agentes.\n\nLa inteligencia artificial es su mayor riesgo y su mayor oportunidad a la vez."
+    },
+    {
+     "titulo": "Más ganancia y mucha caja",
+     "texto": "Los ingresos crecen, pero más despacio que antes: de 31.352 M en su año fiscal 2023 a **43.938 M** en los últimos 12 meses, cerca de 10 % por año.\n\n[[grafico:ingresos]]\n\nLo que cambió mucho es la rentabilidad. En 2023, presionada por inversores activistas, Salesforce recortó costos con fuerza. El **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 5,9 % a **21,5 %**. El margen ajustado, que usan la empresa y los analistas del mercado, fue de 34,1 % en el último trimestre. El promedio de su industria es 33,0 %.\n\n[[grafico:margen_operativo]]\n\nLa ganancia por acción pasó de 0,21 dólares en el año fiscal 2023 a **10,97** en los últimos 12 meses.\n\nY la caja es enorme: **15.154 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **9,5 %**. Por encima de 15 % se considera muy bueno. Es bajo porque Salesforce pagó muchísimo por sus compras (Slack, Tableau, MuleSoft, Informatica), y ese capital pesa."
+    },
+    {
+     "titulo": "Recompras con deuda",
+     "texto": "Salesforce está haciendo una de las recompras más grandes de su historia: un programa acelerado de 25.000 M. Ya recibió 103 millones de acciones. Las acciones en circulación bajaron de 997 millones a **896 millones**.\n\n[[grafico:acciones]]\n\nPara pagarlo, se endeudó: la deuda total pasó de 17.176 M a principios de 2026 a **41.743 M**. La deuda neta (lo que debe menos la caja) es de 30.978 M, unas dos veces lo que genera de flujo libre de caja en un año. El balance aguanta, pero ya no tiene el colchón de antes.\n\nRecomprar acciones con deuda tiene sentido si las acciones están baratas. Si la empresa tiene razón y el mercado se equivoca sobre la IA, es una gran jugada. Si el mercado tiene razón, la empresa se endeudó para comprar acciones de un negocio que se achica.\n\nTambién paga un dividendo chico, que empezó en 2024.\n\nLa conduce Marc Benioff, fundador y CEO: \"Acabamos de lograr uno de nuestros mejores trimestres, superando todas las métricas clave\"."
+    }
    ],
-   "vigilar": [
-    "Deuda neta: hoy 30.978 M; tiene que bajar con el flujo libre.",
-    "Margen operativo: hoy 21,5 %; si baja, la inteligencia artificial cuesta más de lo previsto.",
-    "Ingresos: hoy +9,6 %; si baja de 8 %, el negocio se estanca.",
-    "Recompras: hoy 35.070 M; no deberían seguir superando al flujo libre."
+   "valuacion": {
+    "texto": "En Salesforce, el número que conviene mirar es el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan al comprar la acción. Es más estable que la ganancia contable.\n\nCon el precio de {precio} dólares, Salesforce cotiza a {v:p_fcf} veces su flujo libre de caja. Eso está {vs:p_fcf} su propia mediana histórica ({med:p_fcf} veces).\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nLo que mueve hoy el múltiplo de Salesforce es el miedo a que la IA reduzca la cantidad de licencias que las empresas compran, aunque la empresa gana más que nunca. Si Agentforce demuestra que la IA le suma ingresos en lugar de restarle, ese miedo puede revertirse. Si no, el múltiplo bajo puede estar justificado.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos históricos de Salesforce, de antes de que existiera este miedo: conviene tomarlo con cuidado. El dividendo rinde {dy}."
+   },
+   "conclusion": "Salesforce es una muy buena empresa. Tiene el software de gestión de clientes más usado del mundo, clientes muy atados, márgenes que se triplicaron en pocos años, una caja enorme y un negocio de IA que crece más de 200 %.\n\nSu punto débil es la incertidumbre sobre su modelo. Si la IA reduce la cantidad de usuarios que las empresas necesitan, Salesforce cobra menos. Además, se endeudó fuerte para recomprar acciones, y su crecimiento ya no es el de antes. El crítico más duro diría que Salesforce está apostando la solidez de su balance a que el mercado se equivoca. Es un argumento serio.\n\nEncaja con quien cree que la IA va a reforzar a las grandes plataformas de software, no a reemplazarlas, y acepta el riesgo de la deuda. No es para quien busca un balance sin deuda o certezas sobre el futuro del software.\n\nPara que la tesis se mantenga, lo más importante es que Agentforce siga creciendo con fuerza y que los ingresos por suscripción no se frenen.",
+   "pros": [
+    "Agentes de IA: Agentforce crece más de 240 %.",
+    "Mucha caja: 15.154 M de flujo libre en los últimos 12 meses.",
+    "Clientes atados: años de datos de clientes viven en su sistema."
    ],
+   "contras": [
+    "Miedo a la IA: podría reducir la cantidad de licencias por empresa.",
+    "Deuda en alza: la deuda total pasó de 17.176 M a 41.743 M.",
+    "Crecimiento moderado: ingresos +11 %, con 3 puntos de una compra."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "alto",
    "clientes": [
-    "Empresas de todos los tamaños",
-    "Equipos de ventas, servicio y marketing",
-    "Organismos públicos y sectores regulados"
+    "Empresas de todos los tamaños y sectores",
+    "Equipos de ventas, atención al cliente y marketing",
+    "Gobiernos y organismos públicos"
    ],
-   "ideal_para": [
-    "Buscan software empresarial rentable con recompras y dividendo.",
-    "Valoran el flujo libre alto.",
-    "Aceptan el riesgo de la deuda alta."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (cerrado el 31/07/2026): ingresos de 11.300 M (+11 %; Informatica aportó 456 M); suscripciones 10.800 M (+12 %); contratos a cobrar en 12 meses de 33.500 M (+14 %); Agentforce y Data 360 casi 3.900 M de ingreso recurrente anual (+210 %); Agentforce más de 1.500 M (+240 %); margen operativo de 20,5 % y ajustado de 34,1 %; ganancia por acción de 4,29 dólares y ajustada de 5,90; flujo libre de 1.100 M (+81 %); recompra acelerada de 25.000 M (103 millones de acciones entregadas); guía del año fiscal 2027: ingresos de 46.100 M a 46.400 M; frase de Marc Benioff",
+     "fuente": "Comunicado de resultados del 2T del año fiscal 2027, 09/2026",
+     "url": "https://www.salesforce.com/au/news/linked-content/salesforce-delivers-record-second-quarter-fiscal-2027-results/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan balances sin deuda.",
-    "No toleran el desafío de los agentes de inteligencia artificial."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "CRM",
    "perfil": "software",
    "capas": [],
-   "ticker": "CRM",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8706,56 +8765,62 @@
    }
   },
   "ANET": {
-   "resumen": "Arista Networks es una empresa estadounidense de redes para centros de datos: vende switches (los equipos que conectan servidores entre sí a gran velocidad) y su sistema operativo de red, EOS, para entornos de inteligencia artificial, nube, campus y enrutamiento. Gana plata vendiendo equipos y software, más servicios de soporte, sobre todo a las empresas que operan los mayores centros de datos del mundo. Tiene un **foso estrecho, de software de red y relaciones con grandes clientes**: su sistema operativo único para todos sus equipos facilita la automatización y es difícil de reemplazar, y los grandes operadores de nube confían en su velocidad y su soporte. Los números son excelentes: los ingresos pasaron de 4.381 M en 2022 a **10.541 M** en los últimos 12 meses (creciendo entre 19 % y 34 % por año), el margen operativo es de **43,1 %**, el ROIC de **24,9 %** y el flujo libre de **5.155 M** (48,9 % de los ingresos), con inversiones de solo 151 M. Tiene **13.343 M en caja y sin deuda** (Yahoo no informa deuda desde 2023) y las acciones casi no aumentaron (de 1.266 M a 1.276 M, 0,8 % más). No paga dividendo. Su punto débil es la concentración: pocos clientes gigantes de nube compran buena parte de sus equipos (dato público a verificar), y el crecimiento actual depende en gran parte del gasto en centros de datos para inteligencia artificial. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad excelente, con foso estrecho, margen operativo de 43,1 %, ROIC de 24,9 % y caja de 13.343 M sin deuda, aunque con clientes concentrados y demanda atada a la inteligencia artificial.**",
-   "veredicto": "Excelente: margen operativo de 43,1 %, ROIC de 24,9 % y caja de 13.343 M sin deuda, con clientes muy concentrados",
-   "conclusion": "Arista es una empresa de calidad excelente: tiene un foso estrecho de software de red, margen operativo de 43,1 %, ROIC de 24,9 %, flujo libre de 5.155 M y 13.343 M en caja sin deuda informada, pero depende de pocos clientes gigantes y del gasto en centros de datos de inteligencia artificial. Vale la pena seguirla de cerca. Es recomendable investigar la concentración de clientes y la competencia de Nvidia en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los clientes grandes sigan comprando y el margen operativo se sostenga.",
+   "formato": "v4",
+   "titulo": "Arista Networks: las redes que conectan los chips de la IA, con márgenes de software",
+   "resumen": [
+    "Arista Networks fabrica **equipos de red** (switches) y el software que los maneja, para los centros de datos más grandes del mundo. Es una pieza clave de la IA: conecta miles de chips para que trabajen como una sola computadora. Su ventaja es un sistema operativo propio, muy estable, que los grandes clientes eligen por confiabilidad.",
+    "En el segundo trimestre de 2026, **sus ingresos crecieron 37,7 %**, a algo más de 3.000 M, con un margen operativo cercano a 50 %. La empresa espera vender unos 12.600 M en 2026, un 40 % más.",
+    "Excelente empresa, con crecimiento alto, márgenes enormes, mucha caja y sin deuda, aunque depende de pocos clientes gigantes y el mercado ya la paga cara."
+   ],
+   "introduccion": "Un centro de datos de inteligencia artificial no es un montón de chips sueltos. Son decenas de miles de chips de Nvidia o similares que tienen que hablar entre sí todo el tiempo, a velocidades altísimas. Si la red que los conecta es lenta o falla, los chips, que cuestan fortunas, se quedan esperando.\n\nArista Networks fabrica esa red. Sus switches y su software conectan los servidores de algunos de los centros de datos más grandes del mundo.\n\nY la IA le cambió la escala. En el segundo trimestre de 2026 vendió algo más de 3.000 M, un 37,7 % más que un año antes. Para todo el año espera vender unos 12.600 M, un 40 % más, y al menos 3.500 M solo en redes para IA.\n\nLo más llamativo es cuánto gana: de cada 100 dólares que vende, casi 50 quedan como ganancia operativa. Es un margen más típico de una empresa de software que de una que vende equipos.\n\nEntonces, la pregunta es: ¿puede sostener ese crecimiento y esos márgenes cuando Nvidia y otros también quieren vender la red?",
+   "secciones": [
+    {
+     "titulo": "La red dentro de los centros de datos",
+     "texto": "Arista vende tres cosas:\n\n- **Redes para centros de datos y nube**: el corazón del negocio. Switches de alta velocidad para las grandes nubes y empresas.\n- **Redes para IA**: las que conectan los chips de los grandes centros de datos de IA. La empresa apunta a facturar al menos 3.500 M en 2026.\n- **Redes para oficinas y campus**: el negocio más nuevo, para empresas medianas y grandes. Apunta a al menos 1.250 M en 2026.\n\nSus clientes son pocos y enormes. Históricamente, Microsoft (MSFT) y Meta (META) explican una parte muy grande de sus ventas, junto con otras grandes nubes, bancos y empresas de servicios financieros.\n\n¿Cuál es su **ventaja**? Su **software**. Arista tiene un solo sistema operativo (EOS) para todos sus equipos, conocido por ser muy estable y fácil de automatizar. Para un centro de datos que no puede caerse, eso vale mucho. Además, sus equipos usan chips estándar, lo que le permite moverse rápido.\n\nLa inteligencia artificial es su motor principal. Su gran competidor en redes para IA es **Nvidia (NVDA)**, que vende su propia tecnología de red junto con sus chips. A eso se suman Cisco (CSCO) y fabricantes que arman equipos a pedido para las grandes nubes."
+    },
+    {
+     "titulo": "Crecimiento alto con márgenes de software",
+     "texto": "Los ingresos se multiplicaron: de 4.381 M en 2022 a **10.541 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 34,9 % a **43,1 %** en los últimos 12 meses. El promedio de su industria es 20,7 %. Su margen bruto (63,4 % en el último trimestre) bajó un poco, porque las grandes nubes compran volúmenes enormes y negocian precio.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **24,9 %**. Por encima de 15 % se considera muy bueno. Parece más bajo de lo que es, porque incluye la enorme caja que acumula.\n\nY la caja crece: **5.155 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nUn dato para seguir: los ingresos diferidos (lo que los clientes ya pagaron o facturaron y Arista todavía tiene que reconocer como venta) llegaron a unos 6.900 M. Es trabajo asegurado."
+    },
+    {
+     "titulo": "Sin deuda y con mucha caja",
+     "texto": "Arista no tiene deuda y tiene **13.343 M en caja**. No paga dividendo: usa parte de la caja para recomprar acciones.\n\nLos riesgos:\n\n- **Concentración**: unos pocos clientes explican gran parte de las ventas. Si uno frena su inversión, se nota mucho.\n- **Nvidia**: vende su propia red junto con sus chips, y puede quedarse con una parte de los centros de datos de IA.\n- **El ciclo de la IA**: si las grandes nubes recortan su inversión, las ventas de Arista caen.\n\nPara el tercer trimestre de 2026, la empresa espera vender unos 3.300 M y ganar entre 1,06 y 1,08 dólares por acción.\n\nLa conduce Jayshree Ullal, CEO desde 2008: \"Nuestro renovado entusiasmo por atender la demanda en la segunda mitad de 2026 se aplica a todos nuestros sectores\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Arista, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Arista cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEs un múltiplo de empresa de crecimiento. Con la ganancia creciendo cerca de 40 % por año, el PER baja rápido si la empresa cumple. Lo que el mercado está pagando es la confianza en que la inversión en centros de datos de IA sigue por varios años y en que Arista mantiene su lugar frente a Nvidia.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Arista Networks es una empresa excelente. Tiene un software de red reconocido por su estabilidad, márgenes operativos cercanos a 50 %, un crecimiento de 40 %, mucha caja y ninguna deuda. Y está en el centro de la inversión en centros de datos de IA.\n\nSu punto débil es la concentración y la competencia. Depende de pocos clientes gigantes, Nvidia quiere quedarse con la red de los centros de datos de IA, y sus ventas siguen el ciclo de inversión de las grandes nubes. Además, el mercado ya la paga cara. El crítico más duro diría que Arista vive de la inversión de cuatro o cinco empresas, y que si ellas frenan, la caída puede ser fuerte. Es un argumento serio.\n\nEncaja con quien cree en la inversión en IA para los próximos años y tolera caídas fuertes. No es para quien busca dividendos o estabilidad.\n\nPara que la tesis se mantenga, lo más importante es que siga ganando pedidos de redes para IA frente a Nvidia y que sume clientes para reducir la concentración.",
+   "pros": [
+    "Crecimiento alto: espera vender 40 % más en 2026.",
+    "Márgenes enormes: margen operativo de 43,1 %, contra 20,7 % de su industria.",
+    "Balance impecable: 13.343 M de caja y sin deuda."
+   ],
+   "contras": [
+    "Pocos clientes: Microsoft y Meta pesan mucho en sus ventas.",
+    "Nvidia: compite con su propia red para IA.",
+    "Precio exigente: el mercado ya paga por varios años de crecimiento."
+   ],
    "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "Arista Networks se dedica al desarrollo, la comercialización y la venta de soluciones de redes basadas en datos, del cliente a la nube, para entornos de inteligencia artificial, centros de datos, campus y enrutamiento en América, Europa, Medio Oriente, África y Asia-Pacífico. Sus soluciones consisten en EOS, un sistema operativo de red, y los equipos que lo usan. Yahoo no informa cuánto aporta cada línea ni cada cliente, y no lo vamos a inventar.\n\nEs un negocio de equipos en fuerte crecimiento: **los ingresos subieron 33,8 % en 2023, 19,5 % en 2024 y 28,6 % en 2025, hasta 9.006 M**, y llegan a 10.541 M en los últimos 12 meses.\n\n**A quién le vende.** Principalmente a las empresas que operan grandes centros de datos y nubes, además de empresas y organismos. **Yahoo no informa la concentración de clientes**, un dato clave a verificar en el informe.",
-   "foso": "La ventaja de Arista **es de software de red y relaciones con grandes clientes, y es estrecha**. Su sistema operativo EOS es el mismo en todos sus equipos y está diseñado para automatizar y controlar miles de switches desde programas, algo que los grandes operadores de nube valoran y que los obliga a invertir en personal y herramientas pensadas para él. Se ve en el margen operativo, que subió de 34,9 % a 43,1 %, y en un ROIC estable cerca de 25 %.\n\nCompite con Cisco, Nvidia (que vende redes para inteligencia artificial), Juniper (adquirida por Hewlett Packard Enterprise, dato público), Huawei y los equipos propios de los gigantes de nube. Es frágil en la concentración de clientes, en que un cliente grande puede diseñar sus propios switches y en el ciclo de gasto de centros de datos. La inteligencia artificial no la amenaza de forma directa; hoy es la principal fuente de demanda.",
-   "numeros": "Los números de Arista cuentan **crecimiento fuerte con márgenes de primer nivel**. Los ingresos fueron de 4.381 M, 5.860 M, 7.003 M y 9.006 M, y de 10.541 M en los últimos 12 meses. El EBIT fue de 1.527 M, 2.257 M, 2.945 M y 3.856 M, y de **4.547 M** (margen operativo de 43,1 %). La ganancia neta fue de 1.352 M, 2.087 M, 2.852 M y 3.511 M, y de 4.045 M. La ganancia por acción fue de 1,07, 1,65, 2,23, 2,75 y **3,17**; Yahoo parece expresarla tras un split de acciones (dato público a verificar).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 448 M, 2.000 M, 3.676 M y 4.252 M, y de **5.155 M** en los últimos 12 meses (48,9 % de los ingresos). El ROIC fue de 26,7 %, 27,0 %, 25,7 %, 25,7 % y 24,9 %.\n\nLa mirada crítica: el flujo libre de 2022 (448 M) fue bajo por acumulación de inventario y compras de componentes en la escasez de chips (dato público a verificar). El margen bruto bajó de 64,1 % a 63,0 % en los últimos 12 meses, probablemente por el mix de clientes grandes.",
-   "balance": "**Balance sin deuda y con mucha caja.** La caja es de 13.343 M y Yahoo no informa deuda desde 2023 (en 2022 eran 44 M), lo que indica deuda nula o mínima, un dato a verificar en el informe. El patrimonio neto es de 14.798 M y la caja equivale a 90 % del patrimonio. La cobertura de intereses y la deuda neta/EBITDA no son relevantes.\n\nLa caja pasó de 3.024 M en 2022 a 13.343 M, un crecimiento que financió con su propio flujo libre. Es un balance extremadamente cómodo.",
-   "gerencia": "La conduce Jayshree Ullal, presidenta del directorio y CEO (64 años, pago de 0,6 M según Yahoo), con Chantelle Breithaupt como directora financiera (53 años, pago de 0,6 M), Ken Duda como presidente y director de tecnología (53 años) y Todd Nightingale como presidente y director de operaciones (45 años). El cofundador Andy Bechtolsheim (70 años) sigue como arquitecto jefe. Ullal lleva más de una década al frente, dato público.\n\nEn lo que importa, **el uso del capital es de reinversión y recompras moderadas**: no paga dividendo y recompró 670 M en 2022, 112 M, 424 M, 1.603 M y 620 M en los últimos 12 meses (12 % del flujo libre). **Las acciones casi no se movieron: de 1.266 M a 1.276 M, un 0,8 % más.** La caja se acumula.",
-   "fortalezas": [
-    "Margen operativo de 43,1 % y ROIC de 24,9 %.",
-    "Flujo libre de 5.155 M, 48,9 % de los ingresos.",
-    "Caja de 13.343 M sin deuda informada.",
-    "Ingresos creciendo entre 19 % y 34 % por año.",
-    "Sistema operativo propio que fideliza a los grandes clientes."
-   ],
-   "debilidades": [
-    "Clientes grandes y concentrados: el crítico más duro diría que la pérdida de uno solo cambia el negocio.",
-    "Demanda atada al gasto en centros de datos de inteligencia artificial.",
-    "Margen bruto que bajó de 64,1 % a 63,0 %.",
-    "Competencia de Nvidia, Cisco y diseños propios de los gigantes de nube.",
-    "Sin dividendo y con la caja acumulándose sin destino claro."
-   ],
-   "vigilar": [
-    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe.",
-    "Margen bruto: hoy 63,0 %; si baja más, el mix de clientes grandes pesa.",
-    "Ingresos: hoy +28 %; el cambio de ritmo anticipa el ciclo de gasto.",
-    "Uso de la caja: hoy 13.343 M; define cuánto se devuelve al accionista."
-   ],
    "clientes": [
-    "Operadores de grandes nubes y centros de datos",
-    "Empresas y campus corporativos",
-    "Proveedores de servicios y organismos públicos"
+    "Microsoft (MSFT) y Meta (META)",
+    "Otras grandes nubes y empresas de IA",
+    "Bancos, empresas financieras y grandes empresas (campus)"
    ],
-   "ideal_para": [
-    "Buscan una empresa de redes con márgenes y caja muy altos.",
-    "Valoran un balance sin deuda.",
-    "Aceptan la dependencia del gasto en centros de datos."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ingresos de algo más de 3.000 M (+37,7 %); margen bruto de 63,4 %; margen operativo de 49,9 %; ganancia por acción de 1,02 dólares (+39,7 %); ingresos diferidos de unos 6.900 M; guía del 3T26: ingresos de unos 3.300 M y ganancia por acción de 1,06 a 1,08 dólares; meta 2026: ingresos de unos 12.600 M (+40 %), redes para IA de al menos 3.500 M y campus de al menos 1.250 M; frase de Jayshree Ullal",
+     "fuente": "Resumen de la conferencia de resultados del 2T26, 04/08/2026",
+     "url": "https://www.marketbeat.com/instant-alerts/arista-networks-q2-earnings-call-highlights-2026-08-04/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendos.",
-    "No toleran la concentración en pocos clientes."
-   ],
+   "ticker": "ANET",
    "perfil": "hardware",
    "capas": [
     "compounder"
    ],
-   "ticker": "ANET",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -9224,56 +9289,67 @@
    }
   },
   "TTE": {
-   "resumen": "TotalEnergies es una de las mayores petroleras integradas del mundo, con sede en Francia: produce y comercializa petróleo y biocombustibles, gas natural y GNL, biogás e hidrógeno de bajo carbono, renovables y electricidad. Opera cinco segmentos: exploración y producción, GNL integrado, electricidad integrada, refinación y química, y comercialización y servicios (estaciones de servicio). Gana plata extrayendo y vendiendo energía a precios que fija el mercado mundial. Tiene un **foso débil a estrecho, de escala, activos de bajo costo y GNL integrado**: algunos de sus yacimientos y contratos de gas natural licuado tienen costos menores al promedio y la integración hasta la estación de servicio suaviza el ciclo, pero el precio de lo que vende no lo decide ella. Los números cuentan un ciclo: el EBIT bajó de 49.693 M en 2022 a **19.925 M** en 2025 y subió a **26.931 M** en los últimos 12 meses, con el Brent en máximos de cinco meses por la guerra con Irán y Ormuz. El margen operativo es de 13,7 %, el ROIC de **8,7 %** y el flujo libre de **16.221 M** (8,3 % de los ingresos), 49 % menos que el de 2022. Hay 13,4 % menos acciones que en 2022 y entrega casi todo el flujo libre al accionista (91 % entre dividendo y recompras). Su punto débil es que las inversiones (16.818 M) son casi iguales al flujo operativo, que la deuda total subió de 47.870 M a 62.708 M y que la transición energética exige inversiones con retornos todavía inciertos. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de calidad regular, con escala, GNL integrado y retorno al accionista alto, aunque con ROIC de 8,7 %, flujo libre a la mitad del de 2022 y deuda en alza.**",
-   "veredicto": "Regular: escala, GNL integrado y retorno al accionista alto, con ROIC de 8,7 %, flujo libre a la mitad del de 2022 y deuda en alza",
-   "conclusion": "TotalEnergies es una empresa de calidad regular: tiene escala, GNL integrado, un flujo libre de 16.221 M y 13,4 % menos acciones, pero su ROIC es de 8,7 %, el flujo libre es la mitad del de 2022, la deuda subió a 62.708 M y todo depende del precio de la energía. Hay que seguirla de cerca. Es recomendable investigar el costo de producción y los retornos de las inversiones en electricidad en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo y las recompras sin más deuda.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "TotalEnergies: la petrolera francesa que apuesta al gas y a la electricidad, y gana con la guerra",
+   "resumen": [
+    "TotalEnergies es una de las mayores petroleras del mundo, con sede en Francia: produce **petróleo y gas** (también en la Argentina), es líder en **gas natural licuado** y está construyendo un negocio de **generación eléctrica**. Su ventaja son costos de producción bajos y una estrategia más diversificada que la de sus rivales.",
+    "En el tercer trimestre de 2026, con la guerra en Medio Oriente, **su ganancia ajustada subió más de 50 % contra el trimestre anterior**, a 9.100 M, y su flujo de caja llegó a 12.300 M. Su deuda bajó a menos de 10 % de su capital.",
+    "Buena empresa, con un balance muy sólido, un dividendo alto y creciente y una estrategia más equilibrada que otras petroleras, pero con ganancias que dependen del petróleo y del gas, hoy altos por una guerra."
+   ],
+   "introduccion": "Para un lector argentino, TotalEnergies no es una desconocida: es uno de los mayores productores de gas del país, con operaciones en Vaca Muerta y en el mar de Tierra del Fuego.\n\nEn el mundo, es una de las cinco grandes petroleras occidentales. Pero tiene una estrategia distinta. Mientras otras petroleras volvieron a concentrarse solo en petróleo y gas, TotalEnergies apostó a dos cosas a la vez: el **gas natural licuado**, del que es uno de los mayores vendedores del mundo, y la **electricidad**, con centrales a gas, solares y eólicas.\n\nEn 2026, la guerra en Medio Oriente le juega a favor. El margen de refinación en Europa llegó a 33 dólares por barril en el tercer trimestre, unas 2,5 veces más que en el trimestre anterior. Su ganancia ajustada subió más de 50 % en tres meses.\n\nPero la guerra también le juega en contra: alrededor del 5 % de su producción está en Medio Oriente y se vio afectada.\n\nEntonces, la pregunta es: ¿es la apuesta de TotalEnergies a la electricidad una ventaja de largo plazo, o le resta rentabilidad frente a las petroleras que solo buscan petróleo?",
+   "secciones": [
+    {
+     "titulo": "Petróleo, gas licuado, refinación y electricidad",
+     "texto": "TotalEnergies tiene cuatro grandes negocios:\n\n- **Producción de petróleo y gas**: produjo 2,47 millones de barriles equivalentes por día en el tercer trimestre de 2026, un 3 % más que en el anterior, con costos de producción de 4,7 dólares por barril, de los más bajos de la industria.\n- **Gas natural licuado**: lo produce, lo transporta y lo vende en todo el mundo. Ganó 1.900 M en el trimestre, más del doble que en el anterior.\n- **Refinación y química**: convierte petróleo en combustibles y plásticos. Ganó 3.600 M, impulsada por márgenes récord.\n- **Electricidad integrada**: genera y vende electricidad. Produjo 44,3 teravatios hora en nueve meses, más de 20 % más que un año antes, y espera generar unos 3.000 M de caja en el año.\n\nSus clientes son gobiernos, empresas de energía, industrias, distribuidoras de electricidad y millones de automovilistas en sus estaciones.\n\n¿Cuál es su **ventaja**? Los **costos bajos** de producción, que le permiten ganar aun con el petróleo barato, y su posición en **gas natural licuado**, que el mundo va a seguir necesitando durante décadas. A eso se suma una estrategia más diversificada que la de sus rivales.\n\nLa inteligencia artificial, en todo caso, la ayuda: los centros de datos necesitan electricidad y gas."
+    },
+    {
+     "titulo": "Ganancias que siguen al petróleo",
+     "texto": "Como toda petrolera, sus resultados suben y bajan con los precios. Los ingresos pasaron de 263.310 M en 2022, con la guerra en Ucrania, a 182.344 M en 2025, y volvieron a subir a **196.382 M** en los últimos 12 meses.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), bajó de 22,3 % en 2022 a **8,7 %** en los últimos 12 meses. Por encima de 15 % se considera muy bueno. El promedio de su industria es 17,0 %. Con los precios del tercer trimestre, la empresa calcula un retorno de 17,4 % sobre su capital.\n\n[[grafico:roic]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) bajó de 31.677 M en 2022 a 10.390 M en 2025, y volvió a subir a **16.221 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara todo 2026, la empresa espera un flujo de caja operativo de más de 42.000 M, y quizás 43.000 M.\n\nLa estrategia eléctrica es el gran debate. Su CEO sostiene que da ingresos más estables y lo prepara para un mundo con menos petróleo. Sus críticos dicen que la electricidad rinde menos que el petróleo y el gas, y que eso baja el retorno total de la empresa."
+    },
+    {
+     "titulo": "Un balance muy sólido y un dividendo que crece",
+     "texto": "TotalEnergies tiene uno de los balances más sólidos del sector. Su **endeudamiento** (la deuda neta sobre la suma de deuda neta y patrimonio) bajó a **9,1 %**, desde 13,1 %. Por debajo de 20 % se considera bajo. La deuda neta equivale a **0,75 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos (por debajo de 2 veces se considera cómodo).\n\n[[grafico:deuda_neta]]\n\nCon esa solidez, devuelve mucho. En el tercer trimestre pagó 2.200 M en dividendos y recompró acciones por 1.500 M. El dividendo trimestral es de 0,90 euros por acción, un 5,9 % más que un año antes, y anunció recompras por 2.500 M entre el cuarto trimestre de 2026 y el primero de 2027.\n\nLos riesgos: la dependencia del precio del petróleo y del gas, la exposición a Medio Oriente, y la presión en Europa para reducir los combustibles fósiles.\n\nLa conduce Patrick Pouyanné, CEO desde 2014: \"Todo está en verde, no solo los distintos indicadores del mercado, sino también el desempeño operativo\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una petrolera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: en los años de petróleo caro la ganancia es alta y el PER parece bajo; cuando el precio cae, pasa lo contrario.\n\nCon el precio de {precio} dólares por ADR, TotalEnergies cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nUn número más estable es el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. TotalEnergies cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces).\n\nLas petroleras europeas suelen cotizar más baratas que las de EE.UU., por la incertidumbre sobre su futuro en Europa. El dividendo alto compensa en parte esa incertidumbre.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "TotalEnergies es una buena empresa. Tiene costos de producción de los más bajos del sector, una posición fuerte en gas natural licuado, un balance con muy poca deuda, un dividendo alto y creciente, y una estrategia que la prepara para un mundo con más electricidad.\n\nSu punto débil es que su ganancia depende del petróleo y del gas, hoy altos por una guerra, y que su apuesta eléctrica rinde menos que el petróleo, lo que baja su retorno sobre el capital. El crítico más duro diría que TotalEnergies quiere ser petrolera y eléctrica a la vez, y que termina rindiendo menos que las que eligen un solo camino. Es un argumento a tener en cuenta.\n\nEncaja con quien busca un dividendo alto de una petrolera sólida y diversificada. No es para quien busca resultados estables.\n\nPara que la tesis se mantenga, lo más importante es que la producción siga creciendo con costos bajos y que el negocio eléctrico genere la caja que promete.",
+   "pros": [
+    "Costos bajos: 4,7 dólares por barril de costo de producción.",
+    "Balance sólido: endeudamiento de 9,1 %.",
+    "Dividendo creciente: +5,9 % en el último año."
+   ],
+   "contras": [
+    "Depende del petróleo: el salto de 2026 viene de la guerra.",
+    "Retorno modesto: ROIC de 8,7 %, contra 17,0 % de su industria.",
+    "Exposición a Medio Oriente: alrededor del 5 % de su producción."
+   ],
+   "calidad": "Buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "TotalEnergies produce y comercializa petróleo y biocombustibles, gas natural, biogás e hidrógeno bajo en carbono, energías renovables y electricidad en Francia, Estados Unidos, Europa, África y a nivel internacional. Opera cinco segmentos: **Exploration & Production**, **Integrated LNG**, **Integrated Power**, **Refining & Chemicals** y **Marketing & Services**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al precio de la energía: **los ingresos cayeron 16,8 % en 2023, 10,7 % en 2024 y 6,8 % en 2025, hasta 182.344 M**, y suben a 196.382 M en los últimos 12 meses.\n\n**A quién le vende.** A industrias, empresas de energía, distribuidores y consumidores de todo el mundo. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de TotalEnergies **es de escala, activos de bajo costo y GNL integrado, y es débil a estrecha**. Una parte de sus yacimientos tiene costos de producción menores al promedio, sus contratos de gas natural licuado a largo plazo le dan ingresos más estables y su red de estaciones de servicio y refinerías le permite capturar valor en varios puntos de la cadena. Se ve en un margen operativo que se mantiene entre 10,9 % y 18,9 % incluso con precios más bajos.\n\nPero no controla el precio del petróleo y el gas, y el ROIC de 8,7 % indica que, en promedio, apenas rinde por encima del costo del capital. Compite con Shell, BP, Exxon, Chevron, Eni y las petroleras estatales. Es frágil en el precio de la energía, en la geopolítica de sus zonas de operación, en la regulación ambiental y en que invierte en energías renovables con retornos todavía inciertos. La inteligencia artificial casi no la afecta.",
-   "numeros": "Los números de TotalEnergies cuentan **un ciclo de precios con un rebote reciente**. Los ingresos fueron de 263.310 M, 218.945 M, 195.610 M y 182.344 M, y de 196.382 M en los últimos 12 meses. El EBIT fue de 49.693 M, 30.857 M, 24.105 M y 19.925 M, y de **26.931 M** (margen operativo de 13,7 %). La ganancia neta fue de 20.526 M, 21.384 M, 15.758 M y 13.127 M, y de 17.837 M. La ganancia por acción fue de 7,85, 8,67, 6,69, 5,78 y **7,99**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 31.677 M, 22.957 M, 15.945 M y 10.390 M, y de **16.221 M** en los últimos 12 meses (8,3 % de los ingresos), con inversiones de 16.818 M. El ROIC fue de 22,3 %, 11,7 %, 10,8 %, 8,6 % y 8,7 %.\n\nLa mirada crítica: el rebote de los últimos 12 meses viene de un precio del petróleo más alto por la guerra con Irán y el riesgo en Ormuz (macro de la semana), no de una mejora del negocio. Si el precio vuelve a bajar, el EBIT vuelve hacia 20.000 M.",
-   "balance": "**Deuda moderada pero en alza.** La deuda total es de 62.708 M y la caja de 31.717 M; la deuda neta es de 35.030 M y la deuda neta/EBITDA es de 0,75x, que multiplicado por 12 son unos 9 meses de EBITDA. Los intereses se cubren 10,3 veces con el EBIT.\n\nEl patrimonio neto es de 128.408 M y la deuda equivale a 0,49 veces el patrimonio. La deuda total subió de 47.870 M en 2023 a 62.708 M, mientras el flujo libre bajaba; es una tendencia a vigilar.",
-   "gerencia": "La conduce Patrick Pouyanné, presidente del directorio y CEO (62 años, pago de 4,7 M según Yahoo), en el cargo desde 2014, dato público, con Jean-Pierre Sbraire como director financiero (60 años). A los 62 años, la sucesión es una variable a seguir.\n\nEn lo que importa, **el uso del capital es de dividendo y recompras muy altos**: paga un dividendo de 4,01 por acción (8.593 M en los últimos 12 meses, 53 % del flujo libre) y recompró 7.711 M en 2022, 9.167 M, 7.995 M, 7.714 M y 6.141 M en los últimos 12 meses. **Las acciones bajaron de 2.595 M a 2.248 M hasta 2025, un 13,4 % menos.** Entre dividendo y recompras entrega 14.734 M, 91 % del flujo libre.",
-   "fortalezas": [
-    "13,4 % menos acciones desde 2022.",
-    "Flujo libre de 16.221 M y dividendo cubierto.",
-    "GNL integrado con contratos de largo plazo.",
-    "Deuda neta de unos 9 meses de EBITDA.",
-    "Diversificación entre petróleo, gas, refinación y electricidad."
-   ],
-   "debilidades": [
-    "ROIC de 8,7 %, cerca del costo del capital.",
-    "Flujo libre 49 % menor que el de 2022.",
-    "Deuda total que subió de 47.870 M a 62.708 M: el crítico más duro diría que sostiene los retornos con deuda.",
-    "Inversiones de 16.818 M, casi iguales al flujo operativo.",
-    "Totalmente expuesta al precio de la energía."
-   ],
-   "vigilar": [
-    "Precio del Brent: hoy en máximos de cinco meses; si baja, el EBIT vuelve hacia 20.000 M.",
-    "Deuda total: hoy 62.708 M; no debería seguir subiendo.",
-    "Inversiones: hoy 16.818 M; si suben, el flujo libre se aprieta.",
-    "Retornos de las inversiones en renovables: Yahoo no los informa, hay que buscarlos en el informe."
-   ],
    "clientes": [
-    "Industrias y empresas de energía",
-    "Distribuidores y estaciones de servicio",
-    "Consumidores de combustibles y electricidad"
+    "Gobiernos y empresas de energía de Europa y Asia",
+    "Industrias y distribuidoras de electricidad",
+    "Automovilistas en sus estaciones de servicio"
    ],
-   "ideal_para": [
-    "Buscan una petrolera integrada con retorno al accionista alto.",
-    "Valoran la diversificación en GNL y electricidad.",
-    "Aceptan el ciclo del precio de la energía."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia ajustada de 9.100 M; flujo de caja de 12.300 M; endeudamiento por debajo de 10 %; dividendo trimestral de 0,90 euros; recompras de 2.500 M entre el 4T26 y el 1T27",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://totalenergies.com/newsroom/resultats-du-troisieme-trimestre-2026-516472/?lang=eng"
+    },
+    {
+     "dato": "Producción de 2,47 millones de barriles equivalentes por día; costo de 4,7 dólares por barril; margen de refinación europeo de 33 dólares por barril; gas licuado 1.900 M; refinación y química 3.600 M; electricidad: 44,3 teravatios hora en nueve meses; retorno sobre el capital de 17,4 %; endeudamiento de 9,1 % (13,1 %); dividendos de 2.200 M y recompras de 1.500 M en el trimestre; flujo operativo 2026 de más de 42.000 M; frase de Patrick Pouyanné",
+     "fuente": "Resumen de la conferencia de resultados del 3T26, 29/10/2026",
+     "url": "https://finance.biggo.com/news/US_TTE_2026-10-29"
+    }
    ],
-   "menos_ideal": [
-    "Buscan resultados estables.",
-    "No toleran la exposición al precio del petróleo y el gas."
-   ],
+   "ticker": "TTE",
    "perfil": "energia",
    "capas": [
     "ciclica"
    ],
-   "ticker": "TTE",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
