@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.4 (01/11/2026): Análisis Fundamental nuevo, tanda 12
+
+- Reescritas con el formato v4: COP, NVO, PFE y DE. Van 85 de 166.
+
 ### v1.3.3 (01/11/2026): Análisis Fundamental nuevo, tanda 11
 
 - Reescritas con el formato v4: VZ, QCOM, MCD, ABT y UNP. Van 81 de 166.
