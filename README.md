@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.4.1 (01/11/2026): mejoras al Análisis Fundamental pedidas por Guille
+
+- **Fair Value al revés, con margen de seguridad.** La última oración de la valuación (los 139 análisis) ahora dice: "Según la valoración por múltiplos, el Fair Value se ubica en torno a X dólares: el precio de hoy está un N % por debajo de ese valor…". El porcentaje se mide sobre el Fair Value (margen = (Fair Value - precio) / Fair Value). De 15 a 25 %: "margen de seguridad aceptable"; 26 % o más: "gran margen de seguridad"; menos de 15 %: "margen de seguridad chico"; con el precio por encima del Fair Value: "sin margen de seguridad". Lo arma el código (`af_v4.frase_margen`), así que siempre está al día. La valuación explica en una línea qué es el margen de seguridad. La frase de la conclusión del v3 (`precio_vs_fv`) usa la misma regla.
+- **El múltiplo que más corresponde al sector.** 100 de los 139 análisis abrían la valuación con el PER aunque en su sector pesan más otros múltiplos (los mismos con los que la app arma el Fair Value). Se agregó, con los números del día, el múltiplo propio del sector: EV/EBITDA y flujo libre (P/FCF) en energía, materiales, industriales, telecomunicaciones, salud, consumo y software; precio/ventas en semiconductores y hardware. Cada uno se explica (qué es, ejemplo con números, qué pasa si empeora, contra qué se compara). No se tocaron bancos, REITs ni eléctricas (ya usan P/B, FFO o la ganancia ajustada) ni COIN (su flujo de caja incluye plata de clientes). El prompt v4 pide esto para los análisis futuros.
+- **PDF del análisis.** Botón "Descargar este análisis en PDF" arriba del Análisis Fundamental (`ui/af_pdf.py`, con reportlab, que ya estaba): título, resumen, texto, gráficos redibujados, valuación con los números del día, conclusión, a favor/en contra y fuentes, con el membrete de Finanzas para Médicos Argentina. Si falla, el botón no aparece y el resto sigue igual.
+- **Etiquetas:** "Calidad y Precio Hoy" y "Calidad del Negocio".
+- **Sin aclarar que no es excelente:** se sacó "no una excelente" de AMZN, MU, AMD, XOM, JNJ, PLTR, CSCO, ORCL, BAC y NEE (ahora "buena" o "muy buena" y listo). El validador y el prompt lo prohíben.
+
 ### v1.4.0 (01/11/2026): Análisis Fundamental nuevo, tanda 18
 
 - Reescritas con el formato v4: HDB, IBN, INFY y COIN. Van 139 de 166.

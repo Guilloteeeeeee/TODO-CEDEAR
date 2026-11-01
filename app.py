@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.0"
+APP_VERSION = "1.4.1"
 
 import re
 import contextlib
@@ -352,6 +352,34 @@ def _af_para_ficha(ticker: str):
         return _af.para_ficha(ticker)
     except Exception:  # noqa: BLE001
         return None
+
+
+def _boton_pdf_analisis(tk, af, rd, extra, pares):
+    """v1.4.1: botón para bajar el Análisis Fundamental (formato v4) en PDF, con los números del día. Se arma en memoria y se guarda un rato por empresa y por precio.
+    Si algo falla (por ejemplo, no está reportlab), no se muestra el botón y el resto de la página sigue igual."""
+    if not (af and af.get("formato") == "v4" and af.get("titulo")):
+        return
+    try:
+        m = _memo_extras()
+        clave = ("afpdf", tk, str(af.get("fecha")), str(rd.get("precio_actual")), str(rd.get("fair_value")), bool(extra.get("estados")))
+        hit = m.get(clave)
+        if hit and time.time() - hit[0] < 1800:
+            datos = hit[1]
+        else:
+            from ui import af_pdf as _afpdf
+            datos = _afpdf.pdf_analisis(af, extra.get("estados"), rd, pares, extra.get("dividendos"), _bono10_hoy(), str(rd.get("nombre") or ""))
+            if len(m) > 300:
+                m.clear()
+            m[clave] = (time.time(), datos)
+    except Exception:  # noqa: BLE001
+        return
+    args = dict(data=datos, file_name=f"analisis_fundamental_{tk}_{(str(af.get('fecha') or '')).replace('/', '-')}.pdf", mime="application/pdf", key=f"pdf_af_{tk}", on_click="ignore",
+                help="Baja este análisis en PDF, con los números de hoy. Es información con fines educativos, no una recomendación.")
+    try:
+        st.download_button("⬇ Descargar este análisis en PDF", type="tertiary", **args)
+    except TypeError:       # Streamlit viejo, sin type="tertiary" o sin on_click="ignore"
+        args.pop("on_click", None)
+        st.download_button("⬇ Descargar este análisis en PDF", **args)
 
 
 @st.cache_data(ttl=900, show_spinner=False)
@@ -1307,7 +1335,9 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_res:
         st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
-        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_para_ficha(tk), estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]}, historial=pares, dividendos=extra.get("dividendos"), bono10=_bono10_hoy())), unsafe_allow_html=True)
+        _af_ficha = _af_para_ficha(tk)
+        _boton_pdf_analisis(tk, _af_ficha, rd, extra, pares)      # v1.4.1: el análisis (formato v4) se puede bajar en PDF
+        st.markdown(_ficha.con_intro("analisis", _ficha.tab_analisis(rd, af=_af_ficha, estados=extra.get("estados"), universo={str(x).upper() for x in df["ticker"]}, historial=pares, dividendos=extra.get("dividendos"), bono10=_bono10_hoy())), unsafe_allow_html=True)
     with t_gra:
         st.markdown(_ficha.con_intro("grafico", _ficha.tab_grafico_tabla(pares)), unsafe_allow_html=True)      # v1.2.53: los rendimientos van arriba del grafico
         _render_grafico(tk, pares, rd)

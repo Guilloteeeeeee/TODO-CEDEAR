@@ -44,20 +44,18 @@ _CRUCE = {
 
 
 def precio_vs_fv(precio, fair_value):
-    """Frase con el precio de hoy contra el Fair Value estimado por múltiplos (con las cifras), o '' si falta alguno."""
+    """Frase con el precio de hoy contra el Fair Value estimado por múltiplos (con las cifras y el margen de seguridad), o '' si falta alguno.
+    El margen se mide sobre el Fair Value (ver data/af_v4.frase_margen): de 15 a 25 %, aceptable; de 26 % o más, grande."""
     try:
         p, f = float(precio), float(fair_value)
     except (TypeError, ValueError):
         return ""
     if not (p > 0 and f > 0) or p != p or f != f:
         return ""
-    d = (f - p) / p * 100
+    from data import af_v4 as _V
     fmt = lambda x: f"{x:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
-    if abs(d) <= 0.5:
-        return f"Hoy cotiza a US$ {fmt(p)}, en línea con su Fair Value estimado por múltiplos (US$ {fmt(f)})."
-    if d > 0:
-        return f"Hoy cotiza a US$ {fmt(p)}, por debajo de su Fair Value estimado por múltiplos (US$ {fmt(f)}): el Fair Value está {abs(d):.0f} % por encima del precio."
-    return f"Hoy cotiza a US$ {fmt(p)}, por encima de su Fair Value estimado por múltiplos (US$ {fmt(f)}): el precio está {(p - f) / f * 100:.0f} % por encima del Fair Value."
+    frase = _V.frase_margen(p, f)
+    return f"Hoy cotiza a US$ {fmt(p)}. Según la valoración por múltiplos, el Fair Value se ubica en torno a US$ {fmt(f)}: {frase}." if frase else ""
 
 
 def cruce(calidad, categoria):

@@ -55,7 +55,7 @@ BANDA = 0.07                      # ±7 %: "en línea con"
 
 PROHIBIDAS = ("damodaran", "nelissen", "seeking alpha", "morningstar", "dividend collection", "te recomendamos", "recomendamos comprar", "precio objetivo",
               "potencial de suba", "potencial alcista", "comprá", "vendé", "en el dinámico mundo", "cabe destacar", "es importante señalar", "sin lugar a dudas",
-              "en resumen,", "navegar los desafíos", "jugador clave", "bloque de datos", "según el modelo")
+              "en resumen,", "navegar los desafíos", "jugador clave", "bloque de datos", "según el modelo", "no una excelente", "no es excelente", "no llega a ser excelente")
 
 
 # --- formatos -----------------------------------------------------------------------------------------------------------------
@@ -156,6 +156,27 @@ def _industria(dam, clave):
     return v if v and v > 0 else None
 
 
+def frase_margen(precio, fair_value):
+    """Cláusula (sin punto final) que dice dónde está el precio de hoy respecto del Fair Value, con el margen de seguridad.
+    Se mide sobre el Fair Value: margen = (Fair Value - precio) / Fair Value. De 15 a 25 %: margen de seguridad aceptable; más de 25 % (26 o más): gran margen.
+    Con el precio por encima del Fair Value no hay margen de seguridad. Pedido de Guille, 01/11/2026."""
+    p, f = _n(precio), _n(fair_value)
+    if not (p and f and p > 0 and f > 0):
+        return ""
+    m = (f - p) / f * 100
+    r = int(round(abs(m)))
+    if abs(m) < 3:
+        return "el precio de hoy está prácticamente en ese valor, sin margen de seguridad"
+    if m < 0:
+        return f"el precio de hoy está un {r} % por encima de ese valor, es decir, sin margen de seguridad"
+    base = f"el precio de hoy está un {r} % por debajo de ese valor"
+    if r >= 26:
+        return base + ", lo que da un gran margen de seguridad"
+    if r >= 15:
+        return base + ", lo que da un margen de seguridad aceptable"
+    return base + ", un margen de seguridad chico"
+
+
 def contexto(row, af=None, dam=None, bono10=None):
     """{marcador: texto} con todo lo que se puede calcular hoy. Lo que no se puede, no está (y la oración que lo use no se muestra)."""
     row, af = row or {}, af or {}
@@ -200,9 +221,7 @@ def contexto(row, af=None, dam=None, bono10=None):
     fv = _n(row.get("fair_value"))
     if fv and p:
         c["fv"] = num(fv, 2)
-        d = fv / p - 1
-        c["dist_fv"] = ("prácticamente en el precio de hoy" if abs(d) < 0.03 else
-                        f"un {num(abs(d) * 100, 0)} % {'por encima' if d > 0 else 'por debajo'} del precio de hoy")
+        c["dist_fv"] = frase_margen(p, fv)
     if _n(af.get("mes_cierre_fiscal")):
         c["_mes_cierre"] = str(int(_n(af.get("mes_cierre_fiscal"))))
     cr = _n(val.get("crecimiento_ref"))
