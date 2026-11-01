@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.2 (01/11/2026): Análisis Fundamental nuevo, tanda 10
+
+- Reescritas con el formato v4: GILD, DIS, KLAC, PEP, ADI y SAN. Van 76 de 166.
+
 ### v1.3.1 (01/11/2026): Análisis Fundamental nuevo, tanda 9
 
 - Reescritas con el formato v4: AXP, GEV, SIEGY, ANET, SHOP, CRM, C, TTE, MRVL y BHP. Van 70 de 166.

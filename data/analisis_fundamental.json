@@ -4831,54 +4831,60 @@
    }
   },
   "SAN": {
-   "resumen": "Banco Santander es el mayor banco de España y uno de los más grandes de Europa, con un peso enorme en América Latina, el Reino Unido y Estados Unidos: cuentas, tarjetas y préstamos para personas y pequeñas empresas, banca para grandes corporaciones, un banco digital de consumo, gestión de patrimonio y seguros, y pagos. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones. Tiene un **foso estrecho, de escala y diversificación**: opera en muchos países a la vez, y eso reparte el riesgo y le da una base grande de depósitos. Los números mejoraron fuerte: los ingresos pasaron de €54.216 M en 2022 a €60.023 M en 2025, la ganancia neta de €9.605 M a €14.101 M (€16.241 M en los últimos 12 meses), el ROE de 10,8 % a **14,9 %** y **las acciones bajaron 11,4 %** por recompras. Los ingresos de 2025 ya no crecieron (-0,5 %), y la ganancia sube por márgenes y por las recompras. Las cifras están en euros, por lo que el rendimiento en dólares depende del tipo de cambio, y el negocio en América Latina suma riesgo de monedas más débiles. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa, un banco global con ROE de 14,9 %, ganancia en alza y recompras, aunque con ingresos que dejaron de crecer y el riesgo de las monedas.**",
-   "veredicto": "Buena empresa: banco global con ROE de 14,9 % y recompras, pero con ingresos que dejaron de crecer",
-   "conclusion": "Santander es una buena empresa, no una excelente: es un banco global con ROE de 14,9 %, ganancia neta de €16.241 M y 11,4 % menos acciones, pero los ingresos de 2025 no crecieron y las cifras están en euros. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando bajen las tasas.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Santander: el gigante español, también de los mayores bancos de la Argentina, gana más que nunca",
+   "resumen": [
+    "Banco Santander es uno de los mayores bancos del mundo: tiene **189 millones de clientes** en Europa y América, y es líder en España, Reino Unido, Brasil, México y la **Argentina**, donde es uno de los mayores bancos privados. Su ventaja es la escala y una diversificación geográfica que pocos bancos tienen.",
+    "En los primeros nueve meses de 2026, **ganó 12.405 M de euros, un 20 % más**, con una rentabilidad sobre el patrimonio tangible de 16,0 %. En 2026 compró TSB en el Reino Unido y Webster en EE.UU.",
+    "Muy buena empresa, más rentable que nunca, con un capital sólido y una devolución creciente al accionista, aunque expuesta a economías volátiles, como la argentina, y en plena integración de dos compras grandes."
+   ],
+   "introduccion": "Si vivís en la Argentina, es muy probable que conozcas a Santander: es uno de los bancos privados más grandes del país. Pero eso es solo una pequeña parte de un grupo gigante, con sede en España, que tiene 189 millones de clientes en dos continentes.\n\nDurante años, el mercado pagó muy poco por Santander. Se lo veía como un banco con demasiados países, algunos muy riesgosos, y una rentabilidad mediocre. Su acción llegó a cotizar a poco más de la mitad de su patrimonio.\n\nLa historia cambió. Con Ana Botín al frente, Santander unificó su tecnología en todos los países, bajó costos y mejoró su eficiencia. En los primeros nueve meses de 2026, su ganancia creció 20 % y su rentabilidad llegó a 16 %.\n\nY ahora crece comprando: en 2026 sumó TSB, un banco británico, y Webster, un banco de EE.UU., mientras vendió parte de su banco en Polonia.\n\nEntonces, la pregunta es: ¿puede Santander sostener esta rentabilidad mientras integra dos bancos nuevos y lidia con economías tan distintas como la española y la argentina?",
+   "secciones": [
+    {
+     "titulo": "Un banco, cinco negocios, muchos países",
+     "texto": "Santander se organiza en cinco negocios globales. En los primeros nueve meses de 2026 (en euros):\n\n- **Banca minorista y de empresas**: el negocio tradicional en cada país. Ganancia de 6.445 M (+12 %), con una rentabilidad de 17,7 %.\n- **Openbank y consumo**: banca digital y préstamos para autos y consumo. Ganancia de 1.407 M, afectada por provisiones en el Reino Unido por un problema con préstamos para autos.\n- **Banca corporativa y de inversión**: para grandes empresas. Ganancia de 2.433 M (+15 %), con una rentabilidad de 19,2 %.\n- **Patrimonios y seguros**: administra 588.000 M de euros. Ganancia de 1.651 M (+19 %).\n- **Pagos**: el negocio más nuevo.\n\nSus clientes son 189 millones de personas y empresas en España, Reino Unido, Portugal, Polonia, EE.UU., México, Brasil, la Argentina, Chile y otros países. Ningún país domina por completo.\n\n¿Cuál es su **ventaja**? La **escala** y la **diversificación**. Cuando un país anda mal, otro compensa. Y desde que unificó su tecnología en todos los países, gasta mucho menos por cliente que sus competidores: gasta 42,6 euros por cada 100 que genera, una de las mejores eficiencias de la banca mundial.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la usa para atender clientes y bajar costos."
+    },
+    {
+     "titulo": "Más rentable que nunca",
+     "texto": "Las cifras de Santander están en euros.\n\nEn un banco, el número que mejor resume la calidad es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada euro que pusieron los dueños. Por encima de 12 % se considera bueno para un banco.\n\nSantander pasó de un ROE de 10,8 % en 2022 a **14,9 %** en los últimos 12 meses. Su rentabilidad sobre el patrimonio tangible (sin contar activos intangibles) fue de **16,0 %** en los primeros nueve meses de 2026. El promedio de su industria es 13,0 %.\n\n[[grafico:roe]]\n\nLa ganancia neta pasó de 9.605 M de euros en 2022 a **16.241 M** en los últimos 12 meses.\n\nLa clave es la **eficiencia**: gasta 42,6 de cada 100 euros que genera, casi 3 puntos menos que un año antes. Los ingresos crecen 8 % y los costos, 2 %.\n\nEl punto a mirar es la **calidad de los préstamos**. Sus provisiones para préstamos incobrables subieron 13 %, sobre todo por la **Argentina**: sin la Argentina, habrían subido solo 6 %. Es el costo de operar en una economía volátil.\n\nPara 2026, la empresa espera ganar más que los 14.100 M de euros de 2025, y dice que va \"cómodamente\" en camino."
+    },
+    {
+     "titulo": "Capital sólido, compras grandes y más devolución",
+     "texto": "La regla de oro de un banco es tener suficiente capital propio para aguantar pérdidas. El indicador que miran los reguladores es el **CET1**: el capital de mejor calidad sobre los activos ajustados por riesgo. Santander está en **12,7 %**, después de pagar la compra de Webster, que le restó casi 1,5 puntos. Apunta a 12,8 % a 13 %.\n\nEn 2026 hizo tres movimientos grandes:\n\n- Compró **TSB**, un banco británico, en abril.\n- Compró **Webster**, un banco de EE.UU. con 4,2 millones de clientes, en agosto.\n- Vendió el 49 % de su banco en **Polonia** a Erste, con una ganancia de 1.900 M de euros.\n\nDevuelve mucho al accionista: unos 3.660 M de euros contra la primera mitad de 2026, la mitad de lo que ganó. El dividendo intermedio subió 10 %, y está recomprando hasta 1.800 M de euros en acciones. Ya lleva unos 9.000 M en recompras de un plan de al menos 10.000 M.\n\nLos riesgos: la integración de dos bancos nuevos, la exposición a economías volátiles como la argentina y la brasileña, y las provisiones por los préstamos para autos en el Reino Unido.\n\nLa conduce Ana Botín, presidenta desde 2014: \"Mi confianza en nuestra capacidad de cumplir, este año y en nuestro plan de tres años, es mayor que nunca\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuántas veces el patrimonio contable se paga al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, Santander cotiza a {v:p_b} veces su patrimonio. Eso está {vs:p_b} su propia mediana histórica ({med:p_b} veces).\n\nHay una regla sencilla para entender ese número: un banco que gana sobre su patrimonio más de lo que le cuesta conseguir capital (para un banco grande, alrededor de 10 % a 12 %) merece cotizar por encima de una vez su patrimonio. Durante años, Santander ganaba menos que eso, y el mercado lo pagaba muy por debajo de su patrimonio. Con una rentabilidad de 16 %, el mercado cambió de opinión.\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo se basa en los múltiplos de los años en que Santander era mucho menos rentable: conviene tomarlo con cuidado. El dividendo rinde {dy}."
+   },
+   "conclusion": "Santander es una muy buena empresa. Tiene una escala y una diversificación que pocos bancos del mundo igualan, una de las mejores eficiencias de la banca, una rentabilidad que sube año tras año, un capital sólido y una devolución generosa al accionista.\n\nSu punto débil es la complejidad. Opera en muchos países, algunos muy volátiles, como la Argentina y Brasil, está integrando dos bancos nuevos y tiene un problema abierto con préstamos para autos en el Reino Unido. El crítico más duro diría que el mercado ya paga por la mejora, y que un banco con tanta exposición a países emergentes no merece una prima. Es un argumento razonable.\n\nEncaja con quien busca un banco grande y diversificado, con dividendo y recompras, y tolera el riesgo de los mercados emergentes. No es para quien busca un banco simple y sin sobresaltos.\n\nEs recomendable revisar en cada informe las provisiones por préstamos incobrables, sobre todo en la Argentina y Brasil. Para que la tesis se mantenga, lo más importante es que la rentabilidad se sostenga cerca de 16 % mientras integra TSB y Webster.",
+   "pros": [
+    "Rentabilidad récord: retorno sobre patrimonio tangible de 16,0 %.",
+    "Eficiencia de primera: gasta 42,6 de cada 100 euros que genera.",
+    "Devolución generosa: la mitad de la ganancia, entre dividendos y recompras."
+   ],
+   "contras": [
+    "Países volátiles: las provisiones suben por la Argentina.",
+    "Integraciones: TSB y Webster, dos bancos nuevos a la vez.",
+    "Reino Unido: provisiones por préstamos para autos."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Banco Santander ofrece productos y servicios financieros a personas, pequeñas y medianas empresas, grandes corporaciones y entidades públicas en todo el mundo. Opera cinco segmentos: **Retail & Commercial Banking**, **Digital Consumer Bank**, **Corporate & Investment Banking**, **Wealth Management & Insurance** y **Payments**. Ofrece depósitos, fondos de inversión y préstamos. Yahoo no informa cuánto aporta cada segmento ni cada país, y no lo vamos a inventar; es un dato público que América Latina es una parte importante del negocio.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 4,6 % en 2023 y 6,4 % en 2024, y cayeron 0,5 % en 2025, hasta €60.023 M.** Todas las cifras están en euros.\n\n**A quién le vende.** A millones de personas, a pequeñas y medianas empresas, a grandes corporaciones y a entidades públicas. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Santander **es de escala y de diversificación, y es estrecha**. Con decenas de millones de clientes en varios países, consigue depósitos baratos y reparte el riesgo: si un país va mal, otros compensan. Pero un banco vende dinero, que es igual en todos lados, y las diferencias entre bancos grandes son chicas. Se ve en el ROE, que subió de 10,8 % a 14,9 %: ya está por encima de la referencia de 12 %.\n\nCompite con BBVA, CaixaBank, HSBC y bancos locales en cada país. Es frágil en el riesgo de crédito (que los préstamos no se paguen), en las monedas de los países emergentes donde opera y en la regulación. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de Santander cuentan **ganancias en alza con ingresos estancados**. Los ingresos fueron de €54.216 M, €56.687 M, €60.305 M y €60.023 M. La ganancia neta fue de €9.605 M en 2022, €11.076 M, €12.574 M y €14.101 M en 2025, y de €16.241 M en los últimos 12 meses. La ganancia por acción pasó de 0,54 a 0,65, 0,77 y **0,90** (+67 %).\n\nEl indicador más importante en un banco es el ROE (cuánto gana por cada dólar de patrimonio): **10,8 %, 11,6 %, 12,8 %, 13,7 % y 14,9 % en los últimos 12 meses**, siempre en alza. El capital invertido pasó de €369.443 M a €457.413 M (+24 %).\n\nLa mirada crítica: la ganancia por acción creció más que la ganancia neta por las recompras (las acciones bajaron 11,4 %), y los ingresos de 2025 no crecieron. Si las tasas bajan, el margen de intereses se achica.",
-   "balance": "**El capital del banco crece con el negocio.** El capital invertido (lo que financia el negocio) pasó de €369.443 M en 2022 a €457.413 M en los últimos 12 meses, un 24 % más, mientras la ganancia neta subió 69 %. Es un banco de los que los reguladores vigilan de cerca, y con la mirada puesta en los depósitos, que son su materia prima.\n\nCon tasas altas, el banco gana más al prestar, pero también paga más por los depósitos y sufre pérdidas en los bonos que tiene en cartera. Al estar las cifras en euros, el valor en dólares también depende del tipo de cambio.",
-   "gerencia": "La conduce Héctor Grisi, CEO del grupo (59 años, pago de 10,7 M según Yahoo), con Ana Botín como presidenta ejecutiva (65 años, pago de 13,5 M) y José Antonio García-Cantera como director financiero (59 años). Los Botín son una familia histórica de la empresa.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 0,28 por acción (por ADS, en dólares; pagado desde 1988; sube 3,1 % por año en 3 años; -12,2 % por año en 10 años, por recortes antiguos) y recompra acciones (€2.050 M en 2022, €4.789 M en 2024 y €4.081 M en 2025). **Las acciones bajaron de 16.904 M a 14.976 M, un 11,4 % menos.**",
-   "fortalezas": [
-    "Escala y diversificación entre varios países y negocios.",
-    "ROE en alza hasta 14,9 %, por encima de la referencia de 12 %.",
-    "Ganancia neta de €16.241 M en los últimos 12 meses, 69 % más que en 2022.",
-    "Recompras: 11,4 % menos acciones desde 2022.",
-    "Banco digital de consumo y negocio de pagos que suman crecimiento."
-   ],
-   "debilidades": [
-    "Ingresos que dejaron de crecer: -0,5 % en 2025.",
-    "Exposición a monedas de países emergentes y al euro: el crítico más duro diría que una moneda más débil le quita valor en dólares.",
-    "Sensibilidad a las tasas: si bajan, el margen de intereses se achica.",
-    "Dividendo recortado en el pasado (-12,2 % anual a 10 años).",
-    "Foso estrecho: el dinero es igual en todos lados y compite con otros bancos grandes."
-   ],
-   "vigilar": [
-    "ROE: hoy 14,9 % en los últimos 12 meses; tiene que mantenerse sobre 12 % cuando bajen las tasas.",
-    "Ingresos: cayeron 0,5 % en 2025; si siguen sin crecer, la ganancia depende solo de recompras y márgenes.",
-    "Morosidad y reservas para incobrables: es lo que más cambia en una recesión, sobre todo en América Latina.",
-    "Tipo de cambio euro-dólar y monedas latinoamericanas: afectan el valor en dólares."
-   ],
    "clientes": [
-    "Millones de personas y pequeñas empresas",
-    "Grandes corporaciones y entidades públicas",
-    "Clientes de banca digital, seguros y pagos"
+    "189 millones de personas y empresas en Europa y América",
+    "Grandes empresas (banca corporativa)",
+    "Clientes de patrimonios y seguros"
    ],
-   "ideal_para": [
-    "Buscan un banco global diversificado, con exposición a Europa y Latinoamérica.",
-    "Valoran recompras y ROE alto.",
-    "Aceptan el riesgo de monedas y de tasas."
+   "hechos": [
+    {
+     "dato": "Nueve meses de 2026 (en euros): ganancia de 12.405 M (+20 %); ingresos de 46.807 M (+8 %); eficiencia de 42,6 %; provisiones de 10.060 M (+13 %, sobre todo por la Argentina); retorno sobre patrimonio tangible de 16,0 %; CET1 de 12,7 %; 189 millones de clientes; TSB comprado el 30/04/2026, Webster el 20/08/2026, venta del 49 % de Santander Bank Polska con ganancia de 1.895 M; dividendo intermedio de 12,70 céntimos (+10 %); recompra de hasta 1.800 M; meta 2026: ganar más de 14.100 M; frase de Ana Botín",
+     "fuente": "Comunicado de resultados de los 9M y el 3T26 (6-K), 28/10/2026",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000891478/000089147826000091/q32026pr.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo de tipo de cambio.",
-    "Buscan ingresos en crecimiento sostenido."
-   ],
+   "ticker": "SAN",
    "perfil": "banco",
    "capas": [],
-   "ticker": "SAN",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -6682,54 +6688,61 @@
    }
   },
   "DIS": {
-   "resumen": "Disney es el mayor conglomerado de entretenimiento del mundo: produce y distribuye películas y series (Disney, Pixar, Marvel, Star Wars, ESPN, ABC, FX, National Geographic), opera servicios de streaming (Disney+, Hulu) y, en el segmento Experiences, parques temáticos, cruceros y productos de consumo. Gana plata con entradas a parques, suscripciones de streaming, publicidad de televisión, derechos deportivos y venta de productos con sus personajes. Tiene un **foso estrecho, de propiedad intelectual y parques**: personajes y franquicias que atraviesan generaciones y parques difíciles de replicar, aunque la televisión tradicional pierde espectadores. Los números mejoraron: los ingresos pasaron de 82.722 M en 2022 a 94.425 M en 2025 (98.861 M en los últimos 12 meses), el margen operativo de 8,2 % a **15,2 %** y el flujo libre de 1.067 M a 8.293 M. Volvió a pagar dividendo (1,50 por acción) y las recompras crecieron a 8.249 M en los últimos 12 meses. Su punto débil es que el retorno sobre el capital sigue bajo (ROIC de 7,0 %), la inversión en parques subió a 8.696 M por año, el crecimiento de ingresos es lento (3,4 % en 2025) y el negocio de televisión tradicional se achica. La ganancia neta de 2025 (12.404 M) incluye partidas no operativas. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**. Conclusión: **buena empresa, con foso estrecho de propiedad intelectual, márgenes en alza y recompras, aunque con ROIC de 7,0 % y crecimiento lento.**",
-   "veredicto": "Buena: propiedad intelectual y parques, márgenes en alza y recompras, con ROIC bajo y crecimiento lento",
-   "conclusion": "Disney es una buena empresa: tiene un foso estrecho de propiedad intelectual y parques, margen operativo de 15,2 %, flujo libre de 8.293 M y recompras crecientes, pero el ROIC es de 7,0 %, el crecimiento es lento y hay un cambio de CEO. Vale la pena seguirla de cerca. Es recomendable investigar los resultados por segmento en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROIC suba por encima de 8 %.",
+   "formato": "v4",
+   "titulo": "Disney: los parques pagan las cuentas, y el streaming por fin deja ganancia",
+   "resumen": [
+    "Disney es la mayor empresa de **entretenimiento** del mundo: películas (Disney, Pixar, Marvel, Star Wars), streaming (Disney+, Hulu), deportes (ESPN) y **parques, cruceros y productos**. Su ventaja son personajes e historias que generan plata durante décadas en muchas formas distintas.",
+    "En el tercer trimestre de su año fiscal 2026 (cerrado en junio), **sus ingresos crecieron 7 % y su ganancia operativa por segmentos, 21 %**. Los parques tuvieron ventas récord de 10.000 M, y el streaming ganó 13 de cada 100 dólares que facturó.",
+    "Buena empresa, con marcas imposibles de copiar y un streaming que finalmente es rentable, aunque con un retorno sobre el capital bajo, un negocio de televisión tradicional en declive y un cambio de CEO reciente."
+   ],
+   "introduccion": "Pocas empresas en el mundo tienen lo que tiene Disney: Mickey, Frozen, Toy Story, Iron Man, Darth Vader. Personajes que un chico conoce antes de saber leer, y que lo acompañan toda la vida.\n\nDisney sabe ganar plata con ellos de muchas formas: una película, después una serie en Disney+, después una atracción en un parque, después un muñeco, después una remera. Una misma historia, cobrada muchas veces.\n\nPero los últimos años fueron difíciles. El negocio de la televisión por cable, que durante décadas fue su gran fuente de ganancias, se achica a medida que la gente deja el cable. Y Disney+ perdió miles de millones de dólares mientras crecía.\n\nEso cambió. En el tercer trimestre de su año fiscal 2026, el streaming tuvo un margen operativo de 13 %, y los parques vendieron un récord de 10.000 M. La ganancia operativa total creció 21 %.\n\nY en 2026 hubo un cambio importante: Josh D'Amaro, que dirigía los parques, reemplazó a Bob Iger como CEO.\n\nEntonces, la pregunta es: ¿puede Disney volver a crecer como en sus mejores años?",
+   "secciones": [
+    {
+     "titulo": "Tres negocios alrededor de las mismas historias",
+     "texto": "Disney tiene tres grandes negocios:\n\n- **Entretenimiento**: estudios de cine (Disney, Pixar, Marvel, Lucasfilm), streaming (Disney+ y Hulu) y canales de televisión. El streaming, que perdía plata, ya tiene un margen de 13 %.\n- **Deportes**: ESPN, el mayor canal de deportes de EE.UU., ahora también con su propio servicio de streaming.\n- **Experiencias**: parques temáticos en EE.UU., Europa y Asia, cruceros y productos con licencia. Vendió un récord de 10.000 M en el trimestre, un 10 % más. Es el negocio más rentable y el que sostiene a la empresa.\n\nSus clientes son cientos de millones de familias en todo el mundo, suscriptores, anunciantes y operadores de televisión.\n\n¿Cuál es su **ventaja**? Sus **personajes e historias**. Nadie puede construir un Mickey o un Marvel de cero. Y Disney los aprovecha en un círculo que pocos pueden copiar: la película alimenta el streaming, el streaming alimenta el parque, y el parque alimenta los productos.\n\nLa inteligencia artificial es un riesgo moderado: puede abaratar la producción de contenido, pero también llenar las pantallas de videos generados por IA que compiten por el tiempo de la gente. Disney protege con fuerza sus personajes frente al uso no autorizado."
+    },
+    {
+     "titulo": "Márgenes que suben, retorno que sigue bajo",
+     "texto": "Los ingresos crecen despacio: de 82.722 M en su año fiscal 2022 a **98.861 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 8,2 % a **15,2 %**, sobre todo porque el streaming dejó de perder plata. El promedio de su industria es 10,6 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de apenas **7,0 %**. Por encima de 15 % se considera muy bueno; por debajo de lo que cuesta conseguir capital (alrededor de 8 % a 10 %), la empresa no crea valor. ¿Por qué tan bajo? Porque Disney pagó muchísimo por sus compras, sobre todo 71.000 M por los activos de 21st Century Fox en 2019, y esa inversión todavía no rinde lo esperado.\n\nLa caja mejoró: el **flujo libre de caja** (lo que queda después de invertir) pasó de 1.067 M en su año fiscal 2022 a **8.293 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara su año fiscal 2026, la empresa espera que la ganancia ajustada por acción crezca a doble dígito, y lo mismo para 2027."
+    },
+    {
+     "titulo": "Recompras en alza y una deuda razonable",
+     "texto": "La deuda neta (lo que debe menos la caja) es de 40.856 M y equivale a **2,0 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; Disney está en el límite. Su ganancia operativa paga los intereses del año 8,4 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nCon el streaming generando caja, Disney vuelve a devolver plata: subió su plan de recompras para el año fiscal 2026 a por lo menos 9.000 M. El dividendo, que había suspendido en la pandemia, volvió y hoy es de 1,50 dólares por acción por año.\n\nInvierte fuerte: unos 9.000 M por año en parques y cruceros, y unos 24.000 M en contenido.\n\nLos riesgos: la caída de la televisión tradicional, la competencia en streaming (Netflix, YouTube), un consumo más flojo que afecte los parques, y la transición a un nuevo CEO.\n\nLo conduce Josh D'Amaro, CEO desde 2026: \"Fue un trimestre excelente para nosotros\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Disney, el número que conviene mirar es el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. La ganancia contable de Disney salta por cargos y beneficios impositivos, así que el EV/EBITDA es más estable.\n\nCon el precio de {precio} dólares, Disney cotiza a {v:ev_ebitda} veces su EBITDA. Eso está {vs:ev_ebitda} su propia mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl PER (cuántos años de ganancia se pagan) es de {per_ref} veces, {vs_ref_med} su mediana histórica ({med:per} veces).\n\nEl mercado viene pagando poco por Disney por las dudas sobre la televisión tradicional y sobre si el streaming puede ganar tanto como ganaba el cable. Si el streaming sigue mejorando sus márgenes y los parques crecen, hay espacio para que el mercado cambie de opinión. Si los parques se frenan, no.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Disney es una buena empresa. Tiene los personajes e historias más valiosos del entretenimiento, un negocio de parques muy rentable, un streaming que por fin gana plata y una caja que mejora. Y vuelve a devolver plata al accionista.\n\nSu punto débil es el retorno sobre el capital, todavía bajo por las compras caras del pasado, la caída de la televisión tradicional y la competencia en streaming. Además, cambió de CEO hace poco. El crítico más duro diría que Disney tiene las mejores marcas del mundo, pero no logra que rindan lo que deberían. Es un argumento razonable.\n\nEncaja con quien busca una empresa de entretenimiento con marcas únicas, en recuperación. No es para quien busca un crecimiento rápido o un dividendo alto.\n\nPara que la tesis se mantenga, lo más importante es que el margen del streaming siga subiendo hacia el de sus mejores competidores y que los parques sigan creciendo.",
+   "pros": [
+    "Marcas únicas: Disney, Pixar, Marvel y Star Wars.",
+    "Parques récord: 10.000 M de ventas en el trimestre.",
+    "Streaming rentable: margen de 13 %."
+   ],
+   "contras": [
+    "Retorno bajo: ROIC de 7,0 %, por compras caras del pasado.",
+    "TV en declive: el cable sigue perdiendo suscriptores.",
+    "Cambio de CEO: Josh D'Amaro asumió en 2026."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "moderado",
-   "negocio": "The Walt Disney Company opera como una empresa de entretenimiento en América, Europa y Asia-Pacífico, con tres segmentos: **Entertainment**, **Sports** y **Experiences**. Produce y distribuye contenido de cine y televisión bajo ABC, Disney, Freeform, FX, Fox, National Geographic y Star, y las estaciones de ABC; el segmento Sports incluye ESPN, y Experiences incluye parques, cruceros y productos de consumo. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar; es un dato público que Experiences es hoy el que más ganancia genera.\n\nEs un negocio diversificado: **los ingresos crecieron 7,5 % en 2023, 2,8 % en 2024 y 3,4 % en 2025, hasta 94.425 M**, y llegaron a 98.861 M en los últimos 12 meses.\n\n**A quién le vende.** A familias que visitan los parques, suscriptores de streaming, anunciantes y distribuidoras de televisión. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Disney **es de propiedad intelectual y de parques, y es estrecha**. Sus personajes y franquicias (Mickey, Pixar, Marvel, Star Wars) generan ingresos durante décadas en películas, parques, productos y streaming, y un parque temático con esa escala y esa ubicación no se puede construir de la nada. Pero los números no muestran un foso fuerte: el ROIC es de 7,0 % y la televisión tradicional, que fue el motor durante años, pierde audiencia.\n\nCompite con Netflix, Amazon, Warner, YouTube y TikTok por la atención, y con Universal y otros parques. Es frágil en el ciclo de consumo (el contexto actual, con inflación de 3,7 % anual y nafta 9,1 % más cara, puede enfriar las visitas a los parques), en los resultados de las películas y en el costo de derechos deportivos. La inteligencia artificial puede bajar los costos de producir, y también facilitar a rivales que hagan contenido.",
-   "numeros": "Los números de Disney cuentan **una recuperación de rentabilidad desde un piso bajo**. Los ingresos fueron de 82.722 M, 88.898 M, 91.361 M y 94.425 M, y de 98.861 M en los últimos 12 meses. El margen operativo pasó de 8,2 % a 10,1 %, 13,0 %, 14,6 % y **15,2 %**. La ganancia neta fue de 3.145 M, 2.354 M, 4.972 M y 12.404 M, y de 8.600 M en los últimos 12 meses. La ganancia por acción fue de 1,72, 1,29, 2,72, 6,85 y **4,85**.\n\nLa ganancia neta de 2025 (12.404 M) es casi igual al EBIT (13.832 M), lo que indica partidas no operativas importantes que Yahoo no explica; conviene verificarlo en el informe. El flujo libre (lo que queda después de las inversiones) fue de 1.067 M, 4.897 M, 8.559 M y 10.077 M, y de 8.293 M en los últimos 12 meses. Las inversiones subieron de 4.943 M a 8.696 M. El ROE fue de 3,3 %, 2,4 %, 4,9 %, 11,3 % y 7,8 %.\n\nLa mirada crítica: el capital invertido es enorme (156.073 M), y con un retorno de 7,0 % apenas rinde lo que cuesta.",
-   "balance": "**Deuda moderada y bajando.** La deuda total es de 46.041 M y la caja de 5.185 M en los últimos 12 meses; la deuda neta/EBITDA es de 2,04x, que multiplicado por 12 son unos 24 meses de EBITDA. Los intereses se cubren 8,4 veces con el EBIT, contra 4,4 veces en 2022.\n\nEl patrimonio neto es de 110.032 M. La deuda total bajó de 51.608 M a 46.041 M en tres años, pero la inversión en parques sube (8.696 M por año), así que el flujo libre tiene que seguir cubriendo ese gasto y las recompras.",
-   "gerencia": "Yahoo lista a Josh D'Amaro como CEO y director (53 años), con Bob Iger como asesor senior y director (74 años, pago de 10,8 M) y Hugh Johnston como director financiero (63 años, pago de 7,9 M). Es un traspaso de mando reciente, un punto a seguir de cerca; Yahoo no informa el pago del nuevo CEO.\n\nEn lo que importa, **el uso del capital cambió**: volvió a pagar dividendo (1,50 por acción; 1.366 M en 2024 y 1.803 M en 2025) y a recomprar acciones (2.992 M en 2024, 3.500 M en 2025 y 8.249 M en los últimos 12 meses). **Las acciones bajaron de 1.827 M a 1.778 M, un 2,7 % menos.**",
-   "fortalezas": [
-    "Franquicias y personajes de alcance global, con parques difíciles de replicar.",
-    "Margen operativo de 8,2 % a 15,2 % en los últimos 12 meses.",
-    "Flujo libre de 8.293 M en los últimos 12 meses.",
-    "Dividendo reiniciado y recompras de 8.249 M en los últimos 12 meses.",
-    "Deuda total bajando (de 51.608 M a 46.041 M)."
-   ],
-   "debilidades": [
-    "ROIC de 7,0 % sobre un capital de 156.073 M.",
-    "Crecimiento lento (2,8 % y 3,4 %) y televisión tradicional en declive.",
-    "Inversión en parques en aumento (8.696 M): el crítico más duro diría que presiona el flujo libre.",
-    "Ganancia neta de 2025 inflada por partidas no operativas.",
-    "Traspaso de mando reciente."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 15,2 %; si baja, el costo del streaming o de los parques pesa.",
-    "Ingresos de parques y cruceros: son el motor de la ganancia; Yahoo no los informa, hay que buscarlos en el informe.",
-    "Flujo libre: hoy 8.293 M; tiene que cubrir inversión, dividendo y recompras.",
-    "Suscriptores y rentabilidad del streaming: Yahoo no los informa, hay que buscarlos en el informe."
-   ],
    "clientes": [
-    "Familias que visitan parques y cruceros",
+    "Familias que visitan sus parques y cruceros",
     "Suscriptores de Disney+, Hulu y ESPN",
-    "Anunciantes y distribuidoras de televisión"
+    "Anunciantes y operadores de televisión"
    ],
-   "ideal_para": [
-    "Buscan una empresa con franquicias globales y márgenes en alza.",
-    "Valoran recompras y dividendo reiniciado.",
-    "Aceptan un retorno sobre el capital todavía bajo."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre del año fiscal 2026 (cerrado en junio de 2026): ingresos +7 %; ganancia operativa por segmentos +21 %; experiencias: ventas récord de 10.000 M (+10 %); streaming: margen de 13 %; guía: ganancia ajustada por acción con crecimiento de doble dígito en los años fiscales 2026 y 2027; recompras de al menos 9.000 M en el año fiscal 2026; inversiones de unos 9.000 M y contenido por unos 24.000 M; frase de Josh D'Amaro",
+     "fuente": "Resumen de la conferencia de resultados del 3T del año fiscal 2026, 06/08/2026",
+     "url": "https://www.marketbeat.com/instant-alerts/walt-disney-q3-earnings-call-highlights-2026-08-06/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan alto crecimiento.",
-    "Les preocupa la caída de la televisión tradicional."
-   ],
+   "mes_cierre_fiscal": 9,
+   "ticker": "DIS",
    "perfil": "general",
    "capas": [],
-   "ticker": "DIS",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8108,54 +8121,66 @@
    }
   },
   "ADI": {
-   "resumen": "Analog Devices es una empresa estadounidense de semiconductores analógicos: diseña, fabrica, prueba y comercializa circuitos integrados, software y subsistemas que traducen señales del mundo real (sonido, temperatura, presión, radio) a datos digitales y al revés, y que gestionan la energía de los equipos. Gana plata vendiendo chips que quedan dentro de productos industriales, automotrices, de comunicaciones y de consumo durante años. Tiene un **foso estrecho, de diseño especializado y costos de cambio**: el diseño analógico requiere ingenieros de mucha experiencia, y un cliente que ya validó un chip en su producto rara vez lo cambia. Los números son los de una empresa de alta rentabilidad operativa: el margen bruto de los últimos 12 meses es de **65,8 %**, el margen operativo de **35,7 %** y el flujo libre de **4.937 M** (35,6 % de los ingresos). Hay 6,1 % menos acciones que en 2022 y paga dividendo desde 2003. Pero el ROIC es de solo **10,2 %** (y 4,5 % en 2024) porque el capital invertido (42.672 M) incluye una compra grande anterior (dato público: Maxim Integrated), y la ganancia fluctuó mucho con el ciclo (de 6,55 por acción en 2023 a 3,28 en 2024, y 8,43 en los últimos 12 meses). Su punto débil es esa sensibilidad al ciclo industrial y que la deuda subió a 9.122 M. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho, margen operativo de 35,7 % y flujo libre de 4.937 M, aunque con ROIC de 10,2 % y un ciclo industrial que golpea los resultados.**",
-   "veredicto": "Buena: foso estrecho, margen operativo de 35,7 % y flujo libre de 4.937 M, con ROIC de 10,2 % y ciclo industrial que golpea los resultados",
-   "conclusion": "Analog Devices es una empresa de buena calidad: tiene un foso estrecho de diseño especializado, margen operativo de 35,7 %, flujo libre de 4.937 M, dividendo desde 2003 y 6,1 % menos acciones, pero su ROIC es de 10,2 % y sus resultados fluctúan con el ciclo industrial. Vale la pena seguirla de cerca. Es recomendable investigar la composición de ventas por industria y el uso de la deuda en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga cerca de 35 %.",
-   "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "Analog Devices se dedica al diseño, la fabricación, las pruebas y la comercialización de circuitos integrados, software y subsistemas en Estados Unidos, el resto de América, Europa, Japón, China y el resto de Asia. Ofrece productos de conversión de datos, que traducen señales analógicas del mundo real en datos digitales y al revés. Yahoo no informa cuánto aporta cada línea ni cada industria final, y no lo vamos a inventar.\n\nEs un negocio con ciclo: **los ingresos subieron 2,4 % en 2023, cayeron 23,4 % en 2024 y subieron 16,9 % en 2025, hasta 11.020 M**, y llegan a 13.882 M en los últimos 12 meses.\n\n**A quién le vende.** A fabricantes de equipos industriales, automotrices, de comunicaciones y de consumo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Analog Devices **es de diseño especializado y costos de cambio, y es estrecha**. Los chips analógicos de alto rendimiento dependen del talento y la experiencia de ingenieros más que de la escala de fabricación, y cada chip queda validado dentro del producto del cliente durante años. Eso explica un margen bruto que no baja de 57 % ni en el peor año (2024) y un margen operativo de 35,7 % hoy.\n\nCompite con Texas Instruments, Infineon, STMicroelectronics, NXP, Microchip y fabricantes chinos. Es frágil en el ciclo industrial (los ingresos cayeron 23,4 % en 2024), en los precios de los competidores chinos y en las inversiones en plantas. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de Analog Devices cuentan **un ciclo de baja y una recuperación fuerte**. Los ingresos fueron de 12.014 M, 12.306 M, 9.427 M y 11.020 M, y de 13.882 M en los últimos 12 meses. El EBIT fue de 3.553 M, 3.984 M, 2.070 M y 3.002 M, y de 4.959 M (margen operativo de 35,7 %). La ganancia neta fue de 2.749 M, 3.315 M, 1.635 M y 2.267 M, y de 4.135 M. La ganancia por acción fue de 5,25, 6,55, 3,28, 4,56 y **8,43**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.776 M, 3.556 M, 3.122 M y 4.279 M, y de **4.937 M** en los últimos 12 meses. El ROIC fue de 7,3 %, 8,6 %, 4,5 %, 5,9 % y 10,2 %, y el ROE de 12,3 %.\n\nLa mirada crítica: con un margen operativo de 35,7 %, el ROIC de 10,2 % es bajo, y la causa es el capital invertido de 42.672 M, inflado por la compra anterior. Un accionista cobra ganancias de una compra que ya pagó; el crecimiento del ROIC depende de que las ganancias suban sin sumar capital.",
-   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 9.122 M y la caja de 2.325 M; la deuda neta es de 6.956 M y la deuda neta/EBITDA es de 0,99x, que multiplicado por 12 son unos 12 meses de EBITDA. Los intereses se cubren 14,1 veces con el EBIT.\n\nEl patrimonio neto es de 33.551 M y la deuda equivale a 0,27 veces el patrimonio. La deuda total subió de 6.602 M en 2022 a 9.122 M, y el patrimonio bajó de 36.465 M, por recompras y dividendos mayores que las ganancias en los años flojos.",
-   "gerencia": "La conduce Vincent Roche, CEO y presidente del directorio (65 años, pago de 5,5 M según Yahoo), con Richard Puccio como director financiero (57 años, pago de 2,1 M). El cofundador Ray Stata (91 años) sigue como director. Roche lidera la empresa desde 2013, dato público.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras**: paga un dividendo de 4,40 por acción (pagado desde 2003; sube 9,2 % por año en 3 años; 2.043 M en los últimos 12 meses, 41 % del flujo libre) y recompró 2.577 M en 2022, 2.964 M, 616 M, 2.165 M y 3.127 M en los últimos 12 meses. **Las acciones bajaron de 523 M a 491 M, un 6,1 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 35,7 % y margen bruto de 65,8 %.",
-    "Flujo libre de 4.937 M, 35,6 % de los ingresos.",
-    "Dividendo pagado desde 2003 y creciendo 9,2 % por año.",
-    "6,1 % menos acciones desde 2022.",
-    "Intereses cubiertos 14,1 veces."
+   "formato": "v4",
+   "titulo": "Analog Devices: los chips que conectan el mundo real con lo digital, en su mejor ciclo en años",
+   "resumen": [
+    "Analog Devices es uno de los mayores fabricantes de **chips analógicos y de señal mixta**: los que miden temperatura, presión, sonido o movimiento, manejan la energía y convierten esas señales en datos. Sus chips están en fábricas, autos, equipos médicos y centros de datos. Su ventaja es la calidad de sus productos de alta gama y clientes que los usan durante décadas.",
+    "En el tercer trimestre de su año fiscal 2026 (cerrado en agosto), **vendió un récord de 4.020 M, un 40 % más**, y su ganancia ajustada por acción creció 68 %. Los centros de datos y la industria impulsaron el salto.",
+    "Muy buena empresa, en la parte alta de su ciclo, con márgenes muy altos y mucha caja, aunque su retorno sobre el capital es bajo por una compra grande del pasado y el mercado ya la paga cara."
    ],
-   "debilidades": [
-    "ROIC de 10,2 %, bajo para un margen tan alto.",
-    "Muy sensible al ciclo industrial: ingresos -23,4 % en 2024.",
-    "Ganancia por acción que cayó de 6,55 a 3,28 en un año: el crítico más duro diría que el ciclo mueve más que el foso.",
-    "Deuda que subió a 9.122 M.",
-    "Patrimonio que bajó de 36.465 M a 33.551 M."
+   "introduccion": "Un chip digital, como el de una computadora, trabaja con ceros y unos. Pero el mundo real no es así: la temperatura de un horno, la presión de un neumático, el latido de un corazón o la corriente de un servidor son señales continuas. Alguien tiene que medirlas y convertirlas en datos. Ese es el trabajo de los chips analógicos, y Analog Devices es una de las mejores del mundo en hacerlos.\n\nSus chips están en lugares donde no pueden fallar: robots industriales, autos, equipos médicos, aviones y satélites. Por eso sus clientes pagan más por la calidad, y una vez que eligen un chip, lo usan durante 10 o 20 años.\n\nComo todo el sector, Analog Devices vivió un ciclo malo: en su año fiscal 2024 sus ventas cayeron 23 %, porque los clientes tenían demasiado inventario. Ahora el ciclo se dio vuelta con fuerza. En el tercer trimestre de su año fiscal 2026 vendió 40 % más que un año antes, y los chips para centros de datos casi se duplicaron.\n\nEntonces, la pregunta es: ¿cuánto de este salto es la recuperación del ciclo, y cuánto es crecimiento nuevo gracias a la IA?",
+   "secciones": [
+    {
+     "titulo": "Cuatro mercados, uno que despegó",
+     "texto": "Analog Devices vende a cuatro grandes mercados. En el tercer trimestre de su año fiscal 2026:\n\n- **Industria**: 1.970 M, un 53 % más. Es casi la mitad de las ventas: automatización de fábricas, equipos de prueba de chips, instrumentos médicos, defensa y aviación.\n- **Autos**: 998 M, un 16 % más. Chips para baterías, sensores y sistemas de audio.\n- **Comunicaciones**: 655 M, un 84 % más. El 80 % es de centros de datos, donde sus chips para manejar la energía y las conexiones ópticas más que se duplicaron.\n- **Consumo**: 397 M, un 6 % más.\n\nSus clientes son decenas de miles de empresas en todo el mundo, sin una que pese demasiado. Esa diversificación es una fortaleza.\n\n¿Cuál es su **ventaja**? La **calidad de alta gama** y la **duración de sus productos**. Muchos de sus chips son los mejores en su categoría, y una vez que un cliente diseña un producto con ellos, los compra durante muchos años. Por eso puede cobrar caro: su margen bruto ajustado fue de 72,5 % en el trimestre, y la empresa anunció una suba de precios que todavía no se ve del todo en los resultados.\n\nLa inteligencia artificial, lejos de amenazarla, la favorece: los centros de datos necesitan manejar cantidades enormes de energía, y Analog Devices compró Empower Semiconductor por 1.500 M para llevar sus chips de energía hasta el procesador."
+    },
+    {
+     "titulo": "Un ciclo que se dio vuelta",
+     "texto": "Los ingresos cayeron de 12.306 M en su año fiscal 2023 a 9.427 M en 2024, y volvieron a subir con fuerza: **13.882 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 22,0 % en 2024 a **35,7 %** en los últimos 12 meses. El promedio de su industria es 35,3 %. El margen ajustado, sin la amortización de compras, que usan la empresa y los analistas del mercado, llegó a 50 % en el trimestre.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **10,2 %**. Por encima de 15 % se considera muy bueno. Es bajo porque en 2021 Analog Devices compró Maxim Integrated por unos 21.000 M en acciones, y ese capital pesa. El promedio de su industria es 27,2 %.\n\n[[grafico:roic]]\n\nLa caja es fuerte: **4.937 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses, un 36 % de las ventas.\n\nPara el cuarto trimestre de su año fiscal, espera vender unos 4.300 M y ganar unos 3,86 dólares por acción ajustados."
+    },
+    {
+     "titulo": "Devuelve casi toda la caja",
+     "texto": "Analog Devices devuelve casi toda la caja que genera: en el tercer trimestre, 1.700 M entre dividendos y recompras. El dividendo es de 4,40 dólares por acción por año y creció 9,2 % por año en los últimos tres. Lo sube hace más de 20 años seguidos.\n\n[[grafico:dividendo]]\n\nLa deuda es moderada: la deuda neta (lo que debe menos la caja) es de 6.956 M y equivale a **1 vez su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 14 veces (por encima de 3 se considera sano).\n\nLos riesgos:\n\n- **El ciclo**: si los clientes vuelven a acumular inventario, las ventas pueden caer otra vez.\n- **China**: competencia local en los chips más simples.\n- **El precio**: el mercado ya paga la parte buena del ciclo.\n\nLo conduce Vincent Roche, CEO desde 2013: \"ADI tuvo un tercer trimestre sólido, superando el punto medio de lo previsto en ventas, margen y ganancia\"."
+    }
    ],
-   "vigilar": [
-    "Margen operativo: hoy 35,7 %; si baja, el ciclo industrial se está dando vuelta.",
-    "Ingresos: hoy 13.882 M; el cambio de ritmo anticipa el ciclo.",
-    "ROIC: hoy 10,2 %; tiene que seguir subiendo con las ganancias.",
-    "Deuda total: hoy 9.122 M; no tiene que seguir subiendo."
+   "valuacion": {
+    "texto": "En Analog Devices, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero en una empresa cíclica hay que leerlo con cuidado: en la parte baja del ciclo la ganancia cae y el PER sube; en la parte alta, al revés.\n\nCon el precio de {precio} dólares, Analog Devices cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nLa ganancia contable está achicada por la amortización de la compra de Maxim, así que el PER contable exagera un poco lo que se paga. Lo que el mercado está pagando es la confianza en que la recuperación del ciclo dure y en que los centros de datos sumen un crecimiento nuevo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Analog Devices es una muy buena empresa. Hace chips de alta gama que sus clientes usan durante décadas, tiene clientes muy diversificados, márgenes ajustados de los más altos del sector, una caja fuerte y un dividendo que sube hace más de 20 años. Y hoy vive la parte buena de su ciclo, con los centros de datos como motor nuevo.\n\nSu punto débil es el ciclo y el retorno sobre el capital. Sus ventas suben y bajan con los inventarios de los clientes, y la compra de Maxim dejó un retorno sobre el capital bajo. El crítico más duro diría que se está pagando la parte alta de un ciclo. Es un argumento razonable.\n\nEncaja con quien busca una empresa de semiconductores de calidad, con dividendo creciente, y tolera los ciclos. No es para quien busca estabilidad en las ventas.\n\nPara que la tesis se mantenga, lo más importante es que el negocio de centros de datos siga creciendo cuando la recuperación del ciclo industrial se modere.",
+   "pros": [
+    "Ventas récord: 4.020 M en el trimestre, +40 %.",
+    "Márgenes altos: margen bruto ajustado de 72,5 %.",
+    "Clientes diversificados: decenas de miles, sin uno dominante."
    ],
+   "contras": [
+    "Negocio cíclico: las ventas cayeron 23 % en su año fiscal 2024.",
+    "Retorno bajo: ROIC de 10,2 %, por la compra de Maxim.",
+    "Precio exigente: el mercado paga la parte buena del ciclo."
+   ],
+   "calidad": "Muy buena",
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Fabricantes de equipos industriales",
-    "Automotrices y proveedores del sector",
-    "Empresas de comunicaciones y de electrónica de consumo"
+    "Fabricantes industriales, médicos y de defensa",
+    "Fabricantes de autos y sus proveedores",
+    "Centros de datos y empresas de comunicaciones"
    ],
-   "ideal_para": [
-    "Buscan un fabricante de chips analógicos con dividendo creciente.",
-    "Valoran márgenes altos y recompras.",
-    "Aceptan el ciclo industrial."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre del año fiscal 2026 (cerrado el 01/08/2026): ingresos de 4.020 M (+40 %); industria 1.970 M (+53 %); autos 998 M (+16 %); comunicaciones 655 M (+84 %), 80 % centros de datos; consumo 397 M (+6 %); margen bruto ajustado de 72,5 %; margen operativo ajustado de 50 %; ganancia ajustada por acción de 3,45 dólares (+68 %); compra de Empower Semiconductor por 1.500 M",
+     "fuente": "Análisis de los resultados del 3T del año fiscal 2026, 08/2026",
+     "url": "https://futurumgroup.com/insights/analog-devices-q3-fy-2026-earnings-hit-first-4-billion-quarter-on-ai-demand/"
+    },
+    {
+     "dato": "Flujo libre de los últimos 12 meses de 4.900 M (36 % de los ingresos); 1.700 M devueltos en el trimestre; guía del 4T: ingresos de unos 4.300 M y ganancia ajustada de unos 3,86 dólares por acción; frase de Vincent Roche",
+     "fuente": "Comunicado de resultados del 3T del año fiscal 2026, 19/08/2026",
+     "url": "https://www.analog.com/en/newsroom/press-releases/2026/8-19-2026-adi-reports-record-fiscal-3q2026-financial-results.html"
+    }
    ],
-   "menos_ideal": [
-    "Buscan resultados estables año a año.",
-    "No toleran los ciclos de la industria de chips."
-   ],
+   "mes_cierre_fiscal": 10,
+   "ticker": "ADI",
    "perfil": "hardware",
    "capas": [],
-   "ticker": "ADI",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8232,57 +8257,69 @@
    }
   },
   "KLAC": {
-   "resumen": "KLA es una empresa estadounidense que fabrica los equipos que inspeccionan y miden las obleas, máscaras y chips durante su fabricación, para detectar defectos y controlar que cada paso salga bien. Opera tres segmentos: control de procesos de semiconductores, procesos especializados y inspección de placas de circuito y componentes. Gana plata vendiendo máquinas muy caras a los fabricantes de chips y, después, cobrando servicios y repuestos sobre esas máquinas. Tiene un **foso amplio, de tecnología, base instalada y datos de proceso**: sus equipos están integrados a las líneas de fabricación, los fabricantes confían en ellos para decidir si una oblea sirve, y reemplazarlos exige recalificar toda la línea. Los números son de primer nivel: el margen operativo fue de **41,7 %** en el ejercicio 2026, el ROIC de **39,9 %** y el flujo libre de **3.767 M** (27,7 % de los ingresos), y se mantuvo con márgenes de 37,1 % y ROIC de 31,5 % incluso en el año malo (2024), cuando los ingresos cayeron 6,5 %. Hay 5,8 % menos acciones que en 2023 y el dividendo crece 16,3 % por año en 3 años. Su punto débil es que depende de las inversiones en plantas de los fabricantes de chips, que son cíclicas y concentradas en pocos clientes grandes, y que el patrimonio es chico (6.350 M) porque devuelve más capital del que retiene. El 22/10 los semiconductores cayeron 6,7 %, una muestra de lo sensible que es el sector. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad excelente, con foso amplio, margen operativo de 41,7 % y ROIC de 39,9 %, aunque cíclica y dependiente de pocos clientes grandes.**",
-   "veredicto": "Excelente: foso amplio, margen operativo de 41,7 % y ROIC de 39,9 %, aunque cíclica y dependiente de pocos clientes grandes",
-   "conclusion": "KLA es una empresa de calidad excelente: tiene un foso amplio de tecnología y base instalada, margen operativo de 41,7 %, ROIC de 39,9 %, flujo libre de 3.767 M y dividendo creciente, pero depende del ciclo de inversión de pocos fabricantes de chips y su patrimonio es chico. Vale la pena seguirla de cerca. Es recomendable investigar la concentración de clientes y las restricciones a la exportación en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se sostenga por encima de 37 % en el ciclo.",
+   "formato": "v4",
+   "titulo": "KLA: el inspector de los chips, el negocio más rentable de los equipos para semiconductores",
+   "resumen": [
+    "KLA es la líder mundial en **equipos de inspección y medición** para la fabricación de chips: las máquinas que detectan defectos microscópicos y verifican que cada capa salga bien. Su ventaja es una participación dominante en ese nicho y una tecnología muy difícil de copiar.",
+    "En el trimestre que cerró en septiembre de 2026, **vendió 4.136 M, un 29 % más**, y su ganancia por acción creció 39 %. Para el trimestre siguiente espera unos 4.700 M.",
+    "Excelente empresa, con márgenes y retornos de los más altos del mercado, aunque es cíclica y depende de la inversión de pocos fabricantes de chips."
+   ],
+   "introduccion": "Fabricar un chip moderno lleva meses y cientos de pasos. Un error microscópico en cualquiera de ellos puede arruinar toda la oblea de silicio, con cientos de chips que valen miles de dólares cada uno.\n\nPor eso las fábricas de chips revisan su trabajo una y otra vez, con máquinas capaces de detectar defectos de pocos átomos. Esas máquinas son el negocio de KLA.\n\nKLA no deposita ni graba capas, como Applied Materials o Lam Research. Inspecciona y mide. Y en ese nicho es, por lejos, la líder del mundo.\n\nCuanto más complejos son los chips, más pasos tienen y más inspección necesitan. Los chips para IA, con capas apiladas y empaquetados avanzados, son los más complejos de todos. En el trimestre que cerró en septiembre de 2026, KLA vendió 29 % más que un año antes.\n\nEntonces, la pregunta es: ¿cuánto vale el negocio más rentable de los equipos para chips?",
+   "secciones": [
+    {
+     "titulo": "Encontrar el defecto antes de que sea caro",
+     "texto": "KLA vende tres cosas:\n\n- **Equipos de inspección y medición** para las fábricas de chips: detectan defectos y miden que cada capa tenga el tamaño exacto. Es el corazón del negocio.\n- **Equipos para empaquetado avanzado**: la técnica de unir varios chips en uno, clave para la IA. La empresa apunta a unos 1.100 M en ventas este año.\n- **Servicios**: mantenimiento y mejoras de los equipos instalados. Unos 820 M por trimestre, con un crecimiento de 13 % a 15 % por año. Es un ingreso estable.\n\nSus clientes son pocos y enormes: TSMC (TSM), Samsung, Intel (INTC), Micron (MU), SK Hynix y fabricantes chinos.\n\nPara entender por qué una fábrica paga tanto por estas máquinas, sirve un ejemplo. Supongamos que una oblea tiene 60 chips de IA y cada uno vale 20.000 dólares: la oblea entera vale 1,2 millones. Si una máquina de inspección detecta un defecto a tiempo y salva aunque sea un 5 % más de chips por oblea, son 60.000 dólares por oblea. En una fábrica que procesa miles de obleas por mes, la máquina se paga sola muy rápido. Ese porcentaje de chips buenos sobre el total se llama **rendimiento**, y es lo que más cuidan los fabricantes.\n\n¿Cuál es su **ventaja**? Su **participación dominante**. En inspección y medición, KLA tiene más de la mitad del mercado, más que todos sus competidores juntos. Sus máquinas acumulan décadas de datos sobre defectos, y las fábricas arman sus procesos alrededor de ellas. Cambiar de proveedor es riesgoso: un defecto que no se detecta puede costar millones.\n\nLa inteligencia artificial es su gran motor: los chips de IA son los que más inspección necesitan. Según su CEO, el control de procesos \"sigue siendo crítico para la construcción del ecosistema de IA\"."
+    },
+    {
+     "titulo": "El negocio más rentable del sector",
+     "texto": "Los ingresos se recuperaron después de una caída en su año fiscal 2024: de 9.812 M a **13.579 M** en su año fiscal 2026 (cerrado en junio). En el último trimestre crecieron 29 %.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **41,7 %**. El promedio de su industria es 26,2 %. Su margen bruto ronda el 62 %, muy alto para una empresa que fabrica máquinas.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **39,9 %**. Por encima de 15 % se considera muy bueno. KLA está entre las empresas más rentables del mercado.\n\n[[grafico:roic]]\n\nLa caja acompaña: generó 1.340 M de flujo libre (lo que queda después de invertir) solo en el último trimestre.\n\nUn dato que muestra el momento del sector: la empresa subió cuatro veces en el año su estimación de cuánto van a invertir las fábricas de chips del mundo en equipos en 2026, que ahora ubica en la zona de 150.000 M. Y su cartera de pedidos ronda los 12.500 M.\n\nPara el trimestre que termina en diciembre, espera vender unos 4.700 M y ganar unos 1,44 dólares por acción ajustados."
+    },
+    {
+     "titulo": "Devuelve casi todo lo que genera",
+     "texto": "KLA usa su caja para devolverla al accionista. En el último trimestre devolvió 1.240 M entre recompras y dividendos. El dividendo crece rápido: 16,3 % por año en los últimos tres.\n\n[[grafico:dividendo]]\n\nTiene algo de deuda (6.152 M), pero nada que preocupe: la deuda neta (lo que debe menos la caja) equivale a **0,67 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos (por debajo de 2 veces se considera cómodo), y su ganancia operativa paga los intereses del año unas 20 veces.\n\nLos riesgos:\n\n- **El ciclo**: las fábricas de chips invierten en oleadas, y cuando frenan, las ventas caen.\n- **China**: un mercado importante, expuesto a las restricciones de EE.UU.\n- **Los costos**: la memoria más cara le resta algo de margen en 2026 y 2027.\n\nLa conduce Rick Wallace, CEO desde 2006: \"El trimestre de septiembre de KLA superó el punto medio de lo previsto en todas las métricas clave\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En KLA, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Pero en una empresa cíclica hay que leerlo con cuidado: en la parte alta del ciclo la ganancia es alta, y si el ciclo se da vuelta, cae rápido.\n\nCon el precio de {precio} dólares, KLA cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó una prima por KLA frente a otros fabricantes de equipos, porque es más rentable y su negocio de servicios es más estable. Lo que puede moverlo es la duración de la oleada de inversión por la IA.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "KLA es una empresa excelente. Domina el nicho de inspección y medición de chips, tiene márgenes y retornos sobre el capital de los más altos del mercado, un negocio de servicios estable, poca deuda y una devolución creciente al accionista. Y la IA hace que sus máquinas sean cada vez más necesarias.\n\nSu punto débil es el ciclo: depende de cuánto inviertan unos pocos fabricantes de chips, que invierten en oleadas. Además, China es un riesgo y el mercado ya paga una prima. El crítico más duro diría que se está pagando la parte alta de un ciclo. Es un argumento razonable.\n\nEncaja con quien busca una empresa de altísima calidad ligada a los chips de IA y tolera los ciclos. No es para quien busca estabilidad o un dividendo alto.\n\nPara que la tesis se mantenga, lo más importante es que la inversión en fábricas de chips siga creciendo y que KLA mantenga su participación en inspección.",
+   "pros": [
+    "Líder dominante: más de la mitad del mercado de inspección y medición.",
+    "Rentabilidad excepcional: ROIC de 39,9 % y margen operativo de 41,7 %.",
+    "Devolución fuerte: 1.240 M en un trimestre."
+   ],
+   "contras": [
+    "Negocio cíclico: las ventas cayeron 6,5 % en su año fiscal 2024.",
+    "Pocos clientes: depende de la inversión de unos pocos fabricantes.",
+    "China: expuesta a las restricciones de EE.UU."
+   ],
    "calidad": "Excelente",
-   "riesgo_ia": "bajo",
-   "negocio": "KLA ofrece soluciones de control de procesos y de habilitación de procesos para la fabricación de obleas, máscaras, químicos y materiales, circuitos integrados, chips encapsulados y placas de circuito impreso. Opera tres segmentos: **Semiconductor Process Control**, **Specialty Semiconductor Process** y **PCB and Component Inspection**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio de equipos con ciclo: **los ingresos cayeron 6,5 % en 2024, subieron 23,9 % en 2025 y 11,7 % en 2026, hasta 13.579 M** (el ejercicio cierra a mediados de año).\n\n**A quién le vende.** A fabricantes de chips y de placas de circuito, con una concentración alta en pocos clientes grandes (dato público a verificar).",
-   "foso": "La ventaja de KLA **es de tecnología, base instalada y datos de proceso, y es amplia**. Detectar un defecto microscópico en una oblea exige óptica, algoritmos y bases de datos de defectos acumuladas durante décadas, y una fábrica de chips que ya calificó sus equipos para producir no los cambia sin parar su línea. Eso explica un margen bruto de 59,8 % a 61,3 % y un ROIC de 31,5 % a 41,5 %, y los servicios sobre la base instalada suavizan el ciclo.\n\nCompite con Applied Materials, Lam Research, Hitachi High-Tech y fabricantes más chicos de inspección. Es frágil en el ciclo de inversión de los fabricantes de chips, en las restricciones a la exportación hacia China (dato público) y en que pocos clientes concentran las compras. La inteligencia artificial no la amenaza de forma directa; la demanda de chips avanzados es parte del impulso.",
-   "numeros": "Los números de KLA cuentan **un negocio de márgenes muy altos que aguantó el año malo**. Los ingresos fueron de 10.496 M, 9.812 M, 12.156 M y 13.579 M. El EBIT fue de 3.995 M, 3.636 M, 5.014 M y 5.661 M, con margen operativo de 38,1 %, 37,1 %, 41,2 % y 41,7 %. La ganancia neta fue de 3.387 M, 2.762 M, 4.062 M y 4.831 M. La ganancia por acción fue de 2,42, 2,03, 3,04 y **3,66**; Yahoo parece expresarla tras un split de acciones (dato público a verificar).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 3.328 M, 3.031 M, 3.747 M y **3.767 M**, con inversiones livianas (376 M). El ROIC fue de 40,5 %, 31,5 %, 41,5 % y 39,9 %. El ROE de 76,1 % no sirve para comparar porque el patrimonio es chico.\n\nLa mirada crítica: el flujo libre casi no creció en 2026 (+0,5 %) aunque las ganancias subieron 18,9 %, y el margen de flujo libre bajó de 30,8 % a 27,7 %.",
-   "balance": "**Deuda moderada y bien cubierta.** La deuda total es de 6.152 M y la caja de 4.902 M; Yahoo informa una deuda neta de 4.238 M, que no coincide con la resta simple (1.250 M), probablemente por inversiones de corto plazo que no cuenta como caja. Con ese dato, la deuda neta/EBITDA es de 0,67x, que multiplicado por 12 son unos 8 meses de EBITDA. Los intereses se cubren 19,9 veces con el EBIT.\n\nEl patrimonio neto es de 6.350 M, chico para una empresa de este tamaño porque devuelve más capital del que retiene; la deuda equivale a 0,97 veces el patrimonio. El patrimonio subió de 2.920 M a 6.350 M desde 2023.",
-   "gerencia": "La conduce Rick Wallace, presidente y CEO (65 años, pago de 6,5 M según Yahoo), con Bren Higgins como director financiero (55 años, pago de 2,8 M). Wallace lleva años al frente y es parte de la empresa desde 1988, dato público; a los 65 años, la sucesión es una variable a seguir.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras**: paga un dividendo de 0,92 por acción (pagado desde 2005; sube 16,3 % por año en 3 años; 1.058 M en 2026, 28 % del flujo libre) y recompró 1.312 M en 2023, 1.736 M, 2.150 M y 2.290 M. **Las acciones bajaron de 1.402 M a 1.320 M, un 5,8 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 41,7 % y ROIC de 39,9 %.",
-    "Aguantó el año malo (2024) con ROIC de 31,5 %.",
-    "Flujo libre de 3.767 M, 27,7 % de los ingresos.",
-    "Dividendo creciendo 16,3 % por año y 5,8 % menos acciones.",
-    "Base instalada con servicios que suavizan el ciclo."
-   ],
-   "debilidades": [
-    "Depende de las inversiones cíclicas de los fabricantes de chips.",
-    "Pocos clientes grandes: el crítico más duro diría que un recorte de uno solo golpea los ingresos.",
-    "Patrimonio chico (6.350 M).",
-    "Flujo libre que casi no creció en 2026.",
-    "Restricciones a la exportación hacia China (dato público)."
-   ],
-   "vigilar": [
-    "Ingresos: hoy 13.579 M, +11,7 %; el cambio de ritmo anticipa el ciclo.",
-    "Margen operativo: hoy 41,7 %; si baja, el mix o la competencia pesan.",
-    "Margen de flujo libre: hoy 27,7 %; si sigue bajando, las ganancias no se convierten en caja.",
-    "Concentración de clientes: Yahoo no la informa, hay que buscarla en el informe."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Fabricantes de chips",
-    "Fabricantes de máscaras y obleas",
-    "Fabricantes de placas de circuito impreso"
+    "TSMC (TSM), Samsung e Intel (INTC)",
+    "Fabricantes de memorias como Micron (MU) y SK Hynix",
+    "Fabricantes de chips de China"
    ],
-   "ideal_para": [
-    "Buscan un líder de equipos de semiconductores con márgenes muy altos.",
-    "Valoran el dividendo creciente y las recompras.",
-    "Aceptan el ciclo de inversión de la industria."
+   "hechos": [
+    {
+     "dato": "Trimestre cerrado el 30/09/2026 (1T del año fiscal 2027): ingresos de 4.136 M (3.210 M un año antes); ganancia por acción de 1,18 dólares (0,85) y ajustada de 1,22 (0,88); flujo libre de 1.340 M; 1.240 M devueltos al accionista; guía del 2T: ingresos de unos 4.700 M y ganancia ajustada de unos 1,44 dólares por acción; frases de Rick Wallace",
+     "fuente": "Comunicado de resultados del 1T del año fiscal 2027, 28/10/2026",
+     "url": "https://ir.kla.com/news-events/press-releases/detail/523/kla-corporation-reports-fiscal-2027-first-quarter-results"
+    },
+    {
+     "dato": "Servicios de unos 820 M por trimestre con crecimiento de 13 % a 15 %; empaquetado avanzado de unos 1.100 M en el año; costo de memoria que resta algo más de 1 punto de margen bruto en 2026 y 2027; estimación de inversión mundial en equipos para 2026 en la zona de 150.000 M (cuarta suba en el año); cartera de pedidos de unos 12.500 M",
+     "fuente": "Análisis previo a los resultados del 1T del año fiscal 2027, 20/10/2026",
+     "url": "https://finviz.com/news/405234/kla-must-prove-its-fourth-wfe-upgrade-stuck-as-stock-sinks-toward-lows"
+    }
    ],
-   "menos_ideal": [
-    "Buscan resultados estables año a año.",
-    "No toleran la dependencia de pocos clientes grandes."
-   ],
+   "mes_cierre_fiscal": 6,
+   "ticker": "KLAC",
    "perfil": "hardware",
    "capas": [
     "compounder",
     "ciclica"
    ],
-   "ticker": "KLAC",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -9748,54 +9785,65 @@
    }
   },
   "PEP": {
-   "resumen": "PepsiCo es una de las mayores empresas de alimentos y bebidas del mundo: vende snacks (Lay's, Doritos, Cheetos), bebidas (Pepsi, Gatorade, Mountain Dew, Tropicana) y cereales (Quaker), con seis segmentos: alimentos y bebidas de América del Norte, bebidas internacionales, Europa-Medio Oriente-África, alimentos de América Latina y Asia-Pacífico. Gana plata vendiendo productos de consumo diario a través de supermercados, kioscos y restaurantes, con una red propia de distribución directa a los locales. Tiene un **foso estrecho, de marcas y distribución**: sus marcas se reconocen en todo el mundo y su red de camiones que entrega snacks y bebidas directo al local es muy difícil de replicar, lo que le da espacio en las góndolas. Los números son estables: los ingresos pasaron de 86.392 M en 2022 a **98.241 M** en los últimos 12 meses, el margen operativo es de **15,3 %**, el ROIC de **16,3 %** y el flujo libre de **10.471 M** (10,7 % de los ingresos). Paga dividendo desde 1972, creciendo 7,5 % por año en 3 años. Pero el crecimiento es de 2 % a 6 % por año, el dividendo (7.881 M) absorbe 75 % del flujo libre, las recompras son chicas (987 M) y la deuda total subió de 39.554 M a 51.881 M (probablemente por compras, dato a verificar). Hay 1,2 % menos acciones desde 2022. Su punto débil es el apalancamiento (2,14x EBITDA) y la presión de los consumidores y las marcas propias de los supermercados. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con foso estrecho de marcas y distribución, dividendo de 55 años y flujo libre de 10.471 M, aunque con crecimiento bajo, deuda en alza y poca capacidad de recompra.**",
-   "veredicto": "Buena: foso estrecho de marcas y distribución, dividendo de 55 años y flujo libre de 10.471 M, con crecimiento bajo y deuda en alza",
-   "conclusion": "PepsiCo es una empresa de buena calidad: tiene un foso estrecho de marcas y distribución, margen operativo de 15,3 %, ROIC de 16,3 %, flujo libre de 10.471 M y dividendo creciente desde 1972, pero el crecimiento es bajo, el dividendo absorbe 75 % del flujo libre y la deuda neta llega a 41.206 M. Hay que seguirla de cerca. Es recomendable investigar los cargos de 2025 y las compras recientes en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre siga cubriendo el dividendo con la deuda estable.",
+   "formato": "v4",
+   "titulo": "PepsiCo: vende más afuera que en casa, pero sus snacks en EE.UU. pierden fuerza",
+   "resumen": [
+    "PepsiCo es una de las mayores empresas de **alimentos y bebidas** del mundo: Lay's, Doritos, Cheetos, Quaker, Gatorade y, claro, Pepsi. A diferencia de Coca-Cola, gana más con los **snacks** que con las bebidas. Su ventaja son marcas líderes y una red de distribución que llega a cada kiosco.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 5,6 %**, a 25.274 M, pero sin contar compras ni el dólar crecieron 3,1 %, casi todo por precios. Bajó lo que espera ganar en el año: ahora entre 2,5 % y 3,5 % más.",
+    "Buena empresa, con marcas fuertes, un negocio internacional que crece y un dividendo alto y creciente, pero con sus snacks en EE.UU. estancados y costos en suba que le aprietan el margen."
+   ],
+   "introduccion": "Mucha gente piensa en PepsiCo como la rival de Coca-Cola. Pero su negocio más grande no son las gaseosas: son los snacks. Lay's, Doritos, Cheetos y Ruffles son algunas de las marcas de comida más vendidas del planeta.\n\nDurante años, eso fue una ventaja. Los snacks crecían más que las bebidas y dejaban buenos márgenes. PepsiCo los subía de precio todos los años, y la gente seguía comprando.\n\nEso se terminó. Después de varios años de aumentos fuertes, los consumidores de EE.UU. empezaron a comprar menos snacks, a pasarse a segundas marcas y a cuidarse más por la salud. Los nuevos medicamentos para bajar de peso, que quitan el apetito, también juegan en contra.\n\nEn el tercer trimestre de 2026, el negocio de snacks en EE.UU. no creció en volumen y su ganancia operativa cayó 12 %. PepsiCo tuvo que bajar precios para recuperar clientes. Al mismo tiempo, su negocio internacional creció con fuerza.\n\nEntonces, la pregunta es: ¿es un mal momento pasajero, o un cambio de fondo en lo que come la gente?",
+   "secciones": [
+    {
+     "titulo": "Snacks, bebidas y el mundo",
+     "texto": "PepsiCo tiene tres grandes bloques. En el tercer trimestre de 2026:\n\n- **Alimentos en EE.UU.** (Frito-Lay, Quaker): ventas de 6.504 M, sin cambios. Su ganancia operativa ajustada cayó 12 %, a 1.382 M, porque bajó precios y los costos subieron.\n- **Bebidas en EE.UU.** (Pepsi, Gatorade, Mountain Dew): ventas de 7.706 M, un 5 % más, pero solo por compras de empresas. El volumen cayó 2 %.\n- **Internacional** (América Latina, Europa, África, Medio Oriente y Asia): ventas de 11.064 M, el 44 % del total. Su ganancia operativa ajustada creció 16 %. Los snacks en Asia crecieron 11 % en volumen.\n\nSus clientes son supermercados, cadenas, kioscos y restaurantes de todo el mundo. Walmart (WMT) es el más importante en EE.UU.\n\n¿Cuál es su **ventaja**? Las **marcas** y la **distribución directa**. Frito-Lay lleva sus snacks directamente a cada comercio con sus propios camiones, algo que ningún competidor chico puede igualar. Y en muchos países, PepsiCo es la marca líder de snacks.\n\nLa inteligencia artificial no amenaza este negocio. El riesgo real es el cambio en los hábitos de comida."
+    },
+    {
+     "titulo": "Más precio que volumen",
+     "texto": "Los ingresos crecen despacio: de 86.392 M en 2022 a **98.241 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nLo importante es de dónde sale ese crecimiento. En el tercer trimestre, las ventas sin contar compras ni el dólar crecieron 3,1 %: unos 3 puntos por **precio** y apenas medio punto por **volumen**. Crecer subiendo precios funciona un tiempo, pero si la gente compra cada vez menos, en algún momento se agota.\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **15,3 %** en los últimos 12 meses. El promedio de su industria es 20,5 %. Su margen ajustado del trimestre bajó de 17,3 % a 16,9 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **16,3 %**. Por encima de 15 % se considera muy bueno. Es estable, pero no sube.\n\nLa caja es fuerte: **10.471 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara 2026, la empresa bajó lo que espera ganar: su ganancia ajustada por acción crecería entre 2,5 % y 3,5 %, contra 5 % a 7 % que esperaba antes, por la suba de los costos."
+    },
+    {
+     "titulo": "Un dividendo que crece hace más de 50 años",
+     "texto": "PepsiCo sube su dividendo hace más de 50 años seguidos. Hoy paga 1,48 dólares por trimestre, y creció 7,5 % por año en los últimos tres.\n\n[[grafico:dividendo]]\n\nEl dividendo se lleva buena parte de la ganancia, así que recompra pocas acciones (267 M en el trimestre).\n\nTiene bastante deuda. La deuda neta (lo que debe menos la caja) es de 41.206 M y equivale a **2,1 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; PepsiCo está en el límite. Su ganancia operativa paga los intereses del año 13,6 veces (por encima de 3 se considera sano).\n\nEn 2025, el fondo activista Elliott compró una participación importante y pidió cambios para mejorar los resultados en EE.UU.\n\nLos riesgos:\n\n- **Los hábitos**: la gente busca comer más sano, y los medicamentos para adelgazar reducen el apetito.\n- **Las segundas marcas**: los supermercados venden sus propias papas fritas más baratas.\n- **Los costos**: insumos y energía más caros.\n\nLa conduce Ramon Laguarta, CEO desde 2018."
+    }
+   ],
+   "valuacion": {
+    "texto": "En PepsiCo, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Es una empresa con ganancias estables, así que el PER refleja bien lo que se paga.\n\nCon el precio de {precio} dólares, PepsiCo cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nLas empresas de consumo masivo como PepsiCo suelen cotizar con una prima por su estabilidad. Cuando su crecimiento se frena, el mercado le retira esa prima. Lo que puede moverlo es si los snacks en EE.UU. vuelven a crecer en volumen.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}). Para muchos inversores que buscan renta, esa comparación pesa.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "PepsiCo es una buena empresa. Tiene marcas líderes en snacks y bebidas, una red de distribución difícil de igualar, un negocio internacional que crece con fuerza, una caja sólida y más de 50 años subiendo el dividendo.\n\nSu punto débil es su mercado más importante. Los snacks en EE.UU. están estancados, tuvo que bajar precios, los costos suben, y el cambio en los hábitos de comida (incluidos los medicamentos para adelgazar) es una amenaza de fondo. Además, tiene bastante deuda. El crítico más duro diría que PepsiCo creció durante años subiendo precios, y que ahora paga la cuenta. Es un argumento razonable.\n\nEncaja con quien busca un dividendo alto y creciente de una empresa de consumo con presencia mundial. No es para quien busca crecimiento.\n\nPara que la tesis se mantenga, lo más importante es que los snacks en EE.UU. vuelvan a crecer en volumen sin sacrificar más margen.",
+   "pros": [
+    "Marcas líderes: Lay's, Doritos, Gatorade y Pepsi.",
+    "Internacional en alza: ganancia operativa ajustada +16 %.",
+    "Dividendo histórico: lo sube hace más de 50 años."
+   ],
+   "contras": [
+    "Snacks en EE.UU. flojos: ganancia operativa ajustada -12 %.",
+    "Crece por precio: el volumen apenas sube medio punto.",
+    "Guía en baja: espera ganar solo entre 2,5 % y 3,5 % más en 2026."
+   ],
    "calidad": "Buena",
-   "riesgo_ia": "bajo",
-   "negocio": "PepsiCo se dedica a la fabricación, comercialización, distribución y venta de bebidas y alimentos de consumo práctico a nivel mundial. Opera seis segmentos: **PepsiCo Foods North America**, **PepsiCo Beverages North America**, **International Beverages Franchise**, **Europe, Middle East and Africa**, **Latin America Foods** y **Asia Pacific Foods**. Ofrece cereales, papas fritas, dips, bebidas y otros productos. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio maduro de crecimiento bajo: **los ingresos subieron 5,9 % en 2023, 0,4 % en 2024 y 2,3 % en 2025, hasta 93.925 M**, y llegan a 98.241 M en los últimos 12 meses.\n\n**A quién le vende.** A supermercados, kioscos, restaurantes y distribuidores de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque las grandes cadenas minoristas concentran buena parte de las ventas (dato público a verificar).",
-   "foso": "La ventaja de PepsiCo **es de marcas y distribución, y es estrecha**. Sus marcas de snacks y bebidas se reconocen en todo el mundo y su red propia de entrega directa a los locales (camiones que reponen las góndolas) no se arma en poco tiempo. Se ve en un margen bruto estable de 53,0 % a 54,6 % y en un ROIC de 15,7 % a 16,9 % año tras año.\n\nCompite con Coca-Cola, Nestlé, Mondelez, Kraft Heinz, Danone y marcas propias de los supermercados. Es frágil en la presión de precios de los consumidores, en el crecimiento de las marcas propias, en el cambio de hábitos hacia opciones más saludables y en los costos de materias primas. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de PepsiCo cuentan **un negocio estable con crecimiento bajo y rentabilidad constante**. Los ingresos fueron de 86.392 M, 91.471 M, 91.854 M y 93.925 M, y de 98.241 M en los últimos 12 meses. El EBIT fue de 11.357 M, 12.913 M, 12.920 M y 13.491 M, y de **15.053 M** (margen operativo de 15,3 %). La ganancia neta fue de 8.910 M, 9.074 M, 9.578 M y 8.240 M, y de 10.896 M. La ganancia por acción fue de 6,42, 6,56, 6,95, 6,00 y **7,96**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 5.604 M, 7.924 M, 7.189 M y 7.672 M, y de **10.471 M** en los últimos 12 meses (10,7 % de los ingresos). El ROIC fue de 16,9 %, 16,5 %, 16,7 %, 15,7 % y 16,3 %. El ROE de 48,9 % está inflado por el patrimonio chico (22.292 M).\n\nLa mirada crítica: la ganancia neta cayó 14 % en 2025 por cargos que Yahoo no detalla y los últimos 12 meses la devuelven a un nivel alto (10.896 M); hay que verificar cuánto de ese rebote es repetible. Con ingresos que crecieron 14 % en tres años, el ritmo es modesto.",
-   "balance": "**Deuda moderada pero con poco colchón.** La deuda total es de 51.881 M y la caja de 11.163 M; la deuda neta es de 41.206 M y la deuda neta/EBITDA es de 2,14x, que multiplicado por 12 son unos 26 meses de EBITDA. Los intereses se cubren 13,6 veces con el EBIT.\n\nEl patrimonio neto es de 22.292 M, chico para el tamaño de la empresa, y la deuda equivale a 2,33 veces el patrimonio. La deuda total subió de 39.554 M en 2022 a 51.881 M, y el capital invertido de 56.220 M a 74.173 M, un movimiento que coincide con compras de empresas (a verificar).",
-   "gerencia": "La conduce Ramón Laguarta, presidente del directorio y CEO (61 años, pago de 8,2 M según Yahoo), en el cargo desde 2018, dato público, con Steve Schmitt como director financiero (51 años, pago de 3,2 M).\n\nEn lo que importa, **el uso del capital es de dividendo creciente y compras de empresas, con recompras chicas**: paga un dividendo de 5,92 por acción (pagado desde 1972; sube 7,5 % por año en 3 años; 7.881 M en los últimos 12 meses, 75 % del flujo libre) y recompró 1.500 M en 2022, 1.000 M en 2023, 2024 y 2025, y 987 M en los últimos 12 meses. **Las acciones bajaron de 1.387 M a 1.370 M, un 1,2 % menos.**",
-   "fortalezas": [
-    "Marcas globales y red de distribución directa.",
-    "Margen operativo de 15,3 % y ROIC estable de 16 %.",
-    "Flujo libre de 10.471 M.",
-    "Dividendo pagado desde 1972 y creciendo 7,5 % por año.",
-    "Margen bruto estable de 54 %."
-   ],
-   "debilidades": [
-    "Crecimiento de ingresos de 0,4 % a 5,9 % por año.",
-    "Dividendo que absorbe 75 % del flujo libre: el crítico más duro diría que deja poco margen de error.",
-    "Deuda neta de 41.206 M (2,14x EBITDA).",
-    "Poca capacidad de recompra.",
-    "Presión de las marcas propias y de cambios en hábitos de consumo."
-   ],
-   "vigilar": [
-    "Ingresos: hoy +4,6 % en los últimos 12 meses; si baja de 2 %, las marcas pierden fuerza.",
-    "Margen operativo: hoy 15,3 %; si baja, los costos o los precios pesan.",
-    "Deuda neta: hoy 41.206 M; no debería seguir subiendo.",
-    "Flujo libre contra dividendo: hoy 10.471 M contra 7.881 M."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Supermercados y cadenas minoristas",
-    "Kioscos, restaurantes y distribuidores",
-    "Consumidores finales de snacks y bebidas"
+    "Supermercados y cadenas, con Walmart (WMT) a la cabeza en EE.UU.",
+    "Kioscos, almacenes y comercios de todo el mundo",
+    "Restaurantes y cadenas de comida"
    ],
-   "ideal_para": [
-    "Buscan consumo básico con dividendo creciente.",
-    "Valoran las marcas y la distribución.",
-    "Aceptan crecimiento bajo."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 25.274 M (+5,6 %); crecimiento orgánico de 3,1 % (precio unos 3 puntos, volumen unos 0,5); ganancia por acción de 2,23 dólares y ajustada de 2,34 (+2 %); alimentos EE.UU. 6.504 M, ganancia operativa ajustada de 1.382 M (-12 %); bebidas EE.UU. 7.706 M (+5 %); internacional 11.064 M, ganancia operativa ajustada +16 %; margen ajustado de 16,9 % (17,3 %); guía 2026: ganancia ajustada por acción +2,5 % a +3,5 % (antes +5 % a +7 %); dividendo trimestral de 1,48 dólares; recompras de 267 M",
+     "fuente": "Análisis de los resultados del 3T26, 10/2026",
+     "url": "https://beancount.io/blog/2026/10/19/pepsico-q3-2026-earnings-analysis"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de PepsiCo, anexo 99.1",
+     "url": "https://www.sec.gov/Archives/edgar/data/0000077476/000007747626000050/q320268-kxexhibit991.htm"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido.",
-    "No toleran un balance con deuda moderada."
-   ],
+   "ticker": "PEP",
    "perfil": "consumo",
    "capas": [],
-   "ticker": "PEP",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10327,56 +10375,62 @@
    }
   },
   "GILD": {
-   "resumen": "Gilead es una empresa estadounidense biofarmacéutica: desarrolla y vende medicamentos para el VIH (Biktarvy, Descovy, Genvoya, Odefsey, Sunlenca, Symtuza y Yeztugo), hepatitis B y C (Epclusa, Livdelzi, Vemlidy) y otras áreas, en Estados Unidos, Europa y el resto del mundo. Gana plata vendiendo tratamientos protegidos por patentes que los pacientes toman de forma crónica. Tiene un **foso amplio, de patentes y liderazgo en VIH**: sus tratamientos están entre los más usados del mercado (dato público) y los médicos conocen su perfil de seguridad. Los números operativos son excelentes: el margen bruto es de 79,6 %, el margen operativo de **38,5 %**, el ROIC de **22,8 %** y el flujo libre de **12.943 M** en los últimos 12 meses (42,5 % de los ingresos). Pero la ganancia neta de los últimos 12 meses es **negativa (-3.240 M)** y la ganancia por acción de -2,67; Yahoo no explica la causa, y lo más probable es un cargo extraordinario por la compra de proyectos de investigación de otra empresa (dato público a verificar). La caja bajó de 9.613 M a 3.179 M y la deuda neta subió de 17.372 M a 23.067 M. Su punto débil es la concentración en VIH y los cargos que llegan con cada adquisición. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de muy buena calidad operativa, con márgenes altos y flujo libre de 12.943 M, aunque la ganancia neta de los últimos 12 meses es negativa por un cargo que hay que verificar.**",
-   "veredicto": "Muy buena: margen operativo de 38,5 % y flujo libre de 12.943 M, aunque la ganancia neta de 12 meses es negativa por un cargo",
-   "conclusion": "Gilead es una empresa de muy buena calidad operativa: tiene un foso amplio de patentes y liderazgo en VIH, margen operativo de 38,5 %, ROIC de 22,8 %, flujo libre de 12.943 M y dividendo desde 2015, pero la ganancia neta de los últimos 12 meses es negativa (-3.240 M) por cargos que Yahoo no detalla y los ingresos dependen mucho del VIH. Vale la pena seguirla de cerca. Es recomendable investigar el cargo y el peso del VIH en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que la ganancia neta vuelva a positiva sin nuevos cargos grandes.",
+   "formato": "v4",
+   "titulo": "Gilead: domina el tratamiento del VIH, y ahora lo previene con una inyección cada seis meses",
+   "resumen": [
+    "Gilead es una de las mayores biotecnológicas del mundo y la **líder en medicamentos contra el VIH**: Biktarvy, su pastilla diaria, es el tratamiento más usado. Ahora suma **Yeztugo**, una inyección que previene el contagio con solo dos aplicaciones por año. Su ventaja es décadas de liderazgo en VIH.",
+    "En el tercer trimestre de 2026, **sus ventas sin contar Veklury crecieron 16 %**, y las de VIH, 18 %. Pero en 2026 va a registrar cargos por 12.400 M por compras de medicamentos en desarrollo, que la llevan a pérdida contable en el año.",
+    "Muy buena empresa, con un negocio de VIH sólido y mucha caja, aunque depende mucho de ese negocio y está gastando fuerte en compras para diversificarse."
+   ],
+   "introduccion": "Hace 30 años, un diagnóstico de VIH era una sentencia. Hoy, una persona con VIH que se trata puede tener una vida casi normal, con una pastilla por día. Gilead tiene mucho que ver con eso.\n\nSu pastilla Biktarvy es el tratamiento contra el VIH más usado del mundo: vendió 4.100 M solo en el tercer trimestre de 2026. Y Gilead domina también la **prevención**: la profilaxis previa a la exposición (PrEP), un medicamento que toman personas sanas para no contagiarse.\n\nEn 2025, Gilead lanzó algo que puede cambiar ese mercado: **Yeztugo**, una inyección de lenacapavir que previene el contagio con solo dos aplicaciones por año, en lugar de una pastilla diaria. Las ventas de prevención casi se duplicaron en un año.\n\nPero Gilead tiene un desafío: depende demasiado del VIH. Por eso está comprando empresas con medicamentos contra el cáncer y otras enfermedades, y esas compras le cuestan caro en los papeles.\n\nEntonces, la pregunta es: ¿puede Gilead crecer más allá del VIH?",
+   "secciones": [
+    {
+     "titulo": "VIH, hígado y cáncer",
+     "texto": "Gilead tiene tres grandes áreas. En el tercer trimestre de 2026:\n\n- **VIH**: 6.249 M, un 18 % más. Biktarvy vendió 4.100 M (+10 %) y Descovy, que también se usa para prevención, 1.000 M (+49 %). Es tres cuartas partes del negocio.\n- **Hígado**: 927 M, un 13 % más, impulsado por Livdelzi, para una enfermedad hepática rara.\n- **Cáncer**: 860 M, un 9 % más. Trodelvy, para el cáncer de mama, creció 42 %; las terapias celulares (Yescarta, Tecartus) cayeron 18 % por la competencia.\n\nVeklury, su antiviral contra el covid, sigue cayendo (86 M, -69 %), y ya pesa poco.\n\nSus clientes son distribuidores, sistemas de salud, programas del gobierno de EE.UU. y aseguradoras.\n\n¿Cuál es su **ventaja**? El **liderazgo en VIH**: décadas de investigación, médicos que confían en sus medicamentos y una sucesión de productos cada vez mejores. Cuando una patente vence, Gilead suele tener lista una versión mejor.\n\nLa inteligencia artificial es más una herramienta que una amenaza: puede acelerar la investigación."
+    },
+    {
+     "titulo": "Un negocio muy rentable, con cargos que confunden",
+     "texto": "Los ingresos crecen despacio: de 27.281 M en 2022 a **30.456 M** en los últimos 12 meses. Para 2026, la empresa ahora espera ventas de productos de 31.000 M a 31.300 M.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **38,5 %**. El promedio de su industria es 9,0 %: muchas biotecnológicas todavía pierden plata.\n\n[[grafico:margen_operativo]]\n\nLa ganancia contable, en cambio, salta mucho: 0,38 dólares por acción en 2024 y -2,67 en los últimos 12 meses. ¿Por qué? Porque cuando Gilead compra una empresa con medicamentos en desarrollo, la regla contable de EE.UU. obliga a registrar casi todo lo pagado como gasto de una sola vez. En 2026 esos cargos suman **12.400 M**, por las compras de Arcellx, Tubulis y otras. Por eso la empresa espera una pérdida contable en el año, aunque el negocio gana mucha plata.\n\nLo que no engaña es la caja: **12.943 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **22,8 %**. Por encima de 15 % se considera muy bueno."
+    },
+    {
+     "titulo": "Compras con caja y deuda",
+     "texto": "Las compras se pagaron con caja y algo de deuda. La caja bajó de 10.600 M a fines de 2025 a 6.400 M en septiembre de 2026, después de pagar 11.300 M por compras.\n\nLa deuda neta (lo que debe menos la caja) es de 23.067 M. En un año normal, como 2025, equivalía a 1,3 veces su EBITDA (lo que genera el negocio antes de intereses e impuestos); hoy el número sale distorsionado por los cargos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año unas 12 veces (por encima de 3 se considera sano).\n\nEl dividendo es de 0,82 dólares por trimestre y crece despacio: 2,7 % por año en los últimos tres. Además, recompró acciones por 1.100 M en nueve meses.\n\nLos riesgos:\n\n- **Dependencia del VIH**: tres cuartas partes de las ventas.\n- **Precios en EE.UU.**: el gobierno presiona para bajar el precio de los medicamentos.\n- **Las compras**: si los medicamentos comprados fracasan, la plata se pierde.\n\nLo conduce Daniel O'Day, CEO desde 2019: \"Gilead tuvo un tercer trimestre excepcional, con el mayor crecimiento interanual de su negocio base en más de una década\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Gilead, el PER contable no sirve en 2026: los cargos por compras la llevan a pérdida en los papeles. Por eso conviene mirar el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Gilead cotiza a {v:p_fcf} veces su flujo libre de caja. Eso está {vs:p_fcf} su propia mediana histórica ({med:p_fcf} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nDurante años, el mercado pagó poco por Gilead porque crecía poco. Lo que define cuánto paga ahora es si Yeztugo sigue creciendo y si los medicamentos que compró funcionan.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10})."
+   },
+   "conclusion": "Gilead es una muy buena empresa. Domina el tratamiento y la prevención del VIH, tiene márgenes muy altos, una caja fuerte y un producto nuevo, Yeztugo, que puede ampliar mucho el mercado de prevención.\n\nSu punto débil es la dependencia del VIH, que explica tres cuartas partes de sus ventas, y el riesgo de sus compras: en 2026 pagó caro por medicamentos que todavía tienen que demostrar que funcionan, lo que la lleva a una pérdida contable. El crítico más duro diría que Gilead es un negocio excelente pero de un solo producto, que gasta fortunas para dejar de serlo. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una biotecnológica rentable, con dividendo y crecimiento moderado. No es para quien busca una empresa diversificada.\n\nPara que la tesis se mantenga, lo más importante es que Yeztugo siga creciendo y que las compras recientes empiecen a sumar ventas.",
+   "pros": [
+    "Líder en VIH: Biktarvy es el tratamiento más usado del mundo.",
+    "Prevención en alza: las ventas de prevención casi se duplicaron.",
+    "Mucha caja: 12.943 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "Depende del VIH: tres cuartas partes de las ventas.",
+    "Compras caras: cargos de 12.400 M en 2026 por medicamentos en desarrollo.",
+    "Terapias celulares en baja: cayeron 18 % por la competencia."
+   ],
    "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Gilead descubre, desarrolla y comercializa medicamentos para necesidades médicas sin cubrir en Estados Unidos, Europa y el resto del mundo. Según Yahoo, ofrece **Biktarvy, Descovy, Genvoya, Odefsey, Sunlenca, Symtuza y Yeztugo** para el VIH-1, y **Epclusa, Livdelzi y Vemlidy** para la hepatitis. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio maduro con crecimiento moderado: **los ingresos cayeron 0,6 % en 2023, subieron 6,0 % en 2024 y 2,4 % en 2025, hasta 29.442 M**, y llegan a 30.456 M en los últimos 12 meses.\n\n**A quién le vende.** A mayoristas, farmacias, hospitales y sistemas de salud; pocos distribuidores concentran las ventas en Estados Unidos (dato público a verificar).",
-   "foso": "La ventaja de Gilead **es de patentes y liderazgo en tratamientos de VIH, y es amplia**. Los pacientes con VIH toman el tratamiento de por vida, los médicos y las aseguradoras conocen su seguridad y cambiar de esquema tiene riesgos. Se ve en el margen bruto de 76,0 % a 79,6 % y en el margen operativo de 38,5 %.\n\nPero las patentes vencen (dato público a verificar), la negociación de precios de Medicare en Estados Unidos presiona y la franquicia de VIH concentra buena parte de los ingresos. Compite con ViiV (GSK), Merck, AbbVie y Johnson & Johnson. Es frágil en el vencimiento de patentes, en los precios regulados y en que los lanzamientos nuevos (como Yeztugo, para prevención) no compensen lo anterior. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de Gilead cuentan **un negocio operativo muy fuerte con una ganancia neta distorsionada por cargos**. Los ingresos fueron de 27.281 M, 27.116 M, 28.754 M y 29.442 M, y de 30.456 M en los últimos 12 meses. El EBIT fue de 10.974 M, 8.838 M, 10.596 M y 11.701 M, y de **11.716 M** (margen operativo de 38,5 %). La ganancia neta fue de 4.592 M, 5.665 M, **480 M** y 8.510 M, y de **-3.240 M**. La ganancia por acción fue de 3,64, 4,50, 0,38, 6,78 y -2,67.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 8.344 M, 7.421 M, 10.305 M y 9.456 M, y de **12.943 M** (42,5 % de los ingresos), con inversiones de solo 609 M. El ROIC fue de 18,5 %, 15,1 %, 16,0 %, 21,3 % y 22,8 %. El ROE de -27,4 % no sirve porque la ganancia neta es negativa.\n\nLa mirada crítica: en 2024 la ganancia neta ya había caído a 480 M con EBIT de 10.596 M. Dos años con cargos grandes indican que la compra de investigación externa es parte del modelo, no algo aislado (Yahoo no detalla los cargos, dato a verificar).",
-   "balance": "**Deuda moderada, con una lectura engañosa en Yahoo.** La deuda total es de 26.246 M y la caja de 3.179 M; la deuda neta es de 23.067 M. Yahoo muestra deuda neta/EBITDA de 12,79x, pero ese EBITDA (1.803 M) incluye el cargo que baja la ganancia neta y no coincide con el EBIT de 11.716 M, así que el cociente no sirve. Con el EBITDA de 2025 (13.580 M), la deuda neta serían unas 1,7x, que multiplicado por 12 son unos 20 meses de EBITDA (cálculo nuestro). Los intereses se cubren 11,7 veces con el EBIT.\n\nEl patrimonio neto bajó de 22.702 M a 11.828 M y la liquidez corriente es de 1,27x. La caja bajó de 9.613 M a 3.179 M, probablemente por la compra detrás del cargo (dato a verificar).",
-   "gerencia": "La conduce Daniel O'Day, presidente del directorio y CEO (60 años, pago de 8,7 M según Yahoo), con Andrew Dickinson como director financiero (55 años, pago de 3,1 M), Johanna Mercier como directora comercial (55 años) y Dietmar Berger como director médico (56 años). O'Day es CEO desde 2019, dato público.\n\nEn lo que importa, **el uso del capital combina dividendo, recompras moderadas y adquisiciones**: paga un dividendo de 3,28 por acción (desde 2015; sube 2,7 % por año en 3 años; 4.068 M en los últimos 12 meses, 31 % del flujo libre) y recompró 1.396 M en 2022, 1.000 M, 1.150 M, 1.922 M y 1.439 M en los últimos 12 meses. **Las acciones bajaron de 1.262 M a 1.251 M, un 0,9 % menos.**",
-   "fortalezas": [
-    "Margen operativo de 38,5 % y margen bruto de 79,6 %.",
-    "Flujo libre de 12.943 M, 42,5 % de los ingresos.",
-    "ROIC de 22,8 %.",
-    "Liderazgo en VIH con productos de uso crónico.",
-    "Cobertura de intereses de 11,7 veces."
-   ],
-   "debilidades": [
-    "Ganancia neta negativa en los últimos 12 meses (-3.240 M).",
-    "Cargos por adquisiciones dos años seguidos: el crítico más duro diría que la ganancia neta de los años buenos no es repetible.",
-    "Concentración en VIH y patentes que vencen.",
-    "Dividendo creciendo solo 2,7 % por año.",
-    "Caja baja (3.179 M)."
-   ],
-   "vigilar": [
-    "Ganancia neta: hoy -3.240 M; tiene que volver a positiva, y hay que ver cuánto es cargo único.",
-    "Ingresos de VIH: Yahoo no los informa, hay que buscarlos en el informe.",
-    "Margen operativo: hoy 38,5 %; si baja de 33 %, pierde poder de precio.",
-    "Deuda neta: hoy 23.067 M; tiene que bajar con el flujo libre."
-   ],
    "clientes": [
-    "Mayoristas y distribuidores de medicamentos",
-    "Hospitales y farmacias",
-    "Sistemas de salud y aseguradoras"
+    "Distribuidores y sistemas de salud de EE.UU.",
+    "Programas del gobierno y aseguradoras",
+    "Sistemas de salud de todo el mundo"
    ],
-   "ideal_para": [
-    "Buscan salud con margen alto y flujo libre fuerte.",
-    "Valoran el dividendo y las recompras moderadas.",
-    "Aceptan cargos por adquisiciones."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 8.300 M (+7 %); ventas sin Veklury de 8.203 M (+16 %); VIH 6.249 M (+18 %): Biktarvy 4.100 M (+10 %), Descovy 1.000 M (+49 %); prevención casi el doble; hígado 927 M (+13 %); cáncer 860 M (+9 %): Trodelvy 506 M (+42 %), terapias celulares 355 M (-18 %); Veklury 86 M (-69 %); ganancia por acción de 1,94 dólares y ajustada de 2,55; guía 2026: ventas de productos de 31.000 M a 31.300 M, cargos por investigación comprada de 12.400 M (Arcellx, Tubulis, Ouro, PepStar); caja de 6.400 M; dividendo trimestral de 0,82 dólares; frase de Daniel O'Day",
+     "fuente": "Comunicado de resultados del 3T26, 29/10/2026",
+     "url": "https://www.gilead.com/news/news-details/2026/gilead-sciences-announces-third-quarter-2026-financial-results"
+    }
    ],
-   "menos_ideal": [
-    "Buscan ganancias netas estables.",
-    "No toleran la concentración en una sola franquicia."
-   ],
+   "ticker": "GILD",
    "perfil": "salud",
    "capas": [
     "compounder"
    ],
-   "ticker": "GILD",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
