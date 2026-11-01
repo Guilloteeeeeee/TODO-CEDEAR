@@ -2,53 +2,62 @@
  "fecha": "01/11/2026",
  "datos": {
   "TJX": {
-   "resumen": "TJX vende ropa, calzado y artículos para el hogar de marcas conocidas a precios más bajos que los de una tienda tradicional, a través de cadenas como T.J. Maxx, Marshalls y HomeGoods en Estados Unidos, Canadá, Europa y Australia. Su ventaja está en cómo compra: es tan grande que los proveedores le ofrecen primero la mercadería que les sobró, y eso le permite vender barato y aun así ganar más que antes. Tiene un **foso estrecho, de costos y escala**: es real, pero más frágil que el de una marca. Los números lo confirman: los ingresos crecieron 6,5 % por año entre 2023 y 2026, el margen operativo subió de 9,7 % a 12,7 % en los últimos 12 meses y el retorno sobre el capital invertido supera el 40 %. Su debilidad es la de todo comercio: si el cliente deja de encontrar buenas ofertas, **se va a otra tienda sin pagar ningún costo**. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la gente va a las tiendas a buscar sorpresas y eso es difícil de reemplazar con tecnología. Conclusión: **muy buena empresa de comercio, con foso estrecho, retornos excepcionales, balance cómodo y márgenes en máximos.**",
-   "veredicto": "Muy buena empresa de comercio: retornos excepcionales, sin barrera que retenga al cliente",
-   "conclusion": "TJX es una muy buena empresa, no una excelente: compra bien, vende barato y rinde mucho sobre su capital (ROIC de 44,2 % en los últimos 12 meses), con balance cómodo y caja devuelta a los accionistas sin diluirlos. Lo que le falta es una barrera que impida que el cliente se vaya: su ventaja depende de seguir ejecutando bien. Es una empresa que vale la pena tener en seguimiento. Para que la tesis se mantenga, lo más importante es que el margen bruto (32,0 %) y el operativo (12,7 %) no se deterioren.",
-   "calidad": "Muy buena",
+   "formato": "v4",
+   "titulo": "TJX: la búsqueda del tesoro de T.J. Maxx convirtió las ofertas en una máquina de ganar plata",
+   "resumen": [
+    "TJX es la mayor cadena del mundo de **tiendas de precio rebajado** (*off-price*): T.J. Maxx, Marshalls, HomeGoods y Sierra en EE.UU., Winners en Canadá y T.K. Maxx en Europa y Australia. Vende ropa, calzado y artículos para el hogar de marca, mucho más baratos que en las tiendas tradicionales. Su ventaja es una red de compras y logística que nadie igualó.",
+    "En el segundo trimestre de su año fiscal 2027 (cerrado el 1 de agosto de 2026), **sus ventas crecieron 5 %**, a 15.200 M, y su ganancia por acción subió 24 %, a 1,36 dólares (11 % sin una devolución de aranceles). Subió lo que espera ganar en el año.",
+    "Excelente empresa, con un retorno sobre el capital altísimo, poca deuda y un crecimiento constante, aunque el mercado ya la paga cara y su negocio más grande, Marmaxx, creció poco en el trimestre."
+   ],
+   "introduccion": "Entrar a un T.J. Maxx es distinto a entrar a cualquier otra tienda. No hay dos locales iguales, la mercadería cambia todas las semanas y nunca sabés qué vas a encontrar: una campera de marca a la mitad de precio, una sartén italiana, una valija. Si te gusta algo, conviene llevarlo ese día, porque la semana próxima puede no estar.\n\nA eso la empresa lo llama la **búsqueda del tesoro**. Y es el corazón de un negocio que creció durante décadas, en épocas buenas y malas.\n\nLa lógica es simple. Las marcas y las tiendas tradicionales casi nunca venden exactamente lo que fabricaron: sobran talles, colores o modelos, se cancelan pedidos, cambian las temporadas. TJX compra esos sobrantes con descuento, de forma oportunista, y los vende mucho más barato que el precio original. Cuando la economía anda mal, la gente busca ofertas. Cuando anda bien, sigue comprando.\n\nEl resultado: los ingresos pasaron de 49.936 M a **62.363 M** en los últimos 12 meses, y la ganancia por acción, de 2,97 a **5,41 dólares**.\n\nEntonces, la pregunta es: ¿cuánto vale pagar por una empresa que vende barato, pero que el mercado no vende barata?",
+   "secciones": [
+    {
+     "titulo": "Cuatro divisiones y un modelo que nadie copió",
+     "texto": "TJX tiene cuatro grandes divisiones. Entre paréntesis, cuánto crecieron las ventas de sus tiendas comparables (las que ya estaban abiertas un año antes) en el segundo trimestre:\n\n- **Marmaxx** (+1 %): T.J. Maxx, Marshalls y Sierra en EE.UU. Es la división más grande.\n- **HomeGoods** (+7 %): HomeGoods y HomeSense, artículos para el hogar en EE.UU.\n- **TJX Canada** (+6 %): Winners, HomeSense y Marshalls en Canadá.\n- **TJX International** (+7 %): T.K. Maxx y HomeSense en Europa, y T.K. Maxx en Australia.\n\nEn total, las ventas comparables crecieron 4 %. Terminó el trimestre con 5.285 tiendas.\n\nSus clientes son decenas de millones de personas que buscan marcas a buen precio, de todos los niveles de ingreso.\n\n¿Cuál es su **ventaja**? La **red de compras**. TJX tiene un ejército de compradores que recorre el mundo y relaciones con miles de proveedores, que le venden sus sobrantes porque saben que TJX compra mucho, paga rápido y no daña su marca. Esa red tardó décadas en construirse. A eso se suman la **escala** (compra más barato que cualquier rival) y una **logística** pensada para mover mercadería distinta todas las semanas.\n\nEl modelo es difícil de copiar: hay otras cadenas de rebajas, pero ninguna alcanza su escala ni su presencia en varios países. Y el comercio electrónico tampoco la desplazó: la búsqueda del tesoro funciona mejor en un local, y los precios bajos no dejan margen para pagar envíos y devoluciones.\n\nPor eso el riesgo de la inteligencia artificial es bajo. En todo caso, la ayuda a decidir qué comprar y dónde mandarlo."
+    },
+    {
+     "titulo": "Una rentabilidad de primer nivel",
+     "texto": "Los ingresos crecieron sin parar: de 49.936 M a **62.363 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 9,7 % a **12,7 %**. Parece bajo, pero para un comerciante es muy bueno: el promedio de su industria es 7,7 %. TJX gana poco por cada venta, pero vende muchísimo y muy rápido.\n\n[[grafico:margen_operativo]]\n\nY acá está la clave: el **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **44,2 %**. Por encima de 15 % se considera muy bueno. El promedio de su industria es 21,5 %.\n\n[[grafico:roic]]\n\n¿Cómo logra un retorno tan alto con márgenes modestos? Con la **rotación del inventario**. Un ejemplo: si una tienda compra mercadería por 100, la vende en pocas semanas y vuelve a comprar, puede dar varias vueltas por año con el mismo capital. Cada vuelta deja ganancia. Además, TJX les paga a sus proveedores con plazo, así que una parte de su inventario la financian ellos. Si un día la mercadería empezara a acumularse en los depósitos, ese retorno bajaría rápido. Por eso conviene mirar siempre el inventario.\n\nEn el segundo trimestre, el **margen antes de impuestos** fue de 13,3 %. Sin la devolución de aranceles que cobró, fue de 11,9 %, medio punto más que un año antes.\n\nLa ganancia por acción pasó de 2,97 dólares a **5,41** en los últimos 12 meses.\n\n[[grafico:eps]]"
+    },
+    {
+     "titulo": "Caja, recompras y un dividendo que crece",
+     "texto": "TJX genera mucha caja: **5.876 M** de flujo libre (lo que queda después de invertir en tiendas y depósitos) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nLa deuda no es un problema. La deuda neta (lo que debe menos la caja) equivale a **0,88 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos, y ese número incluye los alquileres de sus locales, que se cuentan como deuda. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año más de 100 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nCasi toda la caja vuelve a los accionistas. En el segundo trimestre devolvió 1.300 M: 798 M en recompras de acciones y 529 M en dividendos. Las recompras achican la cantidad de acciones, y así cada acción se queda con una parte más grande de la ganancia.\n\n[[grafico:acciones]]\n\nEl dividendo es de 1,92 dólares por acción por año y creció 13 % por año en los últimos tres, y 15 % por año en los últimos diez.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **Marmaxx**: su división más grande creció solo 1 % en el trimestre, por debajo de lo que esperaba la empresa.\n- **Los aranceles**: encarecen la mercadería importada, aunque también generan más sobrantes que TJX puede comprar.\n- **El consumo**: una caída fuerte del empleo golpearía a todo el comercio.\n- **Los costos**: salarios y fletes.\n\nLo conduce Ernie Herrman, CEO desde 2016: \"Estoy muy satisfecho con nuestros resultados consolidados del segundo trimestre, por encima de lo planeado\". Agregó que la empresa sigue \"muy confiada en el largo camino de crecimiento que tiene por delante\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En TJX, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Un PER de 25 significa que, si la ganancia no cambiara, tardarías 25 años en recuperar lo que pagaste.\n\nCon el precio de {precio} dólares, TJX cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nUn detalle: esa ganancia incluye una devolución de aranceles que no se va a repetir. Sin ella, la empresa espera ganar entre 5,15 y 5,20 dólares por acción en el año fiscal, algo menos que lo que muestra el número contable.\n\nEl mercado paga una prima por TJX por su constancia: lleva décadas creciendo (salvo en la pandemia, cuando tuvo que cerrar sus tiendas), tiene un retorno sobre el capital altísimo y devuelve casi toda su caja. Esa prima tiene sentido mientras la ganancia siga creciendo cerca de 10 % por año. Si el crecimiento se frena, el múltiplo puede bajar.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "TJX es una excelente empresa. Tiene un modelo que nadie logró copiar, una red de compras construida durante décadas, un retorno sobre el capital de los más altos del comercio, poca deuda y una caja que devuelve a sus accionistas con recompras y un dividendo que crece a doble dígito.\n\nSu punto débil es el precio, y en menor medida Marmaxx, su división más grande, que creció poco en el trimestre. El crítico más duro diría que se paga mucho por una cadena de tiendas cuyo crecimiento ya es maduro en EE.UU. Es un argumento razonable, aunque la empresa lleva décadas demostrando que puede seguir creciendo.\n\nEncaja con quien busca una empresa de calidad, defensiva y con crecimiento constante, para mantener muchos años. No es para quien busca un precio bajo o un dividendo alto.\n\nPara que la tesis se mantenga, lo más importante es que Marmaxx vuelva a crecer, que el margen siga subiendo y que el inventario no se acumule.",
+   "pros": [
+    "Modelo único: una red de compras que nadie igualó.",
+    "Retorno altísimo: ROIC de 44,2 %, el doble que su industria.",
+    "Dividendo en alza: creció 15 % por año en los últimos diez años."
+   ],
+   "contras": [
+    "Precio exigente: el mercado ya paga una prima por su calidad.",
+    "Marmaxx floja: creció solo 1 % en el trimestre.",
+    "Ganancia con un extra: incluye una devolución de aranceles que no se repite."
+   ],
+   "calidad": "Excelente",
    "riesgo_ia": "bajo",
-   "negocio": "TJX compra a las marcas y a otros minoristas la mercadería que les sobró o que se fabricó de más, y la vende en sus tiendas por bastante menos de lo que costaría en un local tradicional. Opera cuatro segmentos: Marmaxx (T.J. Maxx y Marshalls en Estados Unidos), HomeGoods (artículos para el hogar), TJX Canada y TJX International (Europa y Australia). La descripción de Yahoo no dice cuánto aporta cada uno, y no vamos a inventarlo; lo que sí queda claro es que **la ropa y el hogar son sus dos grandes familias de productos**.\n\nEs un negocio que se repite todos los años: la gente siempre compra ropa y cosas para la casa, y cuando la economía aprieta, buscar precios bajos juega a favor. El crecimiento viene de abrir tiendas nuevas y de vender más en las que ya existen: **los ingresos subieron entre 4,0 % y 8,6 % por año desde 2024**. Para que siga así tienen que pasar dos cosas: que los proveedores sigan teniendo mercadería sobrante y que los clientes sigan yendo a las tiendas.\n\n**A quién le vende.** A consumidores finales que compran en sus tiendas: cada compra es chica y la hacen muchísimas personas, así que **ningún cliente en particular pesa en las ventas**. La dependencia está del otro lado, en los proveedores que le dejan la mercadería sobrante: si las marcas producen o venden distinto, a TJX le cambia la oferta.",
-   "foso": "La ventaja de TJX **es de costos y de escala**. Cuanto más vende, más proveedores le ofrecen mercadería sobrante; cuanto mejores son esas ofertas, más clientes vuelven a buscarlas; y cuanto más clientes tiene, más grande es y más proveedores la buscan. **Es un círculo que se refuerza**. Se nota en los números: el margen bruto, lo que le queda de cada dólar vendido después de pagar la mercadería, **subió de 27,6 % en 2023 a 32,0 % en los últimos 12 meses**. Un comercio sin ventaja real no logra eso mientras vende más barato.\n\nEs una ventaja real, pero **más frágil que la de una marca como Coca-Cola**: en el comercio el cliente no paga nada por irse a otra tienda y las marcas podrían vender más por su cuenta en internet. Compite con Ross Stores y Burlington, que tienen el mismo modelo, y con grandes cadenas como Walmart y Target. La inteligencia artificial no amenaza el modelo; lo que podría cambiar es cuánto compra la gente online, pero la experiencia de recorrer una tienda y encontrar sorpresas es difícil de copiar.",
-   "numeros": "Los números de TJX cuentan una historia de mejora pareja. Los ingresos pasaron de 49.936 M en 2023 a 60.372 M en 2026, y a 62.363 M en los últimos 12 meses. Pero lo importante es que **las ganancias crecieron más rápido que las ventas**: el margen operativo (lo que queda de cada dólar vendido después de pagar la mercadería y los gastos de las tiendas) subió de 9,7 % a 12,7 %, y la ganancia por acción pasó de 2,97 a 5,41, **un 17,9 % por año hasta 2026**. Una parte de esa mejora viene de las recompras de acciones, que bajaron la cantidad de acciones 4,8 % desde 2023, pero no explican lo principal.\n\nLa ganancia también se convierte en caja. El flujo de caja operativo fue de 132 % del resultado neto en los últimos 12 meses (promedio de 125,7 % en los años completos), en parte porque algunos gastos contables, como la depreciación de las tiendas, no son una salida de dinero. El flujo libre, lo que sobra después de invertir en tiendas, fue de **5.876 M, un 9,4 % de las ventas**. El ROIC, que mide cuánto gana por cada dólar puesto en el negocio, **está en 44,2 %**, con un promedio de 41,0 %: un retorno excepcional para un comercio.\n\nLa mirada crítica: **el margen operativo está en su máximo de la tabla**, 1,8 puntos por encima del promedio. Si se normaliza, la ganancia va a crecer más despacio que en estos años.",
-   "balance": "**La deuda de TJX es cómoda**. La deuda total que informa Yahoo es de 14.317 M en los últimos 12 meses, pero incluye en buena parte los alquileres de sus tiendas, un compromiso fijo como una deuda aunque no sea un préstamo. Con 6.004 M en caja, la deuda neta queda en 8.313 M, es decir, **0,88 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones). En la práctica, podría pagar esa deuda neta con **menos de un año de ganancia operativa**. Ese ratio bajó desde 1,30 veces en 2023, y el patrimonio creció de 6.364 M a 10.651 M.\n\nLa liquidez corriente, que compara lo que tiene a corto plazo con lo que debe a corto plazo, es de 1,15 veces: ajustada, pero normal en un comercio que rota su mercadería rápido. Un dato que no tenemos es el gasto en intereses, por lo que no podemos medir cuántas veces cubre sus intereses con la ganancia. Aun así, con la caja que genera, la deuda no parece un problema.",
-   "gerencia": "La conduce Ernie Herrman, CEO y presidente (64 años, pago de 10,7 M según Yahoo), con Carol Meyrowitz como presidenta ejecutiva. Es un equipo estable, y los resultados de estos años son lo que más habla de él. En lo que importa, **el uso del capital, se ve prudente**: reinvierte en tiendas (2.158 M de inversión en los últimos 12 meses, 35,6 % del resultado neto), paga un dividendo de 1,92 por acción, que lleva pagando desde 1987 y creció 15,2 % por año en los últimos 10 años, y recompra acciones (2.796 M en los últimos 12 meses).\n\nEntre dividendos (1.949 M) y recompras devuelve unos 4.745 M, **alrededor del 81 % del flujo libre**, sin endeudarse para hacerlo. Y las acciones bajaron entre 1,2 % y 1,6 % por año desde 2023: **no hay dilución**, que es lo que se busca ver.",
-   "fortalezas": [
-    "Ventaja de costos y escala: el margen bruto subió de 27,6 % en 2023 a 32,0 % en los últimos 12 meses mientras vende más barato que la competencia.",
-    "Retorno excepcional sobre el capital: ROIC de 44,2 % en los últimos 12 meses, con un promedio de 41,0 % en los años completos.",
-    "Ganancias que se vuelven caja: flujo libre de 9,4 % de las ventas en los últimos 12 meses, muy por encima del 5 % que suele pedirse, y flujo operativo de 132 % del resultado neto.",
-    "Balance cómodo: deuda neta de 0,88 veces el EBITDA y patrimonio que creció de 6.364 M a 10.651 M desde 2023.",
-    "Reparte caja sin diluir: dividendo desde 1987, que creció 15,2 % por año en 10 años, y acciones que bajaron 4,8 % desde 2023."
+   "clientes": [
+    "Consumidores de EE.UU. que buscan marcas a buen precio",
+    "Consumidores de Canadá, Europa y Australia",
+    "Hogares que compran artículos para la casa (HomeGoods y HomeSense)"
    ],
-   "debilidades": [
-    "No hay costos de cambio: si el cliente deja de encontrar buenas ofertas de marcas conocidas, se va a otra tienda o a internet sin pagar nada. Es el riesgo principal.",
-    "El margen operativo está en su máximo de la tabla (12,7 % contra un promedio de 10,9 %): si vuelve al promedio, la ganancia crecería bastante menos que en los últimos años.",
-    "Depende de un flujo constante de mercadería sobrante: si las marcas ajustan mejor su producción o venden más directo online, habría menos oferta para TJX.",
-    "Los alquileres de las tiendas son un compromiso fijo que forma parte de la deuda total de 14.317 M y pesaría si las ventas cayeran.",
-    "El crecimiento de ventas es moderado, entre 4,0 % y 8,6 % por año desde 2024; no hay margen para decepcionar si el mercado espera más."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (cerrado el 01/08/2026): ventas de 15.200 M (+5 %); ventas comparables +4 % (Marmaxx +1 %, HomeGoods +7 %, TJX Canada +6 %, TJX International +7 %); margen antes de impuestos de 13,3 % (11,9 % sin la devolución de aranceles, +0,5 puntos); ganancia por acción de 1,36 dólares (+24 %) y ajustada de 1,22 (+11 %); 798 M en recompras y 529 M en dividendos; 5.285 tiendas; guía del año: ventas comparables +3 % a +4 %, margen antes de impuestos de 12,3 % a 12,4 %, ganancia por acción de 5,31 a 5,36 dólares (ajustada de 5,15 a 5,20); frases de Ernie Herrman",
+     "fuente": "Comunicado de resultados del 2T del año fiscal 2027, 08/2026",
+     "url": "https://thetjxcompaniesinc.gcs-web.com/node/21531"
+    }
    ],
-   "vigilar": [
-    "Margen bruto: es la prueba de que compra bien; hoy está en 32,0 % contra un promedio de 29,8 %, y si cae por debajo sin una razón clara, la ventaja de compra se debilita.",
-    "Ingresos: vienen creciendo entre 4 % y 8 % por año; si se frenan por debajo de 4 %, la expansión de tiendas ya no rinde como antes.",
-    "Flujo libre: hoy es 9,4 % de las ventas, por encima del 5 % que suele pedirse; si cae de ese nivel, la ganancia deja de convertirse en caja y hay que investigar por qué.",
-    "Retorno sobre el capital (ROIC): hoy es 44,2 % contra un promedio de 41,0 %; si baja de forma sostenida, las tiendas nuevas rinden menos que las anteriores."
-   ],
+   "mes_cierre_fiscal": 1,
+   "ticker": "TJX",
    "perfil": "consumo",
    "capas": [],
-   "ticker": "TJX",
-   "fecha": "28/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
-   "ideal_para": [
-    "Buscan crecimiento ordenado y retornos altos en un negocio simple de entender, sin apostar a una tecnología.",
-    "Quieren sumar una empresa de consumo que gana por comprar bien y vender barato, no por una moda.",
-    "Valoran una empresa con balance cómodo que devuelve caja con dividendos y recompras sin diluir a los accionistas."
-   ],
-   "menos_ideal": [
-    "Necesitan una barrera que retenga al cliente (marca, patente o costo de cambio): acá el cliente se puede ir sin pagar nada."
-   ],
-   "clientes": [
-    "Consumidores finales en las tiendas de T.J. Maxx, Marshalls y HomeGoods",
-    "Ningún cliente en particular pesa en las ventas: cada compra es chica"
-   ],
    "base": {
     "periodo": "2026 (TTM)",
     "ingresos": 62363000000.0,
@@ -4159,54 +4168,62 @@
    }
   },
   "WELL": {
-   "resumen": "Welltower es la mayor dueña de residencias para personas mayores: más de 2.500 comunidades en Estados Unidos, el Reino Unido y Canadá, donde los inquilinos mayores pagan alquiler y servicios, en algo a mitad de camino entre una vivienda y un hotel. Es un REIT, una inmobiliaria que reparte buena parte de su ganancia como dividendo y crece comprando propiedades con deuda y acciones nuevas. Tiene un **foso estrecho, de escala y de ubicación**: en un sector que sigue fragmentado, comprar y operar cientos de comunidades bien ubicadas le da ventajas de datos y de precio que un competidor chico no tiene, y la población mayor crece. Los números crecieron fuerte: los ingresos pasaron de 5.776 M en 2022 a 10.667 M en 2025 (+84,7 %) y el flujo operativo de 1.329 M a 2.882 M. El FFO, el indicador típico de los REITs, no figura en los datos de Yahoo; uso el flujo operativo como aproximación. Su punto débil es el costo del crecimiento: **las acciones aumentaron 46,2 % desde 2022 (57,4 % en los últimos 12 meses)**, la deuda neta es de 6,13 veces el EBITDA y el ROIC es de 0,6 %. Con el bono a 10 años cerca de 5 %, financiar más compras cuesta más. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**, porque se alquilan edificios con personas. Conclusión: **buena empresa con viento demográfico a favor, flujo operativo en fuerte alza y dividendo cubierto, pero con deuda de 6,1 veces el EBITDA y mucha dilución.**",
-   "veredicto": "Buena empresa inmobiliaria: viento demográfico y flujo en alza, pero con deuda alta y mucha dilución",
-   "conclusion": "Welltower es una buena empresa en su rubro: tiene un viento demográfico a favor, ingresos de 10.667 M y un flujo operativo que más que se duplicó, pero la deuda neta es de 6,13 veces el EBITDA, las acciones aumentaron 57,4 % y el ROIC es de 0,6 %. Vale la pena seguirla de cerca. Es recomendable investigar la ocupación y el FFO en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que las compras rindan y que el flujo operativo por acción siga creciendo.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Welltower: el dueño de las residencias para adultos mayores, en el inicio de una ola demográfica",
+   "resumen": [
+    "Welltower es el mayor dueño de **residencias para adultos mayores** de EE.UU., Canadá y el Reino Unido, y también de edificios médicos. Es un **REIT**, una empresa de inmuebles que reparte la mayor parte de lo que gana. Su ventaja es la escala y la ubicación de sus propiedades, en zonas de alto poder adquisitivo.",
+    "En el tercer trimestre de 2026, **su FFO normalizado por acción creció 24,6 %**, a 1,67 dólares, y el resultado operativo de sus residencias comparables creció 21 %, con una ocupación 3,2 puntos más alta. Subió lo que espera ganar en el año.",
+    "Muy buena empresa, con un crecimiento excepcional para un REIT y un balance sólido, aunque el mercado ya la paga a un múltiplo muy alto y su dividendo rinde poco."
+   ],
+   "introduccion": "En EE.UU., la generación de los baby boomers, nacidos entre 1946 y 1964, empieza a cumplir 80 años. Es la edad a la que muchas personas necesitan ayuda para vivir: alguien que les dé la medicación, les prepare la comida o los asista para bañarse. Y la cantidad de personas mayores de 80 va a crecer muy rápido durante los próximos 15 años.\n\nMientras tanto, casi no se construyeron residencias nuevas desde la pandemia: los costos subieron y los créditos se encarecieron. Más demanda y poca oferta nueva es la receta para que suban la ocupación y los precios.\n\nWelltower es el mayor dueño de esas residencias. Y los números lo muestran: en el tercer trimestre de 2026, el resultado operativo de sus residencias comparables creció 21 %, y su ocupación subió 3,2 puntos.\n\nEl mercado lo festejó: la acción subió con fuerza después del último informe.\n\nEntonces, la pregunta es: ¿cuánto vale pagar por una empresa inmobiliaria que crece como una tecnológica?",
+   "secciones": [
+    {
+     "titulo": "Residencias, edificios médicos y un modelo distinto",
+     "texto": "Welltower tiene dos grandes tipos de propiedades:\n\n- **Residencias para adultos mayores**: desde departamentos para personas independientes hasta residencias con asistencia y cuidados de la memoria. Es la gran mayoría del negocio.\n- **Edificios médicos**: consultorios y centros ambulatorios, alquilados a hospitales y médicos.\n\nLo distintivo es cómo gana con las residencias. En muchas, no cobra un alquiler fijo: es dueña del edificio y contrata a un operador especializado para que lo gestione, quedándose con el resultado. Así, cuando la ocupación y los precios suben, gana mucho más. Cuando bajan, pierde. Es un modelo más riesgoso que el alquiler fijo, pero hoy le juega muy a favor.\n\nSus clientes son los residentes y sus familias, que pagan de su bolsillo (no dependen del gobierno), y los médicos y hospitales que alquilan sus edificios.\n\n¿Cuál es su **ventaja**? La **escala** y los **datos**. Con miles de propiedades, Welltower sabe qué zonas y qué operadores funcionan mejor, y compra residencias en las ubicaciones con más demanda y más poder adquisitivo. En el tercer trimestre invirtió 4.100 M en nuevas compras y desarrollos.\n\nLa inteligencia artificial no la amenaza: el cuidado de personas mayores no se reemplaza con un algoritmo. En todo caso, la usa para gestionar mejor sus propiedades."
+    },
+    {
+     "titulo": "Cómo se mide un REIT: el FFO",
+     "texto": "En una empresa de inmuebles, la ganancia contable engaña, porque descuenta la **amortización** de los edificios como si perdieran valor todos los años, aunque en la práctica suelen valer cada vez más. Por eso se usa el **FFO** (fondos de las operaciones): la ganancia contable sin la amortización de los inmuebles ni las ganancias o pérdidas por ventas de propiedades. Es la medida más cercana a la caja que genera el negocio.\n\nEl FFO normalizado por acción de Welltower fue de **1,67 dólares** en el tercer trimestre de 2026, un 24,6 % más que un año antes. Es un crecimiento excepcional para un REIT, que suele crecer 3 % a 6 % por año. Para todo 2026, la empresa espera entre 6,47 y 6,53 dólares por acción.\n\nLos ingresos crecieron con fuerza: de 5.776 M en 2022 a **10.667 M** en 2025, sobre todo por las compras y la mejora de la ocupación.\n\n[[grafico:ingresos]]\n\nEl resultado operativo de las propiedades comparables (las que ya tenía un año antes) creció 15,8 % en total, y 21 % en las residencias que gestiona con operadores."
+    },
+    {
+     "titulo": "Un balance sólido y un dividendo que crece",
+     "texto": "Welltower tiene un balance sólido para un REIT. Su deuda neta equivale a **3,0 veces su EBITDA ajustado**, según la empresa (lo que genera el negocio antes de intereses, impuestos y amortizaciones). Para un REIT, por debajo de 5 o 6 veces se considera cómodo, porque sus ingresos son estables y sus inmuebles respaldan la deuda. Tiene además unos 9.500 M de liquidez disponible.\n\n[[grafico:deuda_neta]]\n\nFinancia su crecimiento sobre todo emitiendo acciones nuevas, no deuda. Eso protege el balance, pero suma acciones: por eso conviene mirar el FFO por acción, no el total.\n\nEl dividendo trimestral subió a 0,85 dólares, desde 0,74 un año antes. Lleva 222 trimestres seguidos pagándolo. Pero rinde poco, porque la acción subió mucho.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **El precio**: con un múltiplo tan alto, cualquier decepción pega fuerte.\n- **La oferta nueva**: si se construyen muchas residencias, la ocupación y los precios dejan de subir.\n- **Los costos laborales**: el personal de cuidado es caro y escaso.\n- **El modelo**: al no cobrar alquiler fijo, una crisis lo golpea más.\n\nLo conduce Shankh Mitra, CEO desde 2022."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un REIT, el número que conviene mirar es el **precio sobre FFO**: cuántos años de FFO (la caja que genera el negocio) se pagan al comprar la acción. Usamos el FFO normalizado que espera la empresa para 2026: unos 6,50 dólares por acción.\n\nCon el precio de {precio} dólares, Welltower cotiza a {per_ref} veces su FFO. Un REIT típico cotiza a 15 a 20 veces su FFO; Welltower cotiza a un múltiplo muy superior.\n\nEl mercado paga esa prima por su crecimiento: un FFO por acción que crece más de 20 % por año es algo que casi ningún REIT logra. Si ese ritmo sigue unos años, el múltiplo se justifica. Si la ocupación deja de subir, el crecimiento se frena y el múltiplo puede bajar mucho.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo usa múltiplos contables que no sirven bien para un REIT: conviene tomarlo con mucho cuidado.",
+    "ganancia_ref": 6.5,
+    "ganancia_ref_txt": "FFO normalizado por acción esperado para 2026 (medio de la guía de 6,47 a 6,53 dólares)"
+   },
+   "conclusion": "Welltower es una muy buena empresa en el mejor momento de su sector. Es el mayor dueño de residencias para adultos mayores, en el inicio de una ola demográfica que va a durar años, con poca oferta nueva, un FFO por acción que crece más de 20 % y un balance sólido.\n\nSu punto débil es el precio y el modelo. El mercado ya paga un múltiplo muy alto para un REIT, el dividendo rinde poco, y su forma de ganar con las residencias, sin alquiler fijo, la expone más si el ciclo cambia. El crítico más duro diría que se está pagando como tecnológica una empresa de inmuebles. Es un argumento serio.\n\nEncaja con quien cree en la ola demográfica y busca crecimiento en el sector inmobiliario. No es para quien busca un dividendo alto o un precio razonable.\n\nPara que la tesis se mantenga, lo más importante es que la ocupación de sus residencias siga subiendo y que el FFO por acción mantenga un crecimiento de doble dígito.",
+   "pros": [
+    "Ola demográfica: los baby boomers empiezan a cumplir 80 años.",
+    "Crecimiento excepcional: FFO por acción +24,6 %.",
+    "Balance sólido: deuda neta de 3,0 veces su EBITDA ajustado."
+   ],
+   "contras": [
+    "Precio muy alto: un múltiplo muy superior al de un REIT típico.",
+    "Dividendo bajo: rinde poco por la suba de la acción.",
+    "Modelo más riesgoso: sin alquiler fijo en muchas residencias."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Welltower se dedica a la vivienda de alquiler para personas mayores, con un portafolio de más de 2.500 comunidades de viviendas y de bienestar en Estados Unidos, el Reino Unido y Canadá, ubicado en el cruce entre la vivienda y la hospitalidad. Yahoo no informa cuánto aporta cada país ni cada tipo de comunidad, y no lo vamos a inventar.\n\nEs un negocio de alquileres con una demanda que crece por el envejecimiento de la población. **Los ingresos crecieron 12,2 % en 2023, 21,2 % en 2024 y 35,8 % en 2025, hasta 10.667 M.** Gran parte del salto viene de comprar propiedades nuevas.\n\n**A quién le vende.** A personas mayores y a sus familias, que pagan el alquiler y los servicios. **Ningún cliente concentra una parte decisiva de los ingresos**, aunque Yahoo no da el detalle por operador.",
-   "foso": "La ventaja de Welltower **es de escala y de ubicación, y es estrecha**. Un sector fragmentado, donde muchos edificios son de dueños chicos, le permite comprar propiedades bien ubicadas, mejorarlas con datos y tecnología y sumar demanda de un público que crece. Se ve en el **margen bruto, estable entre 38,4 % y 39,2 %**, y en el crecimiento del flujo operativo (+117 % desde 2022).\n\nPero es una ventaja que se compra con capital: el ROIC es de apenas 0,6 % en 2025 (de 2,1 % en 2022). Compite con Ventas, otros REITs de salud y operadores privados. Es frágil en las tasas de interés (que encarecen la deuda), en la ocupación y en los costos de personal de las residencias. La inteligencia artificial no la amenaza.",
-   "numeros": "Los números de Welltower cuentan **un negocio que crece comprando, con un flujo operativo que sube más que las acciones**. Los ingresos fueron de 5.776 M, 6.478 M, 7.854 M y 10.667 M. El margen operativo (lo que queda de cada dólar vendido después de todos los costos del negocio) fue de 12,9 %, 14,5 %, 14,6 % y **3,3 % en 2025** (la baja en 2025 incluye cargos que Yahoo no detalla). La ganancia por acción fue de 0,30, 0,66, 1,57 y 1,39, y de 2,31 en los últimos 12 meses.\n\nEl flujo operativo (que uso en lugar del FFO) fue de 1.329 M en 2022, 2.256 M en 2024 y **2.882 M en 2025**. Por acción, pasó de unos 2,86 a unos 4,24 (+48 %) entre 2022 y 2025. El ROIC, cuánto gana por cada dólar puesto en el negocio, fue de 2,1 %, 2,2 %, 2,4 % y **0,6 %**; el capital invertido casi se duplicó (de 34.843 M a 67.777 M).\n\nLa mirada crítica: el flujo operativo creció por acción, pero las acciones también subieron 46,2 %, y la ganancia contable es baja. La mejora depende de que las compras sigan rindiendo.",
-   "balance": "**La deuda de Welltower es alta, pero el patrimonio también creció.** La deuda total pasó de 14.964 M en 2022 a 21.163 M en los últimos 12 meses (+41 %), con 2.275 M en caja: la deuda neta es de 16.920 M. En 2025 era **6,13 veces el EBITDA** (la ganancia antes de intereses, impuestos y depreciaciones), o unos 74 meses de ganancia operativa; en 2024 era de 4,32 veces. Es un nivel exigente, aunque habitual en un REIT. Con la ganancia operativa contable de 2025, los intereses (652 M) no se cubren (0,54 veces), pero esa ganancia está deprimida por cargos que no son caja.\n\nEl patrimonio neto subió de 20.295 M a 48.582 M porque emitió acciones, y esa plata redujo la deuda sobre patrimonio de 0,74 a 0,44 veces. Con tasas cerca de 5 %, la deuda nueva cuesta más.",
-   "gerencia": "La conduce Shankh Mitra, CEO (44 años, pago de 7,9 M según Yahoo), con Tim McHugh como copresidente y director financiero (40 años) y Nikhil Chaudhri como copresidente y director de inversiones (37 años). Es un equipo joven y muy enfocado en comprar y operar propiedades.\n\nEn lo que importa, **el uso del capital es de compras financiadas con acciones y deuda**: paga un dividendo de 3,40 por acción (pagado desde 1987; sube 4,9 % por año en 3 años; -1,6 % por año en 10 años, por un recorte antiguo; 1.878 M en 2025, 65 % del flujo operativo) y no recompra acciones. Las acciones diluidas pasaron de 465 M a 680 M en 2025 y a 732 M en los últimos 12 meses, **57,4 % más**.",
-   "fortalezas": [
-    "Demanda creciente por el envejecimiento de la población, en un sector fragmentado.",
-    "Ingresos de 10.667 M en 2025 y flujo operativo de 2.882 M, más del doble que en 2022.",
-    "Flujo operativo por acción creciendo (unos 2,86 a unos 4,24 entre 2022 y 2025).",
-    "Dividendo cubierto: 1.878 M contra un flujo operativo de 2.882 M.",
-    "Patrimonio neto que creció a 48.582 M y deuda sobre patrimonio de 0,44 veces."
-   ],
-   "debilidades": [
-    "Deuda neta de 6,13 veces el EBITDA en 2025, con tasas cerca de 5 %.",
-    "Dilución fuerte: 57,4 % más acciones desde 2022.",
-    "ROIC de 0,6 % en 2025: el crítico más duro diría que compra mucho capital con poco retorno.",
-    "Ganancia contable irregular: margen operativo de 3,3 % en 2025.",
-    "Dividendo recortado en el pasado (-1,6 % anual a 10 años)."
-   ],
-   "vigilar": [
-    "Flujo operativo por acción: hoy unos 4,24 en 2025; tiene que seguir subiendo más rápido que las acciones.",
-    "Deuda neta sobre EBITDA: hoy 6,13 veces en 2025; si sube, el balance se ajusta con tasas cerca de 5 %.",
-    "Ocupación y alquileres de las comunidades: Yahoo no los informa, hay que buscarlos en el informe de la empresa.",
-    "Acciones en circulación: hoy 732 M en los últimos 12 meses; si siguen subiendo, la dilución se come el crecimiento."
-   ],
    "clientes": [
-    "Personas mayores y sus familias",
-    "Operadores de residencias asistidas",
-    "Comunidades de bienestar en Estados Unidos, Reino Unido y Canadá"
+    "Adultos mayores y sus familias",
+    "Operadores de residencias",
+    "Hospitales y médicos (edificios médicos)"
    ],
-   "ideal_para": [
-    "Buscan exposición al envejecimiento de la población a través de inmuebles.",
-    "Valoran un dividendo cubierto por el flujo operativo.",
-    "Aceptan deuda alta y dilución a cambio de crecimiento."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ganancia por acción de 0,54 dólares (0,41); FFO normalizado por acción de 1,67 dólares (+24,6 %); resultado operativo de propiedades comparables +15,8 % en total y +21 % en residencias gestionadas; ocupación +320 puntos básicos; inversiones de 4.100 M; deuda neta de 3,02 veces el EBITDA ajustado; liquidez de unos 9.500 M; guía 2026: FFO normalizado de 6,47 a 6,53 dólares (antes 6,36 a 6,44); dividendo trimestral de 0,85 dólares (0,74), 222 trimestres seguidos",
+     "fuente": "Comunicado de resultados del 3T26, 26/10/2026",
+     "url": "https://finviz.com/news/408031/welltower-reports-third-quarter-2026-results"
+    }
    ],
-   "menos_ideal": [
-    "No toleran deuda alta ni dilución.",
-    "Buscan retornos altos sobre el capital invertido."
-   ],
+   "ticker": "WELL",
    "perfil": "reit",
    "capas": [],
-   "ticker": "WELL",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -4584,54 +4601,60 @@
    }
   },
   "SCHW": {
-   "resumen": "Charles Schwab es la mayor corredora de bolsa de Estados Unidos y un banco de ahorro y préstamo: tiene cuentas de inversión, banca, gestión de patrimonio y custodia de activos para millones de inversores y para asesores independientes. Gana plata de tres formas: lo que le queda por prestar y por invertir el efectivo de los clientes, comisiones por gestionar activos y comisiones por operar. Tiene un **foso estrecho, de escala y costos de cambio**: pasar una cuenta de inversión a otra empresa es un trámite largo, y con un costo por cliente muy bajo, puede cobrar menos que sus competidores. Los números rebotaron: los ingresos pasaron de 20.762 M en 2022 a 23.921 M en 2025, la ganancia neta de 7.183 M a 8.852 M y la ganancia por acción de 3,50 a 4,65 (5,86 en los últimos 12 meses). El ROE subió de 12,3 % a **17,9 %** y **las acciones bajaron 7,6 %**. Pero 2023 mostró su punto débil: con las tasas altas los clientes pasaron su efectivo a opciones que pagan más y la ganancia neta cayó 29,5 %. Con el bono a 10 años cerca de 5 %, ese riesgo sigue presente. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para atender más clientes con menos costo. Conclusión: **buena empresa financiera, con escala, ROE de 17,9 % y recompras, aunque con ganancias sensibles a las tasas y al mercado.**",
-   "veredicto": "Buena empresa financiera: escala y ROE alto, pero ganancias sensibles a las tasas y al mercado",
-   "conclusion": "Schwab es una buena empresa financiera, no una excelente: tiene escala, ROE de 17,9 %, ganancia por acción de 5,86 en los últimos 12 meses y 7,6 % menos acciones, pero su ganancia es sensible a las tasas y cayó 29,5 % en 2023. Vale la pena seguirla de cerca. Es recomendable investigar el efectivo de los clientes y las pérdidas no realizadas en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % cuando cambien las tasas.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Charles Schwab: el gigante de las inversiones dejó atrás el susto de 2023 y gana récords",
+   "resumen": [
+    "Charles Schwab es una de las mayores **plataformas de inversiones** para personas de EE.UU.: más de 40 millones de cuentas de corretaje y 13,3 billones de dólares de activos de clientes. También tiene un **banco** y administra fondos. Gana sobre todo con los intereses de la plata de sus clientes y con comisiones por administrar inversiones. Su ventaja es la escala, que le permite cobrar muy poco y aun así ganar mucho.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 17 %**, a 7.171 M, y su ganancia por acción subió 29 %, a 1,62 dólares, un récord. Sus clientes le trajeron 190.400 M de dólares nuevos, otro récord.",
+    "Muy buena empresa, con un retorno sobre el patrimonio alto y un crecimiento de clientes constante, aunque su ganancia depende mucho de las tasas de interés y en 2023 mostró que un cambio brusco de tasas la golpea fuerte."
+   ],
+   "introduccion": "En 1971, Charles Schwab fundó una pequeña empresa con una idea que Wall Street despreciaba: cobrarle poco a la gente común por comprar acciones. Medio siglo después, su empresa es una de las mayores plataformas de inversiones para personas de EE.UU., y en 2019 dio el golpe final: eliminó las comisiones por comprar y vender acciones.\n\n¿Cómo gana plata entonces? Sobre todo con la **plata que sus clientes no invierten**. Cuando alguien deja efectivo en su cuenta, Schwab lo pasa a su banco y lo invierte en bonos y préstamos. La diferencia entre lo que gana y lo que le paga al cliente es su principal ingreso.\n\nEse modelo casi se vuelve en su contra en 2023. Con las tasas en alza, muchos clientes sacaron su efectivo para llevarlo a inversiones que rendían más. Schwab tuvo que pedir prestado caro para cubrir esas salidas, mientras tenía bonos comprados a tasas bajas que habían perdido valor. Su ganancia por acción cayó de 3,50 dólares en 2022 a 2,54 en 2023, y la acción se desplomó.\n\nTres años después, la historia es otra: la ganancia por acción llegó a **5,86 dólares** en los últimos 12 meses, y los clientes le traen plata nueva a un ritmo récord.\n\nEntonces, la pregunta es: ¿quedó atrás el riesgo de 2023, o es parte del negocio?",
+   "secciones": [
+    {
+     "titulo": "Corretaje, banco y fondos",
+     "texto": "Schwab gana plata de tres formas. En el tercer trimestre de 2026:\n\n- **Intereses** (3.476 M, +14 %): lo que gana invirtiendo la plata que sus clientes dejan en efectivo, en su banco, menos lo que les paga. Es casi la mitad de sus ingresos.\n- **Administración de activos** (1.913 M, +14 %): comisiones por sus fondos y por asesorar inversiones.\n- **Operaciones** (1.158 M, +16 %): lo que gana cuando sus clientes compran y venden, aunque no les cobre comisión por acciones.\n\nSus clientes son personas que invierten por su cuenta y asesores financieros independientes, que usan a Schwab para guardar las inversiones de sus propios clientes. En el trimestre abrió 1,2 millones de cuentas nuevas y terminó con 40,3 millones.\n\n¿Cuál es su **ventaja**? La **escala**. Con 13,3 billones de dólares de activos de clientes, Schwab puede ofrecer sus servicios a un costo por cliente que pocos pueden igualar. Eso atrae más clientes, que traen más plata, que bajan aún más los costos. Es un círculo virtuoso. Además, mudar una cartera de inversiones a otra plataforma es engorroso, así que los clientes tienden a quedarse.\n\nLa inteligencia artificial es más una herramienta que una amenaza: la ayuda a atender a millones de clientes. El riesgo está en que nuevas plataformas, más baratas o más simples, le quiten clientes jóvenes."
+    },
+    {
+     "titulo": "Un trimestre de récords",
+     "texto": "Los ingresos bajaron en 2023, con el susto de las tasas, y después se recuperaron con fuerza: **23.921 M** en 2025, un 22 % más que el año anterior.\n\n[[grafico:ingresos]]\n\nEn un negocio como el de Schwab, el **margen antes de impuestos** (lo que queda de cada venta antes de pagar impuestos) muestra la eficiencia. Fue de **52,7 %** en el tercer trimestre de 2026, contra 49,2 % un año antes. Más de la mitad de lo que factura queda como ganancia antes de impuestos.\n\nLa ganancia por acción pasó de 2,54 dólares en 2023 a **5,86** en los últimos 12 meses.\n\n[[grafico:eps]]\n\nEl indicador clave es el **ROE**, el retorno sobre el patrimonio: cuánto gana por cada dólar que pusieron los accionistas. Fue de **25 %** en el tercer trimestre. Por encima de 15 % se considera muy bueno. El promedio de su industria es 17,8 %. Si el ROE bajara de forma sostenida, sería señal de que el negocio pierde rentabilidad.\n\n[[grafico:roe]]\n\nEl dato más importante para el futuro es el de **activos nuevos**: la plata que los clientes traen a Schwab. En el tercer trimestre fueron 190.400 M de dólares, un 38 % más que un año antes. Eso es lo que alimenta los ingresos de los próximos años."
+    },
+    {
+     "titulo": "El riesgo de las tasas y el capital",
+     "texto": "Schwab es, en parte, un banco. Por eso hay que mirar su **capital**: el colchón propio con el que absorbe pérdidas. Un indicador es el **coeficiente de apalancamiento de capital básico** (*Tier 1 leverage*): el capital propio de mejor calidad sobre el total de activos. Su banco principal tiene 10,6 %, y el grupo, 8,9 %. Los reguladores exigen como mínimo alrededor de 4 % a 5 %. Si este número bajara mucho, Schwab tendría que dejar de recomprar acciones para reconstruir su capital.\n\nEl gran riesgo es el que mostró 2023: las **tasas**. Si bajan mucho, gana menos con la plata de sus clientes. Si suben rápido, los clientes sacan su efectivo para buscar más rendimiento, y Schwab tiene que reemplazar esa plata con fuentes más caras. En el tercer trimestre de 2026, los depósitos de su banco bajaron 2 % frente al trimestre anterior, y aumentó su deuda de corto plazo.\n\nCon la ganancia en récord, volvió a devolver mucho a los accionistas. Recompró 10.945 M en acciones en los últimos 12 meses, y la cantidad de acciones bajó 7,6 % desde 2022.\n\n[[grafico:acciones]]\n\nSubió el dividendo trimestral 19 %, a 0,32 dólares. Lo paga desde 1989 y creció 16 % por año en los últimos diez años.\n\n[[grafico:dividendo]]\n\nOtros riesgos: una caída fuerte de la bolsa (los clientes operan menos y sus activos valen menos) y la competencia de otras plataformas.\n\nLo conduce Rick Wurster, CEO desde 2025, que destacó que la propuesta de Schwab \"sigue resonando entre los inversores y los asesores independientes\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una empresa como Schwab conviene mirar dos números. El primero es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Schwab cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl segundo es el **precio sobre valor libros**: cuánto se paga por cada dólar de patrimonio. Está en {v:p_b} veces, {vs:p_b} su mediana histórica ({med:p_b} veces). Pagar más de 1 vez el patrimonio tiene sentido cuando el ROE es alto, como en Schwab.\n\n[[grafico:per_historico]]\n\nEl PER actual parte de una ganancia en récord, ayudada por tasas de interés altas. Si las tasas bajan, la ganancia puede crecer menos de lo que el mercado espera. Si los clientes siguen trayendo plata nueva a este ritmo, la ganancia puede seguir subiendo.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Charles Schwab es una muy buena empresa. Es una de las mayores plataformas de inversiones para personas de EE.UU., con una escala que le da costos muy bajos, clientes que traen plata nueva a un ritmo récord, un ROE alto y una ganancia que se recuperó con fuerza después de 2023.\n\nSu punto débil es la dependencia de las tasas de interés. Casi la mitad de sus ingresos sale de invertir la plata de sus clientes, y 2023 mostró que un cambio brusco de tasas puede golpearla fuerte. El crítico más duro diría que Schwab es un banco disfrazado de plataforma de inversiones, con los mismos riesgos que un banco. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa líder del negocio de las inversiones, con crecimiento y recompras. No es para quien busca una ganancia que no dependa de las tasas.\n\nEs recomendable revisar en cada informe los activos nuevos, los depósitos del banco y el capital. Para que la tesis se mantenga, lo más importante es que los clientes sigan trayendo plata nueva y que el banco mantenga un capital holgado.",
+   "pros": [
+    "Escala: 13,3 billones de dólares de activos de clientes.",
+    "Activos nuevos récord: 190.400 M en el trimestre (+38 %).",
+    "ROE alto: 25 % en el tercer trimestre."
+   ],
+   "contras": [
+    "Depende de las tasas: casi la mitad de sus ingresos son intereses.",
+    "El riesgo de 2023: los clientes pueden sacar su efectivo.",
+    "Mercado: una caída de la bolsa reduce operaciones y comisiones."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Charles Schwab es una sociedad de cartera de ahorro y préstamo que ofrece administración patrimonial, corretaje de valores, banca, administración de activos, custodia y asesoramiento financiero. Opera dos segmentos: **Investor Services** (cuentas para inversores individuales) y **Advisor Services** (servicios para asesores independientes). Ofrece cuentas de corretaje con acciones y renta fija, préstamos con margen y operaciones con opciones. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio ligado al mercado y a las tasas. **Los ingresos cayeron 9,3 % en 2023, subieron 4,1 % en 2024 y 22,0 % en 2025, hasta 23.921 M.**\n\n**A quién le vende.** A millones de inversores individuales y a asesores financieros independientes. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Schwab **es de escala y de costos de cambio, y es estrecha**. Con una base enorme de clientes puede ofrecer operaciones baratas y aun así ganar plata, y pasar una cuenta de inversión a otro corredor es un trámite largo, por lo que los activos tienden a quedarse. Se ve en el ROE, que subió de 12,3 % a 17,9 % entre 2024 y 2025, y en el margen neto, de 26,9 % a 37,0 %.\n\nCompite con Fidelity, Vanguard, Interactive Brokers, Robinhood y bancos con gestión de patrimonio. Es frágil en las tasas de interés (los clientes mueven su efectivo hacia donde les pagan más), en el valor de los bonos que tiene en cartera y en el ciclo del mercado. La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de Schwab cuentan **un negocio que cayó con las tasas altas y rebotó fuerte**. Los ingresos fueron de 20.762 M, 18.837 M, 19.606 M y 23.921 M. La ganancia neta fue de 7.183 M en 2022, 5.067 M en 2023, 5.942 M en 2024 y 8.852 M en 2025. La ganancia por acción pasó de 3,50 a 2,54, 2,99, 4,65 y **5,86 en los últimos 12 meses**.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **19,6 %, 12,4 %, 12,3 % y 17,9 %**. El margen neto fue de 34,6 %, 26,9 %, 30,3 % y 37,0 %. El capital invertido pasó de 64.712 M a 90.763 M en 2023 y bajó a 81.256 M.\n\nLa mirada crítica: la mejora de 2025 llegó con mercados favorables y con las recompras; la ganancia por acción creció 33 % desde 2022 con ingresos que crecieron 15 %. En 2023 la ganancia por acción cayó 27,4 %.",
-   "balance": "**El capital del banco se movió con las tasas.** El capital invertido (lo que financia el negocio) subió de 64.712 M en 2022 a 90.763 M en 2023 y bajó a 81.256 M en los últimos 12 meses. Es una empresa vigilada de cerca por los reguladores, con una parte grande del balance en el efectivo y los bonos de sus clientes.\n\nCon el bono a 10 años cerca de 5 %, los bonos que tiene en cartera pierden valor y los clientes pasan su efectivo a opciones que pagan más; ese fue el golpe de 2023. Es un efecto que aparece en el patrimonio y en el margen de intereses, más que en la ganancia anual, y por eso conviene seguirlo.",
-   "gerencia": "La conduce Rick Wurster, CEO y presidente (51 años, pago de 6,1 M según Yahoo), con Mike Verdeschi como director financiero (56 años) y el fundador Charles Schwab (88 años) como copresidente. Hay una transición de liderazgo ya hecha, con el fundador todavía cerca.\n\nEn lo que importa, **el uso del capital es de retorno al accionista**: paga un dividendo de 1,28 por acción (pagado desde 1989; sube 8,7 % por año en 3 años) y recompra acciones (4.395 M en 2022, 0 en 2024, 9.804 M en 2025 y 10.945 M en los últimos 12 meses, más que la ganancia neta de 2025). **Las acciones diluidas bajaron de 1.894 M a 1.750 M, un 7,6 % menos.**",
-   "fortalezas": [
-    "Escala enorme y costos de cambio: los activos de los clientes se quedan.",
-    "ROE de 17,9 % en 2025 y margen neto de 37,0 %.",
-    "Ganancia por acción de 5,86 en los últimos 12 meses, contra 3,50 en 2022.",
-    "Recompras: 7,6 % menos acciones desde 2022.",
-    "Dividendo pagado desde 1989 (1,28 por acción), con 8,7 % anual de crecimiento a 3 años."
-   ],
-   "debilidades": [
-    "Sensibilidad a las tasas: en 2023 la ganancia neta cayó 29,5 % cuando los clientes movieron su efectivo.",
-    "Bonos en cartera con pérdidas potenciales si el bono a 10 años sigue cerca de 5 %.",
-    "Resultados ligados al mercado: la ganancia por acción cayó 27,4 % en 2023.",
-    "Recompras (10.945 M en los últimos 12 meses) que superan la ganancia de 2025: el crítico más duro diría que devuelve más de lo que gana.",
-    "Foso estrecho: compite con Fidelity y Vanguard, con ofertas parecidas."
-   ],
-   "vigilar": [
-    "Margen neto: hoy 37,0 % en 2025; si baja, el costo del efectivo de los clientes está subiendo.",
-    "ROE: hoy 17,9 %; si cae a 12 %, el negocio vuelve a un año flojo como 2023 o 2024.",
-    "Efectivo de los clientes y activos que administra: Yahoo no los informa, hay que buscarlos en el informe de la empresa.",
-    "Pérdidas no realizadas en bonos: dependen de las tasas largas, hoy cerca de 5 %."
-   ],
    "clientes": [
-    "Millones de inversores individuales",
-    "Asesores financieros independientes",
-    "Clientes que usan sus servicios de banca y préstamos"
+    "Personas que invierten por su cuenta",
+    "Asesores financieros independientes y sus clientes",
+    "Empresas que ofrecen planes de retiro a sus empleados"
    ],
-   "ideal_para": [
-    "Buscan una corredora grande con escala, ROE alto y recompras.",
-    "Valoran un dividendo creciente pagado desde 1989.",
-    "Aceptan que la ganancia dependa de las tasas y del mercado."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 7.171 M (+17 %); intereses netos de 3.476 M (+14 %); administración de activos de 1.913 M (+14 %); operaciones de 1.158 M (+16 %); ganancia de 2.906 M (+23 %); ganancia por acción de 1,62 dólares (+29 %); margen antes de impuestos de 52,7 % (49,2 %); ROE de 25 % (21 %); activos nuevos de 190.400 M (+38 %); activos de clientes de 13,33 billones (+15 %); 1,24 millones de cuentas nuevas; 40,26 millones de cuentas activas; depósitos bancarios de 244.100 M (-2 % frente al trimestre anterior); Tier 1 leverage de 8,9 % (banco: 10,6 %); recompras de 500 M; dividendo trimestral de 0,32 dólares (0,27); frase de Rick Wurster",
+     "fuente": "Comunicado de resultados del 3T26, 15/10/2026",
+     "url": "https://pressroom.aboutschwab.com/press-releases/press-release/2026/Schwab-Delivers-Record-Net-New-Assets--Earnings/default.aspx"
+    }
    ],
-   "menos_ideal": [
-    "No toleran ganancias sensibles a las tasas de interés.",
-    "Buscan resultados estables año a año."
-   ],
+   "ticker": "SCHW",
    "perfil": "mercados",
    "capas": [],
-   "ticker": "SCHW",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -7024,54 +7047,65 @@
    }
   },
   "TMUS": {
-   "resumen": "T-Mobile US es el operador de celulares que más creció en Estados Unidos en los últimos años: vende planes de voz, mensajes y datos a clientes pospago y prepago, además de equipos, internet para hogares y servicios a empresas, y sobre todo se destaca por su red 5G. Gana plata con abonos mensuales y la venta de dispositivos. Tiene un **foso estrecho, de espectro y red 5G**: heredó mucho espectro de Sprint, que le permite una cobertura y velocidad de 5G líderes, y logra bajar costos con su tamaño. Los números son los mejores del sector: los ingresos pasaron de 79.571 M en 2022 a 88.309 M en 2025 (92.189 M en los últimos 12 meses), el margen operativo de 10,2 % a **20,1 %**, el flujo libre llegó a **16.236 M** (17,6 % de los ingresos) y el ROE es de 18,8 %. Además **hay 11,8 % menos acciones** que en 2022, por recompras de 12.071 M en los últimos 12 meses, y empezó a pagar dividendo en 2023 (4,68 por acción). Su punto débil es la deuda (**la deuda neta es unas 2,5 veces el EBITDA**), un crecimiento de ganancias que se frenó (la ganancia por acción casi no cambió desde 2024) y un patrimonio que baja por las recompras. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **muy buena empresa, con foso estrecho, margen operativo de 20,1 %, flujo libre de 17,6 % de los ingresos y recompras fuertes, aunque con deuda alta y ganancias que se frenaron.**",
-   "veredicto": "Muy buena: margen operativo de 20,1 %, flujo libre de 17,6 % de los ingresos y recompras fuertes, con deuda alta",
-   "conclusion": "T-Mobile es una muy buena empresa: tiene un foso estrecho de espectro y red 5G, margen operativo de 20,1 %, flujo libre de 16.236 M y 11,8 % menos acciones, pero la deuda neta es unas 2,5 veces el EBITDA y la ganancia por acción se estancó. Vale la pena seguirla de cerca. Es recomendable investigar las altas de abonados pospago en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre siga cubriendo las recompras y el dividendo.",
+   "formato": "v4",
+   "titulo": "T-Mobile: la telefónica que les ganó a Verizon y AT&T, ahora enfrenta su contraataque",
+   "resumen": [
+    "T-Mobile US es una de las tres grandes empresas de **telefonía celular** de EE.UU., y la que más creció en la última década gracias a la mejor red 5G del país. También vende **internet para el hogar**. Su ventaja es la red y una estrategia comercial agresiva. Su accionista principal es Deutsche Telekom.",
+    "En el tercer trimestre de 2026, **su EBITDA ajustado creció 11 %**, a 9.600 M, y su ganancia por acción, 34 %. Pero perdió más clientes que antes: su tasa de bajas subió a 1,09 %.",
+    "Muy buena empresa, la más rentable y dinámica de su industria, con mucha caja, pero con una competencia que se endureció, una deuda importante y señales de desgaste en la retención de clientes."
+   ],
+   "introduccion": "Hace diez años, T-Mobile era la cuarta telefónica de EE.UU., la más chica y la menos rentable. Se hizo conocida con una estrategia rebelde: eliminó los contratos de dos años, bajó los precios y se burló públicamente de Verizon y AT&T.\n\nEn 2020 compró Sprint, la tercera, y con eso consiguió algo clave: un espectro (las frecuencias por donde viajan las señales) que le permitió construir la mejor red 5G del país, años antes que sus rivales.\n\nDesde entonces, le ganó clientes a Verizon y AT&T trimestre tras trimestre. Su ganancia por acción pasó de 2,06 dólares en 2022 a 9,55 en los últimos 12 meses.\n\nPero en 2026 la historia cambió algo. Verizon, con un nuevo CEO, volvió a sumar clientes con fuerza. Y la tasa de bajas de T-Mobile subió: en el tercer trimestre, se fue 1,09 % de sus cuentas por mes, contra 0,97 % un año antes.\n\nLa acción lo refleja: cayó bastante desde sus máximos.\n\nEntonces, la pregunta es: ¿perdió T-Mobile su ventaja, o es un trimestre flojo en una historia que sigue siendo buena?",
+   "secciones": [
+    {
+     "titulo": "Celulares, internet en casa y una red de punta",
+     "texto": "T-Mobile tiene dos grandes negocios:\n\n- **Telefonía móvil**: planes con abono (su corazón) y prepagos, para personas y empresas. Tiene unos 35 millones de cuentas con abono, cada una con varias líneas. En el tercer trimestre sumó 274.000 cuentas nuevas, y cada cuenta le pagó en promedio 155,73 dólares por mes, un 4 % más que un año antes.\n- **Internet para el hogar**: internet inalámbrico por su red 5G y, cada vez más, fibra óptica, a través de compras de empresas.\n\nSus clientes son decenas de millones de personas, familias, empresas y organismos de gobierno de EE.UU.\n\n¿Cuál es su **ventaja**? La **red 5G** y el **espectro**. Gracias a la compra de Sprint, T-Mobile tiene frecuencias que le permiten dar más velocidad y capacidad que sus rivales. A eso se suma la **estructura del mercado**: solo hay tres grandes operadoras móviles en EE.UU. (con Verizon, VZ, y AT&T, T), y construir una red nacional es casi imposible para un recién llegado.\n\nLa inteligencia artificial, en todo caso, la ayuda: más datos móviles y oportunidades en redes para empresas."
+    },
+    {
+     "titulo": "La más rentable de su industria",
+     "texto": "Los ingresos crecieron de 79.571 M en 2022 a **92.189 M** en los últimos 12 meses. Sus ingresos por servicios crecieron 6 % en el tercer trimestre, más que los de sus rivales.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 10,2 % en 2022, cuando todavía cargaba con los costos de integrar Sprint, a **20,1 %**. El promedio de su industria es 21,0 %.\n\n[[grafico:margen_operativo]]\n\nLa ganancia por acción pasó de 2,06 dólares en 2022 a **9,55** en los últimos 12 meses. En el tercer trimestre de 2026 creció 34 %.\n\nLo más impresionante es la caja: el **flujo libre de caja** (lo que queda después de invertir) pasó de -520 M en 2022 a **16.236 M** en los últimos 12 meses. Para 2026, la empresa espera un flujo libre ajustado de unos 18.750 M.\n\n[[grafico:flujo_libre]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **10,1 %**. Por encima de 15 % se considera muy bueno. Es modesto, como en todas las telefónicas, porque la red y el espectro necesitan muchísimo capital."
+    },
+    {
+     "titulo": "Deuda, recompras y un desgaste a vigilar",
+     "texto": "La deuda neta (lo que debe menos la caja) es de 81.796 M y equivale a **2,5 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Su ganancia operativa paga los intereses del año 4,6 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nDevuelve mucho: en el tercer trimestre, 3.500 M, de los cuales 2.400 M fueron recompras. Desde 2023 paga dividendo, que hoy es de 4,68 dólares por acción por año.\n\n[[grafico:acciones]]\n\nEl punto a vigilar es la **tasa de bajas**: el porcentaje de cuentas que se van cada mes. Subió de 0,97 % a 1,09 % en un año. Parece poco, pero en una base de 35 millones de cuentas, cada décima equivale a decenas de miles de cuentas por mes. Si la tendencia sigue, T-Mobile va a tener que gastar más en promociones para retener clientes.\n\nLos riesgos: la competencia renovada de Verizon y AT&T, la de las empresas de cable que venden telefonía, la deuda y las tasas altas.\n\nLo conduce Srini Gopalan, CEO desde 2025."
+    }
+   ],
+   "valuacion": {
+    "texto": "En T-Mobile, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, T-Mobile cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién conviene mirar el **precio sobre el flujo libre de caja**, porque en una telefónica la caja es lo que paga los dividendos y las recompras: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nDurante años, el mercado pagó por T-Mobile una prima frente a Verizon y AT&T, porque crecía más. Lo que define cuánto paga ahora es si puede seguir creciendo más que sus rivales sin que suba demasiado la tasa de bajas.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "T-Mobile es una muy buena empresa. Construyó la mejor red 5G de EE.UU., le ganó clientes a sus rivales durante años, multiplicó su ganancia y genera una caja enorme que devuelve a sus accionistas.\n\nSu punto débil es que la competencia se endureció: Verizon volvió a crecer y la tasa de bajas de T-Mobile subió. Además, tiene una deuda importante. El crítico más duro diría que la ventaja de T-Mobile se está achicando a medida que sus rivales mejoran sus redes. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una telefónica con más crecimiento que el promedio, con recompras y dividendo. No es para quien busca un dividendo alto o un balance sin deuda.\n\nPara que la tesis se mantenga, lo más importante es que la tasa de bajas vuelva a bajar y que los ingresos por servicios sigan creciendo más que los de sus rivales.",
+   "pros": [
+    "Red líder: la mejor red 5G de EE.UU. gracias al espectro de Sprint.",
+    "Mucha caja: 16.236 M de flujo libre en los últimos 12 meses.",
+    "Ganancia en alza: +34 % por acción en el tercer trimestre."
+   ],
+   "contras": [
+    "Más bajas: la tasa subió de 0,97 % a 1,09 %.",
+    "Competencia renovada: Verizon volvió a sumar clientes con fuerza.",
+    "Deuda importante: 2,5 veces su EBITDA."
+   ],
    "calidad": "Muy buena",
-   "riesgo_ia": "bajo",
-   "negocio": "T-Mobile US presta servicios de comunicaciones inalámbricas en Estados Unidos, Puerto Rico y las Islas Vírgenes de los Estados Unidos. Ofrece servicios de voz, mensajería y datos a clientes pospago, prepago y mayoristas, y también dispositivos inalámbricos (teléfonos, relojes, tabletas, módems) y accesorios. Yahoo no informa cuánto aporta cada línea, y no lo vamos a inventar.\n\nEs un negocio de abonos recurrentes: **los ingresos cayeron 1,3 % en 2023, y crecieron 3,6 % en 2024 y 8,5 % en 2025, hasta 88.309 M**, y llegaron a 92.189 M en los últimos 12 meses.\n\n**A quién le vende.** A decenas de millones de personas, empresas y operadores mayoristas. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de T-Mobile **es de espectro y red 5G, y es estrecha**. Con el espectro de Sprint ofrece una red 5G con muy buena cobertura y velocidad, y su estrategia de captar clientes con ofertas la hizo crecer más rápido que sus rivales. Se ve en los números: el margen bruto subió de 54,5 % a 62,2 % y el margen operativo de 10,2 % a 20,1 %. Pero el ROIC (retorno sobre el capital) es de 10,1 %, razonable, no extraordinario.\n\nCompite con Verizon, AT&T y operadores de cable que ofrecen celular barato. Es frágil en las guerras de precios, en el costo de renovar y ampliar la red y en la deuda (con el bono a 10 años cerca de 5 %, refinanciar cuesta más). La inteligencia artificial no la amenaza de forma directa.",
-   "numeros": "Los números de T-Mobile cuentan **un salto de rentabilidad desde 2022 y una ganancia que se estabilizó**. Los ingresos fueron de 79.571 M, 78.558 M, 81.400 M y 88.309 M, y de 92.189 M en los últimos 12 meses. El margen operativo fue de 10,2 %, 18,1 %, 22,1 %, 21,0 % y 20,1 %. La ganancia neta fue de 2.590 M, 8.317 M, 11.339 M y 10.992 M, y de 10.560 M en los últimos 12 meses. La ganancia por acción fue de 2,06, 6,93, 9,66, 9,72 y 9,55.\n\nEl flujo libre (lo que queda después de las inversiones) fue de -520 M, 7.748 M, 9.982 M y 15.427 M, y de **16.236 M en los últimos 12 meses**. El ROE fue de 3,7 %, 12,9 %, 18,4 %, 18,6 % y 18,8 %, y el ROIC de 4,7 % a 10,1 %.\n\nLa mirada crítica: la ganancia neta bajó de 11.339 M a 10.560 M desde 2024 y el margen operativo cayó un punto; la mejora de la ganancia por acción depende cada vez más de las recompras.",
-   "balance": "**La deuda es alta, pero bien cubierta por el flujo.** La deuda total es de 119.439 M y la caja de 2.825 M en los últimos 12 meses; la deuda neta/EBITDA es de 2,54x, que multiplicado por 12 son unos 30 meses de EBITDA. Los intereses se cubren 4,6 veces con el EBIT. La deuda neta de Yahoo es menor que deuda menos caja, probablemente porque excluye los alquileres.\n\nEl patrimonio neto bajó de 69.656 M en 2022 a 56.265 M por las recompras. Con el flujo libre de 16.236 M, la empresa puede pagar el dividendo y las recompras sin pedir más deuda, aunque queda poco margen si el flujo se resiente.",
-   "gerencia": "La conduce Srini Gopalan, CEO (55 años, pago de 8,3 M según Yahoo), con Peter Osvaldik como director financiero (48 años, pago de 4,1 M) y Jon Freier como director de operaciones (49 años). Gopalan asumió hace poco, dato público.\n\nEn lo que importa, **el uso del capital es de recompras fuertes y dividendo reciente**: recompró 3.000 M en 2022, 13.074 M, 11.228 M, 9.974 M y 12.071 M en los últimos 12 meses, y paga un dividendo de 4,68 por acción desde 2023 (4.343 M en los últimos 12 meses, 27 % del flujo libre). **Las acciones bajaron de 1.255 M a 1.107 M, un 11,8 % menos.** Dividendo y recompras de los últimos 12 meses (16.414 M) igualan al flujo libre.",
-   "fortalezas": [
-    "Margen operativo de 10,2 % a 20,1 %.",
-    "Flujo libre de 16.236 M en los últimos 12 meses, 17,6 % de los ingresos.",
-    "11,8 % menos acciones, con recompras de 12.071 M.",
-    "Red 5G líder y espectro valioso.",
-    "ROE de 18,8 % y dividendo desde 2023."
-   ],
-   "debilidades": [
-    "Deuda de 119.439 M, unas 2,5 veces el EBITDA.",
-    "Ganancia por acción estancada (9,66 en 2024, 9,55 hoy).",
-    "Patrimonio neto bajando por las recompras (de 69.656 M a 56.265 M).",
-    "Dividendo y recompras que igualan al flujo libre: el crítico más duro diría que no hay margen para un mal año.",
-    "Guerras de precios con Verizon, AT&T y los operadores de cable."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 20,1 %; si sigue bajando, la competencia por precio está pesando.",
-    "Flujo libre: hoy 16.236 M; tiene que cubrir dividendo y recompras sin más deuda.",
-    "Deuda neta/EBITDA: hoy 2,54x; si pasa de 3x, el balance se ajusta.",
-    "Altas netas de abonados pospago: Yahoo no las informa, hay que buscarlas en el informe."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Decenas de millones de usuarios de celular pospago y prepago",
-    "Hogares con internet fijo inalámbrico",
-    "Empresas y operadores mayoristas"
+    "Decenas de millones de personas y familias en EE.UU.",
+    "Empresas y organismos de gobierno",
+    "Hogares con internet inalámbrico o por fibra"
    ],
-   "ideal_para": [
-    "Buscan el operador de celulares con más crecimiento y recompras.",
-    "Valoran el flujo libre alto y el ROE de 18,8 %.",
-    "Aceptan deuda alta con flujos recurrentes."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos por servicios +6 %; 274.000 cuentas con abono nuevas, unas 35 millones en total; ingreso promedio por cuenta de 155,73 dólares (+4 %); tasa de bajas de 1,09 % (0,97 %); EBITDA ajustado de 9.600 M (+11 %); ganancia de 3.500 M (+27 %); ganancia por acción de 3,22 dólares (+34 %); flujo libre ajustado de 5.100 M; 3.500 M devueltos (2.400 M en recompras); guía 2026: EBITDA ajustado de unos 37.400 M y flujo libre ajustado de unos 18.750 M",
+     "fuente": "Resumen de los resultados del 3T26, 28/10/2026",
+     "url": "https://www.panabee.com/news/t-mobile-us-earnings-q3-2026"
+    },
+    {
+     "dato": "Comunicado oficial de resultados del 3T26",
+     "fuente": "8-K de T-Mobile US, anexo 99.1",
+     "url": "https://www.sec.gov/Archives/edgar/data/0001283699/000128369926000128/tmus09302026ex991.htm"
+    }
    ],
-   "menos_ideal": [
-    "No toleran deuda alta con tasas altas.",
-    "Buscan una empresa de crecimiento acelerado de ganancias."
-   ],
+   "ticker": "TMUS",
    "perfil": "general",
    "capas": [],
-   "ticker": "TMUS",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -8589,54 +8623,70 @@
    }
   },
   "NOW": {
-   "resumen": "ServiceNow es una empresa estadounidense de software en la nube para flujos de trabajo digitales: vende una plataforma donde las grandes empresas gestionan servicios de tecnología (pedidos de soporte), recursos humanos, seguridad, riesgos, activos y operaciones, automatizando tareas que antes se hacían por mail o planilla. Gana plata con suscripciones anuales que los clientes renuevan. Tiene un **foso estrecho, de costos de cambio y plataforma central**: una vez que una gran empresa organiza sus procesos de soporte y trabajo en ServiceNow y conecta otros sistemas, cambiar implica rehacer flujos y reentrenar a muchas personas. Los números son de una empresa que crece rápido y genera caja: los ingresos pasaron de 7.245 M en 2022 a **14.732 M** en los últimos 12 meses, creciendo más de 20 % por año, y el flujo libre fue de **4.571 M** (31,0 % de los ingresos). El margen bruto es de 74,8 % pero bajó de 79,2 %, y el margen operativo de los últimos 12 meses (**11,4 %**) bajó de 13,7 % en 2025. El ROIC es de solo **6,0 %**. La deuda total subió de 2.403 M a **8.453 M** y el capital invertido de 14.455 M a 20.033 M, probablemente por compras (Yahoo no lo detalla). Las acciones aumentaron 2,3 % desde 2022 pese a las recompras. Su punto débil es que las ganancias contables son chicas frente al flujo libre, por la compensación en acciones. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **moderado**: los agentes pueden automatizar tareas y cambiar cuántos usuarios necesita cada cliente. Conclusión: **empresa de buena calidad, con foso estrecho, ingresos que crecen más de 20 % por año y flujo libre de 4.571 M, aunque con ROIC de 6,0 %, margen en baja y deuda en alza.**",
-   "veredicto": "Buena: foso estrecho, ingresos creciendo más de 20 % por año y flujo libre de 4.571 M, con ROIC de 6,0 %, margen en baja y deuda en alza",
-   "conclusion": "ServiceNow es una empresa de buena calidad: tiene un foso estrecho de costos de cambio, ingresos que crecen más de 20 % por año y flujo libre de 4.571 M, pero el ROIC es de 6,0 %, los márgenes bajaron en los últimos 12 meses y la deuda subió a 8.453 M. Hay que seguirla de cerca. Es recomendable investigar las compras recientes y el costo de la inteligencia artificial en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo vuelva a subir mientras el crecimiento se sostiene.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "ServiceNow: el sistema que ordena el trabajo de las grandes empresas, frente al desafío de la IA",
+   "resumen": [
+    "ServiceNow vende un **software en la nube** que organiza el trabajo interno de las grandes empresas: los pedidos al área de sistemas, recursos humanos, atención al cliente y seguridad informática. Cobra por suscripción. Su ventaja es que, una vez instalado, se vuelve el centro de muchos procesos y es muy difícil de cambiar.",
+    "En el tercer trimestre de 2026, **sus ingresos por suscripción crecieron 21 %**, a 3.988 M, y subió lo que espera vender en el año. Pero la acción cayó cerca de 17 % en las operaciones posteriores al informe, porque los contratos a firmar en los próximos meses crecen algo menos.",
+    "Muy buena empresa, con un crecimiento alto y constante, mucha caja y clientes muy fieles, pero con la duda de si la inteligencia artificial la potencia o le quita parte de su negocio."
+   ],
+   "introduccion": "Pensá en lo que pasa en una empresa grande cuando a un empleado se le rompe la computadora, cuando entra alguien nuevo y necesita un usuario, un escritorio y una notebook, o cuando un cliente reclama. Cada uno de esos pedidos pasa por varias áreas, y si no hay un sistema que lo ordene, se pierde en mails y planillas.\n\nServiceNow nació para eso. Empezó ordenando los pedidos al área de sistemas y fue sumando recursos humanos, atención al cliente, seguridad y compras. Hoy miles de grandes empresas y organismos de gobierno manejan buena parte de su trabajo interno en su plataforma.\n\nEl negocio creció muy rápido: los ingresos se duplicaron, de 7.245 M en 2022 a **14.732 M** en los últimos 12 meses.\n\nPero en 2026 apareció una pregunta incómoda para todo el software. Si los agentes de inteligencia artificial pueden hacer solos el trabajo que hoy hacen los empleados, ¿cuántas licencias de software van a necesitar las empresas? La acción de ServiceNow cayó mucho durante el año, junto con la de casi todas las empresas de software.\n\nServiceNow responde que la IA no la reemplaza, sino que la potencia: los agentes necesitan una plataforma que los coordine, y quiere ser esa plataforma.\n\nEntonces, la pregunta es: ¿la inteligencia artificial es una amenaza o la próxima etapa de crecimiento de ServiceNow?",
+   "secciones": [
+    {
+     "titulo": "La plataforma que ordena el trabajo",
+     "texto": "ServiceNow vende una sola plataforma con varias aplicaciones:\n\n- **Tecnología**: gestión de los pedidos y problemas del área de sistemas. Es su origen y su negocio más grande.\n- **Clientes y empleados**: atención al cliente, recursos humanos, compras.\n- **Seguridad y riesgo**: detección y seguimiento de vulnerabilidades informáticas. Lo reforzó con la compra de Armis, una empresa de ciberseguridad.\n- **Inteligencia artificial**: agentes que resuelven pedidos solos y asistentes que ayudan a los empleados.\n\nCobra por **suscripción**: los clientes pagan todos los años por usarla. Por eso sus ingresos son muy previsibles: casi todo lo que vende este año ya estaba firmado de antes.\n\nSus clientes son grandes empresas y gobiernos. Al cierre del tercer trimestre, 680 clientes le pagaban más de 5 M por año, un 23 % más que un año antes.\n\n¿Cuál es su **ventaja**? El **costo de cambiar**. Una vez que una empresa conecta sus procesos, sus datos y sus sistemas a ServiceNow, reemplazarla es caro, lento y riesgoso. Por eso sus clientes casi no se van, y cada año le compran más aplicaciones.\n\nLa **inteligencia artificial** es a la vez su gran oportunidad y su gran riesgo. Oportunidad, porque vende agentes de IA: espera cerrar 2026 con más de 1.700 M en contratos anuales de IA. Riesgo, porque si los agentes reemplazan empleados, las empresas podrían necesitar menos licencias, que hoy se cobran en buena parte por usuario."
+    },
+    {
+     "titulo": "Dos ganancias muy distintas",
+     "texto": "Los ingresos crecen a más de 20 % por año, con una regularidad notable.\n\n[[grafico:ingresos]]\n\nAcá hay que aprender a leer dos números. El **margen operativo** contable (lo que queda de cada venta después de todos los costos de funcionar) es de **11,4 %** en los últimos 12 meses, muy por debajo del promedio de su industria (33,0 %). Pero la empresa y los analistas del mercado miran el margen operativo **ajustado**, que en el tercer trimestre fue de **32,5 %**.\n\n¿Por qué tanta diferencia? Por dos costos que el número ajustado no cuenta. El principal es el pago a los empleados con **acciones** de la empresa: no sale caja, pero sí es un costo real, porque cada acción nueva achica la parte de los demás accionistas. El otro es la amortización de las empresas compradas, como Armis.\n\n[[grafico:margen_operativo]]\n\nLo mismo pasa con la ganancia por acción: fue de 0,27 dólares en el tercer trimestre la contable, y de 1,00 la ajustada.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **6,0 %** con la ganancia contable. Por encima de 15 % se considera muy bueno. Es bajo justamente por esos costos.\n\nDonde ServiceNow brilla es en la **caja**. El flujo libre (lo que queda después de invertir) se duplicó, de 2.173 M en 2022 a **4.571 M** en los últimos 12 meses, porque los clientes pagan la suscripción por adelantado. Para 2026 espera un flujo libre de 36 % de sus ingresos.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "La deuda de Armis y lo que miró el mercado",
+     "texto": "Hasta 2025, ServiceNow tenía más caja que deuda. En 2026 compró Armis por 7.750 M y emitió bonos: hoy su deuda neta (lo que debe menos la caja) es de **5.014 M** y equivale a **1,43 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año 20 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nRecompra acciones (2.225 M en los primeros nueve meses de 2026), pero esas recompras sobre todo compensan las acciones que les entrega a sus empleados: la cantidad de acciones casi no baja.\n\n[[grafico:acciones]]\n\n¿Por qué cayó la acción después del último informe? Por el **cRPO**: los contratos ya firmados que se van a cobrar en los próximos 12 meses. Es el mejor anticipo de los ingresos futuros. Creció 20,5 % en el tercer trimestre, pero para el cuarto la empresa espera 18,5 %. En un momento de dudas sobre la IA, el mercado lo leyó como una desaceleración. La directora financiera, Gina Mastantuono, respondió que ese número \"no necesariamente captura todo el impulso del negocio\".\n\nLos riesgos:\n\n- **La IA**: que los agentes reduzcan la cantidad de licencias que compran sus clientes.\n- **La competencia**: Microsoft, Salesforce y empresas nuevas de IA.\n- **Las compras**: integrar Armis y justificar lo que pagó.\n- **El pago en acciones**: un costo que diluye a los accionistas.\n\nLo conduce Bill McDermott, CEO desde 2019: \"Este fue más que otro trimestre de superar expectativas y subir la guía; fue el punto de inflexión para ServiceNow\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En ServiceNow, el PER contable (cuántos años de ganancia se pagan al comprar la acción) se ve altísimo, porque la ganancia contable carga con el pago en acciones y las amortizaciones de las compras.\n\nCon el precio de {precio} dólares, ServiceNow cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nPor eso conviene mirar el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces). Ojo: ese flujo no descuenta el pago en acciones a los empleados, así que se ve más favorable de lo que es.\n\nTambién sirve el **precio sobre ventas**: {v:ps} veces, {vs:ps} su mediana histórica ({med:ps} veces) y {vsind:ps} el promedio de su industria ({ind:ps} veces).\n\n[[grafico:per_historico]]\n\nDurante años, el mercado pagó por ServiceNow múltiplos muy altos, por su crecimiento constante. En 2026 esos múltiplos bajaron mucho, por las dudas sobre la IA. Si el crecimiento se mantiene cerca de 20 %, los múltiplos actuales quedan bajos para su propia historia. Si la IA le quita negocio, los múltiplos pueden seguir bajando.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. No paga dividendo."
+   },
+   "conclusion": "ServiceNow es una muy buena empresa. Tiene una plataforma que sus clientes casi no abandonan, ingresos por suscripción muy previsibles que crecen a más de 20 % por año, una caja enorme y una posición fuerte para vender agentes de inteligencia artificial a las grandes empresas.\n\nSu punto débil es la incertidumbre. Nadie sabe todavía si la IA va a multiplicar su negocio o a reducir las licencias que cobra. Además, su ganancia contable es mucho menor que la ajustada, porque paga mucho en acciones a sus empleados, y se endeudó para comprar Armis. El crítico más duro diría que el software por usuario es un modelo que la IA va a desarmar. Es un argumento que hoy el mercado toma en serio.\n\nEncaja con quien busca crecimiento en software empresarial y cree que ServiceNow va a ser la plataforma que coordine los agentes de IA. No es para quien busca dividendos o certezas.\n\nPara que la tesis se mantenga, lo más importante es que los ingresos por suscripción sigan creciendo cerca de 20 % y que los contratos de IA compensen con creces cualquier baja en las licencias por usuario.",
+   "pros": [
+    "Clientes fieles: cambiar de plataforma es caro y riesgoso.",
+    "Crecimiento constante: suscripciones +21 % en el trimestre.",
+    "Mucha caja: 4.571 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "Duda sobre la IA: podría reducir las licencias por usuario.",
+    "Ganancia contable baja: el pago en acciones pesa mucho.",
+    "Menos impulso: el cRPO crecería 18,5 % en el cuarto trimestre."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "moderado",
-   "negocio": "ServiceNow provee soluciones basadas en la nube para flujos de trabajo digitales en América del Norte, Brasil, Europa, Medio Oriente, África, Asia-Pacífico y a nivel internacional. Ofrece productos de gestión de activos, gestión integrada de riesgos, gestión de servicios de TI, gestión de tecnología operativa, operaciones de seguridad y gestión estratégica de portafolios, entre otros. Yahoo no informa cuánto aporta cada producto, y no lo vamos a inventar.\n\nEs un negocio de suscripciones en fuerte crecimiento: **los ingresos subieron 23,8 % en 2023, 22,4 % en 2024 y 20,9 % en 2025, hasta 13.278 M**, y llegan a 14.732 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes empresas y organismos públicos. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de ServiceNow **es de costos de cambio y plataforma central, y es estrecha**. Cuando una gran empresa organiza el soporte de tecnología, los pedidos de recursos humanos, la seguridad y los activos en una sola plataforma, miles de empleados dependen de ella y cambiarla es un proyecto largo con riesgo de parar la operación. Se ve en los ingresos que crecen más de 20 % año tras año.\n\nPero la rentabilidad todavía es modesta: el margen operativo es de 11,4 % y el ROIC de 6,0 %, y el margen bruto bajó de 79,2 % a 74,8 % en los últimos 12 meses (Yahoo no explica el motivo). Compite con Microsoft, Salesforce, SAP, Atlassian y BMC. Es frágil en la competencia de paquetes de grandes empresas y en que la inteligencia artificial puede reducir el número de usuarios necesarios por contrato, aunque ServiceNow vende sus propios agentes. Por eso el riesgo es moderado.",
-   "numeros": "Los números de ServiceNow cuentan **un crecimiento fuerte con rentabilidad contable modesta**. Los ingresos fueron de 7.245 M, 8.971 M, 10.984 M y 13.278 M, y de 14.732 M en los últimos 12 meses. El EBIT fue de 355 M, 762 M, 1.364 M y 1.824 M, y de 1.680 M (margen operativo de 11,4 %). La ganancia neta fue de 325 M, 1.731 M, 1.425 M y 1.748 M, y de 1.670 M. La ganancia por acción fue de 0,32, 1,68, 1,37, 1,67 y 1,60; Yahoo parece expresarla tras un split de acciones (dato público a verificar).\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.173 M, 2.701 M, 3.375 M y 4.533 M, y de **4.571 M** en los últimos 12 meses (31,0 % de los ingresos). El ROIC fue de 4,4 %, 6,6 %, 10,1 %, 9,8 % y 6,0 %.\n\nLa mirada crítica: el flujo libre (4.571 M) es 2,7 veces la ganancia neta (1.670 M); esa diferencia se explica en gran parte por la compensación en acciones, que no se resta del flujo libre pero diluye al accionista. El EBIT de los últimos 12 meses (1.680 M) bajó frente a 2025 (1.824 M).",
-   "balance": "**La deuda subió fuerte en el último año.** En los últimos 12 meses, la deuda total es de 8.453 M y la caja de 4.664 M; la deuda neta es de 5.014 M y la deuda neta/EBITDA es de 1,43x, que multiplicado por 12 son unos 17 meses de EBITDA. Los intereses se cubren 20,2 veces con el EBIT. Un año antes, la deuda total era de 2.403 M y no tenía deuda neta.\n\nEl patrimonio neto es de 12.516 M y la deuda equivale a 0,68 veces el patrimonio. El capital invertido subió de 14.455 M a 20.033 M, lo que apunta a compras de empresas (Yahoo no lo detalla).",
-   "gerencia": "La conduce Bill McDermott, presidente del directorio y CEO (63 años, pago de 8,1 M según Yahoo), con Gina Mastantuono como presidenta y directora financiera (55 años, pago de 2,2 M). McDermott dirigió antes SAP, dato público. El fundador Fred Luddy (70 años) sigue como director.\n\nEn lo que importa, **el uso del capital cambió a recompras y compras de empresas**: no paga dividendo y recompró 538 M en 2023, 696 M, 1.840 M y 3.406 M en los últimos 12 meses. **Las acciones aun así subieron de 1.020 M a 1.043 M, un 2,3 % más**, por la compensación en acciones. Las recompras de los últimos 12 meses (3.406 M) equivalen a 75 % del flujo libre.",
-   "fortalezas": [
-    "Ingresos de 14.732 M, creciendo más de 20 % por año.",
-    "Flujo libre de 4.571 M, 31,0 % de los ingresos.",
-    "Costos de cambio altos en grandes clientes.",
-    "Margen bruto de 74,8 %.",
-    "Intereses cubiertos 20,2 veces."
-   ],
-   "debilidades": [
-    "ROIC de 6,0 %, bajo, y en baja desde 9,8 %.",
-    "Margen bruto y margen operativo en baja en los últimos 12 meses: el crítico más duro diría que el crecimiento cuesta cada vez más.",
-    "Deuda que subió de 2.403 M a 8.453 M.",
-    "2,3 % más acciones desde 2022 pese a las recompras.",
-    "Los agentes de inteligencia artificial pueden reducir el número de usuarios por contrato."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 11,4 %; tiene que volver a subir hacia 14 %.",
-    "Margen bruto: hoy 74,8 %; si sigue bajando, el costo de la inteligencia artificial pesa.",
-    "Deuda total: hoy 8.453 M; tiene que estabilizarse.",
-    "Cantidad de acciones: hoy 1.043 M; las recompras deberían reducirla."
-   ],
    "clientes": [
-    "Grandes empresas multinacionales",
-    "Organismos públicos",
-    "Áreas de tecnología, recursos humanos y seguridad"
+    "Grandes empresas de todo el mundo",
+    "Organismos de gobierno",
+    "Áreas de sistemas, recursos humanos, atención al cliente y seguridad"
    ],
-   "ideal_para": [
-    "Buscan software empresarial en crecimiento con flujo libre fuerte.",
-    "Valoran los costos de cambio.",
-    "Aceptan que las ganancias contables son modestas."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos por suscripción de 3.988 M (+21 %); ingresos totales de 4.106 M (+20,5 %); cRPO de 13.650 M (+20,5 %); RPO de 29.700 M (+22 %); margen operativo de 9,5 % y ajustado de 32,5 %; ganancia por acción de 0,27 dólares y ajustada de 1,00; flujo libre de 822 M; 680 clientes con más de 5 M anuales (+23 %); meta de contratos anuales de IA para 2026 de 1.700 M; recompras de 2.225 M en nueve meses; guía del cuarto trimestre: cRPO +18,5 %; guía 2026: suscripciones de 15.780 M a 15.790 M, margen de flujo libre de 36 %; frase de Bill McDermott",
+     "fuente": "Comunicado de resultados del 3T26, 28/10/2026",
+     "url": "https://newsroom.servicenow.com/press-releases/details/2026/ServiceNow-Reports-Third-Quarter-2026-Financial-Results/default.aspx"
+    },
+    {
+     "dato": "Caída de cerca de 17 % de la acción en las operaciones posteriores al cierre; frase de Gina Mastantuono sobre el cRPO",
+     "fuente": "Transcripción de la conferencia del 3T26",
+     "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-servicenow-q3-2026-revenue-beats-shares-sink-after-hours-93CH-4981127"
+    },
+    {
+     "dato": "Cierre de la compra de Armis por 7.750 M en 2026",
+     "fuente": "Nota de Börse Express, 2026",
+     "url": "https://www.boerse-express.com/news/articles/servicenow-775-milliarden-armis-deal-abgeschlossen-895538"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendos.",
-    "No toleran la dilución ni la deuda en alza."
-   ],
+   "ticker": "NOW",
    "perfil": "software",
    "capas": [],
-   "ticker": "NOW",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -9579,56 +9629,62 @@
    }
   },
   "PBR": {
-   "resumen": "Petrobras es la petrolera estatal de Brasil: explora, produce y vende petróleo y gas en Brasil y en otros países, con tres segmentos: exploración y producción, refinación, transporte y comercialización, y gas y energías de bajo carbono. Su mayor activo son los yacimientos del presal brasileño, de producción abundante y costos bajos. Gana plata extrayendo y vendiendo crudo y derivados a precios internacionales. Tiene un **foso estrecho, de recursos de bajo costo en el presal y posición dominante en Brasil**, pero lo comparte con el riesgo de que el Estado, que la controla (dato público), use la empresa para objetivos políticos. Aviso importante sobre los datos: Yahoo informa que los estados financieros están en reales, pero los montos (ingresos de 124.474 M en 2022) coinciden con dólares, así que tomamos las cifras como orden de magnitud y las marcamos como a verificar. Los números muestran un negocio muy rentable que se achicó con los precios: el EBIT pasó de 53.265 M en 2022 a **36.095 M** en los últimos 12 meses, con margen operativo de **34,6 %**, ROIC de **25,7 %** y flujo libre de **20.077 M** (19,3 % de los ingresos). Pero el dividendo se recortó fuerte (de 37.701 M en 2022 a 7.247 M), las inversiones subieron a 20.540 M (casi igual al flujo operativo) y la ganancia por acción fue de 1,16 en 2024. Su punto débil es la interferencia política, el precio del petróleo y la inversión creciente. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **muy bajo**. Conclusión: **empresa de buena calidad con recursos de bajo costo y ROIC de 25,7 %, aunque con control estatal, dividendo recortado y datos de moneda a verificar.**",
-   "veredicto": "Buena: recursos de bajo costo, ROIC de 25,7 % y flujo libre de 20.077 M, con control estatal y dividendo recortado",
-   "conclusion": "Petrobras es una empresa de buena calidad: tiene un foso estrecho de recursos de bajo costo, margen operativo de 34,6 %, ROIC de 25,7 % y flujo libre de 20.077 M, pero está controlada por el Estado, el dividendo se recortó a una quinta parte, las inversiones suben y los datos de moneda y deuda neta de Yahoo requieren verificación. Hay que seguirla de cerca. Es recomendable investigar la política de dividendos y el plan de inversiones en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el flujo libre cubra el dividendo sin más deuda.",
+   "formato": "v4",
+   "titulo": "Petrobras: el presal la volvió una máquina de producir petróleo barato, con el Estado como socio",
+   "resumen": [
+    "Petrobras es la petrolera estatal de Brasil y una de las mayores productoras de petróleo del mundo. Su gran activo es el **presal**: yacimientos gigantes en aguas profundas, con costos de producción muy bajos. También refina y vende combustibles en Brasil. Su ventaja son esas reservas, de las mejores del planeta.",
+    "En el segundo trimestre de 2026, **ganó 52.400 M de reales (10.400 M de dólares), casi el doble que un año antes**, con producción récord y sus refinerías trabajando por encima de su capacidad nominal. Aprobó dividendos por 17.400 M de reales.",
+    "Buena empresa, con reservas de primer nivel, márgenes altos y un dividendo muy alto, pero con el gobierno de Brasil como accionista controlante, lo que siempre suma un riesgo político."
+   ],
+   "introduccion": "En 2006, Petrobras anunció uno de los mayores descubrimientos de petróleo del siglo: el **presal**, enormes yacimientos bajo una capa de sal, a más de 5.000 metros de profundidad, en el mar frente a Río de Janeiro y San Pablo.\n\nHacerlos producir costó años y miles de millones. Pero hoy son el corazón de la empresa: producen con costos muy bajos y un petróleo de buena calidad. En el segundo trimestre de 2026, Petrobras produjo un récord de 2,7 millones de barriles de petróleo por día en Brasil, un 15 % más que un año antes.\n\nCon el petróleo caro por la guerra con Irán, eso se tradujo en ganancias enormes: 52.400 M de reales en el trimestre, casi el doble que un año antes.\n\nPero Petrobras tiene un socio que ninguna otra gran petrolera tiene: el **gobierno de Brasil**, que la controla. Y la historia muestra que eso puede costar caro. Entre 2011 y 2014, la empresa vendió combustibles por debajo del precio internacional para contener la inflación, perdió miles de millones y se endeudó fuertemente. Además, fue el centro del escándalo de corrupción Lava Jato.\n\nEntonces, la pregunta es: ¿compensan las reservas de primer nivel el riesgo de tener al Estado como socio?",
+   "secciones": [
+    {
+     "titulo": "Del presal al surtidor",
+     "texto": "Petrobras es una petrolera integrada:\n\n- **Exploración y producción**: el negocio principal. Produjo un récord de 3,34 millones de barriles equivalentes por día en el segundo trimestre de 2026, sobre todo del presal. Sus campos más grandes, Búzios y Mero, superan juntos los 2 millones de barriles por día. Exportó casi 1 millón de barriles por día.\n- **Refinación**: sus refinerías trabajaron al 101,2 % de su capacidad nominal, un récord, y produjeron cantidades récord de gasoil y combustible para aviones. Eso le permitió importar 40 % menos combustibles que en el trimestre anterior.\n- **Gas y energía**: gas natural y centrales eléctricas en Brasil.\n\nSus clientes son distribuidoras de combustibles en Brasil, refinerías del exterior que compran su petróleo (sobre todo en China) e industrias.\n\n¿Cuál es su **ventaja**? Las **reservas del presal**: grandes, productivas y con costos de extracción muy bajos. Pocas petroleras del mundo tienen algo parecido. A eso se suma su posición dominante en la refinación y venta de combustibles en Brasil.\n\nLa inteligencia artificial, en todo caso, la ayuda en exploración y en la operación de sus plataformas."
+    },
+    {
+     "titulo": "Márgenes altos, con el petróleo a favor",
+     "texto": "Petrobras es una de las petroleras más rentables del mundo. Su **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **34,6 %** en los últimos 12 meses. El promedio de su industria es 17,7 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **25,7 %**. Por encima de 15 % se considera muy bueno. El promedio de su industria es 20,0 %.\n\n[[grafico:roic]]\n\nComo toda petrolera, sus resultados siguen al precio del petróleo: su retorno era de 36,8 % en 2022, con la guerra en Ucrania, y de 20,0 % en 2025, con el petróleo más barato.\n\nEn el segundo trimestre de 2026, su EBITDA ajustado (lo que genera el negocio antes de intereses, impuestos y amortizaciones) fue de 93.800 M de reales, y su caja operativa de 61.800 M de reales. Invirtió 26.700 M de reales, el 82 % en producción.\n\nPagó además 88.600 M de reales en impuestos y regalías al Estado brasileño en el trimestre: Petrobras es una de las mayores fuentes de ingresos del fisco de Brasil."
+    },
+    {
+     "titulo": "Poca deuda, dividendos altos y riesgo político",
+     "texto": "Después de la crisis de 2014 a 2016, Petrobras bajó mucho su deuda. Hoy su deuda bruta es de 70.800 M de dólares, por debajo del techo de 75.000 M que se fijó, y la deuda neta (lo que debe menos la caja) equivale a apenas **0,36 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo.\n\n[[grafico:deuda_neta]]\n\nSu política es repartir buena parte de su caja libre como dividendos. En el segundo trimestre aprobó 17.400 M de reales en dividendos e intereses sobre el capital. El dividendo sube y baja con el petróleo y con las decisiones de la empresa.\n\nEl gran riesgo es **político**. El gobierno de Brasil controla la empresa y elige a su presidente. Puede presionarla para que no suba los combustibles, para que invierta en proyectos poco rentables (refinerías, fertilizantes, energías renovables) o para que pague menos dividendos. Cada cambio de gobierno o de presidente de la empresa abre esa duda.\n\nOtros riesgos: el precio del petróleo, el tipo de cambio del real y los costos de los nuevos proyectos.\n\nLa conduce Magda Chambriard, presidenta desde 2024. Su director financiero, Fernando Melgarejo, dijo que los récords operativos del trimestre \"llevaron a uno de los mayores resultados financieros trimestrales\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En una petrolera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: con el petróleo caro la ganancia es alta y el PER parece bajo.\n\nCon el precio de {precio} dólares por ADR, Petrobras cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nEl mercado siempre pagó poco por Petrobras, aun con sus reservas de primer nivel, por el riesgo político. Ese descuento es el precio de tener al Estado como socio.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Petrobras es una buena empresa. Tiene reservas de las mejores del mundo, costos de producción bajos, producción récord, refinerías que trabajan a pleno, poca deuda y un dividendo alto. En lo puramente operativo, es una de las petroleras más eficientes del planeta.\n\nSu punto débil es el socio: el gobierno de Brasil la controla, y la historia muestra que puede usarla para objetivos políticos, a costa de los accionistas minoritarios. Además, sus ganancias dependen del petróleo, hoy caro por una guerra. El crítico más duro diría que el descuento de Petrobras no es una oportunidad, sino el precio justo de un riesgo que no se va. Es un argumento razonable.\n\nEncaja con quien busca un dividendo alto de una petrolera eficiente y tolera el riesgo político de Brasil. No es para quien busca previsibilidad.\n\nEs recomendable seguir las decisiones del gobierno sobre los precios de los combustibles y la política de dividendos. Para que la tesis se mantenga, lo más importante es que Petrobras mantenga su disciplina financiera, sus precios alineados con el mercado internacional y su producción en alza.",
+   "pros": [
+    "Presal: reservas de primer nivel con costos muy bajos.",
+    "Producción récord: 2,7 millones de barriles de petróleo por día en Brasil.",
+    "Poca deuda: 0,36 veces su EBITDA."
+   ],
+   "contras": [
+    "Riesgo político: el gobierno de Brasil la controla.",
+    "Depende del petróleo: hoy caro por una guerra.",
+    "Historia complicada: precios subsidiados y el caso Lava Jato."
+   ],
    "calidad": "Buena",
    "riesgo_ia": "muy bajo",
-   "negocio": "Petrobras explora, produce y vende petróleo y gas en Brasil, China, Estados Unidos, América, Asia, Europa, Singapur y a nivel internacional. Opera tres segmentos: **Exploration and Production**, **Refining, Transportation & Marketing** y **Gas & Low Carbon Energies**. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nLas cifras vienen rotuladas en reales, pero los montos parecen estar en dólares (dato a verificar). Es un negocio ligado al precio del petróleo: **los ingresos cayeron 17,7 % en 2023, 10,7 % en 2024 y 2,4 % en 2025, hasta 89.195 M**, y suben a 104.175 M en los últimos 12 meses.\n\n**A quién le vende.** A refinerías, distribuidoras y consumidores de Brasil y de otros mercados. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de Petrobras **es de recursos de bajo costo en el presal y posición dominante en Brasil, y es estrecha**. Los yacimientos del presal producen mucho petróleo por pozo, con costos por barril menores a los del promedio de la industria, y tiene una posición muy fuerte en refinación y distribución dentro de Brasil. Se ve en el margen operativo de 28,1 % a 42,8 % y en el ROIC de 20,0 % a 36,8 %.\n\nEl principal riesgo del foso no es competitivo sino político: el Estado controla la empresa (dato público) y puede influir en precios de combustibles, dividendos e inversiones. Compite con Shell, TotalEnergies, Exxon, Equinor y con productoras brasileñas privadas. Es frágil en el precio del petróleo, en el tipo de cambio, en la regulación y en el apetito político por dividendos. La inteligencia artificial casi no la afecta.",
-   "numeros": "Los números de Petrobras, tomados con la salvedad de moneda, cuentan **un ciclo de precios con rentabilidad todavía alta**. Los ingresos fueron de 124.474 M, 102.409 M, 91.416 M y 89.195 M, y de 104.175 M en los últimos 12 meses. El EBIT fue de 53.265 M, 39.473 M, 25.691 M y 27.758 M, y de **36.095 M** (margen operativo de 34,6 %). La ganancia neta fue de 36.623 M, 24.884 M, 7.528 M y 19.634 M, y de 25.555 M. La ganancia por acción fue de 5,62, 3,82, 1,16 y 3,04.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 40.136 M, 31.098 M, 23.340 M y 16.526 M, y de **20.077 M** en los últimos 12 meses (19,3 % de los ingresos). Las inversiones subieron de 9.581 M a 20.540 M. El ROIC fue de 36,8 %, 26,0 %, 21,1 %, 20,0 % y 25,7 %.\n\nLa mirada crítica: la ganancia neta de 2024 (7.528 M) cayó mucho más que el EBIT (25.691 M), probablemente por efectos del tipo de cambio y cargos que Yahoo no detalla. Las inversiones de 20.540 M absorben casi todo el flujo operativo de 40.617 M, y el dividendo se recortó a una quinta parte.",
-   "balance": "**Deuda moderada, con una inconsistencia en los datos de deuda neta.** La deuda total es de 70.806 M y la caja de 10.386 M. Yahoo informa una deuda neta de 19.351 M, pero la resta simple de deuda total menos caja da 60.420 M; con esa cifra, la deuda neta equivale a unas 1,1 veces el EBITDA, unos 13 meses (cálculo propio). La diferencia puede deberse a la moneda o a cómo cuenta los arrendamientos; hay que verificarla en el informe. Los intereses se cubren 12,1 veces con el EBIT.\n\nEl patrimonio neto es de 92.908 M y la deuda total equivale a 0,76 veces el patrimonio. La deuda total subió de 53.799 M en 2022 a 70.806 M.",
-   "gerencia": "La conduce Magda Chambriard, presidenta y CEO (68 años; Yahoo no informa su pago), con Fernando Melgarejo como director financiero (53 años). Chambriard asumió en 2024 por designación del gobierno, dato público.\n\nEn lo que importa, **el uso del capital cambió de dividendo extraordinario a inversión**: paga un dividendo de 1,43 por acción (pagado desde 2001; cayó 49,8 % por año en 3 años; 7.247 M en los últimos 12 meses, 36 % del flujo libre) y recompró 735 M en 2023 y 380 M en 2024, nada en 2025. **Las acciones bajaron de 6.522 M a 6.444 M, un 1,2 % menos.** Los dividendos pasaron de 37.701 M en 2022 a 8.114 M en 2025.",
-   "fortalezas": [
-    "Margen operativo de 34,6 % y ROIC de 25,7 %.",
-    "Flujo libre de 20.077 M, 19,3 % de los ingresos.",
-    "Yacimientos del presal de bajo costo.",
-    "Posición dominante en el mercado brasileño.",
-    "Intereses cubiertos 12,1 veces."
-   ],
-   "debilidades": [
-    "Control estatal: el crítico más duro diría que el dividendo y las inversiones dependen del gobierno de turno.",
-    "Dividendo recortado a una quinta parte desde 2022.",
-    "Inversiones de 20.540 M, casi iguales al flujo operativo.",
-    "Cifras de Yahoo con salvedad de moneda y de deuda neta.",
-    "Totalmente expuesta al precio del petróleo y al tipo de cambio."
-   ],
-   "vigilar": [
-    "Precio del Brent: hoy en máximos de cinco meses; si baja, el EBIT vuelve hacia 28.000 M.",
-    "Inversiones: hoy 20.540 M; si suben más, el dividendo se aprieta.",
-    "Política de dividendos: definida por el accionista estatal, Yahoo no la informa.",
-    "Deuda total: hoy 70.806 M; no debería seguir subiendo."
-   ],
    "clientes": [
-    "Refinerías y distribuidoras de Brasil",
-    "Compradores de petróleo de otros países",
-    "Consumidores de combustibles y gas"
+    "Distribuidoras de combustibles de Brasil",
+    "Refinerías del exterior, sobre todo en China",
+    "Industrias y centrales eléctricas de Brasil"
    ],
-   "ideal_para": [
-    "Buscan exposición al petróleo de bajo costo de Brasil.",
-    "Valoran márgenes y ROIC altos.",
-    "Aceptan el riesgo político de una empresa estatal."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre de 2026: ganancia de 52.400 M de reales (10.400 M de dólares, +97 %); EBITDA ajustado de 93.800 M de reales; caja operativa de 61.800 M de reales; producción de petróleo en Brasil de 2,7 millones de barriles por día (+15 %, récord); producción total de 3,34 millones de barriles equivalentes por día; refinerías al 101,2 %; deuda bruta de 70.800 M de dólares; dividendos e intereses sobre el capital por 17.400 M de reales; inversiones de 26.700 M de reales; impuestos y regalías de 88.600 M de reales; frase de Fernando Melgarejo",
+     "fuente": "Nota sobre los resultados del 2T26, 08/2026",
+     "url": "https://www.energy-pedia.com/news/brazil/petrobras-reports-rusd-52-4-billion-(ususd-10-4-billion)-profit-in-q2-2026-204902"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendos predecibles.",
-    "No toleran la interferencia política ni el tipo de cambio."
-   ],
+   "ticker": "PBR",
    "perfil": "energia",
    "capas": [
     "ciclica"
    ],
-   "ticker": "PBR",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10635,54 +10691,65 @@
    }
   },
   "DHR": {
-   "resumen": "Danaher es una empresa estadounidense de ciencias de la vida y diagnóstico: diseña, fabrica y vende instrumentos, consumibles y servicios para biotecnología, investigación y diagnóstico en tres segmentos: Biotechnology, Life Sciences y Diagnostics. Gana plata vendiendo equipos y, sobre todo, los consumibles y servicios que esos clientes repiten. Tiene un **foso estrecho, de base instalada y costos de cambio**: las farmacéuticas que validaron un proceso de fabricación con sus filtros y equipos rara vez lo cambian (dato público). Los números cuentan un negocio rentable que perdió vuelo: el margen operativo bajó de 28,3 % a **20,4 %**, la ganancia por acción de 9,66 a **6,11** (últimos 12 meses) y el ROIC a **5,1 %**; los ingresos bajaron de 26.643 M a 24.568 M en 2025 y se recuperan a 25.608 M. El flujo libre se mantiene en **5.727 M** (22,4 % de los ingresos), el dividendo crece 13 % por año y las acciones bajaron 3,8 % desde 2022. En los últimos 12 meses, la deuda neta subió de 13.803 M a 20.800 M por un motivo que Yahoo no detalla (probable adquisición, dato a verificar). Su punto débil es ese ROIC bajo, consecuencia de adquisiciones grandes. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de buena calidad, con flujo libre de 5.727 M y dividendo creciente, pero con ROIC de 5,1 %, margen operativo 8 puntos más bajo que en 2022 y deuda en alza.**",
-   "veredicto": "Buena: flujo libre de 5.727 M y dividendo creciente, pero con ROIC de 5,1 %, margen operativo en baja y deuda en alza",
-   "conclusion": "Danaher es una empresa de buena calidad: tiene un foso estrecho de base instalada y consumibles, margen bruto cercano a 59 %, flujo libre de 5.727 M y dividendo creciente, pero el ROIC es de 5,1 %, el margen operativo bajó de 28,3 % a 20,4 % y la deuda neta subió a 20.800 M. Vale la pena seguirla de cerca. Es recomendable investigar la causa de la caída de márgenes y la última compra en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el margen operativo se estabilice y el ROIC suba.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Danaher: la fábrica de herramientas para hacer medicamentos sale del bajón pospandemia",
+   "resumen": [
+    "Danaher vende los **equipos e insumos** con los que se investigan, fabrican y diagnostican enfermedades: filtros y medios de cultivo para producir medicamentos biológicos (Cytiva, Pall), instrumentos de laboratorio (Beckman Coulter, Leica, SCIEX) y tests de diagnóstico (Cepheid, Radiometer). En 2026 sumó Masimo, de monitoreo de pacientes. Su ventaja es que la mayor parte de lo que vende son insumos que sus clientes recompran una y otra vez.",
+    "En el tercer trimestre de 2026, **sus ventas crecieron 8,5 %**, a 6.554 M (3 % sin compras ni efecto cambiario), y su ganancia ajustada por acción subió 11,5 %, a 2,11 dólares. Subió lo que espera ganar en el año.",
+    "Muy buena empresa, con un sistema de gestión admirado y márgenes por encima de su industria, que sale de tres años flojos después del covid, pero con más deuda por la compra de Masimo y un retorno sobre el capital bajo."
+   ],
+   "introduccion": "Cuando un laboratorio produce un medicamento biológico (un anticuerpo para el cáncer o una vacuna), no lo fabrica en una máquina común. Lo cultiva en células, dentro de grandes tanques, y después lo filtra y purifica una y otra vez. Para cada lote usa filtros, bolsas descartables y medios de cultivo que se tiran y se reemplazan.\n\nDanaher fabrica buena parte de esos insumos. Y una vez que un medicamento se aprueba con un proceso que usa sus productos, cambiarlos obliga a pedir una nueva aprobación a los reguladores. Por eso el laboratorio los sigue comprando durante toda la vida del medicamento.\n\nCon el covid, el negocio explotó: vacunas, tests y tratamientos se fabricaban a toda velocidad. La ganancia por acción llegó a 9,66 dólares en 2022. Después vino el bajón: sus clientes tenían depósitos llenos de insumos, dejaron de comprar y la demanda de tests de covid se derrumbó. La ganancia cayó a 5,05 dólares en 2025.\n\nEn 2026, la recuperación empezó a verse: sin los tests respiratorios, las ventas comparables crecieron 5,5 % en el tercer trimestre.\n\nEntonces, la pregunta es: ¿vuelve Danaher a ser la máquina de crecer que fue antes de la pandemia?",
+   "secciones": [
+    {
+     "titulo": "Tres negocios y un sistema",
+     "texto": "Danaher tiene tres grandes negocios. Entre paréntesis, cuánto crecieron sus ventas en el tercer trimestre sin contar compras ni el efecto del tipo de cambio:\n\n- **Biotecnología** (+5 %): Cytiva y Pall. Insumos y equipos para producir medicamentos biológicos. Es el negocio más rentable.\n- **Ciencias de la vida** (+4,5 %): instrumentos de laboratorio, microscopios (Leica), espectrómetros (SCIEX) y reactivos para investigación.\n- **Diagnóstico** (+0,5 %; +7 % sin los tests respiratorios): equipos y tests para laboratorios y hospitales, como Beckman Coulter, Radiometer y Cepheid, y ahora Masimo, que compró en junio de 2026 por unos 9.900 M. Los tests respiratorios vendieron unos 350 M en el trimestre, contra unos 500 M un año antes.\n\nSus clientes son laboratorios farmacéuticos y de biotecnología, hospitales, laboratorios de análisis clínicos, universidades y centros de investigación.\n\n¿Cuál es su **ventaja**? Dos cosas. La primera, los **insumos recurrentes**: vende un equipo y después, durante años, los reactivos, filtros y tests que ese equipo necesita. Y en la producción de medicamentos, cambiar de proveedor obliga a pedir nuevas aprobaciones, algo que casi nadie quiere hacer.\n\nLa segunda, el **Danaher Business System**: un método de mejora continua, inspirado en la forma de trabajar de Toyota, que aplica en cada empresa que compra para hacerla más eficiente. Con él, Danaher se convirtió en una de las compradoras de empresas más exitosas de EE.UU.\n\nLa inteligencia artificial no la amenaza: sus clientes la usan para investigar más, y eso necesita más equipos e insumos."
+    },
+    {
+     "titulo": "El bajón pospandemia y la recuperación",
+     "texto": "Los ingresos bajaron de 26.643 M en 2022 a 23.875 M en 2024, y volvieron a subir a **25.608 M** en los últimos 12 meses, en parte por la compra de Masimo.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) bajó de 28,3 % en 2022 a **20,4 %**. Aun así, está por encima del promedio de su industria (15,3 %).\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **5,1 %**. Por encima de 15 % se considera muy bueno. ¿Por qué tan bajo en una empresa de calidad? Porque Danaher creció comprando empresas, y pagó por ellas mucho más que su valor contable. Esa diferencia queda en el balance como capital invertido. Un ejemplo: si comprás por 100 una empresa que gana 5, tu retorno es 5 %, aunque esa empresa sea excelente. Para que el número mejore, las compras tienen que crecer y ganar más con los años.\n\n[[grafico:roic]]\n\nLa ganancia contable carga con la amortización de esas compras. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**: 2,11 dólares por acción en el tercer trimestre, 11,5 % más que un año antes. Para todo 2026, Danaher espera entre 8,57 y 8,62 dólares ajustados.\n\nLo más sólido es la **caja**: **5.727 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses. En el tercer trimestre creció 19 %.\n\n[[grafico:flujo_libre]]"
+    },
+    {
+     "titulo": "Más deuda por Masimo y un dividendo chico",
+     "texto": "La compra de Masimo se pagó en buena parte con deuda. La deuda neta (lo que debe menos la caja) subió de 13.803 M a fines de 2025 a **20.800 M**, y equivale a **2,66 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Está en zona intermedia, pero con la caja que genera puede bajarla en pocos años. Su ganancia operativa paga los intereses del año 14 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nEl dividendo es de 1,60 dólares por acción por año. Lo paga desde 1993 y creció 13 % por año en los últimos diez. Pero rinde poco: Danaher prefiere usar su caja para comprar empresas.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **Los tests respiratorios**: dependen de cada temporada de gripe y de covid, y siguen cayendo.\n- **China**: un mercado donde el gobierno favorece a los fabricantes locales.\n- **La financiación de la biotecnología**: si a las empresas chicas les cuesta conseguir fondos, investigan menos.\n- **Masimo**: integrarla bien y justificar lo que pagó.\n\nLa conduce Julie Sawyer Montgomery, su presidenta y CEO: \"Logramos ingresos, ganancias y flujo de caja del tercer trimestre mejores que lo esperado\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Danaher, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares, Danaher cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces). Con la ganancia ajustada que espera la empresa para 2026, sin la amortización de las compras, el PER es bastante más bajo.\n\nTambién sirve el **precio sobre el flujo libre de caja**, porque en Danaher la caja es más estable que la ganancia contable: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó una prima por Danaher, por su historia de compras exitosas y por su sistema de gestión. Lo que define si esa prima se mantiene es que la recuperación del negocio de biotecnología siga, y que Masimo rinda lo esperado.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. El dividendo rinde {dy}."
+   },
+   "conclusion": "Danaher es una muy buena empresa. Tiene un modelo de insumos recurrentes que sus clientes difícilmente cambian, un sistema de gestión que la convirtió en una de las mejores compradoras de empresas de EE.UU., márgenes por encima de su industria y una caja muy sólida.\n\nSu punto débil es que todavía está saliendo del bajón pospandemia: sus ventas sin compras crecen poco, los tests respiratorios siguen cayendo, el retorno sobre el capital es bajo y la deuda subió con la compra de Masimo. El crítico más duro diría que Danaher depende demasiado de comprar empresas para crecer. Es un argumento razonable, aunque su historia muestra que sabe hacerlo.\n\nEncaja con quien busca una empresa de calidad ligada a la salud y la biotecnología, con paciencia para esperar la recuperación. No es para quien busca dividendos o un crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que el negocio de biotecnología vuelva a crecer a un ritmo alto y que la deuda baje en los próximos años.",
+   "pros": [
+    "Insumos recurrentes: los clientes los recompran durante años.",
+    "Sistema de gestión: compra empresas y las hace más eficientes.",
+    "Caja sólida: 5.727 M de flujo libre en los últimos 12 meses."
+   ],
+   "contras": [
+    "Crecimiento lento: +3 % sin compras en el trimestre.",
+    "Más deuda: 2,66 veces su EBITDA tras comprar Masimo.",
+    "Retorno bajo: ROIC de 5,1 % por las compras."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "Danaher diseña, fabrica y comercializa productos y servicios profesionales, médicos, de investigación e industriales en Estados Unidos, China y a nivel internacional. Opera tres segmentos: **Biotechnology** (tecnologías, consumibles y servicios para desarrollar y fabricar terapias), **Life Sciences** y **Diagnostics**. Yahoo no informa cuánto aporta cada segmento ni cada región, y no lo vamos a inventar.\n\nEs un negocio que se achicó tras el auge del COVID y hoy se recupera: **los ingresos cayeron 10,3 % en 2023 y 0,1 % en 2024, subieron 2,9 % en 2025, hasta 24.568 M**, y llegan a 25.608 M en los últimos 12 meses.\n\n**A quién le vende.** A empresas biofarmacéuticas, laboratorios de diagnóstico, hospitales, universidades y centros de investigación. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Danaher **es de base instalada y costos de cambio, y es estrecha**. Una farmacéutica que validó un proceso con sus equipos y consumibles tiene que repetir pruebas regulatorias para cambiar, y los consumibles se compran de forma recurrente. Se ve en el margen bruto estable entre 58,6 % y 60,8 %.\n\nPero el margen operativo cayó de 28,3 % a 20,4 % y el ROIC a 5,1 %, señal de que el foso no protegió la rentabilidad total tras las adquisiciones y la normalización post-COVID. Compite con Thermo Fisher, Agilent, Waters, Merck KGaA, Sartorius y Roche. Es frágil en el gasto en investigación de las farmacéuticas, en China y en los aranceles (dato público). La inteligencia artificial más bien le abre demanda de equipos.",
-   "numeros": "Los números de Danaher cuentan **tres años de baja de rentabilidad con flujo libre firme**. Los ingresos fueron de 26.643 M, 23.890 M, 23.875 M y 24.568 M, y de 25.608 M en los últimos 12 meses. El EBIT fue de 7.536 M, 5.202 M, 4.863 M y 4.690 M, y de **5.218 M** (margen operativo de 20,4 %). La ganancia neta fue de 7.209 M, 4.764 M, 3.899 M y 3.614 M, y de 4.331 M. La ganancia por acción fue de 9,66, 6,38, 5,29 y 5,05, y de **6,11**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 7.401 M, 5.781 M, 5.296 M y 5.260 M, y de **5.727 M** (22,4 %). El ROIC fue de 9,8 %, 6,1 %, 6,2 %, 5,6 % y 5,1 %, y el ROE de los últimos 12 meses fue de 8,1 %, bajo el 12 % de referencia.\n\nLa mirada crítica: el EBIT bajó 38 % desde 2022 y la ganancia neta más de 40 %. Tres años de caída no son solo un efecto pasajero del COVID.",
-   "balance": "**Deuda moderada en alza y cobertura sólida.** En los últimos 12 meses, la deuda total es de 26.482 M, la caja de 5.682 M y la deuda neta de **20.800 M**; la deuda neta/EBITDA es de 2,66x, que multiplicado por 12 son unos 32 meses de EBITDA. Los intereses se cubren 14,5 veces con el EBIT.\n\nEn 2025, la deuda neta era de 13.803 M (1,99x), así que subió unos 7.000 M en pocos meses; Yahoo no detalla el motivo (probable adquisición, dato a verificar). El patrimonio es de 53.621 M, la deuda equivale a 49 % del patrimonio y la liquidez corriente es de 1,63x.",
-   "gerencia": "La conduce Julie Sawyer Montgomery, presidente y CEO (53 años, pago de 2,6 M según Yahoo), con los cofundadores Steven Rales (presidente del directorio, 74 años) y Mitchell Rales (director, 68 años) todavía en la conducción, dato que alinea intereses. El cambio de CEO es reciente, dato público a verificar.\n\nEn lo que importa, **el uso del capital combina dividendo creciente, recompras irregulares y adquisiciones**: paga un dividendo de 1,60 por acción (desde 1993; sube 13,0 % por año en 3 años; 1.016 M en los últimos 12 meses, 18 % del flujo libre) y recompró 0 M en 2022 y 2023, 5.979 M en 2024, 3.088 M en 2025 y 894 M en los últimos 12 meses. **Las acciones bajaron de 737 M a 709 M, un 3,8 % menos.**",
-   "fortalezas": [
-    "Flujo libre de 5.727 M, 22,4 % de los ingresos.",
-    "Margen bruto estable cerca de 59 %.",
-    "Dividendo creciente a 13 % por año con payout de 18 %.",
-    "3,8 % menos acciones desde 2022.",
-    "Cobertura de intereses de 14,5 veces."
-   ],
-   "debilidades": [
-    "ROIC de 5,1 %, bajo para un foso.",
-    "EBIT 31 % menor que en 2022: el crítico más duro diría que la caída ya no es solo post-COVID.",
-    "Ganancia por acción de 6,11 contra 9,66 en 2022.",
-    "Deuda neta subiendo a 20.800 M.",
-    "Exposición a China y al gasto en investigación."
-   ],
-   "vigilar": [
-    "Margen operativo: hoy 20,4 %; tiene que dejar de caer.",
-    "ROIC: hoy 5,1 %; si no sube, las adquisiciones no crean valor.",
-    "Ingresos: hoy +3 % en 12 meses; tienen que crecer sin comprar.",
-    "Deuda neta: hoy 20.800 M; tiene que bajar con el flujo libre."
-   ],
    "clientes": [
-    "Empresas biofarmacéuticas y biotecnológicas",
-    "Laboratorios de diagnóstico y hospitales",
+    "Laboratorios farmacéuticos y de biotecnología",
+    "Hospitales y laboratorios de análisis clínicos",
     "Universidades y centros de investigación"
    ],
-   "ideal_para": [
-    "Buscan un líder de ciencias de la vida con flujo libre fuerte.",
-    "Valoran el dividendo creciente.",
-    "Aceptan una recuperación lenta."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ventas de 6.554 M (+8,5 %); ventas sin compras ni efecto cambiario +3 % (+5,5 % sin tests respiratorios); Biotecnología +5 %, Ciencias de la vida +4,5 %, Diagnóstico +0,5 % (+7 % sin tests respiratorios); tests respiratorios de unos 350 M (unos 500 M); ganancia por acción de 1,71 dólares (1,27) y ajustada de 2,11 (+11,5 %); flujo libre de 1.632 M (+19 %); guía 2026: ganancia ajustada de 8,57 a 8,62 dólares; frase de Julie Sawyer Montgomery",
+     "fuente": "Comunicado de resultados del 3T26, 21/10/2026",
+     "url": "https://www.biospace.com/press-releases/danaher-reports-third-quarter-2026-results"
+    },
+    {
+     "dato": "Compra de Masimo por 180 dólares por acción, unos 9.900 M, completada el 10/06/2026; se suma al segmento de Diagnóstico",
+     "fuente": "MassDevice, 06/2026",
+     "url": "https://www.massdevice.com/danaher-completes-10b-acquisition-of-masimo/"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento de ingresos.",
-    "No toleran el ROIC bajo ni la deuda en alza."
-   ],
+   "ticker": "DHR",
    "perfil": "salud",
    "capas": [],
-   "ticker": "DHR",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -10697,54 +10764,60 @@
    }
   },
   "ISRG": {
-   "resumen": "Intuitive Surgical es una empresa estadounidense de tecnología médica: fabrica y vende el sistema quirúrgico robótico da Vinci y el sistema Ion para biopsias de pulmón, además de los instrumentos, accesorios y servicios que cada cirugía necesita. Gana plata vendiendo o alquilando el robot al hospital y, sobre todo, cobrando por cada operación los instrumentos descartables y el servicio de mantenimiento. Tiene un **foso amplio, de base instalada, entrenamiento de cirujanos y costos de cambio**: un hospital que compró el robot y capacitó a sus cirujanos rara vez cambia de sistema, y cada operación nueva genera ingresos recurrentes (dato público). Los números son de primer nivel: los ingresos crecieron 14,5 %, 17,2 % y 20,5 % en los últimos tres años (de 6.222 M a **11.578 M** en los últimos 12 meses), el margen operativo subió a **32,3 %**, la ganancia por acción pasó de 3,65 a **8,27** y el flujo libre llegó a **3.598 M** (31,1 % de los ingresos). El ROIC subió a **19,2 %** y no paga dividendo, pero recompró 4.620 M en los últimos 12 meses, con 1,4 % menos acciones que en 2022. Yahoo no informa deuda para esta empresa, y los datos públicos indican que no tiene deuda financiera relevante (a verificar). Su punto débil es la competencia nueva de robots quirúrgicos y la dependencia del gasto de capital de los hospitales. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**: más bien la usa para mejorar el robot. Conclusión: **empresa de excelente calidad, con foso amplio, ingresos creciendo 20 %, margen operativo de 32,3 % y flujo libre de 3.598 M, sin deuda relevante, aunque expuesta a competidores nuevos.**",
-   "veredicto": "Excelente: foso amplio, ingresos +20 %, margen operativo de 32,3 % y flujo libre de 3.598 M, sin deuda relevante",
-   "conclusion": "Intuitive Surgical es una empresa de excelente calidad: tiene un foso amplio de base instalada y costos de cambio, ingresos creciendo 20 %, margen operativo de 32,3 %, flujo libre de 3.598 M y ROIC de 19,2 %, sin deuda relevante, pero depende del gasto de los hospitales y enfrenta competidores nuevos. Hay que seguirla de cerca. Es recomendable investigar la parte recurrente de sus ingresos y los robots de la competencia en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el crecimiento y el margen bruto se sostengan.",
+   "formato": "v4",
+   "titulo": "Intuitive Surgical: el robot da Vinci se volvió el estándar de la cirugía, y cobra en cada operación",
+   "resumen": [
+    "Intuitive Surgical fabrica el **robot quirúrgico da Vinci**, con el que los cirujanos operan a través de pequeñas incisiones, manejando brazos robóticos desde una consola. También vende **Ion**, un robot para tomar biopsias de pulmón. Su ventaja es que lleva más de 25 años en el mercado, con más de 12.000 robots instalados y cirujanos entrenados en su sistema.",
+    "En el tercer trimestre de 2026, **sus ingresos crecieron 22 %**, a 3.049 M, y las cirugías con da Vinci aumentaron 14 %. Su ganancia ajustada por acción subió 25 %; la contable bajó por un cargo de 450 M para cerrar un juicio.",
+    "Excelente empresa, sin deuda, con ingresos que se repiten en cada operación y un crecimiento sostenido, aunque el mercado la paga muy cara y empiezan a aparecer competidores."
+   ],
+   "introduccion": "Hace treinta años, sacar una vesícula, una próstata o un tumor de colon exigía abrir el abdomen con un corte grande. El paciente pasaba días internado y semanas recuperándose. Después llegó la laparoscopía: operar por pequeños orificios, con instrumentos largos y una cámara. Menos dolor, menos días de internación. Pero es difícil: el cirujano trabaja con instrumentos rígidos, mirando una pantalla plana.\n\nEn 2000, Intuitive Surgical consiguió la aprobación en EE.UU. para su robot **da Vinci**. El cirujano se sienta en una consola, ve el interior del cuerpo en 3D y mueve los brazos del robot con sus manos. El robot copia sus movimientos con más precisión y sin temblor.\n\nHoy hay más de 12.000 robots da Vinci instalados en el mundo, y la cantidad de cirugías crece a doble dígito año tras año. Y lo mejor del negocio no es vender el robot: es que en cada operación el hospital usa instrumentos que solo duran una cantidad limitada de cirugías y hay que reponer.\n\nEntonces, la pregunta es: ¿puede Intuitive seguir creciendo así ahora que gigantes como Medtronic y Johnson & Johnson quieren su parte?",
+   "secciones": [
+    {
+     "titulo": "El robot, los instrumentos y el servicio",
+     "texto": "Intuitive gana plata de tres formas. En el tercer trimestre de 2026:\n\n- **Instrumentos y accesorios** (1.797 M, +18 %): las pinzas, tijeras y demás herramientas que el robot usa en cada operación. Es su negocio más grande y crece con la cantidad de cirugías.\n- **Robots** (769 M, +30 %): vendió o alquiló 546 robots da Vinci, de los cuales 315 fueron el nuevo **da Vinci 5**, y 56 robots Ion.\n- **Servicio**: mantenimiento de los robots ya instalados.\n\nCerca de tres cuartos de sus ingresos son **recurrentes**: instrumentos y servicio que los hospitales pagan año tras año. Es el modelo de la máquina de afeitar y los repuestos.\n\nSus clientes son hospitales y centros quirúrgicos de todo el mundo. Las cirugías con da Vinci crecieron 14 % en el trimestre, y con Ion, 31 %.\n\n¿Cuál es su **ventaja**? Tres capas. La primera, la **base instalada**: 12.094 robots da Vinci y 1.152 Ion, que generan ingresos cada día. La segunda, los **cirujanos**: miles de ellos se entrenaron en da Vinci, y cambiar de robot significa volver a aprender. La tercera, los **datos clínicos**: más de dos décadas de estudios que muestran sus resultados, algo que un competidor nuevo tarda años en reunir.\n\nLa inteligencia artificial la ayuda: el da Vinci 5 registra datos de cada operación, que pueden usarse para mejorar la técnica de los cirujanos."
+    },
+    {
+     "titulo": "Crecimiento con márgenes altos",
+     "texto": "Los ingresos casi se duplicaron: de 6.222 M en 2022 a **11.578 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 25,3 % a **32,3 %**. El promedio de su industria es 15,3 %. El margen bruto (lo que queda después del costo de fabricar) fue de 68,4 % en el trimestre, dos puntos más que un año antes.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), subió de 12,0 % a **19,2 %**. Por encima de 15 % se considera muy bueno. Durante años fue más bajo porque Intuitive invirtió mucho en fábricas y en el da Vinci 5; ahora esas inversiones empiezan a rendir.\n\n[[grafico:roic]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) pasó de 958 M en 2022 a **3.598 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nLa ganancia contable del tercer trimestre bajó a 1,49 dólares por acción por un cargo de 450 M para cerrar un juicio por competencia. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**: 3,00 dólares, un 25 % más que un año antes.\n\n[[grafico:eps]]"
+    },
+    {
+     "titulo": "Sin deuda, con recompras y nuevos rivales",
+     "texto": "Intuitive no tiene deuda financiera. Al cierre del tercer trimestre tenía 6.800 M en caja e inversiones. Su **liquidez corriente** (lo que tiene para cobrar o en caja en el corto plazo, dividido lo que tiene que pagar en ese plazo) es de 3,3 veces. Por encima de 1,5 se considera holgado.\n\nCon tanta caja, empezó a recomprar acciones con fuerza: en el tercer trimestre recompró 7,8 millones de acciones por 2.940 M. No paga dividendo.\n\nLos riesgos:\n\n- **La competencia**: Medtronic, Johnson & Johnson y fabricantes chinos desarrollan sus propios robots. Por ahora ninguno se acerca a su escala, pero pueden presionar los precios.\n- **Los hospitales**: un robot cuesta mucho, y si los hospitales recortan inversiones, compran menos.\n- **China**: el gobierno favorece a los fabricantes locales.\n- **Los aranceles**: le cuestan cerca de 1 % de sus ingresos en 2026.\n- **Los juicios**: el cargo de este trimestre surgió de acusaciones de que limitaba la competencia.\n\nPara 2026 espera que las cirugías con da Vinci crezcan entre 14 % y 15 %.\n\nLo conduce Dave Rosa, CEO desde 2025: \"Nuestro fuerte desempeño este trimestre se destacó por una adopción amplia en nuestras plataformas\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Intuitive, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Un PER de 50 significa que, si la ganancia no cambiara, tardarías 50 años en recuperar lo que pagaste. Por eso un PER alto solo se justifica si la ganancia crece rápido durante mucho tiempo.\n\nCon el precio de {precio} dólares, Intuitive cotiza a {per_ref} veces su ganancia contable de los últimos 12 meses, que incluye el cargo por el juicio. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nEl mercado siempre pagó mucho por Intuitive, porque combina tres cosas que rara vez van juntas: crecimiento de doble dígito, márgenes altos e ingresos recurrentes. Lo que define si ese precio se sostiene es que las cirugías sigan creciendo a doble dígito por muchos años, a pesar de la competencia.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. No paga dividendo."
+   },
+   "conclusion": "Intuitive Surgical es una excelente empresa. Lidera la cirugía robótica desde hace más de 25 años, tiene más de 12.000 robots instalados que generan ingresos en cada operación, cirujanos entrenados en su sistema, márgenes muy por encima de su industria, mucha caja y nada de deuda.\n\nSu punto débil es el precio y la competencia. El mercado paga un múltiplo muy alto, que deja poco margen para decepciones, y aparecen rivales con mucha espalda, como Medtronic y Johnson & Johnson. El crítico más duro diría que el precio ya descuenta décadas de crecimiento sin rivales serios. Es un argumento razonable.\n\nEncaja con quien busca una empresa de altísima calidad para mantener muchos años y tolera pagar caro por ella. No es para quien busca dividendos o un precio bajo.\n\nPara que la tesis se mantenga, lo más importante es que las cirugías con da Vinci sigan creciendo a doble dígito y que los nuevos robots rivales no le quiten participación.",
+   "pros": [
+    "Base instalada: más de 12.000 robots da Vinci que generan ingresos en cada cirugía.",
+    "Ingresos recurrentes: cerca de tres cuartos son instrumentos y servicio.",
+    "Sin deuda: 6.800 M en caja e inversiones."
+   ],
+   "contras": [
+    "Precio muy alto: el mercado paga un múltiplo exigente.",
+    "Nuevos rivales: Medtronic, Johnson & Johnson y fabricantes chinos.",
+    "Juicios: un cargo de 450 M en el trimestre."
+   ],
    "calidad": "Excelente",
-   "riesgo_ia": "bajo",
-   "negocio": "Intuitive Surgical desarrolla, fabrica y comercializa productos que permiten a los médicos y a los prestadores de salud mejorar la calidad y el acceso a la atención mínimamente invasiva, en Estados Unidos y a nivel internacional. Ofrece el sistema quirúrgico **da Vinci**, que permite operar con un enfoque mínimamente invasivo, y el sistema endoluminal **Ion**, que extiende esa tecnología a los pulmones. Yahoo no informa cuánto aporta cada producto, cada región ni la parte recurrente de los ingresos, y no lo vamos a inventar.\n\nEs un negocio en pleno crecimiento: **los ingresos subieron 14,5 % en 2023, 17,2 % en 2024 y 20,5 % en 2025, hasta 10.065 M**, y llegan a 11.578 M en los últimos 12 meses.\n\n**A quién le vende.** A hospitales y centros quirúrgicos de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos.",
-   "foso": "La ventaja de Intuitive **es de base instalada, entrenamiento de cirujanos y costos de cambio, y es amplia**. Un hospital que invirtió en el robot y capacitó a sus cirujanos tiene que reentrenar equipos para cambiar de sistema, y cada operación genera compras recurrentes de instrumentos (dato público). Además, tiene años de datos y de experiencia clínica. Se ve en el margen bruto estable entre 66,0 % y 67,5 % y en el margen operativo, que subió de 25,3 % a 32,3 %.\n\nCompite con Medtronic, Johnson & Johnson, Stryker y otros fabricantes de robots nuevos (dato público). Es frágil en la presión de precios de los hospitales, en los aranceles, en la entrada de competidores con robots más baratos y en el vencimiento de patentes de modelos viejos. La inteligencia artificial no la amenaza: es una oportunidad para mejorar el robot.",
-   "numeros": "Los números de Intuitive cuentan **crecimiento alto con márgenes que suben**. Los ingresos fueron de 6.222 M, 7.124 M, 8.352 M y 10.065 M, y de 11.578 M en los últimos 12 meses. El EBIT fue de 1.577 M, 1.767 M, 2.349 M y 2.946 M, y de **3.734 M** (margen operativo de 32,3 %). La ganancia neta fue de 1.322 M, 1.798 M, 2.323 M y 2.856 M, y de 2.957 M. La ganancia por acción fue de 3,65, 5,03, 6,42 y 7,87, y de **8,27**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 958 M, 750 M, 1.304 M y 2.491 M, y de **3.598 M** en los últimos 12 meses (31,1 %), porque las inversiones bajaron de 1.111 M a 492 M después de construir capacidad. El ROIC fue de 12,0 %, 12,3 %, 12,5 %, 14,4 % y 19,2 %, y el ROE de 18,5 %.\n\nLa mirada crítica: la ganancia neta de los últimos 12 meses (2.957 M) creció mucho menos que el EBIT (3.734 M), señal de impuestos u otros ítems que Yahoo no detalla.",
-   "balance": "**Balance liviano.** Yahoo no informa deuda para esta empresa; los datos públicos indican que no tiene deuda financiera relevante (dato a verificar). Yahoo muestra una caja de 4.042 M (sin contar inversiones de corto plazo, dato a verificar) y un patrimonio de 15.986 M. El activo total equivale a 1,21 veces el patrimonio, lo que indica pasivos chicos, y la liquidez corriente es de 3,33x.\n\nComo Yahoo no informa los intereses, no podemos calcular la cobertura de intereses. El patrimonio bajó de 17.824 M a 15.986 M en los últimos 12 meses, porque las recompras (4.620 M) superaron la ganancia retenida.",
-   "gerencia": "La conduce David Rosa, CEO y director (57 años, pago de 2,3 M según Yahoo), con Gary Guthart como presidente ejecutivo (59 años, pago de 2,1 M) y Jamie Samath como director financiero (54 años, pago de 1,5 M). Guthart fue CEO durante muchos años y Rosa asumió hace poco (dato público a verificar).\n\nEn lo que importa, **el uso del capital es de recompras y no de dividendo**: no paga dividendo y recompró 2.607 M en 2022, 416 M, 0 M, 2.295 M y 4.620 M en los últimos 12 meses. **Las acciones bajaron de 362 M a 357 M, un 1,4 % menos.**",
-   "fortalezas": [
-    "Ingresos creciendo entre 14 % y 20 % por año.",
-    "Margen operativo de 32,3 % y subiendo.",
-    "Flujo libre de 3.598 M, 31,1 % de los ingresos.",
-    "ROIC subiendo a 19,2 %.",
-    "Sin deuda relevante y recompras fuertes."
-   ],
-   "debilidades": [
-    "No paga dividendo.",
-    "Competidores nuevos con robots más baratos: el crítico más duro diría que el crecimiento de 20 % no es eterno.",
-    "Depende del gasto de capital de los hospitales.",
-    "Exposición a aranceles y a la presión de precios.",
-    "Yahoo no informa deuda ni intereses."
-   ],
-   "vigilar": [
-    "Crecimiento de ingresos: hoy +20 %; si baja de 12 %, el foso pierde fuerza.",
-    "Margen bruto: hoy 67,2 %; si baja de 64 %, hay presión de precios o aranceles.",
-    "Competidores: hay que seguir los robots nuevos de rivales grandes.",
-    "Inversiones: hoy 492 M; si vuelven a 1.100 M, el flujo libre cae."
-   ],
+   "riesgo_ia": "muy bajo",
    "clientes": [
-    "Hospitales y centros quirúrgicos",
-    "Cirujanos y sistemas de salud",
-    "Centros de diagnóstico de pulmón"
+    "Hospitales de todo el mundo",
+    "Centros quirúrgicos ambulatorios",
+    "Cirujanos de urología, ginecología, cirugía general y tórax"
    ],
-   "ideal_para": [
-    "Buscan crecimiento con foso amplio en tecnología médica.",
-    "Valoran recompras y balance liviano.",
-    "Aceptan que no hay dividendo."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 3.049 M (+22 %); instrumentos y accesorios de 1.797 M (+18 %); robots de 769 M (+30 %); cirugías con da Vinci +14 % y con Ion +31 %; 546 robots da Vinci colocados (315 da Vinci 5) y 56 Ion; base instalada de 12.094 da Vinci y 1.152 Ion; margen bruto de 68,4 % (66,4 %); ganancia por acción de 1,49 dólares (1,95) por un cargo de 450 M para cerrar un juicio por competencia, y ajustada de 3,00 (+25 %); caja e inversiones de 6.800 M; recompras de 7,8 millones de acciones por 2.940 M; guía 2026: cirugías con da Vinci +14 % a +15 %; aranceles de cerca de 0,9 % de los ingresos; frase de Dave Rosa",
+     "fuente": "Comunicado de resultados del 3T26, 20/10/2026",
+     "url": "https://www.biospace.com/press-releases/intuitive-announces-third-quarter-2026-earnings"
+    }
    ],
-   "menos_ideal": [
-    "Buscan dividendo.",
-    "No toleran una desaceleración del crecimiento."
-   ],
+   "ticker": "ISRG",
    "perfil": "salud",
    "capas": [],
-   "ticker": "ISRG",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",

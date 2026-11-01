@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.5 (01/11/2026): Análisis Fundamental nuevo, tanda 13
+
+- Reescritas con el formato v4: WELL, TMUS, PBR, TJX, NOW, DHR, SCHW e ISRG. Van 93 de 166.
+- PBR queda para renovar con su próximo informe (sale el 10/11).
+
 ### v1.3.4 (01/11/2026): Análisis Fundamental nuevo, tanda 12
 
 - Reescritas con el formato v4: COP, NVO, PFE y DE. Van 85 de 166.
