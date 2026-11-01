@@ -507,7 +507,7 @@ def tab_resumen(e, d, precio, cedear=None):
 
 
 # ETFs que no tienen empresas adentro (oro, plata, petroleo, materias primas, bitcoin, ether): no hay desglose por pais
-SIN_PAISES = {"IBIT", "ETHA", "GLD", "SLV", "USO", "GSG", "CORN", "SOYB"}
+SIN_PAISES = {"IBIT", "ETHA", "GLD", "SLV", "USO", "GSG", "CORN", "SOYB", "DBB", "DBA", "WEAT"}
 
 
 def paises_de(e, d):

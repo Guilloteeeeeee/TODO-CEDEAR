@@ -504,17 +504,20 @@ def leer_pdf_info(datos):
 
 
 
-def rentabilidad_anual(aportado, final, anios):
+def rentabilidad_anual(aportado, final, anios, retirado=0):
     """Rentabilidad anualizada ESTIMADA de una cartera cuando no se conocen las fechas exactas de los aportes.
     Devuelve {'total': ganancia % sobre lo aportado, 'anual_inicio': anual si todo se aportó al principio, 'anual_parejo': anual si se aportó en cuotas iguales, una por mes}.
     Si se aportó de a poco, el dinero estuvo menos tiempo invertido y la tasa verdadera es mayor que la de 'todo al principio' (cuando hubo ganancia): por eso se muestran las dos.
+    v1.4.4: `retirado` es lo que el inversor sacó en total; se cuenta como si lo hubiera sacado hoy (capital final + retirado).
     None si los datos no sirven (aportes o capital <= 0, o menos de un mes)."""
     try:
         a, f, y = float(aportado), float(final), float(anios)
+        ret = float(retirado or 0)
     except (TypeError, ValueError):
         return None
-    if a <= 0 or f <= 0 or y < 1 / 12:
+    if a <= 0 or f <= 0 or ret < 0 or y < 1 / 12:
         return None
+    f = f + ret
     r0 = (f / a) ** (1 / y) - 1
     n = max(1, int(round(y * 12)))
     c = a / n
@@ -533,6 +536,78 @@ def rentabilidad_anual(aportado, final, anios):
                 hi = mid
         r1 = (lo + hi) / 2
     return {"total": (f / a - 1) * 100, "anual_inicio": r0 * 100, "anual_parejo": r1 * 100 if r1 is not None else None, "anios": y}
+
+
+def duracion_txt(dias):
+    """Cuánto tiempo pasó, en palabras: '5 días', '3 semanas y 2 días', '4 meses y 12 días', '1 año y 3 meses', '3 años'."""
+    d = int(max(0, round(dias)))
+
+    def u(n, uno, varios):
+        return f"{n} {uno if n == 1 else varios}"
+    if d < 14:
+        return u(d, "día", "días")
+    if d < 60:
+        sem, rest = divmod(d, 7)
+        return u(sem, "semana", "semanas") + (f" y {u(rest, 'día', 'días')}" if rest else "")
+    if d < 365:
+        mes = int(d / 30.4375)
+        rest = int(round(d - mes * 30.4375))
+        if rest >= 30:
+            mes, rest = mes + 1, max(0, rest - 30)
+        return u(mes, "mes", "meses") + (f" y {u(rest, 'día', 'días')}" if rest > 0 else "")
+    anios = int(d / 365.25)
+    mes = int(round((d - anios * 365.25) / 30.4375))
+    if mes >= 12:
+        anios, mes = anios + 1, 0
+    return u(anios, "año", "años") + (f" y {u(mes, 'mes', 'meses')}" if mes else "")
+
+
+def rentabilidad_con_fechas(movimientos, final, hoy):
+    """Rentabilidad con las fechas EXACTAS de cada aporte y retiro (v1.4.4).
+    movimientos: [(fecha, monto)], monto > 0 = aporte, monto < 0 = retiro. final: lo que vale la cartera hoy (misma moneda). hoy: fecha de hoy.
+    Devuelve un dict {aportado, retirado, final, ganancia, total_pct (ganancia sobre lo aportado), dias, periodo_pct (rendimiento del período, método Dietz modificado:
+    ganancia / dinero medio invertido, sirve también para períodos cortos), anual (% por año con TIR por fechas; None si pasó menos de 1 año o no converge)}
+    o {"error": "texto"} si los datos no sirven."""
+    try:
+        movs = sorted(((m[0], float(m[1])) for m in (movimientos or []) if m and m[0] is not None and m[1] not in (None, 0)), key=lambda x: x[0])
+        fin = float(final)
+    except (TypeError, ValueError):
+        return {"error": "Revisá los montos: tienen que ser números."}
+    if not movs:
+        return {"error": "Cargá al menos un aporte con su fecha."}
+    if fin < 0:
+        return {"error": "El capital final no puede ser negativo."}
+    if any(f > hoy for f, _ in movs):
+        return {"error": "Hay una fecha posterior a hoy: revisá la tabla."}
+    if movs[0][1] < 0:
+        return {"error": "El primer movimiento tiene que ser un aporte (no se puede retirar antes de haber puesto plata)."}
+    aportado = sum(m for _, m in movs if m > 0)
+    retirado = -sum(m for _, m in movs if m < 0)
+    f0 = movs[0][0]
+    dias = (hoy - f0).days
+    if dias < 1:
+        return {"error": "Para calcular necesito que el primer aporte sea de ayer o antes."}
+    ganancia = fin + retirado - aportado
+    ponderado = sum(m * (dias - (f - f0).days) / dias for f, m in movs)       # dinero medio invertido durante el período
+    if ponderado <= 0:
+        return {"error": "Con esos retiros no hay dinero invertido para medir el rendimiento: revisá la tabla."}
+    out = {"aportado": aportado, "retirado": retirado, "final": fin, "ganancia": ganancia, "total_pct": ganancia / aportado * 100,
+           "dias": dias, "periodo_pct": ganancia / ponderado * 100, "anual": None}
+    if dias >= 365:
+        taus = [((hoy - f).days / 365.0, m) for f, m in movs]
+
+        def valor(r):
+            return sum(m * (1 + r) ** t for t, m in taus)
+        lo, hi = -0.9999, 50.0
+        if (valor(lo) - fin) * (valor(hi) - fin) < 0:
+            for _ in range(300):
+                mid = (lo + hi) / 2
+                if (valor(lo) - fin) * (valor(mid) - fin) <= 0:
+                    hi = mid
+                else:
+                    lo = mid
+            out["anual"] = (lo + hi) / 2 * 100
+    return out
 
 
 def plantilla_excel():

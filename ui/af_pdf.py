@@ -257,7 +257,7 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
     el.append(Paragraph("• Estados financieros de 4 años y últimos 12 meses, dividendos y equipo directivo: Yahoo Finance."
                         + (f' <link href="{html.escape(lsec)}" color="#1d4ed8">Informes de la empresa en la SEC</link>' if lsec else ""), st["fu"]))
     el.append(Spacer(1, 2))
-    el.append(Paragraph("• Promedios de la industria: Aswath Damodaran, NYU Stern (datos a enero de 2026). Precio, múltiplos y Fair Value del día: TodoCedears (Yahoo Finance); "
+    el.append(Paragraph("• Promedios de la industria: Aswath Damodaran, NYU Stern (datos a enero de 2026). Precio, múltiplos y Fair Value al momento de escribir el informe: TodoCedears (Yahoo Finance); "
                         "bono del Tesoro a 10 años: Yahoo Finance.", st["fu"]))
     el += [Spacer(1, 12), Paragraph(_md(f"Análisis escrito el {af.get('fecha') or ''} por Finanzas para Médicos Argentina con asistencia de inteligencia artificial, a partir de los informes "
                                         "oficiales de la empresa y los datos de Yahoo Finance. Puede contener errores o quedar desactualizado: verificá siempre con los documentos oficiales. "

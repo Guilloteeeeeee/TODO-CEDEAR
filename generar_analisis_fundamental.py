@@ -104,6 +104,16 @@ def agregar(archivos, modelo="Claude"):
                 mal.append(f"{t} ({os.path.basename(ruta)}): " + "; ".join(problemas))
                 continue
             res.update({"fecha": hoy, "modelo": modelo})
+            if res.get("formato") == "v4" and isinstance(res.get("valuacion"), dict):
+                # v1.4.4: "foto" de la valuación: el informe queda atado al precio con el que se escribió (así lo muestra la app, con su fecha)
+                try:
+                    from data import damodaran as _D
+                    dam = _D.valores(t) or {}
+                except Exception:  # noqa: BLE001
+                    dam = {}
+                foto = V4.tomar_foto(_fila_cache(t), res, dam, None, fecha_texto=hoy)
+                if foto:
+                    res["valuacion"]["foto"] = foto
             import af_pendientes  # firma de los estados con los que se escribió (así se sabe cuándo Yahoo trae un trimestre nuevo y hay que renovarlo)
             res["base"] = af_pendientes.firma((paquetes.get(t) or {}).get("estados"))
             datos[t] = res

@@ -156,7 +156,7 @@ def _industria(dam, clave):
     return v if v and v > 0 else None
 
 
-def frase_margen(precio, fair_value):
+def frase_margen(precio, fair_value, hoy=True):
     """Cláusula (sin punto final) que dice dónde está el precio de hoy respecto del Fair Value, con el margen de seguridad.
     Se mide sobre el Fair Value: margen = (Fair Value - precio) / Fair Value. De 15 a 25 %: margen de seguridad aceptable; más de 25 % (26 o más): gran margen.
     Con el precio por encima del Fair Value no hay margen de seguridad. Pedido de Guille, 01/11/2026."""
@@ -165,11 +165,12 @@ def frase_margen(precio, fair_value):
         return ""
     m = (f - p) / f * 100
     r = int(round(abs(m)))
+    el = "el precio de hoy" if hoy else "el precio"          # v1.4.4: en la "foto" del informe no se dice "hoy" (es el precio del momento en que se escribió)
     if abs(m) < 3:
-        return "el precio de hoy está prácticamente en ese valor, sin margen de seguridad"
+        return f"{el} está prácticamente en ese valor, sin margen de seguridad"
     if m < 0:
-        return f"el precio de hoy está un {r} % por encima de ese valor, es decir, sin margen de seguridad"
-    base = f"el precio de hoy está un {r} % por debajo de ese valor"
+        return f"{el} está un {r} % por encima de ese valor, es decir, sin margen de seguridad"
+    base = f"{el} está un {r} % por debajo de ese valor"
     if r >= 26:
         return base + ", lo que da un gran margen de seguridad"
     if r >= 15:
@@ -177,10 +178,14 @@ def frase_margen(precio, fair_value):
     return base + ", un margen de seguridad chico"
 
 
-def contexto(row, af=None, dam=None, bono10=None):
-    """{marcador: texto} con todo lo que se puede calcular hoy. Lo que no se puede, no está (y la oración que lo use no se muestra)."""
+def contexto(row, af=None, dam=None, bono10=None, vivo=False):
+    """{marcador: texto} con todo lo que se puede calcular. Lo que no se puede, no está (y la oración que lo use no se muestra).
+    v1.4.4: si el análisis trae su "foto" (valuacion.foto: los números del día en que se escribió el informe), se devuelve ESA foto, para que el informe
+    diga siempre con qué precio se escribió. Con vivo=True se ignora la foto y se calcula con la fila que llega (así se arma la foto)."""
     row, af = row or {}, af or {}
     val = af.get("valuacion") if isinstance(af.get("valuacion"), dict) else {}
+    if not vivo and isinstance(val.get("foto"), dict) and val["foto"].get("precio"):
+        return {str(k): str(v) for k, v in val["foto"].items()}
     c = {}
     p = _n(row.get("precio_actual"))
     if p:
@@ -221,12 +226,24 @@ def contexto(row, af=None, dam=None, bono10=None):
     fv = _n(row.get("fair_value"))
     if fv and p:
         c["fv"] = num(fv, 2)
-        c["dist_fv"] = frase_margen(p, fv)
+        c["dist_fv"] = frase_margen(p, fv, hoy=not vivo)
     if _n(af.get("mes_cierre_fiscal")):
         c["_mes_cierre"] = str(int(_n(af.get("mes_cierre_fiscal"))))
     cr = _n(val.get("crecimiento_ref"))
     if cr is not None and dy is not None:
         c["retorno"] = pct(cr + dy, 0)
+    return c
+
+
+def tomar_foto(row, af=None, dam=None, bono10=None, fecha_texto=""):
+    """La "foto" del informe: todos los marcadores con el precio y los múltiplos de este momento (se guarda en valuacion.foto).
+    Si la fila no trae la fecha del precio, se usa `fecha_texto` (dd/mm/aaaa)."""
+    c = contexto(row, af, dam, bono10, vivo=True)
+    if not c.get("precio"):
+        return {}
+    if not c.get("fecha_precio") and fecha_texto:
+        c["fecha_precio"] = fecha_texto
+    c["_congelado"] = "1"
     return c
 
 
@@ -316,7 +333,7 @@ def _svg_barras(lab, val, tipo="m", refs=(), etiquetas=None, serie2=None, nombre
     for i, (l, v) in enumerate(zip(lab, val)):
         x = ml + paso * i + (paso - ancho * (2 if serie2 else 1)) / 2
         y0, y1 = Y(max(v, 0)), Y(min(v, 0))
-        col = "#dc2626" if v < 0 else ("#94a3b8" if l.startswith(("Últ", "Hoy")) else "#1d4ed8")
+        col = "#dc2626" if v < 0 else ("#94a3b8" if l.startswith(("Últ", "Hoy", "Al ")) else "#1d4ed8")
         s += f'<rect x="{x:.1f}" y="{y0:.1f}" width="{ancho:.1f}" height="{max(1, y1 - y0):.1f}" rx="3" fill="{col}"><title>{html.escape(l)}: {_fmt_eje(v, tipo)}</title></rect>'
         txt = (etiquetas[i] if etiquetas else _fmt_eje(v, tipo))
         if txt:
@@ -350,7 +367,8 @@ def _per_historico(estados, historial, row, ctx):
             lab.append(str(a))
             val.append(cierres[-1] / e)
     if ctx.get("per_ref"):
-        lab.append("Hoy")
+        fp = str(ctx.get("fecha_precio") or "")
+        lab.append(("Al " + fp[:5]) if (ctx.get("_congelado") and re.match(r"^\d{2}/\d{2}", fp)) else "Hoy")
         val.append(_n(ctx["per_ref"].replace(".", "").replace(",", ".")))
     md = _mediana(row, "per")
     return lab, (val, md)
@@ -437,13 +455,13 @@ CSS = ('<style>.af4{max-width:760px}.af4 .af4-t{font-size:1.65rem;line-height:1.
        '.af4-cal{display:inline-block;padding:2px 12px;border-radius:999px;font-weight:700;font-size:.9rem;margin-left:6px;vertical-align:middle}'
        '.af4-pc{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.af4-pc{grid-template-columns:1fr}}.af4-pc>div{min-width:0}'
        '.af4-pc h4{margin:0 0 .5em;font-size:.95rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase}.af4-pc .p h4{color:#15803d}.af4-pc .c h4{color:#b91c1c}'
-       '@media(min-width:1100px){.af4.af4-cols{max-width:none}.af4-cols .af4-art{column-count:2;column-gap:44px;column-rule:1px solid #e5e7eb}.af4-cols .af4-art h3{break-after:avoid;margin-top:1.1em}.af4-cols .af4-art figure,.af4-cols .af4-art ul,.af4-cols .af4-art .af-cl{break-inside:avoid}}.af4-fu li{text-align:left;hyphens:manual}.af4-fu{font-size:.85rem;color:#475569}.af4-fu li{font-size:.85rem;line-height:1.5;margin:0 0 .35em}</style>')
+       '.af4-fu li{text-align:left;hyphens:manual}.af4-fu{font-size:.85rem;color:#475569}.af4-fu li{font-size:.85rem;line-height:1.5;margin:0 0 .35em}</style>')
 
 
 def texto_html(txt, ctx=None, graficos=None):
     """Párrafos -> HTML. **negrita**, marcadores del día (si hay ctx) y líneas [[grafico:clave]] (si `graficos` es una función clave -> html)."""
     if ctx is not None:
-        txt = rellenar(txt, ctx)
+        txt = rellenar(txt, ctx, marca=not ctx.get("_congelado"))      # v1.4.4: con la foto del informe los números no son "del día": sin subrayado
     out = []
     for par in str(txt or "").replace("\r", "").split("\n\n"):
         par = par.strip()
@@ -509,6 +527,8 @@ def validar(d):
         o["valuacion"]["ganancia_ref_txt"] = _t(val.get("ganancia_ref_txt"))
     if _palabras(o["valuacion"]["texto"]) < 60:
         pr.append("'valuacion.texto' falta o es muy corto (100 a 220 palabras, con marcadores del día)")
+    if "al momento de escribir este informe" not in o["valuacion"]["texto"]:
+        pr.append("'valuacion.texto': la primera oración con números tiene que decir 'Con el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), ...' (para que quede claro con qué precio se escribió)")
     if not RE_MARCADOR.search(o["valuacion"]["texto"]):
         pr.append("'valuacion.texto' tiene que usar marcadores del día ({precio}, {per_ref}, {vs:per}...): los números del día no se escriben a mano")
     o["conclusion"] = _t(d.get("conclusion"))

@@ -123,6 +123,14 @@ ICONOS = {
                       + "".join(f'<circle cx="{x}" cy="{y}" r="1.7" fill="#ca8a04"/>' for x in (27.5, 32, 36.5) for y in (16, 22, 28, 34, 40)) + '</g>'
                       '<path d="M32 49C22 49 17 38 18 30C23 36 27 40 32 41Z" fill="#4ade80"/><path d="M32 49C42 49 47 38 46 30C41 36 37 40 32 41Z" fill="#22c55e"/>', "Maiz"),
     "soja": _insignia("#4d7c0f", '<path d="M13 41C13 28 29 17 49 17C51 36 37 51 21 49C16 48 13 45 13 41Z" fill="#bef264"/><g fill="#65a30d"><circle cx="24" cy="38" r="5.4"/><circle cx="33" cy="32" r="5.4"/><circle cx="42" cy="25.5" r="5.4"/></g>', "Soja"),
+    "metales": _lingotes("#475569", "#cbd5e1", "#334155", "Metales base"),
+    "agro": _insignia("#15803d", '<path d="M32 53V33" stroke="#fff" stroke-width="4" stroke-linecap="round"/><path d="M32 36C20 36 14 28 14 18C25 18 32 25 32 36Z" fill="#fff"/><path d="M32 31C32 20 39 13 50 13C50 24 43 31 32 31Z" fill="#fff" fill-opacity=".8"/>', "Agro"),
+    "trigo": _insignia("#b45309", '<path d="M32 54V20" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/><ellipse cx="32" cy="14" rx="4.2" ry="7" fill="#fff"/>'
+                       + "".join(f'<ellipse cx="{32 + dx}" cy="{y}" rx="4.2" ry="7" fill="#fff" transform="rotate({a} {32 + dx} {y})"/>' for y in (24, 34, 44) for dx, a in ((-7, -35), (7, 35))), "Trigo"),
+    "litio": _insignia("#6d28d9", '<rect x="12" y="21" width="35" height="22" rx="4.5" fill="#fff"/><rect x="47" y="28" width="5.5" height="8" rx="1.8" fill="#fff"/>'
+                       '<g fill="#6d28d9"><rect x="17" y="26" width="6.5" height="12" rx="1.5"/><rect x="26" y="26" width="6.5" height="12" rx="1.5"/></g>', "Litio"),
+    "tierras": _insignia("#0e7490", '<polygon points="22,20 42,20 53,32 32,53 11,32" fill="#fff"/><path d="M11 32H53M22 20L32 53M42 20L32 53M22 20L26 32M42 20L38 32" fill="none" stroke="#0e7490" stroke-width="2" stroke-linejoin="round"/>', "Tierras raras"),
+    "momentum": _insignia("#0891b2", '<path d="M15 47L42 20" stroke="#fff" stroke-width="6" stroke-linecap="round"/><polygon points="30,14 51,13 50,34" fill="#fff"/><path d="M15 33l8-1M31 49l1-8" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-opacity=".7"/>', "Momentum"),
     # --- temas
     "adn": _insignia("#0f766e", '<g fill="none" stroke="#fff" stroke-width="3.6" stroke-linecap="round"><path d="M22 13C45 24 19 40 42 51"/><path d="M42 13C19 24 45 40 22 51"/></g>'
                      '<g stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M25 21h14M24 32h16M25 43h14"/></g>', "Biotecnologia"),

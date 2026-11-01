@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.4.4 (01/11/2026): valuación atada al precio del informe, rentabilidad con fechas y retiros, 6 ETFs nuevos
+
+- **Valuación con el precio con el que se escribió el informe.** Cada análisis v4 guarda una "foto" (`valuacion.foto`: el precio, los múltiplos, el Fair Value y el margen de seguridad de ese día) y la sección Valuación se muestra siempre con esa foto: "Con el precio de X dólares al momento de escribir este informe (dd/mm/aaaa), …". El gráfico del PER marca "Al dd/mm" en lugar de "Hoy". El resto de la ficha (tiles, "Calidad y Precio Hoy") sigue con el precio del día. Los 139 informes existentes quedaron con la foto del caché del 22/10/2026 (el último juego completo de precios que usó quien escribió los textos). Los informes nuevos toman la foto solos al guardarlos (`generar_analisis_fundamental.py --agregar`), y el validador no deja guardar uno sin esa frase. `data/af_v4.py`: `tomar_foto`, `contexto(..., vivo=)`, `frase_margen(..., hoy=)`.
+- **Una sola columna** otra vez en el informe (se sacaron las dos columnas de v1.4.3).
+- **Menú:** más aire entre "Evalúa Gratis tu Portfolio" y "Sobre Nosotros".
+- **Rentabilidad:** (1) con menos de un año ya no se pasa a "por año": se muestra lo que rindió en ese tiempo, diciendo cuánto fue (días, semanas o meses); (2) nueva opción "Con la fecha exacta de cada aporte y retiro" (tabla Fecha / Tipo / Monto, rendimiento por TIR con fechas; para períodos cortos, método Dietz modificado); (3) se puede cargar lo retirado también en la estimación; (4) el mensaje del rango se reescribió con palabras simples. `ui/cartera.py`: `rentabilidad_con_fechas`, `duracion_txt`, `rentabilidad_anual(..., retirado=)`.
+- **ETFs nuevos:** DBB, DBA, WEAT (Materias Primas), JMOM (USA), ILIT y REMX (Minería), con íconos propios. El ratio del CEDEAR queda sin confirmar (vacío) hasta tenerlo. Para que se llenen NAV, comisión y tenencias: `bajar_etfs_yahoo.bat DBB DBA WEAT JMOM ILIT REMX`.
+
 ### v1.4.3 (01/11/2026): menú, modo oscuro en la franja y dos columnas
 
 - **Modo oscuro/claro:** un solo ícono (luna / sol) en la franja negra, a la izquierda del toro. Se acuerda de la elección en el navegador (localStorage); `?tema=oscuro` arranca en oscuro. Se sacó el interruptor del menú.

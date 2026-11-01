@@ -1154,7 +1154,7 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
     art += (f'<h3>Conclusión <span class="af4-cal" style="background:{color};color:{_TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")}">Calidad del Negocio: {html.escape(cal)}</span></h3>'
             + V.texto_html(af.get("conclusion")) + (f'<p class="af-cp"><b>Calidad y Precio Hoy:</b> {html.escape(cr)}</p>' if cr else ""))
-    t.append(_tile("s12", "El análisis", f'<div class="af af4 af4-cols" lang="es"><div class="af4-art">{art}</div></div>', ac="#8b5cf6"))
+    t.append(_tile("s12", "El análisis", f'<div class="af af4" lang="es">{art}</div>', ac="#8b5cf6"))
     pc = ('<div class="af af4"><div class="af4-pc"><div class="p"><h4>A favor</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("pros") or [])
           + '</ul></div><div class="c"><h4>En contra</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("contras") or []) + "</ul></div></div></div>")
     t.append(_tile("s12", "A favor y en contra", pc, ac="#16a34a"))
@@ -1164,7 +1164,7 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     fu += ("<li>Estados financieros de 4 años y últimos 12 meses, dividendos y equipo directivo: Yahoo Finance."
            + (f' <a class="af-lk" href="{html.escape(lsec)}" target="_blank" rel="noopener">Informes de la empresa en la SEC ↗</a>' if lsec else "") + "</li>"
            "<li>Promedios de la industria: Aswath Damodaran, NYU Stern (datos a enero de 2026).</li>"
-           "<li>Precio, múltiplos y Fair Value del día: TodoCedears (Yahoo Finance); bono del Tesoro a 10 años: Yahoo Finance.</li>")
+           "<li>Precio, múltiplos y Fair Value al momento de escribir el informe: TodoCedears (Yahoo Finance); bono del Tesoro a 10 años: Yahoo Finance.</li>")
     t.append(_tile("s12", "Fuentes", f'<div class="af af4"><ul class="af4-fu">{fu}</ul></div>', ac="#94a3b8"))
     t.append('<div class="fch-sub af-pie" style="margin:4px 4px 0;grid-column:1/-1">Análisis escrito el ' + fecha + ' por Finanzas para Médicos Argentina con asistencia de '
              'inteligencia artificial, a partir de los informes oficiales de la empresa y los datos de Yahoo Finance. Los números del día los actualiza la app. Puede contener '

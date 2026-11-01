@@ -492,7 +492,7 @@ body:has(#mc-menu:checked) .st-key-menu_lateral{transform:none;visibility:visibl
 .mn-it.mn-rosa:hover{filter:brightness(1.04) saturate(1.1)}
 .mn-det>summary{list-style:none}.mn-det>summary::-webkit-details-marker{display:none}.mn-det[open]>summary .mn-ar{transform:rotate(90deg)}
 .mn-sub{background:#f8fafc;border-radius:0 0 10px 10px}.mn-sub .mn-it{padding-left:26px;font-size:.95rem}
-.mn-sep{height:1px;background:#cfd6de;margin:16px 2px 6px}
+.mn-sep{height:1px;background:#cfd6de;margin:56px 2px 10px}
 .mn-sep2{height:1px;background:#cfd6de;margin:44px 2px 14px}
 .mn-ver{margin:12px 2px 0;font-size:.8rem;color:#6b7280;line-height:1.5}
 .mn-ver b{color:#374151}
