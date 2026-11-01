@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.3.9 (01/11/2026): Análisis Fundamental nuevo, tanda 17
+
+- Reescritas con el formato v4: AEM, SHW, MDLZ, ECL, CL, HWM, ORLY, SLB, PCAR, MMM, MRSH y BNY. Van 135 de 166.
+- FDX queda para más adelante: separó FedEx Freight y los datos todavía mezclan negocios.
+
 ### v1.3.8 (01/11/2026): Análisis Fundamental nuevo, tanda 16
 
 - Reescritas con el formato v4: SPOT, NEM, SBUX, PSX, EQNR, GSK, USB, ING, FCX, GM, PYPL y VALE. Van 123 de 166.
