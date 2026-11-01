@@ -4,7 +4,7 @@ Marca de la app (v1.2.36; menu rehecho en la v1.2.38; v1.2.45: gris oscuro; v1.2
 Franja gris oscura de punta a punta arriba de todo: el nombre TodoCedears a la izquierda (la imagen del titulo si esta en
 assets/marca/titulo-todocedears.png; si no, el nombre escrito en letras blancas) y, a la derecha, dos menus desplegables (v1.2.50; en la v1.2.49 eran tres):
   - "Sobre Nosotros": Quiénes somos (pagina propia, ?pagina=quienes), "Nuestras Redes" (YouTube, Instagram e Intramed, con sus colores) y
-    "Contactános" (Gmail y WhatsApp, con sus colores);
+    "Contactanos" (Gmail y WhatsApp, con sus colores);
     y, mas abajo, "Abrí una cuenta con nosotros" (v1.2.50: antes era un boton aparte) con los logos de Balanz e Inviu;
   - "Comentarios": el cuadro que manda el mensaje por mail.
 Despues va el toro de "Finanzas para Medicos Argentina" chiquito. Los iconos de un solo color que antes estaban sueltos en la franja ya no estan
@@ -333,7 +333,7 @@ def _enlace_color(clave, url):
 
 def _sobre_nosotros_bloques(e, cuentas=None):
     """Bloques de "Sobre Nosotros" (lista de piezas HTML): Quiénes somos (la pagina propia ?pagina=quienes, o el link de ENLACES_MARCA["quienes_somos"] si se carga uno),
-    "Nuestras Redes" (YouTube, Instagram e Intramed, a color) y "Contactános" (Gmail y WhatsApp, a color). Lo que no tiene link no se muestra
+    "Nuestras Redes" (YouTube, Instagram e Intramed, a color) y "Contactanos" (Gmail y WhatsApp, a color). Lo que no tiene link no se muestra
     (WhatsApp se muestra apagado hasta que se cargue su link). v1.2.50: "Abrí una cuenta con nosotros" va acá adentro."""
     if e["quienes_somos"]:
         qs = f'<a class="mc-pi" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer">Quiénes somos</a>'
@@ -399,7 +399,8 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     datos = f'<div class="mc-datos">Datos al <b>{html.escape(str(datos_al))}</b></div>' if datos_al else ""
     # v1.2.60: "Empresas" y "ETFs" ya no son links de la franja (recargaban la pagina): son botones de Streamlit (app.py: render_nav_tablas)
     ham = hamburguesa_html(menu_abierto) if menu_lateral else ""
-    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{toro}{ham}</div></div>{datos}'
+    from ui.tema import BOTON_HTML
+    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{BOTON_HTML}{toro}{ham}</div></div>{datos}'
 
 
 def css_nav(activa):
@@ -489,6 +490,8 @@ body:has(#mc-menu:checked) .st-key-menu_lateral{transform:none;visibility:visibl
 .mn-it.mn-rosa{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);color:#fff!important;font-weight:800;border-radius:12px;border:0;margin:8px 0 6px;text-shadow:0 1px 2px rgba(120,20,60,.35);box-shadow:0 4px 14px rgba(190,60,100,.22)}
 .mn-it.mn-rosa .mn-ar{color:#fff}
 .mn-it.mn-rosa:hover{filter:brightness(1.04) saturate(1.1)}
+.mn-det>summary{list-style:none}.mn-det>summary::-webkit-details-marker{display:none}.mn-det[open]>summary .mn-ar{transform:rotate(90deg)}
+.mn-sub{background:#f8fafc;border-radius:0 0 10px 10px}.mn-sub .mn-it{padding-left:26px;font-size:.95rem}
 .mn-sep{height:1px;background:#cfd6de;margin:16px 2px 6px}
 .mn-sep2{height:1px;background:#cfd6de;margin:44px 2px 14px}
 .mn-ver{margin:12px 2px 0;font-size:.8rem;color:#6b7280;line-height:1.5}
@@ -550,19 +553,23 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
     else:
         arriba = (_it_href("?menu=1", filtro, chica="en el inicio") + _it_href("?menu=1", "Noticias Calientes del día", chica="en el inicio")
                   + _it_href("?menu=1", "Calendario Financiero", chica="en el inicio"))
-    arriba += _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evaluá tu Portfolio", clase="mn-it mn-rosa")
+    arriba += _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
     # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
     if e["quienes_somos"]:
-        medio = f'<a class="mn-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Quiénes somos</span><span class="mn-ar">›</span></a>'
+        medio = f'<a class="mn-it" href="{html.escape(e["quienes_somos"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Quiénes Somos</span><span class="mn-ar">›</span></a>'
     else:
-        medio = _it_sec("quienes", "Quiénes somos")
+        medio = _it_sec("quienes", "Quiénes Somos")
     if any(e[k] for k in ("youtube", "instagram", "intramed")):
         medio += _it_sec("redes", "Nuestras Redes")
     if _cuentas_html(cuentas):
-        medio += _it_sec("cuentas", "Abrí una cuenta con nosotros")
+        medio += _it_sec("cuentas", "Abrí una Cuenta")
     if e["mail"] or e["whatsapp"]:
-        medio += _it_sec("contacto", "Contactános")
+        medio += _it_sec("contacto", "Contactanos")
+    # v1.4.3: Quiénes Somos, Nuestras Redes, Abrí una Cuenta y Contactanos van adentro de un desplegable "Sobre Nosotros"; abajo, Comentarios y la versión
+    if medio:
+        medio = ('<details class="mn-det"><summary class="mn-it"><span>Sobre Nosotros</span><span class="mn-ar">›</span></summary>'
+                 f'<div class="mn-sub">{medio}</div></details>')
     if e["comentarios"]:
         medio += f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Comentarios</span><span class="mn-ar">›</span></a>'
     elif _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail):
@@ -580,10 +587,10 @@ def menu_flyouts_html(enlaces=None, cuentas=None, comentarios_mail=None):
         out += f'<div class="fly fly-c fly-redes">{fly_cabecera_html("Nuestras Redes")}<div class="mc-pop mn-pop"><div class="mc-redes">{redes}</div></div></div>'
     contacto = (_enlace_color("mail", e["mail"]) if e["mail"] else "") + _enlace_color("whatsapp", e["whatsapp"])
     if contacto and (e["mail"] or e["whatsapp"]):
-        out += f'<div class="fly fly-c fly-contacto">{fly_cabecera_html("Contactános")}<div class="mc-pop mn-pop"><div class="mc-redes">{contacto}</div></div></div>'
+        out += f'<div class="fly fly-c fly-contacto">{fly_cabecera_html("Contactanos")}<div class="mc-pop mn-pop"><div class="mc-redes">{contacto}</div></div></div>'
     logos = _cuentas_html(cuentas)
     if logos:
-        out += f'<div class="fly fly-c fly-cuentas">{fly_cabecera_html("Abrí una cuenta con nosotros")}<div class="mc-pop mn-pop">{logos.replace(chr(10), "")}</div></div>'
+        out += f'<div class="fly fly-c fly-cuentas">{fly_cabecera_html("Abrí una Cuenta")}<div class="mc-pop mn-pop">{logos.replace(chr(10), "")}</div></div>'
     form = "" if e["comentarios"] else _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail)
     if form:
         out += f'<div class="fly fly-c fly-comentarios">{fly_cabecera_html("Comentarios")}<div class="mc-pop mn-pop">{form}</div></div>'

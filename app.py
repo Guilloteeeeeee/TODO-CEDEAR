@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.2"
+APP_VERSION = "1.4.3"
 
 import re
 import contextlib
@@ -976,18 +976,18 @@ def render_menu_estatico(caja, home=False, filtro="Filtro de Empresas"):
     (Nuestras Redes, Contactános, Abrí una cuenta, Comentarios). Los paneles con widgets (Filtro, Noticias, Calendario Financiero) se arman en main() cuando hay datos."""
     with caja:
         st.markdown(menu_cabecera_html() + menu_lista_html(home, filtro=filtro, version=APP_VERSION), unsafe_allow_html=True)
-        st.toggle("Modo oscuro", key="modo_oscuro", help="Cambia los colores de la página a un fondo oscuro. Dura mientras tengas la app abierta.")      # v1.4.2
     st.markdown(menu_flyouts_html() + quienes_panel_html(), unsafe_allow_html=True)
 
 
 def poner_esc():
     """La tecla ESC cierra el menú y sus paneles (v1.2.84). Usa st.html con JavaScript (Streamlit nuevo) o, si no existe, un componente de 0 px de alto."""
     try:
-        st.html(f"<script>{SCRIPT_ESC}</script>", unsafe_allow_javascript=True)
+        from ui.tema import SCRIPT_TEMA
+        st.html(f"<script>{SCRIPT_ESC}{SCRIPT_TEMA}</script>", unsafe_allow_javascript=True)
     except Exception:  # noqa: BLE001
         try:
             import streamlit.components.v1 as _cmp
-            _cmp.html("<script>(function(){var d=window.parent.document;" + SCRIPT_ESC.replace("document.", "d.").replace("window.__mcEsc", "window.parent.__mcEsc") + "})();</script>", height=0)
+            _cmp.html("<script>(function(){var d=window.parent.document;" + SCRIPT_ESC.replace("document.", "d.").replace("window.__mcEsc", "window.parent.__mcEsc") + "})();</script>", height=0)      # (sin modo oscuro en este camino)
         except Exception:  # noqa: BLE001
             pass
 
@@ -1683,12 +1683,10 @@ def main():
     en_ideas = st.query_params.get("pagina") == "ideas"
     en_inicio = not (en_quienes or en_cartera or en_ideas or etf_sel or st.query_params.get("empresa"))
     activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas) else "empresas"))
-    if "modo_oscuro" not in st.session_state:       # v1.4.2: ?tema=oscuro en el link arranca en modo oscuro
-        st.session_state["modo_oscuro"] = str(st.query_params.get("tema", "")).lower() in ("oscuro", "dark")
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
                 + encabezado_html(NOMBRE_APP, menu_abierto=st.query_params.get("menu") == "1"), unsafe_allow_html=True)
     from ui.tema import css_oscuro
-    st.markdown(css_oscuro(st.session_state.get("modo_oscuro")), unsafe_allow_html=True)      # v1.4.2: modo oscuro
+    st.markdown(css_oscuro(), unsafe_allow_html=True)      # v1.4.3: modo oscuro (botón sol / luna en la franja negra)
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
     # v1.2.83: menu lateral (las 3 rayitas). Fuera del inicio se llena ya; en el inicio se llena mas abajo, cuando estan los datos (Filtro, Noticias, Calendario)
     menu_box = st.container(key="menu_lateral")

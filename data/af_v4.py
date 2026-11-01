@@ -437,7 +437,7 @@ CSS = ('<style>.af4{max-width:760px}.af4 .af4-t{font-size:1.65rem;line-height:1.
        '.af4-cal{display:inline-block;padding:2px 12px;border-radius:999px;font-weight:700;font-size:.9rem;margin-left:6px;vertical-align:middle}'
        '.af4-pc{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:700px){.af4-pc{grid-template-columns:1fr}}.af4-pc>div{min-width:0}'
        '.af4-pc h4{margin:0 0 .5em;font-size:.95rem;font-weight:800;letter-spacing:.4px;text-transform:uppercase}.af4-pc .p h4{color:#15803d}.af4-pc .c h4{color:#b91c1c}'
-       '.af4-pc li,.af4-fu li,.af4-rs li{text-align:left;hyphens:manual}.af4-fu{font-size:.85rem;color:#475569}.af4-fu li{font-size:.85rem;line-height:1.5;margin:0 0 .35em}</style>')
+       '@media(min-width:1100px){.af4.af4-cols{max-width:none}.af4-cols .af4-art{column-count:2;column-gap:44px;column-rule:1px solid #e5e7eb}.af4-cols .af4-art h3{break-after:avoid;margin-top:1.1em}.af4-cols .af4-art figure,.af4-cols .af4-art ul,.af4-cols .af4-art .af-cl{break-inside:avoid}}.af4-fu li{text-align:left;hyphens:manual}.af4-fu{font-size:.85rem;color:#475569}.af4-fu li{font-size:.85rem;line-height:1.5;margin:0 0 .35em}</style>')
 
 
 def texto_html(txt, ctx=None, graficos=None):

@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.4.3 (01/11/2026): menú, modo oscuro en la franja y dos columnas
+
+- **Modo oscuro/claro:** un solo ícono (luna / sol) en la franja negra, a la izquierda del toro. Se acuerda de la elección en el navegador (localStorage); `?tema=oscuro` arranca en oscuro. Se sacó el interruptor del menú.
+- **Menú lateral:** "Evalúa Gratis tu Portfolio"; Quiénes Somos, Nuestras Redes, Abrí una Cuenta y Contactanos (sin acento) van dentro de un desplegable "Sobre Nosotros"; debajo, Comentarios y la versión. Se acabó el espacio vacío debajo de "Evalúa Gratis tu Portfolio".
+- **Análisis Fundamental:** el resumen de arriba y los puntos A favor / En contra ahora van justificados (solo las fuentes quedan a la izquierda); se sacó la leyenda "Los números subrayados son del día... margen de seguridad..."; en pantallas anchas (desde 1100 px) el artículo se muestra en **dos columnas** (a prueba; en el celular sigue una).
+- **Precios:** si Yahoo no responde, Stock Analysis pasa a cubrir hasta 200 empresas (antes 30) con hasta 75 segundos; el archivo guardado queda solo para lo que ninguna de las dos fuentes devuelva.
+
 ### v1.4.2 (01/11/2026): segunda tanda de pedidos de Guille sobre el Análisis Fundamental
 
 - **Sin múltiplos extremos o raros.** Se sacaron de los informes los múltiplos agregados en la v1.4.1 que daban valores distorsionados (P/FCF de AMZN en 805 veces, y los de TSLA, PLTR y otros). Regla (`extremo()` en el parche y en el prompt): P/FCF fuera de 5 a 60 veces, EV/EBITDA fuera de 3 a 40, P/S fuera de 0,3 a 30, o más de 3 veces / menos de un tercio de su mediana. Los textos escritos a mano antes de la v1.4.1 (PLTR, CRWD, ARM, PANW, AMD, TSLA y algunos más) siguen usando sus múltiplos altos: quedan para revisar cuando Guille decida.

@@ -38,9 +38,9 @@ BANDA_PREFERIDA = 0.03                 # v1.2.47: si hay varios precios, se usa 
 FUENTE_YAHOO, FUENTE_RAVA, FUENTE_SA = "Yahoo Finance", "Rava", "Stock Analysis"
 RAVA_URL = "https://www.rava.com/invertir/cedears"
 SA_URL = "https://stockanalysis.com/stocks/{t}/"
-SA_MAX_EMPRESAS = 30                   # tope de paginas que se piden a Stock Analysis en una consulta
-SA_PRESUPUESTO_SEG = 25.0              # y tiempo maximo total
-SA_PAUSA_SEG = 0.4                     # pausa entre paginas (una a la vez)
+SA_MAX_EMPRESAS = 200                  # tope de paginas que se piden a Stock Analysis en una consulta
+SA_PRESUPUESTO_SEG = 75.0              # y tiempo maximo total
+SA_PAUSA_SEG = 0.3                     # pausa entre paginas (una a la vez)
 _UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36")
 MINIMO_PARA_MEDIANA = 5                # con menos CEDEARs que esto no hay mediana confiable y no se muestra ningun precio en pesos
 

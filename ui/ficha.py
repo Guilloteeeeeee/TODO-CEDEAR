@@ -1149,13 +1149,12 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     val = af.get("valuacion") or {}
     if val.get("texto"):
         fp = ctx.get("fecha_precio")
-        art += "<h3>Valuación</h3>" + (f'<div class="af4-vf">Los números subrayados son del día{f" (precio al {html.escape(fp)})" if fp else ""}: los actualiza la app. '
-                                       'El <b>margen de seguridad</b> es cuánto está el precio por debajo del Fair Value: es el colchón que queda si la estimación resultara demasiado optimista.</div>')
+        art += "<h3>Valuación</h3>"
         art += V.texto_html(val["texto"], ctx=ctx, graficos=graf)
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
     art += (f'<h3>Conclusión <span class="af4-cal" style="background:{color};color:{_TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")}">Calidad del Negocio: {html.escape(cal)}</span></h3>'
             + V.texto_html(af.get("conclusion")) + (f'<p class="af-cp"><b>Calidad y Precio Hoy:</b> {html.escape(cr)}</p>' if cr else ""))
-    t.append(_tile("s12", "El análisis", f'<div class="af af4" lang="es">{art}</div>', ac="#8b5cf6"))
+    t.append(_tile("s12", "El análisis", f'<div class="af af4 af4-cols" lang="es"><div class="af4-art">{art}</div></div>', ac="#8b5cf6"))
     pc = ('<div class="af af4"><div class="af4-pc"><div class="p"><h4>A favor</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("pros") or [])
           + '</ul></div><div class="c"><h4>En contra</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("contras") or []) + "</ul></div></div></div>")
     t.append(_tile("s12", "A favor y en contra", pc, ac="#16a34a"))
