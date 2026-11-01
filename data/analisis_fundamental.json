@@ -4750,54 +4750,61 @@
    }
   },
   "HDB": {
-   "resumen": "HDFC Bank es el mayor banco privado de India: cuentas, tarjetas y préstamos para millones de personas, préstamos para empresas, tesorería y un negocio de seguros, con presencia también en Baréin, Hong Kong, Singapur y Dubái. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones, en un país donde el crédito crece rápido. Tiene un **foso estrecho, de depósitos y red de sucursales**: una base enorme de cuentas de ahorro y de sueldo le da financiamiento barato y clientes que rara vez cambian. Los números son más difíciles de leer, porque el banco se fusionó con su casa hipotecaria HDFC Ltd. en 2023: los ingresos pasaron de ₹1.205.375 M en el año fiscal 2023 a ₹2.495.618 M en 2026, la ganancia neta de ₹495.447 M a ₹704.793 M (+42,3 %), pero **el ROE bajó de 17,0 % a 8,6 %** y la ganancia por acción quedó plana en torno a ₹133, porque el número de acciones se multiplicó. Además, en 2026 los ingresos crecieron solo 5,2 %. Las cifras están en rupias, por lo que el rendimiento en dólares depende también del tipo de cambio. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **empresa de calidad regular según los números de hoy: un banco líder en un país que crece, pero con ROE de 8,6 %, ganancia por acción plana y el riesgo de la rupia.**",
-   "veredicto": "Regular según los números: banco líder en India, pero con ROE diluido por la fusión y ganancia por acción plana",
-   "conclusion": "HDFC Bank es una empresa de calidad regular según los números de hoy: es el mayor banco privado de India y su ganancia neta subió 42,3 % desde 2023, pero el ROE bajó a 8,6 %, la ganancia por acción está plana y las cifras están en rupias. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE suba hacia 12 % a medida que el banco aproveche el patrimonio de la fusión.",
-   "calidad": "Regular",
+   "formato": "v4",
+   "titulo": "HDFC Bank: el mayor banco privado de la India digiere su fusión y crece con el país",
+   "resumen": [
+    "HDFC Bank es el mayor **banco privado de la India**: presta a personas y empresas, toma depósitos, emite tarjetas y, desde su fusión con HDFC Ltd en 2023, es uno de los mayores prestamistas hipotecarios del país. Su ventaja es una de las mejores gestiones de riesgo de los bancos emergentes y una red enorme en un país que crece rápido.",
+    "En el segundo trimestre de su año fiscal 2027 (julio a septiembre de 2026), **ganó 19.510 crores de rupias, un 4,7 % más** (12,6 % sin ganancias de inversiones), con intereses netos 9,7 % más altos. Su morosidad bajó a 1,11 %.",
+    "Muy buena empresa, prudente, con mucho capital y expuesta al crecimiento de la India, pero que todavía digiere la fusión, con una rentabilidad menor que antes y un crecimiento de la ganancia moderado."
+   ],
+   "introduccion": "La India es el país más poblado del mundo y una de las economías grandes que más crecen. Pero buena parte de su población todavía no tiene crédito, ni tarjeta, ni hipoteca. A medida que el país se enriquece, cientos de millones de personas van a pedir su primer préstamo.\n\nHDFC Bank, fundado en 1994, es el banco privado más grande de ese mercado. Durante décadas fue el ejemplo de banco bien gestionado en un país emergente: crecía rápido, con muy poca morosidad.\n\nEn julio de 2023 hizo una de las mayores fusiones de la historia bancaria de la India: absorbió a HDFC Ltd, la mayor empresa de créditos hipotecarios del país, que lo había fundado. El banco se volvió mucho más grande de golpe. Pero la fusión tuvo un costo: los créditos hipotecarios dejan menos margen que los préstamos de consumo, y el banco tuvo que reemplazar la deuda cara de HDFC Ltd por depósitos. Desde entonces, sus márgenes y su rentabilidad bajaron, y su acción quedó rezagada.\n\nEntonces, la pregunta es: ¿vuelve HDFC Bank a ser la máquina de crecer que era antes de la fusión?",
+   "secciones": [
+    {
+     "titulo": "Préstamos, hipotecas y depósitos",
+     "texto": "HDFC Bank gana plata sobre todo con la diferencia entre lo que cobra por prestar y lo que paga por los depósitos. En el segundo trimestre de su año fiscal 2027:\n\n- **Intereses netos**: 34.620 crores de rupias, un 9,7 % más.\n- **Depósitos promedio**: crecieron 16,8 %. Los depósitos en cuentas corrientes y de ahorro (los más baratos para un banco) crecieron menos, 10,7 %.\n\nPresta a personas (hipotecas, préstamos personales, tarjetas, autos), a pymes y a grandes empresas. También tiene compañías de seguros y de inversión.\n\nSus clientes son decenas de millones de personas y empresas en toda la India.\n\n¿Cuál es su **ventaja**? La **gestión del riesgo** y la **marca**. HDFC Bank es conocido por prestar con cuidado: su morosidad es de las más bajas de los bancos indios. Y su marca le permite captar depósitos de millones de personas que confían en él. Además, tiene una red de sucursales y una aplicación que llega a casi todo el país.\n\nLa inteligencia artificial no lo amenaza; en todo caso, lo ayuda a evaluar créditos y atender clientes."
+    },
+    {
+     "titulo": "Cómo se mide un banco",
+     "texto": "Las cifras de HDFC Bank están en **rupias indias**. Un crore son 10 millones de rupias.\n\nLos ingresos crecieron mucho con la fusión: de 1.205.375 M de rupias en su año fiscal 2023 a **2.495.618 M** en su año fiscal 2026.\n\n[[grafico:ingresos]]\n\nEn un banco hay tres números que conviene aprender:\n\n- **Margen de intereses** (NIM): la diferencia entre lo que cobra y lo que paga, sobre sus activos. Fue de 3,32 % sobre sus activos que generan intereses. Antes de la fusión era más alto, porque los créditos hipotecarios de HDFC Ltd dejan menos margen. Si subiera, sería la mejor señal de que la fusión empieza a rendir.\n- **Morosidad** (NPA bruto): los préstamos que no se están cobrando. Bajó a **1,11 %**, desde 1,24 % un año antes. Es un nivel bajo para un banco de un país emergente.\n- **Capital** (CET1): el capital de mejor calidad sobre los activos ponderados por riesgo. Fue de **17,1 %**, muy por encima de lo que exige el regulador. Le da mucho margen para crecer.\n\nSu ganancia del trimestre creció 4,7 %, y 12,6 % sin las ganancias por venta de inversiones de un año antes.\n\nUn detalle: después de la fusión, el banco consolida a sus empresas de seguros y de inversión, con accionistas minoritarios. Por eso, algunos indicadores de la tabla, como el ROE, pueden no coincidir con los que informa el banco."
+    },
+    {
+     "titulo": "Dividendo y riesgos",
+     "texto": "HDFC Bank reparte una parte chica de su ganancia: prefiere reinvertirla para crecer. El dividendo por ADR es de 0,41 dólares por año.\n\nLos riesgos:\n\n- **La fusión**: tiene que seguir reemplazando deuda cara por depósitos baratos, en un mercado con mucha competencia por los ahorros.\n- **La India**: una desaceleración de la economía o cambios en la regulación bancaria.\n- **La rupia**: para un inversor en dólares, una devaluación de la rupia achica el valor de la inversión.\n- **La competencia**: ICICI Bank (IBN), los bancos estatales y las fintech.\n\nLo conduce Sashidhar Jagdishan, CEO desde 2020."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuánto se paga por cada unidad de patrimonio. Con el precio de {precio} dólares por ADR, HDFC Bank cotiza a {v:p_b} veces su patrimonio, {vs:p_b} su mediana histórica ({med:p_b} veces).\n\nPagar más de 1 vez el patrimonio tiene sentido cuando el banco gana bien sobre ese patrimonio y crece rápido, como suele pasar con los mejores bancos de la India.\n\nEl PER (cuántos años de ganancia se pagan al comprar la acción) es de {per_ref} veces, {vs_ref_med} su propia mediana histórica ({med:per} veces).\n\nDurante años, el mercado pagó una prima muy alta por HDFC Bank, por su crecimiento y su calidad. Desde la fusión, esa prima se achicó, porque la rentabilidad bajó. Si los márgenes se recuperan y la ganancia vuelve a crecer a doble dígito, la prima podría volver. Si la integración se demora, el banco puede seguir cotizando por debajo de su historia.\n\nEl dividendo rinde {dy}.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "HDFC Bank es una muy buena empresa. Es el mayor banco privado de un país que crece rápido y donde cientos de millones de personas todavía no tienen crédito, con una de las mejores gestiones de riesgo de los mercados emergentes, morosidad baja y mucho capital.\n\nSu punto débil es la fusión con HDFC Ltd: bajó sus márgenes y su rentabilidad, y todavía tiene que reemplazar deuda cara por depósitos. Además, para un inversor en dólares, la rupia agrega riesgo. El crítico más duro diría que el HDFC Bank de antes de la fusión, que crecía rápido y con márgenes altos, no va a volver. Es un argumento a tener en cuenta.\n\nEncaja con quien busca exposición al crecimiento de la India a través de un banco de calidad, con paciencia. No es para quien busca dividendos.\n\nEs recomendable revisar en cada informe el margen de intereses, el crecimiento de los depósitos y la morosidad. Para que la tesis se mantenga, lo más importante es que el margen de intereses deje de bajar y que la ganancia vuelva a crecer a doble dígito.",
+   "pros": [
+    "Líder privado: el mayor banco privado de la India.",
+    "Morosidad baja: 1,11 % de los préstamos.",
+    "Mucho capital: CET1 de 17,1 %."
+   ],
+   "contras": [
+    "Fusión pesada: márgenes y rentabilidad más bajos.",
+    "Ganancia moderada: +4,7 % en el trimestre.",
+    "La rupia: riesgo de moneda para el inversor en dólares."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "HDFC Bank ofrece productos y servicios bancarios y financieros a personas y empresas en India, Baréin, Hong Kong, Singapur y Dubái. Opera los segmentos de **Tesorería, Banca Minorista, Banca Mayorista, Otros Negocios Bancarios, Negocio de Seguros** y otros. Ofrece cuentas de ahorro, de sueldo y corrientes, depósitos a plazo y cuentas para el sector rural, entre otras. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 64,8 % en el año fiscal 2024 (por la fusión), 19,4 % en 2025 y 5,2 % en 2026, hasta ₹2.495.618 M.** Todas las cifras están en rupias.\n\n**A quién le vende.** A millones de personas, a pequeñas y medianas empresas y a grandes corporaciones de India. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de HDFC Bank **es de depósitos y de red de sucursales, y es estrecha**. Con una base enorme de cuentas de ahorro y de sueldo en un país donde cada vez más gente se bancariza, tiene financiamiento barato y clientes que rara vez cambian. Un banco vende dinero, que es igual en todos lados, y los bancos grandes se parecen. Los números de hoy no muestran todavía un retorno de primer nivel: el ROE fue de 17,0 %, 9,0 %, 8,8 % y 8,6 %, por debajo de la referencia de 12 %.\n\nCompite con ICICI, State Bank of India, Axis y bancos digitales y plataformas de pago. Es frágil en el riesgo de crédito (que los préstamos no se paguen), en la competencia por depósitos y en el tipo de cambio de la rupia. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de HDFC Bank cuentan **un banco que creció con la fusión y hoy rinde menos por acción**. Los ingresos fueron de ₹1.205.375 M, ₹1.986.934 M, ₹2.371.508 M y ₹2.495.618 M. La ganancia neta fue de ₹495.447 M, ₹622.657 M, ₹673.508 M y ₹704.793 M. La ganancia por acción fue de ₹133,02, ₹132,48 y ₹134,46.\n\nEl indicador más importante es el ROE (cuánto gana por cada dólar de patrimonio): **17,0 %, 9,0 %, 8,8 % y 8,6 %**. El capital invertido pasó de ₹5.966.335 M a ₹14.636.478 M: la fusión multiplicó el patrimonio, y la ganancia no creció al mismo ritmo.\n\nLa mirada crítica: la ganancia neta creció 42,3 % pero la ganancia por acción quedó plana, porque las acciones pasaron de 1.862 M a 5.106 M (por la fusión y otros ajustes que Yahoo no detalla). Además, en el año fiscal 2026 los ingresos crecieron solo 5,2 % y la ganancia neta 4,6 %.",
-   "balance": "**El capital del banco se multiplicó con la fusión.** El capital invertido (lo que financia el negocio) pasó de ₹5.966.335 M en el año fiscal 2023 a ₹14.636.478 M en 2026, 2,5 veces más, mientras la ganancia neta creció 42,3 %. Es un banco grande, de los que los reguladores indios vigilan de cerca, y con foco en los depósitos, que son su materia prima.\n\nAl estar las cifras en rupias, el valor en dólares también depende del tipo de cambio. Con el bono a 10 años de Estados Unidos cerca de 5 %, el capital extranjero tiende a ser más selectivo con los mercados emergentes, lo que pesa sobre la rupia.",
-   "gerencia": "Yahoo no lista al equipo directivo de HDFC Bank en estos datos, así que conviene verificarlo en el informe de la empresa. En lo que importa, **el uso del capital** que muestra Yahoo es un dividendo de 0,41 por acción (por ADS, en dólares; pagado desde 2002; -8,0 % por año en 3 años). Las acciones pasaron de 1.862 M a 5.106 M en tres años, **un salto vinculado a la fusión**.",
-   "fortalezas": [
-    "Mayor banco privado de India, en un país donde la bancarización y el crédito crecen.",
-    "Ganancia neta de ₹704.793 M en el año fiscal 2026, 42,3 % más que en 2023.",
-    "Depósitos baratos y una red de sucursales y cuentas de sueldo difícil de replicar.",
-    "Ingresos de ₹2.495.618 M, el doble que en 2023.",
-    "Presencia internacional limitada (Baréin, Hong Kong, Singapur, Dubái) que acompaña a clientes."
-   ],
-   "debilidades": [
-    "ROE de 8,6 %, por debajo de la referencia de 12 % y la mitad del de 2023.",
-    "Ganancia por acción plana en torno a ₹133 durante tres años.",
-    "Crecimiento que se frena: ingresos +5,2 % en el año fiscal 2026.",
-    "Riesgo de la rupia: el crítico más duro diría que una rupia más débil le quita valor en dólares al inversor extranjero.",
-    "Foso estrecho: compite con ICICI, SBI y Axis, con ofertas parecidas."
-   ],
-   "vigilar": [
-    "ROE: hoy 8,6 %; tiene que subir hacia 12 % a medida que el banco use el patrimonio de la fusión.",
-    "Ganancia neta: ₹704.793 M en el año fiscal 2026; si crece menos que el crédito, el banco está ganando menos por préstamo.",
-    "Morosidad y reservas por incobrables: es lo que más cambia en una recesión.",
-    "Tipo de cambio rupia-dólar: una rupia más débil resta valor en dólares."
-   ],
    "clientes": [
-    "Millones de personas y cuentas de sueldo en India",
-    "Pequeñas y medianas empresas y grandes corporaciones indias",
-    "Clientes de seguros y banca mayorista"
+    "Personas que piden hipotecas, préstamos y tarjetas",
+    "Pymes y grandes empresas de la India",
+    "Ahorristas con depósitos"
    ],
-   "ideal_para": [
-    "Buscan exposición a la banca y al crecimiento de India.",
-    "Aceptan el riesgo de la rupia y de los mercados emergentes.",
-    "Valoran un banco líder en un país con bancarización creciente."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (julio a septiembre de 2026): ganancia de 19.510 crores de rupias (+4,7 %; +12,6 % sin ganancias de inversiones); intereses netos de 34.620 crores (+9,7 %); margen de intereses de 3,32 % sobre activos que generan intereses; depósitos promedio +16,8 %; depósitos en cuentas corrientes y de ahorro +10,7 %; morosidad bruta de 1,11 % (1,24 %); costo del crédito de 0,44 %; capital total de 18,9 % y CET1 de 17,1 %",
+     "fuente": "Business Today, 17/10/2026",
+     "url": "https://www.businesstoday.in/markets/stocks/story/hdfc-bank-q2-results-net-profit-rises-4-7-to-rs-19510-crore-key-highlights-562243-2026-10-17"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo de tipo de cambio.",
-    "Buscan un ROE alto y una ganancia por acción en alza."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "HDB",
    "perfil": "banco",
    "capas": [],
-   "ticker": "HDB",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026",
@@ -4884,54 +4891,61 @@
    }
   },
   "IBN": {
-   "resumen": "ICICI Bank es el segundo mayor banco privado de India: cuentas y préstamos para personas y empresas, tesorería, y seguros de vida y generales a través de sus filiales. Gana plata prestando más caro de lo que paga por los depósitos, más comisiones y seguros, en un país donde el crédito crece rápido. Tiene un **foso estrecho, de depósitos y banca digital**: una base grande de cuentas y una app que usan millones de indios le dan financiamiento barato y clientes que rara vez cambian. Los números son sólidos: la ganancia neta pasó de ₹340.366 M en el año fiscal 2023 a ₹542.077 M en 2026 (₹590.663 M en los últimos 12 meses), la ganancia por acción de ₹95,68 a ₹149,54 (₹162,86 en los últimos 12 meses) y el ROE se mantuvo entre 14,9 % y 17,3 %, por encima de la referencia de 12 %. Además, **las acciones casi no cambiaron (2,0 % más)**, de modo que el crecimiento viene del negocio. El crecimiento se está frenando: en 2026 los ingresos subieron 9,1 % y la ganancia por acción 5,1 %. Las cifras están en rupias, por lo que el rendimiento en dólares depende también del tipo de cambio. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**, porque la usa para bajar costos. Conclusión: **buena empresa, un banco líder en India con ROE de 15,1 % y ganancia en alza sin dilución, aunque con crecimiento que se frena y el riesgo de la rupia.**",
-   "veredicto": "Buena empresa: banco líder en India con ROE de 15,1 % y sin dilución, pero con crecimiento que se frena",
-   "conclusion": "ICICI Bank es una buena empresa, no una excelente: tiene ROE de 15,1 %, una ganancia por acción de ₹162,86 en los últimos 12 meses y acciones casi sin cambios, pero el crecimiento se frena y las cifras están en rupias. Vale la pena seguirla de cerca. Es recomendable investigar la morosidad y las reservas por incobrables en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que el ROE se sostenga sobre 12 % mientras el banco crece.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "ICICI Bank: el banco indio que pasó de los problemas de morosidad a crecer con calidad",
+   "resumen": [
+    "ICICI Bank es el segundo mayor **banco privado de la India**. Presta a personas y empresas, toma depósitos y tiene negocios de seguros, inversiones y bolsa. Su ventaja es una de las mejores plataformas digitales de la banca india y una rentabilidad entre las más altas de los grandes bancos del país.",
+    "En el segundo trimestre de su año fiscal 2027 (julio a septiembre de 2026), **ganó 14.843 crores de rupias, un 20,1 % más**, con intereses netos 17,7 % más altos. Su morosidad bruta bajó a 1,20 %, desde 1,58 %.",
+    "Muy buena empresa, rentable, que crece rápido con poca morosidad y mucho capital, aunque su margen de intereses se está achicando y, para un inversor en dólares, la rupia agrega riesgo."
+   ],
+   "introduccion": "Hace una década, ICICI Bank tenía problemas serios. Había prestado mucho a grandes empresas de infraestructura y energía que no pudieron pagar, y su morosidad se disparó. A eso se sumó un escándalo: su CEO de entonces, Chanda Kochhar, dejó el cargo en 2018 en medio de una investigación por conflicto de intereses.\n\nEse año asumió Sandeep Bakhshi, un ejecutivo de la casa, con un plan claro: prestar con más cuidado, enfocarse en personas y pymes, y apostar a la tecnología. Ocho años después, ICICI es uno de los bancos más rentables de la India, con una morosidad baja y una de las mejores aplicaciones bancarias del país.\n\nY está en el lugar indicado: la India es una de las economías grandes que más crecen, y cientos de millones de personas todavía no tienen su primer crédito.\n\nSu ganancia por acción pasó de 95,68 rupias en su año fiscal 2023 a **162,86** en los últimos 12 meses.\n\nEntonces, la pregunta es: ¿cuánto vale un banco que se transformó y crece rápido en un mercado enorme?",
+   "secciones": [
+    {
+     "titulo": "Préstamos, depósitos y tecnología",
+     "texto": "ICICI Bank gana plata sobre todo con la diferencia entre lo que cobra por prestar y lo que paga por los depósitos. En el segundo trimestre de su año fiscal 2027, sus **intereses netos** fueron de 25.339 crores de rupias, un 17,7 % más.\n\nPresta a personas (hipotecas, préstamos personales, autos, tarjetas), a pymes y a grandes empresas. Tiene además una aseguradora de vida, una de seguros generales, una administradora de fondos y un bróker.\n\nSus clientes son decenas de millones de personas y empresas en toda la India.\n\n¿Cuál es su **ventaja**? La **tecnología** y la **disciplina**. ICICI fue de los primeros bancos indios en apostar fuerte a lo digital: buena parte de sus operaciones y préstamos se originan en su aplicación, lo que le baja costos y le permite evaluar mejor a los clientes. Y desde 2018 cambió su forma de prestar: menos créditos riesgosos a grandes proyectos, más préstamos a personas y pymes, con un mejor control del riesgo.\n\nLa inteligencia artificial no lo amenaza; en todo caso, lo ayuda a evaluar créditos y atender clientes.\n\nUna comparación útil es con HDFC Bank (HDB), el mayor banco privado del país. En 2023, HDFC Bank se fusionó con HDFC Ltd, una gran empresa de créditos hipotecarios, y desde entonces sus márgenes y su crecimiento se frenaron. ICICI, en cambio, no tuvo que digerir una fusión grande. En el último trimestre, su ganancia creció 20,1 %, contra 4,7 % de HDFC Bank."
+    },
+    {
+     "titulo": "Cómo se mide un banco",
+     "texto": "Las cifras de ICICI Bank están en **rupias indias**. Un crore son 10 millones de rupias.\n\nLos ingresos crecieron de 1.355.812 M de rupias en su año fiscal 2023 a **2.234.071 M** en su año fiscal 2026.\n\n[[grafico:ingresos]]\n\nEn un banco hay cuatro números que conviene aprender:\n\n- **ROE**, el retorno sobre el patrimonio: cuánto gana por cada rupia que pusieron los accionistas. Es de **15,1 %** en los últimos 12 meses. Por encima de 15 % se considera muy bueno. El promedio de su industria es 9,4 %.\n- **Margen de intereses** (NIM): la diferencia entre lo que cobra y lo que paga, sobre sus activos. Bajó a **4,18 %**, desde 4,30 % un año antes, en parte porque las tasas en la India bajaron. Si siguiera bajando, la ganancia crecería menos.\n- **Morosidad** (NPA): la bruta bajó a **1,20 %** y la neta, a **0,30 %**. Son niveles muy bajos.\n- **Capital** (CET1): **16,01 %**, el doble de lo que exige el regulador (8,2 %).\n\n[[grafico:roe]]\n\nLa ganancia del trimestre creció 20,1 %, ayudada por menores provisiones para préstamos incobrables.\n\nOtro concepto importante en un banco es de dónde saca la plata que presta. Lo más barato son los **depósitos en cuentas corrientes y de ahorro**, por los que el banco paga poco o nada de interés. Cuanto más pesan esos depósitos, más barato se financia el banco y más margen le queda. Los bancos indios compiten mucho por esos depósitos, porque los ahorristas buscan cada vez más alternativas, como fondos de inversión y acciones. Si ICICI tuviera que pagar más por sus depósitos, su margen bajaría.\n\nLa **cobertura de provisiones** también importa: es qué parte de los préstamos morosos ya tiene reservada como pérdida. En ICICI es de 75 %. Es decir, si todos los préstamos que hoy están en mora no se cobraran nunca, ya tiene apartadas tres cuartas partes de esa pérdida."
+    },
+    {
+     "titulo": "Dividendo y riesgos",
+     "texto": "ICICI reparte una parte chica de su ganancia: prefiere reinvertirla para crecer. El dividendo por ADR es de 0,25 dólares por año.\n\nLos riesgos:\n\n- **Las tasas**: si siguen bajando en la India, el margen de intereses se achica.\n- **La economía india**: una desaceleración aumentaría la morosidad.\n- **La rupia**: para un inversor en dólares, una devaluación achica el valor de la inversión.\n- **La competencia**: HDFC Bank (HDB), los bancos estatales y las fintech.\n\nUn riesgo menos visible es la **sucesión**: Sandeep Bakhshi lideró la transformación del banco, y el mercado va a mirar con atención quién lo reemplace cuando termine su mandato.\n\nLo conduce Sandeep Bakhshi, CEO desde 2018."
+    }
+   ],
+   "valuacion": {
+    "texto": "En un banco, el número que conviene mirar es el **precio sobre valor libros**: cuánto se paga por cada unidad de patrimonio. Con el precio de {precio} dólares por ADR, ICICI cotiza a {v:p_b} veces su patrimonio, {vs:p_b} su mediana histórica ({med:p_b} veces).\n\nPagar más de 2 veces el patrimonio tiene sentido cuando el banco gana mucho sobre ese patrimonio y crece rápido. Un ejemplo: si el banco gana 15 % sobre su patrimonio y reinvierte casi toda esa ganancia, su patrimonio se duplica en unos 5 años.\n\nEl PER (cuántos años de ganancia se pagan al comprar la acción) es de {per_ref} veces, {vs_ref_med} su propia mediana histórica ({med:per} veces).\n\nEl mercado paga una prima por los mejores bancos privados de la India, por su crecimiento. Si ICICI mantiene un ROE cerca de 15 % y crece a doble dígito, esa prima se justifica. Si el margen sigue bajando o la morosidad sube, puede achicarse.\n\nEl dividendo rinde {dy}.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "ICICI Bank es una muy buena empresa. Se transformó de un banco con problemas en uno de los más rentables de la India, con una plataforma digital de primer nivel, morosidad muy baja, mucho capital y una ganancia que crece a doble dígito en un mercado enorme.\n\nSu punto débil es el margen de intereses, que baja con las tasas, y el riesgo de moneda para un inversor en dólares. Además, la India tiene una economía que puede ser volátil. El crítico más duro diría que el mercado ya paga por ICICI como si nunca fuera a tener otro ciclo de morosidad. Es un argumento a tener en cuenta.\n\nEncaja con quien busca exposición al crecimiento de la India a través de un banco de calidad. No es para quien busca dividendos o evitar el riesgo de moneda.\n\nEs recomendable revisar en cada informe el margen de intereses, la morosidad y el crecimiento de los préstamos. Para que la tesis se mantenga, lo más importante es que el ROE se mantenga cerca de 15 % y que la morosidad siga baja.",
+   "pros": [
+    "Rentable: ROE de 15,1 %.",
+    "Morosidad muy baja: 0,30 % neta.",
+    "Mucho capital: CET1 de 16,01 %."
+   ],
+   "contras": [
+    "Margen en baja: 4,18 % contra 4,30 %.",
+    "La rupia: riesgo de moneda para el inversor en dólares.",
+    "Economía india: una desaceleración subiría la morosidad."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "bajo",
-   "negocio": "ICICI Bank presta servicios bancarios y financieros a clientes corporativos y minoristas en India y a nivel internacional. Opera los segmentos de **Banca Minorista, Banca Mayorista, Tesorería, Otros Negocios Bancarios, Seguros de Vida, Seguros Generales** y otros, y ofrece también gestión de activos. Yahoo no informa cuánto aporta cada segmento, y no lo vamos a inventar.\n\nEs un negocio indispensable: las personas y las empresas necesitan cuentas, crédito y pagos. **Los ingresos crecieron 18,9 % en el año fiscal 2024, 27,0 % en 2025 y 9,1 % en 2026, hasta ₹2.234.071 M.** Todas las cifras están en rupias.\n\n**A quién le vende.** A millones de personas, a pequeñas y medianas empresas y a grandes corporaciones de India. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "La ventaja de ICICI **es de depósitos y de banca digital, y es estrecha**. Con una base enorme de cuentas y una app muy usada en un país donde cada vez más gente se bancariza, consigue financiamiento barato y clientes que rara vez cambian. Un banco vende dinero, que es igual en todos lados, y los bancos grandes se parecen. Se ve en el ROE, entre 14,9 % y 17,3 % durante cinco períodos, por encima de la referencia de 12 %.\n\nCompite con HDFC Bank, State Bank of India, Axis y plataformas digitales de pago. Es frágil en el riesgo de crédito (que los préstamos no se paguen), en la competencia por depósitos y en el tipo de cambio de la rupia. La inteligencia artificial puede ayudarla a bajar costos, y no la amenaza de forma directa.",
-   "numeros": "Los números de ICICI cuentan **un banco que crece parejo, aunque más lento**. Los ingresos fueron de ₹1.355.812 M, ₹1.612.102 M, ₹2.047.153 M y ₹2.234.071 M. La ganancia neta fue de ₹340.366 M, ₹442.564 M, ₹510.292 M y ₹542.077 M (+59,3 %), y de ₹590.663 M en los últimos 12 meses. La ganancia por acción pasó de ₹95,68 a ₹123,92, ₹142,28, ₹149,54 y **₹162,86**.\n\nEl indicador más importante en un banco es el ROE (cuánto gana por cada dólar de patrimonio): **15,9 %, 17,3 %, 16,3 %, 14,9 % y 15,1 % en los últimos 12 meses**. El capital invertido pasó de ₹3.980.072 M a ₹6.860.859 M (+72 %).\n\nLa mirada crítica: el crecimiento de la ganancia por acción se frenó de 29,5 % a 5,1 % en el año fiscal 2026, y el ROE bajó de 17,3 % a 15,1 %. Los números siguen buenos, pero la parte fácil del crecimiento pasó.",
-   "balance": "**El capital del banco crece más rápido que la ganancia.** El capital invertido (lo que financia el negocio) pasó de ₹3.980.072 M en el año fiscal 2023 a ₹6.860.859 M en los últimos 12 meses, un 72 % más, mientras la ganancia neta creció 73,5 %. Es un banco grande, vigilado de cerca por los reguladores indios, con foco en depósitos.\n\nAl estar las cifras en rupias, el valor en dólares también depende del tipo de cambio. Con el bono a 10 años de Estados Unidos cerca de 5 %, el capital extranjero tiende a ser más selectivo con los mercados emergentes, lo que pesa sobre la rupia.",
-   "gerencia": "La conduce Sandeep Bakhshi, CEO y director gerente (65 años, pago de 1,1 M según Yahoo), con Anindya Banerjee como director financiero (48 años). Los pagos son mucho más bajos que en bancos estadounidenses.\n\nEn lo que importa, **el uso del capital es de crecimiento orgánico y dividendo**: paga un dividendo de 0,25 por acción (por ADS, en dólares; pagado desde 2001; sube 26,8 % por año en 3 años) y no recompra acciones. Las acciones pasaron de 3.557 M a 3.627 M, **2,0 % más**: casi sin dilución.",
-   "fortalezas": [
-    "ROE entre 14,9 % y 17,3 % durante cinco períodos, por encima de la referencia de 12 %.",
-    "Ganancia por acción de ₹162,86 en los últimos 12 meses, 70 % más que en 2023.",
-    "Acciones casi sin cambios (2,0 % más): el crecimiento viene del negocio.",
-    "Banca digital muy usada, en un país donde crece la bancarización.",
-    "Dividendo creciente: 26,8 % anual en 3 años."
-   ],
-   "debilidades": [
-    "Crecimiento que se frena: ingresos +9,1 % y ganancia por acción +5,1 % en el año fiscal 2026.",
-    "ROE bajando de 17,3 % a 15,1 %.",
-    "Riesgo de la rupia: el crítico más duro diría que una rupia más débil le quita valor en dólares al inversor extranjero.",
-    "Riesgo de crédito en un mercado de crecimiento rápido.",
-    "Foso estrecho: compite con HDFC Bank y SBI, con ofertas parecidas."
-   ],
-   "vigilar": [
-    "ROE: hoy 15,1 %; si cae hacia 12 %, el crecimiento se está pagando con retorno.",
-    "Ganancia por acción: crece 5,1 %; si se frena más, el negocio entró en una etapa de menor crecimiento.",
-    "Morosidad y reservas por incobrables: es lo que más cambia en una recesión.",
-    "Tipo de cambio rupia-dólar: una rupia más débil resta valor en dólares."
-   ],
    "clientes": [
-    "Millones de personas y cuentas digitales en India",
-    "Pequeñas y medianas empresas y grandes corporaciones indias",
-    "Clientes de seguros de vida y generales"
+    "Personas que piden hipotecas, préstamos y tarjetas",
+    "Pymes y grandes empresas de la India",
+    "Ahorristas e inversores"
    ],
-   "ideal_para": [
-    "Buscan exposición a la banca y al crecimiento de India.",
-    "Valoran un ROE alto y acciones sin dilución.",
-    "Aceptan el riesgo de la rupia y de los mercados emergentes."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (julio a septiembre de 2026): ganancia de 14.843 crores de rupias (12.359; +20,1 %); intereses netos de 25.339 crores (+17,7 %); margen de intereses de 4,18 % (4,30 %); morosidad bruta de 1,20 % (1,58 %) y neta de 0,30 % (0,39 %); provisiones de 851 crores (914); cobertura de provisiones de 75 %; capital total de 16,68 % y CET1 de 16,01 % (mínimos de 11,70 % y 8,20 %)",
+     "fuente": "Business Today, 17/10/2026",
+     "url": "https://www.businesstoday.in/markets/stocks/story/icici-bank-q2-results-net-profit-jumps-20-to-rs-14843-crore-nim-contracts-562250-2026-10-17"
+    }
    ],
-   "menos_ideal": [
-    "No toleran el riesgo de tipo de cambio.",
-    "Buscan un crecimiento acelerado de la ganancia por acción."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "IBN",
    "perfil": "banco",
    "capas": [],
-   "ticker": "IBN",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -5696,54 +5710,70 @@
    }
   },
   "COIN": {
-   "resumen": "Coinbase es la mayor plataforma de compra, venta y custodia de criptomonedas de Estados Unidos: ofrece una cuenta para consumidores, una plataforma de intermediación y liquidez para instituciones, y herramientas para desarrolladores que construyen sobre blockchains. Gana plata con comisiones por cada operación, con intereses y comisiones sobre las monedas estables, y con servicios de custodia. **No tiene un foso claro**: tiene marca, licencias y una base grande de usuarios, pero comprar criptomonedas es fácil en muchas plataformas y las comisiones tienden a bajar. Los números son muy irregulares: los ingresos pasaron de 3.194 M en 2022 a 7.181 M en 2025, pero bajaron a **6.283 M en los últimos 12 meses**; la ganancia neta fue de -2.625 M en 2022, 95 M, 2.579 M en 2024, 1.260 M en 2025 y **-988 M en los últimos 12 meses**. El ROE fue de -48,1 % a 25,1 % y -7,6 % hoy. Además **las acciones aumentaron 22,5 %** desde 2022 (de 222 M a 272 M). Su punto débil es que depende del precio y del volumen de las criptomonedas, que suben y bajan muy fuerte. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **bajo**. Conclusión: **empresa de calidad regular, sin foso claro, con ingresos y ganancias que dependen del ciclo cripto y pérdida en los últimos 12 meses.**",
-   "veredicto": "Regular: sin foso claro, resultados que dependen del ciclo cripto y pérdida en los últimos 12 meses",
-   "conclusion": "Coinbase es una empresa de calidad regular: tiene marca y licencias, pero no un foso claro, los ingresos bajaron a 6.283 M en los últimos 12 meses, perdió 988 M y las acciones aumentaron 22,5 % desde 2022. Hay que seguirla de cerca. Es recomendable investigar de dónde viene la diferencia entre el margen operativo y la pérdida neta en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que logre ganancias estables sin depender del precio de las criptomonedas.",
+   "formato": "v4",
+   "titulo": "Coinbase: la mayor plataforma cripto de EE.UU. sufre el enfriamiento del mercado",
+   "resumen": [
+    "Coinbase es la mayor plataforma de **criptomonedas** de EE.UU.: permite comprar, vender y guardar bitcoin y otras criptomonedas, y custodia buena parte del bitcoin de los fondos cotizados (ETF). Gana con comisiones por operaciones y, cada vez más, con servicios: intereses sobre la stablecoin USDC, staking y suscripciones. Su ventaja es ser la plataforma regulada y confiable de un mercado lleno de riesgos.",
+    "En el tercer trimestre de 2026, **sus ingresos cayeron 35 %**, a 1.220 M, por la baja de la actividad cripto. Su ganancia contable fue de 719 M, pero casi toda vino de la suba del valor de las criptomonedas que tiene; sin eso, ganó apenas 78 M.",
+    "Empresa regular hoy, por lo volátil de su ganancia, aunque líder de su mercado y con servicios que crecen, pero muy atada al precio de las criptomonedas y a la actividad de los inversores."
+   ],
+   "introduccion": "En 2012, cuando el bitcoin valía unos pocos dólares y pocos sabían qué era, Brian Armstrong fundó Coinbase con una idea simple: hacer que comprar criptomonedas fuera tan fácil como usar una aplicación de banco. Funcionó. Coinbase se volvió la puerta de entrada al mundo cripto para millones de estadounidenses, y en 2021 salió a la bolsa.\n\nPero su negocio sube y baja con el entusiasmo por las criptomonedas. Cuando el bitcoin sube y todos quieren comprar, Coinbase gana fortunas en comisiones. Cuando el mercado se enfría, los clientes operan menos y los ingresos se desploman. En 2022, con el derrumbe cripto, perdió 2.625 M. En 2024, con el boom, ganó 2.579 M.\n\nEn 2026, el mercado volvió a enfriarse. Coinbase perdió plata en el primer y en el segundo trimestre, y en octubre la acción cayó alrededor de 26 %.\n\nPara depender menos de ese ciclo, la empresa apuesta a servicios más estables: la stablecoin USDC, el staking, las suscripciones, la custodia para fondos y hasta los mercados de predicción.\n\nEntonces, la pregunta es: ¿cuánto vale una empresa líder en un mercado tan volátil como el de las criptomonedas?",
+   "secciones": [
+    {
+     "titulo": "Comisiones y servicios",
+     "texto": "Coinbase gana plata de dos formas. En el tercer trimestre de 2026:\n\n- **Operaciones** (590 M, -44 %): comisiones cuando sus clientes compran y venden criptomonedas. Son altas para los clientes particulares y bajas para los grandes inversores. Es la parte más volátil.\n- **Suscripciones y servicios** (570 M, -20 %): intereses sobre la stablecoin **USDC** (una criptomoneda atada al dólar que emite Circle, con quien Coinbase comparte los ingresos), **staking** (recompensas por ayudar a validar operaciones en ciertas redes), la suscripción Coinbase One y la custodia de criptomonedas para fondos. Ya es casi la mitad de sus ingresos.\n\nSus clientes promedio tenían 22.000 M de dólares en USDC dentro de sus productos, 49 % más que un año antes. Su participación en el mercado de operaciones cripto subió a 10,7 %, por cuarto trimestre seguido.\n\nSus clientes son millones de inversores particulares, fondos, empresas y los grandes administradores de ETF de bitcoin, que le confían la custodia.\n\n¿Cuál es su **ventaja**? La **confianza** y la **regulación**. En un mercado donde quebraron plataformas como FTX y donde los hackeos son frecuentes, Coinbase es la empresa cotizada, auditada y regulada en EE.UU. Por eso los grandes fondos la eligen para custodiar sus criptomonedas.\n\nLa inteligencia artificial no la amenaza."
+    },
+    {
+     "titulo": "Una ganancia que engaña",
+     "texto": "Los ingresos saltan con el mercado cripto: 3.108 M en 2023, **7.181 M** en 2025 y 6.283 M en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de -61,0 % en 2022 a 34,1 % en 2024, y bajó a **11,7 %** en los últimos 12 meses. Es el reflejo de un negocio con costos fijos altos e ingresos muy variables.\n\n[[grafico:margen_operativo]]\n\nAcá hay que aprender a leer la ganancia de Coinbase. La empresa tiene criptomonedas propias como inversión, y las contabiliza a su precio de mercado. Cuando suben, registra una ganancia, aunque no haya vendido nada. En el tercer trimestre, la ganancia contable fue de **719 M**, pero 715 M vinieron de esa suba. La **ganancia ajustada**, sin ese efecto, fue de apenas 78 M. Y su EBITDA ajustado (lo que genera el negocio antes de intereses, impuestos y amortizaciones) bajó 58 %, a 333 M. Por eso conviene mirar el negocio, no la ganancia contable.\n\nEl **ROE**, el retorno sobre el patrimonio (cuánto gana por cada dólar que pusieron los accionistas), fue negativo en los últimos 12 meses (-7,6 %).\n\n[[grafico:roe]]\n\nOtro punto a vigilar: la cantidad de acciones creció 22,4 % desde 2022, por los pagos a empleados en acciones y otras emisiones. Eso diluye a los accionistas.\n\n[[grafico:acciones]]"
+    },
+    {
+     "titulo": "Riesgos de un mercado volátil",
+     "texto": "Coinbase tiene un balance con mucha liquidez, propia de una plataforma que custodia la plata de sus clientes. No paga dividendo.\n\nLos riesgos:\n\n- **El precio de las criptomonedas**: cuando bajan, los clientes operan menos y sus ingresos caen.\n- **Las comisiones**: la competencia de otras plataformas y de los ETF de bitcoin, más baratos, presiona sus comisiones.\n- **La regulación**: un cambio en las reglas de EE.UU. puede afectar su negocio, sobre todo el de las stablecoins.\n- **La seguridad**: un hackeo o una falla en la custodia sería muy grave.\n- **La dependencia de Circle**: buena parte de sus ingresos por USDC depende de su acuerdo con Circle y de las tasas de interés.\n\nLo conduce Brian Armstrong, cofundador y CEO: \"Seguimos ejecutando bien lo que está bajo nuestro control\"."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Coinbase, el PER (cuántos años de ganancia se pagan al comprar la acción) sirve poco, porque su ganancia contable salta con el precio de sus criptomonedas y en los últimos 12 meses fue negativa. Por eso no lo usamos.\n\nSirve más el **precio sobre ventas**: cuánto se paga por cada dólar que factura. Con el precio de {precio} dólares, Coinbase cotiza a {v:ps} veces sus ventas, {vs:ps} su mediana histórica ({med:ps} veces) y {vsind:ps} el promedio de su industria ({ind:ps} veces).\n\nTambién el **precio sobre valor libros**: {v:p_b} veces su patrimonio, {vs:p_b} su mediana histórica ({med:p_b} veces).\n\nEl mercado paga por Coinbase según lo que espera del mercado cripto. Si las criptomonedas vuelven a subir y los inversores vuelven a operar, sus ingresos pueden multiplicarse. Si el mercado sigue frío, depende de que sus servicios estables crezcan lo suficiente.\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}. Ese cálculo no captura bien un negocio tan cíclico: conviene tomarlo con cuidado. No paga dividendo."
+   },
+   "conclusion": "Coinbase es hoy una empresa regular por lo volátil de su ganancia, pero con una posición única: es la plataforma cripto regulada y confiable de EE.UU., custodia buena parte del bitcoin de los ETF y gana participación de mercado. Sus servicios más estables (USDC, staking, suscripciones) ya son casi la mitad de sus ingresos.\n\nSu punto débil es que su negocio depende del precio de las criptomonedas y de las ganas de operar de los inversores, que en 2026 se enfriaron. Su ganancia contable engaña, porque incluye la suba de sus propias criptomonedas, y las emisiones de acciones diluyen a los accionistas. El crítico más duro diría que comprar Coinbase es comprar bitcoin con un costo extra. Es un argumento razonable.\n\nEncaja con quien quiere exposición al mundo cripto a través de una empresa regulada y tolera una volatilidad muy alta. No es para quien busca estabilidad o dividendos.\n\nPara que la tesis se mantenga, lo más importante es que los servicios estables sigan creciendo y que la empresa vuelva a ganar plata con su negocio, sin depender de la suba de sus inversiones.",
+   "pros": [
+    "Líder regulado: la plataforma cripto de confianza en EE.UU.",
+    "Servicios en alza: casi la mitad de sus ingresos.",
+    "Más mercado: participación de 10,7 %, cuarto trimestre en alza."
+   ],
+   "contras": [
+    "Muy volátil: ingresos -35 % en el trimestre.",
+    "Ganancia engañosa: casi toda por la suba de sus criptomonedas.",
+    "Dilución: acciones +22,4 % desde 2022."
+   ],
    "calidad": "Regular",
    "riesgo_ia": "bajo",
-   "negocio": "Coinbase opera una plataforma de criptoactivos en Estados Unidos y a nivel internacional. Ofrece la cuenta financiera principal de la economía cripto para consumidores, una plataforma de intermediación con liquidez para instituciones y un conjunto de productos para que los desarrolladores construyan sobre blockchains. Fue fundada en 2012 y tiene su base en Nueva York. Yahoo no desglosa cuánto viene de comisiones por operar y cuánto de otros servicios, y no lo vamos a inventar.\n\nEs un negocio ligado al ánimo del mercado cripto: **los ingresos cayeron 2,7 % en 2023, subieron 111,2 % en 2024 y 9,4 % en 2025, hasta 7.181 M**, y bajaron a 6.283 M en los últimos 12 meses.\n\n**A quién le vende.** A millones de inversores individuales y a instituciones. **Ningún cliente pesa de forma decisiva.**",
-   "foso": "**Coinbase no tiene un foso claro.** Tiene una marca conocida, licencias en Estados Unidos y una base grande de usuarios que confían en ella, y eso le da una ventaja real frente a plataformas pequeñas. Pero un usuario puede abrir una cuenta en otra plataforma en minutos, y las comisiones por operar están bajo presión. El margen bruto cayó de 80,3 % a 72,7 %, señal de que la ventaja no alcanza para sostener los precios.\n\nCompite con Binance, Kraken, Robinhood, Schwab y bancos que empiezan a ofrecer criptomonedas. Es frágil en el precio de las criptomonedas, en los volúmenes de operación y en los cambios regulatorios, que pueden ayudarla o perjudicarla. La inteligencia artificial no es una amenaza directa.",
-   "numeros": "Los números de Coinbase cuentan **un negocio muy cíclico**. Los ingresos fueron de 3.194 M, 3.108 M, 6.564 M y 7.181 M, y de 6.283 M en los últimos 12 meses. El margen operativo fue de -61,0 %, -1,7 %, 34,1 %, 20,3 % y 11,7 % en los últimos 12 meses. La ganancia neta fue de -2.625 M, 95 M, 2.579 M y 1.260 M, y de **-988 M en los últimos 12 meses**. La ganancia por acción fue de -11,83, 0,37, 9,48, 4,45 y -3,84.\n\nEl ROE (cuánto gana por cada dólar de patrimonio) fue de **-48,1 %, 1,5 %, 25,1 %, 8,5 % y -7,6 %**. El capital invertido pasó de 8.869 M a 19.563 M.\n\nLa mirada crítica: en los últimos 12 meses el margen operativo sigue positivo (11,7 %) mientras la ganancia neta es negativa; Yahoo no explica la diferencia, y en esta empresa suele reflejar cambios de valor de las criptomonedas que tiene. Hay que verificarlo en el informe.",
-   "balance": "**El capital creció mucho, pero la empresa tiene poca historia de ganancias estables.** El capital invertido (lo que financia el negocio) pasó de 8.869 M en 2022 a 19.563 M en los últimos 12 meses. Yahoo no informa deuda ni caja de forma comparable para este tipo de empresa, y por eso no las comparamos acá.\n\nLo que sí importa vigilar es que Coinbase guarda criptomonedas de clientes y tiene las suyas, así que el valor de su balance sube y baja con el mercado. Es un negocio que en un mal año puede perder plata, como mostraron 2022 y los últimos 12 meses.",
-   "gerencia": "La conduce Brian Armstrong, cofundador, presidente y CEO (42 años, pago de 9,7 M según Yahoo), con Emilie Choi como presidenta y directora de operaciones (46 años) y Alesia Haas como directora financiera (48 años). Es un equipo fundador que sigue al frente.\n\nEn lo que importa, **la empresa no paga dividendo y empezó a recomprar**: recompró 790 M en 2025. **Las acciones aumentaron de 222 M a 272 M, un 22,5 %** desde 2022, y las recompras no alcanzaron a compensarlo. Es un punto en contra para el accionista.",
-   "fortalezas": [
-    "Marca conocida y licencias en Estados Unidos.",
-    "Margen operativo de 34,1 % en 2024 y 20,3 % en 2025, cuando el mercado ayudó.",
-    "Ingresos de 3.194 M a 7.181 M entre 2022 y 2025.",
-    "Gran base de usuarios y de activos en custodia.",
-    "Empezó a recomprar acciones (790 M en 2025)."
-   ],
-   "debilidades": [
-    "Pérdida de 988 M en los últimos 12 meses.",
-    "Resultados que dependen del precio y volumen de las criptomonedas: el crítico más duro diría que es una apuesta al ciclo cripto.",
-    "22,5 % más acciones desde 2022.",
-    "Margen bruto que cae de 80,3 % a 72,7 %.",
-    "Sin foso claro: los usuarios pueden irse a otra plataforma."
-   ],
-   "vigilar": [
-    "Ingresos: hoy 6.283 M en los últimos 12 meses; si siguen bajando, el negocio depende cada vez más del ciclo.",
-    "Margen operativo: hoy 11,7 %; si se vuelve negativo, el costo fijo pesa más que los ingresos.",
-    "Cantidad de acciones: hoy 272 M; si vuelve a subir, la dilución se come las recompras.",
-    "Margen bruto: hoy 72,7 %; si sigue cayendo, la competencia está bajando las comisiones."
-   ],
    "clientes": [
-    "Inversores individuales de criptomonedas",
-    "Instituciones que operan y guardan criptoactivos",
-    "Desarrolladores que construyen sobre blockchains"
+    "Inversores particulares en criptomonedas",
+    "Fondos e inversores institucionales",
+    "Administradores de ETF de bitcoin que le confían la custodia"
    ],
-   "ideal_para": [
-    "Quieren exposición al ciclo de las criptomonedas.",
-    "Aceptan resultados muy irregulares.",
-    "Valoran una empresa regulada en Estados Unidos."
+   "hechos": [
+    {
+     "dato": "Tercer trimestre de 2026: ingresos de 1.220 M (1.870 M; -35 %); operaciones 590 M (-44 %); suscripciones y servicios 570 M (-20 %); ganancia de 719 M (433 M), con 715 M de ganancia por sus criptomonedas; ganancia ajustada de 78 M; EBITDA ajustado de 333 M (801 M; -58 %); ganancia operativa de 62 M (481 M); participación de mercado de 10,7 %; volumen del mercado cripto -10 % en el trimestre",
+     "fuente": "crypto.news, 10/2026",
+     "url": "https://crypto.news/coinbase-q3-earnings-revenue-profit-prediction-markets/"
+    },
+    {
+     "dato": "USDC promedio en sus productos de 22.000 M (+49 %); suscripciones y servicios, 49 % de los ingresos; mercados de predicción con más de 200 M de ingresos anualizados; frase de Brian Armstrong",
+     "fuente": "Carta a los accionistas del 3T26, 29/10/2026",
+     "url": "https://investor.coinbase.com/news/news-details/2026/Coinbase-Q3-2026-Earnings-Show-All-time-high-Coinbase-One-Subscribers-and-Prediction-Markets-Surpassing-200-Million-in-Annualized-Revenue/default.aspx"
+    },
+    {
+     "dato": "Caída de la acción de cerca de 26 % en octubre de 2026",
+     "fuente": "Yahoo Finance, 10/2026",
+     "url": "https://finance.yahoo.com/markets/crypto/articles/coinbase-down-26-october-hold-185120361.html"
+    }
    ],
-   "menos_ideal": [
-    "Buscan ganancias estables y previsibles.",
-    "No toleran la dilución ni la volatilidad."
-   ],
+   "ticker": "COIN",
    "perfil": "mercados",
    "capas": [],
-   "ticker": "COIN",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",
@@ -9586,54 +9616,66 @@
    }
   },
   "INFY": {
-   "resumen": "Infosys es una de las mayores empresas de servicios de tecnología de la India: presta consultoría, desarrollo y mantenimiento de software, tercerización de procesos, ingeniería, ciberseguridad y servicios digitales, incluida la inteligencia artificial aplicada (Infosys Topaz), a grandes empresas de todo el mundo, sobre todo de Estados Unidos y Europa. Gana plata cobrando por proyectos y por contratos de servicios gestionados a varios años, con profesionales ubicados en gran parte en la India. Tiene un **foso estrecho, de escala, relaciones con grandes clientes y costos laborales bajos**: trabaja con cientos de grandes empresas, conoce sus sistemas y puede mover miles de ingenieros a un proyecto con un costo por hora menor que el de sus competidores occidentales. Los números son estables y rentables: los ingresos fueron de 20.366 M en los últimos 12 meses, el margen operativo de **20,4 %** se mantiene desde 2023, el ROIC es de **29,4 %** y el flujo libre de **3.631 M** (17,8 % de los ingresos). Tiene más caja (3.980 M) que deuda (890 M) y paga dividendo desde 1999. Pero el crecimiento es bajo (1,9 %, 3,9 % y 4,6 % por año), las acciones bajaron solo 2,8 % y su ganancia por acción casi no se movió (de 0,71 a 0,81). El punto débil es que su negocio se basa en horas de personas. El riesgo de que la inteligencia artificial perjudique este negocio en los próximos 10 años es **alto**, porque puede automatizar programación, pruebas y mantenimiento, aunque Infosys también la vende. Conclusión: **empresa de buena calidad, con ROIC de 29,4 %, margen operativo estable de 20,4 % y caja neta de 3.090 M, pero con crecimiento bajo y un modelo de horas de personas expuesto a la inteligencia artificial.**",
-   "veredicto": "Buena: ROIC de 29,4 %, margen operativo de 20,4 % y caja neta de 3.090 M, con crecimiento bajo y expuesta a la inteligencia artificial",
-   "conclusion": "Infosys es una empresa de buena calidad: tiene un foso estrecho de escala y costos, ROIC de 29,4 %, margen operativo estable de 20,4 %, caja neta de 3.090 M y dividendo desde 1999, pero el crecimiento es de 2 % a 5 % por año y su modelo de horas de personas está expuesto a la inteligencia artificial. Hay que seguirla de cerca. Es recomendable investigar los contratos nuevos y la composición de ingresos por región en el informe de la empresa. Para que la tesis se mantenga, lo más importante es que los ingresos sigan creciendo con el margen operativo estable.",
-   "calidad": "Buena",
+   "formato": "v4",
+   "titulo": "Infosys: el gigante indio de los servicios tecnológicos, barato y sin deuda, frente a la IA",
+   "resumen": [
+    "Infosys es una de las mayores empresas de **servicios tecnológicos** del mundo y la segunda de la India. Desarrolla y mantiene sistemas, migra empresas a la nube, terceriza procesos y ahora implementa **inteligencia artificial** para grandes empresas, sobre todo de EE.UU. y Europa. Su ventaja es una enorme base de ingenieros en la India, con costos más bajos que los de sus competidores occidentales.",
+    "En el segundo trimestre de su año fiscal 2027 (julio a septiembre de 2026), **sus ingresos crecieron apenas 1,3 %** en dólares, a 5.145 M, y bajó su previsión de crecimiento para el año a 1 % a 2 %. Firmó grandes contratos por 5.200 M y sus ingresos por IA crecieron 29 % frente al trimestre anterior.",
+    "Muy buena empresa, rentable, sin deuda y con un dividendo alto, pero que casi no crece y enfrenta la duda de si la inteligencia artificial va a reducir la demanda de sus servicios."
+   ],
+   "introduccion": "En 1981, siete ingenieros indios, liderados por Narayana Murthy, fundaron Infosys en Pune con muy poco capital. Su idea: aprovechar el talento de los ingenieros indios, que cobraban mucho menos que los de EE.UU., para hacer software y mantener sistemas de empresas de todo el mundo.\n\nFue una de las grandes historias empresariales del siglo XX. Infosys se volvió una de las mayores empresas de la India, con más de 330.000 empleados, y junto con otras compañías indias convirtió al país en la gran oficina de tecnología del mundo.\n\nPero su modelo se basa en vender horas de trabajo de ingenieros. Y ahí está la gran pregunta de 2026: si la inteligencia artificial puede escribir código, probar sistemas y atender consultas, ¿cuántos ingenieros van a necesitar sus clientes? En 2026, la acción llegó a caer alrededor de 30 %.\n\nInfosys responde que la IA es una oportunidad: sus clientes necesitan a alguien que la implemente, y sus ingresos por IA ya son más del 10 % del total.\n\nEntonces, la pregunta es: ¿la inteligencia artificial es una amenaza para Infosys o su próxima ola de negocio?",
+   "secciones": [
+    {
+     "titulo": "Servicios tecnológicos desde la India",
+     "texto": "Infosys ofrece servicios tecnológicos a grandes empresas:\n\n- **Desarrollo y mantenimiento** de sistemas y aplicaciones.\n- **Nube**: migrar los sistemas de las empresas a la nube y administrarlos.\n- **Tercerización de procesos**: hacerse cargo de tareas administrativas, contables o de atención al cliente.\n- **Consultoría e inteligencia artificial**: ayudar a las empresas a transformarse y a usar IA. Sus ingresos por IA crecieron 29 % frente al trimestre anterior y ya son el 10,5 % del total.\n\nSus clientes son grandes empresas de servicios financieros, comercio, industria, telecomunicaciones y energía, sobre todo en EE.UU. y Europa. En el trimestre firmó grandes contratos por 5.200 M.\n\n¿Cuál es su **ventaja**? El **costo** y la **escala**. Un ingeniero en la India cuesta mucho menos que uno en EE.UU., y Infosys tiene más de 330.000 empleados, que puede asignar rápido a grandes proyectos. Además, sus clientes la conocen desde hace décadas.\n\nLa **inteligencia artificial** es su gran riesgo: si automatiza el trabajo que hacen sus ingenieros, sus clientes podrían pagar menos horas. También es su oportunidad, si logra ser quien la implementa."
+    },
+    {
+     "titulo": "Rentable, pero sin crecimiento",
+     "texto": "Los ingresos crecen muy poco: de 18.212 M en su año fiscal 2023 a **20.366 M** en los últimos 12 meses, entre 2 % y 5 % por año. Para su año fiscal 2027 espera crecer apenas entre 1 % y 2 % a tipo de cambio constante.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **20,4 %**, muy estable. El promedio de su industria es 6,8 %. Espera mantenerlo entre 20 % y 22 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **29,4 %**. Por encima de 15 % se considera muy bueno. Es altísimo porque una empresa de servicios casi no necesita fábricas ni máquinas.\n\n[[grafico:roic]]\n\nLa ganancia por acción pasó de 0,71 dólares en su año fiscal 2023 a **0,81** en los últimos 12 meses.\n\n[[grafico:eps]]\n\nGenera mucha caja: **3.631 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nUn detalle para leer sus números: Infosys cobra en dólares y euros, pero paga sueldos en rupias. Cuando la rupia se devalúa, su ganancia en rupias sube aunque en dólares crezca poco. En el trimestre, su ganancia creció 6,2 % en rupias, pero cayó 2,5 % en dólares."
+    },
+    {
+     "titulo": "Sin deuda y con un dividendo alto",
+     "texto": "Infosys no tiene deuda financiera relevante: su caja supera a su deuda en unos **3.090 M**. Prácticamente no paga intereses.\n\nReparte buena parte de su caja: subió su dividendo de mitad de año 13 %, y suele recomprar acciones. El dividendo por ADR es de 0,52 dólares por año, y creció 10,3 % por año en los últimos diez.\n\n[[grafico:dividendo]]\n\nLos riesgos:\n\n- **La IA**: que reduzca la cantidad de horas de ingenieros que contratan sus clientes.\n- **La economía de EE.UU. y Europa**: si sus clientes recortan presupuestos, los proyectos se demoran.\n- **La competencia**: TCS, Accenture (ACN), Cognizant, Wipro y HCL.\n- **Las visas**: EE.UU. puede encarecer las visas que usan sus ingenieros para trabajar allí.\n\nLo conduce Salil Parekh, CEO desde 2018."
+    }
+   ],
+   "valuacion": {
+    "texto": "En Infosys, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR, Infosys cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién sirve el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\n[[grafico:per_historico]]\n\nDurante años, el mercado pagó por Infosys un múltiplo alto por su crecimiento estable y su rentabilidad. En 2026 ese múltiplo se achicó mucho, por el miedo a la IA y por el bajo crecimiento. Si Infosys demuestra que la IA le suma negocio, el múltiplo podría recuperarse. Si la IA le quita trabajo, el múltiplo actual puede ser el nuevo normal.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nEl Fair Value que estima la app, {fv} dólares, queda {dist_fv}."
+   },
+   "conclusion": "Infosys es una muy buena empresa. Es una de las mayores empresas de servicios tecnológicos del mundo, con un margen estable y alto, un retorno sobre el capital altísimo, nada de deuda, mucha caja y un dividendo alto y creciente.\n\nSu punto débil es el crecimiento: espera crecer apenas 1 % a 2 % este año, y su modelo de vender horas de ingenieros está en el centro del debate sobre la inteligencia artificial. El crítico más duro diría que la IA va a hacer con Infosys lo que la tercerización hizo con los programadores de EE.UU.: volver más barato su trabajo. Es un argumento que el mercado toma en serio.\n\nEncaja con quien busca una empresa rentable, sin deuda y con dividendo alto, y cree que la IA va a necesitar integradores. No es para quien busca crecimiento o certezas sobre el impacto de la IA.\n\nPara que la tesis se mantenga, lo más importante es que los ingresos por IA sigan creciendo con fuerza y que los grandes contratos se traduzcan en un crecimiento mayor.",
+   "pros": [
+    "Rentable: margen de 20,4 % y ROIC de 29,4 %.",
+    "Sin deuda: 3.090 M más de caja que de deuda.",
+    "Dividendo alto: creció 10,3 % por año en diez años."
+   ],
+   "contras": [
+    "Casi no crece: guía de 1 % a 2 % para el año.",
+    "Riesgo de la IA: podría reducir las horas que se contratan.",
+    "Dependencia de EE.UU. y Europa: y de sus presupuestos."
+   ],
+   "calidad": "Muy buena",
    "riesgo_ia": "alto",
-   "negocio": "Infosys provee servicios de consultoría, tecnología, tercerización y servicios digitales en todo el mundo. Ofrece servicios de análisis, como inteligencia artificial aplicada y generativa, servicios de sustentabilidad e Infosys Topaz, un conjunto de servicios, soluciones y plataformas con la inteligencia artificial como prioridad; también blockchain, Internet de las cosas, ingeniería y ciberseguridad. Yahoo informa segmentos por industria (por ejemplo comunicaciones, medios y tecnología, y consumo, logística y comercio), pero no cuánto aporta cada uno, y no lo vamos a inventar.\n\nEs un negocio de servicios con crecimiento lento: **los ingresos subieron 1,9 % en 2024, 3,9 % en 2025 y 4,6 % en 2026, hasta 20.158 M** (el ejercicio cierra a fines de marzo), y llegan a 20.366 M en los últimos 12 meses.\n\n**A quién le vende.** A grandes empresas de todo el mundo. **Ningún cliente pesa de forma decisiva** en los datos que tenemos, aunque Estados Unidos y Europa concentran las ventas (dato público a verificar).",
-   "foso": "La ventaja de Infosys **es de escala, relaciones y costos laborales, y es estrecha**. Una gran empresa que le confía el mantenimiento de sus sistemas la tiene dentro de sus procesos, y Infosys puede asignar a miles de ingenieros ubicados en la India con un costo por hora menor al de los competidores occidentales. Se ve en el margen operativo estable de 20 % a 21 % y en el ROIC de 26 % a 31 %.\n\nPero el margen bruto es de 30 %, bajo, y el negocio depende de vender horas de personas. Compite con Accenture, Tata Consultancy Services, Wipro, HCL, Cognizant e IBM. Es frágil en la demanda de tecnología de sus clientes, en el costo de los profesionales en la India, en las restricciones migratorias y, sobre todo, en la inteligencia artificial, que puede reducir las horas necesarias para programar y mantener sistemas. Por eso el riesgo es alto.",
-   "numeros": "Los números de Infosys cuentan **un negocio estable, rentable y de crecimiento bajo**. Los ingresos fueron de 18.212 M, 18.562 M, 19.277 M y 20.158 M, y de 20.366 M en los últimos 12 meses. El EBIT fue de 3.825 M, 3.849 M, 4.077 M y 4.089 M, y de 4.155 M (margen operativo de 20,4 %). La ganancia neta fue de 2.981 M, 3.167 M, 3.158 M y 3.313 M, y de 3.302 M. La ganancia por acción fue de 0,71, 0,76, 0,76, 0,80 y **0,81**.\n\nEl flujo libre (lo que queda después de las inversiones) fue de 2.534 M, 2.882 M, 4.088 M y 3.733 M, y de **3.631 M** en los últimos 12 meses (17,8 % de los ingresos). El ROIC fue de 30,2 %, 26,6 %, 25,9 %, 30,8 % y 29,4 %, y el ROE de 32,0 %.\n\nLa mirada crítica: la ganancia por acción creció solo 14 % en tres años, y los dividendos pagados (2.133 M en 2026) absorben 57 % del flujo libre. El margen operativo no mejora, y el flujo libre de 2025 (4.088 M) fue un pico que no se repitió.",
-   "balance": "**Balance de caja neta, sin riesgo de deuda.** La caja es de 3.980 M y la deuda total de 890 M (probablemente arrendamientos), de modo que la deuda neta es de -3.090 M: tiene más plata que deudas. El patrimonio neto es de 10.333 M y la deuda equivale a 0,09 veces el patrimonio. Los intereses se cubren 86 veces con el EBIT.\n\nLa caja subió de 2.359 M en 2023 a 3.980 M, mientras pagó dividendos y recompras. Es un balance muy cómodo.",
-   "gerencia": "La conduce Salil Parekh, director gerente y CEO (61 años, pago de 8,8 M según Yahoo), en el cargo desde 2018, dato público. El cofundador Nandan Nilekani (69 años) es el presidente no ejecutivo del directorio. Yahoo no informa quién es el director financiero entre los directivos que lista.\n\nEn lo que importa, **el uso del capital es de dividendo creciente y recompras irregulares**: paga un dividendo de 0,52 por acción (pagado desde 1999; sube 7,9 % por año en 3 años; 2.140 M en los últimos 12 meses, 59 % del flujo libre) y recompró 1.398 M en 2023, nada en 2024 y 2025, y 2.006 M en 2026. **Las acciones bajaron de 4.188 M a 4.070 M, un 2,8 % menos.**",
-   "fortalezas": [
-    "ROIC de 29,4 % y margen operativo estable de 20,4 %.",
-    "Más caja (3.980 M) que deuda (890 M).",
-    "Flujo libre de 3.631 M, 17,8 % de los ingresos.",
-    "Dividendo pagado desde 1999 y creciendo 7,9 % por año.",
-    "Escala y costos laborales bajos."
-   ],
-   "debilidades": [
-    "Crecimiento de solo 2 % a 5 % por año.",
-    "Ganancia por acción casi sin movimiento (0,71 a 0,81).",
-    "Modelo de horas de personas: el crítico más duro diría que la inteligencia artificial erosiona su base.",
-    "Dividendo que absorbe casi 60 % del flujo libre.",
-    "Margen bruto bajo (30 %)."
-   ],
-   "vigilar": [
-    "Ingresos: hoy +4,6 %; si bajan de 3 %, la inteligencia artificial reduce la demanda.",
-    "Margen operativo: hoy 20,4 %; si baja, la presión de precios aumenta.",
-    "Recompras: irregulares; definen cuánto baja la cantidad de acciones.",
-    "Flujo libre: hoy 3.631 M; tiene que cubrir el dividendo de 2.140 M."
-   ],
    "clientes": [
-    "Grandes empresas de Estados Unidos y Europa",
-    "Bancos, aseguradoras y empresas de comercio",
-    "Empresas de comunicaciones y tecnología"
+    "Grandes empresas de servicios financieros de EE.UU. y Europa",
+    "Empresas de comercio, industria y telecomunicaciones",
+    "Empresas de energía y servicios públicos"
    ],
-   "ideal_para": [
-    "Buscan una consultora de tecnología con caja neta y dividendo.",
-    "Valoran la estabilidad de márgenes y el ROIC alto.",
-    "Aceptan crecimiento bajo."
+   "hechos": [
+    {
+     "dato": "Segundo trimestre del año fiscal 2027 (julio a septiembre de 2026): ingresos de 5.145 M de dólares (+1,3 %; +1,5 % a tipo de cambio constante); 49.244 crores de rupias (+10,7 %); margen operativo de 21,0 %; ganancia de 7.823 crores de rupias (+6,2 %) y de 817 M de dólares (-2,5 %); grandes contratos por 5.200 M; ingresos por IA +29 % frente al trimestre anterior, 10,5 % del total; guía del año fiscal 2027: crecimiento de 1 % a 2 % a tipo de cambio constante, margen de 20 % a 22 %; 332.542 empleados; dividendo de mitad de año de 26 rupias (+13 %)",
+     "fuente": "Analytics Insight, 23/10/2026",
+     "url": "https://www.analyticsinsight.net/business/infosys-q2-fy27-results-net-profit-rises-62-ai-revenue-jumps"
+    },
+    {
+     "dato": "Caída de la acción de cerca de 30 % en 2026",
+     "fuente": "Equentis, 10/2026",
+     "url": "https://www.equentis.com/blog/?p=71336"
+    }
    ],
-   "menos_ideal": [
-    "Buscan crecimiento rápido.",
-    "No toleran el riesgo de la inteligencia artificial sobre servicios basados en personas."
-   ],
+   "mes_cierre_fiscal": 3,
+   "ticker": "INFY",
    "perfil": "software",
    "capas": [],
-   "ticker": "INFY",
-   "fecha": "29/10/2026",
+   "fecha": "01/11/2026",
    "modelo": "Claude",
    "base": {
     "periodo": "2026 (TTM)",

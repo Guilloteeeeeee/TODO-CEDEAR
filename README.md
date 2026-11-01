@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.4.0 (01/11/2026): Análisis Fundamental nuevo, tanda 18
+
+- Reescritas con el formato v4: HDB, IBN, INFY y COIN. Van 139 de 166.
+- HDB e IBN: se agregó el cierre de año fiscal (marzo).
+- Quedan para después: las 21 que publican en noviembre, DEO (publica a principios de noviembre), HON y FDX (separaron negocios y los datos todavía los mezclan), y SNOW, ADBE y NKE (publican en diciembre).
+
 ### v1.3.9 (01/11/2026): Análisis Fundamental nuevo, tanda 17
 
 - Reescritas con el formato v4: AEM, SHW, MDLZ, ECL, CL, HWM, ORLY, SLB, PCAR, MMM, MRSH y BNY. Van 135 de 166.
