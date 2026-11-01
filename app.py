@@ -1695,9 +1695,11 @@ def _evaluar_cartera(df, C, CV):
         from ui import cartera_informe as CI
         av = texto_aviso_legal()
         try:
-            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or ""), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
         except ImportError:
-            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av, nombre=nombre or ""), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
+        st.markdown('<div class="cv-intro">💾 <b>Te recomendamos descargar el resumen de tu evaluación.</b> La próxima vez que te evalúes, subilo en «¿Ya te evaluaste antes?» y vemos juntos cómo fue cambiando tu cartera. '
+                    'El PDF trae lo mismo que ves acá, con el membrete y la fecha del análisis.</div>', unsafe_allow_html=True)
         d1, d2 = st.columns(2, gap="medium")
         with d1:
             st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe", use_container_width=True)

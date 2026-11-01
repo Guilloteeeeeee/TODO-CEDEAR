@@ -812,7 +812,10 @@ def comparar(previa, res):
         a, b = _flt(previa["peso"].get(k)) or 0.0, ahora.get(k, 0.0)
         if abs(b - a) >= 2:
             cambios.append(f"{nom[k]} pasó de {a:.0f} % a {b:.0f} %")
-    f.append(f"Tu evaluación anterior es del {previa.get('fecha', 'una fecha que no figura')}. " + ("Qué cambió en los grandes grupos: " + "; ".join(cambios) + "." if cambios else "Los grandes grupos casi no cambiaron."))
+    fp = str(previa.get("fecha", ""))
+    m = re.match(r"^(\d{4})-(\d{2})-(\d{2})", fp)
+    fp = f"{m.group(3)}/{m.group(2)}/{m.group(1)}" if m else (fp or "una fecha que no figura")
+    f.append(f"Tu evaluación anterior es del {fp}. " + ("Qué cambió en los grandes grupos: " + "; ".join(cambios) + "." if cambios else "Los grandes grupos casi no cambiaron."))
     dprev = previa.get("desvio") if isinstance(previa.get("desvio"), dict) else {}
     cerca, lejos = [], []
     for k, d in res["desvio"].items():
