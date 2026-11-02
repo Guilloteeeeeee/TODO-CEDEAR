@@ -577,7 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.4.6 — textos de la evaluación y la rentabilidad
+### v1.4.7 — devolución con la estructura de Guille
+- Orden: Ponderaciones (tortas por grandes grupos; la teoría para edad y perfil va en la conclusión) → Diversificación geográfica (ahora con renta variable Y renta fija; bonos y ONs argentinos cuentan como emergentes; torta) → Diversificación sectorial (torta de los 3 supersectores; la estructura 20/30/50 con sus sectores y la guía de 20 a 30 empresas con 2 a 5 % van SIEMPRE en la conclusión; se marca si pasan de 5 %; solo sectores GICS, sin industrias) → Oro y Criptomonedas → Liquidez → Qué ajustaría («Ante todo tené en cuenta…», «Ideas para pensar», lo que ya hace bien y los ajustes numerados con el porqué).
+- Se sacó «Pesos» (ahora «Ponderaciones»), el aviso largo del sitio, la privacidad y el pie de página del PDF. Aviso Legal único con el texto de Guille. Saludo final siempre. Texto justificado.
+
+## v1.4.6 — textos de la evaluación y la rentabilidad
 - Presentación nueva en ambas herramientas (evaluación y «Conocé tu Rentabilidad») con el botón «Comencemos» grande y rosa.
 - Campos: Nombre (opcional), Edad (obligatorio), Perfil de Inversor (obligatorio). Instrucción de carga debajo; se sacó «pegar como texto». Casilla «Acepto…» con el deslinde de responsabilidad.
 - El PDF/HTML se llama «Evaluación de tu Portfolio»; saludo: «Hola {nombre}. Gracias por tomarte el tiempo de evaluar tu cartera con nosotros…».

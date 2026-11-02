@@ -7,14 +7,13 @@ import io
 import os
 import re
 
-from ui.cartera import AVISO_CARTERA, CLASES, devolucion
+from ui.cartera import AVISO_CARTERA, CLASES, SALUDO_FINAL, devolucion
 
 _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
 NOMBRE = "Finanzas para Médicos Argentina"
 AUTORES = "Guillermo Di Palma AP 2372 y María Laura García"
 TITULO = "Evaluación de tu Portfolio"
-NOTA_PRIVACIDAD = "Este informe se armó en el momento con los datos que cargaste. No guardamos tu cartera ni este informe: solo existe en tu dispositivo."
 
 
 def _saludo(nombre):
@@ -127,9 +126,9 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
         "tit": ParagraphStyle("tit", fontName="Helvetica-Bold", fontSize=17, leading=21, textColor=colors.HexColor("#111827")),
         "sub": ParagraphStyle("sub", fontName="Helvetica", fontSize=9.5, leading=13, textColor=gris),
         "h": ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=12, leading=15, textColor=azul, spaceBefore=12, spaceAfter=5),
-        "p": ParagraphStyle("p", fontName="Helvetica", fontSize=10, leading=14, textColor=colors.HexColor("#1f2937")),
-        "li": ParagraphStyle("li", fontName="Helvetica", fontSize=9.6, leading=13.5, textColor=colors.HexColor("#1f2937"), leftIndent=11, firstLineIndent=-11, spaceAfter=3),
-        "pq": ParagraphStyle("pq", fontName="Helvetica", fontSize=8, leading=11, textColor=gris, spaceAfter=3),
+        "p": ParagraphStyle("p", fontName="Helvetica", fontSize=10, leading=14, textColor=colors.HexColor("#1f2937"), alignment=4),
+        "li": ParagraphStyle("li", fontName="Helvetica", fontSize=9.6, leading=13.5, textColor=colors.HexColor("#1f2937"), leftIndent=11, firstLineIndent=-11, spaceAfter=3, alignment=4),
+        "pq": ParagraphStyle("pq", fontName="Helvetica", fontSize=8, leading=11, textColor=gris, spaceAfter=3, alignment=4),
         "sm": ParagraphStyle("sm", fontName="Helvetica-Bold", fontSize=9, leading=12, textColor=colors.HexColor("#334155")),
         "marca": ParagraphStyle("marca", fontName="Helvetica-Bold", fontSize=13, leading=16, textColor=colors.HexColor("#111827")),
     }
@@ -142,7 +141,6 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
         canvas.line(18 * mm, 15 * mm, A4[0] - 18 * mm, 15 * mm)
         canvas.setFont("Helvetica", 7.5)
         canvas.setFillColor(gris)
-        canvas.drawString(18 * mm, 10 * mm, f"{NOMBRE} · TodoCedears · Evaluación del {_fecha(hoy)} · Con fines educativos, no es una recomendación")
         canvas.drawRightString(A4[0] - 18 * mm, 10 * mm, f"Página {doc.page}")
         canvas.restoreState()
 
@@ -156,9 +154,9 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
             out.append(Paragraph(f'<font color="{c}"><b>•</b></font>&nbsp;&nbsp;{_md(x)}', st["li"]))
         return out
 
-    def seccion(titulo, cuerpo):
+    def seccion(titulo, cuerpo, junto=2):
         cuerpo = [c for c in cuerpo if c is not None]
-        return [KeepTogether([Paragraph(html.escape(titulo), st["h"])] + cuerpo[:2])] + cuerpo[2:]
+        return [KeepTogether([Paragraph(html.escape(titulo), st["h"])] + cuerpo[:junto])] + cuerpo[junto:]
 
     sec = dict(devolucion(res, edad, perfil, nombre))
     pe, d = res["peso"], res["desvio"]
@@ -180,85 +178,58 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     el += [Paragraph(f"Persona de {int(edad)} años{perfil_txt}", st["sub"]), Spacer(1, 6),
            Paragraph(f"<b>Hola {html.escape(quien)}.</b> Gracias por tomarte el tiempo de evaluar tu cartera con nosotros. Esperamos que nuestros aportes te ayuden a lograr tus objetivos financieros.", st["p"])]
 
-    # --- punto de partida: dos tortas por grandes grupos (la liquidez no entra en el 100 %)
-    def torta(titulo, peso, centro, con_liq):
-        items = [(k, peso[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if peso.get(k, 0) >= 0.05 and (con_liq or k != "efectivo")]
-        tot = sum(v for _, v in items) or 1
-        leyenda = [Paragraph(f'<font color="{CV.COL_CLASE[k]}"><b>•</b></font> {html.escape(CLASES[k])}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for k, v in items]
-        celda = Table([[_pie([(v, CV.COL_CLASE[k]) for k, v in items], 30 * mm, centro), leyenda]], colWidths=[33 * mm, ancho / 2 - 38 * mm])
+    # --- 1. Ponderaciones: dos tortas por grandes grupos (la liquidez no entra en el 100 %)
+    def torta(titulo, items, centro, medida=30 * mm):
+        items = [(n, v, c) for n, v, c in items if v >= 0.5]
+        tot = sum(v for _, v, _ in items) or 1
+        leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items]
+        celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 3 * mm, ancho / 2 - medida - 8 * mm])
         celda.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
         return [Paragraph(html.escape(titulo), st["sm"]), celda]
+
+    def clases(peso, con_liq):
+        return [(CLASES[k], peso[k], CV.COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if peso.get(k, 0) >= 0.05 and (con_liq or k != "efectivo")]
     ref = CM.referencia(edad, perfil)
     mitades = []
     if ref:
-        mitades.append(torta("Referencia teórica aproximada para tu edad", ref[1], "teórica", True))
-    mitades.append(torta("Tu cartera (grandes grupos)", pi, f"{int(edad)} años", bool(ef)))
+        mitades.append(torta("Referencia teórica para tu edad y perfil", clases(ref[1], True), "teórica"))
+    mitades.append(torta("Tu cartera", clases(pi, bool(ef)), f"{int(edad)} años"))
     tb = Table([mitades], colWidths=[ancho / len(mitades)] * len(mitades))
     tb.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
-    kp = [f"{ps[0]['ticker']} · {ps[0]['pct']:.0f} % mayor posición", f"{sum(p['pct'] for p in ps[:3]):.0f} % en tus 3 mayores", f"{len(ps)} posiciones"]
-    if not ef:
-        kp.append(f"{pe['efectivo']:.0f} % liquidez (aparte)")
-    el += seccion("Tu punto de partida y tu cartera", [tb, Spacer(1, 4), Paragraph(" &nbsp;|&nbsp; ".join(html.escape(k) for k in kp), st["pq"])] + lista(sec["Tu punto de partida"]))
-
-    # --- pesos
-    filas = []
-    base = [("rv", "Renta variable"), ("rf", "Renta fija")] + ([("efectivo", "Liquidez")] if ef else []) + [("oro", "Oro"), ("cripto", "Criptoactivos")]
-    for k, nom in base:
-        real = pi.get(k, 0.0)
-        if real < 0.5 and abs(d.get(k, 0)) <= 5:
-            continue
-        filas.append([Paragraph(nom, st["p"]), _barra_peso(real, CV.COL_CLASE[k], ancho * 0.45), Paragraph(f"<b>{real:.0f} %</b> · {_chip_txt(d.get(k, 0))}", st["p"])])
-    resto = [x for x in sec["Pesos"][1:] if not re.match(r"^\*\*.*(te pasás|te faltan)", x) and "estás en línea" not in x]
-    cuerpo = []
-    if filas:
-        t = Table(filas, colWidths=[ancho * 0.22, ancho * 0.48, ancho * 0.30])
-        t.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0), ("TOPPADDING", (0, 0), (-1, -1), 2), ("BOTTOMPADDING", (0, 0), (-1, -1), 2)]))
-        cuerpo.append(t)
-    el += seccion("Pesos (sobre lo invertido)", cuerpo + lista(resto))
-    el += seccion("Renta fija", lista(sec["Renta fija"]))
-    # --- sectores
-    sp = res.get("super")
-    if sp:
-        cuerpo = _barra_apilada_pdf([(CV.NOM_SUP[k], sp[k], CV.COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], ancho)
-        top = ", ".join(f"{n} {v:.0f} %" for n, v in res.get("sectores", [])[:6])
-        if top:
-            cuerpo.append(Paragraph(html.escape(top), st["pq"]))
-        fr = sec["Diversificación sectorial"]
-        cuerpo += lista([fr[0]] + fr[2:])
-    else:
-        cuerpo = lista(sec["Diversificación sectorial"])
-    el += seccion("Diversificación sectorial (sobre tus empresas)", cuerpo)
-    el += seccion("Empresas individuales y ETFs", lista(sec["Empresas y ETFs"]))
-    # --- geografía
+    el += seccion("Ponderaciones", [tb, Spacer(1, 4)] + lista(sec["Ponderaciones"]))
+    # --- 2. Geografía (renta variable y renta fija)
     g = res.get("geo")
+    cuerpo = []
     if g:
         partes = [(CV.NOM_GEO[k], g[k], CV.COL_GEO[k]) for k in ("usa", "desarrollados", "emergentes", "fuera_sd", "global")]
         partes.append((CV.NOM_GEO["sin"], max(0.0, 100 - sum(v for _, v, _ in partes)), CV.COL_GEO["sin"]))
-        fr = sec["Diversificación geográfica"]
-        cuerpo = _barra_apilada_pdf(partes, ancho) + lista([fr[0]] + fr[2:])
-    else:
-        cuerpo = lista(sec["Diversificación geográfica"])
-    el += seccion("Diversificación geográfica (sobre tu renta variable)", cuerpo)
+        t1 = torta("Distribución geográfica (renta variable y renta fija)", partes, "países")
+        cuerpo = [Table([[t1]], colWidths=[ancho]), Spacer(1, 4)]
+    el += seccion("Diversificación geográfica", cuerpo + lista(sec["Diversificación geográfica"]))
+    # --- 3. Sectorial
+    sp = res.get("super")
+    cuerpo = []
+    if sp:
+        t1 = torta("Supersectores", [(CV.NOM_SUP[k], sp[k], CV.COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "sectores")
+        cuerpo = [Table([[t1]], colWidths=[ancho]), Spacer(1, 4)]
+    el += seccion("Diversificación sectorial", cuerpo + lista(sec["Diversificación sectorial"]))
+    el += seccion("Oro y Criptomonedas", lista(sec["Oro y Criptomonedas"]))
     el += seccion("Liquidez (aparte, optativa)", lista(sec["Liquidez"]))
-    el += seccion("Oro y criptoactivos", lista(sec["Oro y criptoactivos"]))
     if "Sensibilidad al mercado (beta)" in sec:
         el += seccion("Sensibilidad al mercado (beta)", lista(sec["Sensibilidad al mercado (beta)"]))
     comp = comparar(previa, res) if previa else []
     if comp:
         el += seccion("Comparación con tu evaluación anterior", lista(comp))
-    # --- conclusiones
-    fr = sec["Conclusiones y qué ajustaría"]
-    cuerpo = [Paragraph(_md(fr[0]), st["p"]), Spacer(1, 4), Paragraph(_md(fr[1]), st["p"]), Spacer(1, 4)]
-    if len(fr) > 2:
-        cuerpo.append(Paragraph(f"<b>{_md(fr[2].replace('**', ''))}</b>", st["p"]))
-    for i, x in enumerate(fr[3:], 1):
-        cuerpo.append(Paragraph(f"<b>{i}.</b>&nbsp;{_md(re.sub(r'^[0-9]+[.] ', '', x))}", st["li"]))
-    el += seccion("Conclusiones y qué ajustaría", cuerpo)
-    # --- avisos
-    el += [Spacer(1, 12)] + [Paragraph(html.escape(t), st["pq"]) for t in AVISO_CARTERA]
-    el += [Paragraph(f"<b>Privacidad.</b> {html.escape(NOTA_PRIVACIDAD)}", st["pq"])]
-    if aviso:
-        el += [Paragraph(f"<b>Aviso legal.</b> {html.escape(str(aviso))}", st["pq"])]
+    # --- 4. Qué ajustaría
+    fr = sec["Qué ajustaría"]
+    cuerpo = [Paragraph(_md(fr[0]), st["p"]), Spacer(1, 5), Paragraph(f"<b>{_md(fr[1].lstrip('#'))}</b>", st["sm"]), Spacer(1, 3), Paragraph(_md(fr[2]), st["p"]), Spacer(1, 3)]
+    for x in fr[3:]:
+        m = re.match(r"^([0-9]+)[.] (.*)$", x)
+        cuerpo.append(Paragraph(f"<b>{m.group(1)}.</b>&nbsp;{_md(m.group(2))}" if m else _md(x), st["li"]))
+    el += seccion("Qué ajustaría", cuerpo, junto=6)
+    # --- saludo final y aviso legal
+    el += [Spacer(1, 12), Paragraph(f"<b>{html.escape(SALUDO_FINAL)}</b><br/>Finanzas para Médicos Argentina", ParagraphStyle("sf", parent=st["p"], alignment=1)), Spacer(1, 14)]
+    el += [Paragraph(f"<b>Aviso Legal:</b> {html.escape(AVISO_CARTERA[0])}", st["pq"])]
     doc.build(el, onFirstPage=pie, onLaterPages=pie)
     return buf.getvalue()
 
@@ -276,5 +247,4 @@ def html_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
             + CV.CSS + "</style></head><body>"
             f"<div class='mb'>{logo}<div><b>{html.escape(NOMBRE)}</b><small>{html.escape(AUTORES)}</small></div><div style='margin-left:auto;color:#64748b;text-align:right'>Fecha del análisis<br><b>{_fecha(hoy)}</b></div></div>"
             + CV.visual_html(res, edad, perfil, nombre, _fecha(hoy), previa)
-            + f"<p class='q' style='color:#64748b;font-size:12px'><b>Privacidad.</b> {html.escape(NOTA_PRIVACIDAD)}</p>"
-            + (f"<p style='color:#64748b;font-size:12px'><b>Aviso legal.</b> {html.escape(str(aviso))}</p>" if aviso else "") + "</body></html>").encode("utf-8")
+            + "</body></html>").encode("utf-8")

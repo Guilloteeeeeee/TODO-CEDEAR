@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.6"
+APP_VERSION = "1.4.7"
 
 import re
 import contextlib
@@ -1699,7 +1699,7 @@ def _evaluar_cartera(df, C, CV):
     # informe descargable (PDF con membrete) y resumen para comparar la próxima vez: se arman en memoria y se bajan al dispositivo
     try:
         from ui import cartera_informe as CI
-        av = texto_aviso_legal()
+        av = ""
         try:
             datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
         except ImportError:
@@ -1712,7 +1712,6 @@ def _evaluar_cartera(df, C, CV):
         with d2:
             st.download_button("Guardar resumen para comparar la próxima vez", _json.dumps(C.resumen_guardable(res, edad, perfil, hoy.isoformat()), ensure_ascii=False, indent=1).encode("utf-8"),
                                file_name=f"mi_evaluacion_{hoy.isoformat()}.json", mime="application/json", key="cr_resumen", use_container_width=True)
-        st.caption("El informe y el resumen se arman en el momento y se bajan a tu dispositivo: no guardamos tu cartera ni tu evaluación.")
     except Exception:  # noqa: BLE001
         pass
 
