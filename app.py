@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.1"
+APP_VERSION = "1.5.2"
 
 import re
 import contextlib
@@ -1476,7 +1476,7 @@ def render_cartera(df, pagina=True):
     st.markdown('<div class="cr cr-top"><h1>Evaluá tu Portfolio</h1></div>', unsafe_allow_html=True)
     modo = st.session_state.get("cr_modo")
     _mosaicos = (("eval", "Evaluá tu Cartera de Inversiones", "Subí tus posiciones y recibí una evaluación gratuita de tu cartera de inversiones."),
-                 ("rent", "Conocé tu Rentabilidad", "Contanos cuándo empezaste, cuánto pusiste (y si retiraste) y cuánto vale hoy tu cartera, y te calculamos cuánto rindió."))
+                 ("rent", "Conocé tu Rentabilidad", "Sabiendo cuánto dinero aportaste y retiraste podemos calcular cuánto rindió tu portfolio."))
 
     def _abrir(k):
         st.session_state["cr_modo"] = None if st.session_state.get("cr_modo") == k else k
@@ -1506,11 +1506,12 @@ def render_cartera(df, pagina=True):
 
 
 _INTRO_EVAL = (
-    "Armar una cartera lleva tiempo y esfuerzo y muchas veces una mirada sobre lo que estamos haciendo ayuda mucho. Esta evaluación gratuita te puede aportar ideas para ajustar lo que venís haciendo.\n\n"
-    "Es una orientación educativa, basada en reglas de inversión que nos fueron útiles en los más de 10 años que tenemos de experiencia bursátil. "
-    "Recordá que no es una recomendación de compra o venta ni un consejo personalizado."
+    "Armar una cartera lleva tiempo y esfuerzo y una mirada sobre lo que estamos haciendo ayuda mucho. Esta evaluación gratuita es una orientación educativa, "
+    "basada en reglas de inversión que nos fueron útiles en los más de 10 años que tenemos de experiencia bursátil. "
+    "Recordá que no es una recomendación de compra o venta ni un consejo personalizado sino ideas que te pueden ayudar a ajustar tu portfolio."
 )
-_INTRO_RENT = "Contanos cuándo empezaste, cuánto aportaste o retiraste y cuánto vale hoy tu cartera, así calculamos cuál es tu rentabilidad como inversor."
+_INTRO_RENT = ("Conocer tu rentabilidad como inversor es clave para saber si las decisiones que estás tomando son útiles o no. "
+               "Te permite conocerte y encontrar formas de mejorar el proceso de inversión.")
 _OPC_RENT = ("Sé las fechas exactas de mis aportes y retiros", "No sé las fechas exactas de mis aportes y retiros")
 _CSS_COMENZAR = """<style>
 [class*="st-key-cr_comenzar"] button{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%)!important;color:#fff!important;border:0!important;border-radius:14px;padding:.8em 2.6em;
@@ -1744,8 +1745,6 @@ def _rentabilidad_anual(C):
         sel = st.radio("¿Sabés las fechas exactas de tus aportes y retiros?", list(_OPC_RENT), index=None, key="rt_modo_sel")
         st.button("Comencemos", key="cr_comenzar_rent", disabled=sel is None,
                   on_click=lambda: st.session_state.update(cr_empezo_rent=True, rt_modo=st.session_state.get("rt_modo_sel")))
-        if sel is None:
-            st.caption("Elegí una de las dos opciones para poder comenzar.")
         return
     exacto = st.session_state.get("rt_modo") == _OPC_RENT[0]
     st.button("← Cambiar la forma de cálculo", key="rt_volver", on_click=lambda: st.session_state.update(cr_empezo_rent=False))
@@ -1998,8 +1997,7 @@ def main():
 
     # v1.2.73: "Tu Cartera" (?pagina=cartera)
     if en_cartera:
-        render_cartera(df)
-        st.markdown(pie_html(APP_VERSION), unsafe_allow_html=True)      # v1.4.8: en esta página no van el aviso legal, las fuentes ni "Datos al…" (no usa precios ni datos de empresas para calcular)
+        render_cartera(df)      # v1.5.2: en esta página no va ningún pie (ni "Powered by", ni versión, ni "Developed by")
         return
 
     # v1.2.64: pagina de un ETF (?etf=TICKER)

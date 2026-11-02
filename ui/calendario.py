@@ -42,7 +42,7 @@ CSS = """
 .cal{font-family:inherit;color:#1f2937}
 .cal-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1f2937;display:flex;align-items:center;gap:.5rem}
 .cal-d .cal-n{font-weight:600;font-size:.74rem;color:#64748b;background:#f1f5f9;border-radius:999px;padding:1px 8px}
-.cal-d.hoy{color:#fff;background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);border-radius:10px;padding:5px 10px;text-shadow:0 1px 2px rgba(120,20,60,.30)}
+.cal-d.hoy{color:#fff;background:linear-gradient(90deg,#15803d 0%,#22a35a 100%);border-radius:10px;padding:5px 10px;text-shadow:0 1px 2px rgba(5,60,30,.30)}
 .cal-d.hoy .cal-n{background:rgba(255,255,255,.28);color:#fff}
 .cal-g{display:flex;flex-wrap:wrap;gap:6px}
 .cal-i{display:flex;align-items:center;gap:7px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:10px;padding:5px 10px 5px 6px;text-decoration:none!important;color:#1f2937!important}
@@ -78,7 +78,7 @@ def calendario_html(grupos, hoy=None, nombres=None, cantidad=None):
         out.append(f'<div class="cal-d{" hoy" if f == hoy else ""}">{html.escape(_titulo_dia(f, hoy))}<span class="cal-n">{len(items)}</span></div><div class="cal-g">')
         for t, momento, estimada in items:
             etq = _ETQ.get(momento)
-            m = f'<span class="cal-m {momento}">{etq}</span>' if etq else ('<span class="cal-m nd">Horario a confirmar</span>' if hay_hora else "")
+            m = f'<span class="cal-m {momento}">{etq}</span>' if etq else ""
             e = '<span class="cal-e">fecha estimada</span>' if estimada else ""
             nom = html.escape((nombres or {}).get(t, t), quote=True)
             out.append(f'<a class="cal-i" href="?empresa={quote(t, safe="")}" target="_self" title="{nom}">{logo_html(t, 22)}<b>{html.escape(t)}</b>{m}{e}</a>')
@@ -117,7 +117,7 @@ RUTA_ECO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data"
 CSS_ECO = """
 .eco{font-family:inherit;color:#1f2937}
 .eco-d{margin:.7rem 0 .25rem;font-weight:700;font-size:.92rem;color:#1f2937}
-.eco-d.hoy{color:#fff;background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);border-radius:10px;padding:5px 10px;text-shadow:0 1px 2px rgba(120,20,60,.30)}
+.eco-d.hoy{color:#fff;background:linear-gradient(90deg,#15803d 0%,#22a35a 100%);border-radius:10px;padding:5px 10px;text-shadow:0 1px 2px rgba(5,60,30,.30)}
 .eco-i{display:flex;align-items:baseline;gap:8px;padding:3px 0 3px 4px;font-size:.9rem;line-height:1.35}
 .eco-p{flex:none;min-width:62px;text-align:center;font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;background:#1e3a8a;color:#fff;white-space:nowrap}
 .eco-p.ar{background:#9fd0f2;color:#0b3a5c}

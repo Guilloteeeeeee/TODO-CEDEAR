@@ -25,7 +25,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 - Ficha de empresa: `render_pagina_empresa` (~1310) → `ui/ficha.py`. Botón PDF del análisis: `_boton_pdf_analisis` → `ui/af_pdf.py`.
 - Evaluá tu Portfolio (`?pagina=cartera`): `render_cartera` (~1470, dos mosaicos) → `_evaluar_cartera` (~1577) y `_rentabilidad_anual` (~1723).
   Textos de entrada: `_INTRO_EVAL`, `_INTRO_RENT`, `_OPC_RENT`, `_CSS_COMENZAR`, `_presentacion`; lectura de archivos `_leer_archivos`, tabla editable `_tabla_a_mano`.
-- Pie: `pie_html(APP_VERSION, aviso=…, precios=…)` de `ui/marca.py`. En la página de cartera va sin aviso ni fechas. "Datos al dd/mm/aaaa (hh:mm)" = precios de hoy (nunca la fecha del cache).
+- Pie: `pie_html(APP_VERSION, aviso=…, precios=…)` de `ui/marca.py`. En la página de cartera **no va pie**. "Datos al dd/mm/aaaa (hh:mm)" = precios de hoy (nunca la fecha del cache).
 
 ## ui/ (presentación)
 | Archivo | Qué hace |
@@ -39,7 +39,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | `cartera_visual.py` | Tarjetas HTML de la evaluación (`visual_html`, `_torta`, `_bloque_donut`, `_md` con `**negrita**` y `==dato==` en color, `_ajuste`). |
 | `cartera_informe.py` | PDF de la evaluación con membrete (`pdf_informe`, reportlab, tortas `Doughnut`) y HTML de respaldo (`html_informe`). |
 | `cartera_ocr.py` | Lectura de capturas con RapidOCR (opcional; si no está, la app sigue). |
-| `noticias.py`, `calendario.py`, `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
+| `noticias.py` (`ordenar`, `ordenar_bloques`: sin tickers repetidos, una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
 
 ## data/ (datos y lógica)
 - `fetcher.py` (bajada Yahoo, incluye `beta`), `stockanalysis.py`, `yahoo_extra.py`, `moneda.py` (estados en otra moneda / ADR), `precios_vivos.py`, `historial_precios.py`.
@@ -63,7 +63,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 - Rentabilidad: `rentabilidad_con_fechas` (TIR / Dietz), `rentabilidad_anual` (rango estimado), `duracion_txt`. Todo en dólares.
 
 ## Pruebas
-- `tests/test_v145_cartera.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
+- `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
 - Para ver una pantalla sin la app entera: armar un harness que importe solo las funciones (ver `_evaluar_cartera`) y usar Playwright; Yahoo no responde acá.
 
 ## Publicar una versión

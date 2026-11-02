@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.2 — noticias más variadas, calendario en verde y textos de Evaluá tu Portfolio
+- **Noticias**: una empresa no se repite en todo el cuadro (antes el control era por bloque y Intel salía una vez en cada uno). Entre *Estados Unidos* y *Resto del mundo* tiene que haber al menos una nota macro (Fed, inflación, tasas, empleo, aranceles, petróleo…); si no hay ninguna, quedan las de empresas. *Locales* reserva un lugar para el mercado argentino (Merval, bonos, riesgo país, acciones, ADRs) con los feeds de Ámbito que ya se usaban. Prueba: `tests/test_v152_noticias.py`.
+- **Calendario Financiero**: el día «Hoy» va en verde (el rosa queda sólo para Evaluá tu Portfolio) y ya no se escribe «Horario a confirmar» en cada empresa; sólo se muestra el horario cuando se conoce.
+- **Evaluá tu Portfolio**: sin pie de página (ni «Powered by», ni versión, ni «Developed by»); texto nuevo de presentación de la evaluación; nuevo texto del mosaico y del recuadro de *Conocé tu Rentabilidad*; se saca la leyenda «Elegí una de las dos opciones…» (el botón Comencemos se pone rosa al elegir).
+
 ### v1.5.1 — evaluación más legible y mapa del código
 - Negritas en las ideas clave y los datos destacados en el color de la marca (`==dato==`); en los ajustes, la idea en negrita y «Por qué:» en verde. Tortas centradas. Más aire entre títulos y párrafos. «Perfil Agresivo» con mayúsculas. Sectores GICS confirmados.
 - `CLAUDE.md`: mapa del código para que cada sesión arranque sin releer toda la app. Pruebas de la evaluación dentro del repo (`tests/`).

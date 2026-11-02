@@ -55,7 +55,7 @@ _FUENTES_DEFECTO = {
 # v1.2.58: la caja se divide en tres bloques (Locales, Estados Unidos, Resto del mundo), 5 notas cada uno. Cada bloque tiene su fuente,
 # su idioma y sus feeds (nombre que se muestra, url del RSS, es_portada). Se cambian en config/ajustes.py (NOTICIAS_BLOQUES).
 _BLOQUES_DEFECTO = (
-    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito", "idioma": "es", "traducir": False, "cantidad": 3, "dolar": True,
+    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito", "idioma": "es", "traducir": False, "cantidad": 3, "dolar": True, "mercado": True,
      "feeds": _FUENTES_DEFECTO["es"]["feeds"]},
     {"clave": "usa", "titulo": "Estados Unidos", "fuente": "CNBC", "idioma": "en", "traducir": True,
      "feeds": _FUENTES_DEFECTO["en"]["feeds"]},
@@ -358,6 +358,20 @@ _RELLENO = re.compile(r"halloween|disfraz|hor[oó]scopo|\bsigno\b|receta|far[aá
 _DOLAR_DIA = re.compile(r"d[oó]lar\b.*\b(hoy|cotiza|opera|minuto a minuto|a cu[aá]nto)|\b(hoy|a cu[aá]nto)\b.*d[oó]lar\b|cotizaci[oó]n del d[oó]lar|minuto a minuto", re.I)
 
 
+# v1.5.2: notas "macro" (Fed, inflación, tasas, empleo, aranceles, petróleo...) y notas del mercado argentino (Merval, bonos, riesgo país...)
+_MACRO = re.compile(r"\bfed\b|federal reserve|reserva federal|powell|inflaci[oó]n|inflation|\bcpi\b|\bpce\b|tasas? de inter[eé]s|interest rates?|rate (cut|hike)|rates?\b|"
+                    r"jobs report|payrolls?|nonfarm|empleo|desempleo|unemployment|jobless|\bgdp\b|\bpbi\b|econom[ií]a|economy|economic|tariffs?|aranceles?|treasury|"
+                    r"bonos? del tesoro|yields?|recession|recesi[oó]n|central bank|banco central|\bbce\b|\becb\b|bank of (japan|england)|\bboj\b|\bboe\b|"
+                    r"oil prices?|precio del petr[oó]leo|\bopec\b|retail sales|consumer (confidence|spending|sentiment)|shutdown|trade (deal|war|talks)|"
+                    r"d[eé]ficit|deficit|debt ceiling|stimulus|estímulo", re.I)
+_MERCADO_AR = re.compile(r"merval|\bbonos?\b|riesgo pa[ií]s|\badrs?\b|\bcedears?\b|\bbolsa\b|acciones|t[ií]tulos p[uú]blicos|renta fija|\blecaps?\b|\bletras?\b|"
+                         r"licitaci[oó]n|\bon\b|obligaciones negociables|mercado de capitales|\bcaucion", re.I)
+
+
+def es_macro(titulo):
+    return bool(_MACRO.search(titulo or ""))
+
+
 def es_relleno(titulo):
     """True si el titular no tiene que ver con el mercado (Halloween, horóscopo, deportes, farándula...)."""
     return bool(_RELLENO.search(titulo or ""))
@@ -378,10 +392,10 @@ def _quitar_relleno(ordenadas):
     return salida
 
 
-def _sin_repetir_ticker(ordenadas, cantidad):
+def _sin_repetir_ticker(ordenadas, cantidad, vistos_ini=None):
     """Recorre las notas ya ordenadas por importancia y se queda con una sola por empresa: si una nota nombra un ticker que ya
     salio en una nota mas importante, se saltea y se sigue con la proxima. Las que no nombran empresas no se tocan."""
-    vistos, salida = set(), []
+    vistos, salida = set(vistos_ini or ()), []
     for n in ordenadas:
         m = n.get("menciona") or []
         if m and any(t in vistos for t in m):
@@ -393,7 +407,8 @@ def _sin_repetir_ticker(ordenadas, cantidad):
     return salida
 
 
-def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None, con_dolar=False):
+def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None, con_dolar=False,
+            vistos_tickers=None, con_mercado=False, con_macro=False):
     """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si no alcanzan `cantidad` notas), orden por
     (menciona empresas del screener, esta en portada, mas reciente) y una sola nota por ticker (v1.2.46: se saltea la repetida y se
     sigue con la que viene). Devuelve (lista, horas_usadas)."""
@@ -416,14 +431,31 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
         todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers, idioma), "en_portada": n["clave"] in portada, "fuente": fuente or FUENTE} for n in elegibles]
         todas.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
         base = _quitar_relleno(todas)
+        vt = set(vistos_tickers or ())
+        # v1.2.87: se reserva un lugar para la nota de "cómo está el dólar hoy" (la mejor ubicada). v1.5.2: también uno para el mercado argentino
+        # (Merval, bonos, riesgo país) en Locales y uno para una nota macro (Fed, inflación, tasas...) cuando hace falta; el resto se completa en el mismo orden.
+        reservas = []
+        def _reservar(pred):
+            for n in base:
+                if any(n is r for r in reservas) or not pred(n.get("titulo") or ""):
+                    continue
+                m = n.get("menciona") or []
+                if m and any(t in vt or any(t in (r.get("menciona") or []) for r in reservas) for t in m):
+                    continue
+                reservas.append(n)
+                return
         if con_dolar:
-            # v1.2.87: se reserva un lugar para la nota de "cómo está el dólar hoy" (la mejor ubicada) y el resto se completa con las demás, en el mismo orden.
-            dol = [n for n in base if _DOLAR_DIA.search(n.get("titulo") or "")][:1]
-            otras = _sin_repetir_ticker([n for n in base if not any(n is d for d in dol)], max(cantidad - len(dol), 0))
-            elegidas = otras + dol
-            salida = [n for n in base if any(n is e for e in elegidas)]
-        else:
-            salida = _sin_repetir_ticker(base, cantidad)
+            _reservar(lambda t: bool(_DOLAR_DIA.search(t)))
+        if con_mercado:
+            _reservar(lambda t: bool(_MERCADO_AR.search(t)) and not _DOLAR_DIA.search(t))
+        if con_macro:
+            _reservar(es_macro)
+        vr = set(vt)
+        for r in reservas:
+            vr.update(r.get("menciona") or [])
+        otras = _sin_repetir_ticker([n for n in base if not any(n is r for r in reservas)], max(cantidad - len(reservas), 0), vr)
+        elegidas = otras + reservas
+        salida = [n for n in base if any(n is e for e in elegidas)]
         if len(salida) >= cantidad:
             break
     return salida, usadas
@@ -445,13 +477,51 @@ def traducir_notas(notas, traducir_lista=None):
 
 def ordenar_bloques(crudo, tickers, ahora=None):
     """Aplica la regla de `ordenar` a cada bloque (Locales, Estados Unidos, Resto del mundo). Una nota no sale en dos bloques.
+    v1.5.2: una empresa no se repite en todo el cuadro (antes era por bloque: Intel salía una vez en cada uno), Locales reserva una nota del mercado
+    argentino y entre Estados Unidos y Resto del mundo tiene que haber al menos una nota macro (si no hay ninguna buena, quedan las de empresas).
     -> lista de {clave, titulo, fuente, idioma, traducir, notas, horas, respondio}."""
-    vistos, salida = set(), []
-    for b in BLOQUES:
+    vistos, vt = set(), set()
+    res = {}
+
+    def _uno(b, con_macro=False, vistos_ext=None, tk_ext=None):
         cb = ((crudo or {}).get("bloques") or {}).get(b["clave"])
-        notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=vistos,
-                               cantidad=b.get("cantidad"), con_dolar=bool(b.get("dolar")))
+        notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=(vistos_ext if vistos_ext is not None else vistos),
+                               cantidad=b.get("cantidad"), con_dolar=bool(b.get("dolar")), vistos_tickers=(tk_ext if tk_ext is not None else vt),
+                               con_mercado=bool(b.get("mercado")), con_macro=con_macro)
+        return cb, notas, horas
+
+    def _marcar(notas):
         vistos.update(n["clave"] for n in notas)
+        for n in notas:
+            vt.update(n.get("menciona") or [])
+
+    orden = list(BLOQUES)
+    for b in orden:
+        if b["clave"] in ("usa", "mundo"):
+            continue
+        res[b["clave"]] = _uno(b)
+        _marcar(res[b["clave"]][1])
+    ext = [b for b in orden if b["clave"] in ("usa", "mundo")]
+    # primero se arman sin forzar; si ninguna es macro se rearma el primer bloque que tenga una nota macro disponible
+    base_v, base_t = set(vistos), set(vt)
+    tmp = {}
+    for b in ext:
+        tmp[b["clave"]] = _uno(b, False, vistos, vt)
+        _marcar(tmp[b["clave"]][1])
+    if ext and not any(es_macro(n.get("titulo")) for k in tmp for n in tmp[k][1]):
+        for forzar in reversed(ext):          # se intenta primero en Resto del mundo y después en Estados Unidos
+            vistos.clear(); vistos.update(base_v); vt.clear(); vt.update(base_t)
+            tmp2 = {}
+            for b in ext:
+                tmp2[b["clave"]] = _uno(b, b is forzar, vistos, vt)
+                _marcar(tmp2[b["clave"]][1])
+            if any(es_macro(n.get("titulo")) for k in tmp2 for n in tmp2[k][1]):
+                tmp = tmp2
+                break
+    res.update(tmp)
+    salida = []
+    for b in orden:
+        cb, notas, horas = res[b["clave"]]
         salida.append({"clave": b["clave"], "titulo": b["titulo"], "fuente": b["fuente"], "idioma": b["idioma"],
                        "traducir": bool(b.get("traducir")), "notas": notas, "horas": horas,
                        "respondio": bool(cb and cb.get("feeds_ok"))})
