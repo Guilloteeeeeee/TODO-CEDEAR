@@ -577,7 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.4.7 — devolución con la estructura de Guille
+### v1.4.8 — Conocé tu Rentabilidad rehecha
+- Primero se elige «Sé / No sé las fechas exactas de mis aportes y retiros» (sin opción por defecto), después «Comencemos» (gris hasta elegir); eso decide a qué página va. Hay un botón para volver y cambiar.
+- Todo en dólares (no hay cotización histórica para convertir pesos). Filas de aportes y retiros con campos vacíos en gris claro (sin «None») y tipo Aporte/Retiro sin valor por defecto.
+- Resultado: «Tu Rentabilidad Anualizada en Dólares fue / se encuentra en el rango entre…», Aportes, Retiros, Rendimiento sobre el capital invertido (US$ y %), Período analizado. Letra más grande.
+- En la página de Portfolio/Rentabilidad se sacó el aviso legal, las fuentes y «Datos al… · Precios al…» del pie.
+
+## v1.4.7 — devolución con la estructura de Guille
 - Orden: Ponderaciones (tortas por grandes grupos; la teoría para edad y perfil va en la conclusión) → Diversificación geográfica (ahora con renta variable Y renta fija; bonos y ONs argentinos cuentan como emergentes; torta) → Diversificación sectorial (torta de los 3 supersectores; la estructura 20/30/50 con sus sectores y la guía de 20 a 30 empresas con 2 a 5 % van SIEMPRE en la conclusión; se marca si pasan de 5 %; solo sectores GICS, sin industrias) → Oro y Criptomonedas → Liquidez → Qué ajustaría («Ante todo tené en cuenta…», «Ideas para pensar», lo que ya hace bien y los ajustes numerados con el porqué).
 - Se sacó «Pesos» (ahora «Ponderaciones»), el aviso largo del sitio, la privacidad y el pie de página del PDF. Aviso Legal único con el texto de Guille. Saludo final siempre. Texto justificado.
 

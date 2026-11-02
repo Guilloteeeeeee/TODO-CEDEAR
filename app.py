@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.7"
+APP_VERSION = "1.4.8"
 
 import re
 import contextlib
@@ -1510,15 +1510,14 @@ _INTRO_EVAL = (
     "Es una orientación educativa, basada en reglas de inversión que nos fueron útiles en los más de 10 años que tenemos de experiencia bursátil. "
     "Recordá que no es una recomendación de compra o venta ni un consejo personalizado."
 )
-_INTRO_RENT = (
-    "Saber cuánto rindió tu cartera te ayuda a decidir con más tranquilidad cómo seguir. Contanos cuándo empezaste, cuánto pusiste (y si retiraste algo) y cuánto vale hoy, y te calculamos el rendimiento.\n\n"
-    "Es un cálculo orientativo con fines educativos, que depende de los datos que cargues. No es una recomendación de inversión."
-)
+_INTRO_RENT = "Contanos cuándo empezaste, cuánto aportaste o retiraste y cuánto vale hoy tu cartera, así calculamos cuál es tu rentabilidad como inversor."
+_OPC_RENT = ("Sé las fechas exactas de mis aportes y retiros", "No sé las fechas exactas de mis aportes y retiros")
 _CSS_COMENZAR = """<style>
 [class*="st-key-cr_comenzar"] button{background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%)!important;color:#fff!important;border:0!important;border-radius:14px;padding:.8em 2.6em;
  box-shadow:0 4px 14px rgba(232,102,143,.35);min-height:3.2rem}
 [class*="st-key-cr_comenzar"] button p{font-size:1.2rem!important;font-weight:800!important;color:#fff!important}
 [class*="st-key-cr_comenzar"] button:hover{filter:brightness(1.05);box-shadow:0 6px 18px rgba(232,102,143,.45)}
+[class*="st-key-cr_comenzar"] button:disabled{background:#cbd5e1!important;box-shadow:none!important;cursor:not-allowed;filter:none}
 </style>"""
 
 
@@ -1722,50 +1721,79 @@ def _fmt_num(x, dec=0):
 
 
 def _rentabilidad_anual(C):
-    """"Conocé tu rentabilidad" (v1.2.83; rehecha en v1.4.4): dos caminos. (1) ESTIMADA: fecha de inicio + dinero aportado (+ retirado) + capital final.
-    (2) EXACTA: una tabla con la fecha y el monto de cada aporte y cada retiro. Con menos de un año NO se pasa a "por año": se muestra lo que rindió en ese tiempo, diciendo cuánto tiempo fue."""
+    """"Conocé tu Rentabilidad" (v1.2.83; rehecha en v1.4.4 y v1.4.8). Primero se elige si se saben o no las fechas exactas (eso decide la página) y se toca «Comencemos».
+    (1) ESTIMADA: fecha de inicio + aportado (+ retirado) + capital final -> rango entre un mínimo y un máximo. (2) EXACTA: la fecha y el monto de cada aporte y cada retiro.
+    Todo en dólares. Con menos de un año NO se pasa a "por año": se muestra lo que rindió en ese tiempo, diciendo cuánto tiempo fue."""
     import datetime as _dt
-    if not _presentacion(_INTRO_RENT, "cr_comenzar_rent", "cr_empezo_rent"):
-        return
-    st.markdown("""<style>
-.rt-card{border:1px solid #fbd5e1;background:linear-gradient(180deg,#fff7fa 0%,#fff 70%);border-radius:16px;padding:18px 20px;margin:12px 0 6px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
-.rt-big{font-size:2.3rem;font-weight:800;color:#be185d;line-height:1.1}
-.rt-big small{font-size:1rem;font-weight:700;color:#64748b;margin-left:6px}
-.rt-fila{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:12px;color:#334155;font-size:.97rem}
+    st.markdown(_CSS_COMENZAR + """<style>
+.rt-card{border:1px solid #fbd5e1;background:linear-gradient(180deg,#fff7fa 0%,#fff 70%);border-radius:16px;padding:20px 22px;margin:12px 0 6px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.rt-tit{font-size:1.15rem;font-weight:700;color:#334155;margin-bottom:6px}
+.rt-big{font-size:2.5rem;font-weight:800;color:#be185d;line-height:1.1}
+.rt-big small{font-size:1.1rem;font-weight:700;color:#64748b;margin-left:6px}
+.rt-fila{display:flex;flex-direction:column;gap:7px;margin-top:16px;color:#334155;font-size:1.18rem;line-height:1.45}
 .rt-fila b{color:#0f172a}
-.rt-nota{font-size:.84rem;color:#64748b;line-height:1.5;margin-top:12px}
-.rt-aviso{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:9px 12px;font-size:.9rem;line-height:1.5;margin-top:12px}
+.rt-nota{font-size:.84rem;color:#64748b;line-height:1.5;margin-top:14px;text-align:justify}
+.rt-nota-g{font-size:1rem;color:#475569;line-height:1.55;margin-top:14px;text-align:justify}
+.rt-aviso{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:9px 12px;font-size:.95rem;line-height:1.5;margin-top:12px}
+.rt-ayuda{color:#475569;font-size:.95rem;line-height:1.55;text-align:justify;margin:4px 0 10px}
 </style>""", unsafe_allow_html=True)
     hoy = _dt.date.today()
-    forma_calc = st.radio("¿Cómo querés calcularlo?", ["Estimarlo (no sé las fechas exactas)", "Con la fecha exacta de cada aporte y retiro (más preciso)"],
-                          horizontal=True, key="rt_calculo")
-    exacto = forma_calc.startswith("Con la fecha")
+    # ---- paso 1: presentación + elegir si se saben las fechas + «Comencemos»
+    if not st.session_state.get("cr_empezo_rent"):
+        st.markdown(f'<div class="cv-intro">{_INTRO_RENT}</div>', unsafe_allow_html=True)
+        sel = st.radio("¿Sabés las fechas exactas de tus aportes y retiros?", list(_OPC_RENT), index=None, key="rt_modo_sel")
+        st.button("Comencemos", key="cr_comenzar_rent", disabled=sel is None,
+                  on_click=lambda: st.session_state.update(cr_empezo_rent=True, rt_modo=st.session_state.get("rt_modo_sel")))
+        if sel is None:
+            st.caption("Elegí una de las dos opciones para poder comenzar.")
+        return
+    exacto = st.session_state.get("rt_modo") == _OPC_RENT[0]
+    st.button("← Cambiar la forma de cálculo", key="rt_volver", on_click=lambda: st.session_state.update(cr_empezo_rent=False))
 
-    def tarjeta(grande, chico, filas, notas, aviso=""):
+    def usd(x):
+        return "US$ " + _fmt_num(x)
+
+    def tarjeta(titulo, grande, chico, filas, notas, aviso="", nota_g=""):
         f = "".join(f"<span>{x}</span>" for x in filas)
         n = "".join(f'<div class="rt-nota">{x}</div>' for x in notas)
+        g = f'<div class="rt-nota-g">{nota_g}</div>' if nota_g else ""
         av = f'<div class="rt-aviso">{aviso}</div>' if aviso else ""
-        st.markdown(f'<div class="rt-card"><div class="rt-big">{grande}<small>{chico}</small></div><div class="rt-fila">{f}</div>{av}{n}</div>', unsafe_allow_html=True)
-    nominal = "Los números son nominales (no descuentan inflación ni cambios en el tipo de cambio) y no garantizan resultados futuros."
+        st.markdown(f'<div class="rt-card"><div class="rt-tit">{titulo}</div><div class="rt-big">{grande}<small>{chico}</small></div>{g}<div class="rt-fila">{f}</div>{av}{n}</div>', unsafe_allow_html=True)
 
+    def filas_res(aportado, retirado, gan, tot, dias):
+        signo = "+" if gan >= 0 else "−"
+        return [f"Aportes: <b>{usd(aportado)}</b>", f"Retiros: <b>{usd(retirado)}</b>",
+                f"Rendimiento sobre el capital invertido: <b>{signo}US$ {_fmt_num(abs(gan))}</b> ({signo}{_fmt_num(abs(tot), 1)} %)", f"Período analizado: <b>{C.duracion_txt(dias)}</b>"]
+    nominal = "Los números son nominales (no descuentan inflación ni cambios en el tipo de cambio) y no garantizan resultados futuros."
+    aviso_corto = "Pasó menos de un año, así que no te lo pasamos a «por año»: con tan poco tiempo ese número exagera. Te mostramos lo que rindió en ese período."
+
+    # ---- página: fechas exactas
     if exacto:
-        st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">Cargá cada vez que pusiste plata (<b>Aporte</b>) y cada vez que sacaste (<b>Retiro</b>), con su fecha. '
-                    'Si ya tenías plata invertida cuando empezaste, cargala como un aporte en esa fecha. Todo en la misma moneda.</p></div>', unsafe_allow_html=True)
-        base = pd.DataFrame({"Fecha": pd.Series([], dtype="datetime64[ns]"), "Tipo": pd.Series([], dtype="object"), "Monto": pd.Series([], dtype="float64")})
-        tabla = st.data_editor(base, num_rows="dynamic", hide_index=True, use_container_width=True, key="rt_tabla",
-                               column_config={"Fecha": st.column_config.DateColumn("Fecha", format="DD/MM/YYYY", min_value=_dt.date(1990, 1, 1), max_value=hoy, required=True),
-                                              "Tipo": st.column_config.SelectboxColumn("Tipo", options=["Aporte", "Retiro"], required=True, default="Aporte"),
-                                              "Monto": st.column_config.NumberColumn("Monto", min_value=0.0, step=100.0, required=True, format="%.2f")})
-        final = st.number_input("Capital final (lo que vale hoy toda tu cartera)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 13000", key="rt_final_ex")
-        movs = []
-        try:
-            for _, fila in tabla.iterrows():
-                f, m = fila.get("Fecha"), fila.get("Monto")
-                if f is None or pd.isna(f) or m is None or pd.isna(m) or not m:
-                    continue
-                movs.append((pd.Timestamp(f).date(), float(m) if str(fila.get("Tipo") or "Aporte") != "Retiro" else -float(m)))
-        except Exception:  # noqa: BLE001
-            movs = []
+        st.markdown('<div class="rt-ayuda">Cargá cada vez que pusiste plata (<b>Aporte</b>) y cada vez que sacaste (<b>Retiro</b>), con su fecha. '
+                    'Si ya tenías plata invertida cuando empezaste, cargala como un aporte en esa fecha. <b>Todo en dólares</b> (si algún movimiento fue en pesos, pasalo a dólares al valor de ese día).</div>', unsafe_allow_html=True)
+        n = st.session_state.setdefault("rt_filas", 4)
+        h1, h2, h3 = st.columns([1.1, 1, 1], gap="small")
+        h1.markdown("**Fecha**")
+        h2.markdown("**Aporte o Retiro**")
+        h3.markdown("**Monto en dólares**")
+        movs, incompletas = [], 0
+        for i in range(n):
+            c1, c2, c3 = st.columns([1.1, 1, 1], gap="small")
+            f = c1.date_input("Fecha", value=None, min_value=_dt.date(1990, 1, 1), max_value=hoy, format="DD/MM/YYYY", key=f"rt_f{i}", label_visibility="collapsed")
+            t = c2.selectbox("Tipo", ["Aporte", "Retiro"], index=None, placeholder="Aporte o Retiro", key=f"rt_t{i}", label_visibility="collapsed")
+            m = c3.number_input("Monto", min_value=0.0, value=None, step=100.0, placeholder="Ej.: 5000", key=f"rt_m{i}", label_visibility="collapsed")
+            llenos = [f is not None, t is not None, bool(m)]
+            if all(llenos):
+                movs.append((f, float(m) if t == "Aporte" else -float(m)))
+            elif any(llenos):
+                incompletas += 1
+        b1, b2 = st.columns([1, 1], gap="small")
+        b1.button("＋ Agregar otra fila", key="rt_mas", on_click=lambda: st.session_state.update(rt_filas=st.session_state.get("rt_filas", 4) + 1))
+        if n > 1:
+            b2.button("− Quitar la última fila", key="rt_menos", on_click=lambda: st.session_state.update(rt_filas=max(1, st.session_state.get("rt_filas", 4) - 1)))
+        final = st.number_input("Capital final: lo que vale hoy toda tu cartera, en dólares", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 13000", key="rt_final_ex")
+        if incompletas:
+            st.caption(f"Hay {incompletas} fila(s) incompleta(s): para que cuenten necesitan fecha, tipo y monto.")
         if not movs or final is None:
             st.caption("Cargá al menos un aporte y el capital final para ver el resultado.")
             return
@@ -1773,33 +1801,29 @@ def _rentabilidad_anual(C):
         if r.get("error"):
             st.warning(r["error"])
             return
-        gan = r["ganancia"]
-        signo = "+" if gan >= 0 else "−"
-        filas = [f"Ganancia: <b>{signo}{_fmt_num(abs(gan))}</b> ({signo}{_fmt_num(abs(r['total_pct']), 1)} % sobre lo que pusiste)", f"Tiempo: <b>{C.duracion_txt(r['dias'])}</b>",
-                 f"Pusiste: <b>{_fmt_num(r['aportado'])}</b>" + (f" · Retiraste: <b>{_fmt_num(r['retirado'])}</b>" if r["retirado"] else "")]
+        filas = filas_res(r["aportado"], r["retirado"], r["ganancia"], r["total_pct"], r["dias"])
         if r["anual"] is not None:
-            tarjeta(f"{_fmt_num(r['anual'], 1)} %", "por año", filas,
+            tarjeta("Tu Rentabilidad Anualizada en Dólares fue:", f"{_fmt_num(r['anual'], 1)} %", "", filas,
                     ["Calculado con la fecha de cada aporte y retiro: es la tasa anual con la que creció el dinero mientras estuvo invertido. " + nominal])
         else:
             sg = "+" if r["periodo_pct"] >= 0 else "−"
-            tarjeta(f"{sg}{_fmt_num(abs(r['periodo_pct']), 1)} %", f"en {C.duracion_txt(r['dias'])}", filas,
-                    ["Es lo que rindió el dinero que tuviste invertido durante ese tiempo (cada aporte y retiro pesa según los días que estuvo en la cartera). " + nominal],
-                    aviso="Pasó menos de un año, así que no te lo pasamos a «por año»: con tan poco tiempo ese número exagera. Mirá el resultado del período.")
+            tarjeta(f"Tu Rentabilidad en Dólares en {C.duracion_txt(r['dias'])} fue:", f"{sg}{_fmt_num(abs(r['periodo_pct']), 1)} %", "", filas,
+                    ["Es lo que rindió el dinero que tuviste invertido durante ese tiempo (cada aporte y retiro pesa según los días que estuvo en la cartera). " + nominal], aviso=aviso_corto)
         return
 
-    st.markdown('<div class="cr"><p class="cr-i" style="margin-top:6px">Si no sabés las fechas exactas de tus aportes y retiros, lo calculamos igual: te damos un <b>rango estimado</b> (un número mínimo y uno máximo) justamente porque falta ese dato. '
-                'Si las sabés, elegí la otra opción y el resultado sale exacto.</p></div>', unsafe_allow_html=True)
+    # ---- página: sin fechas exactas (rango estimado)
+    st.markdown('<div class="rt-ayuda">Si no sabés las fechas exactas de tus aportes y retiros, lo calculamos igual: te damos un <b>rango estimado</b> (un número mínimo y uno máximo) justamente porque falta ese dato. '
+                'Si las sabés, volvé y elegí la otra opción: el resultado sale exacto. <b>Todo en dólares.</b></div>', unsafe_allow_html=True)
     c1, c2 = st.columns(2, gap="medium")
     with c1:
         inicio = st.date_input("¿Cuándo empezaste a invertir?", value=None, min_value=_dt.date(1990, 1, 1), max_value=hoy, format="DD/MM/YYYY", key="rt_inicio")
-        aportado = st.number_input("Dinero que pusiste en total", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 10000", key="rt_aportado",
-                                   help="La suma de todos tus aportes. Usá la misma moneda que en el capital final.")
+        aportado = st.number_input("Dinero que pusiste en total (en dólares)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 10000", key="rt_aportado",
+                                   help="La suma de todos tus aportes, en dólares.")
     with c2:
-        retirado = st.number_input("Dinero que retiraste en total (opcional)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 2000", key="rt_retirado",
+        retirado = st.number_input("Dinero que retiraste en total, en dólares (opcional)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 2000", key="rt_retirado",
                                    help="La suma de todo lo que sacaste de la cartera. Si no retiraste nada, dejalo vacío. Se cuenta como si lo hubieras sacado hoy.")
-        final = st.number_input("Capital final (lo que vale hoy)", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 13000", key="rt_final",
-                                help="El valor de toda tu cartera hoy, en la misma moneda que los aportes.")
-    forma = st.radio("¿Cómo fuiste aportando?", ["Aportes periódicos a lo largo del camino", "Todo al principio"], horizontal=True, key="rt_forma")
+        final = st.number_input("Capital final: lo que vale hoy, en dólares", min_value=0.0, value=None, step=1000.0, placeholder="Ej.: 13000", key="rt_final",
+                                help="El valor de toda tu cartera hoy, en dólares.")
     if inicio is None or not aportado or final is None:
         st.caption("Completá la fecha de inicio, lo que pusiste y el capital final para ver la estimación.")
         return
@@ -1811,14 +1835,13 @@ def _rentabilidad_anual(C):
     anios = dias / 365.25
     gan = final + ret - aportado
     tot = gan / aportado * 100
-    signo = "+" if gan >= 0 else "−"
-    filas = [f"Ganancia: <b>{signo}{_fmt_num(abs(gan))}</b> ({signo}{_fmt_num(abs(tot), 1)} % sobre lo que pusiste)", f"Tiempo: <b>{C.duracion_txt(dias)}</b>"]
-    nota_ret = " Los retiros se contaron como si los hubieras hecho hoy: si los hiciste antes, el resultado real cambia un poco." if ret else ""
+    filas = filas_res(aportado, ret, gan, tot, dias)
+    nota_ret = "Los retiros se contaron como si los hubieras hecho hoy: si los hiciste antes, el resultado real cambia un poco. " if ret else ""
     if anios < 1:
-        tarjeta(f"{signo}{_fmt_num(abs(tot), 1)} %", f"en {C.duracion_txt(dias)}", filas,
+        sg = "+" if tot >= 0 else "−"
+        tarjeta(f"Tu Rentabilidad en Dólares en {C.duracion_txt(dias)} fue:", f"{sg}{_fmt_num(abs(tot), 1)} %", "", filas,
                 ["Es lo que ganó tu plata sobre lo que pusiste en total. Si fuiste aportando de a poco, sobre el dinero que estuvo invertido el rendimiento fue algo mayor. "
-                 "Si querés afinarlo, elegí «Con la fecha exacta de cada aporte y retiro»." + nota_ret + " " + nominal],
-                aviso="Pasó menos de un año, así que no te lo pasamos a «por año»: con tan poco tiempo ese número exagera. Mirá el resultado del período.")
+                 "Si querés afinarlo, volvé y elegí la opción de las fechas exactas. " + nota_ret + nominal], aviso=aviso_corto)
         return
     if final <= 0:
         st.warning("Con capital final en cero no se puede estimar la tasa por año. Si perdiste todo, la ganancia total es −100 %.")
@@ -1827,17 +1850,15 @@ def _rentabilidad_anual(C):
     if r is None:
         st.warning("Con esos datos no puedo estimar. Revisá que los montos sean mayores a cero.")
         return
-    todo = forma.startswith("Todo")
-    prin = r["anual_inicio"] if todo or r["anual_parejo"] is None else r["anual_parejo"]
     pares = [x for x in (r["anual_inicio"], r["anual_parejo"]) if x is not None]
     lo, hi = min(pares), max(pares)
-    notas = []
     if hi - lo > 0.05:
-        notas.append(f"<b>Por qué es una estimación:</b> no sabemos cuándo pusiste cada aporte, y eso cambia el resultado. Si pusiste toda la plata el primer día, tu rendimiento por año fue de <b>{_fmt_num(lo, 1)} %</b>. "
-                     f"Si fuiste aportando un poquito cada mes, el dinero estuvo menos tiempo invertido y el rendimiento por año fue de <b>{_fmt_num(hi, 1)} %</b>. Lo real está entre esos dos números. "
-                     "Para el número exacto, elegí «Con la fecha exacta de cada aporte y retiro».")
-    notas.append((nota_ret.strip() + " " if nota_ret else "") + nominal)
-    tarjeta(f"{_fmt_num(prin, 1)} %", "por año (estimado)", filas, notas)
+        porque = (f"<b>Por qué es una estimación:</b> no sabemos cuándo pusiste cada aporte, y eso cambia el resultado. Si pusiste toda la plata el primer día, tu rendimiento por año fue de <b>{_fmt_num(lo, 1)} %</b>. "
+                  f"Si fuiste aportando un poquito cada mes, el dinero estuvo menos tiempo invertido y el rendimiento por año fue de <b>{_fmt_num(hi, 1)} %</b>. Lo real está entre esos dos números. "
+                  "Para el número exacto, volvé y elegí la opción de las fechas exactas.")
+        tarjeta("Tu Rentabilidad Anualizada en Dólares se encuentra en el rango entre:", f"{_fmt_num(lo, 1)} % y {_fmt_num(hi, 1)} %", "", filas, [nota_ret + nominal], nota_g=porque)
+    else:
+        tarjeta("Tu Rentabilidad Anualizada en Dólares fue:", f"{_fmt_num(lo, 1)} %", "", filas, [nota_ret + nominal])
 
 
 def render_barra_cartera(df):
@@ -1978,7 +1999,7 @@ def main():
     # v1.2.73: "Tu Cartera" (?pagina=cartera)
     if en_cartera:
         render_cartera(df)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION), unsafe_allow_html=True)      # v1.4.8: en esta página no van el aviso legal, las fuentes ni "Datos al…" (no usa precios ni datos de empresas para calcular)
         return
 
     # v1.2.64: pagina de un ETF (?etf=TICKER)
