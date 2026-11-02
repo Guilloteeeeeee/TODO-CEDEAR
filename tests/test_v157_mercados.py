@@ -12,20 +12,21 @@ def chk(c, m):
 
 chk(M.num_es(7580.07, 2) == "7.580,07" and M.num_es(-140.32, 2) == "-140,32" and M.num_es(1234567.891, 2) == "1.234.567,89", "formato argentino")
 chk(M.num_es(-0.001, 2) == "0,00", "cero negativo sin signo")
-ind = {"^GSPC": (7580.07, 7720.39), "^VIX": (19.42, 17.2), "CL=F": (61.3, 61.3)}
+ind = {"^GSPC": (7580.07, 7720.39), "^VIX": (19.42, 17.2), "BZ=F": (65.1, 65.1)}
 it = M.armar(ind, {"oficial": 1475.0, "bolsa": 1567.23, "contadoconliqui": 1580.5})
 nom = [i["nombre"] for i in it]
 chk(nom[:3] == ["Dólar oficial", "Dólar MEP", "Dólar CCL"], "primero los tres dólares")
-chk("S&P 500" in nom and "VIX" in nom and "Petróleo WTI (US$)" in nom, "casilleros presentes")
+chk("S&P 500" in nom and "VIX" in nom and "Petróleo Brent (US$)" in nom, "casilleros presentes")
 chk("Nasdaq" not in nom and "Merval" not in nom, "lo que no llegó se oculta")
 sp = next(i for i in it if i["nombre"] == "S&P 500")
 chk(sp["signo"] == -1 and sp["var"] == "-140,32" and sp["pct"] == "-1,82 %", f"S&P bajó: {sp}")
 vx = next(i for i in it if i["nombre"] == "VIX")
 chk(vx["signo"] == 1 and vx["var"].startswith("+") and vx["pct"].startswith("+"), "VIX sube con +")
-chk(next(i for i in it if i["nombre"] == "Petróleo WTI (US$)")["signo"] == 0, "sin variación")
+chk(next(i for i in it if i["nombre"] == "Petróleo Brent (US$)")["signo"] == 0, "sin variación")
 chk(M.armar({}, {}) == [], "sin datos -> lista vacía")
 h = M.barra_html(it)
 chk("<svg" not in h and "<a " not in h and "href" not in h, "sin gráficos chicos ni links")
+chk("venta" not in h and "mk-fl" in h and "WTI" not in h, "sin la palabra venta, con puntita de flecha y un solo petróleo")
 chk(M.barra_html([]) == "", "sin datos no se dibuja nada")
 # dólares desde DolarApi (con una respuesta simulada)
 d = M.descargar_dolares(get=lambda: [{"casa": "oficial", "venta": 1475}, {"casa": "bolsa", "venta": "1567.23"}, {"casa": "tarjeta", "venta": None}, {"casa": "x"}])

@@ -21,7 +21,7 @@ INTROS = {
 }
 
 TIPS = {
-    "ETF": INTRO,
+    "ETF": "Presioná en el ETF para información detallada. " + INTRO,
     "Precio": "Precio de una unidad del ETF en dólares, en su mercado de origen (no en tiempo real).",
     "Descripción": "Qué replica o en qué invierte el ETF.",
     "Categoría": "Grupo al que pertenece (USA, Internacionales, Sectores, Temáticos, Minería, Materias Primas, Apalancados...).",
@@ -90,10 +90,7 @@ div[data-testid="stElementContainer"]:has(.etf-t){margin-top:0!important}
 .etf-r>.ctr{align-items:flex-start;text-align:left}
 .etf-lab{display:block;font-size:11.5px;color:#9ca3af;font-weight:600}
 }
-/* v1.2.67: caja de arriba de la tabla (leyenda + Excel), igual que la de Empresas */
-.st-key-fila_excel{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:flex-start!important;justify-content:space-between;gap:4px 14px!important;margin:0 0 2px!important}
-.st-key-fila_excel [data-testid="stMarkdownContainer"]{margin-bottom:0!important}
-.st-key-fila_excel>div{width:auto!important;flex:0 0 auto;min-width:0}
+/* v1.5.8: la caja de arriba (leyenda + Excel) ya no existe: el ícono de Excel flota sobre los títulos; su estilo está en ui/tabla_visual.py */
 /* pagina de cada ETF */
 .etf-ico{width:72px;height:72px;border-radius:16px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:42px;line-height:1;flex:none;overflow:hidden}
 .etf-ico svg{width:72px;height:72px;display:block}

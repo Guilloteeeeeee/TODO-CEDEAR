@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.7"
+APP_VERSION = "1.5.8"
 
 import re
 import contextlib
@@ -866,10 +866,7 @@ def _boton_excel_etfs(mostrados, guardados, precios, fecha):
     args = dict(data=datos, file_name=f"todocedears_etfs_{dia}.xlsx", key="descarga_excel",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
                 help="Baja un archivo .xlsx con la tabla tal como la ves ahora: los ETFs que quedaron con tu filtro y en el orden elegido. Es información, no una recomendación.")
-    try:
-        st.download_button("⬇ Descargar tabla en Excel", type="tertiary", **args)
-    except TypeError:       # Streamlit viejo, sin type="tertiary"
-        st.download_button("⬇ Descargar tabla en Excel", **args)
+    st.download_button("Descargar tabla en Excel", **args)     # v1.5.8: se ve solo el ícono (flecha + logo de Excel); el texto queda para lectores de pantalla
 
 
 def render_tabla_etfs(etfs, sel):
@@ -889,7 +886,6 @@ def render_tabla_etfs(etfs, sel):
     mostrados = _ui_etfs.ordenar(_filtrar_etfs_tecnicos(_etfs.filtrar(etfs, "", sel)), guardados, precios, sort_col, sort_asc)
     st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
     with st.container(key="fila_excel"):
-        st.markdown('<div class="tv-ley">Presioná en el ETF para información detallada.</div>', unsafe_allow_html=True)
         _boton_excel_etfs(mostrados, guardados, precios, fecha_g)
     # Celular: el selector reemplaza a los títulos
     opciones = _ui_etfs.opciones_orden()
@@ -1134,10 +1130,7 @@ def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
     args = dict(data=datos, file_name=f"todocedears_{dia}.xlsx", key="descarga_excel",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",
                 help="Baja un archivo .xlsx con la tabla tal como la ves ahora: las empresas que quedaron con tus filtros, en el orden elegido y con las variables que tenés a la vista. Es información, no una recomendación.")
-    try:
-        st.download_button("⬇ Descargar tabla en Excel", type="tertiary", **args)
-    except TypeError:       # Streamlit viejo, sin type="tertiary"
-        st.download_button("⬇ Descargar tabla en Excel", **args)
+    st.download_button("Descargar tabla en Excel", **args)     # v1.5.8: se ve solo el ícono (flecha + logo de Excel); el texto queda para lectores de pantalla
 
 
 def _orden_efectivo(sort_col, extras=(), visibles=None):
@@ -1258,7 +1251,6 @@ def render_main_table(df: pd.DataFrame, filtros: dict, fecha=None, aviso="", lug
     # El boton de Excel esta arriba de la tabla, a la derecha (v1.2.49)
     if lugar_excel is not None:
         with lugar_excel:
-            st.markdown('<div class="tv-ley">Presioná en la empresa para información detallada.</div>', unsafe_allow_html=True)
             _boton_excel(df_show, fecha, aviso, extras, visibles)
     render_tabla_visual(df_show, filtros.get("estado_url"), fecha, extras, visibles)
 

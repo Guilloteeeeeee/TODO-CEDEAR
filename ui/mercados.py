@@ -16,7 +16,6 @@ INDICES = [
     ("Bono EE.UU. 10 años", "^TNX", 3, " %"),
     ("VIX", "^VIX", 2, ""),
     ("Oro (US$)", "GC=F", 2, ""),
-    ("Petróleo WTI (US$)", "CL=F", 2, ""),
     ("Petróleo Brent (US$)", "BZ=F", 2, ""),
     ("Bitcoin (US$)", "BTC-USD", 0, ""),
     ("Euro Stoxx 50", "^STOXX50E", 2, ""),
@@ -146,10 +145,14 @@ CSS_BARRA = """
 .mk-bar{width:100vw;margin-left:calc(50% - 50vw);background:#fff;border-bottom:1px solid #e3e8ee;box-sizing:border-box}
 .mk-in{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:0 clamp(8px,2vw,32px);-webkit-overflow-scrolling:touch}
 .mk-it{flex:none;display:flex;flex-direction:column;gap:1px;padding:7px 18px 7px 0;margin-right:18px;border-right:1px solid #eef1f5;white-space:nowrap;line-height:1.25}
-.mk-it:last-child{border-right:0}
+.mk-it:nth-last-child(2){border-right:0}
 .mk-n{font-size:.78rem;font-weight:700;color:#1d4ed8}
 .mk-v{font-size:.95rem;font-weight:700;color:#111827}
 .mk-c{font-size:.78rem;font-weight:700;min-height:1em}
+.mk-d{justify-content:center}
+.mk-fl{position:sticky;right:0;flex:none;align-self:stretch;width:40px;margin-left:-40px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;box-sizing:border-box;background:linear-gradient(to right,rgba(255,255,255,0),#fff 60%);color:#1d4ed8;font-size:1.7rem;font-weight:700;line-height:1;pointer-events:none}
+@supports (animation-timeline:scroll()){.mk-fl{animation:mk-fl linear both;animation-timeline:scroll(nearest inline)}}
+@keyframes mk-fl{0%,90%{opacity:1}100%{opacity:0}}
 .mk-sube{color:#15803d}.mk-baja{color:#b91c1c}.mk-igual{color:#6b7280}
 """
 
@@ -161,6 +164,10 @@ def barra_html(items):
     celdas = []
     for it in items:
         cls = {1: "mk-sube", -1: "mk-baja"}.get(it["signo"], "mk-igual")
-        cambio = f'{html.escape(it["var"])} {html.escape(it["pct"])}' if it["var"] else "venta"
-        celdas.append(f'<div class="mk-it"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span><span class="mk-c {cls}">{cambio}</span></div>')
-    return f'<style>{CSS_BARRA}</style><div class="mk-bar"><div class="mk-in">{"".join(celdas)}</div></div>'
+        if it["var"]:
+            celdas.append(f'<div class="mk-it"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span>'
+                          f'<span class="mk-c {cls}">{html.escape(it["var"])} {html.escape(it["pct"])}</span></div>')
+        else:       # dólares: sin tercera línea; nombre y valor quedan centrados en el casillero
+            celdas.append(f'<div class="mk-it mk-d"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span></div>')
+    flecha = '<div class="mk-fl" aria-hidden="true">&rsaquo;</div>'   # puntita: avisa que se puede deslizar hacia la derecha
+    return f'<style>{CSS_BARRA}</style><div class="mk-bar"><div class="mk-in">{"".join(celdas)}{flecha}</div></div>'

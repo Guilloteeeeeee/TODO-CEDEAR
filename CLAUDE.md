@@ -32,7 +32,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | Archivo | Qué hace |
 |---|---|
 | `marca.py` | Franja negra, menú lateral (`menu_lista_html`, `.mn-sep`), pie (`pie_html`), modo oscuro. |
-| `tabla_visual.py` | Tabla de empresas (celdas, columna Valoración, ayudas de columnas). |
+| `tabla_visual.py` | Tabla de empresas (celdas, columna Valoración, ayudas de columnas). Desde la v1.5.8 el CSS de `.st-key-fila_excel` deja el Excel como ícono flotante sobre los títulos (alto 0) y el «?» de Empresa/ETF lleva la frase «Presioná en…»; vale también para ETFs. |
 | `ficha.py` | Página de empresa en solapas: resumen, Análisis Fundamental (`tiles_analisis_v4`, `tab_analisis`), valuación, dividendos, competidores, directivos, estados. |
 | `af_pdf.py` | PDF del Análisis Fundamental. |
 | `etfs.py`, `etf_iconos.py` | Tabla y página de ETFs, íconos SVG por categoría (`SIN_PAISES`). |

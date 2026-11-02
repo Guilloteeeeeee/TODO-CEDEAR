@@ -93,6 +93,7 @@ def escala_valoracion_html(mostrar_gris=False):
 # clave de columna -> (titulo, texto). Las columnas que se suman desde "Variables a ver en la tabla" usan el texto de ui/criterios.py.
 # Empresa (v1.2.49) va sin titulo adelante: es la frase tal cual, con la ultima oracion en azul.
 AYUDA_COLUMNAS = {
+    "nombre": ("Empresa", "Presioná en la empresa para información detallada."),
     "sector_txt": ("Sector e Industria", "A qué se dedica la empresa: su sector y su industria. Es solo información: no cambia la valoración ni el puntaje."),
     "precio_actual": ("Precio", "Lo que cuesta una acción en su mercado de origen, en dólares (US$). Se actualiza con Yahoo Finance cada pocos minutos "
                                 "(puede tener demora); si no responde, queda el de la última actualización de los datos{fecha}. "
@@ -322,12 +323,20 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 .tv2-si{font-size:12.5px;font-weight:400;color:#4b5563}
 .tv2-ni{font-size:12.5px;color:#6b7280}
 .tv-buscar{margin:6px 0 4px}
-/* v1.2.58: la leyenda "Presioná en la empresa..." se ve siempre (mismo estilo que el link del Excel) en la misma fila que el Excel; ya no hay "?" en Empresa */
-.st-key-fila_excel{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:flex-start!important;justify-content:space-between;gap:4px 14px!important;margin:0 0 2px!important}
-.st-key-fila_excel .st-key-descarga_excel{margin-top:0}
-.st-key-fila_excel [data-testid="stMarkdownContainer"]{margin-bottom:0!important}
-.st-key-fila_excel>div{width:auto!important;flex:0 0 auto;min-width:0}
-.tv-ley{display:block;width:fit-content;font-size:13px;font-weight:400;color:#4b5563;padding:2px 0 0;line-height:1.5}
+/* v1.5.8: sin leyenda ni link de Excel arriba. La ayuda "Presioná en la empresa..." va en un "?" del título Empresa; el Excel es un ícono (flecha + logo)
+   que no ocupa lugar: la caja mide 0 y el botón flota sobre la esquina derecha de los títulos. En el celular (sin títulos) vuelve a su lugar, chico y a la derecha. */
+.st-key-fila_excel{position:relative;display:block!important;height:0!important;min-height:0!important;margin:0 0 -1rem!important;padding:0!important;overflow:visible!important;z-index:6}
+.st-key-fila_excel .st-key-descarga_excel{position:absolute!important;right:6px;top:-40px;width:auto!important;margin:0!important}
+.st-key-fila_excel .st-key-descarga_excel button{width:54px;min-height:34px;height:34px;padding:0!important;border:1px solid #d5dde6;border-radius:9px;font-size:0!important;color:transparent!important;box-shadow:0 1px 3px rgba(15,23,42,.18);
+  background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 32'%3E%3Cpath d='M11 6v14M5.5 14.5 11 20l5.500-5.500' fill='none' stroke='%23374151' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='22' y='3' width='21' height='26' rx='3' fill='%231D6F42'/%3E%3Cpath d='M28 10.500l9 11M37 10.500l-9 11' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/38px 26px no-repeat}
+.st-key-fila_excel .st-key-descarga_excel button *{font-size:0!important;color:transparent!important}
+.st-key-fila_excel .st-key-descarga_excel button:hover{background-color:#eef2f7;border-color:#9fb3c8}
+/* el "?" del título Empresa / ETF (la explicación se ve al pasar el mouse) */
+.st-key-tvh_nombre button p::after,.st-key-tvh_e_nombre button p::after{content:"?";display:inline-block;width:16px;height:16px;line-height:15px;margin-left:6px;border:1.5px solid currentColor;border-radius:50%;font-size:11px;font-weight:700;text-align:center;vertical-align:1px;opacity:.85}
+@media (max-width:900px){
+.st-key-fila_excel{height:auto!important;margin:0 0 .25rem!important;display:flex!important;justify-content:flex-end}
+.st-key-fila_excel .st-key-descarga_excel{position:static!important}
+}
 /* "Variables a ver en la tabla" (v1.2.49): pastillas que se prenden y se apagan; las elegidas llevan tilde y van en negrita */
 .vars-t{font-size:14px;font-weight:700;color:#111827;margin:2px 0 6px}
 .st-key-vars_chips,.st-key-vars_chips_mult,.st-key-vars_chips_tec{display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:7px 8px!important;margin:4px 0 6px}
