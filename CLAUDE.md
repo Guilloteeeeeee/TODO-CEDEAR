@@ -73,4 +73,4 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 4. Zip para Guille: `git archive --format=zip HEAD -o TodoCedears_vX.Y.Z.zip`.
 
 ## Pendientes
-Ver `PENDIENTES_01-12.md` (lista del 01/12/2026 y pendientes urgentes al principio).
+Ver `PENDIENTES_01-12.md` (lista del 01/12/2026 y pendientes urgentes al principio). Los informes (Análisis Fundamental) se trabajan en una charla aparte: ver `TRASPASO_ANALISIS.md`.
