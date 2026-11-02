@@ -67,6 +67,7 @@ _K_MONTO = ("valuacion", "valorizado", "valorizacion", "valor actual", "valor de
             "tenencia", "saldo", "position value")
 _K_MONTO_MAL = ("precio", "variacion", "resultado", "ganancia", "perdida", "rendimiento", "costo", "compra", "ppc", "inicial", "coste", "diario", "dia", "%", "pnl", "p l", "tna", "tir",
                 "cantidad", "nominal", "disponible", "cotiz")
+_K_PAIS = ("pais", "country", "region", "origen", "emisor pais")
 _K_TIPO = ("tipo", "clase", "categoria", "rubro", "panel", "mercado", "asset class", "sector")
 _K_CANT = ("cantidad", "nominales", "cant", "tenencia", "quantity", "unidades", "titulos")
 _K_PRECIO = ("ultimo", "precio actual", "precio", "cotizacion", "price")
@@ -107,7 +108,7 @@ def _columnas(cols):
     ipeso = _buscar(n, _K_PESO, usados=(it,))
     if not montos and ipeso is not None and not (ic is not None and ip is not None):
         montos = [(ipeso, None)]                                            # archivo con solo porcentajes de cada posicion
-    return {"ticker": it, "monto": montos, "tipo": _buscar(n, _K_TIPO, usados=(it,)), "cantidad": ic, "precio": ip,
+    return {"ticker": it, "monto": montos, "tipo": _buscar(n, _K_TIPO, usados=(it,)), "pais": _buscar(n, _K_PAIS, usados=(it,)), "cantidad": ic, "precio": ip,
             "moneda": _buscar(n, _K_MONEDA, usados=(it,)), "peso": ipeso}
 
 
@@ -194,7 +195,7 @@ def leer_tabla_info(filas):
     else:           # sin encabezado: ticker = primera columna, monto = primera columna que tenga numeros
         ancho = max(len(f) for f in filas)
         im = next((j for j in range(1, ancho) if _es_numerica(j, filas)), 1)
-        c = {"ticker": 0, "monto": [(im, None)], "tipo": next((j for j in range(1, ancho) if j != im and not _es_numerica(j, filas)), None), "cantidad": None, "precio": None,
+        c = {"ticker": 0, "monto": [(im, None)], "tipo": next((j for j in range(1, ancho) if j != im and not _es_numerica(j, filas)), None), "pais": None, "cantidad": None, "precio": None,
              "moneda": None, "peso": None}
         datos = filas
     it = c["ticker"]
@@ -230,7 +231,8 @@ def leer_tabla_info(filas):
         if re.match(r"^etf\s+", tk, re.I) and not clase_de_tipo(tipo):
             tipo = "ETF"
         mo = mo_enc or (moneda_de(f[c["moneda"]]) if c["moneda"] is not None and c["moneda"] < len(f) else None) or moneda_ticker(tk) or mon_global
-        out.append({"ticker": _ticker_limpio(tk), "monto": m, "tipo": tipo, "moneda": mo})
+        pais = str(f[c["pais"]] or "").strip() if c.get("pais") is not None and c["pais"] < len(f) else ""
+        out.append({"ticker": _ticker_limpio(tk), "monto": m, "tipo": tipo, "moneda": mo, "pais": pais})
     # una empresa con varias compras (lotes) es UNA posicion: se suman
     agr, orden = {}, []
     for p in out:
@@ -238,6 +240,7 @@ def leer_tabla_info(filas):
         if k in agr:
             agr[k]["monto"] += p["monto"]
             agr[k]["tipo"] = agr[k]["tipo"] or p["tipo"]
+            agr[k]["pais"] = agr[k].get("pais") or p.get("pais")
         else:
             agr[k] = dict(p)
             orden.append(k)
@@ -622,19 +625,21 @@ def plantilla_excel():
     wb = Workbook()
     ws = wb.active
     ws.title = "Cartera"
-    ws.append(["Ticker", "Monto", "Moneda (opcional)", "Tipo (opcional)"])
-    for r in (("AAPL", 1500, "USD", ""), ("KO", 800, "USD", ""), ("SPY", 3000, "USD", ""), ("AL30", 2000000, "ARS", "Renta fija soberana"), ("ON YPF", 1000, "USD", "Renta fija corporativa"),
-              ("GLD", 500, "USD", "Oro"), ("BTC", 300, "USD", "Cripto"), ("Caución", 500000, "ARS", "Efectivo")):
+    ws.append(["Ticker", "Monto", "Moneda (opcional)", "Tipo (opcional)", "País (opcional)"])
+    for r in (("AAPL", 1500, "USD", "", ""), ("KO", 800, "USD", "", ""), ("SPY", 3000, "USD", "", ""), ("AL30", 2000000, "ARS", "Renta fija soberana", "Argentina"),
+              ("ON YPF", 1000, "USD", "Renta fija corporativa", "Argentina"), ("Bono del Tesoro EE.UU.", 1000, "USD", "Renta fija soberana", "Estados Unidos"),
+              ("GLD", 500, "USD", "Oro", ""), ("BTC", 300, "USD", "Cripto", ""), ("Caución", 500000, "ARS", "Efectivo", "Argentina")):
         ws.append(list(r))
     ws.append([])
     ws.append(["Monto: el valor actual de cada tenencia. Moneda: USD o ARS (si la dejás vacía se usa la que elijas en la página); todo se pasa a dólares automáticamente con el dólar CCL. "
-               "Tipo: solo hace falta para lo que no es una empresa o ETF de la lista (bonos, obligaciones negociables, fondos, efectivo)."])
+               "Tipo y País: solo hacen falta para lo que no es un CEDEAR, una empresa o un ETF de la lista (bonos, obligaciones negociables, fondos, efectivo)."])
     for c in ws[1]:
         c.font = Font(bold=True)
     ws.column_dimensions["A"].width = 14
     ws.column_dimensions["B"].width = 12
     ws.column_dimensions["C"].width = 18
     ws.column_dimensions["D"].width = 26
+    ws.column_dimensions["E"].width = 18
     b = io.BytesIO()
     wb.save(b)
     return b.getvalue()
@@ -719,6 +724,10 @@ def clasificar(pos, empresas, etfs):
 
 def region(pais):
     p = norm(pais)
+    if p in ("global", "mundial", "mundo", "internacional", "world"):
+        return "global"
+    if p in ("emergentes", "emergente", "mercados emergentes", "latam", "latinoamerica", "america latina"):
+        return "emergentes"
     return "usa" if p in _USA else "emergentes" if p in _EMERGENTES else "desarrollados" if p else None
 
 
@@ -796,6 +805,7 @@ def fusionar(posiciones):
         if k in agr:
             agr[k]["monto"] += p["monto"]
             agr[k]["tipo"] = agr[k].get("tipo") or p.get("tipo")
+            agr[k]["pais"] = agr[k].get("pais") or p.get("pais")
             n += 1
         else:
             agr[k] = dict(p)
@@ -883,7 +893,10 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
     rf_pos = [p for p in ok if p["clase"] == "rf"]
     rf_total = sum(p["monto"] for p in rf_pos)
     for p in rv + rf_pos:                     # v1.4.6: la geografía contempla renta variable Y renta fija
-        g = _geo_de(p, etfs) if (p["clase"] == "rv" or p["fuente"] == "etf") else _geo_rf(p)
+        if p["fuente"] in ("tipo", "regla") and str(p.get("pais") or "").strip():
+            g = region(p["pais"])                 # v1.4.9: el país que la persona puso en la columna «País»
+        else:
+            g = _geo_de(p, etfs) if (p["clase"] == "rv" or p["fuente"] == "etf") else _geo_rf(p)
         if g:
             geo[g] += p["monto"]
     geo_tot = sum(geo.values())
@@ -1004,7 +1017,7 @@ def devolucion(res, edad, perfil, nombre=""):
         f.append(f"Para una persona de {int(edad)} años{perf}, la composición teórica aproximada de referencia es: " + ", ".join(partes) + ".")
         obj = CM.OBJETIVOS.get(ref[0])
         if obj:
-            f.append(obj)
+            f.append(f"**Objetivo para tu grupo etario:** {obj[0]} **Estrategia:** {obj[1]}")
     pasa = sorted((k for k in claves if d[k] > UMBRAL), key=lambda k: -d[k])
     falta = sorted((k for k in claves if d[k] < -UMBRAL), key=lambda k: d[k])
     refk = (ref[1] if ref else {})
@@ -1027,7 +1040,13 @@ def devolucion(res, edad, perfil, nombre=""):
     else:
         de_ = falta[0]
         orig = max((k for k in claves if k != de_), key=lambda k: d[k])
-        ajustes.append(f"Subir de a poco unos {-d[de_]:.0f} puntos de **{nombres[de_]}**, con lo que se libere de **{nombres[orig]}**. **Por qué:** {_PQ_SUBIR[de_]}.")
+        if d[orig] > UMBRAL:
+            de_donde = f", con lo que se libere de **{nombres[orig]}**"
+        elif pe["efectivo"] > LIQ_MAX:
+            de_donde = ", por ejemplo con parte de la liquidez que excede el rango sugerido"
+        else:
+            de_donde = ", con tus próximos aportes"
+        ajustes.append(f"Subir de a poco unos {-d[de_]:.0f} puntos de **{nombres[de_]}**{de_donde}. **Por qué:** {_PQ_SUBIR[de_]}.")
     det = res.get("rf_det") or {}
     if det.get("ar"):
         f.append("Sobre la renta fija: un bono argentino tiene más riesgo que uno de EE.UU. o de Europa de grado de inversión, y en general cuanto más corto el plazo, menos expuesto está a los cambios que puedan venir. No opinamos sobre ningún bono en particular.")

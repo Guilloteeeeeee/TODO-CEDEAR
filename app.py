@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.4.8"
+APP_VERSION = "1.4.9"
 
 import re
 import contextlib
@@ -1592,7 +1592,7 @@ def _evaluar_cartera(df, C, CV):
             except Exception:  # noqa: BLE001
                 perfil = st.radio("Perfil de Inversor (obligatorio)", perfiles, index=None, horizontal=True, key="cr_perfil")
         st.markdown('<div class="cv-ayuda">A continuación subí el Excel o el PDF que descargaste de tu broker. Si tenés instrumentos que no son CEDEARs, indicá la categoría a la que pertenecen en una columna «Tipo» '
-                    '(Renta fija, Oro, Cripto, Efectivo…). Si no tenés un Excel o PDF y querés cargarlo a mano, usá el Excel de ejemplo. '
+                    '(Renta fija, Oro, Cripto, Efectivo…) y el país en una columna «País» (Argentina, Estados Unidos, Europa…). Si no tenés un Excel o PDF y querés cargarlo a mano, usá el Excel de ejemplo. '
                     '<b>No intentes subir capturas de pantalla</b>, dado que el análisis se vuelve dificultoso e inexacto.</div>', unsafe_allow_html=True)
         lugar_tc = st.container()
         try:
@@ -1974,8 +1974,8 @@ def main():
                 df = df_p
                 f_p = info_p.get("fecha")
                 # v1.2.48: el pie no dice de que fuente vino cada precio (dato interno nuestro): solo la fecha y la hora
-                texto_precios = (f"Precios en dólares al <b>{f_p.strftime('%d/%m/%Y')}</b> (consultados {info_p.get('hora')})" if f_p
-                                 else f"Precios en dólares (consultados {info_p.get('hora')})")
+                # v1.4.9 (pedido de Guille): no se muestra la fecha del cache (puede quedar vieja); solo la de los precios de hoy, como "Datos al dd/mm/aaaa (hh:mm)"
+                texto_precios = (f"Datos al <b>{f_p.strftime('%d/%m/%Y')}</b> ({info_p.get('hora')})" if f_p else f"Datos de hoy ({info_p.get('hora')})")
         except Exception:  # noqa: BLE001
             pass
 
@@ -1989,7 +1989,7 @@ def main():
     cargando_inicio.empty()
     if df is None or df.empty:
         st.error("No se pudieron cargar datos. Intentá de nuevo en unos minutos.")
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, precios=texto_precios), unsafe_allow_html=True)
         st.stop()
 
     # Estilos de la tabla, de la escala, de la pagina de empresa y de las banderas (una sola vez por pagina)
@@ -2005,14 +2005,14 @@ def main():
     # v1.2.64: pagina de un ETF (?etf=TICKER)
     if etf_sel:
         render_pagina_etf(df, etf_sel, fecha)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
         return
 
     # Pagina de una empresa (se abre al tocar su nombre en la tabla): ?empresa=TICKER
     empresa = st.query_params.get("empresa")
     if empresa:
         fuente_emp = render_pagina_empresa(df, empresa, fecha)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=fuente_emp or texto_fuente()), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, precios=texto_precios, fuente=fuente_emp or texto_fuente()), unsafe_allow_html=True)
         return
 
     # v1.2.83: Filtro, Noticias Calientes y Calendario ya no van arriba de la tabla: viven en el menu lateral (las 3 rayitas), junto con Evaluá tu Portfolio,
@@ -2043,7 +2043,7 @@ def main():
         render_tabla_etfs(_etfs_lista(), sel_etfs)
         if noticias_pendientes:
             render_noticias(df, descarga_noticias, lugar_noticias, directo=True)
-        st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
         return
     # v1.2.49: ya no hay "Cómo leer la tabla" (cada título explica su columna al pasar el mouse); el Excel va arriba de la tabla, a la derecha
     lugar_excel = st.container(key="fila_excel")
@@ -2058,7 +2058,7 @@ def main():
     # Panel de diagnóstico (solo visible si ?debug=1 en la URL)
     render_debug_panel()
 
-    st.markdown(pie_html(APP_VERSION, aviso=aviso, datos_al=fecha, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+    st.markdown(pie_html(APP_VERSION, aviso=aviso, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
 
 
 try:

@@ -577,7 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.4.8 — Conocé tu Rentabilidad rehecha
+### v1.4.9 — objetivos por edad, columna País y pie sin fecha del cache
+- `CM.OBJETIVOS`: objetivo y estrategia de cada grupo etario (diapositivas de Guille); van en la conclusión de Ponderaciones.
+- Columna «País» (opcional) en el Excel: para lo que no es CEDEAR/empresa/ETF de la lista, el país declarado entra en la diversificación geográfica. Plantilla de ejemplo con País.
+- Pie de página: ya no se muestra la fecha del cache («Datos al 22/10»). Solo «Datos al dd/mm/aaaa (hh:mm)» de los precios de hoy.
+- Prueba con 70 carteras de todo tipo × 8 edades × 3 perfiles (solo efectivo, solo cripto, solo bonos, solo ETFs, 1 o 40 acciones, desconocidos…): sin errores. Arreglado: torta vacía con solo liquidez y la sugerencia de dónde sacar la plata cuando no sobra nada.
+
+## v1.4.8 — Conocé tu Rentabilidad rehecha
 - Primero se elige «Sé / No sé las fechas exactas de mis aportes y retiros» (sin opción por defecto), después «Comencemos» (gris hasta elegir); eso decide a qué página va. Hay un botón para volver y cambiar.
 - Todo en dólares (no hay cotización histórica para convertir pesos). Filas de aportes y retiros con campos vacíos en gris claro (sin «None») y tipo Aporte/Retiro sin valor por defecto.
 - Resultado: «Tu Rentabilidad Anualizada en Dólares fue / se encuentra en el rango entre…», Aportes, Retiros, Rendimiento sobre el capital invertido (US$ y %), Período analizado. Letra más grande.

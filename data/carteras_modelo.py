@@ -46,5 +46,21 @@ def referencia(edad, perfil):
     return None
 
 
-# Texto de "objetivo" de cada rango de edad (lo pasa Guille; si falta, la devolución no lo muestra). Clave = nombre del rango (ver RANGOS).
-OBJETIVOS = {}
+# Objetivo y estrategia de cada rango de edad (textos de Guille, diapositivas de Finanzas para Médicos, 02/11/2026). Clave = nombre del rango (ver RANGOS).
+OBJETIVOS = {
+    "menos de 30 años": ("Formar hábitos financieros sólidos, potenciando el crecimiento a largo plazo priorizando activos de mayor riesgo.",
+                         "Acumular capital con mayor ponderación en activos más agresivos aprovechando el amplio horizonte de inversión. Podrán correr riesgos controlados ya que, "
+                         "ante reveses del mercado o decisiones erróneas, tienen más tiempo para resolver situaciones adversas."),
+    "30 a 39 años": ("Mantener el crecimiento de la cartera sin perder de vista la estabilidad y la seguridad de la misma.",
+                     "Acumular capital manteniendo exposición a oportunidades rentables aunque gestionando el riesgo para lograr un equilibrio justo entre activos volátiles y defensivos."),
+    "40 a 49 años": ("Mantener la apreciación del capital con un ajuste progresivo hacia activos más seguros. Dado que el horizonte de inversión se está acortando, "
+                     "el objetivo principal pasa por consolidar el patrimonio logrado.",
+                     "Comenzar a reducir el riesgo de la cartera pero sin dejar de buscar crecimiento."),
+    "50 a 59 años": ("Consolidar el capital y comenzar a reducir el riesgo, preparando una base sólida para la jubilación.",
+                     "Se prioriza la preservación del capital y la generación de estabilidad financiera, mientras se mantiene una exposición moderada al crecimiento "
+                     "priorizando activos que generen ingresos pasivos."),
+    "60 a 69 años": ("Minimizar los riesgos preservando el patrimonio, mientras se busca estabilidad en la generación de ingresos pasivos.",
+                     "Priorizar las inversiones más seguras, con énfasis en activos que generen ingresos constantes."),
+    "70 años o más": ("Priorizar la estabilidad total y asegurar un flujo de ingresos constante que cubra total o parcialmente las necesidades.",
+                      "Buscamos la preservación del capital, enfocándonos solo en activos que generen ingresos predecibles y reduzcan el riesgo de la cartera."),
+}

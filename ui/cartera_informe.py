@@ -45,6 +45,8 @@ def _pie(items, tam, centro=""):
     from reportlab.graphics.charts.doughnut import Doughnut
     from reportlab.graphics.shapes import Drawing, String
     d = Drawing(tam, tam)
+    if not items or sum(v for v, _ in items) <= 0:
+        items = [(1, "#e5e9f0")]          # nada invertido (por ejemplo, solo liquidez): anillo gris
     g = Doughnut()
     g.x, g.y, g.width, g.height = 2, 2, tam - 4, tam - 4
     g.data = [max(v, 0.01) for v, _ in items]
@@ -182,7 +184,7 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     def torta(titulo, items, centro, medida=30 * mm):
         items = [(n, v, c) for n, v, c in items if v >= 0.5]
         tot = sum(v for _, v, _ in items) or 1
-        leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items]
+        leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items] or [Paragraph("Sin inversiones cargadas en estos grupos.", st["pq"])]
         celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 3 * mm, ancho / 2 - medida - 8 * mm])
         celda.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
         return [Paragraph(html.escape(titulo), st["sm"]), celda]

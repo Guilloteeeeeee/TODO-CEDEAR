@@ -116,6 +116,8 @@ def _donut(peso, con_liquidez=True):
 
 def _bloque_donut(titulo, peso, centro, con_liquidez=True):
     tramos, leyenda = _donut(peso, con_liquidez)
+    if not tramos:
+        tramos, leyenda = ["#e5e9f0 0% 100%"], "<div>Sin inversiones cargadas en estos grupos</div><b></b>"
     return (f'<div class="cv-bd"><div class="cv-bt">{html.escape(titulo)}</div><div class="cv-top"><div class="cv-donut" style="background:conic-gradient({", ".join(tramos)})"><b>{centro}</b></div>'
             f'<div class="cv-lg">{leyenda}</div></div></div>')
 
@@ -135,6 +137,8 @@ def _torta(titulo, items, centro=""):
         tramos.append(f"{c} {ini:.2f}% {fin:.2f}%")
         ini = fin
     leyenda = "".join(f'<div><i style="background:{c}"></i>{html.escape(n)}</div><b>{v / tot * 100:.0f} %</b>' for n, v, c in items)
+    if not tramos:
+        tramos, leyenda = ["#e5e9f0 0% 100%"], "<div>Sin datos para graficar</div><b></b>"
     return (f'<div class="cv-bd"><div class="cv-bt">{html.escape(titulo)}</div><div class="cv-top"><div class="cv-donut" style="background:conic-gradient({", ".join(tramos)})"><b>{centro}</b></div>'
             f'<div class="cv-lg">{leyenda}</div></div></div>')
 
