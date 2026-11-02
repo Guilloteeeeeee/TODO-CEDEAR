@@ -32,7 +32,8 @@ def _filas_cartera(res):
 
 def _md(t):
     """**negrita** -> <b>, con el resto escapado (para los párrafos de reportlab)."""
-    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t), quote=False))
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t).replace(" %", "\u00a0%"), quote=False))
+    return re.sub(r"==(.+?)==", r'<font color="#be185d"><b>\1</b></font>', t)
 
 
 def _hex(c):
@@ -127,7 +128,7 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     st = {
         "tit": ParagraphStyle("tit", fontName="Helvetica-Bold", fontSize=17, leading=21, textColor=colors.HexColor("#111827")),
         "sub": ParagraphStyle("sub", fontName="Helvetica", fontSize=9.5, leading=13, textColor=gris),
-        "h": ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=12, leading=15, textColor=azul, spaceBefore=12, spaceAfter=5),
+        "h": ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=12.5, leading=16, textColor=azul, spaceBefore=16, spaceAfter=9),
         "p": ParagraphStyle("p", fontName="Helvetica", fontSize=10, leading=14, textColor=colors.HexColor("#1f2937"), alignment=4),
         "li": ParagraphStyle("li", fontName="Helvetica", fontSize=9.6, leading=13.5, textColor=colors.HexColor("#1f2937"), leftIndent=11, firstLineIndent=-11, spaceAfter=3, alignment=4),
         "pq": ParagraphStyle("pq", fontName="Helvetica", fontSize=8, leading=11, textColor=gris, spaceAfter=3, alignment=4),
@@ -174,16 +175,16 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     def parrafos(frases):
         out = []
         for x in frases:
-            out += [Paragraph(_md(x), st["p"]), Spacer(1, 4)]
+            out += [Paragraph(_md(x), st["p"]), Spacer(1, 6)]
         return out
     # --- tortas
     def torta(titulo, items, centro, medida=30 * mm):
         items = [(n, v, c) for n, v, c in items if v >= 0.5]
         tot = sum(v for _, v, _ in items) or 1
         leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items] or [Paragraph("Sin inversiones cargadas en estos grupos.", st["pq"])]
-        celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 3 * mm, ancho - medida - 8 * mm])
+        celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 4 * mm, 62 * mm], hAlign="CENTER")
         celda.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
-        return [Paragraph(html.escape(titulo), st["sm"]), celda, Spacer(1, 4)]
+        return [Paragraph(html.escape(titulo), ParagraphStyle("smc", parent=st["sm"], alignment=1)), celda, Spacer(1, 8)]
     clases_ = [(CLASES[k], pi[k], CV.COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if pi.get(k, 0) >= 0.05 and (ef or k != "efectivo")]
     el += seccion("Estructura de tu cartera", torta("Tu cartera", clases_, f"{int(edad)} años") + parrafos(sec["Estructura de tu cartera"]), junto=4)
     g = res.get("geo")
@@ -211,7 +212,13 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
         if x.startswith("##"):
             cuerpo += [Paragraph(f"<b>{_md(x.lstrip('#'))}</b>", st["sm"]), Spacer(1, 3)]
         elif m:
-            cuerpo.append(Paragraph(f"<b>{m.group(1)}.</b>&nbsp;{_md(m.group(2))}", st["li"]))
+            txt = m.group(2)
+            if " **Por qué:** " in txt:
+                a_, b_ = txt.split(" **Por qué:** ", 1)
+                txt_h = f'<b>{_md(a_)}</b> <font color="#15803d"><b>Por qué:</b></font> {_md(b_)}'
+            else:
+                txt_h = _md(txt)
+            cuerpo += [Paragraph(f"<b>{m.group(1)}.</b>&nbsp;{txt_h}", st["li"]), Spacer(1, 3)]
         else:
             cuerpo += parrafos([x])
     d1, d2 = despedida(nombre)

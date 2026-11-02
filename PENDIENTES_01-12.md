@@ -7,7 +7,13 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 ## 🔴 URGENTE (pedido de Guille, 01/11/2026: "es super importante", no perder)
 1. **Tareas de él en la PC:** correr `generar_cache.bat` (caché fresco: sin eso la valuación de los 139 informes queda con el precio del 22/10), `bajar_fichas.bat` y `bajar_etfs_yahoo.bat DBB DBA WEAT JMOM ILIT REMX` (los 6 ETFs nuevos). Subir `data/cache_datos.json` y `data/historial` a GitHub.
 2. **Arreglar la valuación de los 139 informes (con Opus, AVISAR ANTES):** hoy "Escrito el 29/10 - 01/11" pero la foto de valuación es del 22/10 (discordancia). Con el caché nuevo: tomar la foto el mismo día que la fecha del informe y revisar que las frases (barata/cara, margen de seguridad) sigan teniendo sentido. Va junto con el barrido de redacción (palabras repetidas, normas de escritura), las 21 empresas nuevas y las 10 renovaciones.
-3. **Rehacer "Evalúa Gratis tu Portfolio":** su pedido está en `PENDIENTE_evalua_portfolio_01-11-2026.txt`. Primero se le PRESENTA una revisión (qué cambiar y qué sacar) y NO se toca nada hasta su OK. Preguntas suyas a responder: comparar con evaluación anterior, beta de la cartera, cartera en pesos a CCL, más de un broker, captura de pantalla.
+3. ~~Rehacer "Evalúa Gratis tu Portfolio"~~ **HECHO** (v1.4.5 a v1.5.1, con la estructura y el tono del modelo escrito por Guille).
+
+**Cómo lo dejó anotado Guille (02/11/2026):**
+* Correr `generar_cache.bat`, `bajar_fichas.bat` y `bajar_etfs_yahoo.bat DBB DBA WEAT JMOM ILIT REMX`.
+* Renovar la valuación de los 139 informes para que el precio coincida con la fecha escrita.
+* La pasada de redacción, las 21 empresas nuevas y las 10 renovaciones (AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR).
+* Estos tres pendientes se hacen con Opus; avisarle antes de arrancar.
 
 ## A. Antes de mirar nada (tareas de él en su PC)
 - [ ] Actualización trimestral: `generar_cache.bat` (valida antes de reemplazar; si sale rota guarda `data/cache_rechazado.json`) y `bajar_fichas.bat` (sin `data/fichas.json` la ficha depende de Yahoo en vivo).

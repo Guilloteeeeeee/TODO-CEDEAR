@@ -577,7 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.5.0 — devolución con la forma de escribir de Guille
+### v1.5.1 — evaluación más legible y mapa del código
+- Negritas en las ideas clave y los datos destacados en el color de la marca (`==dato==`); en los ajustes, la idea en negrita y «Por qué:» en verde. Tortas centradas. Más aire entre títulos y párrafos. «Perfil Agresivo» con mayúsculas. Sectores GICS confirmados.
+- `CLAUDE.md`: mapa del código para que cada sesión arranque sin releer toda la app. Pruebas de la evaluación dentro del repo (`tests/`).
+
+## v1.5.0 — devolución con la forma de escribir de Guille
 - Estructura y tono de su modelo (Analisis_cartera_escrito_por_mi.docx): «Estimado {nombre} (edad - perfil).», «Todo inversor de éxito…», Objetivo como inversor (`CM.OBJETIVO_RESUMEN`, con su redacción), Estructura de tu cartera (torta del inversor), Diversificación geográfica (torta), Diversificación sectorial (torta), Liquidez, Conclusiones finales («En orden de importancia te enumeramos qué ajustaríamos», ajustes en positivo con «Por qué:») y despedida «Hasta aquí nuestro aporte… Abrazo grande y buenas inversiones.».
 - En cada apartado: primero lo que notamos y después las bases teóricas, que van siempre. Sin malas noticias ni tono de reto (sin «te pasás», «te faltan», «Ojo», «demasiado»); párrafos sin íconos de alerta. Oro y cripto dentro de Estructura.
 - Prueba de tono incluida en test_v149 (más de 19.000 chequeos sobre 70 carteras de todo tipo).

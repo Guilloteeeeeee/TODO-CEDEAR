@@ -17,7 +17,7 @@ CSS = """
 .cv{font-family:inherit;color:#1f2937;margin:0 0 6px}
 .cv-c{background:#fff;border-radius:18px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.08);padding:18px 22px 16px;margin:0 0 16px;position:relative;overflow:hidden}
 .cv-c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--ac,#2563eb)}
-.cv-h{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.cv-h{display:flex;align-items:center;gap:10px;margin:0 0 18px}
 .cv-ic{width:34px;height:34px;border-radius:10px;background:var(--bg,#eff6ff);display:flex;align-items:center;justify-content:center;font-size:18px}
 .cv-h h3{margin:0;font-size:1.12rem;font-weight:800;color:#0f172a;letter-spacing:.1px}
 .cv-h small{margin-left:auto;color:#64748b;font-size:.8rem}
@@ -54,7 +54,7 @@ CSS = """
 .cv-bd{flex:1 1 300px}.cv-bt{font-weight:800;color:#334155;font-size:.92rem;margin:0 0 8px}.cv-bd .cv-donut{width:130px;height:130px}.cv-bd .cv-donut::after{inset:28px}.cv-bd .cv-lg{font-size:.88rem;flex:1 1 140px}
 .cv-dos{display:flex;gap:22px;flex-wrap:wrap}
 .cv-av{background:#f8fafc;border:1px solid #e5e9f0;border-radius:12px;padding:10px 14px;color:#64748b;font-size:.8rem;line-height:1.5;margin:4px 0 8px;text-align:justify}.cv-av p{margin:0 0 6px}
-.cv-p{text-align:justify;line-height:1.62;margin:0 0 10px;font-size:.97rem;color:#1f2937}.cv-sal{font-size:.98rem;line-height:1.6;color:#0f172a;margin:0 0 6px;text-align:justify}.cv-n li>div,.cv-con,.cv-pasos li>div,.cv-intro{text-align:justify}.cv-ayuda{text-align:justify}
+.cv-p{text-align:justify;line-height:1.68;margin:0 0 13px;font-size:.97rem;color:#1f2937}.cv-p:last-child{margin-bottom:2px}.cv-hl{color:#be185d}.cv-pq{color:#15803d;font-weight:800}.cv-dos{justify-content:center}.cv-dos .cv-bd{flex:0 1 430px}.cv-dos .cv-bt{text-align:center}.cv-dos .cv-top{justify-content:center}.cv-c .cv-dos{margin:4px 0 16px}.cv-sal{font-size:.98rem;line-height:1.6;color:#0f172a;margin:0 0 6px;text-align:justify}.cv-n li>div,.cv-con,.cv-pasos li>div,.cv-intro{text-align:justify}.cv-ayuda{text-align:justify}
 @media (max-width:640px){.cv-row{grid-template-columns:1fr auto}.cv-row .cv-bar{grid-column:1 / -1;order:3}.cv-row{grid-template-columns:1fr auto}.cv-donut{margin:0 auto}.cv-c{padding:16px 14px}}
 """
 
@@ -82,7 +82,17 @@ background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);box-shadow:0 1px 2px r
 
 
 def _md(t):
-    return re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t), quote=False))
+    """**negrita** y ==dato destacado== (negrita en el color de la marca)."""
+    t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t).replace(" %", "\u00a0%"), quote=False))
+    return re.sub(r"==(.+?)==", r'<b class="cv-hl">\1</b>', t)
+
+
+def _ajuste(x):
+    """Un ajuste de las conclusiones: la idea en negrita y el «Por qué:» en verde."""
+    if " **Por qué:** " in x:
+        a, b = x.split(" **Por qué:** ", 1)
+        return f'<b>{_md(a)}</b> <b class="cv-pq">Por qué:</b> {_md(b)}'
+    return _md(x)
 
 
 def _card(icono, titulo, cuerpo, ac="#2563eb", bg="#eff6ff", extra_cls="", pie=""):
@@ -202,11 +212,11 @@ def visual_html(res, edad, perfil, nombre="", fecha="", previa=None):
     cuerpo = _parrafos([fr[0]])
     for x in fr[1:]:
         if x.startswith("##"):
-            cuerpo += f'<div class="cv-ay">{_md(x.lstrip("#"))}</div>'
+            cuerpo += f'<div class="cv-ay" style="margin:16px 0 10px">{_md(x.lstrip("#"))}</div>'
         elif not re.match(r"^\d+\. ", x):
             cuerpo += _parrafos([x])
     if pasos:
-        cuerpo += '<ol class="cv-pasos">' + "".join(f"<li><span>{i}</span><div>{_md(x)}</div></li>" for i, x in enumerate(pasos, 1)) + "</ol>"
+        cuerpo += '<ol class="cv-pasos">' + "".join(f"<li><span>{i}</span><div>{_ajuste(x)}</div></li>" for i, x in enumerate(pasos, 1)) + "</ol>"
     d1, d2 = despedida(nombre)
     cuerpo += f'<p class="cv-p" style="margin-top:14px">{html.escape(d1)}</p><p class="cv-p"><b>{html.escape(d2)}</b></p>'
     out.append(_card("🎯", "Conclusiones finales", cuerpo, "#16a34a", "#f0fdf4", "cv-fin"))
