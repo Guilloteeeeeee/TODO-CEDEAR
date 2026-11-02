@@ -1,4 +1,4 @@
-"""Pantalla de "Evaluá tu Cartera" (v1.2.76): tarjetas con gráfico de torta, barras de colores, indicadores y los ajustes en pasos numerados.
+"""Pantalla de "Evaluá tu Cartera" (v1.2.76; v1.5.3: estilo igual al del resto del sitio): tarjetas con tortas y los ajustes numerados.
 Toma los resultados de ui/cartera.py (los mismos que usa el informe PDF) y solo se ocupa de cómo se ve. No muestra las carteras de referencia."""
 import html
 import re
@@ -10,16 +10,15 @@ COL_CLASE = {"rv": "#2563eb", "rf": "#7c3aed", "efectivo": "#14b8a6", "oro": "#f
 COL_GEO = {"usa": "#2563eb", "desarrollados": "#0ea5e9", "emergentes": "#f97316", "fuera_sd": "#8b5cf6", "global": "#14b8a6", "sin": "#cbd5e1"}
 NOM_GEO = {"usa": "Estados Unidos", "desarrollados": "Otros desarrollados", "emergentes": "Emergentes", "fuera_sd": "Fuera de EE.UU. (sin detalle)", "global": "Global (mezcla)", "sin": "Sin ubicar"}
 COL_SUP = {"defensivo": "#16a34a", "sensible": "#2563eb", "ciclico": "#f59e0b"}
-NOM_SUP = {"defensivo": "Defensivas", "sensible": "Sensibles", "ciclico": "Cíclicas"}
+NOM_SUP = {"defensivo": "Defensivo", "sensible": "Sensible", "ciclico": "Cíclico"}
+COL_GICS = ["#2563eb", "#16a34a", "#f59e0b", "#ec4899", "#14b8a6", "#7c3aed", "#f97316", "#0ea5e9", "#84cc16", "#e11d48", "#64748b"]
 ICONO = {"ok": "✓", "warn": "!", "info": "i"}
 
 CSS = """
 .cv{font-family:inherit;color:#1f2937;margin:0 0 6px}
-.cv-c{background:#fff;border-radius:18px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 24px rgba(15,23,42,.08);padding:18px 22px 16px;margin:0 0 16px;position:relative;overflow:hidden}
-.cv-c::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--ac,#2563eb)}
-.cv-h{display:flex;align-items:center;gap:10px;margin:0 0 18px}
-.cv-ic{width:34px;height:34px;border-radius:10px;background:var(--bg,#eff6ff);display:flex;align-items:center;justify-content:center;font-size:18px}
-.cv-h h3{margin:0;font-size:1.12rem;font-weight:800;color:#0f172a;letter-spacing:.1px}
+.cv-c{background:#fff;border:1px solid #e3e8ee;border-radius:14px;padding:16px 22px 14px;margin:0 0 14px}
+.cv-h{display:flex;align-items:center;gap:10px;margin:0 0 14px;padding:0 0 10px;border-bottom:1px solid #eef1f4}
+.cv-h h3{margin:0;font-size:1.18rem;font-weight:700;color:#111827}
 .cv-h small{margin-left:auto;color:#64748b;font-size:.8rem}
 .cv-top{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
 .cv-donut{width:170px;height:170px;border-radius:50%;position:relative;flex:none}
@@ -45,16 +44,16 @@ CSS = """
 .cv-b{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:800;color:#fff;margin-top:1px;background:#64748b}
 .warn .cv-b{background:#f97316}.ok .cv-b{background:#16a34a}
 .cv-sec{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 6px}.cv-sec span{background:#f1f5f9;border-radius:8px;padding:3px 9px;font-size:.8rem;color:#334155}.cv-sec b{color:#0f172a}
-.cv-fin{background:linear-gradient(135deg,#f0fdf4 0%,#ecfeff 100%)}
 .cv-con{font-size:1rem;line-height:1.6;margin:0 0 12px;color:#0f172a}
 .cv-pasos{list-style:none;margin:0;padding:0;counter-reset:p}
-.cv-pasos li{display:flex;gap:12px;align-items:flex-start;margin:0 0 9px;font-size:.96rem;line-height:1.5;background:#fff;border-radius:12px;padding:10px 14px;box-shadow:0 1px 2px rgba(15,23,42,.06)}
-.cv-pasos li span{flex:none;width:26px;height:26px;border-radius:50%;background:#16a34a;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem}
-.cv-ay{font-weight:800;color:#166534;margin:0 0 8px}
+.cv-pasos li{display:flex;gap:10px;align-items:flex-start;margin:0 0 9px;font-size:.97rem;line-height:1.6}
+.cv-pasos li span{flex:none;font-weight:700;color:#111827}
+.cv-ul{margin:0 0 10px 1.2em;padding:0}.cv-ul li{margin:0 0 6px;font-size:.97rem;line-height:1.6;text-align:justify}
+.cv-ay{font-weight:700;color:#111827;margin:0 0 8px}
 .cv-bd{flex:1 1 300px}.cv-bt{font-weight:800;color:#334155;font-size:.92rem;margin:0 0 8px}.cv-bd .cv-donut{width:130px;height:130px}.cv-bd .cv-donut::after{inset:28px}.cv-bd .cv-lg{font-size:.88rem;flex:1 1 140px}
 .cv-dos{display:flex;gap:22px;flex-wrap:wrap}
 .cv-av{background:#f8fafc;border:1px solid #e5e9f0;border-radius:12px;padding:10px 14px;color:#64748b;font-size:.8rem;line-height:1.5;margin:4px 0 8px;text-align:justify}.cv-av p{margin:0 0 6px}
-.cv-p{text-align:justify;line-height:1.68;margin:0 0 13px;font-size:.97rem;color:#1f2937}.cv-p:last-child{margin-bottom:2px}.cv-hl{color:#be185d}.cv-pq{color:#15803d;font-weight:800}.cv-dos{justify-content:center}.cv-dos .cv-bd{flex:0 1 430px}.cv-dos .cv-bt{text-align:center}.cv-dos .cv-top{justify-content:center}.cv-c .cv-dos{margin:4px 0 16px}.cv-sal{font-size:.98rem;line-height:1.6;color:#0f172a;margin:0 0 6px;text-align:justify}.cv-n li>div,.cv-con,.cv-pasos li>div,.cv-intro{text-align:justify}.cv-ayuda{text-align:justify}
+.cv-p{text-align:justify;line-height:1.68;margin:0 0 13px;font-size:.97rem;color:#1f2937}.cv-p:last-child{margin-bottom:2px}.cv-hl{font-weight:700}.cv-dos{justify-content:center}.cv-dos .cv-bd{flex:0 1 430px}.cv-dos .cv-bt{text-align:center}.cv-dos .cv-top{justify-content:center}.cv-c .cv-dos{margin:4px 0 16px}.cv-sal{font-size:.98rem;line-height:1.6;color:#0f172a;margin:0 0 6px;text-align:justify}.cv-n li>div,.cv-con,.cv-pasos li>div,.cv-intro{text-align:justify}.cv-ayuda{text-align:justify}
 @media (max-width:640px){.cv-row{grid-template-columns:1fr auto}.cv-row .cv-bar{grid-column:1 / -1;order:3}.cv-row{grid-template-columns:1fr auto}.cv-donut{margin:0 auto}.cv-c{padding:16px 14px}}
 """
 
@@ -82,21 +81,22 @@ background:linear-gradient(90deg,#e8668f 0%,#f4909f 100%);box-shadow:0 1px 2px r
 
 
 def _md(t):
-    """**negrita** y ==dato destacado== (negrita en el color de la marca)."""
+    """**negrita**, ==dato destacado== (también negrita, en negro) y __cursiva__ (las «Notas» teóricas)."""
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t).replace(" %", "\u00a0%"), quote=False))
-    return re.sub(r"==(.+?)==", r'<b class="cv-hl">\1</b>', t)
+    t = re.sub(r"==(.+?)==", r"<b>\1</b>", t)
+    return re.sub(r"__(.+?)__", r"<i>\1</i>", t)
 
 
 def _ajuste(x):
-    """Un ajuste de las conclusiones: la idea en negrita y el «Por qué:» en verde."""
+    """Un ajuste de las conclusiones: la idea en negrita y el «Por qué:» hasta el final en cursiva."""
     if " **Por qué:** " in x:
         a, b = x.split(" **Por qué:** ", 1)
-        return f'<b>{_md(a)}</b> <b class="cv-pq">Por qué:</b> {_md(b)}'
+        return f"<b>{_md(a)}</b> <i>Por qué: {_md(b)}</i>"
     return _md(x)
 
 
-def _card(icono, titulo, cuerpo, ac="#2563eb", bg="#eff6ff", extra_cls="", pie=""):
-    return (f'<div class="cv-c {extra_cls}" style="--ac:{ac};--bg:{bg}"><div class="cv-h"><div class="cv-ic">{icono}</div><h3>{html.escape(titulo)}</h3>'
+def _card(titulo, cuerpo, pie=""):
+    return (f'<div class="cv-c"><div class="cv-h"><h3>{html.escape(titulo)}</h3>'
             f'{f"<small>{pie}</small>" if pie else ""}</div>{cuerpo}</div>')
 
 
@@ -112,45 +112,40 @@ def _lista(frases):
     return f'<ul class="cv-n">{li}</ul>' if li else ""
 
 
-def _donut(peso, con_liquidez=True):
-    items = [(k, peso[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if peso.get(k, 0) >= 0.05 and (con_liquidez or k != "efectivo")]
-    tot = sum(v for _, v in items) or 1
+def _tramos(items):
+    """Tramos del gráfico (conic-gradient). Una porción chica (por ejemplo 1 %) se dibuja con un mínimo para que se vea; la leyenda lleva el número real."""
+    tot = sum(v for _, v, _ in items) or 1
+    vis = [max(v / tot, 0.03) for _, v, _ in items]
+    sv = sum(vis)
     ini, tramos = 0.0, []
-    for k, v in items:
-        fin = ini + v / tot * 100
-        tramos.append(f"{COL_CLASE[k]} {ini:.2f}% {fin:.2f}%")
+    for (_, _, c), x in zip(items, vis):
+        fin = ini + x / sv * 100
+        tramos.append(f"{c} {ini:.2f}% {fin:.2f}%")
         ini = fin
-    leyenda = "".join(f'<div><i style="background:{COL_CLASE[k]}"></i>{html.escape(CLASES[k])}</div><b>{v / tot * 100:.0f} %</b>' for k, v in items)
-    return tramos, leyenda
+    return tramos
 
 
-def _bloque_donut(titulo, peso, centro, con_liquidez=True):
-    tramos, leyenda = _donut(peso, con_liquidez)
-    if not tramos:
-        tramos, leyenda = ["#e5e9f0 0% 100%"], "<div>Sin inversiones cargadas en estos grupos</div><b></b>"
-    return (f'<div class="cv-bd"><div class="cv-bt">{html.escape(titulo)}</div><div class="cv-top"><div class="cv-donut" style="background:conic-gradient({", ".join(tramos)})"><b>{centro}</b></div>'
-            f'<div class="cv-lg">{leyenda}</div></div></div>')
+def _bloque(items, vacio="Sin datos para graficar"):
+    """Torta con leyenda, sin título ni texto en el centro. items: [(nombre, %, color)]."""
+    items = [(n, v, c) for n, v, c in items if v >= 0.5]
+    tot = sum(v for _, v, _ in items) or 1
+    if items:
+        tramos = _tramos(items)
+        leyenda = "".join(f'<div><i style="background:{c}"></i>{html.escape(n)}</div><b>{v / tot * 100:.0f} %</b>' for n, v, c in items)
+    else:
+        tramos, leyenda = ["#e5e9f0 0% 100%"], f"<div>{vacio}</div><b></b>"
+    return (f'<div class="cv-dos"><div class="cv-bd"><div class="cv-top"><div class="cv-donut" style="background:conic-gradient({", ".join(tramos)})"></div>'
+            f'<div class="cv-lg">{leyenda}</div></div></div></div>')
+
+
+def _bloque_donut(peso, con_liquidez=True):
+    items = [(CLASES[k], peso[k], COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if peso.get(k, 0) >= 0.05 and (con_liquidez or k != "efectivo")]
+    return _bloque([(n, max(v, 0.5), c) for n, v, c in items], "Sin inversiones cargadas en estos grupos")
 
 
 def aviso_html():
     """Aviso Legal de la devolución (texto de Guille). Es el único aviso: no va el aviso largo del sitio."""
     return '<div class="cv-av"><p><b>Aviso Legal:</b> ' + html.escape(AVISO_CARTERA[0]) + "</p></div>"
-
-
-def _torta(titulo, items, centro=""):
-    """Torta con leyenda. items: [(nombre, %, color)]."""
-    items = [(n, v, c) for n, v, c in items if v >= 0.5]
-    tot = sum(v for _, v, _ in items) or 1
-    ini, tramos = 0.0, []
-    for n, v, c in items:
-        fin = ini + v / tot * 100
-        tramos.append(f"{c} {ini:.2f}% {fin:.2f}%")
-        ini = fin
-    leyenda = "".join(f'<div><i style="background:{c}"></i>{html.escape(n)}</div><b>{v / tot * 100:.0f} %</b>' for n, v, c in items)
-    if not tramos:
-        tramos, leyenda = ["#e5e9f0 0% 100%"], "<div>Sin datos para graficar</div><b></b>"
-    return (f'<div class="cv-bd"><div class="cv-bt">{html.escape(titulo)}</div><div class="cv-top"><div class="cv-donut" style="background:conic-gradient({", ".join(tramos)})"><b>{centro}</b></div>'
-            f'<div class="cv-lg">{leyenda}</div></div></div>')
 
 
 def _barra_apilada(partes):
@@ -173,9 +168,25 @@ def _parrafos(frases):
     return "".join(f'<p class="cv-p">{_md(x)}</p>' for x in frases)
 
 
+def _cuerpo(frases):
+    """Párrafos, y las listas con guion (- ) como viñetas."""
+    out, ul = [], []
+    for x in frases:
+        if x.startswith("- "):
+            ul.append(f"<li>{_md(x[2:])}</li>")
+            continue
+        if ul:
+            out.append(f'<ul class="cv-ul">{"".join(ul)}</ul>')
+            ul = []
+        out.append(f'<p class="cv-p">{_md(x)}</p>')
+    if ul:
+        out.append(f'<ul class="cv-ul">{"".join(ul)}</ul>')
+    return "".join(out)
+
+
 def visual_html(res, edad, perfil, nombre="", fecha="", previa=None):
-    """HTML de toda la evaluación. v1.5.0: estructura y tono del modelo escrito por Guille (Estimado…, objetivo como inversor, estructura de tu cartera, diversificación
-    geográfica y sectorial con tortas, liquidez, conclusiones finales con los ajustes en orden de importancia, despedida y aviso legal). Párrafos, sin íconos de alerta."""
+    """HTML de toda la evaluación. v1.5.3: mismo estilo que el resto del sitio (tarjetas blancas, sin íconos ni colores de tarjeta), tortas sin título ni texto adentro,
+    notas teóricas en cursiva, dos tortas en lo sectorial (supersectores y sectores GICS) y «Lo que no tocaríamos» antes de los ajustes."""
     if not res or not res.get("total"):
         return ""
     secs = devolucion(res, edad, perfil, nombre)
@@ -185,40 +196,55 @@ def visual_html(res, edad, perfil, nombre="", fecha="", previa=None):
     ef = res.get("efectivo_propio")
     out = []
     s1, s2 = saludo(nombre, edad, perfil)
-    out.append(_card("👋", "Evaluación de tu Portfolio", f'<p class="cv-p"><b>{html.escape(s1)}</b></p><p class="cv-p">{html.escape(s2)}</p>' + _parrafos(sec.get("Objetivo como inversor", [])),
-                     "#e8668f", "#fff1f5", pie=html.escape(str(fecha))))
-    out.append(_card("⚖️", "Estructura de tu cartera", f'<div class="cv-dos">{_bloque_donut("Tu cartera", pi, f"{int(edad)}<small>años</small>", con_liquidez=bool(ef))}</div>'
-                     + _parrafos(sec["Estructura de tu cartera"]), "#7c3aed", "#f5f3ff"))
+    out.append(_card("Evaluación de tu Portfolio", f'<p class="cv-p"><b>{html.escape(s1)}</b></p><p class="cv-p">{html.escape(s2)}</p>' + _cuerpo(sec.get("Objetivo como inversor", [])),
+                     pie=html.escape(str(fecha))))
+    out.append(_card("Estructura de tu Cartera", _bloque_donut(pi, con_liquidez=bool(ef)) + _cuerpo(sec["Estructura de tu cartera"])))
     g = res.get("geo")
     cuerpo = ""
     if g:
         partes = [(NOM_GEO[k], g[k], COL_GEO[k]) for k in ("usa", "desarrollados", "emergentes", "fuera_sd", "global")]
         partes.append((NOM_GEO["sin"], max(0.0, 100 - sum(v for _, v, _ in partes)), COL_GEO["sin"]))
-        cuerpo = '<div class="cv-dos">' + _torta("Distribución geográfica", partes, "<small>países</small>") + "</div>"
-    out.append(_card("🌎", "Diversificación geográfica", cuerpo + _parrafos(sec["Diversificación geográfica"]), "#0ea5e9", "#f0f9ff"))
+        cuerpo = _bloque(partes)
+    out.append(_card("Diversificación Geográfica", cuerpo + _cuerpo(sec["Diversificación geográfica"])))
     sp = res.get("super")
-    cuerpo = ""
-    if sp:
-        cuerpo = '<div class="cv-dos">' + _torta("Supersectores", [(NOM_SUP[k], sp[k], COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "<small>sectores</small>") + "</div>"
-    out.append(_card("🏭", "Diversificación sectorial", cuerpo + _parrafos(sec["Diversificación sectorial"]), "#f59e0b", "#fffbeb"))
-    out.append(_card("💧", "Liquidez", _parrafos(sec["Liquidez"]), "#14b8a6", "#f0fdfa"))
+    c1 = _bloque([(NOM_SUP[k], sp[k], COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")]) if sp else ""
+    gi = res.get("sectores_gics") or []
+    c2 = _bloque([(n, v, COL_GICS[i % len(COL_GICS)]) for i, (n, v) in enumerate(gi)]) if (sp and gi) else ""
+    out.append(_card("Diversificación Sectorial", c1 + _cuerpo(sec["Diversificación sectorial"]) + c2 + _cuerpo(sec.get("Diversificación sectorial (detalle GICS)", []))))
+    out.append(_card("Liquidez", _cuerpo(sec["Liquidez"])))
     if "Sensibilidad al mercado (beta)" in sec:
-        out.append(_card("📈", "Sensibilidad al mercado (beta)", _parrafos(sec["Sensibilidad al mercado (beta)"]), "#64748b", "#f1f5f9"))
+        out.append(_card("Sensibilidad al mercado (beta)", _cuerpo(sec["Sensibilidad al mercado (beta)"])))
     comp = comparar(previa, res) if previa else []
     if comp:
-        out.append(_card("🔁", "Comparación con tu evaluación anterior", _parrafos(comp), "#8b5cf6", "#f5f3ff"))
+        out.append(_card("Comparación con tu evaluación anterior", _cuerpo(comp)))
     fr = sec["Conclusiones finales"]
-    pasos = [re.sub(r"^\d+\. ", "", x) for x in fr if re.match(r"^\d+\. ", x)]
-    cuerpo = _parrafos([fr[0]])
-    for x in fr[1:]:
+    cuerpo = _cuerpo([fr[0]])
+    i, n_ = 1, 0
+    while i < len(fr):
+        x = fr[i]
         if x.startswith("##"):
-            cuerpo += f'<div class="cv-ay" style="margin:16px 0 10px">{_md(x.lstrip("#"))}</div>'
-        elif not re.match(r"^\d+\. ", x):
-            cuerpo += _parrafos([x])
-    if pasos:
-        cuerpo += '<ol class="cv-pasos">' + "".join(f"<li><span>{i}</span><div>{_ajuste(x)}</div></li>" for i, x in enumerate(pasos, 1)) + "</ol>"
+            cuerpo += f'<div class="cv-ay" style="margin:14px 0 8px">{_md(x.lstrip("#"))}</div>'
+            i += 1
+        elif x.startswith("- "):
+            j = i
+            while j < len(fr) and fr[j].startswith("- "):
+                j += 1
+            cuerpo += _cuerpo(fr[i:j])
+            i = j
+        elif re.match(r"^\d+\. ", x):
+            j = i
+            lis = ""
+            while j < len(fr) and re.match(r"^\d+\. ", fr[j]):
+                n_ += 1
+                lis += f"<li><span>{n_}.</span><div>{_ajuste(re.sub(r'^\d+\. ', '', fr[j]))}</div></li>"
+                j += 1
+            cuerpo += f'<ol class="cv-pasos">{lis}</ol>'
+            i = j
+        else:
+            cuerpo += _cuerpo([x])
+            i += 1
     d1, d2 = despedida(nombre)
     cuerpo += f'<p class="cv-p" style="margin-top:14px">{html.escape(d1)}</p><p class="cv-p"><b>{html.escape(d2)}</b></p>'
-    out.append(_card("🎯", "Conclusiones finales", cuerpo, "#16a34a", "#f0fdf4", "cv-fin"))
+    out.append(_card("Conclusiones Finales", cuerpo))
     out.append(aviso_html())
     return f'<div class="cv">{"".join(out)}</div>'

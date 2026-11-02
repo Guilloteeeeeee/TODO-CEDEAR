@@ -9,7 +9,7 @@ import unicodedata
 
 from data import carteras_modelo as CM
 
-CLASES = {"rf": "Renta fija", "rv": "Renta variable", "oro": "Oro", "cripto": "Criptoactivos", "efectivo": "Liquidez", "otros": "Otras materias primas"}
+CLASES = {"rf": "Renta Fija", "rv": "Renta Variable", "oro": "Oro", "cripto": "Criptoactivos", "efectivo": "Liquidez", "otros": "Otras materias primas"}
 
 SUPERSECTOR_DE = {   # sector de la app -> supersector (estructura Cíclico / Sensible / Defensivo)
     "Materiales Básicos": "ciclico", "REITs": "ciclico", "Bancos y seguros": "ciclico", "Pagos y datos": "ciclico", "Consumo Discrecional": "ciclico",
@@ -822,13 +822,39 @@ def resumen_guardable(res, edad, perfil, fecha):
             "desvio": {k: round(v, 1) for k, v in res.get("desvio", {}).items()}}
 
 
+_MARCA_PDF = "TCRESUMEN1:"
+
+
+def resumen_para_pdf(res, edad, perfil, fecha):
+    """Texto que se guarda adentro del PDF de la evaluación (en sus datos internos, sin que se vea) para poder compararla la próxima vez."""
+    import base64
+    import json
+    return _MARCA_PDF + base64.b64encode(json.dumps(resumen_guardable(res, edad, perfil, fecha), ensure_ascii=False).encode("utf-8")).decode("ascii")
+
+
+def resumen_de_pdf(datos):
+    """Resumen guardado adentro de un PDF de evaluación nuestro, o None si el PDF no es de una evaluación (por ejemplo, el resumen del broker)."""
+    import base64
+    import json
+    try:
+        from pypdf import PdfReader
+        meta = PdfReader(io.BytesIO(datos)).metadata
+        txt = str(getattr(meta, "subject", "") or "")
+        if not txt.startswith(_MARCA_PDF):
+            return None
+        d = json.loads(base64.b64decode(txt[len(_MARCA_PDF):]).decode("utf-8"))
+        return d if isinstance(d, dict) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def comparar(previa, res):
     """Frases que comparan la evaluación anterior (el archivo que subió el inversor) con la de hoy. [] si el archivo no sirve."""
     if not isinstance(previa, dict) or previa.get("formato") != "evaluacion_cartera_v1" or not isinstance(previa.get("peso"), dict):
         return []
     f = []
     ahora = res["peso_inv"]
-    nom = {"rv": "renta variable", "rf": "renta fija", "oro": "oro", "cripto": "criptoactivos", "efectivo": "liquidez (cuentas remuneradas y cauciones)", "otros": "otras materias primas"}
+    nom = {"rv": "Renta Variable", "rf": "Renta Fija", "oro": "Oro", "cripto": "Criptoactivos", "efectivo": "Liquidez (cuentas remuneradas y cauciones)", "otros": "otras materias primas"}
     cambios = []
     for k in ("rv", "rf", "oro", "cripto", "efectivo", "otros"):
         a, b = _flt(previa["peso"].get(k)) or 0.0, ahora.get(k, 0.0)
@@ -949,17 +975,17 @@ def _pts(x):
 
 
 LIQ_MIN, LIQ_MAX = 5.0, 15.0      # v1.4.5 (regla de Guille, 01/11/2026): una liquidez de 5 a 15 % está perfecta; es optativa y va aparte del 100 % invertido
-_NOMBRE_CLASE = {"rv": "renta variable", "oro": "oro", "cripto": "criptoactivos", "efectivo": "liquidez (cuentas remuneradas y cauciones)"}
+_NOMBRE_CLASE = {"rv": "Renta Variable", "oro": "Oro", "cripto": "Criptoactivos", "efectivo": "Liquidez (cuentas remuneradas y cauciones)"}
 
 
-_PQ_SUBIR = {"oro": "el oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre, cuando las acciones caen",
-             "rf": "la renta fija aporta ingresos más previsibles y amortigua las caídas de las acciones",
-             "rv": "a largo plazo la renta variable es lo que más hace crecer el capital por encima de la inflación",
+_PQ_SUBIR = {"oro": "el Oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre, cuando las acciones caen",
+             "rf": "la Renta Fija aporta ingresos más previsibles y amortigua las caídas de las acciones",
+             "rv": "a largo plazo la Renta Variable es lo que más hace crecer el capital por encima de la inflación",
              "cripto": "en dosis chicas puede sumar crecimiento, aunque es muy volátil",
              "efectivo": "la liquidez da margen para imprevistos y para aprovechar oportunidades"}
 _PQ_BAJAR = {"rv": "hoy tenés más riesgo de caída del que suele ser razonable para tu edad y tu perfil",
-             "rf": "con tanta renta fija el capital crece más despacio de lo que suele ser razonable para tu edad y tu perfil",
-             "oro": "el oro no genera ingresos y su precio puede quedarse años sin moverse",
+             "rf": "con tanta Renta Fija el capital crece más despacio de lo que suele ser razonable para tu edad y tu perfil",
+             "oro": "el Oro no genera ingresos y su precio puede quedarse años sin moverse",
              "cripto": "son muy volátiles y una caída fuerte se siente mucho en el total",
              "efectivo": "la plata quieta no rinde y pierde poder de compra con la inflación"}
 
@@ -983,16 +1009,16 @@ _CONT = {"ciclico": "cíclico", "sensible": "sensible", "defensivo": "defensivo"
 _SUPERS_TXT = {"ciclico": "Materiales Básicos, REITs, Financiero y Consumo Discrecional", "sensible": "Comunicación, Industrial, Tecnología y Energía",
                "defensivo": "Consumo Básico, Salud y Servicios Públicos"}
 _POR_QUE_SUMAR = {
-    "rf": "la renta fija aporta ingresos más previsibles y disminuye la volatilidad. Idealmente apuntar a bonos soberanos y corporativos de alto grado de inversión, que son los de menor riesgo de default.",
-    "oro": "el oro le da equilibrio al portfolio en momentos de incertidumbre y contextos de alta inflación.",
-    "rv": "la renta variable es la que más hace crecer el capital a largo plazo. Idealmente de forma diversificada, con empresas sólidas o ETFs.",
+    "rf": "la Renta Fija aporta ingresos más previsibles y disminuye la volatilidad. Idealmente apuntar a bonos soberanos y corporativos de alto grado de inversión, que son los de menor riesgo de default.",
+    "oro": "el Oro le da equilibrio al portfolio en momentos de incertidumbre y contextos de alta inflación.",
+    "rv": "la Renta Variable es la que más hace crecer el capital a largo plazo. Idealmente de forma diversificada, con empresas sólidas o ETFs.",
     "cripto": "en dosis chicas, los criptoactivos pueden sumar crecimiento, siempre sabiendo que son muy volátiles.",
     "efectivo": "las cuentas remuneradas y las cauciones dan estabilidad y disponibilidad inmediata.",
 }
 _POR_QUE_ACERCAR = {
     "rv": "acercarla a la de referencia le baja volatilidad a la cartera, algo acorde a tu momento como inversor.",
     "rf": "acercarla a la de referencia le da más lugar al crecimiento del capital, algo acorde a tu momento como inversor.",
-    "oro": "el oro no genera ingresos y su precio puede quedarse años sin moverse.",
+    "oro": "el Oro no genera ingresos y su precio puede quedarse años sin moverse.",
     "cripto": "son muy volátiles y, con esa ponderación, un movimiento fuerte se siente mucho en el total.",
     "efectivo": "la plata quieta no rinde y pierde poder de compra con la inflación.",
 }
@@ -1015,7 +1041,7 @@ def devolucion(res, edad, perfil, nombre=""):
     varios = any(len(c[3]) > 1 for c in CM.RANGOS if c[0] <= int(edad) <= c[1])
     tu_edad = "tu edad y perfil de riesgo" if varios else "tu edad"
     claves = ("rv", "rf", "efectivo", "oro", "cripto") if ef else ("rv", "rf", "oro", "cripto")
-    nombres = dict(_NOMBRE_CLASE, rf="renta fija")
+    nombres = dict(_NOMBRE_CLASE, rf="Renta Fija")
     ajustes, bien = [], []
 
     def _de(k):
@@ -1026,7 +1052,7 @@ def devolucion(res, edad, perfil, nombre=""):
     if ref:
         res_obj = CM.OBJETIVO_RESUMEN.get(ref[0])
         if res_obj:
-            f.append(f"**Objetivo como inversor:** {res_obj} **Esta premisa es la base de nuestra devolución.**")
+            f.append("**Objetivo:** " + re.sub(r"^normalmente ", "generalmente ", res_obj) + " Esta premisa es la base de nuestra devolución.")
     sec.append(("Objetivo como inversor", f))
     # ---------------- Estructura de tu cartera
     f = []
@@ -1034,23 +1060,23 @@ def devolucion(res, edad, perfil, nombre=""):
     for k in ("rv", "rf"):
         v, r_ = pi.get(k, 0.0), refk.get(k, 0)
         if d.get(k, 0) > UMBRAL:
-            obs.append(f"**la {nombres[k]} ocupa un lugar considerable** en tu portfolio (=={v:.0f} %==)")
+            obs.append(f"**{nombres[k]} ocupa un lugar considerable** en tu portfolio (=={v:.0f} %==)")
         elif d.get(k, 0) < -UMBRAL:
-            obs.append(f"**no tenés {nombres[k]}**" if v < 0.5 else f"**la {nombres[k]} tiene una presencia menor** (=={v:.0f} %==)")
+            obs.append(f"**{nombres[k]} no tiene presencia en tu portfolio**" if v < 0.5 else f"**{nombres[k]} tiene una presencia menor** (=={v:.0f} %==)")
     if obs:
         t = "Al analizar tus posiciones notamos que " + " y que ".join(obs) + "."
     else:
-        t = ("Al analizar tus posiciones notamos que **la distribución entre renta variable y renta fija está muy en línea** con la cartera de referencia para " + tu_edad + ".")
+        t = ("Al analizar tus posiciones notamos que **la distribución entre Renta Variable y Renta Fija está muy en línea** con la cartera de referencia para " + tu_edad + ".")
         bien.append("la distribución entre renta variable y renta fija está muy en línea con la de referencia")
     f.append(t)
     if pi.get("oro", 0) >= 0.5:
-        f.append(f"Tenés =={pi['oro']:.0f} %== en **oro**{_de('oro')}. El oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre.")
+        f.append(f"**Oro** en un =={pi['oro']:.0f} %=={_de('oro')}. El Oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre.")
     elif refk.get("oro", 0) > 0:
-        f.append("**No tenés oro.** El oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre.")
+        f.append("Sería importante considerar al **Oro**. El Oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre.")
     if pi.get("cripto", 0) >= 0.5:
-        f.append(f"Tenés =={pi['cripto']:.0f} %== en **criptomonedas**{_de('cripto')}. Los criptoactivos pueden sumar crecimiento en dosis chicas, pero son muy volátiles.")
+        f.append(f"**Criptomonedas** en un =={pi['cripto']:.0f} %=={_de('cripto')}. Los criptoactivos pueden sumar crecimiento pero son muy volátiles.")
     elif refk.get("cripto", 0) > 0:
-        f.append("**No tenés criptomonedas.** En dosis chicas pueden sumar crecimiento, aunque son muy volátiles.")
+        f.append("Podría considerarse una dosis chica de **Criptomonedas**: pueden sumar crecimiento, aunque son muy volátiles.")
     det = res.get("rf_det") or {}
     if det.get("ar"):
         f.append("Tené presente que los bonos argentinos tienen más riesgo que los de Estados Unidos o Europa de grado de inversión; en general, cuanto más corto el plazo, menos expuestos están a los cambios que puedan venir.")
@@ -1064,8 +1090,8 @@ def devolucion(res, edad, perfil, nombre=""):
         n_ = ", ".join(dict.fromkeys(str(p["ticker"]) for p in res["sin_clasificar"]))
         f.append(f"No pudimos ubicar: {n_} ({res['pct_sin_clasificar']:.0f} % del total), así que quedaron afuera del análisis. Si son bonos, obligaciones negociables, fondos o efectivo, completá las columnas **Tipo** y **País** del Excel.")
     if ref:
-        partes = [f"**{CLASES[k]} {refk[k]:.0f} %**" for k in ("rv", "rf", "oro", "cripto", "efectivo") if refk.get(k, 0) > 0]
-        f.append(f"La cartera teórica de referencia para una persona de {tu_edad} tiene: " + ", ".join(partes[:-1]) + (" y " if len(partes) > 1 else "") + partes[-1] + ".")
+        partes = [f"{CLASES[k]} {refk[k]:.0f} %" for k in ("rv", "rf", "oro", "cripto", "efectivo") if refk.get(k, 0) > 0]
+        f.append(f"__Nota: La cartera teórica de referencia para una persona de {tu_edad} tiene: " + ", ".join(partes[:-1]) + (" y " if len(partes) > 1 else "") + partes[-1] + ".__")
     sec.append(("Estructura de tu cartera", f))
     falta = [k for k in ("rf", "rv", "oro", "efectivo") if k in claves and (d[k] < -UMBRAL or (k == "oro" and pi.get("oro", 0) < 0.5 and refk.get("oro", 0) >= 5))]
     pasa = sorted((k for k in claves if d[k] > UMBRAL), key=lambda k: -d[k])
@@ -1074,7 +1100,7 @@ def devolucion(res, edad, perfil, nombre=""):
         nom_f = [{"rf": "Renta Fija", "rv": "Renta Variable", "oro": "Oro", "efectivo": "Liquidez"}[k] for k in falta]
         pq = [_POR_QUE_SUMAR[k] for k in falta]
         pq_txt = pq[0] + "".join(" " + x[0].upper() + x[1:] for x in pq[1:])
-        pq_txt = pq_txt.replace(" El oro le da", " El oro, por su parte, le da")
+        pq_txt = pq_txt.replace(" El Oro le da", " El Oro, por su parte, le da")
         ajustes.append(f"Aumentar progresivamente la ponderación de {_y(nom_f)}. **Por qué:** {pq_txt}")
     elif pasa:
         k = pasa[0]
@@ -1084,7 +1110,7 @@ def devolucion(res, edad, perfil, nombre=""):
     f = []
     GU, GD, GE = CM.GEOGRAFIA["usa"], CM.GEOGRAFIA["desarrollados"], CM.GEOGRAFIA["emergentes"]
     if pe["rv"] < 1 and pe["rf"] < 1:
-        f.append("Como no tenés renta variable ni renta fija, no hay países para analizar.")
+        f.append("Como no tenés Renta Variable ni Renta Fija, no hay países para analizar.")
     elif not g:
         f.append("No pudimos ubicar por país tus posiciones, así que no podemos analizar este punto. Si cargás la columna **País** del Excel, lo incluimos.")
     else:
@@ -1115,37 +1141,48 @@ def devolucion(res, edad, perfil, nombre=""):
                 bien.append("tu distribución geográfica está muy bien equilibrada")
         if res["geo_ubicado_pct"] < 60:
             f.append("Parte de tu cartera no pudo ubicarse por país, así que esta lectura es parcial. Si completás la columna **País** del Excel, la afinamos.")
-    f.append(f"**La diversificación geográfica es clave.** Por eso, la cartera teórica de referencia pone a Estados Unidos como el país con más asignación (**{GU} %**), sin dejar de lado otros países desarrollados (**{GD} %**) y mercados emergentes (**{GE} %**).")
+    f.append(f"__Nota: La diversificación geográfica es clave. Nuestro enfoque teórico pone a Estados Unidos como el país con más asignación ({GU} %), sin dejar de lado otros países desarrollados ({GD} %) y mercados emergentes ({GE} %).__")
     sec.append(("Diversificación geográfica", f))
-    # ---------------- Diversificación sectorial (+ empresas individuales)
-    f = []
+    # ---------------- Diversificación sectorial: primero los supersectores y después el detalle por sector GICS (+ empresas individuales)
+    f, f2 = [], []
     s = res.get("super")
     SC, SS, SD = CM.SUPERSECTOR["ciclico"], CM.SUPERSECTOR["sensible"], CM.SUPERSECTOR["defensivo"]
+    nota_sup = (f"__Nota: Morningstar divide a la economía en 3 supersectores: Cíclico, Sensible y Defensivo. A su vez, cada uno está conformado por los sectores del GICS: "
+                f"Cíclico ({_SUPERS_TXT['ciclico']}), Sensible ({_SUPERS_TXT['sensible']}) y Defensivo ({_SUPERS_TXT['defensivo']}). "
+                f"Una estructura de cartera que permite soportar los diferentes momentos de los ciclos del mercado con la menor volatilidad posible debería ponderar "
+                f"Defensivo {SD} %, Cíclico {SC} % y Sensible {SS} %.__")
     if pe["rv"] < 1:
-        f.append("Como no tenés renta variable, no hay sectores para analizar.")
+        f.append("Como no tenés Renta Variable, no hay sectores para analizar.")
     elif not s:
-        f.append("No pudimos ubicar por sector tus posiciones de renta variable (los ETFs no se abren por dentro), así que este punto queda sin analizar.")
+        f.append("No pudimos ubicar por sector tus posiciones de Renta Variable (los ETFs no se abren por dentro), así que este punto queda sin analizar.")
+        f.append(nota_sup)
     else:
         dif = {k: s[k] - CM.SUPERSECTOR[k] for k in s}
         sobre = [k for k in ("sensible", "ciclico", "defensivo") if dif[k] > 20]
         sub = [k for k in ("defensivo", "sensible", "ciclico") if dif[k] < -20]
+        gtop = (res.get("sectores_gics") or [None])[0]
+        sup_g = next((SUPERSECTOR_DE[sct] for sct in SUPERSECTOR_DE if gtop and GICS_DE.get(sct) == gtop[0]), None)
         if sobre or sub:
-            partes_s = [f"**empresas del supersector {_CONT[k]} están sobreponderadas** (=={s[k]:.0f} %==)" for k in sobre]
+            partes_s = []
+            for k in sobre:
+                t = f"**empresas del supersector {_CONT[k]} están sobreponderadas** (=={s[k]:.0f} %==)"
+                if gtop and gtop[1] > 35 and sup_g == k:
+                    t += f" a expensas del sector {'tecnológico' if gtop[0] == 'Tecnología' else gtop[0]}"
+                partes_s.append(t)
             partes_s += [(f"**las del supersector {_CONT[k]} están infraponderadas** (=={s[k]:.0f} %==)" if s[k] >= 0.5 else f"**no tenés empresas del supersector {_CONT[k]}**") for k in sub]
             f.append("Analizando tu caso vemos que " + " y ".join(partes_s) + ".")
             for k in sub:
                 if k == "defensivo":
-                    ajustes.append("Sumar empresas defensivas (consumo básico, salud, servicios públicos) para diversificar por sectores. **Por qué:** son las que mejor aguantan cuando la economía se enfría, blindando tu cartera ante recesiones. Además se sostienen muy bien ante correcciones del mercado.")
+                    ajustes.append("Sumar empresas defensivas (consumo básico, salud, servicios públicos) para balancear la cartera. **Por qué:** son las que mejor aguantan cuando la economía se enfría, blindando tu cartera ante recesiones. Además se sostienen muy bien ante correcciones del mercado.")
                 else:
-                    ajustes.append(f"Sumar empresas del supersector {_CONT[k]} ({_SUPERS_TXT[k].lower()}) para diversificar por sectores. **Por qué:** así la cartera no depende tanto de un solo tipo de empresa y se acerca a una estructura que soporta mejor los distintos momentos del ciclo.")
+                    ajustes.append(f"Sumar empresas del supersector {_CONT[k]} ({_SUPERS_TXT[k].lower()}) para balancear la cartera. **Por qué:** así la cartera no depende tanto de un solo tipo de empresa y se acerca a una estructura que soporta mejor los distintos momentos del ciclo.")
         else:
-            f.append(f"Analizando tu caso vemos que **tus empresas están muy bien repartidas entre los supersectores** (defensivo {s['defensivo']:.0f} %, sensible {s['sensible']:.0f} %, cíclico {s['ciclico']:.0f} %).")
+            f.append(f"Analizando tu caso vemos que **tus empresas están muy bien repartidas entre los supersectores** (Defensivo {s['defensivo']:.0f} %, Sensible {s['sensible']:.0f} %, Cíclico {s['ciclico']:.0f} %).")
             bien.append("tus empresas están muy bien repartidas entre los supersectores")
-        gtop = (res.get("sectores_gics") or [None])[0]
+        f.append(nota_sup)
         if gtop and gtop[1] > 35:
             tk_g = [t for sct, lst in (res.get("sector_tk") or {}).items() if GICS_DE.get(sct) == gtop[0] for t in lst]
-            sup_g = next((SUPERSECTOR_DE[sct] for sct in SUPERSECTOR_DE if GICS_DE.get(sct) == gtop[0]), None)
-            f.append(f"Dentro del supersector {_CONT.get(sup_g, '')}, **{gtop[0]}**{f' ({_y(tk_g)})' if tk_g else ''} constituye el =={gtop[1]:.0f} %== de tus posiciones.")
+            f2.append(f"Dentro del supersector {_CONT.get(sup_g, '')}, **{gtop[0]}**{f' ({_y(tk_g)})' if tk_g else ''} constituye el =={gtop[1]:.0f} %== de tus posiciones.")
             ajustes.append(f"Considerar otros sectores además de {gtop[0]}. **Por qué:** si a ese sector le va mal, arrastra a buena parte de tus empresas al mismo tiempo.")
     if pe["rv"] >= 1:
         emp_ps = [p for p in ps if p.get("clase") == "rv" and p.get("fuente") in ("empresa", "regla")]
@@ -1163,7 +1200,7 @@ def devolucion(res, edad, perfil, nombre=""):
                 t += f" {_y([p['ticker'] for p in arriba])} {'superan' if len(arriba) > 1 else 'supera'} el {PESO_MAX:.0f} % de la cartera."
             if len(abajo) >= 2:
                 t += f" {_y([p['ticker'] for p in abajo])} pesan menos del {PESO_MIN:.0f} %."
-            f.append(t)
+            f2.append(t)
         if emp_ps and not arriba and len(abajo) < 2 and n_emp >= EMP_MIN:
             bien.append(f"tenés {n_emp} empresas individuales y cada una pesa entre {PESO_MIN:.0f} y {PESO_MAX:.0f} %")
         elif n_etf and n_emp < EMP_MIN:
@@ -1176,30 +1213,30 @@ def devolucion(res, edad, perfil, nombre=""):
             ajustes.append(f"Si querés diversificar más, ir llevando de a poco las empresas que superan el {PESO_MAX:.0f} % ({_y([p['ticker'] for p in arriba], 3)}) hacia el rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} %. **Por qué:** si una sola empresa tiene un mal momento, con ese peso arrastra mucho al total.")
         if len(abajo) >= 2:
             ajustes.append(f"Las empresas que pesan menos de {PESO_MIN:.0f} % casi no mueven tu cartera: es una decisión tuya si las subís hacia el rango de {PESO_MIN:.0f} a {PESO_MAX:.0f} % o las dejás como están. **Por qué:** con menos de ese peso, aunque la empresa suba mucho, casi no cambia el resultado total.")
-        f.append(f"Nuestra idea en este apartado es presentarte una estructura de cartera que permita soportar los diferentes momentos de los ciclos del mercado con la menor volatilidad posible. "
-                 f"Para ello la diversificación debería contemplar un **{SC} % de ponderación en Cíclicas** ({_SUPERS_TXT['ciclico']}), **{SS} % Sensibles** ({_SUPERS_TXT['sensible']}) y **{SD} % Defensivas** ({_SUPERS_TXT['defensivo']}).")
-        f.append(f"Respecto a la distribución de empresas individuales, la teoría marca que mínimamente hay que tener **entre {EMP_MIN} y {EMP_MAX} posiciones**, con un peso de **{PESO_MIN:.0f} a {PESO_MAX:.0f} %** en cada una. "
-                 "Más de 40 a 50 acciones no disminuye el riesgo de la cartera y expone al inversor a sobrediversificación, lo cual puede atentar contra la rentabilidad. "
-                 "Importante destacar que los ETFs participan en la diversificación, ya que traen muchas empresas dentro contemplando una correcta distribución del riesgo.")
+        f2.append(f"__Respecto a la distribución de empresas individuales, la teoría marca que mínimamente hay que tener entre {EMP_MIN} y {EMP_MAX} posiciones, con un peso de {PESO_MIN:.0f} a {PESO_MAX:.0f} % en cada una. "
+                  "Más de 40 a 50 acciones no disminuye el riesgo de la cartera y expone al inversor a sobrediversificación, lo cual puede atentar contra la rentabilidad. "
+                  "Importante destacar que los ETFs participan en la diversificación, ya que traen muchas empresas dentro contemplando una correcta distribución del riesgo.__")
     sec.append(("Diversificación sectorial", f))
-    # ---------------- Liquidez
+    sec.append(("Diversificación sectorial (detalle GICS)", f2))
+    # ---------------- Liquidez (primero la base teórica y después lo que notamos)
     liq = pe["efectivo"]
     f = []
     if ef:
         f.append(f"Para tu edad, la cartera de referencia incluye la liquidez (cuentas remuneradas y cauciones) como parte central de la cartera: hoy tenés {liq:.0f} %.")
-    elif liq < 0.5:
-        f.append("**Hoy no tenés liquidez cargada.** Es una decisión tuya, pero un colchón así te da margen sin tener que vender inversiones a destiempo.")
-        aj_liq.append(f"Considerar armar un colchón de liquidez de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} %. **Por qué:** te da margen para imprevistos y para aprovechar oportunidades del mercado sin vender inversiones a destiempo.")
-    elif liq > LIQ_MAX:
-        f.append(f"Tenés =={liq:.0f} %== de liquidez, unos {liq - LIQ_MAX:.0f} puntos por encima del rango sugerido. Es seguridad, pero sin rendimiento propio y con la inflación en contra; pasarse de ahí conviene que sea una decisión y no un descuido.")
-        aj_liq.append(f"Llevar la liquidez de a poco hacia el rango de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} %. **Por qué:** la plata quieta no rinde y pierde poder de compra con la inflación.")
-    elif liq >= LIQ_MIN:
-        f.append(f"Tenés =={liq:.0f} %== de liquidez, **dentro del rango sugerido: está perfecto.**")
-        bien.append(f"tu liquidez ({liq:.0f} %) está en un muy buen nivel")
     else:
-        f.append(f"Tenés =={liq:.0f} %== de liquidez, un poco por debajo del rango sugerido.")
-    if not ef:
-        f.append(f"La liquidez (efectivo, cuentas remuneradas, cauciones) es optativa, pero en general habría que contemplar **entre un {LIQ_MIN:.0f} y {LIQ_MAX:.0f} %** para aprovechar oportunidades del mercado.")
+        f.append(f"La liquidez (efectivo, cuentas remuneradas, cauciones) es optativa, pero en general habría que contemplar entre un {LIQ_MIN:.0f} y {LIQ_MAX:.0f} % para aprovechar oportunidades del mercado.")
+        if liq < 0.5:
+            f.append("Notamos que no tenés liquidez cargada. Es una decisión tuya, pero un colchón de liquidez da margen sin tener que vender inversiones a destiempo.")
+            aj_liq.append(f"Considerar armar un colchón de liquidez de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} %. **Por qué:** te da margen para imprevistos y para aprovechar oportunidades del mercado sin vender inversiones a destiempo.")
+        elif liq > LIQ_MAX:
+            f.append(f"Tenés =={liq:.0f} %== de liquidez, unos {liq - LIQ_MAX:.0f} puntos por encima del rango sugerido. Es seguridad, pero sin rendimiento propio y con la inflación en contra puede ser un lastre para tu cartera. "
+                     "Si tu decisión de tener más liquidez disponible es deliberada y consciente está perfecto, respetá tu plan.")
+            aj_liq.append(f"Llevar la liquidez de a poco hacia el rango de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} % a no ser que intencionalmente hayas decidido tener liquidez alta. **Por qué:** la plata quieta no rinde y pierde poder de compra con la inflación.")
+        elif liq >= LIQ_MIN:
+            f.append(f"Tenés =={liq:.0f} %== de liquidez, **dentro del rango sugerido: está perfecto.**")
+            bien.append(f"tu liquidez ({liq:.0f} %) está en un muy buen nivel")
+        else:
+            f.append(f"Tenés =={liq:.0f} %== de liquidez, un poco por debajo del rango sugerido.")
     sec.append(("Liquidez", f))
     # ---------------- Beta (solo si hay datos)
     b = res.get("beta")
@@ -1210,9 +1247,11 @@ def devolucion(res, edad, perfil, nombre=""):
                                                        f"Históricamente, ese nivel significa que tu renta variable {lec}: si el mercado se mueve 10 %, tu renta variable tendió a moverse alrededor de {v * 10:.0f} %. Es una aproximación basada en el pasado, no una predicción."]))
     # ---------------- Conclusiones finales (orden de importancia: ponderaciones, sectores, empresas, geografía, liquidez)
     ajustes += aj_geo + aj_liq
-    f = ["**Armar una cartera lleva tiempo, estudio y decisiones, y detrás de cada posición hay un esfuerzo que se reconoce.** "
-         + (("En tu caso, además, " + "; ".join(bien) + ". ") if bien else "")
-         + "Puede que tu cartera tenga este diseño intencionalmente y lo respetamos. Recordá que nuestro análisis constituye una guía educativa más que una recomendación formal."]
+    f = ["Armar una cartera lleva tiempo, estudio y decisiones, y detrás de cada posición hay un esfuerzo que se reconoce. "
+         "Puede que tu cartera tenga este diseño intencionalmente y lo respetamos. Recordá que nuestro análisis constituye una guía educativa más que una recomendación formal."]
+    if bien:
+        f.append("##Lo que no tocaríamos:")
+        f += [f"- {b_[:1].upper()}{b_[1:]}." for b_ in dict.fromkeys(bien)]
     if ajustes:
         f.append("##En orden de importancia te enumeramos qué ajustaríamos:")
         f += [f"{n}. {a}" for n, a in enumerate(ajustes, 1)]
@@ -1229,12 +1268,10 @@ def despedida(nombre=""):
             "Si necesitás una consulta personalizada podés contactarnos.", "Abrazo grande y buenas inversiones.")
 
 
-def saludo(nombre, edad, perfil):
-    """Encabezado de la devolución (texto de Guille)."""
-    n = (nombre or "").strip() or "colega inversor"
-    varios = any(len(c[3]) > 1 for c in CM.RANGOS if c[0] <= int(edad) <= c[1])
-    extra = f"{int(edad)} años - Perfil {str(perfil).title()}" if (perfil and varios) else f"{int(edad)} años"
-    return (f"Estimado {n} ({extra}).", "Todo inversor de éxito evalúa periódicamente su portfolio. Agradecemos que lo hagas con nosotros.")
+def saludo(nombre, edad=None, perfil=None):
+    """Encabezado de la devolución (texto de Guille). v1.5.3: solo «Hola Nombre.» (sin edad ni perfil)."""
+    n = (nombre or "").strip()
+    return (f"Hola {n}." if n else "Hola, colega inversor.", "Todo inversor de éxito evalúa periódicamente su portfolio. Agradecemos que lo hagas con nosotros.")
 
 
 _WARN = ("pasan de", "pesan menos de", "te pasás", "te faltan", "muy concentrada", "poco estados", "los emergentes pesan", "hay poco", "hay mucho", "un solo sector", "tu mayor posición", "posiciones más grandes",

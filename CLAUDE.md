@@ -36,7 +36,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | `af_pdf.py` | PDF del Análisis Fundamental. |
 | `etfs.py`, `etf_iconos.py` | Tabla y página de ETFs, íconos SVG por categoría (`SIN_PAISES`). |
 | `cartera.py` | **Motor de la evaluación de cartera** (ver sección propia). |
-| `cartera_visual.py` | Tarjetas HTML de la evaluación (`visual_html`, `_torta`, `_bloque_donut`, `_md` con `**negrita**` y `==dato==` en color, `_ajuste`). |
+| `cartera_visual.py` | Tarjetas HTML de la evaluación (`visual_html`, `_bloque`, `_bloque_donut`, `_md`: `**negrita**`, `==dato==` (negrita negra) y `__cursiva__` para las Notas; `_ajuste`; estilo = tarjetas blancas como el resto del sitio). |
 | `cartera_informe.py` | PDF de la evaluación con membrete (`pdf_informe`, reportlab, tortas `Doughnut`) y HTML de respaldo (`html_informe`). |
 | `cartera_ocr.py` | Lectura de capturas con RapidOCR (opcional; si no está, la app sigue). |
 | `noticias.py` (`ordenar`, `ordenar_bloques`: sin tickers repetidos, una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
@@ -55,11 +55,11 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 ## Evaluación de cartera (ui/cartera.py)
 - Lectura: `leer_archivo_info` (Excel/CSV, columnas `_columnas`: ticker, monto, tipo, **país**, cantidad, precio, moneda), `leer_pdf_info`, `leer_texto_info`; `convertir` (pesos→USD), `fusionar` (varios brokers).
 - `clasificar` → clase rv/rf/oro/cripto/efectivo/otros; `analizar` → `peso`, `peso_inv` (sin liquidez salvo 70+), `desvio`, `geo` (RV **y** RF; país declarado manda), `super`, `sectores_gics`, `rf_det`, `beta`.
-- `devolucion(res, edad, perfil, nombre)` → `[(título, [párrafos])]`: Objetivo como inversor · Estructura de tu cartera · Diversificación geográfica · Diversificación sectorial · Liquidez · (beta) · Conclusiones finales.
-  `saludo()` ("Estimado X (48 años - Perfil Agresivo).") y `despedida()` ("Hasta aquí nuestro aporte… Abrazo grande y buenas inversiones.").
+- `devolucion(res, edad, perfil, nombre)` → `[(título, [párrafos])]`: Objetivo como inversor · Estructura de tu cartera · Diversificación geográfica · Diversificación sectorial (+ «detalle GICS») · Liquidez (teoría primero) · (beta) · Conclusiones finales («Lo que no tocaríamos» + ajustes).
+  `saludo()` ("Hola X.", sin edad ni perfil) y `despedida()` ("Hasta aquí nuestro aporte… Abrazo grande y buenas inversiones.").
 - **Tono (modelo escrito por Guille, 02/11/2026)**: primero lo que *notamos*, después la base teórica (que va SIEMPRE); nunca "te pasás", "te faltan", "Ojo", "demasiado";
   ajustes en positivo (aumentar, sumar, considerar) en orden de importancia con "Por qué:"; elogios solo cuando son ciertos; sectores GICS (no industrias).
-- `resumen_guardable` / `comparar`: el inversor baja un .json y lo sube la próxima vez. `AVISO_CARTERA`: único aviso legal de la evaluación.
+- `resumen_guardable` / `comparar`: el resumen viaja dentro del PDF descargado (`resumen_para_pdf` / `resumen_de_pdf`, en el campo «subject»); el inversor sube ese PDF la próxima vez. Sin .json. `AVISO_CARTERA`: único aviso legal de la evaluación.
 - Rentabilidad: `rentabilidad_con_fechas` (TIR / Dietz), `rentabilidad_anual` (rango estimado), `duracion_txt`. Todo en dólares.
 
 ## Pruebas

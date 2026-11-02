@@ -7,7 +7,7 @@ import io
 import os
 import re
 
-from ui.cartera import AVISO_CARTERA, CLASES, despedida, devolucion, saludo
+from ui.cartera import AVISO_CARTERA, CLASES, despedida, devolucion, resumen_para_pdf, saludo
 
 _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
@@ -33,7 +33,8 @@ def _filas_cartera(res):
 def _md(t):
     """**negrita** -> <b>, con el resto escapado (para los párrafos de reportlab)."""
     t = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", html.escape(str(t).replace(" %", "\u00a0%"), quote=False))
-    return re.sub(r"==(.+?)==", r'<font color="#be185d"><b>\1</b></font>', t)
+    t = re.sub(r"==(.+?)==", r"<b>\1</b>", t)
+    return re.sub(r"__(.+?)__", r"<i>\1</i>", t)
 
 
 def _hex(c):
@@ -50,7 +51,8 @@ def _pie(items, tam, centro=""):
         items = [(1, "#e5e9f0")]          # nada invertido (por ejemplo, solo liquidez): anillo gris
     g = Doughnut()
     g.x, g.y, g.width, g.height = 2, 2, tam - 4, tam - 4
-    g.data = [max(v, 0.01) for v, _ in items]
+    tot_ = sum(v for v, _ in items) or 1
+    g.data = [max(v, 0.03 * tot_) for v, _ in items]      # una porción chica (1 %) se dibuja con un mínimo para que se vea
     for i, (_, c) in enumerate(items):
         g.slices[i].fillColor = _hex(c)
         g.slices[i].strokeColor = _hex("#ffffff")
@@ -119,7 +121,7 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     from reportlab.lib.pagesizes import A4
     from reportlab.lib.styles import ParagraphStyle
     from reportlab.lib.units import mm
-    from reportlab.platypus import Image, KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
+    from reportlab.platypus import HRFlowable, Image, KeepTogether, Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
     from data import carteras_modelo as CM
     from ui import cartera_visual as CV
     from ui.cartera import comparar, nivel
@@ -128,11 +130,11 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     st = {
         "tit": ParagraphStyle("tit", fontName="Helvetica-Bold", fontSize=17, leading=21, textColor=colors.HexColor("#111827")),
         "sub": ParagraphStyle("sub", fontName="Helvetica", fontSize=9.5, leading=13, textColor=gris),
-        "h": ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=12.5, leading=16, textColor=azul, spaceBefore=16, spaceAfter=9),
+        "h": ParagraphStyle("h", fontName="Helvetica-Bold", fontSize=13, leading=17, textColor=colors.HexColor("#111827"), spaceBefore=16, spaceAfter=3),
         "p": ParagraphStyle("p", fontName="Helvetica", fontSize=10, leading=14, textColor=colors.HexColor("#1f2937"), alignment=4),
         "li": ParagraphStyle("li", fontName="Helvetica", fontSize=9.6, leading=13.5, textColor=colors.HexColor("#1f2937"), leftIndent=11, firstLineIndent=-11, spaceAfter=3, alignment=4),
         "pq": ParagraphStyle("pq", fontName="Helvetica", fontSize=8, leading=11, textColor=gris, spaceAfter=3, alignment=4),
-        "sm": ParagraphStyle("sm", fontName="Helvetica-Bold", fontSize=9, leading=12, textColor=colors.HexColor("#334155")),
+        "sm": ParagraphStyle("sm", fontName="Helvetica-Bold", fontSize=9.5, leading=12, textColor=colors.HexColor("#111827"), spaceBefore=6, spaceAfter=4, keepWithNext=1),
         "marca": ParagraphStyle("marca", fontName="Helvetica-Bold", fontSize=13, leading=16, textColor=colors.HexColor("#111827")),
     }
     colnivel = {"ok": "#16a34a", "warn": "#ea580c", "info": "#64748b"}
@@ -147,12 +149,13 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
         canvas.drawRightString(A4[0] - 18 * mm, 10 * mm, f"Página {doc.page}")
         canvas.restoreState()
 
-    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=16 * mm, bottomMargin=20 * mm, title=f"{TITULO} - {NOMBRE}", author=NOMBRE)
+    doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=16 * mm, bottomMargin=20 * mm, title=f"{TITULO} - {NOMBRE}", author=NOMBRE,
+                            subject=resumen_para_pdf(res, edad, perfil, (hoy or datetime.date.today()).isoformat()))
     ancho = A4[0] - 36 * mm
 
     def seccion(titulo, cuerpo, junto=2):
         cuerpo = [c for c in cuerpo if c is not None]
-        return [KeepTogether([Paragraph(html.escape(titulo), st["h"])] + cuerpo[:junto])] + cuerpo[junto:]
+        return [KeepTogether([Paragraph(html.escape(titulo), st["h"]), HRFlowable(width="100%", thickness=0.6, color=colors.HexColor("#e3e8ee"), spaceAfter=8)] + cuerpo[:junto])] + cuerpo[junto:]
 
     sec = dict(devolucion(res, edad, perfil, nombre))
     pe, d = res["peso"], res["desvio"]
@@ -172,33 +175,43 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"]), Spacer(1, 8), Paragraph(f"<b>{html.escape(s1)}</b>", st["p"]), Spacer(1, 3), Paragraph(html.escape(s2), st["p"]), Spacer(1, 6)]
     el += [Paragraph(_md(x), st["p"]) for x in sec.get("Objetivo como inversor", [])]
 
-    def parrafos(frases):
-        out = []
-        for x in frases:
-            out += [Paragraph(_md(x), st["p"]), Spacer(1, 6)]
-        return out
-    # --- tortas
-    def torta(titulo, items, centro, medida=30 * mm):
+    # --- tortas (sin título ni texto adentro)
+    def torta(items, medida=30 * mm):
         items = [(n, v, c) for n, v, c in items if v >= 0.5]
         tot = sum(v for _, v, _ in items) or 1
         leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items] or [Paragraph("Sin inversiones cargadas en estos grupos.", st["pq"])]
-        celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 4 * mm, 62 * mm], hAlign="CENTER")
+        celda = Table([[_pie([(v, c) for _, v, c in items], medida), leyenda]], colWidths=[medida + 4 * mm, 62 * mm], hAlign="CENTER")
         celda.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
-        return [Paragraph(html.escape(titulo), ParagraphStyle("smc", parent=st["sm"], alignment=1)), celda, Spacer(1, 8)]
-    clases_ = [(CLASES[k], pi[k], CV.COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if pi.get(k, 0) >= 0.05 and (ef or k != "efectivo")]
-    el += seccion("Estructura de tu cartera", torta("Tu cartera", clases_, f"{int(edad)} años") + parrafos(sec["Estructura de tu cartera"]), junto=4)
+        return [celda, Spacer(1, 8)]
+
+    def cuerpo_de(frases):
+        out, i = [], 0
+        while i < len(frases):
+            x = frases[i]
+            if x.startswith("- "):
+                while i < len(frases) and frases[i].startswith("- "):
+                    out += [Paragraph(f"•&nbsp;&nbsp;{_md(frases[i][2:])}", st["li"]), Spacer(1, 2)]
+                    i += 1
+                out.append(Spacer(1, 4))
+                continue
+            out += [Paragraph(_md(x), st["p"]), Spacer(1, 6)]
+            i += 1
+        return out
+    parrafos = cuerpo_de
+    clases_ = [(CLASES[k], max(pi[k], 0.5), CV.COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if pi.get(k, 0) >= 0.05 and (ef or k != "efectivo")]
+    el += seccion("Estructura de tu Cartera", torta(clases_) + parrafos(sec["Estructura de tu cartera"]), junto=3)
     g = res.get("geo")
     cuerpo = []
     if g:
         partes = [(CV.NOM_GEO[k], g[k], CV.COL_GEO[k]) for k in ("usa", "desarrollados", "emergentes", "fuera_sd", "global")]
         partes.append((CV.NOM_GEO["sin"], max(0.0, 100 - sum(v for _, v, _ in partes)), CV.COL_GEO["sin"]))
-        cuerpo = torta("Distribución geográfica", partes, "países")
-    el += seccion("Diversificación geográfica", cuerpo + parrafos(sec["Diversificación geográfica"]), junto=4)
+        cuerpo = torta(partes)
+    el += seccion("Diversificación Geográfica", cuerpo + parrafos(sec["Diversificación geográfica"]), junto=3)
     sp = res.get("super")
-    cuerpo = []
-    if sp:
-        cuerpo = torta("Supersectores", [(CV.NOM_SUP[k], sp[k], CV.COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "sectores")
-    el += seccion("Diversificación sectorial", cuerpo + parrafos(sec["Diversificación sectorial"]), junto=4)
+    c1 = torta([(CV.NOM_SUP[k], sp[k], CV.COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")]) if sp else []
+    gi = res.get("sectores_gics") or []
+    c2 = torta([(n, v, CV.COL_GICS[i % len(CV.COL_GICS)]) for i, (n, v) in enumerate(gi)]) if (sp and gi) else []
+    el += seccion("Diversificación Sectorial", c1 + parrafos(sec["Diversificación sectorial"]) + c2 + parrafos(sec.get("Diversificación sectorial (detalle GICS)", [])), junto=3)
     el += seccion("Liquidez", parrafos(sec["Liquidez"]))
     if "Sensibilidad al mercado (beta)" in sec:
         el += seccion("Sensibilidad al mercado (beta)", parrafos(sec["Sensibilidad al mercado (beta)"]))
@@ -207,23 +220,34 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
         el += seccion("Comparación con tu evaluación anterior", parrafos(comp))
     fr = sec["Conclusiones finales"]
     cuerpo = parrafos([fr[0]])
-    for x in fr[1:]:
+    i = 1
+    while i < len(fr):
+        x = fr[i]
         m = re.match(r"^([0-9]+)[.] (.*)$", x)
         if x.startswith("##"):
-            cuerpo += [Paragraph(f"<b>{_md(x.lstrip('#'))}</b>", st["sm"]), Spacer(1, 3)]
+            cuerpo += [Paragraph(f"<b>{_md(x.lstrip('#'))}</b>", st["sm"])]
+            i += 1
+        elif x.startswith("- "):
+            j = i
+            while j < len(fr) and fr[j].startswith("- "):
+                j += 1
+            cuerpo += parrafos(fr[i:j])
+            i = j
         elif m:
             txt = m.group(2)
             if " **Por qué:** " in txt:
                 a_, b_ = txt.split(" **Por qué:** ", 1)
-                txt_h = f'<b>{_md(a_)}</b> <font color="#15803d"><b>Por qué:</b></font> {_md(b_)}'
+                txt_h = f"<b>{_md(a_)}</b> <i>Por qué: {_md(b_)}</i>"
             else:
                 txt_h = _md(txt)
             cuerpo += [Paragraph(f"<b>{m.group(1)}.</b>&nbsp;{txt_h}", st["li"]), Spacer(1, 3)]
+            i += 1
         else:
             cuerpo += parrafos([x])
+            i += 1
     d1, d2 = despedida(nombre)
     cuerpo += [Spacer(1, 8), Paragraph(html.escape(d1), st["p"]), Spacer(1, 4), Paragraph(f"<b>{html.escape(d2)}</b>", st["p"])]
-    el += seccion("Conclusiones finales", cuerpo, junto=4)
+    el += seccion("Conclusiones Finales", cuerpo, junto=4)
     el += [Spacer(1, 14), Paragraph(f"<b>Aviso Legal:</b> {html.escape(AVISO_CARTERA[0])}", st["pq"])]
     doc.build(el, onFirstPage=pie, onLaterPages=pie)
     return buf.getvalue()

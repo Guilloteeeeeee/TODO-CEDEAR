@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.3 — la evaluación con el mismo estilo que el resto del sitio, y texto ajustado
+- **Formato**: tarjetas blancas sobre fondo claro, sin íconos ni barras de colores; tortas sin título ni texto adentro (y una porción chica, como 1 %, se dibuja con un mínimo para que se vea); los porcentajes van en negrita negra (ya no en rosa); las «Notas» teóricas van en cursiva y sin negrita; «Por qué:» hasta el final va en cursiva (ya no en verde). El PDF copia lo mismo.
+- **Texto**: saludo solo «Hola Nombre.» (sin edad ni perfil); «Objetivo:» (en negrita sólo esa palabra); instrumentos siempre con mayúscula (Renta Variable, Renta Fija, Oro, Criptoactivos); sin «No tenés oro» (ahora «Sería importante considerar al Oro»); títulos «Diversificación Geográfica» y «Diversificación Sectorial».
+- **Diversificación Sectorial** con dos tortas: supersectores (Defensivo / Sensible / Cíclico) y sectores GICS, empezando por los supersectores («… a expensas del sector tecnológico») y la nota de Morningstar.
+- **Liquidez**: primero la base teórica y después lo que notamos.
+- **Conclusiones**: sin negrita en la primera frase; nuevo apartado **«Lo que no tocaríamos:»** antes de «En orden de importancia te enumeramos qué ajustaríamos:»; «…para balancear la cartera».
+- **Descarga**: botón «Descargar informe» en rosa; se sacó el archivo .json: la comparación con la evaluación anterior se hace subiendo el **PDF** anterior (el resumen viaja adentro del PDF, sin que se vea). Se sacó la frase «El PDF trae lo mismo que ves acá…».
+
 ### v1.5.2 — noticias más variadas, calendario en verde y textos de Evaluá tu Portfolio
 - **Noticias**: una empresa no se repite en todo el cuadro (antes el control era por bloque y Intel salía una vez en cada uno). Entre *Estados Unidos* y *Resto del mundo* tiene que haber al menos una nota macro (Fed, inflación, tasas, empleo, aranceles, petróleo…); si no hay ninguna, quedan las de empresas. *Locales* reserva un lugar para el mercado argentino (Merval, bonos, riesgo país, acciones, ADRs) con los feeds de Ámbito que ya se usaban. Prueba: `tests/test_v152_noticias.py`.
 - **Calendario Financiero**: el día «Hoy» va en verde (el rosa queda sólo para Evaluá tu Portfolio) y ya no se escribe «Horario a confirmar» en cada empresa; sólo se muestra el horario cuando se conoce.

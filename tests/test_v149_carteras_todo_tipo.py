@@ -47,20 +47,20 @@ for nom, pos in casos.items():
                 if not res or not res.get("total"):
                     chk(nom == "desconocidos", f"{nom} sin resultado"); continue
                 sec = C.devolucion(res, edad, perfil, "Ana")
-                txt = re.sub(r"\*\*|==", "", " ".join(" ".join(f) for _, f in sec))
+                txt = re.sub(r"\*\*|==|__", "", " ".join(" ".join(f) for _, f in sec))
                 chk(not malas.search(txt), f"{nom}/{edad}/{perfil}: texto raro {malas.search(txt)}")
                 titulos = [t for t, _ in sec]
                 for t in ("Objetivo como inversor", "Estructura de tu cartera", "Diversificación geográfica", "Diversificación sectorial", "Liquidez", "Conclusiones finales"):
                     chk(t in titulos, f"{nom}: falta {t}")
                 if res["peso"]["rv"] >= 1 and res.get("super"):
-                    chk("20 % de ponderación en Cíclicas" in txt and "entre 20 y 30 posiciones" in txt, f"{nom}: leyenda sectorial")
+                    chk("Defensivo 50 %, Cíclico 20 % y Sensible 30 %" in txt and "entre 20 y 30 posiciones" in txt, f"{nom}: leyenda sectorial")
                 ref = CM.referencia(edad, perfil)
-                chk("Objetivo como inversor" in txt and CM.OBJETIVO_RESUMEN[ref[0]] in txt, f"{nom}/{edad}: objetivo")
+                chk("Objetivo:" in txt and re.sub(r"^normalmente ", "generalmente ", CM.OBJETIVO_RESUMEN[ref[0]]) in txt, f"{nom}/{edad}: objetivo")
                 chk("La diversificación geográfica es clave" in txt and "Armar una cartera lleva tiempo" in txt and "La cartera teórica de referencia para una persona de" in txt, f"{nom}: bases fijas")
                 duro = re.search(r"te pasás|te faltan|Ojo|mala noticia|demasiado|reducirla|Bajar |castig", txt)
                 chk(not duro, f"{nom}/{edad}/{perfil}: tono duro {duro and duro.group(0)}")
                 h = CV.visual_html(res, edad, perfil, "Ana", "02/11/2026", C.resumen_guardable(res, edad, perfil, "2026-10-01"))
-                chk("==" not in h and "**" not in h and "Aviso Legal:" in h and "Abrazo grande y buenas inversiones." in h and "Estimado Ana" in h and not re.search(r"\bNone\b|\bnan\b", h), f"{nom}: html")
+                chk("==" not in h and "**" not in h and "__" not in h and "Aviso Legal:" in h and "Abrazo grande y buenas inversiones." in h and "Hola Ana" in h and not re.search(r"\bNone\b|\bnan\b", h), f"{nom}: html")
                 if edad in (45, 72) and perfil == "Moderado":
                     pdf = CI.pdf_informe(res, edad, perfil, nombre="Ana"); chk(pdf[:4] == b"%PDF", f"{nom}: pdf")
             except Exception as e:

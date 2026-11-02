@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.2"
+APP_VERSION = "1.5.3"
 
 import re
 import contextlib
@@ -1612,7 +1612,7 @@ def _evaluar_cartera(df, C, CV):
             except Exception:  # noqa: BLE001
                 pass
         with st.expander("¿Ya te evaluaste antes? Subí tu evaluación anterior para compararla", expanded=False):
-            previa_arch = st.file_uploader("Evaluación anterior (archivo .json que bajaste la última vez)", type=["json"], key="cr_previa")
+            previa_arch = st.file_uploader("Evaluación anterior (el PDF que descargaste la última vez)", type=["pdf"], key="cr_previa")
         acepto = st.checkbox("Acepto que esta evaluación es una orientación educativa, automática y puede cometer errores. No constituye una recomendación ni asesoría personalizada de inversión. "
                              "Finanzas para Médicos se deslinda de cualquier responsabilidad y acciones que puedan derivar de la mala interpretación del análisis, siendo el inversor el único responsable de sus propias decisiones financieras.", key="cr_acepto")
     # --- lo que falta (el botón queda gris hasta que esté todo)
@@ -1689,10 +1689,9 @@ def _evaluar_cartera(df, C, CV):
         st.caption(f"Sumamos {n_fus} posición(es) repetida(s) (el mismo activo en más de un archivo o broker).")
     previa = None
     if previa_arch is not None:
-        try:
-            previa = _json.loads(previa_arch.getvalue().decode("utf-8"))
-        except Exception:  # noqa: BLE001
-            st.caption("No pude leer el archivo de la evaluación anterior: tiene que ser el .json que bajaste en tu última evaluación.")
+        previa = C.resumen_de_pdf(previa_arch.getvalue())
+        if not previa:
+            st.caption("No pude leer ese PDF como una evaluación anterior: tiene que ser el PDF que descargaste de esta evaluación.")
     hoy = _dt.date.today()
     fecha_txt = hoy.strftime("%d/%m/%Y")
     st.markdown(CV.visual_html(res, edad, perfil, nombre or "", fecha_txt, previa), unsafe_allow_html=True)
@@ -1704,14 +1703,9 @@ def _evaluar_cartera(df, C, CV):
             datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
         except ImportError:
             datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
-        st.markdown('<div class="cv-intro">💾 <b>Te recomendamos descargar el resumen de tu evaluación.</b> La próxima vez que te evalúes, subilo en «¿Ya te evaluaste antes?» y vemos juntos cómo fue cambiando tu cartera. '
-                    'El PDF trae lo mismo que ves acá, con el membrete y la fecha del análisis.</div>', unsafe_allow_html=True)
-        d1, d2 = st.columns(2, gap="medium")
-        with d1:
-            st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe", use_container_width=True)
-        with d2:
-            st.download_button("Guardar resumen para comparar la próxima vez", _json.dumps(C.resumen_guardable(res, edad, perfil, hoy.isoformat()), ensure_ascii=False, indent=1).encode("utf-8"),
-                               file_name=f"mi_evaluacion_{hoy.isoformat()}.json", mime="application/json", key="cr_resumen", use_container_width=True)
+        st.markdown(_CSS_COMENZAR.replace("cr_comenzar", "cr_informe") + '<div class="cv-intro"><b>Te recomendamos descargar tu evaluación en PDF.</b> La próxima vez que te evalúes, subila en «¿Ya te evaluaste antes?» '
+                    'y vemos juntos cómo fue cambiando tu cartera.</div>', unsafe_allow_html=True)
+        st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe", use_container_width=True)
     except Exception:  # noqa: BLE001
         pass
 
