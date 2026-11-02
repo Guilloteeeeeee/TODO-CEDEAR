@@ -577,7 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
-### v1.4.9 — objetivos por edad, columna País y pie sin fecha del cache
+### v1.5.0 — devolución con la forma de escribir de Guille
+- Estructura y tono de su modelo (Analisis_cartera_escrito_por_mi.docx): «Estimado {nombre} (edad - perfil).», «Todo inversor de éxito…», Objetivo como inversor (`CM.OBJETIVO_RESUMEN`, con su redacción), Estructura de tu cartera (torta del inversor), Diversificación geográfica (torta), Diversificación sectorial (torta), Liquidez, Conclusiones finales («En orden de importancia te enumeramos qué ajustaríamos», ajustes en positivo con «Por qué:») y despedida «Hasta aquí nuestro aporte… Abrazo grande y buenas inversiones.».
+- En cada apartado: primero lo que notamos y después las bases teóricas, que van siempre. Sin malas noticias ni tono de reto (sin «te pasás», «te faltan», «Ojo», «demasiado»); párrafos sin íconos de alerta. Oro y cripto dentro de Estructura.
+- Prueba de tono incluida en test_v149 (más de 19.000 chequeos sobre 70 carteras de todo tipo).
+
+## v1.4.9 — objetivos por edad, columna País y pie sin fecha del cache
 - `CM.OBJETIVOS`: objetivo y estrategia de cada grupo etario (diapositivas de Guille); van en la conclusión de Ponderaciones.
 - Columna «País» (opcional) en el Excel: para lo que no es CEDEAR/empresa/ETF de la lista, el país declarado entra en la diversificación geográfica. Plantilla de ejemplo con País.
 - Pie de página: ya no se muestra la fecha del cache («Datos al 22/10»). Solo «Datos al dd/mm/aaaa (hh:mm)» de los precios de hoy.

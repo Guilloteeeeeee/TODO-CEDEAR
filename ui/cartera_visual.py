@@ -4,7 +4,7 @@ import html
 import re
 
 from data import carteras_modelo as CM
-from ui.cartera import AVISO_CARTERA, SALUDO_FINAL, CLASES, LIQ_MAX, LIQ_MIN, comparar, devolucion, nivel
+from ui.cartera import AVISO_CARTERA, CLASES, despedida, saludo, LIQ_MAX, LIQ_MIN, comparar, devolucion, nivel
 
 COL_CLASE = {"rv": "#2563eb", "rf": "#7c3aed", "efectivo": "#14b8a6", "oro": "#f59e0b", "cripto": "#ec4899", "otros": "#94a3b8"}
 COL_GEO = {"usa": "#2563eb", "desarrollados": "#0ea5e9", "emergentes": "#f97316", "fuera_sd": "#8b5cf6", "global": "#14b8a6", "sin": "#cbd5e1"}
@@ -54,7 +54,7 @@ CSS = """
 .cv-bd{flex:1 1 300px}.cv-bt{font-weight:800;color:#334155;font-size:.92rem;margin:0 0 8px}.cv-bd .cv-donut{width:130px;height:130px}.cv-bd .cv-donut::after{inset:28px}.cv-bd .cv-lg{font-size:.88rem;flex:1 1 140px}
 .cv-dos{display:flex;gap:22px;flex-wrap:wrap}
 .cv-av{background:#f8fafc;border:1px solid #e5e9f0;border-radius:12px;padding:10px 14px;color:#64748b;font-size:.8rem;line-height:1.5;margin:4px 0 8px;text-align:justify}.cv-av p{margin:0 0 6px}
-.cv-sal{font-size:.98rem;line-height:1.6;color:#0f172a;margin:0 0 6px;text-align:justify}.cv-n li>div,.cv-con,.cv-pasos li>div,.cv-intro{text-align:justify}.cv-ayuda{text-align:justify}
+.cv-p{text-align:justify;line-height:1.62;margin:0 0 10px;font-size:.97rem;color:#1f2937}.cv-sal{font-size:.98rem;line-height:1.6;color:#0f172a;margin:0 0 6px;text-align:justify}.cv-n li>div,.cv-con,.cv-pasos li>div,.cv-intro{text-align:justify}.cv-ayuda{text-align:justify}
 @media (max-width:640px){.cv-row{grid-template-columns:1fr auto}.cv-row .cv-bar{grid-column:1 / -1;order:3}.cv-row{grid-template-columns:1fr auto}.cv-donut{margin:0 auto}.cv-c{padding:16px 14px}}
 """
 
@@ -159,57 +159,56 @@ def _chip(d, umbral=5.0):
     return '<span class="cv-chip ok">En línea</span>'
 
 
+def _parrafos(frases):
+    return "".join(f'<p class="cv-p">{_md(x)}</p>' for x in frases)
+
+
 def visual_html(res, edad, perfil, nombre="", fecha="", previa=None):
-    """HTML de toda la evaluación. v1.4.6: Ponderaciones (tortas por grandes grupos, sin la liquidez), Diversificación geográfica (renta variable y renta fija), Diversificación sectorial (tres supersectores),
-    Oro y Criptomonedas, Liquidez, Qué ajustaría, saludo final y aviso legal. Cada apartado: gráfico y una conclusión breve."""
+    """HTML de toda la evaluación. v1.5.0: estructura y tono del modelo escrito por Guille (Estimado…, objetivo como inversor, estructura de tu cartera, diversificación
+    geográfica y sectorial con tortas, liquidez, conclusiones finales con los ajustes en orden de importancia, despedida y aviso legal). Párrafos, sin íconos de alerta."""
     if not res or not res.get("total"):
         return ""
-    sec = dict(devolucion(res, edad, perfil, nombre))
+    secs = devolucion(res, edad, perfil, nombre)
+    sec = dict(secs)
     pe = res["peso"]
     pi = res.get("peso_inv") or pe
     ef = res.get("efectivo_propio")
     out = []
-    quien = html.escape(nombre.strip()) if nombre and nombre.strip() else "colega inversor"
-    out.append(_card("👋", "Evaluación de tu Portfolio", f'<p class="cv-sal">Hola <b>{quien}</b>. Gracias por tomarte el tiempo de evaluar tu cartera con nosotros. '
-                     f'Esperamos que nuestros aportes te ayuden a lograr tus objetivos financieros.</p>', "#e8668f", "#fff1f5", pie=html.escape(str(fecha))))
-    # --- 1. Ponderaciones
-    ref = CM.referencia(edad, perfil)
-    tortas = ""
-    if ref:
-        tortas += _bloque_donut("Referencia teórica para tu edad y perfil", ref[1], "<small>teórica</small>")
-    tortas += _bloque_donut("Tu cartera", pi, f"{int(edad)}<small>años</small>", con_liquidez=bool(ef))
-    out.append(_card("⚖️", "Ponderaciones", f'<div class="cv-dos">{tortas}</div>{_lista(sec["Ponderaciones"])}', "#7c3aed", "#f5f3ff", pie="grandes grupos"))
-    # --- 2. Geografía (renta variable y renta fija)
+    s1, s2 = saludo(nombre, edad, perfil)
+    out.append(_card("👋", "Evaluación de tu Portfolio", f'<p class="cv-p"><b>{html.escape(s1)}</b></p><p class="cv-p">{html.escape(s2)}</p>' + _parrafos(sec.get("Objetivo como inversor", [])),
+                     "#e8668f", "#fff1f5", pie=html.escape(str(fecha))))
+    out.append(_card("⚖️", "Estructura de tu cartera", f'<div class="cv-dos">{_bloque_donut("Tu cartera", pi, f"{int(edad)}<small>años</small>", con_liquidez=bool(ef))}</div>'
+                     + _parrafos(sec["Estructura de tu cartera"]), "#7c3aed", "#f5f3ff"))
     g = res.get("geo")
     cuerpo = ""
     if g:
         partes = [(NOM_GEO[k], g[k], COL_GEO[k]) for k in ("usa", "desarrollados", "emergentes", "fuera_sd", "global")]
         partes.append((NOM_GEO["sin"], max(0.0, 100 - sum(v for _, v, _ in partes)), COL_GEO["sin"]))
         cuerpo = '<div class="cv-dos">' + _torta("Distribución geográfica", partes, "<small>países</small>") + "</div>"
-    out.append(_card("🌎", "Diversificación geográfica", cuerpo + _lista(sec["Diversificación geográfica"]), "#0ea5e9", "#f0f9ff", pie="renta variable y renta fija"))
-    # --- 3. Sectorial
-    s = res.get("super")
+    out.append(_card("🌎", "Diversificación geográfica", cuerpo + _parrafos(sec["Diversificación geográfica"]), "#0ea5e9", "#f0f9ff"))
+    sp = res.get("super")
     cuerpo = ""
-    if s:
-        cuerpo = '<div class="cv-dos">' + _torta("Supersectores", [(NOM_SUP[k], s[k], COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "<small>sectores</small>") + "</div>"
-    out.append(_card("🏭", "Diversificación sectorial", cuerpo + _lista(sec["Diversificación sectorial"]), "#f59e0b", "#fffbeb"))
-    # --- 4 y 5
-    out.append(_card("🪙", "Oro y Criptomonedas", _lista(sec["Oro y Criptomonedas"]), "#f59e0b", "#fffbeb"))
-    out.append(_card("💧", "Liquidez", _lista(sec["Liquidez"]), "#14b8a6", "#f0fdfa", pie="aparte, optativa"))
+    if sp:
+        cuerpo = '<div class="cv-dos">' + _torta("Supersectores", [(NOM_SUP[k], sp[k], COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "<small>sectores</small>") + "</div>"
+    out.append(_card("🏭", "Diversificación sectorial", cuerpo + _parrafos(sec["Diversificación sectorial"]), "#f59e0b", "#fffbeb"))
+    out.append(_card("💧", "Liquidez", _parrafos(sec["Liquidez"]), "#14b8a6", "#f0fdfa"))
     if "Sensibilidad al mercado (beta)" in sec:
-        out.append(_card("📈", "Sensibilidad al mercado (beta)", _lista(sec["Sensibilidad al mercado (beta)"]), "#64748b", "#f1f5f9"))
+        out.append(_card("📈", "Sensibilidad al mercado (beta)", _parrafos(sec["Sensibilidad al mercado (beta)"]), "#64748b", "#f1f5f9"))
     comp = comparar(previa, res) if previa else []
     if comp:
-        out.append(_card("🔁", "Comparación con tu evaluación anterior", _lista(comp), "#8b5cf6", "#f5f3ff"))
-    # --- 6. Qué ajustaría
-    fr = sec["Qué ajustaría"]
-    pasos = [re.sub(r"^\d+\. ", "", x) for x in fr[3:] if re.match(r"^\d+\. ", x)]
-    otros = [x for x in fr[3:] if not re.match(r"^\d+\. ", x)]
-    lista = ""
+        out.append(_card("🔁", "Comparación con tu evaluación anterior", _parrafos(comp), "#8b5cf6", "#f5f3ff"))
+    fr = sec["Conclusiones finales"]
+    pasos = [re.sub(r"^\d+\. ", "", x) for x in fr if re.match(r"^\d+\. ", x)]
+    cuerpo = _parrafos([fr[0]])
+    for x in fr[1:]:
+        if x.startswith("##"):
+            cuerpo += f'<div class="cv-ay">{_md(x.lstrip("#"))}</div>'
+        elif not re.match(r"^\d+\. ", x):
+            cuerpo += _parrafos([x])
     if pasos:
-        lista = '<ol class="cv-pasos">' + "".join(f"<li><span>{i}</span><div>{_md(x)}</div></li>" for i, x in enumerate(pasos, 1)) + "</ol>"
-    lista += "".join(f'<p class="cv-con">{_md(x)}</p>' for x in otros)
-    out.append(_card("🎯", "Qué ajustaría", f'<p class="cv-con">{_md(fr[0])}</p><div class="cv-ay">{_md(fr[1].lstrip("#"))}</div><p class="cv-con">{_md(fr[2])}</p>{lista}', "#16a34a", "#f0fdf4", "cv-fin"))
-    out.append(f'<p class="cv-sal" style="text-align:center;margin:14px 0 6px"><b>{html.escape(SALUDO_FINAL)}</b><br>Finanzas para Médicos Argentina</p>')
+        cuerpo += '<ol class="cv-pasos">' + "".join(f"<li><span>{i}</span><div>{_md(x)}</div></li>" for i, x in enumerate(pasos, 1)) + "</ol>"
+    d1, d2 = despedida(nombre)
+    cuerpo += f'<p class="cv-p" style="margin-top:14px">{html.escape(d1)}</p><p class="cv-p"><b>{html.escape(d2)}</b></p>'
+    out.append(_card("🎯", "Conclusiones finales", cuerpo, "#16a34a", "#f0fdf4", "cv-fin"))
     out.append(aviso_html())
     return f'<div class="cv">{"".join(out)}</div>'

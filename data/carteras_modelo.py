@@ -64,3 +64,20 @@ OBJETIVOS = {
     "70 años o más": ("Priorizar la estabilidad total y asegurar un flujo de ingresos constante que cubra total o parcialmente las necesidades.",
                       "Buscamos la preservación del capital, enfocándonos solo en activos que generen ingresos predecibles y reduzcan el riesgo de la cartera."),
 }
+
+
+# Resumen del objetivo y la estrategia de cada rango, con la redacción de Guille (modelo de 40 a 49 años escrito por él; los demás, armados a partir de sus diapositivas).
+OBJETIVO_RESUMEN = {
+    "menos de 30 años": "normalmente un inversor de tu edad busca formar hábitos financieros sólidos y potenciar el crecimiento de su capital a largo plazo. "
+                        "La clave es aprovechar el amplio horizonte de inversión dando más peso a activos de mayor crecimiento, con riesgos controlados, ya que ante reveses del mercado hay más tiempo para recuperarse.",
+    "30 a 39 años": "normalmente un inversor de tu edad y perfil de riesgo busca mantener el crecimiento de su cartera sin perder de vista la estabilidad y la seguridad. "
+                    "La clave es seguir acumulando capital con exposición a oportunidades rentables, gestionando el riesgo para lograr un equilibrio justo entre activos volátiles y defensivos.",
+    "40 a 49 años": "normalmente un inversor de tu edad y perfil de riesgo busca consolidar el patrimonio manteniendo apreciación del capital. "
+                    "La clave es comenzar progresivamente a reducir el riesgo pero sin dejar de buscar crecimiento.",
+    "50 a 59 años": "normalmente un inversor de tu edad y perfil de riesgo busca consolidar el capital y preparar una base sólida para la jubilación. "
+                    "La clave es priorizar la preservación del capital y la estabilidad, manteniendo una exposición moderada al crecimiento con activos que generen ingresos pasivos.",
+    "60 a 69 años": "normalmente un inversor de tu edad y perfil de riesgo busca preservar el patrimonio minimizando los riesgos, con estabilidad en la generación de ingresos pasivos. "
+                    "La clave es priorizar las inversiones más seguras, con énfasis en activos que generen ingresos constantes.",
+    "70 años o más": "normalmente un inversor de tu edad busca estabilidad y un flujo de ingresos constante que cubra total o parcialmente sus necesidades. "
+                     "La clave es preservar el capital, enfocándose en activos que generen ingresos predecibles y reduzcan el riesgo de la cartera.",
+}

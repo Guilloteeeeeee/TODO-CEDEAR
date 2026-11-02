@@ -7,7 +7,7 @@ import io
 import os
 import re
 
-from ui.cartera import AVISO_CARTERA, CLASES, SALUDO_FINAL, devolucion
+from ui.cartera import AVISO_CARTERA, CLASES, despedida, devolucion, saludo
 
 _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
@@ -149,13 +149,6 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     doc = SimpleDocTemplate(buf, pagesize=A4, leftMargin=18 * mm, rightMargin=18 * mm, topMargin=16 * mm, bottomMargin=20 * mm, title=f"{TITULO} - {NOMBRE}", author=NOMBRE)
     ancho = A4[0] - 36 * mm
 
-    def lista(frases):
-        out = []
-        for x in frases:
-            c = colnivel[nivel(x)]
-            out.append(Paragraph(f'<font color="{c}"><b>•</b></font>&nbsp;&nbsp;{_md(x)}', st["li"]))
-        return out
-
     def seccion(titulo, cuerpo, junto=2):
         cuerpo = [c for c in cuerpo if c is not None]
         return [KeepTogether([Paragraph(html.escape(titulo), st["h"])] + cuerpo[:junto])] + cuerpo[junto:]
@@ -174,64 +167,57 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
         cab = Table([[marca, fch]], colWidths=[ancho - 40 * mm, 40 * mm])
     cab.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
                              ("LINEBELOW", (0, 0), (-1, 0), 2, verde), ("BOTTOMPADDING", (0, 0), (-1, 0), 6)]))
-    quien = (nombre or "").strip() or "colega inversor"
-    el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"])]
-    perfil_txt = f", perfil {str(perfil).lower()}" if perfil else ""
-    el += [Paragraph(f"Persona de {int(edad)} años{perfil_txt}", st["sub"]), Spacer(1, 6),
-           Paragraph(f"<b>Hola {html.escape(quien)}.</b> Gracias por tomarte el tiempo de evaluar tu cartera con nosotros. Esperamos que nuestros aportes te ayuden a lograr tus objetivos financieros.", st["p"])]
+    s1, s2 = saludo(nombre, edad, perfil)
+    el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"]), Spacer(1, 8), Paragraph(f"<b>{html.escape(s1)}</b>", st["p"]), Spacer(1, 3), Paragraph(html.escape(s2), st["p"]), Spacer(1, 6)]
+    el += [Paragraph(_md(x), st["p"]) for x in sec.get("Objetivo como inversor", [])]
 
-    # --- 1. Ponderaciones: dos tortas por grandes grupos (la liquidez no entra en el 100 %)
+    def parrafos(frases):
+        out = []
+        for x in frases:
+            out += [Paragraph(_md(x), st["p"]), Spacer(1, 4)]
+        return out
+    # --- tortas
     def torta(titulo, items, centro, medida=30 * mm):
         items = [(n, v, c) for n, v, c in items if v >= 0.5]
         tot = sum(v for _, v, _ in items) or 1
         leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items] or [Paragraph("Sin inversiones cargadas en estos grupos.", st["pq"])]
-        celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 3 * mm, ancho / 2 - medida - 8 * mm])
+        celda = Table([[_pie([(v, c) for _, v, c in items], medida, centro), leyenda]], colWidths=[medida + 3 * mm, ancho - medida - 8 * mm])
         celda.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
-        return [Paragraph(html.escape(titulo), st["sm"]), celda]
-
-    def clases(peso, con_liq):
-        return [(CLASES[k], peso[k], CV.COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if peso.get(k, 0) >= 0.05 and (con_liq or k != "efectivo")]
-    ref = CM.referencia(edad, perfil)
-    mitades = []
-    if ref:
-        mitades.append(torta("Referencia teórica para tu edad y perfil", clases(ref[1], True), "teórica"))
-    mitades.append(torta("Tu cartera", clases(pi, bool(ef)), f"{int(edad)} años"))
-    tb = Table([mitades], colWidths=[ancho / len(mitades)] * len(mitades))
-    tb.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "TOP"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
-    el += seccion("Ponderaciones", [tb, Spacer(1, 4)] + lista(sec["Ponderaciones"]))
-    # --- 2. Geografía (renta variable y renta fija)
+        return [Paragraph(html.escape(titulo), st["sm"]), celda, Spacer(1, 4)]
+    clases_ = [(CLASES[k], pi[k], CV.COL_CLASE[k]) for k in ("rv", "rf", "efectivo", "oro", "cripto", "otros") if pi.get(k, 0) >= 0.05 and (ef or k != "efectivo")]
+    el += seccion("Estructura de tu cartera", torta("Tu cartera", clases_, f"{int(edad)} años") + parrafos(sec["Estructura de tu cartera"]), junto=4)
     g = res.get("geo")
     cuerpo = []
     if g:
         partes = [(CV.NOM_GEO[k], g[k], CV.COL_GEO[k]) for k in ("usa", "desarrollados", "emergentes", "fuera_sd", "global")]
         partes.append((CV.NOM_GEO["sin"], max(0.0, 100 - sum(v for _, v, _ in partes)), CV.COL_GEO["sin"]))
-        t1 = torta("Distribución geográfica (renta variable y renta fija)", partes, "países")
-        cuerpo = [Table([[t1]], colWidths=[ancho]), Spacer(1, 4)]
-    el += seccion("Diversificación geográfica", cuerpo + lista(sec["Diversificación geográfica"]))
-    # --- 3. Sectorial
+        cuerpo = torta("Distribución geográfica", partes, "países")
+    el += seccion("Diversificación geográfica", cuerpo + parrafos(sec["Diversificación geográfica"]), junto=4)
     sp = res.get("super")
     cuerpo = []
     if sp:
-        t1 = torta("Supersectores", [(CV.NOM_SUP[k], sp[k], CV.COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "sectores")
-        cuerpo = [Table([[t1]], colWidths=[ancho]), Spacer(1, 4)]
-    el += seccion("Diversificación sectorial", cuerpo + lista(sec["Diversificación sectorial"]))
-    el += seccion("Oro y Criptomonedas", lista(sec["Oro y Criptomonedas"]))
-    el += seccion("Liquidez (aparte, optativa)", lista(sec["Liquidez"]))
+        cuerpo = torta("Supersectores", [(CV.NOM_SUP[k], sp[k], CV.COL_SUP[k]) for k in ("defensivo", "sensible", "ciclico")], "sectores")
+    el += seccion("Diversificación sectorial", cuerpo + parrafos(sec["Diversificación sectorial"]), junto=4)
+    el += seccion("Liquidez", parrafos(sec["Liquidez"]))
     if "Sensibilidad al mercado (beta)" in sec:
-        el += seccion("Sensibilidad al mercado (beta)", lista(sec["Sensibilidad al mercado (beta)"]))
+        el += seccion("Sensibilidad al mercado (beta)", parrafos(sec["Sensibilidad al mercado (beta)"]))
     comp = comparar(previa, res) if previa else []
     if comp:
-        el += seccion("Comparación con tu evaluación anterior", lista(comp))
-    # --- 4. Qué ajustaría
-    fr = sec["Qué ajustaría"]
-    cuerpo = [Paragraph(_md(fr[0]), st["p"]), Spacer(1, 5), Paragraph(f"<b>{_md(fr[1].lstrip('#'))}</b>", st["sm"]), Spacer(1, 3), Paragraph(_md(fr[2]), st["p"]), Spacer(1, 3)]
-    for x in fr[3:]:
+        el += seccion("Comparación con tu evaluación anterior", parrafos(comp))
+    fr = sec["Conclusiones finales"]
+    cuerpo = parrafos([fr[0]])
+    for x in fr[1:]:
         m = re.match(r"^([0-9]+)[.] (.*)$", x)
-        cuerpo.append(Paragraph(f"<b>{m.group(1)}.</b>&nbsp;{_md(m.group(2))}" if m else _md(x), st["li"]))
-    el += seccion("Qué ajustaría", cuerpo, junto=6)
-    # --- saludo final y aviso legal
-    el += [Spacer(1, 12), Paragraph(f"<b>{html.escape(SALUDO_FINAL)}</b><br/>Finanzas para Médicos Argentina", ParagraphStyle("sf", parent=st["p"], alignment=1)), Spacer(1, 14)]
-    el += [Paragraph(f"<b>Aviso Legal:</b> {html.escape(AVISO_CARTERA[0])}", st["pq"])]
+        if x.startswith("##"):
+            cuerpo += [Paragraph(f"<b>{_md(x.lstrip('#'))}</b>", st["sm"]), Spacer(1, 3)]
+        elif m:
+            cuerpo.append(Paragraph(f"<b>{m.group(1)}.</b>&nbsp;{_md(m.group(2))}", st["li"]))
+        else:
+            cuerpo += parrafos([x])
+    d1, d2 = despedida(nombre)
+    cuerpo += [Spacer(1, 8), Paragraph(html.escape(d1), st["p"]), Spacer(1, 4), Paragraph(f"<b>{html.escape(d2)}</b>", st["p"])]
+    el += seccion("Conclusiones finales", cuerpo, junto=4)
+    el += [Spacer(1, 14), Paragraph(f"<b>Aviso Legal:</b> {html.escape(AVISO_CARTERA[0])}", st["pq"])]
     doc.build(el, onFirstPage=pie, onLaterPages=pie)
     return buf.getvalue()
 
