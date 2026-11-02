@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.4"
+APP_VERSION = "1.5.5"
 
 import re
 import contextlib
@@ -1557,21 +1557,97 @@ def _leer_archivos(archivos, C):
     return pos, notas, tc_res, hay_img, ""
 
 
-def _tabla_a_mano(pos, key):
-    """Tabla editable para revisar / ajustar a mano lo que se leyó (obligatoria con capturas: el OCR se equivoca)."""
-    filas = [{"Activo": p["ticker"], "Monto": round(float(p["monto"]), 2), "Moneda": {"usd": "Dólares", "ars": "Pesos"}.get(p.get("moneda") or "", "Sin dato"), "Tipo": p.get("tipo") or ""} for p in pos]
+_CLASES_TABLA = {"rv": "Renta Variable", "rf": "Renta Fija", "oro": "Oro", "cripto": "Criptomonedas", "efectivo": "Liquidez", "otros": "Otras materias primas"}
+_TIPO_DE_CLASE = {"Renta Variable": "Renta variable", "Renta Fija": "Renta fija", "Oro": "Oro", "Criptomonedas": "Cripto", "Liquidez": "Efectivo", "Otras materias primas": "", "Sin clasificar": ""}
+_PAIS_ES = {"United States": "Estados Unidos", "Brazil": "Brasil", "Canada": "Canadá", "Denmark": "Dinamarca", "France": "Francia", "Germany": "Alemania", "India": "India", "Ireland": "Irlanda",
+            "Italy": "Italia", "Japan": "Japón", "Netherlands": "Países Bajos", "Norway": "Noruega", "Spain": "España", "Sweden": "Suecia", "Switzerland": "Suiza", "Taiwan": "Taiwán",
+            "United Kingdom": "Reino Unido", "Australia": "Australia", "China": "China", "Uruguay": "Uruguay"}
+
+
+def _pais_sugerido(c, C):
+    """País que la app ya conoce de una posición (para mostrarlo en la tabla); '' si no lo sabe."""
+    if c.get("fuente") == "empresa":
+        p = str((c.get("info") or {}).get("pais") or "")
+        return _PAIS_ES.get(p, p)
+    if c.get("clase") == "rf" and c.get("fuente") in ("tipo", "regla"):
+        g = C._geo_rf(c)
+        return {"emergentes": "Argentina", "usa": "Estados Unidos", "desarrollados": "Europa"}.get(g, "") if g else ""
+    return ""
+
+
+_TXT_CONFIRMAR = ("<div class='cv-intro'><b>Esto es lo que leímos.</b> Antes de analizar, revisá esta tabla: <b>ticker, país, monto invertido y moneda</b> (pesos o dólares). "
+                  "Si algo está mal, corregilo acá mismo: podés editar, borrar o agregar filas. Si está todo bien, tocá el botón de abajo.<br>"
+                  "Perdoná lo engorroso: es un paso más, pero es necesario para que el análisis sea preciso. Cada broker arma su resumen de manera distinta "
+                  "y un solo dato mal leído cambiaría toda la evaluación.</div>")
+
+
+def _confirmar_lectura(pos, firma, empresas, etfs, C):
+    """v1.5.5: «Esto es lo que leímos». Muestra SIEMPRE (Excel, PDF o captura) una tabla corta y editable (activo, país, monto, moneda y clase) y no sigue hasta que la persona
+    toca OK. Así una lectura equivocada del archivo no llega al informe. Devuelve las posiciones confirmadas, o None si todavía falta el OK o hay datos por completar."""
+    pre = {}
+    filas = []
+    for p in pos:
+        c = C.clasificar(p, empresas, etfs)
+        etq = _CLASES_TABLA.get(c["clase"], "Sin clasificar")
+        pre[str(p["ticker"]).strip().upper()] = (etq, p.get("tipo") or "")
+        filas.append({"Activo": str(p["ticker"]).strip(), "País": str(p.get("pais") or "") or _pais_sugerido(c, C), "Monto": round(float(p["monto"]), 2),
+                      "Moneda": {"usd": "Dólares", "ars": "Pesos"}.get(p.get("moneda") or "", "Sin dato"), "Clase": etq})
+    st.markdown(_TXT_CONFIRMAR, unsafe_allow_html=True)
     ed = st.data_editor(
-        pd.DataFrame(filas, columns=["Activo", "Monto", "Moneda", "Tipo"]), num_rows="dynamic", use_container_width=True, hide_index=True, key=key,
-        column_config={"Activo": st.column_config.TextColumn("Activo (ticker o nombre)"), "Monto": st.column_config.NumberColumn("Monto", min_value=0.0, format="%.2f"),
+        pd.DataFrame(filas, columns=["Activo", "País", "Monto", "Moneda", "Clase"]), num_rows="dynamic", use_container_width=True, hide_index=True,
+        key="cr_conf_tabla_" + str(abs(hash(firma)) % 10**8), height=min(80 + 36 * len(filas), 900),
+        column_config={"Activo": st.column_config.TextColumn("Ticker o nombre"),
+                       "País": st.column_config.TextColumn("País"),
+                       "Monto": st.column_config.NumberColumn("Monto invertido", min_value=0.0, format="%.2f"),
                        "Moneda": st.column_config.SelectboxColumn("Moneda", options=["Dólares", "Pesos", "Sin dato"]),
-                       "Tipo": st.column_config.TextColumn("Tipo (opcional: Renta fija, Oro, Cripto, Efectivo…)")})
-    out = []
+                       "Clase": st.column_config.SelectboxColumn("Clase", options=list(_CLASES_TABLA.values()) + ["Sin clasificar"])})
+    out, sin_moneda, sin_clase = [], [], []
     for _, r in ed.iterrows():
         tk, mt = str(r.get("Activo") or "").strip(), r.get("Monto")
         if not tk or tk.lower() == "nan" or mt is None or pd.isna(mt) or float(mt) <= 0:
             continue
-        tp = str(r.get("Tipo") or "").strip()
-        out.append({"ticker": tk, "monto": float(mt), "tipo": "" if tp.lower() == "nan" else tp, "moneda": {"Dólares": "usd", "Pesos": "ars"}.get(r.get("Moneda"))})
+        etq = str(r.get("Clase") or "Sin clasificar")
+        mon = {"Dólares": "usd", "Pesos": "ars"}.get(r.get("Moneda"))
+        pa = str(r.get("País") or "").strip()
+        pa = "" if pa.lower() in ("nan", "none") else pa
+        antes = pre.get(tk.upper())
+        tipo = antes[1] if antes and antes[0] == etq and antes[1] else _TIPO_DE_CLASE.get(etq, "")      # si la clase no cambió se conserva el tipo original (ON, bono, Money Market…)
+        q = {"ticker": tk, "monto": float(mt), "tipo": tipo, "moneda": mon}
+        if pa:
+            q["pais"] = pa
+        out.append(q)
+        if not mon:
+            sin_moneda.append(tk)
+        if etq == "Sin clasificar":
+            sin_clase.append(tk)
+    if not out:
+        st.warning("No hay posiciones en la tabla. Agregá al menos una fila con el ticker y el monto.")
+        return None
+    tot = {"usd": sum(q["monto"] for q in out if q["moneda"] == "usd"), "ars": sum(q["monto"] for q in out if q["moneda"] == "ars")}
+    partes = ([f"US\\$ {_fmt_num(tot['usd'])}"] if tot["usd"] else []) + ([f"\\$ {_fmt_num(tot['ars'])}"] if tot["ars"] else [])      # \\$ para que no lo tome como fórmula
+    if partes:
+        st.caption("Suma de lo que leímos: " + " y ".join(partes) + ". Fijate que coincida con el total de tu resumen.")
+    faltan = []
+    if sin_moneda:
+        faltan.append("Elegí la **moneda** (pesos o dólares) de: " + ", ".join(sin_moneda[:12]) + ("…" if len(sin_moneda) > 12 else "") + ".")
+    if sin_clase:
+        faltan.append("Elegí la **clase** de: " + ", ".join(sin_clase[:12]) + ("…" if len(sin_clase) > 12 else "") + ".")
+    sin_pais = []
+    for q in out:
+        if q["moneda"] and not q.get("pais"):
+            c = C.clasificar(q, empresas, etfs)
+            if c["fuente"] in ("tipo", "regla") and (c["clase"] == "rv" or (c["clase"] == "rf" and not C._geo_rf(c))):
+                sin_pais.append(q["ticker"])
+    if sin_pais:
+        st.caption("Para ubicar por país estas posiciones, completá la columna **País**: " + ", ".join(sin_pais[:12]) + ("…" if len(sin_pais) > 12 else "") + ". Si no, quedan como «sin ubicar».")
+    for t in faltan:
+        st.warning(t)
+    huella = str(abs(hash(str([(q["ticker"], round(q["monto"], 2), q["moneda"], q["tipo"], q.get("pais")) for q in out])) % 10**10))
+    st.markdown(_CSS_COMENZAR.replace("cr_comenzar", "cr_confirmar"), unsafe_allow_html=True)
+    if st.button("Está todo bien, ver mi evaluación", key="cr_confirmar", disabled=bool(faltan)):
+        st.session_state["cr_conf"] = (firma, huella)
+    if st.session_state.get("cr_conf") != (firma, huella):
+        return None
     return out
 
 
@@ -1641,23 +1717,24 @@ def _evaluar_cartera(df, C, CV):
     if err:
         st.error(err)
         return
-    if hay_img:
-        st.info("Leí tu captura. Revisá la tabla y corregí lo que haga falta (podés editar, borrar o agregar filas): el sistema puede confundir números y letras.")
-        base_img = [q for q in pos if q.get("_img")]
-        resto = [q for q in pos if not q.get("_img")]
-        pos = resto + _tabla_a_mano(base_img, "cr_tabla_img_" + str(abs(hash(_firma)) % 10**8))
     if not pos:
         st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo.")
         return
     for n in notas:
         st.caption(n)
-    # moneda: se detecta sola; solo si algún monto no la dice, se pregunta
-    sin_moneda = [p for p in pos if not p.get("moneda")]
-    base_k = "usd"
-    if sin_moneda:
-        with lugar_tc:
-            if st.checkbox("En tu archivo no encontré la moneda de algunos montos: los tomé como dólares. Marcá acá si están en pesos.", key="cr_pesos"):
-                base_k = "ars"
+    if hay_img:
+        st.info("Leí tu captura: el sistema puede confundir números y letras, así que revisá bien la tabla.")
+    empresas = {}
+    for _, r in df.iterrows():
+        empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta")}
+    try:
+        etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
+    except Exception:  # noqa: BLE001
+        etfs = {}
+    pos = _confirmar_lectura(pos, _firma, empresas, etfs, C)       # v1.5.5: «Esto es lo que leímos» (siempre, con OK de la persona)
+    if pos is None:
+        return
+    base_k = "usd"          # desde v1.5.5 cada fila ya trae su moneda (la persona la confirma en la tabla)
     hay_pesos = any((p.get("moneda") or base_k) == "ars" for p in pos)
     tc = None
     if hay_pesos:
@@ -1671,13 +1748,6 @@ def _evaluar_cartera(df, C, CV):
             return
     pos, n_conv, _falta = C.convertir(pos, base_k, tc)
     pos, n_fus = C.fusionar(pos)
-    empresas = {}
-    for _, r in df.iterrows():
-        empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta")}
-    try:
-        etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
-    except Exception:  # noqa: BLE001
-        etfs = {}
     res = C.analizar(pos, edad, perfil, empresas, etfs)
     if not res or not res.get("total"):
         st.warning("No pude clasificar ninguna posición. Completá la columna Tipo (Renta fija, Oro, Cripto, Efectivo…) o revisá los tickers.")

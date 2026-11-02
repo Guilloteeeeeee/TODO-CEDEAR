@@ -1340,8 +1340,8 @@ def devolucion(res, edad, perfil, nombre=""):
     if b:
         v = b["valor"]
         lec = "se movió bastante más que el mercado" if v > 1.2 else "se movió algo más que el mercado" if v > 1.05 else "se movió casi igual que el mercado" if v >= 0.95 else "tendió a moverse menos que el mercado"
-        sec.append(("Sensibilidad al mercado (beta)", [f"El beta aproximado de tu renta variable es {v:.2f} (calculado sobre el {b['cubierto_pct']:.0f} % de ella para el que hay dato). "
-                                                       f"Históricamente, ese nivel significa que tu renta variable {lec}: si el mercado se mueve 10 %, tu renta variable tendió a moverse alrededor de {v * 10:.0f} %. Es una aproximación basada en el pasado, no una predicción."]))
+        sec.append(("Sensibilidad al mercado (beta)", [f"El beta aproximado de tu Renta Variable es {v:.2f} (calculado sobre el {b['cubierto_pct']:.0f} % de ella para el que hay dato). "
+                                                       f"Históricamente, ese nivel significa que tu Renta Variable {lec}: si el mercado se mueve 10 %, tu Renta Variable tendió a moverse alrededor de {v * 10:.0f} %. Es una aproximación basada en el pasado, no una predicción."]))
     # ---------------- Conclusiones finales (orden de importancia: ponderaciones, sectores, empresas, geografía, liquidez)
     ajustes += aj_geo + aj_liq
     f = ["Armar una cartera lleva tiempo, estudio y decisiones, y detrás de cada posición hay un esfuerzo que se reconoce. "

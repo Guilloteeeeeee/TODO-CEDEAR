@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.5 — «Esto es lo que leímos»: la persona confirma lo que se leyó antes de la evaluación
+- **Nuevo paso en Evalúa tu Portfolio**: después de subir Excel, PDF o captura, aparece una tabla corta y editable con **ticker, país, monto invertido, moneda (pesos o dólares) y clase** (Renta Variable, Renta Fija, Oro, Criptomonedas, Liquidez). Se puede editar, borrar o agregar filas; el texto pide disculpas por lo engorroso y explica que es necesario para la precisión. Hasta tocar «Está todo bien, ver mi evaluación» no se analiza nada, y el botón queda gris si falta una moneda o una clase.
+- Muestra la suma leída (US$ y $) para que la persona la compare con el total de su resumen, y avisa qué posiciones no se pueden ubicar por país. El país que la app ya conoce aparece completo.
+- Si la clase no se toca, se conserva el tipo original (ON, bono, Money Market…) para que los avisos de renta fija sigan funcionando. Se eliminó la tabla solo-para-capturas y el cuadro de «moneda no encontrada».
+- Texto del beta con «Renta Variable» en mayúscula.
+- **Datos**: `cache_datos.json` y `fichas.json` del 02/11/2026; copias para el historial en `data/historial/` (cache del 22/10 y del 02/11).
+
 ### v1.5.4 — lectura correcta de los resúmenes de IOL y Balanz (caso real de una inversora), y frases nuevas
 - **Causa del «98 % de Liquidez»**: el PDF de IOL no se leía (sus filas traen coma decimal y no llevan punto de miles: «772740,000»). Ahora `leer_pdf_info` lo reconoce (`_iol_filas`), controla que cantidad × cotización dé el importe, ignora las líneas de índices (MERVAL, BOVESPA…), lee el efectivo del encabezado y la suma coincide con el «Saldo Total Títulos Val.» del resumen.
 - **Balanz**: la sección «Fondos» ya se reconoce; un Money Market cuenta como Liquidez y otros fondos piden aclarar el tipo.

@@ -55,6 +55,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 
 ## Evaluación de cartera (ui/cartera.py)
 - Lectura: PDFs de broker en `leer_pdf_info` (formato IOL aparte: `_iol_filas`/`_iol_efectivo`; sección «Fondos» de Balanz); alias de tickers BYMA en `_alias_tk`/`_EXTRA_EMPRESAS`; `leer_archivo_info` (Excel/CSV, columnas `_columnas`: ticker, monto, tipo, **país**, cantidad, precio, moneda), `leer_pdf_info`, `leer_texto_info`; `convertir` (pesos→USD), `fusionar` (varios brokers).
+- **Paso «Esto es lo que leímos»** (v1.5.5): `_confirmar_lectura` en app.py (tabla editable con OK obligatorio antes de `convertir`/`analizar`; `_pais_sugerido`, `_CLASES_TABLA`).
 - `clasificar` → clase rv/rf/oro/cripto/efectivo/otros; `analizar` → `peso`, `peso_inv` (sin liquidez salvo 70+), `desvio`, `geo` (RV **y** RF; país declarado manda), `super`, `sectores_gics`, `rf_det`, `beta`.
 - `devolucion(res, edad, perfil, nombre)` → `[(título, [párrafos])]`: Objetivo como inversor · Estructura de tu cartera · Diversificación geográfica · Diversificación sectorial (+ «detalle GICS») · Liquidez (teoría primero) · (beta) · Conclusiones finales («Lo que no tocaríamos» + ajustes).
   `saludo()` ("Hola X.", sin edad ni perfil) y `despedida()` ("Hasta aquí nuestro aporte… Abrazo grande y buenas inversiones.").
