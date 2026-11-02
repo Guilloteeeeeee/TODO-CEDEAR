@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.4 — lectura correcta de los resúmenes de IOL y Balanz (caso real de una inversora), y frases nuevas
+- **Causa del «98 % de Liquidez»**: el PDF de IOL no se leía (sus filas traen coma decimal y no llevan punto de miles: «772740,000»). Ahora `leer_pdf_info` lo reconoce (`_iol_filas`), controla que cantidad × cotización dé el importe, ignora las líneas de índices (MERVAL, BOVESPA…), lee el efectivo del encabezado y la suma coincide con el «Saldo Total Títulos Val.» del resumen.
+- **Balanz**: la sección «Fondos» ya se reconoce; un Money Market cuenta como Liquidez y otros fondos piden aclarar el tipo.
+- **Tickers de los brokers**: DISN = DIS, BRKB = BRK-B (de `data/cedears.csv`), PETR3 = PBR, VIST y B (Barrick) con sector y país, AO27 como bono argentino. Antes quedaban «sin ubicar».
+- **Textos**: «Tené en cuenta que el programa no evalúa la calidad de cada empresa emisora: sería prudente mirar la calificación crediticia de cada una.»; «dosis chica(s)» pasa a «posición pequeña» (palabra prohibida en informes). Si una parte no se pudo ubicar por país, se avisa con su porcentaje (figura «Sin ubicar» en el gráfico).
+- **Arreglo**: «Como no tenés Renta Variable, no hay sectores para analizar» ya no sale cuando el texto de arriba da un porcentaje (se mira lo invertido, no el total con liquidez).
+- **Datos**: `data/etfs_yahoo.json` del 02/11/2026 (65 ETFs, incluye DBB, DBA, WEAT, JMOM, ILIT y REMX).
+- Prueba nueva: `tests/test_v154_pdf_broker.py`.
+
 ### v1.5.3 — la evaluación con el mismo estilo que el resto del sitio, y texto ajustado
 - **Formato**: tarjetas blancas sobre fondo claro, sin íconos ni barras de colores; tortas sin título ni texto adentro (y una porción chica, como 1 %, se dibuja con un mínimo para que se vea); los porcentajes van en negrita negra (ya no en rosa); las «Notas» teóricas van en cursiva y sin negrita; «Por qué:» hasta el final va en cursiva (ya no en verde). El PDF copia lo mismo.
 - **Texto**: saludo solo «Hola Nombre.» (sin edad ni perfil); «Objetivo:» (en negrita sólo esa palabra); instrumentos siempre con mayúscula (Renta Variable, Renta Fija, Oro, Criptoactivos); sin «No tenés oro» (ahora «Sería importante considerar al Oro»); títulos «Diversificación Geográfica» y «Diversificación Sectorial».

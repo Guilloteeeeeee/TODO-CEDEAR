@@ -373,7 +373,7 @@ def leer_archivo(nombre, datos):
 
 # --- PDF del broker (resumen de cuenta / tenencias) -----------------------------------------------------------------------------------------------------------
 
-_SIMB = {"$": "ars", "ars": "ars", "usd": "usd", "us$": "usd", "u$s": "usd", "us": "usd"}
+_SIMB = {"$": "ars", "ars": "ars", "ar$": "ars", "usd": "usd", "us$": "usd", "u$s": "usd", "us": "usd"}
 _TK_PDF = re.compile(r"^[A-Z0-9][A-Z0-9.\-/]{0,11}$")
 _ENC_PDF = re.compile(r"(especie|ticker|simbolo|instrumento|activo|descripcion)")
 _EFECTIVO_TIT = ("monedas", "efectivo", "liquidez", "disponible", "disponibilidades", "saldos", "caja", "cuentas")
@@ -429,6 +429,75 @@ def tipo_cambio_texto(texto):
     return v if v and v > 50 else None
 
 
+# Resumen de IOL (InvertirOnline): "Cedear Apple Inc. AAPL BCBA 27,0000 AR$ 28620,000 772740,000" (título, símbolo, mercado, cantidad, moneda, cotización, importe).
+# Esos números llevan coma decimal y NO llevan punto de miles ("772740,000" = 772.740), así que se leen aparte.
+_IOL_FILA = re.compile(r"^(?P<tit>.+?)\s+(?P<tk>[A-Z0-9][A-Z0-9.\-]{0,11})\s+(?P<mkt>[A-Z]{3,8})\s+(?P<cant>\d[\d,]*)\s+(?P<mon>AR\$|US\$|U\$S)\s+(?P<cot>\d[\d,]*)\s+(?P<imp>\d[\d,]*)$")
+_FONDOS_TIT = ("fondos", "fondos comunes de inversion", "fci", "fondos comunes")
+
+
+def _num_coma(t):
+    """'772740,000' -> 772740.0 (coma decimal, sin puntos de miles)."""
+    try:
+        return float(str(t).replace(",", "."))
+    except ValueError:
+        return None
+
+
+def _agrupar_pdf(out):
+    """Suma las filas repetidas (mismo ticker y moneda)."""
+    agr, orden = {}, []
+    for p in out:
+        k = (clave_tk(p["ticker"]) or p["ticker"].upper(), p["moneda"])
+        if k in agr:
+            agr[k]["monto"] += p["monto"]
+        else:
+            agr[k] = dict(p)
+            orden.append(k)
+    return [dict(agr[k], monto=round(agr[k]["monto"], 2)) for k in orden]
+
+
+def _iol_filas(texto):
+    """Posiciones de un resumen de IOL; [] si el PDF no tiene ese formato. Chequea que cantidad x cotización dé el importe (los bonos cotizan cada 100 nominales)."""
+    out = []
+    for linea in texto.splitlines():
+        m = _IOL_FILA.match(linea.strip())
+        if not m:
+            continue
+        cant, cot, imp = _num_coma(m["cant"]), _num_coma(m["cot"]), _num_coma(m["imp"])
+        if not cant or imp is None or imp <= 0 or not re.search(r"[A-Z]", m["tk"]):
+            continue
+        if cot and abs(cant * cot - imp) > max(1.0, imp * 0.02) and abs(cant * cot / 100 - imp) > max(1.0, imp * 0.02):
+            continue
+        d = norm(m["tit"])
+        tipo = "Cedear" if d.startswith("cedear") else ("Bono" if re.search(r"\b(bono|letra|lecap|boncap|obligacion)\b", d) else "Acción")
+        out.append({"ticker": _ticker_limpio(m["tk"]), "monto": imp, "tipo": tipo, "moneda": _SIMB[m["mon"].lower()]})
+    return out
+
+
+def _iol_efectivo(texto):
+    """Efectivo del encabezado de IOL: las etiquetas ('Disponible Pesos', 'Disponible Dólares'…), las monedas y los importes vienen en tres bloques de líneas, en el mismo orden."""
+    lin = [l.strip() for l in texto.splitlines() if l.strip()]
+    etiquetas = [i for i, l in enumerate(lin) if re.match(r"^(Disponible|Efectivo Caucionado|T[ií]tulos Valorizados)\b", l)]
+    if not etiquetas:
+        return []
+    n = len(etiquetas)
+    fin = etiquetas[-1] + 1
+    cola = [l for l in lin[fin:] if not l.startswith("*")]
+    monedas, importes = cola[:n], cola[n:2 * n]
+    out = []
+    if len(monedas) != n or len(importes) != n:
+        return out
+    for i, idx in enumerate(etiquetas):
+        et = norm(lin[idx])
+        if "operable" in et or "titulos" in et or monedas[i].lower() not in _SIMB:
+            continue
+        v = numero(importes[i].replace(".", "").replace(",", ".")) if re.fullmatch(r"-?\d[\d.,]*", importes[i]) else None
+        if v and v > 0:
+            mon = _SIMB[monedas[i].lower()]
+            out.append({"ticker": "Efectivo en pesos" if mon == "ars" else "Efectivo en dólares", "monto": round(v, 2), "tipo": "Efectivo", "moneda": mon})
+    return out
+
+
 def leer_pdf_info(datos):
     """(posiciones, notas, tipo de cambio del resumen) desde el PDF de un broker. Entiende los resúmenes con tablas por tipo de activo (Bonos, Cedears, Corporativos… con
     especie, descripción, cantidad, precio y valor actual) y la sección de monedas/efectivo; la moneda de cada valor sale del símbolo ($ o USD). Si no encuentra ese formato,
@@ -436,6 +505,11 @@ def leer_pdf_info(datos):
     texto = _texto_pdf(datos)
     if not texto.strip():
         raise ValueError("Ese PDF no tiene texto que pueda leer (parece una foto o un escaneo). Subí el Excel del broker o pegá tu cartera como texto.")
+    iol = _iol_filas(texto)
+    if len(iol) >= 2:
+        extra = _iol_efectivo(texto)
+        pos = _agrupar_pdf(iol + extra)
+        return pos, (["Incluí el efectivo que figura en tu resumen."] if extra else []), tipo_cambio_texto(texto)
     out, seccion, modo, hay_efectivo = [], "", "", False
     for linea in texto.splitlines():
         linea = linea.strip()
@@ -449,6 +523,9 @@ def leer_pdf_info(datos):
                 continue
             if clase_de_tipo(linea) and n not in ("monedas",):
                 modo, seccion = "tabla", linea
+                continue
+            if n in _FONDOS_TIT:
+                modo, seccion = "tabla", "Fondos"
                 continue
             if modo == "efectivo" or re.search(r"evolucion|distribucion|resumen|informacion|instrumentos|composicion", n):
                 modo = "" if modo == "efectivo" else modo
@@ -478,21 +555,15 @@ def leer_pdf_info(datos):
             if not _TK_PDF.match(tk) or not re.search(r"[A-Z]", tk) or len(cola) < 2 or re.fullmatch(r"\d+", tk):
                 continue
             tipo = seccion
-            if not clase_de_tipo(tipo):
+            if norm(seccion) in _FONDOS_TIT:
+                tipo = "Money Market" if re.search(r"money market|liquidez|ahorro|plazo fijo|caucion", norm(desc)) else "Fondo común de inversión"
+            elif not clase_de_tipo(tipo):
                 d = norm(desc)
                 tipo = "Cedear" if d.startswith("cedear") else ("Obligación negociable" if re.search(r"\bon\b", d) else ("Bono" if re.search(r"\b(bono|letra|lecap|boncap)\b", d) else ""))
             out.append({"ticker": _ticker_limpio(tk), "monto": valor, "tipo": tipo, "moneda": mon})
     notas = []
     if out:
-        agr, orden = {}, []
-        for p in out:
-            k = (clave_tk(p["ticker"]) or p["ticker"].upper(), p["moneda"])
-            if k in agr:
-                agr[k]["monto"] += p["monto"]
-            else:
-                agr[k] = dict(p)
-                orden.append(k)
-        out = [dict(agr[k], monto=round(agr[k]["monto"], 2)) for k in orden]
+        out = _agrupar_pdf(out)
         if hay_efectivo:
             notas.append("Incluí el efectivo que figura en tu resumen.")
         return out, notas, tipo_cambio_texto(texto)
@@ -682,6 +753,7 @@ _RF_AR = (
     r"^TZX[A-Z0-9]{2,3}[DC]?$", r"^TX\d{2}[DC]?$",      # Bonos ajustados por CER (Boncer): TZX26, TZXD6, TX26, TX28
     r"^(DICP|PARP|CUAP|DIP0|PAP0|CUAP)[DC]?$",          # Discount, Par y Cuasipar
     r"^TT[A-Z]\d{2}[DC]?$", r"^TV\d{2}[DC]?$", r"^TY\d{2}P$",   # Duales, dolar linked y Bonte
+    r"^AO\d{2}[DC]?$",                                # Bonos del Tesoro Nacional en dólares (AO27, AO28)
     r"^BPO[A-Z]\d[DC]?$", r"^CO\d{2}[DC]?$",           # Provincia de Buenos Aires (BPOA7...) y Cordoba (CO26...)
 )
 # Acciones argentinas mas comunes (panel lider y algunas del general) -> sector de la app, para poder evaluar la diversificacion. Pais: Argentina.
@@ -695,10 +767,31 @@ def _es_rf_ar(tk):
     return any(re.match(p, tk) for p in _RF_AR)
 
 
+# Tickers con que los brokers argentinos nombran CEDEARs que en la app figuran con otro símbolo (DISN = DIS, BRKB = BRK-B…; sale de data/cedears.csv) + algunos alias a mano.
+_ALIAS_BYMA = {"PETR3": "PBR"}
+# Empresas con CEDEAR/acción que no están en la lista de la app: sector (GICS de la app) y país, para poder ubicarlas igual.
+_EXTRA_EMPRESAS = {"VIST": ("Energía", "Argentina"), "B": ("Materiales Básicos", "Canadá")}
+
+
+def _alias_tk(tk, empresas):
+    if tk in empresas:
+        return tk
+    if tk in _ALIAS_BYMA and _ALIAS_BYMA[tk] in empresas:
+        return _ALIAS_BYMA[tk]
+    try:
+        from data import cedears as _CE
+        for t, d in _CE.cargar().items():
+            if clave_tk(d.get("simbolo")) == tk and clave_tk(t) in empresas:
+                return clave_tk(t)
+    except Exception:  # noqa: BLE001
+        pass
+    return tk
+
+
 def clasificar(pos, empresas, etfs):
     """Agrega a la posicion: 'clase' (o None), 'fuente' ('empresa' | 'etf' | 'tipo' | 'regla'), 'info' (datos de la empresa si es una de la lista).
     `empresas`: {CLAVE_TICKER: {nombre, sector, pais, categoria}}; `etfs`: {CLAVE_TICKER: {categoria, ...}}."""
-    tk = clave_tk(re.sub(r"\.BA$", "", str(pos["ticker"]).strip(), flags=re.I))
+    tk = _alias_tk(clave_tk(re.sub(r"\.BA$", "", str(pos["ticker"]).strip(), flags=re.I)), empresas)
     pos = dict(pos)
     pos["clase"], pos["fuente"], pos["info"] = None, None, None
     por_tipo = clase_de_tipo(pos.get("tipo"))
@@ -711,6 +804,9 @@ def clasificar(pos, empresas, etfs):
         pos.update(clase=clase, fuente="etf", ticker=str(pos["ticker"]).upper())
     elif tk in ACCIONES_AR and por_tipo in (None, "rv"):
         pos.update(clase="rv", fuente="empresa", info={"nombre": tk, "sector": ACCIONES_AR[tk], "pais": "Argentina", "categoria": None}, ticker=str(pos["ticker"]).upper())
+    elif tk in _EXTRA_EMPRESAS and por_tipo in (None, "rv"):
+        sct, pa = _EXTRA_EMPRESAS[tk]
+        pos.update(clase="rv", fuente="empresa", info={"nombre": tk, "sector": sct, "pais": pa, "categoria": None}, ticker=str(pos["ticker"]).upper())
     elif por_tipo:
         pos.update(clase=por_tipo, fuente="tipo")
     elif _es_rf_ar(tk):
@@ -981,7 +1077,7 @@ _NOMBRE_CLASE = {"rv": "Renta Variable", "oro": "Oro", "cripto": "Criptoactivos"
 _PQ_SUBIR = {"oro": "el Oro suele funcionar como reaseguro contra la inflación y como sostén de la cartera en momentos de incertidumbre, cuando las acciones caen",
              "rf": "la Renta Fija aporta ingresos más previsibles y amortigua las caídas de las acciones",
              "rv": "a largo plazo la Renta Variable es lo que más hace crecer el capital por encima de la inflación",
-             "cripto": "en dosis chicas puede sumar crecimiento, aunque es muy volátil",
+             "cripto": "en una posición pequeña puede sumar crecimiento, aunque es muy volátil",
              "efectivo": "la liquidez da margen para imprevistos y para aprovechar oportunidades"}
 _PQ_BAJAR = {"rv": "hoy tenés más riesgo de caída del que suele ser razonable para tu edad y tu perfil",
              "rf": "con tanta Renta Fija el capital crece más despacio de lo que suele ser razonable para tu edad y tu perfil",
@@ -1012,7 +1108,7 @@ _POR_QUE_SUMAR = {
     "rf": "la Renta Fija aporta ingresos más previsibles y disminuye la volatilidad. Idealmente apuntar a bonos soberanos y corporativos de alto grado de inversión, que son los de menor riesgo de default.",
     "oro": "el Oro le da equilibrio al portfolio en momentos de incertidumbre y contextos de alta inflación.",
     "rv": "la Renta Variable es la que más hace crecer el capital a largo plazo. Idealmente de forma diversificada, con empresas sólidas o ETFs.",
-    "cripto": "en dosis chicas, los criptoactivos pueden sumar crecimiento, siempre sabiendo que son muy volátiles.",
+    "cripto": "en una posición pequeña, los criptoactivos pueden sumar crecimiento, siempre sabiendo que son muy volátiles.",
     "efectivo": "las cuentas remuneradas y las cauciones dan estabilidad y disponibilidad inmediata.",
 }
 _POR_QUE_ACERCAR = {
@@ -1076,12 +1172,12 @@ def devolucion(res, edad, perfil, nombre=""):
     if pi.get("cripto", 0) >= 0.5:
         f.append(f"**Criptomonedas** en un =={pi['cripto']:.0f} %=={_de('cripto')}. Los criptoactivos pueden sumar crecimiento pero son muy volátiles.")
     elif refk.get("cripto", 0) > 0:
-        f.append("Podría considerarse una dosis chica de **Criptomonedas**: pueden sumar crecimiento, aunque son muy volátiles.")
+        f.append("Podría considerarse una posición pequeña de **Criptomonedas**: pueden sumar crecimiento, aunque son muy volátiles.")
     det = res.get("rf_det") or {}
     if det.get("ar"):
         f.append("Tené presente que los bonos argentinos tienen más riesgo que los de Estados Unidos o Europa de grado de inversión; en general, cuanto más corto el plazo, menos expuestos están a los cambios que puedan venir.")
     if det.get("on"):
-        f.append("En las obligaciones negociables no evaluamos la calidad de cada empresa emisora: conviene mirar la calificación crediticia de cada una.")
+        f.append("Tené en cuenta que el programa no evalúa la calidad de cada empresa emisora: sería prudente mirar la calificación crediticia de cada una.")
     if det.get("ext") and not det.get("ar") and not det.get("on"):
         bien.append("tu renta fija está en bonos de Estados Unidos o Europa, que suelen ser de los de menor riesgo")
     if pe["otros"] >= 5:
@@ -1109,7 +1205,7 @@ def devolucion(res, edad, perfil, nombre=""):
     g = res.get("geo")
     f = []
     GU, GD, GE = CM.GEOGRAFIA["usa"], CM.GEOGRAFIA["desarrollados"], CM.GEOGRAFIA["emergentes"]
-    if pe["rv"] < 1 and pe["rf"] < 1:
+    if pi.get("rv", 0) < 1 and pi.get("rf", 0) < 1:
         f.append("Como no tenés Renta Variable ni Renta Fija, no hay países para analizar.")
     elif not g:
         f.append("No pudimos ubicar por país tus posiciones, así que no podemos analizar este punto. Si cargás la columna **País** del Excel, lo incluimos.")
@@ -1139,8 +1235,9 @@ def devolucion(res, edad, perfil, nombre=""):
             if not obs_g:
                 f.append(f"Notamos que **tu distribución geográfica está muy bien equilibrada** (Estados Unidos {usa:.0f} %, otros desarrollados {des:.0f} %, emergentes {emer:.0f} %).")
                 bien.append("tu distribución geográfica está muy bien equilibrada")
-        if res["geo_ubicado_pct"] < 60:
-            f.append("Parte de tu cartera no pudo ubicarse por país, así que esta lectura es parcial. Si completás la columna **País** del Excel, la afinamos.")
+        if res["geo_ubicado_pct"] < 98:
+            f.append(f"El =={100 - res['geo_ubicado_pct']:.0f} %== de tu Renta Variable y Renta Fija no pudo ubicarse por país (en el gráfico figura como «Sin ubicar»), así que los porcentajes de este texto se calculan sobre el resto. "
+                     "Si completás la columna **País** del Excel, la afinamos.")
     f.append(f"__Nota: La diversificación geográfica es clave. Nuestro enfoque teórico pone a Estados Unidos como el país con más asignación ({GU} %), sin dejar de lado otros países desarrollados ({GD} %) y mercados emergentes ({GE} %).__")
     sec.append(("Diversificación geográfica", f))
     # ---------------- Diversificación sectorial: primero los supersectores y después el detalle por sector GICS (+ empresas individuales)
@@ -1151,7 +1248,7 @@ def devolucion(res, edad, perfil, nombre=""):
                 f"Cíclico ({_SUPERS_TXT['ciclico']}), Sensible ({_SUPERS_TXT['sensible']}) y Defensivo ({_SUPERS_TXT['defensivo']}). "
                 f"Una estructura de cartera que permite soportar los diferentes momentos de los ciclos del mercado con la menor volatilidad posible debería ponderar "
                 f"Defensivo {SD} %, Cíclico {SC} % y Sensible {SS} %.__")
-    if pe["rv"] < 1:
+    if pi.get("rv", 0) < 1:      # v1.5.4: se mira lo invertido (la misma base del texto de arriba), no el total con liquidez
         f.append("Como no tenés Renta Variable, no hay sectores para analizar.")
     elif not s:
         f.append("No pudimos ubicar por sector tus posiciones de Renta Variable (los ETFs no se abren por dentro), así que este punto queda sin analizar.")

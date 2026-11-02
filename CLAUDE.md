@@ -10,6 +10,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 - **No cambiar metodología** (score, categorías, Fair Value, carteras modelo) sin su decisión explícita.
 - **Antes de escribir cualquier informe** (Análisis Fundamental nuevo, renovación, reescritura) **avisarle** para que cambie a Opus.
 - Nada pago ni instalaciones en su PC. En el texto de los informes no nombrar a Damodaran ni a Nelissen (en la línea de fuentes sí puede ir Damodaran).
+- Palabras prohibidas en informes y devoluciones: «dosis chica(s)» (usar «posición pequeña»).
 - Textos justificados; tortas, no barras; nada de "malas noticias" en la evaluación de cartera (ver abajo).
 
 ## Cómo fluyen los datos
@@ -53,7 +54,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 - `macro_actual.txt` / `macro_numeros.json`: contexto macro para los informes (mantener al día).
 
 ## Evaluación de cartera (ui/cartera.py)
-- Lectura: `leer_archivo_info` (Excel/CSV, columnas `_columnas`: ticker, monto, tipo, **país**, cantidad, precio, moneda), `leer_pdf_info`, `leer_texto_info`; `convertir` (pesos→USD), `fusionar` (varios brokers).
+- Lectura: PDFs de broker en `leer_pdf_info` (formato IOL aparte: `_iol_filas`/`_iol_efectivo`; sección «Fondos» de Balanz); alias de tickers BYMA en `_alias_tk`/`_EXTRA_EMPRESAS`; `leer_archivo_info` (Excel/CSV, columnas `_columnas`: ticker, monto, tipo, **país**, cantidad, precio, moneda), `leer_pdf_info`, `leer_texto_info`; `convertir` (pesos→USD), `fusionar` (varios brokers).
 - `clasificar` → clase rv/rf/oro/cripto/efectivo/otros; `analizar` → `peso`, `peso_inv` (sin liquidez salvo 70+), `desvio`, `geo` (RV **y** RF; país declarado manda), `super`, `sectores_gics`, `rf_det`, `beta`.
 - `devolucion(res, edad, perfil, nombre)` → `[(título, [párrafos])]`: Objetivo como inversor · Estructura de tu cartera · Diversificación geográfica · Diversificación sectorial (+ «detalle GICS») · Liquidez (teoría primero) · (beta) · Conclusiones finales («Lo que no tocaríamos» + ajustes).
   `saludo()` ("Hola X.", sin edad ni perfil) y `despedida()` ("Hasta aquí nuestro aporte… Abrazo grande y buenas inversiones.").
@@ -63,7 +64,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 - Rentabilidad: `rentabilidad_con_fechas` (TIR / Dietz), `rentabilidad_anual` (rango estimado), `duracion_txt`. Todo en dólares.
 
 ## Pruebas
-- `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
+- `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz) y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
 - Para ver una pantalla sin la app entera: armar un harness que importe solo las funciones (ver `_evaluar_cartera`) y usar Playwright; Yahoo no responde acá.
 
 ## Publicar una versión
