@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.6"
+APP_VERSION = "1.5.7"
 
 import re
 import contextlib
@@ -949,6 +949,7 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
 def _ir_a_tabla(tabla):
     """Botones "Empresas" / "Exchange Traded Funds (ETFs)" de la franja (v1.2.60): cambian de tabla dentro de la misma sesion (cambian la URL, pero la pagina no se recarga)."""
     st.query_params.clear()
+    st.session_state["entro"] = True       # v1.5.7: ya pasó la pantalla de inicio
     if tabla == "etfs":
         st.query_params["tabla"] = "etfs"
     elif tabla == "cartera":
@@ -1033,6 +1034,7 @@ def _ir_a_seleccion():
     if not destino:
         return
     tipo, t = destino
+    st.session_state["entro"] = True
     st.query_params.clear()
     st.query_params["etf" if tipo == "etf" else "empresa"] = t
 
@@ -1310,7 +1312,7 @@ def _nota_archivo(extra, clave):
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
     # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
-    st.markdown('<a class="emp-vol" href="?" target="_self">← Volver a Empresas</a>', unsafe_allow_html=True)
+    st.markdown('<a class="emp-vol" href="?inicio=0" target="_self">← Volver a Empresas</a>', unsafe_allow_html=True)
     # v1.2.54: aviso bien visible mientras se prepara la informacion de la empresa (se borra al terminar)
     cargando = st.empty()
     cargando.markdown('<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos de la empresa…</div>', unsafe_allow_html=True)
@@ -1946,24 +1948,36 @@ def main():
     en_cartera = st.query_params.get("pagina") == "cartera"
     en_ideas = st.query_params.get("pagina") == "ideas"
     en_inicio = not (en_quienes or en_cartera or en_ideas or etf_sel or st.query_params.get("empresa"))
+    en_landing = en_inicio and not dict(st.query_params) and not st.session_state.get("entro")      # v1.5.7: pantalla de inicio (solo con la URL pelada y antes de tocar «Comenzar»)
     activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas) else "empresas"))
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
                 + encabezado_html(NOMBRE_APP, menu_abierto=st.query_params.get("menu") == "1"), unsafe_allow_html=True)
+    try:
+        from ui import mercados as _mk
+        st.markdown(_mk.barra_html(_mk.obtener()), unsafe_allow_html=True)      # v1.5.7: barra de mercados fija debajo de la franja negra (dólares, Merval, bolsas, petróleo…)
+    except Exception:  # noqa: BLE001
+        pass
     from ui.tema import css_oscuro
     st.markdown(css_oscuro(), unsafe_allow_html=True)      # v1.4.3: modo oscuro (botón sol / luna en la franja negra)
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
     # v1.2.83: menu lateral (las 3 rayitas). Fuera del inicio se llena ya; en el inicio se llena mas abajo, cuando estan los datos (Filtro, Noticias, Calendario)
     menu_box = st.container(key="menu_lateral")
-    render_menu_estatico(menu_box, home=en_inicio, filtro="Filtro de ETFs" if home_etfs else "Filtro de Empresas")
+    render_menu_estatico(menu_box, home=en_inicio and not en_landing, filtro="Filtro de ETFs" if home_etfs else "Filtro de Empresas")
     poner_esc()
-    if en_inicio:
+    if en_inicio and not en_landing:
         fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    render_nav_tablas("etfs" if en_etfs else ("ambos" if (en_quienes or en_cartera or en_ideas) else "empresas"))
+    if not en_landing:      # en la pantalla de inicio el único acceso es «Comenzar»
+        render_nav_tablas("etfs" if en_etfs else ("ambos" if (en_quienes or en_cartera or en_ideas) else "empresas"))
     if en_quienes or en_ideas or etf_sel or st.query_params.get("empresa"):
         render_buscador()
     aviso = texto_aviso_legal()
     fecha = None
+    if en_landing:
+        from ui import inicio as _inicio
+        st.markdown(_inicio.hero_html(), unsafe_allow_html=True)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
+        return
 
     # v1.2.83: "Ideas de inversión" (?pagina=ideas): por ahora un aviso; la sección se arma más adelante
     if en_ideas:

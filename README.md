@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.7 — barra de mercados y pantalla de inicio nueva
+- **Barra de mercados** (`ui/mercados.py`): franja fija debajo de la franja negra en todas las páginas, con dólar oficial, MEP y CCL (venta, de DolarApi), Merval, S&P 500, Nasdaq, Dow 30, Russell 2000, bono a 10 años, VIX, oro, petróleo WTI y Brent, Bitcoin, Euro Stoxx 50, DAX, FTSE 100 y CAC 40 (Yahoo Finance, con demora). Sin gráficos chicos y sin links; se desliza en el celular. Se actualiza cada 5 minutos en segundo plano; lo que no llega se oculta (nunca un error ni un número inventado). Respeta el modo oscuro.
+- **Pantalla de inicio** (`ui/inicio.py`), según la maqueta aprobada: frase «No compres CEDEARs a ciegas. Conocelos antes de invertir.», el texto de Guille y **un solo botón «Comenzar»** (`?inicio=0`), con vista previa de la app (tortas, tabla con valoración y celular) con datos de ejemplo. Aparece solo con la URL pelada y antes de tocar «Comenzar»; el título TodoCedears y «Volver al Inicio» de Quiénes somos llevan a ella; «Volver a Empresas» y los links del menú van directo a la tabla.
+- Prueba nueva: `tests/test_v157_mercados.py`.
+
 ### v1.5.6 — nombre del PDF
 - El PDF de la evaluación se descarga como «Evaluación de Portfolio Laura.pdf» (con el nombre que puso la persona; sin nombre, «Evaluación de Portfolio.pdf»).
 

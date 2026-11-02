@@ -551,8 +551,8 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
     if home:
         arriba = _it_sec("filtro", filtro) + _it_sec("noticias", "Noticias Calientes del día") + _it_sec("cal", "Calendario Financiero")
     else:
-        arriba = (_it_href("?menu=1", filtro, chica="en el inicio") + _it_href("?menu=1", "Noticias Calientes del día", chica="en el inicio")
-                  + _it_href("?menu=1", "Calendario Financiero", chica="en el inicio"))
+        arriba = (_it_href("?inicio=0&menu=1", filtro, chica="en el inicio") + _it_href("?inicio=0&menu=1", "Noticias Calientes del día", chica="en el inicio")
+                  + _it_href("?inicio=0&menu=1", "Calendario Financiero", chica="en el inicio"))
     arriba += _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
     # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
