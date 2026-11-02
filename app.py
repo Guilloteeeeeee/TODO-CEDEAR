@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.5"
+APP_VERSION = "1.5.6"
 
 import re
 import contextlib
@@ -1769,10 +1769,12 @@ def _evaluar_cartera(df, C, CV):
     try:
         from ui import cartera_informe as CI
         av = ""
+        _nom = re.sub(r'[\\/:*?"<>|\r\n\t]+', " ", str(nombre or "")).strip()[:40].strip()
+        _arch = "Evaluación de Portfolio" + (" " + _nom if _nom else "")       # v1.5.5: el PDF se llama «Evaluación de Portfolio Laura»
         try:
-            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.pdf", "application/pdf", "Descargar informe en PDF"
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.pdf_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), _arch + ".pdf", "application/pdf", "Descargar informe en PDF"
         except ImportError:
-            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), "informe_cartera_finanzas_para_medicos.html", "text/html", "Descargar informe (se puede imprimir como PDF)"
+            datos_inf, nombre_inf, mime_inf, etq_inf = CI.html_informe(res, edad, perfil, aviso=av, nombre=nombre or "", previa=previa), _arch + ".html", "text/html", "Descargar informe (se puede imprimir como PDF)"
         st.markdown(_CSS_COMENZAR.replace("cr_comenzar", "cr_informe") + '<div class="cv-intro"><b>Te recomendamos descargar tu evaluación en PDF.</b> La próxima vez que te evalúes, subila en «¿Ya te evaluaste antes?» '
                     'y vemos juntos cómo fue cambiando tu cartera.</div>', unsafe_allow_html=True)
         st.download_button(etq_inf, datos_inf, file_name=nombre_inf, mime=mime_inf, key="cr_informe", use_container_width=True)

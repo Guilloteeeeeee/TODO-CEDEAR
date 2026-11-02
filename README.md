@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.6 — nombre del PDF
+- El PDF de la evaluación se descarga como «Evaluación de Portfolio Laura.pdf» (con el nombre que puso la persona; sin nombre, «Evaluación de Portfolio.pdf»).
+
 ### v1.5.5 — «Esto es lo que leímos»: la persona confirma lo que se leyó antes de la evaluación
 - **Nuevo paso en Evalúa tu Portfolio**: después de subir Excel, PDF o captura, aparece una tabla corta y editable con **ticker, país, monto invertido, moneda (pesos o dólares) y clase** (Renta Variable, Renta Fija, Oro, Criptomonedas, Liquidez). Se puede editar, borrar o agregar filas; el texto pide disculpas por lo engorroso y explica que es necesario para la precisión. Hasta tocar «Está todo bien, ver mi evaluación» no se analiza nada, y el botón queda gris si falta una moneda o una clase.
 - Muestra la suma leída (US$ y $) para que la persona la compare con el total de su resumen, y avisa qué posiciones no se pueden ubicar por país. El país que la app ya conoce aparece completo.
