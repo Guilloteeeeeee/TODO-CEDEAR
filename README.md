@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.18 — cache del 03/11/2026 con las 215 empresas
+- **Cache nuevo** (`data/cache_datos.json` + copia en `data/historial/`): las 49 empresas de la tanda 1 ya tienen puntaje, categoría y Fair Value. Stock Analysis aportó 212 de 215 (solo Yahoo: GEV, ALAB, SNDK).
+- **Datos flojos a decidir por Guille:** MRNA y NTRA puntúan con una sola métrica (P/FCF de 305 y 538 veces); SNDK y ALAB tienen 1 o 2 años de historia en sus medianas. No se tocó el método.
+- Pendiente de subir desde la PC de Guille: `data/fichas.json` nuevo y los 49 logos en `assets/logos/`.
+
 ### v1.5.17 — arreglos de la tanda 1 (Bunge y ADR)
 - **Bunge:** el ticker de Yahoo/NYSE es **BG** (BNG es el código de BYMA). Quedó `BG;BNG;5` en `data/cedears.csv` y BG en el grupo, la industria y el logo. Con «BNG» Yahoo no devolvía datos.
 - **ADR:** AMX, BCS, BIDU, JD, LYG y VOD pasan a la lista de ADR. CCJ, GRMN, JCI, TEAM y BG son acciones ordinarias: nueva lista `NO_ADR` en `config/mercados.py` para que `bajar_fichas` no vuelva a avisar por ellas ni por las ya revisadas (ACN, AEM, ASML, AZN, LIN, MDT, MELI, NU, RACE, SHOP, SPOT).
