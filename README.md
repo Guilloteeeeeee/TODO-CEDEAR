@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.12 — liquidez en Money Market, caución o cuenta remunerada
+- **Liquidez:** cuando buena parte de la liquidez está en un fondo Money Market, una caución o una cuenta remunerada, la devolución ya no dice que es «plata quieta que no rinde»: aclara que paga un rendimiento y que conviene mirar si alcanza frente a la inflación. El efectivo puro mantiene el texto de siempre. Los textos generales dicen «la liquidez rinde poco y puede perder poder de compra frente a la inflación». Solo cambia la redacción.
+- Prueba: `tests/test_v145_cartera.py`.
+
 ### v1.5.11 — la devolución dice dónde está la liquidez
 - **Liquidez:** el apartado «Liquidez» de la evaluación ahora aclara en qué instrumentos está (por ejemplo «Adcap Money Market (16 %) y Efectivo USD (8 %)») y recuerda que los fondos Money Market, las cauciones y las cuentas remuneradas cuentan como liquidez. Solo cambia la redacción; no cambia ninguna cuenta.
 - Prueba: `tests/test_v145_cartera.py`.

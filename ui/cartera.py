@@ -1061,6 +1061,7 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
         "sectores": sorted(((k, v / st_ * 100) for k, v in sect.items()), key=lambda kv: -kv[1]) if st_ else [],
         "sector_tk": sect_tk,
         "sector_top": (max(sect.items(), key=lambda kv: kv[1])[0], max(sect.values()) / st_ * 100) if sect and st_ else None,
+        "liq_rinde": sum(p["monto"] for p in por_pos if p["clase"] == "efectivo" and re.search(r"money market|\bmm\b|caucion|remunerad|\bfci\b|fondo|plazo fijo", norm(f"{p['ticker']} {p.get('tipo') or ''}"))) / total * 100,
         "liq_det": [(str(p["ticker"]).strip() or str(p.get("tipo") or "liquidez"), p["monto"] / total * 100) for p in por_pos if p["clase"] == "efectivo" and p["monto"] > 0],
         "posiciones": [{"ticker": p["ticker"], "pct": p["monto"] / total * 100, "clase": p["clase"], "fuente": p.get("fuente")} for p in por_pos],
         "sin_clasificar": sin, "pct_sin_clasificar": (sum(p["monto"] for p in sin) / (total + sum(p["monto"] for p in sin)) * 100) if sin else 0.0,
@@ -1084,7 +1085,7 @@ _PQ_BAJAR = {"rv": "hoy tenés más riesgo de caída del que suele ser razonable
              "rf": "con tanta Renta Fija el capital crece más despacio de lo que suele ser razonable para tu edad y tu perfil",
              "oro": "el Oro no genera ingresos y su precio puede quedarse años sin moverse",
              "cripto": "son muy volátiles y una caída fuerte se siente mucho en el total",
-             "efectivo": "la plata quieta no rinde y pierde poder de compra con la inflación"}
+             "efectivo": "la liquidez rinde poco y puede perder poder de compra frente a la inflación"}
 
 
 def _nom(lst, n=4):
@@ -1117,7 +1118,7 @@ _POR_QUE_ACERCAR = {
     "rf": "acercarla a la de referencia le da más lugar al crecimiento del capital, algo acorde a tu momento como inversor.",
     "oro": "el Oro no genera ingresos y su precio puede quedarse años sin moverse.",
     "cripto": "son muy volátiles y, con esa ponderación, un movimiento fuerte se siente mucho en el total.",
-    "efectivo": "la plata quieta no rinde y pierde poder de compra con la inflación.",
+    "efectivo": "la liquidez rinde poco y puede perder poder de compra frente a la inflación.",
 }
 
 
@@ -1318,6 +1319,7 @@ def devolucion(res, edad, perfil, nombre=""):
     sec.append(("Diversificación sectorial (detalle GICS)", f2))
     # ---------------- Liquidez (primero la base teórica y después lo que notamos)
     liq = pe["efectivo"]
+    rinde_frac = (res.get("liq_rinde", 0.0) / liq) if liq > 0 else 0.0     # v1.5.12: parte de la liquidez que está en instrumentos que pagan rendimiento (Money Market, caución, cuenta remunerada)
     f = []
     if ef:
         f.append(f"Para tu edad, la cartera de referencia incluye la liquidez (cuentas remuneradas y cauciones) como parte central de la cartera: hoy tenés {liq:.0f} %.")
@@ -1327,9 +1329,13 @@ def devolucion(res, edad, perfil, nombre=""):
             f.append("Notamos que no tenés liquidez cargada. Es una decisión tuya, pero un colchón de liquidez da margen sin tener que vender inversiones a destiempo.")
             aj_liq.append(f"Considerar armar un colchón de liquidez de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} %. **Por qué:** te da margen para imprevistos y para aprovechar oportunidades del mercado sin vender inversiones a destiempo.")
         elif liq > LIQ_MAX:
-            f.append(f"Tenés =={liq:.0f} %== de liquidez, unos {liq - LIQ_MAX:.0f} puntos por encima del rango sugerido. Es seguridad, pero sin rendimiento propio y con la inflación en contra puede ser un lastre para tu cartera. "
-                     "Si tu decisión de tener más liquidez disponible es deliberada y consciente está perfecto, respetá tu plan.")
-            aj_liq.append(f"Llevar la liquidez de a poco hacia el rango de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} % a no ser que intencionalmente hayas decidido tener liquidez alta. **Por qué:** la plata quieta no rinde y pierde poder de compra con la inflación.")
+            if rinde_frac >= 0.5:
+                f.append(f"Tenés =={liq:.0f} %== de liquidez, unos {liq - LIQ_MAX:.0f} puntos por encima del rango sugerido. Como buena parte está en instrumentos que pagan un rendimiento, no es plata quieta; aun así, ese rendimiento suele ser menor al que puede dar la inversión a largo plazo, y conviene mirar si alcanza para sostener su poder de compra frente a la inflación. "
+                         "Si tu decisión de tener más liquidez disponible es deliberada y consciente está perfecto, respetá tu plan.")
+            else:
+                f.append(f"Tenés =={liq:.0f} %== de liquidez, unos {liq - LIQ_MAX:.0f} puntos por encima del rango sugerido. Es seguridad, pero sin rendimiento propio y con la inflación en contra puede ser un lastre para tu cartera. "
+                         "Si tu decisión de tener más liquidez disponible es deliberada y consciente está perfecto, respetá tu plan.")
+            aj_liq.append(f"Llevar la liquidez de a poco hacia el rango de {LIQ_MIN:.0f} a {LIQ_MAX:.0f} % a no ser que intencionalmente hayas decidido tener liquidez alta. **Por qué:** la liquidez rinde poco y puede perder poder de compra frente a la inflación.")
         elif liq >= LIQ_MIN:
             f.append(f"Tenés =={liq:.0f} %== de liquidez, **dentro del rango sugerido: está perfecto.**")
             bien.append(f"tu liquidez ({liq:.0f} %) está en un muy buen nivel")
