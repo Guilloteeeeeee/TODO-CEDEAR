@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.10 — interruptor Empresas | ETFs, texto nuevo del inicio y dólares alineados
+- **Interruptor «Empresas | ETFs»** (opción B de la maqueta): arriba a la izquierda de la tabla, en la franja libre entre la barra de mercados y los títulos; el Excel (ícono) va a la derecha de la misma franja. La tabla en la que estás va en verde. En las tablas ya no hay botón de la otra tabla en la franja negra (en Quiénes somos, Evaluá tu Portfolio y las fichas queda como estaba). En el celular, el interruptor a la izquierda y el Excel a la derecha en una sola fila. Código: `_switch_tablas` (app.py) y `.st-key-sw_tablas` (ui/tabla_visual.py).
+- **Barra de mercados:** los tres dólares vuelven a la misma altura que el resto (nombre arriba, valor abajo; sin tercera línea).
+- **Inicio:** texto nuevo («Todos los CEDEARs de Acciones y ETFs que cotizan en Argentina en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. **Todo Gratuito!**»), justificado y sin la línea de abajo del botón. La vista previa ahora es una **foto fija** (`FOTO` en `ui/inicio.py`, datos del 02/11/2026): no lee el caché ni se actualiza sola; se cambia a mano cuando se arme el score nuevo.
+- Prueba: `tests/test_v157_mercados.py`.
+
 ### v1.5.9 — vista previa del inicio esmerilada y con empresas reales
 - La vista previa de la pantalla de inicio (tortas, tabla y celular) va **un poco desenfocada** (`filter:blur(1.8px)`, sin clics ni selección y oculta para lectores de pantalla): se ve que es la app, pero no se lee al 100 %.
 - En vez de «Empresa de ejemplo A/B/C» muestra **empresas reales con los datos que ya tiene la app** (`data/cache_datos.json`: nombre, sector, score, dividendo, valoración y barra con las mismas funciones de la tabla): Microsoft, Alphabet y Coca-Cola (`PREVIEW_TICKERS` en `ui/inicio.py`). No se inventa nada; si el caché no está, vuelve a las filas de ejemplo. Ojo: la valoración sale del caché; la tabla usa precios de hoy, así que la palabra puede diferir si el precio se movió.

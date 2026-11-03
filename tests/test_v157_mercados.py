@@ -56,16 +56,12 @@ chk(M.obtener(esperar=3, indices_fn=lambda: {}, dolares_fn=lambda: {}) == [], "s
 hh = I.hero_html()
 chk(hh.count("<a ") == 1 and 'href="?inicio=0"' in hh and ">Comenzar<" in hh, "un solo botón de acceso")
 chk("Pantalla ilustrativa" not in hh, "sin leyenda")
-# v1.5.9: empresas reales del caché, vista previa desenfocada y oculta para lectores de pantalla; sin caché vuelve a las filas de ejemplo
-fr = I.filas_reales()
-chk(fr is not None and [f["nombre"] for f in fr] == ["Microsoft Corporation", "Alphabet Inc.", "The Coca-Cola Company"], f"filas reales: {fr and [f['nombre'] for f in fr]}")
+# v1.5.10: foto fija con empresas reales (sin leer el caché), desenfocada y oculta para lectores de pantalla; texto nuevo justificado, «Todo Gratuito!» en negrita, sin aviso bajo el botón
+chk([f["nombre"] for f in I.FOTO] == ["Microsoft Corporation", "Alphabet Inc.", "The Coca-Cola Company"], "foto: empresas reales")
 chk("Microsoft Corporation" in hh and "Empresa de ejemplo" not in hh and "filter:blur(" in hh and 'aria-hidden="true"' in hh, "vista previa real, desenfocada")
-chk(all(0 < f["pos"] < 100 and f["txt"].startswith("Podría estar") and f["sc"] > 0 for f in fr), "valoración y barra con datos de la tabla")
-_raiz = I._RAIZ
-I._RAIZ = I.Path("/no/existe")
-I._CACHE.update(mtime=None, datos=None)
-chk(I.filas_reales() is None and "Empresa de ejemplo A" in I.hero_html(), "sin caché: filas de ejemplo")
-I._RAIZ = _raiz
-I._CACHE.update(mtime=None, datos=None)
-chk("Filtrá Acciones y ETFs que cotizan como CEDEARs en Argentina, leé el análisis de cada empresa y enterate cuáles están baratas. Evalúa tu Portfolio. Todo Gratuito!" in hh, "texto de Guille")
+chk(all(0 < f["pos"] < 100 and f["txt"].startswith("Podría estar") and f["sc"] > 0 for f in I.FOTO), "valoración y barra de la foto")
+chk(not hasattr(I, "filas_reales") and not hasattr(I, "_leer_cache"), "no lee el caché al entrar: es una foto")
+chk("Todos los CEDEARs de Acciones y ETFs que cotizan en Argentina en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. <b>Todo Gratuito!</b>" in hh, "texto de Guille, con negrita")
+chk("text-align:justify" in hh and "Información educativa" not in hh and "<small" not in hh.split("</style>")[1].split('class="hr-der"')[0], "justificado y sin nada debajo de Comenzar")
+chk("justify-content:center" not in M.CSS_BARRA and "mk-d" not in M.CSS_BARRA, "los dólares van a la misma altura que el resto")
 print(f"OK {ok} MAL {bad}")

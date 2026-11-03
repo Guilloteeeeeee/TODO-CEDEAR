@@ -149,7 +149,6 @@ CSS_BARRA = """
 .mk-n{font-size:.78rem;font-weight:700;color:#1d4ed8}
 .mk-v{font-size:.95rem;font-weight:700;color:#111827}
 .mk-c{font-size:.78rem;font-weight:700;min-height:1em}
-.mk-d{justify-content:center}
 .mk-fl{position:sticky;right:0;flex:none;align-self:stretch;width:40px;margin-left:-40px;display:flex;align-items:center;justify-content:flex-end;padding-right:4px;box-sizing:border-box;background:linear-gradient(to right,rgba(255,255,255,0),#fff 60%);color:#1d4ed8;font-size:1.7rem;font-weight:700;line-height:1;pointer-events:none}
 @supports (animation-timeline:scroll()){.mk-fl{animation:mk-fl linear both;animation-timeline:scroll(nearest inline)}}
 @keyframes mk-fl{0%,90%{opacity:1}100%{opacity:0}}
@@ -167,7 +166,7 @@ def barra_html(items):
         if it["var"]:
             celdas.append(f'<div class="mk-it"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span>'
                           f'<span class="mk-c {cls}">{html.escape(it["var"])} {html.escape(it["pct"])}</span></div>')
-        else:       # dólares: sin tercera línea; nombre y valor quedan centrados en el casillero
-            celdas.append(f'<div class="mk-it mk-d"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span></div>')
+        else:       # dólares: sin tercera línea; nombre y valor a la misma altura que en los demás casilleros
+            celdas.append(f'<div class="mk-it"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span></div>')
     flecha = '<div class="mk-fl" aria-hidden="true">&rsaquo;</div>'   # puntita: avisa que se puede deslizar hacia la derecha
     return f'<style>{CSS_BARRA}</style><div class="mk-bar"><div class="mk-in">{"".join(celdas)}{flecha}</div></div>'

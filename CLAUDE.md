@@ -32,14 +32,14 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | Archivo | Qué hace |
 |---|---|
 | `marca.py` | Franja negra, menú lateral (`menu_lista_html`, `.mn-sep`), pie (`pie_html`), modo oscuro. |
-| `tabla_visual.py` | Tabla de empresas (celdas, columna Valoración, ayudas de columnas). Desde la v1.5.8 el CSS de `.st-key-fila_excel` deja el Excel como ícono flotante sobre los títulos (alto 0) y el «?» de Empresa/ETF lleva la frase «Presioná en…»; vale también para ETFs. |
+| `tabla_visual.py` | Tabla de empresas (celdas, columna Valoración, ayudas de columnas). Desde la v1.5.8 el CSS de `.st-key-fila_excel` deja el Excel como ícono flotante sobre los títulos (alto 0) y el «?» de Empresa/ETF lleva la frase «Presioná en…»; desde la v1.5.10 en esa franja va también el interruptor «Empresas \| ETFs» (`_switch_tablas` en app.py, `.st-key-sw_tablas`) y en las tablas ya no hay botón de la otra tabla en la franja negra. Vale también para ETFs. |
 | `ficha.py` | Página de empresa en solapas: resumen, Análisis Fundamental (`tiles_analisis_v4`, `tab_analisis`), valuación, dividendos, competidores, directivos, estados. |
 | `af_pdf.py` | PDF del Análisis Fundamental. |
 | `etfs.py`, `etf_iconos.py` | Tabla y página de ETFs, íconos SVG por categoría (`SIN_PAISES`). |
 | `cartera.py` | **Motor de la evaluación de cartera** (ver sección propia). |
 | `cartera_visual.py` | Tarjetas HTML de la evaluación (`visual_html`, `_bloque`, `_bloque_donut`, `_md`: `**negrita**`, `==dato==` (negrita negra) y `__cursiva__` para las Notas; `_ajuste`; estilo = tarjetas blancas como el resto del sitio). |
 | `cartera_informe.py` | PDF de la evaluación con membrete (`pdf_informe`, reportlab, tortas `Doughnut`) y HTML de respaldo (`html_informe`). |
-| `mercados.py`, `inicio.py` | Barra de mercados (dólares, Merval, bolsas, petróleo…; `obtener`, `armar`, `barra_html`) y pantalla de inicio con «Comenzar» (`hero_html`; vista previa desenfocada con empresas reales del caché: `filas_reales`, `PREVIEW_TICKERS`; se muestra con `en_landing` en `main()`; `?inicio=0` la salta). |
+| `mercados.py`, `inicio.py` | Barra de mercados (dólares, Merval, bolsas, petróleo…; `obtener`, `armar`, `barra_html`) y pantalla de inicio con «Comenzar» (`hero_html`; vista previa desenfocada y FOTO FIJA de la app con empresas reales (`FOTO`, del 02/11/2026; no se actualiza sola: se cambia a mano cuando se arme el score nuevo); se muestra con `en_landing` en `main()`; `?inicio=0` la salta). |
 | `cartera_ocr.py` | Lectura de capturas con RapidOCR (opcional; si no está, la app sigue). |
 | `noticias.py` (`ordenar`, `ordenar_bloques`: sin tickers repetidos, una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
 

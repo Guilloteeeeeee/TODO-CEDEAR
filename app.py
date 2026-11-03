@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.9"
+APP_VERSION = "1.5.10"
 
 import re
 import contextlib
@@ -886,6 +886,7 @@ def render_tabla_etfs(etfs, sel):
     mostrados = _ui_etfs.ordenar(_filtrar_etfs_tecnicos(_etfs.filtrar(etfs, "", sel)), guardados, precios, sort_col, sort_asc)
     st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
     with st.container(key="fila_excel"):
+        _switch_tablas("etfs")
         _boton_excel_etfs(mostrados, guardados, precios, fecha_g)
     # Celular: el selector reemplaza a los títulos
     opciones = _ui_etfs.opciones_orden()
@@ -965,6 +966,20 @@ def render_nav_tablas(contexto="empresas"):
             try:
                 st.button(texto, type="tertiary", **args)
             except TypeError:       # Streamlit viejo, sin type="tertiary"
+                st.button(texto, **args)
+
+
+def _switch_tablas(activa):
+    """v1.5.10 (opción B de Guille): interruptor «Empresas | ETFs» arriba a la izquierda de la tabla, en la franja libre entre la barra de mercados y los títulos (el Excel va a la
+    derecha, en la misma franja). La tabla en la que estás va en verde. Mismos botones y misma función que antes (`_ir_a_tabla`): no recarga la página."""
+    with st.container(key="sw_tablas"):
+        for clave, texto in (("emp", "Empresas"), ("etfs", "ETFs")):
+            esta = (clave == "etfs") == (activa == "etfs")
+            args = dict(key=f"sw_{clave}", on_click=_ir_a_tabla, args=({"etfs": "etfs"}.get(clave, "empresas"),), type="primary" if esta else "secondary")
+            try:
+                st.button(texto, **args)
+            except TypeError:       # Streamlit viejo, sin type=
+                args.pop("type")
                 st.button(texto, **args)
 
 
@@ -1959,7 +1974,7 @@ def main():
     if en_inicio and not en_landing:
         fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    if not en_landing:      # en la pantalla de inicio el único acceso es «Comenzar»
+    if not en_landing and not en_inicio:      # en la pantalla de inicio el único acceso es «Comenzar»; en las tablas (Empresas / ETFs) el cambio va en el interruptor sobre la tabla (v1.5.10)
         render_nav_tablas("etfs" if en_etfs else ("ambos" if (en_quienes or en_cartera or en_ideas) else "empresas"))
     if en_quienes or en_ideas or etf_sel or st.query_params.get("empresa"):
         render_buscador()
@@ -2117,6 +2132,8 @@ def main():
         return
     # v1.2.49: ya no hay "Cómo leer la tabla" (cada título explica su columna al pasar el mouse); el Excel va arriba de la tabla, a la derecha
     lugar_excel = st.container(key="fila_excel")
+    with lugar_excel:
+        _switch_tablas("empresas")
     render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
 
     if noticias_pendientes:
