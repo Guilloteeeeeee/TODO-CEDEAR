@@ -8,12 +8,19 @@ ADR: American Depositary Receipt, el certificado que representa acciones de una 
 informa, asi que la lista de abajo esta armada a mano (empresas extranjeras que cotizan en Estados Unidos con certificados ADR/ADS). Revisada
 el 24/10/2026. Casos que NO son ADR aunque sean extranjeras: acciones ordinarias que cotizan directo en Estados Unidos (SHOP, SPOT, NU, AEM, ACN,
 MDT, LIN, RACE, MELI) y AZN, que dejo el programa de ADS y cotiza directo en la bolsa de Nueva York desde febrero de 2026. ASML cotiza con
-"New York Registry Shares" (acciones de registro de Nueva York, no ADR). Si una empresa cambia de esquema, editar este conjunto.
+"New York Registry Shares" (acciones de registro de Nueva York, no ADR). Desde la v1.5.17: AMX, BCS, BIDU, JD, LYG y VOD son ADR; CCJ, GRMN, JCI, TEAM y BG no (acciones ordinarias). Si una empresa cambia de esquema, editar este conjunto.
 """
 
 ADR = frozenset({
     "BHP", "ITUB", "PBR", "VALE", "BABA", "NTES", "NVO", "TTE", "SAP", "SIEGY", "HDB", "IBN", "INFY", "PDD", "SONY", "TM", "ING", "EQNR",
     "BBVA", "SAN", "NVS", "TSM", "ARM", "BP", "DEO", "GSK", "HSBC", "RIO", "SHEL", "UL", "MUFG",
+    "AMX", "BCS", "BIDU", "JD", "LYG", "VOD",   # v1.5.17 (tanda 1): ADS que presentan 20-F
+})
+
+# Extranjeras que cotizan directo en EE.UU. con acciones ordinarias (no son ADR). Sirve para que bajar_fichas no vuelva a avisar por ellas.
+NO_ADR = frozenset({
+    "ACN", "AEM", "ASML", "AZN", "LIN", "MDT", "MELI", "NU", "RACE", "SHOP", "SPOT",
+    "CCJ", "GRMN", "JCI", "TEAM", "BG",          # v1.5.17 (tanda 1)
 })
 
 _MERCADOS = {

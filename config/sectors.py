@@ -191,7 +191,7 @@ TICKER_UNIVERSE = {
         "HPQ", "GLW", "GRMN", "SNDK",
     ],
     "Energía":            ["XOM", "CVX", "SHEL", "TTE", "COP", "PBR", "SLB", "BP", "EQNR", "PSX", "OXY", "BKR", "HAL", "CCJ"],
-    "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO", "HSY", "KMB", "SYY", "BNG"],
+    "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO", "HSY", "KMB", "SYY", "BG"],
     "Salud":              [
         "LLY", "JNJ", "ABBV", "MRK", "UNH", "NVS", "TMO", "AMGN",
         "GILD", "ABT", "PFE", "DHR", "ISRG", "VRTX", "NVO", "BMY", "MDT", "GSK", "AZN", "CVS",

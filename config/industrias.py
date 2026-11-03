@@ -80,7 +80,7 @@ INDUSTRIA = {
     "HSY": "Confitería",
     "KMB": "Cuidado personal y del hogar",
     "SYY": "Distribución de alimentos",
-    "BNG": "Procesamiento agrícola",
+    "BG": "Procesamiento agrícola",
     "BIIB": "Biotecnología",
     "MRNA": "Biotecnología",
     "CAH": "Distribución de medicamentos",

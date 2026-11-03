@@ -577,8 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.17 — arreglos de la tanda 1 (Bunge y ADR)
+- **Bunge:** el ticker de Yahoo/NYSE es **BG** (BNG es el código de BYMA). Quedó `BG;BNG;5` en `data/cedears.csv` y BG en el grupo, la industria y el logo. Con «BNG» Yahoo no devolvía datos.
+- **ADR:** AMX, BCS, BIDU, JD, LYG y VOD pasan a la lista de ADR. CCJ, GRMN, JCI, TEAM y BG son acciones ordinarias: nueva lista `NO_ADR` en `config/mercados.py` para que `bajar_fichas` no vuelva a avisar por ellas ni por las ya revisadas (ACN, AEM, ASML, AZN, LIN, MDT, MELI, NU, RACE, SHOP, SPOT).
+
 ### v1.5.16 — Tanda 1: 49 empresas nuevas
-- **Se suman 49 CEDEARs** (lista BYMA), con el sector y la industria revisados por Guille: F, EBAY, CCL, LVS, DECK, JD, AVY, HSY, KMB, SYY, BNG, BIIB, MRNA, CAH, NTRA, JCI, SNA, DAL, UAL, AAL, OXY, BKR, HAL, CCJ, NUE, MOS, DD, DOW, IP, IFF, DOCU, TWLO, TEAM, VRSN, HPQ, GLW, GRMN, SNDK, SWKS, ALAB, PINS, SNAP, ROKU, BIDU, WFC, BCS, LYG, AMX, VOD.
+- **Se suman 49 CEDEARs** (lista BYMA), con el sector y la industria revisados por Guille: F, EBAY, CCL, LVS, DECK, JD, AVY, HSY, KMB, SYY, BG, BIIB, MRNA, CAH, NTRA, JCI, SNA, DAL, UAL, AAL, OXY, BKR, HAL, CCJ, NUE, MOS, DD, DOW, IP, IFF, DOCU, TWLO, TEAM, VRSN, HPQ, GLW, GRMN, SNDK, SWKS, ALAB, PINS, SNAP, ROKU, BIDU, WFC, BCS, LYG, AMX, VOD.
 - **Sector e industria:** el grupo de puntaje sigue siendo `config/sectors.py`; en pantalla el sector (Tecnología, Financiero, Comunicación…) sale de `SECTOR_E_INDUSTRIA` y la industria de `config/industrias.py`. GRMN va en Hardware y servicios TI (Yahoo: Tecnología, instrumentos científicos y técnicos), SNDK también (hardware) y AVY en Consumo Discrecional (Yahoo: Consumer Cyclical, etiquetas y empaques).
 - **EA no se carga:** salió de bolsa (compra de PIF y socios, agosto 2026).
 - Ratios desde el PDF de BYMA (16/09/2026) en `data/cedears.csv`; logos en `ui/logos.py`.

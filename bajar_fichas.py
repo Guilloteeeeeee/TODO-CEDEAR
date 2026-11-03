@@ -20,7 +20,7 @@ from datetime import datetime
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, AQUI)
-from config.mercados import ADR, mercado_texto  # noqa: E402
+from config.mercados import ADR, NO_ADR, mercado_texto  # noqa: E402
 
 SALIDA = os.path.join(AQUI, "data", "fichas.json")
 PAUSA = 0.6
@@ -149,7 +149,7 @@ def main():
         f = datos.get(t) or {}
         m = mercado_texto(f.get("mercado_cod")) or mercado_texto(f.get("mercado_nombre"))
         pais = f.get("pais") or pais_cache.get(t)
-        if m in ("NYSE", "Nasdaq") and pais and pais != "United States" and t not in ADR:
+        if m in ("NYSE", "Nasdaq") and pais and pais != "United States" and t not in ADR and t not in NO_ADR:
             avisos.append(f"{t}: empresa de {pais} que cotiza en {m} y NO esta en la lista de ADR (config/mercados.py): revisar si es ADR")
         if t in ADR and pais == "United States":
             avisos.append(f"{t}: figura como ADR pero Yahoo dice que es de Estados Unidos: revisar")

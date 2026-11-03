@@ -96,7 +96,7 @@ DOMINIOS = {
     "HSY": "thehersheycompany.com",
     "KMB": "kimberly-clark.com",
     "SYY": "sysco.com",
-    "BNG": "bunge.com",
+    "BG": "bunge.com",
     "BIIB": "biogen.com",
     "MRNA": "modernatx.com",
     "CAH": "cardinalhealth.com",
