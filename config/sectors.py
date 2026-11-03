@@ -157,38 +157,45 @@ FUNDAMENTAL_WEIGHT = 1.0 - TECHNICAL_WEIGHT  # 1.0
 # ---------------------------------------------------------------------------
 
 TICKER_UNIVERSE = {
-    "Materiales Básicos": ["LIN", "BHP", "RIO", "SCCO", "FCX", "SHW", "NEM", "VALE", "AEM", "ECL"],
+    "Materiales Básicos": ["LIN", "BHP", "RIO", "SCCO", "FCX", "SHW", "NEM", "VALE", "AEM", "ECL", "NUE", "MOS", "DD", "DOW", "IP", "IFF"],
     "REITs":              ["O", "PLD", "WELL"],
     "Bancos y seguros":   [
         "BRK-B", "JPM", "MUFG", "BAC", "MS", "GS", "HSBC", "C", "AXP", "SCHW", "BX", "HDB", "SAN",
         "IBN", "USB", "BBVA", "ITUB", "AIG", "BNY", "ING", "NU", "IBKR",
+        "WFC", "BCS", "LYG",
     ],
     "Pagos y datos":      ["V", "MA", "SPGI", "PYPL", "COIN", "FISV", "MRSH"],   # MRSH = Marsh McLennan (antes MMC)
     "Consumo Discrecional": [
         "AMZN", "TSLA", "HD", "BABA", "TM", "BKNG", "PDD", "MELI",
         "SONY", "RACE", "NKE", "MCD", "SBUX", "TJX", "ABNB", "ORLY", "GM", "ROST",
+        "F", "EBAY", "CCL", "LVS", "DECK", "JD", "AVY",
     ],
-    "Comunicación":       ["GOOGL", "META", "NFLX", "DIS", "SPOT", "NTES"],   # internet y medios
-    "Telecomunicaciones": ["T", "VZ", "TMUS"],
+    "Comunicación":       ["GOOGL", "META", "NFLX", "DIS", "SPOT", "NTES", "PINS", "SNAP", "ROKU", "BIDU"],   # internet y medios
+    "Telecomunicaciones": ["T", "VZ", "TMUS", "AMX", "VOD"],
     "Industrial":         [
         "CAT", "GE", "RTX", "SIEGY", "DE", "UNP", "UBER", "LMT",
         "HON", "BA", "MMM", "FDX", "GEV", "HWM", "PCAR",
+        "JCI", "SNA", "DAL", "UAL", "AAL",
     ],
     "Semiconductores":    [
         "NVDA", "TSM", "AVGO", "MU", "AMD", "ASML", "INTC", "AMAT", "ARM", "TXN",
         "MRVL", "ADI", "QCOM", "LRCX", "KLAC",
+        "SWKS", "ALAB",
     ],
     "Software y nube":    [
         "MSFT", "ORCL", "PLTR", "PANW", "CRWD", "SAP", "SHOP", "CRM", "NOW", "ADBE", "SNOW",
+        "DOCU", "TWLO", "TEAM", "VRSN",
     ],
     "Hardware y servicios TI": [
         "AAPL", "CSCO", "ANET", "IBM", "ACN", "ADP", "INFY", "DELL", "MSI", "WDC",
+        "HPQ", "GLW", "GRMN", "SNDK",
     ],
-    "Energía":            ["XOM", "CVX", "SHEL", "TTE", "COP", "PBR", "SLB", "BP", "EQNR", "PSX"],
-    "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO"],
+    "Energía":            ["XOM", "CVX", "SHEL", "TTE", "COP", "PBR", "SLB", "BP", "EQNR", "PSX", "OXY", "BKR", "HAL", "CCJ"],
+    "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO", "HSY", "KMB", "SYY", "BNG"],
     "Salud":              [
         "LLY", "JNJ", "ABBV", "MRK", "UNH", "NVS", "TMO", "AMGN",
         "GILD", "ABT", "PFE", "DHR", "ISRG", "VRTX", "NVO", "BMY", "MDT", "GSK", "AZN", "CVS",
+        "BIIB", "MRNA", "CAH", "NTRA",
     ],
     "Utilities":          ["NEE", "CEG", "VST", "TLN"],
 }

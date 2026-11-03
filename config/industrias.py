@@ -3,7 +3,7 @@ Industria de cada empresa (v1.2.47). Es solo INFORMACION: se muestra en la tabla
 NO se usa para calcular el puntaje, el Fair Value ni la categoria (eso sigue dependiendo del grupo del screener, config/sectors.py).
 
 Son los nombres de industria que usan Yahoo Finance y las clasificaciones de mercado (tipo GICS), escritos en castellano a mano para las
-166 empresas. Si una empresa nueva no esta en la lista, la tabla muestra solo su sector. Para sumar o corregir una: cambiar su linea.
+las empresas. Si una empresa nueva no esta en la lista, la tabla muestra solo su sector. Para sumar o corregir una: cambiar su linea.
 bajar_fichas.py guarda ademas la industria que informa Yahoo (campo "industria_yahoo" de data/fichas.json) por si se quiere comparar.
 """
 
@@ -69,6 +69,56 @@ INDUSTRIA = {
     "UNH": "Seguros de salud", "VRTX": "Biotecnología",
     # --- Utilities ---
     "CEG": "Generación de energía", "NEE": "Servicios eléctricos", "TLN": "Generación de energía", "VST": "Generación de energía",
+    # --- Tanda 1 (v1.5.16): 49 empresas nuevas ---
+    "F": "Fabricantes de autos",
+    "EBAY": "Comercio electrónico",
+    "CCL": "Cruceros",
+    "LVS": "Casinos y juego",
+    "DECK": "Calzado y accesorios",
+    "JD": "Comercio electrónico",
+    "AVY": "Etiquetas y empaques",
+    "HSY": "Confitería",
+    "KMB": "Cuidado personal y del hogar",
+    "SYY": "Distribución de alimentos",
+    "BNG": "Procesamiento agrícola",
+    "BIIB": "Biotecnología",
+    "MRNA": "Biotecnología",
+    "CAH": "Distribución de medicamentos",
+    "NTRA": "Diagnósticos e investigación",
+    "JCI": "Equipos para edificios",
+    "SNA": "Herramientas y maquinaria",
+    "DAL": "Aerolíneas",
+    "UAL": "Aerolíneas",
+    "AAL": "Aerolíneas",
+    "OXY": "Exploración y producción de petróleo",
+    "BKR": "Servicios petroleros",
+    "HAL": "Servicios petroleros",
+    "CCJ": "Uranio",
+    "NUE": "Acero",
+    "MOS": "Fertilizantes",
+    "DD": "Químicos especiales",
+    "DOW": "Químicos",
+    "IP": "Papel y empaques",
+    "IFF": "Químicos especiales",
+    "DOCU": "Software de aplicaciones",
+    "TWLO": "Software de aplicaciones",
+    "TEAM": "Software de aplicaciones",
+    "VRSN": "Software de infraestructura",
+    "HPQ": "Computadoras y equipos",
+    "GLW": "Componentes electrónicos",
+    "GRMN": "Instrumentos científicos y técnicos",
+    "SNDK": "Almacenamiento de datos",
+    "SWKS": "Semiconductores",
+    "ALAB": "Semiconductores",
+    "PINS": "Redes sociales y publicidad",
+    "SNAP": "Redes sociales y publicidad",
+    "ROKU": "Entretenimiento (streaming)",
+    "BIDU": "Internet y publicidad",
+    "WFC": "Bancos diversificados",
+    "BCS": "Bancos diversificados",
+    "LYG": "Bancos diversificados",
+    "AMX": "Servicios de telecomunicaciones",
+    "VOD": "Servicios de telecomunicaciones",
 }
 
 

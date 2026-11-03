@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.16 — Tanda 1: 49 empresas nuevas
+- **Se suman 49 CEDEARs** (lista BYMA), con el sector y la industria revisados por Guille: F, EBAY, CCL, LVS, DECK, JD, AVY, HSY, KMB, SYY, BNG, BIIB, MRNA, CAH, NTRA, JCI, SNA, DAL, UAL, AAL, OXY, BKR, HAL, CCJ, NUE, MOS, DD, DOW, IP, IFF, DOCU, TWLO, TEAM, VRSN, HPQ, GLW, GRMN, SNDK, SWKS, ALAB, PINS, SNAP, ROKU, BIDU, WFC, BCS, LYG, AMX, VOD.
+- **Sector e industria:** el grupo de puntaje sigue siendo `config/sectors.py`; en pantalla el sector (Tecnología, Financiero, Comunicación…) sale de `SECTOR_E_INDUSTRIA` y la industria de `config/industrias.py`. GRMN va en Hardware y servicios TI (Yahoo: Tecnología, instrumentos científicos y técnicos), SNDK también (hardware) y AVY en Consumo Discrecional (Yahoo: Consumer Cyclical, etiquetas y empaques).
+- **EA no se carga:** salió de bolsa (compra de PIF y socios, agosto 2026).
+- Ratios desde el PDF de BYMA (16/09/2026) en `data/cedears.csv`; logos en `ui/logos.py`.
+- **Falta (en la PC de Guille):** `generar_cache.bat`, `bajar_fichas.bat`, `descargar_logos.bat`; hasta entonces las 49 no aparecen en la tabla. Sin industria de comparación asignada todavía (`data/damodaran_mapa.py`).
+
 ### v1.5.15 — tickers gemelos (ADR + acción local de Brasil)
 - **Una sola ficha por empresa:** las 9 brasileñas que tienen dos CEDEARs en BYMA (ABEV/ABEV3, BBD/BBDC3, ITUB/ITUB3, PBR/PETR3, SID/CSNA3, SUZ/SUZB3, TIMB/TIMS3, VALE/VALE3, VIV/VIVT3) tienen una sola ficha (la del ADR). Debajo de «NYSE: PBR» va otra línea con el ticker local: «B3: PETR3».
 - **Buscador:** escribir el ticker local (PETR3, VALE3…) abre la ficha de la empresa. Los pares viven en `data/gemelos.py`.
