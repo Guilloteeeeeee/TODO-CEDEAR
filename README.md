@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.19 — franja negra del inicio
+- **Pantalla de inicio:** la franja queda con el logo a la izquierda y la luna, el toro y el menú a la derecha, sin Noticias, Calendario, Ideas ni Evalúa tu Portfolio (en el inicio los iconos se habían pegado al logo desde la v1.5.14).
+- **Celular:** el logo va primero y a la derecha la luna, el toro y el menú (antes la luna quedaba a la izquierda del logo).
+
 ### v1.5.18 — cache del 03/11/2026 con las 215 empresas
 - **Cache nuevo** (`data/cache_datos.json` + copia en `data/historial/`): las 49 empresas de la tanda 1 ya tienen puntaje, categoría y Fair Value. Stock Analysis aportó 212 de 215 (solo Yahoo: GEV, ALAB, SNDK).
 - **Datos flojos a decidir por Guille:** MRNA y NTRA puntúan con una sola métrica (P/FCF de 305 y 538 veces); SNDK y ALAB tienen 1 o 2 años de historia en sus medianas. No se tocó el método.

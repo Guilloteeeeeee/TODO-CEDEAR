@@ -154,7 +154,7 @@ div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!im
 .st-key-fly_filtro .vars-g{margin:20px 0 10px!important;padding-bottom:4px;line-height:1.3}
 /* franja negra: Noticias, Calendario, Ideas y Evalúa tu Portfolio, en el medio entre el logo y los iconos de la derecha */
 .mc-sp{flex:1 1 0;min-width:8px}
-.mc-izq{flex:0 0 auto}
+.mc-in:has(.mc-links) .mc-izq{flex:0 0 auto}   /* solo cuando hay links en el medio; en el inicio (sin links) el logo ocupa el resto y los iconos quedan a la derecha */
 .mc-links{display:flex;align-items:center;gap:30px;flex:none}
 .mc-lk{color:#fff!important;font-weight:700;font-size:1.02rem;text-decoration:none!important;white-space:nowrap;cursor:pointer;user-select:none;padding:8px 2px;border-radius:20px;transition:color .12s}
 .mc-lk:hover{color:#00e85c!important}
@@ -179,6 +179,7 @@ body:has(#bn-filtro:checked) .st-key-fly_filtro{top:__FTOP__px;bottom:auto;left:
 .mc-lk{border:1px solid #596273;padding:7px 12px;font-size:.92rem;flex:none}
 .mc-lk.mc-eval{border-color:#c63b6e;padding:7px 12px}
 .mc-sp{display:none}
+.mc-tema{order:2}   /* en el celular el logo va primero y a la derecha la luna, el toro y el menú */
 }
 """
 CSS_BUSCADOR = CSS_BUSCADOR.replace("__BTOP__", "152").replace("__SUBE__", "-116").replace("__FTOP__", "184")
