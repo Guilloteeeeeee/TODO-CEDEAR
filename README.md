@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.9 — vista previa del inicio esmerilada y con empresas reales
+- La vista previa de la pantalla de inicio (tortas, tabla y celular) va **un poco desenfocada** (`filter:blur(1.8px)`, sin clics ni selección y oculta para lectores de pantalla): se ve que es la app, pero no se lee al 100 %.
+- En vez de «Empresa de ejemplo A/B/C» muestra **empresas reales con los datos que ya tiene la app** (`data/cache_datos.json`: nombre, sector, score, dividendo, valoración y barra con las mismas funciones de la tabla): Microsoft, Alphabet y Coca-Cola (`PREVIEW_TICKERS` en `ui/inicio.py`). No se inventa nada; si el caché no está, vuelve a las filas de ejemplo. Ojo: la valoración sale del caché; la tabla usa precios de hoy, así que la palabra puede diferir si el precio se movió.
+- Prueba: `tests/test_v157_mercados.py` (27).
+
 ### v1.5.8 — barra más limpia y tablas más arriba
 - **Barra de mercados:** los dólares ya no dicen «venta» (nombre y valor, centrados en el casillero); **un solo petróleo (Brent)**, el de referencia internacional (el crudo argentino se negocia contra Brent); puntita `›` en el borde derecho que avisa que la barra se desliza (en Chrome/Edge se apaga al llegar al final).
 - **Tabla de Empresas y de ETFs:** sin la línea «Presioná en la empresa / el ETF…» ni el link de Excel arriba. Esa frase ahora está en un **signo de pregunta junto a «Empresa» y «ETF»** (se lee al pasar el mouse) y el **Excel es un ícono** (flecha hacia abajo + logo de Excel) que flota sobre el título, a la derecha de la tabla: ya no ocupa lugar y la tabla sube. En el celular el ícono queda chico, a la derecha, arriba de las tarjetas.

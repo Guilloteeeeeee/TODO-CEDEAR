@@ -1,13 +1,21 @@
 """Pantalla de inicio (v1.5.7), según la maqueta aprobada por Guille: una frase fuerte, un solo botón («Comenzar») y una vista previa de la app (tortas, tabla con valoración y la
-ficha de una empresa en un celular). Todo lo de la vista previa son datos de ejemplo («Empresa de ejemplo A»): no se muestra ninguna empresa ni número real. Sin otros links.
-«Comenzar» lleva a la tabla de empresas (?inicio=0)."""
+ficha de una empresa en un celular). Sin otros links. «Comenzar» lleva a la tabla de empresas (?inicio=0).
+v1.5.9: la vista previa va un poco desenfocada (esmerilada) y muestra empresas REALES con los datos que ya tiene la app en data/cache_datos.json (nombre, sector, score,
+dividendo, valoración y barra, con las mismas funciones de la tabla): nada se inventa. Si el caché no está o falta una empresa, vuelve a las filas de ejemplo."""
 import html
+import json
+import os
+from pathlib import Path
 
 TITULO_1 = "No compres CEDEARs a ciegas."
 TITULO_2 = "Conocelos antes de invertir."
 TEXTO = "Filtrá Acciones y ETFs que cotizan como CEDEARs en Argentina, leé el análisis de cada empresa y enterate cuáles están baratas. Evalúa tu Portfolio. Todo Gratuito!"
 BOTON = "Comenzar"
 AVISO = "Información educativa, no es una recomendación."
+
+PREVIEW_TICKERS = ("MSFT", "GOOGL", "KO")        # empresas conocidas, con valoraciones distintas, para la vista previa
+_RAIZ = Path(__file__).resolve().parent.parent
+_CACHE = {"mtime": None, "datos": None}
 
 AZ, CE, NA, VE, MO = "#2563eb", "#0ea5e9", "#f59e0b", "#15803d", "#7c3aed"
 
@@ -44,6 +52,57 @@ def _score(n, col):
             f'<b style="font-size:16px;line-height:26px;color:#111827">{n}</b><i style="font-style:normal;background:{col};color:#fff;font-size:9px;width:100%;text-align:center;line-height:12px">SCORE</i></span>')
 
 
+def _oscuro(hexa, f=0.78):
+    """El mismo color un poco más oscuro (el amarillo de «razonablemente valuada» no se lee sobre blanco)."""
+    h = str(hexa or "#6b7280").lstrip("#")
+    try:
+        r, g, b = (int(h[i:i + 2], 16) for i in (0, 2, 4))
+    except (ValueError, IndexError):
+        return "#4b5563"
+    return "#%02x%02x%02x" % (int(r * f), int(g * f), int(b * f))
+
+
+def _es(v, dec=1):
+    return f"{v:.{dec}f}".replace(".", ",")
+
+
+def _leer_cache():
+    """Datos de data/cache_datos.json por ticker (se vuelve a leer solo si el archivo cambió)."""
+    ruta = _RAIZ / "data" / "cache_datos.json"
+    mt = os.path.getmtime(ruta)
+    if _CACHE["mtime"] != mt or _CACHE["datos"] is None:
+        datos = json.load(open(ruta, encoding="utf-8"))["data"]
+        _CACHE.update(mtime=mt, datos={str(e.get("ticker")): e for e in datos})
+    return _CACHE["datos"]
+
+
+def filas_reales(tickers=PREVIEW_TICKERS):
+    """[{'nombre','sub','pos','col','txt','sc','dy'}] con datos reales del caché, o None si algo falta (entonces se usan las filas de ejemplo)."""
+    try:
+        from scoring.engine import nombre_visible
+        from ui.tabla_visual import _nombre_limpio, _pos_barra
+        por = _leer_cache()
+        filas = []
+        for tk in tickers:
+            e = por[tk]
+            precio, fv = float(e["precio_actual"]), float(e["fair_value"])
+            sc = int(round(float(e["score_total"])))
+            dy = e.get("dividend_yield_actual")
+            filas.append({"nombre": _nombre_limpio(e.get("nombre"), tk), "sub": f'{tk} · {e.get("sector") or ""}'.strip(" ·"),
+                          "pos": max(6.0, min(94.0, _pos_barra(precio, fv))), "col": _oscuro(e.get("color_hex")),
+                          "txt": nombre_visible(e["categoria"]), "sc": sc,
+                          "dy": (_es(float(dy) * 100) + " %") if dy else "—"})
+        return filas if len(filas) == len(tickers) else None
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _ejemplo():
+    return [{"nombre": "Empresa de ejemplo A", "sub": "EJ-A · Consumo defensivo", "pos": 35, "col": "#15803d", "txt": "Podría estar moderadamente infravalorada", "sc": 78, "dy": "2,9 %"},
+            {"nombre": "Empresa de ejemplo B", "sub": "EJ-B · Tecnología", "pos": 60, "col": "#b45309", "txt": "Podría estar razonablemente valuada", "sc": 55, "dy": "0,6 %"},
+            {"nombre": "Empresa de ejemplo C", "sub": "EJ-C · Salud", "pos": 85, "col": "#b91c1c", "txt": "Podría estar sobrevalorada", "sc": 31, "dy": "1,4 %"}]
+
+
 def _fila(nom, tk, pos, col, txt, sc, dy):
     return ('<div class="hr-fila">'
             f'<span style="display:flex;flex-direction:column"><b style="font-size:13px;color:#111827">{nom}</b><small style="color:#6b7280;font-size:11px">{tk}</small></span>'
@@ -51,26 +110,24 @@ def _fila(nom, tk, pos, col, txt, sc, dy):
             f'{_score(sc, col)}<b style="font-size:13px;color:#111827;text-align:right">{dy}</b></div>')
 
 
-def _marco():
+def _marco(filas):
     tarjetas = ('<div class="hr-tres">'
                 + _tarjeta("Estructura", [(AZ, 50), (CE, 40), (NA, 10)], [(AZ, "Renta Variable"), (CE, "Renta Fija"), (NA, "Oro")])
                 + _tarjeta("Geografía", [(AZ, 75), (CE, 20), (MO, 5)], [(AZ, "EE.UU."), (CE, "Desarrollados"), (MO, "Emergentes")])
                 + _tarjeta("Supersectores", [(CE, 30), (AZ, 20), (VE, 50)], [(VE, "Defensivo"), (CE, "Sensible"), (AZ, "Cíclico")]) + "</div>")
     tabla = ('<div class="hr-tabla"><div class="hr-fila hr-th"><span>Empresa</span><span>Valoración</span><span>Score</span><span style="text-align:right">Dividendo</span></div>'
-             + _fila("Empresa de ejemplo A", "EJ-A · Consumo defensivo", 35, "#15803d", "Podría estar moderadamente infravalorada", 78, "2,9 %")
-             + _fila("Empresa de ejemplo B", "EJ-B · Tecnología", 60, "#b45309", "Podría estar razonablemente valuada", 55, "0,6 %")
-             + _fila("Empresa de ejemplo C", "EJ-C · Salud", 85, "#b91c1c", "Podría estar sobrevalorada", 31, "1,4 %") + "</div>")
+             + "".join(_fila(html.escape(f["nombre"]), html.escape(f["sub"]), f["pos"], f["col"], html.escape(f["txt"]), f["sc"], f["dy"]) for f in filas) + "</div>")
     return ('<div class="hr-marco"><div style="text-align:center;font-size:20px;font-weight:700;color:#111827">Evaluá tu Portfolio</div>' + tarjetas
             + '<div style="text-align:center;font-size:15px;font-weight:700;color:#111827;margin-top:4px">Empresas con su valoración</div>' + tabla + "</div>")
 
 
-def _celular():
+def _celular(f):
     chips = "".join(f'<span style="border:1px solid #e3e8ee;border-radius:999px;padding:3px 8px;font-size:10px;color:#374151">{t}</span>' for t in ("Resumen", "Análisis Fundamental", "Valuación"))
     return ('<div class="hr-cel"><div class="hr-tel">'
             '<span style="width:46px;height:5px;border-radius:3px;background:#d1d5db;display:block"></span>'
-            '<b style="font-size:17px;color:#111827">Empresa de ejemplo</b><small style="color:#6b7280;font-size:11px;margin-top:-6px">EJ-A · Consumo defensivo</small>'
-            f'<div style="display:flex;gap:14px;align-items:center">{_score(78, "#15803d")}<span style="display:flex;flex-direction:column"><small style="color:#6b7280;font-size:10px">Dividendo</small><b style="font-size:15px">2,9 %</b></span></div>'
-            f'<span style="color:#15803d;font-weight:700;font-size:11px;text-align:center">Podría estar moderadamente infravalorada</span>{_barra(35, "#15803d")}'
+            f'<b style="font-size:17px;color:#111827;text-align:center">{html.escape(f["nombre"])}</b><small style="color:#6b7280;font-size:11px;margin-top:-6px;text-align:center">{html.escape(f["sub"])}</small>'
+            f'<div style="display:flex;gap:14px;align-items:center">{_score(f["sc"], f["col"])}<span style="display:flex;flex-direction:column"><small style="color:#6b7280;font-size:10px">Dividendo</small><b style="font-size:15px">{f["dy"]}</b></span></div>'
+            f'<span style="color:{f["col"]};font-weight:700;font-size:11px;text-align:center">{html.escape(f["txt"])}</span>{_barra(f["pos"], f["col"])}'
             f'<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:4px">{chips}</div></div></div>')
 
 
@@ -84,6 +141,7 @@ a.hr-btn{display:flex;align-items:center;justify-content:center;background:#1580
 a.hr-btn:hover{filter:brightness(1.07)}
 .hr-izq small{font-size:.9rem;color:#6b7280}
 .hr-der{flex:1 1 560px;min-width:0;position:relative;padding-bottom:30px}
+.hr-marco,.hr-cel{filter:blur(1.8px);opacity:.92;pointer-events:none;user-select:none;-webkit-user-select:none}
 .hr-marco{background:linear-gradient(135deg,#e6f0ea,#f3f6fb);border:1px solid #d5dde6;border-radius:18px;padding:16px;box-shadow:0 20px 50px rgba(15,23,42,.18);display:flex;flex-direction:column;gap:12px}
 .hr-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .hr-tabla{background:#fff;border:1px solid #e3e8ee;border-radius:12px;overflow:hidden;margin-left:196px}
@@ -104,8 +162,9 @@ a.hr-btn:hover{filter:brightness(1.07)}
 
 
 def hero_html():
+    filas = filas_reales() or _ejemplo()
     return (f"<style>{CSS}</style>"
             f'<div class="hr-wrap"><div class="hr-izq"><div class="hr-h1" role="heading" aria-level="1">{html.escape(TITULO_1)}<br><span class="hr-v">{html.escape(TITULO_2)}</span></div>'
             f"<p>{html.escape(TEXTO)}</p>"
             f'<a class="hr-btn" href="?inicio=0" target="_self">{html.escape(BOTON)}</a><small>{html.escape(AVISO)}</small></div>'
-            f'<div class="hr-der">{_marco()}{_celular()}</div></div>')
+            f'<div class="hr-der" aria-hidden="true">{_marco(filas)}{_celular(filas[0])}</div></div>')
