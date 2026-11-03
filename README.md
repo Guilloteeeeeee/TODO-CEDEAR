@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.11 — la devolución dice dónde está la liquidez
+- **Liquidez:** el apartado «Liquidez» de la evaluación ahora aclara en qué instrumentos está (por ejemplo «Adcap Money Market (16 %) y Efectivo USD (8 %)») y recuerda que los fondos Money Market, las cauciones y las cuentas remuneradas cuentan como liquidez. Solo cambia la redacción; no cambia ninguna cuenta.
+- Prueba: `tests/test_v145_cartera.py`.
+
 ### v1.5.10 — interruptor Empresas | ETFs, texto nuevo del inicio y dólares alineados
 - **Interruptor «Empresas | ETFs»** (opción B de la maqueta): arriba a la izquierda de la tabla, en la franja libre entre la barra de mercados y los títulos; el Excel (ícono) va a la derecha de la misma franja. La tabla en la que estás va en verde. En las tablas ya no hay botón de la otra tabla en la franja negra (en Quiénes somos, Evaluá tu Portfolio y las fichas queda como estaba). En el celular, el interruptor a la izquierda y el Excel a la derecha en una sola fila. Código: `_switch_tablas` (app.py) y `.st-key-sw_tablas` (ui/tabla_visual.py).
 - **Barra de mercados:** los tres dólares vuelven a la misma altura que el resto (nombre arriba, valor abajo; sin tercera línea).

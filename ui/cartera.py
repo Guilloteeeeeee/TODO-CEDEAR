@@ -1061,6 +1061,7 @@ def analizar(posiciones, edad, perfil, empresas, etfs):
         "sectores": sorted(((k, v / st_ * 100) for k, v in sect.items()), key=lambda kv: -kv[1]) if st_ else [],
         "sector_tk": sect_tk,
         "sector_top": (max(sect.items(), key=lambda kv: kv[1])[0], max(sect.values()) / st_ * 100) if sect and st_ else None,
+        "liq_det": [(str(p["ticker"]).strip() or str(p.get("tipo") or "liquidez"), p["monto"] / total * 100) for p in por_pos if p["clase"] == "efectivo" and p["monto"] > 0],
         "posiciones": [{"ticker": p["ticker"], "pct": p["monto"] / total * 100, "clase": p["clase"], "fuente": p.get("fuente")} for p in por_pos],
         "sin_clasificar": sin, "pct_sin_clasificar": (sum(p["monto"] for p in sin) / (total + sum(p["monto"] for p in sin)) * 100) if sin else 0.0,
     }
@@ -1334,6 +1335,14 @@ def devolucion(res, edad, perfil, nombre=""):
             bien.append(f"tu liquidez ({liq:.0f} %) está en un muy buen nivel")
         else:
             f.append(f"Tenés =={liq:.0f} %== de liquidez, un poco por debajo del rango sugerido.")
+    # v1.5.11: aclarar DÓNDE está la liquidez (a veces es un fondo Money Market y la persona no lo reconoce como liquidez)
+    det = [(n, v) for n, v in (res.get("liq_det") or []) if v >= 0.5]
+    if det and liq >= 0.5:
+        partes = [f"{n} ({v:.0f} %)" for n, v in det[:4]]
+        resto = sum(v for _, v in det[4:])
+        if resto >= 0.5:
+            partes.append(f"otras posiciones menores ({resto:.0f} %)")
+        f.append(f"Notamos que esa liquidez está en {_y(partes, 5)}. Los fondos Money Market, las cauciones y las cuentas remuneradas cuentan como liquidez porque se pueden rescatar rápido y casi no varían de precio.")
     sec.append(("Liquidez", f))
     # ---------------- Beta (solo si hay datos)
     b = res.get("beta")

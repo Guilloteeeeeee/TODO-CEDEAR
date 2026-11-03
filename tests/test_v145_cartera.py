@@ -62,6 +62,10 @@ fr = dict(C.devolucion(res, 48, "Agresivo", "Andrés"))["Conclusiones finales"]
 chk(fr[0].startswith("Armar una cartera lleva tiempo") and not fr[0].startswith("**") and any(x.startswith("##En orden de importancia") for x in fr), "conclusiones")
 lq = dict(C.devolucion(res, 48, "Agresivo", "Andrés"))["Liquidez"]
 chk(lq[0].startswith("La liquidez (efectivo"), "liquidez: primero la base teórica")
+_e = {"AAPL": {"nombre": "Apple", "sector": "Tecnología", "pais": "Estados Unidos"}}
+_r = C.analizar([{"ticker": "AAPL", "monto": 7000, "tipo": ""}, {"ticker": "Adcap Money Market", "monto": 2000, "tipo": "Money Market"}, {"ticker": "Efectivo USD", "monto": 1000, "tipo": "efectivo"}], 45, "Moderado", _e, {})
+_l = " ".join(dict(C.devolucion(_r, 45, "Moderado", "Laura"))["Liquidez"])
+chk("esa liquidez está en Adcap Money Market (20 %) y Efectivo USD (10 %)" in _l, "liquidez: dice dónde está: " + _l[-200:])
 pdf = CI.pdf_informe(res, 48, "Agresivo", nombre="Andrés")
 chk((C.resumen_de_pdf(pdf) or {}).get("formato") == "evaluacion_cartera_v1" and C.resumen_de_pdf(b"%PDF-1.4 no") is None, "resumen dentro del PDF")
 print("OK", ok, "MAL", bad)
