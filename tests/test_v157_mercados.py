@@ -64,4 +64,16 @@ chk(not hasattr(I, "filas_reales") and not hasattr(I, "_leer_cache"), "no lee el
 chk("Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. <b>Todo Gratuito!</b>" in hh, "texto de Guille, con negrita")
 chk("text-align:justify" in hh and "Información educativa" not in hh and "<small" not in hh.split("</style>")[1].split('class="hr-der"')[0], "justificado y sin nada debajo de Comenzar")
 chk("justify-content:center" not in M.CSS_BARRA and "mk-d" not in M.CSS_BARRA, "los dólares van a la misma altura que el resto")
+# v1.5.14: franja negra con Noticias, Calendario, Ideas y Evalúa tu Portfolio (en ese orden, sin buscador), panel del filtro desplegable
+from ui import marca as MA
+_b = MA.encabezado_html("TodoCedears", links=True, home=True)
+_orden = [_b.index(x) for x in ("Noticias</label>", "Calendario</label>", ">Ideas</a>", "Evalúa tu Portfolio</a>")]
+chk(_orden == sorted(_orden), "franja: Noticias, Calendario, Ideas y Evalúa tu Portfolio en ese orden")
+chk('for="bn-noticias"' in _b and 'for="bn-cal"' in _b and 'id="bn-filtro"' in _b and "buscador" not in _b, "franja: paneles sin recargar y sin buscador")
+_f = MA.encabezado_html("TodoCedears", links=True, home=False)
+chk("abrir=noticias" in _f and "abrir=cal" in _f, "fuera del inicio, Noticias y Calendario llevan al inicio con el panel abierto")
+chk("links" not in MA.encabezado_html("TodoCedears").split("mc-band")[0] and "mc-links" not in MA.encabezado_html("TodoCedears"), "sin links en el inicio con «Comenzar»")
+chk("bn-filtro:checked) .st-key-fly_filtro" in MA.CSS and "left:40px;right:40px" in MA.CSS, "el filtro se despliega casi a todo el ancho")
+chk("mc-links" in MA.CSS and "st-key-buscador" in MA.CSS and "padding-left:28px" in MA.CSS, "tabla más ancha y buscador fuera de la franja")
+chk("Filtro de Empresas" not in MA.menu_lista_html(True, filtro="Filtro de Empresas"), "el menú ya no repite el Filtro")
 print(f"OK {ok} MAL {bad}")

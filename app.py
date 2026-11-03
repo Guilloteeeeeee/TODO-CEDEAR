@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.13"
+APP_VERSION = "1.5.14"
 
 import re
 import contextlib
@@ -716,12 +716,12 @@ def render_filtros_inline(universe: dict, df: pd.DataFrame = None) -> dict:
     precio_lim, puntaje_lim = (None, None), (None, None)
     criterios = {}
     extras = _variables.extras_de(seleccion)
-    pares = st.columns(2)
+    pares = st.columns(4)      # v1.5.14: el filtro se despliega casi a todo el ancho: 4 columnas de recuadros (en pantallas más angostas se acomodan solas)
     turno = [0]
 
     def caja(clave, titulo, unidad=""):
         """Recuadro de los filtros de una variable, en la columna que toca (de izquierda a derecha)."""
-        col = pares[turno[0] % 2]
+        col = pares[turno[0] % 4]
         turno[0] += 1
         with col:
             c = st.container(border=True, key=f"fb_{clave}")
@@ -886,7 +886,7 @@ def render_tabla_etfs(etfs, sel):
     mostrados = _ui_etfs.ordenar(_filtrar_etfs_tecnicos(_etfs.filtrar(etfs, "", sel)), guardados, precios, sort_col, sort_asc)
     st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
     with st.container(key="fila_excel"):
-        _switch_tablas("etfs")
+        _fila_tabla("etfs")
         _boton_excel_etfs(mostrados, guardados, precios, fecha_g)
     # Celular: el selector reemplaza a los títulos
     opciones = _ui_etfs.opciones_orden()
@@ -981,6 +981,20 @@ def _switch_tablas(activa):
             except TypeError:       # Streamlit viejo, sin type=
                 args.pop("type")
                 st.button(texto, **args)
+
+
+_ICONO_FILTRO = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1e3a5f" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></svg>')
+_ICONO_CHEV = ('<svg class="fl-c" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e3a5f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>')
+
+
+def _fila_tabla(activa):
+    """v1.5.14 (maqueta aprobada por Guille): la fila de arriba de la tabla, de izquierda a derecha: interruptor Empresas | ETFs, buscador (lupita) y botón «Filtro de Empresas / ETFs»,
+    que despliega el filtro (radio escondido bn-filtro, el panel es fly_filtro); el Excel va a la derecha (lo agrega quien llama)."""
+    _switch_tablas(activa)
+    render_buscador()
+    with st.container(key="btn_filtro"):
+        st.markdown(f'<label for="bn-filtro" class="fl-btn" role="button" tabindex="0">{_ICONO_FILTRO}<span>{"Filtro de ETFs" if activa == "etfs" else "Filtro de Empresas"}</span>{_ICONO_CHEV}</label>',
+                    unsafe_allow_html=True)
 
 
 def render_menu_estatico(caja, home=False, filtro="Filtro de Empresas"):
@@ -1958,7 +1972,7 @@ def main():
     en_landing = en_inicio and not dict(st.query_params) and not st.session_state.get("entro")      # v1.5.7: pantalla de inicio (solo con la URL pelada y antes de tocar «Comenzar»)
     activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas) else "empresas"))
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
-                + encabezado_html(NOMBRE_APP, menu_abierto=st.query_params.get("menu") == "1"), unsafe_allow_html=True)
+                + encabezado_html(NOMBRE_APP, activa=activa, menu_abierto=st.query_params.get("menu") == "1", links=not en_landing, home=en_inicio and not en_landing), unsafe_allow_html=True)
     try:
         from ui import mercados as _mk
         st.markdown(_mk.barra_html(_mk.obtener()), unsafe_allow_html=True)      # v1.5.7: barra de mercados fija debajo de la franja negra (dólares, Merval, bolsas, petróleo…)
@@ -1974,8 +1988,8 @@ def main():
     if en_inicio and not en_landing:
         fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    if not en_landing and not en_inicio:      # en la pantalla de inicio el único acceso es «Comenzar»; en las tablas (Empresas / ETFs) el cambio va en el interruptor sobre la tabla (v1.5.10)
-        render_nav_tablas("etfs" if en_etfs else ("ambos" if (en_quienes or en_cartera or en_ideas) else "empresas"))
+    if en_quienes or en_cartera or en_ideas:      # v1.5.14: en las fichas (empresa / ETF) alcanza con «Volver»; en las tablas el cambio va en el interruptor sobre la tabla (v1.5.10)
+        render_nav_tablas("ambos")
     if en_quienes or en_ideas or etf_sel or st.query_params.get("empresa"):
         render_buscador()
     aviso = texto_aviso_legal()
@@ -2123,7 +2137,7 @@ def main():
         render_calendario(df, st.container(), directo=True)
 
     # v1.2.47: buscador (por nombre o ticker; desde la v1.2.49 sube a la franja negra en pantallas anchas) y, despues, la tabla
-    busqueda = render_buscador()
+    busqueda = ""      # v1.5.14: el buscador va dentro de la fila de la tabla (render_fila_tabla)
     if home_etfs:
         render_tabla_etfs(_etfs_lista(), sel_etfs)
         if noticias_pendientes:
@@ -2133,7 +2147,7 @@ def main():
     # v1.2.49: ya no hay "Cómo leer la tabla" (cada título explica su columna al pasar el mouse); el Excel va arriba de la tabla, a la derecha
     lugar_excel = st.container(key="fila_excel")
     with lugar_excel:
-        _switch_tablas("empresas")
+        _fila_tabla("empresas")
     render_main_table(df, filtros, fecha, aviso, lugar_excel, busqueda)
 
     if noticias_pendientes:

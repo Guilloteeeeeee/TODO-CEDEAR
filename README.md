@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.14 — franja negra nueva, fila de la tabla con buscador y Filtro, tabla más ancha (maqueta aprobada)
+- **Franja negra:** en el medio, entre el logo y los iconos, van **Noticias, Calendario, Ideas y Evalúa tu Portfolio** (la última en rosa). El buscador ya no está en la franja. Noticias y Calendario abren su panel sin recargar la página (desde otras páginas llevan al inicio con el panel abierto). En el celular van en una fila deslizable debajo del logo.
+- **Fila de la tabla (Empresas y ETFs):** interruptor Empresas | ETFs, buscador (lupita), botón **Filtro de Empresas / Filtro de ETFs** y Excel a la derecha. El Filtro se despliega debajo del botón, casi a todo el ancho, con los recuadros en hasta 4 columnas y más aire entre rótulos y pastillas. El menú lateral ya no repite el Filtro.
+- **Más ancho:** la tabla (y las demás páginas) usan casi todo el ancho de la pantalla (28 px de margen en vez de 80 px).
+- **Ficha de empresa / ETF:** «Volver» y la tarjeta suben pegados a la barra de mercados; el buscador flota a la derecha a la altura del «Volver».
+- Pruebas: `tests/test_v157_mercados.py` (36 controles).
+
 ### v1.5.13 — texto del inicio
 - **Inicio:** el texto vuelve a «Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. **Todo Gratuito!**» (la página todavía no se mostró al público; la meta es cubrir los 446 CEDEARs de BYMA).
 - Prueba: `tests/test_v157_mercados.py`.

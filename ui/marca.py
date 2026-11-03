@@ -135,23 +135,54 @@ CSS = CSS.replace("__FONDO__", str(FONDO_PAGINA or "#ffffff"))
 # el centro exacto de la pantalla; entre 1280 y 1439 px se centra en el hueco que queda entre el logo y los menus. Por debajo de 1280 px (y en el celular)
 # queda debajo de la franja, como antes. Con ICONOS_EN_BARRA = True el menu es mas ancho y el buscador no sube.
 CSS_BUSCADOR = """
-@media (min-width:1280px){
-:root{--sw:clamp(150px,calc(100vw - 1130px),180px)}      /* v1.2.77: buscador corto (unos 15 caracteres) */
-[data-testid="stMainBlockContainer"]{position:relative}
-[data-testid="stMainBlockContainer"] .st-key-buscador{position:absolute;top:20px;left:calc(50% + 330px - 50vw);transform:none;width:var(--sw);margin:0;z-index:60}
+/* v1.5.14: el buscador ya no sube a la franja negra (ahí van Noticias, Calendario, Ideas y Evalúa tu Portfolio). En las tablas va en la fila de arriba de la tabla (ver
+   ui/tabla_visual.py); en las demás páginas (ficha, ETF, Quiénes somos, Ideas) flota a la derecha, a la altura del «Volver» (pantallas anchas). */
+@media (min-width:901px){
+[data-testid="stMainBlockContainer"]{position:relative;padding-left:28px!important;padding-right:28px!important}
 div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!important}      /* la lista de sugerencias es más ancha que la caja */
-[data-testid="stMainBlockContainer"] .st-key-buscador input{height:40px;font-size:14.5px;border-radius:20px;padding-left:40px!important;background-position:13px center;background-size:18px;box-shadow:none}
-.st-key-nav_tablas{position:absolute;top:0;height:80px;left:calc(50% + 330px + var(--sw) + 12px - 50vw);margin:0;align-items:center;justify-content:flex-start;z-index:60}
-.st-key-nav_tablas button{color:#cbd5e1;padding:8px 11px}
-.st-key-nav_tablas button:hover{background:#3b4046!important;color:#fff}
-/* v1.2.76: en las paginas de empresa, ETF y cartera el contenido sube (los elementos vacios de Streamlit dejaban ~90 px de aire bajo la franja) */
-[data-testid="stElementContainer"]:has(.emp-vol),[data-testid="stElementContainer"]:has(.cr-top){margin-top:-86px}
-/* v1.2.78: la tarjeta de la empresa/ETF sube mas todavia (el "Volver" queda pegado a la franja y la tarjeta pegada al "Volver") */
-[data-testid="stElementContainer"]:has(.emp-vol){margin-bottom:-26px}
+[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>.st-key-buscador,[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>.st-key-buscador{position:absolute;top:__BTOP__px;right:28px;width:250px;margin:0;z-index:60}
+/* en las páginas de empresa, ETF y cartera el contenido sube (los elementos vacíos de Streamlit dejaban aire bajo la barra de mercados) */
+[data-testid="stElementContainer"]:has(.emp-vol){margin-top:__SUBE__px;margin-bottom:-26px}
+[data-testid="stElementContainer"]:has(.cr-top){margin-top:-46px}
+[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>.st-key-buscador input,[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>.st-key-buscador input{height:34px;font-size:14.5px;border-radius:9px;border:1px solid #c3ccd8!important;box-shadow:none;padding-left:36px!important;background-position:11px center;background-size:17px}
+}
+/* panel del filtro: los recuadros se acomodan en hasta 4 columnas, y los rótulos de cada grupo de variables respiran (antes quedaban pegados a las pastillas) */
+.st-key-fly_filtro>[data-testid="stLayoutWrapper"]>[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]{min-width:230px}
+.st-key-fly_filtro .vars-t{margin:8px 0 10px}
+.st-key-fly_filtro .flt-t{margin:10px 0 10px!important}
+.st-key-fly_filtro .crit-t{margin-top:6px}
+.st-key-fly_filtro .vars-g{margin:20px 0 10px!important;padding-bottom:4px;line-height:1.3}
+/* franja negra: Noticias, Calendario, Ideas y Evalúa tu Portfolio, en el medio entre el logo y los iconos de la derecha */
+.mc-sp{flex:1 1 0;min-width:8px}
+.mc-izq{flex:0 0 auto}
+.mc-links{display:flex;align-items:center;gap:30px;flex:none}
+.mc-lk{color:#fff!important;font-weight:700;font-size:1.02rem;text-decoration:none!important;white-space:nowrap;cursor:pointer;user-select:none;padding:8px 2px;border-radius:20px;transition:color .12s}
+.mc-lk:hover{color:#00e85c!important}
+.mc-lk.mc-eval{background:#c63b6e;padding:9px 18px;font-size:.97rem}
+.mc-lk.mc-eval:hover{background:#d4487a;color:#fff!important}
+.mc-lk.mc-eval.mc-on{box-shadow:inset 0 -3px 0 #00e05a}
+.mc-ov2{display:none;position:fixed;inset:0;background:rgba(15,23,42,.38);z-index:1400;cursor:default}
+body:has(#bn-noticias:checked) .mc-ov2,body:has(#bn-cal:checked) .mc-ov2,body:has(#bn-filtro:checked) .mc-ov2{display:block}
+.mn-xb{display:none}
+body:has(#bn-noticias:checked) .mn-x:not(.mn-xb),body:has(#bn-cal:checked) .mn-x:not(.mn-xb),body:has(#bn-filtro:checked) .mn-x:not(.mn-xb){display:none}
+body:has(#bn-noticias:checked) .mn-xb,body:has(#bn-cal:checked) .mn-xb,body:has(#bn-filtro:checked) .mn-xb{display:inline-block}
+body:has(#bn-noticias:checked) .fly-b,body:has(#bn-cal:checked) .fly-b,body:has(#bn-filtro:checked) .fly-b{display:none!important}
+@media (min-width:901px){
+/* Noticias y Calendario se abren desde el borde derecho; el Filtro se despliega debajo de su botón, casi a todo el ancho */
+body:has(#bn-noticias:checked) .st-key-fly_noticias,body:has(#bn-cal:checked) .st-key-fly_cal{right:0}
+body:has(#bn-filtro:checked) .st-key-fly_filtro{top:__FTOP__px;bottom:auto;left:40px;right:40px;width:auto;height:auto;max-height:calc(100vh - __FTOP__px - 20px);border-radius:14px;border:1px solid #d5dde6;
+  box-shadow:0 18px 40px rgba(15,23,42,.28);padding:20px 26px 26px!important}
+}
+@media (max-width:900px){
+.mc-links{order:3;flex:1 1 100%;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 8px}
+.mc-links::-webkit-scrollbar{display:none}
+.mc-lk{border:1px solid #596273;padding:7px 12px;font-size:.92rem;flex:none}
+.mc-lk.mc-eval{border-color:#c63b6e;padding:7px 12px}
+.mc-sp{display:none}
 }
 """
-if not ICONOS_EN_BARRA:
-    CSS += CSS_BUSCADOR
+CSS_BUSCADOR = CSS_BUSCADOR.replace("__BTOP__", "152").replace("__SUBE__", "-116").replace("__FTOP__", "184")
+CSS += CSS_BUSCADOR
 
 
 # Iconos: el glifo oficial (paths de Simple Icons, licencia CC0), dibujado de un solo color; el de Intramed es assets/marca/intramed-mono.png.
@@ -370,7 +401,7 @@ def _comentarios_menu_html(e, comentarios_mail=None):
     return f'<details class="mc-d" name="mcnav"><summary class="mc-it">Comentarios ▾</summary><div class="mc-pop">{form}</div></details>'
 
 
-def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None, activa="empresas", con_buscador=True, menu_lateral=True, menu_abierto=False):
+def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentarios_mail=None, activa="empresas", con_buscador=True, menu_lateral=True, menu_abierto=False, links=False, home=False):
     """Franja gris oscura de punta a punta: a la izquierda el nombre (o la imagen del titulo); a la derecha los menus "Sobre Nosotros" (con "Abrí una cuenta con nosotros" adentro desde la v1.2.50) y "Comentarios", los iconos sueltos de un solo color solo si ICONOS_EN_BARRA = True, y el toro chico."""
     try:
         from config.ajustes import TITULO_EN_FUENTE_CONDENSADA as _tc
@@ -400,7 +431,29 @@ def encabezado_html(nombre, datos_al=None, enlaces=None, cuentas=None, comentari
     # v1.2.60: "Empresas" y "ETFs" ya no son links de la franja (recargaban la pagina): son botones de Streamlit (app.py: render_nav_tablas)
     ham = hamburguesa_html(menu_abierto) if menu_lateral else ""
     from ui.tema import BOTON_HTML
-    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{nav}{BOTON_HTML}{toro}{ham}</div></div>{datos}'
+    lk = links_html(activa, home) if links else ""
+    sp = '<div class="mc-sp"></div>' if links else ""
+    return f'<div class="mc-band"><div class="mc-in"><div class="mc-izq">{izq}</div>{sp}{lk}{sp}{nav}{BOTON_HTML}{toro}{ham}</div></div>{datos}'
+
+
+# v1.5.14: Noticias, Calendario, Ideas y Evalúa tu Portfolio en la franja negra, en el medio entre el logo y los iconos. Noticias y Calendario abren su panel sin recargar
+# (radios escondidos «bn», igual que el menú); fuera del inicio llevan al inicio con el panel abierto (?abrir=). El filtro se abre desde el botón «Filtro» de la tabla.
+BN = ("noticias", "cal", "filtro")
+
+
+def links_html(activa="empresas", home=False):
+    radios = '<input type="radio" name="bn" id="bn-none" class="mc-chk" aria-hidden="true" tabindex="-1">' + "".join(
+        f'<input type="radio" name="bn" id="bn-{k}" class="mc-chk" aria-hidden="true" tabindex="-1">' for k in BN)
+    ov = '<label for="bn-none" class="mc-ov2" aria-hidden="true"></label>'
+
+    def panel(k, texto):
+        if home:
+            return f'<label for="bn-{k}" class="mc-lk" role="button" tabindex="0">{texto}</label>'
+        return f'<a class="mc-lk" href="?inicio=0&amp;abrir={k}" target="_self">{texto}</a>'
+    ev = "mc-lk mc-eval" + (" mc-on" if activa == "cartera" else "")
+    return (radios + ov + '<div class="mc-links">' + panel("noticias", "Noticias") + panel("cal", "Calendario")
+            + '<a class="mc-lk" href="?pagina=ideas" target="_self">Ideas</a>'
+            + f'<a class="{ev}" href="?pagina=cartera" target="_self">Evalúa tu Portfolio</a></div>')
 
 
 def css_nav(activa):
@@ -411,8 +464,7 @@ def css_nav(activa):
         return ""
     k = {"empresas": "emp", "etfs": "etfs"}[activa]
     # dentro de la franja negra (pantallas anchas) la letra activa es blanca; abajo, oscura
-    return (f".st-key-nav_{k} button{{color:#111827!important;box-shadow:inset 0 -2px 0 #00e05a!important}}"
-            + ("@media (min-width:1280px){" + f".st-key-nav_{k} button{{color:#fff!important}}" + "}" if not ICONOS_EN_BARRA else ""))
+    return f".st-key-nav_{k} button{{color:#111827!important;box-shadow:inset 0 -2px 0 #00e05a!important}}"
 
 
 def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
@@ -437,7 +489,8 @@ def pie_html(version, aviso=None, datos_al=None, precios=None, fuente=None):
 SECCIONES = ("filtro", "noticias", "cal", "quienes", "redes", "contacto", "cuentas", "comentarios")
 
 SCRIPT_ESC = ("(function(){if(window.__mcEsc)return;window.__mcEsc=1;document.addEventListener('keydown',function(e){if(e.key!=='Escape')return;"
-              "var n=document.getElementById('sec-none');if(n)n.checked=true;var c=document.getElementById('mc-menu');if(c)c.checked=false;});"
+              "var n=document.getElementById('sec-none');if(n)n.checked=true;var b=document.getElementById('bn-none');if(b)b.checked=true;var c=document.getElementById('mc-menu');if(c)c.checked=false;});"
+              "var ab=location.search.match(/[?&]abrir=(\\w+)/);if(ab){var j=0,u=setInterval(function(){var r=document.getElementById('bn-'+ab[1]);if(r){r.checked=true;clearInterval(u);}if(++j>40)clearInterval(u);},150);}"
               "if(/[?&]menu=1/.test(location.search)){var k=0,t=setInterval(function(){var c=document.getElementById('mc-menu');if(c){c.checked=true;clearInterval(t);}if(++k>40)clearInterval(t);},150);}})();")
 
 
@@ -452,7 +505,8 @@ def hamburguesa_html(abierto=False):
 
 
 def _fly_selectores(k, clase):
-    return f"body:has(#mc-menu:checked):has(#sec-{k}:checked) {clase}"
+    base = f"body:has(#mc-menu:checked):has(#sec-{k}:checked) {clase}"
+    return base + (f",body:has(#bn-{k}:checked) {clase}" if k in BN else "")
 
 
 _FLY_CLASES = {"filtro": ".st-key-fly_filtro", "noticias": ".st-key-fly_noticias", "cal": ".st-key-fly_cal",
@@ -532,7 +586,8 @@ def menu_cabecera_html():
 def fly_cabecera_html(titulo):
     """Cabecera de un panel que se abre hacia el centro: «‹ Menú» (solo en el celular, vuelve a la lista), el título y la ✕ que cierra el panel."""
     return (f'<div class="fly-h"><label for="sec-none" class="fly-b">‹ Menú</label><b>{html.escape(titulo)}</b>'
-            '<label for="sec-none" class="mn-x" title="Cerrar" aria-label="Cerrar">✕</label></div>')
+            '<label for="sec-none" class="mn-x" title="Cerrar" aria-label="Cerrar">✕</label>'
+            '<label for="bn-none" class="mn-x mn-xb" title="Cerrar" aria-label="Cerrar">✕</label></div>')
 
 
 def _it_sec(sec, texto):
@@ -548,10 +603,10 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
     """Todo el menu en una sola pieza: Filtro, Noticias, Calendario Financiero, Evaluá tu Portfolio, Ideas de inversión; (espacio) Quiénes somos, Nuestras Redes, Contactános, Abrí una cuenta;
     (espacio) Comentarios y la versión. En el inicio los tres primeros abren su panel; en otras pantallas llevan al inicio con el menú abierto."""
     e = _enlaces(enlaces)
-    if home:
-        arriba = _it_sec("filtro", filtro) + _it_sec("noticias", "Noticias Calientes del día") + _it_sec("cal", "Calendario Financiero")
+    if home:     # v1.5.14: el Filtro se abre desde el botón de la tabla; Noticias y Calendario también están en la franja negra (acá siguen, por las dudas)
+        arriba = _it_sec("noticias", "Noticias Calientes del día") + _it_sec("cal", "Calendario Financiero")
     else:
-        arriba = (_it_href("?inicio=0&menu=1", filtro, chica="en el inicio") + _it_href("?inicio=0&menu=1", "Noticias Calientes del día", chica="en el inicio")
+        arriba = (_it_href("?inicio=0&menu=1", "Noticias Calientes del día", chica="en el inicio")
                   + _it_href("?inicio=0&menu=1", "Calendario Financiero", chica="en el inicio"))
     arriba += _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,

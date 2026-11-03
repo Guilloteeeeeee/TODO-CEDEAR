@@ -326,25 +326,46 @@ a.tv2-tkc{text-decoration:none!important;color:inherit!important}
 /* v1.5.8: sin leyenda ni link de Excel arriba. La ayuda "Presioná en la empresa..." va en un "?" del título Empresa; el Excel es un ícono (flecha + logo)
    que no ocupa lugar: la caja mide 0 y el botón flota sobre la esquina derecha de los títulos. En el celular (sin títulos) vuelve a su lugar, chico y a la derecha. */
 .st-key-fila_excel{position:relative;display:block!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;overflow:visible!important;z-index:6}
-[data-testid="stLayoutWrapper"]:has(>.st-key-fila_excel){margin-bottom:-0.47rem!important}
-.st-key-fila_excel .st-key-descarga_excel{position:absolute!important;right:0;top:-30px;width:auto!important;margin:0!important}
+[data-testid="stLayoutWrapper"]:has(>.st-key-fila_excel){margin-bottom:-0.22rem!important}
+.st-key-fila_excel .st-key-descarga_excel{position:absolute!important;right:0;top:-26px;width:auto!important;margin:0!important}
 .st-key-fila_excel .st-key-descarga_excel button{width:52px;min-height:32px;height:32px;padding:0!important;border:1px solid #d5dde6;border-radius:9px;font-size:0!important;color:transparent!important;box-shadow:0 1px 3px rgba(15,23,42,.18);
   background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 46 32'%3E%3Cpath d='M11 6v14M5.5 14.5 11 20l5.500-5.500' fill='none' stroke='%23374151' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3Crect x='22' y='3' width='21' height='26' rx='3' fill='%231D6F42'/%3E%3Cpath d='M28 10.500l9 11M37 10.500l-9 11' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/38px 26px no-repeat}
 .st-key-fila_excel .st-key-descarga_excel button *{font-size:0!important;color:transparent!important}
 .st-key-fila_excel .st-key-descarga_excel button:hover{background-color:#eef2f7;border-color:#9fb3c8}
 /* v1.5.10: interruptor Empresas | ETFs a la izquierda de la misma franja (el de la tabla en la que estás va en verde) */
-.st-key-sw_tablas{position:absolute!important;left:0;top:-30px;display:flex!important;flex-direction:row!important;flex-wrap:nowrap;gap:0!important;width:auto!important;height:32px;border:1px solid #c3ccd8;border-radius:9px;overflow:hidden;background:#fff;box-sizing:border-box}
+.st-key-sw_tablas{position:absolute!important;left:0;top:-26px;display:flex!important;flex-direction:row!important;flex-wrap:nowrap;gap:0!important;width:auto!important;height:32px;border:1px solid #c3ccd8;border-radius:9px;overflow:hidden;background:#fff;box-sizing:border-box}
 .st-key-sw_tablas [data-testid="stElementContainer"]{width:auto!important;flex:0 0 auto;margin:0!important}
 .st-key-sw_tablas button{min-height:30px;height:30px;padding:0 20px;border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff;color:#374151}
 .st-key-sw_tablas button p{font-size:14.5px;font-weight:700;color:inherit!important;white-space:nowrap;margin:0}
 .st-key-sw_tablas button:hover{background:#eef2f7;color:#111827}
 .st-key-sw_tablas button[kind="primary"],.st-key-sw_tablas [data-testid="stBaseButton-primary"]{background:#15803d!important;color:#fff!important}
 .st-key-sw_tablas button[kind="primary"]:hover,.st-key-sw_tablas [data-testid="stBaseButton-primary"]:hover{background:#166534!important;color:#fff!important}
+/* v1.5.14: en la misma fila, a la derecha del interruptor: el buscador (lupita) y el botón «Filtro de Empresas / ETFs» que despliega el filtro */
+.st-key-fila_excel .st-key-buscador{position:absolute!important;left:188px;top:-26px;width:250px;margin:0!important;z-index:7}
+.st-key-fila_excel .st-key-buscador input{height:32px;font-size:14.5px;border-radius:9px;border:1px solid #c3ccd8!important;box-shadow:none;padding-left:36px!important;background-position:11px center;background-size:17px}
+.st-key-fila_excel .st-key-buscador [data-baseweb='select']{min-height:32px}
+.st-key-btn_filtro{position:absolute!important;left:450px;top:-26px;margin:0!important;width:auto!important;z-index:7}
+.st-key-btn_filtro [data-testid="stElementContainer"]{width:auto!important}
+.fl-btn{display:flex;align-items:center;gap:8px;height:32px;padding:0 14px;border:1px solid #c3ccd8;border-radius:9px;background:#fff;font-weight:700;font-size:14.5px;color:#1e3a5f;cursor:pointer;box-sizing:border-box;white-space:nowrap;user-select:none}
+.fl-btn:hover{background:#eef2f7;border-color:#9fb3c8}
+.fl-btn svg{flex:none;display:block}
+.fl-btn .fl-c{transition:transform .15s}
+body:has(#bn-filtro:checked) .fl-btn{background:#e6efff;border-color:#1d4ed8}
+body:has(#bn-filtro:checked) .fl-btn .fl-c{transform:rotate(180deg)}
 /* el "?" del título Empresa / ETF (la explicación se ve al pasar el mouse) */
 .st-key-tvh_nombre button p::after,.st-key-tvh_e_nombre button p::after{content:"?";display:inline-block;width:16px;height:16px;line-height:15px;margin-left:6px;border:1.5px solid currentColor;border-radius:50%;font-size:11px;font-weight:700;text-align:center;vertical-align:1px;opacity:.85}
 @media (max-width:900px){
-.st-key-fila_excel{height:auto!important;margin:0 0 .25rem!important;display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important}
+.st-key-fila_excel{height:auto!important;margin:0 0 .25rem!important;display:flex!important;flex-direction:row!important;flex-wrap:wrap;gap:10px!important;align-items:center!important;justify-content:space-between!important}
 .st-key-fila_excel [data-testid="stLayoutWrapper"]{width:auto!important}
+.st-key-fila_excel>[data-testid="stLayoutWrapper"]:has(.st-key-sw_tablas){order:1}
+.st-key-fila_excel>[data-testid="stElementContainer"]:has(.st-key-descarga_excel),.st-key-fila_excel>.st-key-descarga_excel{order:2}
+.st-key-fila_excel::after{content:"";order:2;flex:0 0 100%;height:0;width:0}      /* corte de línea: arriba interruptor + Excel; abajo buscador + Filtro */
+.st-key-fila_excel>[data-testid="stLayoutWrapper"]:has(.st-key-buscador){order:3;flex:1 1 0;min-width:130px}
+.st-key-fila_excel .st-key-buscador{position:static!important;width:100%}
+.st-key-fila_excel .st-key-buscador input{height:44px;font-size:16px}
+.st-key-fila_excel>[data-testid="stLayoutWrapper"]:has(.st-key-btn_filtro){order:4;flex:0 0 auto}
+.st-key-btn_filtro{position:static!important}
+.fl-btn{height:44px;font-size:16px}
 .st-key-sw_tablas{position:static!important;height:40px}
 .st-key-sw_tablas button{min-height:38px;height:38px;padding:0 22px}
 [data-testid="stLayoutWrapper"]:has(>.st-key-fila_excel){margin-bottom:0!important}
