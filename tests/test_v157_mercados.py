@@ -76,4 +76,14 @@ chk("links" not in MA.encabezado_html("TodoCedears").split("mc-band")[0] and "mc
 chk("bn-filtro:checked) .st-key-fly_filtro" in MA.CSS and "left:40px;right:40px" in MA.CSS, "el filtro se despliega casi a todo el ancho")
 chk("mc-links" in MA.CSS and "st-key-buscador" in MA.CSS and "padding-left:28px" in MA.CSS, "tabla más ancha y buscador fuera de la franja")
 chk("Filtro de Empresas" not in MA.menu_lista_html(True, filtro="Filtro de Empresas"), "el menú ya no repite el Filtro")
+# v1.5.15: tickers gemelos (ADR + acción local de Brasil): una sola ficha, el ticker local en otra línea
+from data import gemelos as GM
+from ui import ficha as FI
+import json as _j
+_by = _j.load(open("data/byma_cedears.json", encoding="utf-8"))["cedears"]
+chk(len(GM.GEMELOS) == 9 and all(l in _by and a in _by for a, (l, _m) in GM.GEMELOS.items()), "los 9 pares están en la lista oficial de BYMA")
+chk(GM.gemelo("PBR") == ("PETR3", "B3") and GM.principal("PETR3") == "PBR" and GM.gemelo("AAPL") is None, "gemelo / principal")
+_h = FI._encabezado({"ticker": "PBR", "nombre": "Petrobras"}, "NYSE", None, None, None)
+chk(">NYSE: PBR<" in _h and ">B3: PETR3<" in _h and _h.index("NYSE: PBR") < _h.index("B3: PETR3"), "ficha: debajo de «NYSE: PBR» va «B3: PETR3»")
+chk("B3:" not in FI._encabezado({"ticker": "AAPL", "nombre": "Apple"}, "Nasdaq", None, None, None), "ficha sin gemelo: igual que antes")
 print(f"OK {ok} MAL {bad}")

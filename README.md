@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.15 — tickers gemelos (ADR + acción local de Brasil)
+- **Una sola ficha por empresa:** las 9 brasileñas que tienen dos CEDEARs en BYMA (ABEV/ABEV3, BBD/BBDC3, ITUB/ITUB3, PBR/PETR3, SID/CSNA3, SUZ/SUZB3, TIMB/TIMS3, VALE/VALE3, VIV/VIVT3) tienen una sola ficha (la del ADR). Debajo de «NYSE: PBR» va otra línea con el ticker local: «B3: PETR3».
+- **Buscador:** escribir el ticker local (PETR3, VALE3…) abre la ficha de la empresa. Los pares viven en `data/gemelos.py`.
+- Prueba: `tests/test_v157_mercados.py` (40 controles).
+
 ### v1.5.14 — franja negra nueva, fila de la tabla con buscador y Filtro, tabla más ancha (maqueta aprobada)
 - **Franja negra:** en el medio, entre el logo y los iconos, van **Noticias, Calendario, Ideas y Evalúa tu Portfolio** (la última en rosa). El buscador ya no está en la franja. Noticias y Calendario abren su panel sin recargar la página (desde otras páginas llevan al inicio con el panel abierto). En el celular van en una fila deslizable debajo del logo.
 - **Fila de la tabla (Empresas y ETFs):** interruptor Empresas | ETFs, buscador (lupita), botón **Filtro de Empresas / Filtro de ETFs** y Excel a la derecha. El Filtro se despliega debajo del botón, casi a todo el ancho, con los recuadros en hasta 4 columnas y más aire entre rótulos y pastillas. El menú lateral ya no repite el Filtro.

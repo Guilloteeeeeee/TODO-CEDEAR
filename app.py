@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.14"
+APP_VERSION = "1.5.15"
 
 import re
 import contextlib
@@ -1049,6 +1049,14 @@ def _opciones_busqueda(etfs_firma: tuple) -> list:
         if txt not in vistos:
             vistos.add(txt)
             por_nombre.append((txt, tipo, t))
+    # v1.5.15: el ticker local de las brasileñas con ADR (PETR3, VALE3…) también encuentra la ficha de la empresa (una sola ficha por empresa)
+    from data import gemelos as _gem
+    presentes = {t for t, _, _ in items}
+    nombres = {t: n for t, n, _ in items}
+    for adr, (loc, _m) in _gem.GEMELOS.items():
+        if adr in presentes:
+            n = nombres.get(adr, "")
+            por_ticker.append((f"{loc} · {n}" if n else loc, "empresa", adr))
     return por_ticker + por_nombre
 
 

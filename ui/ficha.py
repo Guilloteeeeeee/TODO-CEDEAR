@@ -179,6 +179,7 @@ CSS = """
 }
 /* v1.2.52: encabezado mas simple, resumen en mosaico, links, cambios de precio y grafico */
 .fch-hd .sb{font-size:15.5px;margin-top:6px}
+.fch-hd .sb+.sb{margin-top:2px}
 .fch-hd .tk{font-size:15.5px;font-weight:600;color:#111827}
 .fch-k[title],.fch-kv .k[title],.vr .m[title],.hv{cursor:help;border-radius:4px;padding:1px 4px;margin:0 -4px;transition:background .15s}
 .fch-k[title]:hover,.fch-kv .k[title]:hover,.vr .m[title]:hover,.hv:hover,.vr.hd [title]:hover{background:#dbe4ff}
@@ -508,6 +509,9 @@ def _encabezado(row, mercado, ficha, datos=None, fecha_datos=None):
     nombre = html.escape(str(row.get("nombre") or t).strip())
     from ui.logos import logo_html
     tk_txt = f"{html.escape(mercado)}: {html.escape(t)}" if mercado else html.escape(t)
+    from data import gemelos as _gem
+    g = _gem.gemelo(t)      # v1.5.15: empresa con ADR y acción local (Brasil): el ticker local va en otra línea («B3: PETR3»)
+    gem_html = f'<div class="sb"><span class="tk">{html.escape(g[1])}: {html.escape(g[0])}</span></div>' if g else ""
     p = _n(row.get("precio_actual"))
     if p and p > 0:
         pesos = _linea_pesos(row, datos)
@@ -516,7 +520,7 @@ def _encabezado(row, mercado, ficha, datos=None, fecha_datos=None):
     else:
         precio = ""
     return (f'<div class="fch-t s12" style="--ac:#64748b"><div class="fch-hd"><div class="id">{logo_html(t, 72)}<div>'
-            f'<div class="nm">{nombre}</div><div class="sb"><span class="tk">{tk_txt}</span></div></div></div>{precio}</div></div>')
+            f'<div class="nm">{nombre}</div><div class="sb"><span class="tk">{tk_txt}</span></div>{gem_html}</div></div>{precio}</div></div>')
 
 
 def _fila_kv(k, v, tip=None):
