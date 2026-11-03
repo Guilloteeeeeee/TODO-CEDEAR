@@ -6,7 +6,7 @@ import html
 
 TITULO_1 = "No compres CEDEARs a ciegas."
 TITULO_2 = "Conocelos antes de invertir."
-TEXTO = "Todos los CEDEARs de Acciones y ETFs que cotizan en Argentina en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas."
+TEXTO = "Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas."
 TEXTO_NEGRITA = "Todo Gratuito!"
 BOTON = "Comenzar"
 

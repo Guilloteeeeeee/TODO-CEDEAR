@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.13 — texto del inicio
+- **Inicio:** el texto vuelve a «Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. **Todo Gratuito!**» (la página todavía no se mostró al público; la meta es cubrir los 446 CEDEARs de BYMA).
+- Prueba: `tests/test_v157_mercados.py`.
+
 ### v1.5.12 — liquidez en Money Market, caución o cuenta remunerada
 - **Liquidez:** cuando buena parte de la liquidez está en un fondo Money Market, una caución o una cuenta remunerada, la devolución ya no dice que es «plata quieta que no rinde»: aclara que paga un rendimiento y que conviene mirar si alcanza frente a la inflación. El efectivo puro mantiene el texto de siempre. Los textos generales dicen «la liquidez rinde poco y puede perder poder de compra frente a la inflación». Solo cambia la redacción.
 - Prueba: `tests/test_v145_cartera.py`.

@@ -61,7 +61,7 @@ chk([f["nombre"] for f in I.FOTO] == ["Microsoft Corporation", "Alphabet Inc.", 
 chk("Microsoft Corporation" in hh and "Empresa de ejemplo" not in hh and "filter:blur(" in hh and 'aria-hidden="true"' in hh, "vista previa real, desenfocada")
 chk(all(0 < f["pos"] < 100 and f["txt"].startswith("Podría estar") and f["sc"] > 0 for f in I.FOTO), "valoración y barra de la foto")
 chk(not hasattr(I, "filas_reales") and not hasattr(I, "_leer_cache"), "no lee el caché al entrar: es una foto")
-chk("Todos los CEDEARs de Acciones y ETFs que cotizan en Argentina en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. <b>Todo Gratuito!</b>" in hh, "texto de Guille, con negrita")
+chk("Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas. <b>Todo Gratuito!</b>" in hh, "texto de Guille, con negrita")
 chk("text-align:justify" in hh and "Información educativa" not in hh and "<small" not in hh.split("</style>")[1].split('class="hr-der"')[0], "justificado y sin nada debajo de Comenzar")
 chk("justify-content:center" not in M.CSS_BARRA and "mk-d" not in M.CSS_BARRA, "los dólares van a la misma altura que el resto")
 print(f"OK {ok} MAL {bad}")
