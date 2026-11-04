@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.23 — calendario más simple y probador de fuentes de noticias
+- **Calendario:** se sacó «Antes de la apertura / Después del cierre» de cada empresa (y el renglón que avisaba que faltaban esos horarios). Queda la empresa y la fecha. En la ficha de la empresa no se tocó.
+- **Fuentes de noticias:** nuevo `probar_fuentes_rss.bat` (hay que correrlo en la PC de Guille): prueba unas 25 fuentes (Yahoo Finance, MarketWatch, Nasdaq, Seeking Alpha, Investing.com en inglés y español, BBC, The Guardian, Euronews, DW, Nikkei, SCMP, El País, Expansión, El Cronista, Infobae, iProfesional, La Nación, Reserva Federal, SEC y BCE) y deja `resultados_fuentes_rss.txt`. La app todavía usa Ámbito (local) y CNBC (Estados Unidos y resto del mundo): no se cambió ninguna fuente hasta ver los resultados.
+- Por qué CNBC: en la v1.2.40 se descartó Bloomberg porque sus notas son de pago, y CNBC era una fuente con RSS gratis por sección (Mercados, Tecnología, Economía, Europa, Asia). No se comparó contra otras.
+
 ### v1.5.22 — la app vuelve a ser rápida (con 215 empresas)
 - **Qué pasaba:** cada recarga mandaba al navegador ~2,1 MB de HTML. Con las 215 empresas, los logos (1,1 MB) y las fotos de «Quiénes somos» (0,3 MB) iban pegados dentro de la página, y se repetían en cada recarga. Además, cada 5 minutos la primera visita esperaba toda la bajada de precios de Yahoo.
 - **Logos y fotos como archivos:** ahora salen de `static/logos/` y `static/marca/` (Streamlit las sirve en `app/static/...`, activado en `.streamlit/config.toml` con `enableStaticServing = true`). El navegador baja cada una una sola vez. **Las carpetas cambiaron de lugar:** `static/logos` → `static/logos` y las dos fotos → `static/marca`; `descargar_logos.bat` ya escribe en `static/logos`. Resultado: la página de empresas pasa de 2,07 MB a 0,86 MB de HTML (−58 %); la tabla, de 1,16 MB a 0,41 MB.

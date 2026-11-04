@@ -71,19 +71,17 @@ def calendario_html(grupos, hoy=None, nombres=None, cantidad=None):
     hoy = hoy or datetime.date.today()
     if not grupos:
         return (f'<div class="cal"><div class="cal-v">No hay resultados cargados para los próximos {DIAS} días.</div></div>')
-    hay_hora = any(m for _, its in grupos for _, m, _e in its)         # mientras Yahoo no informe el horario, no se repite "a confirmar" en cada empresa
     n = cantidad if cantidad is not None else sum(len(v) for _, v in grupos)
     out = [f'<div class="cal"><div class="cal-h">Próximos {DIAS} días · <b>{n}</b> empresas</div>']
     for f, items in grupos:
         out.append(f'<div class="cal-d{" hoy" if f == hoy else ""}">{html.escape(_titulo_dia(f, hoy))}<span class="cal-n">{len(items)}</span></div><div class="cal-g">')
         for t, momento, estimada in items:
-            etq = _ETQ.get(momento)
-            m = f'<span class="cal-m {momento}">{etq}</span>' if etq else ""
+            m = ""      # v1.5.23 (pedido de Guille): el calendario ya no muestra «antes de la apertura / después del cierre»
             e = '<span class="cal-e">fecha estimada</span>' if estimada else ""
             nom = html.escape((nombres or {}).get(t, t), quote=True)
             out.append(f'<a class="cal-i" href="?empresa={quote(t, safe="")}" target="_self" title="{nom}">{logo_html(t, 22)}<b>{html.escape(t)}</b>{m}{e}</a>')
         out.append("</div>")
-    out.append(f'<div class="cal-p">{"" if hay_hora else "Todavía no hay horarios (antes o después de la apertura) cargados: se completan al actualizar los datos. "}Fechas informadas por Yahoo Finance; cada empresa las confirma y pueden cambiar. Información, no una recomendación.</div></div>')
+    out.append(f'<div class="cal-p">Fechas informadas por Yahoo Finance; cada empresa las confirma y pueden cambiar. Información, no una recomendación.</div></div>')
     return "".join(out)
 
 
