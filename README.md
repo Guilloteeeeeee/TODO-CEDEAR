@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.20 — fichas y logos de la tanda 1
+- `data/fichas.json` con las 215 empresas (descripción, directivos, mercado; solo FISV sin descripción, como antes) y los 49 logos nuevos en `assets/logos/`. Con esto la tanda 1 queda completa: puntaje (v1.5.18), ficha y logo.
+
 ### v1.5.19 — franja negra del inicio
 - **Pantalla de inicio:** la franja queda con el logo a la izquierda y la luna, el toro y el menú a la derecha, sin Noticias, Calendario, Ideas ni Evalúa tu Portfolio (en el inicio los iconos se habían pegado al logo desde la v1.5.14).
 - **Celular:** el logo va primero y a la derecha la luna, el toro y el menú (antes la luna quedaba a la izquierda del logo).
