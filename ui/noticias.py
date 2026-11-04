@@ -352,7 +352,8 @@ def _bajar_todo(descargar=None):
         contenidos = list(ex.map(descargar, urls))
     leidos = {u: leer_feed(c) for u, c in zip(urls, contenidos)}
     bloques = {b["clave"]: _armar_bloque(b["feeds"], leidos) for b in BLOQUES}
-    return {"bloques": bloques, "feeds_ok": sum(1 for v in leidos.values() if v), "feeds_total": len(urls)}
+    return {"bloques": bloques, "feeds_ok": sum(1 for v in leidos.values() if v), "feeds_total": len(urls),
+            "estado_feeds": {u: len(v) for u, v in leidos.items()}}
 
 
 def _crudo(descargar=None, ahora_ts=None, forzar=False):
@@ -491,6 +492,68 @@ def misma_historia(a, b):
     return c >= 2 and c >= 0.25 * min(len(a), len(b))
 
 
+# v1.5.27: el TEMA del día. La comparación de palabras de arriba no ve que «tras las elecciones en EEUU» (Ámbito), «resultados electorales» (CNBC)
+# y «el triunfo de los demócratas a medio plazo» (South China Morning Post) hablan de lo mismo: comparten una sola palabra. Por eso hay una lista de
+# temas grandes (elecciones, Fed y tasas, inflación, aranceles, petróleo, guerra, empleo, cierre de gobierno) con las palabras que los nombran en
+# castellano y en inglés. El tema del día es el que nombran más medios distintos (mínimo 2); cada bloque abre con su mejor nota sobre ese tema.
+_TEMAS = {
+    "elecciones": re.compile(r"elecci[oó]n|elecciones|electoral|electorales|election|midterm|medio plazo|legislativas|comicios|dem[oó]crata|democrat|republican|"
+                             r"vota(ci[oó]n|ron|r)\b|\bvot(e|es|ers|ing)\b", re.I),
+    "fed y tasas": re.compile(r"\bfed\b|federal reserve|reserva federal|powell|tasas? de inter[eé]s|interest rates?|rate (cut|hike)|recorte de tasas|bancos? centrales?|central banks?|"
+                              r"banco de inglaterra|bank of england|\bbce\b|\becb\b", re.I),
+    "inflacion": re.compile(r"inflaci[oó]n|inflation|\bcpi\b|\bpce\b|precios al consumidor|consumer prices", re.I),
+    "aranceles": re.compile(r"arancel|tariff", re.I),
+    "petroleo": re.compile(r"petr[oó]leo|\bcrude\b|\boil\b|\bbrent\b|\bopep\b|\bopec\b", re.I),
+    "guerra": re.compile(r"\bguerra\b|\bwar\b|alto el fuego|cease-?fire|\bmisil|missile|invasi[oó]n|invasion", re.I),
+    "empleo": re.compile(r"desempleo|unemployment|payrolls?|n[oó]minas|jobs report|informe de empleo", re.I),
+    "gobierno": re.compile(r"shutdown|cierre del gobierno|debt ceiling|techo de la deuda", re.I),
+}
+
+
+def _terminos_tema(titulo, tema):
+    """Cuántas formas distintas de nombrar el tema hay en el titular (0 si no lo nombra)."""
+    rx = _TEMAS.get(tema)
+    if rx is None or not titulo:
+        return 0
+    return len({m.group(0).lower() for m in rx.finditer(titulo)})
+
+
+def tema_del_dia(notas_por_medio):
+    """notas_por_medio: lista de (titulo, medio). -> el tema que nombran más medios distintos (mínimo 2); a igualdad, el que tiene más notas. None si no hay."""
+    mejor, mejor_k = None, None
+    for tema in _TEMAS:
+        medios, cuantas = set(), 0
+        for titulo, medio in notas_por_medio:
+            if _terminos_tema(titulo, tema):
+                medios.add(medio)
+                cuantas += 1
+        if len(medios) >= 2 and (mejor_k is None or (len(medios), cuantas) > mejor_k):
+            mejor, mejor_k = tema, (len(medios), cuantas)
+    return mejor
+
+
+def _elegir_por_tema(base, vistos_tickers, historias, tema):
+    """La mejor nota de `base` sobre el tema del día: la que más lo nombra, luego la de portada, luego la más reciente. None si ninguna."""
+    if not tema:
+        return None
+    minimo = datetime.min.replace(tzinfo=timezone.utc)
+    mejor, mejor_k = None, None
+    for n in base:
+        c = _terminos_tema(n.get("titulo"), tema)
+        if not c:
+            continue
+        m = n.get("menciona") or []
+        if m and any(t in vistos_tickers for t in m):
+            continue
+        tk = tokens_historia(n["titulo"])
+        if any(misma_historia(tk, h) for h in historias):
+            continue
+        k = (c, n["en_portada"], n["fecha"] or minimo)
+        if mejor_k is None or k > mejor_k:
+            mejor, mejor_k = n, k
+    return mejor
+
+
 def _repite_historia(n, historias):
     tk = tokens_historia(n.get("titulo"))
     return any(misma_historia(tk, h) for h in historias)
@@ -560,7 +623,7 @@ def _sin_repetir_ticker(ordenadas, cantidad, vistos_ini=None, historias=None, ma
 
 
 def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None, con_dolar=False,
-            vistos_tickers=None, con_mercado=False, con_macro=False, historias=None, con_tendencia=True, max_por_medio=2):
+            vistos_tickers=None, con_mercado=False, con_macro=False, historias=None, con_tendencia=True, max_por_medio=2, tema=None):
     """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si no alcanzan `cantidad` notas), orden por
     (menciona empresas del screener, esta en portada, mas reciente) y una sola nota por ticker (v1.2.46: se saltea la repetida y se
     sigue con la que viene). Devuelve (lista, horas_usadas).
@@ -589,7 +652,9 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
         hist = list(historias or [])
         base = [n for n in _quitar_relleno(todas) if not (hist and _repite_historia(n, hist))]
         vt = set(vistos_tickers or ())
-        tend = _elegir_tendencia(base, vt, hist) if (con_tendencia and cantidad >= 2) else None
+        tend = None
+        if con_tendencia and cantidad >= 2:
+            tend = _elegir_por_tema(base, vt, hist, tema) or _elegir_tendencia(base, vt, hist)
         if tend is not None:
             tend["tendencia"] = True
             tk_t = tokens_historia(tend["titulo"])
@@ -656,12 +721,19 @@ def ordenar_bloques(crudo, tickers, ahora=None):
     -> lista de {clave, titulo, fuente, idioma, traducir, notas, horas, respondio}."""
     vistos, vt, hist = set(), set(), []
     res = {}
+    lim24 = (ahora or datetime.now(timezone.utc)) - timedelta(hours=HORAS)
+    pares = []
+    for b in BLOQUES:
+        for n in (((crudo or {}).get("bloques") or {}).get(b["clave"]) or {}).get("notas") or []:
+            if (n.get("fecha") is None or n["fecha"] >= lim24) and not es_relleno(n.get("titulo")):
+                pares.append((n.get("titulo") or "", n.get("medio") or b["fuente"]))
+    tema = tema_del_dia(pares)
 
     def _uno(b, con_macro=False, vistos_ext=None, tk_ext=None):
         cb = ((crudo or {}).get("bloques") or {}).get(b["clave"])
         notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=(vistos_ext if vistos_ext is not None else vistos),
                                cantidad=b.get("cantidad"), con_dolar=bool(b.get("dolar")), vistos_tickers=(tk_ext if tk_ext is not None else vt),
-                               con_mercado=bool(b.get("mercado")), con_macro=con_macro, historias=hist)
+                               con_mercado=bool(b.get("mercado")), con_macro=con_macro, historias=hist, tema=tema)
         return cb, notas, horas
 
     def _marcar(notas):

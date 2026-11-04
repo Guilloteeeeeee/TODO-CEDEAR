@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.26"
+APP_VERSION = "1.5.27"
 
 import re
 import contextlib
@@ -2269,6 +2269,17 @@ def render_debug_panel():
                  help="Borra la memoria de Streamlit y vuelve a leer el caché guardado (data/cache_datos.json) y los precios. Sirve justo después de subir un caché nuevo."):
         st.cache_data.clear()
         st.rerun()
+    # v1.5.27: qué fuentes de noticias respondieron desde el servidor (algunas webs bloquean los servidores y no la PC de uno)
+    try:
+        _cr = _noticias._ESTADO.get("crudo") or {}
+        _ef = _cr.get("estado_feeds") or {}
+        with st.expander(f"📰 Noticias: {sum(1 for v in _ef.values() if v)} de {len(_ef)} fuentes respondieron", expanded=False):
+            for _b in _noticias.BLOQUES:
+                for _f in _b["feeds"]:
+                    _n = _ef.get(_f[1])
+                    st.write(f"{'✅' if _n else '❌'} {_b['titulo']} · {(_f[3] if len(_f) > 3 else _b['fuente'])} · {_f[0]}: " + (f"{_n} titulares" if _n else "no respondió"))
+    except Exception:  # noqa: BLE001
+        pass
     st.subheader("🔧 Panel de Diagnóstico — yfinance Debug")
     st.caption(
         "Este panel muestra exactamente qué devolvió yfinance para cada ticker. "

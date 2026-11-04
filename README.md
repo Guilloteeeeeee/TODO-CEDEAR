@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.27 — noticias: el tema del día abre cada bloque; diagnóstico de fuentes
+- **Problema (pantalla de Guille del 04/11):** la victoria demócrata dominaba el día y ninguna nota de ese tema abría los bloques. La comparación de palabras de la v1.5.24 no la veía: «tras las elecciones en EEUU» (Ámbito), «resultados electorales» (CNBC) y «triunfo de los demócratas a medio plazo» (SCMP) comparten una sola palabra.
+- **Arreglo (`ui/noticias.py`):** lista de temas grandes (`_TEMAS`: elecciones, Fed y tasas, inflación, aranceles, petróleo, guerra, empleo, cierre de gobierno) con las palabras que los nombran en castellano e inglés. `tema_del_dia`: el que nombran más medios distintos (mínimo 2) en las últimas 24 h de todos los bloques. Cada bloque abre con su mejor nota sobre ese tema (`_elegir_por_tema`); si el bloque no tiene ninguna, queda la tendencia por palabras de siempre. Sigue valiendo una nota por ticker y por historia y el tope de 2 por medio.
+- **Diagnóstico:** con `?debug=1` aparece «Noticias: n de m fuentes respondieron» con cada fuente (✅/❌). Sirve para saber qué medios bloquean al servidor (en la captura de Guille, Locales salió solo con Ámbito).
+- Prueba nueva: `tests/test_v1527_tema.py`.
+
 ### v1.5.26 — Tanda 2: 50 empresas nuevas
 - **Se suman 50 CEDEARs** (SPCX, HOOD, MSTR, CRWV, RBLX, RKLB, OKLO, NBIS, FSLR, XPEV, NIO, SE, TCOM, STNE, XP, PAGS, EFX, ZM, UPST, HIMS, PATH, AI, ETSY, TEM, ASTS, RGTI, B, KGC, HMY, GFI, PAAS, CDE, HL, MP, NXE, LAC, FMX, STLA, HMC, ERIC, PHG, NGG, GT, HOG, ANF, URBN, YELP, TRIP, XYZ, KB). Grupo de puntaje según el Excel de Guille (04/11/2026): lo amarillo quedó como se propuso y lo naranja se cambió como él lo dejó.
 - **Grupos que cambiaron respecto de la propuesta:** CRWV → Software y nube; NBIS → Comunicación; STNE, PAGS y XYZ → Software y nube (Yahoo los ubica en Tecnología); EFX → Industrial; ASTS → Hardware y servicios TI; TRIP → Consumo Discrecional. UPST → Pagos y datos (inferido: su celda decía «Credit Services / Financial Services» sin nombrar el grupo; confirmar).
