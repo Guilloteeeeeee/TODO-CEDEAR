@@ -71,7 +71,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 
 ## Pruebas
 - `control_cobertura.py` + `tests/test_cobertura.py`: cada CEDEAR de BYMA está en la app o figura con su motivo (pendiente de tanda / no se carga). Al cargar una tanda: mover los símbolos de `PENDIENTES` y correr la prueba.
-- `tests/test_v1524_noticias.py`, `tests/test_damodaran_mapa.py`, `tests/test_v1522_rapidez.py` (peso de la página, logos como archivo, precios en segundo plano), `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz), `tests/test_v157_mercados.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
+- `tests/test_v1526_tanda2.py` (las 50 de la tanda 2: grupo, ratio, industria, logo), `tests/test_v1524_noticias.py`, `tests/test_damodaran_mapa.py`, `tests/test_v1522_rapidez.py` (peso de la página, logos como archivo, precios en segundo plano), `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz), `tests/test_v157_mercados.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
 - Para ver una pantalla sin la app entera: armar un harness que importe solo las funciones (ver `_evaluar_cartera`) y usar Playwright; Yahoo no responde acá.
 
 ## Publicar una versión

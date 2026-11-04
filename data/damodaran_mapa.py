@@ -97,6 +97,36 @@ _G_TANDA1 = {
 for _ind, _tks in _G_TANDA1.items():
     _G[_ind] = (_G.get(_ind, "") + " " + _tks).strip()
 
+# Tanda 2 (v1.5.26): 50 empresas nuevas (PROPUESTA, igual que el resto: Guille la puede corregir cambiando la línea).
+_G_TANDA2 = {
+    "Aerospace/Defense": "SPCX RKLB",
+    "Brokerage & Investment Banking": "HOOD XP",
+    "Software (System & Application)": "MSTR CRWV ZM PATH AI",
+    "Software (Entertainment)": "RBLX",
+    "Power": "OKLO",
+    "Software (Internet)": "NBIS YELP",
+    "Green & Renewable Energy": "FSLR",
+    "Auto & Truck": "XPEV NIO STLA HMC HOG",
+    "Retail (General)": "SE ETSY",
+    "Hotel/Gaming": "TCOM TRIP",
+    "Financial Svcs. (Non-bank & Insurance)": "STNE PAGS XYZ UPST",
+    "Information Services": "EFX",
+    "Healthcare Support Services": "HIMS",
+    "Heathcare Information and Technology": "TEM",
+    "Telecom. Equipment": "ASTS ERIC",
+    "Computers/Peripherals": "RGTI",
+    "Precious Metals": "B KGC HMY GFI PAAS CDE HL",
+    "Metals & Mining": "MP NXE LAC",
+    "Retail (Grocery and Food)": "FMX",
+    "Healthcare Products": "PHG",
+    "Utility (General)": "NGG",
+    "Rubber& Tires": "GT",
+    "Retail (Special Lines)": "ANF URBN",
+    "Banks (Regional)": "KB",
+}
+for _ind, _tks in _G_TANDA2.items():
+    _G[_ind] = (_G.get(_ind, "") + " " + _tks).strip()
+
 MAPA = {t: ind for ind, tks in _G.items() for t in tks.split()}
 
 # Industrias donde los márgenes/EV de Damodaran NO se pueden comparar con una empresa común (financieras): en la ficha se muestran solo PER, P/B, ROE y margen neto.
@@ -107,10 +137,10 @@ FINANCIERAS = {"Bank (Money Center)", "Banks (Regional)", "Brokerage & Investmen
 # Región de Damodaran con la que se compara cada empresa (v1.2.88). Todo lo que no figura acá se compara con EE.UU. Cuenta el lugar donde la empresa hace su negocio y cotiza, no sólo donde está registrada
 # (ACN, MDT y LIN, registradas en Irlanda/Reino Unido pero con negocio y cotización en EE.UU., quedan con EE.UU.; PDD, registrada en Irlanda pero china, va con emergentes).
 _R = {
-    "emergentes": "VALE ITUB NU PBR HDB IBN INFY BABA NTES PDD MELI TSM AMX BIDU JD",
-    "europa": "HSBC ARM SHEL BP UL DEO GSK AZN RIO SAN BBVA ING ASML SIEGY SAP RACE SPOT TTE EQNR NVS NVO BCS LYG VOD",
-    "aus_nz_canada": "AEM SHOP BHP CCJ",
-    "japon": "MUFG TM SONY",          # sin planilla regional: se compara con EE.UU. y la nota lo aclara
+    "emergentes": "VALE ITUB NU PBR HDB IBN INFY BABA NTES PDD MELI TSM AMX BIDU JD XPEV NIO SE TCOM STNE XP PAGS FMX HMY GFI KB",
+    "europa": "HSBC ARM SHEL BP UL DEO GSK AZN RIO SAN BBVA ING ASML SIEGY SAP RACE SPOT TTE EQNR NVS NVO BCS LYG VOD NBIS STLA ERIC PHG NGG",
+    "aus_nz_canada": "AEM SHOP BHP CCJ B KGC PAAS NXE",
+    "japon": "MUFG TM SONY HMC",          # sin planilla regional: se compara con EE.UU. y la nota lo aclara
 }
 REGION = {t: r for r, tks in _R.items() for t in tks.split()}
 REGION_TXT = {"us": "empresas de EE.UU.", "emergentes": "empresas de mercados emergentes", "europa": "empresas de Europa", "aus_nz_canada": "empresas de Australia, Nueva Zelanda y Canadá",

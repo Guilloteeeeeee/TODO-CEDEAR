@@ -15,12 +15,14 @@ ADR = frozenset({
     "BHP", "ITUB", "PBR", "VALE", "BABA", "NTES", "NVO", "TTE", "SAP", "SIEGY", "HDB", "IBN", "INFY", "PDD", "SONY", "TM", "ING", "EQNR",
     "BBVA", "SAN", "NVS", "TSM", "ARM", "BP", "DEO", "GSK", "HSBC", "RIO", "SHEL", "UL", "MUFG",
     "AMX", "BCS", "BIDU", "JD", "LYG", "VOD",   # v1.5.17 (tanda 1): ADS que presentan 20-F
+    "XPEV", "NIO", "SE", "TCOM", "FMX", "HMC", "ERIC", "NGG", "KB", "HMY", "GFI",   # v1.5.26 (tanda 2): ADS
 })
 
 # Extranjeras que cotizan directo en EE.UU. con acciones ordinarias (no son ADR). Sirve para que bajar_fichas no vuelva a avisar por ellas.
 NO_ADR = frozenset({
     "ACN", "AEM", "ASML", "AZN", "LIN", "MDT", "MELI", "NU", "RACE", "SHOP", "SPOT",
     "CCJ", "GRMN", "JCI", "TEAM", "BG",          # v1.5.17 (tanda 1)
+    "NBIS", "STNE", "XP", "PAGS", "STLA", "PHG", "B", "KGC", "PAAS", "NXE",   # v1.5.26 (tanda 2): acciones ordinarias, no ADR
 })
 
 _MERCADOS = {

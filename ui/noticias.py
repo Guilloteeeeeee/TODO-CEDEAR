@@ -164,9 +164,17 @@ ALIAS = {
     "TEAM": ["Atlassian"], "VRSN": ["VeriSign", "Verisign"], "HPQ": ["HP Inc"], "GLW": ["Corning"], "GRMN": ["Garmin"], "SNDK": ["SanDisk", "Sandisk"],
     "OXY": ["Occidental Petroleum", "Occidental"], "BKR": ["Baker Hughes"], "HAL": ["Halliburton"], "CCJ": ["Cameco"], "HSY": ["Hershey"],
     "KMB": ["Kimberly-Clark"], "SYY": ["Sysco"], "BG": ["Bunge"], "BIIB": ["Biogen"], "MRNA": ["Moderna"], "CAH": ["Cardinal Health"], "NTRA": ["Natera"],
+    "SPCX": ["SpaceX"], "HOOD": ["Robinhood"], "MSTR": ["MicroStrategy"], "CRWV": ["CoreWeave"], "RBLX": ["Roblox"], "RKLB": ["Rocket Lab"], "OKLO": ["Oklo"],
+    "NBIS": ["Nebius"], "FSLR": ["First Solar"], "XPEV": ["XPeng", "Xpeng"], "NIO": ["NIO"], "SE": ["Sea Ltd", "Sea Limited"], "TCOM": ["Trip.com"],
+    "STNE": ["StoneCo"], "XP": ["XP Inc"], "PAGS": ["PagSeguro", "PagBank"], "EFX": ["Equifax"], "ZM": ["Zoom Video", "Zoom Communications"], "UPST": ["Upstart"],
+    "HIMS": ["Hims & Hers"], "PATH": ["UiPath"], "AI": ["C3.ai", "C3 AI"], "ETSY": ["Etsy"], "TEM": ["Tempus AI"], "ASTS": ["AST SpaceMobile"], "RGTI": ["Rigetti"],
+    "B": ["Barrick"], "KGC": ["Kinross"], "HMY": ["Harmony Gold"], "GFI": ["Gold Fields"], "PAAS": ["Pan American Silver"], "CDE": ["Coeur Mining"], "HL": ["Hecla"],
+    "MP": ["MP Materials"], "NXE": ["NexGen Energy", "NexGen"], "LAC": ["Lithium Americas"], "FMX": ["Femsa", "FEMSA"], "STLA": ["Stellantis"], "HMC": ["Honda"],
+    "ERIC": ["Ericsson"], "PHG": ["Philips"], "NGG": ["National Grid"], "GT": ["Goodyear"], "HOG": ["Harley-Davidson", "Harley Davidson"],
+    "ANF": ["Abercrombie & Fitch", "Abercrombie"], "URBN": ["Urban Outfitters"], "YELP": ["Yelp"], "TRIP": ["Tripadvisor", "TripAdvisor"], "XYZ": ["Block Inc"], "KB": ["KB Financial"],
 }
 # Tickers que tambien son palabras o siglas comunes: no se buscan como ticker (si por nombre).
-_TICKER_NO_BUSCAR = {"NOW", "ARM", "CAT", "WELL", "COST", "DELL", "SNOW", "LIN", "ALL"}
+_TICKER_NO_BUSCAR = {"NOW", "ARM", "CAT", "WELL", "COST", "DELL", "SNOW", "LIN", "ALL", "XYZ", "LAC", "PATH", "TRIP", "HOOD", "HOG"}
 # Nombres que en español tambien son palabras comunes ("Meta de inflación", "Vale la pena", "Arista"): como los titulares
 # llevan mayuscula solo al empezar, estas formas cuentan unicamente si NO estan al comienzo del titular (solo con titulares en español).
 _NO_AL_INICIO = {"Meta", "Vale", "Arista", "Target"}

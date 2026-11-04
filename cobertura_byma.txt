@@ -1,4 +1,4 @@
-Lista de BYMA: 446 CEDEARs. En la app: 272. Pendientes de cargar: 127. No se cargan (con motivo): 47.
+Lista de BYMA: 446 CEDEARs. En la app: 322. Pendientes de cargar: 77. No se cargan (con motivo): 47.
 SIN MOTIVO (hay que revisarlos): 0 []
 
 - No se carga: Acción que cotiza solo en Brasil (reporta en reales, otra fuente de datos) (11): BBAS3 BPA11 HAPV3 LREN3 MGLU3 NATU3 PRIO3 RCTB4 RENT3 SBSP3 WEGE3
@@ -7,5 +7,4 @@ SIN MOTIVO (hay que revisarlos): 0 []
 - No se carga: Segundo ticker de una empresa que ya tiene ficha (se muestra como segunda línea en la ficha del ADR) (9): ABEV3 BBDC3 CSNA3 ITUB3 PETR3 SUZB3 TIMS3 VALE3 VIVT3
 - No se carga: Símbolo mal escrito en la lista de BYMA (hay que confirmarlo con BYMA) (3): NYSE TRVV UN
 - No se carga: Ya no cotiza (cerrada, comprada o fusionada) (6): AABA CS EA SI TWTR WBA
-- Pendiente: Tanda 2 (50): AI ANF ASTS B CDE CRWV EFX ERIC ETSY FMX FSLR GFI GT HIMS HL HMC HMY HOG HOOD KB KGC LAC MP MSTR NBIS NGG NIO NXE OKLO PAAS PAGS PATH PHG RBLX RGTI RKLB SE SPCX STLA STNE TCOM TEM TRIP UPST URBN XP XPEV XYZ YELP ZM
 - Pendiente: Tanda 3 en adelante (a revisar una por una) (77): AAP ABEV ADGO AEG AKO.B AOCA ARCO ASR AUY BAK BB BBD BIOX BMNR BRFS BSBR CAAP CAJ CAR CBRD CLS CX E EBR ELP ERJ FMCC FNMA GGB GLNG GLOB GPRK HNPIY HUT HWM IREN JMIA JOYY KEEL KEP KOFM LAR LFC LND MFG MUX NG NMR NOKA ONDS ORAN PAC PBI PKS PSO PTR RIOT SATL SDA SHPW SID SNP SPCE SUZ TEN TIIAY TIMB TTM TV TXR UGP VIST VIV VXX WBO XROX YZCA

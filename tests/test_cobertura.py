@@ -17,8 +17,8 @@ todos = [t for v in cc.PENDIENTES.values() for t in v] + [t for v in cc.EXCLUIDA
 chk(len(todos) == len(set(todos)), "un simbolo figura en dos listas")
 chk(not (set(todos) & set(cargadas)), f"figuran como pendientes/excluidos pero ya estan cargados: {sorted(set(todos) & set(cargadas))}")
 chk(not [t for t in todos if t not in byma], f"simbolos que no estan en la lista de BYMA: {[t for t in todos if t not in byma]}")
-for t in ("F", "BIIB", "WFC", "BNG", "SNDK", "AMX"):
+for t in ("F", "BIIB", "WFC", "BNG", "SNDK", "AMX", "SPCX", "HOOD", "KB"):
     chk(t in cargadas, f"{t} deberia estar cargado")
-chk("SPCX" in motivo and motivo["SPCX"].startswith("Pendiente"), "SPCX (SpaceX) debe figurar como pendiente")
+chk("AAP" in motivo and motivo["AAP"].startswith("Pendiente"), "AAP (tanda 3 en adelante) debe figurar como pendiente")
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)

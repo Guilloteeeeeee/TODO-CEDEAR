@@ -8,7 +8,7 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 **Con Opus (avisar antes de arrancar):**
 - Renovar la valuación de los 139 informes y la pasada de redacción (esperar a los resultados de las empresas, ~10 al 17/11).
 - Renovar 10 informes: AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR.
-- Escribir los informes que faltan: hoy hay 166 informes y 215 empresas (**49 de la tanda 1 sin informe**: NUE MOS DD DOW IP IFF WFC BCS LYG F EBAY CCL LVS DECK JD AVY PINS SNAP ROKU BIDU AMX VOD JCI SNA DAL UAL AAL SWKS ALAB DOCU TWLO TEAM VRSN HPQ GLW GRMN SNDK OXY BKR HAL CCJ HSY KMB SYY BG BIIB MRNA CAH NTRA). Se suman las de la tanda 2 y siguientes.
+- Escribir los informes que faltan: hoy hay 166 informes y 215 empresas (**49 de la tanda 1 sin informe**: NUE MOS DD DOW IP IFF WFC BCS LYG F EBAY CCL LVS DECK JD AVY PINS SNAP ROKU BIDU AMX VOD JCI SNA DAL UAL AAL SWKS ALAB DOCU TWLO TEAM VRSN HPQ GLW GRMN SNDK OXY BKR HAL CCJ HSY KMB SYY BG BIIB MRNA CAH NTRA). Se suman las 50 de la tanda 2 (ya cargadas en la app) y las siguientes.
 - Textos a mano para empresas de múltiplos muy altos: PLTR, CRWD, ARM, PANW, AMD, TSLA.
 
 **Decisiones de Guille (no se implementa nada sin su OK; primero problema, teoría y pros/contras):**
@@ -18,7 +18,7 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 - **Score de calidad** (foso, Piotroski/Altman, deuda/EBITDA, calidad de ganancias).
 - ~~Nota informativa para cíclicas (SNDK, MOS, OXY, aerolíneas)~~: **DESCARTADA por Guille** («la gente lo sabe»).
 
-**Carga de CEDEARs:** revisar el Excel de la tanda 2 (50 empresas, empieza con SpaceX/SPCX); después las 77 de «tanda 3 en adelante». Símbolos raros de la lista de BYMA (TRVV, NYSE, UN) y acciones que cotizan solo en Brasil (11): **no son tarea de Guille**; quedan excluidas con motivo en `control_cobertura.py`; se revisan solas cuando BYMA publique una lista nueva. Industrias de Damodaran de la tanda 1: **HECHO** (v1.5.24, propuesta a revisar).
+**Carga de CEDEARs:** tanda 2 (50 empresas) **CARGADA en la v1.5.26** con el Excel de Guille del 04/11 (amarillos como estaban, naranjas cambiados). A confirmar con él: UPST (puse Pagos y datos), FSLR (dejé Semiconductores), RGTI (celda naranja sin texto: dejé Hardware y servicios TI) y las industrias de Damodaran (propuesta). Falta en su PC: `generar_cache.bat`, `bajar_fichas.bat`, `descargar_logos.bat`. Después vienen las 77 de «tanda 3 en adelante». Símbolos raros de la lista de BYMA (TRVV, NYSE, UN) y acciones que cotizan solo en Brasil (11): **no son tarea de Guille**; quedan excluidas con motivo en `control_cobertura.py`; se revisan solas cuando BYMA publique una lista nueva. Industrias de Damodaran de la tanda 1: **HECHO** (v1.5.24, propuesta a revisar).
 
 **Noticias (v1.5.24 hecho):** pendiente revisar términos de uso de cada medio (título + link), ver si el servidor de la app llega a Investing.com (si no, quedan los otros medios) y, si se quiere, buscar la dirección nueva del RSS de Yahoo Finance y de El Cronista (dan 404).
 

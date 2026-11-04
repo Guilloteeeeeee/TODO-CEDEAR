@@ -157,47 +157,55 @@ FUNDAMENTAL_WEIGHT = 1.0 - TECHNICAL_WEIGHT  # 1.0
 # ---------------------------------------------------------------------------
 
 TICKER_UNIVERSE = {
-    "Materiales Básicos": ["LIN", "BHP", "RIO", "SCCO", "FCX", "SHW", "NEM", "VALE", "AEM", "ECL", "NUE", "MOS", "DD", "DOW", "IP", "IFF"],
+    "Materiales Básicos": ["LIN", "BHP", "RIO", "SCCO", "FCX", "SHW", "NEM", "VALE", "AEM", "ECL", "NUE", "MOS", "DD", "DOW", "IP", "IFF",
+        "B", "KGC", "HMY", "GFI", "PAAS", "CDE", "HL", "MP", "LAC"],
     "REITs":              ["O", "PLD", "WELL"],
     "Bancos y seguros":   [
         "BRK-B", "JPM", "MUFG", "BAC", "MS", "GS", "HSBC", "C", "AXP", "SCHW", "BX", "HDB", "SAN",
         "IBN", "USB", "BBVA", "ITUB", "AIG", "BNY", "ING", "NU", "IBKR",
         "WFC", "BCS", "LYG",
+        "HOOD", "XP", "KB",
     ],
-    "Pagos y datos":      ["V", "MA", "SPGI", "PYPL", "COIN", "FISV", "MRSH"],   # MRSH = Marsh McLennan (antes MMC)
+    "Pagos y datos":      ["V", "MA", "SPGI", "PYPL", "COIN", "FISV", "MRSH", "UPST"],   # MRSH = Marsh McLennan (antes MMC)
     "Consumo Discrecional": [
         "AMZN", "TSLA", "HD", "BABA", "TM", "BKNG", "PDD", "MELI",
         "SONY", "RACE", "NKE", "MCD", "SBUX", "TJX", "ABNB", "ORLY", "GM", "ROST",
         "F", "EBAY", "CCL", "LVS", "DECK", "JD", "AVY",
+        "XPEV", "NIO", "SE", "TCOM", "ETSY", "STLA", "HMC", "GT", "HOG", "ANF", "URBN", "TRIP",
     ],
-    "Comunicación":       ["GOOGL", "META", "NFLX", "DIS", "SPOT", "NTES", "PINS", "SNAP", "ROKU", "BIDU"],   # internet y medios
+    "Comunicación":       ["GOOGL", "META", "NFLX", "DIS", "SPOT", "NTES", "PINS", "SNAP", "ROKU", "BIDU", "RBLX", "NBIS", "YELP"],   # internet y medios
     "Telecomunicaciones": ["T", "VZ", "TMUS", "AMX", "VOD"],
     "Industrial":         [
         "CAT", "GE", "RTX", "SIEGY", "DE", "UNP", "UBER", "LMT",
         "HON", "BA", "MMM", "FDX", "GEV", "HWM", "PCAR",
         "JCI", "SNA", "DAL", "UAL", "AAL",
+        "SPCX", "RKLB", "EFX",
     ],
     "Semiconductores":    [
         "NVDA", "TSM", "AVGO", "MU", "AMD", "ASML", "INTC", "AMAT", "ARM", "TXN",
         "MRVL", "ADI", "QCOM", "LRCX", "KLAC",
         "SWKS", "ALAB",
+        "FSLR",
     ],
     "Software y nube":    [
         "MSFT", "ORCL", "PLTR", "PANW", "CRWD", "SAP", "SHOP", "CRM", "NOW", "ADBE", "SNOW",
         "DOCU", "TWLO", "TEAM", "VRSN",
+        "MSTR", "CRWV", "ZM", "PATH", "AI", "STNE", "PAGS", "XYZ",
     ],
     "Hardware y servicios TI": [
         "AAPL", "CSCO", "ANET", "IBM", "ACN", "ADP", "INFY", "DELL", "MSI", "WDC",
         "HPQ", "GLW", "GRMN", "SNDK",
+        "RGTI", "ERIC", "ASTS",
     ],
-    "Energía":            ["XOM", "CVX", "SHEL", "TTE", "COP", "PBR", "SLB", "BP", "EQNR", "PSX", "OXY", "BKR", "HAL", "CCJ"],
-    "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO", "HSY", "KMB", "SYY", "BG"],
+    "Energía":            ["XOM", "CVX", "SHEL", "TTE", "COP", "PBR", "SLB", "BP", "EQNR", "PSX", "OXY", "BKR", "HAL", "CCJ", "NXE"],
+    "Consumo Básico":     ["WMT", "COST", "KO", "PG", "PM", "PEP", "UL", "TGT", "MDLZ", "MO", "CL", "DEO", "HSY", "KMB", "SYY", "BG", "FMX"],
     "Salud":              [
         "LLY", "JNJ", "ABBV", "MRK", "UNH", "NVS", "TMO", "AMGN",
         "GILD", "ABT", "PFE", "DHR", "ISRG", "VRTX", "NVO", "BMY", "MDT", "GSK", "AZN", "CVS",
         "BIIB", "MRNA", "CAH", "NTRA",
+        "HIMS", "TEM", "PHG",
     ],
-    "Utilities":          ["NEE", "CEG", "VST", "TLN"],
+    "Utilities":          ["NEE", "CEG", "VST", "TLN", "OKLO", "NGG"],
 }
 
 # Mapeo inverso: ticker -> sector (se genera automáticamente)

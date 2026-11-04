@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.26 — Tanda 2: 50 empresas nuevas
+- **Se suman 50 CEDEARs** (SPCX, HOOD, MSTR, CRWV, RBLX, RKLB, OKLO, NBIS, FSLR, XPEV, NIO, SE, TCOM, STNE, XP, PAGS, EFX, ZM, UPST, HIMS, PATH, AI, ETSY, TEM, ASTS, RGTI, B, KGC, HMY, GFI, PAAS, CDE, HL, MP, NXE, LAC, FMX, STLA, HMC, ERIC, PHG, NGG, GT, HOG, ANF, URBN, YELP, TRIP, XYZ, KB). Grupo de puntaje según el Excel de Guille (04/11/2026): lo amarillo quedó como se propuso y lo naranja se cambió como él lo dejó.
+- **Grupos que cambiaron respecto de la propuesta:** CRWV → Software y nube; NBIS → Comunicación; STNE, PAGS y XYZ → Software y nube (Yahoo los ubica en Tecnología); EFX → Industrial; ASTS → Hardware y servicios TI; TRIP → Consumo Discrecional. UPST → Pagos y datos (inferido: su celda decía «Credit Services / Financial Services» sin nombrar el grupo; confirmar).
+- Se cargaron: ratios (`data/cedears.csv`, del PDF de BYMA), industria en castellano (`config/industrias.py`, solo informativa), dominio para el logo (`ui/logos.py`), ADR o no (`config/mercados.py`), nombres para las noticias (`ui/noticias.py`) y la industria y región de Damodaran (`data/damodaran_mapa.py`, PROPUESTA como el resto). Cobertura de BYMA: 322 en la app, 77 pendientes (tanda 3 en adelante).
+- **Falta (en la PC de Guille):** `generar_cache.bat`, `bajar_fichas.bat`, `descargar_logos.bat`; hasta entonces las 50 no aparecen en la tabla. Varias tienen pérdidas o poca historia (SPCX, CRWV, OKLO, RGTI, ASTS, NXE, MSTR…): pueden quedar con datos insuficientes.
+- Prueba nueva: `tests/test_v1526_tanda2.py` (grupo de cada una, ratio, industria, logo, noticias, ADR).
+
 ### v1.5.25 — noticias: sin etiqueta de tendencia
 - Se sacó la etiqueta naranja «Tendencia del día» (pedido de Guille): el dibujo de las notas queda como estaba; la tendencia sigue yendo primera en cada bloque. En Estados Unidos el rótulo nombra primero a Investing.com.
 
