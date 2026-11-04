@@ -1,11 +1,14 @@
 """
 Pagina "Quiénes somos" (v1.2.49): se abre desde el menu "Sobre Nosotros" de la barra (?pagina=quienes). El texto es el que mando Guille, con retoques
-minimos de redaccion (marcados abajo). Las dos fotos son assets/marca/foto-guillermo.png y foto-maria-laura.png (recortes circulares de la imagen
+minimos de redaccion (marcados abajo). Las dos fotos son static/marca/foto-guillermo.png y foto-maria-laura.png (recortes circulares de la imagen
 original); si faltan, se muestran las iniciales. Para cambiar el texto o los datos de cada persona, editar las constantes de este archivo.
 """
 import html
+import os
 
 from ui import marca as _marca
+
+_STATIC_MARCA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "static", "marca")
 
 TITULO = "Quiénes somos"
 # Retoques de redaccion respecto del original: "la primer comunidad" -> "la primera comunidad", "surgió en la necesidad" -> "surgió de la necesidad",
@@ -53,8 +56,14 @@ CSS = """
 """
 
 
+def _url_foto(p):
+    """Direccion de la foto servida por Streamlit (static/marca), o '' si no esta el archivo (queda el circulo con las iniciales)."""
+    return f"app/static/marca/{p['foto']}" if p.get("foto") and os.path.isfile(os.path.join(_STATIC_MARCA, p["foto"])) else ""
+
+
 def _persona(p):
-    uri = _marca._uri(_marca._DIR + "/" + p["foto"]) if p.get("foto") else ""
+    # v1.5.22: las fotos ya no van incrustadas (eran ~290 KB en CADA recarga de la pagina): Streamlit las sirve desde static/marca (ver .streamlit/config.toml)
+    uri = _url_foto(p)
     if uri:
         foto = f'<img src="{uri}" alt="{html.escape(p["nombre"])}">'
     else:
@@ -98,7 +107,7 @@ def quienes_panel_html():
     parrafos = "".join(f"<p>{html.escape(t)}</p>" for t in PARRAFOS)
     pers = ""
     for p in PERSONAS:
-        uri = _marca._uri(_marca._DIR + "/" + p["foto"]) if p.get("foto") else ""
+        uri = _url_foto(p)
         foto = f'<img src="{uri}" alt="{html.escape(p["nombre"])}">' if uri else f'<div class="ini">{html.escape(p.get("iniciales", ""))}</div>'
         lineas = "".join(f'<div class="ln">{html.escape(t)}</div>' for t in p["lineas"])
         pers += f'<div class="qp-p">{foto}<div class="nm">{html.escape(p["nombre"])}</div>{lineas}</div>'

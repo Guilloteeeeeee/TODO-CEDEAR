@@ -1,7 +1,7 @@
 """
-Descarga los logos de las empresas a assets/logos/<TICKER>.png (CEDEAR Screener v1.2.16).
+Descarga los logos de las empresas a static/logos/<TICKER>.png (CEDEAR Screener v1.2.16).
 
-Corre UNA vez en la PC (y cuando se sume una empresa nueva). Despues subi la carpeta assets/logos/
+Corre UNA vez en la PC (y cuando se sume una empresa nueva). Despues subi la carpeta static/logos/
 a GitHub (TODO-CEDEAR): la app los incrusta, asi que no depende de ningun servicio externo.
 
 Para cada ticker prueba, en este orden, estas fuentes y se queda con la primera que devuelva una imagen:
@@ -107,7 +107,7 @@ def main(args):
     with open("resultados_logos.txt", "w", encoding="utf-8") as f:
         f.write(txt)
     print("\n" + txt)
-    print("\nListo. Subi la carpeta assets/logos/ a GitHub y mandame resultados_logos.txt")
+    print("\nListo. Subi la carpeta static/logos/ a GitHub y mandame resultados_logos.txt")
 
 
 if __name__ == "__main__":

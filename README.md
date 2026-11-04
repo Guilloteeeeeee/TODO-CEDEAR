@@ -46,13 +46,13 @@ Detector de CEDEARs potencialmente infravalorados. Descarga datos automáticamen
 ### Vista visual y logos (v1.2.16)
 
 - **Vista visual (en prueba; ver la v1.2.33 para cómo quedó):** arriba de la tabla hay un selector "Tabla clásica / Vista visual (prueba)". La vista visual muestra, por empresa: logo y nombre, la categoría con color y una barra de valoración (punto = precio de hoy, franja = rango de los métodos del Fair Value, raya = Fair Value promedio), una caja con el puntaje y las métricas usadas, el rango de 52 semanas, el Dividend Yield contra su mediana y el Mkt Cap. Se ordena con el selector de al lado. Con qué vista abre la app se cambia en `config/ajustes.py` (`VISTA_POR_DEFECTO`). El código está en `ui/tabla_visual.py`.
-- **Logos:** el servicio que se usaba (Clearbit) dejó de funcionar. Ahora cada logo sale, en este orden, de `assets/logos/<TICKER>.png` (incrustado en la página), del favicon de la empresa servido por Google (`LOGOS_EN_LINEA` en `config/ajustes.py`) o, si no hay nada, de un círculo con las iniciales. Desde la v1.2.17 la carpeta ya viene con los logos; `descargar_logos.bat` queda como opcional para mejorar o completar alguno (deja `resultados_logos.txt` con el resumen de qué fuente funcionó).
+- **Logos:** el servicio que se usaba (Clearbit) dejó de funcionar. Ahora cada logo sale, en este orden, de `static/logos/<TICKER>.png` (incrustado en la página), del favicon de la empresa servido por Google (`LOGOS_EN_LINEA` en `config/ajustes.py`) o, si no hay nada, de un círculo con las iniciales. Desde la v1.2.17 la carpeta ya viene con los logos; `descargar_logos.bat` queda como opcional para mejorar o completar alguno (deja `resultados_logos.txt` con el resumen de qué fuente funcionó).
 
 ### Financieros separados y logos incluidos (v1.2.17)
 
 - **"Financieros" ahora son dos grupos:** *Bancos y seguros* (P/B 40%, PER 35%, Div. Yield 25%: los bancos y aseguradoras se valúan por su valor contable y sus ganancias) y *Pagos y datos* (V, MA, SPGI, PYPL, COIN, FISV, MRSH: negocios de comisiones y datos, que no prestan plata y se miden mejor por PER, P/FCF y EV/EBITDA). BRK-B, AIG, BX, IBKR y los brokers quedan en *Bancos y seguros*. Mientras no se agregue MRSH al caché, *Pagos y datos* tiene 6 empresas (el respaldo de sector pide al menos 5).
 - **Corrección:** MMC (Marsh McLennan) cambió su ticker a **MRSH** el 14/01/2026. En una versión intermedia se había puesto "MMS" por error: MMS es Maximus, otra empresa. Quedó MRSH. Sus datos entran con la próxima corrida en la PC (`actualizar_ticker.bat MRSH` o `generar_cache.bat`); que Yahoo Finance reconozca ya "MRSH" todavía no está verificado.
-- **Logos incluidos:** `assets/logos/` trae los logos de 64×64 ya armados (fuente: el repositorio público `nvstly/icons` en GitHub; los logos son marcas de cada empresa y se usan solo para identificarla). Los logos blancos se apoyan sobre un fondo gris oscuro para que se vean. MS, IBN, PCAR y SIEGY se agregaron en la v1.2.19.
+- **Logos incluidos:** `static/logos/` trae los logos de 64×64 ya armados (fuente: el repositorio público `nvstly/icons` en GitHub; los logos son marcas de cada empresa y se usan solo para identificarla). Los logos blancos se apoyan sobre un fondo gris oscuro para que se vean. MS, IBN, PCAR y SIEGY se agregaron en la v1.2.19.
 
 ### Telecomunicaciones aparte (v1.2.18)
 
@@ -568,21 +568,28 @@ cedear-screener/
 │   ├── estado.py           # Filtros y orden en la URL para volver desde la pagina de una empresa (v1.2.36)
 │   ├── logos.py            # Logos: archivo local, favicon o iniciales
 │   └── banderas.py         # Banderas de los paises (v1.2.21)
-├── assets/logos/           # Logos 64x64 (<TICKER>.png), ya incluidos desde la v1.2.17
+├── static/logos/           # Logos 64x64 (<TICKER>.png), ya incluidos desde la v1.2.17
 ├── assets/flags/           # Banderas 48x36 (<codigo>.png) de los paises
 ├── assets/marca/           # Logo de Finanzas para Medicos (128 px)
 ├── assets/fuentes/         # Tipografia Inter (incluida, licencia SIL OFL); se elige en config/ajustes.py (FUENTE_APP)
 ├── probar_ps.py/.bat       # Baja el P/S y otros multiplos de Stock Analysis (solo trae datos, v1.2.43)
 ├── incorporar_ps.py        # Carga esos datos en el cache y vuelve a puntuar sin descargar nada (v1.2.43)
-└── descargar_logos.py/.bat # Baja los logos a assets/logos/
+└── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
+
+### v1.5.22 — la app vuelve a ser rápida (con 215 empresas)
+- **Qué pasaba:** cada recarga mandaba al navegador ~2,1 MB de HTML. Con las 215 empresas, los logos (1,1 MB) y las fotos de «Quiénes somos» (0,3 MB) iban pegados dentro de la página, y se repetían en cada recarga. Además, cada 5 minutos la primera visita esperaba toda la bajada de precios de Yahoo.
+- **Logos y fotos como archivos:** ahora salen de `static/logos/` y `static/marca/` (Streamlit las sirve en `app/static/...`, activado en `.streamlit/config.toml` con `enableStaticServing = true`). El navegador baja cada una una sola vez. **Las carpetas cambiaron de lugar:** `static/logos` → `static/logos` y las dos fotos → `static/marca`; `descargar_logos.bat` ya escribe en `static/logos`. Resultado: la página de empresas pasa de 2,07 MB a 0,86 MB de HTML (−58 %); la tabla, de 1,16 MB a 0,41 MB.
+- **Precios en segundo plano (`data/swr.py`):** al vencer los 5 minutos se muestran YA los últimos precios y la bajada nueva se hace aparte (la usa la visita siguiente). Solo la primera vez después de prender la app se espera (hasta 15 s; si no llega, sale con los precios del cache). Una bajada vacía o fallida no pisa los últimos precios buenos. No cambia ningún cálculo.
+- **Excel a pedido:** el archivo se arma recién al tocar el botón (antes se armaba en cada recarga: ~0,15 s).
+- Nada cambia en el puntaje, las categorías ni los textos. Prueba nueva: `tests/test_v1522_rapidez.py` (18 controles, incluye un tope de peso de la página).
 
 ### v1.5.21 — control de cobertura de CEDEARs
 - **Nuevo `control_cobertura.py`** (y `cobertura_byma.txt`): compara la lista oficial de BYMA (446) con lo que carga la app y, de cada CEDEAR que no está, dice por qué: pendiente de cargar (tanda 2, 3…) o no se carga con motivo (segundo ticker de una empresa, ya no cotiza, rusa, símbolo mal escrito, solo Brasil, otra bolsa). Hoy: 272 en la app, 127 pendientes, 47 con motivo, **0 sin motivo**.
 - **Prueba** `tests/test_cobertura.py`: falla si algún CEDEAR de la lista no está cargado ni figura con su motivo. Se corre en cada tanda.
 
 ### v1.5.20 — fichas y logos de la tanda 1
-- `data/fichas.json` con las 215 empresas (descripción, directivos, mercado; solo FISV sin descripción, como antes) y los 49 logos nuevos en `assets/logos/`. Con esto la tanda 1 queda completa: puntaje (v1.5.18), ficha y logo.
+- `data/fichas.json` con las 215 empresas (descripción, directivos, mercado; solo FISV sin descripción, como antes) y los 49 logos nuevos en `static/logos/`. Con esto la tanda 1 queda completa: puntaje (v1.5.18), ficha y logo.
 
 ### v1.5.19 — franja negra del inicio
 - **Pantalla de inicio:** la franja queda con el logo a la izquierda y la luna, el toro y el menú a la derecha, sin Noticias, Calendario, Ideas ni Evalúa tu Portfolio (en el inicio los iconos se habían pegado al logo desde la v1.5.14).
@@ -591,7 +598,7 @@ cedear-screener/
 ### v1.5.18 — cache del 03/11/2026 con las 215 empresas
 - **Cache nuevo** (`data/cache_datos.json` + copia en `data/historial/`): las 49 empresas de la tanda 1 ya tienen puntaje, categoría y Fair Value. Stock Analysis aportó 212 de 215 (solo Yahoo: GEV, ALAB, SNDK).
 - **Datos flojos a decidir por Guille:** MRNA y NTRA puntúan con una sola métrica (P/FCF de 305 y 538 veces); SNDK y ALAB tienen 1 o 2 años de historia en sus medianas. No se tocó el método.
-- Pendiente de subir desde la PC de Guille: `data/fichas.json` nuevo y los 49 logos en `assets/logos/`.
+- Pendiente de subir desde la PC de Guille: `data/fichas.json` nuevo y los 49 logos en `static/logos/`.
 
 ### v1.5.17 — arreglos de la tanda 1 (Bunge y ADR)
 - **Bunge:** el ticker de Yahoo/NYSE es **BG** (BNG es el código de BYMA). Quedó `BG;BNG;5` en `data/cedears.csv` y BG en el grupo, la industria y el logo. Con «BNG» Yahoo no devolvía datos.

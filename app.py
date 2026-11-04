@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.21"
+APP_VERSION = "1.5.22"
 
 import re
 import contextlib
@@ -53,6 +53,7 @@ from ui.flecha import poner_flecha, CSS_OCULTAR as CSS_FLECHA
 from ui.quienes import quienes_html, quienes_panel_html, CSS as CSS_QUIENES
 from ui import ficha as _ficha
 from ui import tecnico as _tecnico
+from data import swr as _swr
 from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx, paquetes_yahoo as _py
 
 # ---------------------------------------------------------------------------
@@ -213,14 +214,13 @@ def _orden_tickers(df: pd.DataFrame) -> tuple:
         return tuple(sorted(df["ticker"]))
 
 
-@st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
 def _precios_usd(tickers: tuple) -> dict:
     """Precios en dolares de todas las empresas (un solo pedido a Yahoo; las que falten, a Stock Analysis). Si falla, {'usd': {}} y la app
-    sigue con el precio del cache."""
-    try:
-        return _pv.bajar_usd(tickers)
-    except Exception:  # noqa: BLE001
-        return {"usd": {}, "fecha": None, "hora": _pv.hora_texto(), "fuente": {}}
+    sigue con el precio del cache. v1.5.22: se guardan PRECIOS_MINUTOS_CACHE minutos y, al vencer, se renuevan EN SEGUNDO PLANO (data/swr.py): antes la
+    primera visita después del vencimiento esperaba toda la bajada."""
+    vacio = {"usd": {}, "fecha": None, "hora": _pv.hora_texto(), "fuente": {}}
+    return _swr.obtener(("usd", tickers), lambda: _pv.bajar_usd(tickers), max(1, int(PRECIOS_MINUTOS_CACHE)) * 60,
+                        valido=lambda r: bool(r.get("usd")), vacio=vacio)
 
 
 @st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
@@ -1159,10 +1159,15 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
 def _boton_excel(df_show, fecha, aviso, extras=(), visibles=None):
     """Boton "Descargar tabla en Excel" (v1.2.49; arriba de la tabla, a la derecha): las empresas y columnas que se ven, con los filtros y el
     orden elegidos. Si algo falla, no se muestra."""
-    try:
-        datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras, visibles)
-    except Exception:  # noqa: BLE001
-        return
+    if "callable" in (st.download_button.__doc__ or ""):
+        # v1.5.22: Streamlit nuevo: el Excel se arma RECIEN cuando se toca el botón (antes se armaba en cada recarga de la página: ~0,15 s de servidor
+        # que nadie usaba casi nunca). Con un Streamlit viejo se sigue armando antes, como siempre.
+        datos = lambda: excel_bytes(df_show, fecha, aviso, APP_VERSION, extras, visibles)      # noqa: E731
+    else:
+        try:
+            datos = excel_bytes(df_show, fecha, aviso, APP_VERSION, extras, visibles)
+        except Exception:  # noqa: BLE001
+            return
     dia = (fecha or datetime.now().strftime("%d/%m/%Y")).replace("/", "-")
     args = dict(data=datos, file_name=f"todocedears_{dia}.xlsx", key="descarga_excel",
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", on_click="ignore",

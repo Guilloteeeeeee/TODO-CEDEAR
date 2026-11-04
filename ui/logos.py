@@ -6,8 +6,10 @@ mostrar iniciales cuando falla la imagen (atributo onerror) no corre dentro de s
 quedaban cuadros vacios.
 
 Ahora, para cada ticker, en este orden:
-  1. Archivo local assets/logos/<TICKER>.png (o .webp/.jpg/.svg): se incrusta en la pagina, no depende
-     de ningun servicio. Se generan con descargar_logos.bat (una vez, en la PC).
+  1. Archivo local static/logos/<TICKER>.png (o .webp/.jpg/.svg): no depende de ningun servicio. Se generan con
+     descargar_logos.bat (una vez, en la PC). Desde la v1.5.22 NO se incrustan en la pagina (con 215 empresas eran 1,1 MB por cada
+     recarga): la pagina trae solo la direccion app/static/logos/<TICKER>.png (Streamlit sirve la carpeta static/, ver
+     .streamlit/config.toml) y el navegador baja cada logo una sola vez y lo guarda.
   2. Si no hay archivo y LOGOS_EN_LINEA == "google": favicon del dominio de la empresa servido por
      Google (lo carga el navegador de quien mira la app).
   3. Si no hay nada: circulo con las iniciales (siempre se ve algo).
@@ -15,6 +17,7 @@ Ahora, para cada ticker, en este orden:
 import base64
 import functools
 import hashlib
+import urllib.parse
 from pathlib import Path
 
 try:
@@ -22,7 +25,8 @@ try:
 except Exception:  # noqa: BLE001
     LOGOS_EN_LINEA = "google"
 
-CARPETA_LOGOS = Path(__file__).resolve().parent.parent / "assets" / "logos"
+CARPETA_LOGOS = Path(__file__).resolve().parent.parent / "static" / "logos"      # v1.5.22: antes assets/logos (ver docstring)
+URL_STATIC_LOGOS = "app/static/logos"      # direccion relativa (sirve igual en local y en Streamlit Cloud, que muestra la app bajo /~/+/)
 EXTENSIONES = {".png": "image/png", ".webp": "image/webp", ".jpg": "image/jpeg",
                ".jpeg": "image/jpeg", ".svg": "image/svg+xml"}
 
@@ -160,6 +164,13 @@ def _data_uri(ticker: str):
         return None
 
 
+@functools.lru_cache(maxsize=512)
+def _url_static(ticker: str):
+    """Direccion del logo servido por Streamlit (static/logos), o None si no hay archivo."""
+    p = _archivo_local(ticker)
+    return None if p is None else f"{URL_STATIC_LOGOS}/{urllib.parse.quote(p.name)}"
+
+
 def url_favicon(ticker: str, tam: int = 64):
     dom = DOMINIOS.get(ticker)
     if not dom or LOGOS_EN_LINEA != "google":
@@ -169,7 +180,7 @@ def url_favicon(ticker: str, tam: int = 64):
 
 def logo_url(ticker: str):
     """Fuente de la imagen (data URI local o favicon), o None si solo hay iniciales."""
-    return _data_uri(ticker) or url_favicon(ticker)
+    return _url_static(ticker) or url_favicon(ticker)
 
 
 def logo_html(ticker: str, tam: int = 28) -> str:

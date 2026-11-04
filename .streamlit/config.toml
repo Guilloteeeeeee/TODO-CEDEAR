@@ -8,3 +8,8 @@ primaryColor = "#222d36"
 backgroundColor = "#ffffff"
 secondaryBackgroundColor = "#eef2f7"
 textColor = "#0f172a"
+
+[server]
+# v1.5.22: Streamlit sirve la carpeta static/ en app/static/... Los logos de las empresas salen de ahi (static/logos) en lugar de ir
+# incrustados en la pagina: la recarga pasa de ~2,1 MB a ~1 MB y el navegador guarda cada logo.
+enableStaticServing = true
