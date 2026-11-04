@@ -41,7 +41,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | `cartera_informe.py` | PDF de la evaluación con membrete (`pdf_informe`, reportlab, tortas `Doughnut`) y HTML de respaldo (`html_informe`). |
 | `mercados.py`, `inicio.py` | Barra de mercados (dólares, Merval, bolsas, petróleo…; `obtener`, `armar`, `barra_html`) y pantalla de inicio con «Comenzar» (`hero_html`; vista previa desenfocada y FOTO FIJA de la app con empresas reales (`FOTO`, del 02/11/2026; no se actualiza sola: se cambia a mano cuando se arme el score nuevo); se muestra con `en_landing` en `main()`; `?inicio=0` la salta). |
 | `cartera_ocr.py` | Lectura de capturas con RapidOCR (opcional; si no está, la app sigue). |
-| `noticias.py` (`ordenar`, `ordenar_bloques`: sin tickers repetidos, una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
+| `noticias.py` (v1.5.24: varios medios por bloque (`_LOC`, `_USA`, `_MUN`: feeds con medio e idioma), 3/5/5 notas, primera = tendencia del día (`_elegir_tendencia`, `tokens_historia`, `misma_historia`), una nota por ticker y por historia, tope 2 por medio; `ordenar`, `ordenar_bloques`: una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`; `ALIAS` = nombres de empresas), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
 
 ## data/ (datos y lógica)
 - `fetcher.py` (bajada Yahoo, incluye `beta`), `stockanalysis.py`, `yahoo_extra.py`, `moneda.py` (estados en otra moneda / ADR), `precios_vivos.py`, `historial_precios.py`.
@@ -71,7 +71,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 
 ## Pruebas
 - `control_cobertura.py` + `tests/test_cobertura.py`: cada CEDEAR de BYMA está en la app o figura con su motivo (pendiente de tanda / no se carga). Al cargar una tanda: mover los símbolos de `PENDIENTES` y correr la prueba.
-- `tests/test_v1522_rapidez.py` (peso de la página, logos como archivo, precios en segundo plano), `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz), `tests/test_v157_mercados.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
+- `tests/test_v1524_noticias.py`, `tests/test_damodaran_mapa.py`, `tests/test_v1522_rapidez.py` (peso de la página, logos como archivo, precios en segundo plano), `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz), `tests/test_v157_mercados.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
 - Para ver una pantalla sin la app entera: armar un harness que importe solo las funciones (ver `_evaluar_cartera`) y usar Playwright; Yahoo no responde acá.
 
 ## Publicar una versión

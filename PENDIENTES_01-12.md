@@ -4,6 +4,30 @@ Esta es la lista de verdad. Los recordatorios programados del 1/12 mandan a leer
 
 Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo con números), trato de amigo, cerrar con "Conclusión resumen", no inventar datos, no más puntajes en sombra, no mostrar método ni pesos en pantalla. En el tema GuruFocus incluir siempre: "Que nos parezcamos más a GuruFocus no prueba que tengamos razón. El PEG podría estar captando algo que a ellos se les escapa."
 
+## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
+**Con Opus (avisar antes de arrancar):**
+- Renovar la valuación de los 139 informes y la pasada de redacción (esperar a los resultados de las empresas, ~10 al 17/11).
+- Renovar 10 informes: AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR.
+- Escribir los informes que faltan: hoy hay 166 informes y 215 empresas (**49 de la tanda 1 sin informe**: NUE MOS DD DOW IP IFF WFC BCS LYG F EBAY CCL LVS DECK JD AVY PINS SNAP ROKU BIDU AMX VOD JCI SNA DAL UAL AAL SWKS ALAB DOCU TWLO TEAM VRSN HPQ GLW GRMN SNDK OXY BKR HAL CCJ HSY KMB SYY BG BIIB MRNA CAH NTRA). Se suman las de la tanda 2 y siguientes.
+- Textos a mano para empresas de múltiplos muy altos: PLTR, CRWD, ARM, PANW, AMD, TSLA.
+
+**Decisiones de Guille (no se implementa nada sin su OK; primero problema, teoría y pros/contras):**
+- **Empresas jóvenes o con pérdidas (MRNA, NTRA; también SNDK y ALAB con historia corta):** opciones A (dejar como está), B (mínimo 2 métricas; si no, «Datos insuficientes»; recomendada), C (rango de 52 semanas técnico como información), D (DCF aparte, fuera del puntaje, proyecto separado). Teoría del libro: en empresas jóvenes o con pérdidas los múltiplos no sirven, se proyecta y se ajusta por supervivencia; en cíclicas se normalizan las ganancias de un ciclo completo.
+- **Historia no comparable** (menos de 3 años, spin-offs, ganancias extraordinarias: GEV, HON, AMZN, CRWD, MRK, WDC, DIS).
+- **DCF como segunda mirada** (A dejar como está, B informativo en la ficha, C alerta si se contradicen).
+- **Score de calidad** (foso, Piotroski/Altman, deuda/EBITDA, calidad de ganancias).
+- ~~Nota informativa para cíclicas (SNDK, MOS, OXY, aerolíneas)~~: **DESCARTADA por Guille** («la gente lo sabe»).
+
+**Carga de CEDEARs:** revisar el Excel de la tanda 2 (50 empresas, empieza con SpaceX/SPCX); después las 77 de «tanda 3 en adelante». Símbolos raros de la lista de BYMA (TRVV, NYSE, UN) y acciones que cotizan solo en Brasil (11): **no son tarea de Guille**; quedan excluidas con motivo en `control_cobertura.py`; se revisan solas cuando BYMA publique una lista nueva. Industrias de Damodaran de la tanda 1: **HECHO** (v1.5.24, propuesta a revisar).
+
+**Noticias (v1.5.24 hecho):** pendiente revisar términos de uso de cada medio (título + link), ver si el servidor de la app llega a Investing.com (si no, quedan los otros medios) y, si se quiere, buscar la dirección nueva del RSS de Yahoo Finance y de El Cronista (dan 404).
+
+**En la PC de Guille:** `bajar_tecnicos.bat` y `bajar_paquetes_yahoo.bat` (datos del 29/10, sin las empresas nuevas); cada tanda nueva repite `generar_cache.bat`, `bajar_fichas.bat` y `descargar_logos.bat`.
+
+**Datos que se desactualizan:** HWM (ratio 265 → 199,2), HON/FDX (spin-offs), DEO; mantener al día `data/macro_actual.txt` (la «foto macro»: tasas, inflación, petróleo, mercado; Opus la usa al escribir cada informe).
+
+---
+
 ## 🔴 URGENTE (pedido de Guille, 01/11/2026: "es super importante", no perder)
 1. **Tareas de él en la PC:** correr `generar_cache.bat` (caché fresco: sin eso la valuación de los 139 informes queda con el precio del 22/10), `bajar_fichas.bat` y `bajar_etfs_yahoo.bat DBB DBA WEAT JMOM ILIT REMX` (los 6 ETFs nuevos). Subir `data/cache_datos.json` y `data/historial` a GitHub.
 2. **Arreglar la valuación de los 139 informes (con Opus, AVISAR ANTES):** hoy "Escrito el 29/10 - 01/11" pero la foto de valuación es del 22/10 (discordancia). Con el caché nuevo: tomar la foto el mismo día que la fecha del informe y revisar que las frases (barata/cara, margen de seguridad) sigan teniendo sentido. Va junto con el barrido de redacción (palabras repetidas, normas de escritura), las 21 empresas nuevas y las 10 renovaciones.

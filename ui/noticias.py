@@ -17,8 +17,10 @@ Como funciona:
 
 No usa JavaScript ni cuentas ni claves. Las fuentes y sus feeds se cambian en config/ajustes.py (NOTICIAS_FUENTES).
 """
+import functools
 import html
 import re
+import unicodedata
 import threading
 import time
 import urllib.request
@@ -52,17 +54,40 @@ _FUENTES_DEFECTO = {
         ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True),
     )},
 }
-# v1.2.58: la caja se divide en tres bloques (Locales, Estados Unidos, Resto del mundo), 5 notas cada uno. Cada bloque tiene su fuente,
-# su idioma y sus feeds (nombre que se muestra, url del RSS, es_portada). Se cambian en config/ajustes.py (NOTICIAS_BLOQUES).
+# v1.5.24 (pedido de Guille): cada bloque junta VARIOS medios. Cada feed: (nombre de la seccion, url, es_portada, medio, idioma).
+#   * Locales (3 notas): Ámbito, iProfesional y La Nación. Estados Unidos (5): CNBC, MarketWatch e Investing.com en español.
+#     Resto del mundo (5): CNBC (Mundo, Europa, Asia), BBC, The Guardian, DW y South China Morning Post.
+#   * Si un medio no responde lo llenan los otros; Ámbito (Locales) y CNBC (Estados Unidos y Resto del mundo) son el respaldo conocido.
+#   * La primera nota de cada bloque es la «tendencia del día» (la historia que cubren más medios); después, la regla de siempre.
+_LOC = (
+    ("Finanzas", "https://www.ambito.com/rss/pages/finanzas.xml", False, "Ámbito", "es"),
+    ("Economía", "https://www.ambito.com/rss/pages/economia.xml", False, "Ámbito", "es"),
+    ("Portada", "https://www.ambito.com/rss/home.xml", True, "Ámbito", "es"),
+    ("Finanzas", "https://www.iprofesional.com/rss/finanzas", False, "iProfesional", "es"),
+    ("Economía", "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/economia/", False, "La Nación", "es"),
+)
+_USA = (
+    ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False, "CNBC", "en"),
+    ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False, "CNBC", "en"),
+    ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False, "CNBC", "en"),
+    ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True, "CNBC", "en"),
+    ("Titulares", "https://feeds.content.dowjones.io/public/rss/mw_topstories", False, "MarketWatch", "en"),
+    ("Empresas", "https://es.investing.com/rss/news.rss", False, "Investing.com", "es"),
+    ("Bolsas", "https://es.investing.com/rss/news_25.rss", False, "Investing.com", "es"),
+)
+_MUN = (
+    ("Mundo", "https://www.cnbc.com/id/100727362/device/rss/rss.html", False, "CNBC", "en"),
+    ("Europa", "https://www.cnbc.com/id/19794221/device/rss/rss.html", False, "CNBC", "en"),
+    ("Asia", "https://www.cnbc.com/id/19832390/device/rss/rss.html", False, "CNBC", "en"),
+    ("Negocios", "https://feeds.bbci.co.uk/news/business/rss.xml", False, "BBC", "en"),
+    ("Negocios", "https://www.theguardian.com/uk/business/rss", False, "The Guardian", "en"),
+    ("Negocios", "https://rss.dw.com/rdf/rss-en-bus", False, "DW", "en"),
+    ("Negocios", "https://www.scmp.com/rss/92/feed", False, "South China Morning Post", "en"),
+)
 _BLOQUES_DEFECTO = (
-    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito", "idioma": "es", "traducir": False, "cantidad": 3, "dolar": True, "mercado": True,
-     "feeds": _FUENTES_DEFECTO["es"]["feeds"]},
-    {"clave": "usa", "titulo": "Estados Unidos", "fuente": "CNBC", "idioma": "en", "traducir": True,
-     "feeds": _FUENTES_DEFECTO["en"]["feeds"]},
-    {"clave": "mundo", "titulo": "Resto del mundo", "fuente": "CNBC", "idioma": "en", "traducir": True,
-     "feeds": (("Mundo", "https://www.cnbc.com/id/100727362/device/rss/rss.html", False),
-               ("Europa", "https://www.cnbc.com/id/19794221/device/rss/rss.html", False),
-               ("Asia", "https://www.cnbc.com/id/19832390/device/rss/rss.html", False))},
+    {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito, iProfesional y La Nación", "idioma": "es", "traducir": False, "cantidad": 3, "dolar": True, "mercado": True, "feeds": _LOC},
+    {"clave": "usa", "titulo": "Estados Unidos", "fuente": "CNBC, MarketWatch e Investing.com", "idioma": "en", "traducir": True, "cantidad": 5, "feeds": _USA},
+    {"clave": "mundo", "titulo": "Resto del mundo", "fuente": "CNBC, BBC, The Guardian, DW y SCMP", "idioma": "en", "traducir": True, "cantidad": 5, "feeds": _MUN},
 )
 ACTIVAS = bool(_cfg("NOTICIAS_ACTIVAS", True))
 IDIOMA = str(_cfg("NOTICIAS_IDIOMA", "es")).strip().lower()
@@ -81,7 +106,7 @@ ABIERTO = bool(_cfg("NOTICIAS_ABIERTO", False))
 TRADUCIR = bool(_cfg("NOTICIAS_TRADUCIR", False))   # v1.2.58: se traducen los bloques que lo pidan (los de fuente en ingles)
 BLOQUES = tuple(_cfg("NOTICIAS_BLOQUES", _BLOQUES_DEFECTO) or _BLOQUES_DEFECTO)
 TRADUCIR_MAIL = str(_cfg("NOTICIAS_TRADUCIR_MAIL", "") or _cfg("COMENTARIOS_MAIL", "") or "")
-TIMEOUT_S = 5
+TIMEOUT_S = 8       # v1.5.24: antes 5; Ámbito tardó 7 s desde una PC común y ahora son más medios
 USER_AGENT = "Mozilla/5.0 (compatible; TodoCedears/1.2; lector de titulares RSS; contacto: finanzas.medicos@gmail.com)"
 
 # Como se nombra cada empresa en los titulares (el nombre de Yahoo, "Walt Disney Company (The)", no sirve para buscar).
@@ -129,6 +154,16 @@ ALIAS = {
     "DHR": ["Danaher"], "ISRG": ["Intuitive Surgical"], "VRTX": ["Vertex Pharmaceuticals"], "NVO": ["Novo Nordisk"],
     "BMY": ["Bristol-Myers Squibb", "Bristol Myers"], "MDT": ["Medtronic"], "GSK": ["GSK"], "AZN": ["AstraZeneca"],
     "CVS": ["CVS"], "NEE": ["NextEra"], "CEG": ["Constellation Energy"], "VST": ["Vistra"], "TLN": ["Talen Energy"],
+    # v1.5.24: las 49 empresas de la tanda 1 (para que sus noticias cuenten como "del screener"; los nombres que son palabras comunes llevan el texto largo)
+    "NUE": ["Nucor"], "MOS": ["Mosaic Co", "Mosaic Company"], "DD": ["DuPont"], "DOW": ["Dow Inc"], "IP": ["International Paper"],
+    "IFF": ["International Flavors", "International Flavors & Fragrances"], "WFC": ["Wells Fargo"], "BCS": ["Barclays"], "LYG": ["Lloyds Banking", "Lloyds"],
+    "F": ["Ford Motor", "Ford"], "EBAY": ["eBay"], "CCL": ["Carnival"], "LVS": ["Las Vegas Sands"], "DECK": ["Deckers"], "JD": ["JD.com"],
+    "AVY": ["Avery Dennison"], "PINS": ["Pinterest"], "SNAP": ["Snap Inc", "Snapchat"], "ROKU": ["Roku"], "BIDU": ["Baidu"],
+    "AMX": ["America Movil", "América Móvil"], "VOD": ["Vodafone"], "JCI": ["Johnson Controls"], "SNA": ["Snap-on"], "DAL": ["Delta Air Lines", "Delta Airlines"],
+    "UAL": ["United Airlines"], "AAL": ["American Airlines"], "SWKS": ["Skyworks"], "ALAB": ["Astera Labs"], "DOCU": ["DocuSign"], "TWLO": ["Twilio"],
+    "TEAM": ["Atlassian"], "VRSN": ["VeriSign", "Verisign"], "HPQ": ["HP Inc"], "GLW": ["Corning"], "GRMN": ["Garmin"], "SNDK": ["SanDisk", "Sandisk"],
+    "OXY": ["Occidental Petroleum", "Occidental"], "BKR": ["Baker Hughes"], "HAL": ["Halliburton"], "CCJ": ["Cameco"], "HSY": ["Hershey"],
+    "KMB": ["Kimberly-Clark"], "SYY": ["Sysco"], "BG": ["Bunge"], "BIIB": ["Biogen"], "MRNA": ["Moderna"], "CAH": ["Cardinal Health"], "NTRA": ["Natera"],
 }
 # Tickers que tambien son palabras o siglas comunes: no se buscan como ticker (si por nombre).
 _TICKER_NO_BUSCAR = {"NOW", "ARM", "CAT", "WELL", "COST", "DELL", "SNOW", "LIN", "ALL"}
@@ -272,9 +307,13 @@ _FUTURO = {"f": None}
 
 
 def _armar_bloque(feeds, leidos):
-    """Notas de un bloque a partir de los feeds ya leidos ({url: [notas]})."""
+    """Notas de un bloque a partir de los feeds ya leidos ({url: [notas]}). Cada feed puede traer (nombre, url, es_portada, medio, idioma);
+    con los tres primeros solamente (formato viejo) la nota hereda el medio y el idioma del bloque."""
     notas, portada, ok = {}, set(), 0
-    for nombre, url, es_portada in feeds:
+    for f in feeds:
+        nombre, url, es_portada = f[0], f[1], f[2]
+        medio = f[3] if len(f) > 3 else None
+        idioma = f[4] if len(f) > 4 else None
         lista = leidos.get(url) or []
         if lista:
             ok += 1
@@ -284,7 +323,12 @@ def _armar_bloque(feeds, leidos):
                 portada.add(k)
                 continue
             if k not in notas:
-                notas[k] = {**n, "seccion": nombre, "clave": k}
+                extra = {}
+                if medio:
+                    extra["medio"] = medio
+                if idioma:
+                    extra["idioma"] = idioma
+                notas[k] = {**n, "seccion": nombre, "clave": k, **extra}
     return {"notas": list(notas.values()), "portada": portada, "feeds_ok": ok, "feeds_total": len(feeds)}
 
 
@@ -296,7 +340,7 @@ def _bajar_todo(descargar=None):
         for f in b["feeds"]:
             if f[1] not in urls:
                 urls.append(f[1])
-    with ThreadPoolExecutor(max_workers=max(1, min(10, len(urls)))) as ex:
+    with ThreadPoolExecutor(max_workers=max(1, min(20, len(urls)))) as ex:
         contenidos = list(ex.map(descargar, urls))
     leidos = {u: leer_feed(c) for u, c in zip(urls, contenidos)}
     bloques = {b["clave"]: _armar_bloque(b["feeds"], leidos) for b in BLOQUES}
@@ -392,26 +436,129 @@ def _quitar_relleno(ordenadas):
     return salida
 
 
-def _sin_repetir_ticker(ordenadas, cantidad, vistos_ini=None):
+# ---------------------------------------------------------------------------------------------------------------
+# Historias y tendencia del dia (v1.5.24)
+# ---------------------------------------------------------------------------------------------------------------
+# Dos titulares cuentan la MISMA historia si comparten al menos 2 palabras importantes (sin las palabras comunes: «mercado», «acciones», «Wall Street»...).
+# La tendencia del dia de un bloque es la historia que cubren mas medios distintos. Un par de palabras en castellano se pasan al ingles para que
+# «victoria demócrata» y «Democrats win» se reconozcan. No es perfecto (es una comparacion de palabras, no de significado): si no hay una
+# historia cubierta por al menos 2 medios, no se marca ninguna tendencia y el bloque sigue con la regla de siempre.
+_PARES_ES_EN = {"democrata": "democrat", "democratas": "democrat", "republicano": "republican", "republicanos": "republican", "elecciones": "election",
+                "eleccion": "election", "legislativas": "midterm", "congreso": "congress", "senado": "senate", "arancel": "tariff", "aranceles": "tariff",
+                "inflacion": "inflation", "petroleo": "oil", "dolar": "dollar", "dolares": "dollar", "tasas": "rate", "tasa": "rate", "reserva": "reserve",
+                "banco": "bank", "bancos": "bank", "ganancias": "earnings", "resultados": "earnings", "empleo": "job", "despidos": "layoff",
+                "recorte": "cut", "recortes": "cut", "guerra": "war", "gobierno": "government", "presidente": "president", "victoria": "victory", "triunfo": "victory"}
+_CORTAS_OK = {"fed", "oil", "gdp", "cpi", "ecb", "imf", "opec", "ai", "ipo", "pbi", "bce", "fmi"}
+_STOP = set("""the and for with from that this after over into amid says said will what how why new more than have has are was its about could would week today year years
+first live business news update updates their they them his her you your not but out off all one two three can may might also still now just much many most some
+stock stocks share shares market markets rally trade trading price prices investor investors wall street analyst analysts company companies report reports
+para como esta este estos estas hoy tras entre sobre desde hasta cuando donde porque mas menos anos semana mercado mercados bolsa bolsas acciones accion
+inversores noticias empresa empresas segun sera tiene hacen hace dice fue son ser una uno unos unas los las del por con sin que cual ante bajo
+estados unidos united states eeuu norteamericana nueva nuevo""".split())
+
+
+@functools.lru_cache(maxsize=4096)
+def tokens_historia(titulo):
+    """Palabras importantes de un titular (en minuscula, sin acentos, en singular, castellano -> ingles en las pocas palabras de arriba)."""
+    t = unicodedata.normalize("NFKD", (titulo or "").lower())
+    t = "".join(c for c in t if not unicodedata.combining(c))
+    out = set()
+    for w in re.findall(r"[a-z0-9]+", t):
+        w = _PARES_ES_EN.get(w, w)
+        if len(w) > 4 and w.endswith("ies"):
+            w = w[:-3] + "y"
+        elif len(w) > 3 and w.endswith("s") and not w.endswith("ss"):
+            w = w[:-1]
+        if w in _STOP or (len(w) < 4 and w not in _CORTAS_OK) or w.isdigit():
+            continue
+        out.add(w)
+    return frozenset(out)
+
+
+def misma_historia(a, b):
+    """a y b: conjuntos de palabras (tokens_historia). True si comparten al menos 2 y esas 2 son por lo menos el 25 % del titular mas corto."""
+    if not a or not b:
+        return False
+    c = len(a & b)
+    return c >= 2 and c >= 0.25 * min(len(a), len(b))
+
+
+def _repite_historia(n, historias):
+    tk = tokens_historia(n.get("titulo"))
+    return any(misma_historia(tk, h) for h in historias)
+
+
+def _elegir_tendencia(base, vistos_tickers, historias):
+    """La nota de `base` (ya sin relleno) que cuenta la historia cubierta por mas medios distintos (minimo 2), a igualdad la mas reciente. None si no hay."""
+    minimo = datetime.min.replace(tzinfo=timezone.utc)
+    mejor, mejor_k = None, None
+    for n in base:
+        m = n.get("menciona") or []
+        if m and any(t in vistos_tickers for t in m):
+            continue
+        tk = tokens_historia(n["titulo"])
+        if not tk or any(misma_historia(tk, h) for h in historias):
+            continue
+        medios = {n.get("fuente")}
+        for o in base:
+            if o is not n and misma_historia(tk, tokens_historia(o["titulo"])):
+                medios.add(o.get("fuente"))
+        if len(medios) < 2:
+            continue
+        k = (len(medios), n["en_portada"], n["fecha"] or minimo)
+        if mejor_k is None or k > mejor_k:
+            mejor, mejor_k = n, k
+    return mejor
+
+
+
+def _sin_repetir_ticker(ordenadas, cantidad, vistos_ini=None, historias=None, max_por_medio=None, medios_ini=None):
     """Recorre las notas ya ordenadas por importancia y se queda con una sola por empresa: si una nota nombra un ticker que ya
-    salio en una nota mas importante, se saltea y se sigue con la proxima. Las que no nombran empresas no se tocan."""
-    vistos, salida = set(vistos_ini or ()), []
-    for n in ordenadas:
+    salio en una nota mas importante, se saltea y se sigue con la proxima. Las que no nombran empresas no se tocan.
+    v1.5.24: tampoco repite una historia que ya salio (la misma noticia de dos medios), y con `max_por_medio` ningun medio pasa de ese numero de notas;
+    si con ese tope no se llega a `cantidad` (porque otros medios no respondieron), se completa con los que quedaron."""
+    vistos, salida, hist = set(vistos_ini or ()), [], list(historias or [])
+    cuenta, salteadas = {}, []
+    for m_ in (medios_ini or ()):
+        cuenta[m_] = cuenta.get(m_, 0) + 1
+
+    def _ok(n):
         m = n.get("menciona") or []
         if m and any(t in vistos for t in m):
-            continue
+            return False
+        return not (hist and _repite_historia(n, hist))
+
+    def _tomar(n):
         salida.append(n)
-        vistos.update(m)
+        vistos.update(n.get("menciona") or [])
+        hist.append(tokens_historia(n.get("titulo")))
+        cuenta[n.get("fuente")] = cuenta.get(n.get("fuente"), 0) + 1
+
+    for n in ordenadas:
         if len(salida) >= cantidad:
             break
+        if not _ok(n):
+            continue
+        if max_por_medio and cuenta.get(n.get("fuente"), 0) >= max_por_medio:
+            salteadas.append(n)
+            continue
+        _tomar(n)
+    for n in salteadas:
+        if len(salida) >= cantidad:
+            break
+        if _ok(n):
+            _tomar(n)
     return salida
 
 
 def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=None, fuente=None, idioma=None, excluir=None, con_dolar=False,
-            vistos_tickers=None, con_mercado=False, con_macro=False):
+            vistos_tickers=None, con_mercado=False, con_macro=False, historias=None, con_tendencia=True, max_por_medio=2):
     """Aplica la regla: ventana de 24 h (se amplia a 48 y 72 h si no alcanzan `cantidad` notas), orden por
     (menciona empresas del screener, esta en portada, mas reciente) y una sola nota por ticker (v1.2.46: se saltea la repetida y se
-    sigue con la que viene). Devuelve (lista, horas_usadas)."""
+    sigue con la que viene). Devuelve (lista, horas_usadas).
+    v1.5.24: (1) la PRIMERA nota es la tendencia del dia (la historia que cubren mas medios distintos, haya o no empresas del screener; `tendencia`=True);
+    (2) la misma historia no sale dos veces (ni en otro bloque: `historias`); (3) con varios medios en el bloque, ninguno pasa de `max_por_medio`
+    notas, salvo que los otros no alcancen a llenar el bloque."""
     cantidad = CANTIDAD if cantidad is None else cantidad
     horas = HORAS if horas is None else horas
     horas_max = HORAS_MAX if horas_max is None else horas_max
@@ -428,10 +575,23 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
         lim = ahora - timedelta(hours=h)
         elegibles = [n for n in crudo["notas"] if (n["fecha"] is None or lim <= n["fecha"] <= ahora + timedelta(minutes=10))
                      and n["clave"] not in (excluir or ())]
-        todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers, idioma), "en_portada": n["clave"] in portada, "fuente": fuente or FUENTE} for n in elegibles]
+        todas = [{**n, "menciona": buscar_menciones(n["titulo"], tickers, n.get("idioma") or idioma), "en_portada": n["clave"] in portada,
+                  "fuente": n.get("medio") or fuente or FUENTE} for n in elegibles]
         todas.sort(key=lambda n: (bool(n["menciona"]), n["en_portada"], n["fecha"] or minimo), reverse=True)
-        base = _quitar_relleno(todas)
+        hist = list(historias or [])
+        base = [n for n in _quitar_relleno(todas) if not (hist and _repite_historia(n, hist))]
         vt = set(vistos_tickers or ())
+        tend = _elegir_tendencia(base, vt, hist) if (con_tendencia and cantidad >= 2) else None
+        if tend is not None:
+            tend["tendencia"] = True
+            tk_t = tokens_historia(tend["titulo"])
+            parecidas = [n for n in base if n is not tend and misma_historia(tokens_historia(n["titulo"]), tk_t)]
+            huella = frozenset(tk_t.union(*[tokens_historia(n["titulo"]) for n in parecidas]))      # todas las palabras con que los medios cuentan la historia
+            tend["historia"] = huella
+            base = [n for n in base if n is not tend and not any(n is q for q in parecidas)]
+            vt.update(tend.get("menciona") or [])
+            hist.append(huella)
+        falta = cantidad - (1 if tend is not None else 0)
         # v1.2.87: se reserva un lugar para la nota de "cómo está el dólar hoy" (la mejor ubicada). v1.5.2: también uno para el mercado argentino
         # (Merval, bonos, riesgo país) en Locales y uno para una nota macro (Fed, inflación, tasas...) cuando hace falta; el resto se completa en el mismo orden.
         reservas = []
@@ -453,9 +613,14 @@ def ordenar(crudo, tickers, ahora=None, cantidad=None, horas=None, horas_max=Non
         vr = set(vt)
         for r in reservas:
             vr.update(r.get("menciona") or [])
-        otras = _sin_repetir_ticker([n for n in base if not any(n is r for r in reservas)], max(cantidad - len(reservas), 0), vr)
+        hr = hist + [tokens_historia(r["titulo"]) for r in reservas]
+        multi = len({n["fuente"] for n in base}) > 1
+        medios_ini = ([tend["fuente"]] if tend is not None else []) + [r["fuente"] for r in reservas]
+        otras = _sin_repetir_ticker([n for n in base if not any(n is r for r in reservas)], max(falta - len(reservas), 0), vr,
+                                    historias=hr, max_por_medio=(max_por_medio if multi else None), medios_ini=medios_ini)
         elegidas = otras + reservas
-        salida = [n for n in base if any(n is e for e in elegidas)]
+        resto = [n for n in base if any(n is e for e in elegidas)]
+        salida = ([tend] if tend is not None else []) + resto
         if len(salida) >= cantidad:
             break
     return salida, usadas
@@ -479,21 +644,23 @@ def ordenar_bloques(crudo, tickers, ahora=None):
     """Aplica la regla de `ordenar` a cada bloque (Locales, Estados Unidos, Resto del mundo). Una nota no sale en dos bloques.
     v1.5.2: una empresa no se repite en todo el cuadro (antes era por bloque: Intel salía una vez en cada uno), Locales reserva una nota del mercado
     argentino y entre Estados Unidos y Resto del mundo tiene que haber al menos una nota macro (si no hay ninguna buena, quedan las de empresas).
+    v1.5.24: tampoco se repite una misma historia en todo el cuadro, y cada bloque abre con su tendencia del día.
     -> lista de {clave, titulo, fuente, idioma, traducir, notas, horas, respondio}."""
-    vistos, vt = set(), set()
+    vistos, vt, hist = set(), set(), []
     res = {}
 
     def _uno(b, con_macro=False, vistos_ext=None, tk_ext=None):
         cb = ((crudo or {}).get("bloques") or {}).get(b["clave"])
         notas, horas = ordenar(cb, tickers, ahora=ahora, fuente=b["fuente"], idioma=b["idioma"], excluir=(vistos_ext if vistos_ext is not None else vistos),
                                cantidad=b.get("cantidad"), con_dolar=bool(b.get("dolar")), vistos_tickers=(tk_ext if tk_ext is not None else vt),
-                               con_mercado=bool(b.get("mercado")), con_macro=con_macro)
+                               con_mercado=bool(b.get("mercado")), con_macro=con_macro, historias=hist)
         return cb, notas, horas
 
     def _marcar(notas):
         vistos.update(n["clave"] for n in notas)
         for n in notas:
             vt.update(n.get("menciona") or [])
+            hist.append(n.get("historia") or tokens_historia(n.get("titulo")))
 
     orden = list(BLOQUES)
     for b in orden:
@@ -503,14 +670,14 @@ def ordenar_bloques(crudo, tickers, ahora=None):
         _marcar(res[b["clave"]][1])
     ext = [b for b in orden if b["clave"] in ("usa", "mundo")]
     # primero se arman sin forzar; si ninguna es macro se rearma el primer bloque que tenga una nota macro disponible
-    base_v, base_t = set(vistos), set(vt)
+    base_v, base_t, base_h = set(vistos), set(vt), list(hist)
     tmp = {}
     for b in ext:
         tmp[b["clave"]] = _uno(b, False, vistos, vt)
         _marcar(tmp[b["clave"]][1])
     if ext and not any(es_macro(n.get("titulo")) for k in tmp for n in tmp[k][1]):
         for forzar in reversed(ext):          # se intenta primero en Resto del mundo y después en Estados Unidos
-            vistos.clear(); vistos.update(base_v); vt.clear(); vt.update(base_t)
+            vistos.clear(); vistos.update(base_v); vt.clear(); vt.update(base_t); hist[:] = base_h
             tmp2 = {}
             for b in ext:
                 tmp2[b["clave"]] = _uno(b, b is forzar, vistos, vt)
@@ -528,11 +695,16 @@ def ordenar_bloques(crudo, tickers, ahora=None):
     return salida
 
 
+def _a_traducir(n, b):
+    """v1.5.24: en un bloque con varios medios solo se traducen los titulares en inglés (los de Investing.com en español no)."""
+    return (n.get("idioma") or b.get("idioma") or "en") == "en"
+
+
 def traducir_bloques(bloques, traducir_lista=None):
     """Agrega `titulo_es` a las notas de los bloques que piden traduccion (una sola consulta para todos). Si falla, quedan en su idioma."""
     if not TRADUCIR or not bloques:
         return bloques
-    titulos = [n["titulo"] for b in bloques if b.get("traducir") for n in b["notas"]]
+    titulos = [n["titulo"] for b in bloques if b.get("traducir") for n in b["notas"] if _a_traducir(n, b)]
     if not titulos:
         return bloques
     try:
@@ -544,7 +716,7 @@ def traducir_bloques(bloques, traducir_lista=None):
     out = []
     for b in bloques:
         if b.get("traducir"):
-            b = {**b, "notas": [{**n, "titulo_es": mapa[n["titulo"]]} if n["titulo"] in mapa else n for n in b["notas"]]}
+            b = {**b, "notas": [{**n, "titulo_es": mapa[n["titulo"]]} if (_a_traducir(n, b) and n["titulo"] in mapa) else n for n in b["notas"]]}
         out.append(b)
     return out
 
@@ -564,6 +736,7 @@ CSS = """
 .nt li a{color:#111827!important;font-weight:600;text-decoration:none!important;flex:1 1 220px;min-width:0}
 .nt li a:hover{text-decoration:underline!important}
 .nt-m{font-size:.76rem;color:#6b7280;white-space:nowrap}
+.nt-t{font-size:.72rem;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:1px 8px;white-space:nowrap}
 .nt-e{font-size:.72rem;font-weight:700;color:#065f46;background:#d1fae5;border-radius:999px;padding:1px 8px;white-space:nowrap}
 .nt-b{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#111827;margin:10px 0 2px;padding:6px 0 0;border-top:2px solid #111827;display:flex;gap:8px;align-items:baseline}
 .nt-b small{font-weight:500;letter-spacing:0;text-transform:none;color:#6b7280;font-size:.74rem}
@@ -625,10 +798,12 @@ def noticias_html(notas, horas=24, ahora=None, hubo_respuesta=True, abierto=None
 
 def _fila(n, fuente, ahora=None):
     link = html.escape(n["link"], quote=True)
-    meta = " · ".join(x for x in (fuente, hace(n.get("fecha"), ahora)) if x)
+    meta = " · ".join(x for x in (n.get("fuente") or fuente, hace(n.get("fecha"), ahora)) if x)      # v1.5.24: cada nota nombra su medio
     etiq = ""
+    if n.get("tendencia"):
+        etiq += '<span class="nt-t" title="La historia que más medios están cubriendo hoy">Tendencia del día</span>'
     if n.get("menciona"):
-        etiq = f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
+        etiq += f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
     es = n.get("titulo_es")
     tip = f' title="Titular original: {html.escape(n["titulo"], quote=True)}"' if es else ""
     return (f'<li><a href="{link}" target="_blank" rel="noopener noreferrer"{tip}>{html.escape(es or n["titulo"])}</a>'
@@ -650,10 +825,13 @@ def noticias_bloques_html(bloques, ahora=None, abierto=None):
             partes.append(cab + f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div>')
     fuentes = []
     for b in bloques or []:
-        if b["fuente"] not in fuentes:
-            fuentes.append(b["fuente"])
+        for n in b["notas"]:
+            if n.get("fuente") and n["fuente"] not in fuentes:
+                fuentes.append(n["fuente"])
+    if not fuentes:
+        fuentes = [b["fuente"] for b in bloques or []]
     hay_es = any(n.get("titulo_es") for b in bloques or [] for n in b["notas"])
     aviso_trad = (" Los titulares en inglés están traducidos automáticamente: pueden tener errores (al pasar el mouse se ve el original)." if hay_es else "")
-    pie = (f'<div class="nt-pie">Fuentes: {html.escape(" y ".join(fuentes))}. Primero las que nombran empresas del screener (etiqueta verde), '
-           f'una sola nota por empresa; después las de portada y las más recientes. Cada título abre la nota en su fuente.{aviso_trad} Es información, no una recomendación.</div>')
+    pie = (f'<div class="nt-pie">Fuentes: {html.escape(", ".join(fuentes))}. Cada bloque abre con la tendencia del día (la historia que más medios cubren); '
+           f'después, las que nombran empresas del screener (etiqueta verde), una sola nota por empresa, y las más recientes. Cada título abre la nota en su medio.{aviso_trad} Es información, no una recomendación.</div>')
     return f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>{"".join(partes)}{pie}</details>'

@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.24 — noticias con varios medios y tendencia del día; industrias de Damodaran de la tanda 1
+- **Noticias (pedido de Guille):** cada bloque junta varios medios y **abre con la tendencia del día**: la historia que cubren más medios distintos (hoy, por ejemplo, la victoria demócrata), haya o no empresas del screener. Cantidad: **3 notas en Locales, 5 en Estados Unidos y 5 en Resto del mundo**.
+  - Locales: Ámbito, iProfesional y La Nación. Estados Unidos: CNBC, MarketWatch e Investing.com en español. Resto del mundo: CNBC (Mundo, Europa, Asia), BBC, The Guardian, DW y South China Morning Post. Quedaron afuera Yahoo Finance (el feed da error 404 y bloquea a los servidores), elEconomista, Euronews y Nikkei (sin fecha).
+  - Después de la tendencia sigue la regla de siempre (empresas del screener, portada, más recientes), **una sola nota por empresa** (la más relevante) y **una sola nota por historia** (la misma noticia de dos medios, o de dos bloques, sale una vez). Con varios medios ninguno pasa de 2 notas por bloque, salvo que los otros no respondan: ahí lo llenan los que sí. Ámbito (Locales) y CNBC (Estados Unidos y mundo) quedan como respaldo conocido.
+  - Cada nota nombra su medio; las de Investing.com en español no se traducen. La tendencia se detecta comparando palabras de los titulares (≥2 palabras importantes en común); no es perfecta, y si ninguna historia la cubren al menos 2 medios, no se marca tendencia. Se bajan hasta 19 feeds en paralelo (espera de 8 s por feed).
+  - Se agregaron los nombres de las 49 empresas de la tanda 1 para que sus noticias cuenten como «del screener».
+  - **Pendiente:** revisar los términos de uso de cada medio para mostrar título + link (igual que con el Excel). No se pudo probar en vivo desde el servidor de la app (acá no hay salida a internet); las 21 fuentes se probaron en la PC de Guille con `probar_fuentes_rss.bat`.
+- **Damodaran:** las 49 empresas de la tanda 1 ya tienen su industria (propuesta, igual que el resto) y su región (BCS, LYG y VOD con Europa; AMX, BIDU y JD con emergentes; CCJ con Australia/Nueva Zelanda/Canadá). Prueba nueva: `tests/test_damodaran_mapa.py` (nombres exactos de la planilla, ninguna empresa sin industria).
+- Pruebas nuevas: `tests/test_v1524_noticias.py` (40 controles con titulares reales del 04/11).
+
 ### v1.5.23 — calendario más simple y probador de fuentes de noticias
 - **Calendario:** se sacó «Antes de la apertura / Después del cierre» de cada empresa (y el renglón que avisaba que faltaban esos horarios). Queda la empresa y la fecha. En la ficha de la empresa no se tocó.
 - **Fuentes de noticias:** nuevo `probar_fuentes_rss.bat` (hay que correrlo en la PC de Guille): prueba unas 25 fuentes (Yahoo Finance, MarketWatch, Nasdaq, Seeking Alpha, Investing.com en inglés y español, BBC, The Guardian, Euronews, DW, Nikkei, SCMP, El País, Expansión, El Cronista, Infobae, iProfesional, La Nación, Reserva Federal, SEC y BCE) y deja `resultados_fuentes_rss.txt`. La app todavía usa Ámbito (local) y CNBC (Estados Unidos y resto del mundo): no se cambió ninguna fuente hasta ver los resultados.

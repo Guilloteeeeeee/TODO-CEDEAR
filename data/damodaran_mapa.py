@@ -61,6 +61,42 @@ _G = {
     "Utility (General)": "NEE",
 }
 
+# Tanda 1 (v1.5.24): las 49 empresas cargadas en la v1.5.16 (propuesta, igual que el resto; para corregir una empresa, cambiar su línea).
+_G_TANDA1 = {
+    "Steel": "NUE",
+    "Chemical (Basic)": "MOS DOW",
+    "Chemical (Specialty)": "DD IFF",
+    "Packaging & Container": "IP AVY",
+    "Bank (Money Center)": "WFC BCS",
+    "Banks (Regional)": "LYG",
+    "Auto & Truck": "F",
+    "Retail (General)": "EBAY JD",
+    "Recreation": "CCL",
+    "Hotel/Gaming": "LVS",
+    "Shoe": "DECK",
+    "Software (Internet)": "PINS SNAP ROKU BIDU VRSN",
+    "Telecom (Wireless)": "AMX VOD",
+    "Building Materials": "JCI",
+    "Machinery": "SNA",
+    "Air Transport": "DAL UAL AAL",
+    "Semiconductor": "SWKS ALAB",
+    "Software (System & Application)": "DOCU TWLO TEAM",
+    "Computers/Peripherals": "HPQ SNDK",
+    "Electronics (General)": "GLW GRMN",
+    "Oil/Gas (Production and Exploration)": "OXY",
+    "Oilfield Svcs/Equip.": "BKR HAL",
+    "Metals & Mining": "CCJ",
+    "Food Processing": "HSY",
+    "Household Products": "KMB",
+    "Food Wholesalers": "SYY",
+    "Farming/Agriculture": "BG",
+    "Drugs (Biotechnology)": "BIIB MRNA",
+    "Healthcare Support Services": "CAH",
+    "Healthcare Products": "NTRA",
+}
+for _ind, _tks in _G_TANDA1.items():
+    _G[_ind] = (_G.get(_ind, "") + " " + _tks).strip()
+
 MAPA = {t: ind for ind, tks in _G.items() for t in tks.split()}
 
 # Industrias donde los márgenes/EV de Damodaran NO se pueden comparar con una empresa común (financieras): en la ficha se muestran solo PER, P/B, ROE y margen neto.
@@ -71,9 +107,9 @@ FINANCIERAS = {"Bank (Money Center)", "Banks (Regional)", "Brokerage & Investmen
 # Región de Damodaran con la que se compara cada empresa (v1.2.88). Todo lo que no figura acá se compara con EE.UU. Cuenta el lugar donde la empresa hace su negocio y cotiza, no sólo donde está registrada
 # (ACN, MDT y LIN, registradas en Irlanda/Reino Unido pero con negocio y cotización en EE.UU., quedan con EE.UU.; PDD, registrada en Irlanda pero china, va con emergentes).
 _R = {
-    "emergentes": "VALE ITUB NU PBR HDB IBN INFY BABA NTES PDD MELI TSM",
-    "europa": "HSBC ARM SHEL BP UL DEO GSK AZN RIO SAN BBVA ING ASML SIEGY SAP RACE SPOT TTE EQNR NVS NVO",
-    "aus_nz_canada": "AEM SHOP BHP",
+    "emergentes": "VALE ITUB NU PBR HDB IBN INFY BABA NTES PDD MELI TSM AMX BIDU JD",
+    "europa": "HSBC ARM SHEL BP UL DEO GSK AZN RIO SAN BBVA ING ASML SIEGY SAP RACE SPOT TTE EQNR NVS NVO BCS LYG VOD",
+    "aus_nz_canada": "AEM SHOP BHP CCJ",
     "japon": "MUFG TM SONY",          # sin planilla regional: se compara con EE.UU. y la nota lo aclara
 }
 REGION = {t: r for r, tks in _R.items() for t in tks.split()}
