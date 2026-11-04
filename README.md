@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.28 — noticias sin pie y sin lista de medios
+- Pedido de Guille: el recuadro «Noticias Calientes del día» ya no lleva el párrafo del pie («Fuentes: … Es información, no una recomendación…») ni la lista de medios al lado del título de cada bloque (Locales, Estados Unidos, Resto del mundo). Cada nota sigue nombrando su medio junto a la hora. Si un bloque no responde, el mensaje es genérico, sin nombres de medios.
+
 ### v1.5.27 — noticias: el tema del día abre cada bloque; diagnóstico de fuentes
 - **Problema (pantalla de Guille del 04/11):** la victoria demócrata dominaba el día y ninguna nota de ese tema abría los bloques. La comparación de palabras de la v1.5.24 no la veía: «tras las elecciones en EEUU» (Ámbito), «resultados electorales» (CNBC) y «triunfo de los demócratas a medio plazo» (SCMP) comparten una sola palabra.
 - **Arreglo (`ui/noticias.py`):** lista de temas grandes (`_TEMAS`: elecciones, Fed y tasas, inflación, aranceles, petróleo, guerra, empleo, cierre de gobierno) con las palabras que los nombran en castellano e inglés. `tema_del_dia`: el que nombran más medios distintos (mínimo 2) en las últimas 24 h de todos los bloques. Cada bloque abre con su mejor nota sobre ese tema (`_elegir_por_tema`); si el bloque no tiene ninguna, queda la tendencia por palabras de siempre. Sigue valiendo una nota por ticker y por historia y el tope de 2 por medio.

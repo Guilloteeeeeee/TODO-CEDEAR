@@ -97,9 +97,10 @@ chk(not any(t.startswith("La acción") or t.startswith("¿Por qué") for t in ll
 # --- dibujo
 h = N.noticias_bloques_html(tr, ahora=ahora)
 chk("nt-t" not in h and "Tendencia del día</span>" not in h, "no tiene que haber etiqueta naranja de tendencia (Guille: dejar el dibujo como estaba)")
-for medio in ("CNBC", "MarketWatch", "Investing.com", "iProfesional", "Ámbito"):
-    chk(medio in h, f"el HTML no nombra a {medio}")
-chk("Fuentes:" in h and "Es información, no una recomendación" in h, "pie de noticias")
+for medio in {n["fuente"] for b in tr for n in b["notas"]}:
+    chk(medio in h, f"el HTML no nombra a {medio} (cada nota nombra su medio)")
+chk("Fuentes:" not in h and "nt-pie" not in h and "Es información" not in h, "Guille: sin pie de fuentes en el recuadro de noticias")
+chk("<small>" not in h.split("nt-ul")[0], "Guille: sin la lista de medios en el título de cada bloque")
 
 # --- los feeds por defecto
 cl = {b["clave"]: b for b in N.BLOQUES}

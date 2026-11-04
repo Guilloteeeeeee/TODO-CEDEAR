@@ -894,21 +894,10 @@ def noticias_bloques_html(bloques, ahora=None, abierto=None):
     partes = []
     for b in bloques or []:
         k = re.sub(r"[^a-z]", "", str(b.get("clave") or "").lower())
-        cab = f'<div class="nt-b nt-{k}">{html.escape(b["titulo"])}<small>{html.escape(b["fuente"])}</small></div>'
+        cab = f'<div class="nt-b nt-{k}">{html.escape(b["titulo"])}</div>'
         if b["notas"]:
             partes.append(cab + f'<ul class="nt-ul-{k}">{"".join(_fila(n, b["fuente"], ahora) for n in b["notas"])}</ul>')
         else:
-            motivo = (f'{b["fuente"]} no respondió en este momento' if not b.get("respondio") else f'no hay notas recientes de {b["fuente"]}')
+            motivo = ("Las noticias no respondieron en este momento" if not b.get("respondio") else "No hay notas recientes")
             partes.append(cab + f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div>')
-    fuentes = []
-    for b in bloques or []:
-        for n in b["notas"]:
-            if n.get("fuente") and n["fuente"] not in fuentes:
-                fuentes.append(n["fuente"])
-    if not fuentes:
-        fuentes = [b["fuente"] for b in bloques or []]
-    hay_es = any(n.get("titulo_es") for b in bloques or [] for n in b["notas"])
-    aviso_trad = (" Los titulares en inglés están traducidos automáticamente: pueden tener errores (al pasar el mouse se ve el original)." if hay_es else "")
-    pie = (f'<div class="nt-pie">Fuentes: {html.escape(", ".join(fuentes))}. Cada bloque abre con la tendencia del día (la historia que más medios cubren); '
-           f'después, las que nombran empresas del screener (etiqueta verde), una sola nota por empresa, y las más recientes. Cada título abre la nota en su medio.{aviso_trad} Es información, no una recomendación.</div>')
-    return f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>{"".join(partes)}{pie}</details>'
+    return f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>{"".join(partes)}</details>'
