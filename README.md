@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a assets/logos/
 ```
 
+### v1.5.21 — control de cobertura de CEDEARs
+- **Nuevo `control_cobertura.py`** (y `cobertura_byma.txt`): compara la lista oficial de BYMA (446) con lo que carga la app y, de cada CEDEAR que no está, dice por qué: pendiente de cargar (tanda 2, 3…) o no se carga con motivo (segundo ticker de una empresa, ya no cotiza, rusa, símbolo mal escrito, solo Brasil, otra bolsa). Hoy: 272 en la app, 127 pendientes, 47 con motivo, **0 sin motivo**.
+- **Prueba** `tests/test_cobertura.py`: falla si algún CEDEAR de la lista no está cargado ni figura con su motivo. Se corre en cada tanda.
+
 ### v1.5.20 — fichas y logos de la tanda 1
 - `data/fichas.json` con las 215 empresas (descripción, directivos, mercado; solo FISV sin descripción, como antes) y los 49 logos nuevos en `assets/logos/`. Con esto la tanda 1 queda completa: puntaje (v1.5.18), ficha y logo.
 
