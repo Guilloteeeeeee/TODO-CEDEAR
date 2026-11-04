@@ -96,7 +96,7 @@ chk(not any(t.startswith("La acción") or t.startswith("¿Por qué") for t in ll
 
 # --- dibujo
 h = N.noticias_bloques_html(tr, ahora=ahora)
-chk("Tendencia del día" in h and h.count("Tendencia del día") >= 3 + 0, "falta la etiqueta Tendencia del día")
+chk("nt-t" not in h and "Tendencia del día</span>" not in h, "no tiene que haber etiqueta naranja de tendencia (Guille: dejar el dibujo como estaba)")
 for medio in ("CNBC", "MarketWatch", "Investing.com", "iProfesional", "Ámbito"):
     chk(medio in h, f"el HTML no nombra a {medio}")
 chk("Fuentes:" in h and "Es información, no una recomendación" in h, "pie de noticias")
@@ -106,6 +106,7 @@ cl = {b["clave"]: b for b in N.BLOQUES}
 chk(cl["locales"]["cantidad"] == 3 and cl["usa"]["cantidad"] == 5 and cl["mundo"]["cantidad"] == 5, "cantidades 3/5/5 en la configuración")
 med = lambda k: {f[3] for f in cl[k]["feeds"]}
 chk(med("locales") == {"Ámbito", "iProfesional", "La Nación"}, f"medios de Locales {med('locales')}")
+chk(cl["usa"]["fuente"].startswith("Investing.com"), "Investing.com va primero en el rótulo de Estados Unidos")
 chk(med("usa") == {"CNBC", "MarketWatch", "Investing.com"}, f"medios de EEUU {med('usa')}")
 chk(med("mundo") == {"CNBC", "BBC", "The Guardian", "DW", "South China Morning Post"}, f"medios del mundo {med('mundo')}")
 chk(not any("yahoo" in f[1] or "economista" in f[1] for b in N.BLOQUES for f in b["feeds"]), "Yahoo y elEconomista quedaron afuera")

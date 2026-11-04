@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.25 — noticias: sin etiqueta de tendencia
+- Se sacó la etiqueta naranja «Tendencia del día» (pedido de Guille): el dibujo de las notas queda como estaba; la tendencia sigue yendo primera en cada bloque. En Estados Unidos el rótulo nombra primero a Investing.com.
+
 ### v1.5.24 — noticias con varios medios y tendencia del día; industrias de Damodaran de la tanda 1
 - **Noticias (pedido de Guille):** cada bloque junta varios medios y **abre con la tendencia del día**: la historia que cubren más medios distintos (hoy, por ejemplo, la victoria demócrata), haya o no empresas del screener. Cantidad: **3 notas en Locales, 5 en Estados Unidos y 5 en Resto del mundo**.
   - Locales: Ámbito, iProfesional y La Nación. Estados Unidos: CNBC, MarketWatch e Investing.com en español. Resto del mundo: CNBC (Mundo, Europa, Asia), BBC, The Guardian, DW y South China Morning Post. Quedaron afuera Yahoo Finance (el feed da error 404 y bloquea a los servidores), elEconomista, Euronews y Nikkei (sin fecha).

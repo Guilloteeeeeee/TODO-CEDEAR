@@ -67,13 +67,13 @@ _LOC = (
     ("Economía", "https://www.lanacion.com.ar/arc/outboundfeeds/rss/category/economia/", False, "La Nación", "es"),
 )
 _USA = (
+    ("Empresas", "https://es.investing.com/rss/news.rss", False, "Investing.com", "es"),
+    ("Bolsas", "https://es.investing.com/rss/news_25.rss", False, "Investing.com", "es"),
     ("Mercados", "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=20409666", False, "CNBC", "en"),
     ("Tecnología", "https://www.cnbc.com/id/19854910/device/rss/rss.html", False, "CNBC", "en"),
     ("Economía", "https://www.cnbc.com/id/20910258/device/rss/rss.html", False, "CNBC", "en"),
     ("Portada", "https://www.cnbc.com/id/100003114/device/rss/rss.html", True, "CNBC", "en"),
     ("Titulares", "https://feeds.content.dowjones.io/public/rss/mw_topstories", False, "MarketWatch", "en"),
-    ("Empresas", "https://es.investing.com/rss/news.rss", False, "Investing.com", "es"),
-    ("Bolsas", "https://es.investing.com/rss/news_25.rss", False, "Investing.com", "es"),
 )
 _MUN = (
     ("Mundo", "https://www.cnbc.com/id/100727362/device/rss/rss.html", False, "CNBC", "en"),
@@ -86,7 +86,7 @@ _MUN = (
 )
 _BLOQUES_DEFECTO = (
     {"clave": "locales", "titulo": "Locales", "fuente": "Ámbito, iProfesional y La Nación", "idioma": "es", "traducir": False, "cantidad": 3, "dolar": True, "mercado": True, "feeds": _LOC},
-    {"clave": "usa", "titulo": "Estados Unidos", "fuente": "CNBC, MarketWatch e Investing.com", "idioma": "en", "traducir": True, "cantidad": 5, "feeds": _USA},
+    {"clave": "usa", "titulo": "Estados Unidos", "fuente": "Investing.com, CNBC y MarketWatch", "idioma": "en", "traducir": True, "cantidad": 5, "feeds": _USA},
     {"clave": "mundo", "titulo": "Resto del mundo", "fuente": "CNBC, BBC, The Guardian, DW y SCMP", "idioma": "en", "traducir": True, "cantidad": 5, "feeds": _MUN},
 )
 ACTIVAS = bool(_cfg("NOTICIAS_ACTIVAS", True))
@@ -736,7 +736,6 @@ CSS = """
 .nt li a{color:#111827!important;font-weight:600;text-decoration:none!important;flex:1 1 220px;min-width:0}
 .nt li a:hover{text-decoration:underline!important}
 .nt-m{font-size:.76rem;color:#6b7280;white-space:nowrap}
-.nt-t{font-size:.72rem;font-weight:700;color:#9a3412;background:#ffedd5;border-radius:999px;padding:1px 8px;white-space:nowrap}
 .nt-e{font-size:.72rem;font-weight:700;color:#065f46;background:#d1fae5;border-radius:999px;padding:1px 8px;white-space:nowrap}
 .nt-b{font-size:.74rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#111827;margin:10px 0 2px;padding:6px 0 0;border-top:2px solid #111827;display:flex;gap:8px;align-items:baseline}
 .nt-b small{font-weight:500;letter-spacing:0;text-transform:none;color:#6b7280;font-size:.74rem}
@@ -800,8 +799,6 @@ def _fila(n, fuente, ahora=None):
     link = html.escape(n["link"], quote=True)
     meta = " · ".join(x for x in (n.get("fuente") or fuente, hace(n.get("fecha"), ahora)) if x)      # v1.5.24: cada nota nombra su medio
     etiq = ""
-    if n.get("tendencia"):
-        etiq += '<span class="nt-t" title="La historia que más medios están cubriendo hoy">Tendencia del día</span>'
     if n.get("menciona"):
         etiq += f'<span class="nt-e" title="Empresas del screener nombradas en el titular">{html.escape(", ".join(n["menciona"][:3]))}</span>'
     es = n.get("titulo_es")
