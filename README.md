@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.34 — calendario de cuadraditos, globitos hacia abajo, índices solo con %, menú que se cierra
+- **Calendario Financiero** (franja negra): se despliega desde arriba a todo el ancho y ahora es un calendario de cuadraditos: una solapa por mes (noviembre, diciembre, enero), cada día es un cuadrado con las empresas que presentan resultados (botones que llevan a su ficha; borde punteado = fecha estimada) o los eventos económicos. Hoy va en verde. En el celular vuelve a ser una lista (`calendario_grilla_html`, `economico_grilla_html` en `ui/calendario.py`).
+- **Noticias y Calendario** llegan casi hasta el pie de la pantalla (antes quedaba un hueco abajo).
+- **Títulos de la tabla** (Empresa, Precio, Cap. Bursátil…): la explicación al pasar el mouse ahora sale HACIA ABAJO (globito propio, `css_ayudas` en `ui/tabla_visual.py`; antes era el de Streamlit, que salía hacia arriba). Vale para empresas y ETFs.
+- **Barra de mercados:** los índices muestran solo el porcentaje del día (sin la variación en puntos).
+- **Menú de las tres rayitas:** Quiénes Somos, Nuestras Redes, Abrí una Cuenta, Contactanos y Comentarios se abren con un toque y se guardan con otro (cada ítem tiene su etiqueta de «abrir» y de «cerrar»).
+- **Mapa de Calor:** letra más chica y fina (antes, negrita pesada), y más aire entre el buscador y el título para que no se toquen.
+- Prueba nueva: `tests/test_v1534_calendario_menu.py`.
+
 ### v1.5.33 — menú lateral simplificado y nombres nuevos en la franja negra
 - **Franja negra:** «Mapa de Calor · Noticias del Día · Calendario Financiero · Ideas de Inversión · Evalúa tu Portfolio». Con los nombres más largos, en pantallas de 901 a 1340 px la franja se compacta (logo y letras más chicas) para que entren todos los íconos; en el celular los botones siguen en una fila que se desliza.
 - **Menú de las tres rayitas:** quedan solo Quiénes Somos, Nuestras Redes, Abrí una Cuenta, Contactanos y Comentarios (ya a la vista, sin el desplegable «Sobre Nosotros») y la versión. Noticias, Calendario, Mapa, Ideas y Evalúa tu Portfolio se sacaron (ya están en la franja).

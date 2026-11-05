@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.33"
+APP_VERSION = "1.5.34"
 
 import re
 import contextlib
@@ -45,7 +45,7 @@ try:
 except ImportError:      # ajustes.py viejo
     NOMBRE_APP = "TodoCedears"
 from ui.tabla_visual import (CSS as CSS_VISUAL, escala_valoracion_html, COLUMNAS_BASE, columnas_base, css_encabezado, html_tabla_visual,
-                             ayuda_texto, anchos as anchos_tabla, _mayusculas)
+                             ayuda_texto, css_ayudas, anchos as anchos_tabla, _mayusculas)
 from ui import criterios as _criterios
 from ui import variables as _variables
 from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
@@ -897,7 +897,8 @@ def render_tabla_etfs(etfs, sel):
     sort_col = st.session_state.get("etf_sort_col")
     sort_asc = bool(st.session_state.get("etf_sort_asc", True))
     mostrados = _ui_etfs.ordenar(_filtrar_etfs_tecnicos(_etfs.filtrar(etfs, "", sel)), guardados, precios, sort_col, sort_asc)
-    st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
+    _css_ay = css_ayudas([(f"e_{c}", _ui_etfs.TIPS.get(t) or "") for c, t, _w in _ui_etfs.COLUMNAS])
+    st.markdown(f"<style>{_ui_etfs.CSS}{_ui_etfs.css_cabecera(sort_col, sort_asc)}{_css_ay}</style>" + _ui_etfs.encabezado_html(len(etfs), len(mostrados)), unsafe_allow_html=True)
     with st.container(key="fila_excel"):
         _fila_tabla("etfs")
         _boton_excel_etfs(mostrados, guardados, precios, fecha_g)
@@ -912,7 +913,7 @@ def render_tabla_etfs(etfs, sel):
         st.selectbox("Ordenar por", [t for t, _, _ in opciones], index=None, placeholder="Ordenar por…", key="etf_orden_movil", on_change=_cambiar_orden_etfs)
     cols = st.columns([w for _, _, w in _ui_etfs.COLUMNAS], gap="small")
     for contenedor, (clave, titulo, _) in zip(cols, _ui_etfs.COLUMNAS):
-        if contenedor.button(titulo, key=f"tvh_e_{clave}", use_container_width=True, help=_ui_etfs.TIPS.get(titulo) or None):
+        if contenedor.button(titulo, key=f"tvh_e_{clave}", use_container_width=True):
             if sort_col == clave:
                 st.session_state["etf_sort_asc"] = not sort_asc
             else:
@@ -1182,7 +1183,9 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
     """Tabla visual: titulos ordenables (botones, con la explicacion al pasar el mouse) y filas en una sola pieza de HTML con la misma grilla."""
     sort_col = st.session_state.get("sort_col", ORDEN_INICIAL[0])
     sort_asc = st.session_state.get("sort_asc", ORDEN_INICIAL[1])
-    st.markdown(f"<style>{css_encabezado(sort_col, len(extras), visibles, bool(sort_asc))}</style>", unsafe_allow_html=True)
+    _tit = [(clave, etiqueta) for clave, etiqueta, _ in columnas_base(visibles)] + [(c["clave"], c["nombre"]) for c in extras]
+    _css_ay = css_ayudas([(clave, ayuda_texto(clave, fecha)) for clave, _e in _tit])
+    st.markdown(f"<style>{css_encabezado(sort_col, len(extras), visibles, bool(sort_asc))}{_css_ay}</style>", unsafe_allow_html=True)
 
     # Celular: el selector reemplaza a los titulos (la hoja de estilos esconde uno u otro segun el ancho de la pantalla)
     opciones = ordenes_movil(extras, visibles)
@@ -1200,7 +1203,7 @@ def render_tabla_visual(df_show: pd.DataFrame, estado=None, fecha=None, extras=(
     titulos = [(clave, "Cap. Bursátil" if clave == "market_cap" else etiqueta) for clave, etiqueta, _ in columnas_base(visibles)] + [(c["clave"], c["nombre"].split(" (")[0]) for c in extras]
     for contenedor, (clave, etiqueta) in zip(cols, titulos):
         activo = sort_col == clave
-        if contenedor.button(etiqueta, key=f"tvh_{clave}", use_container_width=True, help=ayuda_texto(clave, fecha) or None):
+        if contenedor.button(etiqueta, key=f"tvh_{clave}", use_container_width=True):
             if activo:
                 st.session_state["sort_asc"] = not sort_asc
             else:
@@ -1529,10 +1532,10 @@ def render_calendario(df, lugar=None, directo=False):
                 tk = st.text_input("Buscá una empresa por ticker y mirá cuándo presenta resultados", key="cal_tk", placeholder="Ej.: AAPL", max_chars=12)
                 if (tk or "").strip():
                     st.markdown(f"<style>{_calendario.CSS}</style><div class=\"cal\"><div class=\"cal-h\"><b>{html.escape(_calendario.buscar_ticker(paquetes, tk))}</b></div></div>", unsafe_allow_html=True)
-                st.markdown(f"<style>{_calendario.CSS}</style>" + _calendario.calendario_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
+                st.markdown(f"<style>{_calendario.CSS_GRILLA}</style>" + _calendario.calendario_grilla_html(grupos, nombres=nombres, cantidad=n), unsafe_allow_html=True)
             with t_eco:
                 eventos, fuentes_eco = _calendario.cargar_economico()
-                st.markdown(f"<style>{_calendario.CSS_ECO}</style>" + _calendario.economico_html(_calendario.economicos(eventos), fuentes_eco), unsafe_allow_html=True)
+                st.markdown(f"<style>{_calendario.CSS_GRILLA}</style>" + _calendario.economico_grilla_html(_calendario.economicos(eventos), fuentes_eco), unsafe_allow_html=True)
     except Exception:  # noqa: BLE001
         pass
 

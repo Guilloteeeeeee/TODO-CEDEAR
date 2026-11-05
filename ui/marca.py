@@ -177,9 +177,12 @@ body:has(#bn-noticias:checked) .fly-b,body:has(#bn-cal:checked) .fly-b,body:has(
 /* Noticias y Calendario se abren desde el borde derecho; el Filtro se despliega debajo de su botón, casi a todo el ancho */
 body:has(#bn-noticias:checked) .st-key-fly_noticias,body:has(#bn-cal:checked) .st-key-fly_cal{right:0}
 /* v1.5.29: las Noticias se despliegan desde arriba (debajo de la franja negra), casi a toda la pantalla y en 3 columnas: Locales | Estados Unidos | Resto del mundo */
-body:has(#bn-noticias:checked) .st-key-fly_noticias{top:__NTOP__px;bottom:auto;left:32px;right:32px;width:auto;height:auto;max-height:calc(100vh - __NTOP__px - 24px);border-radius:14px;border:1px solid #d5dde6;
+body:has(#bn-noticias:checked) .st-key-fly_noticias{top:__NTOP__px;bottom:auto;left:32px;right:32px;width:auto;height:calc(100vh - __NTOP__px - 16px);height:calc(100dvh - __NTOP__px - 16px);max-height:none;border-radius:14px;border:1px solid #d5dde6;
   box-shadow:0 18px 40px rgba(15,23,42,.28);padding:14px 28px 26px!important;animation:nt-baja .22s ease}
 @keyframes nt-baja{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+/* v1.5.34: el Calendario también se despliega desde arriba, a todo el ancho (cuadraditos por mes); y los dos paneles llegan casi hasta el pie de la pantalla */
+body:has(#bn-cal:checked) .st-key-fly_cal{top:__NTOP__px;bottom:auto;left:32px;right:32px;width:auto;height:calc(100vh - __NTOP__px - 16px);height:calc(100dvh - __NTOP__px - 16px);max-height:none;border-radius:14px;border:1px solid #d5dde6;
+  box-shadow:0 18px 40px rgba(15,23,42,.28);padding:14px 28px 26px!important;animation:nt-baja .22s ease}
 body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px;align-items:start}
 body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-col{min-width:0}
 body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-b{margin-top:6px!important}
@@ -550,7 +553,10 @@ _FLY_CLASES = {"filtro": ".st-key-fly_filtro", "noticias": ".st-key-fly_noticias
                "quienes": ".fly-quienes", "redes": ".fly-redes", "contacto": ".fly-contacto", "cuentas": ".fly-cuentas", "comentarios": ".fly-comentarios"}
 _TODOS_FLY = ",".join(_FLY_CLASES.values())
 _VISIBLE_FLY = ",".join(_fly_selectores(k, c) for k, c in _FLY_CLASES.items())
-_ACTIVO_FLY = ",".join(f"body:has(#mc-menu:checked):has(#sec-{k}:checked) label[for=sec-{k}]" for k in SECCIONES)
+_ACTIVO_FLY = ",".join(f"body:has(#mc-menu:checked):has(#sec-{k}:checked) label.mn-ce-{k}" for k in SECCIONES)
+# v1.5.34: con el panel abierto se ve la etiqueta de «cerrar» (resaltada) y se esconde la de «abrir»
+_TOGGLE_MENU = "".join(f"body:has(#mc-menu:checked):has(#sec-{k}:checked) label.mn-ab-{k}{{display:none!important}}"
+                       f"body:has(#mc-menu:checked):has(#sec-{k}:checked) label.mn-ce-{k}{{display:flex!important}}" for k in SECCIONES)
 
 CSS_MENU = """
 .mc-chk{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
@@ -587,7 +593,8 @@ body:has(#mc-menu:checked) .st-key-menu_lateral{transform:none;visibility:visibl
 .mn-sep2{height:1px;background:#cfd6de;margin:44px 2px 14px}
 .mn-ver{margin:12px 2px 0;font-size:.8rem;color:#6b7280;line-height:1.5}
 .mn-ver b{color:#374151}
-""" + f"{_ACTIVO_FLY}{{background:#eef6ff;font-weight:700}}\n" + """
+.mn-it.mn-ce{display:none}
+""" + _TOGGLE_MENU + "\n" + f"{_ACTIVO_FLY}{{background:#eef6ff;font-weight:700}}\n" + """
 /* paneles que se abren hacia el centro de la pagina (a la izquierda del menu) */
 """ + f"{_TODOS_FLY}{{" + """position:fixed!important;top:0;bottom:0;right:min(94vw,430px);left:auto;width:min(620px,calc(100vw - min(94vw,430px) - 12px));height:100vh;height:100dvh;box-sizing:border-box;background:#fff;
 z-index:1490;overflow-y:auto;overflow-x:hidden;padding:10px 22px 30px!important;gap:6px!important;box-shadow:-10px 0 30px rgba(15,23,42,.22);display:none!important}
@@ -628,7 +635,10 @@ def fly_cabecera_html(titulo):
 
 
 def _it_sec(sec, texto):
-    return f'<label for="sec-{sec}" class="mn-it"><span>{html.escape(texto)}</span><span class="mn-ar">›</span></label>'
+    """v1.5.34: dos etiquetas superpuestas: la de «abrir» (for=sec-X) y, cuando el panel ya está abierto, la de «cerrar» (for=sec-none), así un segundo toque lo guarda."""
+    t = html.escape(texto)
+    return (f'<label for="sec-{sec}" class="mn-it mn-ab mn-ab-{sec}"><span>{t}</span><span class="mn-ar">›</span></label>'
+            f'<label for="sec-none" class="mn-it mn-ce mn-ce-{sec}"><span>{t}</span><span class="mn-ar">›</span></label>')
 
 
 def _it_href(href, texto, clase="mn-it", chica=""):

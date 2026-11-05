@@ -159,3 +159,108 @@ def economico_html(grupos, fuentes="", hoy=None):
             out.append(f'<div class="eco-i"><span class="eco-p{" ar" if p == "Argentina" else ""}">{html.escape(p)}</span><span>{html.escape(e)}</span></div>')
     out.append(f'<div class="eco-n">Fechas de los calendarios oficiales ({html.escape(fuentes)}). Pueden cambiar.</div></div>' if fuentes else "</div>")
     return "".join(out)
+
+
+# --- Calendario de cuadraditos (v1.5.34, pedido de Guille): un mes por vez, con solapas de mes; cada día es un cuadrado con sus empresas / eventos -----------------
+CSS_GRILLA = """
+.cg{font-family:inherit;color:#1f2937}
+.cg-r{position:absolute;opacity:0;width:0;height:0;pointer-events:none}
+.cg-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 12px}
+.cg-tab{cursor:pointer;user-select:none;border:1px solid #c3ccd8;background:#fff;color:#374151;border-radius:9px;padding:7px 18px;font-size:.95rem;font-weight:700}
+.cg-tab:hover{background:#eef2f7}
+.cg-mes{display:none}
+.cg-g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.cg-wd{text-align:center;font-size:.76rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.6px;padding:2px 0 0}
+.cg-c.pad{visibility:hidden}
+.cg-c{min-height:84px;border:1px solid #e1e7ef;border-radius:10px;padding:6px 8px 8px;background:#fff;display:flex;flex-direction:column;gap:5px;box-sizing:border-box;min-width:0}
+.cg-c.fin{background:#f8fafc}
+.cg-c.fuera{background:#f6f8fa;border-color:#eef1f5}
+.cg-c.fuera .cg-n{color:#c3cbd6}
+.cg-c.hoy{border:2px solid #15803d;background:#f0fdf4}
+.cg-n{font-size:.92rem;font-weight:800;color:#1f2937;display:flex;align-items:center;gap:6px}
+.cg-c.hoy .cg-n b{background:#15803d;color:#fff;border-radius:999px;padding:0 8px}
+.cg-hoy{font-size:.66rem;font-weight:700;color:#15803d;text-transform:uppercase;letter-spacing:.4px}
+.cg-ds{display:none}
+.cg-ts{display:flex;flex-wrap:wrap;gap:4px}
+.cg-t{display:inline-block;font-size:.76rem;font-weight:700;background:#e8eefc;color:#1e3a8a!important;border-radius:6px;padding:2px 7px;text-decoration:none!important;line-height:1.35}
+.cg-t:hover{background:#1e3a8a;color:#fff!important}
+.cg-t.est{background:#fff;border:1px dashed #94a3b8;color:#475569!important;padding:1px 6px}
+.cg-e{font-size:.78rem;line-height:1.3;color:#1f2937;border-left:3px solid #1e3a8a;padding:1px 0 1px 6px;background:#f1f5fd;border-radius:0 6px 6px 0}
+.cg-e.ar{border-left-color:#5fb0e8;background:#eef7fd}
+.cg-p{display:block;font-size:.64rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.4px}
+.cg-v{color:#64748b;font-size:.9rem;padding:.4rem 0}
+.cg-h{font-size:.85rem;color:#475569}
+.cg-pie{color:#94a3b8;font-size:.74rem;margin-top:.8rem;line-height:1.4}
+@media (max-width:900px){
+.cg-g{display:block}.cg-wd,.cg-c.vacio,.cg-c.fuera,.cg-c.pad{display:none}
+.cg-c{min-height:0;margin-bottom:6px}
+.cg-ds{display:inline;font-weight:600;font-size:.86rem}.cg-n b{display:none}
+}
+"""
+
+
+def _fin_de_mes(f):
+    sig = datetime.date(f.year + (f.month == 12), f.month % 12 + 1, 1)
+    return sig - datetime.timedelta(days=1)
+
+
+def _grilla(por_dia, hoy, dias, uid, vacio):
+    """`por_dia`: {fecha: HTML de lo que va en el cuadrado}. Un mes por solapa (de hoy hasta hoy+dias); días sin datos o fuera del rango, apagados."""
+    tope = hoy + datetime.timedelta(days=dias)
+    meses = []
+    f = datetime.date(hoy.year, hoy.month, 1)
+    while f <= tope:
+        meses.append(f)
+        f = _fin_de_mes(f) + datetime.timedelta(days=1)
+    radios = "".join(f'<input type="radio" name="cg-{uid}" id="cg-{uid}-{i}" class="cg-r"{" checked" if i == 0 else ""} aria-hidden="true" tabindex="-1">' for i in range(len(meses)))
+    css = "".join(f'#cg-{uid}-{i}:checked~.cg-mes-{i}{{display:block}}#cg-{uid}-{i}:checked~.cg-tabs label[for=cg-{uid}-{i}]{{background:#15803d;color:#fff;border-color:#15803d}}' for i in range(len(meses)))
+    tabs, paneles = [], []
+    for i, m in enumerate(meses):
+        tabs.append(f'<label for="cg-{uid}-{i}" class="cg-tab">{_MES[m.month - 1].capitalize()} {m.year}</label>')
+        ult = min(_fin_de_mes(m), tope)
+        celdas = ['<div class="cg-wd">' + d + "</div>" for d in ("Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom")]
+        d = m
+        if i == 0:                        # en el primer mes no se dibujan las semanas que ya pasaron: arranca el lunes de la semana de hoy
+            d = max(m, hoy - datetime.timedelta(days=hoy.weekday()))
+        celdas += ['<div class="cg-c pad"></div>'] * d.weekday()
+        while d <= _fin_de_mes(m):
+            if d > ult and d.weekday() == 0:
+                break                     # en el último mes no se dibujan semanas enteras fuera del rango
+            dentro = hoy <= d <= tope
+            cont = por_dia.get(d, "") if dentro else ""
+            cls = "cg-c" + (" fin" if d.weekday() >= 5 else "") + (" hoy" if d == hoy else "") + ("" if dentro else " fuera") + ("" if cont else " vacio")
+            marca = '<span class="cg-hoy">hoy</span>' if d == hoy else ""
+            celdas.append(f'<div class="{cls}"><div class="cg-n"><b>{d.day}</b><span class="cg-ds">{_SEM[d.weekday()].capitalize()} {d.day} de {_MES[d.month - 1]}</span>{marca}</div>{cont}</div>')
+            d += datetime.timedelta(days=1)
+        paneles.append(f'<div class="cg-mes cg-mes-{i}"><div class="cg-g">{"".join(celdas)}</div></div>')
+    cuerpo = vacio if not por_dia else ""
+    return f'<style>{css}</style><div class="cg">{radios}{cuerpo}<div class="cg-tabs">{"".join(tabs)}</div>{"".join(paneles)}</div>'
+
+
+def calendario_grilla_html(grupos, hoy=None, nombres=None, cantidad=None):
+    """Empresas que presentan resultados, en cuadraditos por día (solapa por mes). Cada empresa es un botón que lleva a su ficha."""
+    hoy = hoy or datetime.date.today()
+    n = cantidad if cantidad is not None else sum(len(v) for _, v in grupos)
+    por_dia = {}
+    for f, items in grupos:
+        chips = []
+        for t, _momento, estimada in items:
+            nom = html.escape((nombres or {}).get(t, t), quote=True)
+            extra = " (fecha estimada)" if estimada else ""
+            chips.append(f'<a class="cg-t{" est" if estimada else ""}" href="?empresa={quote(t, safe="")}" target="_self" title="{nom}{extra}">{html.escape(t)}</a>')
+        por_dia[f] = f'<div class="cg-ts">{"".join(chips)}</div>'
+    vacio = f'<div class="cg-v">No hay resultados cargados para los próximos {DIAS} días.</div>' if not grupos else ""
+    cab = f'<div class="cg-h">Próximos {DIAS} días · <b>{n}</b> empresas · el borde punteado es fecha estimada</div>' if grupos else ""
+    pie = '<div class="cg-pie">Fechas informadas por Yahoo Finance; cada empresa las confirma y pueden cambiar. Información, no una recomendación.</div>'
+    return cab + _grilla(por_dia, hoy, DIAS, "res", vacio) + pie
+
+
+def economico_grilla_html(grupos, fuentes="", hoy=None):
+    """Eventos económicos (Fed, empleo, inflación, INDEC…) en cuadraditos por día."""
+    hoy = hoy or datetime.date.today()
+    por_dia = {}
+    for f, items in grupos:
+        por_dia[f] = "".join(f'<div class="cg-e{" ar" if p == "Argentina" else ""}"><span class="cg-p">{html.escape(p)}</span>{html.escape(e)}</div>' for e, p in items)
+    vacio = f'<div class="cg-v">No hay eventos cargados para los próximos {DIAS} días.</div>' if not grupos else ""
+    pie = f'<div class="cg-pie">Fechas de los calendarios oficiales ({html.escape(fuentes)}). Pueden cambiar.</div>' if fuentes else ""
+    return _grilla(por_dia, hoy, DIAS, "eco", vacio) + pie

@@ -165,7 +165,7 @@ def barra_html(items):
         cls = {1: "mk-sube", -1: "mk-baja"}.get(it["signo"], "mk-igual")
         if it["var"]:
             celdas.append(f'<div class="mk-it"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span>'
-                          f'<span class="mk-c {cls}">{html.escape(it["var"])} {html.escape(it["pct"])}</span></div>')
+                          f'<span class="mk-c {cls}">{html.escape(it["pct"])}</span></div>')      # v1.5.34: solo el porcentaje del día, sin la variación en puntos
         else:       # dólares: sin tercera línea; nombre y valor a la misma altura que en los demás casilleros
             celdas.append(f'<div class="mk-it"><span class="mk-n">{html.escape(it["nombre"])}</span><span class="mk-v">{html.escape(it["valor"])}</span></div>')
     flecha = '<div class="mk-fl" aria-hidden="true">&rsaquo;</div>'   # puntita: avisa que se puede deslizar hacia la derecha

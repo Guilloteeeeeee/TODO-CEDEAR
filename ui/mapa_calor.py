@@ -143,7 +143,7 @@ def _layout(grupos, ancho, alto, banda, px_min):
         rot = banda if (gh > banda * 2.2 and gw > banda * 4) else 0
         etiqueta = ""
         if rot:
-            etiqueta = (f'<div class="mpc-gl" style="height:{pct(rot, gh)};font-size:{min(banda * 0.62, gw / max(len(nombre), 6) * 1.25):.3f}cqw">'
+            etiqueta = (f'<div class="mpc-gl" style="height:{pct(rot, gh)};font-size:{min(banda * 0.6, gw / max(len(nombre), 6) * 1.2):.3f}cqw">'
                         f'{html.escape(nombre)}</div>')
         hijos = squarify([z["_p"] for z in lst], 0, 0, gw, gh - rot)
         tiles = []
@@ -151,7 +151,7 @@ def _layout(grupos, ancho, alto, banda, px_min):
             if tw <= 0 or th <= 0:
                 continue
             tk = str(z.get("tk") or "")
-            fs = min(tw / (max(len(tk), 3) * 0.64), th / 2.5, banda * 1.6)
+            fs = min(tw / (max(len(tk), 3) * 0.64), th / 2.5, banda * 1.6) * 0.84      # v1.5.34: letra un 16% más chica, con aire alrededor (queda más prolija)
             txt = ""
             if fs >= px_min:
                 v2 = f'<span class="mpc-v" style="font-size:{fs * 0.78:.3f}cqw">{_fmt_var(z.get("var"))}</span>' if th >= fs * 2.35 else ""
@@ -166,7 +166,7 @@ def _layout(grupos, ancho, alto, banda, px_min):
 
 
 CSS = """
-.mpc-w{max-width:1120px;margin:-84px auto 0;position:relative;font-family:'Roboto Condensed','Roboto',Arial,sans-serif}
+.mpc-w{max-width:1120px;margin:-62px auto 0;position:relative;font-family:'Roboto Condensed','Roboto',Arial,sans-serif}
 .mpc-tit{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:4px 0 10px}
 .mpc-tit h2{margin:0;font-size:1.5rem;color:#0f172a;font-weight:800}
 .mpc-sw{display:inline-flex;border:1px solid #c3ccd8;border-radius:9px;overflow:hidden;background:#fff}
@@ -181,15 +181,15 @@ CSS = """
 .mpc-d{aspect-ratio:100/48;display:block}
 .mpc-m{aspect-ratio:100/150;display:none}
 .mpc-g{position:absolute;box-sizing:border-box;border:1.5px solid #1f2330;background:#2a2f3e;overflow:hidden}
-.mpc-gl{position:absolute;left:0;right:0;top:0;box-sizing:border-box;padding:0 5px;color:#e5e7eb;font-weight:700;text-transform:uppercase;letter-spacing:.3px;line-height:1;
+.mpc-gl{position:absolute;left:0;right:0;top:0;box-sizing:border-box;padding:0 5px;color:#e5e7eb;font-weight:600;text-transform:uppercase;letter-spacing:.5px;line-height:1;
  display:flex;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:#2a2f3e}
 .mpc-gb{position:absolute;left:0;right:0;bottom:0}
 .mpc-t{position:absolute;box-sizing:border-box;border:1px solid #1f2330;color:#fff!important;text-decoration:none!important;display:flex;flex-direction:column;align-items:center;justify-content:center;
  text-align:center;overflow:hidden;line-height:1.1}
-.mpc-t span{color:#fff!important;text-shadow:0 0 2px rgba(0,0,0,.35)}
+.mpc-t span{color:#fff!important;text-shadow:none;-webkit-font-smoothing:antialiased}
 .mpc-t:hover{outline:2px solid #fff;outline-offset:-2px;z-index:5;filter:brightness(1.12)}
-.mpc-k{font-weight:800}
-.mpc-v{font-weight:500;opacity:.95}
+.mpc-k{font-weight:700;letter-spacing:.2px}
+.mpc-v{font-weight:400;opacity:.9}
 @media (max-width:900px){.mpc-w{margin-top:-40px}.mpc-d{display:none}.mpc-m{display:block}.mpc-leyenda{margin-left:0}.mpc-w{padding:0 2px}}
 """
 

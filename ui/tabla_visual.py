@@ -123,6 +123,28 @@ def ayuda_texto(clave, fecha=None):
     return f"**{titulo}.** {texto}"
 
 
+def css_ayudas(pares):
+    """v1.5.34 (pedido de Guille): la explicación de cada título de columna se abre HACIA ABAJO (el globito de Streamlit salía hacia arriba y tapaba la franja).
+    `pares`: [(clave_del_botón, texto)] en el orden de las columnas; devuelve el CSS (un globito por botón, con :hover)."""
+    n = len(pares)
+    out = ['[class*="st-key-tvh_"]{position:relative}',
+           '@keyframes tvtip{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}']
+    for i, (clave, texto) in enumerate(pares):
+        t = str(texto or "").replace("**", "").replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
+        if not t:
+            continue
+        if i == 0:
+            pos = "left:0"
+        elif i >= n - 2:
+            pos = "right:0"
+        else:
+            pos = "left:50%;margin-left:-135px"
+        out.append(f'.st-key-tvh_{clave}:hover::after{{content:"{t}";position:absolute;top:calc(100% + 6px);{pos};width:270px;box-sizing:border-box;z-index:300;'
+                   'background:#1f2937;color:#fff;font-size:.8rem;font-weight:400;line-height:1.4;text-align:left;white-space:normal;padding:9px 12px;border-radius:8px;'
+                   'box-shadow:0 8px 22px rgba(15,23,42,.35);pointer-events:none;animation:tvtip .16s ease .3s both}')
+    return "".join(out)
+
+
 # Columnas por defecto (clave de orden, titulo, ancho relativo). Los encabezados (botones de Streamlit) y las filas (grilla CSS) usan los mismos anchos.
 COLUMNAS_BASE = [
     ("nombre", "Empresa", 3.2), ("sector_txt", "Sector e Industria", 2.5), ("precio_actual", "Precio", 1.1),
