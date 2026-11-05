@@ -33,7 +33,14 @@ PAUSA = 0.4
 MIN_BYTES = 150
 
 
+# v1.5.31: tickers que en otras fuentes pertenecen a OTRA cosa (SPCX era un ETF viejo: parqet devolvia el logo de «AXS»). Para estos se usa solo el dominio de la empresa.
+SOLO_POR_DOMINIO = {"SPCX"}
+
+
 def _fuentes(ticker):
+    if ticker.upper() in SOLO_POR_DOMINIO and DOMINIOS.get(ticker.upper()):
+        yield "google", f"https://www.google.com/s2/favicons?domain={DOMINIOS[ticker.upper()]}&sz=128"
+        return
     yield "parqet", f"https://assets.parqet.com/logos/symbol/{ticker.upper()}?format=png"
     yield "fmp", f"https://financialmodelingprep.com/image-stock/{ticker.upper()}.png"
     dom = DOMINIOS.get(ticker)

@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.31 — logo equivocado de SPCX
+- Con SPCX, parqet devolvía el logo de «AXS» (el ticker SPCX era de un ETF viejo). Se sacó ese archivo (la app muestra las iniciales hasta que haya uno bueno) y `descargar_logos.py` ahora baja los tickers de `SOLO_POR_DOMINIO` (SPCX) solo por el dominio de la empresa (spacex.com). `descargar_logos.bat` acepta tickers: `descargar_logos.bat SPCX`.
+
 ### v1.5.30 — datos de las 265 empresas y «Mapa de Calor» en la franja negra
 - Datos nuevos de los `.bat` de Guille (05/11/2026): `data/cache_datos.json` (265 empresas), `data/fichas.json` (265 fichas) y los logos (`static/logos`, 265 PNG).
 - «Mapa de Calor» pasa a la franja negra, a la izquierda de Noticias (y sigue en el menú de las tres rayitas). Se escribe con las dos mayúsculas.
