@@ -1,0 +1,13 @@
+{
+  "_nota": "Datos de ficha cargados a mano cuando Yahoo no los trae (solo completan lo que falta en fichas.json; nunca pisan lo que Yahoo sí trae). Cada empresa lleva su fuente.",
+  "FISV": {
+    "descripcion_es": "Fiserv, Inc. es un proveedor global de soluciones tecnológicas de pagos y servicios financieros. Opera en dos segmentos. Comercios: Pequeños negocios (incluye Clover, su plataforma de punto de venta y gestión de negocios), Grandes empresas (incluye Commerce Hub) y Procesamiento. Financiero: Pagos digitales, Emisión (procesamiento de tarjetas) y Banca (procesamiento de cuentas y banca digital). Entre sus productos están la adquirencia de comercios, las terminales de punto de venta, el procesamiento de tarjetas de débito y crédito, el procesamiento de cuentas, la banca digital y el pago de facturas.",
+    "descripcion_en": "Fiserv, Inc. is a leading global provider of payments and financial services technology solutions. Segments: Merchant (Small Business, including Clover; Enterprise, including Commerce Hub; Processing) and Financial (Digital Payments, Issuing, Banking).",
+    "web": "https://www.fiserv.com",
+    "empleados": 38000,
+    "ciudad": "Milwaukee",
+    "region": "WI",
+    "pais": "United States",
+    "fuente": "Formulario 10-K de Fiserv del año 2025 (SEC); empleados: «más de 38.000» al 31/12/2025"
+  }
+}

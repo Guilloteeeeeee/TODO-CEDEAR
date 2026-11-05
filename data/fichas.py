@@ -22,6 +22,28 @@ import threading
 from config.mercados import es_adr, mercado_texto
 
 ARCHIVO = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fichas.json")
+MANUALES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "fichas_manuales.json")      # v1.5.32: datos cargados a mano cuando Yahoo no los trae
+
+
+def _con_manuales(datos, archivo=None):
+    """Completa `datos` con data/fichas_manuales.json: SOLO los campos que faltan (lo que trae Yahoo nunca se pisa). Así bajar_fichas.bat puede rehacer
+    fichas.json sin perder, por ejemplo, el resumen de FISV (Yahoo no lo tiene). Sin el archivo o roto, no cambia nada."""
+    try:
+        ruta = archivo or MANUALES
+        if not os.path.exists(ruta):
+            return datos
+        with open(ruta, encoding="utf-8") as f:
+            man = json.load(f)
+        for tk, campos in man.items():
+            if tk.startswith("_") or not isinstance(campos, dict):
+                continue
+            d = datos.setdefault(str(tk).upper(), {})
+            for k, v in campos.items():
+                if k != "fuente" and v not in (None, "") and d.get(k) in (None, ""):
+                    d[k] = v
+    except Exception:  # noqa: BLE001
+        pass
+    return datos
 
 
 def cargar(archivo=None):
@@ -35,7 +57,10 @@ def cargar(archivo=None):
         datos = j.get("datos") if isinstance(j, dict) else None
         if not isinstance(datos, dict):
             return {}, None
-        return {str(k).upper(): v for k, v in datos.items() if isinstance(v, dict)}, (j.get("fecha") if isinstance(j.get("fecha"), str) else None)
+        datos = {str(k).upper(): v for k, v in datos.items() if isinstance(v, dict)}
+        if archivo is None:
+            datos = _con_manuales(datos)
+        return datos, (j.get("fecha") if isinstance(j.get("fecha"), str) else None)
     except Exception:  # noqa: BLE001
         return {}, None
 

@@ -142,7 +142,13 @@ CSS_BUSCADOR = """
 div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!important}      /* la lista de sugerencias es más ancha que la caja */
 [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>.st-key-buscador,[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>.st-key-buscador{position:absolute;top:__BTOP__px;left:196px;width:270px;margin:0;z-index:60}   /* v1.5.29: en las páginas de empresa, ETF, etc. va donde está en la tabla (a la izquierda, después del interruptor), no en el borde derecho */
 /* en las páginas de empresa, ETF y cartera el contenido sube (los elementos vacíos de Streamlit dejaban aire bajo la barra de mercados) */
-[data-testid="stElementContainer"]:has(.emp-vol){margin-top:__SUBE__px;margin-bottom:-26px}
+[data-testid="stLayoutWrapper"]:has(>.st-key-fila_volver){margin-top:-62px;margin-bottom:-55px}
+.st-key-fila_volver{margin:0;flex:0 0 auto!important;display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center;gap:0 40px!important}
+.st-key-fila_volver [data-testid="stElementContainer"]:has(.emp-vol){margin:0!important;width:auto!important;flex:0 0 auto}
+.st-key-fila_volver .emp-vol{margin:0}
+.st-key-fila_volver>[data-testid="stLayoutWrapper"]{flex:0 0 270px;width:270px}
+.st-key-fila_volver .st-key-buscador{position:relative!important;top:auto!important;left:auto!important;width:100%!important;margin:0!important;z-index:60}
+.st-key-fila_volver .st-key-buscador input{height:34px;font-size:14.5px;border-radius:9px;border:1px solid #c3ccd8!important;box-shadow:none;padding-left:36px!important;background-position:11px center;background-size:17px}
 [data-testid="stElementContainer"]:has(.cr-top){margin-top:-46px}
 [data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>.st-key-buscador input,[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>.st-key-buscador input{height:34px;font-size:14.5px;border-radius:9px;border:1px solid #c3ccd8!important;box-shadow:none;padding-left:36px!important;background-position:11px center;background-size:17px}
 }

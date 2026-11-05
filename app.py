@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.31"
+APP_VERSION = "1.5.32"
 
 import re
 import contextlib
@@ -956,7 +956,6 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de un ETF (?etf=TICKER, v1.2.64): lo mismo que la de una empresa pero con las solapas Resumen, Grafico y Rendimiento y Noticias."""
     from data import etfs as _etfs
     from ui import etfs as _ui_etfs
-    st.markdown('<a class="emp-vol" href="?tabla=etfs" target="_self">← Volver a ETFs</a>', unsafe_allow_html=True)
     e = _etfs.por_ticker(_etfs_lista(), ticker_sel)
     if not e:
         st.warning("No encontré ese ETF. Volvé a la tabla y elegí otro.")
@@ -1114,6 +1113,17 @@ def _ir_a_seleccion():
     st.session_state["entro"] = True
     st.query_params.clear()
     st.query_params["etf" if tipo == "etf" else "empresa"] = t
+
+
+def render_fila_volver(es_etf: bool) -> None:
+    """v1.5.32: en las fichas de empresa y de ETF, «← Volver…» y el buscador van en UNA fila (antes el buscador flotaba a una altura fija y, según la pantalla,
+    quedaba encimado). Mismo lugar que antes: a la izquierda el «Volver» y el buscador a su derecha; en el celular, uno debajo del otro."""
+    with st.container(key="fila_volver"):
+        if es_etf:
+            st.markdown('<a class="emp-vol" href="?tabla=etfs" target="_self">← Volver a ETFs</a>', unsafe_allow_html=True)
+        else:
+            st.markdown('<a class="emp-vol" href="?inicio=0" target="_self">← Volver a Empresas</a>', unsafe_allow_html=True)
+        render_buscador()
 
 
 def render_buscador() -> str:
@@ -1389,8 +1399,7 @@ def _nota_archivo(extra, clave):
 
 def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     """Pagina de una empresa (se abre al tocar su nombre en la tabla: ?empresa=TICKER): resumen, barra del Fair Value y el desglose completo."""
-    # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo
-    st.markdown('<a class="emp-vol" href="?inicio=0" target="_self">← Volver a Empresas</a>', unsafe_allow_html=True)
+    # v1.2.51: "Volver" lleva siempre al inicio (tabla sin filtros), igual que tocar el titulo. v1.5.32: el «Volver» y el buscador van juntos en una fila (ver render_fila_volver)
     # v1.2.54: aviso bien visible mientras se prepara la informacion de la empresa (se borra al terminar)
     cargando = st.empty()
     cargando.markdown('<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos de la empresa…</div>', unsafe_allow_html=True)
@@ -2048,7 +2057,9 @@ def main():
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
     if en_quienes or en_cartera or en_ideas:      # v1.5.14: en las fichas (empresa / ETF) alcanza con «Volver»; en las tablas el cambio va en el interruptor sobre la tabla (v1.5.10)
         render_nav_tablas("ambos")
-    if en_quienes or en_ideas or en_mapa or etf_sel or st.query_params.get("empresa"):
+    if etf_sel or st.query_params.get("empresa"):
+        render_fila_volver(bool(etf_sel))      # v1.5.32: «Volver» + buscador en la misma fila (antes el buscador flotaba a una altura fija y a veces quedaba encimado)
+    elif en_quienes or en_ideas or en_mapa:
         render_buscador()
     aviso = texto_aviso_legal()
     fecha = None

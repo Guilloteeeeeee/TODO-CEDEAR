@@ -31,7 +31,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 ## ui/ (presentación)
 | Archivo | Qué hace |
 |---|---|
-| `marca.py` | Franja negra (desde la v1.5.14: logo · Noticias, Calendario, Ideas, Evalúa tu Portfolio en el medio (`links_html`, radios `bn-*`, `?abrir=noticias\|cal`) · iconos), menú lateral (`menu_lista_html`, `.mn-sep`), pie (`pie_html`), modo oscuro. El Filtro se despliega con el botón `.fl-btn` de la fila de la tabla (`_fila_tabla` en app.py, panel `fly_filtro` casi a todo el ancho). El buscador ya no va en la franja. |
+| `marca.py` | Franja negra (desde la v1.5.14: logo · Noticias, Calendario, Ideas, Evalúa tu Portfolio en el medio (`links_html`, radios `bn-*`, `?abrir=noticias\|cal`) · iconos), menú lateral (`menu_lista_html`, `.mn-sep`), pie (`pie_html`), modo oscuro. El Filtro se despliega con el botón `.fl-btn` de la fila de la tabla (`_fila_tabla` en app.py, panel `fly_filtro` casi a todo el ancho). El buscador ya no va en la franja; en las fichas de empresa y ETF va en la misma fila que «← Volver» (`render_fila_volver`). |
 | `tabla_visual.py` | Tabla de empresas (celdas, columna Valoración, ayudas de columnas). Desde la v1.5.8 el CSS de `.st-key-fila_excel` deja el Excel como ícono flotante sobre los títulos (alto 0) y el «?» de Empresa/ETF lleva la frase «Presioná en…»; desde la v1.5.10 en esa franja va también el interruptor «Empresas \| ETFs» (`_switch_tablas` en app.py, `.st-key-sw_tablas`) y en las tablas ya no hay botón de la otra tabla en la franja negra. Vale también para ETFs. |
 | `ficha.py` | Página de empresa en solapas: resumen, Análisis Fundamental (`tiles_analisis_v4`, `tab_analisis`), valuación, dividendos, competidores, directivos, estados. |
 | `af_pdf.py` | PDF del Análisis Fundamental. |
@@ -45,6 +45,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | `noticias.py` (v1.5.27: el tema del día (`_TEMAS`, `tema_del_dia`, `_elegir_por_tema`) abre cada bloque; v1.5.24: varios medios por bloque (`_LOC`, `_USA`, `_MUN`: feeds con medio e idioma), 3/5/5 notas, primera = tendencia del día (`_elegir_tendencia`, `tokens_historia`, `misma_historia`), una nota por ticker y por historia, tope 2 por medio; `ordenar`, `ordenar_bloques`: una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`; `ALIAS` = nombres de empresas), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
 
 ## data/ (datos y lógica)
+- `fichas_manuales.json` (v1.5.32): datos de ficha cargados a mano con fuente (hoy FISV); `fichas.cargar()` los usa solo para completar lo que Yahoo no trae.
 - `fetcher.py` (bajada Yahoo, incluye `beta`), `stockanalysis.py`, `yahoo_extra.py`, `moneda.py` (estados en otra moneda / ADR), `precios_vivos.py`, `historial_precios.py`.
 - `cedears.py` / `cedears.csv` / `byma_cedears.json` (lista oficial BYMA), `etfs.py` / `etfs.csv` (categorías: USA, Internacionales no USA, USA según Sectores, Temáticos, Minería, Materias Primas, Criptomonedas, Apalancados, Inversos).
 - `damodaran.py`, `damodaran_mapa.py`, `data/damodaran/` (medianas por industria y región).

@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.32 — resumen de FISV y «Volver» + buscador en una fila
+- **FISV sin resumen:** Yahoo no trae el perfil de FISV (ticker nuevo de Fiserv). Se agregó `data/fichas_manuales.json` (datos cargados a mano con su fuente: formulario 10-K 2025 de Fiserv) y `data/fichas.py` lo usa para completar SOLO lo que falta (lo de Yahoo nunca se pisa), así que `bajar_fichas.bat` puede rehacer `fichas.json` sin perderlo. Ahora las 265 empresas tienen resumen.
+- **Buscador encimado en las fichas de empresa y de ETF:** flotaba a una altura fija y, según la pantalla, quedaba sobre otra cosa. Ahora «← Volver…» y el buscador van juntos en una sola fila (`render_fila_volver` en app.py, `.st-key-fila_volver` en `ui/marca.py`): si el «Volver» se corre, el buscador se corre con él. En el celular quedan uno debajo del otro.
+
 ### v1.5.31 — logo equivocado de SPCX
 - Con SPCX, parqet devolvía el logo de «AXS» (el ticker SPCX era de un ETF viejo). Se sacó ese archivo (la app muestra las iniciales hasta que haya uno bueno) y `descargar_logos.py` ahora baja los tickers de `SOLO_POR_DOMINIO` (SPCX) solo por el dominio de la empresa (spacex.com). `descargar_logos.bat` acepta tickers: `descargar_logos.bat SPCX`.
 

@@ -103,5 +103,18 @@ chk(_h.count('class="nt-col"') == 3 and 'class="nt-g"' in _h, f"noticias: 3 colu
 chk("Mapa de Calor</a>" in MA.links_html("empresas", home=True) and MA.links_html("empresas", home=True).index("Mapa de Calor") < MA.links_html("empresas", home=True).index("Noticias"), "franja negra: Mapa de Calor a la izquierda de Noticias")
 chk("LAC" in CM.NO_ADR, "LAC es acción ordinaria")
 
+# --- v1.5.32: resumen de FISV a mano (Yahoo no lo trae) y «Volver» + buscador en una fila
+from data import fichas as FI
+_d, _f = FI.cargar()
+chk(len(_d["FISV"].get("descripcion_es", "")) > 200 and "Clover" in _d["FISV"]["descripcion_es"], "FISV tiene resumen")
+chk(_d["FISV"].get("mercado_nombre") == "NasdaqGS", "lo manual completa, no pisa lo de Yahoo")
+_t = {"AAA": {"descripcion_es": "de Yahoo"}}
+FI._con_manuales(_t, archivo=os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data", "fichas_manuales.json"))
+chk(_t["AAA"]["descripcion_es"] == "de Yahoo" and "FISV" in _t, "un dato de Yahoo no se pisa")
+chk(all(len(v.get("descripcion_es", "")) > 50 for v in _d.values()), "todas las empresas tienen resumen")
+chk("st-key-fila_volver" in MA.CSS and "flex:0 0 auto!important" in MA.CSS, "estilo de la fila Volver + buscador")
+_src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "app.py"), encoding="utf-8").read()
+chk("def render_fila_volver" in _src and _src.count('class="emp-vol"') == 2, "el Volver se dibuja solo en render_fila_volver (empresa y ETF)")
+
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)
