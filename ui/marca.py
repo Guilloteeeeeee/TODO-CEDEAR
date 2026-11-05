@@ -459,7 +459,7 @@ def links_html(activa="empresas", home=False):
             return f'<label for="bn-{k}" class="mc-lk" role="button" tabindex="0">{texto}</label>'
         return f'<a class="mc-lk" href="?inicio=0&amp;abrir={k}" target="_self">{texto}</a>'
     ev = "mc-lk mc-eval" + (" mc-on" if activa == "cartera" else "")
-    return (radios + ov + '<div class="mc-links">' + panel("noticias", "Noticias") + panel("cal", "Calendario")
+    return (radios + ov + '<div class="mc-links">' + '<a class="mc-lk" href="?pagina=mapa" target="_self">Mapa de Calor</a>' + panel("noticias", "Noticias") + panel("cal", "Calendario")
             + '<a class="mc-lk" href="?pagina=ideas" target="_self">Ideas</a>'
             + f'<a class="{ev}" href="?pagina=cartera" target="_self">Evalúa tu Portfolio</a></div>')
 
@@ -616,7 +616,7 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
     else:
         arriba = (_it_href("?inicio=0&menu=1", "Noticias Calientes del día", chica="en el inicio")
                   + _it_href("?inicio=0&menu=1", "Calendario Financiero", chica="en el inicio"))
-    arriba += _it_href("?pagina=mapa", "Mapa de calor") + _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
+    arriba += _it_href("?pagina=mapa", "Mapa de Calor") + _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
     # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
     if e["quienes_somos"]:

@@ -66,7 +66,7 @@ items = [{"tk": "AAA", "nombre": "Aaa Inc", "grupo": "Tecnología", "tam": 1e12,
          {"tk": "BBB", "nombre": "Bbb", "grupo": "Tecnología", "tam": 2e11, "var": 1.0, "precio": 20.0, "href": "?empresa=BBB"},
          {"tk": "CCC", "nombre": "Ccc", "grupo": "Salud", "tam": 5e11, "var": None, "precio": 5.0, "href": "?empresa=CCC"},
          {"tk": "ZZZ", "nombre": "Sin tamaño", "grupo": "Salud", "tam": None, "var": 1.0, "precio": 5.0, "href": "?empresa=ZZZ"}]
-h = M.mapa_html(items, "Mapa de calor de empresas", "empresas", texto_precios="05/11/2026 (17:58)")
+h = M.mapa_html(items, "Mapa de Calor de empresas", "empresas", texto_precios="05/11/2026 (17:58)")
 chk(h.count('class="mpc-t"') == 6, f"3 empresas con tamaño × 2 versiones (compu y celular) = 6 ({h.count('class=\"mpc-t\"')})")
 chk("ZZZ" not in h, "sin tamaño no se dibuja (no se inventa)")
 chk('href="?empresa=AAA"' in h and "Tecnología" in h and "Salud" in h, "links y sectores")
@@ -81,7 +81,7 @@ ie = M.items_empresas(dfm)
 chk(ie[0]["var"] == 1.5 and ie[1]["var"] is None and ie[0]["href"] == "?empresa=AAA", "items de empresas")
 ietf = M.items_etfs([{"ticker": "SPY", "nombre": "SPDR", "categoria": "USA"}], {"SPY": {"aum": 5e11, "precio": 500.0}}, {}, {"SPY": -0.5})
 chk(ietf[0]["tam"] == 5e11 and ietf[0]["var"] == -0.5 and ietf[0]["href"] == "?etf=SPY" and ietf[0]["precio"] == 500.0, "items de ETFs")
-chk("Mapa de calor" in MA.menu_lista_html(home=True) and "?pagina=mapa" in MA.menu_lista_html(home=False), "el menú lleva al mapa")
+chk("Mapa de Calor" in MA.menu_lista_html(home=True) and "?pagina=mapa" in MA.menu_lista_html(home=False), "el menú lleva al mapa")
 
 # --- buscador en su lugar y noticias desde arriba en 3 columnas
 chk("__BTOP__" not in MA.CSS and "__NTOP__" not in MA.CSS and "__FTOP__" not in MA.CSS, "no quedan marcas sin reemplazar")
@@ -100,6 +100,7 @@ _h = N.noticias_bloques_html(_bl, ahora=_ah)
 chk(_h.count('class="nt-col"') == 3 and 'class="nt-g"' in _h, f"noticias: 3 columnas ({_h.count('class=\"nt-col\"')})")
 
 # --- LAC
+chk("Mapa de Calor</a>" in MA.links_html("empresas", home=True) and MA.links_html("empresas", home=True).index("Mapa de Calor") < MA.links_html("empresas", home=True).index("Noticias"), "franja negra: Mapa de Calor a la izquierda de Noticias")
 chk("LAC" in CM.NO_ADR, "LAC es acción ordinaria")
 
 print(f"OK {ok} MAL {mal}")

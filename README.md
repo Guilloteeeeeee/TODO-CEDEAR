@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.30 — datos de las 265 empresas y «Mapa de Calor» en la franja negra
+- Datos nuevos de los `.bat` de Guille (05/11/2026): `data/cache_datos.json` (265 empresas), `data/fichas.json` (265 fichas) y los logos (`static/logos`, 265 PNG).
+- «Mapa de Calor» pasa a la franja negra, a la izquierda de Noticias (y sigue en el menú de las tres rayitas). Se escribe con las dos mayúsculas.
+- El mapa se achicó (ancho máximo 1.120 px y más bajo) para que entre entero en la pantalla de una compu.
+
 ### v1.5.29 — mapa de calor, variación del día, noticias en 3 columnas, buscador en su lugar
 - **Variación del día junto al precio** (pedido de Guille): «+1,2%» en verde / «-0,8%» en rojo, contra el cierre anterior. Va al lado del precio en la ficha de empresa y de ETF, y debajo del precio en las tablas de empresas y ETFs. Sale de la misma bajada de precios de hoy (Yahoo: la barra anterior de los 5 días; Stock Analysis de respaldo: el «+x (y%)» de la página). Si la fuente no la trae no se muestra nada (nunca se inventa). Código: `data/precios_vivos.py` (`var_dia`), `ui/tabla_visual.py` (`var_html`).
 - **Mapa de calor** (`?pagina=mapa`, menú de las tres rayitas → «Mapa de calor»): empresas (tamaño = capitalización, grupo = sector) o ETFs (tamaño = AUM, grupo = categoría), coloreados por la variación de hoy (rojo/gris/verde, tope en ±3%). Se calcula acá (treemap «squarified») y se dibuja con HTML puro, sin librerías de gráficos; versión de compu y versión de celular. Cada recuadro abre la ficha. Tamaño suavizado (potencia 0,6) para que se vean las chicas; la nota al pie lo dice. Código: `ui/mapa_calor.py`.

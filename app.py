@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.29"
+APP_VERSION = "1.5.30"
 
 import re
 import contextlib
@@ -935,11 +935,11 @@ def render_mapa(df: pd.DataFrame, texto_precios=None):
         precios = _precios_etfs(items_e) if (PRECIOS_VIVOS and items_e) else {}
         var = _var_etfs(items_e) if (PRECIOS_VIVOS and items_e) else {}
         items = _mc.items_etfs(etfs, guardados, precios, var)
-        html_m = _mc.mapa_html(items, "Mapa de calor de ETFs", "etfs", hay_var=any(v is not None for v in var.values()), texto_precios=_sin_html(texto_precios),
+        html_m = _mc.mapa_html(items, "Mapa de Calor de ETFs", "etfs", hay_var=any(v is not None for v in var.values()), texto_precios=_sin_html(texto_precios),
                                nota_tam="El tamaño es el patrimonio que administra cada ETF (AUM), suavizado para que se vean también los más chicos.")
     else:
         items = _mc.items_empresas(df)
-        html_m = _mc.mapa_html(items, "Mapa de calor de empresas", "empresas", hay_var=any(i["var"] is not None for i in items), texto_precios=_sin_html(texto_precios),
+        html_m = _mc.mapa_html(items, "Mapa de Calor de empresas", "empresas", hay_var=any(i["var"] is not None for i in items), texto_precios=_sin_html(texto_precios),
                                nota_tam="El tamaño es la capitalización bursátil, suavizada para que se vean también las más chicas.")
     st.markdown(html_m, unsafe_allow_html=True)
 

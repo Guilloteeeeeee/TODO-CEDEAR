@@ -166,7 +166,7 @@ def _layout(grupos, ancho, alto, banda, px_min):
 
 
 CSS = """
-.mpc-w{max-width:1500px;margin:-84px auto 0;position:relative;font-family:'Roboto Condensed','Roboto',Arial,sans-serif}
+.mpc-w{max-width:1120px;margin:-84px auto 0;position:relative;font-family:'Roboto Condensed','Roboto',Arial,sans-serif}
 .mpc-tit{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:4px 0 10px}
 .mpc-tit h2{margin:0;font-size:1.5rem;color:#0f172a;font-weight:800}
 .mpc-sw{display:inline-flex;border:1px solid #c3ccd8;border-radius:9px;overflow:hidden;background:#fff}
@@ -176,9 +176,9 @@ CSS = """
 .mpc-esc{display:flex;border-radius:4px;overflow:hidden}
 .mpc-esc span{display:block;width:34px;height:14px}
 .mpc-nota{font-size:12.5px;color:#64748b;margin:8px 0 0;line-height:1.5;text-align:justify}
-.mpc-caja{position:relative;width:100%;container-type:inline-size;background:#1f2330;border-radius:10px;overflow:hidden}
+.mpc-caja{position:relative;width:100%;max-width:1120px;margin:0 auto;container-type:inline-size;background:#1f2330;border-radius:10px;overflow:hidden}
 .mpc-mapa{position:relative;width:100%}
-.mpc-d{aspect-ratio:100/56;display:block}
+.mpc-d{aspect-ratio:100/48;display:block}
 .mpc-m{aspect-ratio:100/150;display:none}
 .mpc-g{position:absolute;box-sizing:border-box;border:1.5px solid #1f2330;background:#2a2f3e;overflow:hidden}
 .mpc-gl{position:absolute;left:0;right:0;top:0;box-sizing:border-box;padding:0 5px;color:#e5e7eb;font-weight:700;text-transform:uppercase;letter-spacing:.3px;line-height:1;
@@ -203,7 +203,7 @@ def mapa_html(items, titulo, activo, hay_var=True, texto_precios=None, nota_tam=
     if not grupos:
         cuerpo = '<div class="mpc-nota" style="text-align:center;padding:40px 0">Todavía no hay datos para armar el mapa.</div>'
     else:
-        d = _layout(grupos, 100.0, 56.0, 1.7, 0.75)
+        d = _layout(grupos, 100.0, 48.0, 1.8, 0.75)
         m = _layout(grupos, 100.0, 150.0, 3.6, 2.3)
         cuerpo = f'<div class="mpc-caja"><div class="mpc-mapa mpc-d">{d}</div><div class="mpc-mapa mpc-m">{m}</div></div>'
     aviso = ""
