@@ -99,7 +99,10 @@ def _leer_descarga(datos, simbolos):
                     continue
                 f = serie.index[-1]
                 f = f.date() if hasattr(f, "date") else None
-                out[s] = (p, f)
+                # v1.5.29: la barra anterior de la misma descarga es el cierre del dia previo -> variacion del dia (en %)
+                ant = _num(serie.iloc[-2]) if len(serie) >= 2 else None
+                var = round((p / ant - 1) * 100, 2) if ant and 0.2 <= p / ant <= 5 else None
+                out[s] = (p, f, var)
             except Exception:  # noqa: BLE001
                 continue
     except Exception:  # noqa: BLE001
@@ -110,13 +113,14 @@ def _leer_descarga(datos, simbolos):
 def fecha_mas_comun(precios):
     """La fecha del dato que mas se repite entre los precios bajados (para decir "precios al dd/mm")."""
     cuenta = {}
-    for _, f in precios.values():
+    for v in precios.values():
+        f = v[1]
         if f is not None:
             cuenta[f] = cuenta.get(f, 0) + 1
     return max(cuenta, key=cuenta.get) if cuenta else None
 
 
-def aplicar_precios(df, precios, fecha=None, hora=None, fuentes=None):
+def aplicar_precios(df, precios, fecha=None, hora=None, fuentes=None, var=None):
     """Copia de `df` con el precio de hoy de cada empresa (precios: {ticker: precio}). Devuelve (df_nuevo, cantidad_actualizada).
     Se guarda el precio viejo en `precio_cache`, y la fecha, la hora y la fuente del dato en `precio_fecha`, `precio_hora` y `precio_fuente`
     (fuentes: {ticker: "Yahoo Finance" | "Stock Analysis"}). Se ignora un precio que se aleje demasiado del del cache."""
@@ -130,6 +134,7 @@ def aplicar_precios(df, precios, fecha=None, hora=None, fuentes=None):
     df["precio_fecha"] = None
     df["precio_hora"] = None
     df["precio_fuente"] = None
+    df["var_dia"] = float("nan")          # v1.5.29: variacion del dia en % (cierre anterior -> ultimo precio); vacia si la fuente no la trajo
     f_txt = fecha.strftime("%d/%m/%Y") if hasattr(fecha, "strftime") else None
     n = 0
     for i in df.index:
@@ -142,6 +147,9 @@ def aplicar_precios(df, precios, fecha=None, hora=None, fuentes=None):
         df.at[i, "precio_en_vivo"] = True
         df.at[i, "precio_fecha"], df.at[i, "precio_hora"] = f_txt, hora
         df.at[i, "precio_fuente"] = (fuentes or {}).get(t) or FUENTE_YAHOO
+        vd = (var or {}).get(t)
+        if vd is not None:
+            df.at[i, "var_dia"] = float(vd)
         mc = _num(df.at[i, "market_cap"]) if "market_cap" in df.columns else None
         if mc is not None:
             df.at[i, "market_cap"] = mc * k
@@ -191,10 +199,11 @@ def bajar_usd(tickers, descargador=None, respaldo=None):
             extra = {}
         for t, v in extra.items():
             if t in faltan and _num(v[0]):
-                crudo[t] = (float(v[0]), v[1] if len(v) > 1 else None)
+                crudo[t] = (float(v[0]), v[1] if len(v) > 1 else None, v[2] if len(v) > 2 else None)
                 fuente[t] = FUENTE_SA
     usd = {t: crudo[t][0] for t in tickers if t in crudo}
-    return {"usd": usd, "fecha": fecha_mas_comun({t: crudo[t] for t in usd}), "hora": hora_texto(ahora), "fuente": fuente}
+    var = {t: float(crudo[t][2]) for t in usd if len(crudo[t]) > 2 and crudo[t][2] is not None}      # v1.5.29: variacion del dia (%)
+    return {"usd": usd, "fecha": fecha_mas_comun({t: crudo[t] for t in usd}), "hora": hora_texto(ahora), "fuente": fuente, "var": var}
 
 
 def bajar_ars(simbolos_por_ticker, descargador=None):
@@ -313,6 +322,13 @@ def parsear_precio_sa(texto):
         precio = _num(m2.group(1).replace(",", ""))
     if precio is None:
         return None
+    var = None
+    m4 = re.search(r"[\d,]+\.\d{2,4}\s+([+\-−]?)\s*[\d,.]+\s*\(\s*([+\-−]?)\s*([\d.,]+)%\s*\)\s*(?:At close|Real-Time|After|Pre)", plano)
+    if m4:
+        v = _num(m4.group(3).replace(",", ""))
+        if v is not None:
+            neg = "-" in m4.group(1) + m4.group(2) or "−" in m4.group(1) + m4.group(2)
+            var = round(-v if neg else v, 2)
     fecha = None
     m3 = re.search(r"At close:\s*([A-Z][a-z]{2}) (\d{1,2}), (\d{4})", plano)
     if m3:
@@ -320,7 +336,7 @@ def parsear_precio_sa(texto):
             fecha = _dt.strptime(f"{m3.group(1)} {m3.group(2)} {m3.group(3)}", "%b %d %Y").date()
         except ValueError:
             fecha = None
-    return precio, fecha
+    return precio, fecha, var
 
 
 def descargar_stockanalysis(tickers, get=None, robots=None, max_empresas=None, presupuesto=None, pausa=None, reloj=None, dormir=None):

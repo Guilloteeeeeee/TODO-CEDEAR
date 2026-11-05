@@ -23,6 +23,7 @@ NO_ADR = frozenset({
     "ACN", "AEM", "ASML", "AZN", "LIN", "MDT", "MELI", "NU", "RACE", "SHOP", "SPOT",
     "CCJ", "GRMN", "JCI", "TEAM", "BG",          # v1.5.17 (tanda 1)
     "NBIS", "STNE", "XP", "PAGS", "STLA", "PHG", "B", "KGC", "PAAS", "NXE",   # v1.5.26 (tanda 2): acciones ordinarias, no ADR
+    "LAC",                                       # v1.5.29: Lithium Americas (Canadá, NYSE): acción ordinaria, no ADR (lo marcó bajar_fichas)
 })
 
 _MERCADOS = {

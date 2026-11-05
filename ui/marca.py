@@ -140,7 +140,7 @@ CSS_BUSCADOR = """
 @media (min-width:901px){
 [data-testid="stMainBlockContainer"]{position:relative;padding-left:28px!important;padding-right:28px!important}
 div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!important}      /* la lista de sugerencias es más ancha que la caja */
-[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>.st-key-buscador,[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>.st-key-buscador{position:absolute;top:__BTOP__px;right:28px;width:250px;margin:0;z-index:60}
+[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>[data-testid="stLayoutWrapper"]>.st-key-buscador,[data-testid="stMainBlockContainer"]>[data-testid="stVerticalBlock"]>.st-key-buscador{position:absolute;top:__BTOP__px;left:196px;width:270px;margin:0;z-index:60}   /* v1.5.29: en las páginas de empresa, ETF, etc. va donde está en la tabla (a la izquierda, después del interruptor), no en el borde derecho */
 /* en las páginas de empresa, ETF y cartera el contenido sube (los elementos vacíos de Streamlit dejaban aire bajo la barra de mercados) */
 [data-testid="stElementContainer"]:has(.emp-vol){margin-top:__SUBE__px;margin-bottom:-26px}
 [data-testid="stElementContainer"]:has(.cr-top){margin-top:-46px}
@@ -170,6 +170,13 @@ body:has(#bn-noticias:checked) .fly-b,body:has(#bn-cal:checked) .fly-b,body:has(
 @media (min-width:901px){
 /* Noticias y Calendario se abren desde el borde derecho; el Filtro se despliega debajo de su botón, casi a todo el ancho */
 body:has(#bn-noticias:checked) .st-key-fly_noticias,body:has(#bn-cal:checked) .st-key-fly_cal{right:0}
+/* v1.5.29: las Noticias se despliegan desde arriba (debajo de la franja negra), casi a toda la pantalla y en 3 columnas: Locales | Estados Unidos | Resto del mundo */
+body:has(#bn-noticias:checked) .st-key-fly_noticias{top:__NTOP__px;bottom:auto;left:32px;right:32px;width:auto;height:auto;max-height:calc(100vh - __NTOP__px - 24px);border-radius:14px;border:1px solid #d5dde6;
+  box-shadow:0 18px 40px rgba(15,23,42,.28);padding:14px 28px 26px!important;animation:nt-baja .22s ease}
+@keyframes nt-baja{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:none}}
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px;align-items:start}
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-col{min-width:0}
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-b{margin-top:6px!important}
 body:has(#bn-filtro:checked) .st-key-fly_filtro{top:__FTOP__px;bottom:auto;left:40px;right:40px;width:auto;height:auto;max-height:calc(100vh - __FTOP__px - 20px);border-radius:14px;border:1px solid #d5dde6;
   box-shadow:0 18px 40px rgba(15,23,42,.28);padding:20px 26px 26px!important}
 }
@@ -182,7 +189,7 @@ body:has(#bn-filtro:checked) .st-key-fly_filtro{top:__FTOP__px;bottom:auto;left:
 .mc-tema{order:2}   /* en el celular el logo va primero y a la derecha la luna, el toro y el menú */
 }
 """
-CSS_BUSCADOR = CSS_BUSCADOR.replace("__BTOP__", "152").replace("__SUBE__", "-116").replace("__FTOP__", "184")
+CSS_BUSCADOR = CSS_BUSCADOR.replace("__BTOP__", "148").replace("__SUBE__", "-116").replace("__FTOP__", "184").replace("__NTOP__", "84")
 CSS += CSS_BUSCADOR
 
 
@@ -609,7 +616,7 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
     else:
         arriba = (_it_href("?inicio=0&menu=1", "Noticias Calientes del día", chica="en el inicio")
                   + _it_href("?inicio=0&menu=1", "Calendario Financiero", chica="en el inicio"))
-    arriba += _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
+    arriba += _it_href("?pagina=mapa", "Mapa de calor") + _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
     # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
     if e["quienes_somos"]:

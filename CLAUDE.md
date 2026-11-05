@@ -21,7 +21,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 3. Score: `scoring/engine.py` (`score_dataframe`, `calcular_score`, respaldo por sector). Pesos/ajustes: `config/ajustes.py`, sectores: `config/sectors.py`.
 
 ## app.py (≈2.250 líneas) — rutas y funciones clave
-- `APP_VERSION` (línea ~9). `main()` (~1870): lee `?pagina=quienes|cartera|ideas`, `?empresa=TICKER`, `?etf=TICKER`, `?tabla=etfs`, `?menu=1`, `?debug=1`.
+- `APP_VERSION` (línea ~9). `main()` (~1870): lee `?pagina=quienes|cartera|ideas`, `?empresa=TICKER`, `?etf=TICKER`, `?tabla=etfs`, `?menu=1`, `?debug=1`, `?pagina=mapa` (v1.5.29).
 - Tabla de empresas: `render_filtros_inline`, `filtrar_ordenar`, `render_tabla_visual`, `render_main_table`. ETFs: `render_filtro_etfs`, `render_tabla_etfs`, `render_pagina_etf`.
 - Ficha de empresa: `render_pagina_empresa` (~1310) → `ui/ficha.py`. Botón PDF del análisis: `_boton_pdf_analisis` → `ui/af_pdf.py`.
 - Evaluá tu Portfolio (`?pagina=cartera`): `render_cartera` (~1470, dos mosaicos) → `_evaluar_cartera` (~1577) y `_rentabilidad_anual` (~1723).
@@ -40,6 +40,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 | `cartera_visual.py` | Tarjetas HTML de la evaluación (`visual_html`, `_bloque`, `_bloque_donut`, `_md`: `**negrita**`, `==dato==` (negrita negra) y `__cursiva__` para las Notas; `_ajuste`; estilo = tarjetas blancas como el resto del sitio). |
 | `cartera_informe.py` | PDF de la evaluación con membrete (`pdf_informe`, reportlab, tortas `Doughnut`) y HTML de respaldo (`html_informe`). |
 | `mercados.py`, `inicio.py` | Barra de mercados (dólares, Merval, bolsas, petróleo…; `obtener`, `armar`, `barra_html`) y pantalla de inicio con «Comenzar» (`hero_html`; vista previa desenfocada y FOTO FIJA de la app con empresas reales (`FOTO`, del 02/11/2026; no se actualiza sola: se cambia a mano cuando se arme el score nuevo); se muestra con `en_landing` en `main()`; `?inicio=0` la salta). |
+| `mapa_calor.py` | Mapa de calor (v1.5.29, `?pagina=mapa&tipo=empresas\|etfs`, `render_mapa` en app.py): `squarify` (treemap en Python), `color_var`, `armar_grupos`, `mapa_html`, `items_empresas`, `items_etfs`; HTML con recuadros en %, fuentes en `cqw`, versión compu y celular. Variación del día: columna `var_dia` (`precios_vivos.aplicar_precios`) y `var_html` de `tabla_visual.py` (tabla, ficha, ETFs). |
 | `cartera_ocr.py` | Lectura de capturas con RapidOCR (opcional; si no está, la app sigue). |
 | `noticias.py` (v1.5.27: el tema del día (`_TEMAS`, `tema_del_dia`, `_elegir_por_tema`) abre cada bloque; v1.5.24: varios medios por bloque (`_LOC`, `_USA`, `_MUN`: feeds con medio e idioma), 3/5/5 notas, primera = tendencia del día (`_elegir_tendencia`, `tokens_historia`, `misma_historia`), una nota por ticker y por historia, tope 2 por medio; `ordenar`, `ordenar_bloques`: una macro, mercado AR en Locales; `_MACRO`, `_MERCADO_AR`; `ALIAS` = nombres de empresas), `calendario.py` (Hoy en verde), `quienes.py`, `exportar.py` (Excel), `criterios.py`, `tecnico.py`, `logos.py`, `banderas.py`, `traducir.py` | Lo que dice el nombre. |
 
@@ -71,7 +72,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 
 ## Pruebas
 - `control_cobertura.py` + `tests/test_cobertura.py`: cada CEDEAR de BYMA está en la app o figura con su motivo (pendiente de tanda / no se carga). Al cargar una tanda: mover los símbolos de `PENDIENTES` y correr la prueba.
-- `tests/test_v1527_tema.py`, `tests/test_v1526_tanda2.py` (las 50 de la tanda 2: grupo, ratio, industria, logo), `tests/test_v1524_noticias.py`, `tests/test_damodaran_mapa.py`, `tests/test_v1522_rapidez.py` (peso de la página, logos como archivo, precios en segundo plano), `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz), `tests/test_v157_mercados.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
+- `tests/test_v1529_variacion_mapa.py` (variación del día, mapa de calor, buscador, noticias en 3 columnas), `tests/test_v1527_tema.py`, `tests/test_v1526_tanda2.py` (las 50 de la tanda 2: grupo, ratio, industria, logo), `tests/test_v1524_noticias.py`, `tests/test_damodaran_mapa.py`, `tests/test_v1522_rapidez.py` (peso de la página, logos como archivo, precios en segundo plano), `tests/test_v145_cartera.py`, `tests/test_v152_noticias.py`, `tests/test_v154_pdf_broker.py` (PDFs de IOL/Balanz), `tests/test_v157_mercados.py` y `tests/test_v149_carteras_todo_tipo.py` (70 carteras × 8 edades × 3 perfiles; revisa tono, bases fijas, PDF): `python tests/<archivo>.py` → "OK n MAL 0".
 - Para ver una pantalla sin la app entera: armar un harness que importe solo las funciones (ver `_evaluar_cartera`) y usar Playwright; Yahoo no responde acá.
 
 ## Publicar una versión

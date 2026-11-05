@@ -8,7 +8,7 @@ from urllib.parse import quote, quote_plus
 from ui import etf_iconos as _ic
 from ui import ficha as F
 from ui.banderas import bandera_html
-from ui.tabla_visual import _money, _n, barra_52s_html
+from ui.tabla_visual import _money, _n, barra_52s_html, var_html
 
 INTRO = ("Un ETF es una canasta de activos (acciones, bonos o materias primas) que se compra como si fuera una sola acción. "
          "Es información educativa, no una recomendación.")        # v1.2.67: ya no es un texto fijo: sale al pasar el mouse por el título "ETF"
@@ -216,7 +216,7 @@ def logo_chico_html(e, d=None):
     return f'<div class="etf-lg">{_icono_dibujo(e)}</div>'
 
 
-def _fila(e, d, precio):
+def _fila(e, d, precio, var=None):
     tk = e["ticker"]
     nombre = html.escape(e.get("nombre") or tk)
     tags = ""
@@ -226,7 +226,7 @@ def _fila(e, d, precio):
         tags += (f'<span class="etf-tg etf-bk" title="No tiene CEDEAR: no se puede comprar desde pesos en el mercado local; hay que pedirlo a la mesa del broker.">'
                  f'{html.escape(e["acceso"])}</span>')
     nd = '<span class="etf-nd">—</span>'
-    p = _usd(precio) if _n(precio) else nd
+    p = (_usd(precio) + var_html(var)) if _n(precio) else nd
     g = html.escape(e.get("gestor") or (d or {}).get("gestor") or "") or nd
     lab = lambda t: f'<span class="etf-lab">{t}</span>'   # noqa: E731
     return (f'<div class="etf-r"><div class="etf-id">{logo_chico_html(e, d)}<div class="etf-tx"><div class="etf-nm"><a href="?etf={quote(tk, safe="")}" target="_self">{nombre}</a></div>'
@@ -239,12 +239,12 @@ def _fila(e, d, precio):
             f'<div class="etf-v ctr">{lab("Comisión")}{comision_texto((d or {}).get("comision"))}</div></div>')
 
 
-def tabla_html(etfs, datos=None, precios=None):
+def tabla_html(etfs, datos=None, precios=None, variaciones=None):
     """Las filas de la tabla (los títulos son botones de Streamlit, ver app.render_tabla_etfs, para que se pueda ordenar)."""
     datos, precios = datos or {}, precios or {}
     if not etfs:
         return '<div class="etf"><div class="etf-t"><div class="etf-vacio">No hay ETFs que coincidan con el filtro.</div></div></div>'
-    filas = "".join(_fila(e, datos.get(e["ticker"]), precios.get(e["ticker"]) or (datos.get(e["ticker"]) or {}).get("precio")) for e in etfs)
+    filas = "".join(_fila(e, datos.get(e["ticker"]), precios.get(e["ticker"]) or (datos.get(e["ticker"]) or {}).get("precio"), (variaciones or {}).get(e["ticker"])) for e in etfs)
     return f'<div class="etf"><div class="etf-t">{filas}</div></div>'
 
 
@@ -396,7 +396,7 @@ def torta_html(items):
             f'<div class="lgs">{"".join(filas)}</div></div>')
 
 
-def encabezado_etf(e, d, precio, cedear):
+def encabezado_etf(e, d, precio, cedear, var=None):
     """La banda de arriba de la pagina del ETF: lo que representa (icono), nombre, mercado, ticker, categoria; a la derecha, el precio en dolares y el del CEDEAR."""
     d = d or {}
     tk = e["ticker"]
@@ -406,7 +406,7 @@ def encabezado_etf(e, d, precio, cedear):
     p = _n(precio) or _n(d.get("precio"))
     pr = ""
     if p and p > 0:
-        pr = f'<div class="pr"><div class="v">{_money(p)}</div><div class="ars">{cedear_linea(e, cedear)}</div></div>'
+        pr = f'<div class="pr"><div class="v">{_money(p)}{var_html(var, grande=True)}</div><div class="ars">{cedear_linea(e, cedear)}</div></div>'
     return (f'<div class="fch"><div class="fch-t s12" style="--ac:#64748b"><div class="fch-hd"><div class="id">{icono_html(e)}<div>'
             f'<div class="nm">{html.escape(e.get("nombre") or d.get("nombre") or tk)}</div>'
             f'<div class="sb"><span class="tk">{tk_txt}</span>{cat}</div></div></div>{pr}</div></div></div>')

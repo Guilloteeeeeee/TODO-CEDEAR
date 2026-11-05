@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.29 — mapa de calor, variación del día, noticias en 3 columnas, buscador en su lugar
+- **Variación del día junto al precio** (pedido de Guille): «+1,2%» en verde / «-0,8%» en rojo, contra el cierre anterior. Va al lado del precio en la ficha de empresa y de ETF, y debajo del precio en las tablas de empresas y ETFs. Sale de la misma bajada de precios de hoy (Yahoo: la barra anterior de los 5 días; Stock Analysis de respaldo: el «+x (y%)» de la página). Si la fuente no la trae no se muestra nada (nunca se inventa). Código: `data/precios_vivos.py` (`var_dia`), `ui/tabla_visual.py` (`var_html`).
+- **Mapa de calor** (`?pagina=mapa`, menú de las tres rayitas → «Mapa de calor»): empresas (tamaño = capitalización, grupo = sector) o ETFs (tamaño = AUM, grupo = categoría), coloreados por la variación de hoy (rojo/gris/verde, tope en ±3%). Se calcula acá (treemap «squarified») y se dibuja con HTML puro, sin librerías de gráficos; versión de compu y versión de celular. Cada recuadro abre la ficha. Tamaño suavizado (potencia 0,6) para que se vean las chicas; la nota al pie lo dice. Código: `ui/mapa_calor.py`.
+- **Noticias**: el panel se despliega desde arriba, cubre casi todo el ancho y muestra los tres bloques en 3 columnas (en el celular siguen apilados).
+- **Buscador** de las fichas y demás pantallas: vuelve a su lugar (a la izquierda, junto a «Volver»), ya no al extremo derecho.
+- `config/mercados.py`: LAC (Lithium Americas, Canadá/NYSE) es acción ordinaria, no ADR (lo marcó `bajar_fichas`).
+- Prueba nueva: `tests/test_v1529_variacion_mapa.py`.
+
 ### v1.5.28 — noticias sin pie y sin lista de medios
 - Pedido de Guille: el recuadro «Noticias Calientes del día» ya no lleva el párrafo del pie («Fuentes: … Es información, no una recomendación…») ni la lista de medios al lado del título de cada bloque (Locales, Estados Unidos, Resto del mundo). Cada nota sigue nombrando su medio junto a la hora. Si un bloque no responde, el mensaje es genérico, sin nombres de medios.
 

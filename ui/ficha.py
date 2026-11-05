@@ -33,7 +33,7 @@ from config.sectors import metricas_de, partes_sector
 from data import cedears as _cedears
 from data import fichas as _fichas
 from ui.banderas import bandera_html
-from ui.tabla_visual import (_TEXTO_EN_RELLENO, _celda_dy, _clamp, _dy_datos, _mcap, _money, _n, _svg_dy, _texto_categoria, _txt, barra_52s_html, texto_categoria)
+from ui.tabla_visual import (_TEXTO_EN_RELLENO, _celda_dy, _clamp, _dy_datos, _mcap, _money, _n, _svg_dy, _texto_categoria, _txt, barra_52s_html, texto_categoria, var_html)
 
 ETIQUETAS_METODO = {"ev_ebitda": "EV/EBITDA", "per": "P/E", "p_fcf": "P/FCF", "p_b": "P/Book", "dividend_yield": "Dividend Yield",
                     "peg": "PEG", "p_ffo": "P/FFO", "p_affo": "P/AFFO", "ps": "P/S", "ev_ventas": "EV/Ventas",
@@ -516,7 +516,7 @@ def _encabezado(row, mercado, ficha, datos=None, fecha_datos=None):
     if p and p > 0:
         pesos = _linea_pesos(row, datos)
         pesos_html = f'<div class="ars">{pesos}</div>' if pesos else ""
-        precio = f'<div class="pr"><div class="v">{_money(p)}</div>{pesos_html}</div>'
+        precio = f'<div class="pr"><div class="v">{_money(p)}{var_html(row.get("var_dia"), grande=True)}</div>{pesos_html}</div>'
     else:
         precio = ""
     return (f'<div class="fch-t s12" style="--ac:#64748b"><div class="fch-hd"><div class="id">{logo_html(t, 72)}<div>'

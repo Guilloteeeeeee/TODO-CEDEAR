@@ -609,9 +609,27 @@ def celda_valoracion(row):
     return _celda_valoracion(row, con_categoria=False)
 
 
+def var_html(v, grande=False):
+    """Variacion del dia al lado del precio: '+1,2%' en verde, '-0,8%' en rojo, '0,0%' en gris. Sin dato no se muestra nada (nunca se inventa).
+    Estilo en linea para que sirva igual en la tabla, la ficha y los ETFs."""
+    v = _n(v)
+    if v is None or v != v:
+        return ""
+    if abs(v) < 0.05:
+        col, txt = "#64748b", "0,0%"
+    else:
+        col = "#0a7a3a" if v > 0 else "#c62828"
+        txt = f"{v:+.1f}%".replace(".", ",")
+    tam = "15px" if grande else "11.5px"
+    return (f'<span class="vd" title="Variación de hoy respecto del cierre anterior" '
+            f'style="color:{col};font-size:{tam};font-weight:600;margin-left:6px;white-space:nowrap">{txt}</span>')
+
+
 def _celda_precio(row):
     p = _n(row.get("precio_actual"))
-    return f'<span class="tv2-pr" title="Precio actual">{_money(p)}</span>' if p and p > 0 else '<span class="tv2-pr">—</span>'
+    if not (p and p > 0):
+        return '<span class="tv2-pr">—</span>'
+    return f'<span class="tv2-pr" title="Precio actual">{_money(p)}</span>{var_html(row.get("var_dia"), grande=False)}'
 
 
 def _celda_fv(row):

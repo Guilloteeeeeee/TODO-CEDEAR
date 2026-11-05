@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.28"
+APP_VERSION = "1.5.29"
 
 import re
 import contextlib
@@ -218,7 +218,7 @@ def _precios_usd(tickers: tuple) -> dict:
     """Precios en dolares de todas las empresas (un solo pedido a Yahoo; las que falten, a Stock Analysis). Si falla, {'usd': {}} y la app
     sigue con el precio del cache. v1.5.22: se guardan PRECIOS_MINUTOS_CACHE minutos y, al vencer, se renuevan EN SEGUNDO PLANO (data/swr.py): antes la
     primera visita después del vencimiento esperaba toda la bajada."""
-    vacio = {"usd": {}, "fecha": None, "hora": _pv.hora_texto(), "fuente": {}}
+    vacio = {"usd": {}, "fecha": None, "hora": _pv.hora_texto(), "fuente": {}, "var": {}}
     return _swr.obtener(("usd", tickers), lambda: _pv.bajar_usd(tickers), max(1, int(PRECIOS_MINUTOS_CACHE)) * 60,
                         valido=lambda r: bool(r.get("usd")), vacio=vacio)
 
@@ -466,14 +466,25 @@ def _etfs_guardados():
 
 
 @st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
-def _precios_etfs(items: tuple) -> dict:
-    """Precios en dolares de los ETFs: items = ((ticker, simbolo de Yahoo), ...). Un solo pedido a Yahoo. {} si no responde."""
+def _info_etfs(items: tuple) -> dict:
+    """Precios en dolares y variacion del dia de los ETFs: items = ((ticker, simbolo de Yahoo), ...). Un solo pedido a Yahoo.
+    {'precio': {ticker: usd}, 'var': {ticker: %}} (vacios si no responde)."""
     try:
         info = _pv.bajar_usd([s for _, s in items], respaldo=False)
-        usd = info.get("usd") or {}
-        return {t: usd[s] for t, s in items if s in usd}
+        usd, var = info.get("usd") or {}, info.get("var") or {}
+        return {"precio": {t: usd[s] for t, s in items if s in usd}, "var": {t: var[s] for t, s in items if s in var}}
     except Exception:  # noqa: BLE001
-        return {}
+        return {"precio": {}, "var": {}}
+
+
+def _precios_etfs(items: tuple) -> dict:
+    """Precios en dolares de los ETFs (ver _info_etfs). {} si Yahoo no responde."""
+    return _info_etfs(items)["precio"]
+
+
+def _var_etfs(items: tuple) -> dict:
+    """Variacion del dia (%) de los ETFs (ver _info_etfs). {} si Yahoo no responde."""
+    return _info_etfs(items)["var"]
 
 
 def _extras_etf(e: dict) -> dict:
@@ -880,7 +891,9 @@ def render_tabla_etfs(etfs, sel):
                     '<p>Estamos preparando la tabla de ETFs. Muy pronto la vas a poder ver acá, igual que la de empresas.</p></div>', unsafe_allow_html=True)
         return
     guardados, fecha_g = _etfs_guardados()
-    precios = _precios_etfs(tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs)) if PRECIOS_VIVOS else {}
+    _items_e = tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs)
+    precios = _precios_etfs(_items_e) if PRECIOS_VIVOS else {}
+    variaciones = _var_etfs(_items_e) if PRECIOS_VIVOS else {}
     sort_col = st.session_state.get("etf_sort_col")
     sort_asc = bool(st.session_state.get("etf_sort_asc", True))
     mostrados = _ui_etfs.ordenar(_filtrar_etfs_tecnicos(_etfs.filtrar(etfs, "", sel)), guardados, precios, sort_col, sort_asc)
@@ -906,7 +919,37 @@ def render_tabla_etfs(etfs, sel):
                 st.session_state["etf_sort_col"] = clave
                 st.session_state["etf_sort_asc"] = clave in _ui_etfs.TEXTO or clave == "comision"
             st.rerun()
-    st.markdown(_ui_etfs.tabla_html(mostrados, guardados, precios), unsafe_allow_html=True)
+    st.markdown(_ui_etfs.tabla_html(mostrados, guardados, precios, variaciones), unsafe_allow_html=True)
+
+
+def render_mapa(df: pd.DataFrame, texto_precios=None):
+    """Mapa de calor (?pagina=mapa, v1.5.29): empresas (tamaño = capitalización, grupo = sector) o ETFs (tamaño = AUM, grupo = categoría), coloreados por la variación de hoy."""
+    from ui import mapa_calor as _mc
+    tipo = "etfs" if st.query_params.get("tipo") == "etfs" else "empresas"
+    st.markdown(f"<style>{_mc.CSS}</style>", unsafe_allow_html=True)
+    if tipo == "etfs":
+        from data import etfs as _etfs
+        etfs = _etfs_lista()
+        guardados, _f = _etfs_guardados() if etfs else ({}, None)
+        items_e = tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs)
+        precios = _precios_etfs(items_e) if (PRECIOS_VIVOS and items_e) else {}
+        var = _var_etfs(items_e) if (PRECIOS_VIVOS and items_e) else {}
+        items = _mc.items_etfs(etfs, guardados, precios, var)
+        html_m = _mc.mapa_html(items, "Mapa de calor de ETFs", "etfs", hay_var=any(v is not None for v in var.values()), texto_precios=_sin_html(texto_precios),
+                               nota_tam="El tamaño es el patrimonio que administra cada ETF (AUM), suavizado para que se vean también los más chicos.")
+    else:
+        items = _mc.items_empresas(df)
+        html_m = _mc.mapa_html(items, "Mapa de calor de empresas", "empresas", hay_var=any(i["var"] is not None for i in items), texto_precios=_sin_html(texto_precios),
+                               nota_tam="El tamaño es la capitalización bursátil, suavizada para que se vean también las más chicas.")
+    st.markdown(html_m, unsafe_allow_html=True)
+
+
+def _sin_html(t):
+    """'Datos al <b>05/11/2026</b> (17:58)' -> '05/11/2026 (17:58)' para la nota del mapa."""
+    if not t:
+        return None
+    import re as _re
+    return _re.sub(r"<[^>]+>", "", str(t)).replace("Datos al", "").replace("Datos de hoy", "").strip() or None
 
 
 def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
@@ -924,8 +967,9 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     extra = _extras_etf(e)
     d = extra.get("datos") or {}
     precio = (_precios_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk) or d.get("precio")
+    var = (_var_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk)
     cedear = _cedear_etf(df, e, precio)
-    st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear), unsafe_allow_html=True)
+    st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear, var), unsafe_allow_html=True)
     t_res, t_com, t_gra, t_not = st.tabs(["Resumen", "Composición", "Análisis Técnico y Rendimiento", "Noticias"])
     with t_res:
         st.markdown(_ui_etfs.con_intro("resumen", _ui_etfs.tab_resumen(e, d, precio, cedear)), unsafe_allow_html=True)
@@ -1981,9 +2025,10 @@ def main():
     en_quienes = st.query_params.get("pagina") == "quienes"
     en_cartera = st.query_params.get("pagina") == "cartera"
     en_ideas = st.query_params.get("pagina") == "ideas"
-    en_inicio = not (en_quienes or en_cartera or en_ideas or etf_sel or st.query_params.get("empresa"))
+    en_mapa = st.query_params.get("pagina") == "mapa"      # v1.5.29: mapa de calor de empresas y ETFs
+    en_inicio = not (en_quienes or en_cartera or en_ideas or en_mapa or etf_sel or st.query_params.get("empresa"))
     en_landing = en_inicio and not dict(st.query_params) and not st.session_state.get("entro")      # v1.5.7: pantalla de inicio (solo con la URL pelada y antes de tocar «Comenzar»)
-    activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas) else "empresas"))
+    activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas or en_mapa) else "empresas"))
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
                 + encabezado_html(NOMBRE_APP, activa=activa, menu_abierto=st.query_params.get("menu") == "1", links=not en_landing, home=en_inicio and not en_landing), unsafe_allow_html=True)
     try:
@@ -2003,7 +2048,7 @@ def main():
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
     if en_quienes or en_cartera or en_ideas:      # v1.5.14: en las fichas (empresa / ETF) alcanza con «Volver»; en las tablas el cambio va en el interruptor sobre la tabla (v1.5.10)
         render_nav_tablas("ambos")
-    if en_quienes or en_ideas or etf_sel or st.query_params.get("empresa"):
+    if en_quienes or en_ideas or en_mapa or etf_sel or st.query_params.get("empresa"):
         render_buscador()
     aviso = texto_aviso_legal()
     fecha = None
@@ -2082,7 +2127,7 @@ def main():
         try:
             with contextlib.nullcontext():
                 info_p = _precios_usd(_orden_tickers(df))
-            df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"))
+            df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"), info_p.get("var"))
             if n_p:
                 df = df_p
                 f_p = info_p.get("fecha")
@@ -2108,6 +2153,12 @@ def main():
     # Estilos de la tabla, de la escala, de la pagina de empresa y de las banderas (una sola vez por pagina)
     st.markdown(f"<style>{css_fuente()}{CSS_VISUAL}{CSS_FICHA}{css_condensada()}</style>", unsafe_allow_html=True)
     st.markdown(css_banderas(), unsafe_allow_html=True)
+
+    # v1.5.29: mapa de calor (?pagina=mapa&tipo=empresas|etfs)
+    if en_mapa:
+        render_mapa(df, texto_precios)
+        st.markdown(pie_html(APP_VERSION, aviso=aviso, precios=texto_precios, fuente=texto_fuente()), unsafe_allow_html=True)
+        return
 
     # v1.2.73: "Tu Cartera" (?pagina=cartera)
     if en_cartera:

@@ -896,8 +896,8 @@ def noticias_bloques_html(bloques, ahora=None, abierto=None):
         k = re.sub(r"[^a-z]", "", str(b.get("clave") or "").lower())
         cab = f'<div class="nt-b nt-{k}">{html.escape(b["titulo"])}</div>'
         if b["notas"]:
-            partes.append(cab + f'<ul class="nt-ul-{k}">{"".join(_fila(n, b["fuente"], ahora) for n in b["notas"])}</ul>')
+            partes.append(f'<div class="nt-col">{cab}<ul class="nt-ul-{k}">{"".join(_fila(n, b["fuente"], ahora) for n in b["notas"])}</ul></div>')
         else:
             motivo = ("Las noticias no respondieron en este momento" if not b.get("respondio") else "No hay notas recientes")
-            partes.append(cab + f'<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div>')
-    return f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary>{"".join(partes)}</details>'
+            partes.append(f'<div class="nt-col">{cab}<div class="nt-vacio">{html.escape(motivo)}. Probá recargar en unos minutos.</div></div>')
+    return f'<details class="nt"{atr}><summary>Noticias Calientes del día</summary><div class="nt-g">{"".join(partes)}</div></details>'
