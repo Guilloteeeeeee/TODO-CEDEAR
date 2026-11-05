@@ -186,6 +186,29 @@ body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-b{margin-top:6px!importa
 body:has(#bn-filtro:checked) .st-key-fly_filtro{top:__FTOP__px;bottom:auto;left:40px;right:40px;width:auto;height:auto;max-height:calc(100vh - __FTOP__px - 20px);border-radius:14px;border:1px solid #d5dde6;
   box-shadow:0 18px 40px rgba(15,23,42,.28);padding:20px 26px 26px!important}
 }
+@media (min-width:901px) and (max-width:1340px){
+.mc-in{gap:12px!important}
+.mc-in .mc-t{font-size:2.3rem!important}
+.mc-sp{min-width:0!important}
+}
+@media (min-width:901px) and (max-width:1250px){
+/* v1.5.33: con los nombres largos, en pantallas medianas la franja se compacta para que entre todo */
+.mc-links{gap:14px}
+.mc-lk{font-size:.86rem}
+.mc-lk.mc-eval{font-size:.84rem;padding:8px 12px}
+}
+@media (min-width:901px) and (max-width:1030px){
+.mc-links{gap:8px}
+.mc-lk{font-size:.78rem}
+.mc-lk.mc-eval{font-size:.76rem;padding:7px 9px}
+}
+@media (min-width:901px) and (max-width:980px){
+.mc-in{gap:10px!important}
+.mc-in .mc-t{font-size:2.1rem!important}
+.mc-img{height:36px!important}
+.mc-links{gap:6px!important}
+.mc-sp{min-width:0!important}
+}
 @media (max-width:900px){
 .mc-links{order:3;flex:1 1 100%;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0 8px}
 .mc-links::-webkit-scrollbar{display:none}
@@ -465,8 +488,8 @@ def links_html(activa="empresas", home=False):
             return f'<label for="bn-{k}" class="mc-lk" role="button" tabindex="0">{texto}</label>'
         return f'<a class="mc-lk" href="?inicio=0&amp;abrir={k}" target="_self">{texto}</a>'
     ev = "mc-lk mc-eval" + (" mc-on" if activa == "cartera" else "")
-    return (radios + ov + '<div class="mc-links">' + '<a class="mc-lk" href="?pagina=mapa" target="_self">Mapa de Calor</a>' + panel("noticias", "Noticias") + panel("cal", "Calendario")
-            + '<a class="mc-lk" href="?pagina=ideas" target="_self">Ideas</a>'
+    return (radios + ov + '<div class="mc-links">' + '<a class="mc-lk" href="?pagina=mapa" target="_self">Mapa de Calor</a>' + panel("noticias", "Noticias del Día") + panel("cal", "Calendario Financiero")
+            + '<a class="mc-lk" href="?pagina=ideas" target="_self">Ideas de Inversión</a>'
             + f'<a class="{ev}" href="?pagina=cartera" target="_self">Evalúa tu Portfolio</a></div>')
 
 
@@ -614,15 +637,9 @@ def _it_href(href, texto, clase="mn-it", chica=""):
 
 
 def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=None, cuentas=None, comentarios_mail=None):
-    """Todo el menu en una sola pieza: Filtro, Noticias, Calendario Financiero, Evaluá tu Portfolio, Ideas de inversión; (espacio) Quiénes somos, Nuestras Redes, Contactános, Abrí una cuenta;
-    (espacio) Comentarios y la versión. En el inicio los tres primeros abren su panel; en otras pantallas llevan al inicio con el menú abierto."""
+    """Menú lateral (v1.5.33): Quiénes Somos, Nuestras Redes, Abrí una Cuenta, Contactanos y Comentarios, todos a la vista, y la versión. Lo demás vive en la franja negra."""
     e = _enlaces(enlaces)
-    if home:     # v1.5.14: el Filtro se abre desde el botón de la tabla; Noticias y Calendario también están en la franja negra (acá siguen, por las dudas)
-        arriba = _it_sec("noticias", "Noticias Calientes del día") + _it_sec("cal", "Calendario Financiero")
-    else:
-        arriba = (_it_href("?inicio=0&menu=1", "Noticias Calientes del día", chica="en el inicio")
-                  + _it_href("?inicio=0&menu=1", "Calendario Financiero", chica="en el inicio"))
-    arriba += _it_href("?pagina=mapa", "Mapa de Calor") + _it_href("?pagina=ideas", "Ideas de inversión") + _it_href("?pagina=cartera", "Evalúa Gratis tu Portfolio", clase="mn-it mn-rosa")
+    # v1.5.33: Noticias, Calendario, Mapa, Ideas y Evalúa tu Portfolio ya están en la franja negra; el menú deja solo lo de «Sobre Nosotros» (desplegado) y Comentarios
     # v1.2.85: Quiénes somos también es un panel desplegable (como los demás); el orden de abajo es Quiénes somos, Nuestras Redes, Abrí una cuenta con nosotros,
     # Contactános y Comentarios, todos juntos (Comentarios ya no va separado).
     if e["quienes_somos"]:
@@ -635,16 +652,12 @@ def menu_lista_html(home=True, filtro="Filtro de Empresas", version="", enlaces=
         medio += _it_sec("cuentas", "Abrí una Cuenta")
     if e["mail"] or e["whatsapp"]:
         medio += _it_sec("contacto", "Contactanos")
-    # v1.4.3: Quiénes Somos, Nuestras Redes, Abrí una Cuenta y Contactanos van adentro de un desplegable "Sobre Nosotros"; abajo, Comentarios y la versión
-    if medio:
-        medio = ('<details class="mn-det"><summary class="mn-it"><span>Sobre Nosotros</span><span class="mn-ar">›</span></summary>'
-                 f'<div class="mn-sub">{medio}</div></details>')
     if e["comentarios"]:
         medio += f'<a class="mn-it" href="{html.escape(e["comentarios"], quote=True)}" target="_blank" rel="noopener noreferrer"><span>Comentarios</span><span class="mn-ar">›</span></a>'
     elif _comentarios_html(COMENTARIOS_MAIL if comentarios_mail is None else comentarios_mail):
         medio += _it_sec("comentarios", "Comentarios")
     ver = f'<div class="mn-ver">Versión de la app: <b>v{html.escape(str(version))}</b> · Powered by <b>Claude AI</b></div>' if version else ""
-    return f'<div>{arriba}</div><div class="mn-sep"></div><div>{medio}</div>' + ver
+    return f'<div>{medio}</div>' + ver
 
 
 def menu_flyouts_html(enlaces=None, cuentas=None, comentarios_mail=None):

@@ -7,7 +7,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 ## Reglas de Guille (no negociables)
 - Castellano rioplatense con voseo, simple, sin jerga. Respuestas con "Conclusión resumen" al final. Cruda verdad y sin inventar datos.
 - Información educativa, **nunca recomendaciones**. No mostrar en pantalla el método ni los pesos del score.
-- **No cambiar metodología** (score, categorías, Fair Value, carteras modelo) sin su decisión explícita.
+- **No cambiar metodología** (score, categorías, Fair Value, carteras modelo) sin su decisión explícita. (Fair Value: el 05/11/2026 dijo «queda así, contra la mediana; ya veremos más adelante».)
 - **Antes de escribir cualquier informe** (Análisis Fundamental nuevo, renovación, reescritura) **avisarle** para que cambie a Opus.
 - Nada pago ni instalaciones en su PC. En el texto de los informes no nombrar a Damodaran ni a Nelissen (en la línea de fuentes sí puede ir Damodaran).
 - Palabras prohibidas en informes y devoluciones: «dosis chica(s)» (usar «posición pequeña»).
@@ -31,7 +31,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 ## ui/ (presentación)
 | Archivo | Qué hace |
 |---|---|
-| `marca.py` | Franja negra (desde la v1.5.14: logo · Noticias, Calendario, Ideas, Evalúa tu Portfolio en el medio (`links_html`, radios `bn-*`, `?abrir=noticias\|cal`) · iconos), menú lateral (`menu_lista_html`, `.mn-sep`), pie (`pie_html`), modo oscuro. El Filtro se despliega con el botón `.fl-btn` de la fila de la tabla (`_fila_tabla` en app.py, panel `fly_filtro` casi a todo el ancho). El buscador ya no va en la franja; en las fichas de empresa y ETF va en la misma fila que «← Volver» (`render_fila_volver`). |
+| `marca.py` | Franja negra (desde la v1.5.14: logo · Noticias, Calendario, Ideas, Evalúa tu Portfolio en el medio (`links_html`, radios `bn-*`, `?abrir=noticias\|cal`) · iconos), menú lateral (`menu_lista_html`; desde la v1.5.33 solo Quiénes Somos, Redes, Cuenta, Contacto y Comentarios, y la franja dice «Mapa de Calor · Noticias del Día · Calendario Financiero · Ideas de Inversión · Evalúa tu Portfolio», compacta de 901 a 1340 px), pie (`pie_html`), modo oscuro. El Filtro se despliega con el botón `.fl-btn` de la fila de la tabla (`_fila_tabla` en app.py, panel `fly_filtro` casi a todo el ancho). El buscador ya no va en la franja; en las fichas de empresa y ETF va en la misma fila que «← Volver» (`render_fila_volver`). |
 | `tabla_visual.py` | Tabla de empresas (celdas, columna Valoración, ayudas de columnas). Desde la v1.5.8 el CSS de `.st-key-fila_excel` deja el Excel como ícono flotante sobre los títulos (alto 0) y el «?» de Empresa/ETF lleva la frase «Presioná en…»; desde la v1.5.10 en esa franja va también el interruptor «Empresas \| ETFs» (`_switch_tablas` en app.py, `.st-key-sw_tablas`) y en las tablas ya no hay botón de la otra tabla en la franja negra. Vale también para ETFs. |
 | `ficha.py` | Página de empresa en solapas: resumen, Análisis Fundamental (`tiles_analisis_v4`, `tab_analisis`), valuación, dividendos, competidores, directivos, estados. |
 | `af_pdf.py` | PDF del Análisis Fundamental. |

@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.33 — menú lateral simplificado y nombres nuevos en la franja negra
+- **Franja negra:** «Mapa de Calor · Noticias del Día · Calendario Financiero · Ideas de Inversión · Evalúa tu Portfolio». Con los nombres más largos, en pantallas de 901 a 1340 px la franja se compacta (logo y letras más chicas) para que entren todos los íconos; en el celular los botones siguen en una fila que se desliza.
+- **Menú de las tres rayitas:** quedan solo Quiénes Somos, Nuestras Redes, Abrí una Cuenta, Contactanos y Comentarios (ya a la vista, sin el desplegable «Sobre Nosotros») y la versión. Noticias, Calendario, Mapa, Ideas y Evalúa tu Portfolio se sacaron (ya están en la franja).
+- **Fair Value (decisión de Guille, 05/11/2026):** por ahora no se toca: sigue contra la mediana de la industria. Se ve más adelante (en especial las 9 empresas que quedan con todos los métodos en el piso).
+
 ### v1.5.32 — resumen de FISV y «Volver» + buscador en una fila
 - **FISV sin resumen:** Yahoo no trae el perfil de FISV (ticker nuevo de Fiserv). Se agregó `data/fichas_manuales.json` (datos cargados a mano con su fuente: formulario 10-K 2025 de Fiserv) y `data/fichas.py` lo usa para completar SOLO lo que falta (lo de Yahoo nunca se pisa), así que `bajar_fichas.bat` puede rehacer `fichas.json` sin perderlo. Ahora las 265 empresas tienen resumen.
 - **Buscador encimado en las fichas de empresa y de ETF:** flotaba a una altura fija y, según la pantalla, quedaba sobre otra cosa. Ahora «← Volver…» y el buscador van juntos en una sola fila (`render_fila_volver` en app.py, `.st-key-fila_volver` en `ui/marca.py`): si el «Volver» se corre, el buscador se corre con él. En el celular quedan uno debajo del otro.

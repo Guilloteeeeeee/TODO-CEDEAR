@@ -67,8 +67,8 @@ chk("justify-content:center" not in M.CSS_BARRA and "mk-d" not in M.CSS_BARRA, "
 # v1.5.14: franja negra con Noticias, Calendario, Ideas y Evalúa tu Portfolio (en ese orden, sin buscador), panel del filtro desplegable
 from ui import marca as MA
 _b = MA.encabezado_html("TodoCedears", links=True, home=True)
-_orden = [_b.index(x) for x in ("Noticias</label>", "Calendario</label>", ">Ideas</a>", "Evalúa tu Portfolio</a>")]
-chk(_orden == sorted(_orden), "franja: Noticias, Calendario, Ideas y Evalúa tu Portfolio en ese orden")
+_orden = [_b.index(x) for x in ("Mapa de Calor</a>", "Noticias del Día</label>", "Calendario Financiero</label>", ">Ideas de Inversión</a>", "Evalúa tu Portfolio</a>")]
+chk(_orden == sorted(_orden), "franja: Mapa de Calor, Noticias del Día, Calendario Financiero, Ideas de Inversión y Evalúa tu Portfolio en ese orden")
 chk('for="bn-noticias"' in _b and 'for="bn-cal"' in _b and 'id="bn-filtro"' in _b and "buscador" not in _b, "franja: paneles sin recargar y sin buscador")
 _f = MA.encabezado_html("TodoCedears", links=True, home=False)
 chk("abrir=noticias" in _f and "abrir=cal" in _f, "fuera del inicio, Noticias y Calendario llevan al inicio con el panel abierto")
@@ -76,6 +76,8 @@ chk("links" not in MA.encabezado_html("TodoCedears").split("mc-band")[0] and "mc
 chk("bn-filtro:checked) .st-key-fly_filtro" in MA.CSS and "left:40px;right:40px" in MA.CSS, "el filtro se despliega casi a todo el ancho")
 chk("mc-links" in MA.CSS and "st-key-buscador" in MA.CSS and "padding-left:28px" in MA.CSS, "tabla más ancha y buscador fuera de la franja")
 chk("Filtro de Empresas" not in MA.menu_lista_html(True, filtro="Filtro de Empresas"), "el menú ya no repite el Filtro")
+_m = MA.menu_lista_html(True, version="1.5.33", enlaces={"quienes_somos": "", "youtube": "https://y.com", "mail": "a@b.com"})
+chk(all(x not in _m for x in ("Noticias", "Calendario", "Ideas", "Portfolio", "Mapa", "Sobre Nosotros", "mn-det")) and "Quiénes Somos" in _m and "Nuestras Redes" in _m and "Contactanos" in _m, "v1.5.33: el menú deja solo Quiénes Somos, Redes, Contacto y Comentarios, desplegados")
 # v1.5.15: tickers gemelos (ADR + acción local de Brasil): una sola ficha, el ticker local en otra línea
 from data import gemelos as GM
 from ui import ficha as FI

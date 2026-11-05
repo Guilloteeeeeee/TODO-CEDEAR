@@ -5,6 +5,8 @@ Esta es la lista de verdad. Los recordatorios programados del 1/12 mandan a leer
 Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo con números), trato de amigo, cerrar con "Conclusión resumen", no inventar datos, no más puntajes en sombra, no mostrar método ni pesos en pantalla. En el tema GuruFocus incluir siempre: "Que nos parezcamos más a GuruFocus no prueba que tengamos razón. El PEG podría estar captando algo que a ellos se les escapa."
 
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
+**Decisión 05/11/2026 (Guille): el Fair Value queda como está (contra la mediana de la industria). Se revisa más adelante; no tocar el método hasta que él lo decida.**
+
 **Con Opus (avisar antes de arrancar):**
 - Renovar la valuación de los 139 informes y la pasada de redacción (esperar a los resultados de las empresas, ~10 al 17/11).
 - Renovar 10 informes: AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR.

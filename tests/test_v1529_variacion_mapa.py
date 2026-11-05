@@ -81,7 +81,7 @@ ie = M.items_empresas(dfm)
 chk(ie[0]["var"] == 1.5 and ie[1]["var"] is None and ie[0]["href"] == "?empresa=AAA", "items de empresas")
 ietf = M.items_etfs([{"ticker": "SPY", "nombre": "SPDR", "categoria": "USA"}], {"SPY": {"aum": 5e11, "precio": 500.0}}, {}, {"SPY": -0.5})
 chk(ietf[0]["tam"] == 5e11 and ietf[0]["var"] == -0.5 and ietf[0]["href"] == "?etf=SPY" and ietf[0]["precio"] == 500.0, "items de ETFs")
-chk("Mapa de Calor" in MA.menu_lista_html(home=True) and "?pagina=mapa" in MA.menu_lista_html(home=False), "el menú lleva al mapa")
+chk("Mapa de Calor" not in MA.menu_lista_html(home=True) and "Quiénes Somos" in MA.menu_lista_html(home=True), "v1.5.33: el mapa ya no va en el menú (está en la franja)")
 
 # --- buscador en su lugar y noticias desde arriba en 3 columnas
 chk("__BTOP__" not in MA.CSS and "__NTOP__" not in MA.CSS and "__FTOP__" not in MA.CSS, "no quedan marcas sin reemplazar")
