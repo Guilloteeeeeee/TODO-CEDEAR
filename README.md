@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.37 — Tanda 3: 60 empresas nuevas (cruzadas con la lista de Balanz)
+- **Se suman 60 CEDEARs:** AAP, ABEV, AGRO (BYMA: ADGO), AEG, AKO-B (AKO.B), ARCO, ASR, BAK, BB, BBD, BIOX, BMNR, BSBR, CAAP, CAR, CLS, CX, E (Eni), ELPC (Copel, antes ELP), EMBJ (Embraer, antes ERJ), GGB, GLNG, GLOB, GPRK, HUT, IREN, JMIA, JOYY, KEEL (Keel Infrastructure, antes Bitfarms), KEP, KOF (KOFM), LAR, LND, MFG, MUX, NG, NMR, NOK (NOKA), ONDS, PAC, PBI, PKX (PKS), RIOT, SATL, SBS (Sabesp), SDA, SID, SPCE, SUZ, TS (TEN), TIMB, TV, TX (TXR), UGP, VIST, VIV, WB (WBO), XRX (XROX), TRV (Travelers, BYMA: TRVV) y AXIAY (AXIA Energia, ex Eletrobras; BYMA: AXIA).
+- **Grupos:** los del Excel de Guille (06/11/2026). Cambios que él pidió: IREN → Pagos y datos, XRX → Industrial, KEEL → Hardware y servicios TI. EMBJ → Industrial; ELPC, SBS y AXIAY → Utilities; TRV → Bancos y seguros; E → Energía.
+- **No se cargan** (decisión de Guille): BRFS, CAJ, CBRD, EBR, AOCA, AUY, FMCC, FNMA, HNPIY, SHPW, YZCA; además LFC, PTR, SNP, ORAN, TTM, PSO y TIIAY porque no figuran en la lista de Balanz. DJNJ3: descartado.
+- **Sin ratio (no se inventa):** ELPC, SBS y AXIAY (símbolos nuevos que no están en el PDF de BYMA del 16/09). KEEL lleva el 1:5 del PDF, de antes del cambio de nombre: confirmar. HWM sigue pendiente (ratio). VXX pendiente (falta elegir su categoría de ETFs).
+- **Cobertura contra Balanz:** se pasó la lista de CEDEARs de Balanz (415) contra la app; quedan por decidir 18 acciones que cotizan en Brasil o en Europa/Asia (ver `control_cobertura.py`).
+- **Falta (en la PC de Guille):** `generar_cache.bat`, `bajar_fichas.bat`, `descargar_logos.bat` (y `descargar_logos.bat ASML SPCX`); hasta entonces las 60 no aparecen en la tabla. Varias tienen pérdidas o poca historia.
+- Prueba nueva: `tests/test_v1537_tanda3.py`.
+
 ### v1.5.36 — celu: pantalla de inicio, «Aguarde» y logo de ASML
 - **Inicio en el celu**: ahora muestra, igual que en la compu, el mosaico «Evalúa tu Portfolio» (tres tortas + tabla de empresas con su valoración, sin la columna Dividendo) y debajo el celular de Microsoft. Antes en el celu solo se veía el celular.
 - **«Aguarde mientras se cargan los datos…»**: se veía tarde (o no se veía) en el celu porque la barra de dólares/índices espera hasta 8 s la primera vez. Ahora el aviso sale antes de la barra y se borra cuando ella está lista.

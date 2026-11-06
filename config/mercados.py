@@ -26,6 +26,10 @@ NO_ADR = frozenset({
     "LAC",                                       # v1.5.29: Lithium Americas (Canadá, NYSE): acción ordinaria, no ADR (lo marcó bajar_fichas)
 })
 
+ADR = ADR | frozenset(["ABEV", "AKO-B", "ASR", "BAK", "BBD", "BSBR", "CX", "E", "ELPC", "EMBJ", "GGB", "JMIA", "JOYY", "KEP", "KOF", "LND", "MFG", "NMR", "NOK", "PAC", "PKX", "SBS", "SID", "SUZ", "TS", "TIMB", "TV", "TX", "UGP", "VIST", "VIV", "WB", "AXIAY"])   # v1.5.37 (tanda 3): ADS / ADR
+NO_ADR = NO_ADR | frozenset(["AGRO", "AEG", "ARCO", "BIOX", "CAAP", "CLS", "GLNG", "GLOB", "GPRK", "LAR", "NG", "SDA"])   # v1.5.37 (tanda 3): acciones ordinarias, no ADR
+
+
 _MERCADOS = {
     "NMS": "Nasdaq", "NGM": "Nasdaq", "NCM": "Nasdaq", "NASDAQ": "Nasdaq", "NASDAQGS": "Nasdaq", "NASDAQGM": "Nasdaq", "NASDAQCM": "Nasdaq",
     "NYQ": "NYSE", "NYSE": "NYSE", "NYS": "NYSE",

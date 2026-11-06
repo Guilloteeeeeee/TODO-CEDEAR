@@ -19,6 +19,7 @@ chk(not (set(todos) & set(cargadas)), f"figuran como pendientes/excluidos pero y
 chk(not [t for t in todos if t not in byma], f"simbolos que no estan en la lista de BYMA: {[t for t in todos if t not in byma]}")
 for t in ("F", "BIIB", "WFC", "BNG", "SNDK", "AMX", "SPCX", "HOOD", "KB"):
     chk(t in cargadas, f"{t} deberia estar cargado")
-chk("AAP" in motivo and motivo["AAP"].startswith("Pendiente"), "AAP (tanda 3 en adelante) debe figurar como pendiente")
+chk("HWM" in motivo and motivo["HWM"].startswith("Pendiente"), "HWM debe figurar como pendiente (falta el ratio)")
+chk("AAP" not in motivo and "AAP" in cargadas, "AAP (tanda 3) ya está cargada")
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)

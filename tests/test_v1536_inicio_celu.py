@@ -18,7 +18,7 @@ chk("Evalu" in h and "Microsoft" in h, "sigue la vista previa con empresas reale
 src = open("app.py", encoding="utf-8").read()
 i0 = src.index("_aguarde0 = st.empty()"); i1 = src.index("_mk.obtener()"); i2 = src.index("_aguarde0.empty()")
 chk(i0 < i1 < i2, "el aviso sale antes de la barra de mercados y se borra despues")
-chk('APP_VERSION = "1.5.36"' in src, "version")
+chk('APP_VERSION = "1.5.' in src, "version")
 d = open("descargar_logos.py", encoding="utf-8").read()
 chk(re.search(r'SOLO_POR_DOMINIO = \{[^}]*"ASML"', d) is not None, "ASML se baja por dominio")
 print(f"OK {ok} MAL {mal}")

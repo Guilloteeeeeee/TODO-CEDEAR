@@ -127,6 +127,48 @@ _G_TANDA2 = {
 for _ind, _tks in _G_TANDA2.items():
     _G[_ind] = (_G.get(_ind, "") + " " + _tks).strip()
 
+# Tanda 3 (v1.5.37): PROPUESTA, igual que el resto: Guille la puede corregir cambiando la línea.
+_G_TANDA3 = {
+    "Retail (Automotive)": "AAP SDA",
+    "Beverage (Alcoholic)": "ABEV",
+    "Farming/Agriculture": "AGRO BIOX LND",
+    "Insurance (Life)": "AEG",
+    "Beverage (Soft)": "AKO-B KOF",
+    "Restaurant/Dining": "ARCO",
+    "Transportation": "ASR CAAP CAR PAC",
+    "Chemical (Basic)": "BAK",
+    "Software (System & Application)": "BB",
+    "Banks (Regional)": "BBD BSBR",
+    "Financial Svcs. (Non-bank & Insurance)": "BMNR HUT IREN RIOT",
+    "Electronics (General)": "CLS",
+    "Building Materials": "CX",
+    "Oil/Gas (Integrated)": "E",
+    "Utility (General)": "ELPC KEP",
+    "Aerospace/Defense": "EMBJ SATL SPCE",
+    "Steel": "GGB PKX SID TX",
+    "Oil/Gas Distribution": "GLNG UGP",
+    "Computer Services": "GLOB KEEL",
+    "Oil/Gas (Production and Exploration)": "GPRK VIST",
+    "Retail (General)": "JMIA",
+    "Software (Internet)": "JOYY WB",
+    "Metals & Mining": "LAR",
+    "Bank (Money Center)": "MFG",
+    "Precious Metals": "MUX NG",
+    "Brokerage & Investment Banking": "NMR",
+    "Telecom. Equipment": "NOK ONDS",
+    "Office Equipment & Services": "PBI XRX",
+    "Utility (Water)": "SBS",
+    "Paper/Forest Products": "SUZ",
+    "Oilfield Svcs/Equip.": "TS",
+    "Telecom (Wireless)": "TIMB",
+    "Broadcasting": "TV",
+    "Telecom. Services": "VIV",
+    "Insurance (Prop/Cas.)": "TRV",
+    "Power": "AXIAY",
+}
+for _ind, _tks in _G_TANDA3.items():
+    _G[_ind] = (_G.get(_ind, "") + " " + _tks).strip()
+
 MAPA = {t: ind for ind, tks in _G.items() for t in tks.split()}
 
 # Industrias donde los márgenes/EV de Damodaran NO se pueden comparar con una empresa común (financieras): en la ficha se muestran solo PER, P/B, ROE y margen neto.
@@ -142,6 +184,8 @@ _R = {
     "aus_nz_canada": "AEM SHOP BHP CCJ B KGC PAAS NXE",
     "japon": "MUFG TM SONY HMC",          # sin planilla regional: se compara con EE.UU. y la nota lo aclara
 }
+for _r3, _t3 in {"emergentes": "ABEV AGRO AKO-B ARCO ASR BAK BBD BIOX BSBR CAAP CX ELPC EMBJ GGB GLOB GPRK JMIA JOYY KEP KOF LAR LND PAC PKX SBS SDA SID SUZ TS TIMB TV TX UGP VIST VIV WB AXIAY", "europa": "AEG E NOK", "aus_nz_canada": "BB CLS NG", "japon": "MFG NMR"}.items():   # Tanda 3 (v1.5.37)
+    _R[_r3] = _R[_r3] + " " + _t3
 REGION = {t: r for r, tks in _R.items() for t in tks.split()}
 REGION_TXT = {"us": "empresas de EE.UU.", "emergentes": "empresas de mercados emergentes", "europa": "empresas de Europa", "aus_nz_canada": "empresas de Australia, Nueva Zelanda y Canadá",
               "japon": "empresas de EE.UU. (no hay planilla de Japón)"}

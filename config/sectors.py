@@ -208,6 +208,24 @@ TICKER_UNIVERSE = {
     "Utilities":          ["NEE", "CEG", "VST", "TLN", "OKLO", "NGG"],
 }
 
+# Tanda 3 (v1.5.37): grupo según el Excel de Guille (06/11/2026)
+_TANDA3 = {
+    "Consumo Discrecional": ["AAP", "ARCO", "JMIA", "SDA"],
+    "Consumo Básico": ["ABEV", "AGRO", "AKO-B", "KOF", "LND"],
+    "Bancos y seguros": ["AEG", "BBD", "BSBR", "MFG", "NMR", "TRV"],
+    "Industrial": ["ASR", "CAAP", "CAR", "EMBJ", "PAC", "PBI", "SATL", "SPCE", "XRX"],
+    "Materiales Básicos": ["BAK", "BIOX", "CX", "GGB", "LAR", "MUX", "NG", "PKX", "SID", "SUZ", "TX"],
+    "Software y nube": ["BB"],
+    "Pagos y datos": ["BMNR", "HUT", "IREN", "RIOT"],
+    "Hardware y servicios TI": ["CLS", "GLOB", "KEEL", "NOK", "ONDS"],
+    "Energía": ["E", "GLNG", "GPRK", "TS", "UGP", "VIST"],
+    "Utilities": ["ELPC", "KEP", "SBS", "AXIAY"],
+    "Comunicación": ["JOYY", "TV", "WB"],
+    "Telecomunicaciones": ["TIMB", "VIV"],
+}
+for _g, _t in _TANDA3.items():
+    TICKER_UNIVERSE[_g] = TICKER_UNIVERSE[_g] + _t
+
 # Mapeo inverso: ticker -> sector (se genera automáticamente)
 # Pais de respaldo: solo se usa cuando Yahoo Finance no informa el pais de la empresa (ej.: FISV, que
 # cambio de ticker, o MRSH). Los nombres van como los entrega Yahoo (en ingles).

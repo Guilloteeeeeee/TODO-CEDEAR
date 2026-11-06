@@ -9,11 +9,13 @@ import csv, json, os, sys
 AQUI = os.path.dirname(os.path.abspath(__file__))
 
 # simbolo de BYMA -> ticker con el que la app lo conoce
-ALIAS = {"BK": "BNY", "MMC": "MRSH", "BNG": "BG", "BRKB": "BRK-B", "BA.C": "BAC", "BBV": "BBVA"}
+ALIAS = {"BK": "BNY", "MMC": "MRSH", "BNG": "BG", "BRKB": "BRK-B", "BA.C": "BAC", "BBV": "BBVA",
+         "ERJ": "EMBJ", "ELP": "ELPC", "EBR": "AXIAY"}      # v1.5.37: Embraer, Copel y Eletrobras cambiaron de símbolo
 
-# Pendientes de cargar (se arman de a 50, Guille revisa el sector de cada una)
+# Pendientes de cargar (Tanda 3 cargada en la v1.5.37; quedan dos con un dato por resolver)
 PENDIENTES = {
-    "Tanda 3 en adelante (a revisar una por una)": "AAP ABEV ADGO AEG AKO.B AOCA ARCO ASR AUY BAK BB BBD BIOX BMNR BRFS BSBR CAAP CAJ CAR CBRD CLS CX E EBR ELP ERJ FMCC FNMA GGB GLNG GLOB GPRK HNPIY HUT HWM IREN JMIA JOYY KEEL KEP KOFM LAR LFC LND MFG MUX NG NMR NOKA ONDS ORAN PAC PBI PKS PSO PTR RIOT SATL SDA SHPW SID SNP SPCE SUZ TEN TIIAY TIMB TTM TV TXR UGP VIST VIV VXX WBO XROX YZCA".split(),
+    "Falta el ratio (BYMA dice 1:1 pero el precio en pesos no encaja)": ["HWM"],
+    "ETF por cargar: falta elegir su categoría en la tabla de ETFs": ["VXX"],
 }
 # No se cargan (o se cargan distinto), con el motivo
 EXCLUIDAS = {
@@ -21,9 +23,10 @@ EXCLUIDAS = {
         "ABEV3 BBDC3 ITUB3 CSNA3 SUZB3 TIMS3 VALE3 VIVT3 PETR3".split(),
     "Ya no cotiza (cerrada, comprada o fusionada)": "AABA TWTR CS SI EA WBA".split(),
     "Empresa rusa: sin datos confiables": "ATAD LKOD OGZD NLM MBT".split(),
-    "Símbolo mal escrito en la lista de BYMA (hay que confirmarlo con BYMA)": "TRVV NYSE UN".split(),
-    "Acción que cotiza solo en Brasil (reporta en reales, otra fuente de datos)": "BBAS3 BPA11 HAPV3 LREN3 MGLU3 NATU3 PRIO3 RCTB4 RENT3 SBSP3 WEGE3".split(),
-    "Cotiza en bolsa de Europa o Asia (otra moneda, otra fuente de datos)": "ADS BAS BAYN BSN DTEA EOAN MBG NEC1 SKHY SMSN HHPD PCRF NSAN".split(),
+    "Símbolo mal escrito en la lista de BYMA (hay que confirmarlo con BYMA)": "NYSE UN".split(),
+    "No se carga (decisión de Guille, 06/11/2026): el ADR ya no cotiza en EE.UU., no figura en Balanz o no hay datos confiables": "BRFS CAJ CBRD AOCA AUY FMCC FNMA HNPIY SHPW YZCA LFC PTR SNP ORAN TTM PSO TIIAY".split(),
+    "A decidir: acción que cotiza solo en Brasil (reporta en reales, otra fuente de datos)": "BBAS3 BPA11 HAPV3 LREN3 MGLU3 NATU3 PRIO3 RCTB4 RENT3 SBSP3 WEGE3".split(),
+    "A decidir: cotiza en bolsa de Europa o Asia (otra moneda, otra fuente de datos)": "ADS BAS BAYN BSN DTEA EOAN MBG NEC1 SKHY SMSN HHPD PCRF NSAN".split(),
 }
 # En la app y no en el PDF del 16/09/2026 (nuevos CEDEARs que entran): se dejan
 EXTRAS_APP = {"NU", "JMOM", "ILIT", "REMX", "DBB", "DBA", "WEAT"}
