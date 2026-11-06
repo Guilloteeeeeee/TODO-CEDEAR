@@ -34,7 +34,7 @@ MIN_BYTES = 150
 
 
 # v1.5.31: tickers que en otras fuentes pertenecen a OTRA cosa (SPCX era un ETF viejo: parqet devolvia el logo de «AXS»). Para estos se usa solo el dominio de la empresa.
-SOLO_POR_DOMINIO = {"SPCX"}
+SOLO_POR_DOMINIO = {"SPCX", "ASML"}
 
 
 def _fuentes(ticker):

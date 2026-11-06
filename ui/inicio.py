@@ -19,24 +19,24 @@ def _torta(partes, size=84, hueco=54):
         tramos.append(f"{col} {acc}% {acc + p}%")
         acc += p
     m = f"radial-gradient(circle,transparent {hueco}%,#000 {hueco + 1}%)"
-    return (f'<span style="display:block;width:{size}px;height:{size}px;border-radius:50%;flex:none;background:conic-gradient({",".join(tramos)});'
+    return (f'<span class="hr-tt" style="display:block;width:{size}px;height:{size}px;border-radius:50%;flex:none;background:conic-gradient({",".join(tramos)});'
             f'-webkit-mask:{m};mask:{m}"></span>')
 
 
 def _leyenda(items):
-    return ('<div style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#374151">'
+    return ('<div class="hr-ley" style="display:flex;flex-direction:column;gap:4px;font-size:12px;color:#374151">'
             + "".join(f'<span style="display:flex;align-items:center;gap:6px"><i style="width:9px;height:9px;border-radius:50%;background:{c};display:block"></i>{html.escape(t)}</span>'
                       for c, t in items) + "</div>")
 
 
 def _tarjeta(titulo, partes, items):
-    return ('<div style="background:#fff;border:1px solid #e3e8ee;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">'
+    return ('<div class="hr-tj" style="background:#fff;border:1px solid #e3e8ee;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:10px">'
             f'<span style="font-size:14px;font-weight:700;color:#111827">{html.escape(titulo)}</span>'
-            f'<div style="display:flex;align-items:center;gap:12px">{_torta(partes)}{_leyenda(items)}</div></div>')
+            f'<div class="hr-tr" style="display:flex;align-items:center;gap:12px">{_torta(partes)}{_leyenda(items)}</div></div>')
 
 
 def _barra(pos, col):
-    return (f'<span style="display:block;position:relative;height:6px;border-radius:3px;background:#e5e7eb;width:120px">'
+    return (f'<span class="hr-bar" style="display:block;position:relative;height:6px;border-radius:3px;background:#e5e7eb;width:120px">'
             f'<i style="position:absolute;left:{pos}%;top:-3px;width:12px;height:12px;border-radius:50%;background:{col};display:block;margin-left:-6px"></i></span>')
 
 
@@ -101,10 +101,24 @@ a.hr-btn:hover{filter:brightness(1.07)}
 @media (max-width:980px){
  .hr-wrap{min-height:0;padding-bottom:0}
  .hr-izq{max-width:none;flex-basis:100%}
- .hr-der{flex-basis:100%;padding:22px 0;margin:0 calc(-1 * clamp(16px,3vw,48px));background:linear-gradient(135deg,#e6f0ea,#f3f6fb);display:flex;justify-content:center}
- .hr-marco{display:none}
- .hr-cel{position:static}
- .hr-tel{width:230px}
+ .hr-der{flex-basis:100%;padding:22px 14px 26px;margin:0 calc(-1 * clamp(16px,3vw,48px));background:linear-gradient(135deg,#e6f0ea,#f3f6fb);display:flex;flex-direction:column;align-items:center;gap:0;box-sizing:border-box}
+ .hr-marco{display:flex;width:100%;box-sizing:border-box;padding:10px;gap:10px;border-radius:16px}
+ .hr-marco>div:first-child{font-size:17px!important}
+ .hr-tres{gap:6px}
+ .hr-tj{padding:9px 6px!important;gap:6px!important;align-items:center}
+ .hr-tj>span{font-size:12px!important}
+ .hr-tr{flex-direction:column!important;gap:6px!important}
+ .hr-tt{width:58px!important;height:58px!important}
+ .hr-ley{font-size:9.5px!important;gap:2px!important}
+ .hr-ley span{align-items:center;gap:4px!important}
+ .hr-tabla{margin-left:0}
+ .hr-fila{grid-template-columns:minmax(0,1.15fr) minmax(0,1.25fr) 42px;gap:8px;padding:8px 9px}
+ .hr-fila>:nth-child(4){display:none}
+ .hr-fila b{font-size:12px!important}
+ .hr-fila small{font-size:9.5px!important;line-height:1.25}
+ .hr-bar{width:100%!important}
+ .hr-cel{position:static;margin-top:-26px;align-self:flex-start;margin-left:6px}
+ .hr-tel{width:150px;padding:11px 10px 13px;gap:7px;border-width:6px;border-radius:24px}
  a.hr-btn{max-width:none}
 }
 """

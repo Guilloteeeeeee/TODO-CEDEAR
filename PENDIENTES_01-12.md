@@ -7,6 +7,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
 **Decisión 05/11/2026 (Guille): el Fair Value queda como está (contra la mediana de la industria). Se revisa más adelante; no tocar el método hasta que él lo decida.**
 
+**v1.5.36 (06/11):** Guille debe correr `descargar_logos.bat ASML SPCX` y subir `static/logos/`. Tanda 3: espera la lista de 70 corregida (Excel `Tanda3_pendientes_70.xlsx`); BRFS, CAJ, CBRD y EBR propuestos NO CARGAR (ya no cotizan en EE.UU.), ERJ→EMBJ, E = Eni, VXX a ETFs.
+
 **Con Opus (avisar antes de arrancar):**
 - Renovar la valuación de los 139 informes y la pasada de redacción (esperar a los resultados de las empresas, ~10 al 17/11).
 - Renovar 10 informes: AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR.

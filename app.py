@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.35"
+APP_VERSION = "1.5.36"
 
 import re
 import contextlib
@@ -2043,11 +2043,15 @@ def main():
     activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas or en_mapa) else "empresas"))
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
                 + encabezado_html(NOMBRE_APP, activa=activa, menu_abierto=st.query_params.get("menu") == "1", links=not en_landing, home=en_inicio and not en_landing), unsafe_allow_html=True)
+    # v1.5.36: en el celu no se veia el «Aguarde»: la barra de mercados espera hasta 8 s la primera vez y hasta ahi no habia nada en pantalla. Ahora el aviso sale ANTES y se borra cuando la barra esta lista.
+    _aguarde0 = st.empty()
+    _aguarde0.markdown(f"<style>{_ficha.CSS_CARGA}</style>" + '<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos…</div>', unsafe_allow_html=True)
     try:
         from ui import mercados as _mk
         st.markdown(_mk.barra_html(_mk.obtener()), unsafe_allow_html=True)      # v1.5.7: barra de mercados fija debajo de la franja negra (dólares, Merval, bolsas, petróleo…)
     except Exception:  # noqa: BLE001
         pass
+    _aguarde0.empty()
     from ui.tema import css_oscuro
     st.markdown(css_oscuro(), unsafe_allow_html=True)      # v1.4.3: modo oscuro (botón sol / luna en la franja negra)
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas

@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.36 — celu: pantalla de inicio, «Aguarde» y logo de ASML
+- **Inicio en el celu**: ahora muestra, igual que en la compu, el mosaico «Evalúa tu Portfolio» (tres tortas + tabla de empresas con su valoración, sin la columna Dividendo) y debajo el celular de Microsoft. Antes en el celu solo se veía el celular.
+- **«Aguarde mientras se cargan los datos…»**: se veía tarde (o no se veía) en el celu porque la barra de dólares/índices espera hasta 8 s la primera vez. Ahora el aviso sale antes de la barra y se borra cuando ella está lista.
+- **ASML**: `descargar_logos.py` lo baja por el dominio de la empresa (como SPCX), porque la fuente anterior traía el logo con fondo negro. Hay que correr `descargar_logos.bat ASML SPCX` y subir `static/logos/`.
+- Prueba: `tests/test_v1536_inicio_celu.py`.
+
 ### v1.5.35 — noticias: columnas con distinto ancho
 - Panel de Noticias del Día: Locales (trae menos notas) más angosta y Estados Unidos / Resto del mundo más anchas, así entran todas las notas sin que se aplaste ninguna; en pantallas de poca altura las letras y el espaciado se achican un poco.
 
