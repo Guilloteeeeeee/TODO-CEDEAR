@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.35 — noticias: columnas con distinto ancho
+- Panel de Noticias del Día: Locales (trae menos notas) más angosta y Estados Unidos / Resto del mundo más anchas, así entran todas las notas sin que se aplaste ninguna; en pantallas de poca altura las letras y el espaciado se achican un poco.
+
 ### v1.5.34 — calendario de cuadraditos, globitos hacia abajo, índices solo con %, menú que se cierra
 - **Calendario Financiero** (franja negra): se despliega desde arriba a todo el ancho y ahora es un calendario de cuadraditos: una solapa por mes (noviembre, diciembre, enero), cada día es un cuadrado con las empresas que presentan resultados (botones que llevan a su ficha; borde punteado = fecha estimada) o los eventos económicos. Hoy va en verde. En el celular vuelve a ser una lista (`calendario_grilla_html`, `economico_grilla_html` en `ui/calendario.py`).
 - **Noticias y Calendario** llegan casi hasta el pie de la pantalla (antes quedaba un hueco abajo).

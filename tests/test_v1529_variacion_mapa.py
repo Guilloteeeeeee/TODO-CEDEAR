@@ -86,7 +86,7 @@ chk("Mapa de Calor" not in MA.menu_lista_html(home=True) and "Quiénes Somos" in
 # --- buscador en su lugar y noticias desde arriba en 3 columnas
 chk("__BTOP__" not in MA.CSS and "__NTOP__" not in MA.CSS and "__FTOP__" not in MA.CSS, "no quedan marcas sin reemplazar")
 chk(re.search(r"\.st-key-buscador\{position:absolute;top:148px;left:196px", MA.CSS) is not None, "buscador: arriba a la izquierda, no al extremo")
-chk("nt-baja" in MA.CSS and "repeat(3,minmax(0,1fr))" in MA.CSS, "panel de noticias desde arriba en 3 columnas")
+chk("nt-baja" in MA.CSS and "minmax(0,.74fr) minmax(0,1.13fr) minmax(0,1.13fr)" in MA.CSS, "panel de noticias desde arriba en 3 columnas (Locales más angosta, v1.5.35)")
 chk("CSS" in dir(MA) and "left:32px;right:32px" in MA.CSS, "el panel de noticias cubre casi todo el ancho")
 
 import datetime as dt

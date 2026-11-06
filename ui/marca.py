@@ -183,8 +183,13 @@ body:has(#bn-noticias:checked) .st-key-fly_noticias{top:__NTOP__px;bottom:auto;l
 /* v1.5.34: el Calendario también se despliega desde arriba, a todo el ancho (cuadraditos por mes); y los dos paneles llegan casi hasta el pie de la pantalla */
 body:has(#bn-cal:checked) .st-key-fly_cal{top:__NTOP__px;bottom:auto;left:32px;right:32px;width:auto;height:calc(100vh - __NTOP__px - 16px);height:calc(100dvh - __NTOP__px - 16px);max-height:none;border-radius:14px;border:1px solid #d5dde6;
   box-shadow:0 18px 40px rgba(15,23,42,.28);padding:14px 28px 26px!important;animation:nt-baja .22s ease}
-body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px;align-items:start}
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-g{display:grid;grid-template-columns:minmax(0,.74fr) minmax(0,1.13fr) minmax(0,1.13fr);gap:0 24px;align-items:start}
+/* v1.5.35: Locales (que trae menos notas) más angosta; Estados Unidos y Resto del mundo con más ancho para que entren todas las notas */
 body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-col{min-width:0}
+@media (max-height:760px){
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt li{padding:5px 0;font-size:.84rem;line-height:1.27}
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-m{font-size:.72rem}
+}
 body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-b{margin-top:6px!important}
 body:has(#bn-filtro:checked) .st-key-fly_filtro{top:__FTOP__px;bottom:auto;left:40px;right:40px;width:auto;height:auto;max-height:calc(100vh - __FTOP__px - 20px);border-radius:14px;border:1px solid #d5dde6;
   box-shadow:0 18px 40px rgba(15,23,42,.28);padding:20px 26px 26px!important}
