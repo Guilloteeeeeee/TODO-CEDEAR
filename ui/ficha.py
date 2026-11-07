@@ -1142,9 +1142,20 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
            + (f'<div class="af4-f">Escrito el {fecha}</div>' if fecha_en_tile else '<div style="height:.5em"></div>') + f'<ul class="af4-rs">{lis}</ul></div>')
     cuerpo = f'<div class="af"><div class="af-rs"><div class="af-rt">{cab}</div>{_score_af(row) if row is not None else ""}</div></div>'
     t = [_tile("s12", "En pocas palabras", _CSS_AF + V.CSS + cuerpo, ac=color)]
+    try:
+        ants = AF.anteriores(tk)
+    except Exception:  # noqa: BLE001
+        ants = []
+
+    def _a_ant(texto, x):       # v1.5.41: link de descarga del PDF de un informe anterior (subrayado y en otro color)
+        nom = f"Analisis_Fundamental_{tk}_{x['fecha'].replace('/', '-')}.pdf"
+        return f'<a class="af-ant" href="{html.escape(x["url"])}" download="{html.escape(nom)}" target="_blank" rel="noopener">{texto}</a>'
     art = ""
     if af.get("desde_el_ultimo"):
-        art += f'<p class="af-cx" style="background:#f1f5f9"><b>Desde el último análisis:</b> {_negrita(af["desde_el_ultimo"])}</p>'
+        dx = _negrita(af["desde_el_ultimo"])
+        if ants:
+            dx = re.sub(r"informe anterior \((\d{1,2}/\d{1,2}/\d{4})\)", lambda m: _a_ant(m.group(0), ants[0]), dx, count=1)
+        art += f'<p class="af-cx" style="background:#f1f5f9"><b>Desde el último análisis:</b> {dx}</p>'
     art += V.texto_html(af.get("introduccion"), graficos=graf)
     for i, s in enumerate(af.get("secciones") or []):
         art += f"<h3>{html.escape(s.get('titulo', ''))}</h3>" + V.texto_html(s.get("texto"), graficos=graf)
@@ -1156,7 +1167,7 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
         art += "<h3>Valuación</h3>"
         art += V.texto_html(val["texto"], ctx=ctx, graficos=graf)
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
-    art += (f'<h3>Conclusión <span class="af4-cal" style="background:{color};color:{_TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")}">Calidad del Negocio: {html.escape(cal)}</span></h3>'
+    art += ('<h3>Conclusión</h3>'
             + V.texto_html(af.get("conclusion")) + (f'<p class="af-cp"><b>Calidad y Precio Hoy:</b> {html.escape(cr)}</p>' if cr else ""))
     t.append(_tile("s12", "El análisis", f'<div class="af af4" lang="es">{art}</div>', ac="#8b5cf6"))
     pc = ('<div class="af af4"><div class="af4-pc"><div class="p"><h4>A favor</h4><ul>' + "".join(f"<li>{_negrita_dos(x)}</li>" for x in af.get("pros") or [])
@@ -1170,10 +1181,24 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
            "<li>Promedios de la industria: Aswath Damodaran, NYU Stern (datos a enero de 2026).</li>"
            "<li>Precio, múltiplos y Fair Value al momento de escribir el informe: TodoCedears (Yahoo Finance); bono del Tesoro a 10 años: Yahoo Finance.</li>")
     t.append(_tile("s12", "Fuentes", f'<div class="af af4"><ul class="af4-fu">{fu}</ul></div>', ac="#94a3b8"))
+    if ants:
+        li = "".join(f'<li>{html.escape(x["fecha"])} · {_a_ant(html.escape(x["titulo"] or "Análisis Fundamental"), x)}</li>' for x in ants)
+        t.append(_tile("s12", "Informes anteriores", '<style>.af-ant{color:#1d4ed8!important;text-decoration:underline!important;text-underline-offset:2px}</style>'
+                       f'<div class="af af4"><ul class="af4-fu">{li}</ul></div>', ac="#94a3b8"))
     t.append('<div class="fch-sub af-pie" style="margin:4px 4px 0;grid-column:1/-1">Análisis escrito el ' + fecha + ' por Finanzas para Médicos Argentina con asistencia de '
              'inteligencia artificial, a partir de los informes oficiales de la empresa y los datos de Yahoo Finance. Los números del día los actualiza la app. Puede contener '
              'errores o quedar desactualizado: verificá siempre con los documentos oficiales. Es información con fines educativos, no una recomendación de inversión.</div>')
-    return t
+    if ants:
+        t[0] = t[0] + '<style>.af-ant{color:#1d4ed8!important;text-decoration:underline!important;text-underline-offset:2px}</style>'
+    return [_pct_pegado(x) for x in t]
+
+
+_RE_PCT_AF = re.compile(r"(\d)[ \u00a0\u202f]%")
+
+
+def _pct_pegado(h):
+    """v1.5.41 (pedido de Guille): en el Análisis Fundamental el % va pegado al número ("8%")."""
+    return _RE_PCT_AF.sub(r"\1%", h)
 
 
 def _negrita_dos(x):

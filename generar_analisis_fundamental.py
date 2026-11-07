@@ -77,6 +77,21 @@ def _fila_cache(ticker):
         return {}
 
 
+def archivar_viejo(t, viejo, nuevo, paquetes):
+    """v1.5.41: al renovar un informe v4, el anterior se guarda entero y en PDF (static/informes), para listarlo al final del nuevo."""
+    if not (isinstance(viejo, dict) and viejo.get("formato") == "v4" and viejo.get("fecha")) or viejo.get("fecha") == (nuevo or {}).get("fecha"):
+        return None
+    try:
+        from ui import af_pdf
+        paq = paquetes.get(t) or {}
+        row = _fila_cache(t)
+        pdf = af_pdf.pdf_analisis(viejo, paq.get("estados"), row, None, paq.get("dividendos"), None, str(row.get("nombre") or t), anteriores=[])
+        return AF.archivar(t, viejo, pdf)
+    except Exception as ex:  # noqa: BLE001
+        print(f"  {t}: no se pudo guardar el informe anterior ({type(ex).__name__}: {ex})")
+        return None
+
+
 def agregar(archivos, modelo="Claude"):
     datos, _ = AF.cargar()
     paquetes = py.cargar()[0]
@@ -116,6 +131,7 @@ def agregar(archivos, modelo="Claude"):
                     res["valuacion"]["foto"] = foto
             import af_pendientes  # firma de los estados con los que se escribió (así se sabe cuándo Yahoo trae un trimestre nuevo y hay que renovarlo)
             res["base"] = af_pendientes.firma((paquetes.get(t) or {}).get("estados"))
+            archivar_viejo(t, datos.get(t), res, paquetes)
             datos[t] = res
             ok.append(t)
     if ok:

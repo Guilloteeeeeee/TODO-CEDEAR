@@ -37,8 +37,16 @@ def _fuentes():
 _CAMBIOS = {"≈": "~", "→": "->", "←": "<-", "≥": ">=", "≤": "<=", "−": "-", "‑": "-", " ": " ", " ": " ", "​": "", "✓": "", "•": "-"}
 
 
+_RE_PCT = re.compile(r"(\d)[ \u00a0\u202f]%")
+
+
+def pct_pegado(t):
+    """v1.5.41 (pedido de Guille): en los informes el % va pegado al número ("8%", no "8 %")."""
+    return _RE_PCT.sub(r"\1%", str(t or ""))
+
+
 def _limpio(t):
-    t = str(t or "")
+    t = pct_pegado(t)
     for a, b in _CAMBIOS.items():
         t = t.replace(a, b)
     cm = _fuentes()[2]
@@ -69,6 +77,7 @@ def _dibujo(grafico_html, ancho_pt):
     try:
         from reportlab.graphics.shapes import Drawing, Line, Rect, String
         from reportlab.lib import colors
+        fR, fB, _ = _fuentes()
         m = re.search(r'<svg[^>]*viewBox="0 0 (\d+) (\d+)"[^>]*>(.*?)</svg>', grafico_html, re.S)
         if not m:
             return None, []
@@ -92,7 +101,7 @@ def _dibujo(grafico_html, ancho_pt):
                 txt = html.unescape(re.sub(r"<[^>]+>", "", inner))
                 fs = float(_attr(a, "font-size", "13")) * esc
                 ancla = {"end": "end", "middle": "middle"}.get(_attr(a, "text-anchor"), "start")
-                d.add(String(float(_attr(a, "x")) * esc, Y(_attr(a, "y")), _limpio(txt), fontName=B if _attr(a, "font-weight") else "Helvetica",
+                d.add(String(float(_attr(a, "x")) * esc, Y(_attr(a, "y")), _limpio(txt), fontName=fB if _attr(a, "font-weight") else fR,
                              fontSize=fs, textAnchor=ancla, fillColor=_color(_attr(a, "fill"), colors, "#111827")))
         ley = []
         lg = re.search(r'<div class="af-gl">(.*?)</div>', grafico_html, re.S)
@@ -110,7 +119,7 @@ def _titulo_figura(grafico_html):
     return html.unescape(m.group(1)) if m else ""
 
 
-def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bono10=None, nombre_empresa=""):
+def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bono10=None, nombre_empresa="", anteriores=None):
     """Bytes del PDF del análisis v4. Lanza ImportError si no está reportlab."""
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
@@ -187,9 +196,25 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
     res = af.get("resumen") if isinstance(af.get("resumen"), list) else []
     if res:
         el.append(ListFlowable([ListItem(Paragraph(_md(x), st["li"]), leftIndent=10, spaceAfter=3) for x in res], bulletType="bullet", start="•", leftIndent=10, bulletFontSize=9, bulletFontName=R))
+    if anteriores is None:
+        try:
+            anteriores = AF.anteriores(tk)
+        except Exception:  # noqa: BLE001
+            anteriores = []
+    base_url = (AF.APP_URL.rstrip("/") + "/") if getattr(AF, "APP_URL", "") else ""
+
+    def enlace(texto, x):
+        t = html.escape(_limpio(texto), quote=False)
+        if x and base_url:
+            return f'<link href="{html.escape(base_url + x["url"], quote=True)}" color="#1d4ed8"><u>{t}</u></link>'
+        return f'<font color="#1d4ed8"><u>{t}</u></font>' if x else t
+
     if af.get("desde_el_ultimo"):
         el.append(Spacer(1, 6))
-        el.append(Paragraph(_md("**Desde el último análisis:** " + af["desde_el_ultimo"]), st["cp"]))
+        txt = _md("**Desde el último análisis:** " + af["desde_el_ultimo"])
+        if anteriores:
+            txt = re.sub(r"informe anterior \((\d{1,2}/\d{1,2}/\d{4})\)", lambda m: enlace(m.group(0), anteriores[0]), txt, count=1)
+        el.append(Paragraph(txt, st["cp"]))
 
     def texto(txt, con_ctx=False):
         """Párrafos, listas y gráficos de un bloque de texto -> flowables."""
@@ -230,13 +255,10 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
             el.append(Paragraph(_md("**Sus clientes:** " + "; ".join(str(c) for c in af["clientes"] if c)), st["p"]))
     val = af.get("valuacion") or {}
     if val.get("texto"):
-        fp = ctx.get("fecha_precio")
         el.append(Paragraph("Valuación", st["h"]))
-        el.append(Paragraph(_md(f"Los números son del día de descarga{f' (precio al {fp})' if fp else ''}."), st["peq"]))
-        el.append(Spacer(1, 3))
         el += texto(val["texto"], con_ctx=True)
     cr = AF.cruce(cal, row.get("categoria")) if row else ""
-    el.append(Paragraph(_md(f"Conclusión · Calidad del Negocio: {cal}"), st["h"]))
+    el.append(Paragraph("Conclusión", st["h"]))
     el += texto(af.get("conclusion"))
     if cr:
         el.append(Paragraph(_md("**Calidad y Precio Hoy:** " + cr), st["cp"]))
@@ -259,6 +281,11 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
     el.append(Spacer(1, 2))
     el.append(Paragraph("• Promedios de la industria: Aswath Damodaran, NYU Stern (datos a enero de 2026). Precio, múltiplos y Fair Value al momento de escribir el informe: TodoCedears (Yahoo Finance); "
                         "bono del Tesoro a 10 años: Yahoo Finance.", st["fu"]))
+    if anteriores:
+        el.append(Paragraph("Informes anteriores", st["h"]))
+        for x in anteriores:
+            el.append(Paragraph(f"• {html.escape(x['fecha'])} · " + enlace(x["titulo"] or "Análisis Fundamental", x), st["fu"]))
+            el.append(Spacer(1, 2))
     el += [Spacer(1, 12), Paragraph(_md(f"Análisis escrito el {af.get('fecha') or ''} por Finanzas para Médicos Argentina con asistencia de inteligencia artificial, a partir de los informes "
                                         "oficiales de la empresa y los datos de Yahoo Finance. Puede contener errores o quedar desactualizado: verificá siempre con los documentos oficiales. "
                                         "Es información con fines educativos, no una recomendación de inversión."), st["peq"])]

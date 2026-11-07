@@ -577,6 +577,15 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.41 — Informes anteriores y ajustes del Análisis Fundamental
+- **Informes anteriores**: al renovar un informe, el viejo se guarda entero (`data/analisis_anteriores.json`) y en PDF (`static/informes/<TICKER>_<aaaa-mm-dd>.pdf`). En la ficha, «informe anterior (fecha)» del recuadro «Desde el último análisis» va subrayado y en azul y descarga ese PDF; al final hay una lista «Informes anteriores» que se va acumulando. El PDF del informe actual también la lista (con link cuando la app tenga su dirección pública: `APP_URL` en `data/analisis_fundamental.py`).
+- **Gráficos en el PDF**: no salían por un error interno (la letra negrita no estaba definida al dibujarlos). Arreglado.
+- **% pegado al número** en todo el Análisis Fundamental (ficha y PDF): «8%», no «8 %».
+- Se sacan «Calidad del Negocio: …» junto a «Conclusión» (ficha y PDF) y la línea «Los números son del día de descarga» del PDF.
+- Prompt: registro un poco más técnico (medicamentos, no remedios; términos correctos explicados), año de los hechos significativos («Horizon (2023)») y % pegado.
+- Amgen: informe renovado con el tercer trimestre de 2026 (comunicado del 03/11/2026).
+- Pruebas: `tests/test_v1541_informes.py`.
+
 ### v1.5.40 — 30 ETFs más (sin CEDEAR)
 - **Se cargan en la tabla de ETFs los 30 ETFs de la lista de Rava que no estaban**: EIDO, EWG, EWH, EWQ, EWT, EWU, EWW, EZA, EZU, INDA, MCHI, VWO (países y mercados), FXA, FXB, FXC, FXE, FXF, FXY, UUP (monedas), BNO, CPER, DBC, PALL, PPLT, UNG (materias primas) y BITO, BITQ, ETHE, FBTC, GBTC (cripto).
 - **Ninguno tiene CEDEAR** (no figuran en la lista de BYMA, ni en los CEDEARs de Rava, ni en Balanz): en la tabla salen con la etiqueta «Sin CEDEAR: solo por mesa del broker» y sin ratio.

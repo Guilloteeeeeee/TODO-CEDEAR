@@ -22,6 +22,63 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 RUTA = os.path.join(AQUI, "analisis_fundamental.json")
 RUTA_PROMPT = os.path.join(AQUI, "prompt_analisis_fundamental.txt")
 RIESGOS_IA = ("muy alto", "alto", "moderado", "bajo", "muy bajo")
+
+# v1.5.41: informes anteriores. Cuando un informe se renueva, el viejo se guarda entero en analisis_anteriores.json y su PDF queda en
+# static/informes/<TICKER>_<aaaa-mm-dd>.pdf (Streamlit lo sirve en app/static/informes/...). La ficha y el PDF del informe actual los listan al final.
+RUTA_ANTERIORES = os.path.join(AQUI, "analisis_anteriores.json")
+CARPETA_INFORMES = os.path.join(os.path.dirname(AQUI), "static", "informes")
+URL_INFORMES = "app/static/informes"
+# Dirección pública de la app (cuando la tenga): con ella, los informes anteriores también se abren desde el PDF. Vacía = el PDF los lista sin link.
+APP_URL = ""
+
+
+def _fecha_iso(fecha):
+    m = re.match(r"^\s*(\d{1,2})/(\d{1,2})/(\d{4})", str(fecha or ""))
+    return f"{m.group(3)}-{int(m.group(2)):02d}-{int(m.group(1)):02d}" if m else ""
+
+
+def cargar_anteriores(ruta=None):
+    try:
+        with open(ruta or RUTA_ANTERIORES, encoding="utf-8") as f:
+            d = json.load(f)
+        return d if isinstance(d, dict) else {}
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def archivo_anterior(ticker, fecha):
+    return f"{str(ticker).upper()}_{_fecha_iso(fecha)}.pdf"
+
+
+def anteriores(ticker, ruta=None, carpeta=None):
+    """Informes anteriores de la empresa, del más nuevo al más viejo: [{fecha, titulo, archivo, url}]. Solo los que tienen su PDF guardado."""
+    carpeta = carpeta or CARPETA_INFORMES
+    out = []
+    for x in (cargar_anteriores(ruta).get(str(ticker).upper()) or []):
+        arch = x.get("archivo") or archivo_anterior(ticker, x.get("fecha"))
+        if not os.path.isfile(os.path.join(carpeta, arch)):
+            continue
+        out.append({"fecha": x.get("fecha") or "", "titulo": x.get("titulo") or "", "archivo": arch, "url": f"{URL_INFORMES}/{arch}"})
+    out.sort(key=lambda x: _fecha_iso(x["fecha"]), reverse=True)
+    return out
+
+
+def archivar(ticker, viejo, pdf_bytes, ruta=None, carpeta=None):
+    """Guarda el informe que se reemplaza (entero) y su PDF. No duplica la misma fecha."""
+    tk, ruta, carpeta = str(ticker).upper(), ruta or RUTA_ANTERIORES, carpeta or CARPETA_INFORMES
+    if not viejo or not viejo.get("fecha") or not pdf_bytes:
+        return None
+    os.makedirs(carpeta, exist_ok=True)
+    arch = archivo_anterior(tk, viejo["fecha"])
+    with open(os.path.join(carpeta, arch), "wb") as f:
+        f.write(pdf_bytes)
+    d = cargar_anteriores(ruta)
+    lista = [x for x in (d.get(tk) or []) if x.get("fecha") != viejo["fecha"]]
+    lista.insert(0, {"fecha": viejo["fecha"], "titulo": viejo.get("titulo") or "", "archivo": arch, "informe": viejo})
+    d[tk] = lista
+    with open(ruta, "w", encoding="utf-8") as f:
+        json.dump(d, f, ensure_ascii=False, indent=1)
+    return arch
 # Calidad del negocio -> color (misma escala de colores que la Valoración, de verde a rojo)
 CALIDADES = {"Excelente": "#15803d", "Muy buena": "#82b93f", "Buena": "#eab308", "Regular": "#f97316", "Pobre": "#dc2626"}
 # Color de las LETRAS de la conclusión (versión más oscura de cada color de arriba, para que se lea sobre fondo blanco); la gente asocia el color con la calidad

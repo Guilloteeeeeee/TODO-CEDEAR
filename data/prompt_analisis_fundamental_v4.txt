@@ -16,11 +16,13 @@ Todo el artículo responde esa pregunta. Cada sección es un paso del argumento.
 2. CÓMO SE ESCRIBE
 ==================================================================
 TONO: español rioplatense, voseo, cercano y respetuoso. Primera persona del plural con moderación ("por eso miramos…", "lo que más nos importa"). Entusiasmo con fundamento, crítica sin cinismo: si algo es muy bueno, decilo y mostrá por qué; si es malo, también.
+REGISTRO (pedido de Guille, 07/11/2026): claro y entendible, pero con un poco de sofisticación y un poquito más de lenguaje técnico, como un buen analista que le escribe a un lector inteligente que no es del palo. Usá el término correcto y explicalo la primera vez (biosimilar, amortización, guía, flujo libre), en vez de reemplazarlo por una palabra de la calle. Nada que suene a un chico de 16 años: "medicamentos" (nunca "remedios"), "la empresa", "la compañía", "financiar" (no "poner la plata"), "endeudamiento". Que nadie se pierda: si un párrafo necesita dos términos técnicos nuevos, separalos.
+FORMA: el porcentaje va pegado al número ("8%", "30,0%", "+37%"). Los hechos significativos llevan su año la primera vez que se nombran: "la compra de Horizon (2023)", "la escisión de Kenvue (2023)"; solo el año, sin día ni mes.
 
 RITMO (lo que más distingue al estilo):
 - Párrafos cortos, de 1 a 3 oraciones. A veces una sola frase para que pegue: "No te dejes engañar." / "Y ahí está la clave."
 - Alterná una oración larga con una corta. Hasta 2 preguntas en todo el artículo, para abrir una idea.
-- Conectores de charla, sin repetir: "Lo mejor es que…", "Ahora bien,", "Dicho de otra forma,", "En criollo:", "Hablando de…", "Hasta acá, lo bueno. Ahora, la otra cara.", "Esto nos lleva a…".
+- Conectores de charla, sin repetir: "Lo mejor es que…", "Ahora bien,", "Dicho de otra forma,", "En otras palabras,", "Hablando de…", "Hasta acá, lo bueno. Ahora, la otra cara.", "Esto nos lleva a…".
 
 ENSEÑAR (regla de Guille: "tenemos que enseñar"):
 - Cada indicador clave que uses se explica la primera vez con tres cosas: QUÉ ES, en palabras de todos los días; QUÉ PASA SI EMPEORA (la consecuencia concreta); y CUÁL ES UN NIVEL SANO como referencia general.
@@ -31,7 +33,7 @@ ENSEÑAR (regla de Guille: "tenemos que enseñar"):
 
 LOS NÚMEROS: POCOS, TRADUCIDOS Y COMPARADOS
 - Máximo 3 cifras por párrafo (los años no cuentan). NUNCA una serie de años seguidos ("fueron 20.956, 28.114, 24.753 y 27.412" está prohibido): para eso están los gráficos y las tablas. Usá punta a punta: "los ingresos pasaron de 20.956 M en 2022 a 28.825 M".
-- Cada número va con su traducción: cifra → comparación → qué significa. Ej.: "De cada 100 dólares que factura, le quedan 29 de ganancia operativa; el promedio de su industria se queda con 23. En criollo: vende lo mismo que las demás, pero le cuesta menos producirlo."
+- Cada número va con su traducción: cifra → comparación → qué significa. Ej.: "De cada 100 dólares que factura, le quedan 29 de ganancia operativa; el promedio de su industria se queda con 23. En otras palabras: vende lo mismo que las demás, pero le cuesta menos producirlo."
 - Todo número se compara con algo: su propio pasado, el promedio de su industria, lo que la empresa prometió (su guía), o la macro.
 - Explicá el POR QUÉ de cada movimiento importante con lo que dice el informe oficial. Distinguí lo pasajero de lo estructural.
 - Si la empresa usa una ganancia "ajustada" distinta de la contable, explicá por qué difieren y cuál refleja el negocio; aclará que la usan tanto la empresa como los analistas del mercado.
