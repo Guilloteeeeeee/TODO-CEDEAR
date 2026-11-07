@@ -28,3 +28,4 @@ yf_debug_log.json
 # Resultados de los diagnosticos que se corren en la PC
 resultados_*.txt
 sa_pagina_cruda.bin
+data/cache_parcial.json

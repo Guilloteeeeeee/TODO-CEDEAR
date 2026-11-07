@@ -85,7 +85,7 @@ def main(args):
     print(f"Bajando logos de {len(tickers)} empresas a {CARPETA_LOGOS} ...")
     for i, t in enumerate(tickers, 1):
         destino = CARPETA_LOGOS / f"{t}.png"
-        if destino.exists() and not todo and not pedidos:
+        if destino.exists() and not todo and not pedidos and t not in SOLO_POR_DOMINIO:   # v1.5.43: ASML/SPCX se rehacen siempre (el viejo de ASML era oscuro)
             continue
         ok = False
         for nombre, res, detalle in bajar(t):

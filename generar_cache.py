@@ -11,7 +11,7 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from data.fetcher import fetch_all_tickers
+from data.fetcher import fetch_all_tickers_seguro
 from scoring.engine import score_dataframe
 from config.sectors import TICKER_UNIVERSE
 from data.resumen import resumen_fuentes
@@ -29,10 +29,29 @@ print()
 tickers = [t for ts in TICKER_UNIVERSE.values() for t in ts]
 print(f"Descargando {len(tickers)} tickers...")
 print(f"Fuente principal de los ratios: {'Stock Analysis (Yahoo de respaldo)' if STOCK_ANALYSIS_MODO == 'principal' else 'Yahoo Finance'}")
-print("Esto tarda 10-15 minutos, esperá...")
+print("Esto tarda 15-30 minutos. Vas a ver el avance empresa por empresa.")
+print(f"Python {sys.version.split()[0]}")
 print()
 
-df = fetch_all_tickers(tickers)
+# v1.5.43: el dato anterior de cada empresa sirve de respaldo si Yahoo no responde (la corrida del 07/11 se colgó 4 horas)
+_respaldo = {}
+try:
+    with open("data/cache_datos.json", encoding="utf-8") as f:
+        _c = json.load(f)
+    _f_ant = str(_c.get("timestamp") or "")[:10]
+    for _r in _c.get("data") or []:
+        if _r.get("ticker"):
+            _r.setdefault("fecha_dato", _f_ant)
+            _respaldo[_r["ticker"]] = _r
+except Exception:
+    _respaldo = {}
+
+df, _info = fetch_all_tickers_seguro(tickers, respaldo=_respaldo, parcial="data/cache_parcial.json")
+print()
+if _info["respaldo"]:
+    print(f"  {len(_info['respaldo'])} empresas quedaron con su dato anterior (no respondieron hoy): {', '.join(_info['respaldo'][:30])}{' ...' if len(_info['respaldo']) > 30 else ''}")
+if _info["cortado"]:
+    print("  Yahoo dejó de responder a mitad de camino. Lo bajado quedó guardado: volvé a correr generar_cache.bat más tarde y sigue desde ahí.")
 def _limpiar(o):
     """NaN -> None (tambien dentro de diccionarios anidados) para guardar JSON valido."""
     if isinstance(o, float) and np.isnan(o):
@@ -85,6 +104,10 @@ if not ok and "--forzar" not in sys.argv:
     sys.exit(1)
 
 guardar_seguro(cache, CACHE_PATH)      # escribe a un temporal, lo relee y recien ahi reemplaza el archivo bueno
+try:
+    os.remove("data/cache_parcial.json")   # v1.5.43: la corrida terminó bien, el avance parcial ya no hace falta
+except OSError:
+    pass
 
 # v1.2.11 - Historial: copia con fecha para poder comparar como cambian los datos entre actualizaciones (solo si el cache paso los controles)
 copia = None

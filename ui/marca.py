@@ -166,7 +166,7 @@ div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!im
 .mc-lk:hover{color:#00e85c!important}
 .mc-lk.mc-eval{background:#c63b6e;padding:9px 18px;font-size:.97rem}
 .mc-lk.mc-eval:hover{background:#d4487a;color:#fff!important}
-.mc-lk.mc-eval.mc-on{box-shadow:inset 0 -3px 0 #00e05a}
+.mc-lk.mc-eval.mc-on{box-shadow:none}      /* v1.5.43: sin la raya verde cuando estás adentro de Evalúa tu Portfolio */
 .mc-ov2{display:none;position:fixed;inset:0;background:rgba(15,23,42,.38);z-index:1400;cursor:default}
 body:has(#bn-noticias:checked) .mc-ov2,body:has(#bn-cal:checked) .mc-ov2,body:has(#bn-filtro:checked) .mc-ov2{display:block}
 .mn-xb{display:none}
@@ -183,7 +183,7 @@ body:has(#bn-noticias:checked) .st-key-fly_noticias{top:__NTOP__px;bottom:auto;l
 /* v1.5.34: el Calendario también se despliega desde arriba, a todo el ancho (cuadraditos por mes); y los dos paneles llegan casi hasta el pie de la pantalla */
 body:has(#bn-cal:checked) .st-key-fly_cal{top:__NTOP__px;bottom:auto;left:32px;right:32px;width:auto;height:calc(100vh - __NTOP__px - 16px);height:calc(100dvh - __NTOP__px - 16px);max-height:none;border-radius:14px;border:1px solid #d5dde6;
   box-shadow:0 18px 40px rgba(15,23,42,.28);padding:14px 28px 26px!important;animation:nt-baja .22s ease}
-body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-g{display:grid;grid-template-columns:minmax(0,.74fr) minmax(0,1.13fr) minmax(0,1.13fr);gap:0 24px;align-items:start}
+body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 28px;align-items:start}   /* v1.5.43: tres columnas iguales (Locales angosta partía el renglón del medio) */
 /* v1.5.35: Locales (que trae menos notas) más angosta; Estados Unidos y Resto del mundo con más ancho para que entren todas las notas */
 body:has(#bn-noticias:checked) .st-key-fly_noticias .nt-col{min-width:0}
 @media (max-height:760px){
@@ -504,7 +504,7 @@ def links_html(activa="empresas", home=False):
 def css_nav(activa):
     """Estilo de la tabla activa ("empresas" o "etfs"; vacio = ninguna): letra firme y subrayado verde. Va junto al CSS de la franja."""
     if activa == "cartera":
-        return "a.mc-cart{box-shadow:inset 0 -2px 0 #00e05a;color:#fff!important}"
+        return "a.mc-cart{color:#fff!important}"      # v1.5.43: sin el subrayado verde (Guille: «aparece eso verde»)
     if activa not in ("empresas", "etfs"):
         return ""
     k = {"empresas": "emp", "etfs": "etfs"}[activa]
@@ -615,6 +615,16 @@ z-index:1490;overflow-y:auto;overflow-x:hidden;padding:10px 22px 30px!important;
 .fly .mc-form{padding:6px 2px 12px}
 .fly .mc-logos{padding:8px 0}
 .st-key-fly_noticias .nt>summary{display:none}
+/* v1.5.43: el buscador del calendario era una franja gris a todo el ancho; ahora es una caja blanca chica con lupa */
+.st-key-cal_tk [data-testid="stTextInputRootElement"]{max-width:360px}
+.st-key-cal_tk [data-baseweb="input"],.st-key-cal_tk [data-baseweb="base-input"]{background:#fff!important;border:0!important}
+.st-key-cal_tk input{background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='17' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round'><circle cx='11' cy='11' r='7'/><line x1='21' y1='21' x2='16.65' y2='16.65'/></svg>") no-repeat 11px center!important;
+  border:1px solid #c3ccd8!important;border-radius:9px!important;height:36px;padding-left:36px!important;font-size:14.5px}
+.st-key-cal_tk label p{font-size:.92rem!important}
+/* v1.5.43: en Evalúa tu Portfolio, Quiénes Somos e Ideas, en lugar de «Empresas · ETFs» va «Volver al inicio» con una casita */
+a.vol-ini{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:.95rem;color:#1f2937!important;text-decoration:none!important;padding:6px 12px 6px 8px;border-radius:9px}
+a.vol-ini:hover{background:#e9eef5}
+a.vol-ini svg{width:19px;height:19px}
 .st-key-fly_noticias .nt{box-shadow:none;padding:0}
 .st-key-fly_filtro [data-testid="stExpander"]{box-shadow:none}
 [data-testid="stLayoutWrapper"]:has(>[class*="st-key-fly_"]),[data-testid="stElementContainer"]:has(>[data-testid="stMarkdown"] .fly){position:absolute!important;width:0;height:0;overflow:visible}

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.42"
+APP_VERSION = "1.5.43"
 
 import re
 import contextlib
@@ -214,13 +214,13 @@ def _orden_tickers(df: pd.DataFrame) -> tuple:
         return tuple(sorted(df["ticker"]))
 
 
-def _precios_usd(tickers: tuple) -> dict:
+def _precios_usd(tickers: tuple, esperar: float = 15.0) -> dict:
     """Precios en dolares de todas las empresas (un solo pedido a Yahoo; las que falten, a Stock Analysis). Si falla, {'usd': {}} y la app
     sigue con el precio del cache. v1.5.22: se guardan PRECIOS_MINUTOS_CACHE minutos y, al vencer, se renuevan EN SEGUNDO PLANO (data/swr.py): antes la
     primera visita después del vencimiento esperaba toda la bajada."""
     vacio = {"usd": {}, "fecha": None, "hora": _pv.hora_texto(), "fuente": {}, "var": {}}
     return _swr.obtener(("usd", tickers), lambda: _pv.bajar_usd(tickers), max(1, int(PRECIOS_MINUTOS_CACHE)) * 60,
-                        valido=lambda r: bool(r.get("usd")), vacio=vacio)
+                        valido=lambda r: bool(r.get("usd")), vacio=vacio, esperar=esperar)
 
 
 @st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
@@ -936,12 +936,19 @@ def render_mapa(df: pd.DataFrame, texto_precios=None):
         precios = _precios_etfs(items_e) if (PRECIOS_VIVOS and items_e) else {}
         var = _var_etfs(items_e) if (PRECIOS_VIVOS and items_e) else {}
         items = _mc.items_etfs(etfs, guardados, precios, var)
-        html_m = _mc.mapa_html(items, "Mapa de Calor de ETFs", "etfs", hay_var=any(v is not None for v in var.values()), texto_precios=_sin_html(texto_precios),
-                               nota_tam="El tamaño es el patrimonio que administra cada ETF (AUM), suavizado para que se vean también los más chicos.")
+        titulo = "Mapa de Calor de ETFs"
+        html_m = _mc.mapa_html(items, titulo, "etfs", hay_var=any(v is not None for v in var.values()), texto_precios=_sin_html(texto_precios),
+                               nota_tam="El tamaño es el patrimonio que administra cada ETF (AUM), suavizado para que se vean también los más chicos.", sin_cabecera=True)
     else:
         items = _mc.items_empresas(df)
-        html_m = _mc.mapa_html(items, "Mapa de Calor de empresas", "empresas", hay_var=any(i["var"] is not None for i in items), texto_precios=_sin_html(texto_precios),
-                               nota_tam="El tamaño es la capitalización bursátil, suavizada para que se vean también las más chicas.")
+        titulo = "Mapa de Calor de empresas"
+        html_m = _mc.mapa_html(items, titulo, "empresas", hay_var=any(i["var"] is not None for i in items), texto_precios=_sin_html(texto_precios),
+                               nota_tam="El tamaño es la capitalización bursátil, suavizada para que se vean también las más chicas.", sin_cabecera=True)
+    izq, der = _mc.cabecera_html(titulo, tipo)
+    with st.container(key="fila_mapa"):      # v1.5.43: título + interruptor · buscador · leyenda en una sola fila
+        st.markdown(izq, unsafe_allow_html=True)
+        render_buscador()
+        st.markdown(der, unsafe_allow_html=True)
     st.markdown(html_m, unsafe_allow_html=True)
 
 
@@ -2025,6 +2032,33 @@ def render_barra_cartera(df):
 
 
 def main():
+    """v1.5.43 (rapidez): la barra de mercados ya no frena la página. Se reserva su lugar arriba y se dibuja al final; mientras tanto se ve todo lo demás.
+    Además, los precios de hoy empiezan a bajarse al mismo tiempo que la barra (antes iban uno detrás del otro)."""
+    ctx = {}
+    try:
+        _main(ctx)
+    finally:
+        ph = ctx.get("barra")
+        if ph is not None:
+            try:
+                from ui import mercados as _mk
+                ph.markdown(_mk.barra_html(_mk.obtener()), unsafe_allow_html=True)
+            except Exception:  # noqa: BLE001
+                pass
+
+
+def _arrancar_precios(universe_key):
+    """v1.5.43: dispara la bajada de los precios de hoy en segundo plano, sin esperar (la usa la tabla un poco después)."""
+    if not PRECIOS_VIVOS:
+        return
+    try:
+        df0, _ = get_scored_data(universe_key)
+        _precios_usd(_orden_tickers(df0), esperar=0)
+    except Exception:  # noqa: BLE001
+        pass
+
+
+def _main(ctx):
     # Cargar universo de tickers
     universe = load_custom_tickers()
     universe_key = str(sorted([t for ts in universe.values() for t in ts]))
@@ -2044,14 +2078,18 @@ def main():
     st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
                 + encabezado_html(NOMBRE_APP, activa=activa, menu_abierto=st.query_params.get("menu") == "1", links=not en_landing, home=en_inicio and not en_landing), unsafe_allow_html=True)
     # v1.5.36: en el celu no se veia el «Aguarde»: la barra de mercados espera hasta 8 s la primera vez y hasta ahi no habia nada en pantalla. Ahora el aviso sale ANTES y se borra cuando la barra esta lista.
-    _aguarde0 = st.empty()
-    _aguarde0.markdown(f"<style>{_ficha.CSS_CARGA}</style>" + '<div class="fch-carga"><span class="fch-giro"></span>Aguarde mientras se cargan los datos…</div>', unsafe_allow_html=True)
+    # v1.5.43: la barra de mercados (dólares, Merval, bolsas…) se dibuja YA si está guardada; si no (primera visita), se reserva su lugar y se completa al final (main)
     try:
         from ui import mercados as _mk
-        st.markdown(_mk.barra_html(_mk.obtener()), unsafe_allow_html=True)      # v1.5.7: barra de mercados fija debajo de la franja negra (dólares, Merval, bolsas, petróleo…)
+        _items_mk = _mk.obtener(esperar=0)
+        if not (en_quienes or en_cartera or en_ideas):
+            _arrancar_precios(universe_key)       # los precios bajan en paralelo con la barra
+        if _items_mk:
+            st.markdown(_mk.barra_html(_items_mk), unsafe_allow_html=True)
+        else:
+            ctx["barra"] = st.empty()
     except Exception:  # noqa: BLE001
         pass
-    _aguarde0.empty()
     from ui.tema import css_oscuro
     st.markdown(css_oscuro(), unsafe_allow_html=True)      # v1.4.3: modo oscuro (botón sol / luna en la franja negra)
     poner_flecha()      # v1.2.71: flecha "hay más abajo" en todas las páginas
@@ -2062,12 +2100,14 @@ def main():
     if en_inicio and not en_landing:
         fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    if en_quienes or en_cartera or en_ideas:      # v1.5.14: en las fichas (empresa / ETF) alcanza con «Volver»; en las tablas el cambio va en el interruptor sobre la tabla (v1.5.10)
-        render_nav_tablas("ambos")
+    if en_quienes or en_cartera or en_ideas:      # v1.5.43 (Guille): en lugar de «Empresas · ETFs», una casita que vuelve al inicio
+        st.markdown('<div class="vol-fila"><a class="vol-ini" href="?inicio=0" target="_self" title="Volver al inicio">'
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>'
+                    'Volver al inicio</a></div>', unsafe_allow_html=True)
     if etf_sel or st.query_params.get("empresa"):
         render_fila_volver(bool(etf_sel))      # v1.5.32: «Volver» + buscador en la misma fila (antes el buscador flotaba a una altura fija y a veces quedaba encimado)
-    elif en_quienes or en_ideas or en_mapa:
-        render_buscador()
+    elif en_quienes or en_ideas:
+        render_buscador()      # v1.5.43: en el mapa el buscador va en la fila del título (render_mapa)
     aviso = texto_aviso_legal()
     fecha = None
     if en_landing:

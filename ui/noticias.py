@@ -889,6 +889,12 @@ CSS = """
 .nt-pie{font-size:.74rem;color:#6b7280;padding:2px 0 10px}
 .nt-vacio{font-size:.86rem;color:#4b5563;padding:2px 0 12px}
 @media (max-width:820px){.nt{padding:2px 12px}.nt li a{flex-basis:100%}}
+/* v1.5.43 (Guille: «muy feo visualmente»): cada nota = título arriba (ancho completo) y, debajo, la etiqueta de la empresa y el medio con la hora, siempre alineados a la izquierda */
+.nt li:has(>.nt-pi){display:block;padding:10px 4px 10px 12px;border-top:1px solid #eef1f4}
+.nt li:has(>.nt-pi)>a{display:block;font-size:.95rem;line-height:1.34;font-weight:600}
+.nt-pi{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;margin-top:5px}
+.nt-pi .nt-m{white-space:normal}
+.nt-ul-locales li:first-child,.nt-ul-usa li:first-child,.nt-ul-mundo li:first-child{border-top:0}
 """
 
 
@@ -946,7 +952,7 @@ def _fila(n, fuente, ahora=None):
     es = n.get("titulo_es")
     tip = f' title="Titular original: {html.escape(n["titulo"], quote=True)}"' if es else ""
     return (f'<li><a href="{link}" target="_blank" rel="noopener noreferrer"{tip}>{html.escape(es or n["titulo"])}</a>'
-            f'{etiq}<span class="nt-m">{html.escape(meta)}</span></li>')
+            f'<div class="nt-pi">{etiq}<span class="nt-m">{html.escape(meta)}</span></div></li>')      # v1.5.43: medio y etiqueta en un renglón propio, debajo del título
 
 
 def noticias_bloques_html(bloques, ahora=None, abierto=None):

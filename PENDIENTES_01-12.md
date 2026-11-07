@@ -9,6 +9,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 
 **v1.5.36 (06/11):** Guille debe correr `descargar_logos.bat ASML SPCX` y subir `static/logos/`. Tanda 3: espera la lista de 70 corregida (Excel `Tanda3_pendientes_70.xlsx`); BRFS, CAJ, CBRD y EBR propuestos NO CARGAR (ya no cotizan en EE.UU.), ERJ→EMBJ, E = Eni, VXX a ETFs.
 
+**v1.5.43 (07/11):** generar_cache se colgó 4 h en la PC de Guille (Python 3.15). Ahora tiene tope por empresa y reanudación. Guille debe: (1) volver a correr `generar_cache.bat` y mandar `data/cache_datos.json` + `resultados_cache.txt`; (2) DESPUÉS `bajar_fichas.bat` (toma la lista del cache: con el cache viejo bajó 265, faltan las 58 de la tanda 3); (3) `descargar_logos.bat` (rehace ASML). Si vuelve a trabarse, instalar Python 3.13 (gratis) en vez del 3.15.
+
 **v1.5.42 (07/11):** Renovados con los resultados del trimestre (estilo pedido por Guille: un poco más técnico, % pegado, año de los hechos): AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP y SONY; cada uno guardó su informe anterior (PDF en `static/informes`). **PBR queda para después del 10/11/2026** (ese día presenta el 3T26; hoy solo está el informe de producción). Pendiente sin apuro: cargar `APP_URL` (data/analisis_fundamental.py) cuando la app tenga dirección pública, para que los informes anteriores se puedan tocar desde el PDF. Siguiente: los 49 de la tanda 1 sin informe (de a tandas).
 
 **v1.5.40 (07/11):** 30 ETFs sin CEDEAR cargados (acceso «Solo por mesa del broker», categoría nueva Monedas). Guille debe correr `bajar_etfs_yahoo.bat` con los 30 tickers para traer comisión, tamaño y dividendos; si algún ETF sí tiene CEDEAR, avisar el ratio.

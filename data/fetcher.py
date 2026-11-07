@@ -931,3 +931,105 @@ def fetch_all_tickers(tickers: list, progress_callback=None, modo_sa: Optional[s
         time.sleep(REQUEST_DELAY)
 
     return pd.DataFrame(results)
+
+
+def _con_tope(func, args, segundos):
+    """v1.5.43: corre func(*args) en un hilo aparte y espera como mucho `segundos`. Devuelve (terminó, resultado)."""
+    import threading
+    caja = {}
+
+    def _correr():
+        try:
+            caja["r"] = func(*args)
+        except Exception as e:  # noqa: BLE001
+            caja["e"] = e
+    h = threading.Thread(target=_correr, daemon=True)
+    h.start()
+    h.join(segundos)
+    if h.is_alive():
+        return False, None
+    if "e" in caja:
+        raise caja["e"]
+    return True, caja.get("r")
+
+
+def fetch_all_tickers_seguro(tickers: list, modo_sa: Optional[str] = None, tope_seg: int = 150, respaldo: Optional[dict] = None,
+                             parcial: Optional[str] = None, avisar=print, max_colgados: int = 6) -> tuple:
+    """v1.5.43 (la corrida del 07/11 quedó colgada 4 horas sin decir nada): igual que fetch_all_tickers, pero
+    - muestra el avance empresa por empresa,
+    - si una empresa tarda más de `tope_seg` segundos, la saltea y usa su dato anterior (`respaldo`: {ticker: fila del cache anterior}),
+    - si se cuelgan `max_colgados` seguidas (Yahoo no responde), deja de pedir y usa el dato anterior para el resto,
+    - guarda el avance en `parcial` cada 10 empresas: si se corta, la próxima corrida del mismo día sigue desde ahí.
+    Devuelve (DataFrame, {"respaldo": [...], "error": [...], "cortado": bool})."""
+    import json as _json
+    import os as _os
+    from datetime import date as _date
+    respaldo = respaldo or {}
+    hoy = _date.today().isoformat()
+    hechos, frescos = {}, {}
+    if parcial and _os.path.exists(parcial):
+        try:
+            with open(parcial, encoding="utf-8") as f:
+                p = _json.load(f)
+            if p.get("fecha") == hoy:
+                hechos = {r["ticker"]: r for r in p.get("filas", []) if r.get("ticker")}
+                frescos = dict(hechos)
+                if hechos:
+                    avisar(f"  Sigo desde donde se cortó: {len(hechos)} empresas ya estaban bajadas hoy.")
+        except Exception:  # noqa: BLE001
+            hechos, frescos = {}, {}
+
+    def _guardar():
+        if not parcial:
+            return
+        try:
+            tmp = parcial + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as f:
+                _json.dump({"fecha": hoy, "filas": list(frescos.values())}, f, ensure_ascii=False, default=str)   # solo lo bajado hoy
+            _os.replace(tmp, parcial)
+        except Exception:  # noqa: BLE001
+            pass
+
+    usados, errores, seguidos, cortado = [], [], 0, False
+    total = len(tickers)
+    for i, t in enumerate(tickers, 1):
+        if t in hechos:
+            continue
+        if cortado:
+            fila = None
+        else:
+            t0 = time.time()
+            try:
+                termino, fila = _con_tope(fetch_ticker_data, (t, modo_sa), tope_seg)
+            except Exception as e:  # noqa: BLE001
+                termino, fila = True, None
+                errores.append(f"{t}: {type(e).__name__}")
+            if not termino:
+                seguidos += 1
+                avisar(f"  [{i:3d}/{total}] {t:7s} no respondió en {tope_seg} s: se usa su dato anterior")
+                if seguidos >= max_colgados:
+                    cortado = True
+                    avisar(f"  {max_colgados} empresas seguidas sin respuesta: Yahoo parece trabado. Para el resto se usa el dato anterior.")
+            else:
+                seguidos = 0
+                if fila and fila.get("precio") is not None:
+                    avisar(f"  [{i:3d}/{total}] {t:7s} ok ({time.time() - t0:.0f} s)")
+                elif fila:
+                    avisar(f"  [{i:3d}/{total}] {t:7s} sin precio")
+        if fila is not None and fila.get("precio") is not None:
+            frescos[t] = fila
+        else:
+            ant = respaldo.get(t)
+            if ant:
+                fila = dict(ant)
+                usados.append(t)
+            elif fila is None:
+                fila = {"ticker": t}
+        hechos[t] = fila
+        if i % 10 == 0:
+            _guardar()
+        if not cortado:
+            time.sleep(REQUEST_DELAY)
+    _guardar()
+    filas = [hechos[t] for t in tickers if t in hechos]
+    return pd.DataFrame(filas), {"respaldo": usados, "error": errores, "cortado": cortado}

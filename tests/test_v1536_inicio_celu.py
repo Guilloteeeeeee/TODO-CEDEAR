@@ -16,8 +16,8 @@ for c in ("hr-tt", "hr-ley", "hr-tj", "hr-tr", "hr-bar"):
 chk("display:none" in media and "nth-child(4)" in media, "en el celu se oculta la columna Dividendo")
 chk("Evalu" in h and "Microsoft" in h, "sigue la vista previa con empresas reales")
 src = open("app.py", encoding="utf-8").read()
-i0 = src.index("_aguarde0 = st.empty()"); i1 = src.index("_mk.obtener()"); i2 = src.index("_aguarde0.empty()")
-chk(i0 < i1 < i2, "el aviso sale antes de la barra de mercados y se borra despues")
+# v1.5.43: la barra ya no frena la página (se dibuja al final si no estaba guardada), así que no hace falta el «Aguarde» previo
+chk("_mk.obtener(esperar=0)" in src and 'ctx["barra"] = st.empty()' in src, "la barra de mercados no frena la página (v1.5.43)")
 chk('APP_VERSION = "1.5.' in src, "version")
 d = open("descargar_logos.py", encoding="utf-8").read()
 chk(re.search(r'SOLO_POR_DOMINIO = \{[^}]*"ASML"', d) is not None, "ASML se baja por dominio")

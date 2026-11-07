@@ -190,11 +190,24 @@ CSS = """
 .mpc-t:hover{outline:2px solid #fff;outline-offset:-2px;z-index:5;filter:brightness(1.12)}
 .mpc-k{font-weight:700;letter-spacing:.2px}
 .mpc-v{font-weight:400;opacity:.9}
+/* v1.5.43: fila del mapa = título + interruptor · buscador · leyenda (antes el buscador flotaba a una altura fija y quedaba lejos del mapa) */
+[data-testid="stLayoutWrapper"]:has(>.st-key-fila_mapa){max-width:1120px;width:100%;margin:-58px auto 0}
+.st-key-fila_mapa{display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center;gap:10px 22px!important;margin:0 0 10px}
+.st-key-fila_mapa [data-testid="stElementContainer"]{width:auto!important;flex:0 0 auto;margin:0!important}
+.st-key-fila_mapa [data-testid="stElementContainer"]:has(.mpc-leyenda){margin-left:auto!important}
+.st-key-fila_mapa>[data-testid="stLayoutWrapper"]{flex:0 0 270px;width:270px}
+.st-key-fila_mapa .st-key-buscador{position:relative!important;top:auto!important;left:auto!important;width:100%!important;margin:0!important;z-index:60}
+.st-key-fila_mapa .st-key-buscador input{height:36px;font-size:14.5px;border-radius:9px;border:1px solid #c3ccd8!important;box-shadow:none;padding-left:36px!important;background-position:11px center;background-size:17px}
+.mpc-w2{margin-top:0!important}
+@media (min-width:901px){.st-key-fila_mapa .st-key-buscador{top:10px!important}}   /* alinea la caja con el título */
+@media (max-width:900px){.st-key-fila_mapa{gap:12px 14px!important}}
+@media (max-width:900px){[data-testid="stLayoutWrapper"]:has(>.st-key-fila_mapa){margin-top:-36px}.st-key-fila_mapa>[data-testid="stLayoutWrapper"]{flex:1 1 100%;width:100%}
+.st-key-fila_mapa [data-testid="stElementContainer"]:has(.mpc-leyenda){margin-left:0!important}}
 @media (max-width:900px){.mpc-w{margin-top:-40px}.mpc-d{display:none}.mpc-m{display:block}.mpc-leyenda{margin-left:0}.mpc-w{padding:0 2px}}
 """
 
 
-def mapa_html(items, titulo, activo, hay_var=True, texto_precios=None, nota_tam=""):
+def mapa_html(items, titulo, activo, hay_var=True, texto_precios=None, nota_tam="", sin_cabecera=False):
     """La pantalla completa: título, interruptor Empresas | ETFs, leyenda de colores, el mapa (versión de compu y versión de celular) y una nota al pie."""
     grupos = armar_grupos(items)
     sw = "".join(f'<a href="?pagina=mapa&tipo={k}" target="_self"{" class=on" if k == activo else ""}>{t}</a>' for k, t in (("empresas", "Empresas"), ("etfs", "ETFs")))
@@ -214,7 +227,18 @@ def mapa_html(items, titulo, activo, hay_var=True, texto_precios=None, nota_tam=
     nota = (f'<p class="mpc-nota">Cada recuadro es una {"empresa" if activo == "empresas" else "ETF"}; el color muestra cuánto subió o bajó hoy respecto del cierre anterior '
             f'(rojo = baja, verde = suba, gris = sin cambios o sin dato). {nota_tam}{hora} Tocá un recuadro para abrir su ficha. '
             f'Es información de mercado, no una recomendación.</p>')
+    if sin_cabecera:      # v1.5.43: el título, el interruptor y la leyenda van en la fila de Streamlit, junto al buscador (ver cabecera_html)
+        return f'<div class="mpc-w mpc-w2">{aviso}{cuerpo}{nota}</div>'
     return f'<div class="mpc-w"><div class="mpc-tit"><h2>{html.escape(titulo)}</h2><div class="mpc-sw">{sw}</div>{leyenda}</div>{aviso}{cuerpo}{nota}</div>'
+
+
+def cabecera_html(titulo, activo):
+    """v1.5.43: (título + interruptor, leyenda) por separado, para armar la fila con el buscador en el medio."""
+    sw = "".join(f'<a href="?pagina=mapa&tipo={k}" target="_self"{" class=on" if k == activo else ""}>{t}</a>' for k, t in (("empresas", "Empresas"), ("etfs", "ETFs")))
+    esc = "".join(f'<span style="background:{color_var(v)}"></span>' for v in (-3, -2, -1, 0, 1, 2, 3))
+    izq = f'<div class="mpc-tit" style="margin:0"><h2>{html.escape(titulo)}</h2><div class="mpc-sw">{sw}</div></div>'
+    der = f'<div class="mpc-leyenda" style="margin:0"><span>−3%</span><div class="mpc-esc">{esc}</div><span>+3%</span></div>'
+    return izq, der
 
 
 def items_empresas(df):

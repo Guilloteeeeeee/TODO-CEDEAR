@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.43 — Más rápida, generar_cache que no se cuelga y arreglos visuales
+- **generar_cache**: muestra el avance empresa por empresa; si una tarda más de 150 s la saltea y usa su dato anterior; si se traban 6 seguidas deja de pedir (Yahoo trabado) y usa el dato anterior para el resto; guarda el avance en `data/cache_parcial.json` y, si se corta, la próxima corrida del mismo día sigue desde ahí. Muestra la versión de Python.
+- **Rapidez**: la barra de mercados ya no frena la página (si no está guardada, se reserva su lugar y se completa al final) y los precios de hoy se empiezan a bajar al mismo tiempo que la barra (antes, uno detrás del otro).
+- **Mapa de calor**: el buscador va en la misma fila que el título y el interruptor Empresas | ETFs.
+- **Noticias**: cada nota con el título arriba y, debajo, la etiqueta de la empresa y el medio con la hora; tres columnas del mismo ancho.
+- **Calendario**: el buscador por ticker es una caja blanca chica con lupa (antes, una franja gris a todo el ancho).
+- **Evalúa tu Portfolio**: sin la raya verde en el botón; en lugar de «Empresas · Exchange Traded Funds (ETFs)» va una casita «Volver al inicio» (también en Quiénes Somos e Ideas).
+- **Logos**: ASML y SPCX se vuelven a bajar siempre por el dominio de la empresa. Subidos los logos nuevos (59), fichas y datos de Yahoo de los 96 ETFs.
+- Pruebas: `tests/test_v1543_rapidez_visual.py`.
+
 ### v1.5.42 — 9 informes renovados con el último trimestre
 - Renovados con el comunicado oficial de resultados de esta semana: ANET, SHOP, PFE, QCOM, MCD, NVO, COP y SONY (AMGN ya en la v1.5.41). Cada uno guardó su informe anterior, que se descarga desde la ficha.
 - PBR se renueva después del 10/11/2026, cuando presente el tercer trimestre.
