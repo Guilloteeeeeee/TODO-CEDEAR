@@ -24,7 +24,7 @@ TIPS = {
     "ETF": "Presioná en el ETF para información detallada. " + INTRO,
     "Precio": "Precio de una unidad del ETF en dólares, en su mercado de origen (no en tiempo real).",
     "Descripción": "Qué replica o en qué invierte el ETF.",
-    "Categoría": "Grupo al que pertenece (USA, Internacionales, Sectores, Temáticos, Minería, Materias Primas, Apalancados, Volatilidad...).",
+    "Categoría": "Grupo al que pertenece (USA, Internacionales, Sectores, Temáticos, Minería, Materias Primas, Monedas, Apalancados, Volatilidad...).",
     "Gestor": "Empresa que administra el ETF (la que lo crea y lo mantiene).",
     "AUM": "Activos bajo gestión: cuánto dinero tiene invertido el ETF en total. Más grande suele significar más liquidez y más permanencia en el tiempo. B = mil millones, M = millón.",
     "Comisión": "Lo que cobra el ETF por año, como porcentaje de lo invertido (expense ratio). Ya está descontada del precio; no se paga aparte.",
@@ -504,7 +504,8 @@ def tab_resumen(e, d, precio, cedear=None):
 
 
 # ETFs que no tienen empresas adentro (oro, plata, petroleo, materias primas, bitcoin, ether): no hay desglose por pais
-SIN_PAISES = {"IBIT", "ETHA", "GLD", "SLV", "USO", "GSG", "CORN", "SOYB", "DBB", "DBA", "WEAT", "VXX"}
+SIN_PAISES = {"IBIT", "ETHA", "GLD", "SLV", "USO", "GSG", "CORN", "SOYB", "DBB", "DBA", "WEAT", "VXX",
+              "FXA", "FXB", "FXC", "FXE", "FXF", "FXY", "UUP", "BNO", "CPER", "DBC", "PALL", "PPLT", "UNG", "BITO", "ETHE", "FBTC", "GBTC"}
 
 
 def paises_de(e, d):

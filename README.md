@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.40 — 30 ETFs más (sin CEDEAR)
+- **Se cargan en la tabla de ETFs los 30 ETFs de la lista de Rava que no estaban**: EIDO, EWG, EWH, EWQ, EWT, EWU, EWW, EZA, EZU, INDA, MCHI, VWO (países y mercados), FXA, FXB, FXC, FXE, FXF, FXY, UUP (monedas), BNO, CPER, DBC, PALL, PPLT, UNG (materias primas) y BITO, BITQ, ETHE, FBTC, GBTC (cripto).
+- **Ninguno tiene CEDEAR** (no figuran en la lista de BYMA, ni en los CEDEARs de Rava, ni en Balanz): en la tabla salen con la etiqueta «Sin CEDEAR: solo por mesa del broker» y sin ratio.
+- **Categoría nueva: Monedas** (FXA, FXB, FXC, FXE, FXF, FXY, UUP), igual que la sección «Monedas y divisas» de Rava. Los demás entran en las categorías que ya existían.
+- Sin torta de países en los que no tienen empresas adentro (monedas, materias primas, bitcoin y ether). Los de un solo país (Alemania, Francia, Reino Unido, Hong Kong, Taiwán, México, Sudáfrica, Indonesia, India, China) la muestran al 100 %.
+- Descripciones, gestores y mercados: solo lo que se sabe seguro; web oficial y comisión quedan vacíos hasta correr `bajar_etfs_yahoo.bat` con los 30 tickers.
+- Pruebas: `tests/test_v1540_etfs_rava.py`.
+
 ### v1.5.39 — HWM, VXX y ajustes a la Tanda 3
 - **Tanda 3: quedan 58 empresas.** Se sacaron ELPC (Copel) y AXIA (Eletrobras), por pedido de Guille (07/11/2026): Rava no muestra ratio u operaciones de ellas.
 - **HWM (Howmet): ratio 52:1**, dato de Guille (no figura en BYMA, Balanz ni Rava con un valor que cierre).
