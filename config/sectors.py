@@ -219,7 +219,7 @@ _TANDA3 = {
     "Pagos y datos": ["BMNR", "HUT", "IREN", "RIOT"],
     "Hardware y servicios TI": ["CLS", "GLOB", "KEEL", "NOK", "ONDS"],
     "Energía": ["E", "GLNG", "GPRK", "TS", "UGP", "VIST"],
-    "Utilities": ["ELPC", "KEP", "SBS", "AXIAY"],
+    "Utilities": ["KEP", "SBS"],
     "Comunicación": ["JOYY", "TV", "WB"],
     "Telecomunicaciones": ["TIMB", "VIV"],
 }

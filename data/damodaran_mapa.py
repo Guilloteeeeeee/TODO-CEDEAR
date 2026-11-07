@@ -143,7 +143,7 @@ _G_TANDA3 = {
     "Electronics (General)": "CLS",
     "Building Materials": "CX",
     "Oil/Gas (Integrated)": "E",
-    "Utility (General)": "ELPC KEP",
+    "Utility (General)": "KEP",
     "Aerospace/Defense": "EMBJ SATL SPCE",
     "Steel": "GGB PKX SID TX",
     "Oil/Gas Distribution": "GLNG UGP",
@@ -164,7 +164,7 @@ _G_TANDA3 = {
     "Broadcasting": "TV",
     "Telecom. Services": "VIV",
     "Insurance (Prop/Cas.)": "TRV",
-    "Power": "AXIAY",
+    "Power": "",
 }
 for _ind, _tks in _G_TANDA3.items():
     _G[_ind] = (_G.get(_ind, "") + " " + _tks).strip()
@@ -184,7 +184,7 @@ _R = {
     "aus_nz_canada": "AEM SHOP BHP CCJ B KGC PAAS NXE",
     "japon": "MUFG TM SONY HMC",          # sin planilla regional: se compara con EE.UU. y la nota lo aclara
 }
-for _r3, _t3 in {"emergentes": "ABEV AGRO AKO-B ARCO ASR BAK BBD BIOX BSBR CAAP CX ELPC EMBJ GGB GLOB GPRK JMIA JOYY KEP KOF LAR LND PAC PKX SBS SDA SID SUZ TS TIMB TV TX UGP VIST VIV WB AXIAY", "europa": "AEG E NOK", "aus_nz_canada": "BB CLS NG", "japon": "MFG NMR"}.items():   # Tanda 3 (v1.5.37)
+for _r3, _t3 in {"emergentes": "ABEV AGRO AKO-B ARCO ASR BAK BBD BIOX BSBR CAAP CX EMBJ GGB GLOB GPRK JMIA JOYY KEP KOF LAR LND PAC PKX SBS SDA SID SUZ TS TIMB TV TX UGP VIST VIV WB ", "europa": "AEG E NOK", "aus_nz_canada": "BB CLS NG", "japon": "MFG NMR"}.items():   # Tanda 3 (v1.5.37)
     _R[_r3] = _R[_r3] + " " + _t3
 REGION = {t: r for r, tks in _R.items() for t in tks.split()}
 REGION_TXT = {"us": "empresas de EE.UU.", "emergentes": "empresas de mercados emergentes", "europa": "empresas de Europa", "aus_nz_canada": "empresas de Australia, Nueva Zelanda y Canadá",

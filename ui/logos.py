@@ -211,7 +211,6 @@ DOMINIOS.update({   # Tanda 3 (v1.5.37)
     "CLS": "celestica.com",
     "CX": "cemex.com",
     "E": "eni.com",
-    "ELPC": "copel.com",
     "EMBJ": "embraer.com",
     "GGB": "gerdau.com",
     "GLNG": "golarlng.com",
@@ -252,7 +251,6 @@ DOMINIOS.update({   # Tanda 3 (v1.5.37)
     "WB": "weibo.com",
     "XRX": "xerox.com",
     "TRV": "travelers.com",
-    "AXIAY": "eletrobras.com",
 })
 
 

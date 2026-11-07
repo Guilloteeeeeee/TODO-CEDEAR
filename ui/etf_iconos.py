@@ -145,6 +145,7 @@ ICONOS = {
     "apalancado": _insignia("#b91c1c", '<path d="M13 41L26 28l8 8 16-17" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>'
                             '<polygon points="52,14 52,28 38,14" fill="#fff"/><text x="21" y="55" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#fff" text-anchor="middle">3x</text>', "Apalancado 3x"),
     "inverso": _insignia("#334155", '<path d="M32 13v30" stroke="#fff" stroke-width="5.5" stroke-linecap="round"/><polygon points="18,38 46,38 32,53" fill="#fff"/>', "Inverso"),
+    "volatilidad": _insignia("#6d28d9", '<path d="M10 38L21 25l8 14 9-23 8 17 8-7" fill="none" stroke="#fff" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/>', "Volatilidad"),
 }
 
 # Para los que se cargan con otro nombre (compatibilidad con los dibujos de Bitcoin y Ethereum, que viven en ui/etfs.py)

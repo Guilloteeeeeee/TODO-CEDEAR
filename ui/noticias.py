@@ -193,7 +193,6 @@ ALIAS.update({   # Tanda 3 (v1.5.37)
     "CLS": ["Celestica"],
     "CX": ["Cemex"],
     "E": ["Eni"],
-    "ELPC": ["Copel", "Companhia Paranaense de Energia"],
     "EMBJ": ["Embraer"],
     "GGB": ["Gerdau"],
     "GLNG": ["Golar LNG", "Golar"],
@@ -234,7 +233,6 @@ ALIAS.update({   # Tanda 3 (v1.5.37)
     "WB": ["Weibo"],
     "XRX": ["Xerox"],
     "TRV": ["Travelers"],
-    "AXIAY": ["AXIA Energia", "Eletrobras"],
 })
 
 # Tickers que tambien son palabras o siglas comunes: no se buscan como ticker (si por nombre).

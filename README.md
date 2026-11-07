@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.39 — HWM, VXX y ajustes a la Tanda 3
+- **Tanda 3: quedan 58 empresas.** Se sacaron ELPC (Copel) y AXIA (Eletrobras), por pedido de Guille (07/11/2026): Rava no muestra ratio u operaciones de ellas.
+- **HWM (Howmet): ratio 52:1**, dato de Guille (no figura en BYMA, Balanz ni Rava con un valor que cierre).
+- **VXX** (iPath Series B S&P 500 VIX Short-Term Futures ETN, de Barclays) entra a la tabla de ETFs en una categoría nueva, **Volatilidad** (ícono propio). Es un ETN, no un ETF; sigue futuros del VIX de corto plazo, cobra 0,89% anual, ratio 5:1, y la descripción advierte el riesgo de crédito del emisor y la pérdida de valor por la renovación de contratos. Va en `SIN_PAISES`. Falta `bajar_etfs_yahoo.bat VXX` en la PC de Guille.
+- BAK, PAC, SDA y URBN: Guille confirmó que están bien (solo están «desarbitrados»: su dólar implícito se aparta del resto). Se dejan como están.
+- Quedan fuera por decisión de Guille: GOGLB y DJNJ3 (Rava), EA, y las que están en la app pero Rava no lista (AKO.B, HDB, DBA, DBB, ILIT, JMOM, REMX, WEAT se mantienen).
+- Pruebas: `tests/test_v1537_tanda3.py` (58 empresas, HWM, VXX) y `tests/test_cobertura.py`.
+
 ### v1.5.38 — ratio de SBS y cruce con Rava
 - **SBS (Sabesp): ratio 1:2**, según Rava (07/11/2026). Se comprobó con el dólar implícito que muestra Rava (1.671,88), igual que el resto.
 - **Cruce de la lista completa de Rava (422 CEDEARs) contra la app:** todos los ratios cargados coinciden con Rava. KEEL (1:5), TRV (6:1) y EMBJ (1:1) también quedaron confirmados.

@@ -197,7 +197,6 @@ INDUSTRIA.update({
     "CLS": "Componentes electrónicos",
     "CX": "Materiales de construcción",
     "E": "Petróleo y gas integrado",
-    "ELPC": "Servicios eléctricos",
     "EMBJ": "Aeroespacial y defensa",
     "GGB": "Acero",
     "GLNG": "Transporte y licuefacción de GNL",
@@ -238,5 +237,4 @@ INDUSTRIA.update({
     "WB": "Redes sociales y publicidad",
     "XRX": "Equipos y servicios de oficina",
     "TRV": "Seguros de propiedad y accidentes",
-    "AXIAY": "Generación de energía",
 })

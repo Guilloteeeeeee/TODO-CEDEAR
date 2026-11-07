@@ -10,13 +10,10 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 
 # simbolo de BYMA -> ticker con el que la app lo conoce
 ALIAS = {"BK": "BNY", "MMC": "MRSH", "BNG": "BG", "BRKB": "BRK-B", "BA.C": "BAC", "BBV": "BBVA",
-         "ERJ": "EMBJ", "ELP": "ELPC", "EBR": "AXIAY"}      # v1.5.37: Embraer, Copel y Eletrobras cambiaron de símbolo
+         "ERJ": "EMBJ"}      # v1.5.37: Embraer cambió de símbolo (ERJ pasó a EMBJ)
 
 # Pendientes de cargar (Tanda 3 cargada en la v1.5.37; quedan dos con un dato por resolver)
-PENDIENTES = {
-    "Falta el ratio (BYMA dice 1:1 pero el precio en pesos no encaja)": ["HWM"],
-    "ETF por cargar: falta elegir su categoría en la tabla de ETFs": ["VXX"],
-}
+PENDIENTES = {}   # v1.5.39: HWM (ratio 52:1, dato de Guille) y VXX (categoría Volatilidad) ya cargados
 # No se cargan (o se cargan distinto), con el motivo
 EXCLUIDAS = {
     "Segundo ticker de una empresa que ya tiene ficha (se muestra como segunda línea en la ficha del ADR)":
@@ -24,7 +21,7 @@ EXCLUIDAS = {
     "Ya no cotiza (cerrada, comprada o fusionada)": "AABA TWTR CS SI EA WBA".split(),
     "Empresa rusa: sin datos confiables": "ATAD LKOD OGZD NLM MBT".split(),
     "Símbolo mal escrito en la lista de BYMA (hay que confirmarlo con BYMA)": "NYSE UN".split(),
-    "No se carga (decisión de Guille, 06/11/2026): el ADR ya no cotiza en EE.UU., no figura en Balanz o no hay datos confiables": "BRFS CAJ CBRD AOCA AUY FMCC FNMA HNPIY SHPW YZCA LFC PTR SNP ORAN TTM PSO TIIAY".split(),
+    "No se carga (decisión de Guille, 06/11/2026): el ADR ya no cotiza en EE.UU., no figura en Balanz o no hay datos confiables": "BRFS CAJ CBRD EBR ELP AOCA AUY FMCC FNMA HNPIY SHPW YZCA LFC PTR SNP ORAN TTM PSO TIIAY".split(),
     "A decidir: acción que cotiza solo en Brasil (reporta en reales, otra fuente de datos)": "BBAS3 BPA11 HAPV3 LREN3 MGLU3 NATU3 PRIO3 RCTB4 RENT3 SBSP3 WEGE3".split(),
     "A decidir: cotiza en bolsa de Europa o Asia (otra moneda, otra fuente de datos)": "ADS BAS BAYN BSN DTEA EOAN MBG NEC1 SKHY SMSN HHPD PCRF NSAN".split(),
 }
