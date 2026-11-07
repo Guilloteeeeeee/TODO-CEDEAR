@@ -39,5 +39,14 @@ d0 = af_pdf._dibujo(__import__("data.af_v4", fromlist=["x"]).grafico("margen_ope
 chk(d0 is not None, "los gráficos se dibujan en el PDF")
 pr = open("data/prompt_analisis_fundamental_v4.txt", encoding="utf-8").read()
 chk("REGISTRO" in pr and "remedios" in pr and "Horizon (2023)" in pr and '"8%"' in pr, "reglas nuevas en el prompt")
+# v1.5.42: gráficos de empresas con estados en otra moneda
+from data import af_v4 as V
+P = PY.cargar()[0]
+for tk, nom in (("NVO", "coronas danesas"), ("SONY", "yenes")):
+    g = V.grafico("flujo_libre", P[tk]["estados"], G._fila_cache(tk), {}, {}, None, None)
+    chk(f"millones de {nom}" in g and "millones de dólares" not in g, f"{tk}: gráfico en {nom}")
+D = json.load(open("data/analisis_fundamental.json", encoding="utf-8"))["datos"]
+for tk in ("AMGN", "ANET", "SHOP", "PFE", "QCOM", "MCD", "NVO", "COP", "SONY"):
+    chk(D[tk]["fecha"] == "07/11/2026" and AF.anteriores(tk), f"{tk}: renovado el 07/11 con su informe anterior")
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)

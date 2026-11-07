@@ -9,6 +9,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 
 **v1.5.36 (06/11):** Guille debe correr `descargar_logos.bat ASML SPCX` y subir `static/logos/`. Tanda 3: espera la lista de 70 corregida (Excel `Tanda3_pendientes_70.xlsx`); BRFS, CAJ, CBRD y EBR propuestos NO CARGAR (ya no cotizan en EE.UU.), ERJ→EMBJ, E = Eni, VXX a ETFs.
 
+**v1.5.42 (07/11):** Renovados con los resultados del trimestre (estilo pedido por Guille: un poco más técnico, % pegado, año de los hechos): AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP y SONY; cada uno guardó su informe anterior (PDF en `static/informes`). **PBR queda para después del 10/11/2026** (ese día presenta el 3T26; hoy solo está el informe de producción). Pendiente sin apuro: cargar `APP_URL` (data/analisis_fundamental.py) cuando la app tenga dirección pública, para que los informes anteriores se puedan tocar desde el PDF. Siguiente: los 49 de la tanda 1 sin informe (de a tandas).
+
 **v1.5.40 (07/11):** 30 ETFs sin CEDEAR cargados (acceso «Solo por mesa del broker», categoría nueva Monedas). Guille debe correr `bajar_etfs_yahoo.bat` con los 30 tickers para traer comisión, tamaño y dividendos; si algún ETF sí tiene CEDEAR, avisar el ratio.
 
 **v1.5.39 (07/11):** Tanda 3 = 58 (sin ELPC ni AXIA); HWM 52:1; VXX en ETFs (categoría Volatilidad). Falta decidir las 18 acciones de Brasil/Europa-Asia que Balanz lista y correr `bajar_etfs_yahoo.bat VXX`.

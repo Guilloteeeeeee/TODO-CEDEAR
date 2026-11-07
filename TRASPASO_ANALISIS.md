@@ -18,7 +18,7 @@ Correr `generar_cache.bat`, `bajar_fichas.bat` y `bajar_etfs_yahoo.bat DBB DBA W
 ## Las tres tareas (todas con Opus)
 1. **Renovar la valuación de los 139 informes.** Hoy dicen "Escrito el 29/10 - 01/11" pero la foto de valuación es del 22/10. Con el caché nuevo: tomar la foto el mismo día que la fecha escrita y revisar que las frases (barata/cara, margen de seguridad) sigan teniendo sentido. La valuación arranca "Con el precio de X dólares al momento de escribir este informe (dd/mm/aaaa)".
 2. **Pasada de redacción** (palabras repetidas, normas de escritura del prompt v4) sobre los informes.
-3. **21 empresas nuevas y 10 renovaciones** (AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR).
+3. **21 empresas nuevas y 10 renovaciones** (AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO, COP, SONY, PBR). — 07/11/2026: renovadas las 9 primeras (v1.5.42); PBR después de sus resultados del 10/11.
 
 ## Reglas de Guille que valen acá
 - Castellano rioplatense con voseo, simple, sin jerga; cruda verdad; no inventar datos; cerrar con "Conclusión resumen".

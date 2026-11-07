@@ -26,6 +26,12 @@ RUTA_MACRO_NUM = os.path.join(AQUI, "macro_numeros.json")
 CALIDADES = ("Excelente", "Muy buena", "Buena", "Regular", "Pobre")
 RIESGOS_IA = ("muy alto", "alto", "moderado", "bajo", "muy bajo")
 
+# v1.5.42: nombre de la moneda de los estados contables, para los títulos de los gráficos
+NOMBRES_MONEDA = {"DKK": "coronas danesas", "SEK": "coronas suecas", "NOK": "coronas noruegas", "JPY": "yenes", "BRL": "reales", "EUR": "euros",
+                  "GBP": "libras", "CHF": "francos suizos", "CNY": "yuanes", "HKD": "dólares de Hong Kong", "TWD": "dólares taiwaneses", "KRW": "wones",
+                  "INR": "rupias", "MXN": "pesos mexicanos", "ARS": "pesos argentinos", "CLP": "pesos chilenos", "COP": "pesos colombianos",
+                  "PEN": "soles", "CAD": "dólares canadienses", "AUD": "dólares australianos", "ZAR": "rands", "ILS": "séqueles", "IDR": "rupias indonesias"}
+
 # Gráficos que puede pedir el redactor: clave -> título que ve el lector
 GRAFICOS = {
     "ingresos": "Ingresos por año (millones de dólares)",
@@ -389,6 +395,10 @@ def _ind_pct(dam, ds, k):
 
 def _grafico(clave, estados, row, dam, ctx, historial, dps):
     tit = GRAFICOS.get(clave)
+    _mon = str(T.moneda(estados) or "USD").upper()
+    if tit and _mon != "USD" and clave not in ("dividendo",):          # v1.5.42: estados en otra moneda (NVO, SONY, PBR…): el título dice la moneda real
+        _nm = NOMBRES_MONEDA.get(_mon, _mon)
+        tit = tit.replace("millones de dólares", f"millones de {_nm}").replace("(dólares, contable)", f"({_nm}, contable)")
     if not tit:
         return ""
     svg = ""

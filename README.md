@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.42 — 9 informes renovados con el último trimestre
+- Renovados con el comunicado oficial de resultados de esta semana: ANET, SHOP, PFE, QCOM, MCD, NVO, COP y SONY (AMGN ya en la v1.5.41). Cada uno guardó su informe anterior, que se descarga desde la ficha.
+- PBR se renueva después del 10/11/2026, cuando presente el tercer trimestre.
+- Gráficos de empresas con estados en otra moneda (Novo, Sony, Petrobras…): el título dice la moneda real (coronas danesas, yenes, reales) en vez de «millones de dólares».
+
 ### v1.5.41 — Informes anteriores y ajustes del Análisis Fundamental
 - **Informes anteriores**: al renovar un informe, el viejo se guarda entero (`data/analisis_anteriores.json`) y en PDF (`static/informes/<TICKER>_<aaaa-mm-dd>.pdf`). En la ficha, «informe anterior (fecha)» del recuadro «Desde el último análisis» va subrayado y en azul y descarga ese PDF; al final hay una lista «Informes anteriores» que se va acumulando. El PDF del informe actual también la lista (con link cuando la app tenga su dirección pública: `APP_URL` en `data/analisis_fundamental.py`).
 - **Gráficos en el PDF**: no salían por un error interno (la letra negrita no estaba definida al dibujarlos). Arreglado.

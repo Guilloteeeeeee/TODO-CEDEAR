@@ -114,5 +114,913 @@
     }
    }
   }
+ ],
+ "ANET": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "Arista Networks: las redes que conectan los chips de la IA, con márgenes de software",
+   "archivo": "ANET_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "Arista Networks: las redes que conectan los chips de la IA, con márgenes de software",
+    "resumen": [
+     "Arista Networks fabrica **equipos de red** (switches) y el software que los maneja, para los centros de datos más grandes del mundo. Es una pieza clave de la IA: conecta miles de chips para que trabajen como una sola computadora. Su ventaja es un sistema operativo propio, muy estable, que los grandes clientes eligen por confiabilidad.",
+     "En el segundo trimestre de 2026, **sus ingresos crecieron 37,7 %**, a algo más de 3.000 M, con un margen operativo cercano a 50 %. La empresa espera vender unos 12.600 M en 2026, un 40 % más.",
+     "Excelente empresa, con crecimiento alto, márgenes enormes, mucha caja y sin deuda, aunque depende de pocos clientes gigantes y el mercado ya la paga cara."
+    ],
+    "introduccion": "Un centro de datos de inteligencia artificial no es un montón de chips sueltos. Son decenas de miles de chips de Nvidia o similares que tienen que hablar entre sí todo el tiempo, a velocidades altísimas. Si la red que los conecta es lenta o falla, los chips, que cuestan fortunas, se quedan esperando.\n\nArista Networks fabrica esa red. Sus switches y su software conectan los servidores de algunos de los centros de datos más grandes del mundo.\n\nY la IA le cambió la escala. En el segundo trimestre de 2026 vendió algo más de 3.000 M, un 37,7 % más que un año antes. Para todo el año espera vender unos 12.600 M, un 40 % más, y al menos 3.500 M solo en redes para IA.\n\nLo más llamativo es cuánto gana: de cada 100 dólares que vende, casi 50 quedan como ganancia operativa. Es un margen más típico de una empresa de software que de una que vende equipos.\n\nEntonces, la pregunta es: ¿puede sostener ese crecimiento y esos márgenes cuando Nvidia y otros también quieren vender la red?",
+    "secciones": [
+     {
+      "titulo": "La red dentro de los centros de datos",
+      "texto": "Arista vende tres cosas:\n\n- **Redes para centros de datos y nube**: el corazón del negocio. Switches de alta velocidad para las grandes nubes y empresas.\n- **Redes para IA**: las que conectan los chips de los grandes centros de datos de IA. La empresa apunta a facturar al menos 3.500 M en 2026.\n- **Redes para oficinas y campus**: el negocio más nuevo, para empresas medianas y grandes. Apunta a al menos 1.250 M en 2026.\n\nSus clientes son pocos y enormes. Históricamente, Microsoft (MSFT) y Meta (META) explican una parte muy grande de sus ventas, junto con otras grandes nubes, bancos y empresas de servicios financieros.\n\n¿Cuál es su **ventaja**? Su **software**. Arista tiene un solo sistema operativo (EOS) para todos sus equipos, conocido por ser muy estable y fácil de automatizar. Para un centro de datos que no puede caerse, eso vale mucho. Además, sus equipos usan chips estándar, lo que le permite moverse rápido.\n\nLa inteligencia artificial es su motor principal. Su gran competidor en redes para IA es **Nvidia (NVDA)**, que vende su propia tecnología de red junto con sus chips. A eso se suman Cisco (CSCO) y fabricantes que arman equipos a pedido para las grandes nubes."
+     },
+     {
+      "titulo": "Crecimiento alto con márgenes de software",
+      "texto": "Los ingresos se multiplicaron: de 4.381 M en 2022 a **10.541 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) pasó de 34,9 % a **43,1 %** en los últimos 12 meses. El promedio de su industria es 20,7 %. Su margen bruto (63,4 % en el último trimestre) bajó un poco, porque las grandes nubes compran volúmenes enormes y negocian precio.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **24,9 %**. Por encima de 15 % se considera muy bueno. Parece más bajo de lo que es, porque incluye la enorme caja que acumula.\n\nY la caja crece: **5.155 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nUn dato para seguir: los ingresos diferidos (lo que los clientes ya pagaron o facturaron y Arista todavía tiene que reconocer como venta) llegaron a unos 6.900 M. Es trabajo asegurado."
+     },
+     {
+      "titulo": "Sin deuda y con mucha caja",
+      "texto": "Arista no tiene deuda y tiene **13.343 M en caja**. No paga dividendo: usa parte de la caja para recomprar acciones.\n\nLos riesgos:\n\n- **Concentración**: unos pocos clientes explican gran parte de las ventas. Si uno frena su inversión, se nota mucho.\n- **Nvidia**: vende su propia red junto con sus chips, y puede quedarse con una parte de los centros de datos de IA.\n- **El ciclo de la IA**: si las grandes nubes recortan su inversión, las ventas de Arista caen.\n\nPara el tercer trimestre de 2026, la empresa espera vender unos 3.300 M y ganar entre 1,06 y 1,08 dólares por acción.\n\nLa conduce Jayshree Ullal, CEO desde 2008: \"Nuestro renovado entusiasmo por atender la demanda en la segunda mitad de 2026 se aplica a todos nuestros sectores\"."
+     }
+    ],
+    "valuacion": {
+     "texto": "En Arista, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), Arista cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEs un múltiplo de empresa de crecimiento. Con la ganancia creciendo cerca de 40 % por año, el PER baja rápido si la empresa cumple. Lo que el mercado está pagando es la confianza en que la inversión en centros de datos de IA sigue por varios años y en que Arista mantiene su lugar frente a Nvidia.\n\nPero el PER no es el único número útil. En tecnología y servicios informáticos, también se mira el **precio sobre ventas** (P/S): cuánto se paga por cada 1 de ventas anuales. Por ejemplo, 5 veces significa que se pagan 5 por cada 1 que factura. Sirve cuando la ganancia es chica porque la empresa reinvierte mucho, pero hay que leerlo junto con el margen: una empresa que se queda con 30 centavos de cada dólar vendido justifica un P/S más alto que una que se queda con 5. Está en {v:ps} veces, {vs:ps} su mediana histórica ({med:ps} veces). El promedio de su industria es {ind:ps} veces, así que está {vsind:ps} ese promedio.\n\nOtro número útil es el **precio sobre flujo libre de caja** (P/FCF): cuántos años de caja libre, lo que queda después de invertir, se pagan al comprar la acción. Por ejemplo, 20 veces equivale a que la caja libre rinde 5 % por año sobre el precio. Es más difícil de maquillar que la ganancia contable, porque es plata que de verdad entró. Si sube mucho sin que suba la caja, el precio se está poniendo más exigente. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}.",
+     "foto": {
+      "precio": "171,10",
+      "fecha_precio": "22/10/2026",
+      "v:per": "54,1",
+      "med:per": "47,0",
+      "ind:per": "35,1",
+      "vs:per": "por encima de",
+      "vsind:per": "por encima de",
+      "v:ev_ebitda": "43,4",
+      "med:ev_ebitda": "39,4",
+      "ind:ev_ebitda": "24,1",
+      "vs:ev_ebitda": "por encima de",
+      "vsind:ev_ebitda": "por encima de",
+      "v:p_b": "15,7",
+      "med:p_b": "11,1",
+      "ind:p_b": "8,4",
+      "vs:p_b": "por encima de",
+      "vsind:p_b": "por encima de",
+      "v:ps": "20,6",
+      "med:ps": "15,0",
+      "ind:ps": "6,1",
+      "vs:ps": "por encima de",
+      "vsind:ps": "por encima de",
+      "v:p_fcf": "41,6",
+      "med:p_fcf": "38,8",
+      "vs:p_fcf": "por encima de",
+      "per_ref": "54,1",
+      "vs_ref_med": "por encima de",
+      "vs_ref_ind": "por encima de",
+      "bono10": "5,00 %",
+      "fv": "143,06",
+      "dist_fv": "el precio está un 20 % por encima de ese valor, es decir, sin margen de seguridad",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "Arista Networks es una empresa excelente. Tiene un software de red reconocido por su estabilidad, márgenes operativos cercanos a 50 %, un crecimiento de 40 %, mucha caja y ninguna deuda. Y está en el centro de la inversión en centros de datos de IA.\n\nSu punto débil es la concentración y la competencia. Depende de pocos clientes gigantes, Nvidia quiere quedarse con la red de los centros de datos de IA, y sus ventas siguen el ciclo de inversión de las grandes nubes. Además, el mercado ya la paga cara. El crítico más duro diría que Arista vive de la inversión de cuatro o cinco empresas, y que si ellas frenan, la caída puede ser fuerte. Es un argumento serio.\n\nEncaja con quien cree en la inversión en IA para los próximos años y tolera caídas fuertes. No es para quien busca dividendos o estabilidad.\n\nPara que la tesis se mantenga, lo más importante es que siga ganando pedidos de redes para IA frente a Nvidia y que sume clientes para reducir la concentración.",
+    "pros": [
+     "Crecimiento alto: espera vender 40 % más en 2026.",
+     "Márgenes enormes: margen operativo de 43,1 %, contra 20,7 % de su industria.",
+     "Balance impecable: 13.343 M de caja y sin deuda."
+    ],
+    "contras": [
+     "Pocos clientes: Microsoft y Meta pesan mucho en sus ventas.",
+     "Nvidia: compite con su propia red para IA.",
+     "Precio exigente: el mercado ya paga por varios años de crecimiento."
+    ],
+    "calidad": "Excelente",
+    "riesgo_ia": "bajo",
+    "clientes": [
+     "Microsoft (MSFT) y Meta (META)",
+     "Otras grandes nubes y empresas de IA",
+     "Bancos, empresas financieras y grandes empresas (campus)"
+    ],
+    "hechos": [
+     {
+      "dato": "Segundo trimestre de 2026: ingresos de algo más de 3.000 M (+37,7 %); margen bruto de 63,4 %; margen operativo de 49,9 %; ganancia por acción de 1,02 dólares (+39,7 %); ingresos diferidos de unos 6.900 M; guía del 3T26: ingresos de unos 3.300 M y ganancia por acción de 1,06 a 1,08 dólares; meta 2026: ingresos de unos 12.600 M (+40 %), redes para IA de al menos 3.500 M y campus de al menos 1.250 M; frase de Jayshree Ullal",
+      "fuente": "Resumen de la conferencia de resultados del 2T26, 04/08/2026",
+      "url": "https://www.marketbeat.com/instant-alerts/arista-networks-q2-earnings-call-highlights-2026-08-04/"
+     }
+    ],
+    "ticker": "ANET",
+    "perfil": "hardware",
+    "capas": [
+     "compounder"
+    ],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 10540800000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "SHOP": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "Shopify: la plataforma detrás de millones de tiendas online crece 30 % y ya gana plata de verdad",
+   "archivo": "SHOP_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "Shopify: la plataforma detrás de millones de tiendas online crece 30 % y ya gana plata de verdad",
+    "resumen": [
+     "Shopify es la **plataforma de comercio electrónico** que usan millones de comercios, desde emprendedores hasta marcas grandes, para armar su tienda online, cobrar, enviar y vender en redes sociales. Su ventaja es un ecosistema completo y fácil de usar, que crece junto con sus clientes.",
+     "En el segundo trimestre de 2026, **sus ingresos crecieron 34 %**, y el volumen vendido por sus comercios, la ganancia bruta y el flujo libre de caja crecieron más de 30 %. Su flujo libre fue de 18 % de las ventas.",
+     "Muy buena empresa, que combina un crecimiento alto con caja positiva y sin deuda, aunque el mercado la paga a múltiplos altísimos y su ganancia contable salta por sus inversiones en otras empresas."
+    ],
+    "introduccion": "Si alguna vez compraste en la tienda online de una marca chica, o incluso de una grande, es muy probable que detrás estuviera Shopify, aunque no lo hayas notado.\n\nShopify le da a cualquier comercio todo lo que necesita para vender por internet: la tienda, los pagos, los envíos, la conexión con Instagram, TikTok o Amazon, y ahora también herramientas de inteligencia artificial. El comercio paga una suscripción mensual y una comisión por cada venta.\n\nLa idea de su fundador, Tobi Lütke, fue siempre ser el aliado de los comercios frente a Amazon: que cada marca pueda tener su propia tienda y su propia relación con sus clientes.\n\nY le está saliendo bien. En el segundo trimestre de 2026, sus ingresos crecieron 34 %, y su presidente lo describió como \"un trimestre monstruoso\".\n\nPero el mercado ya lo sabe: Shopify cotiza a múltiplos de los más altos de la bolsa.\n\nEntonces, la pregunta es: ¿puede crecer lo suficiente para justificar lo que se paga por ella?",
+    "secciones": [
+     {
+      "titulo": "Un sistema operativo para vender",
+      "texto": "Shopify tiene dos fuentes de ingresos:\n\n- **Suscripciones**: lo que cada comercio paga por mes para usar la plataforma, desde planes básicos hasta Shopify Plus para marcas grandes.\n- **Soluciones para comercios**: sobre todo los **pagos** (Shopify Payments y Shop Pay). Cobra un porcentaje de cada venta que procesa. Es la parte más grande y la que más crece, porque sube junto con lo que venden sus clientes.\n\nSus clientes son millones de comercios en todo el mundo, desde emprendedores que recién empiezan hasta grandes marcas. Ninguno pesa demasiado.\n\n¿Cuál es su **ventaja**? El **ecosistema**. Miles de aplicaciones, diseñadores y agencias trabajan sobre Shopify, y un comercio que crece encuentra todo ahí sin tener que mudarse. Además, Shop Pay, su botón de pago rápido, guarda los datos de millones de compradores y hace que comprar sea más fácil, lo que ayuda a vender más.\n\nCompite con Amazon, con plataformas como WooCommerce y BigCommerce, y en América Latina con Tiendanube y MercadoLibre (MELI).\n\nLa inteligencia artificial es oportunidad y riesgo. Shopify la usa para ayudar a los comercios a crear su tienda y vender. Pero si en el futuro las compras pasan por asistentes de IA, la tienda online podría perder protagonismo. Shopify apuesta a ser la que conecte a los comercios con esos asistentes."
+     },
+     {
+      "titulo": "Crece rápido y ahora genera caja",
+      "texto": "Los ingresos crecieron más de 25 % por año: de 5.600 M en 2022 a **13.269 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nDurante años, Shopify perdió plata. En 2022 tuvo un margen operativo de -12,3 %, porque había intentado armar su propia red de logística, que después vendió. Desde entonces, se enfocó y se volvió rentable: el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **17,8 %** en los últimos 12 meses. El promedio de su industria es 10,6 %.\n\n[[grafico:margen_operativo]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) pasó de -186 M en 2022 a **2.352 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nUn aviso: la ganancia contable de Shopify salta mucho (1,56 dólares por acción en 2024 y 0,94 en 2025). No es el negocio: Shopify tiene acciones de otras empresas, y cuando suben o bajan en la bolsa, eso se registra como ganancia o pérdida. Por eso conviene mirar el margen operativo y la caja.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), pasó de negativo a **16,1 %**. Por encima de 15 % se considera muy bueno.\n\nPara el tercer trimestre, la empresa espera que sus ingresos crezcan a un ritmo de 30 % y pico."
+     },
+     {
+      "titulo": "Sin deuda y con caja",
+      "texto": "Shopify casi no tiene deuda (178 M) y tiene **4.947 M en caja**. No paga dividendo.\n\nLas acciones en circulación casi no crecen (1.304 millones), algo poco común en una tecnológica que paga parte de los sueldos en acciones.\n\nLos riesgos:\n\n- **El consumo**: si la gente compra menos, sus comercios venden menos y Shopify cobra menos comisiones.\n- **La competencia**: Amazon y otras plataformas pelean por los mismos comercios.\n- **La IA**: puede cambiar la forma de comprar por internet.\n- **El precio**: con múltiplos tan altos, cualquier decepción en el crecimiento puede pegar fuerte en la acción.\n\nLa conduce Tobi Lütke, su fundador y CEO. Su presidente, Harley Finkelstein, resumió el trimestre así: \"Fue un trimestre monstruoso: más de 30 % de crecimiento en volumen vendido, en ingresos, en ganancia bruta y en flujo libre de caja\"."
+     }
+    ],
+    "valuacion": {
+     "texto": "En Shopify, el PER (cuántos años de ganancia se pagan al comprar la acción) engaña, porque la ganancia contable salta con el valor de sus inversiones en otras empresas. Por eso conviene mirar el **precio sobre el flujo libre de caja**: cuántos años de caja libre se pagan al comprar la acción.\n\nCon el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), Shopify cotiza a {v:p_fcf} veces su flujo libre de caja. Eso está {vs:p_fcf} su propia mediana histórica ({med:p_fcf} veces).\n\nEl PER contable es de {per_ref} veces.\n\nSon múltiplos muy altos. El mercado paga por la idea de que Shopify va a seguir creciendo cerca de 25 % o 30 % por año durante mucho tiempo, y de que sus márgenes van a seguir subiendo. Si eso pasa, la caja puede multiplicarse. Si el crecimiento se frena, el precio queda muy expuesto.\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}.",
+     "foto": {
+      "precio": "165,62",
+      "fecha_precio": "22/10/2026",
+      "v:per": "111,8",
+      "med:per": "119,1",
+      "ind:per": "46,8",
+      "vs:per": "en línea con",
+      "vsind:per": "por encima de",
+      "v:ev_ebitda": "89,3",
+      "med:ev_ebitda": "198,8",
+      "vs:ev_ebitda": "por debajo de",
+      "v:p_b": "17,7",
+      "med:p_b": "11,9",
+      "vs:p_b": "por encima de",
+      "v:ps": "16,4",
+      "med:ps": "15,5",
+      "vs:ps": "en línea con",
+      "v:p_fcf": "93,2",
+      "med:p_fcf": "107,6",
+      "vs:p_fcf": "por debajo de",
+      "per_ref": "111,8",
+      "vs_ref_med": "en línea con",
+      "vs_ref_ind": "por encima de",
+      "bono10": "5,00 %",
+      "fv": "203,09",
+      "dist_fv": "el precio está un 18 % por debajo de ese valor, lo que da un margen de seguridad aceptable",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "Shopify es una muy buena empresa. Tiene un ecosistema difícil de copiar, crece más de 30 %, pasó de perder plata a generar caja, no tiene deuda y casi no diluye a sus accionistas.\n\nSu punto débil es el precio y la incertidumbre. El mercado la paga a múltiplos altísimos, su crecimiento depende del consumo, compite con gigantes como Amazon y la IA puede cambiar la forma de comprar. El crítico más duro diría que, aunque Shopify siga creciendo fuerte, el precio ya descuenta muchos años de éxito. Es un argumento serio.\n\nEncaja con quien cree en el comercio electrónico como tendencia de largo plazo y tolera caídas fuertes. No es para quien busca un precio razonable o dividendos.\n\nPara que la tesis se mantenga, lo más importante es que siga creciendo cerca de 25 % o más mientras el flujo libre de caja sube como porcentaje de las ventas.",
+    "pros": [
+     "Crecimiento alto: ingresos +34 % en el segundo trimestre.",
+     "Caja positiva: 2.352 M de flujo libre en los últimos 12 meses.",
+     "Sin deuda: 4.947 M en caja y casi nada de deuda."
+    ],
+    "contras": [
+     "Precio altísimo: de los múltiplos más altos de la bolsa.",
+     "Ganancia contable volátil: salta con sus inversiones en otras empresas.",
+     "Depende del consumo: si la gente compra menos, cobra menos."
+    ],
+    "calidad": "Muy buena",
+    "riesgo_ia": "moderado",
+    "clientes": [
+     "Millones de comercios y emprendedores",
+     "Marcas grandes (Shopify Plus)",
+     "Compradores que usan Shop Pay"
+    ],
+    "hechos": [
+     {
+      "dato": "Segundo trimestre de 2026: ingresos +34 % (+33 % a tipo de cambio constante); volumen vendido, ganancia bruta y flujo libre de caja +30 % o más; margen de flujo libre de 18 %; guía del 3T26: ingresos con un crecimiento de 30 % y pico; frase de Harley Finkelstein",
+      "fuente": "Comunicado de resultados del 2T26, 08/2026",
+      "url": "https://www.shopify.com/news/shopify-q2-2026-financial-results"
+     }
+    ],
+    "ticker": "SHOP",
+    "perfil": "software",
+    "capas": [],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 13269000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "PFE": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "Pfizer: después del covid, pelea con las patentes que vencen y paga un dividendo alto",
+   "archivo": "PFE_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "Pfizer: después del covid, pelea con las patentes que vencen y paga un dividendo alto",
+    "resumen": [
+     "Pfizer es uno de los mayores laboratorios del mundo: medicamentos para el corazón (Eliquis, Vyndaqel), **vacunas** (Prevnar, Comirnaty), **cáncer** (a través de Seagen) y, ahora, una apuesta a la **obesidad**. Su ventaja es la escala y la capacidad de investigación y de venta global.",
+     "En el segundo trimestre de 2026, **sus ventas crecieron 3 %**, a 15.000 M (5 % sin los productos del covid), y su ganancia ajustada por acción quedó estable en 0,77 dólares. Espera ganar entre 2,80 y 3,00 dólares ajustados en el año.",
+     "Buena empresa, con un dividendo alto y un plan fuerte de recorte de costos, pero con varias patentes importantes por vencer, mucha deuda y años de crecimiento difícil por delante."
+    ],
+    "introduccion": "En 2022, Pfizer facturó más de 100.000 M de dólares. Gran parte venía de dos productos: la vacuna contra el covid (Comirnaty) y el tratamiento Paxlovid. Fue el mejor año de su historia.\n\nCuando la pandemia terminó, esas ventas se desplomaron. En 2023, los ingresos cayeron 41 %, a 59.554 M. Y en el segundo trimestre de 2026, Paxlovid vendió 95 % menos que un año antes.\n\nPfizer usó parte de la plata del covid para comprar empresas: Seagen, por unos 43.000 M, para crecer en cáncer, y otras más chicas. Y ahora apuesta a la obesidad, con medicamentos en desarrollo.\n\nPero tiene otro problema en el horizonte: entre 2025 y 2028 vencen las patentes de varios de sus medicamentos más vendidos, como Eliquis (anticoagulante). Cuando eso pase, llegarán copias más baratas.\n\nMientras tanto, la acción cayó tanto que el dividendo rinde mucho más que antes.\n\nEntonces, la pregunta es: ¿alcanzan sus nuevos medicamentos y el recorte de costos para compensar las patentes que vencen?",
+    "secciones": [
+     {
+      "titulo": "Un portafolio en transición",
+      "texto": "Pfizer vende medicamentos en muchas áreas. En el segundo trimestre de 2026:\n\n- **Corazón**: Eliquis (anticoagulante) creció 19 % y el grupo Vyndaqel (para una enfermedad cardíaca) creció 8 %.\n- **Cáncer**: Padcev (cáncer de vejiga, de Seagen) creció 23 % y Lorbrena (cáncer de pulmón), 37 %.\n- **Vacunas**: Prevnar (neumonía), Abrysvo (virus respiratorio) y Comirnaty (covid), que cayó 34 %.\n- **Covid**: Paxlovid cayó 95 %. La empresa espera que los productos del covid vendan unos 4.000 M en 2026.\n\nLos productos lanzados o comprados en los últimos años crecieron 18 %. Sin el covid, las ventas crecieron 5 %.\n\nSus clientes son sistemas de salud, gobiernos, aseguradoras, administradoras de recetas y hospitales de todo el mundo.\n\n¿Cuál es su **ventaja**? La **escala**: una de las mayores redes de investigación y de venta del mundo, que le permite desarrollar y lanzar medicamentos en muchos países a la vez. Pero la ventaja de un laboratorio dura lo que duran sus patentes, y varias están por vencer.\n\nLa inteligencia artificial es más una herramienta que una amenaza: puede acelerar la investigación."
+     },
+     {
+      "titulo": "Una ganancia contable que no refleja el negocio",
+      "texto": "Los ingresos se desplomaron después del covid (de 101.175 M en 2022 a 59.554 M en 2023), y desde entonces están estables: **63.695 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) se recuperó de 7,4 % en 2023 a **26,7 %**. El promedio de su industria es 29,5 %.\n\n[[grafico:margen_operativo]]\n\nLa ganancia contable salta mucho por cargos: en el segundo trimestre de 2026, Pfizer registró 4.300 M de deterioros (bajó el valor de medicamentos comprados que no rindieron lo esperado, como Oxbryta), y terminó con una pequeña pérdida. Por eso la empresa y los analistas del mercado miran la **ganancia ajustada**: 0,77 dólares por acción en el trimestre, igual que un año antes.\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **9,2 %**. Por encima de 15 % se considera muy bueno. Es bajo por las compras caras y los deterioros.\n\nLo positivo es el recorte de costos: Pfizer espera ahorrar unos 6.700 M por año con su programa de reorganización, y otros 3.000 M en sus fábricas hacia 2029.\n\nLa caja es estable: **10.985 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]"
+     },
+     {
+      "titulo": "Mucha deuda y un dividendo alto",
+      "texto": "La compra de Seagen se pagó con deuda. La deuda neta (lo que debe menos la caja) es de **62.218 M** y equivale a **4,6 veces su EBITDA** de los últimos 12 meses (afectado por los cargos), lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Pfizer está en zona exigente.\n\n[[grafico:deuda_neta]]\n\nSu ganancia operativa paga los intereses del año 6,3 veces. Por encima de 3 se considera sano.\n\nEl dividendo es de 1,72 dólares por acción por año, y crece poco: 2,4 % por año en los últimos tres. Lo paga hace más de 50 años. Con la caja actual alcanza para pagarlo, pero deja poco margen para bajar deuda y comprar empresas a la vez.\n\nLos riesgos:\n\n- **Patentes**: Eliquis y otros medicamentos importantes pierden protección entre 2025 y 2028.\n- **Precios en EE.UU.**: Pfizer firmó acuerdos con el gobierno para bajar precios.\n- **Compras**: algunas no rindieron, como muestran los deterioros.\n- **Obesidad**: llega tarde frente a Eli Lilly y Novo Nordisk.\n\nLo conduce Albert Bourla, CEO desde 2019: \"Pfizer tuvo otro trimestre sólido, cumpliendo nuestros compromisos financieros y avanzando en nuestra estrategia\"."
+     }
+    ],
+    "valuacion": {
+     "texto": "En Pfizer, el PER contable no sirve: los cargos achican la ganancia contable. Usamos la ganancia ajustada que espera la empresa para 2026: unos 2,90 dólares por acción, el medio de su guía.\n\nCon el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), Pfizer cotiza a {per_ref} veces esa ganancia. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nEl mercado paga poco por Pfizer porque espera años de crecimiento difícil: las patentes que vencen pueden restarle miles de millones en ventas, y no está claro cuánto van a compensar los medicamentos nuevos. Un PER bajo solo es barato si la ganancia no sigue cayendo.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nPero el PER no es el único número útil. En salud, también sirve el **precio sobre flujo libre de caja** (P/FCF): cuántos años de caja libre, lo que queda después de invertir, se pagan al comprar la acción. Por ejemplo, 20 veces equivale a que la caja libre rinde 5 % por año sobre el precio. Es más difícil de maquillar que la ganancia contable, porque es plata que de verdad entró. Si sube mucho sin que suba la caja, el precio se está poniendo más exigente. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nOtro número útil es el **valor de la empresa sobre EBITDA** (EV/EBITDA): compara lo que vale la empresa entera, con su deuda, contra lo que genera el negocio antes de intereses, impuestos y amortizaciones. Por ejemplo, si una empresa vale 100 y genera 10 de EBITDA, cotiza a 10 veces. Sirve para comparar empresas con distinta deuda, y se lee contra su propia historia y contra su industria: cuanto más alto, más caro. Está en {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces). El promedio de su industria es {ind:ev_ebitda} veces, así que está {vsind:ev_ebitda} ese promedio.\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}.",
+     "ganancia_ref": 2.9,
+     "ganancia_ref_txt": "medio de la guía de ganancia ajustada por acción para 2026 (2,80 a 3,00 dólares)",
+     "foto": {
+      "precio": "30,27",
+      "fecha_precio": "22/10/2026",
+      "v:per": "39,9",
+      "med:per": "18,2",
+      "ind:per": "24,9",
+      "vs:per": "por encima de",
+      "vsind:per": "por encima de",
+      "v:ev_ebitda": "8,8",
+      "med:ev_ebitda": "9,2",
+      "ind:ev_ebitda": "15,2",
+      "vs:ev_ebitda": "en línea con",
+      "vsind:ev_ebitda": "por debajo de",
+      "v:p_b": "2,0",
+      "med:p_b": "1,8",
+      "ind:p_b": "6,6",
+      "vs:p_b": "por encima de",
+      "vsind:p_b": "por debajo de",
+      "v:ps": "2,7",
+      "med:ps": "2,7",
+      "ind:ps": "5,6",
+      "vs:ps": "en línea con",
+      "vsind:ps": "por debajo de",
+      "v:p_fcf": "15,7",
+      "med:p_fcf": "15,3",
+      "vs:p_fcf": "en línea con",
+      "v:dy": "5,7 %",
+      "med:dy": "5,7 %",
+      "vs:dy": "en línea con",
+      "per_ref": "10,4",
+      "vs_ref_med": "por debajo de",
+      "vs_ref_ind": "por debajo de",
+      "dy": "5,7 %",
+      "bono10": "5,00 %",
+      "vs_bono": "más que",
+      "fv": "25,63",
+      "dist_fv": "el precio está un 18 % por encima de ese valor, es decir, sin margen de seguridad",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "Pfizer es una buena empresa. Tiene una escala enorme, medicamentos que crecen (Eliquis, Padcev, Lorbrena), un plan fuerte de recorte de costos y un dividendo alto que paga hace más de 50 años.\n\nSu punto débil es el futuro cercano: varias patentes importantes vencen en los próximos años, compró empresas que no rindieron lo esperado, tiene mucha deuda y llega tarde a la obesidad. El crítico más duro diría que Pfizer usó la plata del covid para comprar crecimiento caro, y que ahora no le alcanza para compensar lo que pierde. Es un argumento serio.\n\nEncaja con quien busca un dividendo alto y acepta varios años de crecimiento difícil. No es para quien busca crecimiento o un balance sin deuda.\n\nPara que la tesis se mantenga, lo más importante es que los productos nuevos sigan creciendo a doble dígito y que la deuda baje a pesar de las patentes que vencen.",
+    "pros": [
+     "Dividendo alto: lo paga hace más de 50 años.",
+     "Productos nuevos: crecieron 18 % en el trimestre.",
+     "Recorte de costos: unos 6.700 M de ahorro por año."
+    ],
+    "contras": [
+     "Patentes por vencer: Eliquis y otros entre 2025 y 2028.",
+     "Deuda alta: 4,6 veces su EBITDA de los últimos 12 meses.",
+     "Compras que no rindieron: 4.300 M de deterioros en el trimestre."
+    ],
+    "calidad": "Buena",
+    "riesgo_ia": "bajo",
+    "clientes": [
+     "Sistemas de salud y gobiernos de todo el mundo",
+     "Aseguradoras y administradoras de recetas de EE.UU.",
+     "Hospitales y farmacias"
+    ],
+    "hechos": [
+     {
+      "dato": "Segundo trimestre de 2026: ingresos de 15.000 M (+3 %; +5 % sin covid); productos lanzados o comprados +18 %; Eliquis +19 %, Vyndaqel +8 %, Padcev +23 %, Lorbrena +37 %, Comirnaty -34 %, Paxlovid -95 %; ganancia por acción de -0,04 dólares por 4.300 M de deterioros y ajustada de 0,77; guía 2026: ingresos de 60.500 M a 62.500 M y ganancia ajustada de 2,80 a 3,00 dólares; ahorros por reorganización de unos 6.700 M y por fábricas de unos 3.000 M hacia 2029; frase de Albert Bourla",
+      "fuente": "Comunicado de resultados del 2T26, 04/08/2026",
+      "url": "https://www.businesswire.com/news/home/20260804345420/en/Pfizer-Reports-Second-Quarter-Results-And-Raises-Midpoint-of-2026-Revenue-Guidance"
+     }
+    ],
+    "ticker": "PFE",
+    "perfil": "salud",
+    "capas": [],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 63695000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "QCOM": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "Qualcomm: pierde terreno en los celulares y busca crecer en autos, computadoras y centros de datos",
+   "archivo": "QCOM_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "Qualcomm: pierde terreno en los celulares y busca crecer en autos, computadoras y centros de datos",
+    "resumen": [
+     "Qualcomm diseña los **procesadores y módems** de la mayoría de los celulares Android de gama alta del mundo, y cobra **licencias** por sus patentes de 4G y 5G a casi todos los fabricantes de teléfonos. Su ventaja es la tecnología de conexión inalámbrica y una cartera de patentes enorme.",
+     "En el tercer trimestre de su año fiscal 2026 (cerrado en junio), **sus ingresos cayeron 4 %**: los chips para celulares cayeron 20 %, mientras los de autos crecieron 61 %. Su ganancia ajustada por acción bajó 20 %.",
+     "Buena empresa, con márgenes altos, mucha caja y poca deuda, en plena transición para depender menos de los celulares, aunque esa transición todavía no compensa la caída."
+    ],
+    "introduccion": "Si tenés un celular Android de gama alta, es muy probable que adentro tenga un procesador Snapdragon de Qualcomm. Y aunque tengas un iPhone, Apple le paga a Qualcomm por usar sus patentes de 5G.\n\nDurante años, ese fue un negocio fantástico. Pero tiene dos problemas. El primero: el mercado de celulares ya no crece; la gente cambia el teléfono cada vez menos seguido. El segundo: Apple, uno de sus mayores clientes, empezó a fabricar sus propios módems y dejó de comprarle a Qualcomm.\n\nA eso se sumó en 2026 un problema nuevo: la falta de memorias en toda la industria encareció los teléfonos y frenó su fabricación. En el tercer trimestre de su año fiscal 2026, los chips de Qualcomm para celulares cayeron 20 %.\n\nLa respuesta de Qualcomm es diversificarse: chips para autos, que crecieron 61 %; para computadoras; para dispositivos conectados; y ahora también para centros de datos de IA.\n\nEntonces, la pregunta es: ¿alcanza la diversificación para compensar un negocio de celulares que se achica?",
+    "secciones": [
+     {
+      "titulo": "Chips y patentes",
+      "texto": "Qualcomm tiene dos negocios. En el tercer trimestre de su año fiscal 2026, el de **chips (QCT)** vendió 8.504 M, un 5 % menos, con un margen antes de impuestos de 26 %. Se reparte así:\n\n- Celulares: 5.086 M, un 20 % menos.\n- Autos: 1.588 M, un 61 % más. Sus chips manejan las pantallas, la conectividad y la asistencia al conductor de muchos autos nuevos.\n- Dispositivos conectados (computadoras, auriculares, anteojos inteligentes, equipos industriales): 1.830 M, un 9 % más.\n\nEl de **licencias (QTL)** facturó 1.278 M, un 3 % menos, con un margen de 69 %. Cobra un porcentaje del precio de casi todos los celulares 4G y 5G que se venden en el mundo, sin importar quién fabrique el chip.\n\nSus clientes son los fabricantes de celulares (Samsung, Xiaomi, Oppo, Vivo, Honor, y Apple en licencias), fabricantes de autos y de computadoras. Algunos pesan mucho.\n\n¿Cuál es su **ventaja**? La **tecnología inalámbrica** y las **patentes**. Qualcomm inventó buena parte de la tecnología que hace funcionar las redes 3G, 4G y 5G, y cualquier teléfono que se conecte a esas redes tiene que pagarle. Y sus procesadores combinan conectividad, gráficos e inteligencia artificial en muy poco espacio y con poco consumo de energía.\n\nLa inteligencia artificial es oportunidad y riesgo: la IA dentro de los celulares y computadoras necesita chips potentes, y Qualcomm entró al mercado de chips para centros de datos, dominado por Nvidia."
+     },
+     {
+      "titulo": "Márgenes altos, ganancia en baja",
+      "texto": "Los ingresos de Qualcomm siguen el ciclo de los celulares: 44.200 M en su año fiscal 2022, 35.820 M en 2023 y **44.069 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) bajó de 28,0 % en 2025 a **23,3 %** en los últimos 12 meses. El promedio de su industria es 35,3 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), bajó de 25,6 % a **17,9 %**. Por encima de 15 % se considera muy bueno, así que sigue alto, pero en baja.\n\n[[grafico:roic]]\n\nLa ganancia ajustada por acción del trimestre fue de 2,21 dólares, un 20 % menos. Para el cuarto trimestre de su año fiscal, espera ventas de 9.700 M a 10.500 M y una ganancia ajustada de 2,05 a 2,25 dólares por acción.\n\nLa caja sigue fuerte: **10.416 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses."
+     },
+     {
+      "titulo": "Devuelve casi toda la caja",
+      "texto": "Qualcomm devuelve casi todo lo que genera. En el tercer trimestre de su año fiscal 2026 devolvió 2.300 M: 973 M en dividendos y 1.400 M en recompras. El dividendo es de 3,68 dólares por acción por año y creció 6,3 % por año en los últimos tres.\n\n[[grafico:dividendo]]\n\nTiene poca deuda: la deuda neta (lo que debe menos la caja) equivale a **0,8 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos (por debajo de 2 veces se considera cómodo), y su ganancia operativa paga los intereses del año 15 veces.\n\nLos riesgos:\n\n- **Apple**: sigue reemplazando los módems de Qualcomm por los propios.\n- **China**: sus fabricantes de celulares son grandes clientes, y el gobierno chino promueve chips locales.\n- **Los celulares**: un mercado maduro, hoy frenado por la falta de memorias.\n- **La diversificación**: autos y computadoras crecen, pero todavía no compensan.\n\nLo conduce Cristiano Amon, CEO desde 2021: \"A pesar de un entorno difícil de memorias y suministro\", la empresa tuvo una \"sólida ejecución de su estrategia de crecimiento\"."
+     }
+    ],
+    "valuacion": {
+     "texto": "En Qualcomm, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), Qualcomm cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEl mercado suele pagar poco por Qualcomm comparada con otras empresas de chips, porque su negocio principal, los celulares, no crece y depende de pocos clientes. Lo que podría cambiar esa visión es que autos, computadoras y centros de datos se conviertan en una parte grande de sus ventas.\n\nPero el PER no es el único número útil. En semiconductores, también se mira el **precio sobre ventas** (P/S): cuánto se paga por cada 1 de ventas anuales. Por ejemplo, 5 veces significa que se pagan 5 por cada 1 que factura. Sirve cuando la ganancia es chica porque la empresa reinvierte mucho, pero hay que leerlo junto con el margen: una empresa que se queda con 30 centavos de cada dólar vendido justifica un P/S más alto que una que se queda con 5. Está en {v:ps} veces, {vs:ps} su mediana histórica ({med:ps} veces). El promedio de su industria es {ind:ps} veces, así que está {vsind:ps} ese promedio.\n\nOtro número útil es el **precio sobre flujo libre de caja** (P/FCF): cuántos años de caja libre, lo que queda después de invertir, se pagan al comprar la acción. Por ejemplo, 20 veces equivale a que la caja libre rinde 5 % por año sobre el precio. Es más difícil de maquillar que la ganancia contable, porque es plata que de verdad entró. Si sube mucho sin que suba la caja, el precio se está poniendo más exigente. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}. El dividendo rinde {dy}.",
+     "foto": {
+      "precio": "172,28",
+      "fecha_precio": "22/10/2026",
+      "v:per": "20,1",
+      "med:per": "16,7",
+      "ind:per": "48,8",
+      "vs:per": "por encima de",
+      "vsind:per": "por debajo de",
+      "v:ev_ebitda": "16,1",
+      "med:ev_ebitda": "13,3",
+      "ind:ev_ebitda": "34,8",
+      "vs:ev_ebitda": "por encima de",
+      "vsind:ev_ebitda": "por debajo de",
+      "v:p_b": "6,8",
+      "med:p_b": "7,6",
+      "ind:p_b": "13,3",
+      "vs:p_b": "por debajo de",
+      "vsind:p_b": "por debajo de",
+      "v:ps": "4,3",
+      "med:ps": "4,1",
+      "ind:ps": "15,5",
+      "vs:ps": "en línea con",
+      "vsind:ps": "por debajo de",
+      "v:p_fcf": "17,9",
+      "med:p_fcf": "17,0",
+      "vs:p_fcf": "en línea con",
+      "v:dy": "2,1 %",
+      "med:dy": "2,1 %",
+      "vs:dy": "en línea con",
+      "per_ref": "20,1",
+      "vs_ref_med": "por encima de",
+      "vs_ref_ind": "por debajo de",
+      "dy": "2,1 %",
+      "bono10": "5,00 %",
+      "vs_bono": "menos que",
+      "fv": "155,11",
+      "dist_fv": "el precio está un 11 % por encima de ese valor, es decir, sin margen de seguridad",
+      "_mes_cierre": "9",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "Qualcomm es una buena empresa. Tiene una tecnología inalámbrica líder, un negocio de licencias con márgenes altísimos, chips para autos que crecen con fuerza, poca deuda y una devolución generosa al accionista.\n\nSu punto débil es su dependencia de los celulares, un mercado que no crece, que hoy está frenado por la falta de memorias y donde Apple se va. Su ganancia y su retorno sobre el capital están en baja. El crítico más duro diría que Qualcomm corre para reemplazar un negocio que se achica más rápido de lo que crecen los nuevos. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa de chips con dividendo, a un múltiplo moderado, y cree en su diversificación. No es para quien busca crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que autos, computadoras y dispositivos conectados sigan creciendo a doble dígito y lleguen a compensar la caída de los celulares.",
+    "pros": [
+     "Autos en auge: chips para autos +61 %.",
+     "Licencias muy rentables: margen de 69 %.",
+     "Devolución generosa: 2.300 M en un trimestre."
+    ],
+    "contras": [
+     "Celulares en baja: -20 % en el trimestre.",
+     "Apple se va: reemplaza los módems de Qualcomm por los propios.",
+     "Ganancia en baja: la ganancia ajustada por acción cayó 20 %."
+    ],
+    "calidad": "Buena",
+    "riesgo_ia": "moderado",
+    "clientes": [
+     "Fabricantes de celulares Android (Samsung, Xiaomi, Oppo, Vivo)",
+     "Fabricantes de autos y de computadoras",
+     "Apple (licencias de patentes)"
+    ],
+    "hechos": [
+     {
+      "dato": "Tercer trimestre del año fiscal 2026: ingresos de 9.947 M (-4 %); chips 8.504 M (-5 %): celulares 5.086 M (-20 %), autos 1.588 M (+61 %), dispositivos conectados 1.830 M (+9 %); licencias 1.278 M (-3 %); margen antes de impuestos de 26 % en chips y 69 % en licencias; ganancia por acción de 1,87 dólares y ajustada de 2,21 (-20 %); 2.300 M devueltos (973 M en dividendos y 1.400 M en recompras); guía del 4T: ingresos de 9.700 M a 10.500 M y ganancia ajustada de 2,05 a 2,25 dólares; frases de Cristiano Amon",
+      "fuente": "Comunicado de resultados del 3T del año fiscal 2026, 29/07/2026",
+      "url": "https://s204.q4cdn.com/645488518/files/doc_financials/2026/q3/FY2026-3rd-Quarter-Earnings-Release.pdf"
+     }
+    ],
+    "mes_cierre_fiscal": 9,
+    "ticker": "QCOM",
+    "perfil": "hardware",
+    "capas": [],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 44069000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "MCD": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "McDonald's: más que hamburguesas, un negocio inmobiliario que cobra alquiler a sus franquicias",
+   "archivo": "MCD_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "McDonald's: más que hamburguesas, un negocio inmobiliario que cobra alquiler a sus franquicias",
+    "resumen": [
+     "McDonald's es la mayor cadena de comidas rápidas del mundo, con más de 40.000 locales. Pero su negocio real no es vender hamburguesas: **el 95 % de sus locales son de franquiciados**, que le pagan **alquiler y regalías**. Su ventaja es la marca más reconocida de su sector y la propiedad de muchos de los terrenos donde están sus locales.",
+     "En el segundo trimestre de 2026, **sus ventas en locales comparables crecieron apenas 1,3 %** en el mundo y 0,8 % en EE.UU., pero su ganancia por acción subió 6 %. Su programa de fidelidad ya suma casi 220 millones de usuarios activos.",
+     "Excelente empresa, con márgenes altísimos y un modelo muy estable, aunque las ventas se frenaron porque los clientes de menores ingresos gastan menos, y tiene mucha deuda."
+    ],
+    "introduccion": "Hay una frase famosa que se le atribuye a un ejecutivo histórico de McDonald's: \"No estamos en el negocio de las hamburguesas, estamos en el negocio inmobiliario\".\n\nEs una exageración, pero tiene mucho de cierto. McDonald's casi no opera sus propios locales: el 95 % está en manos de franquiciados, empresarios independientes que pagan para usar la marca. Y muchas veces el terreno y el edificio son de McDonald's, que les cobra alquiler.\n\nEl resultado es un negocio muy particular: McDonald's cobra un porcentaje de las ventas y un alquiler, sin cargar con los sueldos, la comida ni los costos de cada local. Por eso su margen operativo es de 45,7 %, contra 15,8 % del promedio de los restaurantes.\n\nPero en 2026 hay una señal de alerta: las ventas en los locales que ya existían crecieron apenas 1,3 % en el segundo trimestre. Los clientes de menores ingresos, golpeados por la inflación, comen menos afuera.\n\nEntonces, la pregunta es: ¿es un mal momento pasajero, o McDonald's perdió el poder de subir precios?",
+    "secciones": [
+     {
+      "titulo": "Franquicias, alquileres y regalías",
+      "texto": "McDonald's se organiza en tres grandes mercados. En el segundo trimestre de 2026, las ventas en locales comparables (los que ya existían un año antes) crecieron así:\n\n- **EE.UU.**: 0,8 %, contra 2,5 % un año antes.\n- **Mercados internacionales operados** (Reino Unido, Alemania, Francia, Australia, Canadá y otros): 1,5 %.\n- **Mercados con licencias** (China, Japón, América Latina y otros, operados por socios locales): 1,9 %.\n\nLas ventas totales de todos los locales fueron de 37.000 M en el trimestre. De eso, McDonald's se quedó con unos 7.100 M de ingresos, sobre todo en alquileres y regalías.\n\nSus clientes directos son miles de franquiciados en todo el mundo; a través de ellos, cientos de millones de personas.\n\n¿Cuál es su **ventaja**? La **marca** y el **modelo**. Es una de las marcas más reconocidas del planeta, y su escala le permite comprar más barato y gastar en publicidad como nadie. Además, ser dueña de los terrenos le da un ingreso estable que crece con la inflación.\n\nSu programa de fidelidad es cada vez más importante: casi 220 millones de usuarios activos y 40.000 M de ventas al año a sus miembros. Le permite conocer a sus clientes y ofrecerles promociones a medida.\n\nLa inteligencia artificial no amenaza este negocio; la usa para pedidos en el auto y para promociones."
+     },
+     {
+      "titulo": "Un margen que pocos tienen",
+      "texto": "Los ingresos crecen despacio: de 23.182 M en 2022 a **27.702 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **45,7 %**, estable desde hace años. El promedio de su industria es 15,8 %. La diferencia es el modelo: McDonald's cobra alquiler y regalías, y los franquiciados cargan con los costos de operar.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), es de **25,6 %**. Por encima de 15 % se considera muy bueno.\n\nLa caja es estable: **7.761 M** de flujo libre (lo que queda después de invertir) en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nLa ganancia por acción pasó de 8,33 dólares en 2022 a **12,31** en los últimos 12 meses. En el segundo trimestre de 2026 creció 6 %, aunque las ventas comparables casi no crecieron: ayudaron la apertura de locales nuevos y las recompras de acciones.\n\nEl problema a vigilar es el consumo. Después de años de subas de precios, los clientes de menores ingresos empezaron a visitar menos. McDonald's respondió con promociones y combos más baratos, que atraen clientes pero dejan menos margen a los franquiciados."
+     },
+     {
+      "titulo": "Patrimonio negativo y un dividendo de 50 años",
+      "texto": "McDonald's tiene patrimonio contable **negativo** (-1.022 M). No es una señal de quiebra: durante años devolvió a sus accionistas más plata de la que ganó, con dividendos y recompras, y se financió con deuda. Su negocio genera caja de forma muy estable, así que puede sostenerlo.\n\nLa deuda neta (lo que debe menos la caja) es de 39.041 M y equivale a **2,6 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo; más de 3, exigente. Su ganancia operativa paga los intereses del año 7,8 veces (por encima de 3 se considera sano). Además, sus terrenos y edificios son un respaldo que no aparece del todo en los balances.\n\n[[grafico:deuda_neta]]\n\nEl dividendo es de 7,72 dólares por acción por año. Lo sube hace casi 50 años seguidos, y creció 8,2 % por año en los últimos tres.\n\n[[grafico:dividendo]]\n\nLos riesgos: el consumo de los clientes de menores ingresos, la competencia en promociones, los costos de los franquiciados y la salud (la gente busca comer mejor, y los medicamentos para adelgazar reducen el apetito).\n\nLo conduce Chris Kempczinski, CEO desde 2019."
+     }
+    ],
+    "valuacion": {
+     "texto": "En McDonald's, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción. Es una empresa con ganancias muy estables, así que el PER refleja bien lo que se paga.\n\nCon el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), McDonald's cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\n[[grafico:per_historico]]\n\nEl mercado suele pagar una prima por McDonald's por la estabilidad de su modelo. Cuando las ventas se frenan, como en 2026, esa prima se achica. Lo que puede moverla es que las ventas en locales comparables vuelvan a crecer.\n\nEl dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).\n\nPero el PER no es el único número útil. En consumo discrecional, también se mira el **valor de la empresa sobre EBITDA** (EV/EBITDA): compara lo que vale la empresa entera, con su deuda, contra lo que genera el negocio antes de intereses, impuestos y amortizaciones. Por ejemplo, si una empresa vale 100 y genera 10 de EBITDA, cotiza a 10 veces. Sirve para comparar empresas con distinta deuda, y se lee contra su propia historia y contra su industria: cuanto más alto, más caro. Está en {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces). El promedio de su industria es {ind:ev_ebitda} veces, así que está {vsind:ev_ebitda} ese promedio.\n\nOtro número útil es el **precio sobre flujo libre de caja** (P/FCF): cuántos años de caja libre, lo que queda después de invertir, se pagan al comprar la acción. Por ejemplo, 20 veces equivale a que la caja libre rinde 5 % por año sobre el precio. Es más difícil de maquillar que la ganancia contable, porque es plata que de verdad entró. Si sube mucho sin que suba la caja, el precio se está poniendo más exigente. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}.",
+     "foto": {
+      "precio": "251,51",
+      "fecha_precio": "22/10/2026",
+      "v:per": "20,4",
+      "med:per": "25,4",
+      "ind:per": "32,8",
+      "vs:per": "por debajo de",
+      "vsind:per": "por debajo de",
+      "v:ev_ebitda": "15,5",
+      "med:ev_ebitda": "19,1",
+      "ind:ev_ebitda": "17,5",
+      "vs:ev_ebitda": "por debajo de",
+      "vsind:ev_ebitda": "por debajo de",
+      "ind:p_b": "74,7",
+      "v:ps": "6,3",
+      "med:ps": "8,3",
+      "ind:ps": "3,3",
+      "vs:ps": "por debajo de",
+      "vsind:ps": "por encima de",
+      "v:p_fcf": "22,9",
+      "med:p_fcf": "30,3",
+      "vs:p_fcf": "por debajo de",
+      "v:dy": "3,1 %",
+      "med:dy": "2,1 %",
+      "vs:dy": "por encima de",
+      "per_ref": "20,4",
+      "vs_ref_med": "por debajo de",
+      "vs_ref_ind": "por debajo de",
+      "dy": "3,1 %",
+      "bono10": "5,00 %",
+      "vs_bono": "menos que",
+      "fv": "319,09",
+      "dist_fv": "el precio está un 21 % por debajo de ese valor, lo que da un margen de seguridad aceptable",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "McDonald's es una empresa excelente. Tiene una de las marcas más reconocidas del mundo, un modelo de franquicias y alquileres con márgenes altísimos, terrenos que respaldan el negocio, una caja muy estable y un dividendo que sube hace casi 50 años.\n\nSu punto débil es el consumo: sus ventas en locales comparables casi no crecen, porque los clientes de menores ingresos gastan menos, y para atraerlos tiene que ofrecer promociones. Además, tiene bastante deuda y patrimonio negativo. El crítico más duro diría que McDonald's subió tanto los precios que dejó de ser barato, y que eso le hace perder a sus clientes más fieles. Es un argumento a tener en cuenta.\n\nEncaja con quien busca una empresa defensiva, estable, con un dividendo confiable y creciente. No es para quien busca crecimiento rápido.\n\nPara que la tesis se mantenga, lo más importante es que las ventas en locales comparables vuelvan a crecer cerca de 3 % o más, sin que los franquiciados pierdan rentabilidad.",
+    "pros": [
+     "Modelo envidiable: alquileres y regalías con margen de 45,7 %.",
+     "Fidelidad en alza: casi 220 millones de usuarios activos.",
+     "Dividendo histórico: lo sube hace casi 50 años."
+    ],
+    "contras": [
+     "Ventas frenadas: locales comparables +1,3 % en el mundo y +0,8 % en EE.UU.",
+     "Patrimonio negativo y deuda: 2,6 veces su EBITDA.",
+     "Consumo flojo: los clientes de menores ingresos gastan menos."
+    ],
+    "calidad": "Excelente",
+    "riesgo_ia": "muy bajo",
+    "clientes": [
+     "Miles de franquiciados en todo el mundo",
+     "Socios locales que operan la marca con licencia",
+     "Cientos de millones de consumidores"
+    ],
+    "hechos": [
+     {
+      "dato": "Segundo trimestre de 2026: ventas en locales comparables +1,3 % en el mundo (3,8 % un año antes), +0,8 % en EE.UU., +1,5 % en mercados internacionales operados y +1,9 % en mercados con licencia; ventas de todo el sistema de 37.000 M (+5 %); ingresos de 7.099 M (+4 %); ganancia operativa de 3.338 M (+3 %); ganancia por acción de 3,32 dólares (+6 %) y ajustada de 3,38; usuarios activos del programa de fidelidad: casi 220 millones (+13 %), ventas a sus miembros de 40.000 M en 12 meses",
+      "fuente": "Comunicado de resultados del 2T26, 04/08/2026",
+      "url": "https://mcdonalds.mediaroom.com/2026-08-04-McDONALDS-REPORTS-SECOND-QUARTER-2026-RESULTS"
+     }
+    ],
+    "ticker": "MCD",
+    "perfil": "consumo",
+    "capas": [
+     "compounder"
+    ],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 27702000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "NVO": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "Novo Nordisk: inventó el boom de los medicamentos para adelgazar, y ahora pelea para no perderlo",
+   "archivo": "NVO_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "Novo Nordisk: inventó el boom de los medicamentos para adelgazar, y ahora pelea para no perderlo",
+    "resumen": [
+     "Novo Nordisk, de Dinamarca, es líder mundial en **diabetes y obesidad**: fabrica Ozempic y Wegovy (semaglutida), los medicamentos que cambiaron el tratamiento del sobrepeso, y ahora Wegovy en pastilla. Su ventaja son décadas de liderazgo en insulina y en este tipo de medicamentos.",
+     "En el segundo trimestre de 2026, **sus ventas crecieron 3 %** a tipo de cambio constante y su ganancia operativa ajustada, 11 %. Pero para todo 2026 espera que ventas y ganancia **caigan hasta 6 %**, por la baja de precios y la competencia.",
+     "Muy buena empresa, con márgenes enormes y una caja fuerte, pero en una etapa difícil: perdió el liderazgo frente a Eli Lilly, sus precios bajan y el mercado la castigó con dureza."
+    ],
+    "introduccion": "En 2021, Novo Nordisk lanzó Wegovy, un medicamento inyectable que hacía bajar de peso un 15 % en promedio. Fue una revolución. La demanda fue tan grande que durante meses no alcanzó la producción. Novo Nordisk llegó a ser la empresa más valiosa de Europa, más grande que toda la economía de Dinamarca.\n\nDespués, todo se complicó. Eli Lilly lanzó Zepbound, un medicamento que hacía bajar más de peso, y le ganó el liderazgo en EE.UU. Aparecieron copias más baratas, fabricadas por farmacias. El gobierno de EE.UU. presionó para bajar los precios. Y en 2026 empezaron a vencer patentes en algunos países.\n\nLa acción se derrumbó. Hoy cotiza a una fracción de lo que valía en su mejor momento.\n\nNovo Nordisk responde con una nueva apuesta: **Wegovy en pastilla**, lanzada en EE.UU. en enero de 2026. Ya superó los cinco millones de recetas.\n\nEntonces, la pregunta es: ¿el mercado castigó de más a una empresa que sigue siendo muy rentable, o Novo Nordisk entró en un declive de largo plazo?",
+    "secciones": [
+     {
+      "titulo": "Diabetes y obesidad, con la pastilla como nueva carta",
+      "texto": "Novo Nordisk tiene dos grandes negocios:\n\n- **Diabetes y obesidad**: Ozempic (para la diabetes), Wegovy (para la obesidad, en inyección y en pastilla), Rybelsus (semaglutida en pastilla para diabetes) e insulinas. Es la gran mayoría de las ventas.\n- **Enfermedades raras**: tratamientos para la hemofilia y otros trastornos de la sangre y del crecimiento.\n\nSus clientes son sistemas de salud, aseguradoras, administradoras de recetas en EE.UU. y gobiernos de todo el mundo.\n\n¿Cuál es su **ventaja**? Su **experiencia** en estos medicamentos y su **capacidad de producción**. Novo Nordisk inventó la semaglutida y lleva un siglo fabricando insulina. Producir estos medicamentos a la escala que pide el mercado requiere fábricas enormes, y Novo Nordisk invirtió fortunas en ellas, incluida la compra de las fábricas de Catalent.\n\nPero esa ventaja se achicó. Eli Lilly tiene medicamentos que hacen bajar más de peso y le ganó el liderazgo en EE.UU. La pastilla de Wegovy es la carta de Novo para recuperar terreno: es más cómoda que una inyección.\n\nLa inteligencia artificial es más una herramienta que una amenaza: puede acelerar la investigación de nuevos medicamentos."
+     },
+     {
+      "titulo": "Muy rentable, pero el crecimiento se frenó",
+      "texto": "Las cifras de Novo Nordisk están en coronas danesas.\n\nLos ingresos crecieron con fuerza entre 2022 y 2024 (de 176.954 M a 290.403 M de coronas), y después se frenaron: 6,4 % en 2025 y 3 % en el segundo trimestre de 2026.\n\nLo que no cambió es la rentabilidad: el **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **43,1 %** en los últimos 12 meses. El promedio de su industria es 26,2 %.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada corona que pusieron dueños y acreedores), bajó de 64,1 % en 2023 a **30,8 %**. Por encima de 15 % se considera muy bueno, así que sigue altísimo. Pero bajó porque la empresa invirtió muchísimo en fábricas.\n\n[[grafico:roic]]\n\nEl **flujo libre de caja** (lo que queda después de invertir) bajó de 70.012 M de coronas en 2023 a 28.989 M en 2025, por esas inversiones, y volvió a subir a **48.917 M** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara 2026, la empresa espera que sus ventas y su ganancia operativa ajustadas caigan hasta 6 % a tipo de cambio constante. Es mejor de lo que esperaba antes (una caída de 4 % a 12 %), pero sigue siendo una caída."
+     },
+     {
+      "titulo": "Más deuda, y un dividendo que rinde más",
+      "texto": "Para construir fábricas y comprar Catalent, Novo Nordisk se endeudó: la deuda neta (lo que debe menos la caja) pasó de 6.888 M de coronas en 2023 a **95.645 M**. Aun así, equivale a apenas **0,6 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo.\n\n[[grafico:deuda_neta]]\n\nEl dividendo creció 27,6 % por año en los últimos tres. Con la caída de la acción, hoy rinde bastante más que antes.\n\nLos riesgos:\n\n- **Eli Lilly (LLY)**: su gran rival, con medicamentos más potentes.\n- **Precios en EE.UU.**: el gobierno y las aseguradoras presionan para bajarlos.\n- **Patentes**: la semaglutida empieza a perder protección en algunos países en 2026, y llegan copias.\n- **Copias de farmacias**: en EE.UU. se venden versiones fabricadas por farmacias, más baratas.\n\nLo conduce Mike Doustdar, CEO desde 2025, que reemplazó a Lars Fruergaard Jørgensen en plena crisis: \"El mayor impulso de los medicamentos de este tipo en EE.UU., junto con el crecimiento y los nuevos lanzamientos en el resto del mundo, nos llevó a subir otra vez nuestra previsión para 2026\"."
+     }
+    ],
+    "valuacion": {
+     "texto": "En Novo Nordisk, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR al momento de escribir este informe ({fecha_precio}), Novo Nordisk cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nTambién conviene mirar el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces).\n\nDurante el boom, el mercado pagó por Novo Nordisk múltiplos de empresa de crecimiento acelerado. Cuando el crecimiento se frenó y la ganancia empezó a caer, el mercado la reclasificó. La pregunta es si la ganancia va a estabilizarse o seguir cayendo: un PER bajo solo es barato si la ganancia no sigue bajando.\n\nOtro número útil es el **precio sobre flujo libre de caja** (P/FCF): cuántos años de caja libre, lo que queda después de invertir, se pagan al comprar la acción. Por ejemplo, 20 veces equivale a que la caja libre rinde 5 % por año sobre el precio. Es más difícil de maquillar que la ganancia contable, porque es plata que de verdad entró. Si sube mucho sin que suba la caja, el precio se está poniendo más exigente. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}. Ese cálculo se basa en los múltiplos de los años de crecimiento fuerte: hay que tomarlo con mucho cuidado. El dividendo rinde {dy}, {vs_bono} el bono del Tesoro a 10 años ({bono10}).",
+     "foto": {
+      "precio": "39,64",
+      "fecha_precio": "22/10/2026",
+      "v:per": "10,1",
+      "med:per": "35,1",
+      "ind:per": "20,6",
+      "vs:per": "por debajo de",
+      "vsind:per": "por debajo de",
+      "v:ev_ebitda": "7,1",
+      "med:ev_ebitda": "25,9",
+      "ind:ev_ebitda": "14,7",
+      "vs:ev_ebitda": "por debajo de",
+      "vsind:ev_ebitda": "por debajo de",
+      "v:p_b": "5,2",
+      "med:p_b": "23,7",
+      "ind:p_b": "4,1",
+      "vs:p_b": "por debajo de",
+      "vsind:p_b": "por encima de",
+      "v:ps": "3,4",
+      "med:ps": "11,9",
+      "ind:ps": "3,5",
+      "vs:ps": "por debajo de",
+      "vsind:ps": "en línea con",
+      "v:p_fcf": "15,3",
+      "med:p_fcf": "34,4",
+      "vs:p_fcf": "por debajo de",
+      "v:dy": "4,5 %",
+      "med:dy": "1,4 %",
+      "vs:dy": "por encima de",
+      "per_ref": "10,1",
+      "vs_ref_med": "por debajo de",
+      "vs_ref_ind": "por debajo de",
+      "dy": "4,5 %",
+      "bono10": "5,00 %",
+      "vs_bono": "menos que",
+      "fv": "96,28",
+      "dist_fv": "el precio está un 59 % por debajo de ese valor, lo que da un gran margen de seguridad",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "Novo Nordisk es una muy buena empresa en un momento difícil. Inventó los medicamentos que cambiaron el tratamiento de la obesidad, tiene márgenes operativos de más de 40 %, una caja fuerte, poca deuda en relación a lo que genera y una nueva pastilla que puede ayudarla a recuperar terreno.\n\nSu punto débil es que perdió el liderazgo frente a Eli Lilly, que sus precios bajan, que empiezan a llegar copias y que espera ganar menos en 2026. El crítico más duro diría que Novo Nordisk pasó de ser la estrella del sector a una empresa que defiende un negocio en declive. Es un argumento serio.\n\nEncaja con quien cree que el mercado castigó de más a una empresa muy rentable y tolera la incertidumbre. No es para quien busca una recuperación segura.\n\nPara que la tesis se mantenga, lo más importante es que la pastilla de Wegovy gane mercado y que las ventas vuelvan a crecer en 2027.",
+    "pros": [
+     "Márgenes enormes: margen operativo de 43,1 %.",
+     "Wegovy en pastilla: más de cinco millones de recetas desde enero de 2026.",
+     "Retorno alto: ROIC de 30,8 %."
+    ],
+    "contras": [
+     "Eli Lilly: le ganó el liderazgo en obesidad en EE.UU.",
+     "Ganancia en baja: espera caer hasta 6 % en 2026.",
+     "Precios y patentes: bajan los precios y llegan copias."
+    ],
+    "calidad": "Muy buena",
+    "riesgo_ia": "bajo",
+    "clientes": [
+     "Sistemas de salud y gobiernos de todo el mundo",
+     "Aseguradoras y administradoras de recetas de EE.UU.",
+     "Pacientes con diabetes y obesidad"
+    ],
+    "hechos": [
+     {
+      "dato": "Segundo trimestre de 2026: ventas de 78.500 M de coronas (+3 % a tipo de cambio constante); ganancia operativa ajustada +11 %; Wegovy en pastilla: más de cinco millones de recetas desde su lanzamiento en EE.UU. en enero de 2026; guía 2026: ventas y ganancia operativa ajustadas con una caída de hasta 6 % (antes de 4 % a 12 %); frase de Mike Doustdar",
+      "fuente": "Nota sobre los resultados del 2T26, 05/08/2026",
+      "url": "https://gazettengr.com/novo-nordisk-raises-2026-forecast-after-wegovy-pill-sales-profit/"
+     }
+    ],
+    "ticker": "NVO",
+    "perfil": "salud",
+    "capas": [
+     "compounder"
+    ],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 329431000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "COP": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "ConocoPhillips: una apuesta pura al petróleo, con reservas baratas y un balance sólido",
+   "archivo": "COP_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "ConocoPhillips: una apuesta pura al petróleo, con reservas baratas y un balance sólido",
+    "resumen": [
+     "ConocoPhillips es la mayor empresa de EE.UU. dedicada **solo a producir petróleo y gas**, sin refinerías ni estaciones de servicio. Produce en el Pérmico, Alaska, Noruega, Qatar, Australia y otros lugares. Su ventaja son reservas enormes y de bajo costo, sobre todo en el Pérmico.",
+     "En el segundo trimestre de 2026, con el petróleo caro por la guerra con Irán, **su ganancia ajustada pasó de 1.800 M a 4.000 M**, con un precio de venta 36 % más alto. Duplicó sus recompras de acciones.",
+     "Buena empresa, con reservas de calidad y un balance sólido, pero sin refinación que la proteja: es de las petroleras más expuestas a la suba y la baja del precio del petróleo."
+    ],
+    "introduccion": "Las grandes petroleras como Exxon, Chevron o Shell hacen de todo: sacan petróleo, lo refinan, lo venden en estaciones de servicio y fabrican químicos. Cuando el petróleo baja, las refinerías suelen compensar algo.\n\nConocoPhillips eligió otro camino. En 2012 separó su negocio de refinación (que hoy es Phillips 66, PSX) y se quedó solo con la producción. Es una apuesta pura al precio del petróleo y del gas: cuando suben, gana mucho; cuando bajan, gana poco.\n\nEn 2026, con la guerra con Irán, le toca la parte buena. En el segundo trimestre vendió su producción a 62,33 dólares por barril equivalente, 36 % más que un año antes, y su ganancia se duplicó.\n\nAl mismo tiempo, prepara su futuro: un gran proyecto petrolero en Alaska (Willow) y participaciones en plantas de gas natural licuado, con las que espera sumar 7.000 M de flujo libre por año hacia 2029.\n\nEntonces, la pregunta es: ¿es ConocoPhillips una buena empresa, o solo una apuesta al precio del petróleo?",
+    "secciones": [
+     {
+      "titulo": "Petróleo y gas, sin refinación",
+      "texto": "ConocoPhillips produjo 2,25 millones de barriles equivalentes por día en el segundo trimestre de 2026. Sus zonas principales:\n\n- **EE.UU. continental**: 1,48 millones de barriles por día. La mayor parte viene de la cuenca del Pérmico (Texas y Nuevo México), y el resto de Eagle Ford (Texas) y Bakken (Dakota del Norte). En 2024 compró Marathon Oil para crecer ahí.\n- **Alaska**: campos históricos y el proyecto Willow, en construcción.\n- **Internacional**: Noruega, Qatar, Australia, Libia, Malasia y otros, con una apuesta creciente al gas natural licuado.\n\nLa producción bajó 6 % contra un año antes, sobre todo porque vendió activos que no consideraba centrales (5.000 M en ventas, por encima de lo previsto).\n\nSus clientes son refinerías, distribuidoras de gas y compradores de gas licuado en todo el mundo.\n\n¿Cuál es su **ventaja**? Las **reservas de bajo costo**. En el Pérmico tiene décadas de pozos por perforar con costos bajos, lo que le permite ganar plata aun con el petróleo barato. En un negocio donde no se puede fijar el precio, producir más barato que los demás es la única ventaja duradera.\n\nLa inteligencia artificial, en todo caso, la ayuda: los centros de datos necesitan gas para generar electricidad."
+     },
+     {
+      "titulo": "Una ganancia que sigue al barril",
+      "texto": "Los ingresos de ConocoPhillips siguen al precio del petróleo: 78.494 M en 2022, con la guerra en Ucrania; 54.745 M en 2024; y **63.345 M** en los últimos 12 meses.\n\n[[grafico:ingresos]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), bajó de 26,6 % en 2022 a 8,2 % en 2025, y subió a **10,5 %** en los últimos 12 meses. Por encima de 15 % se considera muy bueno; por debajo de lo que cuesta conseguir capital (alrededor de 8 % a 10 %), la empresa no crea valor. El promedio de su industria es 13,7 %.\n\n[[grafico:roic]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) es de **21,9 %**, contra 25,4 % del promedio de su industria.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **10.064 M** en los últimos 12 meses. En el segundo trimestre de 2026 generó 7.200 M de caja operativa e invirtió 3.000 M.\n\n[[grafico:flujo_libre]]\n\nPara el tercer trimestre, espera producir entre 2,29 y 2,32 millones de barriles equivalentes por día."
+     },
+     {
+      "titulo": "Balance sólido y devolución flexible",
+      "texto": "ConocoPhillips tiene un balance sólido. Su deuda neta (lo que debe menos la caja) es de 16.716 M y equivale a **0,6 veces su EBITDA**, lo que genera el negocio antes de intereses e impuestos. Por debajo de 2 veces se considera cómodo. Su ganancia operativa paga los intereses del año casi 12 veces (por encima de 3 se considera sano).\n\n[[grafico:deuda_neta]]\n\nSu política es devolver a los accionistas una parte de su caja operativa: en 2026 apunta a 45 %. En el segundo trimestre devolvió 3.000 M: 2.000 M en recompras (el doble que antes) y 1.000 M en dividendos. El dividendo es de 0,84 dólares por trimestre.\n\nUn detalle: durante años, el dividendo de ConocoPhillips tuvo una parte fija y otra variable que se sumaba en los años buenos. En 2022 pagó extras muy grandes, y por eso el crecimiento del dividendo de los últimos años parece negativo.\n\nLos riesgos: el precio del petróleo, que hoy está alto por una guerra; los costos del proyecto Willow en Alaska; y nuevos negocios en zonas de riesgo, como Irak y Siria.\n\nLo conduce Ryan Lance, CEO desde 2012: \"Duplicamos nuestras recompras trimestrales y alcanzamos antes de lo previsto nuestra meta de 5.000 M en venta de activos\"."
+     }
+    ],
+    "valuacion": {
+     "texto": "En una petrolera, el PER (cuántos años de ganancia se pagan al comprar la acción) hay que leerlo con cuidado: con el petróleo caro la ganancia es alta y el PER parece bajo; cuando el precio cae, pasa lo contrario.\n\nCon el precio de {precio} dólares al momento de escribir este informe ({fecha_precio}), ConocoPhillips cotiza a {per_ref} veces su ganancia de los últimos 12 meses. Eso está {vs_ref_med} su propia mediana histórica ({med:per} veces) y {vs_ref_ind} el promedio de su industria ({ind:per} veces).\n\nUn número más estable es el **EV/EBITDA**: compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio antes de intereses, impuestos y amortizaciones. ConocoPhillips cotiza a {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces) y {vsind:ev_ebitda} el promedio de su industria ({ind:ev_ebitda} veces).\n\nComo es una productora pura, su precio sigue muy de cerca al del petróleo. Comprar ConocoPhillips es, en buena parte, tomar una posición sobre el precio del barril en los próximos años.\n\nOtro número útil es el **precio sobre flujo libre de caja** (P/FCF): cuántos años de caja libre, lo que queda después de invertir, se pagan al comprar la acción. Por ejemplo, 20 veces equivale a que la caja libre rinde 5 % por año sobre el precio. Es más difícil de maquillar que la ganancia contable, porque es plata que de verdad entró. Si sube mucho sin que suba la caja, el precio se está poniendo más exigente. Está en {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}. El dividendo rinde {dy}.",
+     "foto": {
+      "precio": "146,06",
+      "fecha_precio": "22/10/2026",
+      "v:per": "19,4",
+      "med:per": "12,6",
+      "ind:per": "12,7",
+      "vs:per": "por encima de",
+      "vsind:per": "por encima de",
+      "v:ev_ebitda": "7,0",
+      "med:ev_ebitda": "5,5",
+      "ind:ev_ebitda": "5,2",
+      "vs:ev_ebitda": "por encima de",
+      "vsind:ev_ebitda": "por encima de",
+      "v:p_b": "2,7",
+      "med:p_b": "2,1",
+      "ind:p_b": "1,4",
+      "vs:p_b": "por encima de",
+      "vsind:p_b": "por encima de",
+      "v:ps": "2,8",
+      "med:ps": "2,0",
+      "ind:ps": "2,0",
+      "vs:ps": "por encima de",
+      "vsind:ps": "por encima de",
+      "v:p_fcf": "17,1",
+      "med:p_fcf": "15,8",
+      "vs:p_fcf": "por encima de",
+      "v:dy": "2,3 %",
+      "med:dy": "3,4 %",
+      "vs:dy": "por debajo de",
+      "per_ref": "19,4",
+      "vs_ref_med": "por encima de",
+      "vs_ref_ind": "por encima de",
+      "dy": "2,3 %",
+      "bono10": "5,00 %",
+      "vs_bono": "menos que",
+      "fv": "111,95",
+      "dist_fv": "el precio está un 30 % por encima de ese valor, es decir, sin margen de seguridad",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "ConocoPhillips es una buena empresa. Tiene reservas grandes y de bajo costo, sobre todo en el Pérmico, un balance sólido, una política clara de devolver caja al accionista y proyectos que pueden sumar mucho flujo libre hacia 2029.\n\nSu punto débil es que depende casi por completo del precio del petróleo y del gas: no tiene refinerías que la protejan cuando el barril baja. Hoy gana mucho por una guerra, y cuando eso cambie, la ganancia va a bajar. Además, su retorno sobre el capital, sin la ayuda de los precios, estuvo cerca del costo de capital. El crítico más duro diría que ConocoPhillips es, en la práctica, una apuesta al petróleo con un balance prolijo. Es un argumento razonable.\n\nEncaja con quien quiere exposición directa al petróleo y al gas, con un balance sólido, y tolera la volatilidad. No es para quien busca resultados estables.\n\nPara que la tesis se mantenga, lo más importante es que mantenga sus costos bajos y que Willow y el gas licuado lleguen en tiempo y forma.",
+    "pros": [
+     "Reservas de bajo costo: décadas de pozos en el Pérmico.",
+     "Balance sólido: deuda neta de 0,6 veces su EBITDA.",
+     "Devolución flexible: duplicó sus recompras en el segundo trimestre."
+    ],
+    "contras": [
+     "Muy expuesta al petróleo: no tiene refinación que la proteja.",
+     "Producción en baja: -6 % por la venta de activos.",
+     "Retorno modesto: ROIC de 8,2 % en 2025."
+    ],
+    "calidad": "Buena",
+    "riesgo_ia": "muy bajo",
+    "clientes": [
+     "Refinerías de EE.UU. y del mundo",
+     "Distribuidoras de gas",
+     "Compradores de gas natural licuado de Asia y Europa"
+    ],
+    "hechos": [
+     {
+      "dato": "Segundo trimestre de 2026: ganancia de 3.900 M (3,23 dólares por acción) y ajustada de 4.000 M (3,24), contra 1.800 M (1,42) un año antes; producción de 2.248.000 barriles equivalentes por día (-6 %); precio promedio de 62,33 dólares por barril equivalente (+36 %); caja operativa de 7.200 M; inversiones de 3.000 M; 3.000 M devueltos (2.000 M en recompras y 1.000 M en dividendos); dividendo trimestral de 0,84 dólares; meta de 5.000 M en venta de activos alcanzada; meta de devolver 45 % de la caja operativa de 2026; frase de Ryan Lance",
+      "fuente": "Comunicado de resultados del 2T26, 06/08/2026",
+      "url": "https://www.conocophillips.com/news-media/story/conocophillips-announces-second-quarter-2026-results-and-quarterly-dividend/"
+     }
+    ],
+    "ticker": "COP",
+    "perfil": "energia",
+    "capas": [
+     "ciclica"
+    ],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 63345000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2025",
+      "2024",
+      "2023",
+      "2022"
+     ]
+    }
+   }
+  }
+ ],
+ "SONY": [
+  {
+   "fecha": "01/11/2026",
+   "titulo": "Sony: de fabricante de televisores a gigante del entretenimiento, con PlayStation, música y anime",
+   "archivo": "SONY_2026-11-01.pdf",
+   "informe": {
+    "formato": "v4",
+    "titulo": "Sony: de fabricante de televisores a gigante del entretenimiento, con PlayStation, música y anime",
+    "resumen": [
+     "Sony es un conglomerado japonés que hoy gana sobre todo con el **entretenimiento**: la consola y la red **PlayStation**, **Sony Music** (una de las tres grandes discográficas del mundo), películas y series, y el anime de Crunchyroll. También es el mayor fabricante del mundo de **sensores de imagen** para celulares, y vende televisores, cámaras y audio. Su ventaja es una colección de marcas y contenidos difícil de igualar.",
+     "En el primer trimestre de su año fiscal 2026 (abril a junio), **sus ventas crecieron 8 %** y su ganancia operativa, **40 %**, ambas récord para un primer trimestre. Subió lo que espera ganar en el año.",
+     "Muy buena empresa, que se transformó con éxito y tiene más caja que deuda, pero con negocios muy distintos entre sí, algunos ligados a ciclos (consolas, celulares) y resultados que se mueven con el yen."
+    ],
+    "introduccion": "Para muchos que crecieron en los años 80 y 90, Sony era el walkman, el televisor Trinitron y el discman. Era la empresa de electrónica más admirada del mundo.\n\nPero a principios de este siglo, la electrónica de consumo se volvió un negocio de márgenes mínimos, con fabricantes coreanos y chinos que vendían más barato. Sony perdió plata durante años, y muchos la dieron por terminada.\n\nLa respuesta fue una transformación profunda. Sony vendió su negocio de computadoras, achicó el de televisores y apostó a lo que no se copia fácil: **contenidos y propiedad intelectual**. Videojuegos de PlayStation, catálogos de música con miles de artistas, películas, series y anime. Y sumó un negocio tecnológico donde es líder: los sensores que tienen las cámaras de la mayoría de los celulares de alta gama.\n\nEn octubre de 2025 dio otro paso: separó su negocio financiero (seguros y banco), que hoy cotiza aparte. Lo que queda es una empresa de entretenimiento y tecnología.\n\nEntonces, la pregunta es: ¿cuánto vale un conglomerado que se reinventó, pero que todavía junta negocios muy distintos bajo un mismo techo?",
+    "secciones": [
+     {
+      "titulo": "Cinco negocios bajo una misma marca",
+      "texto": "Sony tiene cinco grandes negocios. Entre paréntesis, cuánto creció su ganancia operativa en el primer trimestre de su año fiscal 2026:\n\n- **Juegos y red** (+37 %): la consola PlayStation 5, los juegos propios y la red PlayStation, con 125 millones de cuentas activas por mes. Es el negocio más grande.\n- **Música** (+14 %): Sony Music y su editorial musical, dueña de los derechos de millones de canciones. Gana cada vez que una canción suena en una plataforma de streaming.\n- **Sensores de imagen** (algo más del doble): los sensores de las cámaras de celulares, autos y equipos industriales.\n- **Películas** (+33 %): Sony Pictures, series de televisión y Crunchyroll, la mayor plataforma de anime fuera de Japón.\n- **Electrónica** (sin cambios): televisores Bravia, cámaras Alpha y equipos de audio.\n\nSus clientes son decenas de millones de jugadores, oyentes y espectadores de todo el mundo, plataformas de streaming, fabricantes de celulares (Apple es uno de los más importantes) y compradores de electrónica.\n\n¿Cuál es su **ventaja**? La **propiedad intelectual**: personajes, juegos, canciones y películas que generan ingresos durante décadas. Y en sensores, la **tecnología**: es el líder mundial, con años de ventaja.\n\nLa inteligencia artificial tiene dos caras para Sony. Puede abaratar la creación de juegos, música y películas, lo que ayuda a sus costos. Pero también puede facilitar que otros creen contenidos que compitan con los suyos."
+     },
+     {
+      "titulo": "Más rentable que nunca",
+      "texto": "Las cifras de Sony están en **yenes**. Un billón de yenes es un millón de millones.\n\nLos ingresos crecieron de 10,97 billones de yenes en su año fiscal 2023 a **12,70 billones** en los últimos 12 meses (sin el negocio financiero).\n\n[[grafico:ingresos]]\n\nEl **margen operativo** (lo que queda de cada venta después de todos los costos de funcionar) subió de 11,6 % a **13,3 %**. Para una empresa que hace veinte años perdía plata, es un cambio enorme.\n\n[[grafico:margen_operativo]]\n\nEl **ROIC**, el retorno sobre el capital invertido (cuánto gana por cada dólar que pusieron dueños y acreedores), subió a **13,1 %**. Por encima de 15 % se considera muy bueno; Sony se está acercando.\n\n[[grafico:roic]]\n\nUn detalle sobre la ganancia por acción: la tabla muestra un número negativo en su último año fiscal (cerrado en marzo de 2026) porque incluye el negocio financiero que separó, contabilizado aparte. Sin ese negocio, Sony ganó 1,03 billones de yenes, 171,44 yenes por acción.\n\nEl **flujo libre de caja** (lo que queda después de invertir) fue de **1,59 billones de yenes** en los últimos 12 meses.\n\n[[grafico:flujo_libre]]\n\nPara todo su año fiscal 2026, Sony espera una ganancia operativa de 1,72 billones de yenes, un 8 % más, y una ganancia de 1,21 billones."
+     },
+     {
+      "titulo": "Más caja que deuda y riesgos a vigilar",
+      "texto": "Después de separar el negocio financiero, Sony tiene **más caja que deuda**: unos 2,2 billones de yenes en caja contra 1,87 billones de deuda. Su ganancia operativa paga los intereses del año 40 veces (por encima de 3 se considera sano).\n\nDevuelve cada vez más a sus accionistas. Recompró unos 120.000 M de yenes en acciones hasta junio, y planea subir el dividendo anual de 25 a 35 yenes por acción. Aun así, el dividendo rinde poco.\n\nLos riesgos:\n\n- **El ciclo de las consolas**: la PlayStation 5 ya lleva varios años en el mercado; las ventas de consolas suelen bajar antes de que llegue la siguiente.\n- **El precio de las memorias**: subió mucho y encarece la consola. Sony dice que aseguró las memorias que necesita para este año.\n- **Los celulares**: si se venden menos celulares de alta gama, vende menos sensores.\n- **El yen**: un yen más débil infla sus resultados, y uno más fuerte los achica. Parte de la mejora del pronóstico vino de un yen más débil.\n- **Los desaciertos**: en su último año fiscal registró pérdidas por la compra de Bungie (juegos) y por su proyecto de autos eléctricos con Honda, que se abandonó.\n\nLa conduce Hiroki Totoki, CEO desde 2025. Su director financiero, Lin Tao, dijo que la actividad de los jugadores \"se mantuvo sólida y podría mejorar\" con los grandes lanzamientos de fin de año."
+     }
+    ],
+    "valuacion": {
+     "texto": "En Sony, el número que conviene mirar es el PER: cuántos años de ganancia se pagan al comprar la acción.\n\nCon el precio de {precio} dólares por ADR al momento de escribir este informe ({fecha_precio}), Sony cotiza a {per_ref} veces su ganancia, {vs_ref_med} su propia mediana histórica ({med:per} veces).\n\nTambién sirve el **EV/EBITDA**, que compara el valor de toda la empresa (acciones más deuda neta) con lo que genera el negocio: {v:ev_ebitda} veces, {vs:ev_ebitda} su mediana histórica ({med:ev_ebitda} veces). Y el **precio sobre el flujo libre de caja**: {v:p_fcf} veces, {vs:p_fcf} su mediana histórica ({med:p_fcf} veces).\n\nNo la comparamos con el promedio de su industria, porque las empresas de electrónica de consumo con las que se la agrupa son muy distintas a la Sony actual, que gana sobre todo con entretenimiento.\n\nDurante años, el mercado aplicó a Sony un **descuento de conglomerado**: paga menos por una empresa con muchos negocios distintos que por la suma de esos negocios por separado. La separación del negocio financiero fue un paso para achicar ese descuento. Si Sony sigue simplificándose y su ganancia sigue creciendo, el descuento podría bajar.\n\nSegún la valoración por múltiplos, el Fair Value se ubica en torno a {fv} dólares: {dist_fv}. El dividendo rinde {dy}.",
+     "foto": {
+      "precio": "26,23",
+      "fecha_precio": "22/10/2026",
+      "v:per": "21,7",
+      "med:per": "20,4",
+      "vs:per": "en línea con",
+      "v:ev_ebitda": "11,9",
+      "med:ev_ebitda": "9,2",
+      "ind:ev_ebitda": "30,7",
+      "vs:ev_ebitda": "por encima de",
+      "vsind:ev_ebitda": "por debajo de",
+      "v:p_b": "2,8",
+      "med:p_b": "2,2",
+      "ind:p_b": "3,9",
+      "vs:p_b": "por encima de",
+      "vsind:p_b": "por debajo de",
+      "v:ps": "2,0",
+      "med:ps": "1,5",
+      "ind:ps": "1,0",
+      "vs:ps": "por encima de",
+      "vsind:ps": "por encima de",
+      "v:p_fcf": "15,0",
+      "med:p_fcf": "16,5",
+      "vs:p_fcf": "por debajo de",
+      "v:dy": "0,6 %",
+      "med:dy": "0,6 %",
+      "vs:dy": "en línea con",
+      "per_ref": "21,7",
+      "vs_ref_med": "en línea con",
+      "dy": "0,6 %",
+      "bono10": "5,00 %",
+      "vs_bono": "menos que",
+      "fv": "27,18",
+      "dist_fv": "el precio está un 4 % por debajo de ese valor, un margen de seguridad chico",
+      "_mes_cierre": "3",
+      "_congelado": "1"
+     }
+    },
+    "conclusion": "Sony es una muy buena empresa. Se transformó de un fabricante de electrónica en problemas en un gigante del entretenimiento y la tecnología, con PlayStation, una de las mayores discográficas del mundo, el anime de Crunchyroll y el liderazgo mundial en sensores de imagen. Hoy es más rentable que nunca y tiene más caja que deuda.\n\nSu punto débil es la complejidad. Junta negocios muy distintos, algunos ligados a ciclos (las consolas, los celulares), y sus resultados se mueven con el yen. Además, tuvo desaciertos caros, como la compra de Bungie y el proyecto de autos con Honda. El crítico más duro diría que Sony sigue siendo un conglomerado que el mercado nunca va a valorar del todo. Es un argumento razonable.\n\nEncaja con quien busca exposición al entretenimiento (juegos, música, anime) con una empresa sólida y diversificada. No es para quien busca un dividendo alto o un negocio simple de seguir.\n\nPara que la tesis se mantenga, lo más importante es que el margen operativo siga subiendo y que PlayStation mantenga su base de jugadores a medida que avanza el ciclo de la consola.",
+    "pros": [
+     "Propiedad intelectual: juegos, música, películas y anime que rinden durante décadas.",
+     "Líder en sensores: el mayor fabricante de sensores de imagen para celulares.",
+     "Más caja que deuda: tras separar el negocio financiero."
+    ],
+    "contras": [
+     "Conglomerado: negocios muy distintos que el mercado valora con descuento.",
+     "Ciclos: consolas y celulares suben y bajan.",
+     "El yen: sus resultados se mueven con el tipo de cambio."
+    ],
+    "calidad": "Muy buena",
+    "riesgo_ia": "bajo",
+    "clientes": [
+     "Jugadores de PlayStation de todo el mundo",
+     "Plataformas de streaming de música y video",
+     "Fabricantes de celulares, como Apple"
+    ],
+    "hechos": [
+     {
+      "dato": "Primer trimestre del año fiscal 2026 (abril a junio de 2026): ventas de 2,84 billones de yenes (+8 %) y ganancia operativa de 476.500 M de yenes (+40 %), récords para un primer trimestre; ganancia de 342.200 M de yenes (+32 %); ganancia operativa por negocio: Juegos +37 %, Música +14 %, Sensores unas 2,3 veces, Películas +33 %, Electrónica sin cambios; 125 millones de cuentas activas de PlayStation; recompras de unos 120.000 M de yenes; pronóstico del año: ganancia operativa de 1,72 billones de yenes (+8 %) y ganancia de 1,21 billones; frase de Lin Tao",
+      "fuente": "Resumen de la conferencia del 1T del año fiscal 2026, 07/2026",
+      "url": "https://www.nasdaq.com/articles/sony-q1-earnings-call-highlights"
+     },
+     {
+      "dato": "Año fiscal 2025 (cerrado el 31/03/2026), sin el negocio financiero: ventas de 12,48 billones de yenes (+4 %); ganancia operativa de 1,45 billones (+13 %); ganancia de 1,03 billones; 171,44 yenes por acción; separación de Sony Financial Group el 01/10/2025; deterioros por Bungie (120.100 M de yenes) y pérdida por Sony Honda Mobility; dividendo de 25 yenes y plan de 35 yenes para el año fiscal 2026",
+      "fuente": "Informe de resultados del año fiscal 2025, 05/2026",
+      "url": "https://investgame.net/news/pdf/2026-05-08-25q4_sony_earnings_clean_wp/"
+     }
+    ],
+    "mes_cierre_fiscal": 3,
+    "ticker": "SONY",
+    "perfil": "hardware",
+    "capas": [],
+    "fecha": "01/11/2026",
+    "modelo": "Claude",
+    "base": {
+     "periodo": "2026 (TTM)",
+     "ingresos": 12695776000000.0,
+     "anios": [
+      "2026 (TTM)",
+      "2026",
+      "2025",
+      "2024",
+      "2023"
+     ]
+    }
+   }
+  }
  ]
 }
