@@ -9,6 +9,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 
 **v1.5.36 (06/11):** Guille debe correr `descargar_logos.bat ASML SPCX` y subir `static/logos/`. Tanda 3: espera la lista de 70 corregida (Excel `Tanda3_pendientes_70.xlsx`); BRFS, CAJ, CBRD y EBR propuestos NO CARGAR (ya no cotizan en EE.UU.), ERJ→EMBJ, E = Eni, VXX a ETFs.
 
+**v1.5.38 (07/11):** SBS 1:2 confirmado con Rava. Rava lista VXX (5:1, activo). Revisar ratio o precio de BAK, PAC, SDA y URBN (dólar implícito fuera de ±6% de la mediana de Rava).
+
 **v1.5.37 (06/11):** Tanda 3 cargada (60). Pendientes: ratio de HWM; categoría de VXX en ETFs; ratio de ELPC, SBS y AXIAY; confirmar el ratio de KEEL (cambió de nombre); decidir las 18 acciones de Brasil/Europa-Asia que Balanz lista (BBAS3 BPA11 HAPV3 LREN3 MGLU3 NATU3 PRIO3 RENT3 SBSP3 WEGE3 / ADS BAS BAYN BSN EOAN MBG NSAN SKHY); correr `generar_cache.bat`, `bajar_fichas.bat` y `descargar_logos.bat`.
 
 **Con Opus (avisar antes de arrancar):**

@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.38 — ratio de SBS y cruce con Rava
+- **SBS (Sabesp): ratio 1:2**, según Rava (07/11/2026). Se comprobó con el dólar implícito que muestra Rava (1.671,88), igual que el resto.
+- **Cruce de la lista completa de Rava (422 CEDEARs) contra la app:** todos los ratios cargados coinciden con Rava. KEEL (1:5), TRV (6:1) y EMBJ (1:1) también quedaron confirmados.
+- **Sin cambios en lo demás:** HWM (Rava dice 1:1 con un dólar implícito de 31,94, que no cierra), ELPC y AXIA (sin ratio ni precio en Rava) siguen sin dato.
+
 ### v1.5.37 — Tanda 3: 60 empresas nuevas (cruzadas con la lista de Balanz)
 - **Se suman 60 CEDEARs:** AAP, ABEV, AGRO (BYMA: ADGO), AEG, AKO-B (AKO.B), ARCO, ASR, BAK, BB, BBD, BIOX, BMNR, BSBR, CAAP, CAR, CLS, CX, E (Eni), ELPC (Copel, antes ELP), EMBJ (Embraer, antes ERJ), GGB, GLNG, GLOB, GPRK, HUT, IREN, JMIA, JOYY, KEEL (Keel Infrastructure, antes Bitfarms), KEP, KOF (KOFM), LAR, LND, MFG, MUX, NG, NMR, NOK (NOKA), ONDS, PAC, PBI, PKX (PKS), RIOT, SATL, SBS (Sabesp), SDA, SID, SPCE, SUZ, TS (TEN), TIMB, TV, TX (TXR), UGP, VIST, VIV, WB (WBO), XRX (XROX), TRV (Travelers, BYMA: TRVV) y AXIAY (AXIA Energia, ex Eletrobras; BYMA: AXIA).
 - **Grupos:** los del Excel de Guille (06/11/2026). Cambios que él pidió: IREN → Pagos y datos, XRX → Industrial, KEEL → Hardware y servicios TI. EMBJ → Industrial; ELPC, SBS y AXIAY → Utilities; TRV → Bancos y seguros; E → Energía.

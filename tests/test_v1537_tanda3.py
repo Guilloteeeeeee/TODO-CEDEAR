@@ -33,7 +33,8 @@ for t, s in (("AGRO", "ADGO"), ("AKO-B", "AKO.B"), ("KOF", "KOFM"), ("NOK", "NOK
     chk(sim.get(t) == s, f"{t}: simbolo BYMA {s}")
 rat = {r["ticker"]: r["ratio"] for r in filas}
 chk(rat["AAP"] == "14:1" and rat["ABEV"] == "1:3" and rat["TRV"] == "6:1" and rat["E"] == "4:1" and rat["EMBJ"] == "1:1", "ratios de BYMA")
-chk(rat["ELPC"] == "" and rat["SBS"] == "" and rat["AXIAY"] == "", "ELPC, SBS y AXIAY quedan sin ratio hasta confirmarlo (no se inventa)")
+chk(rat["ELPC"] == "" and rat["AXIAY"] == "", "ELPC y AXIAY quedan sin ratio hasta confirmarlo (no se inventa)")
+chk(rat["SBS"] == "1:2", "SBS: ratio 1:2 según Rava (07/11/2026; el CCL implícito, 1.671,88, es coherente)")
 # no se cargan
 for t in ("BRFS", "CAJ", "CBRD", "EBR", "AOCA", "AUY", "FMCC", "FNMA", "HNPIY", "SHPW", "YZCA", "LFC", "PTR", "SNP", "ORAN", "TTM", "PSO", "TIIAY", "HWM", "DJNJ3"):
     chk(t not in tk, f"{t} NO debe estar cargada")
