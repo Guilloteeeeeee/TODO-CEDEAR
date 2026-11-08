@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.44 — Ideas de Inversión, Dividend Yield en ETFs y palabras de la gerencia
+- **Ideas de Inversión** (`?pagina=ideas`, `ui/ideas.py`): cinco mosaicos con dibujo, título, texto y cantidad: Aristócratas del Dividendo (25+ años subiendo el dividendo y en el S&P 500), Reyes del Dividendo (50+ años), Aspirantes del Dividendo (10 a 24 años), Dividendos Altos (4% o más; única lista con ETFs) y Fundamentales Fuertes que podrían estar infravalorados (calidad Excelente o Muy buena según el Análisis Fundamental y valoración infravalorada o con tendencia). Al tocar uno se ve la lista. Las listas de años vienen de `data/ideas_listas.json` (con fuente y fecha; actualizar una vez por año, en febrero).
+- **ETFs**: columna Div. Yield en la tabla (dato de Yahoo, ordenable).
+- **Análisis Fundamental**: recuadro «En palabras de la gerencia» con una frase textual del CEO (o del directivo que habló) del último comunicado de resultados, con fuente; también en el PDF. Cargado en AMGN, ANET, SHOP, PFE, QCOM, MCD, NVO y COP. Regla nueva en el prompt.
+- Pruebas: `tests/test_v1544_ideas_cita.py`.
+
 ### v1.5.43 — Más rápida, generar_cache que no se cuelga y arreglos visuales
 - **generar_cache**: muestra el avance empresa por empresa; si una tarda más de 150 s la saltea y usa su dato anterior; si se traban 6 seguidas deja de pedir (Yahoo trabado) y usa el dato anterior para el resto; guarda el avance en `data/cache_parcial.json` y, si se corta, la próxima corrida del mismo día sigue desde ahí. Muestra la versión de Python.
 - **Rapidez**: la barra de mercados ya no frena la página (si no está guardada, se reserva su lugar y se completa al final) y los precios de hoy se empiezan a bajar al mismo tiempo que la barra (antes, uno detrás del otro).

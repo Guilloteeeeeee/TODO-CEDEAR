@@ -9313,7 +9313,7 @@
    "secciones": [
     {
      "titulo": "Franquicias, alquileres y regalías: un modelo que cobra aunque el local venda menos",
-     "texto": "McDonald's tiene más de 40.000 locales en más de 100 países. Cerca del 95% está en manos de franquiciados, que invierten en el local y lo operan. A cambio, le pagan a la compañía:\n\n- **Alquiler**: por el terreno y el edificio, que en muchos casos son de McDonald's.\n- **Regalías**: un porcentaje de las ventas, por usar la marca y el sistema.\n- **Cargos iniciales**: al abrir un local nuevo.\n\nPor eso conviene distinguir dos cifras. Las **ventas del sistema**, lo que facturan todos los locales, superaron los 38.000 M en el tercer trimestre, un 4% más.\n\nLos **ingresos de McDonald's**, lo que efectivamente cobra la compañía, fueron de 7.157 M, un 1% más.\n\nEl indicador más seguido es el de **ventas en locales comparables**: cuánto vendieron los locales que ya existían hace un año, sin contar aperturas.\n\n- **Global**: +1,5% (+3,6% un año antes).\n- **EE.UU.**: -0,2% (+2,4% un año antes).\n- **Mercados internacionales operados** (Europa, Australia, Canadá): +1,4%.\n- **Mercados con licencia** (Asia, América Latina, Medio Oriente): +4,2%.\n\nEn EE.UU., la compañía respondió con una nueva estrategia de precios accesibles. Chris Kempczinski, presidente y CEO, señaló: «En EE.UU., nos alienta la mejora que se dio a medida que avanzaba el trimestre, tras nuestra intervención en la oferta de valor».\n\nLa inteligencia artificial representa un riesgo muy bajo para el negocio: puede mejorar los pedidos y la logística, pero no reemplaza la experiencia física."
+     "texto": "McDonald's tiene más de 40.000 locales en más de 100 países. Cerca del 95% está en manos de franquiciados, que invierten en el local y lo operan. A cambio, le pagan a la compañía:\n\n- **Alquiler**: por el terreno y el edificio, que en muchos casos son de McDonald's.\n- **Regalías**: un porcentaje de las ventas, por usar la marca y el sistema.\n- **Cargos iniciales**: al abrir un local nuevo.\n\nPor eso conviene distinguir dos cifras. Las **ventas del sistema**, lo que facturan todos los locales, superaron los 38.000 M en el tercer trimestre, un 4% más.\n\nLos **ingresos de McDonald's**, lo que efectivamente cobra la compañía, fueron de 7.157 M, un 1% más.\n\nEl indicador más seguido es el de **ventas en locales comparables**: cuánto vendieron los locales que ya existían hace un año, sin contar aperturas.\n\n- **Global**: +1,5% (+3,6% un año antes).\n- **EE.UU.**: -0,2% (+2,4% un año antes).\n- **Mercados internacionales operados** (Europa, Australia, Canadá): +1,4%.\n- **Mercados con licencia** (Asia, América Latina, Medio Oriente): +4,2%.\n\nEn EE.UU., la compañía respondió con una nueva estrategia de precios accesibles.\n\nLa inteligencia artificial representa un riesgo muy bajo para el negocio: puede mejorar los pedidos y la logística, pero no reemplaza la experiencia física."
     },
     {
      "titulo": "Un margen que pocas empresas del mundo alcanzan",
@@ -9410,6 +9410,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "En EE.UU., nos alienta la mejora que se dio a medida que avanzaba el trimestre, tras nuestra intervención en la oferta de valor.",
+    "autor": "Chris Kempczinski",
+    "cargo": "presidente y CEO",
+    "fecha": "04/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://www.sec.gov/Archives/edgar/data/0000063908/000006390826000080/exhibit991-9302026.htm"
    }
   },
   "SBUX": {
@@ -12328,7 +12336,7 @@
     },
     {
      "titulo": "Márgenes altos, ganancia ajustada en baja",
-     "texto": "En el año fiscal 2026, Qualcomm facturó 43.120 M, un 3% menos que el año anterior.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** es lo que queda de cada venta después de pagar fabricación, investigación, comercialización y administración. Bajó de 35,9% en 2022 a 23,3% en el último año, por debajo del promedio de su industria (35,3%).\n\n[[grafico:margen_operativo]]\n\nSi el margen siguiera cayendo, sería la señal de que la pérdida de volumen en celulares pesa más que el crecimiento de los negocios nuevos.\n\nLa ganancia contable del año fue de 12,70 dólares por acción, pero incluye un beneficio impositivo extraordinario de unos 5.700 M.\n\nPor eso conviene mirar la **ganancia ajustada**, que excluye ese efecto: 10,54 dólares, un 12% menos que en 2025.\n\nEl **ROIC**, cuánto rinde cada dólar aportado por accionistas y acreedores, es de 17,9%, contra 27,2% del promedio de su industria. Sigue siendo un buen retorno, pero viene en descenso.\n\nPara el primer trimestre del año fiscal 2027, la gerencia espera ingresos de 10.400 M a 11.200 M. Cristiano Amon, presidente y CEO, lo resumió así: «El año fiscal 2027 marca el inicio de nuestro punto de inflexión en los ingresos fuera del celular, incluida la expansión de nuestro negocio de centros de datos»."
+     "texto": "En el año fiscal 2026, Qualcomm facturó 43.120 M, un 3% menos que el año anterior.\n\n[[grafico:ingresos]]\n\nEl **margen operativo** es lo que queda de cada venta después de pagar fabricación, investigación, comercialización y administración. Bajó de 35,9% en 2022 a 23,3% en el último año, por debajo del promedio de su industria (35,3%).\n\n[[grafico:margen_operativo]]\n\nSi el margen siguiera cayendo, sería la señal de que la pérdida de volumen en celulares pesa más que el crecimiento de los negocios nuevos.\n\nLa ganancia contable del año fue de 12,70 dólares por acción, pero incluye un beneficio impositivo extraordinario de unos 5.700 M.\n\nPor eso conviene mirar la **ganancia ajustada**, que excluye ese efecto: 10,54 dólares, un 12% menos que en 2025.\n\nEl **ROIC**, cuánto rinde cada dólar aportado por accionistas y acreedores, es de 17,9%, contra 27,2% del promedio de su industria. Sigue siendo un buen retorno, pero viene en descenso.\n\nPara el primer trimestre del año fiscal 2027, la gerencia espera ingresos de 10.400 M a 11.200 M."
     },
     {
      "titulo": "Devuelve casi toda la caja y mantiene la deuda bajo control",
@@ -12428,6 +12436,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "El año fiscal 2027 marca el inicio de nuestro punto de inflexión en los ingresos fuera del celular, incluida la expansión de nuestro negocio de centros de datos.",
+    "autor": "Cristiano Amon",
+    "cargo": "presidente y CEO",
+    "fecha": "04/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://s204.q4cdn.com/645488518/files/content_files/FY2026-4th-Quarter-Earnings-Release.pdf"
    }
   },
   "KLAC": {
@@ -12780,7 +12796,7 @@
     },
     {
      "titulo": "Casi sin deuda, aunque la compensación en acciones diluye al accionista",
-     "texto": "El balance es sólido. A fines de septiembre de 2026, Shopify tenía unos 4.727 M entre caja e inversiones de corto plazo, y su deuda era mínima: según las tablas, unos 178 M.\n\nNo paga dividendo: la caja se reinvierte en el negocio.\n\nHay un costo menos visible: la **compensación en acciones**. Como muchas tecnológicas, Shopify paga parte del sueldo de sus empleados con acciones; la empresa estima unos 155 M para el cuarto trimestre. Eso aumenta la cantidad de acciones y reparte la torta entre más dueños: desde 2022, las acciones en circulación subieron 3,0%.\n\nNo es una dilución grave, pero conviene vigilarla. Si la cantidad de acciones creciera más rápido, el flujo libre por acción avanzaría menos que el de la empresa.\n\nEl **ROIC**, cuánto rinde cada dólar aportado por accionistas y acreedores, subió de valores negativos en 2022 a 16,1% en el último año. Por encima de 15% se considera muy bueno.\n\nEl riesgo principal es el **consumo**. Shopify cobra un porcentaje de lo que venden sus comercios: si el consumo se frenara en EE.UU. o en Europa, sus ingresos lo sentirían de inmediato. A eso se suma la competencia de Amazon y de otras plataformas.\n\nHarley Finkelstein, su presidente, lo planteó así: «Impulsamos 119.000 M de GMV, mientras seguimos llevando el comercio a cada superficie, a cada agente»."
+     "texto": "El balance es sólido. A fines de septiembre de 2026, Shopify tenía unos 4.727 M entre caja e inversiones de corto plazo, y su deuda era mínima: según las tablas, unos 178 M.\n\nNo paga dividendo: la caja se reinvierte en el negocio.\n\nHay un costo menos visible: la **compensación en acciones**. Como muchas tecnológicas, Shopify paga parte del sueldo de sus empleados con acciones; la empresa estima unos 155 M para el cuarto trimestre. Eso aumenta la cantidad de acciones y reparte la torta entre más dueños: desde 2022, las acciones en circulación subieron 3,0%.\n\nNo es una dilución grave, pero conviene vigilarla. Si la cantidad de acciones creciera más rápido, el flujo libre por acción avanzaría menos que el de la empresa.\n\nEl **ROIC**, cuánto rinde cada dólar aportado por accionistas y acreedores, subió de valores negativos en 2022 a 16,1% en el último año. Por encima de 15% se considera muy bueno.\n\nEl riesgo principal es el **consumo**. Shopify cobra un porcentaje de lo que venden sus comercios: si el consumo se frenara en EE.UU. o en Europa, sus ingresos lo sentirían de inmediato. A eso se suma la competencia de Amazon y de otras plataformas."
     }
    ],
    "valuacion": {
@@ -12860,6 +12876,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "Impulsamos 119.000 M de GMV, mientras seguimos llevando el comercio a cada superficie, a cada agente.",
+    "autor": "Harley Finkelstein",
+    "cargo": "presidente",
+    "fecha": "03/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://www.sec.gov/Archives/edgar/data/0001594805/000159480526000067/exhibit991pressreleaseq320.htm"
    }
   },
   "NOW": {
@@ -13221,7 +13245,7 @@
    "secciones": [
     {
      "titulo": "Las redes de la IA le dieron su mejor trimestre desde que cotiza",
-     "texto": "Arista vende en tres frentes:\n\n- **Centros de datos y nube**: el núcleo del negocio, con switches de alta velocidad para las grandes nubes.\n- **Redes para IA**: los equipos que interconectan los aceleradores (chips de IA) dentro de un centro de datos y entre varios.\n- **Campus**: redes para oficinas de empresas medianas y grandes, el negocio más nuevo.\n\nEn el tercer trimestre de 2026 facturó 3.658 M, un 58,5% más que un año antes. La ganancia neta llegó a 1.560 M, casi el doble que en el mismo trimestre de 2025.\n\nPara el cuarto trimestre, la gerencia espera ingresos de entre 3.900 M y 4.000 M, con un margen operativo ajustado similar al actual.\n\nHay un indicador que conviene seguir: los **ingresos diferidos**, lo que los clientes ya pagaron o facturaron y Arista todavía debe reconocer como venta. Sumaban 6.840 M a fines de septiembre, contra 5.372 M al cierre de 2025. Es trabajo comprometido para los próximos trimestres.\n\nAdemás, presentó una arquitectura de red para racks de IA desarrollada junto con AMD, Broadcom, Meta, Microsoft y Qualcomm, entre otros: un equipo puede conectar hasta 144 aceleradores por rack.\n\nJayshree Ullal, presidenta y CEO, lo resumió así: Arista registró «otro trimestre trascendental, con el mayor crecimiento interanual de ingresos desde nuestra salida a la Bolsa»."
+     "texto": "Arista vende en tres frentes:\n\n- **Centros de datos y nube**: el núcleo del negocio, con switches de alta velocidad para las grandes nubes.\n- **Redes para IA**: los equipos que interconectan los aceleradores (chips de IA) dentro de un centro de datos y entre varios.\n- **Campus**: redes para oficinas de empresas medianas y grandes, el negocio más nuevo.\n\nEn el tercer trimestre de 2026 facturó 3.658 M, un 58,5% más que un año antes. La ganancia neta llegó a 1.560 M, casi el doble que en el mismo trimestre de 2025.\n\nPara el cuarto trimestre, la gerencia espera ingresos de entre 3.900 M y 4.000 M, con un margen operativo ajustado similar al actual.\n\nHay un indicador que conviene seguir: los **ingresos diferidos**, lo que los clientes ya pagaron o facturaron y Arista todavía debe reconocer como venta. Sumaban 6.840 M a fines de septiembre, contra 5.372 M al cierre de 2025. Es trabajo comprometido para los próximos trimestres.\n\nAdemás, presentó una arquitectura de red para racks de IA desarrollada junto con AMD, Broadcom, Meta, Microsoft y Qualcomm, entre otros: un equipo puede conectar hasta 144 aceleradores por rack."
     },
     {
      "titulo": "Un sistema operativo único le permite cobrar márgenes de software",
@@ -13322,6 +13346,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "Otro trimestre trascendental, con el mayor crecimiento interanual de ingresos desde nuestra salida a la Bolsa.",
+    "autor": "Jayshree Ullal",
+    "cargo": "presidenta y CEO",
+    "fecha": "03/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://www.arista.com/company/news/press-release/25025-pr-20261103"
    }
   },
   "IBM": {
@@ -14190,7 +14222,7 @@
     },
     {
      "titulo": "Balance sólido y una devolución de caja que se ajusta al ciclo",
-     "texto": "La fortaleza de ConocoPhillips está en su balance. La **deuda neta**, lo que debe menos su caja, equivale a 0,6 veces su EBITDA, lo que genera el negocio antes de intereses, impuestos y amortizaciones.\n\nComo referencia, menos de 2 veces se considera cómodo. Para una petrolera, que necesita aguantar los años de precios bajos, es un nivel muy holgado.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses**, cuántas veces la ganancia operativa paga los intereses del año, es de 11,7 veces. Muy por encima de 3, el nivel que se considera sano.\n\nEn el tercer trimestre generó 7.200 M de caja operativa e invirtió 3.100 M.\n\nDevolvió 3.400 M a sus accionistas: 2.400 M en recompras de acciones y 1.000 M en dividendos.\n\nLa compañía mantiene el objetivo de devolver el 45% de su caja operativa de 2026, y subió el dividendo trimestral un 11%, a 0,93 dólares por acción.\n\nEl **flujo libre de caja**, el dinero que queda después de invertir, fue de 10.064 M en el último año según las tablas.\n\n[[grafico:flujo_libre]]\n\nEl crítico más duro diría que la suba del dividendo llega justo en el mejor momento del ciclo, y que cuando el barril baje la compañía tendrá que recortar recompras. Es cierto, pero su balance le da margen para no tocar el dividendo ordinario.\n\nAndy O'Brien, su CEO, lo resumió así: «ConocoPhillips sigue ejecutando nuestra estrategia diferencial»."
+     "texto": "La fortaleza de ConocoPhillips está en su balance. La **deuda neta**, lo que debe menos su caja, equivale a 0,6 veces su EBITDA, lo que genera el negocio antes de intereses, impuestos y amortizaciones.\n\nComo referencia, menos de 2 veces se considera cómodo. Para una petrolera, que necesita aguantar los años de precios bajos, es un nivel muy holgado.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses**, cuántas veces la ganancia operativa paga los intereses del año, es de 11,7 veces. Muy por encima de 3, el nivel que se considera sano.\n\nEn el tercer trimestre generó 7.200 M de caja operativa e invirtió 3.100 M.\n\nDevolvió 3.400 M a sus accionistas: 2.400 M en recompras de acciones y 1.000 M en dividendos.\n\nLa compañía mantiene el objetivo de devolver el 45% de su caja operativa de 2026, y subió el dividendo trimestral un 11%, a 0,93 dólares por acción.\n\nEl **flujo libre de caja**, el dinero que queda después de invertir, fue de 10.064 M en el último año según las tablas.\n\n[[grafico:flujo_libre]]\n\nEl crítico más duro diría que la suba del dividendo llega justo en el mejor momento del ciclo, y que cuando el barril baje la compañía tendrá que recortar recompras. Es cierto, pero su balance le da margen para no tocar el dividendo ordinario."
     }
    ],
    "valuacion": {
@@ -14283,6 +14315,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "ConocoPhillips sigue ejecutando nuestra estrategia diferencial.",
+    "autor": "Andy O'Brien",
+    "cargo": "CEO",
+    "fecha": "05/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://www.conocophillips.com/news-media/story/conocophillips-announces-third-quarter-2026-results-and-increases-quarterly-ordinary-dividend-by-11/"
    }
   },
   "BP": {
@@ -15642,7 +15682,7 @@
     },
     {
      "titulo": "La caja sostiene el dividendo y financia la carrera contra Lilly y Novo",
-     "texto": "En el tercer trimestre generó 3.700 M de **flujo libre de caja**, el dinero que queda después de invertir en plantas y equipos. Un año antes habían sido 4.200 M, en parte porque hoy invierte más en capacidad productiva.\n\n[[grafico:flujo_libre]]\n\nCon esa caja paga el dividendo: 2,52 dólares por acción por trimestre, un 6% más que hace un año. En el último año distribuyó 5.285 M, cerca de la mitad del flujo libre. Es un nivel holgado, que deja margen para investigación y para reducir deuda.\n\nEn el trimestre no recompró acciones, y la cantidad en circulación lleva años casi sin cambios. El accionista no pierde participación, pero tampoco la gana por esa vía.\n\nLa otra mitad de la historia es **MariTide**. Según la empresa, el tratamiento comienza con una dosis mensual y podría mantenerse con apenas cuatro a seis aplicaciones por año. Está en fase 3, la última etapa de ensayos clínicos, con estudios en diabetes, enfermedad cardiovascular y apnea del sueño, y uno que lo compara de forma directa con la semaglutida de Novo Nordisk.\n\nAhora bien, el crítico más duro diría que Amgen llega tarde a un mercado que ya tiene dos dueños con años de ventaja, y que sin MariTide su crecimiento apenas supera lo que pierde por los biosimilares.\n\nLa gerencia, en cambio, se muestra confiada. Robert Bradway, presidente y CEO, afirmó que el trimestre refuerza «nuestra confianza en la capacidad de Amgen de lograr un crecimiento duradero hasta bien entrada la próxima década». Por ahora, los números del trimestre lo respaldan; la obesidad todavía no."
+     "texto": "En el tercer trimestre generó 3.700 M de **flujo libre de caja**, el dinero que queda después de invertir en plantas y equipos. Un año antes habían sido 4.200 M, en parte porque hoy invierte más en capacidad productiva.\n\n[[grafico:flujo_libre]]\n\nCon esa caja paga el dividendo: 2,52 dólares por acción por trimestre, un 6% más que hace un año. En el último año distribuyó 5.285 M, cerca de la mitad del flujo libre. Es un nivel holgado, que deja margen para investigación y para reducir deuda.\n\nEn el trimestre no recompró acciones, y la cantidad en circulación lleva años casi sin cambios. El accionista no pierde participación, pero tampoco la gana por esa vía.\n\nLa otra mitad de la historia es **MariTide**. Según la empresa, el tratamiento comienza con una dosis mensual y podría mantenerse con apenas cuatro a seis aplicaciones por año. Está en fase 3, la última etapa de ensayos clínicos, con estudios en diabetes, enfermedad cardiovascular y apnea del sueño, y uno que lo compara de forma directa con la semaglutida de Novo Nordisk.\n\nAhora bien, el crítico más duro diría que Amgen llega tarde a un mercado que ya tiene dos dueños con años de ventaja, y que sin MariTide su crecimiento apenas supera lo que pierde por los biosimilares.\n\nLa gerencia, en cambio, se muestra confiada. Por ahora, los números del trimestre la respaldan; la obesidad todavía no."
     }
    ],
    "valuacion": {
@@ -15741,6 +15781,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "Refuerza nuestra confianza en la capacidad de Amgen de lograr un crecimiento duradero hasta bien entrada la próxima década.",
+    "autor": "Robert A. Bradway",
+    "cargo": "presidente y CEO",
+    "fecha": "03/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://www.amgen.com/newsroom/press-releases/2026/11/amgen-reports-third-quarter-2026-financial-results"
    }
   },
   "GILD": {
@@ -15981,7 +16029,7 @@
     },
     {
      "titulo": "Endeudamiento exigente y un dividendo que absorbe casi toda la caja",
-     "texto": "La compra de Seagen (2023) se financió con deuda. La **deuda neta**, lo que debe menos su caja, es de 62.218 M y equivale a 4,6 veces su EBITDA, lo que genera el negocio antes de intereses, impuestos y amortizaciones.\n\nComo referencia, menos de 2 veces se considera cómodo y más de 3, exigente. Pfizer está en zona exigente, aunque el EBITDA de las tablas está deprimido por cargos extraordinarios.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses**, cuántas veces la ganancia operativa paga los intereses del año, es de 6,3 veces. Por encima de 3 se considera sano: la deuda es alta, pero se paga con holgura.\n\nEl dividendo es de 1,72 dólares por acción por año y Pfizer lo paga desde 1972. En los primeros nueve meses de 2026 distribuyó 7.300 M.\n\nEl problema es la proporción. En el último año, el flujo libre fue de 10.985 M y los dividendos, de 9.785 M: casi el 90% de la caja libre se va en dividendos. Queda poco margen para reducir deuda y, a la vez, comprar compañías. Por eso no recompra acciones en 2026.\n\nEl crítico más duro diría que Pfizer sostiene el dividendo a costa de su flexibilidad, justo cuando necesita invertir para reemplazar las patentes que vencen.\n\nAlbert Bourla, presidente y CEO, ve el vaso medio lleno: «Pfizer tuvo otro trimestre sólido, con impulso comercial y una ejecución disciplinada»."
+     "texto": "La compra de Seagen (2023) se financió con deuda. La **deuda neta**, lo que debe menos su caja, es de 62.218 M y equivale a 4,6 veces su EBITDA, lo que genera el negocio antes de intereses, impuestos y amortizaciones.\n\nComo referencia, menos de 2 veces se considera cómodo y más de 3, exigente. Pfizer está en zona exigente, aunque el EBITDA de las tablas está deprimido por cargos extraordinarios.\n\n[[grafico:deuda_neta]]\n\nLa **cobertura de intereses**, cuántas veces la ganancia operativa paga los intereses del año, es de 6,3 veces. Por encima de 3 se considera sano: la deuda es alta, pero se paga con holgura.\n\nEl dividendo es de 1,72 dólares por acción por año y Pfizer lo paga desde 1972. En los primeros nueve meses de 2026 distribuyó 7.300 M.\n\nEl problema es la proporción. En el último año, el flujo libre fue de 10.985 M y los dividendos, de 9.785 M: casi el 90% de la caja libre se va en dividendos. Queda poco margen para reducir deuda y, a la vez, comprar compañías. Por eso no recompra acciones en 2026.\n\nEl crítico más duro diría que Pfizer sostiene el dividendo a costa de su flexibilidad, justo cuando necesita invertir para reemplazar las patentes que vencen."
     }
    ],
    "valuacion": {
@@ -16079,6 +16127,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "Pfizer tuvo otro trimestre sólido, con impulso comercial y una ejecución disciplinada.",
+    "autor": "Albert Bourla",
+    "cargo": "presidente y CEO",
+    "fecha": "03/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://investors.pfizer.com/Q3-2026-PFE-Earnings-Release"
    }
   },
   "DHR": {
@@ -16369,7 +16425,7 @@
    "secciones": [
     {
      "titulo": "La obesidad crece, la diabetes retrocede y la pastilla cambia el juego",
-     "texto": "Novo Nordisk vende en dos grandes áreas:\n\n- **Obesidad**: Wegovy inyectable y Wegovy en pastilla. Creció 22% en el tercer trimestre de 2026, a tipo de cambio constante.\n- **Diabetes**: Ozempic, Rybelsus e insulinas. Cayó 5%.\n\nEl motor del trimestre fue la **pastilla de Wegovy**, que facturó 5.394 M de coronas. Para muchos pacientes, una pastilla diaria es más cómoda que una inyección semanal, y eso amplía el mercado.\n\nEl contraste por región es claro. En EE.UU., las ventas crecieron apenas 1% y Wegovy inyectable cayó 13%. En el resto del mundo, las ventas crecieron 8%.\n\nCon ese resultado, la gerencia elevó su guía: ahora espera para 2026 una variación de ventas ajustadas de entre -2% y +2%. En agosto esperaba una caída de hasta 6%. Mike Doustdar, su CEO, lo resumió así: «Logramos un tercer trimestre más fuerte de lo esperado y estamos elevando nuestra previsión para el año».\n\n¿Dónde está su ventaja? En la **escala de producción**. Fabricar semaglutida a gran escala requiere plantas especializadas que llevan años construir. A eso se suman la experiencia clínica acumulada y la relación con los médicos.\n\nEl desafío es **Eli Lilly**, cuya tirzepatida logra una mayor reducción de peso. Novo responde con CagriSema, su próxima generación, que espera lanzar en EE.UU. a comienzos de 2027, si es aprobada.\n\nLa inteligencia artificial es más herramienta que amenaza: puede acelerar el descubrimiento de nuevas moléculas."
+     "texto": "Novo Nordisk vende en dos grandes áreas:\n\n- **Obesidad**: Wegovy inyectable y Wegovy en pastilla. Creció 22% en el tercer trimestre de 2026, a tipo de cambio constante.\n- **Diabetes**: Ozempic, Rybelsus e insulinas. Cayó 5%.\n\nEl motor del trimestre fue la **pastilla de Wegovy**, que facturó 5.394 M de coronas. Para muchos pacientes, una pastilla diaria es más cómoda que una inyección semanal, y eso amplía el mercado.\n\nEl contraste por región es claro. En EE.UU., las ventas crecieron apenas 1% y Wegovy inyectable cayó 13%. En el resto del mundo, las ventas crecieron 8%.\n\nCon ese resultado, la gerencia elevó su guía: ahora espera para 2026 una variación de ventas ajustadas de entre -2% y +2%. En agosto esperaba una caída de hasta 6%.\n\n¿Dónde está su ventaja? En la **escala de producción**. Fabricar semaglutida a gran escala requiere plantas especializadas que llevan años construir. A eso se suman la experiencia clínica acumulada y la relación con los médicos.\n\nEl desafío es **Eli Lilly**, cuya tirzepatida logra una mayor reducción de peso. Novo responde con CagriSema, su próxima generación, que espera lanzar en EE.UU. a comienzos de 2027, si es aprobada.\n\nLa inteligencia artificial es más herramienta que amenaza: puede acelerar el descubrimiento de nuevas moléculas."
     },
     {
      "titulo": "Márgenes altísimos, aunque los números contables hay que leerlos con cuidado",
@@ -16465,6 +16521,14 @@
      "2023",
      "2022"
     ]
+   },
+   "cita": {
+    "texto": "Logramos un tercer trimestre más fuerte de lo esperado y estamos elevando nuestra previsión para el año.",
+    "autor": "Mike Doustdar",
+    "cargo": "presidente y CEO",
+    "fecha": "04/11/2026",
+    "fuente": "Comunicado oficial de resultados",
+    "url": "https://www.sec.gov/Archives/edgar/data/0000353278/000162828026069805/caq32026.htm"
    }
   },
   "BMY": {

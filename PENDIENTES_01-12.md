@@ -7,6 +7,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
 **Decisión 05/11/2026 (Guille): el Fair Value queda como está (contra la mediana de la industria). Se revisa más adelante; no tocar el método hasta que él lo decida.**
 
+**v1.5.44 (08/11):** Ideas de Inversión con 5 listas, Div. Yield en ETFs, cita de la gerencia en los informes. **Esperan decisión de Guille:** (1) umbral de «Dividendos Altos» (hoy 4%); (2) columnas nuevas de la tabla de competidores (maqueta KO: Valoración, Calidad, crecimiento de ventas 3 años, margen operativo, ROIC, deuda neta/EBITDA, Div. Yield, colores relativos al grupo); (3) si se hace la sección visual de estados financieros (maqueta KO con 12 gráficos de barras). Listas de aristócratas/reyes/aspirantes: actualizar en febrero de cada año.
+
 **v1.5.36 (06/11):** Guille debe correr `descargar_logos.bat ASML SPCX` y subir `static/logos/`. Tanda 3: espera la lista de 70 corregida (Excel `Tanda3_pendientes_70.xlsx`); BRFS, CAJ, CBRD y EBR propuestos NO CARGAR (ya no cotizan en EE.UU.), ERJ→EMBJ, E = Eni, VXX a ETFs.
 
 **v1.5.43 (07/11):** generar_cache se colgó 4 h en la PC de Guille (Python 3.15). Ahora tiene tope por empresa y reanudación. Guille debe: (1) volver a correr `generar_cache.bat` y mandar `data/cache_datos.json` + `resultados_cache.txt`; (2) DESPUÉS `bajar_fichas.bat` (toma la lista del cache: con el cache viejo bajó 265, faltan las 58 de la tanda 3); (3) `descargar_logos.bat` (rehace ASML). Si vuelve a trabarse, instalar Python 3.13 (gratis) en vez del 3.15.

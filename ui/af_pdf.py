@@ -248,6 +248,13 @@ def pdf_analisis(af, estados=None, row=None, historial=None, dividendos=None, bo
 
     el.append(Spacer(1, 24))
     el += texto(af.get("introduccion"))
+    ci = af.get("cita")      # v1.5.44: frase del CEO destacada
+    if isinstance(ci, dict) and ci.get("texto") and ci.get("autor"):
+        quien = ci["autor"] + (f', {ci["cargo"]}' if ci.get("cargo") else "") + (f' · {ci["fecha"]}' if ci.get("fecha") else "") + (f' · {ci["fuente"]}' if ci.get("fuente") else "")
+        el.append(Spacer(1, 6))
+        el.append(Paragraph('<font color="#0e7490" size="8.5"><b>EN PALABRAS DE LA GERENCIA</b></font><br/>'
+                            f'<i>«{html.escape(_limpio(ci["texto"]), quote=False)}»</i><br/><font size="9" color="#475569">— {html.escape(_limpio(quien), quote=False)}</font>',
+                            ParagraphStyle("cita", parent=st["cp"], backColor=colors.HexColor("#f0f9ff"), borderPadding=8, leading=16, spaceBefore=8, spaceAfter=8)))
     for s in af.get("secciones") or []:
         el.append(Paragraph(_md(s.get("titulo")), st["h"]))
         el += texto(s.get("texto"))

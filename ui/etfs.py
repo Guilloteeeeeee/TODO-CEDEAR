@@ -28,6 +28,7 @@ TIPS = {
     "Gestor": "Empresa que administra el ETF (la que lo crea y lo mantiene).",
     "AUM": "Activos bajo gestión: cuánto dinero tiene invertido el ETF en total. Más grande suele significar más liquidez y más permanencia en el tiempo. B = mil millones, M = millón.",
     "Comisión": "Lo que cobra el ETF por año, como porcentaje de lo invertido (expense ratio). Ya está descontada del precio; no se paga aparte.",
+    "Div. Yield": "Rendimiento por dividendo: lo que el ETF pagó en el último año como porcentaje del precio. «—» si no reparte (acumula o no paga).",
 }
 
 # Sitio de cada gestor (pagina de ETFs). Solo se usa cuando el ETF no tiene su link propio en la columna "web" de data/etfs.csv.
@@ -51,7 +52,7 @@ CSS = """
 .etf{max-width:none;margin:6px 0 0}
 .etf-n{font-size:13px;color:#6b7280;margin:2px 2px 8px}
 .etf-t{background:#fff;border-radius:0 0 14px 14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07);overflow:hidden}
-.etf-r{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr) minmax(0,3.2fr) minmax(0,1.4fr) minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);align-items:stretch;border-top:1px solid #f0f2f5}
+.etf-r{display:grid;grid-template-columns:minmax(0,2.3fr) minmax(0,1fr) minmax(0,2.8fr) minmax(0,1.4fr) minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);align-items:stretch;border-top:1px solid #f0f2f5}
 .etf-r:first-child{border-top:0}
 .etf-r>div{padding:8px 12px;min-width:0;display:flex;flex-direction:column;justify-content:center}
 .etf-r:nth-child(even){background:#f3f6f9}
@@ -202,8 +203,8 @@ def _icono_dibujo(e):
 
 # --- tabla -------------------------------------------------------------------------------------------------------------
 
-COLUMNAS = [("nombre", "ETF", 2.3), ("precio", "Precio", 1.0), ("descripcion", "Descripción", 3.2), ("categoria", "Categoría", 1.4),
-            ("gestor", "Gestor", 1.5), ("aum", "AUM", 1.0), ("comision", "Comisión", 1.0)]
+COLUMNAS = [("nombre", "ETF", 2.3), ("precio", "Precio", 1.0), ("descripcion", "Descripción", 2.8), ("categoria", "Categoría", 1.4),
+            ("gestor", "Gestor", 1.4), ("aum", "AUM", 1.0), ("comision", "Comisión", 1.0), ("dy", "Div. Yield", 1.0)]     # v1.5.44: Dividend Yield (pedido de Guille)
 TEXTO = ("nombre", "descripcion", "categoria", "gestor")        # al tocar el título por primera vez: de la A a la Z (el resto, de mayor a menor)
 
 
@@ -236,7 +237,16 @@ def _fila(e, d, precio, var=None):
             f'<div class="etf-c ctr">{lab("Categoría")}{html.escape(e.get("categoria") or "")}</div>'
             f'<div class="etf-g ctr">{lab("Gestor")}{g}</div>'
             f'<div class="etf-v ctr">{lab("AUM")}{aum_texto((d or {}).get("aum"))}</div>'
-            f'<div class="etf-v ctr">{lab("Comisión")}{comision_texto((d or {}).get("comision"))}</div></div>')
+            f'<div class="etf-v ctr">{lab("Comisión")}{comision_texto((d or {}).get("comision"))}</div>'
+            f'<div class="etf-v ctr">{lab("Div. Yield")}{dy_texto(d)}</div></div>')
+
+
+def dy_texto(d):
+    """v1.5.44: rendimiento por dividendo del último año (Yahoo lo da en %, p. ej. 1.0 = 1%). «—» si no reparte."""
+    v = _n((d or {}).get("rendimiento"))
+    if not v or v <= 0:
+        return '<span class="etf-nd">—</span>'
+    return f"{v:.2f}%".replace(".", ",")
 
 
 def tabla_html(etfs, datos=None, precios=None, variaciones=None):
@@ -266,6 +276,9 @@ def valor_orden(e, d, precio, col):
         return _n(d.get("aum"))
     if col == "comision":
         return _n(d.get("comision"))
+    if col == "dy":
+        v = _n(d.get("rendimiento"))
+        return v if v and v > 0 else None
     return None
 
 

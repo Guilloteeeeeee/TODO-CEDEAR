@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.43"
+APP_VERSION = "1.5.44"
 
 import re
 import contextlib
@@ -2047,6 +2047,36 @@ def main():
                 pass
 
 
+def render_ideas(universe_key):
+    """v1.5.44: «Ideas de Inversión»: cinco mosaicos (Aristócratas, Reyes, Aspirantes, Dividendos Altos, Fundamentales Fuertes) y, al tocar uno, su lista."""
+    from ui import ideas as _ideas, tabla_visual as _tv, etfs as _ui_etfs
+    from data import etfs as _etfs, analisis_fundamental as _AF
+    try:
+        df, _ = get_scored_data(universe_key)
+    except Exception:  # noqa: BLE001
+        df = None
+    try:
+        calidades = {t: (a or {}).get("calidad") for t, a in (_AF.cargar()[0] or {}).items()}
+    except Exception:  # noqa: BLE001
+        calidades = {}
+    try:
+        etfs = _etfs.cargar()
+        guardados, _f = _etfs_guardados()
+    except Exception:  # noqa: BLE001
+        etfs, guardados = [], {}
+    listas = _ideas.cargar_listas()
+    clave = st.query_params.get("lista")
+    css = f"<style>{_tv.CSS}{_ideas.CSS}</style>"
+    if clave in {x["clave"] for x in _ideas.LISTAS}:
+        filas = _ideas.miembros(clave, df, calidades, etfs, guardados, listas)
+        st.markdown(css + _ideas.lista_html(clave, filas, listas, celda_empresa=_tv._celda_empresa, celda_sector=_tv._celda_sector,
+                                            celda_categoria=_tv._celda_categoria, logo_etf=lambda e: _ui_etfs.logo_chico_html(e, guardados.get(e.get("ticker")))),
+                    unsafe_allow_html=True)
+        return
+    conteos = {x["clave"]: len(_ideas.miembros(x["clave"], df, calidades, etfs, guardados, listas)) for x in _ideas.LISTAS}
+    st.markdown(css + _ideas.mosaicos_html(conteos), unsafe_allow_html=True)
+
+
 def _arrancar_precios(universe_key):
     """v1.5.43: dispara la bajada de los precios de hoy en segundo plano, sin esperar (la usa la tabla un poco después)."""
     if not PRECIOS_VIVOS:
@@ -2106,8 +2136,8 @@ def _main(ctx):
                     'Volver al inicio</a></div>', unsafe_allow_html=True)
     if etf_sel or st.query_params.get("empresa"):
         render_fila_volver(bool(etf_sel))      # v1.5.32: «Volver» + buscador en la misma fila (antes el buscador flotaba a una altura fija y a veces quedaba encimado)
-    elif en_quienes or en_ideas:
-        render_buscador()      # v1.5.43: en el mapa el buscador va en la fila del título (render_mapa)
+    elif en_quienes:
+        render_buscador()      # v1.5.44: en Ideas no va (se superponía con el título; cada lista lleva a la ficha de la empresa)      # v1.5.43: en el mapa el buscador va en la fila del título (render_mapa)
     aviso = texto_aviso_legal()
     fecha = None
     if en_landing:
@@ -2117,9 +2147,8 @@ def _main(ctx):
         return
 
     # v1.2.83: "Ideas de inversión" (?pagina=ideas): por ahora un aviso; la sección se arma más adelante
-    if en_ideas:
-        st.markdown('<div class="cr-top"></div><div style="max-width:760px;margin:40px auto;text-align:center;color:#334155"><h2 style="margin:0 0 8px;color:#0f172a">Ideas de inversión</h2>'
-                    '<p style="font-size:1.05rem;line-height:1.6">Estamos armando esta sección: va a reunir listas de empresas por tema. Muy pronto.</p></div>', unsafe_allow_html=True)
+    if en_ideas:      # v1.5.44: Ideas de Inversión con mosaicos (ui/ideas.py); ?lista=clave abre la lista
+        render_ideas(universe_key)
         st.markdown(pie_html(APP_VERSION, aviso=aviso), unsafe_allow_html=True)
         return
 

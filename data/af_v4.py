@@ -575,6 +575,12 @@ def validar(d):
             pr.append("'mes_cierre_fiscal' tiene que ser un mes (1 a 12)")
     if _t(d.get("desde_el_ultimo")):
         o["desde_el_ultimo"] = _t(d.get("desde_el_ultimo"))
+    # v1.5.44: la frase del CEO más representativa para la tesis (textual, traducida, con su fuente oficial)
+    ci = d.get("cita")
+    if isinstance(ci, dict) and _t(ci.get("texto")) and _t(ci.get("autor")):
+        o["cita"] = {k: _t(ci.get(k)) for k in ("texto", "autor", "cargo", "fecha", "fuente", "url") if _t(ci.get(k))}
+        if len(o["cita"]["texto"].split()) > 70:
+            pr.append("'cita' es demasiado larga (más de 70 palabras): elegí la frase central")
     # marcadores y gráficos válidos
     textos = [o["introduccion"], o["conclusion"], o["valuacion"]["texto"]] + [s["texto"] for s in o["secciones"]]
     for tx in textos:

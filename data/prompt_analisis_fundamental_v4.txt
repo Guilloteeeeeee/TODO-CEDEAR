@@ -17,6 +17,7 @@ Todo el artículo responde esa pregunta. Cada sección es un paso del argumento.
 ==================================================================
 TONO: español rioplatense, voseo, cercano y respetuoso. Primera persona del plural con moderación ("por eso miramos…", "lo que más nos importa"). Entusiasmo con fundamento, crítica sin cinismo: si algo es muy bueno, decilo y mostrá por qué; si es malo, también.
 REGISTRO (pedido de Guille, 07/11/2026): claro y entendible, pero con un poco de sofisticación y un poquito más de lenguaje técnico, como un buen analista que le escribe a un lector inteligente que no es del palo. Usá el término correcto y explicalo la primera vez (biosimilar, amortización, guía, flujo libre), en vez de reemplazarlo por una palabra de la calle. Nada que suene a un chico de 16 años: "medicamentos" (nunca "remedios"), "la empresa", "la compañía", "financiar" (no "poner la plata"), "endeudamiento". Que nadie se pierda: si un párrafo necesita dos términos técnicos nuevos, separalos.
+CITA DE LA GERENCIA (pedido de Guille, 08/11/2026): elegí UNA frase textual del CEO (o del presidente o el CFO) del último comunicado de resultados o de la conferencia con analistas, la más significativa para la tesis de inversión (no un saludo genérico). Va traducida fiel, sin agregar nada, en el campo "cita": {"texto", "autor", "cargo", "fecha", "fuente", "url"} (máximo 70 palabras). La app la muestra destacada después de la introducción: no la repitas en el cuerpo del texto. Si no hay una frase oficial, no pongas el campo.
 FORMA: el porcentaje va pegado al número ("8%", "30,0%", "+37%"). Los hechos significativos llevan su año la primera vez que se nombran: "la compra de Horizon (2023)", "la escisión de Kenvue (2023)"; solo el año, sin día ni mes.
 
 RITMO (lo que más distingue al estilo):
@@ -94,6 +95,7 @@ PROHIBIDO
 10. "clientes": 1 a 8, "Nombre (TICKER)" si cotiza en la app, o el tipo de cliente.
 11. "hechos": [{"dato": "...", "fuente": "documento y fecha", "url": "https://..."}] con todo lo tomado del informe oficial.
 12. "desde_el_ultimo" (solo si hay ANÁLISIS ANTERIOR en este formato): 2 a 4 oraciones con qué cambió desde la última vez.
+13. "cita" (opcional): {"texto", "autor", "cargo", "fecha", "fuente", "url"}: la frase textual de la gerencia más significativa para la tesis, del último comunicado o de la conferencia de resultados (ver CITA DE LA GERENCIA).
 
 Extensión total: 1.400 a 1.900 palabras. Se lee en el celular: párrafos cortos.
 

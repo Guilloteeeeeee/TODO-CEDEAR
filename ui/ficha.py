@@ -1157,6 +1157,7 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
             dx = re.sub(r"informe anterior \((\d{1,2}/\d{1,2}/\d{4})\)", lambda m: _a_ant(m.group(0), ants[0]), dx, count=1)
         art += f'<p class="af-cx" style="background:#f1f5f9"><b>Desde el último análisis:</b> {dx}</p>'
     art += V.texto_html(af.get("introduccion"), graficos=graf)
+    art += cita_html(af.get("cita"))
     for i, s in enumerate(af.get("secciones") or []):
         art += f"<h3>{html.escape(s.get('titulo', ''))}</h3>" + V.texto_html(s.get("texto"), graficos=graf)
         if i == 0 and af.get("clientes"):
@@ -1191,6 +1192,23 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     if ants:
         t[0] = t[0] + '<style>.af-ant{color:#1d4ed8!important;text-decoration:underline!important;text-underline-offset:2px}</style>'
     return [_pct_pegado(x) for x in t]
+
+
+def cita_html(ci):
+    """v1.5.44 (pedido de Guille): la frase del CEO más significativa para la tesis, destacada después de la introducción."""
+    if not (isinstance(ci, dict) and ci.get("texto") and ci.get("autor")):
+        return ""
+    quien = html.escape(ci["autor"]) + (f', {html.escape(ci["cargo"])}' if ci.get("cargo") else "")
+    cuando = f' · {html.escape(ci["fecha"])}' if ci.get("fecha") else ""
+    fuente = html.escape(ci.get("fuente") or "")
+    if ci.get("url") and fuente:
+        fuente = f'<a href="{html.escape(ci["url"], quote=True)}" target="_blank" rel="noopener">{fuente}</a>'
+    return ('<blockquote class="af-cita"><div class="af-cita-k">En palabras de la gerencia</div>'
+            f'<p class="af-cita-t">«{html.escape(ci["texto"])}»</p><div class="af-cita-a">— {quien}{cuando}{(" · " + fuente) if fuente else ""}</div></blockquote>'
+            '<style>.af-cita{margin:18px 0 20px;padding:14px 18px 12px;border-left:4px solid #0e7490;background:#f0f9ff;border-radius:0 10px 10px 0}'
+            '.af-cita-k{font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#0e7490;margin-bottom:6px}'
+            '.af-cita-t{font-size:1.12rem;line-height:1.5;font-style:italic;color:#0f172a;margin:0 0 8px;text-align:left!important}'
+            '.af-cita-a{font-size:.88rem;color:#475569}.af-cita-a a{color:#0e7490}</style>')
 
 
 _RE_PCT_AF = re.compile(r"(\d)[ \u00a0\u202f]%")
