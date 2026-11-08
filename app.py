@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.45"
+APP_VERSION = "1.5.46"
 
 import re
 import contextlib
@@ -1465,7 +1465,7 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         st.markdown(_ficha.con_intro("dividendos", _ficha.tab_dividendos(rd, div, rec)), unsafe_allow_html=True)
         _nota_archivo(extra, "dividendos")
     with t_com:
-        st.markdown(_ficha.con_intro("competidores", _ficha.tab_competidores(rd, df)), unsafe_allow_html=True)
+        st.markdown(_ficha.con_intro("competidores", _ficha.tab_competidores(rd, df, _paquetes_guardados()[0])), unsafe_allow_html=True)
     with t_dir:
         gob = extra.get("gobierno")
         nom_ceo = _ficha.nombre_ceo(gob) or str(ficha.get("ceo") or "")
@@ -2145,7 +2145,7 @@ def _main(ctx):
     if en_inicio and not en_landing:
         fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    if en_quienes or en_cartera or en_ideas:      # v1.5.43 (Guille): en lugar de «Empresas · ETFs», una casita que vuelve al inicio
+    if en_quienes or en_cartera:      # v1.5.43 (Guille): en lugar de «Empresas · ETFs», una casita que vuelve al inicio (v1.5.46: en Ideas va en la fila del título, ui/ideas.CASITA)
         st.markdown('<div class="vol-fila"><a class="vol-ini" href="?inicio=0" target="_self" title="Volver al inicio">'
                     '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>'
                     'Volver al inicio</a></div>', unsafe_allow_html=True)

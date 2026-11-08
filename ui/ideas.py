@@ -30,10 +30,10 @@ _SVG = {
 }
 
 LISTAS = [
-    {"clave": "aristocratas", "titulo": "Aristócratas del Dividendo",
-     "desc": "Empresas del S&P 500 que aumentaron su dividendo todos los años durante al menos 25 años seguidos."},
     {"clave": "reyes", "titulo": "Reyes del Dividendo",
      "desc": "Un club muy exclusivo: empresas que aumentaron su dividendo durante al menos 50 años seguidos."},
+    {"clave": "aristocratas", "titulo": "Aristócratas del Dividendo",
+     "desc": "Empresas del S&P 500 que aumentaron su dividendo todos los años durante al menos 25 años seguidos."},
     {"clave": "aspirantes", "titulo": "Aspirantes del Dividendo",
      "desc": "Empresas con una larga racha aumentando su dividendo todos los años que todavía no son Aristócratas ni Reyes: van en camino."},
     {"clave": "altos", "titulo": "Dividendos Altos",
@@ -113,19 +113,19 @@ def miembros(clave, df, calidades=None, etfs=None, etfs_datos=None, listas=None,
 
 CSS = """
 .id-w{max-width:1120px;margin:0 auto 40px;padding:0 4px}
-.id-w h2{font-size:1.9rem;margin:6px 0 4px;color:#0f172a}
-.id-w>p.id-sub{margin:0 0 26px;color:#475569;font-size:1.02rem}
+.id-w h2{font-size:1.9rem;margin:0 0 2px;padding-top:0!important;color:#0f172a}
+.id-w>p.id-sub{margin:0 0 16px;color:#475569;font-size:1.02rem}
 .id-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-a.id-t{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;background:#fff;border:1px solid #e3e8ee;border-radius:16px;padding:22px 22px 18px;
+a.id-t{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;background:#fff;border:1px solid #e3e8ee;border-radius:16px;padding:16px 22px 14px;
   text-decoration:none!important;color:#1f2937!important;transition:box-shadow .15s,transform .15s}
 a.id-t:hover{box-shadow:0 10px 28px rgba(15,23,42,.12);transform:translateY(-2px)}
-.id-ic{height:112px;display:flex;align-items:center;justify-content:center}
-.id-ic svg{width:122px;height:112px}
-.id-ic img{height:108px;border-radius:12px;object-fit:cover}
+.id-ic{height:100px;display:flex;align-items:center;justify-content:center}
+.id-ic svg{width:110px;height:100px}
+.id-ic img{height:96px;border-radius:12px;object-fit:cover}
 .id-tt{font-size:1.32rem;font-weight:800;color:#0e7490;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:2px}
 .id-d{font-size:1rem;line-height:1.45;color:#334155;max-width:330px}
 .id-c{font-size:.95rem;color:#94a3b8}
-.id-vol{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#1f2937!important;text-decoration:none!important;margin-bottom:6px}
+.id-vol{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#1f2937!important;text-decoration:none!important}
 .id-tab{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e3e8ee;border-radius:12px;overflow:hidden}
 .id-tab th{background:#111827;color:#fff;font-size:.86rem;font-weight:700;text-align:left;padding:10px 12px}
 .id-tab td{padding:9px 12px;border-top:1px solid #eef1f5;vertical-align:middle;font-size:.95rem}
@@ -133,15 +133,21 @@ a.id-t:hover{box-shadow:0 10px 28px rgba(15,23,42,.12);transform:translateY(-2px
 .id-tab td.id-num,.id-tab th.id-num{text-align:right;font-weight:700;white-space:nowrap}
 .id-tab .tv-vl{text-align:left}
 .id-nota{font-size:.88rem;color:#64748b;margin-top:12px;line-height:1.5;text-align:justify}
-.id-cab{display:flex;align-items:center;gap:16px;margin:4px 0 16px}
+.id-cab{display:flex;align-items:center;gap:16px;margin:2px 0 12px}
 .id-cab .id-ic{height:76px}.id-cab .id-ic svg{width:84px;height:76px}.id-cab .id-ic img{height:72px}
 .id-cab h2{margin:0}
 .id-cab p{margin:4px 0 0;color:#475569}
 .id-tab .etf-lg{width:26px;height:26px;flex:none;overflow:hidden;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0}
 .id-tab .etf-lg img,.id-tab .etf-lg svg{width:100%;height:100%;object-fit:contain}
 .id-etf{font-size:.72rem;font-weight:800;background:#e0f2fe;color:#075985;border-radius:999px;padding:2px 7px;margin-left:6px}
+.id-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 2px}   /* v1.5.46: título (o «← Ideas») y la casita en la misma fila, más arriba */
+.id-top .vol-ini{flex:none}
 @media (max-width:900px){.id-g{grid-template-columns:1fr}.id-w{margin-top:-20px}.id-tab th.id-sec,.id-tab td.id-sec{display:none}}
 """
+
+
+CASITA = ('<a class="vol-ini" href="?inicio=0" target="_self" title="Volver al inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" '
+          'stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>Volver al inicio</a>')
 
 
 def _icono(clave, static_url="app/static/ideas"):
@@ -158,7 +164,7 @@ def mosaicos_html(conteos):
         t.append(f'<a class="id-t" href="?pagina=ideas&lista={x["clave"]}" target="_self"><div class="id-ic">{_icono(x["clave"])}</div>'
                  f'<span class="id-tt">{html.escape(x["titulo"])}</span><span class="id-d">{html.escape(x["desc"])}</span>'
                  f'<span class="id-c">{n} {unidad}</span></a>')
-    return (f'<div class="id-w"><h2>Ideas de Inversión</h2><p class="id-sub">Listas de empresas y ETFs agrupadas por tema. Tocá una para ver quiénes la forman.</p>'
+    return (f'<div class="id-w"><div class="id-top"><h2>Ideas de Inversión</h2>{CASITA}</div><p class="id-sub">Listas de empresas y ETFs agrupadas por tema. Tocá una para ver quiénes la forman.</p>'
             f'<div class="id-g">{"".join(t)}</div>'
             '<p class="id-nota">Información con fines educativos: no es una recomendación de compra ni de venta. Cada lista muestra solo las empresas y ETFs '
             'que cotizan como CEDEAR y están en TodoCedears.</p></div>')
@@ -211,7 +217,7 @@ def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None,
     if clave == "fundamentales":
         notas.append("La calidad sale del Análisis Fundamental de cada empresa y la valoración, de los múltiplos de la app. Ordenadas de mayor a menor distancia al Fair Value.")
     notas.append("Información con fines educativos: no es una recomendación de compra ni de venta.")
-    return (f'<div class="id-w"><a class="id-vol" href="?pagina=ideas" target="_self">← Ideas de Inversión</a>'
+    return (f'<div class="id-w"><div class="id-top"><a class="id-vol" href="?pagina=ideas" target="_self">← Ideas de Inversión</a>{CASITA}</div>'
             f'<div class="id-cab"><div class="id-ic">{_icono(clave)}</div><div><h2>{html.escape(x["titulo"])}</h2><p>{html.escape(x["desc"])}</p></div></div>'
             f'<table class="id-tab"><thead><tr><th>Empresa</th><th class="id-sec">Sector</th><th>Valoración</th><th class="id-num">{col}</th>{th_dy}</tr></thead>'
             f'<tbody>{"".join(cuerpo)}</tbody></table><p class="id-nota">{" ".join(notas)}</p></div>')

@@ -254,6 +254,7 @@ CSS = """
 @media (min-width:901px){.fch>.fch-t:not(:has(.fch-hd)){zoom:1.14}}
 .comp tr.tot td{font-weight:700;color:#111827}
 .comp-w{overflow-x:auto}
+.comp.comp2 th{white-space:normal;line-height:1.25;vertical-align:bottom}
 .comp{width:100%;border-collapse:collapse;font-size:14px}
 .comp th{font-size:11px;font-weight:600;letter-spacing:.3px;text-transform:uppercase;color:#6b7280;text-align:right;padding:6px 8px;border-bottom:1px solid #e5e7eb;white-space:nowrap}
 .comp td{text-align:right;padding:8px;border-bottom:1px solid #eef1f4;white-space:nowrap}
@@ -911,7 +912,7 @@ INTROS = {
     "valuacion": "Una estimación sobre si la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana.",
     "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
     "dividendos": "Cuánto paga la empresa a sus accionistas en concepto de dividendo y si el mismo es sostenible.",
-    "competidores": "Las empresas del mismo sector que cotizan como CEDEARs, para compararlas lado a lado en valoración y puntaje de calidad.",
+    "competidores": "Las empresas del mismo negocio que cotizan como CEDEARs, para compararlas de un vistazo: crecimiento, rentabilidad, deuda, dividendo, calidad y valoración.",
     "directivos": "Quiénes conducen la empresa y cuánto cobran. El CEO es el máximo responsable ejecutivo: el que toma las decisiones del día a día.",
     "accionariado": "Quiénes son los dueños: los directivos (insiders) y las instituciones (fondos, bancos). Que los directivos tengan acciones suele alinear sus intereses con los de los demás accionistas.",
     "noticias": "Los últimos titulares sobre la empresa, en su idioma original, con link a cada nota.",
@@ -1386,14 +1387,50 @@ def tab_dividendos(row, div, rec=None):
     return _env(*tiles)
 
 
-def tab_competidores(row, df):
-    """Empresas del screener en la misma industria (o sector) con sus metricas, para comparar. Solo muestra las del universo del screener."""
+def metricas_competidor(estados):
+    """v1.5.46: los cinco números de la tabla de competidores, de los estados guardados (data/paquetes_yahoo.json):
+    crecimiento anual de las ventas y de la ganancia por acción en los últimos 3 años fiscales (anual compuesto), y el último dato de margen
+    operativo, ROIC y deuda neta / EBITDA. None donde no hay dato (o el crecimiento no se puede calcular: ganancia negativa al principio o al final)."""
+    from data import af_tablas as _T
+    if not estados:
+        return {}
+    fy, ttm = _T._anios(estados)
+    orden = fy + ([ttm] if ttm else [])
+
+    def ult(g, r):
+        sr = _T._serie(estados, g, r)
+        return next((sr[a] for a in reversed(orden) if sr.get(a) is not None), None)
+
+    def cagr(g, r):
+        sr = _T._serie(estados, g, r)
+        if len(fy) < 4:
+            return None
+        v0, v1 = sr.get(fy[-4]), sr.get(fy[-1])
+        return (v1 / v0) ** (1 / 3) - 1 if (v0 and v1 and v0 > 0 and v1 > 0) else None
+    return {"ventas": cagr("resultados", "Ingresos"), "eps": cagr("resultados", "Ganancia por acción (diluida)"),
+            "mop": ult("ratios", "Margen operativo"), "roic": ult("ratios", "Retorno sobre el capital invertido (ROIC)"),
+            "dne": ult("ratios", "Deuda neta / EBITDA")}
+
+
+def _tercios(valores, alto_es_bueno=True):
+    """(límite del mejor tercio, límite del peor tercio) del grupo; (None, None) si hay menos de 3 datos."""
+    v = sorted((x for x in valores if x is not None), reverse=alto_es_bueno)
+    if len(v) < 3:
+        return None, None
+    k = max(1, len(v) // 3)
+    return v[k - 1], v[-k]
+
+
+def tab_competidores(row, df, paquetes=None):
+    """Empresas del screener en la misma industria (o sector), para comparar de un vistazo. Solo muestra las del universo del screener.
+    v1.5.46 (Guille): Ventas y EPS (crecimiento 3 años), margen operativo, ROIC, deuda neta / EBITDA, Dividend Yield, score de calidad y Valoración;
+    los números se pintan contra el propio grupo (verde: mejor tercio; rojo: peor tercio)."""
     if df is None or len(df) == 0:
         return _env(_tile("s12", "Competidores", '<div class="fch-sub" style="margin:0">Sin datos.</div>'))
     t = str(row.get("ticker", ""))
     ind, sec = _txt(row.get("industria"), ""), _txt(row.get("sector_macro"), "")
     pares = df[(df["industria"] == ind)] if ind and "industria" in df.columns else df.iloc[0:0]
-    base = f"la industria de los {ind}"
+    base = f"la industria «{ind}»"
     if len(pares) < 4 and sec and "sector_macro" in df.columns:
         pares = df[df["sector_macro"] == sec]
         base = f"el sector {sec}"
@@ -1405,15 +1442,37 @@ def tab_competidores(row, df):
     if len(tabla) < 2:
         return _env(_tile("s12", "Competidores", '<div class="fch-sub" style="margin:0">No hay otras empresas comparables en el screener.</div>', ac="#f59e0b"))
 
-    def ratio(v, suf="x"):
-        v = _n(v)
-        return f"{v:.1f}{suf}" if v and v > 0 else "—"
+    paquetes = paquetes or {}
+    met = {}
+    for _, r in tabla.iterrows():
+        tk = str(r.get("ticker"))
+        m = dict(metricas_competidor((paquetes.get(tk) or {}).get("estados")))
+        d = _n(r.get("dividend_yield_actual"))
+        m["dy"] = (d if d <= 1 else d / 100) if d and d > 0 else None
+        met[tk] = m
+    cols = [("ventas", "Ventas<br>(crec. 3 años)", True, "Cuánto crecieron las ventas por año, en promedio (anual compuesto), en los últimos 3 años fiscales."),
+            ("eps", "EPS<br>(crec. 3 años)", True, "Cuánto creció por año la ganancia por acción en los últimos 3 años fiscales. Sin dato si la ganancia fue negativa al principio o al final."),
+            ("mop", "Margen<br>operativo", True, "De cada 100 dólares que vende, cuántos le quedan después de pagar los costos del negocio (último año)."),
+            ("roic", "ROIC", True, "Cuánto rinde cada dólar que pusieron accionistas y acreedores (último año)."),
+            ("dne", "Deuda neta<br>/ EBITDA", False, "Cuántos años de EBITDA haría falta para pagar la deuda neta. «Caja neta»: tiene más caja que deuda."),
+            ("dy", "Dividend<br>Yield", True, "Dividendo anual sobre el precio de hoy.")]
+    lim = {c: _tercios([met[x].get(c) for x in met], alto) for c, _, alto, _ in cols}
 
-    def dy(v):
-        v = _n(v)
-        if not v or v <= 0:
-            return "—"
-        return f"{(v if v > 1 else v * 100):.2f}%"
+    def celda(c, v, alto):
+        if v is None:
+            return '<td style="color:#9ca3af">—</td>'
+        if c == "dne":
+            txt = "Caja neta" if v < 0 else f"{v:.1f}x"
+        else:
+            txt = f"{v * 100:.1f}%".replace("-0.0%", "0.0%")
+        bueno, malo = lim[c]
+        col = ""
+        if bueno is not None:
+            if (v >= bueno) if alto else (v <= bueno):
+                col = "color:#15803d;font-weight:700"
+            elif (v <= malo) if alto else (v >= malo):
+                col = "color:#b91c1c;font-weight:700"
+        return f'<td style="{col}">{txt}</td>' if col else f"<td>{txt}</td>"
     filas = []
     for _, r in tabla.iterrows():
         tk = str(r.get("ticker"))
@@ -1425,11 +1484,12 @@ def tab_competidores(row, df):
                 f'color:{_TEXTO_EN_RELLENO.get(color.lower(), "#ffffff")}">{sc:.0f}</span>') if sc is not None else "—"
         me = ' style="background:#f1f5f9"' if tk == t else ""
         filas.append(f'<tr{me}><td><a href="?empresa={html.escape(tk, quote=True)}" target="_self">{html.escape(str(r.get("nombre") or tk))}</a> <span class="tkc">{html.escape(tk)}</span></td>'
-                     f'<td>{_mcap(r.get("market_cap"))}</td><td>{ratio(r.get("per_actual"))}</td><td>{ratio(r.get("ev_ebitda_actual"))}</td>'
-                     f'<td>{ratio(r.get("p_fcf_actual"))}</td><td>{dy(r.get("dividend_yield_actual"))}</td><td>{sc_h}</td><td>{cat_h}</td></tr>')
-    cab = "<tr><th>Empresa</th><th>Cap. bursátil</th><th>P/E</th><th>EV/EBITDA</th><th>P/FCF</th><th>Dividend Yield</th><th>Score de calidad</th><th>Valoración</th></tr>"
-    cuerpo = (f'<div class="fch-sub" style="margin:0 0 8px">Comparación contra empresas de {html.escape(base)}, de mayor a menor capitalización.</div>'
-              f'<div class="comp-w"><table class="comp">{cab}{"".join(filas)}</table></div>')
+                     + "".join(celda(c, met[tk].get(c), alto) for c, _, alto, _ in cols) + f"<td>{sc_h}</td><td>{cat_h}</td></tr>")
+    cab = ("<tr><th>Empresa</th>" + "".join(f'<th title="{html.escape(tip, quote=True)}">{tit}</th>' for _, tit, _, tip in cols)
+           + "<th>Score de<br>calidad</th><th>Valoración</th></tr>")
+    cuerpo = (f'<div class="fch-sub" style="margin:0 0 8px">Comparación contra empresas de {html.escape(base)}, de mayor a menor capitalización. '
+              'En verde, el mejor tercio del grupo en cada columna; en rojo, el peor tercio: así cada empresa se compara con las de su mismo negocio. «—»: sin dato, o no aplica (por ejemplo, el margen operativo, el ROIC y la deuda neta / EBITDA en los bancos).</div>'
+              f'<div class="comp-w"><table class="comp comp2">{cab}{"".join(filas)}</table></div>')
     return _env(_tile("s12", "Competidores", cuerpo, ac="#f59e0b"))
 
 

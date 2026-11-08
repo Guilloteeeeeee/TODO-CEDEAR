@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.46 — Competidores de un vistazo, Ideas más arriba y cache nuevo
+- **Competidores** (decisión de Guille, 08/11/2026): Empresa · Ventas (crecimiento anual, 3 años) · EPS (crecimiento anual, 3 años) · Margen operativo · ROIC · Deuda neta / EBITDA · Dividend Yield · Score de calidad · Valoración. Se sacan P/E, EV/EBITDA, P/FCF y capitalización. Los números van centrados y se pintan contra el propio grupo: verde el mejor tercio, rojo el peor. Salen de los estados guardados (`data/paquetes_yahoo.json`, `metricas_competidor` en ui/ficha.py).
+- **Ideas de Inversión**: orden Reyes · Aristócratas · Aspirantes · Dividendos Altos · Fundamentales Fuertes; el título y «Volver al inicio» en la misma fila, mosaicos más compactos (entran casi enteros en la pantalla).
+- **Cache** del 08/11/2026 con las 323 empresas (incluye la tanda 3).
+- Decisiones confirmadas: corte de Dividendos Altos en 4%; la cita de la gerencia va en los informes nuevos (no se rehacen los anteriores).
+- Pruebas: `tests/test_v1546_competidores.py`.
+
 ### v1.5.45 — Listas de Ideas de Inversión cargadas por Guille
 - **Aristócratas (68), Reyes (60) y Aspirantes (414)**: listas completas al 08/11/2026 enviadas por Guille, guardadas enteras en `data/ideas_listas.json`; la app muestra solo las que tiene cargadas (hoy 26, 16 y 45). Si se suma un CEDEAR que está en una lista, aparece solo.
 - **Aspirantes** = las de su lista que no son Aristócratas ni Reyes, ordenadas por rendimiento por dividendo (su lista no trae los años).

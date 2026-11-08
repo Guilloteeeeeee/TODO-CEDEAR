@@ -16,7 +16,7 @@ df = pd.DataFrame(json.load(open("data/cache_datos.json", encoding="utf-8"))["da
 ar = {x["ticker"] for x in I.miembros("aristocratas", df, listas=L)}
 ki = {x["ticker"] for x in I.miembros("reyes", df, listas=L)}
 asp = {x["ticker"] for x in I.miembros("aspirantes", df, listas=L)}
-chk(len(ar) == 26 and len(ki) == 16 and len(asp) == 45, f"en la app: {len(ar)} aristócratas, {len(ki)} reyes, {len(asp)} aspirantes")
+chk(len(ar) >= 26 and len(ki) >= 16 and len(asp) >= 45, f"en la app: {len(ar)} aristócratas, {len(ki)} reyes, {len(asp)} aspirantes")
 chk({"KO", "PG", "JNJ"} <= ar & ki and "MO" in ki and "MO" not in ar, "KO, PG y JNJ en las dos; MO solo en Reyes")
 chk({"AAPL", "MSFT", "JPM", "V"} <= asp and not asp & (ar | ki), "aspirantes sin repetir aristócratas ni reyes")
 # Dividendos Altos dinámico: si el precio de hoy sube al doble, el rendimiento baja a la mitad y sale de la lista
