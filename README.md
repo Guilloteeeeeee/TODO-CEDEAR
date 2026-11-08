@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.50 — Análisis de ETF y líneas de referencia en todos los ratios
+- **Análisis del ETF** (solapa nueva en la página de cada ETF, con PDF para bajar): qué replica, qué tiene adentro (torta de industrias y 10 principales posiciones), cuánto cuesta y cómo se compra, rendimiento contra el S&P 500 a la misma fecha, dividendos, rol en la cartera, pros y contras, riesgos y conclusión. Modelo aprobado por Guille (XLV). Primera tanda: los 11 fondos de sectores de State Street (XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLRE, XLU, XLV, XLY). Informes en `data/analisis_etf.json`, armado en `ui/etf_informe.py`, PDF con `generar_informe_etf.py` (en `static/informes_etf/`; cada versión queda en el archivo histórico como `ETF-<TICKER>`). Los ETF sin informe muestran que está en preparación.
+- **Líneas de referencia en todos los ratios**: donde Damodaran no calcula el número igual que nosotros (ROIC, deuda neta/EBITDA, cobertura de intereses, liquidez, margen de flujo libre, payout, ROA, solvencia), la línea es la **mediana de las demás empresas de la app del mismo sector** (bancos y aseguradoras: de las demás financieras), con la misma fórmula, el último año fiscal y al menos 5 empresas. Los REITs (hay 3) siguen sin esas líneas. Al pasar el mouse dice de dónde sale y cuántas empresas son.
+- Pruebas: `tests/test_v1550_etf_informes.py` (y `test_v1549` actualizado).
+
 ### v1.5.49 — Estados por tipo de empresa, Ratios visual, precio vs fundamentales, piloto de la SEC
 - **Estados Financieros**: cada subsolapa muestra lo que dice ese estado (montos) y Ratios pasa a ser visual (9 gráficos) con la tabla debajo. Tres familias: general, financiera (bancos, aseguradoras: sin costo de ventas, resultado operativo, EBITDA ni flujo libre; con patrimonio sobre activo y ROA) y REIT (EBITDA, flujo operativo por acción, dividendos sobre flujo operativo).
 - **Línea de industria rigurosa**: solo donde Damodaran calcula el número igual que nosotros (márgenes bruto, operativo, neto y EBITDA; ROE). Sin ROIC (Damodaran resta la caja), sin cobertura (usa resultado después de impuestos), sin leyenda; el detalle aparece al pasar el mouse. Valores de industria ≤ 0 no se usan (ROE de −0,2% de «Computers/Peripherals»). La tabla de Ratios aplica lo mismo.

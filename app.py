@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.49"
+APP_VERSION = "1.5.50"
 
 import re
 import contextlib
@@ -1002,12 +1002,14 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     var = (_var_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk)
     cedear = _cedear_etf(df, e, precio)
     st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear, var), unsafe_allow_html=True)
-    t_res, t_com, t_gra, t_not = st.tabs(["Resumen", "Composición", "Análisis Técnico y Rendimiento", "Noticias"])
+    t_res, t_ana, t_com, t_gra, t_not = st.tabs(["Resumen", "Análisis del ETF", "Composición", "Análisis Técnico y Rendimiento", "Noticias"])
     with t_res:
         st.markdown(_ui_etfs.con_intro("resumen", _ui_etfs.tab_resumen(e, d, precio, cedear)), unsafe_allow_html=True)
         arch = extra.get("archivo")
         if arch:
             st.caption(f"Algunos datos son de Yahoo guardados el {arch.get('fecha') or 's/d'} (Yahoo no respondió en este momento).")
+    with t_ana:
+        _render_analisis_etf(tk)
     with t_com:
         st.markdown(_ui_etfs.con_intro("composicion", _ui_etfs.tab_composicion(e, d, universo={str(t).upper() for t in df["ticker"]})), unsafe_allow_html=True)
     with t_gra:
@@ -1017,6 +1019,36 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     with t_not:
         st.markdown(_ui_etfs.con_intro("noticias", _ui_etfs.tab_noticias_etf(extra["simbolo"], d.get("noticias"))), unsafe_allow_html=True)
     cargando.empty()
+
+
+def _render_analisis_etf(tk):
+    """v1.5.50: solapa «Análisis del ETF» (data/analisis_etf.json, ui/etf_informe.py): fecha y botón del PDF ya armado arriba, el informe abajo."""
+    from ui import etf_informe as _ei
+    inf = _ei.informe(tk)
+    if not inf:
+        st.markdown(_ui_etfs_intro("analisis", '<p style="text-align:justify">El análisis de este ETF todavía no está escrito: lo estamos preparando. '
+                                   'Mientras tanto, en las otras solapas está qué tiene adentro, cuánto cuesta y cómo le fue.</p>'), unsafe_allow_html=True)
+        return
+    ruta = _ei.ruta_pdf(tk, inf)
+    try:
+        fila = st.container(horizontal=True, vertical_alignment="center", gap="small")
+    except TypeError:
+        fila = st.container()
+    with fila:
+        st.markdown(f'<span style="font-size:.85rem;color:#64748b;white-space:nowrap">Escrito el {html.escape(str(inf.get("fecha") or ""))}</span>', unsafe_allow_html=True)
+        if ruta:
+            args = dict(data=open(ruta, "rb").read(), file_name=f"analisis_etf_{tk}_{_ei.fecha_iso(inf.get('fecha'))}.pdf", mime="application/pdf",
+                        key=f"pdf_etf_{tk}", help="Baja este análisis en PDF. Es información con fines educativos, no una recomendación.")
+            try:
+                st.download_button("Descargar en PDF", icon=":material/picture_as_pdf:", type="tertiary", on_click="ignore", **args)
+            except TypeError:
+                st.download_button("Descargar en PDF", **args)
+    st.markdown(_ui_etfs_intro("analisis", _ei.app_html(tk, inf)), unsafe_allow_html=True)
+
+
+def _ui_etfs_intro(clave, cuerpo):
+    from ui import etfs as _ui_etfs
+    return _ui_etfs.con_intro(clave, cuerpo)
 
 
 def _ir_a_tabla(tabla):

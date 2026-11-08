@@ -1,0 +1,2195 @@
+{
+ "fecha": "08/11/2026",
+ "datos": {
+  "XLV": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Salud",
+   "titulo": "XLV: toda la salud de Estados Unidos en un solo fondo, después de un año de fuerte recuperación",
+   "resumen": [
+    "Un fondo que copia a las **60 empresas de salud del S&P 500**, con una comisión de **0,08%** anual.",
+    "En el último año subió **30,3%** (el S&P 500, 12,0%), pero en 3, 5 y 10 años rindió menos que el mercado.",
+    "Más estable que el mercado en las crisis, aunque **concentrado**: Eli Lilly pesa 17% y las 10 primeras, 61%."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Health Care Select Sector Index (la salud del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "60"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 49.935 M"
+    ],
+    [
+     "Dividendo",
+     "1,4% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (29 CEDEARs = 1 XLV)"
+    ]
+   ],
+   "intro": "Si alguien quiere invertir en la salud de Estados Unidos sin elegir empresa por empresa, XLV es la forma más directa: con una sola compra queda dueño de una parte de los laboratorios, las biotecnológicas, las prepagas, los fabricantes de equipos médicos y las empresas de diagnóstico más grandes del S&P 500.\n\nEl sector viene de tres años flojos y uno muy bueno. Entre 2023 y 2025 quedó muy por detrás del mercado: la presión política sobre el precio de los medicamentos, la caída de UnitedHealth en 2025 y el fin del impulso de la pandemia le pesaron. En los últimos 12 meses, en cambio, subió 30,3%, contra 12,0% del S&P 500.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de salud en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLV es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 49.935 millones de dólares, lo que lo ubica entre los ETF de salud más grandes.\n\nNo elige empresas: **copia un índice**, el Health Care Select Sector Index, que reúne a las 60 empresas de salud que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con un tope para que ninguna se lleve demasiado. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible. Y lo logra: en 10 años, el fondo rindió apenas 0,14 puntos por año menos que su índice, que es lo que se van en la comisión y en los costos de operar."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Las seis industrias de la salud, en estas proporciones:\n\n[[dona]]\n\nLo más importante es la **concentración**. Las 10 empresas más grandes suman 61% del fondo, y una sola, **Eli Lilly, pesa 17%**: casi un sexto del ETF depende de cómo le vaya a un laboratorio, impulsado por el éxito de sus medicamentos para la diabetes y la obesidad.\n\n[[top10]]\n\nEs un fondo **100% de Estados Unidos y 100% de un solo sector**. Diversifica dentro de la salud, pero no fuera de ella."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs además muy **líquido**: se negocian en promedio unos 8,9 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 29 a 1: hacen falta 29 CEDEARs para equivaler a una cuotaparte de XLV. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nLa tabla muestra las dos caras del sector. En el **último año** le sacó más de 18 puntos al mercado. En los períodos de **3, 5 y 10 años** quedó por detrás, sobre todo porque no tiene las grandes tecnológicas que empujaron al S&P 500.\n\nDonde se luce es en las **malas épocas**. En 2022, cuando el S&P 500 perdió 18%, XLV cerró casi plano (−2,1%). Su **beta** es de 0,4 según Yahoo: en promedio, se movió menos de la mitad que el mercado. Igual, no es inmune: en la crisis de 2008-2009 llegó a caer 39%, y a principios de 2020, 28% en dos meses (en ambos casos, el S&P 500 cayó más)."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**, que son el reflejo de lo que reparten las empresas que tiene adentro. En los últimos 12 meses pagó 2,55 dólares por cuotaparte, un **rendimiento de 1,4%**. Es un dividendo bajo: XLV no es un fondo para vivir de la renta, sino para crecimiento con menos sobresaltos."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene salud**, cerca de 10,6% de ese fondo. Sumar XLV no agrega algo nuevo: **aumenta el peso** de un sector que ya está.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Amortiguador**: por su beta baja y su comportamiento en 2022, puede suavizar las caídas de una cartera muy cargada en tecnología o en empresas cíclicas.\n- **Apuesta de largo plazo a una tendencia**: el envejecimiento de la población y el gasto en salud, que tiende a crecer más que la economía.\n- **Reemplazo de la selección individual**: en vez de elegir entre Lilly, Johnson & Johnson o UnitedHealth, se compra el sector entero.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. Dentro de la parte de complementos, una posición pequeña o mediana permite inclinar la cartera hacia la salud sin que el resultado dependa de un solo sector."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "100% salud",
+    "items": [
+     [
+      "Farmacéuticas",
+      36.84
+     ],
+     [
+      "Biotecnología",
+      19.99
+     ],
+     [
+      "Prestadores y servicios de salud",
+      16.86
+     ],
+     [
+      "Equipos y suministros médicos",
+      15.69
+     ],
+     [
+      "Herramientas para ciencias de la vida",
+      9.93
+     ],
+     [
+      "Tecnología para la salud",
+      0.69
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Eli Lilly",
+     "LLY",
+     16.88
+    ],
+    [
+     "Johnson & Johnson",
+     "JNJ",
+     9.8
+    ],
+    [
+     "AbbVie",
+     "ABBV",
+     7.76
+    ],
+    [
+     "Merck",
+     "MRK",
+     5.49
+    ],
+    [
+     "UnitedHealth",
+     "UNH",
+     5.44
+    ],
+    [
+     "Thermo Fisher",
+     "TMO",
+     3.84
+    ],
+    [
+     "Amgen",
+     "AMGN",
+     3.75
+    ],
+    [
+     "Gilead",
+     "GILD",
+     3.15
+    ],
+    [
+     "Abbott",
+     "ABT",
+     2.74
+    ],
+    [
+     "Pfizer",
+     "PFE",
+     2.59
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      30.34,
+      11.98
+     ],
+     [
+      "3 años",
+      15.97,
+      23.24
+     ],
+     [
+      "5 años",
+      8.42,
+      11.93
+     ],
+     [
+      "10 años",
+      12.48,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Fue más estable que el mercado en las caídas (2022: −2,1% contra −18%).",
+    "Diversifica dentro de la salud: 60 empresas de seis industrias.",
+    "Muy líquido y fácil de comprar como CEDEAR."
+   ],
+   "contras": [
+    "Concentrado: Eli Lilly pesa 17% y las 10 primeras, 61%.",
+    "En 3, 5 y 10 años rindió menos que el S&P 500.",
+    "Un solo sector y un solo país: no diversifica la cartera por sí solo.",
+    "Expuesto a decisiones políticas sobre el precio de los medicamentos y la cobertura de salud."
+   ],
+   "riesgos": [
+    "**Política de precios de medicamentos**: en Estados Unidos, el gobierno negocia precios en el sistema público (Medicare) y discute nuevas restricciones; cada anuncio puede mover a todo el sector.",
+    "**Vencimiento de patentes**: cuando vence la patente de un medicamento estrella, aparecen copias más baratas y las ventas caen fuerte.",
+    "**Concentración**: si a Eli Lilly le va mal, el fondo lo siente de inmediato.",
+    "**Prepagas y aseguradoras**: dependen de cuánto les cuesta atender a sus afiliados; en 2025 ese costo subió y UnitedHealth llegó a perder cerca de la mitad de su valor en bolsa."
+   ],
+   "conclusion": "XLV es una forma barata, líquida y bien diversificada **dentro de la salud** de invertir en uno de los sectores más defensivos de Estados Unidos. Su historia muestra lo que se puede esperar: caídas más chicas que el mercado en las crisis, a cambio de quedarse atrás cuando lo que empuja a la bolsa es la tecnología.\n\nEncaja con quien busca darle más peso a la salud o amortiguar una cartera muy cargada en sectores cíclicos. Es menos útil para quien ya tiene un fondo amplio del mercado y no quiere inclinar la cartera hacia ningún sector, o para quien busca renta por dividendos.\n\nLo más importante a seguir: el peso de Eli Lilly, las decisiones sobre el precio de los medicamentos en Estados Unidos y si la recuperación del último año se sostiene.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLV (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y rendimiento por dividendo al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de la salud en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (principales posiciones, beta, dividendos y volumen, 07/11/2026)",
+    "PortfoliosLab, caídas máximas históricas de XLV y rendimiento de 2022"
+   ]
+  },
+  "XLK": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Tecnología",
+   "titulo": "XLK: la tecnología de Estados Unidos en un solo fondo, el motor del mercado de la última década",
+   "resumen": [
+    "Tiene adentro a **76 empresas de tecnología del S&P 500**, con una comisión de **0,08%** anual.",
+    "En 10 años rindió **23,7%** por año, contra 15,3% del S&P 500: fue el mejor sector de la década.",
+    "**Muy concentrado** (Apple, NVIDIA y Microsoft suman 45%) y muy sensible a las dudas sobre la inteligencia artificial."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Technology Select Sector Index (la tecnología del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "76"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 107.727 M"
+    ],
+    [
+     "Dividendo",
+     "0,5% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (46 CEDEARs = 1 XLK)"
+    ]
+   ],
+   "intro": "Si alguien quiere invertir en la tecnología de Estados Unidos sin elegir empresa por empresa, XLK es la forma más directa: con una sola compra queda dueño de una parte de Apple, NVIDIA, Microsoft y de las fabricantes de chips y de programas más grandes del S&P 500.\n\nEs el sector que más empujó a la bolsa en los últimos diez años: rindió 23,7% por año, contra 15,3% del S&P 500. Pero también es el que más sufre cuando el mercado duda. Después de las elecciones legislativas del 3 de noviembre de 2026 en Estados Unidos crecieron las dudas sobre cuánto se va a seguir invirtiendo en inteligencia artificial, y el 5 de noviembre el Nasdaq 100 tuvo su peor día desde marzo de 2020 (−6,4%).\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de tecnología en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLK es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 107.727 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Technology Select Sector Index, que reúne a las empresas de tecnología que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nY lo logra: en 10 años rindió 0,17 puntos por año menos que su índice (23,68% contra 23,85%), que es lo que se va en la comisión y en los costos de operar.\n\nUn dato importante: en esta clasificación, **Alphabet (Google), Meta y Amazon no están en tecnología**. Las dos primeras están en el sector de comunicaciones (XLC) y Amazon, en consumo discrecional (XLY). XLK es tecnología «pura»: chips, programas y equipos."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en seis industrias:\n\n[[dona]]\n\nLo más importante es la **concentración**. Las 10 empresas más grandes suman 66% del fondo y **las tres primeras, Apple, NVIDIA y Microsoft, suman 45%**: casi la mitad del ETF depende de cómo les vaya a tres compañías.\n\n[[top10]]\n\nAdemás, casi 40% está en **semiconductores** (chips y equipos para fabricarlos), la industria más ligada al gasto en inteligencia artificial y la más volátil del sector. Es un fondo de **un solo sector**: diversifica dentro de la tecnología, pero no fuera de ella."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 8,4 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 46 a 1: hacen falta 46 CEDEARs para equivaler a una cuotaparte de XLK. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nLe ganó al mercado en todos los plazos, y por mucho: en 10 años, más de 8 puntos por año. Es la otra cara de la concentración: cuando a las grandes tecnológicas les va bien, el fondo vuela.\n\nPero las caídas también son más fuertes. En 2022, cuando el S&P 500 perdió 18%, XLK perdió 27,7%. Y en la crisis de las puntocom, entre 2000 y 2002, llegó a perder 82% desde su máximo: después de una caída así, hace falta una suba de más de 450% solo para volver al punto de partida."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**, pero muy bajos: en los últimos 12 meses pagó 0,84 dólares por cuotaparte, un **rendimiento de 0,5%**. Las tecnológicas reinvierten la mayor parte de lo que ganan o recompran sus propias acciones. XLK es un fondo de crecimiento, no de renta."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene mucha tecnología**, cerca de 35,5% de ese fondo, y bastante más si se suman Alphabet, Meta y Amazon. Sumar XLK no agrega algo nuevo: **aumenta todavía más el peso** del sector que ya es el más grande del mercado.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Motor de crecimiento**: para quien tiene un horizonte largo y tolera caídas fuertes, es la forma más directa de invertir en la digitalización y la inteligencia artificial.\n- **Reemplazo de la selección individual**: en vez de elegir entre Apple, NVIDIA o Microsoft, se compra el sector entero.\n- **Inclinación hacia la tecnología**: una forma de darle a la tecnología más peso que el que tiene en el mercado.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. En el caso de XLK vale la pena mirar la cartera completa antes de sumarlo: es fácil terminar con la mitad del dinero en un mismo sector sin darse cuenta."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "100% tecnología",
+    "items": [
+     [
+      "Semiconductores y equipos para fabricarlos",
+      39.69
+     ],
+     [
+      "Software",
+      27.61
+     ],
+     [
+      "Computadoras, almacenamiento y periféricos",
+      20.83
+     ],
+     [
+      "Equipos de comunicaciones",
+      4.81
+     ],
+     [
+      "Servicios de tecnología",
+      3.6
+     ],
+     [
+      "Equipos y componentes electrónicos",
+      3.46
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Apple",
+     "AAPL",
+     16.88
+    ],
+    [
+     "NVIDIA",
+     "NVDA",
+     14.77
+    ],
+    [
+     "Microsoft",
+     "MSFT",
+     13.37
+    ],
+    [
+     "Broadcom",
+     "AVGO",
+     4.66
+    ],
+    [
+     "AMD",
+     "AMD",
+     4.02
+    ],
+    [
+     "Micron",
+     "MU",
+     3.31
+    ],
+    [
+     "Cisco",
+     "CSCO",
+     2.57
+    ],
+    [
+     "Palantir",
+     "PLTR",
+     2.43
+    ],
+    [
+     "Intel",
+     "INTC",
+     1.77
+    ],
+    [
+     "Palo Alto Networks",
+     "PANW",
+     1.74
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      20.04,
+      11.98
+     ],
+     [
+      "3 años",
+      30.65,
+      23.24
+     ],
+     [
+      "5 años",
+      18.18,
+      11.93
+     ],
+     [
+      "10 años",
+      23.68,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Fue el mejor sector de la última década: 23,7% por año en 10 años.",
+    "Reúne a las empresas que lideran los chips, los programas y la inteligencia artificial.",
+    "Muy líquido y fácil de comprar como CEDEAR."
+   ],
+   "contras": [
+    "Muy concentrado: Apple, NVIDIA y Microsoft suman 45%.",
+    "Caídas fuertes: −27,7% en 2022 y −82% entre 2000 y 2002.",
+    "Se superpone con el S&P 500, donde la tecnología ya pesa 35,5%.",
+    "Dividendo casi nulo: 0,5% anual."
+   ],
+   "riesgos": [
+    "**Dudas sobre la inteligencia artificial**: buena parte de la suba de los últimos años se apoya en el gasto en centros de datos. Si ese gasto se frena (por regulación, por el costo del financiamiento o porque no da las ganancias esperadas), los chips son los primeros en sentirlo, como pasó el 05/11/2026, cuando un índice de las grandes fabricantes de chips cayó 12% en un día.",
+    "**Tasas altas**: la Reserva Federal subió su tasa en septiembre de 2026 y el bono del Tesoro a 10 años rinde cerca de 5%. Con el dinero caro, las empresas de crecimiento suelen valer menos.",
+    "**Concentración**: si a Apple, NVIDIA o Microsoft les va mal, el fondo lo siente de inmediato.",
+    "**Ciclo de los chips**: la demanda de semiconductores sube y baja con fuerza; a los años de auge suelen seguirles años de exceso de producción y precios más bajos."
+   ],
+   "conclusion": "XLK es una forma barata y líquida de invertir en la tecnología de Estados Unidos, el sector que más rindió en la última década. Su historia muestra las dos caras: subidas muy por encima del mercado cuando la tecnología lidera, y caídas mucho más profundas cuando el mercado cambia de idea.\n\nEncaja con quien busca crecimiento de largo plazo y puede atravesar caídas fuertes sin vender. Es menos útil para quien ya tiene un fondo amplio del mercado, donde la tecnología ya es más de un tercio, o para quien busca estabilidad o renta.\n\nLo más importante a seguir: el gasto en inteligencia artificial y si da ganancias, el peso de Apple, NVIDIA y Microsoft, y las tasas de interés.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLK (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de la tecnología en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLK y rendimiento de 2022",
+    "Reuters y Bloomberg, caída de las tecnológicas del 05/11/2026",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLF": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Finanzas",
+   "titulo": "XLF: bancos, tarjetas y aseguradoras de Estados Unidos en un solo fondo",
+   "resumen": [
+    "Reúne a las **76 empresas financieras del S&P 500** (bancos, tarjetas, aseguradoras y bolsas), con una comisión de **0,08%** anual.",
+    "En 3 años rindió **22,3%** por año, casi lo mismo que el S&P 500; en 1, 5 y 10 años quedó por detrás.",
+    "Muy ligado a la economía: en la crisis de 2008-2009 llegó a perder **83%**."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Financial Select Sector Index (las finanzas del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "76"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 54.509 M"
+    ],
+    [
+     "Dividendo",
+     "1,4% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (2 CEDEARs = 1 XLF)"
+    ]
+   ],
+   "intro": "Si alguien quiere invertir en el sistema financiero de Estados Unidos sin elegir empresa por empresa, XLF es la forma más directa: con una sola compra queda dueño de una parte de Berkshire Hathaway, JPMorgan, Visa, Mastercard y los grandes bancos, aseguradoras y bolsas del S&P 500.\n\nEs un sector muy ligado a la economía: cuando hay crecimiento, más crédito y gente que paga sus deudas, a los bancos les va bien; cuando hay crisis, sufren primero. En los últimos 12 meses subió 9,7%, algo menos que el S&P 500 (12,0%).\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo financiero en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLF es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 54.509 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Financial Select Sector Index, que reúne a las empresas financieras que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nY lo logra: en 10 años rindió apenas 0,13 puntos por año menos que su índice (al 30/09/2026), que es lo que se va en la comisión y en los costos de operar.\n\nUn dato: «financiero» acá no es solo bancos. **Visa y Mastercard**, que cobran por cada pago con tarjeta, y **Berkshire Hathaway**, el conglomerado que construyó Warren Buffett, están en este sector y entre las tres pesan casi 29% del fondo."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en cinco industrias:\n\n[[dona]]\n\nLas 10 empresas más grandes suman 57% del fondo. Berkshire Hathaway pesa 13% y JPMorgan, 11%: entre las dos, casi un cuarto.\n\n[[top10]]\n\nEs un fondo de **un solo sector**: diversifica dentro de las finanzas, pero no fuera de ellas."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 33,9 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 2 a 1: hacen falta 2 CEDEARs para equivaler a una cuotaparte de XLF. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nEn 3 años acompañó al mercado de cerca; en 1, 5 y 10 años quedó por detrás. Es un sector que no tiene a las grandes tecnológicas que empujaron al S&P 500.\n\nEl riesgo se ve en las crisis. En la de 2008-2009, que empezó justamente en los bancos, XLF llegó a perder 83% desde su máximo, mucho más que el S&P 500 (que cayó más de 50%). En 2022, en cambio, perdió 10,6%, menos que el mercado (−18%): con tasas más altas, los bancos cobran más por sus préstamos."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 0,83 dólares por cuotaparte, un **rendimiento de 1,4%**. Es un dividendo moderado: Berkshire Hathaway, que pesa 13%, no paga dividendos, y Visa y Mastercard pagan muy poco."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene finanzas**, cerca de 12,8% de ese fondo. Sumar XLF no agrega algo nuevo: **aumenta el peso** de un sector que ya está.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Apuesta al ciclo económico**: le va mejor cuando la economía crece y la gente y las empresas piden prestado y pagan sus deudas.\n- **Equilibrio frente a la tecnología**: es un sector muy distinto, con otros motores, para una cartera muy cargada en tecnológicas.\n- **Reemplazo de la selección individual**: en vez de elegir entre JPMorgan, Bank of America o Visa, se compra el sector entero.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "100% finanzas",
+    "items": [
+     [
+      "Servicios financieros (pagos, Berkshire)",
+      31.87
+     ],
+     [
+      "Bancos",
+      25.97
+     ],
+     [
+      "Mercado de capitales (bancos de inversión, bolsas)",
+      24.34
+     ],
+     [
+      "Seguros",
+      13.87
+     ],
+     [
+      "Crédito al consumo",
+      3.96
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Berkshire Hathaway",
+     "BRK-B",
+     13.15
+    ],
+    [
+     "JPMorgan",
+     "JPM",
+     11.06
+    ],
+    [
+     "Visa",
+     "V",
+     8.88
+    ],
+    [
+     "Mastercard",
+     "MA",
+     6.54
+    ],
+    [
+     "Bank of America",
+     "BAC",
+     3.99
+    ],
+    [
+     "Wells Fargo",
+     "WFC",
+     3.15
+    ],
+    [
+     "Goldman Sachs",
+     "GS",
+     3.12
+    ],
+    [
+     "Morgan Stanley",
+     "MS",
+     2.69
+    ],
+    [
+     "Citigroup",
+     "C",
+     2.45
+    ],
+    [
+     "American Express",
+     "AXP",
+     2.11
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      9.66,
+      11.98
+     ],
+     [
+      "3 años",
+      22.3,
+      23.24
+     ],
+     [
+      "5 años",
+      8.86,
+      11.93
+     ],
+     [
+      "10 años",
+      13.14,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Diversifica dentro de las finanzas: bancos, tarjetas, seguros y bolsas.",
+    "En 2022 cayó bastante menos que el mercado (−10,6% contra −18%).",
+    "Muy líquido: se negocian unos 34 millones de cuotapartes por día."
+   ],
+   "contras": [
+    "En 1, 5 y 10 años rindió menos que el S&P 500.",
+    "En las crisis financieras puede caer muchísimo: −83% en 2008-2009.",
+    "Un solo sector, muy ligado a la economía de Estados Unidos.",
+    "Berkshire Hathaway y JPMorgan pesan casi un cuarto del fondo."
+   ],
+   "riesgos": [
+    "**Recesión y morosidad**: si la economía se frena, crecen las personas y empresas que no pagan sus deudas, y los bancos tienen que apartar plata para cubrir esas pérdidas.",
+    "**Tasas**: con el bono a 10 años cerca de 5%, los bancos cobran más por prestar, pero también pagan más por los depósitos, y los bonos que tienen en cartera valen menos (eso fue lo que hizo caer a Silicon Valley Bank en 2023).",
+    "**Regulación**: cambios en el capital que se les exige a los bancos o en lo que pueden cobrar por las tarjetas mueven a todo el sector.",
+    "**Concentración**: Berkshire Hathaway y JPMorgan pesan casi un cuarto del fondo."
+   ],
+   "conclusion": "XLF es una forma barata, muy líquida y diversificada **dentro de las finanzas** de invertir en el sistema financiero de Estados Unidos. Su historia muestra lo que se puede esperar: le va bien cuando la economía crece y sufre mucho en las crisis financieras.\n\nEncaja con quien busca darle más peso a un sector ligado al crecimiento de la economía, o tener bancos, tarjetas y aseguradoras sin elegir empresa por empresa. Es menos útil para quien ya tiene un fondo amplio del mercado y no quiere inclinar la cartera hacia ningún sector.\n\nLo más importante a seguir: la marcha de la economía de Estados Unidos, la morosidad de los créditos y las tasas de interés.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLF (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de las finanzas en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLF y rendimiento de 2022",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLE": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Energía",
+   "titulo": "XLE: el petróleo y el gas de Estados Unidos en un solo fondo, en el año de la guerra con Irán",
+   "resumen": [
+    "Reúne a las **21 empresas de energía del S&P 500**, con una comisión de **0,08%** anual.",
+    "En el último año subió **63,4%** (el S&P 500, 12,0%), empujado por la suba del petróleo.",
+    "Muy concentrado (**ExxonMobil y Chevron pesan 43%**) y atado al precio del crudo, que sube y baja con fuerza."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Energy Select Sector Index (la energía del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "21"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 40.457 M"
+    ],
+    [
+     "Dividendo",
+     "2,5% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (2 CEDEARs = 1 XLE)"
+    ]
+   ],
+   "intro": "Si alguien quiere invertir en el petróleo y el gas de Estados Unidos sin elegir empresa por empresa, XLE es la forma más directa: con una sola compra queda dueño de una parte de ExxonMobil, Chevron, ConocoPhillips y de las refinadoras, oleoductos y empresas de servicios petroleros del S&P 500.\n\nEs el sector estrella de 2026. Desde marzo hay guerra con Irán y problemas en el estrecho de Ormuz, por donde pasa cerca de una quinta parte del petróleo que se consume en el mundo: el Brent llegó a 126 dólares en abril, bajó a unos 74 en junio y en octubre volvió a subir. En los últimos 12 meses, XLE subió 63,4%, contra 12,0% del S&P 500.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de energía en una cartera, y qué hay que saber antes de sumarlo, sobre todo después de una suba así?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLE es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 40.457 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Energy Select Sector Index, que reúne a las empresas de energía que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nY lo logra: en 10 años rindió apenas 0,13 puntos por año menos que su índice (al 30/09/2026), que es lo que se va en la comisión y en los costos de operar.\n\nUn dato: «energía» acá quiere decir **petróleo y gas**. Las eléctricas están en otro sector, el de servicios públicos (XLU)."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en dos industrias:\n\n[[dona]]\n\nLa gran mayoría (92%) son empresas de **petróleo, gas y combustibles**: las que lo extraen, las que lo refinan y las que lo transportan. El resto son empresas de **equipos y servicios petroleros**, como SLB.\n\nLo más importante es la **concentración**: ExxonMobil pesa 24% y Chevron, 19%; entre las dos, 43% del fondo. Las 10 primeras suman 79%.\n\n[[top10]]\n\nEs un fondo de **un solo sector** y atado a una sola variable: el **precio del petróleo y del gas**."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 32,3 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 2 a 1: hacen falta 2 CEDEARs para equivaler a una cuotaparte de XLE. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nEl último año y los últimos 5 años fueron muy buenos: 63,4% y 23,8% por año, el doble que el mercado en 5 años. En 10 años, en cambio, rindió menos que el S&P 500 (11,8% contra 15,3%), porque arrastra los años malos del petróleo, como 2020, cuando con la pandemia el barril de referencia de Estados Unidos llegó a cotizar en negativo.\n\nEs un sector de **ciclos largos y violentos**. En 2022, cuando el S&P 500 perdió 18%, XLE ganó 64,3%. Pero entre 2014 y 2020 llegó a perder 71% desde su máximo. Su historia muestra que después de los picos del petróleo suelen venir bajas fuertes (pasó en 2008 y en 2014)."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 1,52 dólares por cuotaparte, un **rendimiento de 2,5%**, uno de los más altos entre los fondos de sectores: las petroleras grandes reparten buena parte de lo que ganan. Pero ese dividendo depende del precio del crudo: en los años malos, algunas empresas lo recortan."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) tiene muy poca energía**, cerca de 3,6% de ese fondo. Sumar XLE sí cambia bastante el perfil de la cartera.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Cobertura frente a la inflación y los conflictos**: cuando sube el petróleo, sube la inflación y suelen sufrir otros sectores; la energía se mueve al revés. Pasó en 2022 y en 2026.\n- **Renta**: un dividendo de 2,5% anual, de los más altos entre los sectores.\n- **Exposición al petróleo a través de empresas**, sin comprar el petróleo directamente (para eso hay fondos como USO, que tienen otros riesgos).\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. Después de una suba de más de 60% en un año, el fondo depende de que el petróleo se mantenga caro: si vuelve a su nivel anterior, puede bajar rápido."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "100% energía",
+    "items": [
+     [
+      "Petróleo, gas y combustibles",
+      92.2
+     ],
+     [
+      "Equipos y servicios petroleros",
+      7.8
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "ExxonMobil",
+     "XOM",
+     24.39
+    ],
+    [
+     "Chevron",
+     "CVX",
+     18.81
+    ],
+    [
+     "ConocoPhillips",
+     "COP",
+     7.27
+    ],
+    [
+     "Phillips 66",
+     "PSX",
+     4.49
+    ],
+    [
+     "Marathon Petroleum",
+     "MPC",
+     4.48
+    ],
+    [
+     "Valero Energy",
+     "VLO",
+     4.28
+    ],
+    [
+     "Williams",
+     "WMB",
+     4.05
+    ],
+    [
+     "EOG Resources",
+     "EOG",
+     4.05
+    ],
+    [
+     "SLB",
+     "SLB",
+     3.92
+    ],
+    [
+     "Kinder Morgan",
+     "KMI",
+     3.15
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      63.39,
+      11.98
+     ],
+     [
+      "3 años",
+      21.76,
+      23.24
+     ],
+     [
+      "5 años",
+      23.75,
+      11.93
+     ],
+     [
+      "10 años",
+      11.79,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Fue el mejor sector del último año (63,4%) y de 2022 (64,3%).",
+    "Suele moverse al revés que el resto de la cartera cuando suben el petróleo y la inflación.",
+    "Dividendo de 2,5% anual y mucha liquidez."
+   ],
+   "contras": [
+    "Muy concentrado: ExxonMobil y Chevron pesan 43%.",
+    "Depende del precio del petróleo, que sube y baja con fuerza.",
+    "En 10 años rindió menos que el S&P 500 (11,8% contra 15,3% por año).",
+    "Caídas profundas: −71% entre 2014 y 2020."
+   ],
+   "riesgos": [
+    "**Fin o calma del conflicto con Irán**: buena parte de la suba de 2026 se explica por la guerra; si el petróleo vuelve a la normalidad, las petroleras pueden bajar.",
+    "**Economía mundial**: una recesión reduce el consumo de combustible y baja el precio del crudo.",
+    "**Producción de los grandes países petroleros**: las decisiones de la OPEP y sus aliados sobre cuánto bombear mueven el precio.",
+    "**Transición energética**: a largo plazo, el avance de los autos eléctricos y de las energías renovables puede reducir la demanda de petróleo."
+   ],
+   "conclusion": "XLE es una forma barata, líquida y directa de invertir en el petróleo y el gas de Estados Unidos. Su historia muestra lo que se puede esperar: años excelentes cuando sube el crudo (2022, 2026) y caídas muy profundas cuando baja (2014-2020).\n\nEncaja con quien busca proteger la cartera de la inflación y de los conflictos que suben el petróleo, o sumar renta por dividendos. Es menos útil para quien busca un crecimiento parejo, o para quien no tolera que el resultado dependa de un precio tan cambiante como el del crudo.\n\nLo más importante a seguir: la guerra con Irán y el estrecho de Ormuz, el precio del petróleo y el peso de ExxonMobil y Chevron.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLE (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de la energía en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLE y rendimiento de 2022",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLY": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Consumo discrecional",
+   "titulo": "XLY: el consumo «no esencial» de Estados Unidos, con Amazon y Tesla como protagonistas",
+   "resumen": [
+    "Reúne a las **47 empresas de consumo discrecional del S&P 500** (comercios, autos, restaurantes y viajes), con una comisión de **0,08%** anual.",
+    "**Muy concentrado**: Amazon y Tesla pesan 38% del fondo.",
+    "En el último año perdió **3,0%** (el S&P 500 ganó 12,0%); en 10 años rindió 12,6% por año, algo menos que el mercado."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Consumer Discretionary Select Sector Index (el consumo no esencial del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "47"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 22.972 M"
+    ],
+    [
+     "Dividendo",
+     "0,8% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (43 CEDEARs = 1 XLY)"
+    ]
+   ],
+   "intro": "El consumo discrecional es todo lo que la gente compra cuando le sobra plata: autos, ropa, viajes, salidas a comer, arreglos de la casa, compras por internet. XLY reúne a las empresas del S&P 500 que viven de eso: Amazon, Tesla, Home Depot, McDonald's, Booking, Starbucks y las grandes cadenas de hoteles.\n\nEs un sector que depende del bolsillo del consumidor estadounidense: crece cuando hay empleo y salarios firmes, y sufre cuando la inflación o las tasas aprietan. En los últimos 12 meses perdió 3,0%, mientras el S&P 500 ganó 12,0%.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de consumo discrecional en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLY es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 22.972 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Consumer Discretionary Select Sector Index, que reúne a las empresas de consumo discrecional que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nY lo logra: en 10 años rindió apenas 0,13 puntos por año menos que su índice (al 30/09/2026), que es lo que se va en la comisión y en los costos de operar."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte así entre industrias:\n\n[[dona]]\n\nLo más importante es la **concentración**: Amazon pesa 23% y Tesla, 16%; entre las dos, 38% del fondo. Las 10 primeras suman 67%.\n\n[[top10]]\n\nPor eso, XLY se mueve en buena parte al ritmo de Amazon y Tesla, dos empresas que tienen mucho de tecnología (la nube de Amazon; los autos eléctricos y la conducción autónoma de Tesla)."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 6,9 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 43 a 1: hacen falta 43 CEDEARs para equivaler a una cuotaparte de XLY. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nQuedó por detrás del mercado en todos los plazos. En 5 años rindió apenas 3,7% por año, contra 11,9% del S&P 500.\n\nY es un sector que cae fuerte en las malas épocas: en 2022, con la inflación alta y la suba de tasas, perdió 36,3%, el doble que el S&P 500 (−18%). En la crisis de 2008-2009 llegó a perder 59% desde su máximo."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**, pero bajos: en los últimos 12 meses pagó 0,93 dólares por cuotaparte, un **rendimiento de 0,8%**. Amazon y Tesla, que juntas pesan 38%, no pagan dividendos."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene consumo discrecional**, cerca de 9,5% de ese fondo. Sumar XLY no agrega algo nuevo: **aumenta el peso** de un sector que ya está, y sobre todo el de Amazon y Tesla.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Apuesta al consumidor estadounidense**: le va bien cuando hay empleo, salarios firmes y crédito barato.\n- **Reemplazo de la selección individual**: en vez de elegir entre Amazon, Home Depot o McDonald's, se compra el sector entero.\n- **Inclinación hacia el ciclo económico**: un sector que suele adelantarse a la recuperación después de las crisis.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. Quien ya tiene Amazon o Tesla por separado suma, con XLY, todavía más peso en ellas."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "Consumo",
+    "items": [
+     [
+      "Hoteles, restaurantes y ocio",
+      27.07
+     ],
+     [
+      "Comercio minorista amplio (Amazon)",
+      23.92
+     ],
+     [
+      "Comercio minorista especializado",
+      22.06
+     ],
+     [
+      "Automotrices",
+      19.16
+     ],
+     [
+      "Bienes durables para el hogar",
+      3.79
+     ],
+     [
+      "Ropa, calzado y lujo",
+      2.9
+     ],
+     [
+      "Otras",
+      1.1
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Amazon",
+     "AMZN",
+     22.62
+    ],
+    [
+     "Tesla",
+     "TSLA",
+     15.85
+    ],
+    [
+     "Home Depot",
+     "HD",
+     5.71
+    ],
+    [
+     "McDonald's",
+     "MCD",
+     4.71
+    ],
+    [
+     "TJX",
+     "TJX",
+     3.95
+    ],
+    [
+     "Lowe's",
+     "LOW",
+     3.29
+    ],
+    [
+     "Booking",
+     "BKNG",
+     3.27
+    ],
+    [
+     "Starbucks",
+     "SBUX",
+     3.12
+    ],
+    [
+     "Marriott",
+     "MAR",
+     2.3
+    ],
+    [
+     "Hilton",
+     "HLT",
+     2.15
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      -3.0,
+      11.98
+     ],
+     [
+      "3 años",
+      15.85,
+      23.24
+     ],
+     [
+      "5 años",
+      3.65,
+      11.93
+     ],
+     [
+      "10 años",
+      12.57,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Reúne marcas muy conocidas: Amazon, Home Depot, McDonald's, Booking, Starbucks.",
+    "En 10 años rindió 12,6% por año.",
+    "Líquido y fácil de comprar como CEDEAR."
+   ],
+   "contras": [
+    "Muy concentrado: Amazon y Tesla pesan 38%.",
+    "Rindió menos que el S&P 500 en 1, 3, 5 y 10 años.",
+    "Caídas fuertes en las malas épocas: −36,3% en 2022.",
+    "Dividendo bajo: 0,8% anual."
+   ],
+   "riesgos": [
+    "**Tasas e inflación**: con la inflación en 3,7% anual y el bono a 10 años cerca de 5%, las compras a crédito (autos, casas, arreglos) se encarecen.",
+    "**Tesla**: es una empresa muy volátil, cuyo precio depende mucho de lo que se espera de los autos autónomos y los robots; el 05/11/2026 cayó al menos 9% en un día.",
+    "**Enfriamiento del consumo**: si se frena el empleo, este es de los primeros sectores en sentirlo.",
+    "**Aranceles**: buena parte de lo que venden los comercios se fabrica afuera; las trabas a la importación suben sus costos."
+   ],
+   "conclusion": "XLY es una forma barata y líquida de invertir en el consumo no esencial de Estados Unidos, aunque en la práctica es en buena parte una inversión en Amazon y Tesla. Su historia muestra un sector que acompaña al ciclo económico: crece con el consumidor y cae fuerte cuando la inflación y las tasas aprietan.\n\nEncaja con quien busca darle más peso al consumo estadounidense y tolera caídas fuertes. Es menos útil para quien ya tiene Amazon o Tesla, o un fondo amplio del mercado, o para quien busca estabilidad o renta.\n\nLo más importante a seguir: el empleo y el consumo en Estados Unidos, las tasas de interés y el peso de Amazon y Tesla.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLY (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de el consumo discrecional en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLY y rendimiento de 2022",
+    "Bloomberg, caída de las acciones del 05/11/2026",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLP": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Consumo básico",
+   "titulo": "XLP: lo que la gente compra siempre, en un solo fondo defensivo",
+   "resumen": [
+    "Reúne a las **34 empresas de consumo básico del S&P 500** (supermercados, alimentos, bebidas, limpieza y tabaco), con una comisión de **0,08%** anual.",
+    "En el último año subió **20,4%** (el S&P 500, 12,0%), pero en 3, 5 y 10 años rindió menos que el mercado.",
+    "Uno de los sectores más estables: en 2022 cerró casi plano (−0,8%) y paga un dividendo de **2,4%**."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Consumer Staples Select Sector Index (el consumo básico del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "34"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 15.109 M"
+    ],
+    [
+     "Dividendo",
+     "2,4% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (16 CEDEARs = 1 XLP)"
+    ]
+   ],
+   "intro": "El consumo básico es lo que la gente compra aunque la economía ande mal: comida, bebidas, productos de limpieza, artículos de higiene. XLP reúne a las empresas del S&P 500 que viven de eso: Walmart, Costco, Procter & Gamble, Coca-Cola, PepsiCo, Philip Morris y Colgate, entre otras.\n\nPor eso es uno de los sectores más **defensivos**: sus ventas cambian poco con la economía. En los últimos 12 meses subió 20,4%, por encima del S&P 500 (12,0%), después de varios años de quedar por detrás.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de consumo básico en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLP es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 15.109 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Consumer Staples Select Sector Index, que reúne a las empresas de consumo básico que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nY lo logra: en 10 años rindió apenas 0,12 puntos por año menos que su índice (al 30/09/2026), que es lo que se va en la comisión y en los costos de operar."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en seis industrias:\n\n[[dona]]\n\nLas 10 empresas más grandes suman 64% del fondo, y Walmart y Costco, los dos grandes supermercados, suman casi 21%.\n\n[[top10]]\n\nUn dato: Amazon, que también vende de todo, no está acá sino en consumo discrecional (XLY). Es un fondo de **un solo sector**: diversifica dentro del consumo básico, pero no fuera de él."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 12,8 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 16 a 1: hacen falta 16 CEDEARs para equivaler a una cuotaparte de XLP. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nEl último año fue muy bueno, pero en 3, 5 y 10 años quedó claramente por detrás del mercado: en 10 años, 8,3% por año contra 15,3% del S&P 500. Es el precio de la estabilidad: un sector que crece despacio.\n\nDonde se luce es en las **malas épocas**. En 2022, cuando el S&P 500 perdió 18%, XLP cerró casi plano (−0,8%). Su peor caída desde que existe fue de 36%, entre fines de 2000 y principios de 2003; en la crisis de 2008-2009, cuando el mercado llegó a caer más de 50%, cayó bastante menos."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 2,20 dólares por cuotaparte, un **rendimiento de 2,4%**, uno de los más altos entre los fondos de sectores. Varias de sus empresas son de las que más tiempo llevan aumentando el dividendo: Procter & Gamble, Colgate y Coca-Cola lo suben hace más de 60 años seguidos."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene consumo básico**, cerca de 5,3% de ese fondo. Sumar XLP **aumenta el peso** de un sector que ya está.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Amortiguador**: por su comportamiento en 2022 y en las crisis, puede suavizar las caídas de una cartera muy cargada en tecnología o en sectores cíclicos.\n- **Renta**: un dividendo de 2,4% de empresas con larga historia de aumentos.\n- **Reemplazo de la selección individual**: en vez de elegir entre Walmart, Procter & Gamble o Coca-Cola, se compra el sector entero.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "Consumo básico",
+    "items": [
+     [
+      "Supermercados y distribución",
+      33.92
+     ],
+     [
+      "Bebidas",
+      19.98
+     ],
+     [
+      "Productos para el hogar",
+      18.37
+     ],
+     [
+      "Alimentos",
+      15.32
+     ],
+     [
+      "Tabaco",
+      10.88
+     ],
+     [
+      "Cuidado personal",
+      1.53
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Walmart",
+     "WMT",
+     11.34
+    ],
+    [
+     "Costco",
+     "COST",
+     9.42
+    ],
+    [
+     "Procter & Gamble",
+     "PG",
+     7.74
+    ],
+    [
+     "Coca-Cola",
+     "KO",
+     7.39
+    ],
+    [
+     "Philip Morris",
+     "PM",
+     6.26
+    ],
+    [
+     "Altria",
+     "MO",
+     4.6
+    ],
+    [
+     "Colgate-Palmolive",
+     "CL",
+     4.51
+    ],
+    [
+     "Mondelez",
+     "MDLZ",
+     4.31
+    ],
+    [
+     "PepsiCo",
+     "PEP",
+     4.2
+    ],
+    [
+     "Target",
+     "TGT",
+     4.03
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      20.4,
+      11.98
+     ],
+     [
+      "3 años",
+      12.63,
+      23.24
+     ],
+     [
+      "5 años",
+      7.44,
+      11.93
+     ],
+     [
+      "10 años",
+      8.27,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Uno de los sectores más estables: −0,8% en 2022, contra −18% del mercado.",
+    "Dividendo de 2,4% anual, de empresas con larga historia de aumentos.",
+    "Líquido y fácil de comprar como CEDEAR."
+   ],
+   "contras": [
+    "En 3, 5 y 10 años rindió bastante menos que el S&P 500.",
+    "Crecimiento lento: sus empresas venden casi lo mismo año tras año.",
+    "Walmart y Costco suman casi 21% del fondo.",
+    "Un solo sector: no diversifica la cartera por sí solo."
+   ],
+   "riesgos": [
+    "**Medicamentos para bajar de peso**: los nuevos tratamientos para la obesidad pueden reducir el consumo de snacks, golosinas y bebidas azucaradas.",
+    "**Costos y aranceles**: si suben las materias primas, el transporte o los aranceles y las empresas no pueden trasladarlo a los precios, ganan menos.",
+    "**Segundas marcas**: cada vez más gente elige las marcas propias de los supermercados, más baratas, en lugar de las marcas conocidas.",
+    "**Tasas altas**: con el bono a 10 años cerca de 5%, un dividendo de 2,4% compite con inversiones sin riesgo."
+   ],
+   "conclusion": "XLP es una forma barata, líquida y diversificada **dentro del consumo básico** de invertir en uno de los sectores más defensivos de Estados Unidos. Su historia muestra lo que se puede esperar: caídas más chicas que el mercado en las crisis y un dividendo firme, a cambio de quedarse atrás cuando la bolsa sube con fuerza.\n\nEncaja con quien busca amortiguar una cartera cargada en tecnología o en sectores cíclicos, o sumar renta de empresas estables. Es menos útil para quien busca crecimiento o ya tiene una cartera conservadora.\n\nLo más importante a seguir: el efecto de los medicamentos para la obesidad sobre el consumo, los costos de las empresas y si la suba del último año se sostiene.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLP (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de el consumo básico en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLP y rendimiento de 2022",
+    "Lista de Reyes del Dividendo (datos de Intrinio, 08/11/2026)",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLU": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Servicios públicos",
+   "titulo": "XLU: las eléctricas de Estados Unidos, entre la demanda de la inteligencia artificial y las tasas altas",
+   "resumen": [
+    "Reúne a las **31 empresas de servicios públicos del S&P 500** (electricidad, gas y agua), con una comisión de **0,08%** anual.",
+    "Uno de los dividendos más altos entre los sectores: **2,8%** anual.",
+    "En 3 años rindió **16,7%** por año; en el último año, apenas **0,3%** (el S&P 500, 12,0%), en un año de suba de tasas."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Utilities Select Sector Index (los servicios públicos del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "31"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 23.913 M"
+    ],
+    [
+     "Dividendo",
+     "2,8% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (15 CEDEARs = 1 XLU)"
+    ]
+   ],
+   "intro": "Los servicios públicos son las empresas que llevan la electricidad, el gas y el agua a las casas y a las industrias. XLU reúne a las de Estados Unidos que forman parte del S&P 500: NextEra, Southern, Duke, Constellation y otras eléctricas grandes.\n\nDurante décadas fue el sector «aburrido» por excelencia: ventas estables, tarifas reguladas y buenos dividendos. En los últimos años sumó otra historia: los centros de datos para la inteligencia artificial consumen muchísima electricidad, y eso hizo crecer la demanda. En 3 años rindió 16,7% por año. En el último año, en cambio, apenas 0,3%, con la Reserva Federal volviendo a subir su tasa.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de servicios públicos en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLU es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 23.913 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Utilities Select Sector Index, que reúne a las empresas de servicios públicos que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nUna particularidad: muchas de estas empresas son **monopolios regulados**. Son las únicas que pueden dar el servicio en su zona, pero el Estado les fija cuánto pueden cobrar. Eso hace que sus ganancias sean previsibles, aunque con poco margen para crecer rápido."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en cinco industrias:\n\n[[dona]]\n\nDos tercios son **eléctricas** y otro cuarto, empresas que dan electricidad y gas a la vez. Las 10 primeras suman 59% y NextEra Energy, la más grande, pesa 13,5%.\n\n[[top10]]\n\nEs un fondo de **un solo sector** y 100% de Estados Unidos."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 26,8 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 15 a 1: hacen falta 15 CEDEARs para equivaler a una cuotaparte de XLU. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nRindió menos que el mercado en todos los plazos, aunque en 3 años, con el impulso de la inteligencia artificial, ganó 16,7% por año, mucho para un sector tradicionalmente lento.\n\nDonde se luce es en las **malas épocas**: en 2022, cuando el S&P 500 perdió 18%, XLU ganó 1,4%. Igual, no es inmune: en su peor momento llegó a perder 52% desde su máximo."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 1,21 dólares por cuotaparte, un **rendimiento de 2,8%**, uno de los más altos entre los fondos de sectores: como sus ganancias son previsibles, las eléctricas reparten buena parte de lo que ganan."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) tiene muy poco de servicios públicos**, cerca de 2,2% de ese fondo. Sumar XLU cambia el perfil de la cartera hacia algo más estable.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Amortiguador**: por su comportamiento en 2022, puede suavizar las caídas de una cartera muy cargada en tecnología o en sectores cíclicos.\n- **Renta**: un dividendo de 2,8% anual.\n- **Apuesta a la demanda de electricidad**: centros de datos, autos eléctricos y una economía cada vez más eléctrica.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. Hay que tener en cuenta que se comporta en parte como un bono: tiende a sufrir cuando suben las tasas."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "Servicios públicos",
+    "items": [
+     [
+      "Eléctricas",
+      65.52
+     ],
+     [
+      "Electricidad y gas (multiservicio)",
+      26.67
+     ],
+     [
+      "Generadoras independientes y renovables",
+      3.4
+     ],
+     [
+      "Agua",
+      2.23
+     ],
+     [
+      "Gas",
+      2.18
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "NextEra Energy",
+     "NEE",
+     13.52
+    ],
+    [
+     "Southern",
+     "SO",
+     7.89
+    ],
+    [
+     "Duke Energy",
+     "DUK",
+     7.45
+    ],
+    [
+     "Constellation Energy",
+     "CEG",
+     5.8
+    ],
+    [
+     "American Electric Power",
+     "AEP",
+     5.07
+    ],
+    [
+     "Dominion Energy",
+     "D",
+     4.5
+    ],
+    [
+     "Sempra",
+     "SRE",
+     3.83
+    ],
+    [
+     "Entergy",
+     "ETR",
+     3.78
+    ],
+    [
+     "Xcel Energy",
+     "XEL",
+     3.69
+    ],
+    [
+     "Exelon",
+     "EXC",
+     3.53
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      0.3,
+      11.98
+     ],
+     [
+      "3 años",
+      16.74,
+      23.24
+     ],
+     [
+      "5 años",
+      8.58,
+      11.93
+     ],
+     [
+      "10 años",
+      9.19,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Estable en las crisis: +1,4% en 2022, cuando el mercado perdió 18%.",
+    "Dividendo de 2,8% anual.",
+    "Se beneficia del aumento del consumo de electricidad por los centros de datos."
+   ],
+   "contras": [
+    "Rindió menos que el S&P 500 en todos los plazos.",
+    "Muy sensible a las tasas: compite con los bonos y sus empresas tienen mucha deuda.",
+    "Tarifas reguladas: poco margen para crecer rápido.",
+    "Un solo sector y un solo país."
+   ],
+   "riesgos": [
+    "**Tasas de interés**: con el bono a 10 años cerca de 5%, un dividendo de 2,8% atrae menos; además, son empresas con mucha deuda, que se encarece.",
+    "**Inteligencia artificial**: si se frena la construcción de centros de datos (a principios de noviembre de 2026 el mercado empezó a dudar de ese gasto), parte de la demanda de electricidad esperada podría no llegar.",
+    "**Regulación**: los gobiernos de cada estado deciden cuánto pueden cobrar; un fallo desfavorable afecta las ganancias por años.",
+    "**Clima y catástrofes**: incendios, huracanes y olas de frío pueden generar costos enormes y juicios, como pasó con los incendios forestales en California."
+   ],
+   "conclusion": "XLU es una forma barata, líquida y diversificada **dentro de los servicios públicos** de invertir en uno de los sectores más defensivos de Estados Unidos. Su historia muestra lo que se puede esperar: estabilidad en las crisis y buen dividendo, a cambio de rendir menos que el mercado y de sufrir cuando suben las tasas.\n\nEncaja con quien busca amortiguar la cartera y sumar renta, o apostar a que la demanda de electricidad siga creciendo. Es menos útil para quien busca crecimiento rápido o ya tiene mucha renta fija.\n\nLo más importante a seguir: las tasas de interés, la construcción de centros de datos y las decisiones de los reguladores sobre las tarifas.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLU (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de los servicios públicos en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLU y rendimiento de 2022",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLI": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Industria",
+   "titulo": "XLI: la industria de Estados Unidos en un solo fondo, de los aviones a los trenes de carga",
+   "resumen": [
+    "Reúne a las **83 empresas industriales del S&P 500** (aeroespacial y defensa, maquinaria, transporte, equipos eléctricos), con una comisión de **0,08%** anual.",
+    "Es de los fondos de sectores **más repartidos**: las 10 primeras suman solo 37%.",
+    "En 5 años rindió **11,5%** por año, casi lo mismo que el S&P 500 (11,9%); en 1, 3 y 10 años, algo menos."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Industrial Select Sector Index (la industria del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "83"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 29.785 M"
+    ],
+    [
+     "Dividendo",
+     "1,2% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (28 CEDEARs = 1 XLI)"
+    ]
+   ],
+   "intro": "El sector industrial es el que construye y mueve la economía: aviones, motores, armamento, tractores, maquinaria pesada, trenes de carga, equipos eléctricos y servicios para empresas. XLI reúne a las empresas industriales del S&P 500: General Electric, RTX, Caterpillar, GE Vernova, Union Pacific, Deere y Boeing, entre otras.\n\nEs un sector **cíclico**: le va bien cuando la economía crece y las empresas invierten, y sufre en las recesiones. En los últimos 12 meses subió 9,2%, algo menos que el S&P 500 (12,0%).\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo industrial en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLI es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 29.785 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Industrial Select Sector Index, que reúne a las empresas industriales que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nUn dato: incluye empresas que uno no asociaría a la «industria», como **Uber** o **ADP** (liquidación de sueldos), porque la clasificación las ubica en transporte y en servicios profesionales."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en muchas industrias:\n\n[[dona]]\n\nEs un fondo **bien repartido**: la empresa más grande, General Electric, pesa 6% y las 10 primeras suman 37%, mucha menos concentración que en otros fondos de sectores.\n\n[[top10]]\n\nAeroespacial y defensa es la industria más grande (25%), con fabricantes de motores de avión, aviones y misiles como General Electric, RTX y Boeing."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 7,5 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 28 a 1: hacen falta 28 CEDEARs para equivaler a una cuotaparte de XLI. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nAcompañó al mercado bastante de cerca: en 5 años, casi igual (11,5% contra 11,9% por año); en 1, 3 y 10 años, un poco por detrás. Y lo hizo con mucho menos peso en las grandes tecnológicas.\n\nEn las crisis cae con la economía: en 2008-2009 llegó a perder 62% desde su máximo. En 2022, en cambio, aguantó mejor que el mercado: perdió 5,6%, contra 18% del S&P 500."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 1,88 dólares por cuotaparte, un **rendimiento de 1,2%**. Es un dividendo moderado: no es un fondo para vivir de la renta."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene industria**, cerca de 8,1% de ese fondo. Sumar XLI **aumenta el peso** de un sector que ya está.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Apuesta a la economía real y a la inversión**: le va bien cuando las empresas y los gobiernos invierten en fábricas, transporte, defensa y redes eléctricas.\n- **Equilibrio frente a la tecnología**: es un sector muy repartido y con otros motores, para una cartera muy cargada en tecnológicas.\n- **Reemplazo de la selección individual**: en vez de elegir entre Caterpillar, General Electric o Union Pacific, se compra el sector entero.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "Industria",
+    "items": [
+     [
+      "Aeroespacial y defensa",
+      25.14
+     ],
+     [
+      "Maquinaria",
+      19.0
+     ],
+     [
+      "Equipos eléctricos",
+      12.91
+     ],
+     [
+      "Transporte terrestre",
+      10.63
+     ],
+     [
+      "Servicios comerciales",
+      5.5
+     ],
+     [
+      "Servicios profesionales",
+      5.18
+     ],
+     [
+      "Productos para la construcción",
+      5.05
+     ],
+     [
+      "Otras",
+      16.6
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "General Electric",
+     "GE",
+     6.32
+    ],
+    [
+     "RTX",
+     "RTX",
+     5.01
+    ],
+    [
+     "Caterpillar",
+     "CAT",
+     4.93
+    ],
+    [
+     "GE Vernova",
+     "GEV",
+     3.97
+    ],
+    [
+     "Union Pacific",
+     "UNP",
+     3.43
+    ],
+    [
+     "Deere",
+     "DE",
+     3.23
+    ],
+    [
+     "Uber",
+     "UBER",
+     2.72
+    ],
+    [
+     "Boeing",
+     "BA",
+     2.64
+    ],
+    [
+     "Eaton",
+     "ETN",
+     2.46
+    ],
+    [
+     "ADP",
+     "ADP",
+     2.36
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      9.23,
+      11.98
+     ],
+     [
+      "3 años",
+      21.06,
+      23.24
+     ],
+     [
+      "5 años",
+      11.54,
+      11.93
+     ],
+     [
+      "10 años",
+      13.22,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Muy repartido: las 10 primeras suman solo 37%.",
+    "En 5 años rindió casi lo mismo que el S&P 500, con mucho menos peso en tecnología.",
+    "En 2022 cayó mucho menos que el mercado (−5,6% contra −18%)."
+   ],
+   "contras": [
+    "Cíclico: cae fuerte en las recesiones (−62% en 2008-2009).",
+    "En 1, 3 y 10 años rindió algo menos que el S&P 500.",
+    "Dividendo moderado: 1,2% anual.",
+    "Un solo sector: no diversifica la cartera por sí solo."
+   ],
+   "riesgos": [
+    "**Recesión**: si la economía se frena, las empresas posponen la compra de maquinaria, transporte y equipos.",
+    "**Aranceles y comercio**: muchas de estas empresas importan insumos (como el acero) o venden afuera; las trabas comerciales suben costos y frenan ventas.",
+    "**Presupuesto de defensa**: una parte importante depende de los contratos del gobierno de Estados Unidos y de sus aliados.",
+    "**Inteligencia artificial**: parte de las ventas de equipos eléctricos y de generación se apoya en la construcción de centros de datos; si ese gasto se frena, lo sienten."
+   ],
+   "conclusion": "XLI es una forma barata, líquida y bien repartida de invertir en la industria de Estados Unidos, de los aviones a los trenes de carga. Su historia muestra un sector que acompaña al ciclo económico: rinde parecido al mercado en los buenos años y cae fuerte en las recesiones.\n\nEncaja con quien busca darle más peso a la economía «real» y a la inversión en infraestructura y defensa, o equilibrar una cartera muy cargada en tecnología. Es menos útil para quien busca estabilidad en las crisis o renta.\n\nLo más importante a seguir: el crecimiento de la economía, el gasto en defensa y en redes eléctricas, y los aranceles.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLI (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de la industria en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLI y rendimiento de 2022"
+   ]
+  },
+  "XLB": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Materiales",
+   "titulo": "XLB: químicos, metales y materiales de construcción de Estados Unidos en un solo fondo",
+   "resumen": [
+    "Reúne a las **24 empresas de materiales del S&P 500** (químicas, mineras, envases y materiales de construcción), con una comisión de **0,08%** anual.",
+    "En el último año subió **25,4%** (el S&P 500, 12,0%), pero en 3, 5 y 10 años rindió menos que el mercado.",
+    "Pocas empresas (Linde pesa **13%**) y muy ligado al ciclo económico y a los precios de las materias primas."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Materials Select Sector Index (los materiales del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "24"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 8.434 M"
+    ],
+    [
+     "Dividendo",
+     "1,7% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "diciembre de 1998"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (18 CEDEARs = 1 XLB)"
+    ]
+   ],
+   "intro": "El sector de materiales produce lo que otras industrias usan para fabricar: gases industriales, químicos, pinturas, metales, envases, cemento y piedra para la construcción. XLB reúne a las empresas de materiales del S&P 500: Linde, Newmont, Vulcan Materials, Ecolab, Sherwin-Williams, Freeport-McMoRan y Nucor, entre otras.\n\nEs un sector **cíclico** y muy ligado a los precios de las materias primas, como el oro, el cobre y el acero. En los últimos 12 meses subió 25,4%, más del doble que el S&P 500 (12,0%).\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de materiales en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLB es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde diciembre de 1998 y tiene un patrimonio de unos 8.434 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Materials Select Sector Index, que reúne a las empresas de materiales que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible.\n\nMateriales es el sector más chico del S&P 500 (1,8%), y por eso el fondo tiene pocas empresas (24): cada una pesa bastante. **Linde**, la mayor productora de gases industriales del mundo, pesa 13%."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en cuatro industrias:\n\n[[dona]]\n\nCasi la mitad son **químicas** (gases industriales, pinturas, productos para la industria), y el resto se reparte entre metales y minería, envases y materiales de construcción. Las 10 primeras suman 59%.\n\n[[top10]]\n\nUn detalle: incluye a **Newmont**, la mayor productora de oro del mundo, y a **Freeport-McMoRan**, una de las mayores de cobre. Parte del fondo se mueve con el precio de esos metales."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 11,6 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 18 a 1: hacen falta 18 CEDEARs para equivaler a una cuotaparte de XLB. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 31/10/2026):\n\n[[rend]]\n\nEl último año fue muy bueno, pero en 3, 5 y 10 años quedó claramente por detrás del mercado.\n\nEs un sector que sufre en las crisis: en 2008-2009 llegó a perder 60% desde su máximo, y en 2022 perdió 12,3%, algo menos que el S&P 500 (−18%)."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 0,86 dólares por cuotaparte, un **rendimiento de 1,7%**. Es un dividendo moderado: no es un fondo para vivir de la renta."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) tiene muy poco de materiales**, cerca de 1,8% de ese fondo. Sumar XLB sí cambia el perfil de la cartera.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Apuesta al ciclo económico y a la construcción**: le va bien cuando crecen la industria, la obra pública y la vivienda.\n- **Exposición a materias primas a través de empresas**: oro, cobre y acero, sin comprar el metal directamente.\n- **Cobertura parcial frente a la inflación**: cuando suben los precios de las materias primas, a muchas de estas empresas les va mejor.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "Materiales",
+    "items": [
+     [
+      "Químicas",
+      47.17
+     ],
+     [
+      "Metales y minería",
+      20.12
+     ],
+     [
+      "Envases",
+      17.69
+     ],
+     [
+      "Materiales de construcción",
+      15.01
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Linde",
+     "LIN",
+     13.14
+    ],
+    [
+     "Newmont",
+     "NEM",
+     6.9
+    ],
+    [
+     "Vulcan Materials",
+     "VMC",
+     5.26
+    ],
+    [
+     "Ecolab",
+     "ECL",
+     5.18
+    ],
+    [
+     "Sherwin-Williams",
+     "SHW",
+     5.01
+    ],
+    [
+     "CRH",
+     "CRH",
+     4.92
+    ],
+    [
+     "Air Products",
+     "APD",
+     4.83
+    ],
+    [
+     "Martin Marietta",
+     "MLM",
+     4.79
+    ],
+    [
+     "Freeport-McMoRan",
+     "FCX",
+     4.55
+    ],
+    [
+     "Nucor",
+     "NUE",
+     4.39
+    ]
+   ],
+   "rend": {
+    "al": "31/10/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      25.39,
+      11.98
+     ],
+     [
+      "3 años",
+      13.67,
+      23.24
+     ],
+     [
+      "5 años",
+      6.47,
+      11.93
+     ],
+     [
+      "10 años",
+      10.65,
+      15.29
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "En el último año subió 25,4%.",
+    "Da exposición a oro, cobre, químicos y construcción en un solo fondo.",
+    "Líquido y fácil de comprar como CEDEAR."
+   ],
+   "contras": [
+    "En 3, 5 y 10 años rindió menos que el S&P 500.",
+    "Cíclico: −60% en 2008-2009.",
+    "Pocas empresas (24) y Linde pesa 13%.",
+    "Depende de precios de materias primas que las empresas no controlan."
+   ],
+   "riesgos": [
+    "**Recesión**: con menos construcción y menos producción industrial, cae la demanda de químicos, metales y cemento.",
+    "**Precios de las materias primas**: una baja del oro o del cobre pega directo en Newmont y Freeport.",
+    "**China**: es el mayor comprador de metales del mundo; si su economía se frena, bajan los precios.",
+    "**Costos de la energía**: las químicas usan mucho gas y electricidad; con la energía cara, ganan menos."
+   ],
+   "conclusion": "XLB es una forma barata y líquida de invertir en los materiales básicos de Estados Unidos, de los gases industriales al cobre. Su historia muestra un sector cíclico: años muy buenos cuando la economía y las materias primas acompañan, y caídas fuertes en las recesiones.\n\nEncaja con quien busca darle más peso al ciclo económico, a la construcción o a las materias primas a través de empresas. Es menos útil para quien busca estabilidad, renta o un crecimiento parejo de largo plazo.\n\nLo más importante a seguir: la economía de Estados Unidos y de China, los precios del oro y del cobre, y el peso de Linde.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLB (rendimientos al 31/10/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 31/10/2026 y peso de los materiales en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLB y rendimiento de 2022"
+   ]
+  },
+  "XLRE": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Inmobiliario",
+   "titulo": "XLRE: los inmuebles de Estados Unidos en un solo fondo, entre centros de datos, salud y tasas altas",
+   "resumen": [
+    "Reúne a las **30 empresas inmobiliarias del S&P 500** (torres de celulares, centros de datos, depósitos, residencias para mayores, shoppings y viviendas), con una comisión de **0,08%** anual.",
+    "Paga el dividendo más alto de los fondos de sectores de State Street: **3,3%** anual.",
+    "Muy sensible a las tasas: en 10 años rindió **5,8%** por año, contra 15,2% del S&P 500 (al 30/09/2026)."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Real Estate Select Sector Index (el sector inmobiliario del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "30"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 8.413 M"
+    ],
+    [
+     "Dividendo",
+     "3,3% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "octubre de 2015"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (9 CEDEARs = 1 XLRE)"
+    ]
+   ],
+   "intro": "XLRE invierte en **REITs**: empresas dueñas de inmuebles que viven de alquilarlos y que, por ley, tienen que repartir la mayor parte de lo que ganan como dividendos. No son solo edificios: hay torres de telefonía celular, centros de datos, depósitos de logística, residencias para adultos mayores, shoppings, viviendas en alquiler y bauleras.\n\nEs el sector más sensible a las **tasas de interés**: los inmuebles se compran con deuda y los dividendos compiten con los bonos. Con la Reserva Federal volviendo a subir su tasa en septiembre de 2026 y el bono a 10 años cerca de 5%, el sector viene de años difíciles: en 5 años rindió apenas 1,8% por año.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo inmobiliario en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLRE es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde octubre de 2015 y tiene un patrimonio de unos 8.413 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Real Estate Select Sector Index, que reúne a las empresas inmobiliarias que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte así entre tipos de inmuebles:\n\n[[dona]]\n\nEl grupo más grande son los **REITs especializados** (40%): torres de celulares como American Tower, centros de datos como Equinix y Digital Realty, y bauleras como Public Storage. Después vienen los de **salud** (18%), con Welltower y Ventas, dueñas de residencias para adultos mayores. Las 10 primeras suman 59%, y Welltower, la más grande, pesa casi 12%.\n\n[[top10]]\n\nLas **oficinas**, el segmento más castigado después de la pandemia por el trabajo a distancia, pesan apenas 1%."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 6,6 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 9 a 1: hacen falta 9 CEDEARs para equivaler a una cuotaparte de XLRE. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 30/09/2026, el último dato publicado):\n\n[[rend]]\n\nQuedó muy por detrás del mercado en todos los plazos: en 10 años, 5,8% por año contra 15,2% del S&P 500.\n\nEl golpe más fuerte fue la suba de tasas: en 2022 perdió 26,3% (el S&P 500, 18%). Su peor caída desde que existe fue de 39%."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 1,44 dólares por cuotaparte, un **rendimiento de 3,3%**, el más alto de los fondos de sectores de State Street. Es el reflejo de la regla de los REITs: repartir la mayor parte de lo que ganan."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) tiene muy poco de inmuebles**, cerca de 1,9% de ese fondo. Sumar XLRE sí cambia el perfil de la cartera.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Renta**: un dividendo de 3,3% anual, el más alto entre los sectores.\n- **Inmuebles sin comprar un inmueble**: con poco dinero se es dueño de una parte de miles de propiedades en Estados Unidos.\n- **Diversificación dentro de los inmuebles**: torres, centros de datos, salud, logística y viviendas tienen motores distintos.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. Hay que tener en cuenta que tiende a subir cuando bajan las tasas y a sufrir cuando suben."
+    }
+   ],
+   "dona": {
+    "centro1": "Tipos de inmuebles",
+    "centro2": "Inmobiliario",
+    "items": [
+     [
+      "Especializados (torres, centros de datos, bauleras)",
+      39.83
+     ],
+     [
+      "Salud",
+      18.24
+     ],
+     [
+      "Comercios y shoppings",
+      13.49
+     ],
+     [
+      "Viviendas",
+      11.81
+     ],
+     [
+      "Industriales y logística",
+      7.99
+     ],
+     [
+      "Servicios inmobiliarios",
+      5.67
+     ],
+     [
+      "Hoteles",
+      1.84
+     ],
+     [
+      "Oficinas",
+      1.14
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Welltower",
+     "WELL",
+     11.55
+    ],
+    [
+     "Prologis",
+     "PLD",
+     7.98
+    ],
+    [
+     "Equinix",
+     "EQIX",
+     6.43
+    ],
+    [
+     "American Tower",
+     "AMT",
+     5.9
+    ],
+    [
+     "Public Storage",
+     "PSA",
+     5.08
+    ],
+    [
+     "Simon Property",
+     "SPG",
+     4.87
+    ],
+    [
+     "Vivmark Residential",
+     "VMRK",
+     4.41
+    ],
+    [
+     "Ventas",
+     "VTR",
+     4.38
+    ],
+    [
+     "Realty Income",
+     "O",
+     4.35
+    ],
+    [
+     "CBRE",
+     "CBRE",
+     4.24
+    ]
+   ],
+   "rend": {
+    "al": "30/09/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      0.42,
+      15.6
+     ],
+     [
+      "3 años",
+      9.97,
+      22.73
+     ],
+     [
+      "5 años",
+      1.76,
+      13.65
+     ],
+     [
+      "10 años",
+      5.84,
+      15.18
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "El dividendo más alto de los fondos de sectores: 3,3% anual.",
+    "Diversifica dentro de los inmuebles: torres, centros de datos, salud, logística y viviendas.",
+    "Acceso a inmuebles de Estados Unidos con muy poco dinero."
+   ],
+   "contras": [
+    "Muy sensible a las tasas de interés.",
+    "En 1, 3, 5 y 10 años rindió mucho menos que el S&P 500.",
+    "En 2022 cayó más que el mercado (−26,3% contra −18%).",
+    "Welltower pesa casi 12% y las 10 primeras, 59%."
+   ],
+   "riesgos": [
+    "**Tasas de interés**: el riesgo principal. Con la Reserva Federal subiendo y el bono a 10 años cerca de 5%, la deuda de los REITs se encarece y sus dividendos atraen menos.",
+    "**Refinanciación**: los REITs viven de pedir prestado; cuando vencen sus deudas, las renuevan a tasas más altas.",
+    "**Centros de datos**: Equinix y otros dueños de centros de datos dependen de la demanda de la inteligencia artificial; si ese gasto se frena, lo sienten.",
+    "**Comercios y oficinas**: las compras por internet y el trabajo a distancia siguen presionando a shoppings y oficinas."
+   ],
+   "conclusion": "XLRE es una forma barata y líquida de invertir en los inmuebles de Estados Unidos, con un dividendo alto y una cartera variada que va de las torres de celulares a las residencias para adultos mayores. Su historia reciente muestra su punto débil: cuando suben las tasas, el sector sufre.\n\nEncaja con quien busca renta y una porción de inmuebles en la cartera sin comprar una propiedad. Es menos útil para quien busca crecimiento o ya tiene mucho de su cartera expuesto a las tasas (por ejemplo, en bonos largos).\n\nLo más importante a seguir: la tasa de la Reserva Federal y el bono a 10 años, la demanda de centros de datos y la refinanciación de las deudas del sector.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLRE (rendimientos al 30/09/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 30/09/2026 y peso de el sector inmobiliario en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLRE y rendimiento de 2022",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  },
+  "XLC": {
+   "fecha": "08/11/2026",
+   "etiqueta": "ETF · USA según Sectores · Comunicaciones",
+   "titulo": "XLC: Meta, Google, el entretenimiento y las telefónicas de Estados Unidos en un solo fondo",
+   "resumen": [
+    "Reúne a las **22 empresas de comunicaciones del S&P 500** (redes sociales, buscadores, entretenimiento y telefonía), con una comisión de **0,08%** anual.",
+    "**Muy concentrado**: Meta y Alphabet (Google) suman 40% del fondo.",
+    "En 3 años rindió **20,5%** por año, cerca del S&P 500; en el último año perdió 5,1% (al 30/09/2026)."
+   ],
+   "datos_clave": [
+    [
+     "Qué replica",
+     "Communication Services Select Sector Index (las comunicaciones del S&P 500)"
+    ],
+    [
+     "Empresas",
+     "22"
+    ],
+    [
+     "Comisión anual",
+     "0,08% (8 dólares por año cada 10.000)"
+    ],
+    [
+     "Patrimonio",
+     "US$ 21.566 M"
+    ],
+    [
+     "Dividendo",
+     "1,3% anual, cada 3 meses"
+    ],
+    [
+     "Desde",
+     "junio de 2018"
+    ],
+    [
+     "Cómo se compra acá",
+     "CEDEAR (19 CEDEARs = 1 XLC)"
+    ]
+   ],
+   "intro": "El sector de comunicaciones mezcla dos mundos: las grandes plataformas de internet (Meta, con Facebook, Instagram y WhatsApp; Alphabet, con Google y YouTube) y las empresas tradicionales de telefonía, cable y entretenimiento (Verizon, AT&T, T-Mobile, Comcast, Disney). XLC reúne a las del S&P 500.\n\nExiste desde 2018, cuando se reordenó la clasificación de sectores y pasaron a este sector empresas que antes estaban en tecnología (Alphabet, Meta) y en consumo (Disney, Comcast, Netflix). En 3 años rindió 20,5% por año, pero en el último año perdió 5,1% (al 30/09/2026). En octubre se sumaron dudas: Meta cayó 7% el 22/10 tras informar su primer flujo de caja negativo en más de una década, por lo que está gastando en inteligencia artificial.\n\nLa pregunta, entonces: ¿qué rol puede cumplir un fondo de comunicaciones en una cartera, y qué hay que saber antes de sumarlo?",
+   "secciones": [
+    {
+     "titulo": "Qué es y qué replica",
+     "texto": "XLC es un **ETF**: un fondo que cotiza en bolsa como una acción y que, por dentro, tiene una canasta de empresas. Lo administra State Street desde junio de 2018 y tiene un patrimonio de unos 21.566 millones de dólares.\n\nNo elige empresas: **copia un índice**, el Communication Services Select Sector Index, que reúne a las empresas de comunicaciones que forman parte del S&P 500. Cada una pesa según su tamaño en bolsa, con topes para que ninguna supere ciertos límites. Por eso se lo llama de **gestión pasiva**: el fondo no intenta ganarle al índice, intenta parecerse lo más posible."
+    },
+    {
+     "titulo": "Qué tenés adentro",
+     "texto": "Se reparte en cinco industrias:\n\n[[dona]]\n\nLo más importante es la **concentración**: Meta pesa 21% y Alphabet, con sus dos tipos de acciones, 19%; entre las dos, 40% del fondo. Las 10 primeras suman 75%.\n\n[[top10]]\n\nAlphabet aparece dos veces porque cotiza con dos clases de acciones, una con voto (GOOGL) y otra sin voto (GOOG): es la misma empresa."
+    },
+    {
+     "titulo": "Cuánto cuesta y cómo se compra",
+     "texto": "La **comisión anual es de 0,08%**: por cada 10.000 dólares invertidos, el fondo se queda con 8 dólares por año. Es de las más bajas del mercado y no se paga aparte, se descuenta sola del valor del fondo.\n\nEs muy **líquido**: se negocian en promedio unos 6,0 millones de cuotapartes por día en Estados Unidos, así que el precio de compra y el de venta están muy cerca.\n\nEn Argentina se compra como **CEDEAR**, con un ratio de 19 a 1: hacen falta 19 CEDEARs para equivaler a una cuotaparte de XLC. Como todo CEDEAR, su precio en pesos sigue al del fondo en dólares y al dólar CCL."
+    },
+    {
+     "titulo": "Rendimiento y riesgo",
+     "texto": "Así le fue, por año y en dólares, contra el S&P 500 (al 30/09/2026, el último dato publicado; todavía no cumplió 10 años):\n\n[[rend]]\n\nEn 3 años acompañó al mercado de cerca, pero en 1 y 5 años quedó por detrás.\n\nLas caídas pueden ser fuertes: en 2022 perdió 37,6%, el doble que el S&P 500 (−18%), cuando Meta llegó a perder más de 70% de su valor. Entre 2021 y 2022, el fondo llegó a caer 47% desde su máximo."
+    },
+    {
+     "titulo": "Dividendos",
+     "texto": "Paga dividendos **cada tres meses**. En los últimos 12 meses pagó 1,38 dólares por cuotaparte, un **rendimiento de 1,3%**. Las telefónicas (Verizon, AT&T) pagan dividendos altos; Meta y Alphabet, bajos."
+    },
+    {
+     "titulo": "El rol en la cartera",
+     "texto": "Lo primero que hay que saber: **quien ya tiene un fondo del S&P 500 (como SPY) ya tiene comunicaciones**, cerca de 8,8% de ese fondo. Sumar XLC **aumenta el peso** de un sector que ya está, y sobre todo el de Meta y Alphabet.\n\nCon eso en mente, suele cumplir alguno de estos roles:\n\n- **Acceso a las grandes plataformas de internet**: publicidad digital, redes sociales, buscadores y video.\n- **Mezcla de crecimiento y renta**: plataformas que crecen junto con telefónicas que pagan dividendos.\n- **Reemplazo de la selección individual**: en vez de elegir entre Meta, Alphabet o Disney, se compra el sector entero.\n\nPor lo general, un ETF sectorial funciona como **complemento** y no como base de la cartera: la base suele ser un fondo amplio del mercado. Quien ya tiene Meta o Alphabet por separado, o un fondo como QQQ, suma con XLC todavía más peso en ellas."
+    }
+   ],
+   "dona": {
+    "centro1": "Industrias",
+    "centro2": "Comunicaciones",
+    "items": [
+     [
+      "Plataformas de internet (Meta, Alphabet)",
+      42.2
+     ],
+     [
+      "Entretenimiento",
+      20.69
+     ],
+     [
+      "Medios",
+      18.48
+     ],
+     [
+      "Telefonía fija y cable",
+      14.09
+     ],
+     [
+      "Telefonía móvil",
+      4.54
+     ]
+    ]
+   },
+   "top10": [
+    [
+     "Meta Platforms",
+     "META",
+     20.76
+    ],
+    [
+     "Alphabet (clase A)",
+     "GOOGL",
+     10.73
+    ],
+    [
+     "Alphabet (clase C)",
+     "GOOG",
+     8.66
+    ],
+    [
+     "AppLovin",
+     "APP",
+     5.84
+    ],
+    [
+     "Disney",
+     "DIS",
+     5.63
+    ],
+    [
+     "Comcast",
+     "CMCSA",
+     5.07
+    ],
+    [
+     "Take-Two Interactive",
+     "TTWO",
+     5.05
+    ],
+    [
+     "Verizon",
+     "VZ",
+     4.64
+    ],
+    [
+     "T-Mobile",
+     "TMUS",
+     4.53
+    ],
+    [
+     "AT&T",
+     "T",
+     4.34
+    ]
+   ],
+   "rend": {
+    "al": "30/09/2026",
+    "ref": "S&P 500 (SPY)",
+    "filas": [
+     [
+      "1 año",
+      -5.12,
+      15.6
+     ],
+     [
+      "3 años",
+      20.52,
+      22.73
+     ],
+     [
+      "5 años",
+      7.85,
+      13.65
+     ]
+    ]
+   },
+   "pros": [
+    "Comisión muy baja: 0,08% por año.",
+    "Reúne a las grandes plataformas de internet y a las telefónicas en un solo fondo.",
+    "En 3 años rindió 20,5% por año.",
+    "Líquido y fácil de comprar como CEDEAR."
+   ],
+   "contras": [
+    "Muy concentrado: Meta y Alphabet suman 40%.",
+    "Caídas fuertes: −37,6% en 2022.",
+    "En 1 y 5 años rindió menos que el S&P 500.",
+    "Se superpone con fondos como SPY o QQQ, que ya tienen a Meta y Alphabet."
+   ],
+   "riesgos": [
+    "**Gasto en inteligencia artificial**: Meta y Alphabet invierten cifras enormes en centros de datos; si ese gasto no da las ganancias esperadas, el mercado los castiga (Meta cayó 7% el 22/10/2026).",
+    "**Publicidad**: la mayor parte de lo que ganan Meta y Alphabet viene de la publicidad, que cae cuando la economía se frena.",
+    "**Regulación y juicios**: las grandes plataformas enfrentan juicios por competencia y reglas sobre privacidad en Estados Unidos y en Europa.",
+    "**Telefónicas**: crecen poco y tienen mucha deuda; con tasas altas, eso pesa."
+   ],
+   "conclusion": "XLC es una forma barata y líquida de invertir en las grandes plataformas de internet y en las telecomunicaciones de Estados Unidos, aunque en la práctica casi la mitad depende de Meta y Alphabet. Su historia es corta, pero muestra las dos caras: muy buenos años cuando la publicidad digital crece y caídas fuertes cuando el mercado duda de esas empresas.\n\nEncaja con quien busca darle más peso a internet y al entretenimiento sin elegir empresa por empresa. Es menos útil para quien ya tiene Meta y Alphabet, directamente o a través de un fondo amplio.\n\nLo más importante a seguir: el gasto de Meta y Alphabet en inteligencia artificial, el mercado de la publicidad y los juicios por competencia.",
+   "fuentes": [
+    "State Street Investment Management, ficha de XLC (rendimientos al 30/09/2026; patrimonio, cantidad de empresas, industrias y principales posiciones al 05/11/2026): ssga.com",
+    "State Street, ficha de SPY (rendimientos al 30/09/2026 y peso de las comunicaciones en el S&P 500 al 05/11/2026): ssga.com",
+    "Yahoo Finance (dividendos, precio y volumen, 07/11/2026)",
+    "PortfoliosLab, caída máxima histórica de XLC y rendimiento de 2022",
+    "Resumen de mercado de TodoCedears al 29/10/2026 (tasas, inflación, petróleo y bolsa), armado con fuentes públicas"
+   ]
+  }
+ }
+}
