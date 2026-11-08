@@ -29,6 +29,6 @@ e = [{"ticker": "ZZZ", "nombre": "Prueba"}]
 chk([x["ticker"] for x in I.miembros("altos", df.iloc[0:0], etfs=e, etfs_datos={"ZZZ": {"rendimiento": 5.0, "precio": 10}}, listas=L, precios_etfs={"ZZZ": 10})] == ["ZZZ"]
     and not I.miembros("altos", df.iloc[0:0], etfs=e, etfs_datos={"ZZZ": {"rendimiento": 5.0, "precio": 10}}, listas=L, precios_etfs={"ZZZ": 20}), "ETF entra o sale según el precio")
 h = I.lista_html("reyes", I.miembros("reyes", df, listas=L), L)
-chk("Div. Yield" in h and "08/11/2026" in h and "Años seguidos" in h, "tabla de Reyes con años y rendimiento")
+chk("Dividend Yield" in h and "08/11/2026" in h and "Años seguidos" in h, "tabla de Reyes con años y rendimiento")
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)

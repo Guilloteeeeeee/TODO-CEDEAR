@@ -144,7 +144,7 @@ def obtener(esperar=8.0, indices_fn=None, dolares_fn=None):
 CSS_BARRA = """
 .mk-bar{width:100vw;margin-left:calc(50% - 50vw);background:#fff;border-bottom:1px solid #e3e8ee;box-sizing:border-box}
 .mk-in{display:flex;gap:0;overflow-x:auto;scrollbar-width:thin;padding:0 clamp(8px,2vw,32px);-webkit-overflow-scrolling:touch}
-.mk-it{flex:none;display:flex;flex-direction:column;gap:1px;padding:7px 18px 7px 0;margin-right:18px;border-right:1px solid #eef1f5;white-space:nowrap;line-height:1.25}
+.mk-it{flex:none;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1px;padding:7px 18px;border-right:1px solid #eef1f5;white-space:nowrap;line-height:1.25}   /* v1.5.47: título, número y variación centrados */
 .mk-it:nth-last-child(2){border-right:0}
 .mk-n{font-size:.78rem;font-weight:700;color:#1d4ed8}
 .mk-v{font-size:.95rem;font-weight:700;color:#111827}

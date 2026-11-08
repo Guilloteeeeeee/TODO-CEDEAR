@@ -1701,6 +1701,36 @@ def tab_estados(est, ticker=None):
     return _env(*tiles) if tiles else vacio
 
 
+PARTES_ESTADOS = [("resultados", "Estado de Resultados", "#0ea5e9"), ("balance", "Balance", "#6366f1"), ("flujo", "Estado de Flujo de Efectivo", "#14b8a6"),
+                  ("ratios", "Ratios Financieros", "#f59e0b")]
+
+
+def tab_estados_parte(est, clave, ticker=None):
+    """v1.5.47 (Guille): una subsolapa de «Estados Financieros»: arriba los gráficos de esa parte (ui/estados_visual.py) y debajo su tabla de siempre."""
+    from ui import estados_visual as _ev
+    titulo, color = next(((t, c) for k, t, c in PARTES_ESTADOS if k == clave), (clave, "#0ea5e9"))
+    if not est or not est.get(clave):
+        return _env(_tile("s12", titulo, '<div class="fch-sub" style="margin:0">No disponible por ahora.</div>', ac=color))
+    moneda = est.get("moneda")
+    if moneda and moneda != "USD":
+        nota = f"Cifras en {html.escape(str(moneda))}, la moneda en que la empresa informa (no se convierten a dólares)."
+    else:
+        nota = "Cifras en dólares: T = billones, B = miles de millones, M = millones."
+    nota += (" En los gráficos, las barras celestes son los últimos años fiscales y la oscura, los últimos 12 meses; la línea punteada es una referencia general, "
+             "que cambia según el tipo de negocio.")
+    post = ""
+    ind = None
+    if clave == "ratios":
+        post = ('<div class="fch-nota" style="margin:8px 0 0">ROIC = resultado operativo × (1 − tasa de impuesto) ÷ capital invertido (deuda + patrimonio, según Yahoo): '
+                "cuánto gana la empresa por cada dólar puesto en el negocio. ROE = resultado neto ÷ patrimonio. Con cifras de fin de período, no promedios.</div>")
+        ind, nota_ind = _industria_ratios(ticker)
+        if nota_ind:
+            post += f'<div class="fch-nota" style="margin:6px 0 0">{nota_ind}</div>'
+    graf = _ev.graficos_html(est, clave)
+    return (f"<style>{_ev.CSS}</style>" + f'<div class="fch-nota" style="margin:0 0 10px">{nota}</div>' + graf
+            + _env(_tile("s12", titulo, _tabla_estado_html(est[clave], moneda, ind) + post, ac=color)))
+
+
 def tab_gobierno(g):
     """Compatibilidad: directivos y accionariado juntos."""
     return tab_directivos(g) + tab_accionariado(g)

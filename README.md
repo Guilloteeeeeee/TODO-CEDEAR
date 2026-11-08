@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.47 — Atrás · Inicio, Ideas con la estética de la tabla, estados financieros visuales
+- **«← Atrás · ⌂ Inicio»** en azul en todas las páginas (fichas de empresa y ETF, Ideas, Mapa de Calor, Evalúa tu Portfolio, Quiénes Somos). «Atrás» vuelve a la página anterior del sitio (historial del navegador, `SCRIPT_ATRAS`); si se entró directo, va a la página madre. Reemplaza «← Volver a…» y «Volver al inicio» (`nav_html` en ui/marca.py).
+- **Ideas de Inversión**: tablas con la estética de la principal (títulos celestes centrados, explicación al pasar el mouse, orden al tocar el título con `?orden=&dir=`), columnas Valoración, Puntaje de calidad y Dividend Yield; en Dividendos Altos, columna «Tipo» (Empresa / ETF); tipografía de la app.
+- **Estados Financieros**: subsolapas Estado de Resultados · Balance · Estado de Flujo de Efectivo · Ratios Financieros; en cada una, 6 gráficos de barras (4 años + últimos 12 meses, con explicación y referencia) y la tabla debajo (`ui/estados_visual.py`, `tab_estados_parte`).
+- Barra de mercados: título, número y variación centrados.
+- Datos: `paquetes_yahoo.json` (estados de las 323) y `fichas.json` (323) del 08/11/2026.
+- Pruebas: `tests/test_v1547_nav_estados.py`.
+
 ### v1.5.46 — Competidores de un vistazo, Ideas más arriba y cache nuevo
 - **Competidores** (decisión de Guille, 08/11/2026): Empresa · Ventas (crecimiento anual, 3 años) · EPS (crecimiento anual, 3 años) · Margen operativo · ROIC · Deuda neta / EBITDA · Dividend Yield · Score de calidad · Valoración. Se sacan P/E, EV/EBITDA, P/FCF y capitalización. Los números van centrados y se pintan contra el propio grupo: verde el mejor tercio, rojo el peor. Salen de los estados guardados (`data/paquetes_yahoo.json`, `metricas_competidor` en ui/ficha.py).
 - **Ideas de Inversión**: orden Reyes · Aristócratas · Aspirantes · Dividendos Altos · Fundamentales Fuertes; el título y «Volver al inicio» en la misma fila, mosaicos más compactos (entran casi enteros en la pantalla).

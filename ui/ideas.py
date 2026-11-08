@@ -126,12 +126,31 @@ a.id-t:hover{box-shadow:0 10px 28px rgba(15,23,42,.12);transform:translateY(-2px
 .id-d{font-size:1rem;line-height:1.45;color:#334155;max-width:330px}
 .id-c{font-size:.95rem;color:#94a3b8}
 .id-vol{display:inline-flex;align-items:center;gap:6px;font-weight:700;color:#1f2937!important;text-decoration:none!important}
-.id-tab{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e3e8ee;border-radius:12px;overflow:hidden}
-.id-tab th{background:#111827;color:#fff;font-size:.86rem;font-weight:700;text-align:left;padding:10px 12px}
-.id-tab td{padding:9px 12px;border-top:1px solid #eef1f5;vertical-align:middle;font-size:.95rem}
-.id-tab tr:nth-child(even) td{background:#f8fafc}
-.id-tab td.id-num,.id-tab th.id-num{text-align:right;font-weight:700;white-space:nowrap}
-.id-tab .tv-vl{text-align:left}
+.id-tw{border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.05),0 8px 22px rgba(15,23,42,.07);background:#fff}
+.id-tab{width:100%;border-collapse:separate;border-spacing:0;background:#fff;border-radius:14px}
+.id-tab thead th{background:#d3e6fa;color:#1e3a5f;font-size:14.5px;font-weight:600;text-align:center;padding:0;position:relative;vertical-align:middle}
+.id-tab thead th:first-child{border-radius:14px 0 0 0}.id-tab thead th:last-child{border-radius:0 14px 0 0}
+.id-tab thead th a{display:flex;align-items:center;justify-content:center;gap:5px;min-height:46px;padding:4px 8px;color:#1e3a5f!important;text-decoration:none!important;line-height:1.2}
+.id-tab thead th a:hover{background:rgba(30,64,120,.10)}
+.id-fl{font-size:9px;opacity:.45}.id-on .id-fl{font-size:10px;opacity:1}
+.id-tab thead th[data-tip]:hover::after{content:attr(data-tip);position:absolute;top:calc(100% + 6px);left:50%;margin-left:-135px;width:270px;box-sizing:border-box;z-index:300;
+  background:#1f2937;color:#fff;font-size:.8rem;font-weight:400;line-height:1.4;text-align:left;white-space:normal;padding:9px 12px;border-radius:8px;
+  box-shadow:0 8px 22px rgba(15,23,42,.35);pointer-events:none;animation:idtip .16s ease .3s both}
+.id-tab thead th.id-tip-izq:hover::after{left:0;margin-left:0}.id-tab thead th.id-tip-der:hover::after{left:auto;right:0;margin-left:0}
+@keyframes idtip{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.id-tab td{padding:9px 12px;border-top:1px solid #eef1f5;vertical-align:middle;font-size:14.5px;text-align:center}
+.id-tab tbody tr:nth-child(even) td{background:#f6f9fc}
+.id-tab td.id-c-nombre,.id-tab td.id-c-sector{text-align:left}
+.id-tab tbody tr:last-child td:first-child{border-radius:0 0 0 14px}.id-tab tbody tr:last-child td:last-child{border-radius:0 0 14px 0}
+.id-tab .tv2-vc{text-align:center}.id-tab .tv2-vc *{white-space:nowrap}
+.id-tab .tv-score{width:auto;min-width:54px;border:0;border-radius:999px;background:#e9edf2;padding:3px 12px 4px;overflow:visible;margin:0 auto}
+.id-tab .tv-num{font-size:19px;line-height:22px;font-weight:700;color:#1f2937}
+.id-tab .tv-met{background:transparent!important;color:#6b7280;font-size:10.5px;line-height:12px}
+.id-tab th.id-c-tipo,.id-tab th.id-c-score,.id-tab th.id-c-dy,.id-tab th.id-c-anios{width:1%}
+.id-tab th.id-c-tipo a,.id-tab th.id-c-score a,.id-tab th.id-c-dy a,.id-tab th.id-c-anios a{white-space:nowrap}
+.id-nd{color:#9ca3af}
+.id-tipo{display:inline-block;font-size:.78rem;font-weight:700;border-radius:999px;padding:3px 10px;background:#eef2f7;color:#334155}
+.id-tipo-etf{background:#e0f2fe;color:#075985}
 .id-nota{font-size:.88rem;color:#64748b;margin-top:12px;line-height:1.5;text-align:justify}
 .id-cab{display:flex;align-items:center;gap:16px;margin:2px 0 12px}
 .id-cab .id-ic{height:76px}.id-cab .id-ic svg{width:84px;height:76px}.id-cab .id-ic img{height:72px}
@@ -142,7 +161,7 @@ a.id-t:hover{box-shadow:0 10px 28px rgba(15,23,42,.12);transform:translateY(-2px
 .id-etf{font-size:.72rem;font-weight:800;background:#e0f2fe;color:#075985;border-radius:999px;padding:2px 7px;margin-left:6px}
 .id-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 2px}   /* v1.5.46: título (o «← Ideas») y la casita en la misma fila, más arriba */
 .id-top .vol-ini{flex:none}
-@media (max-width:900px){.id-g{grid-template-columns:1fr}.id-w{margin-top:-20px}.id-tab th.id-sec,.id-tab td.id-sec{display:none}}
+@media (max-width:900px){.id-g{grid-template-columns:1fr}.id-w{margin-top:-20px}.id-tw{overflow-x:auto}.id-tab .id-c-sector,.id-tab .id-c-score{display:none}.id-tab td,.id-tab thead th a{padding-left:6px;padding-right:6px;font-size:13px}}
 """
 
 
@@ -164,47 +183,115 @@ def mosaicos_html(conteos):
         t.append(f'<a class="id-t" href="?pagina=ideas&lista={x["clave"]}" target="_self"><div class="id-ic">{_icono(x["clave"])}</div>'
                  f'<span class="id-tt">{html.escape(x["titulo"])}</span><span class="id-d">{html.escape(x["desc"])}</span>'
                  f'<span class="id-c">{n} {unidad}</span></a>')
-    return (f'<div class="id-w"><div class="id-top"><h2>Ideas de Inversión</h2>{CASITA}</div><p class="id-sub">Listas de empresas y ETFs agrupadas por tema. Tocá una para ver quiénes la forman.</p>'
+    return (f'<div class="id-w"><h2>Ideas de Inversión</h2><p class="id-sub">Listas de empresas y ETFs agrupadas por tema. Tocá una para ver quiénes la forman.</p>'
             f'<div class="id-g">{"".join(t)}</div>'
             '<p class="id-nota">Información con fines educativos: no es una recomendación de compra ni de venta. Cada lista muestra solo las empresas y ETFs '
             'que cotizan como CEDEAR y están en TodoCedears.</p></div>')
 
 
-def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None, celda_categoria=None, logo_etf=None):
-    """Tabla de la lista. Las celdas de empresa, sector y valoración se reciben de ui/tabla_visual.py (mismo aspecto que la tabla principal)."""
+# v1.5.47 (Guille): las tablas de Ideas con la misma estética que la tabla principal (títulos celestes centrados, explicación al pasar el mouse,
+# orden al tocar el título) y, en las listas que mezclan empresas y ETFs, una columna «Tipo».
+AYUDAS = {
+    "nombre": ("Empresa", "Presioná en la empresa (o en el ETF) para ver su información detallada."),
+    "tipo": ("Tipo", "Si es una empresa (acción, vía CEDEAR) o un ETF (un fondo que reúne muchas acciones o bonos)."),
+    "sector": ("Sector e Industria", "A qué se dedica la empresa: su sector y su industria. En los ETFs, su categoría."),
+    "anios": ("Años seguidos aumentando", "Cuántos años seguidos la empresa aumentó su dividendo, según la lista de referencia."),
+    "calidad": ("Calidad del negocio", "La calidad que le asigna el Análisis Fundamental de la empresa."),
+    "valoracion": ("Valoración", "Una estimación, no una recomendación: si la empresa cotiza barata, razonable o cara frente a sus propios múltiplos históricos."),
+    "score": ("Puntaje de calidad", "De 0 (más cara) a 100 (más barata), el puntaje de la tabla principal. Abajo, cuántas métricas se pudieron usar."),
+    "dy": ("Dividend Yield", "El dividendo anual dividido por el precio de hoy: cuánto rinde por año en dividendos lo que pagás hoy por la acción o el ETF."),
+}
+_ORDEN_CAL = {"Excelente": 3, "Muy buena": 2, "Buena": 1}
+
+
+def columnas_lista(clave):
+    """Columnas de cada lista, en orden (claves de AYUDAS)."""
+    c = ["nombre"] + (["tipo"] if clave == "altos" else []) + ["sector"]
+    c += {"reyes": ["anios"], "aristocratas": ["anios"], "fundamentales": ["calidad"]}.get(clave, [])
+    return c + ["valoracion", "score", "dy"]
+
+
+def orden_inicial(clave):
+    return {"reyes": ("anios", False), "aristocratas": ("anios", False), "fundamentales": ("valoracion", False)}.get(clave, ("dy", False))
+
+
+def _valor_orden(col, f):
+    r = f["row"]
+    if col == "nombre":
+        return str(r.get("nombre") or f["ticker"]).lower()
+    if col == "tipo":
+        return f["tipo"]
+    if col == "sector":
+        return str(r.get("sector") if f["tipo"] == "empresa" else r.get("categoria") or "").lower()
+    if col == "anios":
+        return f["dato"] if isinstance(f["dato"], (int, float)) else None
+    if col == "calidad":
+        return _ORDEN_CAL.get(f["dato"] if isinstance(f["dato"], str) else "", 0)
+    if col == "valoracion":
+        return _n(r.get("fv_upside")) if f["tipo"] == "empresa" else None
+    if col == "score":
+        return _n(r.get("score_total")) if f["tipo"] == "empresa" else None
+    if col == "dy":
+        return f.get("dy")
+    return None
+
+
+def ordenar(filas, col, asc):
+    """Ordena las filas por la columna; las que no tienen dato van siempre al final."""
+    con = [f for f in filas if _valor_orden(col, f) is not None]
+    sin = [f for f in filas if _valor_orden(col, f) is None]
+    con.sort(key=lambda f: (_valor_orden(col, f), f["ticker"]), reverse=not asc)
+    return con + sin
+
+
+def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None, celda_categoria=None, logo_etf=None, celda_puntaje=None,
+               orden=None, asc=None):
+    """Tabla de la lista. Las celdas de empresa, sector, valoración y puntaje se reciben de ui/tabla_visual.py (mismo aspecto que la tabla principal).
+    `orden`/`asc`: columna y sentido (de ?orden=…&dir=asc|desc); al tocar un título se ordena por esa columna (y otra vez, al revés)."""
     x = _POR_CLAVE.get(clave)
     if not x:
         return ""
     listas = listas if listas is not None else cargar_listas()
-    col = {"aristocratas": "Años seguidos aumentando", "reyes": "Años seguidos aumentando", "aspirantes": "Div. Yield",
-           "altos": "Div. Yield", "fundamentales": "Calidad"}[clave]
-    con_dy = clave in ("aristocratas", "reyes")      # v1.5.45: además de los años, el rendimiento de hoy
-    pct = lambda v: (f"{v * 100:.1f}%".replace(".", ",") if v is not None else "—")   # noqa: E731
+    cols = columnas_lista(clave)
+    o0, a0 = orden_inicial(clave)
+    orden = orden if orden in cols else o0
+    asc = a0 if (asc is None or orden == o0 and asc is None) else bool(asc)
+    filas = ordenar(filas, orden, asc)
+    pct = lambda v: (f"{v * 100:.2f}%" if v is not None else '<span class="id-nd">—</span>')   # noqa: E731
     cuerpo = []
     for f in filas:
         r = f["row"]
-        if f["tipo"] == "etf":
+        es_etf = f["tipo"] == "etf"
+        cel = {}
+        if es_etf:
             t = html.escape(f["ticker"])
-            emp = (f'<a class="tv2-l1" href="?etf={t}" target="_self" style="display:flex;align-items:center;gap:10px">{logo_etf(r) if logo_etf else ""}'
-                   f'<span class="tv2-nm">{html.escape(str(r.get("nombre") or t))}</span><span class="tv2-pt">·</span><span class="tv2-tk">{t}</span><span class="id-etf">ETF</span></a>')
-            sec = html.escape(str(r.get("categoria") or "—"))
-            cat = "—"
+            cel["nombre"] = (f'<a class="tv2-l1" href="?etf={t}" target="_self" style="display:flex;align-items:center;gap:10px">{logo_etf(r) if logo_etf else ""}'
+                             f'<span class="tv2-nm">{html.escape(str(r.get("nombre") or t))}</span><span class="tv2-pt">·</span><span class="tv2-tk">{t}</span></a>')
+            cel["sector"] = html.escape(str(r.get("categoria") or "—"))
+            cel["valoracion"] = cel["score"] = '<span class="id-nd">—</span>'
         else:
-            emp = celda_empresa(r) if celda_empresa else html.escape(f["ticker"])
-            sec = celda_sector(r) if celda_sector else ""
-            cat = celda_categoria(r) if celda_categoria else html.escape(str(r.get("categoria") or ""))
-        d = f["dato"]
-        if clave in ("altos", "aspirantes"):
-            dato = pct(d)
-        elif clave == "fundamentales":
-            dato = html.escape(str(d))
-        else:
-            dato = str(d)
-        extra = f'<td class="id-num">{pct(f.get("dy"))}</td>' if con_dy else ""
-        cuerpo.append(f'<tr><td>{emp}</td><td class="id-sec">{sec}</td><td>{cat}</td><td class="id-num">{dato}</td>{extra}</tr>')
+            cel["nombre"] = celda_empresa(r) if celda_empresa else html.escape(f["ticker"])
+            cel["sector"] = celda_sector(r) if celda_sector else ""
+            cel["valoracion"] = celda_categoria(r) if celda_categoria else html.escape(str(r.get("categoria") or ""))
+            cel["score"] = celda_puntaje(r) if celda_puntaje else html.escape(str(r.get("score_total") or "—"))
+        cel["tipo"] = f'<span class="id-tipo {"id-tipo-etf" if es_etf else ""}">{"ETF" if es_etf else "Empresa"}</span>'
+        cel["anios"] = f'<b>{f["dato"]}</b>' if isinstance(f["dato"], (int, float)) else "—"
+        cel["calidad"] = f'<b>{html.escape(str(f["dato"]))}</b>' if isinstance(f["dato"], str) else "—"
+        cel["dy"] = pct(f.get("dy"))
+        cuerpo.append("<tr>" + "".join(f'<td class="id-c-{c}">{cel[c]}</td>' for c in cols) + "</tr>")
     if not cuerpo:
-        cuerpo.append('<tr><td colspan="5" style="text-align:center;color:#64748b;padding:22px">Hoy no hay empresas que cumplan esta condición.</td></tr>')
-    th_dy = '<th class="id-num">Div. Yield</th>' if con_dy else ""
+        cuerpo.append(f'<tr><td colspan="{len(cols)}" style="text-align:center;color:#64748b;padding:22px">Hoy no hay empresas que cumplan esta condición.</td></tr>')
+    cab = []
+    n = len(cols)
+    for i, c in enumerate(cols):
+        tit, ayuda = AYUDAS[c]
+        activo = c == orden
+        nuevo_asc = (not asc) if activo else (c in ("nombre", "tipo", "sector"))
+        flecha = ("▴" if asc else "▾") if activo else "▾"
+        lado = "id-tip-izq" if i == 0 else ("id-tip-der" if i >= n - 2 else "")
+        href = f"?pagina=ideas&lista={clave}&orden={c}&dir={'asc' if nuevo_asc else 'desc'}"
+        cab.append(f'<th class="id-c-{c} {lado}{" id-on" if activo else ""}" data-tip="{html.escape(tit + ". " + ayuda, quote=True)}">'
+                   f'<a href="{href}" target="_self">{html.escape(tit)}<span class="id-fl">{flecha}</span></a></th>')
     notas = []
     info = listas.get(clave) or {}
     if info.get("fuente"):
@@ -215,9 +302,9 @@ def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None,
         notas.append("Un dividendo muy alto no siempre es una buena noticia: a veces refleja que el precio cayó por problemas en el negocio, o que el pago "
                      "no se puede sostener. En algunos ETFs (por ejemplo, los que invierten en contratos de futuros) lo que distribuyen no proviene de dividendos de empresas.")
     if clave == "fundamentales":
-        notas.append("La calidad sale del Análisis Fundamental de cada empresa y la valoración, de los múltiplos de la app. Ordenadas de mayor a menor distancia al Fair Value.")
-    notas.append("Información con fines educativos: no es una recomendación de compra ni de venta.")
-    return (f'<div class="id-w"><div class="id-top"><a class="id-vol" href="?pagina=ideas" target="_self">← Ideas de Inversión</a>{CASITA}</div>'
+        notas.append("La calidad sale del Análisis Fundamental de cada empresa y la valoración, de los múltiplos de la app.")
+    notas.append("Tocá el título de una columna para ordenar la tabla. Información con fines educativos: no es una recomendación de compra ni de venta.")
+    return (f'<div class="id-w">'
             f'<div class="id-cab"><div class="id-ic">{_icono(clave)}</div><div><h2>{html.escape(x["titulo"])}</h2><p>{html.escape(x["desc"])}</p></div></div>'
-            f'<table class="id-tab"><thead><tr><th>Empresa</th><th class="id-sec">Sector</th><th>Valoración</th><th class="id-num">{col}</th>{th_dy}</tr></thead>'
-            f'<tbody>{"".join(cuerpo)}</tbody></table><p class="id-nota">{" ".join(notas)}</p></div>')
+            f'<div class="id-tw"><table class="id-tab"><thead><tr>{"".join(cab)}</tr></thead>'
+            f'<tbody>{"".join(cuerpo)}</tbody></table></div><p class="id-nota">{" ".join(notas)}</p></div>')

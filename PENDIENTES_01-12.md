@@ -7,6 +7,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
 **Decisión 05/11/2026 (Guille): el Fair Value queda como está (contra la mediana de la industria). Se revisa más adelante; no tocar el método hasta que él lo decida.**
 
+**v1.5.47 (08/11):** Atrás · Inicio en todas las páginas, Ideas con estética de la tabla principal y orden por título, estados financieros visuales en subsolapas, barra de mercados centrada; paquetes y fichas de las 323 cargados. Pendiente de decisión: gráfico «precio contra fundamentales» (estilo App Economy Insights) en la ficha. Avisos de bajar_fichas: BB, IREN y MUX (Canadá/Australia) no están en la lista de ADR: revisar.
+
 **v1.5.46 (08/11):** Guille aprobó: corte 4%, columnas de competidores (hechas), estados financieros visuales con 4 años (falta que elija dónde va; propuesta: arriba de la solapa «Estados Financieros», en 3 filas Crecimiento / Rentabilidad / Solidez, con las tablas plegadas debajo). Cita de la gerencia solo en informes nuevos. Cache del 08/11 cargado (323). **Guille debe correr** `bajar_paquetes_yahoo.bat` (sin nada más: baja las 323; hoy hay estados de 166 y sin ellos la tabla de competidores y los gráficos quedan con «—») y `bajar_fichas.bat`, y mandar `data/paquetes_yahoo.json` y `data/fichas.json`.
 
 **v1.5.45 (08/11):** Listas de Aristócratas/Reyes/Aspirantes reemplazadas por las de Guille (08/11/2026). Falta: el nombre del sitio de cada lista para la línea de fuente; actualizarlas en febrero.

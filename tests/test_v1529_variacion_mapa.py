@@ -114,7 +114,7 @@ chk(_t["AAA"]["descripcion_es"] == "de Yahoo" and "FISV" in _t, "un dato de Yaho
 chk(all(len(v.get("descripcion_es", "")) > 50 for v in _d.values()), "todas las empresas tienen resumen")
 chk("st-key-fila_volver" in MA.CSS and "flex:0 0 auto!important" in MA.CSS, "estilo de la fila Volver + buscador")
 _src = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "app.py"), encoding="utf-8").read()
-chk("def render_fila_volver" in _src and _src.count('class="emp-vol"') == 2, "el Volver se dibuja solo en render_fila_volver (empresa y ETF)")
+chk("def render_fila_volver" in _src and _src.count('class="emp-vol"') == 1, "el «Atrás · Inicio» de las fichas se dibuja solo en render_fila_volver (v1.5.47)")
 
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)

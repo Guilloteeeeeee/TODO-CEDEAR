@@ -22,7 +22,7 @@ src = open("generar_cache.py", encoding="utf-8").read()
 chk("fetch_all_tickers_seguro" in src and "cache_parcial.json" in src, "generar_cache usa la bajada segura y guarda el avance")
 app = open("app.py", encoding="utf-8").read()
 chk("_mk.obtener(esperar=0)" in app and "_arrancar_precios(universe_key)" in app, "barra y precios en paralelo, sin frenar la página")
-chk('with st.container(key="fila_mapa")' in app and "vol-ini" in app, "buscador del mapa en la fila del título y casita de inicio")
+chk('with st.container(key="fila_mapa")' in app and "nav_html(" in app, "buscador del mapa en la fila del título y «Atrás · Inicio» (v1.5.47)")
 chk('render_nav_tablas("ambos")' not in app, "ya no van Empresas · ETFs en Evalúa tu Portfolio")
 from ui import marca as MA, noticias as N, mapa_calor as MC
 chk(".mc-lk.mc-eval.mc-on{box-shadow:none}" in MA.CSS and "#00e05a" not in MA.css_nav("cartera"), "sin raya verde en Evalúa tu Portfolio")

@@ -145,7 +145,8 @@ div[data-baseweb="popover"]:has(ul[role="listbox"]){min-width:min(340px,92vw)!im
 [data-testid="stLayoutWrapper"]:has(>.st-key-fila_volver){margin-top:-62px;margin-bottom:-55px}
 .st-key-fila_volver{margin:0;flex:0 0 auto!important;display:flex!important;flex-direction:row!important;flex-wrap:wrap;align-items:center;gap:0 40px!important}
 .st-key-fila_volver [data-testid="stElementContainer"]:has(.emp-vol){margin:0!important;width:auto!important;flex:0 0 auto}
-.st-key-fila_volver .emp-vol{margin:0}
+.st-key-fila_volver .emp-vol{margin:-10px 0 0!important;display:flex}
+.st-key-fila_volver [data-testid="stMarkdownContainer"] p{margin:0}
 .st-key-fila_volver>[data-testid="stLayoutWrapper"]{flex:0 0 270px;width:270px}
 .st-key-fila_volver .st-key-buscador{position:relative!important;top:auto!important;left:auto!important;width:100%!important;margin:0!important;z-index:60}
 .st-key-fila_volver .st-key-buscador input{height:34px;font-size:14.5px;border-radius:9px;border:1px solid #c3ccd8!important;box-shadow:none;padding-left:36px!important;background-position:11px center;background-size:17px}
@@ -714,3 +715,29 @@ CSS += """
 .fly.fly-c.fly-q{width:min(560px,calc(100vw - min(94vw,430px) - 12px))}
 @media (max-width:900px){.fly.fly-c{top:0;bottom:0;height:100dvh;max-height:none;width:100vw;border-radius:0}}
 """
+
+# v1.5.47 (Guille): accesos rápidos «← Atrás» y «⌂ Inicio», en azul, en todas las páginas (menos la portada y las dos tablas, que son el inicio).
+# «Atrás» vuelve a la página anterior (SCRIPT_ATRAS usa el historial del navegador); si se entró directo desde afuera, va a `atras` (la página «madre»).
+_SVG_ATRAS = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">'
+              '<path d="M19 12H5"/><path d="M11 18l-6-6 6-6"/></svg>')
+_SVG_INICIO = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'
+               '<path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>')
+
+
+def nav_html(atras="?inicio=0"):
+    """«← Atrás · ⌂ Inicio» (dos palabras, azul). `atras`: adónde va «Atrás» si no hay página anterior del sitio."""
+    import html as _h
+    return (f'<div class="nav-ai"><a class="nav-at" href="{_h.escape(atras, quote=True)}" target="_self">{_SVG_ATRAS}Atrás</a>'
+            f'<a class="nav-in" href="?inicio=0" target="_self">{_SVG_INICIO}Inicio</a></div>')
+
+
+CSS_NAV = (".nav-ai{display:flex;align-items:center;gap:6px;margin:0}"
+           ".nav-ai a{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:15px;color:#1d4ed8!important;text-decoration:none!important;"
+           "padding:5px 10px 5px 6px;border-radius:9px;line-height:1}"
+           ".nav-ai a:hover{background:#e8f0fe}.nav-ai svg{width:18px;height:18px;flex:none}"
+           ".mc-oscuro .nav-ai a{color:#93c5fd!important}.mc-oscuro .nav-ai a:hover{background:rgba(147,197,253,.12)}"
+           '[data-testid="stElementContainer"]:has(>[data-testid="stMarkdown"] .nav-fila){margin-bottom:-6px}')
+
+SCRIPT_ATRAS = ("(function(){if(window.__mcAtras)return;window.__mcAtras=1;document.addEventListener('click',function(e){"
+                "var a=e.target.closest&&e.target.closest('a.nav-at');if(!a)return;var r=document.referrer||'';"
+                "if(r.indexOf(location.origin)===0&&history.length>1){e.preventDefault();history.back();}},true);})();")

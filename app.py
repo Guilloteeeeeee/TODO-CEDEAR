@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.46"
+APP_VERSION = "1.5.47"
 
 import re
 import contextlib
@@ -32,7 +32,7 @@ from config.sectors import TICKER_UNIVERSE, TICKER_TO_SECTOR, SECTOR_CONFIG, eti
 from config.industrias import industria_de
 from ui.banderas import css_banderas, bandera_html
 from ui.fuentes import css_condensada, css_fuente
-from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav, menu_cabecera_html, menu_lista_html, menu_flyouts_html, fly_cabecera_html, SCRIPT_ESC
+from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav, menu_cabecera_html, menu_lista_html, menu_flyouts_html, fly_cabecera_html, SCRIPT_ESC, nav_html, CSS_NAV, SCRIPT_ATRAS
 from ui import noticias as _noticias, calendario as _calendario
 from data import tecnicos as _tecnicos
 from ui import cartera_visual as _cartera_visual
@@ -1060,11 +1060,12 @@ def poner_esc():
     """La tecla ESC cierra el menú y sus paneles (v1.2.84). Usa st.html con JavaScript (Streamlit nuevo) o, si no existe, un componente de 0 px de alto."""
     try:
         from ui.tema import SCRIPT_TEMA
-        st.html(f"<script>{SCRIPT_ESC}{SCRIPT_TEMA}</script>", unsafe_allow_javascript=True)
+        st.html(f"<script>{SCRIPT_ESC}{SCRIPT_TEMA}{SCRIPT_ATRAS}</script>", unsafe_allow_javascript=True)
     except Exception:  # noqa: BLE001
         try:
             import streamlit.components.v1 as _cmp
-            _cmp.html("<script>(function(){var d=window.parent.document;" + SCRIPT_ESC.replace("document.", "d.").replace("window.__mcEsc", "window.parent.__mcEsc") + "})();</script>", height=0)      # (sin modo oscuro en este camino)
+            _cmp.html("<script>(function(){var d=window.parent.document;" + SCRIPT_ESC.replace("document.", "d.").replace("window.__mcEsc", "window.parent.__mcEsc") + "})();"
+                      + "(function(){var w=window.parent;" + SCRIPT_ATRAS.replace("window.__mcAtras", "w.__mcAtras").replace("document.", "w.document.").replace("location.", "w.location.").replace("history.", "w.history.") + "})();</script>", height=0)      # (sin modo oscuro en este camino)
         except Exception:  # noqa: BLE001
             pass
 
@@ -1127,10 +1128,8 @@ def render_fila_volver(es_etf: bool) -> None:
     """v1.5.32: en las fichas de empresa y de ETF, «← Volver…» y el buscador van en UNA fila (antes el buscador flotaba a una altura fija y, según la pantalla,
     quedaba encimado). Mismo lugar que antes: a la izquierda el «Volver» y el buscador a su derecha; en el celular, uno debajo del otro."""
     with st.container(key="fila_volver"):
-        if es_etf:
-            st.markdown('<a class="emp-vol" href="?tabla=etfs" target="_self">← Volver a ETFs</a>', unsafe_allow_html=True)
-        else:
-            st.markdown('<a class="emp-vol" href="?inicio=0" target="_self">← Volver a Empresas</a>', unsafe_allow_html=True)
+        # v1.5.47 (Guille): «← Atrás · ⌂ Inicio» (antes «← Volver a Empresas / ETFs»); «Atrás» sin página anterior va a la tabla correspondiente
+        st.markdown(f'<div class="emp-vol">{nav_html("?tabla=etfs" if es_etf else "?inicio=0")}</div>', unsafe_allow_html=True)
         render_buscador()
 
 
@@ -1456,8 +1455,15 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         st.markdown(_tecnico.tab_tecnico_html(pares), unsafe_allow_html=True)
     with t_val:
         st.markdown(_ficha.con_intro("valuacion", _ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk))), unsafe_allow_html=True)
-    with t_est:
-        st.markdown(_ficha.con_intro("estados", _ficha.tab_estados(extra.get("estados"), ticker=tk)), unsafe_allow_html=True)
+    with t_est:      # v1.5.47 (Guille): subsolapas por parte, con gráficos arriba y la tabla debajo
+        _est = extra.get("estados")
+        st.markdown(_ficha.con_intro("estados", ""), unsafe_allow_html=True)
+        if _est:
+            for _sub, (_k, _t, _c) in zip(st.tabs([t for _, t, _ in _ficha.PARTES_ESTADOS]), _ficha.PARTES_ESTADOS):
+                with _sub:
+                    st.markdown(_ficha.tab_estados_parte(_est, _k, ticker=tk), unsafe_allow_html=True)
+        else:
+            st.markdown(_ficha.tab_estados(_est, ticker=tk), unsafe_allow_html=True)
         _nota_archivo(extra, "estados")
     with t_div:
         div = extra.get("dividendos") or {}
@@ -2081,11 +2087,14 @@ def render_ideas(universe_key):
             precios_e = _precios_etfs(tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs))
         except Exception:  # noqa: BLE001
             precios_e = {}
-    css = f"<style>{_tv.CSS}{_ideas.CSS}</style>"
+    css = f"<style>{css_fuente()}{_tv.CSS}{_ideas.CSS}{css_condensada()}</style>"      # v1.5.47: misma tipografía que la tabla principal
     if clave in {x["clave"] for x in _ideas.LISTAS}:
         filas = _ideas.miembros(clave, df, calidades, etfs, guardados, listas, precios_e)
+        _dir = st.query_params.get("dir")
         st.markdown(css + _ideas.lista_html(clave, filas, listas, celda_empresa=_tv._celda_empresa, celda_sector=_tv._celda_sector,
-                                            celda_categoria=_tv._celda_categoria, logo_etf=lambda e: _ui_etfs.logo_chico_html(e, guardados.get(e.get("ticker")))),
+                                            celda_categoria=_tv._celda_valoracion_tabla, celda_puntaje=_tv._celda_puntaje,
+                                            logo_etf=lambda e: _ui_etfs.logo_chico_html(e, guardados.get(e.get("ticker"))),
+                                            orden=st.query_params.get("orden"), asc=(None if _dir not in ("asc", "desc") else _dir == "asc")),
                     unsafe_allow_html=True)
         return
     conteos = {x["clave"]: len(_ideas.miembros(x["clave"], df, calidades, etfs, guardados, listas, precios_e)) for x in _ideas.LISTAS}
@@ -2120,7 +2129,7 @@ def _main(ctx):
     en_inicio = not (en_quienes or en_cartera or en_ideas or en_mapa or etf_sel or st.query_params.get("empresa"))
     en_landing = en_inicio and not dict(st.query_params) and not st.session_state.get("entro")      # v1.5.7: pantalla de inicio (solo con la URL pelada y antes de tocar «Comenzar»)
     activa = "cartera" if en_cartera else ("etfs" if en_etfs else ("" if (en_quienes or en_ideas or en_mapa) else "empresas"))
-    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}</style>"
+    st.markdown(f"<style>{CSS_MARCA}{css_nav(activa)}{CSS_BUSQUEDA}{CSS_FLECHA}{CSS_NAV}</style>"
                 + encabezado_html(NOMBRE_APP, activa=activa, menu_abierto=st.query_params.get("menu") == "1", links=not en_landing, home=en_inicio and not en_landing), unsafe_allow_html=True)
     # v1.5.36: en el celu no se veia el «Aguarde»: la barra de mercados espera hasta 8 s la primera vez y hasta ahi no habia nada en pantalla. Ahora el aviso sale ANTES y se borra cuando la barra esta lista.
     # v1.5.43: la barra de mercados (dólares, Merval, bolsas…) se dibuja YA si está guardada; si no (primera visita), se reserva su lugar y se completa al final (main)
@@ -2145,10 +2154,9 @@ def _main(ctx):
     if en_inicio and not en_landing:
         fly_filtro, fly_noticias, fly_cal = st.container(key="fly_filtro"), st.container(key="fly_noticias"), st.container(key="fly_cal")
     # v1.2.60/83: al lado del nombre va el boton de la otra tabla ("Empresas" <-> "Exchange Traded Funds (ETFs)"); el buscador esta en todas las paginas (el de las tablas se dibuja mas abajo, con la tabla)
-    if en_quienes or en_cartera:      # v1.5.43 (Guille): en lugar de «Empresas · ETFs», una casita que vuelve al inicio (v1.5.46: en Ideas va en la fila del título, ui/ideas.CASITA)
-        st.markdown('<div class="vol-fila"><a class="vol-ini" href="?inicio=0" target="_self" title="Volver al inicio">'
-                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h5v-6h4v6h5V10"/></svg>'
-                    'Volver al inicio</a></div>', unsafe_allow_html=True)
+    if en_quienes or en_cartera or en_ideas or en_mapa:      # v1.5.47 (Guille): «← Atrás · ⌂ Inicio» en azul en todas las páginas (antes «Volver al inicio»)
+        _atras = "?pagina=ideas" if (en_ideas and st.query_params.get("lista")) else "?inicio=0"
+        st.markdown(f'<div class="vol-fila nav-fila">{nav_html(_atras)}</div>', unsafe_allow_html=True)
     if etf_sel or st.query_params.get("empresa"):
         render_fila_volver(bool(etf_sel))      # v1.5.32: «Volver» + buscador en la misma fila (antes el buscador flotaba a una altura fija y a veces quedaba encimado)
     elif en_quienes:
