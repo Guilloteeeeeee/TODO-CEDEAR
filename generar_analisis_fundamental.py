@@ -133,6 +133,11 @@ def agregar(archivos, modelo="Claude"):
             res["base"] = af_pendientes.firma((paquetes.get(t) or {}).get("estados"))
             archivar_viejo(t, datos.get(t), res, paquetes)
             datos[t] = res
+            try:      # v1.5.48: archivo histórico propio: cada versión de cada informe queda guardada en data/historico/informes/
+                from data import historico as _hist
+                _hist.archivar_informe(t, res)
+            except Exception as ex:  # noqa: BLE001
+                print(f"  {t}: no se pudo guardar el informe en el archivo histórico ({ex})")
             ok.append(t)
     if ok:
         AF.guardar(datos, hoy)

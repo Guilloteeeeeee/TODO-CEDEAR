@@ -144,6 +144,12 @@ def main():
             _guardar(datos)
         time.sleep(PAUSA)
     _guardar(datos)
+    # v1.5.48: archivo histórico propio: foto del mes de la ficha (CEO, empleados, acciones, valor de empresa…)
+    try:
+        from data import historico as hist
+        print(f"Archivo histórico: foto del mes de {hist.foto_mensual('fichas', datos, hist.CAMPOS_FOTO_FICHA)} fichas en data/historico/fotos/")
+    except Exception as ex:  # noqa: BLE001
+        print(f"(No se pudo guardar la foto del mes en el archivo histórico: {ex})")
     # Controles de coherencia (no cambian nada: solo avisan)
     for t in tickers:
         f = datos.get(t) or {}

@@ -104,6 +104,16 @@ if not ok and "--forzar" not in sys.argv:
     sys.exit(1)
 
 guardar_seguro(cache, CACHE_PATH)      # escribe a un temporal, lo relee y recien ahi reemplaza el archivo bueno
+# v1.5.48: archivo histórico propio: foto del mes (precio, múltiplos, score, categoría y la calidad del Análisis Fundamental)
+try:
+    from data import historico as _hist
+    from data import analisis_fundamental as _AFh
+    _af = _AFh.cargar()[0] or {}
+    _n_foto = _hist.foto_mensual("empresas", {r["ticker"]: r for r in cache.get("data", [])}, _hist.CAMPOS_FOTO_EMPRESA,
+                                 extra={t: {"calidad_af": a.get("calidad"), "fecha_af": a.get("fecha")} for t, a in _af.items() if isinstance(a, dict) and a.get("calidad")})
+    print(f"  Archivo histórico: foto del mes guardada ({_n_foto} empresas) en data/historico/fotos/")
+except Exception as _e:  # noqa: BLE001
+    print(f"  (No se pudo guardar la foto del mes en el archivo histórico: {_e})")
 try:
     os.remove("data/cache_parcial.json")   # v1.5.43: la corrida terminó bien, el avance parcial ya no hace falta
 except OSError:

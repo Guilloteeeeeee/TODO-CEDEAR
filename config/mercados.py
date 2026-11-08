@@ -28,6 +28,7 @@ NO_ADR = frozenset({
 
 ADR = ADR | frozenset(["ABEV", "AKO-B", "ASR", "BAK", "BBD", "BSBR", "CX", "E", "EMBJ", "GGB", "JMIA", "JOYY", "KEP", "KOF", "LND", "MFG", "NMR", "NOK", "PAC", "PKX", "SBS", "SID", "SUZ", "TS", "TIMB", "TV", "TX", "UGP", "VIST", "VIV", "WB"])   # v1.5.37 (tanda 3): ADS / ADR
 NO_ADR = NO_ADR | frozenset(["AGRO", "AEG", "ARCO", "BIOX", "CAAP", "CLS", "GLNG", "GLOB", "GPRK", "LAR", "NG", "SDA"])   # v1.5.37 (tanda 3): acciones ordinarias, no ADR
+NO_ADR = NO_ADR | frozenset(["BB", "MUX", "IREN"])   # v1.5.48: BlackBerry y McEwen (Canadá, NYSE) e IREN (Australia, Nasdaq) cotizan con acciones ordinarias; bajar_fichas avisaba por ellas
 
 
 _MERCADOS = {

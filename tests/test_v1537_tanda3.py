@@ -39,7 +39,7 @@ for t in ("BRFS", "CAJ", "CBRD", "EBR", "AOCA", "AUY", "FMCC", "FNMA", "HNPIY", 
     chk(t not in tk, f"{t} NO debe estar cargada")
 chk(TICKER_TO_SECTOR.get("HWM") == "Industrial" and "HWM" in tk and rat["HWM"] == "52", "HWM: grupo Industrial y ratio 52:1 (dato de Guille, 07/11/2026)")
 extr = [t for t in T3 if t in ADR or t in NO_ADR]
-chk(len(extr) == 43, f"extranjeras marcadas ADR / no ADR: {len(extr)}")
+chk(len(extr) == 46, f"extranjeras marcadas ADR / no ADR: {len(extr)} (v1.5.48: +BB, MUX e IREN como acciones ordinarias)")
 # VXX (ETN del VIX): categoría propia
 filasE = list(csv.DictReader(open("data/etfs.csv", encoding="utf-8-sig"), delimiter=";"))
 v = [r for r in filasE if r["ticker"] == "VXX"]

@@ -53,6 +53,12 @@ def main(tickers=None):
         if i % 10 == 0:
             _guardar(datos)
     _guardar(datos)
+    # v1.5.48: archivo histórico propio: los múltiplos de cada año fiscal se suman (los años viejos que Stock Analysis deje de mostrar quedan guardados)
+    try:
+        from data import historico as hist
+        avisos.insert(0, f"Archivo histórico: múltiplos por año de {hist.archivar_multiplos(datos)} empresas en data/historico/multiplos_anuales.json")
+    except Exception as ex:  # noqa: BLE001
+        avisos.insert(0, f"(No se pudo actualizar el archivo histórico: {ex})")
     texto = [f"Empresas con multiplos por anio: {len(datos)} de {len(todos)}", ""] + [f"- {a}" for a in avisos]
     with open(os.path.join(AQUI, "resultados_multiplos_anuales.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(texto) + "\n")

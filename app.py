@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.47"
+APP_VERSION = "1.5.48"
 
 import re
 import contextlib
@@ -35,6 +35,7 @@ from ui.fuentes import css_condensada, css_fuente
 from ui.marca import CSS as CSS_MARCA, icono_pagina, encabezado_html, pie_html, css_nav, menu_cabecera_html, menu_lista_html, menu_flyouts_html, fly_cabecera_html, SCRIPT_ESC, nav_html, CSS_NAV, SCRIPT_ATRAS
 from ui import noticias as _noticias, calendario as _calendario
 from data import tecnicos as _tecnicos
+from data import historico as _hist
 from ui import cartera_visual as _cartera_visual
 from ui.cajas import CSS as CSS_CAJAS
 from ui.exportar import excel_bytes
@@ -298,6 +299,12 @@ def _extras_empresa(ticker: str) -> dict:
     # v1.2.59: lo que Yahoo no contesto desde la nube se completa con el archivo data/paquetes_yahoo.json (lo baja bajar_paquetes_yahoo.bat)
     guardado, fecha_g = _paquetes_guardados()
     res, usadas = _py.completar(res, guardado.get(ticker.upper()))
+    # v1.5.48: archivo histórico propio: se suman los años fiscales guardados que Yahoo ya no trae (ajustados por splits); si Yahoo no trajo nada, salen de ahí
+    try:
+        _arch_est, _arch_sp = _historico_estados()
+        res["estados"] = _hist.estados_completos(ticker, res.get("estados"), archivo=_arch_est, splits=_arch_sp.get(ticker.upper(), []))
+    except Exception:  # noqa: BLE001
+        pass
     if isinstance(res.get("estados"), dict) and res["estados"]:       # v1.4.2: Yahoo rotula mal la moneda de algunas (VALE: dice reales y está en dólares)
         from data import moneda as _mon
         res["estados"] = {**res["estados"], "moneda": _mon.moneda_estados(ticker, res["estados"].get("moneda"))}
@@ -326,6 +333,15 @@ def _paquetes_guardados():
         return _py.cargar()
     except Exception:  # noqa: BLE001
         return {}, None
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _historico_estados():
+    """v1.5.48: (estados.json, splits.json) del archivo histórico propio (data/historico/); ({}, {}) si no están."""
+    try:
+        return _hist.leer("estados.json", {}), _hist.leer("splits.json", {})
+    except Exception:  # noqa: BLE001
+        return {}, {}
 
 
 @st.cache_data(ttl=3600, show_spinner=False)

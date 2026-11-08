@@ -80,12 +80,19 @@ def main(tickers=None):
             _guardar(datos, fecha)
         time.sleep(max(0.0, PAUSA_S - (time.time() - t0)))
     _guardar(datos, fecha)
+    # v1.5.48: archivo histórico propio: los años fiscales se suman a data/historico/estados.json (los viejos que Yahoo ya no trae quedan guardados)
+    try:
+        from data import historico as hist
+        r = hist.archivar_estados(datos)
+        avisos.insert(0, f"Archivo histórico: {r['empresas']} empresas, {r['anios_nuevos']} años fiscales nuevos guardados, {r['correcciones']} correcciones de años ya guardados (ver data/historico/cambios.json)")
+    except Exception as ex:  # noqa: BLE001
+        avisos.insert(0, f"(No se pudo actualizar el archivo histórico: {ex})")
     con_foto = sum(1 for v in datos.values() if v.get("foto_ceo"))
     texto = [f"Empresas con datos de Yahoo guardados: {len(datos)} de {len(todos)}", f"Con foto del CEO: {con_foto}", ""] + [f"- {a}" for a in avisos]
     with open(os.path.join(AQUI, "resultados_paquetes_yahoo.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(texto) + "\n")
     print("\n" + "\n".join(texto))
-    print("\nListo. Se guardo data/paquetes_yahoo.json (subilo a GitHub) y resultados_paquetes_yahoo.txt")
+    print("\nListo. Se guardo data/paquetes_yahoo.json y la carpeta data/historico (subí las dos a GitHub) y resultados_paquetes_yahoo.txt")
 
 
 if __name__ == "__main__":

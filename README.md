@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.48 — Archivo histórico propio
+- **`data/historico/`** (ver su LEEME): todo lo que se baja se guarda para siempre y solo se agrega. Años fiscales de los estados de las 323 empresas (ya hay 5 con un año que Yahoo dejó de traer, como Apple 2022), una foto por mes de precio, múltiplos, score, categoría, ETFs y fichas (octubre y noviembre 2026), las 306 versiones de los informes, y — con el nuevo `bajar_historico.bat` — precios mensuales, dividendos y splits de toda la historia.
+- **Splits**: precios y dividendos guardados se ajustan solos al aparecer un split nuevo; en los estados, la ganancia por acción y la cantidad de acciones de años guardados se ajustan por los splits posteriores a su captura; las fotos, al leerlas.
+- Correcciones de años ya guardados (más de 5%) quedan anotadas en `cambios.json`; un dato vacío nunca borra uno guardado; no se mezclan monedas.
+- Todos los `.bat` suman al archivo solos; la ficha muestra los años guardados que Yahoo ya no trae.
+- BB, MUX e IREN figuran como acciones ordinarias (no ADR).
+- Pruebas: `tests/test_v1548_historico.py`.
+
 ### v1.5.47 — Atrás · Inicio, Ideas con la estética de la tabla, estados financieros visuales
 - **«← Atrás · ⌂ Inicio»** en azul en todas las páginas (fichas de empresa y ETF, Ideas, Mapa de Calor, Evalúa tu Portfolio, Quiénes Somos). «Atrás» vuelve a la página anterior del sitio (historial del navegador, `SCRIPT_ATRAS`); si se entró directo, va a la página madre. Reemplaza «← Volver a…» y «Volver al inicio» (`nav_html` en ui/marca.py).
 - **Ideas de Inversión**: tablas con la estética de la principal (títulos celestes centrados, explicación al pasar el mouse, orden al tocar el título con `?orden=&dir=`), columnas Valoración, Puntaje de calidad y Dividend Yield; en Dividendos Altos, columna «Tipo» (Empresa / ETF); tipografía de la app.

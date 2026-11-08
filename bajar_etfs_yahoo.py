@@ -70,6 +70,12 @@ def main(tickers=None):
             _guardar(datos, fecha)
         time.sleep(max(0.0, PAUSA_S - (time.time() - t0)))
     _guardar(datos, fecha)
+    # v1.5.48: archivo histórico propio: foto del mes de todos los ETFs guardados (precio, patrimonio, comisión, posiciones, sectores, dividendos)
+    try:
+        from data import historico as hist
+        print(f"Archivo histórico: foto del mes de {hist.foto_mensual('etfs', datos, hist.CAMPOS_FOTO_ETF)} ETFs en data/historico/fotos/")
+    except Exception as ex:  # noqa: BLE001
+        print(f"(No se pudo guardar la foto del mes en el archivo histórico: {ex})")
     texto = [f"ETFs con datos de Yahoo guardados: {len(datos)} de {len(todos)}", ""] + [f"- {a}" for a in avisos]
     with open(os.path.join(AQUI, "resultados_etfs_yahoo.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(texto) + "\n")
