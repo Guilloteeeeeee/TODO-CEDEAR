@@ -84,6 +84,7 @@ def bajar_una(t):
         "mercado_cod": info.get("exchange"), "mercado_nombre": info.get("fullExchangeName"),
         "sector_yahoo": info.get("sector"), "industria_yahoo": info.get("industry"),
         "ev": _num(info.get("enterpriseValue")), "acciones": _num(info.get("sharesOutstanding")),
+        "mes_cierre_fiscal": _mes_cierre(info.get("lastFiscalYearEnd")),      # v1.5.49: para ubicar el precio al cierre de cada año fiscal
         "ingresos_ttm": _num(info.get("totalRevenue")),
         "crec_ingresos_trim": _num(info.get("revenueGrowth")), "crec_ganancias_trim": _num(info.get("earningsGrowth")), "beta": _num(info.get("beta")),
     }
@@ -167,6 +168,15 @@ def main():
     with open(os.path.join(AQUI, "resultados_fichas.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(texto) + "\n")
     print("\nListo. Se guardo data/fichas.json (subilo a GitHub) y resultados_fichas.txt")
+
+
+def _mes_cierre(epoch):
+    """Mes (1-12) del cierre del año fiscal, a partir de la fecha que da Yahoo (segundos desde 1970), o None."""
+    try:
+        from datetime import datetime as _dt, timezone as _tz
+        return _dt.fromtimestamp(int(epoch), tz=_tz.utc).month
+    except (TypeError, ValueError, OSError, OverflowError):
+        return None
 
 
 def _guardar(datos):

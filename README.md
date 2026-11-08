@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.49 — Estados por tipo de empresa, Ratios visual, precio vs fundamentales, piloto de la SEC
+- **Estados Financieros**: cada subsolapa muestra lo que dice ese estado (montos) y Ratios pasa a ser visual (9 gráficos) con la tabla debajo. Tres familias: general, financiera (bancos, aseguradoras: sin costo de ventas, resultado operativo, EBITDA ni flujo libre; con patrimonio sobre activo y ROA) y REIT (EBITDA, flujo operativo por acción, dividendos sobre flujo operativo).
+- **Línea de industria rigurosa**: solo donde Damodaran calcula el número igual que nosotros (márgenes bruto, operativo, neto y EBITDA; ROE). Sin ROIC (Damodaran resta la caja), sin cobertura (usa resultado después de impuestos), sin leyenda; el detalle aparece al pasar el mouse. Valores de industria ≤ 0 no se usan (ROE de −0,2% de «Computers/Peripherals»). La tabla de Ratios aplica lo mismo.
+- Cobertura de intereses: cuando la fuente no trae el gasto por intereses (Apple 2024-2026) se explica en el gráfico.
+- **Precio vs fundamentales del negocio** (solapa Valuación, `ui/precio_vs.py`): cambio % desde el primer cierre fiscal, por defecto contra la ganancia por acción; se puede elegir ventas o flujo libre por acción, o las tres (sin recargar). Usa los cierres mensuales del archivo histórico.
+- `bajar_fichas` guarda el mes de cierre del año fiscal (`mes_cierre_fiscal`).
+- **Piloto de la SEC** (`piloto_sec.bat`): baja los informes anuales de 10 empresas desde la SEC y los compara con Yahoo; no cambia nada de la app.
+- Recordatorio mensual por mail (día 1, 8:37) con lo que hay que correr y los pendientes.
+- Pruebas: `tests/test_v1549_estados_familias.py`.
+
 ### v1.5.48 — Archivo histórico propio
 - **`data/historico/`** (ver su LEEME): todo lo que se baja se guarda para siempre y solo se agrega. Años fiscales de los estados de las 323 empresas (ya hay 5 con un año que Yahoo dejó de traer, como Apple 2022), una foto por mes de precio, múltiplos, score, categoría, ETFs y fichas (octubre y noviembre 2026), las 306 versiones de los informes, y — con el nuevo `bajar_historico.bat` — precios mensuales, dividendos y splits de toda la historia.
 - **Splits**: precios y dividendos guardados se ajustan solos al aparecer un split nuevo; en los estados, la ganancia por acción y la cantidad de acciones de años guardados se ajustan por los splits posteriores a su captura; las fotos, al leerlas.

@@ -29,3 +29,6 @@ yf_debug_log.json
 resultados_*.txt
 sa_pagina_cruda.bin
 data/cache_parcial.json
+
+.sec_contacto
+resultados_piloto_sec.txt

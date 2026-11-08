@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.48"
+APP_VERSION = "1.5.49"
 
 import re
 import contextlib
@@ -333,6 +333,15 @@ def _paquetes_guardados():
         return _py.cargar()
     except Exception:  # noqa: BLE001
         return {}, None
+
+
+@st.cache_data(ttl=3600, show_spinner=False)
+def _historico_precios():
+    """v1.5.49: {ticker: {"AAAA-MM": cierre}} del archivo histórico propio (bajar_historico.bat); {} si todavía no está."""
+    try:
+        return {t: (r or {}).get("m") or {} for t, r in _hist.leer("precios_mensuales.json", {}).items()}
+    except Exception:  # noqa: BLE001
+        return {}
 
 
 @st.cache_data(ttl=3600, show_spinner=False)
@@ -1471,6 +1480,14 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         st.markdown(_tecnico.tab_tecnico_html(pares), unsafe_allow_html=True)
     with t_val:
         st.markdown(_ficha.con_intro("valuacion", _ficha.tab_valuacion(rd, ficha, anuales=(_multiplos_anuales_datos() or {}).get(tk))), unsafe_allow_html=True)
+        try:      # v1.5.49: precio vs fundamentales del negocio (cierres mensuales del archivo histórico propio)
+            from ui import precio_vs as _pvs
+            _mes_fy = (ficha or {}).get("mes_cierre_fiscal") or (_af_ficha or {}).get("mes_cierre_fiscal")
+            _pv_html = _pvs.precio_vs_html(tk, extra.get("estados"), _historico_precios().get(tk.upper()) or {}, rd.get("precio_actual"), _mes_fy)
+            if _pv_html:
+                st.markdown(_pv_html, unsafe_allow_html=True)
+        except Exception:  # noqa: BLE001
+            pass
     with t_est:      # v1.5.47 (Guille): subsolapas por parte, con gráficos arriba y la tabla debajo
         _est = extra.get("estados")
         st.markdown(_ficha.con_intro("estados", ""), unsafe_allow_html=True)

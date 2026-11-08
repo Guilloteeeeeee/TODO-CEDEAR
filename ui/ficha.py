@@ -1656,11 +1656,13 @@ def _industria_ratios(ticker):
     g = lambda d, k: (d.get(k) / 100.0 if d.get(k) is not None else None)      # Damodaran trae los porcentajes en puntos
     fila = {"Margen neto": g(m, "Net Margin"), "Retorno sobre el patrimonio (ROE)": g(pb, "ROE")}
     if v["industria"] not in FINANCIERAS:
-        fila.update({"Margen bruto": g(m, "Gross Margin"), "Margen operativo": g(m, "Pre-tax Unadjusted Operating Margin"),
-                     "Retorno sobre el capital invertido (ROIC)": g(pb, "ROIC")})
+        fila.update({"Margen bruto": g(m, "Gross Margin"), "Margen operativo": g(m, "Pre-tax Unadjusted Operating Margin")})
+        # v1.5.49 (Guille: «rigurosos y precisos»): sin ROIC. Damodaran resta la caja del capital invertido y nuestro ROIC (el de Yahoo) no: con mucha
+        # caja (Apple) dan números muy distintos, no se pueden comparar.
         # v1.2.90: sin Deuda / Patrimonio. El D/E de Damodaran (planilla de betas) usa el valor de MERCADO de las acciones y el de la empresa usa el patrimonio
         # contable: no se pueden comparar (en una empresa que vale 10 veces su patrimonio, el de mercado da 10 veces menos).
-    fila = {k: x for k, x in fila.items() if x is not None}
+    # v1.5.49: un margen o ROE ≤ 0 de toda una industria no sirve de referencia (p. ej., el ROE de −0,2% de «Computers/Peripherals»): no se muestra
+    fila = {k: x for k, x in fila.items() if x is not None and not (x <= 0 and k != "Margen neto")}
     if not fila:
         return None, ""
     n = int(m.get("Number of firms") or 0)
@@ -1716,8 +1718,7 @@ def tab_estados_parte(est, clave, ticker=None):
         nota = f"Cifras en {html.escape(str(moneda))}, la moneda en que la empresa informa (no se convierten a dólares)."
     else:
         nota = "Cifras en dólares: T = billones, B = miles de millones, M = millones."
-    nota += (" En los gráficos, las barras celestes son los últimos años fiscales y la oscura, los últimos 12 meses; la línea punteada es una referencia general, "
-             "que cambia según el tipo de negocio.")
+    nota += " En los gráficos, las barras celestes son los años fiscales y la oscura, los últimos 12 meses."
     post = ""
     ind = None
     if clave == "ratios":
@@ -1726,7 +1727,7 @@ def tab_estados_parte(est, clave, ticker=None):
         ind, nota_ind = _industria_ratios(ticker)
         if nota_ind:
             post += f'<div class="fch-nota" style="margin:6px 0 0">{nota_ind}</div>'
-    graf = _ev.graficos_html(est, clave)
+    graf = _ev.graficos_html(est, clave, ticker)
     return (f"<style>{_ev.CSS}</style>" + f'<div class="fch-nota" style="margin:0 0 10px">{nota}</div>' + graf
             + _env(_tile("s12", titulo, _tabla_estado_html(est[clave], moneda, ind) + post, ac=color)))
 
