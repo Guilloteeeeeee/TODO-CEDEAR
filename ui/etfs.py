@@ -238,15 +238,17 @@ def _fila(e, d, precio, var=None):
             f'<div class="etf-g ctr">{lab("Gestor")}{g}</div>'
             f'<div class="etf-v ctr">{lab("AUM")}{aum_texto((d or {}).get("aum"))}</div>'
             f'<div class="etf-v ctr">{lab("Comisión")}{comision_texto((d or {}).get("comision"))}</div>'
-            f'<div class="etf-v ctr">{lab("Div. Yield")}{dy_texto(d)}</div></div>')
+            f'<div class="etf-v ctr">{lab("Div. Yield")}{dy_texto(d, precio)}</div></div>')
 
 
-def dy_texto(d):
-    """v1.5.44: rendimiento por dividendo del último año (Yahoo lo da en %, p. ej. 1.0 = 1%). «—» si no reparte."""
-    v = _n((d or {}).get("rendimiento"))
-    if not v or v <= 0:
+def dy_texto(d, precio_hoy=None):
+    """v1.5.44: rendimiento por dividendo (Yahoo lo da en %, p. ej. 1.0 = 1%). «—» si no reparte.
+    v1.5.45: con el precio de hoy se recalcula (el dividendo anual queda igual; si el precio sube, el rendimiento baja)."""
+    from ui.ideas import dy_etf
+    v = dy_etf(d, precio_hoy)
+    if not v:
         return '<span class="etf-nd">—</span>'
-    return f"{v:.2f}%".replace(".", ",")
+    return f"{v * 100:.2f}%".replace(".", ",")
 
 
 def tabla_html(etfs, datos=None, precios=None, variaciones=None):
@@ -277,8 +279,8 @@ def valor_orden(e, d, precio, col):
     if col == "comision":
         return _n(d.get("comision"))
     if col == "dy":
-        v = _n(d.get("rendimiento"))
-        return v if v and v > 0 else None
+        from ui.ideas import dy_etf
+        return dy_etf(d, precio)
     return None
 
 

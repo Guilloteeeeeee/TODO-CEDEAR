@@ -13,11 +13,11 @@ df = pd.DataFrame(json.load(open("data/cache_datos.json", encoding="utf-8"))["da
 cal = {t: a.get("calidad") for t, a in AF.cargar()[0].items()}
 ey = json.load(open("data/etfs_yahoo.json", encoding="utf-8"))["datos"]
 L = I.cargar_listas()
-chk(all(k in L and L[k].get("fuente") and L[k].get("anios") for k in ("aristocratas", "reyes", "aspirantes")), "listas con fuente y años")
+chk(all(k in L and L[k].get("fuente") for k in ("aristocratas", "reyes", "aspirantes")) and L["aristocratas"].get("anios") and L["aspirantes"].get("tickers"), "listas con fuente")
 m = {k: I.miembros(k, df, cal, E.cargar(), ey, L) for k in ("aristocratas", "reyes", "aspirantes", "altos", "fundamentales")}
-chk(len(m["aristocratas"]) >= 20 and all(x["dato"] >= 24 for x in m["aristocratas"]), "aristócratas: 24 años o más (la fuente incluye SJM con 24)")
+chk(len(m["aristocratas"]) >= 20 and all(x["dato"] >= 25 for x in m["aristocratas"]), "aristócratas: 25 años o más")
 chk(len(m["reyes"]) >= 10 and all(x["dato"] >= 50 for x in m["reyes"]), "reyes: 50 años o más")
-chk(all(10 <= x["dato"] <= 24 for x in m["aspirantes"]), "aspirantes: 10 a 24 años")
+chk(m["aspirantes"] and not ({x["ticker"] for x in m["aspirantes"]} & ({x["ticker"] for x in m["aristocratas"]} | {x["ticker"] for x in m["reyes"]})), "aspirantes: ni aristócratas ni reyes")
 chk(all(x["dato"] >= 0.04 for x in m["altos"]) and any(x["tipo"] == "etf" for x in m["altos"]), "dividendos altos: 4% o más, con ETFs")
 chk(all(x["tipo"] == "empresa" for k in ("aristocratas", "reyes", "aspirantes", "fundamentales") for x in m[k]), "en las demás listas solo empresas")
 chk(all(x["row"]["categoria"] in I.INFRAVALORADAS and x["dato"] in I.CALIDADES_FUERTES for x in m["fundamentales"]), "fundamentales fuertes: calidad alta e infravalorada")
@@ -28,7 +28,7 @@ lh = I.lista_html("altos", m["altos"], L, celda_empresa=lambda r: r["ticker"], c
 chk("id-tab" in lh and "Información con fines educativos" in lh, "lista con tabla y aviso")
 app = open("app.py", encoding="utf-8").read()
 chk("def render_ideas" in app and "Estamos armando esta sección" not in app, "la página Ideas ya no es un aviso")
-chk(("dy", "Div. Yield", 1.0) in UE.COLUMNAS and UE.dy_texto({"rendimiento": 1.0}) == "1,00%" and "—" in UE.dy_texto({}), "Dividend Yield en la tabla de ETFs")
+chk(("dy", "Div. Yield", 1.0) in UE.COLUMNAS and UE.dy_texto({"rendimiento": 1.0}) == "1,00%" and UE.dy_texto({"rendimiento": 4.0, "precio": 100}, 200) == "2,00%" and "—" in UE.dy_texto({}), "Dividend Yield en la tabla de ETFs")
 D = AF.cargar()[0]
 for t in ("AMGN", "ANET", "SHOP", "PFE", "QCOM", "MCD", "NVO", "COP"):
     ci = D[t].get("cita") or {}

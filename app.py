@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.44"
+APP_VERSION = "1.5.45"
 
 import re
 import contextlib
@@ -2066,14 +2066,29 @@ def render_ideas(universe_key):
         etfs, guardados = [], {}
     listas = _ideas.cargar_listas()
     clave = st.query_params.get("lista")
+    # v1.5.45: rendimientos de hoy (el dividendo anual sobre el precio actual), para que «Dividendos Altos» cambie con el precio
+    precios_e = {}
+    if PRECIOS_VIVOS and df is not None and not df.empty:
+        try:
+            info_p = _precios_usd(_orden_tickers(df))
+            df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"), info_p.get("var"))
+            if n_p:
+                df = df_p
+        except Exception:  # noqa: BLE001
+            pass
+    if PRECIOS_VIVOS and etfs and clave in (None, "altos"):
+        try:
+            precios_e = _precios_etfs(tuple((e["ticker"], _etfs.simbolo_yahoo(e)) for e in etfs))
+        except Exception:  # noqa: BLE001
+            precios_e = {}
     css = f"<style>{_tv.CSS}{_ideas.CSS}</style>"
     if clave in {x["clave"] for x in _ideas.LISTAS}:
-        filas = _ideas.miembros(clave, df, calidades, etfs, guardados, listas)
+        filas = _ideas.miembros(clave, df, calidades, etfs, guardados, listas, precios_e)
         st.markdown(css + _ideas.lista_html(clave, filas, listas, celda_empresa=_tv._celda_empresa, celda_sector=_tv._celda_sector,
                                             celda_categoria=_tv._celda_categoria, logo_etf=lambda e: _ui_etfs.logo_chico_html(e, guardados.get(e.get("ticker")))),
                     unsafe_allow_html=True)
         return
-    conteos = {x["clave"]: len(_ideas.miembros(x["clave"], df, calidades, etfs, guardados, listas)) for x in _ideas.LISTAS}
+    conteos = {x["clave"]: len(_ideas.miembros(x["clave"], df, calidades, etfs, guardados, listas, precios_e)) for x in _ideas.LISTAS}
     st.markdown(css + _ideas.mosaicos_html(conteos), unsafe_allow_html=True)
 
 

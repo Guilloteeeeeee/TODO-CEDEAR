@@ -35,7 +35,7 @@ LISTAS = [
     {"clave": "reyes", "titulo": "Reyes del Dividendo",
      "desc": "Un club muy exclusivo: empresas que aumentaron su dividendo durante al menos 50 años seguidos."},
     {"clave": "aspirantes", "titulo": "Aspirantes del Dividendo",
-     "desc": "Empresas que aumentan su dividendo hace entre 10 y 24 años seguidos: van camino a ser Aristócratas."},
+     "desc": "Empresas con una larga racha aumentando su dividendo todos los años que todavía no son Aristócratas ni Reyes: van en camino."},
     {"clave": "altos", "titulo": "Dividendos Altos",
      "desc": "Empresas y ETFs que hoy pagan un rendimiento por dividendo de 4% o más."},
     {"clave": "fundamentales", "titulo": "Fundamentales Fuertes",
@@ -60,34 +60,53 @@ def _n(x):
         return None
 
 
-def miembros(clave, df, calidades=None, etfs=None, etfs_datos=None, listas=None):
-    """Filas de la lista: [{"tipo": "empresa"|"etf", "ticker", "row" (fila del cache o del ETF), "dato" (años / rendimiento / calidad)}], ya ordenadas."""
+def dy_etf(d, precio_hoy=None):
+    """v1.5.45: rendimiento por dividendo de un ETF como fracción (0,04 = 4%). Yahoo lo da en % con el precio del día en que se bajó;
+    con el precio de hoy se recalcula (el dividendo anual no cambia: si el precio sube, el rendimiento baja). None si no reparte."""
+    rto, p0, p1 = _n((d or {}).get("rendimiento")), _n((d or {}).get("precio")), _n(precio_hoy)
+    if not rto or rto <= 0:
+        return None
+    return (rto / 100) * (p0 / p1) if (p0 and p1) else rto / 100
+
+
+def miembros(clave, df, calidades=None, etfs=None, etfs_datos=None, listas=None, precios_etfs=None):
+    """Filas de la lista: [{"tipo": "empresa"|"etf", "ticker", "row" (fila del cache o del ETF), "dato" (años / rendimiento / calidad), "dy"}], ya ordenadas.
+    v1.5.45: Aristócratas y Reyes, por años (listas de Guille del 08/11/2026); Aspirantes = las de su lista que no son Aristócratas ni Reyes, por
+    rendimiento; Dividendos Altos se arma en el momento con el rendimiento de hoy (empresas y ETFs)."""
     listas = listas if listas is not None else cargar_listas()
     calidades = calidades or {}
     filas = {str(r.get("ticker")): r for r in (df.to_dict("records") if df is not None and not df.empty else [])}
+    dy = lambda r: _n(r.get("dividend_yield_actual"))   # noqa: E731
     out = []
-    if clave in ("aristocratas", "reyes", "aspirantes"):
+    if clave in ("aristocratas", "reyes"):
         anios = (listas.get(clave) or {}).get("anios") or {}
         for t, a in anios.items():
-            if t in filas:
-                out.append({"tipo": "empresa", "ticker": t, "row": filas[t], "dato": int(a)})
+            t2 = t.replace(".", "-")
+            if t2 in filas:
+                out.append({"tipo": "empresa", "ticker": t2, "row": filas[t2], "dato": int(a), "dy": dy(filas[t2])})
         out.sort(key=lambda x: (-x["dato"], x["ticker"]))
+    elif clave == "aspirantes":
+        fuera = set((listas.get("aristocratas") or {}).get("anios") or {}) | set((listas.get("reyes") or {}).get("anios") or {})
+        for t in (listas.get("aspirantes") or {}).get("tickers") or []:
+            t2 = t.replace(".", "-")
+            if t2 in filas and t not in fuera:
+                out.append({"tipo": "empresa", "ticker": t2, "row": filas[t2], "dato": dy(filas[t2]), "dy": dy(filas[t2])})
+        out.sort(key=lambda x: (-(x["dato"] or 0), x["ticker"]))
     elif clave == "altos":
         for t, r in filas.items():
-            dy = _n(r.get("dividend_yield_actual"))
-            if dy is not None and dy >= UMBRAL_DY:
-                out.append({"tipo": "empresa", "ticker": t, "row": r, "dato": dy})
+            v = dy(r)
+            if v is not None and v >= UMBRAL_DY:
+                out.append({"tipo": "empresa", "ticker": t, "row": r, "dato": v, "dy": v})
         for e in etfs or []:
-            d = (etfs_datos or {}).get(e.get("ticker")) or {}
-            rto = _n(d.get("rendimiento"))
-            if rto is not None and rto / 100 >= UMBRAL_DY:
-                out.append({"tipo": "etf", "ticker": e["ticker"], "row": e, "dato": rto / 100})
+            v = dy_etf((etfs_datos or {}).get(e.get("ticker")), (precios_etfs or {}).get(e.get("ticker")))
+            if v is not None and v >= UMBRAL_DY:
+                out.append({"tipo": "etf", "ticker": e["ticker"], "row": e, "dato": v, "dy": v})
         out.sort(key=lambda x: (-x["dato"], x["ticker"]))
     elif clave == "fundamentales":
         for t, r in filas.items():
             if r.get("categoria") in INFRAVALORADAS and calidades.get(t) in CALIDADES_FUERTES:
                 p, fv = _n(r.get("precio_actual")), _n(r.get("fair_value"))
-                out.append({"tipo": "empresa", "ticker": t, "row": r, "dato": calidades[t], "_up": (fv / p - 1) if p and fv else 0})
+                out.append({"tipo": "empresa", "ticker": t, "row": r, "dato": calidades[t], "dy": dy(r), "_up": (fv / p - 1) if p and fv else 0})
         out.sort(key=lambda x: (-x["_up"], x["ticker"]))
     return out
 
@@ -151,8 +170,10 @@ def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None,
     if not x:
         return ""
     listas = listas if listas is not None else cargar_listas()
-    col = {"aristocratas": "Años seguidos aumentando", "reyes": "Años seguidos aumentando", "aspirantes": "Años seguidos aumentando",
-           "altos": "Rendimiento por dividendo", "fundamentales": "Calidad"}[clave]
+    col = {"aristocratas": "Años seguidos aumentando", "reyes": "Años seguidos aumentando", "aspirantes": "Div. Yield",
+           "altos": "Div. Yield", "fundamentales": "Calidad"}[clave]
+    con_dy = clave in ("aristocratas", "reyes")      # v1.5.45: además de los años, el rendimiento de hoy
+    pct = lambda v: (f"{v * 100:.1f}%".replace(".", ",") if v is not None else "—")   # noqa: E731
     cuerpo = []
     for f in filas:
         r = f["row"]
@@ -167,19 +188,23 @@ def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None,
             sec = celda_sector(r) if celda_sector else ""
             cat = celda_categoria(r) if celda_categoria else html.escape(str(r.get("categoria") or ""))
         d = f["dato"]
-        if clave == "altos":
-            dato = f"{d * 100:.1f}%".replace(".", ",")
+        if clave in ("altos", "aspirantes"):
+            dato = pct(d)
         elif clave == "fundamentales":
             dato = html.escape(str(d))
         else:
             dato = str(d)
-        cuerpo.append(f'<tr><td>{emp}</td><td class="id-sec">{sec}</td><td>{cat}</td><td class="id-num">{dato}</td></tr>')
+        extra = f'<td class="id-num">{pct(f.get("dy"))}</td>' if con_dy else ""
+        cuerpo.append(f'<tr><td>{emp}</td><td class="id-sec">{sec}</td><td>{cat}</td><td class="id-num">{dato}</td>{extra}</tr>')
     if not cuerpo:
-        cuerpo.append('<tr><td colspan="4" style="text-align:center;color:#64748b;padding:22px">Hoy no hay empresas que cumplan esta condición.</td></tr>')
+        cuerpo.append('<tr><td colspan="5" style="text-align:center;color:#64748b;padding:22px">Hoy no hay empresas que cumplan esta condición.</td></tr>')
+    th_dy = '<th class="id-num">Div. Yield</th>' if con_dy else ""
     notas = []
     info = listas.get(clave) or {}
     if info.get("fuente"):
-        notas.append(f'Fuente de los años seguidos aumentando el dividendo: {html.escape(info["fuente"])}, {html.escape(str(info.get("fecha") or ""))}.')
+        notas.append(f'Fuente de la lista: {html.escape(info["fuente"])}, al {html.escape(str(info.get("fecha") or ""))}. Se muestran solo las que se pueden comprar como CEDEAR.')
+    if clave in ("aristocratas", "reyes", "aspirantes", "altos"):
+        notas.append("El rendimiento por dividendo es el de hoy: el dividendo anual dividido por el precio actual, así que cambia día a día con el precio.")
     if clave == "altos":
         notas.append("Un dividendo muy alto no siempre es una buena noticia: a veces refleja que el precio cayó por problemas en el negocio, o que el pago "
                      "no se puede sostener. En algunos ETFs (por ejemplo, los que invierten en contratos de futuros) lo que distribuyen no proviene de dividendos de empresas.")
@@ -188,5 +213,5 @@ def lista_html(clave, filas, listas=None, celda_empresa=None, celda_sector=None,
     notas.append("Información con fines educativos: no es una recomendación de compra ni de venta.")
     return (f'<div class="id-w"><a class="id-vol" href="?pagina=ideas" target="_self">← Ideas de Inversión</a>'
             f'<div class="id-cab"><div class="id-ic">{_icono(clave)}</div><div><h2>{html.escape(x["titulo"])}</h2><p>{html.escape(x["desc"])}</p></div></div>'
-            f'<table class="id-tab"><thead><tr><th>Empresa</th><th class="id-sec">Sector</th><th>Valoración</th><th class="id-num">{col}</th></tr></thead>'
+            f'<table class="id-tab"><thead><tr><th>Empresa</th><th class="id-sec">Sector</th><th>Valoración</th><th class="id-num">{col}</th>{th_dy}</tr></thead>'
             f'<tbody>{"".join(cuerpo)}</tbody></table><p class="id-nota">{" ".join(notas)}</p></div>')

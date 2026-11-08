@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.45 — Listas de Ideas de Inversión cargadas por Guille
+- **Aristócratas (68), Reyes (60) y Aspirantes (414)**: listas completas al 08/11/2026 enviadas por Guille, guardadas enteras en `data/ideas_listas.json`; la app muestra solo las que tiene cargadas (hoy 26, 16 y 45). Si se suma un CEDEAR que está en una lista, aparece solo.
+- **Aspirantes** = las de su lista que no son Aristócratas ni Reyes, ordenadas por rendimiento por dividendo (su lista no trae los años).
+- **Dividendos Altos** se arma en el momento con el rendimiento de hoy (dividendo anual sobre el precio actual), en empresas y ETFs: si el precio sube, el rendimiento baja y puede salir de la lista. La columna Div. Yield de la tabla de ETFs también usa el precio de hoy.
+- Aristócratas y Reyes muestran los años y además el Div. Yield de hoy.
+- Pruebas: `tests/test_v1545_listas_guille.py`.
+
 ### v1.5.44 — Ideas de Inversión, Dividend Yield en ETFs y palabras de la gerencia
 - **Ideas de Inversión** (`?pagina=ideas`, `ui/ideas.py`): cinco mosaicos con dibujo, título, texto y cantidad: Aristócratas del Dividendo (25+ años subiendo el dividendo y en el S&P 500), Reyes del Dividendo (50+ años), Aspirantes del Dividendo (10 a 24 años), Dividendos Altos (4% o más; única lista con ETFs) y Fundamentales Fuertes que podrían estar infravalorados (calidad Excelente o Muy buena según el Análisis Fundamental y valoración infravalorada o con tendencia). Al tocar uno se ve la lista. Las listas de años vienen de `data/ideas_listas.json` (con fuente y fecha; actualizar una vez por año, en febrero).
 - **ETFs**: columna Div. Yield en la tabla (dato de Yahoo, ordenable).
