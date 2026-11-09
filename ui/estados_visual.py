@@ -166,114 +166,29 @@ AVISO_FAMILIA = {
 # Dato de la industria de Damodaran comparable con cada gráfico: (planilla, columna). Solo los que se calculan igual que el nuestro.
 _DAMODARAN = {"mbr": ("margin", "Gross Margin"), "mop": ("margin", "Pre-tax Unadjusted Operating Margin"), "mne": ("margin", "Net Margin"),
               "mebitda": ("margin", "EBITDA/Sales"), "roe": ("pbvdata", "ROE")}
-# No se toman de Damodaran: ROIC (él resta la caja del capital y el nuestro no), cobertura de intereses (él usa el resultado operativo DESPUÉS de
-# impuestos), deuda neta / EBITDA, liquidez corriente, margen de flujo libre y payouts (no están en sus planillas cargadas). Para esos, la línea es la
-# mediana del grupo dentro de la app (ver CLAVES_GRUPO).
-
-
-# Ratios sin dato comparable en Damodaran: la línea es la MEDIANA de las demás empresas de la app del mismo sector (o del mismo tipo, en
-# financieras y REITs), calculada con la misma fórmula que la de la empresa. Solo si hay al menos MIN_GRUPO empresas con dato.
-CLAVES_GRUPO = ("roic", "dne", "cob", "liq", "mfcf", "pay", "roa", "solv", "payn", "payfco")
-MIN_GRUPO = 5
-_CACHE_GRUPOS = {}
-
-
-def _sector_de(ticker):
-    try:
-        import json, os
-        from config.sectors import partes_sector
-        ruta = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "cache_datos.json")
-        clave = ("sectores", os.path.getmtime(ruta))
-        if clave not in _CACHE_GRUPOS:
-            filas = json.load(open(ruta, encoding="utf-8")).get("data", [])
-            _CACHE_GRUPOS.clear()
-            _CACHE_GRUPOS[clave] = {str(r["ticker"]).upper(): (partes_sector(r.get("sector"))[0] or "") for r in filas}
-        return _CACHE_GRUPOS[clave].get(str(ticker).upper(), "")
-    except Exception:  # noqa: BLE001
-        return ""
-
-
-def _ultimo_fy(serie, fy):
-    for a in reversed(fy):
-        if serie.get(a) is not None:
-            return serie[a]
-    return None
-
-
-def valores_grupo():
-    """{ticker: (familia, sector, {clave: último valor de año fiscal})} de todas las empresas con estados guardados (se calcula una vez)."""
-    try:
-        import os
-        from data import paquetes_yahoo as _PY
-        ruta = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "paquetes_yahoo.json")
-        clave = ("grupo", os.path.getmtime(ruta))
-    except Exception:  # noqa: BLE001
-        return {}
-    if clave in _CACHE_GRUPOS:
-        return _CACHE_GRUPOS[clave]
-    out = {}
-    for tk, paq in (_PY.cargar()[0] or {}).items():
-        est = (paq or {}).get("estados")
-        if not est:
-            continue
-        try:
-            fy, _ttm = _T._anios(est)
-            _a, _t, s = series(est)
-        except Exception:  # noqa: BLE001
-            continue
-        out[str(tk).upper()] = (familia(tk, est), _sector_de(tk), {k: _ultimo_fy(s.get(k) or {}, fy) for k in CLAVES_GRUPO})
-    _CACHE_GRUPOS[clave] = out
-    return out
-
-
-def mediana_grupo(ticker, clave, fam):
-    """(mediana, n, texto del grupo) de las demás empresas de la app del mismo sector (general) o del mismo tipo (financiera, reit); None si < MIN_GRUPO."""
-    vg = valores_grupo()
-    t = str(ticker).upper()
-    sector = vg.get(t, (None, _sector_de(t)))[1] if t in vg else _sector_de(t)
-    vals = []
-    for otro, (f, sec, v) in vg.items():
-        if otro == t or f != fam or v.get(clave) is None:
-            continue
-        if fam == "general" and (not sector or sec != sector):
-            continue
-        vals.append(v[clave])
-    if len(vals) < MIN_GRUPO:
-        return None
-    vals.sort()
-    n = len(vals)
-    med = vals[n // 2] if n % 2 else (vals[n // 2 - 1] + vals[n // 2]) / 2
-    grupo = {"financiera": "bancos, aseguradoras y financieras", "reit": "inmobiliarias (REITs)"}.get(fam, f"del sector {sector}")
-    return med, n, grupo
+# Sin línea, a propósito: ROIC (Damodaran resta la caja del capital y el nuestro no), cobertura de intereses (Damodaran usa el resultado operativo
+# DESPUÉS de impuestos), deuda neta / EBITDA, liquidez corriente, margen de flujo libre y dividendos / flujo libre (no están en las planillas cargadas).
 
 
 def referencias(ticker, fam="general"):
-    """{clave: (valor en fracción, texto del mouse)}.
-    - Márgenes y ROE: valor de la industria de la empresa según Damodaran (se calcula igual que el nuestro). En financieras, solo margen neto y ROE.
-    - El resto (ROIC, deuda neta/EBITDA, cobertura, liquidez, margen de flujo libre, payout, ROA…): mediana de las demás empresas de la app del mismo
-      sector (o tipo), con la misma fórmula."""
-    out = {}
+    """{clave: (valor en fracción, texto del mouse)} con los valores de la industria de la empresa (Damodaran). En financieras, solo margen neto y ROE."""
     try:
         from data import damodaran as _D
         v = _D.valores(ticker)
     except Exception:  # noqa: BLE001
         v = None
-    if v:
-        for k, (ds, col) in _DAMODARAN.items():
-            if fam == "financiera" and k not in ("mne", "roe"):
-                continue
-            x = _n((v.get(ds) or {}).get(col))
-            # un margen bruto/operativo/EBITDA ≤ 0 o un ROE ≤ 0 de toda una industria no sirve como referencia (suele ser un dato raro de la
-            # planilla, como el ROE de −0,2% de «Computers/Peripherals»): mejor sin línea que con una engañosa
-            if x is None or (k in ("mbr", "mop", "mebitda", "roe") and x <= 0):
-                continue
-            out[k] = (x / 100, f"Industria: {v['industria']} ({v.get('region_txt', '')}; Damodaran, enero 2026). Suma las cifras de todas las empresas de la industria.")
-    for k in CLAVES_GRUPO:
-        if k in out:
+    if not v:
+        return {}
+    out = {}
+    for k, (ds, col) in _DAMODARAN.items():
+        if fam == "financiera" and k not in ("mne", "roe"):
             continue
-        m = mediana_grupo(ticker, k, fam)
-        if m:
-            out[k] = (m[0], f"Mediana de {m[1]} empresas {m[2]} que sigue TodoCedears (último año fiscal; misma fórmula que la de esta empresa).")
+        x = _n((v.get(ds) or {}).get(col))
+        # un margen bruto/operativo/EBITDA ≤ 0 o un ROE/ROIC ≤ 0 de toda una industria no sirve como referencia (suele ser un dato raro de la
+        # planilla, como el ROE de −0,2% de «Computers/Peripherals»): mejor sin línea que con una engañosa
+        if x is None or (k in ("mbr", "mop", "mebitda", "roe") and x <= 0):
+            continue
+        out[k] = (x / 100, f"Industria: {v['industria']} ({v.get('region_txt', '')}; Damodaran, enero 2026). Suma las cifras de todas las empresas de la industria.")
     return out
 
 

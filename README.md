@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.51 — Sin líneas con medianas de la app
+- Se sacan las líneas de referencia armadas con la mediana de las empresas de TodoCedears (v1.5.50). Guille (08/11/2026): «no considero que esté bien usar promedios de TodoCedears para esto, estamos concluyendo referencias con muestras muy chicas». Vuelve lo de la v1.5.49: línea solo donde Damodaran calcula igual que nosotros (márgenes y ROE). Queda a su decisión cómo sumar el resto (ver PENDIENTES).
+
 ### v1.5.50 — Análisis de ETF y líneas de referencia en todos los ratios
 - **Análisis del ETF** (solapa nueva en la página de cada ETF, con PDF para bajar): qué replica, qué tiene adentro (torta de industrias y 10 principales posiciones), cuánto cuesta y cómo se compra, rendimiento contra el S&P 500 a la misma fecha, dividendos, rol en la cartera, pros y contras, riesgos y conclusión. Modelo aprobado por Guille (XLV). Primera tanda: los 11 fondos de sectores de State Street (XLB, XLC, XLE, XLF, XLI, XLK, XLP, XLRE, XLU, XLV, XLY). Informes en `data/analisis_etf.json`, armado en `ui/etf_informe.py`, PDF con `generar_informe_etf.py` (en `static/informes_etf/`; cada versión queda en el archivo histórico como `ETF-<TICKER>`). Los ETF sin informe muestran que está en preparación.
 - **Líneas de referencia en todos los ratios**: donde Damodaran no calcula el número igual que nosotros (ROIC, deuda neta/EBITDA, cobertura de intereses, liquidez, margen de flujo libre, payout, ROA, solvencia), la línea es la **mediana de las demás empresas de la app del mismo sector** (bancos y aseguradoras: de las demás financieras), con la misma fórmula, el último año fiscal y al menos 5 empresas. Los REITs (hay 3) siguen sin esas líneas. Al pasar el mouse dice de dónde sale y cuántas empresas son.
