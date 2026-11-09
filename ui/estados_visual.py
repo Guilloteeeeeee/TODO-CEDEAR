@@ -170,6 +170,10 @@ _DAMODARAN = {"mbr": ("margin", "Gross Margin"), "mop": ("margin", "Pre-tax Unad
 # DESPUÉS de impuestos), deuda neta / EBITDA, liquidez corriente, margen de flujo libre y dividendos / flujo libre (no están en las planillas cargadas).
 
 
+# Ratios en los que lo bueno es estar POR DEBAJO de la referencia (hoy ninguno tiene línea; quedan listos para cuando la tengan)
+_MENOS_ES_MEJOR = {"dne", "pay", "payn", "payfco"}
+
+
 def referencias(ticker, fam="general"):
     """{clave: (valor en fracción, texto del mouse)} con los valores de la industria de la empresa (Damodaran). En financieras, solo margen neto y ROE."""
     try:
@@ -188,7 +192,7 @@ def referencias(ticker, fam="general"):
         # planilla, como el ROE de −0,2% de «Computers/Peripherals»): mejor sin línea que con una engañosa
         if x is None or (k in ("mbr", "mop", "mebitda", "roe") and x <= 0):
             continue
-        out[k] = (x / 100, f"Industria: {v['industria']} ({v.get('region_txt', '')}; Damodaran, enero 2026). Suma las cifras de todas las empresas de la industria.")
+        out[k] = (x / 100, f"Promedio de la industria {v['industria']} ({v.get('region_txt', '')}; Damodaran, enero 2026). Suma las cifras de todas las empresas de la industria.")
     return out
 
 
@@ -256,8 +260,10 @@ def tarjeta(clave, tit, txt, tipo, anios, ttm, s, moneda=None, ref=None, extra_t
                       f'<div class="ev-a">{etq}</div></div>')
     linea = ""
     if ref:
+        # v1.5.52 (Guille): «Ideal: más de X» para que el usuario vea la referencia; al pasar el mouse dice de dónde sale (promedio de la industria)
+        sentido = "menos" if clave in _MENOS_ES_MEJOR else "más"
         linea = (f'<div class="ev-ref" style="bottom:{y(ref[0]) + 34:.0f}px"><span title="{html.escape(ref[1], quote=True)}">'
-                 f'{_fmt(ref[0], tipo)}</span></div>')
+                 f'Ideal: {sentido} de {_fmt(ref[0], tipo)}</span></div>')
     cero = f'<div class="ev-cero" style="bottom:{y(0) + 34:.0f}px"></div>' if lo < 0 else ""
     return (f'<div class="ev-t"><h4>{html.escape(tit)}<small>{html.escape(unidad)}</small></h4><p>{html.escape(txt)}{html.escape(extra_txt)}</p>'
             f'<div class="ev-g">{linea}{cero}{"".join(barras)}</div></div>')

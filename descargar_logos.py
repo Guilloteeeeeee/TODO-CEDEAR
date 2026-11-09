@@ -34,7 +34,9 @@ MIN_BYTES = 150
 
 
 # v1.5.31: tickers que en otras fuentes pertenecen a OTRA cosa (SPCX era un ETF viejo: parqet devolvia el logo de «AXS»). Para estos se usa solo el dominio de la empresa.
-SOLO_POR_DOMINIO = {"SPCX", "ASML"}
+SOLO_POR_DOMINIO = {"SPCX"}
+# v1.5.52: logos puestos a mano (el que mandó Guille). El programa NUNCA los pisa, ni con --todo.
+MANUALES = {"ASML"}
 
 
 def _fuentes(ticker):
@@ -85,6 +87,8 @@ def main(args):
     print(f"Bajando logos de {len(tickers)} empresas a {CARPETA_LOGOS} ...")
     for i, t in enumerate(tickers, 1):
         destino = CARPETA_LOGOS / f"{t}.png"
+        if t in MANUALES and destino.exists():
+            continue
         if destino.exists() and not todo and not pedidos and t not in SOLO_POR_DOMINIO:   # v1.5.43: ASML/SPCX se rehacen siempre (el viejo de ASML era oscuro)
             continue
         ok = False

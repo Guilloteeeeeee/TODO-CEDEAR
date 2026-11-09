@@ -145,6 +145,32 @@ def css_ayudas(pares):
     return "".join(out)
 
 
+def css_ayuda_solapas(clave, textos):
+    """v1.5.52 (pedido de Guille): la explicación de cada solapa aparece HACIA ARRIBA al pasar el mouse por su título (antes iba como texto fijo
+    arriba de cada solapa). `clave`: key del st.container que envuelve a st.tabs; `textos`: uno por solapa, en orden (vacío = sin globito).
+    Solo en pantallas con mouse: en el celular no hay «pasar el mouse», así que ahí sigue el texto de siempre (clase fch-intro) arriba de cada solapa.
+    Las solapas de adentro de otra solapa (por ejemplo, las de Estados Financieros) llevan su propio contenedor y su CSS va DESPUÉS del de afuera
+    (a igual especificidad gana el último)."""
+    n = len(textos)
+    out = ["@keyframes soltip{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}",
+           "@media (hover:hover) and (min-width:700px){",
+           f'.st-key-{clave} [role="tablist"]{{overflow:visible!important}}',
+           f'.st-key-{clave} [role="tablist"]:hover{{z-index:60!important}}',      # la barra de solapas arma su propia capa (z-index 0): sin esto la tapa el encabezado
+           f'.st-key-{clave} [role="tab"]{{position:relative}}',
+           f".st-key-{clave} .fch-intro{{display:none}}"]
+    for i, texto in enumerate(textos, 1):
+        t = str(texto or "").replace("**", "").replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
+        if not t:
+            continue
+        pos = "left:0" if i <= (n + 1) // 2 else "right:0"
+        out.append(f'.st-key-{clave} [role="tablist"] > [role="tab"]:nth-child({i}):hover::after{{content:"{t}";position:absolute;bottom:calc(100% + 8px);{pos};'
+                   "width:320px;box-sizing:border-box;z-index:1000;background:#1f2937;color:#fff;font-size:.8rem;font-weight:400;line-height:1.45;"
+                   "text-align:left;white-space:normal;padding:9px 12px;border-radius:8px;box-shadow:0 8px 22px rgba(15,23,42,.35);pointer-events:none;"
+                   "animation:soltip .16s ease .25s both}")
+    out.append("}")
+    return "".join(out)
+
+
 # Columnas por defecto (clave de orden, titulo, ancho relativo). Los encabezados (botones de Streamlit) y las filas (grilla CSS) usan los mismos anchos.
 COLUMNAS_BASE = [
     ("nombre", "Empresa", 3.2), ("sector_txt", "Sector e Industria", 2.5), ("precio_actual", "Precio", 1.1),

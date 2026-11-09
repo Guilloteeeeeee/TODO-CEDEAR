@@ -910,13 +910,27 @@ INTROS = {
     "analisis": "Un análisis de la empresa: qué hace, qué la distingue, cómo vienen sus números, cuánto se paga hoy por ella y qué le puede salir mal. Escrito con asistencia de inteligencia artificial a partir de los informes oficiales; los números del día los actualiza la app. Informativo: no es una recomendación.",
     "grafico": "Cómo se movió el precio de la acción, cuánto rindió en distintos plazos y qué dicen los indicadores técnicos (rango de 52 semanas, promedios móviles, RSI, MACD y riesgo). Es información sobre el pasado del precio, no una señal de compra o venta.",
     "valuacion": "Una estimación sobre si la empresa cotiza cara o barata frente a sí misma: compara sus múltiplos de hoy con los de años anteriores y con su mediana.",
-    "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance) y cómo entra y sale el dinero (flujo de efectivo). Pasá el mouse por cada concepto para ver qué significa.",
+    "estados": "Las cuentas que la empresa publica: qué vende y cuánto gana (resultados), qué tiene y qué debe (balance), cómo entra y sale el dinero (flujo de efectivo) y los ratios que salen de esas cuentas.",
     "dividendos": "Cuánto paga la empresa a sus accionistas en concepto de dividendo y si el mismo es sostenible.",
     "competidores": "Las empresas del mismo negocio que cotizan como CEDEARs, para compararlas de un vistazo: crecimiento, rentabilidad, deuda, dividendo, calidad y valoración.",
     "directivos": "Quiénes conducen la empresa y cuánto cobran. El CEO es el máximo responsable ejecutivo: el que toma las decisiones del día a día.",
     "accionariado": "Quiénes son los dueños: los directivos (insiders) y las instituciones (fondos, bancos). Que los directivos tengan acciones suele alinear sus intereses con los de los demás accionistas.",
     "noticias": "Los últimos titulares sobre la empresa, en su idioma original, con link a cada nota.",
 }
+
+
+# v1.5.52 (Guille): la definición de cada parte de los Estados Financieros va en su propia subsolapa
+INTROS_ESTADOS = {
+    "resultados": "Qué vende la empresa, cuánto le cuesta y cuánto gana en cada año. Pasá el mouse por cada concepto para ver qué significa.",
+    "balance": "Qué tiene la empresa (activos) y qué debe (pasivos) al cierre de cada año, y lo que les queda a los accionistas (patrimonio). Pasá el mouse por cada concepto para ver qué significa.",
+    "flujo": "Cómo entra y sale el dinero: lo que genera el negocio, lo que invierte y lo que devuelve a los accionistas o usa para pagar deudas. Pasá el mouse por cada concepto para ver qué significa.",
+    "ratios": "Cocientes entre las cuentas que muestran la rentabilidad, el endeudamiento y la liquidez de la empresa, para compararla con sus años anteriores y con su industria. Pasá el mouse por cada concepto para ver qué significa.",
+}
+
+
+def con_intro_estados(clave, cuerpo):
+    t = INTROS_ESTADOS.get(clave)
+    return (f'<div class="fch-intro">{html.escape(t)}</div>' if t else "") + cuerpo
 
 
 def con_intro(clave, cuerpo):
@@ -996,7 +1010,7 @@ def _texto_af(txt):
 _CSS_AF = ('<style>.af p{margin:0 0 .75em;font-size:14.5px;line-height:1.6;color:#1f2937;text-align:justify}.af ul,.af ol{margin:0 0 .7em 1.1em;padding:0}'
            '.af li{margin:0 0 .4em;font-size:14.5px;line-height:1.55;color:#1f2937;text-align:justify}.af b{font-weight:700;color:#0f172a}'
            '.af h4{margin:1.1em 0 .4em;font-size:14.5px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#0f172a}.af h4:first-child{margin-top:0}'
-           '.af-rs{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}.af-rs>.af-rt{flex:1 1 420px;min-width:0}.af-rs>.af-sc{flex:0 0 190px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}'
+           '.af-rs{display:flex;gap:22px;align-items:flex-start;flex-wrap:wrap}.af-rs>.af-rt{flex:0 1 760px;min-width:0}.af-rs>.af-sc{flex:1 1 190px;align-self:center;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}.af-rs>.af-sc .s{max-width:230px}'
            '.af-sc .num{font-size:64px;line-height:1;font-weight:800;border-radius:16px;padding:16px 22px;min-width:130px;letter-spacing:-2px}.af-sc .l{font-size:12.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#0f172a}'
            '.af-sc .s{font-size:12px;color:#4b5563;line-height:1.4}.af-cn{margin:.4em 0 0!important;font-size:15.5px!important;line-height:1.55!important;color:#111827!important}.af-id{margin:.9em 0 .3em}.af-id ul{margin:.3em 0 .2em 1.1em}.af-id li{margin:0 0 .3em;font-size:14.5px;line-height:1.55;text-align:justify}.af-no b{color:#475569}.af-cp{margin:.9em 0 0!important;padding-top:.6em;border-top:1px solid #e5e9f0}.af-cx{margin:.8em 0 0;padding:12px 14px;border-radius:12px;line-height:1.6}.af-cx p{margin:0 0 .5em}.af-cx p:last-child{margin:0}'
            '.af-ia{display:inline-block;margin:0 0 .6em;padding:2px 10px;'
@@ -1394,6 +1408,11 @@ def metricas_competidor(estados):
     from data import af_tablas as _T
     if not estados:
         return {}
+    try:      # v1.5.52: ROIC con el capital invertido arreglado (ASML 12 meses daba 642%)
+        from data import yahoo_extra as _yx
+        estados = _yx.reparar_roic(estados)
+    except Exception:  # noqa: BLE001
+        pass
     fy, ttm = _T._anios(estados)
     orden = fy + ([ttm] if ttm else [])
 

@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.51"
+APP_VERSION = "1.5.52"
 
 import re
 import contextlib
@@ -53,6 +53,7 @@ from ui.ficha import ficha_html, texto_fuente, CSS as CSS_FICHA
 from ui.flecha import poner_flecha, CSS_OCULTAR as CSS_FLECHA
 from ui.quienes import quienes_html, quienes_panel_html, CSS as CSS_QUIENES
 from ui import ficha as _ficha
+from ui import tabla_visual as _tv
 from ui import tecnico as _tecnico
 from data import swr as _swr
 from data import cedears as _cedears, precios_vivos as _pv, fichas as _fichas, historial_precios as _hp, yahoo_extra as _yx, paquetes_yahoo as _py
@@ -224,12 +225,15 @@ def _precios_usd(tickers: tuple, esperar: float = 15.0) -> dict:
                         valido=lambda r: bool(r.get("usd")), vacio=vacio, esperar=esperar)
 
 
-@st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
-def _precios_ars(items: tuple) -> dict:
+def _precios_ars(items: tuple, esperar: float = 4.0) -> dict:
     """Precios en pesos de los CEDEARs: items = ((ticker, (simbolos de Yahoo...), simbolo de BYMA), ...). Devuelve
-    {ticker: [(fuente, pesos), ...]} con los de Yahoo y el de Rava (sin controlar: ver _pv.elegir_ars). Si falla, {}."""
-    try:
+    {ticker: [(fuente, pesos), ...]} con los de Yahoo y el de Rava (sin controlar: ver _pv.elegir_ars). Si falla, {}.
+    v1.5.52 (Guille: «tarda mucho en cargar»): igual que los precios en dólares, se devuelve al instante lo último bajado y se renueva EN SEGUNDO PLANO
+    (data/swr.py). Antes, cada 5 minutos, la primera visita esperaba la bajada de los precios en pesos de todos los CEDEARs."""
+    def _bajar():
         return _pv.bajar_ars_fuentes({t: list(ss) for t, ss, _ in items}, {t: b for t, _, b in items})
+    try:
+        return _swr.obtener(("ars", items), _bajar, max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, valido=lambda r: bool(r), vacio={}, esperar=esperar) or {}
     except Exception:  # noqa: BLE001
         return {}
 
@@ -281,23 +285,28 @@ def _extras_empresa(ticker: str) -> dict:
     """v1.2.57: lo que piden las solapas de la empresa a Yahoo. Un solo pedido de datos (`yahoo_extra.bajar_paquete`: antes eran cuatro en paralelo y Yahoo
     cortaba algunos) mas el historial de precios, en paralelo. Se guarda 30 minutos SOLO si Yahoo respondio algo: un fallo no se guarda, asi que al
     recargar se vuelve a intentar. Lo que no responde queda vacio y la solapa dice "no disponible"."""
-    from concurrent.futures import ThreadPoolExecutor
     m = _memo_extras()
     hit = m.get(("emp", ticker))
     if hit and time.time() - hit[0] < 1800:
         return hit[1]
     vacio = {"historial": None, "dividendos": {}, "gobierno": {}, "noticias": [], "agenda": {}, "estados": {}, "sp": None}
+    guardado, fecha_g = _paquetes_guardados()
+    # v1.5.52 (Guille: «tarda mucho en cargar»): las dos bajadas de Yahoo arrancan juntas en segundo plano (data/swr.py). Si la empresa ya tiene su
+    # paquete guardado (data/paquetes_yahoo.json), la página NO espera al de Yahoo (que desde la nube tardaba de 5 a 20 segundos): sale con el guardado
+    # y lo nuevo queda listo para la visita siguiente. El historial de precios (gráfico y análisis técnico) sí se espera, pero con tope.
+    hay_guardado = bool(guardado.get(ticker.upper()))
+    k_paq, k_hist = ("paq", ticker), ("hist", ticker)
+    paq_ok = lambda r: bool(r and (r.get("info_ok") or r.get("estados") or r.get("dividendos") or r.get("gobierno")))  # noqa: E731
     try:
-        with ThreadPoolExecutor(max_workers=3) as ex:
-            f_hist, f_paq = ex.submit(_hp.bajar, ticker), ex.submit(_yx.bajar_paquete, ticker)
-            paq = f_paq.result(timeout=90) or {}
-            res = {"historial": f_hist.result(timeout=60), "sp": None}
+        _swr.obtener(k_paq, lambda: _yx.bajar_paquete(ticker), 1800, esperar=0, valido=paq_ok, vacio=None)      # solo la arranca
+        hist = _swr.obtener(k_hist, lambda: _hp.bajar(ticker), 1800, esperar=8.0, valido=bool, vacio=None)
+        paq = _swr.obtener(k_paq, lambda: _yx.bajar_paquete(ticker), 1800, esperar=(1.0 if hay_guardado else 40.0), valido=paq_ok, vacio=None) or {}
+        res = {"historial": hist, "sp": None}
         res.update({k: paq.get(k) or vacio[k] for k in ("dividendos", "gobierno", "noticias", "agenda", "estados")})
     except Exception:  # noqa: BLE001
         res = dict(vacio)
         paq = {}
     # v1.2.59: lo que Yahoo no contesto desde la nube se completa con el archivo data/paquetes_yahoo.json (lo baja bajar_paquetes_yahoo.bat)
-    guardado, fecha_g = _paquetes_guardados()
     res, usadas = _py.completar(res, guardado.get(ticker.upper()))
     # v1.5.48: archivo histórico propio: se suman los años fiscales guardados que Yahoo ya no trae (ajustados por splits); si Yahoo no trajo nada, salen de ahí
     try:
@@ -305,11 +314,13 @@ def _extras_empresa(ticker: str) -> dict:
         res["estados"] = _hist.estados_completos(ticker, res.get("estados"), archivo=_arch_est, splits=_arch_sp.get(ticker.upper(), []))
     except Exception:  # noqa: BLE001
         pass
+    if isinstance(res.get("estados"), dict) and res["estados"]:       # v1.5.52: ROIC con el capital invertido arreglado (ASML 12 meses daba 642%)
+        res["estados"] = _yx.reparar_roic(res["estados"])
     if isinstance(res.get("estados"), dict) and res["estados"]:       # v1.4.2: Yahoo rotula mal la moneda de algunas (VALE: dice reales y está en dólares)
         from data import moneda as _mon
         res["estados"] = {**res["estados"], "moneda": _mon.moneda_estados(ticker, res["estados"].get("moneda"))}
     res["archivo"] = {"fecha": fecha_g, "claves": usadas, "foto": (guardado.get(ticker.upper()) or {}).get("foto_ceo")} if usadas or guardado.get(ticker.upper()) else None
-    if res["historial"] or paq.get("info_ok") or res["gobierno"] or res["dividendos"]:
+    if res["historial"] and paq_ok(paq):      # v1.5.52: se guarda el resultado armado solo cuando llegó lo de Yahoo (si no, la próxima vez se usa lo nuevo)
         if len(m) > 300:
             m.clear()
         m[("emp", ticker)] = (time.time(), res)
@@ -441,10 +452,16 @@ def _foto_ceo(nombre: str, empresa: str):
     k = (nombre, empresa)
     if memo.get(k):
         return memo[k]
+    # v1.5.52: un fallo se recuerda 30 minutos (antes se reintentaba en cada visita y sumaba más de un segundo a cada página sin foto)
+    falla = memo.get(("falla",) + k)
+    if falla and time.time() - falla < 1800:
+        return None
     from data import foto_ceo as _fc
     url = _fc.buscar_foto(nombre, empresa)
     if url:
         memo[k] = url
+    else:
+        memo[("falla",) + k] = time.time()
     return url
 
 
@@ -1002,14 +1019,24 @@ def render_pagina_etf(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
     var = (_var_etfs(((tk, extra["simbolo"]),)) if PRECIOS_VIVOS else {}).get(tk)
     cedear = _cedear_etf(df, e, precio)
     st.markdown(f"<style>{_ui_etfs.CSS}</style>" + _ui_etfs.encabezado_etf(e, d, precio, cedear, var), unsafe_allow_html=True)
-    t_res, t_ana, t_com, t_gra, t_not = st.tabs(["Resumen", "Análisis del ETF", "Composición", "Análisis Técnico y Rendimiento", "Noticias"])
+    # v1.5.52 (Guille): la solapa se llama «Análisis Fundamental», como en las empresas, y está solo en los ETFs que tienen su informe
+    from ui import etf_informe as _ei
+    _con_af = _ei.informe(tk) is not None
+    _claves = ["resumen"] + (["analisis"] if _con_af else []) + ["composicion", "grafico", "noticias"]
+    _nombres = {"resumen": "Resumen", "analisis": "Análisis Fundamental", "composicion": "Composición", "grafico": "Análisis Técnico y Rendimiento", "noticias": "Noticias"}
+    st.markdown("<style>" + _tv.css_ayuda_solapas("sol_etf", [_ui_etfs.INTROS.get(k) for k in _claves]) + "</style>", unsafe_allow_html=True)
+    with st.container(key="sol_etf"):
+        _solapas = dict(zip(_claves, st.tabs([_nombres[k] for k in _claves])))
+    t_res, t_com, t_gra, t_not = _solapas["resumen"], _solapas["composicion"], _solapas["grafico"], _solapas["noticias"]
+    t_ana = _solapas.get("analisis")
     with t_res:
         st.markdown(_ui_etfs.con_intro("resumen", _ui_etfs.tab_resumen(e, d, precio, cedear)), unsafe_allow_html=True)
         arch = extra.get("archivo")
         if arch:
             st.caption(f"Algunos datos son de Yahoo guardados el {arch.get('fecha') or 's/d'} (Yahoo no respondió en este momento).")
-    with t_ana:
-        _render_analisis_etf(tk)
+    if t_ana is not None:
+        with t_ana:
+            _render_analisis_etf(tk)
     with t_com:
         st.markdown(_ui_etfs.con_intro("composicion", _ui_etfs.tab_composicion(e, d, universo={str(t).upper() for t in df["ticker"]})), unsafe_allow_html=True)
     with t_gra:
@@ -1499,7 +1526,12 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
         extra = _extras_empresa(tk)
     pares = extra.get("historial")
     nombres = ["Resumen", "Análisis Fundamental", "Análisis Técnico y Rendimiento", "Valuación", "Estados Financieros", "Dividendos", "Competidores", "Directivos", "Accionariado", "Noticias"]
-    t_res, t_ana, t_gra, t_val, t_est, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
+    # v1.5.52 (Guille): la explicación de cada solapa sale HACIA ARRIBA al pasar el mouse por el título (en el celular sigue arriba de cada solapa)
+    st.markdown("<style>" + _tv.css_ayuda_solapas("sol_emp", [_ficha.INTROS.get(k) for k in ("resumen", "analisis", "grafico", "valuacion", "estados", "dividendos",
+                                                                                              "competidores", "directivos", "accionariado", "noticias")]) + "</style>",
+                unsafe_allow_html=True)
+    with st.container(key="sol_emp"):
+        t_res, t_ana, t_gra, t_val, t_est, t_div, t_com, t_dir, t_acc, t_not = st.tabs(nombres)
     with t_res:
         st.markdown(_ficha.con_intro("resumen", _ficha.tab_resumen(rd, ficha, mercado, agenda=extra.get("agenda"))), unsafe_allow_html=True)
     with t_ana:
@@ -1522,13 +1554,15 @@ def render_pagina_empresa(df: pd.DataFrame, ticker_sel: str, fecha_datos=None):
             pass
     with t_est:      # v1.5.47 (Guille): subsolapas por parte, con gráficos arriba y la tabla debajo
         _est = extra.get("estados")
-        st.markdown(_ficha.con_intro("estados", ""), unsafe_allow_html=True)
-        if _est:
-            for _sub, (_k, _t, _c) in zip(st.tabs([t for _, t, _ in _ficha.PARTES_ESTADOS]), _ficha.PARTES_ESTADOS):
-                with _sub:
-                    st.markdown(_ficha.tab_estados_parte(_est, _k, ticker=tk), unsafe_allow_html=True)
+        if _est:      # v1.5.52 (Guille): la definición de cada parte va en su subsolapa (al pasar el mouse por el título; en el celular, arriba de cada una)
+            st.markdown("<style>" + _tv.css_ayuda_solapas("sol_est", [_ficha.INTROS_ESTADOS.get(k) for k, _t, _c in _ficha.PARTES_ESTADOS]) + "</style>",
+                        unsafe_allow_html=True)
+            with st.container(key="sol_est"):
+                for _sub, (_k, _t, _c) in zip(st.tabs([t for _, t, _ in _ficha.PARTES_ESTADOS]), _ficha.PARTES_ESTADOS):
+                    with _sub:
+                        st.markdown(_ficha.con_intro_estados(_k, _ficha.tab_estados_parte(_est, _k, ticker=tk)), unsafe_allow_html=True)
         else:
-            st.markdown(_ficha.tab_estados(_est, ticker=tk), unsafe_allow_html=True)
+            st.markdown(_ficha.con_intro("estados", _ficha.tab_estados(_est, ticker=tk)), unsafe_allow_html=True)
         _nota_archivo(extra, "estados")
     with t_div:
         div = extra.get("dividendos") or {}

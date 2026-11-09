@@ -36,7 +36,8 @@ doc = E.documento_html("XLV", D["XLV"])
 chk("@page" in doc and "Finanzas para Médicos Argentina" in doc and "TodoCedears" in doc.replace("<span>", "").replace("</span>", ""), "el PDF lleva membrete")
 chk("Finanzas para Médicos" not in E.app_html("XLV", D["XLV"]), "en la app, sin membrete (ya está el encabezado del ETF)")
 app = open("app.py", encoding="utf-8").read()
-chk('"Análisis del ETF"' in app and "def _render_analisis_etf" in app and "_ei.ruta_pdf(" in app, "solapa «Análisis del ETF» con el PDF para bajar")
+chk('"analisis": "Análisis Fundamental"' in app and "def _render_analisis_etf" in app and "_ei.ruta_pdf(" in app and "_con_af = _ei.informe(tk) is not None" in app,
+    "v1.5.52: solapa «Análisis Fundamental» (solo en los ETFs con informe) con el PDF para bajar")
 from ui import etfs as UE
 chk("analisis" in UE.INTROS, "la solapa tiene su explicación arriba")
 print(f"OK {ok} MAL {mal}")

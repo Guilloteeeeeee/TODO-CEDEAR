@@ -438,6 +438,47 @@ def _ratio(a, b):
     return (a / b) if (a is not None and b not in (None, 0)) else None
 
 
+def capital_invertido(cap, deuda, patrimonio):
+    """v1.5.52: el capital invertido que informa Yahoo, salvo que venga roto. A veces la columna de 12 meses trae solo una parte (ASML: 1.963 millones,
+    que es solo su deuda, contra 22.064 de patrimonio: daba un ROIC de 642%). Como el capital invertido es deuda + patrimonio, si con patrimonio
+    positivo da menos del 90% del patrimonio, se usa deuda + patrimonio."""
+    if patrimonio is not None and patrimonio > 0 and deuda is not None and (cap in (None, 0) or cap < 0.9 * patrimonio):
+        return deuda + patrimonio
+    return cap
+
+
+def reparar_roic(est):
+    """Rehace la fila de ROIC de unos estados ya guardados (los de data/paquetes_yahoo.json se armaron antes de este arreglo). Devuelve una copia."""
+    try:
+        rat = (est or {}).get("ratios") or {}
+        filas = rat.get("filas") or []
+        rot = "Retorno sobre el capital invertido (ROIC)"
+        if not any(f[0] == rot for f in filas):
+            return est
+
+        def serie(clave, r):
+            t = est.get(clave) or {}
+            for f in t.get("filas", []):
+                if f[0] == r:
+                    return dict(zip(t["anios"], f[1]))
+            return {}
+        ope, tasa, imp, ebt = (serie("resultados", x) for x in ("Resultado operativo", "Tasa de impuesto", "Impuesto a las ganancias", "Resultado antes de impuestos"))
+        cap, deu, pat = (serie("balance", x) for x in ("Capital invertido (según Yahoo)", "Deuda total", "Patrimonio neto"))
+        nuevos = []
+        for a, viejo in zip(rat["anios"], next(f[1] for f in filas if f[0] == rot)):
+            o, c, t = ope.get(a), capital_invertido(cap.get(a), deu.get(a), pat.get(a)), tasa.get(a)
+            if t is None:
+                t = _ratio(imp.get(a), ebt.get(a))
+            if o is None or c in (None, 0) or t is None or not (0 <= t <= 0.6):
+                nuevos.append(viejo)
+            else:
+                nuevos.append(o * (1 - t) / c)
+        filas2 = [[f[0], nuevos, f[2]] if f[0] == rot else f for f in filas]
+        return {**est, "ratios": {**rat, "filas": filas2}}
+    except Exception:  # noqa: BLE001
+        return est
+
+
 def analizar_estados(dfs, moneda=None):
     """dfs: {'income_stmt', 'balance_sheet', 'cashflow'} anuales y, si hay, 'q_income_stmt', 'q_balance_sheet', 'q_cashflow' (trimestrales, para la columna TTM).
     Devuelve {'moneda', 'resultados', 'balance', 'flujo', 'ratios'}: la columna TTM y los ultimos 4 anios fiscales (el mas nuevo primero); los ratios se
@@ -471,7 +512,7 @@ def analizar_estados(dfs, moneda=None):
     anios = sorted([a for a in etiquetas if isinstance(a, str)]) + sorted([a for a in etiquetas if not isinstance(a, str)], reverse=True)
 
     def roic(a):
-        o, c = ope.get(a), cap.get(a)
+        o, c = ope.get(a), capital_invertido(cap.get(a), deu.get(a), pat.get(a))
         t = tasa.get(a)
         if t is None:
             t = _ratio(imp.get(a), ebt.get(a))

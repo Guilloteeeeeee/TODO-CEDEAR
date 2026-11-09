@@ -455,7 +455,11 @@ def esperar(futuro, espera_s=TIMEOUT_S + 2):
     """Resultado crudo de la descarga en segundo plano (o lo guardado); None si no se pudo."""
     try:
         if futuro is not None:
-            return futuro.result(timeout=espera_s)
+            with _LOCK:
+                viejo = _ESTADO["crudo"]
+            # v1.5.52 (Guille: «tarda mucho en cargar»): si ya hay notas guardadas, no se espera la renovación entera (salen las anteriores y las
+            # nuevas quedan para la visita siguiente). Solo la primera vez después de prender la app se espera.
+            return futuro.result(timeout=0.3 if viejo is not None else espera_s)
         with _LOCK:
             return _ESTADO["crudo"]
     except Exception:  # noqa: BLE001

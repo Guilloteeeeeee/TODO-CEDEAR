@@ -20,5 +20,9 @@ src = open("app.py", encoding="utf-8").read()
 chk("_mk.obtener(esperar=0)" in src and 'ctx["barra"] = st.empty()' in src, "la barra de mercados no frena la página (v1.5.43)")
 chk('APP_VERSION = "1.5.' in src, "version")
 d = open("descargar_logos.py", encoding="utf-8").read()
-chk(re.search(r'SOLO_POR_DOMINIO = \{[^}]*"ASML"', d) is not None, "ASML se baja por dominio")
+# v1.5.52: el logo de ASML es el que mandó Guille (azul sobre blanco) y el programa de logos no lo pisa
+chk(re.search(r'MANUALES = \{[^}]*"ASML"', d) is not None, "ASML: logo puesto a mano, no se pisa")
+from PIL import Image
+_px = Image.open("static/logos/ASML.png").convert("RGB").getpixel((2, 2))
+chk(min(_px) > 240, "ASML: logo con fondo blanco (no el oscuro)")
 print(f"OK {ok} MAL {mal}")

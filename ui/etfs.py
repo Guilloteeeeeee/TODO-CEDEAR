@@ -15,7 +15,7 @@ INTRO = ("Un ETF es una canasta de activos (acciones, bonos o materias primas) q
 
 INTROS = {
     "resumen": "Qué es el ETF, cuánto cuesta (comisión), si paga dividendos o los reinvierte, y dónde cotiza, con el link a su sitio oficial.",
-    "analisis": "Un análisis del ETF: qué replica, qué tiene adentro, cuánto cuesta, cómo le fue contra el mercado, qué rol puede cumplir en una cartera, sus pros, contras y riesgos. Escrito con asistencia de inteligencia artificial a partir de las fichas oficiales de cada administradora. Informativo: no es una recomendación.",
+    "analisis": "El análisis fundamental del ETF: qué replica, qué tiene adentro, cuánto cuesta, cómo le fue contra el mercado, qué rol puede cumplir en una cartera, sus pros, contras y riesgos. Escrito con asistencia de inteligencia artificial a partir de las fichas oficiales de cada administradora. Informativo: no es una recomendación.",
     "composicion": "Qué tiene adentro el ETF: sus principales tenencias y cómo se reparte por sector, por tipo de activo y por país.",
     "grafico": "Cómo se movió el precio del ETF, cuánto rindió en distintos plazos y qué dicen los indicadores técnicos (rango de 52 semanas, promedios móviles, RSI, MACD y riesgo). Es información sobre el pasado del precio, no una señal de compra o venta.",
     "noticias": "Los últimos titulares sobre el ETF, en su idioma original, con link a cada nota.",

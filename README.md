@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.52 — Explicaciones al pasar el mouse, «Ideal: más de», carga más rápida
+- **Explicación de cada solapa** (empresa y ETF) al pasar el mouse por su título, hacia arriba. En el celular sigue arriba de cada solapa. En Estados Financieros, cada subsolapa (Resultados, Balance, Flujo, Ratios) tiene su propia definición.
+- **Líneas de referencia**: dicen «Ideal: más de X» (al pasar el mouse: promedio de la industria según Damodaran).
+- **Score de calidad** centrado entre el texto y el borde en «En pocas palabras».
+- **ETFs**: la solapa se llama «Análisis Fundamental», como en las empresas, y está solo en los que tienen su informe (hoy, los 11 de sectores).
+- **Logo de ASML**: el que mandó Guille; `descargar_logos.py` ya no lo pisa (`MANUALES`).
+- **ROIC**: cuando Yahoo trae un capital invertido roto (menos del 90% del patrimonio), se usa deuda + patrimonio. ASML (12 meses) pasaba de 642% a 52%.
+- **Rapidez**: la ficha de la empresa ya no espera el paquete de Yahoo si tiene el guardado (lo renueva en segundo plano); precios en pesos y noticias también en segundo plano; un fallo de la foto del CEO se recuerda 30 minutos.
+- Pruebas: `tests/test_v1552_solapas_rapidez.py`.
+
 ### v1.5.51 — Sin líneas con medianas de la app
 - Se sacan las líneas de referencia armadas con la mediana de las empresas de TodoCedears (v1.5.50). Guille (08/11/2026): «no considero que esté bien usar promedios de TodoCedears para esto, estamos concluyendo referencias con muestras muy chicas». Vuelve lo de la v1.5.49: línea solo donde Damodaran calcula igual que nosotros (márgenes y ROE). Queda a su decisión cómo sumar el resto (ver PENDIENTES).
 
