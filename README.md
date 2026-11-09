@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.53 — Sin «Ideal» en los gráficos
+- Guille (09/11/2026): «sacale esos ideales hasta que lo resuelva» (a JNJ le pedía un margen operativo de 30%: es la suma de toda su industria, no un ideal). Las líneas de referencia quedan apagadas (`MOSTRAR_REFERENCIAS = False` en `ui/estados_visual.py`); el formato visual queda listo para cuando decida la referencia.
+
 ### v1.5.52 — Explicaciones al pasar el mouse, «Ideal: más de», carga más rápida
 - **Explicación de cada solapa** (empresa y ETF) al pasar el mouse por su título, hacia arriba. En el celular sigue arriba de cada solapa. En Estados Financieros, cada subsolapa (Resultados, Balance, Flujo, Ratios) tiene su propia definición.
 - **Líneas de referencia**: dicen «Ideal: más de X» (al pasar el mouse: promedio de la industria según Damodaran).

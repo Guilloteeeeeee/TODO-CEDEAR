@@ -170,6 +170,10 @@ _DAMODARAN = {"mbr": ("margin", "Gross Margin"), "mop": ("margin", "Pre-tax Unad
 # DESPUÉS de impuestos), deuda neta / EBITDA, liquidez corriente, margen de flujo libre y dividendos / flujo libre (no están en las planillas cargadas).
 
 
+# v1.5.53 (Guille, 09/11/2026): «sacale esos ideales hasta que lo resuelva» (ejemplo: a JNJ le pedía un margen operativo de 30%, que es la suma de
+# toda su industria según Damodaran, no un ideal). Las líneas quedan apagadas; el formato visual queda listo para cuando él decida la referencia.
+MOSTRAR_REFERENCIAS = False
+
 # Ratios en los que lo bueno es estar POR DEBAJO de la referencia (hoy ninguno tiene línea; quedan listos para cuando la tengan)
 _MENOS_ES_MEJOR = {"dne", "pay", "payn", "payfco"}
 
@@ -280,7 +284,7 @@ def graficos_html(est, clave, ticker=None):
     anios, ttm, s = series(est)
     if not anios:
         return ""
-    refs = referencias(ticker, fam) if ticker else {}
+    refs = referencias(ticker, fam) if (ticker and MOSTRAR_REFERENCIAS) else {}
     piezas = []
     for k, tit, txt, tipo in lista:
         extra = ""
