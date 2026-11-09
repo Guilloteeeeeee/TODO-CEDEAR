@@ -807,7 +807,8 @@ def _tile_estadisticas(row, ficha, anuales=None):
         else:
             hoy = f"{a:.1f}x"
             med = f"{m:.1f}x" if m and m > 0 else "—"
-        sub = '<small>de su sector</small>' if d.get("referencia") == "sector" else ""
+        sub = (('<small>de su industria</small>' if str(d.get("referencia_origen") or "").startswith("industria") else '<small>de su sector</small>')
+               if d.get("referencia") == "sector" else "")      # v1.5.54: la referencia puede ser de su industria (GuruFocus / Finviz)
         dib = _dibujo_metrica(a, m, _n(d.get("score")), invertir=not es_dy)
         tip = "Marca del centro: su mediana histórica. Punto: hoy. A la derecha, más barata que lo habitual; a la izquierda, más cara."
         dib_html = f'<span class="d" title="{html.escape(tip)}">{dib}</span>' if dib else '<span class="d"></span>'

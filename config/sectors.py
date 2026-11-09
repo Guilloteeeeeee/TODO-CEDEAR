@@ -427,6 +427,12 @@ METRICAS_EXCLUIDAS = {
         "p_b": ("descartada a mano: el P/B de hoy (6,2) y los de años anteriores en la fuente (0,6 a 1,4) parecen "
                 "calculados con distinta base, así que compararlos no tiene sentido"),
     },
+    # v1.5.54 (aprobado por Guille el 09/11/2026): la ganancia de los últimos 12 meses incluye la venta de Jeppesen (4.º trimestre de 2025).
+    # SACAR con los resultados del 4.º trimestre de 2026 (fines de enero de 2027), cuando ese trimestre sale de los 12 meses.
+    "BA": {
+        "per": ("descartada a mano hasta los resultados de fines de enero de 2027: la ganancia de los últimos 12 meses está inflada "
+                "por la venta de Jeppesen (fines de 2025), mientras sus negocios principales daban pérdida"),
+    },
 }
 
 

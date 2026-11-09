@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.54 — Referencias de industria de GuruFocus y Finviz para las empresas sin historia propia
+- Decisión de Guille (09/11/2026). Para las 51 empresas sin historia propia suficiente, cada múltiplo se compara contra: PER, P/FCF, P/B y P/S = mediana de su industria en **GuruFocus** (si falta o es un disparate, su sector en GuruFocus; si tampoco, la referencia de antes); PEG = **Finviz** (GuruFocus no lo da), con la misma cascada; EV/EBITDA y el resto = como antes (empresas de la app; el EV/EBITDA de GuruFocus está roto porque mete empresas con EBITDA negativo).
+- **Franja anti-disparates**: PER y P/FCF entre 5 y 50, PEG entre 0,3 y 5, P/B entre 0,5 y 20, P/S entre 0,1 y 20. Fuera de eso el valor no se usa.
+- Tablas en `data/referencias/` (`gurufocus_2026-11-09.json`, `finviz_2026-11-09.json`; se usa la más nueva), regla en `data/referencias_externas.py`. Se renuevan una vez por año (noviembre).
+- **Boeing**: PER descartado a mano hasta los resultados de fines de enero de 2027 (ganancia inflada por la venta de Jeppesen).
+- Cambian de categoría 9 empresas: UPST, TWLO, TEAM y BB empeoran; BA, GEV y CDE mejoran; NIO y BMNR pasan a «Parece bien valuada». La ficha dice «de su industria» cuando la referencia es de la industria.
+
 ### v1.5.53 — Sin «Ideal» en los gráficos
 - Guille (09/11/2026): «sacale esos ideales hasta que lo resuelva» (a JNJ le pedía un margen operativo de 30%: es la suma de toda su industria, no un ideal). Las líneas de referencia quedan apagadas (`MOSTRAR_REFERENCIAS = False` en `ui/estados_visual.py`); el formato visual queda listo para cuando decida la referencia.
 

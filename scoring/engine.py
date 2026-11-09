@@ -485,6 +485,7 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
     el valor usado queda en `detalle[metrica]` y en `respaldo_sector`.
     """
     from data.fetcher import calc_fair_value
+    from data import referencias_externas as _rx
 
     if ticker_to_sector is None:
         ticker_to_sector = TICKER_TO_SECTOR
@@ -503,7 +504,10 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
         for m in excluidas:
             calc[f"{m}_actual"] = None
             calc[f"{m}_mediana"] = None
-        usados = aplicar_respaldo_sector(calc, sector, refs)
+        # v1.5.54: la referencia de respaldo sale de GuruFocus (PER, P/FCF, P/B, P/S) y Finviz (PEG) por industria, con la franja
+        # anti-disparates; lo demás (EV/EBITDA…) sigue con la de la app. Ver data/referencias_externas.py
+        refs_emp, origen = _rx.referencias(ticker, refs.get(sector, {}))
+        usados = aplicar_respaldo_sector(calc, sector, {sector: refs_emp})
         resultado = calcular_score(calc, sector)
         fv_resultado = calc_fair_value(calc, sector)
         for m, motivo in excluidas.items():
@@ -518,6 +522,8 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
         for m, d in resultado["detalle"].items():
             d["fuente"] = fuentes.get(m)
             d["referencia"] = "sector" if m in usados else "propia"
+            if m in usados:
+                d["referencia_origen"] = origen.get(m, "app")
         datos_sombra = dict(datos)
         for m in excluidas:
             datos_sombra[f"{m}_actual"] = None
