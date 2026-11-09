@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.55 — GE Vernova sin PER hasta abril de 2027 y cache del 09/11
+- Aprobado por Guille (09/11/2026): el PER de GE Vernova se descarta a mano hasta los resultados del 1.er trimestre de 2027 (fines de abril de 2027). Su ganancia de 12 meses incluye 3.992 millones por revaluar Prolec GE y 330 por vender Proficy (1.er trimestre de 2026). Pasa de «Tendencia a infravalorada» (60,3) a «Parece bien valuada» (54,9).
+- Cache del 09/11/2026 (corrido por Guille con la v1.5.54).
+
 ### v1.5.54 — Referencias de industria de GuruFocus y Finviz para las empresas sin historia propia
 - Decisión de Guille (09/11/2026). Para las 51 empresas sin historia propia suficiente, cada múltiplo se compara contra: PER, P/FCF, P/B y P/S = mediana de su industria en **GuruFocus** (si falta o es un disparate, su sector en GuruFocus; si tampoco, la referencia de antes); PEG = **Finviz** (GuruFocus no lo da), con la misma cascada; EV/EBITDA y el resto = como antes (empresas de la app; el EV/EBITDA de GuruFocus está roto porque mete empresas con EBITDA negativo).
 - **Franja anti-disparates**: PER y P/FCF entre 5 y 50, PEG entre 0,3 y 5, P/B entre 0,5 y 20, P/S entre 0,1 y 20. Fuera de eso el valor no se usa.

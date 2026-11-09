@@ -40,6 +40,8 @@ df = pd.DataFrame(json.load(open("data/cache_datos.json", encoding="utf-8"))["da
 n = E.score_dataframe(df).set_index("ticker")
 chk("per" in METRICAS_EXCLUIDAS.get("BA", {}) and "2027" in METRICAS_EXCLUIDAS["BA"]["per"], "PER de Boeing descartado a mano hasta enero de 2027")
 chk(n.loc["BA", "detalle"]["per"]["estado"] == "descartada", "Boeing: el PER no cuenta")
+chk("per" in METRICAS_EXCLUIDAS.get("GEV", {}) and "2027" in METRICAS_EXCLUIDAS["GEV"]["per"] and n.loc["GEV", "detalle"]["per"]["estado"] == "descartada",
+    "v1.5.55: PER de GE Vernova descartado hasta abril de 2027 (Prolec GE)")
 chk(n.loc["UPST", "detalle"]["per"].get("referencia_origen") == "industria GuruFocus", "el detalle guarda de dónde salió la referencia")
 cache = pd.DataFrame(json.load(open("data/cache_datos.json", encoding="utf-8"))["data"]).set_index("ticker")
 chk(all(cache.loc[t, "categoria"] == n.loc[t, "categoria"] for t in n.index), "el cache ya está puntuado con la regla nueva")

@@ -433,6 +433,12 @@ METRICAS_EXCLUIDAS = {
         "per": ("descartada a mano hasta los resultados de fines de enero de 2027: la ganancia de los últimos 12 meses está inflada "
                 "por la venta de Jeppesen (fines de 2025), mientras sus negocios principales daban pérdida"),
     },
+    # v1.5.55 (aprobado por Guille el 09/11/2026): la ganancia de los últimos 12 meses incluye 3.992 millones por revaluar Prolec GE y 330 por vender
+    # Proficy (1.er trimestre de 2026). SACAR con los resultados del 1.er trimestre de 2027 (fines de abril de 2027).
+    "GEV": {
+        "per": ("descartada a mano hasta los resultados de fines de abril de 2027: la ganancia de los últimos 12 meses está inflada "
+                "por una ganancia contable de una sola vez (la compra de Prolec GE, principios de 2026)"),
+    },
 }
 
 
