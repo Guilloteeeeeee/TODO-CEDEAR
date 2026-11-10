@@ -199,13 +199,16 @@ def referencias(ticker, fam="general"):
 
 
 def redondear_corte(v, tipo):
-    """Guille (10/11/2026): los cortes, en números enteros (13,1% → 13%; 2,7x → 3x)."""
-    return round(v * 100) / 100 if tipo == "pct" else float(round(v))
+    """Guille (10/11/2026): con una sola cifra entera el corte lleva un decimal (1,4%; 2,7x); de 10 para arriba, entero (13,1% → 13%)."""
+    x = v * 100 if tipo == "pct" else v
+    x = round(x, 1) if abs(x) < 10 else float(round(x))
+    return x / 100 if tipo == "pct" else x
 
 
 def _fmt_corte(v, tipo):
-    v = redondear_corte(v, tipo)
-    return f"{v * 100:.0f}%" if tipo == "pct" else f"{v:.0f}x"
+    x = redondear_corte(v, tipo) * (100 if tipo == "pct" else 1)
+    txt = f"{x:.0f}" if abs(x - round(x)) < 1e-9 else f"{x:.1f}"
+    return txt + ("%" if tipo == "pct" else "x")
 
 
 def frase_corte(clave, tipo, ref):

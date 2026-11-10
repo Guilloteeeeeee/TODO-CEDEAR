@@ -577,6 +577,9 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.57 — Decimales de los puntos de corte
+- Guille (10/11/2026): con una sola cifra entera el corte lleva un decimal (1,4%, 2,7x, 9,9%); de 10 para arriba, entero (13,1% → 13%).
+
 ### v1.5.56 — Puntos de corte en los gráficos de Estados Financieros
 - Los puntos de corte de Guille (Excel del 09/11/2026, vara «OK»: si la empresa cumple, PASA) en 13 gráficos: crecimiento de ingresos, liquidez, margen operativo, margen de flujo libre, ROE, ROIC, deuda neta / EBITDA, cobertura, dividendos / flujo libre, ROA, patrimonio / activo, payout y dividendos / flujo operativo. Fila: la industria de Damodaran de la empresa (72 industrias); si no está, su subgrupo o sector. «n/a» = sin línea.
 - Estilo Simply Safe Dividends: frase «**Más de 13% es nuestra preferencia** para los fabricantes de maquinaria.» (alineada a la izquierda) y línea punteada con el número al costado. Cortes en números enteros. Si el corte queda por encima de todas las barras, la escala deja aire para que la línea no tape los números.

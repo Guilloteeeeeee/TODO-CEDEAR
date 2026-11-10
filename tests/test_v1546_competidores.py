@@ -12,7 +12,7 @@ from config.industrias import industria_de
 from ui import ficha as F, ideas as I
 from data import paquetes_yahoo as PY
 c = json.load(open("data/cache_datos.json", encoding="utf-8"))
-chk(len(c["data"]) == 323 and c["timestamp"].startswith("2026-11-08"), "cache del 08/11 con las 323 empresas")
+chk(len(c["data"]) == 323 and c["timestamp"][:10] >= "2026-11-08", "cache del 08/11 o más nuevo con las 323 empresas")
 df = pd.DataFrame(c["data"])
 df["sector_macro"] = [partes_sector(g)[0] or "" for g in df.sector]
 df["industria"] = [industria_de(t) or partes_sector(g)[1] or "" for g, t in zip(df.sector, df.ticker)]
