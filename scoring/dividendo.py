@@ -36,6 +36,14 @@ ESC_DEUDA_UR = ((4.5, 9), (5.5, 7), (6.5, 5), (7.5, 2))            # utilities y
 ESC_NDC = ((50, 4), (75, 2))
 PTS_RATING = {"Aaa/AAA": 12, "Aa2/AA": 12, "A1/A+": 10, "A2/A": 10, "A3/A-": 8, "Baa2/BBB": 6, "Ba1/BB+": 3, "Ba2/BB": 3}
 CASI_NULO_NDC = 90.0          # patrimonio «casi nulo»: la deuda neta es 90% o más de deuda neta + patrimonio
+# v1.5.62 (Guille, 10/11/2026: «SÍ, DE ACUERDO CON TODO»; con pérdida «entrarían también»): excepción del payout sobre ganancias. Si los
+# analistas esperan para el año en curso una ganancia de 1,5 veces o más la contable (o la contable es pérdida), el payout se mide contra la
+# estimada. Resguardos: al menos 5 analistas, estimación de hace 130 días o menos, y el dividendo cubierto por el flujo de caja libre (payout
+# de flujo de 100% o menos). Solo empresas generales: bancos, REITs y utilities quedan afuera (en ellos no se mide el flujo libre; en Yahoo
+# los analistas de los REIT no estiman FFO). Los topes siguen mirando la ganancia contable.
+SALTO_ANALISTAS = 1.5
+MIN_ANALISTAS = 5
+VIGENCIA_ESTIMACION = 130     # días: las estimaciones se bajan una vez por trimestre, después de los balances
 REDONDEO = 0.001             # v1.5.61: una baja por pago menor a esto es redondeo de Yahoo (montos viejos ajustados por splits, a 3 decimales)
 CHICA_MCAP = 1_000_000_000    # v1.5.61 (Guille, 10/11/2026: «APLIQUEMOS DESDE 1 B»): por debajo de US$1.000 millones de capitalización la
                               # cobertura de intereses se lee con la tabla de Damodaran para empresas chicas o riesgosas
@@ -244,6 +252,23 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
             "tasa": {a: round(t, 4) for a, t in tasa.items()}}
 
 
+def estimacion_vigente(e):
+    """La estimación de analistas de la entrada, si no tiene más de VIGENCIA_ESTIMACION días (contra e["hoy"] o hoy). Si no, None."""
+    est = e.get("estimacion") or None
+    if not est:
+        return None
+    f = est.get("fecha")
+    if f:
+        try:
+            ref = e.get("hoy") or _dt.date.today()
+            ref = _dt.date.fromisoformat(str(ref)[:10]) if not isinstance(ref, _dt.date) else ref
+            if (ref - _dt.date.fromisoformat(str(f)[:10])).days > VIGENCIA_ESTIMACION:
+                return None
+        except ValueError:
+            return None
+    return est
+
+
 def entrada(row, estados, historial=None, estimacion=None, grupo=None):
     """Arma la entrada de calcular() con una fila del cache (data/cache_datos.json) y los estados de la empresa."""
     if grupo is None:
@@ -261,7 +286,8 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
 def calcular(e):
     """e = {"ticker", "grupo" (grupo de la app: config.sectors.TICKER_TO_SECTOR), "pais", "dividendo_anual", "precio", "p_ffo",
             "dy", "dy_mediana", "market_cap" (US$; < 1.000 millones = tabla de empresas chicas), "estados" (con hasta 13 años: historico.estados_completos), "historial" (analizar_dividendos o None),
-            "estimacion" ({"actual": EPS estimado año en curso, "proximo": EPS estimado año próximo} o None)}
+            "estimacion" ({"actual": EPS estimado año en curso, "proximo": EPS estimado año próximo, "analistas", "fecha"} o None),
+            "hoy" (fecha del cálculo, para la vigencia de la estimación; por defecto hoy)}
     -> {"score", "categoria", "frase", "color", "pilares": {n: [pts, máx]}, "variables": [...], "topes": [...], "notas": [...], "conclusion"}"""
     tk, grupo = e.get("ticker", ""), e.get("grupo") or ""
     dpa = _n(e.get("dividendo_anual"))
@@ -299,6 +325,7 @@ def calcular(e):
     else:
         if reit:
             res["notas"].append("REIT sin dato de FFO: se usa la escala general")
+        pay_fcf = None
         if not banco:
             fy_f = [a for a in _fy(s[FCF]) if s[DIVP].get(a) is not None][:3]
             p3 = p12 = None
@@ -311,11 +338,23 @@ def calcular(e):
             opciones = [p for p in (p3, p12) if p is not None]
             if opciones:
                 pay = min(opciones)                 # ajuste 2: el mejor entre 3 años y 12 meses
+                pay_fcf = pay
                 var("fcf", 1, menos_es_mejor(pay, ESC_FCF), 20, None if pay == 9999 else pay, p3=p3, p12=p12)
         cands = [x for x in (s[EPS].get("TTM"), eps_fy) if x is not None]
         pos = [x for x in cands if x > 0]
         mx = 35 if banco else 15
-        if pos:
+        est_v = estimacion_vigente(e) if not (banco or reit) else None
+        eps_est = _n((est_v or {}).get("actual"))
+        n_an = (est_v or {}).get("analistas") or 0
+        usa_est = bool(eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS and pay_fcf is not None and pay_fcf <= 100
+                       and (not pos or eps_est >= SALTO_ANALISTAS * max(pos)))
+        if usa_est:
+            pay = r2(dpa / eps_est * 100)          # v1.5.62: excepción, contra la ganancia que esperan los analistas
+            var("eps", 1, menos_es_mejor(pay, ESC_EPS), mx, pay, ajustada=True, perdida_contable=not pos,
+                contable=r2(max(pos)) if pos else None, estimada=r2(eps_est), analistas=n_an)
+            res["notas"].append("payout contra la ganancia estimada por los analistas" + (" (la contable fue pérdida)" if not pos else
+                                f" ({eps_est / max(pos):.1f} veces la contable)"))
+        elif pos:
             pay = r2(dpa / max(pos) * 100)         # ajuste 3
             pts = menos_es_mejor(pay, ESC_EPS) * (35 / 15 if banco else 1)
             var("eps", 1, pts, mx, pay)
@@ -385,7 +424,7 @@ def calcular(e):
             negs = sum(1 for a in fy_fcf if s[FCF][a] < 0)
             var("fcf_pos", 4, 4 if negs == 0 else 2 if negs == 1 else 0, 4, negs, de=len(fy_fcf))
     # -------- pilar 5: tendencia
-    est_a = e.get("estimacion") or {}
+    est_a = estimacion_vigente(e) or {}
     g = None
     if _n(est_a.get("actual")) and _n(est_a.get("proximo")) and _n(est_a["actual"]) > 0:
         g = r2((_n(est_a["proximo"]) / _n(est_a["actual"]) - 1) * 100)
@@ -454,6 +493,11 @@ def _frase(v, a_favor, variable_ext=False):
         if x is None:
             return "no genera flujo de caja libre para cubrir el dividendo" if not a_favor else None
         return f"usa solo el {_pct(x)} de su flujo de caja libre para el dividendo" if a_favor else f"el dividendo ya usa el {_pct(x)} de su flujo de caja libre"
+    if k == "eps" and v.get("ajustada"):
+        de = "de la ganancia que esperan los analistas para este año"
+        if a_favor:
+            return f"paga el {_pct(x)} {de}" + (" (el último año tuvo pérdida)" if v.get("perdida_contable") else "")
+        return f"el dividendo se lleva el {_pct(x)} {de}"
     if k in ("eps", "ffo"):
         de = "de su flujo de fondos (FFO)" if k == "ffo" else "de lo que gana"
         if v.get("perdida"):

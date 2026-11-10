@@ -9,6 +9,7 @@ y la app no depende de que esas fuentes respondan. Lo maneja `data/historico.py`
 |---|---|---|
 | `estados.json` | Años fiscales de Estado de Resultados, Balance, Flujo de Efectivo y Ratios de cada empresa | **Solo se agrega.** Mientras Yahoo siga trayendo un año, manda su versión más nueva; cuando lo deja de traer, queda congelado. Un dato vacío nunca borra uno guardado. Los «últimos 12 meses» van aparte (`ttm`). Desde la v1.5.58, `bajar_sec.bat` suma años más viejos de la SEC (marcados `"fuente": "SEC"`), solo hacia atrás y sin tocar los de Yahoo. Desde la v1.5.61 la ganancia por acción de esos años va en la base de Yahoo (`"factor_accion"` cuando hizo falta, por ejemplo en los ADR) y los años de la SEC se rehacen en cada corrida (correcciones en cambios.json como `sec_corregido`) |
 | `precios_mensuales.json` | Cierre del último día hábil de cada mes, de toda la historia | Ajustado por splits (no por dividendos) |
+| `estimaciones.json` (v1.5.62) | Estimaciones de analistas (ganancia por acción del año en curso y del próximo, cantidad de analistas), una por fecha de bajada | **Solo se agrega.** Las suma `bajar_estimaciones.bat`, una vez por trimestre |
 | `dividendos.json` | Cada dividendo pagado: fecha y monto por acción | Ajustado por splits |
 | `splits.json` | Cada split: fecha y factor (10 = 10 por 1; 0,1 = contra-split 1 por 10) | Con esto se ajusta todo lo anterior |
 | `multiplos_anuales.json` | Múltiplos de cada año fiscal (Stock Analysis) | Solo se agregan años |
@@ -34,6 +35,7 @@ Yahoo entrega precios, dividendos y cifras por acción **ya ajustados por todos 
 | `bajar_fichas.bat` | Foto del mes de las fichas |
 | `bajar_multiplos_anuales.bat` | Múltiplos de los años nuevos |
 | `bajar_historico.bat` | Precios mensuales, dividendos y splits de toda la historia (la primera vez, todo; después, los meses nuevos). **Correrlo una vez por mes** |
+| `bajar_estimaciones.bat` (v1.5.62) | Estimaciones de analistas de todas las empresas que pagan dividendo. Una vez por trimestre, después de los balances (marzo, junio, septiembre, diciembre) |
 | `bajar_sec.bat` (v1.5.58) | Años fiscales viejos de la SEC (ingresos, resultados, ganancia por acción, activo, patrimonio, flujos, CAPEX, dividendos pagados). Con correrlo una vez alcanza; después, una vez por año |
 | Renovar o escribir un informe | La versión nueva del informe |
 

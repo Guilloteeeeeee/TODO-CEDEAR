@@ -114,7 +114,9 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             except ValueError:
                 hoy = None
         hist = SD.analizar_dividendos(divs.get(t), hoy=hoy, sigue_pagando=bool((row.get("annual_dividend") or 0) > 0)) if divs.get(t) else None
-        r = SD.calcular(SD.entrada(row, est, hist, estimaciones.get(t)))
+        ent = SD.entrada(row, est, hist, estimaciones.get(t))
+        ent["hoy"] = hoy                     # v1.5.62: vigencia de la estimación de analistas contra la fecha de los datos
+        r = SD.calcular(ent)
         fy = [a for a in ((est or {}).get("resultados") or {}).get("anios", []) if isinstance(a, int)]
         r["anios_estados"] = f"{min(fy)}–{max(fy)}" if fy else "sin estados"
         r["historial"] = {k: v for k, v in (hist or {}).items() if k != "tasa"} if hist else None
