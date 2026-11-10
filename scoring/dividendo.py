@@ -42,6 +42,11 @@ CASI_NULO_NDC = 90.0          # patrimonio «casi nulo»: la deuda neta es 90% o
 # de flujo de 100% o menos). Solo empresas generales: bancos, REITs y utilities quedan afuera (en ellos no se mide el flujo libre; en Yahoo
 # los analistas de los REIT no estiman FFO). Los topes siguen mirando la ganancia contable.
 SALTO_ANALISTAS = 1.5
+# v1.5.65 (Guille, 10/11/2026: «PONELE UN DESVÍO ESTÁNDAR AL 1,5 Y LISTO»): sin escalón. Entre 1,5 − DESVIO_SALTO y 1,5 + DESVIO_SALTO la
+# ganancia que se usa pasa de a poco de la contable a la estimada (a 1,3 veces: 0% estimada; a 1,5: mitad y mitad; a 1,7: 100%).
+# DESVIO_SALTO = desvío estándar del salto (estimada ÷ contable) en las empresas sin gastos extraordinarios (entre 0,5 y 2 veces): 0,207 en
+# las 15 de la calibración del 10/11/2026 (media 1,11). Recalcularlo cuando estén las estimaciones de todas las empresas.
+DESVIO_SALTO = 0.2
 MIN_ANALISTAS = 5
 VIGENCIA_ESTIMACION = 130     # días: las estimaciones se bajan una vez por trimestre, después de los balances
 REDONDEO = 0.001             # v1.5.61: una baja por pago menor a esto es redondeo de Yahoo (montos viejos ajustados por splits, a 3 decimales)
@@ -252,6 +257,17 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
             "tasa": {a: round(t, 4) for a, t in tasa.items()}}
 
 
+def peso_estimada(estimada, contable):
+    """Cuánto pesa la ganancia estimada (0 a 1) según el salto estimada ÷ contable: 0 hasta 1,3 veces, 1 desde 1,7 veces y en el medio de a
+    poco (1,5 = 0,5). Con pérdida contable (o sin contable), 1."""
+    if not estimada or estimada <= 0:
+        return 0.0
+    if not contable or contable <= 0:
+        return 1.0
+    desde = SALTO_ANALISTAS - DESVIO_SALTO
+    return round(max(0.0, min(1.0, (round(estimada / contable, 4) - desde) / (2 * DESVIO_SALTO))), 4)
+
+
 def estimacion_vigente(e):
     """La estimación de analistas de la entrada, si no tiene más de VIGENCIA_ESTIMACION días (contra e["hoy"] o hoy). Si no, None."""
     est = e.get("estimacion") or None
@@ -346,14 +362,15 @@ def calcular(e):
         est_v = estimacion_vigente(e) if not (banco or reit) else None
         eps_est = _n((est_v or {}).get("actual"))
         n_an = (est_v or {}).get("analistas") or 0
-        usa_est = bool(eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS and pay_fcf is not None and pay_fcf <= 100
-                       and (not pos or eps_est >= SALTO_ANALISTAS * max(pos)))
-        if usa_est:
-            pay = r2(dpa / eps_est * 100)          # v1.5.62: excepción, contra la ganancia que esperan los analistas
-            var("eps", 1, menos_es_mejor(pay, ESC_EPS), mx, pay, ajustada=True, perdida_contable=not pos,
+        peso_est = peso_estimada(eps_est, max(pos) if pos else None) if (eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS
+                                                                          and pay_fcf is not None and pay_fcf <= 100) else 0.0
+        if peso_est > 0:
+            base_e = eps_est if not pos else max(pos) + peso_est * (eps_est - max(pos))
+            pay = r2(dpa / base_e * 100)           # v1.5.62/64: excepción, contra la ganancia que esperan los analistas (de a poco, v1.5.65)
+            var("eps", 1, menos_es_mejor(pay, ESC_EPS), mx, pay, ajustada=True, perdida_contable=not pos, peso_estimada=round(peso_est, 2),
                 contable=r2(max(pos)) if pos else None, estimada=r2(eps_est), analistas=n_an)
             res["notas"].append("payout contra la ganancia estimada por los analistas" + (" (la contable fue pérdida)" if not pos else
-                                f" ({eps_est / max(pos):.1f} veces la contable)"))
+                                f" ({eps_est / max(pos):.2f} veces la contable; pesa {peso_est:.0%})"))
         elif pos:
             pay = r2(dpa / max(pos) * 100)         # ajuste 3
             pts = menos_es_mejor(pay, ESC_EPS) * (35 / 15 if banco else 1)
@@ -494,7 +511,8 @@ def _frase(v, a_favor, variable_ext=False):
             return "no genera flujo de caja libre para cubrir el dividendo" if not a_favor else None
         return f"usa solo el {_pct(x)} de su flujo de caja libre para el dividendo" if a_favor else f"el dividendo ya usa el {_pct(x)} de su flujo de caja libre"
     if k == "eps" and v.get("ajustada"):
-        de = "de la ganancia que esperan los analistas para este año"
+        de = "de la ganancia que esperan los analistas para este año" if (v.get("peso_estimada") or 1) >= 1 else \
+            "de su ganancia, contando en parte la que esperan los analistas para este año"
         if a_favor:
             return f"paga el {_pct(x)} {de}" + (" (el último año tuvo pérdida)" if v.get("perdida_contable") else "")
         return f"el dividendo se lleva el {_pct(x)} {de}"

@@ -577,6 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.65 — Score de Seguridad del Dividendo: sin escalón en la excepción de los analistas
+- Pedido de Guille (10/11/2026: «PONELE UN DESVÍO ESTÁNDAR AL 1,5 Y LISTO»): la ganancia estimada entra de a poco entre 1,3 y 1,7 veces la contable (1,5 ± 0,2): a 1,3 veces pesa 0%, a 1,5 la mitad y desde 1,7 el 100% (`DESVIO_SALTO`, `peso_estimada`). 0,2 es el desvío estándar del salto en las 15 empresas de la calibración sin gastos extraordinarios (0,207; media 1,11); recalcularlo con las estimaciones de todas las empresas.
+- Efecto en las 21 comparadas con SSD: Altria (salto 1,38, pesa 20%) 64 → 66; el resto igual. Diferencia media 6,8 puntos, 12 de 21 en la misma categoría, ninguna a dos.
+
 ### v1.5.63 — Años de la SEC: segunda corrida de Guille y control de la unión con Yahoo
 - **Datos:** entra la segunda corrida de `bajar_sec.bat` (10/11/2026): 11 empresas con años nuevos (Altria, Berkshire, Morgan Stanley, American Express, Blackstone, HDFC, Itaú, Nu, Nomura, Sony, BIOX) y 76 con años rehechos (29 ADR con la ganancia por acción pasada a la base de Yahoo: TSMC ×5, Coca-Cola FEMSA ×80, Toyota ×10, HSBC ×5…).
 - **Control nuevo de la unión SEC → Yahoo** (`sec.union_por_accion`): si la base por acción no se pudo verificar en un año en común y en la unión las acciones implícitas (resultado neto ÷ ganancia por acción) saltan menos de 0,6 o más de 1,6 veces, la ganancia por acción de la SEC queda afuera (los montos se guardan). Ya aplicado a Telefônica Brasil, DuPont, AstraZeneca, Cemex y Lloyds. Agnico Eagle (fusión con Kirkland Lake en 2022) y Corning (conversión de preferidas en 2021) tienen un salto real y quedan como están.

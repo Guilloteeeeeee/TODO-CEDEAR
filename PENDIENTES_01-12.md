@@ -5,6 +5,8 @@ Esta es la lista de verdad. Los recordatorios programados del 1/12 mandan a leer
 Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo con números), trato de amigo, cerrar con "Conclusión resumen", no inventar datos, no más puntajes en sombra, no mostrar método ni pesos en pantalla. En el tema GuruFocus incluir siempre: "Que nos parezcamos más a GuruFocus no prueba que tengamos razón. El PEG podría estar captando algo que a ellos se les escapa."
 
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
+**v1.5.65 (10/11) — Sin escalón en la excepción de los analistas:** la estimada entra de a poco entre 1,3 y 1,7 veces (1,5 ± desvío estándar 0,2). Recalcular el desvío cuando estén las estimaciones de todas las empresas.
+
 **v1.5.63 (10/11) — Años de la SEC de la segunda corrida incorporados** (Altria y bancos con 13 años; 29 ADR en la base de Yahoo; 5 sin ganancia por acción de la SEC por unión rara). **Falta:** que Guille mande `resultados_sec.txt` para ver por qué ExxonMobil no trae datos de la SEC.
 
 **v1.5.62 (10/11) — Excepción del payout con la ganancia de los analistas** (aprobada por Guille: salto de 1,5 veces o más, o pérdida contable; resguardos de 5 analistas, 130 días y flujo libre; afuera bancos, REITs y utilities). Diferencia media con SSD: 6,7 puntos. **Guille tiene que correr `bajar_estimaciones.bat`** (todas las empresas; después, una vez por trimestre, lo recuerda el mail del día 1 de marzo, junio, septiembre y diciembre). Siguen para decidir: B (aumentos desde el último recorte) y C (FFO de los REIT).
