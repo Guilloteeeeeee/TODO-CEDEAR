@@ -199,7 +199,9 @@ def leer_tabla_info(filas):
              "moneda": None, "peso": None}
         datos = filas
     it = c["ticker"]
-    out, seccion, ultimo = [], "", ""
+    idesc = next((j for j, x in enumerate(filas[mejor]) if norm(x) in ("descripcion", "denominacion", "nombre")), None) if mejor is not None else None
+    ipct = next((j for j, x in enumerate(filas[mejor]) if "tenencia" in norm(x) and ("porcentaje" in norm(x) or "%" in str(x))), None) if mejor is not None else None
+    out, seccion, ultimo, pcts = [], "", "", []
     for f in datos:
         tk = str(f[it] or "").strip() if it < len(f) else ""
         if tk and _TOTALES.match(norm(tk)):
@@ -230,6 +232,10 @@ def leer_tabla_info(filas):
             tipo = seccion              # el título de grupo ("Renta Fija") vale más que una columna que no se entiende
         if re.match(r"^etf\s+", tk, re.I) and not clase_de_tipo(tipo):
             tipo = "ETF"
+        if idesc is not None and idesc < len(f) and re.search(r"money market|mercado de dinero", norm(f[idesc])) and not clase_de_tipo(tipo):
+            tipo = "Money Market"       # v1.5.61: un fondo «Money Market» es liquidez (el Excel de IOL/Balanz solo dice «Fondos»)
+        if ipct is not None and ipct < len(f) and numero(f[ipct]) and numero(f[ipct]) > 0:
+            pcts.append((m, numero(f[ipct])))
         mo = mo_enc or (moneda_de(f[c["moneda"]]) if c["moneda"] is not None and c["moneda"] < len(f) else None) or moneda_ticker(tk) or mon_global
         pais = str(f[c["pais"]] or "").strip() if c.get("pais") is not None and c["pais"] < len(f) else ""
         out.append({"ticker": _ticker_limpio(tk), "monto": m, "tipo": tipo, "moneda": mo, "pais": pais})
@@ -244,7 +250,18 @@ def leer_tabla_info(filas):
         else:
             agr[k] = dict(p)
             orden.append(k)
-    return [agr[k] for k in orden], notas
+    res = [agr[k] for k in orden]
+    # v1.5.61: el «Porcentaje de tenencia» de IOL se calcula sobre la cuenta ENTERA (con el efectivo disponible, que el Excel no lista).
+    # Si los porcentajes suman menos de 100, la diferencia se estima como liquidez; la persona la confirma o corrige en la tabla.
+    if len(pcts) >= 5 and 50 <= sum(p for _, p in pcts) < 99:
+        tots = sorted(m / (p / 100.0) for m, p in pcts)
+        total = tots[len(tots) // 2]
+        liq = total - sum(m for m, _ in pcts)
+        if liq > 0.01 * total:
+            res.append({"ticker": "Liquidez de la cuenta (estimada)", "monto": round(liq, 2), "tipo": "Efectivo", "moneda": max({p.get("moneda") for p in res}, key=lambda x: sum(1 for p in res if p.get("moneda") == x)) if res else None, "pais": ""})
+            notas.append(f"Los porcentajes de tenencia de tu archivo suman {sum(p for _, p in pcts):.0f} %: el resto (≈ {100 * liq / total:.0f} % de la cuenta) debe ser efectivo disponible que el archivo no lista. "
+                         "Lo agregamos como «Liquidez de la cuenta (estimada)»: corregilo o borralo en la tabla si no es así.")
+    return res, notas
 
 
 def leer_tabla(filas):

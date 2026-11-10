@@ -1418,3 +1418,6 @@ Misma pantalla, ordenada en 4 pasos numerados: 1 Completá tus datos · 2 Subí 
 
 ## v1.5.60 — Textos de Evaluá tu Portfolio
 Subtítulos de los dos mosaicos y texto de presentación de la evaluación, con la redacción de Guille (10/11/2026).
+
+## v1.5.61 — Lectura del Excel de IOL
+Paso 2: la persona elige la moneda de los montos de su archivo (obligatorio; «Mixta» para revisarla fila por fila). Fondos «Money Market» = liquidez (se reconoce por la descripción). Si los «Porcentaje de tenencia» suman menos de 100, la diferencia se agrega como fila editable «Liquidez de la cuenta (estimada)».

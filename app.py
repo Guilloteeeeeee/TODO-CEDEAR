@@ -1849,6 +1849,7 @@ def _confirmar_lectura(pos, firma, empresas, etfs, C):
     return out, faltan, huella
 
 
+_OPC_MONEDA = ("Pesos", "Dólares", "Mixta (cada fila tiene su moneda; la reviso en la tabla)")
 _CSS_PASOS = """<style>
 .cr-paso{display:flex;align-items:center;gap:12px;margin:2px 0 10px}
 .cr-num{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:#be185d;color:#fff;font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(190,24,93,.35)}
@@ -1901,9 +1902,11 @@ def _evaluar_cartera(df, C, CV):
                                    mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", key="cr_plantilla", use_container_width=True)
             except Exception:  # noqa: BLE001
                 pass
+        moneda_sel = st.radio("¿En qué moneda están los montos de tu archivo? (obligatorio)", _OPC_MONEDA, index=None, horizontal=True, key="cr_moneda",
+                              help="Algunos brokers (por ejemplo IOL) marcan «Dólares» en un bono pero informan el valor en pesos. Por eso necesitamos que nos digas en qué moneda está el importe.")
         with st.expander("¿Ya te evaluaste antes? Subí tu evaluación anterior para compararla", expanded=False):
             previa_arch = st.file_uploader("Evaluación anterior (el PDF que descargaste la última vez)", type=["pdf"], key="cr_previa")
-    _firma_arch = tuple((a.name, a.size) for a in archivos or ())
+    _firma_arch = tuple((a.name, a.size) for a in archivos or ()) + (moneda_sel,)
     _firma = (nombre or "", edad, perfil, _firma_arch)
     # --- paso 3: lo que leímos del archivo (tabla para chequear y corregir)
     pos_ok, faltan_tabla, huella, pos, tc_resumen, hay_img, err = None, [], None, [], None, False, ""
@@ -1914,7 +1917,12 @@ def _evaluar_cartera(df, C, CV):
             st.markdown('<div class="cv-ayuda">Cuando subas tu archivo, acá te mostramos lo que leímos para que lo revises y, si hace falta, lo corrijas.</div>', unsafe_allow_html=True)
         else:
             pos, notas, tc_resumen, hay_img, err = _leer_archivos(archivos, C)
-            if err:
+            _m = {"Pesos": "ars", "Dólares": "usd"}.get(moneda_sel)
+            if _m and pos:
+                pos = [dict(p, moneda=_m) for p in pos]         # v1.5.61: manda la moneda que declaró la persona en el paso 2
+            if not moneda_sel:
+                st.markdown('<div class="cv-ayuda">Elegí primero, en el paso 2, la moneda de los montos de tu archivo; después te mostramos lo que leímos.</div>', unsafe_allow_html=True)
+            elif err:
                 st.error(err)
             elif not pos:
                 st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo.")
@@ -1943,6 +1951,8 @@ def _evaluar_cartera(df, C, CV):
             falta.append("tu perfil de inversor")
         if not archivos:
             falta.append("subir tu cartera (Excel o PDF)")
+        elif not moneda_sel:
+            falta.append("elegir la moneda de tu archivo (paso 2)")
         elif err or not pos or pos_ok is None:
             falta.append("posiciones válidas en la tabla del paso 3")
         falta += [f for f in faltan_tabla if pos_ok is not None]
