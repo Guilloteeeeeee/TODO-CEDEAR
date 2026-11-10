@@ -1434,5 +1434,5 @@ Subtítulos de los dos mosaicos y texto de presentación de la evaluación, con 
 ## v1.5.61 — Lectura del Excel de IOL
 Paso 2: la persona elige la moneda de los montos de su archivo (obligatorio; «Mixta» para revisarla fila por fila). Fondos «Money Market» = liquidez (se reconoce por la descripción). Si los «Porcentaje de tenencia» suman menos de 100, la diferencia se agrega como fila editable «Liquidez de la cuenta (estimada)».
 
-## v1.5.63 — ETFs por región en Evaluá tu Portfolio
+## v1.5.64 — ETFs por región en Evaluá tu Portfolio
 EEM, IEMG, VWO e ILF cuentan como emergentes; VEA, EFA, IEUR, EZU y BBAX como desarrollados (antes caían en «fuera de EE.UU., sin detalle»). La tabla del paso 3 muestra el país o la región de cada ETF (Mercados emergentes, Países desarrollados, Estados Unidos, Corea del Sur…); los temáticos y de materias primas quedan sin país.
