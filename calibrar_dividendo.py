@@ -113,7 +113,7 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
                 hoy = dt.date.fromisoformat(act)
             except ValueError:
                 hoy = None
-        hist = SD.analizar_dividendos(divs.get(t), hoy=hoy) if divs.get(t) else None
+        hist = SD.analizar_dividendos(divs.get(t), hoy=hoy, sigue_pagando=bool((row.get("annual_dividend") or 0) > 0)) if divs.get(t) else None
         r = SD.calcular(SD.entrada(row, est, hist, estimaciones.get(t)))
         fy = [a for a in ((est or {}).get("resultados") or {}).get("anios", []) if isinstance(a, int)]
         r["anios_estados"] = f"{min(fy)}–{max(fy)}" if fy else "sin estados"

@@ -7,7 +7,7 @@ y la app no depende de que esas fuentes respondan. Lo maneja `data/historico.py`
 
 | Archivo | Qué guarda | Regla |
 |---|---|---|
-| `estados.json` | Años fiscales de Estado de Resultados, Balance, Flujo de Efectivo y Ratios de cada empresa | **Solo se agrega.** Mientras Yahoo siga trayendo un año, manda su versión más nueva; cuando lo deja de traer, queda congelado. Un dato vacío nunca borra uno guardado. Los «últimos 12 meses» van aparte (`ttm`). Desde la v1.5.58, `bajar_sec.bat` suma años más viejos de la SEC (marcados `"fuente": "SEC"`), solo hacia atrás y sin tocar los de Yahoo |
+| `estados.json` | Años fiscales de Estado de Resultados, Balance, Flujo de Efectivo y Ratios de cada empresa | **Solo se agrega.** Mientras Yahoo siga trayendo un año, manda su versión más nueva; cuando lo deja de traer, queda congelado. Un dato vacío nunca borra uno guardado. Los «últimos 12 meses» van aparte (`ttm`). Desde la v1.5.58, `bajar_sec.bat` suma años más viejos de la SEC (marcados `"fuente": "SEC"`), solo hacia atrás y sin tocar los de Yahoo. Desde la v1.5.61 la ganancia por acción de esos años va en la base de Yahoo (`"factor_accion"` cuando hizo falta, por ejemplo en los ADR) y los años de la SEC se rehacen en cada corrida (correcciones en cambios.json como `sec_corregido`) |
 | `precios_mensuales.json` | Cierre del último día hábil de cada mes, de toda la historia | Ajustado por splits (no por dividendos) |
 | `dividendos.json` | Cada dividendo pagado: fecha y monto por acción | Ajustado por splits |
 | `splits.json` | Cada split: fecha y factor (10 = 10 por 1; 0,1 = contra-split 1 por 10) | Con esto se ajusta todo lo anterior |

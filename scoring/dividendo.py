@@ -36,6 +36,9 @@ ESC_DEUDA_UR = ((4.5, 9), (5.5, 7), (6.5, 5), (7.5, 2))            # utilities y
 ESC_NDC = ((50, 4), (75, 2))
 PTS_RATING = {"Aaa/AAA": 12, "Aa2/AA": 12, "A1/A+": 10, "A2/A": 10, "A3/A-": 8, "Baa2/BBB": 6, "Ba1/BB+": 3, "Ba2/BB": 3}
 CASI_NULO_NDC = 90.0          # patrimonio «casi nulo»: la deuda neta es 90% o más de deuda neta + patrimonio
+REDONDEO = 0.001             # v1.5.61: una baja por pago menor a esto es redondeo de Yahoo (montos viejos ajustados por splits, a 3 decimales)
+CHICA_MCAP = 1_000_000_000    # v1.5.61 (Guille, 10/11/2026: «APLIQUEMOS DESDE 1 B»): por debajo de US$1.000 millones de capitalización la
+                              # cobertura de intereses se lee con la tabla de Damodaran para empresas chicas o riesgosas
 
 UTILITIES, REITS, BANCOS = {"Utilities"}, {"REITs"}, {"Bancos y seguros"}
 # supersectores de Morningstar (decisión de Guille, 10/11/2026: «así, sencillo y sin controversias»), por grupo de la app
@@ -120,13 +123,23 @@ def _anios_txt(n):
 # ---------------------------------------------------------------------------------------------------------------------
 # historial de dividendos (data/historico/dividendos.json: [[fecha ISO, monto por acción ajustado por splits]])
 # ---------------------------------------------------------------------------------------------------------------------
-def analizar_dividendos(pagos, hoy=None):
+def _habitual(c):
+    """Cantidad de pagos en un año -> frecuencia habitual (1, 2, 4 o 12). Mensual solo con 10 pagos o más; si no, la más cercana entre 1, 2 y 4
+    (en empate la mayor: 3 pagos = trimestral con uno corrido; 5 a 9 = trimestral con pagos variables o extraordinarios, como ConocoPhillips)."""
+    if c >= 10:
+        return 12
+    return min((1, 2, 4), key=lambda x: (abs(x - c), -x))
+
+
+def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
     """Lee la historia de pagos y devuelve años sin recortar, años pagando, aumentos en los últimos 12 años y qué hizo en 2008-09 y 2020.
     - «Dividendo anual regular» de cada año = mediana de sus pagos × pagos habituales por año (la mediana no se mueve por un dividendo
       extraordinario suelto, que según el método no cuenta).
     - Recorte: el dividendo regular baja más de 1%, o la empresa deja de pagar (suspensión: pagó menos veces de lo habitual y lo cobrado en
       ese año y el siguiente es menos del 90% de los dos anteriores; así un pago corrido de diciembre a enero no cuenta como recorte).
-    - El año en curso no cuenta como año completo, pero si en él el dividendo bajó o se suspendió, los años sin recortar quedan en 0."""
+    - El año en curso no cuenta como año completo, pero si en él el dividendo bajó o se suspendió, los años sin recortar quedan en 0.
+    - v1.5.61: sigue_pagando=True (el cache dice que hoy paga dividendo): si en el historial faltan los últimos pagos (pasa con algunos ADR en
+      Yahoo), no se toma como suspensión; queda "historial_incompleto"."""
     hoy = hoy or _dt.date.today()
     por_anio = {}
     for f, m in pagos or []:
@@ -142,12 +155,31 @@ def analizar_dividendos(pagos, hoy=None):
         return None
     ultimos = [len(por_anio[a]) for a in completos[-10:]]
     frec = max(set(ultimos), key=lambda c: (ultimos.count(c), c))
-    frec = min((1, 2, 4, 12), key=lambda x: abs(x - frec))
+    frec = _habitual(frec)
     primero, ultimo_c = completos[0], completos[-1]
     anios = list(range(primero, ultimo_c + 1))
     n = {a: len(por_anio.get(a, [])) for a in anios}
     suma = {a: sum(m for _, m in por_anio.get(a, [])) for a in anios}
-    tasa = {a: (median(m for _, m in por_anio[a]) * frec if n[a] else 0.0) for a in anios}
+
+    def frec_de(a):
+        # v1.5.61: frecuencia habitual DE ESE AÑO (la más repetida entre el año anterior, ese y el siguiente, solo años con pagos; en empate,
+        # la del propio año: un extraordinario en el año vecino no cambia la lectura de National Grid, que paga 2 veces por año). Así un
+        # cambio de pago anual a trimestral (McDonald's en 2008: 1 pago de 1,50 → 4 de 0,375) no se lee como recorte.
+        cs = [n[x] for x in (a - 1, a, a + 1) if n.get(x)]
+        if not cs:
+            return frec
+        c = max(set(cs), key=lambda k: (cs.count(k), k == n[a], k))     # en empate, la cantidad del propio año
+        f = _habitual(c)
+        if f < frec:
+            # menos pagos que lo habitual: es cambio de frecuencia solo si lo cobrado en el año no cae más de 25% contra los dos anteriores;
+            # si cae, es una suspensión (Ford 2020-21: un pago suelto por año) y se sigue leyendo con la frecuencia habitual
+            prev = [suma[x] for x in (a - 1, a - 2) if x in suma]
+            if n[a] == 0 or (prev and suma[a] < max(prev) * 0.75):
+                return frec
+        return f
+
+    f_anio = {a: frec_de(a) for a in anios}
+    tasa = {a: (median(m for _, m in por_anio[a]) * f_anio[a] if n[a] else 0.0) for a in anios}
 
     todos = sorted(p for a in por_anio for p in por_anio[a])
     fechas = [_dt.date.fromisoformat(f) for f, _ in todos]
@@ -157,12 +189,17 @@ def analizar_dividendos(pagos, hoy=None):
             return False               # antes no pagaba: no hay recorte posible
         if n[a] == 0:
             return True                # no pagó en todo el año: suspensión
-        if tasa[a] < tasa[a - 1] * 0.99:
-            return True                # bajó el dividendo regular
-        if n[a] < frec:
+        if tasa[a] < tasa[a - 1] * 0.99 and (tasa[a - 1] - tasa[a]) / f_anio[a] > REDONDEO:
+            # bajó el dividendo regular (más que el redondeo de Yahoo en los montos viejos ajustados por splits: Texas Instruments 2003,
+            # 0,0215 → 0,021 por pago, no es recorte). v1.5.61: si el año siguiente vuelve a estar a la altura del anterior, fue el año del cambio de
+            # frecuencia (Accenture 2019: último pago semestral de 1,46 y primero trimestral de 0,80) y no un recorte
+            sig = tasa.get(a + 1) if a + 1 in tasa and n.get(a + 1) else None
+            cambio = len({f_anio.get(a - 1), f_anio[a], f_anio.get(a + 1, f_anio[a])}) > 1     # solo si cambia la frecuencia alrededor
+            return not cambio or sig is None or sig < tasa[a - 1] * 0.99
+        if n[a] < f_anio[a]:
             # pagó menos veces de lo habitual: si el pago que falta se corrió a pocos días del año (diciembre -> enero), no es recorte
             desde, hasta = _dt.date(a, 1, 1) - _dt.timedelta(days=45), _dt.date(a, 12, 31) + _dt.timedelta(days=45)
-            if sum(1 for f in fechas if desde <= f <= hasta) >= frec:
+            if sum(1 for f in fechas if desde <= f <= hasta) >= f_anio[a]:
                 return False
             return suma[a] < suma[a - 1] * 0.75
         return False
@@ -170,10 +207,14 @@ def analizar_dividendos(pagos, hoy=None):
     rec = {a: recorte(a) for a in anios}
     # año en curso: si el dividendo bajó o dejó de pagarse, los años sin recortar quedan en 0
     en_curso = False
+    f_ult = f_anio[ultimo_c]           # v1.5.61: el año en curso se lee con la frecuencia del último año completo
     if por_anio.get(actual):
-        if median(m for _, m in todos[-frec:]) * frec < tasa[ultimo_c] * 0.99:
+        if median(m for _, m in todos[-f_ult:]) * f_ult < tasa[ultimo_c] * 0.99:
             en_curso = True
-    dejo = (hoy - fechas[-1]).days > 365 / frec * 1.6 + 15
+    dejo = (hoy - fechas[-1]).days > 365 / f_ult * 1.6 + 15
+    incompleto = bool(dejo and sigue_pagando)
+    if incompleto:
+        dejo = False
     en_curso = en_curso or dejo
     sin_recorte = 0
     if not en_curso:
@@ -199,7 +240,8 @@ def analizar_dividendos(pagos, hoy=None):
 
     return {"anios_sin_recorte": sin_recorte, "anios_pagando": pagando, "aumentos_12": aumentos, "frecuencia": frec,
             "crisis_0809": crisis((2008, 2009), 2007), "crisis_2020": crisis((2020, 2021), 2019), "recorte_en_curso": en_curso,
-            "ultimo_completo": ultimo_c, "tasa": {a: round(t, 4) for a, t in tasa.items()}}
+            "ultimo_completo": ultimo_c, "historial_incompleto": incompleto, "ultimo_pago": todos[-1][0],
+            "tasa": {a: round(t, 4) for a, t in tasa.items()}}
 
 
 def entrada(row, estados, historial=None, estimacion=None, grupo=None):
@@ -209,7 +251,8 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
         grupo = TICKER_TO_SECTOR.get(row.get("ticker"))
     return {"ticker": row.get("ticker"), "grupo": grupo, "pais": row.get("pais"), "dividendo_anual": row.get("annual_dividend"),
             "precio": row.get("precio_actual"), "p_ffo": row.get("p_ffo_actual"), "dy": row.get("dividend_yield_actual"),
-            "dy_mediana": row.get("dividend_yield_mediana"), "estados": estados, "historial": historial, "estimacion": estimacion}
+            "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "estados": estados, "historial": historial,
+            "estimacion": estimacion}
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -217,7 +260,7 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
 # ---------------------------------------------------------------------------------------------------------------------
 def calcular(e):
     """e = {"ticker", "grupo" (grupo de la app: config.sectors.TICKER_TO_SECTOR), "pais", "dividendo_anual", "precio", "p_ffo",
-            "dy", "dy_mediana", "estados" (con hasta 13 años: historico.estados_completos), "historial" (analizar_dividendos o None),
+            "dy", "dy_mediana", "market_cap" (US$; < 1.000 millones = tabla de empresas chicas), "estados" (con hasta 13 años: historico.estados_completos), "historial" (analizar_dividendos o None),
             "estimacion" ({"actual": EPS estimado año en curso, "proximo": EPS estimado año próximo} o None)}
     -> {"score", "categoria", "frase", "color", "pilares": {n: [pts, máx]}, "variables": [...], "topes": [...], "notas": [...], "conclusion"}"""
     tk, grupo = e.get("ticker", ""), e.get("grupo") or ""
@@ -286,8 +329,10 @@ def calcular(e):
         deuda = ultimo(s[DT])[0]
         if inte is not None and abs(inte) > 0 and num is not None:
             cob = r2(num / abs(inte))
-            rating = D.rating_sintetico(cob, "grande")[0]
-            var("cobertura", 2, PTS_RATING.get(rating, 0), 12, cob, rating=rating, con="EBITDA" if (util or reit) else "EBIT")
+            mcap = _n(e.get("market_cap"))
+            tabla = "chica" if mcap and mcap < CHICA_MCAP else "grande"
+            rating = D.rating_sintetico(cob, tabla)[0]
+            var("cobertura", 2, PTS_RATING.get(rating, 0), 12, cob, rating=rating, con="EBITDA" if (util or reit) else "EBIT", tabla=tabla)
         elif (inte in (None, 0)) and (deuda is None or deuda <= 0):
             var("cobertura", 2, 12, 12, None, sin_deuda=True)
         else:
@@ -314,6 +359,8 @@ def calcular(e):
     # -------- pilar 3: historial del dividendo
     h = e.get("historial")
     if h:
+        if h.get("historial_incompleto"):
+            res["notas"].append(f"faltan pagos recientes en el historial (el último guardado es del {h.get('ultimo_pago')})")
         n = h["anios_pagando"] if variable_ext else h["anios_sin_recorte"]
         pts = 10 if n >= 25 else 8 if n >= 20 else 6 if n >= 15 else 4 if n >= 10 else 2 if n >= 5 else 0
         var("anios", 3, pts, 10, n, variable=variable_ext)
@@ -475,11 +522,16 @@ def _unir(fr):
     if len(fr) == 1:
         return fr[0]
     a, b = fr[0], fr[1]
-    for pre in ("el dividendo ya usa ", "el dividendo se lleva "):
-        if b.startswith(pre) and a.startswith("el dividendo"):
-            b = b[len(pre):]
-            break
+    pres = ("el dividendo ya usa ", "el dividendo se lleva ")
+    if any(a.startswith(p) for p in pres):       # dos payouts seguidos: «se lleva el 95% de lo que gana y el 120% de su flujo…»
+        for pre in pres:
+            if b.startswith(pre):
+                b = b[len(pre):]
+                break
     if "dividendo" in a:      # sin repetir «el dividendo» en la misma oración
+        for pre in pres:
+            if b.startswith(pre):
+                b = "pagarlo " + b[len("el dividendo "):]       # «…sin recortar el dividendo y pagarlo ya usa el 60% de su flujo…»
         b = (b.replace("no recortó el dividendo", "no lo recortó").replace("recortó el dividendo", "lo recortó")
              .replace("aumentó el dividendo", "lo aumentó").replace("sin recortar el dividendo", "sin recortarlo")
              .replace("pagando dividendo", "pagándolo").replace(" para el dividendo", ""))
@@ -506,6 +558,8 @@ def conclusion(res, e=None, variable_ext=False):
         else:
             contra.append(FRASE_TOPE.get(clave))
     perdidas = sorted((v for v in vs if v["max"] - v["pts"] >= 3), key=lambda v: -(v["max"] - v["pts"]))
+    if any(c == "dividendo_supera" for c, _ in res.get("topes") or []):
+        perdidas = [v for v in perdidas if v["clave"] not in ("fcf", "eps", "ffo")]   # la frase del tope ya lo dice
     for v in perdidas:
         f = _frase(v, False, variable_ext)
         if f and f not in contra:

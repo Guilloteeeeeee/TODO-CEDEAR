@@ -3,8 +3,10 @@ v1.5.58 (Guille, 10/11/2026): suma al archivo histórico propio los AÑOS VIEJOS
 empresas de la app que presentan informes allí. Así el Score de Seguridad del Dividendo puede mirar 12 años de ganancias (la vara de Weiss)
 y no solo los 4 que trae Yahoo.
 
-- Solo suma años MÁS VIEJOS que el más viejo guardado, en la misma moneda. Nunca toca los años que ya están (los de Yahoo mandan).
-- Antes de sumar, controla que en el año que tienen los dos la SEC y lo guardado coincidan (ingresos o resultado neto dentro de 5 %).
+- Solo suma años MÁS VIEJOS que el más viejo de Yahoo, en la misma moneda. Nunca toca los años de Yahoo (mandan). Los que ya habían venido de la
+  SEC se rehacen en cada corrida (v1.5.61), así una corrección llega también a lo ya sumado.
+- Antes de sumar, controla que en el año que tienen los dos la SEC y lo guardado coincidan (resultado neto o ingresos dentro de 5 %).
+- v1.5.61: pasa la ganancia por acción de la SEC a la base de Yahoo (en los ADR la SEC informa por acción ordinaria y Yahoo por ADR).
   Si no coinciden (por ejemplo, otra moneda o un año fiscal corrido), esa empresa se saltea y queda anotada en el resultado.
 - No cambia el cache, los puntajes ni la pantalla. Lo guardado queda en data/historico/estados.json (y el registro en cambios.json).
 
@@ -55,23 +57,56 @@ def _empresas():
     return [r["ticker"] for r in cache]
 
 
-def procesar(ticker, facts, archivo, cambios, hoy=None):
-    """Suma los años viejos de un ticker al archivo (dict de estados.json ya leído). -> (estado, detalle, años sumados)."""
+def _cifras(rec):
+    return {g: rec.get(g) for g in H.GRUPOS if rec.get(g)}
+
+
+def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
+    """Suma los años viejos de un ticker al archivo (dict de estados.json ya leído). -> (estado, detalle, años sumados).
+    v1.5.61: los años que ya habían venido de la SEC se rehacen cada vez (son de la SEC, no de Yahoo: se pueden volver a bajar), con la ganancia
+    por acción pasada a la base de Yahoo (data/sec.factor_por_accion: ADR). Un año que cambia queda anotado en cambios.json («sec_corregido»).
+    Estados: ok (años nuevos), corregido (solo se corrigieron años ya sumados), nada_nuevo, no_coincide, sin_datos."""
     tk = ticker.upper()
     sec_anios = S.a_anios(facts)
     if not sec_anios:
-        return "sin_datos", "la SEC no tiene informes anuales con estos datos", []
-    reg = archivo.get(tk)
-    ok, det = S.coincide(sec_anios, reg)
+        return "sin_datos", "la SEC no tiene informes anuales con estos datos (" + S.diagnostico(facts) + ")", []
+    reg = archivo.get(tk) or {}
+    previos = {a: r for a, r in (reg.get("anios") or {}).items() if r.get("fuente") == "SEC"}
+    base = dict(reg)
+    if previos:
+        base["anios"] = {a: r for a, r in reg["anios"].items() if a not in previos}
+    ok, det = S.coincide(sec_anios, base)
     if ok is False:
         return "no_coincide", det, []
-    if ok is None and reg and reg.get("anios"):
+    if ok is None and base.get("anios"):
         return "no_coincide", det, []
-    nuevo, sumados = H.sumar_anios_viejos(reg, sec_anios, tk, cambios, hoy=hoy)
+    factor, det_f = S.factor_por_accion(sec_anios, base, splits)
+    nuevo, todos = H.sumar_anios_viejos(base, sec_anios, tk, None, hoy=hoy, factor_accion=factor or 1.0)
+    anios = dict(nuevo.get("anios") or {})
+    sumados, corregidos = [], []
+    for a in todos:
+        if a not in previos:
+            sumados.append(a)
+        elif _cifras(previos[a]) == _cifras(anios[a]):
+            anios[a] = previos[a]                    # sin cambios: queda el registro de antes (con su fecha de captura)
+        else:
+            corregidos.append(a)
+    for a, r in previos.items():                     # lo que ya estaba y ahora no vino, queda (solo se agrega)
+        anios.setdefault(a, r)
+    if factor not in (None, 1.0):
+        det = f"{det} · {det_f}"
+    if not sumados and not corregidos:
+        return "nada_nuevo", det, []
+    nuevo["anios"] = dict(sorted(anios.items()))
+    archivo[tk] = nuevo
     if sumados:
-        archivo[tk] = nuevo
-        return "ok", det, sumados
-    return "nada_nuevo", det, []
+        H._anotar(cambios, "anios_sec", tk, anios=sumados, detalle="años sumados desde SEC (hacia atrás)")
+    if corregidos:
+        H._anotar(cambios, "sec_corregido", tk, anios=corregidos,
+                  detalle=f"años de la SEC rehechos (factor por acción {factor})" if factor not in (None, 1.0) else "años de la SEC rehechos")
+    if sumados:
+        return "ok", det + (f" · además se corrigieron {len(corregidos)} años ya sumados" if corregidos else ""), sumados
+    return "corregido", f"{len(corregidos)} años corregidos · {det}", corregidos
 
 
 def main(tickers=None):
@@ -82,7 +117,8 @@ def main(tickers=None):
     time.sleep(PAUSA)
     archivo = H.leer("estados.json", {})
     cambios = H.leer("cambios.json", [])
-    filas, seguidos = {"ok": [], "nada_nuevo": [], "no_coincide": [], "sin_datos": [], "sin_cik": [], "error": []}, 0
+    splits = H.leer("splits.json", {})
+    filas, seguidos = {"ok": [], "corregido": [], "nada_nuevo": [], "no_coincide": [], "sin_datos": [], "sin_cik": [], "error": []}, 0
     print(f"Sumando años viejos de la SEC a {len(tickers)} empresas (no cierres la ventana)...")
     for i, t in enumerate(tickers, 1):
         cik = mapa.get(t.replace("-", "."), mapa.get(t))
@@ -102,12 +138,12 @@ def main(tickers=None):
                 break
             time.sleep(PAUSA)
             continue
-        estado, det, sumados = procesar(t, facts, archivo, cambios)
+        estado, det, sumados = procesar(t, facts, archivo, cambios, splits=splits.get(t))
         if estado == "ok":
-            filas["ok"].append(f"{t}: +{len(sumados)} años ({sumados[0]}–{sumados[-1]})")
+            filas["ok"].append(f"{t}: +{len(sumados)} años ({sumados[0]}–{sumados[-1]})" + (f" · {det.split(' · ', 1)[1]}" if " · " in det else ""))
         else:
             filas[estado].append(f"{t}: {det}")
-        print(f"  {i:3d}/{len(tickers)} {t:6} {estado}" + (f" +{len(sumados)} años desde {sumados[0]}" if sumados else ""))
+        print(f"  {i:3d}/{len(tickers)} {t:6} {estado}" + (f" +{len(sumados)} años desde {sumados[0]}" if sumados and estado == "ok" else ""))
         if i % 25 == 0:
             H.escribir("estados.json", dict(sorted(archivo.items())))
             H.escribir("cambios.json", cambios)
@@ -118,6 +154,8 @@ def main(tickers=None):
     texto = [f"AÑOS VIEJOS DE LA SEC ({dt.datetime.now():%d/%m/%Y %H:%M})",
              f"Archivo: {r['empresas_con_estados']} empresas, {r['anios_fiscales']} años fiscales (el más viejo, {r['anio_mas_viejo']})", "",
              f"■ Con años sumados: {len(filas['ok'])}"] + [f"   {x}" for x in filas["ok"]] + [
+             "", f"■ Años ya sumados que se corrigieron (base por acción de los ADR, por ejemplo): {len(filas['corregido'])}"] + [
+             f"   {x}" for x in filas["corregido"]] + [
              "", f"■ Ya tenían todo (nada para sumar): {len(filas['nada_nuevo'])}",
              "", f"■ No coinciden con Yahoo (se saltearon, para revisar): {len(filas['no_coincide'])}"] + [f"   {x}" for x in filas["no_coincide"]] + [
              "", f"■ Sin datos anuales en la SEC: {len(filas['sin_datos'])}"] + [f"   {x}" for x in filas["sin_datos"]] + [

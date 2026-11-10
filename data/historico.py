@@ -323,11 +323,12 @@ def archivar_estados(paquetes, carpeta=None):
     return {"anios_nuevos": despues - antes, "correcciones": sum(1 for c in cambios[n0:] if c["tipo"] == "correccion"), "empresas": len(arch)}
 
 
-def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fuente="SEC"):
+def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fuente="SEC", factor_accion=1.0):
     """v1.5.58: suma años fiscales de otra fuente (la SEC) SOLO hacia atrás: años más viejos que el más viejo guardado y en su misma moneda.
     Nunca toca un año que ya está (los de Yahoo mandan). anios_nuevos = {"2015": {"moneda", "presentado", grupo: {rot: v}}} (data/sec.a_anios).
     Cada año sumado lleva "fuente" y "captura_acc" = fecha de presentación del informe (decide el ajuste por splits posteriores).
-    Devuelve (reg, [años sumados])."""
+    v1.5.61: factor_accion (data/sec.factor_por_accion) pasa las cifras por acción a la base de lo guardado (ADR): se multiplican y el año
+    lleva "factor_accion". Devuelve (reg, [años sumados])."""
     hoy = hoy or _hoy()
     reg = dict(reg or {})
     anios = {k: dict(v) for k, v in (reg.get("anios") or {}).items()}
@@ -343,8 +344,13 @@ def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fue
         if a >= mas_viejo or (moneda and rec.get("moneda") != moneda):
             continue
         nuevo = {"moneda": rec.get("moneda", "USD"), "captura": hoy, "captura_acc": rec.get("presentado") or hoy, "fuente": fuente}
+        fac = _n(factor_accion) or 1.0
+        if fac != 1.0:
+            nuevo["factor_accion"] = fac
         for g in GRUPOS:
             vals = {r: _n(v) for r, v in (rec.get(g) or {}).items() if _n(v) is not None}
+            if fac != 1.0:
+                vals = {r: (v * fac if r in POR_ACCION else v / fac if r in ACCIONES else v) for r, v in vals.items()}
             if vals:
                 nuevo[g] = vals
                 vistos = orden.get(g) or []

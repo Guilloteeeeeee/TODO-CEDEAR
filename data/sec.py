@@ -14,11 +14,13 @@ Reglas (las mismas que probó piloto_sec.py el 08/11/2026):
 import datetime as _dt
 
 CONCEPTOS = {
-    "Ingresos": [("us-gaap", "Revenues"), ("us-gaap", "RevenueFromContractWithCustomerExcludingAssessedTax"), ("us-gaap", "SalesRevenueNet"),
+    "Ingresos": [("us-gaap", "Revenues"), ("us-gaap", "RevenueFromContractWithCustomerExcludingAssessedTax"),
+                 ("us-gaap", "RevenueFromContractWithCustomerIncludingAssessedTax"), ("us-gaap", "SalesRevenueNet"),
                  ("us-gaap", "RevenuesNetOfInterestExpense"), ("ifrs-full", "Revenue")],
     "Resultado operativo": [("us-gaap", "OperatingIncomeLoss"), ("ifrs-full", "ProfitLossFromOperatingActivities")],
     "Resultado neto": [("us-gaap", "NetIncomeLoss"), ("ifrs-full", "ProfitLossAttributableToOwnersOfParent"), ("ifrs-full", "ProfitLoss")],
-    "Ganancia por acción (diluida)": [("us-gaap", "EarningsPerShareDiluted"), ("ifrs-full", "DilutedEarningsLossPerShare")],
+    "Ganancia por acción (diluida)": [("us-gaap", "EarningsPerShareDiluted"), ("us-gaap", "EarningsPerShareBasicAndDiluted"),
+                                      ("ifrs-full", "DilutedEarningsLossPerShare"), ("ifrs-full", "BasicAndDilutedEarningsLossPerShare")],
     "Activo total": [("us-gaap", "Assets"), ("ifrs-full", "Assets")],
     "Patrimonio neto": [("us-gaap", "StockholdersEquity"), ("ifrs-full", "EquityAttributableToOwnersOfParent"), ("ifrs-full", "Equity")],
     "Flujo de efectivo operativo": [("us-gaap", "NetCashProvidedByUsedInOperatingActivities"), ("ifrs-full", "CashFlowsFromUsedInOperatingActivities")],
@@ -35,6 +37,8 @@ NEGATIVOS = ("Inversión en activos fijos (CAPEX)", "Dividendos pagados")   # Ya
 INSTANTANEOS = {"Activo total", "Patrimonio neto"}      # se miden a una fecha (balance), no durante un año
 FORMULARIOS = ("10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 TOLERANCIA_SOLAPE = 0.05                                 # en el año que tienen los dos, SEC y Yahoo tienen que coincidir dentro de 5 %
+EPS_ROT, NETO_ROT = "Ganancia por acción (diluida)", "Resultado neto"
+EPS_MINIMA = 0.10                                        # para medir la base por acción no se usan ganancias casi nulas (el redondeo pesa)
 
 
 def anuales(facts, rotulo):
@@ -94,17 +98,66 @@ def a_anios(facts):
 
 def coincide(sec_anios, reg):
     """¿La SEC y lo guardado (Yahoo) dicen lo mismo en los años que tienen los dos? -> (True/False/None si no hay año en común, detalle).
-    Se mira Ingresos (o Resultado neto si no hay) del año en común más nuevo, en la misma moneda."""
+    Se mira el año en común más nuevo, en la misma moneda: alcanza con que coincida el resultado neto o los ingresos (dentro de 5 %).
+    v1.5.61: primero el resultado neto. Los ingresos solos dejaban afuera a bancos, financieras y empresas con impuestos especiales
+    (Altria, Diageo, Morgan Stanley, American Express, Berkshire…), donde cada fuente arma la cifra de ventas a su manera."""
     guard = (reg or {}).get("anios") or {}
-    comunes = sorted(set(sec_anios) & set(guard), reverse=True)
+    comunes = sorted((a for a in set(sec_anios) & set(guard) if guard[a].get("fuente") != "SEC"), reverse=True)
     for a in comunes:
         s, g = sec_anios[a], guard[a]
         if s.get("moneda") != g.get("moneda", "USD"):
             return False, f"{a}: la SEC informa en {s.get('moneda')} y lo guardado está en {g.get('moneda', 'USD')}"
-        for rot in ("Ingresos", "Resultado neto"):
+        dets, alguno = [], False
+        for rot in (NETO_ROT, "Ingresos"):
             vs, vg = (s.get("resultados") or {}).get(rot), (g.get("resultados") or {}).get(rot)
             if vs is None or vg in (None, 0):
                 continue
             dif = abs(vs - vg) / abs(vg)
-            return dif <= TOLERANCIA_SOLAPE, f"{a} {rot}: SEC {vs:,.0f} vs guardado {vg:,.0f} ({dif:.1%})"
+            dets.append(f"{rot}: SEC {vs:,.0f} vs guardado {vg:,.0f} ({dif:.1%})")
+            alguno = alguno or dif <= TOLERANCIA_SOLAPE
+        if dets:
+            return alguno, f"{a} " + "; ".join(dets)
     return None, "sin año en común para comparar"
+
+
+def factor_por_accion(sec_anios, reg, splits=None):
+    """v1.5.61: ¿la ganancia por acción de la SEC está en la misma base que la de lo guardado (Yahoo)? En los ADR muchas veces no: la SEC informa
+    por acción ordinaria y Yahoo por ADR (TSMC: 1 ADR = 5 acciones; Coca-Cola FEMSA: 1 ADR = 80 acciones). También pasa cuando Yahoo rehízo
+    sus cifras por un cambio en la cantidad de acciones que no figura como split.
+    Se mide en el año más nuevo que tienen los dos, con el resultado neto coincidiendo (dentro de 5 %) y las dos ganancias por acción llevadas a
+    hoy por los splits posteriores a su fecha: factor = Yahoo / SEC. Dentro de 5 % se toma 1 (misma base).
+    -> (factor, detalle); factor None = no hay con qué comparar (se deja como viene)."""
+    from data.historico import factor_despues
+    guard = (reg or {}).get("anios") or {}
+    for a in sorted((a for a in set(sec_anios) & set(guard) if guard[a].get("fuente") != "SEC"), reverse=True):
+        s, g = sec_anios[a], guard[a]
+        rs, rg = s.get("resultados") or {}, g.get("resultados") or {}
+        es, ey, ns, ny = rs.get(EPS_ROT), rg.get(EPS_ROT), rs.get(NETO_ROT), rg.get(NETO_ROT)
+        if None in (es, ey, ns, ny) or not ny or min(abs(es), abs(ey)) < EPS_MINIMA:
+            continue
+        if abs(ns - ny) / abs(ny) > TOLERANCIA_SOLAPE:
+            continue
+        es_hoy = es / factor_despues(splits, s.get("presentado") or "")
+        ey_hoy = ey / factor_despues(splits, g.get("captura_acc", g.get("captura", "")))
+        f = ey_hoy / es_hoy
+        if f <= 0:
+            continue
+        if abs(f - 1) <= TOLERANCIA_SOLAPE:
+            return 1.0, f"{a}: misma base por acción"
+        return round(f, 4), f"{a}: por acción, Yahoo {ey:,.4g} y SEC {es:,.4g} (factor {f:,.3g})"
+    return None, "sin año en común con ganancia por acción para comparar"
+
+
+def diagnostico(facts):
+    """Para «sin datos»: qué trae el archivo de la SEC (nombre, cantidad de conceptos y cuáles de los nuestros tiene, con sus formularios)."""
+    f = facts.get("facts") or {}
+    partes = [f"entidad «{facts.get('entityName', '?')}»"] + [f"{tax}: {len(v)} conceptos" for tax, v in f.items()]
+    vistos = []
+    for rot, lista in CONCEPTOS.items():
+        for tax, concepto in lista:
+            c = (f.get(tax) or {}).get(concepto)
+            if c:
+                formas = sorted({x.get("form") for filas in (c.get("units") or {}).values() for x in filas if x.get("form")})
+                vistos.append(f"{concepto} ({', '.join(formas[:4])})")
+                break
+    return "; ".join(partes) + ("; nuestros conceptos: " + ", ".join(vistos[:5]) if vistos else "; ninguno de nuestros conceptos")
