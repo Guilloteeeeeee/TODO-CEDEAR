@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.63 — Años de la SEC: segunda corrida de Guille y control de la unión con Yahoo
+- **Datos:** entra la segunda corrida de `bajar_sec.bat` (10/11/2026): 11 empresas con años nuevos (Altria, Berkshire, Morgan Stanley, American Express, Blackstone, HDFC, Itaú, Nu, Nomura, Sony, BIOX) y 76 con años rehechos (29 ADR con la ganancia por acción pasada a la base de Yahoo: TSMC ×5, Coca-Cola FEMSA ×80, Toyota ×10, HSBC ×5…).
+- **Control nuevo de la unión SEC → Yahoo** (`sec.union_por_accion`): si la base por acción no se pudo verificar en un año en común y en la unión las acciones implícitas (resultado neto ÷ ganancia por acción) saltan menos de 0,6 o más de 1,6 veces, la ganancia por acción de la SEC queda afuera (los montos se guardan). Ya aplicado a Telefônica Brasil, DuPont, AstraZeneca, Cemex y Lloyds. Agnico Eagle (fusión con Kirkland Lake en 2022) y Corning (conversión de preferidas en 2021) tienen un salto real y quedan como están.
+- Un factor entre 0,8 y 1,25 ya no se toma como otra base (los ADR van de 0,25 a 80): se deshizo en AmBev, Bradesco, Bunge y S&P Global.
+- Calibración contra SSD sin cambios: 6,7 puntos de diferencia media (Altria ya tiene 13 años y sigue en 64). ExxonMobil sigue sin años de la SEC: falta ver su diagnóstico en `resultados_sec.txt`.
+- Pruebas: `tests/test_v1563_sec.py` (OK 6 MAL 0).
+
 ### v1.5.62 — Score de Seguridad del Dividendo: excepción con la ganancia de los analistas y estimaciones por trimestre
 - **Excepción del payout sobre ganancias** (decisión de Guille del 10/11/2026: «SÍ, DE ACUERDO CON TODO»; las que tuvieron pérdida «entrarían también»): si los analistas esperan para el año en curso una ganancia de **1,5 veces o más** la contable, o la contable fue pérdida, el payout se mide contra la estimada (`SALTO_ANALISTAS`). Resguardos: al menos 5 analistas (`MIN_ANALISTAS`), estimación de hace 130 días o menos (`VIGENCIA_ESTIMACION`, `estimacion_vigente`; vale también para la tendencia) y el dividendo cubierto por el flujo de caja libre (payout de flujo ≤ 100%). Bancos, REITs y utilities quedan afuera; los topes siguen con la ganancia contable. La conclusión lo dice: «paga el 49% de la ganancia que esperan los analistas para este año».
 - Con las 21 empresas comparadas con SSD: AbbVie 66 → 81, Pfizer 48 → 60, Ford 29 → 40; diferencia media 7,4 → 6,7 puntos, 12 de 21 en la misma categoría, ninguna a dos.

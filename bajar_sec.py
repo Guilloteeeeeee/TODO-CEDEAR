@@ -82,6 +82,14 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
         return "no_coincide", det, []
     factor, det_f = S.factor_por_accion(sec_anios, base, splits)
     nuevo, todos = H.sumar_anios_viejos(base, sec_anios, tk, None, hoy=hoy, factor_accion=factor or 1.0)
+    if factor != 1.0:
+        # v1.5.63: si la base no se pudo verificar (o el factor no alcanzó), la unión SEC → Yahoo tiene que verse normal; si no, la
+        # ganancia por acción de la SEC queda afuera (los montos sí se guardan). Con factor 1 verificado, un salto es real (fusión, preferidas).
+        ok_u, rel = S.union_por_accion(nuevo, splits)
+        if ok_u is False:
+            S.quitar_por_accion(nuevo)
+            det_f = f"ganancia por acción de la SEC sin verificar (relación de acciones {rel} en la unión): queda afuera"
+            factor = "sin_eps"
     anios = dict(nuevo.get("anios") or {})
     sumados, corregidos = [], []
     for a in todos:
@@ -93,7 +101,7 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
             corregidos.append(a)
     for a, r in previos.items():                     # lo que ya estaba y ahora no vino, queda (solo se agrega)
         anios.setdefault(a, r)
-    if factor not in (None, 1.0):
+    if factor != 1.0 and det_f:
         det = f"{det} · {det_f}"
     if not sumados and not corregidos:
         return "nada_nuevo", det, []
@@ -103,7 +111,7 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
         H._anotar(cambios, "anios_sec", tk, anios=sumados, detalle="años sumados desde SEC (hacia atrás)")
     if corregidos:
         H._anotar(cambios, "sec_corregido", tk, anios=corregidos,
-                  detalle=f"años de la SEC rehechos (factor por acción {factor})" if factor not in (None, 1.0) else "años de la SEC rehechos")
+                  detalle=f"años de la SEC rehechos ({det_f})" if factor != 1.0 and det_f else "años de la SEC rehechos")
     if sumados:
         return "ok", det + (f" · además se corrigieron {len(corregidos)} años ya sumados" if corregidos else ""), sumados
     return "corregido", f"{len(corregidos)} años corregidos · {det}", corregidos

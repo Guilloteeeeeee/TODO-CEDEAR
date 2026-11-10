@@ -39,6 +39,8 @@ FORMULARIOS = ("10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 TOLERANCIA_SOLAPE = 0.05                                 # en el año que tienen los dos, SEC y Yahoo tienen que coincidir dentro de 5 %
 EPS_ROT, NETO_ROT = "Ganancia por acción (diluida)", "Resultado neto"
 EPS_MINIMA = 0.10                                        # para medir la base por acción no se usan ganancias casi nulas (el redondeo pesa)
+BASE_MIN, BASE_MAX = 0.8, 1.25                           # v1.5.63: un factor entre 0,8 y 1,25 no es otra base (los ADR van de 0,25 a 80): se toma 1
+SALTO_UNION = (0.6, 1.6)                                 # v1.5.63: control de la unión SEC → Yahoo (acciones implícitas = resultado neto ÷ ganancia por acción)
 
 
 def anuales(facts, rotulo):
@@ -142,8 +144,8 @@ def factor_por_accion(sec_anios, reg, splits=None):
         f = ey_hoy / es_hoy
         if f <= 0:
             continue
-        if abs(f - 1) <= TOLERANCIA_SOLAPE:
-            return 1.0, f"{a}: misma base por acción"
+        if BASE_MIN <= f <= BASE_MAX:
+            return 1.0, f"{a}: misma base por acción" + (f" (diferencia de {abs(f - 1):.0%}, no es otra base)" if abs(f - 1) > TOLERANCIA_SOLAPE else "")
         return round(f, 4), f"{a}: por acción, Yahoo {ey:,.4g} y SEC {es:,.4g} (factor {f:,.3g})"
     return None, "sin año en común con ganancia por acción para comparar"
 
@@ -161,3 +163,36 @@ def diagnostico(facts):
                 vistos.append(f"{concepto} ({', '.join(formas[:4])})")
                 break
     return "; ".join(partes) + ("; nuestros conceptos: " + ", ".join(vistos[:5]) if vistos else "; ninguno de nuestros conceptos")
+
+
+def union_por_accion(reg, splits=None):
+    """v1.5.63: control final de la unión entre el último año de la SEC y el primero de Yahoo. Compara las acciones implícitas
+    (resultado neto ÷ ganancia por acción, ya ajustadas por splits) de los dos años: si cambian más de lo normal (menos de 0,6 o más de 1,6
+    veces), la ganancia por acción de la SEC quedó en otra base. -> (True/False/None si no hay con qué comparar, relación)."""
+    from data.historico import factor_despues
+    an = (reg or {}).get("anios") or {}
+
+    def acciones(a):
+        r = an[a].get("resultados") or {}
+        e, n = r.get(EPS_ROT), r.get(NETO_ROT)
+        if not e or not n or e <= 0 or n <= 0:
+            return None
+        return n / (e / factor_despues(splits, an[a].get("captura_acc", an[a].get("captura", ""))))
+
+    sec = [a for a in sorted(an, reverse=True) if an[a].get("fuente") == "SEC" and acciones(a)]
+    yah = [a for a in sorted(an) if an[a].get("fuente") != "SEC" and acciones(a)]
+    if not sec or not yah:
+        return None, None
+    rel = acciones(sec[0]) / acciones(yah[0])
+    return SALTO_UNION[0] <= rel <= SALTO_UNION[1], round(rel, 2)
+
+
+def quitar_por_accion(reg):
+    """Saca la ganancia por acción de los años de la SEC (cuando no se pudo poner en la base de Yahoo). -> años tocados."""
+    tocados = []
+    for a, r in ((reg or {}).get("anios") or {}).items():
+        if r.get("fuente") == "SEC" and EPS_ROT in (r.get("resultados") or {}):
+            r["resultados"] = {k: v for k, v in r["resultados"].items() if k != EPS_ROT}
+            r["sin_por_accion"] = True
+            tocados.append(a)
+    return sorted(tocados)
