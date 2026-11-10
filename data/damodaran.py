@@ -120,14 +120,19 @@ def _rating_tabla():
 
 def rating_sintetico(cobertura, tipo="grande"):
     """Rating y spread de default estimados a partir de la cobertura de intereses (resultado operativo / intereses), con la planilla de Damodaran.
-    tipo: 'grande' (no financiera grande), 'chica' (más chica o riesgosa) o 'financiera'. -> (rating, spread) o (None, None). Para el DCF; no se muestra todavía."""
+    tipo: 'grande' (no financiera grande), 'chica' (más chica o riesgosa) o 'financiera'. -> (rating, spread) o (None, None). Para el DCF y el
+    Score de Seguridad del Dividendo.
+    v1.5.58 (regla de bordes de Guille, 10/11/2026: «los puntos de corte no se pueden pisar»): cada franja va DESDE su número (incluido) hasta el
+    número donde arranca la siguiente. Antes una cobertura justo en un borde (2,5x, 3x, 4,25x, 8,5x…) no caía en ninguna franja y devolvía None."""
     if cobertura is None:
         return None, None
     t = _rating_tabla()[{"grande": "grandes_no_financieras", "chica": "chicas_o_riesgosas", "financiera": "financieras"}[tipo]]
-    for desde, hasta, rating, spread in t:
-        if desde < float(cobertura) <= hasta or (float(cobertura) == desde == t[0][0]):
-            return rating, spread
-    return None, None
+    c = float(cobertura)
+    elegido = (t[0][2], t[0][3])
+    for desde, _hasta, rating, spread in sorted(t, key=lambda f: f[0]):
+        if c >= desde:
+            elegido = (rating, spread)
+    return elegido
 
 
 @lru_cache(maxsize=1)

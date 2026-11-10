@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.58 — Score de Seguridad del Dividendo (cálculo, sin pantalla todavía), años viejos de la SEC y calibración contra SSD
+- **Score de Seguridad del Dividendo, método v0.2** (`scoring/dividendo.py`): el método que aprobó Guille el 10/11/2026 (Geraldine Weiss + Simply Safe Dividends, documento «Score de Seguridad del Dividendo — Metodología») más los 3 ajustes que aprobó ese mismo día después de la primera calibración: cobertura con EBITDA en utilities y REITs, payout de flujo libre = el mejor entre 3 años y 12 meses, payout de ganancias = el mejor entre 12 meses y último año fiscal. Calcula score, categoría (5 cajitas) y la conclusión que va debajo. **Todavía no se muestra en la app:** primero se calibra con datos completos.
+- **`bajar_sec.bat`** (nuevo, aprobado por Guille): suma al archivo histórico los años viejos de la SEC (gratis) de todas las empresas que presentan informes allí. Solo hacia atrás, en la misma moneda, sin tocar lo de Yahoo, y solo si en el año en común la SEC y Yahoo coinciden dentro de 5%. La ganancia por acción vieja se ajusta por los splits posteriores al informe. Resultado en `resultados_sec.txt`.
+- **`calibrar_dividendo.bat`** (nuevo): calcula el score de las 22 empresas que Guille comparó con SSD usando toda la historia de dividendos (`bajar_historico.bat`), los años de la SEC y las estimaciones de analistas de Yahoo (se bajan en el momento y se guardan en `data/estimaciones_analistas.json`). Escribe `resultados_calibracion_dividendo.txt` y `data/calibracion_dividendo.json`. Con `--todas`, además calcula todas las empresas.
+- Orden en la PC: `bajar_historico.bat` → `bajar_sec.bat` → `calibrar_dividendo.bat`, y mandar los archivos que salen.
+- Arreglo: `data/damodaran.rating_sintetico` no devolvía nada cuando la cobertura caía justo en un borde (2,5x, 3x, 4,25x, 8,5x…). Ahora cada franja va desde su número (incluido) hasta donde arranca la siguiente (regla de bordes de Guille).
+- Prueba: `tests/test_v1558_dividendo.py` (el ejemplo del documento da 86; recortes de JPMorgan 2009, Ford 2020 y 3M 2024; pago corrido de diciembre a enero; dividendo extraordinario; bordes; SEC).
+
 ### v1.5.57 — Decimales de los puntos de corte
 - Guille (10/11/2026): con una sola cifra entera el corte lleva un decimal (1,4%, 2,7x, 9,9%); de 10 para arriba, entero (13,1% → 13%).
 

@@ -323,6 +323,42 @@ def archivar_estados(paquetes, carpeta=None):
     return {"anios_nuevos": despues - antes, "correcciones": sum(1 for c in cambios[n0:] if c["tipo"] == "correccion"), "empresas": len(arch)}
 
 
+def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fuente="SEC"):
+    """v1.5.58: suma años fiscales de otra fuente (la SEC) SOLO hacia atrás: años más viejos que el más viejo guardado y en su misma moneda.
+    Nunca toca un año que ya está (los de Yahoo mandan). anios_nuevos = {"2015": {"moneda", "presentado", grupo: {rot: v}}} (data/sec.a_anios).
+    Cada año sumado lleva "fuente" y "captura_acc" = fecha de presentación del informe (decide el ajuste por splits posteriores).
+    Devuelve (reg, [años sumados])."""
+    hoy = hoy or _hoy()
+    reg = dict(reg or {})
+    anios = {k: dict(v) for k, v in (reg.get("anios") or {}).items()}
+    orden = {g: list(v) for g, v in (reg.get("orden") or {}).items()}
+    tipos = {g: dict(v) for g, v in (reg.get("tipos") or {}).items()}
+    if anios:
+        mas_viejo = min(anios)
+        moneda = anios[mas_viejo].get("moneda", "USD")
+    else:
+        mas_viejo, moneda = "9999", None
+    sumados = []
+    for a, rec in sorted((anios_nuevos or {}).items()):
+        if a >= mas_viejo or (moneda and rec.get("moneda") != moneda):
+            continue
+        nuevo = {"moneda": rec.get("moneda", "USD"), "captura": hoy, "captura_acc": rec.get("presentado") or hoy, "fuente": fuente}
+        for g in GRUPOS:
+            vals = {r: _n(v) for r, v in (rec.get(g) or {}).items() if _n(v) is not None}
+            if vals:
+                nuevo[g] = vals
+                vistos = orden.get(g) or []
+                orden[g] = vistos + [r for r in vals if r not in vistos]
+                tipos[g] = {**{r: ("eps" if r in POR_ACCION else "m") for r in vals}, **(tipos.get(g) or {})}
+        anios[a] = nuevo
+        sumados.append(a)
+    if sumados:
+        if cambios is not None:
+            _anotar(cambios, "anios_" + fuente.lower(), ticker, anios=sumados, detalle=f"años sumados desde {fuente} (hacia atrás)")
+        reg.update({"anios": dict(sorted(anios.items())), "orden": orden, "tipos": tipos})
+    return reg, sumados
+
+
 def _ajustar_por_splits(grupos, factor):
     if factor == 1.0:
         return grupos
