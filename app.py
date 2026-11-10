@@ -1767,7 +1767,7 @@ _PAIS_ES = {"United States": "Estados Unidos", "Brazil": "Brasil", "Canada": "Ca
             "United Kingdom": "Reino Unido", "Australia": "Australia", "China": "China", "Uruguay": "Uruguay"}
 
 
-def _pais_sugerido(c, C):
+def _pais_sugerido(c, C, etfs=None):
     """País que la app ya conoce de una posición (para mostrarlo en la tabla); '' si no lo sabe."""
     if c.get("fuente") == "empresa":
         p = str((c.get("info") or {}).get("pais") or "")
@@ -1775,6 +1775,12 @@ def _pais_sugerido(c, C):
     if c.get("clase") == "rf" and c.get("fuente") in ("tipo", "regla"):
         g = C._geo_rf(c)
         return {"emergentes": "Argentina", "usa": "Estados Unidos", "desarrollados": "Europa"}.get(g, "") if g else ""
+    if c.get("fuente") == "etf":      # v1.5.62: también los ETFs muestran su país o región en la tabla
+        e = (etfs or {}).get(C.clave_tk(c["ticker"])) or {}
+        if e.get("pais"):
+            return _PAIS_ES.get(str(e["pais"]), str(e["pais"]))
+        g = C._geo_de(c, etfs or {})
+        return {"usa": "Estados Unidos", "emergentes": "Mercados emergentes", "desarrollados": "Países desarrollados", "global": "Global"}.get(g, "")
     return ""
 
 
@@ -1793,7 +1799,7 @@ def _confirmar_lectura(pos, firma, empresas, etfs, C):
         c = C.clasificar(p, empresas, etfs)
         etq = _CLASES_TABLA.get(c["clase"], "Sin clasificar")
         pre[str(p["ticker"]).strip().upper()] = (etq, p.get("tipo") or "")
-        filas.append({"Activo": str(p["ticker"]).strip(), "País": str(p.get("pais") or "") or _pais_sugerido(c, C), "Monto": round(float(p["monto"]), 2),
+        filas.append({"Activo": str(p["ticker"]).strip(), "País": str(p.get("pais") or "") or _pais_sugerido(c, C, etfs), "Monto": round(float(p["monto"]), 2),
                       "Moneda": {"usd": "Dólares", "ars": "Pesos"}.get(p.get("moneda") or "", "Sin dato"), "Clase": etq})
     st.markdown(_TXT_CONFIRMAR, unsafe_allow_html=True)
     ed = st.data_editor(

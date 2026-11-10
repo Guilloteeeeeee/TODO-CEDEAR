@@ -869,12 +869,19 @@ def _geo_rf(p):
     return None
 
 
+# v1.5.62: ETFs de «Internacionales no USA» que no son de un solo país pero sí de una región conocida (antes caían en «fuera de EE.UU., sin detalle»).
+_REGION_ETF = {"EEM": "emergentes", "IEMG": "emergentes", "VWO": "emergentes", "ILF": "emergentes",
+               "VEA": "desarrollados", "EFA": "desarrollados", "IEUR": "desarrollados", "EZU": "desarrollados", "BBAX": "desarrollados"}
+
+
 def _geo_de(p, etfs):
     """Bucket geográfico de una posición de renta variable: 'usa' | 'desarrollados' | 'emergentes' | 'fuera_sd' (fuera de EE.UU., sin detalle) | 'global' (mezcla) | None."""
     if p["fuente"] == "empresa":
         return region(p["info"].get("pais"))
     if p["fuente"] == "etf":
         e = etfs.get(clave_tk(p["ticker"])) or {}
+        if clave_tk(p["ticker"]) in _REGION_ETF:
+            return _REGION_ETF[clave_tk(p["ticker"])]
         return region(e.get("pais")) if e.get("pais") else _CAT_ETF_GEO.get(norm(e.get("categoria")))
     return None
 

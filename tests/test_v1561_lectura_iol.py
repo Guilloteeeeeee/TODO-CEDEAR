@@ -30,5 +30,11 @@ p2, _ = C.leer_archivo_info("y.xlsx", b2.getvalue())
 chk(not any("Liquidez" in x["ticker"] for x in p2), "con 100 % no se agrega efectivo")
 src = open("app.py", encoding="utf-8").read()
 chk("_OPC_MONEDA" in src and "elegir la moneda de tu archivo" in src, "el paso 2 pide la moneda y es obligatoria")
+# v1.5.63: ETFs por región
+from data import etfs as _E
+_et = {C.clave_tk(e["ticker"]): e for e in _E.cargar()}
+chk(all(C._geo_de({"fuente": "etf", "ticker": k}, _et) == "emergentes" for k in ("EEM", "IEMG", "VWO", "ILF")), "EEM, IEMG, VWO e ILF son emergentes")
+chk(all(C._geo_de({"fuente": "etf", "ticker": k}, _et) == "desarrollados" for k in ("VEA", "EFA", "IEUR", "EZU", "BBAX")), "VEA, EFA, IEUR, EZU y BBAX son desarrollados")
+chk("Mercados emergentes" in open("app.py", encoding="utf-8").read(), "la tabla del paso 3 muestra la región de los ETFs")
 print(f"OK {ok} MAL {mal}")
 sys.exit(1 if mal else 0)
