@@ -64,7 +64,7 @@ PROHIBIDO
 ==================================================================
 4. LA ESTRUCTURA (igual para todas; los títulos de las secciones los escribís vos)
 ==================================================================
-1. "titulo": la tesis en una línea, con su tensión (hasta 90 caracteres). Ej.: "NextEra: la eléctrica que alimenta a la IA, con una deuda que no perdona errores".
+1. "titulo": la tesis en una línea, con su tensión (hasta 90 caracteres). FORMATO (pedido de Guille, 10/11/2026): "Empresa: Frase corta. Segunda frase corta." Después de los dos puntos va mayúscula; cada idea es una oración con su punto; la coma solo donde hace falta (nunca una sola oración larga encadenada con comas y "y"). Ej. modelo: "Costco: Gana poco vendiendo, y mucho con la membresía. El mercado paga caro esa fórmula." Otro: "NextEra: La eléctrica que alimenta a la IA. Su deuda no perdona errores."
 2. "resumen": EXACTAMENTE 3 puntos de 1 o 2 oraciones:
    - qué es y qué la distingue (su ventaja frente a la competencia dicha en palabras simples, sin jerga: "Su ventaja es el tamaño: compra y se financia más barato que casi todos");
    - qué dicen los últimos resultados y la tensión principal (1 o 2 cifras);

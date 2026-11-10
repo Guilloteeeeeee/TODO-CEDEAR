@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.59"
+APP_VERSION = "1.5.60"
 
 import re
 import contextlib
@@ -1679,8 +1679,8 @@ def render_cartera(df, pagina=True):
     st.markdown(f"<style>{C.CSS}{CV.CSS}{CV.CSS_ENTRADA}</style>", unsafe_allow_html=True)
     st.markdown('<div class="cr cr-top"><h1>Evaluá tu Portfolio</h1></div>', unsafe_allow_html=True)
     modo = st.session_state.get("cr_modo")
-    _mosaicos = (("eval", "Evaluá tu Cartera de Inversiones", "Subí tus posiciones y recibí una evaluación gratuita de tu cartera de inversiones."),
-                 ("rent", "Conocé tu Rentabilidad", "Sabiendo cuánto dinero aportaste y retiraste podemos calcular cuánto rindió tu portfolio."))
+    _mosaicos = (("eval", "Evaluá tu Cartera de Inversiones", "Subí tus posiciones y recibí una evaluación gratuita."),
+                 ("rent", "Conocé tu Rentabilidad", "Decinos cuánto dinero aportaste y retiraste y te contamos cuánto rindió tu portfolio."))
 
     def _abrir(k):
         st.session_state["cr_modo"] = None if st.session_state.get("cr_modo") == k else k
@@ -1710,9 +1710,8 @@ def render_cartera(df, pagina=True):
 
 
 _INTRO_EVAL = (
-    "Armar una cartera lleva tiempo y esfuerzo y una mirada sobre lo que estamos haciendo ayuda mucho. Esta evaluación gratuita es una orientación educativa, "
-    "basada en reglas de inversión que nos fueron útiles en los más de 10 años que tenemos de experiencia bursátil. "
-    "Recordá que no es una recomendación de compra o venta ni un consejo personalizado sino ideas que te pueden ayudar a ajustar tu portfolio."
+    "Una evaluación gratuita basada en reglas de inversión que nos fueron útiles en los más de 10 años que tenemos de experiencia bursátil. "
+    "Recordá que no es una recomendación de compra o venta ni un consejo personalizado sino una orientación de índole educativa."
 )
 _INTRO_RENT = ("Conocer tu rentabilidad como inversor es clave para saber si las decisiones que estás tomando son útiles o no. "
                "Te permite conocerte y encontrar formas de mejorar el proceso de inversión.")

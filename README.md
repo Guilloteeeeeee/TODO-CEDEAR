@@ -1406,3 +1406,6 @@ cedear-screener/
 
 ## v1.5.59 — Evaluá tu Portfolio por pasos
 Misma pantalla, ordenada en 4 pasos numerados: 1 Completá tus datos · 2 Subí tus posiciones · 3 Chequeá tus posiciones (tabla «Esto es lo que leímos», ahora sin botón propio) · 4 Descargo de responsabilidad + botón «Análisis de Cartera de Inversión» (se habilita con todo completo y el descargo aceptado).
+
+## v1.5.60 — Textos de Evaluá tu Portfolio
+Subtítulos de los dos mosaicos y texto de presentación de la evaluación, con la redacción de Guille (10/11/2026).
