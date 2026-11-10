@@ -170,34 +170,50 @@ _DAMODARAN = {"mbr": ("margin", "Gross Margin"), "mop": ("margin", "Pre-tax Unad
 # DESPUÉS de impuestos), deuda neta / EBITDA, liquidez corriente, margen de flujo libre y dividendos / flujo libre (no están en las planillas cargadas).
 
 
-# v1.5.53 (Guille, 09/11/2026): «sacale esos ideales hasta que lo resuelva» (ejemplo: a JNJ le pedía un margen operativo de 30%, que es la suma de
-# toda su industria según Damodaran, no un ideal). Las líneas quedan apagadas; el formato visual queda listo para cuando él decida la referencia.
-MOSTRAR_REFERENCIAS = False
+# v1.5.53: líneas «Ideal» apagadas (eran sumas de industria de Damodaran, no ideales). v1.5.56: vuelven con los PUNTOS DE CORTE de Guille
+# (data/puntos_corte.py, Excel del 09/11/2026): una frase en negrita «Más de X es nuestra preferencia para …» y la línea punteada con el número al costado.
+MOSTRAR_REFERENCIAS = True
 
-# Ratios en los que lo bueno es estar POR DEBAJO de la referencia (hoy ninguno tiene línea; quedan listos para cuando la tengan)
+# gráfico -> variable del Excel de puntos de corte
+CORTE_DE = {"roic": "roic", "cob": "cobertura", "dne": "dn_ebitda", "liq": "liquidez", "mfcf": "margen_fcf", "crec": "crec_ingresos_5a",
+            "payn": "payout", "pay": "div_fcf", "payfco": "div_fco", "roa": "roa", "solv": "pat_activo", "roe": "roe", "mop": "margen_op"}
+# Ratios en los que lo bueno es estar POR DEBAJO del corte (lo confirma el «sentido» del Excel)
 _MENOS_ES_MEJOR = {"dne", "pay", "payn", "payfco"}
 
 
 def referencias(ticker, fam="general"):
-    """{clave: (valor en fracción, texto del mouse)} con los valores de la industria de la empresa (Damodaran). En financieras, solo margen neto y ROE."""
+    """{clave del gráfico: (corte, sentido "min"/"max", grupo)} según los puntos de corte de la industria de la empresa."""
     try:
-        from data import damodaran as _D
-        v = _D.valores(ticker)
+        from data import puntos_corte as _PC
+        c = _PC.cortes(ticker)
     except Exception:  # noqa: BLE001
-        v = None
-    if not v:
+        c = None
+    if not c:
         return {}
     out = {}
-    for k, (ds, col) in _DAMODARAN.items():
-        if fam == "financiera" and k not in ("mne", "roe"):
-            continue
-        x = _n((v.get(ds) or {}).get(col))
-        # un margen bruto/operativo/EBITDA ≤ 0 o un ROE/ROIC ≤ 0 de toda una industria no sirve como referencia (suele ser un dato raro de la
-        # planilla, como el ROE de −0,2% de «Computers/Peripherals»): mejor sin línea que con una engañosa
-        if x is None or (k in ("mbr", "mop", "mebitda", "roe") and x <= 0):
-            continue
-        out[k] = (x / 100, f"Promedio de la industria {v['industria']} ({v.get('region_txt', '')}; Damodaran, enero 2026). Suma las cifras de todas las empresas de la industria.")
+    for k, var in CORTE_DE.items():
+        x = _n(c["cortes"].get(var))
+        if x is not None:
+            out[k] = (x, c["sentido"].get(var, "max" if k in _MENOS_ES_MEJOR else "min"), c["grupo"])
     return out
+
+
+def redondear_corte(v, tipo):
+    """Guille (10/11/2026): los cortes, en números enteros (13,1% → 13%; 2,7x → 3x)."""
+    return round(v * 100) / 100 if tipo == "pct" else float(round(v))
+
+
+def _fmt_corte(v, tipo):
+    v = redondear_corte(v, tipo)
+    return f"{v * 100:.0f}%" if tipo == "pct" else f"{v:.0f}x"
+
+
+def frase_corte(clave, tipo, ref):
+    """(parte en negrita, resto): («Más de 13% es nuestra preferencia», «para los fabricantes de maquinaria.»)"""
+    v, sentido, grupo = ref
+    pal = "Menos de" if sentido == "max" else "Más de"
+    num = _fmt_corte(v, tipo) + (" anual en promedio de 5 años" if clave == "crec" else "")
+    return f"{pal} {num} es nuestra preferencia", f"para {grupo}."
 
 
 def _escala(vals):
@@ -238,12 +254,18 @@ def tarjeta(clave, tit, txt, tipo, anios, ttm, s, moneda=None, ref=None, extra_t
         unidad = f" ({esc})"
     elif tipo == "ps":
         unidad = f" ({nm})"
-    nums = [v / div for _, v in vals if v is not None] + ([ref[0]] if ref else [])
+    if ref:
+        ref = (redondear_corte(ref[0], tipo),) + tuple(ref[1:])
+    barras_v = [v / div for _, v in vals if v is not None]
+    nums = barras_v + ([ref[0]] if ref else [])
     lo, hi = min(0.0, min(nums)), max(0.0, max(nums))
+    H = 124
+    # si el corte queda por encima de todas las barras, se deja aire arriba para que la línea no pase por la fila de los números
+    if ref and ref[0] >= max(barras_v) and ref[0] > lo:
+        hi = lo + (ref[0] - lo) * H / (H - 14)
     if hi == lo:
         hi = lo + 1
     rango = hi - lo
-    H = 124
 
     def y(v):
         return H * (v - lo) / rango
@@ -262,15 +284,15 @@ def tarjeta(clave, tit, txt, tipo, anios, ttm, s, moneda=None, ref=None, extra_t
         barras.append(f'<div class="ev-b"><div class="ev-v{" ev-vu" if oscuro else ""}">{_fmt(v, tipo, div)}</div>'
                       f'<div class="ev-c"><div class="ev-bb" style="height:{max(h, 1.5):.0f}px;bottom:{(z - h) if x < 0 else z:.0f}px;background:{color}"></div></div>'
                       f'<div class="ev-a">{etq}</div></div>')
-    linea = ""
+    linea, frase = "", ""
     if ref:
-        # v1.5.52 (Guille): «Ideal: más de X» para que el usuario vea la referencia; al pasar el mouse dice de dónde sale (promedio de la industria)
-        sentido = "menos" if clave in _MENOS_ES_MEJOR else "más"
-        linea = (f'<div class="ev-ref" style="bottom:{y(ref[0]) + 34:.0f}px"><span title="{html.escape(ref[1], quote=True)}">'
-                 f'Ideal: {sentido} de {_fmt(ref[0], tipo)}</span></div>')
+        # v1.5.56 (Guille): como Simply Safe Dividends: frase en negrita con nuestra preferencia y línea punteada con el número al costado
+        neg, resto = frase_corte(clave, tipo, ref)
+        frase = f'<span class="ev-pref"><b>{html.escape(neg)}</b> {html.escape(resto)}</span>'
+        linea = (f'<div class="ev-ref" style="bottom:{y(ref[0]) + 34:.0f}px"><span>{_fmt_corte(ref[0], tipo)}</span></div>')
     cero = f'<div class="ev-cero" style="bottom:{y(0) + 34:.0f}px"></div>' if lo < 0 else ""
-    return (f'<div class="ev-t"><h4>{html.escape(tit)}<small>{html.escape(unidad)}</small></h4><p>{html.escape(txt)}{html.escape(extra_txt)}</p>'
-            f'<div class="ev-g">{linea}{cero}{"".join(barras)}</div></div>')
+    return (f'<div class="ev-t"><h4>{html.escape(tit)}<small>{html.escape(unidad)}</small></h4><p>{html.escape(txt)}{html.escape(extra_txt)}{frase}</p>'
+            f'<div class="ev-g{" ev-gr" if ref else ""}">{linea}{cero}{"".join(barras)}</div></div>')
 
 
 def graficos_html(est, clave, ticker=None):
@@ -306,15 +328,18 @@ CSS = """
 .ev-t p{margin:0 0 8px;font-size:13.5px;line-height:1.38;color:#475569;text-align:justify;min-height:56px}
 .ev-g{position:relative;display:flex;align-items:flex-end;gap:6px;height:192px;border-bottom:1px solid #cbd5e1}
 .ev-b{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%}
-.ev-v{font-size:12.5px;color:#475569;margin-bottom:3px;white-space:nowrap}
+.ev-v{font-size:12.5px;color:#475569;margin-bottom:3px;white-space:nowrap;position:relative;z-index:2;background:#fff;padding:0 2px;border-radius:3px}
 .ev-vu{font-weight:800;color:#0f172a}
 .ev-c{position:relative;width:100%;height:124px}
 .ev-bb{position:absolute;left:12%;right:12%;border-radius:4px 4px 0 0}
 .ev-a{font-size:11.5px;color:#64748b;margin-top:4px;text-align:center;line-height:1.15;height:28px}
-.ev-ref{position:absolute;left:0;right:0;border-top:2px dashed #94a3b8;z-index:1;pointer-events:none}
-.ev-ref span{position:absolute;left:0;top:-16px;font-size:11px;color:#64748b;background:#fff;padding:0 3px;pointer-events:auto;cursor:help}
+.ev-t p b{color:#0f172a;font-weight:700}
+.ev-pref{display:block;text-align:left;margin-top:2px}
+.ev-gr{padding-left:34px}
+.ev-ref{position:absolute;left:30px;right:0;border-top:2px dashed #64748b;z-index:1;pointer-events:none}
+.ev-ref span{position:absolute;left:-34px;top:-9px;width:30px;text-align:right;font-size:11.5px;color:#334155;line-height:16px}
 .ev-cero{position:absolute;left:0;right:0;border-top:1px solid #cbd5e1}
-.mc-oscuro .ev-t{background:#111827;border-color:#1f2937}.mc-oscuro .ev-t h4{color:#e5e7eb}.mc-oscuro .ev-t p{color:#9ca3af}.mc-oscuro .ev-ref span{background:#111827}
+.mc-oscuro .ev-t{background:#111827;border-color:#1f2937}.mc-oscuro .ev-t h4{color:#e5e7eb}.mc-oscuro .ev-t p{color:#9ca3af}.mc-oscuro .ev-ref span{color:#cbd5e1}.mc-oscuro .ev-v{background:#111827}.mc-oscuro .ev-t p b{color:#e5e7eb}
 @media (max-width:1100px){.ev-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.ev-grid{grid-template-columns:1fr}}
 """

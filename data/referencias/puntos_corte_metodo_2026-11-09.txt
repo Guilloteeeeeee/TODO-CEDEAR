@@ -1,0 +1,460 @@
+Método de los puntos de corte — TodoCedears
+9 nov 2026 · @Guillermo es mi nombre aunque a por momentos me podes llamar Guille
+Qué es un punto de corte y cómo se usa
+Un punto de corte es el número que una empresa tiene que alcanzar en una variable para PASAR. Hay uno solo por variable: si lo cumple, pasa; si no, no pasa.
+Para qué sirve: es un vistazo rápido para saber si la empresa está bien o no. No es un filtro de calidad extrema; eso queda para una etapa posterior. Por eso los cortes son de "está OK", no de "la mejor de su clase".
+Ejemplo: el corte de ROIC de Semiconductores es 13%. Texas Instruments, con un ROIC de 16,5%, pasa; una empresa del grupo con 10% no pasa.
+Cómo se usa con el Excel (Puntos_de_corte_sector_industria.xlsx):
+1. Buscá la industria de la empresa (clasificación de Damodaran) en la hoja Cortes industrias y usá esa fila.
+2. Si la industria no está en tu lista, usá la fila de su subgrupo en Cortes sectores (por ejemplo, Semiconductores o Software y nube); si el sector no tiene subgrupos, la fila del sector.
+3. Cada columna dice si el corte es un mínimo (≥) o un máximo (≤). "n/a" quiere decir que esa variable no se evalúa en ese tipo de empresa (por ejemplo, el EBITDA en un banco).
+De dónde salen los datos
+Nadie publica "cortes ideales" por industria. Lo que sí existe es el valor típico de cada grupo de empresas y algunas reglas generales en los libros. Los cortes se arman combinando las dos cosas, con estas fuentes:
+Fuente
+Fecha de los datos
+Qué aporta
+Damodaran (NYU Stern), base de empresas de EE.UU.
+Enero 2026. Ganancias y flujos: últimos 12 meses a septiembre 2025, aprox.
+El valor típico de casi todas las variables para 94 industrias, y el costo de capital y del patrimonio de cada industria (pisos de ROIC y ROE)
+Finviz (tu captura)
+9-nov-2026
+P/FCF y margen de FCF de cada uno de los 11 sectores
+GuruFocus, Sector Comparison (tu copia)
+9-nov-2026
+Liquidez corriente por industria (como referencia; el corte quedó fijo en 1)
+Los 10 PDF que adjuntaste (9 libros: Graham viene en dos ediciones)
+—
+Las reglas generales, que acá llamo "anclas", con su página
+Tu Word "Análisis fundamental de una empresa"
+—
+Liquidez mayor a 1 y deuda / patrimonio menor a 0,8
+Simply Safe Dividends (tus ejemplos de VZ, MCD, KO y TXN)
+nov-2026
+El piso de cobertura (4x) y el techo de deuda neta / EBITDA (3,5x), y el control del método
+Damodaran publica ratios, no los dólares de cada industria. Los dólares los reconstruí a partir de sus propios ratios. Ejemplo: capitalización = deuda total ÷ (deuda / capitalización de mercado). Para controlar que la reconstrucción esté bien, recalculé el EV/EBITDA con esos dólares y lo comparé con el que él publica: la diferencia mediana entre las 94 industrias es 0,07%.
+En el Excel, las hojas Damodaran, Finviz y GuruFocus tienen cada dato tal como vino, con su fuente. Todos los números de las hojas de cortes son fórmulas que salen de ahí: si cambiás un dato, el corte se recalcula.
+Paso 1: el valor típico de cada grupo
+Para cada variable, lo primero es saber cuánto da en la empresa típica del grupo.
+Damodaran no calcula medianas (la empresa del medio). Calcula agregados: suma lo de todas las empresas del grupo y divide. Es como si juntara a todas en una sola empresa gigante. Por eso las grandes pesan más, lo que tiene sentido para CEDEARs, que son casi todas grandes. El costo: un gigante puede mover solo el número de su grupo (eso se trata en el Paso 3 y en Limitaciones).
+Ejemplo con deuda neta / EBITDA de Consumo Básico, que junta 8 industrias de Damodaran:
+Industria
+Deuda neta (US$ M)
+EBITDA (US$ M)
+Deuda neta / EBITDA
+Household Products
+82.353
+47.701
+1,73x
+Beverage (Alcoholic)
+19.195
+8.104
+2,37x
+Beverage (Soft)
+106.743
+41.385
+2,58x
+Tobacco
+72.507
+27.927
+2,60x
+Food Processing
+121.138
+43.943
+2,76x
+Retail (Grocery and Food)
+41.503
+14.938
+2,78x
+Food Wholesalers
+33.112
+8.605
+3,85x
+Farming/Agriculture
+93.914
+17.892
+5,25x
+Consumo Básico (suma ÷ suma)
+570.464
+210.494
+2,71x
+Cómo se lee: la empresa típica de Consumo Básico necesita 2,7 años de EBITDA para pagar su deuda neta. Un sector o subgrupo es siempre la suma de sus industrias; el Excel lo hace con fórmulas SUMAR.SI.CONJUNTO sobre la hoja Damodaran.
+Dos variables no salen de esta suma:
+• Liquidez corriente: GuruFocus publica medianas por industria. Quedan en el Excel como referencia, pero el corte es fijo (1) para todas, salvo utilities, que se comparan contra su sector (0,83).
+• P/FCF y margen de FCF de cada sector: vienen de Finviz (margen de FCF = P/S ÷ P/FCF). Los subgrupos e industrias usan Damodaran para el margen y heredan el P/FCF de su sector.
+• Costo de capital y costo del patrimonio de un sector: promedio de sus industrias ponderado por tamaño (valor de la firma y capitalización).
+Un ajuste al flujo libre: las empresas, al calcular su flujo operativo, suman la compensación en acciones (es un gasto que no sale de la caja). El flujo de Damodaran no la suma. Se la agregué (dato de Damodaran, página Employee) para que el FCF sea comparable con el que ves en un balance o en Finviz.
+Paso 2: las reglas de los libros (anclas)
+Ninguno de los libros trae cortes por sector o industria. Sí traen reglas generales de lo que es una empresa sólida. Esas reglas son las anclas:
+Variable
+Ancla
+De dónde sale
+1. ROIC
+13%
+Valoración de empresas por ratios, láminas 2-3
+2. Cobertura de intereses
+7 veces
+Graham, El inversor inteligente, pág. 316 del PDF
+3. Deuda neta / EBITDA
+2 veces
+Valoración de empresas por ratios, láminas 2-3
+4. Deuda total / Patrimonio
+0,8 (utilities: máximo 2)
+Tu Word (regla de Buffett); utilities: Graham, pág. 384
+6. Caja / Deuda CP
+1 vez
+Regla lógica: la caja alcanza para la deuda que vence en el año
+7. Liquidez corriente
+1
+Tu Word: mayor a 1 es bueno; mucho más puede ser caja ociosa
+8. Margen de FCF
+5%
+Dorsey, Las cinco reglas para invertir en acciones con éxito, págs. 41-42
+9. Crecimiento de ingresos
+8% anual
+Valoración de empresas por ratios, láminas 2-3
+10. Payout
+50%
+Gregorio Hernández, Cómo invertir en bolsa a largo plazo, pág. 145
+11. Dividendos / FCF
+61%
+Derivada del 50% de Hernández (ver abajo)
+12. Dividendos / Flujo operativo
+30%
+Derivada del 50% de Hernández (ver abajo)
+13. ROA
+7%
+Dorsey, Las cinco reglas, págs. 42-43 (6% a 7%)
+19. ROE
+15%
+Dorsey, Las cinco reglas, pág. 42
+20. Margen operativo
+13,1%
+Sin regla de libro: lo típico del mercado de EE.UU. sin financieras (Damodaran)
+21. Deuda neta / capital
+43,3%
+Sin regla de libro: lo típico del mercado de EE.UU. sin financieras (Damodaran)
+Y cuatro pisos de sentido común, para que ninguna vara quede regalada:
+Variable
+Piso o techo
+De dónde sale
+ROIC
+Nunca menos que el costo de capital de su industria
+Damodaran, enero 2026. La empresa tiene que ganar al menos lo que le cuesta su capital
+ROE
+Nunca menos que el costo del patrimonio de su industria
+Damodaran, enero 2026. Es lo que exigen los accionistas
+Cobertura de intereses
+Nunca menos de 4 veces
+Lo que Simply Safe Dividends le pide a Verizon; coincide con analistas de dividendos
+Deuda neta / EBITDA
+Nunca más de 3,5 veces
+Lo que Simply Safe Dividends le pide a McDonald's; coincide con analistas de dividendos
+Cómo se derivan la 11 y la 12: Hernández habla de payout sobre ganancias. En el mercado de EE.UU. sin financieras, la ganancia neta es 1,22 veces el flujo libre ajustado. Entonces repartir el 50% de las ganancias equivale a repartir 50% × 1,22 = 61% del flujo libre. Con el flujo operativo (la ganancia es 0,60 veces el flujo operativo) da 50% × 0,60 = 30%.
+Sin ancla quedan la 5 (deuda LP / patrimonio), la 14 (patrimonio / activo) y los múltiplos (15 a 18). Tu Word también propone ROA mayor a 5% y payout hasta 60%; nos quedamos con 7% y 50%, como acordamos. Graham propone PER máximo 15 (pág. 384), pero no se usa porque los múltiplos se comparan contra el sector.
+Paso 3: el corte es el más permisivo de los dos, con pisos
+En las variables de calidad el corte es el más permisivo entre lo típico del grupo y el ancla, y después se aplican los pisos. Qué es "más permisivo" depende de la variable: si es un mínimo (ROIC), el número más bajo; si es un máximo (deuda), el más alto. Así una empresa pasa si está bien para su tipo de negocio o si cumple la regla del libro. No hace falta que sea la mejor de su clase.
+Variable
+Grupo
+Típico
+Ancla
+Piso o techo
+Corte
+ROIC (mínimo)
+Semiconductores
+19,2%
+13%
+costo de capital 10,55%
+13%
+ROIC (mínimo)
+Software (Internet)
+1,9%
+13%
+costo de capital 10,7%
+10,7% (gana el piso)
+Cobertura (mínimo)
+Telecomunicaciones
+3,85x
+7x
+4x
+4x (gana el piso)
+Deuda neta / EBITDA (máximo)
+Consumo Básico
+2,71x
+2x
+3,5x
+2,71x
+Deuda neta / EBITDA (máximo)
+Telecomunicaciones
+3,53x
+2x
+3,5x
+3,5x (gana el techo)
+ROE (mínimo)
+Materiales Básicos
+6,2%
+15%
+costo del patrimonio 8,4%
+8,4% (gana el piso)
+Margen operativo (mínimo)
+Semiconductores
+33,9%
+13,1% (mercado)
+—
+13,1%
+Cómo se lee: en Software (Internet) la empresa típica gana 1,9% sobre su capital. Si el corte fuera ese, una empresa que destruye valor pasaría igual. El piso exige que gane al menos lo que le cuesta su capital (10,7%).
+El control con Simply Safe Dividends. Con tus cinco ejemplos, la vara "OK" coincide con SSD en cuatro:
+Ejemplo
+Valor de la empresa
+Corte de SSD
+Corte del Excel
+¿Coincide?
+Verizon, cobertura
+4,22x
+≥ 4 (pasa)
+≥ 4 (pasa)
+Sí
+McDonald's, deuda neta / EBITDA
+3,70x
+≤ 3,5 (no pasa)
+≤ 3,5 (no pasa)
+Sí
+McDonald's, cobertura
+7,86x
+≥ 8 (no pasa)
+≥ 7 (pasa)
+No
+Coca-Cola, deuda neta / EBITDA
+2,16x
+≤ 4 (pasa)
+≤ 2,71 (pasa)
+Sí
+Texas Instruments, ROIC
+16,5%
+≥ 12% (pasa)
+≥ 13% (pasa)
+Sí
+Ojo: el piso de 4x y el techo de 3,5x salen en parte de estos mismos ejemplos, así que la coincidencia está algo armada a favor. Para validarla de verdad hacen falta ejemplos nuevos de SSD. Con la vara anterior (la más exigente) coincidía en uno solo.
+Reglas que no cambian:
+• Payout, dividendos / FCF y dividendos / flujo operativo son techos de sostenibilidad. Se toma el más alto entre lo típico y el ancla, nunca más de 100%. Ejemplo: en Consumo Básico el payout típico es 76,5% y el ancla 50%: el techo es 76,5%.
+• Caja / deuda CP y liquidez corriente son fijos: 1 vez y 1. Lo típico no sirve: donde casi no hay deuda corta da cientos de veces, y las medianas de liquidez de GuruFocus están infladas por empresas chicas con mucha caja.
+• Sin regla de libro, el ancla es el mercado: en margen operativo (13,1%) y deuda neta / capital (43,3%) se compara lo típico del grupo con lo típico del mercado de EE.UU. sin financieras. Deuda LP / patrimonio y patrimonio / activo usan lo típico del grupo.
+Deuda neta / capital se calcula así: (deuda financiera − caja) ÷ (deuda neta + patrimonio neto). Si da negativo, la empresa tiene más caja que deuda, y pasa.
+Múltiplos: barata contra su sector, en bruto
+Las variables 15 a 18 no miden si la empresa es buena sino si está barata comparada con su grupo. El corte es el valor típico del grupo, en bruto, sin margen de seguridad: si la empresa cotiza a un múltiplo igual o menor, pasa.
+Múltiplo
+Fuente
+Fecha
+Cómo se calcula lo típico
+15. PER
+Damodaran
+enero 2026
+Capitalización total ÷ ganancias totales, solo empresas con ganancias
+16. P/FCF
+Finviz
+9-nov-2026
+El del sector; subgrupos e industrias heredan el de su sector
+17. EV/EBITDA
+Damodaran
+enero 2026
+Valor de empresa total ÷ EBITDA total, solo empresas con EBITDA positivo
+18. PEG
+Damodaran
+enero 2026
+PER del grupo ÷ crecimiento esperado de las ganancias a 5 años (en %)
+Ejemplo: el PER típico de Tecnología es 39,6. Una tecnológica con PER 30 pasa; una con PER 45 no. Con el margen de 15% que tenía antes, el corte era 33,7.
+El margen quedó en una sola celda (hoja Reglas, D28 = 0%). Si algún día querés exigir margen, ponés 15% ahí y se recalculan todos los cortes de precio.
+Tres cosas a tener en cuenta:
+• No son medianas de 5 años como pediste al principio. El archivo histórico de Damodaran no se pudo descargar desde acá, así que son la foto de enero 2026 (P/FCF: noviembre 2026).
+• PER, EV/EBITDA y PEG salen de Damodaran en todas las filas para no mezclar métodos. Finviz agrega distinto y da otros números: PER de Tecnología 26,7 en Finviz contra 39,6 en Damodaran.
+• "Barata contra su sector" no es "barata". Si todo el sector está caro, una empresa puede pasar y seguir siendo cara. Para eso está la valuación de cada empresa, que este Excel no reemplaza.
+Excepciones por tipo de sector
+Algunos negocios funcionan distinto y una regla pensada para una industrial los juzgaría mal. "n/a" en el Excel quiere decir "esta variable no se evalúa acá".
+Tipo
+Qué cambia
+Por qué
+Financieras (bancos, seguros, brokers, gestoras, financieras no bancarias)
+n/a en ROIC, cobertura, deuda neta / EBITDA, caja / deuda CP, liquidez, margen de FCF, dividendos / FCF, dividendos / flujo operativo, P/FCF, EV/EBITDA, margen operativo y deuda neta / capital. El ROA y la deuda / patrimonio se comparan solo contra su grupo. El ROE sí se evalúa (es su métrica clave).
+La deuda es su materia prima y no tienen EBITDA ni activo corriente como una industrial. Un banco típico tiene ROA de 1,4%: el 7% de Dorsey no aplica.
+Utilities
+ROIC, cobertura, deuda neta / EBITDA, liquidez y ROA: solo contra su grupo, sin ancla ni pisos. Deuda total / patrimonio: máximo 2 (Graham). Margen de FCF, dividendos / FCF y P/FCF: n/a.
+Rentabilidad regulada y deuda alta por diseño. Invierten más de lo que generan, así que el FCF del sector es negativo.
+REITs
+ROIC, cobertura, deuda neta / EBITDA, ROA y ROE: solo contra su grupo. Liquidez, payout, PER y PEG: n/a.
+En REITs se usa el FFO (ganancia + amortización de inmuebles), que no está en las fuentes.
+Telecomunicaciones
+PEG: n/a.
+Crecen casi cero y el PEG da números sin sentido (0,2).
+Patrimonio menor al 10% del activo o negativo (hoy: restaurantes, home improvement y tabaco)
+Deuda total / patrimonio, deuda LP / patrimonio, ROE y deuda neta / capital: n/a. La nota avisa "posible caníbal". Mirá deuda neta / EBITDA.
+El patrimonio se achicó por recompras (bueno: empresa caníbal, como McDonald's) o por pérdidas acumuladas (malo). El número solo no distingue: hay que confirmar que bajaron las acciones en circulación y que la empresa gana plata.
+Dos industrias que Damodaran pone en Financiero, Information Services y Diversified, no son financieras de verdad: se evalúan como empresas comunes, con todas las variables.
+Industrias: heredan, salvo que sean muy distintas
+Cada una de tus 72 industrias arranca con el corte de su subgrupo o sector (la columna D de Cortes industrias dice cuál). Tiene corte propio solo cuando su valor típico se aparta mucho del de su sector: más de 1,5 veces o menos de 0,67 veces (umbral de 50%, celda Reglas D30). Cuando eso pasa, se aplica la misma regla del Paso 3 (el más permisivo contra el ancla, con los pisos) pero con los valores de la industria, incluido su propio costo de capital. En el Excel esas celdas aparecen en celeste.
+Industria
+Variable
+Típico de la industria
+Típico del sector o subgrupo
+Corte de la industria
+Software (Internet)
+ROIC
+1,9%
+14,1% (Internet y medios)
+10,7% (su costo de capital)
+Auto & Truck
+ROIC
+1,7%
+10,8% (Consumo Discrecional)
+9,4% (su costo de capital)
+Air Transport
+Cobertura
+2,46x
+5,02x (Industrial)
+4x (piso)
+Drugs (Pharmaceutical)
+Cobertura
+10,5x
+5,75x (Salud)
+7x (ancla)
+Air Transport
+PER
+12,9
+26,3 (Industrial)
+12,9
+Excepciones a la herencia:
+• Múltiplos: corte propio solo si la industria es más barata que su sector. Si es más cara, no se afloja el corte. Un gigante caro puede inflar solo el agregado de su industria (el PER de Auto & Truck da 120 por el peso de Tesla) y eso no puede convertirse en permiso para pagar caro.
+• Crecimiento de ingresos: siempre hereda el del sector. El crecimiento de 5 años por industria está distorsionado por las bases de comparación: las aerolíneas dan 48% anual por la salida de la pandemia.
+• Liquidez, caja / deuda CP y P/FCF: no tienen corte propio (los dos primeros son fijos; el P/FCF solo existe por sector en Finviz).
+Resultado: 64 de las 72 industrias tienen al menos un corte propio, 431 en total. Las otras 8 usan todos los cortes de su sector o subgrupo.
+Limitaciones: la cruda verdad
+• Es una construcción, no una verdad publicada. Ningún autor ni base de datos publica "cortes ideales" por industria. Esto es datos reales más reglas explícitas; si no te convence un ancla o un piso, lo cambiás en Reglas y se recalcula todo.
+• Es una vara de "OK", no de excelencia. Van a pasar empresas del montón. Para encontrar las mejores hace falta el filtro de calidad que viene después.
+• Los pisos de cobertura (4x) y deuda (3,5x) salen en parte de tus ejemplos de SSD. Con solo 5 ejemplos, la coincidencia de 4 de 5 no prueba mucho. Hace falta probar con empresas nuevas.
+• En los agregados mandan los gigantes. Apple empuja el ROIC típico de Computers/Peripherals a 41,5% y Tesla el PER de Auto & Truck a 120. Con la vara "OK" esto pesa menos, porque el ancla limita lo que se exige.
+• Las fechas no son las mismas. Damodaran: enero 2026, con flujos a septiembre 2025. Finviz y GuruFocus: noviembre 2026. Conviene actualizar una vez por año, cuando Damodaran publica su base nueva en enero.
+• Los múltiplos son una foto, no medianas de 5 años. El archivo histórico no se pudo bajar desde acá.
+• ROIC: usé tu fórmula, no la de Damodaran. Resultado operativo después de impuestos ÷ (deuda + patrimonio contable). El ROIC que publica Damodaran da 2 a 3 veces más alto porque usa otra base de capital.
+• Caníbales: el Excel avisa, pero no decide. Con patrimonio chico, el ratio no distingue recompras de pérdidas. En tu screener se puede automatizar mirando si bajaron las acciones en circulación.
+• Deuda neta / capital incluye leasing. La deuda de Damodaran suma los alquileres operativos, así que puede dar algo más alta que en SSD.
+• El flujo libre de Damodaran es aproximado. No resta adquisiciones y queda bajo en Materiales, Energía, Industrial y Salud. Por eso el margen de FCF de los sectores usa Finviz.
+• La clasificación de cada empresa decide su corte. Si una empresa está en la industria equivocada, se la juzga con la vara equivocada. Usá la industria de Damodaran.
+• Utilities y REITs quedan cojos. En utilities el FCF es negativo por diseño; en REITs falta el FFO.
+Cuadro resumen de las 21 variables
+Nº
+Variable
+Pasa si
+Cómo se arma el corte
+Dato típico de
+1
+ROIC
+≥ corte
+El más bajo entre lo típico y 13%, nunca menos que el costo de capital
+Damodaran
+2
+Cobertura de intereses
+≥ corte
+El más bajo entre lo típico y 7x, nunca menos de 4x
+Damodaran
+3
+Deuda neta / EBITDA
+≤ corte
+El más alto entre lo típico y 2x, nunca más de 3,5x
+Damodaran
+4
+Deuda total / Patrimonio
+≤ corte
+El más alto entre lo típico y 0,8 (utilities: máximo 2)
+Damodaran
+5
+Deuda LP / Patrimonio
+≤ corte
+Lo típico
+Damodaran
+6
+Caja / Deuda CP
+≥ corte
+Fijo: 1x
+—
+7
+Liquidez corriente
+≥ corte
+Fijo: 1 (utilities: lo típico)
+— (GuruFocus como referencia)
+8
+Margen de FCF
+≥ corte
+El más bajo entre lo típico y 5%
+Finviz (sectores) y Damodaran (subgrupos e industrias)
+9
+Crecimiento de ingresos (5 años)
+≥ corte
+El más bajo entre lo típico y 8%; las industrias heredan
+Damodaran
+10
+Payout
+≤ corte
+Techo: el más alto entre lo típico y 50%, máximo 100%
+Damodaran
+11
+Dividendos / FCF
+≤ corte
+Techo: el más alto entre lo típico y 61%, máximo 100%
+Damodaran
+12
+Dividendos / Flujo operativo
+≤ corte
+Techo: el más alto entre lo típico y 30%, máximo 100%
+Damodaran
+13
+ROA
+≥ corte
+El más bajo entre lo típico y 7%
+Damodaran
+14
+Patrimonio / Activo
+≥ corte
+Lo típico
+Damodaran
+15
+PER
+≤ corte
+Lo típico, en bruto
+Damodaran (ene-2026)
+16
+P/FCF
+≤ corte
+Lo típico del sector, en bruto
+Finviz (nov-2026)
+17
+EV/EBITDA
+≤ corte
+Lo típico, en bruto
+Damodaran (ene-2026)
+18
+PEG
+≤ corte
+Lo típico, en bruto
+Damodaran (ene-2026)
+19
+ROE
+≥ corte
+El más bajo entre lo típico y 15%, nunca menos que el costo del patrimonio
+Damodaran
+20
+Margen operativo
+≥ corte
+El más bajo entre lo típico y el del mercado (13,1%)
+Damodaran
+21
+Deuda neta / capital
+≤ corte
+El más alto entre lo típico y el del mercado (43,3%)
+Damodaran
+Fuentes
+• Damodaran, bases de datos de EE.UU., enero 2026 (NYU Stern): PER y PEG, deuda y leasing, deuda, cobertura y deuda/EBITDA, dividendos y flujo, crecimiento histórico, precio/ventas y márgenes, capex, EV/EBITDA, tasas impositivas, compensación en acciones, costo de capital y del patrimonio, ROIC publicado, definiciones.
+• Finviz, Groups › Sector › Valuation: tu captura del 9-nov-2026.
+• GuruFocus, Sector Comparison: Overview: tu copia del 9-nov-2026.
+• Simply Safe Dividends: tus ejemplos (VZ, MCD, KO, TXN) y cómo arman sus notas por industria.
+• Referencias de cobertura y deuda: Dividend Ranks, Dave Ahern.
+• Valores de las empresas de los ejemplos: Business Quant (VZ), Stockanalysis y TipRanks (MCD), Eulerpool (KO y TXN).
+• Libros (PDF que adjuntaste): Graham, El inversor inteligente (págs. 316 y 384); Dorsey, Las cinco reglas para invertir en acciones con éxito (págs. 41-43); Gregorio Hernández, Cómo invertir en bolsa a largo plazo (pág. 145); Valoración de empresas por ratios (láminas 2-3).
+• Tu Word "Análisis fundamental de una empresa" (liquidez mayor a 1; deuda / patrimonio menor a 0,8)

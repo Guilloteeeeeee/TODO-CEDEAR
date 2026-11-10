@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.56 — Puntos de corte en los gráficos de Estados Financieros
+- Los puntos de corte de Guille (Excel del 09/11/2026, vara «OK»: si la empresa cumple, PASA) en 13 gráficos: crecimiento de ingresos, liquidez, margen operativo, margen de flujo libre, ROE, ROIC, deuda neta / EBITDA, cobertura, dividendos / flujo libre, ROA, patrimonio / activo, payout y dividendos / flujo operativo. Fila: la industria de Damodaran de la empresa (72 industrias); si no está, su subgrupo o sector. «n/a» = sin línea.
+- Estilo Simply Safe Dividends: frase «**Más de 13% es nuestra preferencia** para los fabricantes de maquinaria.» (alineada a la izquierda) y línea punteada con el número al costado. Cortes en números enteros. Si el corte queda por encima de todas las barras, la escala deja aire para que la línea no tape los números.
+- Respaldo: `data/referencias/puntos_corte_2026-11-09.xlsx` (Excel original), `_metodo_2026-11-09.txt` (método) y `.json` (valores); lógica en `data/puntos_corte.py`.
+
 ### v1.5.55 — GE Vernova sin PER hasta abril de 2027 y cache del 09/11
 - Aprobado por Guille (09/11/2026): el PER de GE Vernova se descarta a mano hasta los resultados del 1.er trimestre de 2027 (fines de abril de 2027). Su ganancia de 12 meses incluye 3.992 millones por revaluar Prolec GE y 330 por vender Proficy (1.er trimestre de 2026). Pasa de «Tendencia a infravalorada» (60,3) a «Parece bien valuada» (54,9).
 - Cache del 09/11/2026 (corrido por Guille con la v1.5.54).

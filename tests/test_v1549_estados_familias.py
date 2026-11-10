@@ -16,17 +16,8 @@ g = E.graficos_html(P["JPM"]["estados"], "flujo", "JPM")
 chk("Flujo de efectivo libre" not in g and "Dividendos pagados" in g and "bancos y aseguradoras" in g, "banco: sin flujo libre y con aviso")
 chk("Retorno sobre el activo (ROA)" in E.graficos_html(P["JPM"]["estados"], "ratios", "JPM"), "banco: ROA en Ratios")
 chk("Flujo operativo por acción" in E.graficos_html(P["O"]["estados"], "flujo", "O"), "REIT: flujo operativo por acción")
-r = E.referencias("AAPL")
-chk("roe" not in r and "roic" not in r and "mop" in r, "AAPL: sin ROE de industria negativo ni ROIC (otra definición); con margen operativo")
-chk(set(E.referencias("JPM", "financiera")) <= {"mne", "roe"}, "financieras: solo margen neto y ROE de la industria")
-chk(E.MOSTRAR_REFERENCIAS is False and 'class="ev-ref"' not in E.graficos_html(P["KO"]["estados"], "ratios", "KO"),
-    "v1.5.53: líneas de «Ideal» apagadas hasta que Guille decida la referencia")
-E.MOSTRAR_REFERENCIAS = True      # el formato queda listo: se prueba prendido
+# v1.5.56: las líneas de referencia ahora son los puntos de corte de Guille (ver tests/test_v1556_puntos_corte.py)
 gk = E.graficos_html(P["KO"]["estados"], "ratios", "KO")
-E.MOSTRAR_REFERENCIAS = False
-import re as _re
-chk("Referencia" not in gk and 'class="ev-ref"' in gk and _re.search(r'title="Promedio de la industria [^"]*Damodaran', gk), "línea de industria sin leyenda (el detalle va al pasar el mouse)")
-chk(_re.search(r">Ideal: más de [\d,]+%</span>", gk) is not None, "v1.5.52: la línea dice «Ideal: más de X»")
 chk(gk.count('class="ev-t"') == 9, "Ratios visual: 9 gráficos en una empresa general")
 ga = E.graficos_html(P["AAPL"]["estados"], "ratios", "AAPL")
 chk("la fuente no trae el gasto por intereses" in ga, "cobertura: explica por qué falta (Apple)")

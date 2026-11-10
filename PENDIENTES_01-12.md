@@ -7,6 +7,8 @@ Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo co
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
 **Decisión 05/11/2026 (Guille): el Fair Value queda como está (contra la mediana de la industria). Se revisa más adelante; no tocar el método hasta que él lo decida.**
 
+**v1.5.56 (10/11):** Puntos de corte de Guille en los gráficos de Estados Financieros (reemplazan a las líneas «Ideal»: tema resuelto). Renovar el Excel cuando Damodaran publique su base nueva (enero) o cuando Guille lo actualice.
+
 **v1.5.55 (09/11):** PER de GE Vernova descartado (ganancia de Prolec GE). **Fines de abril de 2027: SACAR "GEV" de `METRICAS_EXCLUIDAS`** con los resultados del 1.er trimestre de 2027. Cache del 09/11 cargado.
 
 **v1.5.54 (09/11):** Respaldo del score con referencias de afuera (decisión de Guille): GuruFocus (medianas) para PER, P/FCF, P/B y P/S; Finviz para PEG; EV/EBITDA con la app (el de GuruFocus está roto: no se puede arreglar sin los datos empresa por empresa). Franja anti-disparates. 9 empresas cambian de categoría. **Fines de enero de 2027: SACAR el PER de Boeing de `METRICAS_EXCLUIDAS`** (config/sectors.py) cuando salgan los resultados del 4.º trimestre de 2026. **Noviembre de cada año:** Guille copia las tablas de GuruFocus (Sector Comparison › Overview) y Finviz (Groups › Sector e Industry › Valuation) → nuevos `data/referencias/<fuente>_<fecha>.json` + `python rescorar_cache.py`.
