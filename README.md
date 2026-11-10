@@ -1403,3 +1403,6 @@ cedear-screener/
 - **Foso competitivo** (Amplio / Estrecho / Ninguno) en el resumen de la empresa, sin rótulo extra. Sale del Modo lote del DCF: `foso_desde_lote.py Lote_DCF_*.xlsx` arma `data/foso.json` (hoy 53 de las 166 empresas); para cubrir el resto, correr el Modo lote con las que faltan y volver a correr el script.
 - **Navegación:** tocar el título TodoCedears lleva al inicio; "Volver al inicio" en la página de una empresa (antes volvía con los filtros); tocar el toro abre "Quiénes somos".
 - **Buscador:** sin el contador "0/40"; la lupa es un botón que envía la búsqueda (Enter también); la búsqueda mira TODAS las empresas aunque algún filtro (sector, categoría, métricas mínimas) las dejara afuera.
+
+## v1.5.59 — Evaluá tu Portfolio por pasos
+Misma pantalla, ordenada en 4 pasos numerados: 1 Completá tus datos · 2 Subí tus posiciones · 3 Chequeá tus posiciones (tabla «Esto es lo que leímos», ahora sin botón propio) · 4 Descargo de responsabilidad + botón «Análisis de Cartera de Inversión» (se habilita con todo completo y el descargo aceptado).

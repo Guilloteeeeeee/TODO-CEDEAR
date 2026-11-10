@@ -26,7 +26,7 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 - `APP_VERSION` (línea ~9). `main()` (~1870): lee `?pagina=quienes|cartera|ideas`, `?empresa=TICKER`, `?etf=TICKER`, `?tabla=etfs`, `?menu=1`, `?debug=1`, `?pagina=mapa` (v1.5.29).
 - Tabla de empresas: `render_filtros_inline`, `filtrar_ordenar`, `render_tabla_visual`, `render_main_table`. ETFs: `render_filtro_etfs`, `render_tabla_etfs` (columna Div. Yield desde la v1.5.44: `ui/etfs.dy_texto`), `render_pagina_etf`.
 - Ficha de empresa: `render_pagina_empresa` (~1310) → `ui/ficha.py`. Botón PDF del análisis: `_boton_pdf_analisis` → `ui/af_pdf.py`.
-- Evaluá tu Portfolio (`?pagina=cartera`): `render_cartera` (~1470, dos mosaicos) → `_evaluar_cartera` (~1577) y `_rentabilidad_anual` (~1723).
+- Evaluá tu Portfolio (v1.5.59: 4 pasos numerados `_paso_html`, `_CSS_PASOS`; `_confirmar_lectura` sin botón, el botón está en el paso 4) (`?pagina=cartera`): `render_cartera` (~1470, dos mosaicos) → `_evaluar_cartera` (~1577) y `_rentabilidad_anual` (~1723).
   Textos de entrada: `_INTRO_EVAL`, `_INTRO_RENT`, `_OPC_RENT`, `_CSS_COMENZAR`, `_presentacion`; lectura de archivos `_leer_archivos`, tabla editable `_tabla_a_mano`.
 - Pie: `pie_html(APP_VERSION, aviso=…, precios=…)` de `ui/marca.py`. En la página de cartera **no va pie**. "Datos al dd/mm/aaaa (hh:mm)" = precios de hoy (nunca la fecha del cache).
 

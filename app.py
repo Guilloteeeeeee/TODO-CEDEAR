@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.58"
+APP_VERSION = "1.5.59"
 
 import re
 import contextlib
@@ -1780,14 +1780,14 @@ def _pais_sugerido(c, C):
 
 
 _TXT_CONFIRMAR = ("<div class='cv-intro'><b>Esto es lo que leímos.</b> Antes de analizar, revisá esta tabla: <b>ticker, país, monto invertido y moneda</b> (pesos o dólares). "
-                  "Si algo está mal, corregilo acá mismo: podés editar, borrar o agregar filas. Si está todo bien, tocá el botón de abajo.<br>"
+                  "Si algo está mal, corregilo acá mismo: podés editar, borrar o agregar filas. Si está todo bien, seguí con el paso 4.<br>"
                   "Perdoná lo engorroso: es un paso más, pero es necesario para que el análisis sea preciso. Cada broker arma su resumen de manera distinta "
                   "y un solo dato mal leído cambiaría toda la evaluación.</div>")
 
 
 def _confirmar_lectura(pos, firma, empresas, etfs, C):
-    """v1.5.5: «Esto es lo que leímos». Muestra SIEMPRE (Excel, PDF o captura) una tabla corta y editable (activo, país, monto, moneda y clase) y no sigue hasta que la persona
-    toca OK. Así una lectura equivocada del archivo no llega al informe. Devuelve las posiciones confirmadas, o None si todavía falta el OK o hay datos por completar."""
+    """v1.5.5: «Esto es lo que leímos». Muestra SIEMPRE (Excel, PDF o captura) una tabla corta y editable (activo, país, monto, moneda y clase).
+    v1.5.58 (paso 3 de 4): ya no tiene botón; devuelve (posiciones, faltan, huella) y el botón final está en el paso 4. posiciones es None si la tabla quedó vacía."""
     pre = {}
     filas = []
     for p in pos:
@@ -1826,7 +1826,7 @@ def _confirmar_lectura(pos, firma, empresas, etfs, C):
             sin_clase.append(tk)
     if not out:
         st.warning("No hay posiciones en la tabla. Agregá al menos una fila con el ticker y el monto.")
-        return None
+        return None, ["al menos una posición en la tabla"], None
     tot = {"usd": sum(q["monto"] for q in out if q["moneda"] == "usd"), "ars": sum(q["monto"] for q in out if q["moneda"] == "ars")}
     partes = ([f"US\\$ {_fmt_num(tot['usd'])}"] if tot["usd"] else []) + ([f"\\$ {_fmt_num(tot['ars'])}"] if tot["ars"] else [])      # \\$ para que no lo tome como fórmula
     if partes:
@@ -1847,12 +1847,20 @@ def _confirmar_lectura(pos, firma, empresas, etfs, C):
     for t in faltan:
         st.warning(t)
     huella = str(abs(hash(str([(q["ticker"], round(q["monto"], 2), q["moneda"], q["tipo"], q.get("pais")) for q in out])) % 10**10))
-    st.markdown(_CSS_COMENZAR.replace("cr_comenzar", "cr_confirmar"), unsafe_allow_html=True)
-    if st.button("Está todo bien, ver mi evaluación", key="cr_confirmar", disabled=bool(faltan)):
-        st.session_state["cr_conf"] = (firma, huella)
-    if st.session_state.get("cr_conf") != (firma, huella):
-        return None
-    return out
+    return out, faltan, huella
+
+
+_CSS_PASOS = """<style>
+.cr-paso{display:flex;align-items:center;gap:12px;margin:2px 0 10px}
+.cr-num{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:#be185d;color:#fff;font-weight:800;font-size:1.1rem;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(190,24,93,.35)}
+.cr-tit{font-size:1.2rem;font-weight:700;color:#9d174d}
+.st-key-cr_p2,.st-key-cr_p3,.st-key-cr_p4{background:linear-gradient(180deg,#fff7fa 0%,#fff 60%);border:1px solid #fbd5e1;border-radius:16px;padding:14px 18px 12px;margin-top:12px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+.st-key-cr_p2 [data-testid="stFileUploaderDropzone"]{border:2px dashed #f4909f;background:#fff7fa;border-radius:14px}
+</style>"""
+
+
+def _paso_html(n, titulo):
+    return f'<div class="cr-paso"><span class="cr-num">{n}</span><span class="cr-tit">{titulo}</span></div>'
 
 
 def _evaluar_cartera(df, C, CV):
@@ -1861,7 +1869,9 @@ def _evaluar_cartera(df, C, CV):
     if not _presentacion(_INTRO_EVAL, "cr_comenzar_eval", "cr_empezo"):
         return
     perfiles = ["Conservador", "Moderado", "Agresivo"]
+    st.markdown(_CSS_PASOS, unsafe_allow_html=True)
     with st.container(key="cr_p1"):
+        st.markdown(_paso_html(1, "Completá tus datos"), unsafe_allow_html=True)
         n1, n2, n3 = st.columns([1.3, 1.1, 2.2], gap="medium")
         with n1:
             nombre = st.text_input("Nombre (opcional)", key="cr_nombre", placeholder="Ej.: Guille")
@@ -1872,10 +1882,11 @@ def _evaluar_cartera(df, C, CV):
                 perfil = st.segmented_control("Perfil de Inversor (obligatorio)", perfiles, default=None, key="cr_perfil")
             except Exception:  # noqa: BLE001
                 perfil = st.radio("Perfil de Inversor (obligatorio)", perfiles, index=None, horizontal=True, key="cr_perfil")
-        st.markdown('<div class="cv-ayuda">A continuación subí el Excel o el PDF que descargaste de tu broker. Si tenés instrumentos que no son CEDEARs, indicá la categoría a la que pertenecen en una columna «Tipo» '
+    with st.container(key="cr_p2"):
+        st.markdown(_paso_html(2, "Subí tus posiciones"), unsafe_allow_html=True)
+        st.markdown('<div class="cv-ayuda">Subí el Excel o el PDF que descargaste de tu broker. Si tenés instrumentos que no son CEDEARs, indicá la categoría a la que pertenecen en una columna «Tipo» '
                     '(Renta fija, Oro, Cripto, Efectivo…) y el país en una columna «País» (Argentina, Estados Unidos, Europa…). Si no tenés un Excel o PDF y querés cargarlo a mano, usá el Excel de ejemplo. '
                     '<b>No intentes subir capturas de pantalla</b>, dado que el análisis se vuelve dificultoso e inexacto.</div>', unsafe_allow_html=True)
-        lugar_tc = st.container()
         try:
             from ui import cartera_ocr as OCR
             hay_ocr = OCR.disponible()
@@ -1893,51 +1904,62 @@ def _evaluar_cartera(df, C, CV):
                 pass
         with st.expander("¿Ya te evaluaste antes? Subí tu evaluación anterior para compararla", expanded=False):
             previa_arch = st.file_uploader("Evaluación anterior (el PDF que descargaste la última vez)", type=["pdf"], key="cr_previa")
+    _firma_arch = tuple((a.name, a.size) for a in archivos or ())
+    _firma = (nombre or "", edad, perfil, _firma_arch)
+    # --- paso 3: lo que leímos del archivo (tabla para chequear y corregir)
+    pos_ok, faltan_tabla, huella, pos, tc_resumen, hay_img, err = None, [], None, [], None, False, ""
+    empresas, etfs = {}, {}
+    with st.container(key="cr_p3"):
+        st.markdown(_paso_html(3, "Chequeá tus posiciones"), unsafe_allow_html=True)
+        if not archivos:
+            st.markdown('<div class="cv-ayuda">Cuando subas tu archivo, acá te mostramos lo que leímos para que lo revises y, si hace falta, lo corrijas.</div>', unsafe_allow_html=True)
+        else:
+            pos, notas, tc_resumen, hay_img, err = _leer_archivos(archivos, C)
+            if err:
+                st.error(err)
+            elif not pos:
+                st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo.")
+            else:
+                for n in notas:
+                    st.caption(n)
+                if hay_img:
+                    st.info("Leí tu captura: el sistema puede confundir números y letras, así que revisá bien la tabla.")
+                for _, r in df.iterrows():
+                    empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta")}
+                try:
+                    etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
+                except Exception:  # noqa: BLE001
+                    etfs = {}
+                pos_ok, faltan_tabla, huella = _confirmar_lectura(pos, _firma_arch, empresas, etfs, C)
+        lugar_tc = st.container()
+    # --- paso 4: descargo + botón
+    with st.container(key="cr_p4"):
+        st.markdown(_paso_html(4, "Descargo de responsabilidad"), unsafe_allow_html=True)
         acepto = st.checkbox("Acepto que esta evaluación es una orientación educativa, automática y puede cometer errores. No constituye una recomendación ni asesoría personalizada de inversión. "
                              "Finanzas para Médicos se deslinda de cualquier responsabilidad y acciones que puedan derivar de la mala interpretación del análisis, siendo el inversor el único responsable de sus propias decisiones financieras.", key="cr_acepto")
-    # --- lo que falta (el botón queda gris hasta que esté todo)
-    falta = []
-    if edad is None:
-        falta.append("tu edad")
-    if not perfil:
-        falta.append("tu perfil de inversor")
-    if not archivos:
-        falta.append("subir tu cartera (Excel o PDF)")
-    if not acepto:
-        falta.append("aceptar las condiciones")
-    _firma = (nombre or "", edad, perfil, tuple((a.name, a.size) for a in archivos or ()))
-    listo = not falta
-    st.markdown("<style>.st-key-cr_go button:disabled{background:#cbd5e1!important;color:#fff!important;box-shadow:none!important;cursor:not-allowed}</style>", unsafe_allow_html=True)
-    if st.button("Análisis de Cartera de Inversión", key="cr_go", type="primary", disabled=not listo):
-        st.session_state["cr_ok"] = _firma
-    if not listo:
-        st.warning("Para habilitar el análisis te falta: " + ", ".join(falta) + ".")
-        return
-    if st.session_state.get("cr_ok") != _firma:
+        falta = []
+        if edad is None:
+            falta.append("tu edad")
+        if not perfil:
+            falta.append("tu perfil de inversor")
+        if not archivos:
+            falta.append("subir tu cartera (Excel o PDF)")
+        elif err or not pos or pos_ok is None:
+            falta.append("posiciones válidas en la tabla del paso 3")
+        falta += [f for f in faltan_tabla if pos_ok is not None]
+        if not acepto:
+            falta.append("aceptar las condiciones")
+        listo = not falta
+        st.markdown("<style>.st-key-cr_go button:disabled{background:#cbd5e1!important;color:#fff!important;box-shadow:none!important;cursor:not-allowed}</style>", unsafe_allow_html=True)
+        if st.button("Análisis de Cartera de Inversión", key="cr_go", type="primary", disabled=not listo):
+            st.session_state["cr_ok"] = (_firma, huella)
+        if not listo:
+            st.warning("Para habilitar el análisis te falta: " + ", ".join(falta) + ".")
+            return
+    if st.session_state.get("cr_ok") != (_firma, huella):
         st.caption("Tocá «Análisis de Cartera de Inversión» para ver la devolución.")
         return
-    # --- lectura
-    pos, notas, tc_resumen, hay_img, err = _leer_archivos(archivos or [], C)
-    if err:
-        st.error(err)
-        return
-    if not pos:
-        st.warning("No encontré posiciones. Necesito una columna con el ticker (o el nombre) y otra con el monto, o con cantidad y precio. Mirá el Excel de ejemplo.")
-        return
-    for n in notas:
-        st.caption(n)
-    if hay_img:
-        st.info("Leí tu captura: el sistema puede confundir números y letras, así que revisá bien la tabla.")
-    empresas = {}
-    for _, r in df.iterrows():
-        empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta")}
-    try:
-        etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
-    except Exception:  # noqa: BLE001
-        etfs = {}
-    pos = _confirmar_lectura(pos, _firma, empresas, etfs, C)       # v1.5.5: «Esto es lo que leímos» (siempre, con OK de la persona)
-    if pos is None:
-        return
+    pos = pos_ok
     base_k = "usd"          # desde v1.5.5 cada fila ya trae su moneda (la persona la confirma en la tabla)
     hay_pesos = any((p.get("moneda") or base_k) == "ars" for p in pos)
     tc = None
