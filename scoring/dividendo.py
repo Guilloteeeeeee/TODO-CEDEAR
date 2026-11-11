@@ -17,7 +17,9 @@ Pilares (máximos): 1 Cobertura del dividendo 35 · 2 Solidez del balance 25 · 
 ≤ 0 → máx. 20 · rendimiento ≥ 2 × su mediana de 5 años → −10.
 """
 import datetime as _dt
+import json
 import math
+import os
 import re
 from statistics import median
 
@@ -55,6 +57,12 @@ VIGENCIA_ESTIMACION = 130     # días: las estimaciones se bajan una vez por tri
 REDONDEO = 0.001             # v1.5.61: una baja por pago menor a esto es redondeo de Yahoo (montos viejos ajustados por splits, a 3 decimales)
 CHICA_MCAP = 1_000_000_000    # v1.5.61 (Guille, 10/11/2026: «APLIQUEMOS DESDE 1 B»): por debajo de US$1.000 millones de capitalización la
                               # cobertura de intereses se lee con la tabla de Damodaran para empresas chicas o riesgosas
+# v1.5.68 (Guille, 11/11/2026: «claro! esto sí»): en los REIT, el FFO que informa la empresa (normalized / core FFO, sin extraordinarios), cargado
+# a mano con su fuente en data/ffo_reit.json. El FFO de Stock Analysis es el NAREIT, que se hunde con gastos de una sola vez (Welltower 2025:
+# 2,68 contra 5,29 normalizado). Como con las ganancias, se toma el mejor (menor payout) entre los últimos 12 meses y el último año.
+# Si el dato tiene más de VIGENCIA_FFO días (contados desde el cierre del último trimestre informado), vuelve el de Stock Analysis.
+RUTA_FFO = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "ffo_reit.json")
+VIGENCIA_FFO = 200
 
 UTILITIES, REITS, BANCOS = {"Utilities"}, {"REITs"}, {"Bancos y seguros"}
 # supersectores de Morningstar (decisión de Guille, 10/11/2026: «así, sencillo y sin controversias»), por grupo de la app
@@ -296,6 +304,35 @@ def peso_estimada(estimada, contable):
     return round(max(0.0, min(1.0, (round(estimada / contable, 4) - desde) / (2 * DESVIO_SALTO))), 4)
 
 
+_FFO = {}
+
+
+def ffo_empresa(ticker, ruta=None):
+    """El FFO cargado a mano de data/ffo_reit.json para el ticker ({"ffo_12m", "ffo_anual", "hasta", "medida", "fuentes", …}) o None."""
+    ruta = ruta or RUTA_FFO
+    if ruta not in _FFO:
+        try:
+            _FFO[ruta] = json.load(open(ruta, encoding="utf-8")).get("datos", {})
+        except (OSError, ValueError):
+            _FFO[ruta] = {}
+    return _FFO[ruta].get(ticker)
+
+
+def ffo_vigente(e):
+    """El FFO de la empresa de la entrada si 'hasta' no tiene más de VIGENCIA_FFO días (contra e["hoy"] o hoy). Si no, None."""
+    f = e.get("ffo_empresa") or None
+    if not f or not f.get("hasta"):
+        return None
+    try:
+        ref = e.get("hoy") or _dt.date.today()
+        ref = _dt.date.fromisoformat(str(ref)[:10]) if not isinstance(ref, _dt.date) else ref
+        if (ref - _dt.date.fromisoformat(str(f["hasta"])[:10])).days > VIGENCIA_FFO:
+            return None
+    except ValueError:
+        return None
+    return f
+
+
 def estimacion_vigente(e):
     """La estimación de analistas de la entrada, si no tiene más de VIGENCIA_ESTIMACION días (contra e["hoy"] o hoy). Si no, None."""
     est = e.get("estimacion") or None
@@ -323,7 +360,7 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
             "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "moneda_estados": row.get("moneda_estados"),
             "ajuste_adr": "equivalentes del ADR" in (row.get("moneda_nota") or ""), "fx": _num_nota(row.get("moneda_nota"), r"fx spot ([0-9.]+)"),
             "n_inv": _num_nota(row.get("moneda_nota"), r"equivalentes del ADR \(x([0-9.]+)"), "estados": estados, "historial": historial,
-            "estimacion": estimacion}
+            "estimacion": estimacion, "ffo_empresa": ffo_empresa(row.get("ticker"))}
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -376,18 +413,27 @@ def calcular(e):
                 ps.append(abs(dv) / ni * 100)
         return (r2(min(ps)) if ps else None), (max(pos) if pos else None), perd and not ps
     # -------- pilar 1: cobertura del dividendo
-    ffo = None
-    if reit and _n(e.get("p_ffo")) and _n(e.get("precio")):
-        ffo = _n(e["precio"]) / _n(e["p_ffo"])
+    ffo, ffo_de = None, None
+    fe = ffo_vigente(e) if reit else None
+    if fe:                                         # v1.5.68: el FFO que informa la empresa, el mejor de 12 meses y último año
+        cands = [x for x in (_n(fe.get("ffo_12m")), _n(fe.get("ffo_anual"))) if x is not None]
+        if cands:
+            pos = [x for x in cands if x > 0]
+            ffo, ffo_de = (max(pos) if pos else min(cands)), "empresa"
+            res["notas"].append(f"FFO informado por la empresa (hasta {fe['hasta']})")
+    elif reit and e.get("ffo_empresa"):
+        res["notas"].append("FFO de la empresa vencido: se usa el de Stock Analysis")
+    if ffo is None and reit and _n(e.get("p_ffo")) and _n(e.get("precio")):
+        ffo, ffo_de = _n(e["precio"]) / _n(e["p_ffo"]), "stockanalysis"
     if util or (reit and ffo):
         if reit:
             pay, perd = (r2(dpa / ffo * 100) if ffo > 0 else None), ffo <= 0
         else:
             pay, _, perd = payout_ganancias([s[EPS].get("TTM"), eps_fy])
         if pay is not None:                        # ajuste 3: el mejor (menor payout)
-            var("ffo" if reit else "eps", 1, menos_es_mejor(pay, ESC_UR_PAYOUT), 35, pay)
+            var("ffo" if reit else "eps", 1, menos_es_mejor(pay, ESC_UR_PAYOUT), 35, pay, **({"fuente": ffo_de} if reit else {}))
         elif perd:
-            var("ffo" if reit else "eps", 1, 0, 35, None, perdida=True)
+            var("ffo" if reit else "eps", 1, 0, 35, None, perdida=True, **({"fuente": ffo_de} if reit else {}))
     else:
         if reit:
             res["notas"].append("REIT sin dato de FFO: se usa la escala general")

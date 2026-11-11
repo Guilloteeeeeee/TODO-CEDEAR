@@ -1,0 +1,47 @@
+{
+  "nota": "FFO por acción que informa cada REIT en su comunicado de resultados (v1.5.68, Guille 11/11/2026: «claro! esto sí»). Se usa en el Score de Seguridad del Dividendo en lugar del FFO de Stock Analysis (que es el FFO NAREIT y se hunde con gastos extraordinarios: Welltower 2025 = 2,68 contra 5,29 normalizado). Medida: el FFO sin extraordinarios de cada empresa (normalized FFO o core FFO), no el AFFO. ffo_12m = suma de los últimos cuatro trimestres informados; ffo_anual = último año fiscal completo. Renovar cada trimestre, después de los resultados (fin de febrero, mayo, agosto y noviembre). Si 'hasta' tiene más de 200 días, el score vuelve al dato de Stock Analysis.",
+  "datos": {
+    "WELL": {
+      "medida": "Normalized FFO por acción diluida",
+      "ffo_12m": 6.19,
+      "detalle_12m": "4T2025 1,45 + nueve meses 2026 4,74",
+      "ffo_anual": 5.29,
+      "anio": 2025,
+      "hasta": "2026-09-30",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000766704/000076670426000043/a3q26pressreleaseprnnewswi.htm",
+        "https://www.sec.gov/Archives/edgar/data/0000766704/000076670426000043/a3q26combinedearningsrel.htm",
+        "https://www.barchart.com/story/news/140562/welltower-reports-fourth-quarter-2025-results"
+      ],
+      "cargado": "2026-11-11"
+    },
+    "O": {
+      "medida": "Normalized FFO por acción diluida",
+      "ffo_12m": 4.33,
+      "detalle_12m": "4T2025 1,08 + nueve meses 2026 3,25",
+      "ffo_anual": 4.27,
+      "anio": 2025,
+      "hasta": "2026-09-30",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000726728/000072672826000056/realtyincomeq32026supple.htm",
+        "https://www.realtyincome.com/sites/realty-income/files/2026-02/q4-2025-supplemental-report.pdf"
+      ],
+      "cargado": "2026-11-11"
+    },
+    "PLD": {
+      "medida": "Core FFO por acción diluida",
+      "ffo_12m": 6.17,
+      "detalle_12m": "4T2025 1,44 + 1T2026 1,50 + 2T2026 1,63 + 3T2026 1,60",
+      "ffo_anual": 5.81,
+      "anio": 2025,
+      "hasta": "2026-09-30",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0001045609/000119312526422375/pld-ex99_2.htm",
+        "https://www.sec.gov/Archives/edgar/data/0001045609/000119312526305416/pld-ex99_2.htm",
+        "https://ir.prologis.com/press-releases/detail/1036/prologis-reports-first-quarter-2026-results",
+        "https://www.prologis.com/sites/corporate/files/documents/2026/01/2026-01-21-Prologis-Reports-Fourth-Quarter-and-Full-Year-2025-Results.pdf"
+      ],
+      "cargado": "2026-11-11"
+    }
+  }
+}

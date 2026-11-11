@@ -30,8 +30,9 @@ from scoring import dividendo as SD  # noqa: E402
 
 # Scores de Simply Safe Dividends que pasó Guille el 10/11/2026 (VALE: sin score en SSD).
 SSD = {"KO": 80, "PG": 90, "JNJ": 99, "PEP": 80, "MCD": 77, "ADP": 90, "TXN": 80, "ABBV": 80, "MO": 60, "VZ": 70, "T": 70, "PFE": 50,
-       "MMM": 60, "CVX": 90, "XOM": 80, "F": 40, "NEE": 80, "O": 80, "PLD": 61, "WELL": 80, "JPM": 70, "VALE": None}
-FECHA_SSD = "10/11/2026"
+       "MMM": 60, "CVX": 90, "XOM": 80, "F": 40, "NEE": 80, "O": 80, "PLD": 61, "WELL": 80, "JPM": 70, "VALE": None,
+       "NGG": 45, "LYG": None, "NOK": None, "ABEV": None}     # v1.5.68: las de afuera que pasó Guille el 11/11/2026 (sin score en SSD = None)
+FECHA_SSD = "10/11/2026 (las de afuera: 11/11/2026)"
 TOPE_S = 30
 
 
