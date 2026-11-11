@@ -127,7 +127,7 @@ def en_informes(valor, desde=2014, hasta=2023, base=lambda f: 1.0):
 
 facts = {"facts": {"ifrs-full": {
     "Revenue": {"units": {"TWD": [anual(a, 1000.0 + 100 * (a - 2014)) for a in range(2014, 2024)]}},
-    "ProfitLossAttributableToOwnersOfParent": {"units": {"TWD": [anual(a, 400.0 + 40 * (a - 2014)) for a in range(2014, 2024)]}},
+    "ProfitLossAttributableToOwnersOfParent": {"units": {"TWD": en_informes(lambda a: 400.0 + 40 * (a - 2014))}},
     "DilutedEarningsLossPerShare": {"units": {"TWD/shares": en_informes(lambda a: 10.0 + (a - 2014))}}}}}
 sec = S.a_anios(facts)
 # Yahoo: mismo resultado neto, ingresos armados de otra forma (+20%) y ganancia por ADR (1 ADR = 5 acciones)

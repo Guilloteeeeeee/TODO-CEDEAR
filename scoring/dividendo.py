@@ -17,6 +17,8 @@ Pilares (máximos): 1 Cobertura del dividendo 35 · 2 Solidez del balance 25 · 
 ≤ 0 → máx. 20 · rendimiento ≥ 2 × su mediana de 5 años → −10.
 """
 import datetime as _dt
+import math
+import re
 from statistics import median
 
 from data import damodaran as D
@@ -65,6 +67,7 @@ PTS_SUPER = {"Defensivo": 5, "Sensible": 3, "Cíclico": 0}
 
 EPS, OPI, EBITDA, INT = "Ganancia por acción (diluida)", "Resultado operativo", "EBITDA", "Gasto por intereses"
 FCF, DIVP, ND, PAT, DT = "Flujo de efectivo libre", "Dividendos pagados", "Deuda neta", "Patrimonio neto", "Deuda total"
+NETO = "Resultado neto"
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -258,6 +261,30 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
             "tasa": {a: round(t, 4) for a, t in tasa.items()}}
 
 
+def _num_nota(nota, patron):
+    m = re.search(patron, nota or "")
+    try:
+        return float(m.group(1).rstrip(".")) if m else None
+    except ValueError:
+        return None
+
+
+def salto_homologado(estimada, contable, fx=None, n_inv=None):
+    """v1.5.67 (Guille: «REPLICÁ ESAS X VECES LAS GANANCIAS A LA MONEDA QUE SEA»): cuántas veces la ganancia contable es la que esperan los
+    analistas, sin importar la moneda. Yahoo no dice en qué moneda ni por qué acción viene la estimación (TSMC: dólares por ADR; KB: wones por
+    acción), así que se prueban las bases posibles de la ganancia contable (su moneda, en dólares, por acción o por ADR) y se queda la que da
+    el salto más chico (lo más prudente). -> (salto, contable en la base elegida)"""
+    if not estimada or estimada <= 0 or not contable or contable <= 0:
+        return None, None
+    bases = {contable}
+    if fx and fx > 0:
+        bases.add(contable * fx)
+    if n_inv and n_inv > 0:
+        bases |= {b / n_inv for b in list(bases)}
+    c = min(bases, key=lambda b: abs(math.log(estimada / b)))
+    return round(estimada / c, 4), c
+
+
 def peso_estimada(estimada, contable):
     """Cuánto pesa la ganancia estimada (0 a 1) según el salto estimada ÷ contable: 0 hasta 1,25 veces, 1 desde 1,75 veces y en el medio de a
     poco (1,5 = 0,5). Con pérdida contable (o sin contable), 1."""
@@ -294,7 +321,8 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
     return {"ticker": row.get("ticker"), "grupo": grupo, "pais": row.get("pais"), "dividendo_anual": row.get("annual_dividend"),
             "precio": row.get("precio_actual"), "p_ffo": row.get("p_ffo_actual"), "dy": row.get("dividend_yield_actual"),
             "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "moneda_estados": row.get("moneda_estados"),
-            "ajuste_adr": "equivalentes del ADR" in (row.get("moneda_nota") or ""), "estados": estados, "historial": historial,
+            "ajuste_adr": "equivalentes del ADR" in (row.get("moneda_nota") or ""), "fx": _num_nota(row.get("moneda_nota"), r"fx spot ([0-9.]+)"),
+            "n_inv": _num_nota(row.get("moneda_nota"), r"equivalentes del ADR \(x([0-9.]+)"), "estados": estados, "historial": historial,
             "estimacion": estimacion}
 
 
@@ -327,18 +355,38 @@ def calcular(e):
     eps_u, _ = ultimo(s[EPS])
     fy_eps = _fy(s[EPS])
     eps_fy = s[EPS][fy_eps[0]] if fy_eps else None
+    s[NETO] = serie(est, NETO)
+    # v1.5.67: con estados en otra moneda (o acciones ajustadas por ADR) el dividendo por acción de Yahoo (dólares por ADR) no se puede dividir
+    # por la ganancia por acción del balance (wones, yenes, coronas…): TSMC daba un payout de 0,8%. Ahí el payout sobre ganancias se mide con
+    # montos de la misma moneda: dividendos pagados ÷ resultado neto.
+    otra_moneda = (e.get("moneda_estados") or "USD") != "USD" or bool(e.get("ajuste_adr"))
+
+    def payout_ganancias(cands):
+        """-> (payout %, ganancia contable positiva más alta o None, hubo pérdida). El mejor (menor) entre 12 meses y último año."""
+        pos = [x for x in cands if x is not None and x > 0]
+        if not otra_moneda:
+            return (r2(dpa / max(pos) * 100) if pos else None), (max(pos) if pos else None), bool(cands) and not pos
+        ps, perd = [], False
+        fy_n = _fy(s[NETO])
+        for per in ("TTM", fy_n[0] if fy_n else None):
+            ni, dv = s[NETO].get(per), s[DIVP].get(per)
+            if ni is not None and ni <= 0:
+                perd = True
+            elif ni and dv is not None:
+                ps.append(abs(dv) / ni * 100)
+        return (r2(min(ps)) if ps else None), (max(pos) if pos else None), perd and not ps
     # -------- pilar 1: cobertura del dividendo
     ffo = None
     if reit and _n(e.get("p_ffo")) and _n(e.get("precio")):
         ffo = _n(e["precio"]) / _n(e["p_ffo"])
     if util or (reit and ffo):
-        base = ffo if reit else None
-        cands = [base] if reit else [x for x in (s[EPS].get("TTM"), eps_fy) if x is not None]
-        pos = [x for x in cands if x and x > 0]
-        if pos:
-            pay = r2(dpa / max(pos) * 100)         # ajuste 3: el mejor (menor payout)
+        if reit:
+            pay, perd = (r2(dpa / ffo * 100) if ffo > 0 else None), ffo <= 0
+        else:
+            pay, _, perd = payout_ganancias([s[EPS].get("TTM"), eps_fy])
+        if pay is not None:                        # ajuste 3: el mejor (menor payout)
             var("ffo" if reit else "eps", 1, menos_es_mejor(pay, ESC_UR_PAYOUT), 35, pay)
-        elif cands:
+        elif perd:
             var("ffo" if reit else "eps", 1, 0, 35, None, perdida=True)
     else:
         if reit:
@@ -360,27 +408,34 @@ def calcular(e):
                 var("fcf", 1, menos_es_mejor(pay, ESC_FCF), 20, None if pay == 9999 else pay, p3=p3, p12=p12)
         cands = [x for x in (s[EPS].get("TTM"), eps_fy) if x is not None]
         pos = [x for x in cands if x > 0]
+        pay_c, cont_c, perd_c = payout_ganancias(cands)
         mx = 35 if banco else 15
         est_v = estimacion_vigente(e) if not (banco or reit) else None
         eps_est = _n((est_v or {}).get("actual"))
         n_an = (est_v or {}).get("analistas") or 0
-        # v1.5.66: solo si los estados están en dólares y sin ajuste de acciones por ADR: los analistas estiman en dólares por ADR, y
-        # comparar eso con una ganancia en reales, yuanes o libras (o por acción ordinaria) daría saltos que no existen (Embraer, JD, GSK)
-        misma_base = (e.get("moneda_estados") in (None, "", "USD")) and not e.get("ajuste_adr")
-        peso_est = peso_estimada(eps_est, max(pos) if pos else None) if (misma_base and eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS
-                                                                          and pay_fcf is not None and pay_fcf <= 100) else 0.0
-        if peso_est > 0:
-            base_e = eps_est if not pos else max(pos) + peso_est * (eps_est - max(pos))
-            pay = r2(dpa / base_e * 100)           # v1.5.62/64: excepción, contra la ganancia que esperan los analistas (de a poco, v1.5.65)
+        # v1.5.67: el salto (estimada ÷ contable) se homologa: se prueban las bases posibles (moneda del balance o dólares, por acción o
+        # por ADR) y se queda la de salto más chico; después ese salto se aplica al payout, sea cual sea la moneda
+        salto, cont_h = salto_homologado(eps_est, max(pos), e.get("fx"), e.get("n_inv")) if (pos and otra_moneda) else (
+            (round(eps_est / max(pos), 4), max(pos)) if (pos and eps_est and eps_est > 0) else (None, None))
+        ok_est = bool(eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS and pay_fcf is not None and pay_fcf <= 100)
+        if pos:
+            peso_est = peso_estimada(eps_est, cont_h) if (ok_est and salto) else 0.0
+        else:
+            peso_est = 1.0 if (ok_est and not otra_moneda) else 0.0     # con pérdida: solo si la estimación está en la moneda del dividendo
+        if peso_est > 0 and (pay_c is not None or not pos):
+            if pos:
+                pay = r2(pay_c / (1 + peso_est * (salto - 1)))   # v1.5.62/65/67: la ganancia contable crece hacia la estimada (de a poco)
+            else:
+                pay = r2(dpa / eps_est * 100)
             var("eps", 1, menos_es_mejor(pay, ESC_EPS), mx, pay, ajustada=True, perdida_contable=not pos, peso_estimada=round(peso_est, 2),
-                contable=r2(max(pos)) if pos else None, estimada=r2(eps_est), analistas=n_an)
+                contable=r2(max(pos)) if pos else None, estimada=r2(eps_est), analistas=n_an, salto=salto)
             res["notas"].append("payout contra la ganancia estimada por los analistas" + (" (la contable fue pérdida)" if not pos else
-                                f" ({eps_est / max(pos):.2f} veces la contable; pesa {peso_est:.0%})"))
-        elif pos:
-            pay = r2(dpa / max(pos) * 100)         # ajuste 3
+                                f" ({salto:.2f} veces la contable; pesa {peso_est:.0%})"))
+        elif pay_c is not None:
+            pay = pay_c                            # ajuste 3
             pts = menos_es_mejor(pay, ESC_EPS) * (35 / 15 if banco else 1)
-            var("eps", 1, pts, mx, pay)
-        elif cands:
+            var("eps", 1, pts, mx, pay, **({"con": "montos"} if otra_moneda else {}))
+        elif perd_c:
             var("eps", 1, 0, mx, None, perdida=True)
     # -------- pilar 2: solidez del balance (no se usa en bancos y seguros)
     cob = rating = None
@@ -481,6 +536,9 @@ def calcular(e):
     fcf12 = ultimo(s[FCF])[0]
     gan = ffo if (reit and ffo) else eps_u
     supera_gan = gan is not None and (gan <= 0 or dpa > gan)
+    if otra_moneda and not (reit and ffo):        # v1.5.67: montos de la misma moneda
+        ni_t, dv_t = s[NETO].get("TTM"), s[DIVP].get("TTM")
+        supera_gan = ni_t is not None and (ni_t <= 0 or (dv_t is not None and abs(dv_t) > ni_t))
     if banco:
         if supera_gan:
             topes.append(("dividendo_supera", 40))

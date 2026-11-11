@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.67 — Payout en la misma moneda, salto homologado y control más estricto de la SEC
+- **Arreglo importante (empresas con balances en otra moneda, 58 que pagan dividendo):** el payout sobre ganancias dividía el dividendo por acción de Yahoo (dólares por ADR) por la ganancia por acción del balance (wones, yenes, coronas…): TSMC daba 0,8%, KB 0,02%, Novo Nordisk 7%. Ahora, con estados en otra moneda o acciones ajustadas por ADR, el payout es **dividendos pagados ÷ resultado neto** (los dos en la moneda del balance); también el tope «el dividendo supera lo que gana». TSMC: 22,6%; KB: 22,3%; Toyota: 28,7%; National Grid 53 → 80; Lloyds 37 → 69; Nokia 62 → 40.
+- **Salto homologado** (Guille: «REPLICÁ ESAS X VECES LAS GANANCIAS A LA MONEDA QUE SEA»; `salto_homologado`): Yahoo no dice en qué moneda viene la estimación de los analistas (TSMC en dólares por ADR, KB en wones), así que se prueba la ganancia contable en su moneda, en dólares, por acción y por ADR, y se queda la base de salto más cercano a 1 (lo más prudente); ese salto se aplica al payout. Reemplaza al resguardo de la v1.5.66 (solo dólares). Con pérdida contable y otra moneda, sin excepción.
+- **SEC:** al medir la base de cada informe solo cuentan los años en que también coincide el resultado neto, y los años de un informe tienen que dar el mismo factor (dentro de 10 %); un factor fuera de 1/250 a 250 se descarta. Datos de la cuarta corrida (11/11/2026): ExxonMobil con 15 años (2007–2021) y 116 empresas rehechas informe por informe (splits de Apple, Nvidia, Walmart, Coca-Cola… resueltos). A 8 con factor encadenado dudoso (Johnson & Johnson, Nucor, FedEx, Honeywell, Stellantis, Ultrapar, Ternium, CSN) se les sacó la ganancia por acción de la SEC hasta la próxima corrida.
+- Calibración contra SSD sin cambios: 6,6 puntos, 12 de 21, ninguna a dos categorías.
+- Pruebas: `tests/test_v1562_dividendo.py` (OK 26), `tests/test_v1563_sec.py` (OK 11).
+
 ### v1.5.66 — Estimaciones de todas las empresas, desvío recalculado y SEC informe por informe
 - **Datos de Guille (11/11/2026):** estimaciones de analistas de 224 de 227 empresas (`data/estimaciones_analistas.json`, `data/historico/estimaciones.json`), tercera corrida de `bajar_sec.bat` y calibración.
 - **Desvío estándar recalculado** con todas las empresas: 0,254 en 141 empresas generales (media 1,18; solo EE.UU.: 0,242) → `DESVIO_SALTO` = 0,25: la estimada entra de a poco entre 1,25 y 1,75 veces la contable.

@@ -35,7 +35,7 @@ yahoo = {"moneda": "USD", "resultados": {"anios": ["2024 (TTM)", 2023, 2022, 202
 reg = H.fusionar_estados(None, yahoo, "ZZ", [], "2026-11-01")
 
 # factor chico (6% de diferencia en los años en común): misma base, no se escala
-NETO = {"ProfitLossAttributableToOwnersOfParent": {"units": {"USD": [anual(a, 400.0 + 40 * (a - 2014)) for a in range(2014, 2024)]}}}
+NETO = {"ProfitLossAttributableToOwnersOfParent": {"units": {"USD": en_informes(lambda a: 400.0 + 40 * (a - 2014))}}}
 f_chico = {"facts": {"ifrs-full": {**NETO, "DilutedEarningsLossPerShare": {"units": {"USD/shares": en_informes(lambda a: (4.0 + 0.4 * (a - 2014)) * 0.943)}}}}}
 f, det = S.factor_por_accion(S.a_anios(f_chico), reg)
 chk(f == 1.0 and "no es otra base" in det, f"factor 1,06: se toma 1 ({f}, {det})")
@@ -53,6 +53,26 @@ chk(estado == "ok" and an["2015"]["resultados"][EPS] == 4.4 and an["2020"]["resu
     f"split sin registrar: los informes viejos se encadenan a la base de Yahoo ({estado}, 2015 = {an['2015']['resultados'].get(EPS)}, {det})")
 fz = S.factores_por_informe(f_split, reg)
 chk(fz["2021-04-01"] == (0.5, "encadenado") and fz["2024-04-01"] == (1.0, "directo"), f"factores por informe: {fz}")
+
+# v1.5.67: el informe de 2023 cuenta 2022 con un negocio escindido (resultado neto y ganancia por acción 2,5 veces más grandes, como
+# Johnson & Johnson con Kenvue): ese año no sirve para medir la base; el informe se mide con 2021, donde el resultado neto sí coincide
+eps_j = en_informes(lambda a: 4.0 + 0.4 * (a - 2014))
+net_j = en_informes(lambda a: 400.0 + 40 * (a - 2014))
+for lista in (eps_j, net_j):
+    for h in lista:
+        if h["filed"] == "2023-04-01" and h["end"].startswith("2022"):
+            h["val"] *= 2.5
+f_kenvue = {"facts": {"ifrs-full": {"ProfitLossAttributableToOwnersOfParent": {"units": {"USD": net_j}},
+                                   "DilutedEarningsLossPerShare": {"units": {"USD/shares": eps_j}}}}}
+fk = S.factores_por_informe(f_kenvue, reg)
+chk(fk.get("2023-04-01") == (1.0, "directo") and all(f == 1.0 for f, _ in fk.values()),
+    f"un año contado de otra forma (resultado neto distinto) no cambia la base del informe: {fk}")
+eps_x = en_informes(lambda a: 4.0 + 0.4 * (a - 2014))
+for h in eps_x:
+    if h["filed"] == "2024-04-01" and h["end"].startswith("2023"):
+        h["val"] *= 0.5                                   # dos años del mismo informe con factores distintos (1 y 2): no se puede verificar
+fx = S.factores_por_informe({"facts": {"ifrs-full": {**NETO, "DilutedEarningsLossPerShare": {"units": {"USD/shares": eps_x}}}}}, reg)
+chk("2024-04-01" not in fx, f"factores que no coinciden dentro del mismo informe: sin factor ({fx.get('2024-04-01')})")
 
 # ADR: la SEC por acción ordinaria y Yahoo por ADR (×5), con un cambio de relación del ADR (de 1:10 a 1:5) en 2019
 f_adr = {"facts": {"ifrs-full": {**NETO, "DilutedEarningsLossPerShare": {"units": {"USD/shares": en_informes(

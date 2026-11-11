@@ -57,20 +57,35 @@ chk("la ganancia que esperan los analistas para este año" in r["conclusion"] or
     f"la conclusión o la nota lo dicen: {r['conclusion']} {r['notas']}")
 v = var(SD.calcular({**BASE, "estimacion": est(5.0)}), "eps")
 chk(not v.get("ajustada") and v["pts"] == 0, "salto de 1,25 veces: sigue la contable (110% = 0 puntos)")
-for extra, txt in (({"moneda_estados": "BRL"}, "estados en reales"), ({"ajuste_adr": True}, "acciones ajustadas por ADR")):
-    v = var(SD.calcular({**BASE, **extra}), "eps")
-    chk(not v.get("ajustada"), f"v1.5.66: {txt}: sin excepción (no se compara con la estimación en dólares por ADR)")
-chk(var(SD.calcular({**BASE, "moneda_estados": "USD"}), "eps").get("ajustada"), "estados en dólares: la excepción sigue")
-chk(SD.entrada({"ticker": "X", "moneda_estados": "CNY", "moneda_nota": "Acciones ajustadas a equivalentes del ADR (x0.2)"}, {}, None, None)["ajuste_adr"],
-    "entrada() pasa la moneda de los estados y el ajuste por ADR")
-v = var(SD.calcular({**BASE, "estimacion": est(6.0)}), "eps")
-chk(v.get("ajustada") and v["peso_estimada"] == 0.5 and v["valor"] == 88.0,
-    f"v1.5.65: justo 1,5 veces pesa la mitad (ganancia 4,0 + 0,5 × 2,0 = 5,0 → payout 88%): {v}")
-chk(SD.peso_estimada(5.0, 4.0) == 0.0 and SD.peso_estimada(7.0, 4.0) == 1.0 and SD.peso_estimada(5.6, 4.0) == 0.3
-    and SD.peso_estimada(2.0, -1.0) == 1.0, "sin escalón (v1.5.66, ±0,25): 1,25 veces = 0, 1,4 = 0,3, 1,75 = 1; con pérdida = 1")
-v = var(SD.calcular({**BASE, "estimacion": est(5.6)}), "eps")
-chk(v.get("peso_estimada") == 0.3 and SD._frase(v, False).startswith("el dividendo se lleva el") and "en parte" in SD._frase(v, False),
-    f"en el medio la frase dice «contando en parte»: {SD._frase(v, False)}")
+# v1.5.67: estados en otra moneda: payout con montos de la misma moneda y salto homologado (se prueba en su moneda y en dólares)
+def estados_m(eps, ni, divp=-150.0, fcf=400.0):
+    e = estados(eps=eps, fcf=fcf, divp=divp)
+    e["resultados"]["filas"].append(["Resultado neto", list(ni), "m"])
+    return e
+
+
+tsm = {**BASE, "moneda_estados": "TWD", "fx": 0.03027, "dividendo_anual": 3.77, "estados": estados_m((489.6, 450.0, 300.0, 280.0), (1500.0,) * 4),
+       "estimacion": est(17.5)}
+v = var(SD.calcular(tsm), "eps")
+chk(v["valor"] == 10.0 and not v.get("ajustada") and v.get("con") == "montos",
+    f"TSMC: payout = dividendos pagados ÷ resultado neto (150 ÷ 1.500 = 10%), no 3,77 dólares ÷ 489,6 dólares taiwaneses: {v}")
+chk(SD.salto_homologado(17.5, 489.6, 0.03027) == (1.1808, 489.6 * 0.03027), "TSMC: la estimación en dólares por ADR se compara con la contable en dólares (1,18)")
+kb = SD.salto_homologado(18660.7, 14000.0, 0.00074)
+chk(kb[0] == 1.3329 and kb[1] == 14000.0, f"KB: la estimación viene en wones y se compara en wones (1,33): {kb}")
+brl = {**BASE, "moneda_estados": "BRL", "fx": 0.18195, "estados": estados_m((4.0, 3.9, 3.8, 3.7), (500.0,) * 4), "estimacion": est(6.5)}
+v = var(SD.calcular(brl), "eps")
+chk(v.get("ajustada") and v["salto"] == 1.625 and v["peso_estimada"] == 0.75 and v["valor"] == 20.43,
+    f"en reales: el salto de 1,625 se aplica al payout de montos (30% ÷ (1 + 0,75 × 0,625) = 20,43%): {v}")
+chk(SD.salto_homologado(6.5, 4.0, None, 0.5) == (0.8125, 8.0), "con factor de ADR también se prueba por ADR y se queda la base más cercana (0,81: sin excepción)")
+v = var(SD.calcular({**brl, "estados": estados_m((-1.0, -0.5, 3.8, 3.7), (-100.0, -50.0, 400.0, 380.0))}), "eps")
+chk(v and not v.get("ajustada") and v.get("perdida"), f"con pérdida y otra moneda: sin excepción (no se sabe en qué moneda viene la estimación): {v}")
+r = SD.calcular({**tsm, "estados": estados_m((489.6, 450.0, 300.0, 280.0), (100.0,) * 4, divp=-150.0, fcf=100.0)})
+chk(("dividendo_supera", 40) in r["topes"], "tope en otra moneda: dividendos pagados (150) > resultado neto (100) y > flujo libre")
+chk(SD.entrada({"ticker": "X", "moneda_estados": "CNY", "moneda_nota": "Estados en CNY convertidos a USD (fx spot 0.14998). Acciones ajustadas a equivalentes del ADR (x0.2, ~5.0 ordinarias por ADR)."},
+               {}, None, None) | {} and SD.entrada({"ticker": "X", "moneda_nota": "Estados en CNY convertidos a USD (fx spot 0.14998). Acciones ajustadas a equivalentes del ADR (x0.2, ~5.0)"}, {}, None, None)["fx"] == 0.14998,
+    "entrada() lee el tipo de cambio de la nota de moneda")
+chk(SD.entrada({"ticker": "X", "moneda_nota": "Acciones ajustadas a equivalentes del ADR (x1.575, ~0.6 ordinarias por ADR)."}, {}, None, None)["n_inv"] == 1.575,
+    "entrada() lee el factor de acciones por ADR")
 v = var(SD.calcular({**BASE, "estimacion": est(6.5, n=4)}), "eps")
 chk(not v.get("ajustada"), "con 4 analistas no entra (mínimo 5)")
 v = var(SD.calcular({**BASE, "estados": estados(divp=-450.0)}), "eps")

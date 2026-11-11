@@ -5,6 +5,8 @@ Esta es la lista de verdad. Los recordatorios programados del 1/12 mandan a leer
 Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo con números), trato de amigo, cerrar con "Conclusión resumen", no inventar datos, no más puntajes en sombra, no mostrar método ni pesos en pantalla. En el tema GuruFocus incluir siempre: "Que nos parezcamos más a GuruFocus no prueba que tengamos razón. El PEG podría estar captando algo que a ellos se les escapa."
 
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
+**v1.5.67 (11/11) — Payout de empresas con balances en otra moneda arreglado (dividendos pagados ÷ resultado neto) y salto de los analistas homologado a cualquier moneda (pedido de Guille).** SEC: ExxonMobil cargada; 8 empresas sin ganancia por acción de la SEC hasta la próxima corrida de `bajar_sec.bat` (no urgente: con el resto del 1/12). **Siguen para decidir Guille: B (aumentos solo desde el último recorte: no conviene, 6,6 → 6,8) y C (FFO de los 3 REIT de los informes de la empresa: Welltower 56 → 72).**
+
 **v1.5.66 (11/11) — Estimaciones de todas las empresas cargadas; desvío 0,25 (banda 1,25–1,75); excepción solo con estados en dólares; SEC informe por informe; ExxonMobil con su registrante anterior.** Guille tiene que volver a correr `bajar_sec.bat` (rehace todo informe por informe y suma ExxonMobil) y mandar `estados.json`, `cambios.json` y `resultados_sec.txt`. Diferencia con SSD: 6,6 puntos.
 
 **v1.5.65 (10/11) — Sin escalón en la excepción de los analistas:** la estimada entra de a poco entre 1,3 y 1,7 veces (1,5 ± desvío estándar 0,2). Recalcular el desvío cuando estén las estimaciones de todas las empresas.

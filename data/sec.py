@@ -198,11 +198,13 @@ def quitar_por_accion(reg):
     return sorted(tocados)
 
 
-def eps_por_informe(facts):
-    """v1.5.66: {presentado: {año: ganancia por acción}} tal como vino en CADA informe anual (cada 10-K/20-F trae 2 o 3 años).
-    Sirve para saber en qué base está cada informe: entre dos informes la base cambia si hubo un split o un cambio de acciones por ADR."""
+def por_informe(facts, rotulo=None):
+    """v1.5.66/67: {presentado: {año: valor}} de un rótulo (por defecto la ganancia por acción) tal como vino en CADA informe anual (cada
+    10-K/20-F trae 2 o 3 años). Sirve para saber en qué base está cada informe: entre dos informes la base cambia si hubo un split o un cambio
+    de acciones por ADR."""
+    rotulo = rotulo or EPS_ROT
     out = {}
-    for tax, concepto in CONCEPTOS[EPS_ROT]:
+    for tax, concepto in CONCEPTOS[rotulo]:
         c = ((facts.get("facts") or {}).get(tax) or {}).get(concepto)
         if not c:
             continue
@@ -217,38 +219,60 @@ def eps_por_informe(facts):
     return out
 
 
+def eps_por_informe(facts):
+    return por_informe(facts, EPS_ROT)
+
+
+def _parecidos(a, b, tol=TOLERANCIA_SOLAPE):
+    return a is not None and b is not None and b != 0 and abs(a - b) / abs(b) <= tol
+
+
 def factores_por_informe(facts, reg, splits=None):
     """v1.5.66: factor de cada informe de la SEC para llevar su ganancia por acción a la base de HOY de Yahoo.
     - directo: el informe comparte años con Yahoo -> mediana de (Yahoo llevado a hoy ÷ SEC) en esos años;
     - encadenado: el informe no comparte años con Yahoo -> se encadena con el informe más nuevo que ya tiene factor y comparte un año.
-    Así un split, un cambio de acciones por ADR o un «split» de Yahoo por una escisión (DuPont 2025) quedan resueltos informe por informe,
-    sin depender de la lista de splits. Un factor entre 0,8 y 1,25 se toma como 1. -> {presentado: (factor, "directo"/"encadenado")}"""
+    v1.5.67: solo cuentan los años en que el RESULTADO NETO también coincide (dentro de 5 %) entre los dos lados: si un informe cuenta la
+    ganancia de otra forma (por ejemplo, con o sin un negocio vendido o escindido, como Johnson & Johnson con Kenvue), ese año no sirve para
+    medir la base. Y los años que se usan tienen que dar el mismo factor (dentro de 10 %); si no, el informe no se puede verificar.
+    Un factor entre 0,8 y 1,25 se toma como 1; uno fuera de 1/250 a 250 se descarta. -> {presentado: (factor, "directo"/"encadenado")}"""
     from statistics import median
 
     from data.historico import factor_despues
-    yh = {}
+    yh, yn = {}, {}
     for a, g in ((reg or {}).get("anios") or {}).items():
         if g.get("fuente") == "SEC":
             continue
-        e = (g.get("resultados") or {}).get(EPS_ROT)
+        r = g.get("resultados") or {}
+        e = r.get(EPS_ROT)
         if e is not None and abs(e) >= EPS_MINIMA:
             yh[int(a)] = e / factor_despues(splits, g.get("captura_acc", g.get("captura", "")))
-    inf = eps_por_informe(facts)
+            yn[int(a)] = r.get(NETO_ROT)
+    inf, net = por_informe(facts, EPS_ROT), por_informe(facts, NETO_ROT)
+
+    def coherente(rs):
+        return rs and max(rs) / min(rs) <= 1.10 if all(x > 0 for x in rs) else False
+
     fac = {}
     for p in inf:
-        rs = [yh[y] / v for y, v in inf[p].items() if y in yh and abs(v) >= EPS_MINIMA and yh[y] * v > 0]
-        if rs:
+        rs = [yh[y] / v for y, v in inf[p].items() if y in yh and abs(v) >= EPS_MINIMA and yh[y] * v > 0
+              and _parecidos((net.get(p) or {}).get(y), yn.get(y))]
+        if coherente(rs):
             fac[p] = (median(rs), "directo")
     for p in sorted(inf, reverse=True):
         if p in fac:
             continue
         for q in sorted(q for q in fac if q > p):          # el informe más nuevo y más cercano primero
             rs = [inf[q][y] / v for y, v in inf[p].items() if y in inf[q] and abs(v) >= EPS_MINIMA and abs(inf[q][y]) >= EPS_MINIMA
-                  and inf[q][y] * v > 0]
-            if rs:
+                  and inf[q][y] * v > 0 and _parecidos((net.get(p) or {}).get(y), (net.get(q) or {}).get(y))]
+            if coherente(rs):
                 fac[p] = (fac[q][0] * median(rs), "encadenado")
                 break
-    return {p: (1.0 if BASE_MIN <= f <= BASE_MAX else round(f, 4), modo) for p, (f, modo) in fac.items()}
+    out = {}
+    for p, (f, modo) in fac.items():
+        if not 1 / 250 <= f <= 250:
+            continue
+        out[p] = (1.0 if BASE_MIN <= f <= BASE_MAX else round(f, 4), modo)
+    return out
 
 
 def llevar_a_base(sec_anios, facts, reg, splits=None, hoy=None):
