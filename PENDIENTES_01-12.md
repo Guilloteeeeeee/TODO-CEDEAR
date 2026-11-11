@@ -5,6 +5,8 @@ Esta es la lista de verdad. Los recordatorios programados del 1/12 mandan a leer
 Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo con números), trato de amigo, cerrar con "Conclusión resumen", no inventar datos, no más puntajes en sombra, no mostrar método ni pesos en pantalla. En el tema GuruFocus incluir siempre: "Que nos parezcamos más a GuruFocus no prueba que tengamos razón. El PEG podría estar captando algo que a ellos se les escapa."
 
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
+**v1.5.66 (11/11) — Estimaciones de todas las empresas cargadas; desvío 0,25 (banda 1,25–1,75); excepción solo con estados en dólares; SEC informe por informe; ExxonMobil con su registrante anterior.** Guille tiene que volver a correr `bajar_sec.bat` (rehace todo informe por informe y suma ExxonMobil) y mandar `estados.json`, `cambios.json` y `resultados_sec.txt`. Diferencia con SSD: 6,6 puntos.
+
 **v1.5.65 (10/11) — Sin escalón en la excepción de los analistas:** la estimada entra de a poco entre 1,3 y 1,7 veces (1,5 ± desvío estándar 0,2). Recalcular el desvío cuando estén las estimaciones de todas las empresas.
 
 **v1.5.63 (10/11) — Años de la SEC de la segunda corrida incorporados** (Altria y bancos con 13 años; 29 ADR en la base de Yahoo; 5 sin ganancia por acción de la SEC por unión rara). **Falta:** que Guille mande `resultados_sec.txt` para ver por qué ExxonMobil no trae datos de la SEC.

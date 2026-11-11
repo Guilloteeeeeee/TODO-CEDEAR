@@ -61,12 +61,19 @@ def _cifras(rec):
     return {g: rec.get(g) for g in H.GRUPOS if rec.get(g)}
 
 
+# v1.5.66: empresas que cambiaron de registrante en la SEC: el número nuevo todavía no tiene informes anuales y la historia quedó en el viejo.
+# ExxonMobil: desde el 1/7/2026 la que cotiza como XOM es ExxonMobil Holdings Corporation (cambio de domicilio a Texas); los 10-K hasta 2025
+# los presentó Exxon Mobil Corporation.
+CIK_ANTERIOR = {"XOM": "0000034088"}
+
+
 def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
     """Suma los años viejos de un ticker al archivo (dict de estados.json ya leído). -> (estado, detalle, años sumados).
     v1.5.61: los años que ya habían venido de la SEC se rehacen cada vez (son de la SEC, no de Yahoo: se pueden volver a bajar), con la ganancia
     por acción pasada a la base de Yahoo (data/sec.factor_por_accion: ADR). Un año que cambia queda anotado en cambios.json («sec_corregido»).
     Estados: ok (años nuevos), corregido (solo se corrigieron años ya sumados), nada_nuevo, no_coincide, sin_datos."""
     tk = ticker.upper()
+    hoy = hoy or dt.date.today().isoformat()
     sec_anios = S.a_anios(facts)
     if not sec_anios:
         return "sin_datos", "la SEC no tiene informes anuales con estos datos (" + S.diagnostico(facts) + ")", []
@@ -80,13 +87,21 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
         return "no_coincide", det, []
     if ok is None and base.get("anios"):
         return "no_coincide", det, []
-    factor, det_f = S.factor_por_accion(sec_anios, base, splits)
-    nuevo, todos = H.sumar_anios_viejos(base, sec_anios, tk, None, hoy=hoy, factor_accion=factor or 1.0)
-    if factor != 1.0:
-        # v1.5.63: si la base no se pudo verificar (o el factor no alcanzó), la unión SEC → Yahoo tiene que verse normal; si no, la
-        # ganancia por acción de la SEC queda afuera (los montos sí se guardan). Con factor 1 verificado, un salto es real (fusión, preferidas).
-        ok_u, rel = S.union_por_accion(nuevo, splits)
-        if ok_u is False:
+    # v1.5.66: cada informe de la SEC se lleva a la base de hoy de Yahoo con su propio factor (directo o encadenado: sec.llevar_a_base)
+    sec_b, fac, sin_base = S.llevar_a_base(sec_anios, facts, base, splits, hoy)
+    nuevo, todos = H.sumar_anios_viejos(base, sec_b, tk, None, hoy=hoy)
+    distintos = sorted({f for f, _ in fac.values() if f != 1.0})
+    det_f = (f"ganancia por acción llevada a la base de Yahoo (factores {', '.join(f'{x:g}' for x in distintos)})" if distintos else "")
+    if sin_base:
+        det_f = (det_f + "; " if det_f else "") + f"{len(sin_base)} años sin ganancia por acción (su informe no se pudo llevar a la base de Yahoo)"
+    factor = distintos[0] if distintos else 1.0
+    # red de seguridad (v1.5.63): si la unión SEC → Yahoo salta y el año de la unión no se verificó en directo, queda afuera la ganancia por
+    # acción de la SEC (los montos sí se guardan). Con verificación directa un salto es real (fusión, preferidas: Agnico Eagle, Corning).
+    ok_u, rel = S.union_por_accion(nuevo, splits)
+    if ok_u is False:
+        an_n = nuevo.get("anios") or {}
+        ult = max((a for a, r in an_n.items() if r.get("fuente") == "SEC" and S.EPS_ROT in (r.get("resultados") or {})), default=None)
+        if not ult or an_n[ult].get("modo_accion") != "directo":
             S.quitar_por_accion(nuevo)
             det_f = f"ganancia por acción de la SEC sin verificar (relación de acciones {rel} en la unión): queda afuera"
             factor = "sin_eps"
@@ -101,7 +116,7 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
             corregidos.append(a)
     for a, r in previos.items():                     # lo que ya estaba y ahora no vino, queda (solo se agrega)
         anios.setdefault(a, r)
-    if factor != 1.0 and det_f:
+    if det_f:
         det = f"{det} · {det_f}"
     if not sumados and not corregidos:
         return "nada_nuevo", det, []
@@ -111,7 +126,7 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
         H._anotar(cambios, "anios_sec", tk, anios=sumados, detalle="años sumados desde SEC (hacia atrás)")
     if corregidos:
         H._anotar(cambios, "sec_corregido", tk, anios=corregidos,
-                  detalle=f"años de la SEC rehechos ({det_f})" if factor != 1.0 and det_f else "años de la SEC rehechos")
+                  detalle=f"años de la SEC rehechos ({det_f})" if det_f else "años de la SEC rehechos")
     if sumados:
         return "ok", det + (f" · además se corrigieron {len(corregidos)} años ya sumados" if corregidos else ""), sumados
     return "corregido", f"{len(corregidos)} años corregidos · {det}", corregidos
@@ -146,6 +161,15 @@ def main(tickers=None):
                 break
             time.sleep(PAUSA)
             continue
+        if not S.a_anios(facts) and t in CIK_ANTERIOR:
+            try:
+                time.sleep(PAUSA)
+                viejo = _get(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{CIK_ANTERIOR[t]}.json", ua)
+                if S.a_anios(viejo):
+                    facts = viejo
+                    print(f"  {i:3d}/{len(tickers)} {t:6} usa los informes de su registrante anterior ({viejo.get('entityName', '?')})")
+            except Exception:  # noqa: BLE001
+                pass
         estado, det, sumados = procesar(t, facts, archivo, cambios, splits=splits.get(t))
         if estado == "ok":
             filas["ok"].append(f"{t}: +{len(sumados)} años ({sumados[0]}–{sumados[-1]})" + (f" · {det.split(' · ', 1)[1]}" if " · " in det else ""))

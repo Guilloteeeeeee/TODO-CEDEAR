@@ -49,21 +49,27 @@ def var(r, clave):
 
 r = SD.calcular(BASE)
 v = var(r, "eps")
-chk(v.get("ajustada") and v["peso_estimada"] == 0.81 and v["valor"] == 72.95 and v["pts"] == 9 and v["estimada"] == 6.5 and v["contable"] == 4.0,
-    f"salto de 1,625 veces: pesa 81% la estimada (4,0 + 0,8125 × 2,5 = 6,03 → payout 72,95%): {v}")
+chk(v.get("ajustada") and v["peso_estimada"] == 0.75 and v["valor"] == 74.89 and v["pts"] == 9 and v["estimada"] == 6.5 and v["contable"] == 4.0,
+    f"salto de 1,625 veces: pesa 75% la estimada (4,0 + 0,75 × 2,5 = 5,875 → payout 74,89%): {v}")
 v = var(SD.calcular({**BASE, "estimacion": est(7.0)}), "eps")
 chk(v["peso_estimada"] == 1.0 and v["valor"] == 62.86, f"desde 1,7 veces, toda la estimada (4,4 ÷ 7,0 = 62,86%): {v}")
 chk("la ganancia que esperan los analistas para este año" in r["conclusion"] or any("estimada" in n for n in r["notas"]),
     f"la conclusión o la nota lo dicen: {r['conclusion']} {r['notas']}")
-v = var(SD.calcular({**BASE, "estimacion": est(5.2)}), "eps")
-chk(not v.get("ajustada") and v["pts"] == 0, "salto de 1,3 veces: sigue la contable (110% = 0 puntos)")
+v = var(SD.calcular({**BASE, "estimacion": est(5.0)}), "eps")
+chk(not v.get("ajustada") and v["pts"] == 0, "salto de 1,25 veces: sigue la contable (110% = 0 puntos)")
+for extra, txt in (({"moneda_estados": "BRL"}, "estados en reales"), ({"ajuste_adr": True}, "acciones ajustadas por ADR")):
+    v = var(SD.calcular({**BASE, **extra}), "eps")
+    chk(not v.get("ajustada"), f"v1.5.66: {txt}: sin excepción (no se compara con la estimación en dólares por ADR)")
+chk(var(SD.calcular({**BASE, "moneda_estados": "USD"}), "eps").get("ajustada"), "estados en dólares: la excepción sigue")
+chk(SD.entrada({"ticker": "X", "moneda_estados": "CNY", "moneda_nota": "Acciones ajustadas a equivalentes del ADR (x0.2)"}, {}, None, None)["ajuste_adr"],
+    "entrada() pasa la moneda de los estados y el ajuste por ADR")
 v = var(SD.calcular({**BASE, "estimacion": est(6.0)}), "eps")
 chk(v.get("ajustada") and v["peso_estimada"] == 0.5 and v["valor"] == 88.0,
     f"v1.5.65: justo 1,5 veces pesa la mitad (ganancia 4,0 + 0,5 × 2,0 = 5,0 → payout 88%): {v}")
-chk(SD.peso_estimada(5.2, 4.0) == 0.0 and SD.peso_estimada(6.8, 4.0) == 1.0 and abs(SD.peso_estimada(5.6, 4.0) - 0.25) < 1e-9
-    and SD.peso_estimada(2.0, -1.0) == 1.0, "sin escalón: 1,3 veces = 0, 1,4 = 0,25, 1,7 = 1; con pérdida = 1")
+chk(SD.peso_estimada(5.0, 4.0) == 0.0 and SD.peso_estimada(7.0, 4.0) == 1.0 and SD.peso_estimada(5.6, 4.0) == 0.3
+    and SD.peso_estimada(2.0, -1.0) == 1.0, "sin escalón (v1.5.66, ±0,25): 1,25 veces = 0, 1,4 = 0,3, 1,75 = 1; con pérdida = 1")
 v = var(SD.calcular({**BASE, "estimacion": est(5.6)}), "eps")
-chk(v.get("peso_estimada") == 0.25 and SD._frase(v, False).startswith("el dividendo se lleva el") and "en parte" in SD._frase(v, False),
+chk(v.get("peso_estimada") == 0.3 and SD._frase(v, False).startswith("el dividendo se lleva el") and "en parte" in SD._frase(v, False),
     f"en el medio la frase dice «contando en parte»: {SD._frase(v, False)}")
 v = var(SD.calcular({**BASE, "estimacion": est(6.5, n=4)}), "eps")
 chk(not v.get("ajustada"), "con 4 analistas no entra (mínimo 5)")

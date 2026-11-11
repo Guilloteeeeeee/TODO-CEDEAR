@@ -120,10 +120,15 @@ def anual(a, v, filed=None):
     return hecho(v, f"{a}-01-01", f"{a}-12-31", "20-F", filed or f"{a + 1}-04-01")
 
 
+def en_informes(valor, desde=2014, hasta=2023, base=lambda f: 1.0):
+    """Como los informes reales: cada 20-F presentado en abril del año F trae los años F-3, F-2 y F-1 (en la base de ese informe)."""
+    return [anual(a, valor(a) * base(f), f"{f}-04-01") for f in range(desde + 1, hasta + 2) for a in (f - 3, f - 2, f - 1) if desde <= a <= hasta]
+
+
 facts = {"facts": {"ifrs-full": {
     "Revenue": {"units": {"TWD": [anual(a, 1000.0 + 100 * (a - 2014)) for a in range(2014, 2024)]}},
     "ProfitLossAttributableToOwnersOfParent": {"units": {"TWD": [anual(a, 400.0 + 40 * (a - 2014)) for a in range(2014, 2024)]}},
-    "DilutedEarningsLossPerShare": {"units": {"TWD/shares": [anual(a, 10.0 + (a - 2014)) for a in range(2014, 2024)]}}}}}
+    "DilutedEarningsLossPerShare": {"units": {"TWD/shares": en_informes(lambda a: 10.0 + (a - 2014))}}}}}
 sec = S.a_anios(facts)
 # Yahoo: mismo resultado neto, ingresos armados de otra forma (+20%) y ganancia por ADR (1 ADR = 5 acciones)
 yahoo = {"moneda": "TWD", "resultados": {"anios": ["2024 (TTM)", 2023, 2022, 2021],

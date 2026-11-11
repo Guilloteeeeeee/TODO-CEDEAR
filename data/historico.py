@@ -343,10 +343,14 @@ def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fue
     for a, rec in sorted((anios_nuevos or {}).items()):
         if a >= mas_viejo or (moneda and rec.get("moneda") != moneda):
             continue
-        nuevo = {"moneda": rec.get("moneda", "USD"), "captura": hoy, "captura_acc": rec.get("presentado") or hoy, "fuente": fuente}
+        nuevo = {"moneda": rec.get("moneda", "USD"), "captura": hoy, "captura_acc": rec.get("base_acc") or rec.get("presentado") or hoy,
+                 "fuente": fuente}
         fac = _n(factor_accion) or 1.0
         if fac != 1.0:
             nuevo["factor_accion"] = fac
+        for k in ("factor_accion", "modo_accion", "sin_por_accion"):     # v1.5.66: marcas que pone sec.llevar_a_base, año por año
+            if rec.get(k) is not None:
+                nuevo[k] = rec[k]
         for g in GRUPOS:
             vals = {r: _n(v) for r, v in (rec.get(g) or {}).items() if _n(v) is not None}
             if fac != 1.0:

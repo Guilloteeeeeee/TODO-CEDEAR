@@ -196,3 +196,82 @@ def quitar_por_accion(reg):
             r["sin_por_accion"] = True
             tocados.append(a)
     return sorted(tocados)
+
+
+def eps_por_informe(facts):
+    """v1.5.66: {presentado: {año: ganancia por acción}} tal como vino en CADA informe anual (cada 10-K/20-F trae 2 o 3 años).
+    Sirve para saber en qué base está cada informe: entre dos informes la base cambia si hubo un split o un cambio de acciones por ADR."""
+    out = {}
+    for tax, concepto in CONCEPTOS[EPS_ROT]:
+        c = ((facts.get("facts") or {}).get(tax) or {}).get(concepto)
+        if not c:
+            continue
+        for unidad, filas in (c.get("units") or {}).items():
+            for f in filas:
+                if f.get("form") not in FORMULARIOS or f.get("val") is None or not f.get("end") or not f.get("start") or not f.get("filed"):
+                    continue
+                dias = (_dt.date.fromisoformat(f["end"]) - _dt.date.fromisoformat(f["start"])).days
+                if not 350 <= dias <= 380:
+                    continue
+                out.setdefault(f["filed"], {}).setdefault(int(f["end"][:4]), float(f["val"]))
+    return out
+
+
+def factores_por_informe(facts, reg, splits=None):
+    """v1.5.66: factor de cada informe de la SEC para llevar su ganancia por acción a la base de HOY de Yahoo.
+    - directo: el informe comparte años con Yahoo -> mediana de (Yahoo llevado a hoy ÷ SEC) en esos años;
+    - encadenado: el informe no comparte años con Yahoo -> se encadena con el informe más nuevo que ya tiene factor y comparte un año.
+    Así un split, un cambio de acciones por ADR o un «split» de Yahoo por una escisión (DuPont 2025) quedan resueltos informe por informe,
+    sin depender de la lista de splits. Un factor entre 0,8 y 1,25 se toma como 1. -> {presentado: (factor, "directo"/"encadenado")}"""
+    from statistics import median
+
+    from data.historico import factor_despues
+    yh = {}
+    for a, g in ((reg or {}).get("anios") or {}).items():
+        if g.get("fuente") == "SEC":
+            continue
+        e = (g.get("resultados") or {}).get(EPS_ROT)
+        if e is not None and abs(e) >= EPS_MINIMA:
+            yh[int(a)] = e / factor_despues(splits, g.get("captura_acc", g.get("captura", "")))
+    inf = eps_por_informe(facts)
+    fac = {}
+    for p in inf:
+        rs = [yh[y] / v for y, v in inf[p].items() if y in yh and abs(v) >= EPS_MINIMA and yh[y] * v > 0]
+        if rs:
+            fac[p] = (median(rs), "directo")
+    for p in sorted(inf, reverse=True):
+        if p in fac:
+            continue
+        for q in sorted(q for q in fac if q > p):          # el informe más nuevo y más cercano primero
+            rs = [inf[q][y] / v for y, v in inf[p].items() if y in inf[q] and abs(v) >= EPS_MINIMA and abs(inf[q][y]) >= EPS_MINIMA
+                  and inf[q][y] * v > 0]
+            if rs:
+                fac[p] = (fac[q][0] * median(rs), "encadenado")
+                break
+    return {p: (1.0 if BASE_MIN <= f <= BASE_MAX else round(f, 4), modo) for p, (f, modo) in fac.items()}
+
+
+def llevar_a_base(sec_anios, facts, reg, splits=None, hoy=None):
+    """v1.5.66: pasa la ganancia por acción de cada año de la SEC a la base de hoy de Yahoo con el factor de SU informe. El año queda con
+    "base_acc" = hoy (ya no se le aplican los splits anteriores a hoy), "factor_accion" si no es 1 y "modo_accion". Un año cuyo informe no se
+    pudo llevar a la base de Yahoo queda sin ganancia por acción ("sin_por_accion"). -> (años, factores, años sin base)"""
+    hoy = hoy or _dt.date.today().isoformat()
+    fac = factores_por_informe(facts, reg, splits)
+    out, sin = {}, []
+    for a, rec in sec_anios.items():
+        rec = {k: (dict(v) if isinstance(v, dict) else v) for k, v in rec.items()}
+        r = rec.get("resultados") or {}
+        if EPS_ROT in r:
+            p = rec.get("presentado")
+            if p in fac:
+                f, modo = fac[p]
+                r[EPS_ROT] = r[EPS_ROT] * f
+                rec["base_acc"], rec["modo_accion"] = hoy, modo
+                if f != 1.0:
+                    rec["factor_accion"] = f
+            else:
+                r.pop(EPS_ROT)
+                rec["sin_por_accion"] = True
+                sin.append(a)
+        out[a] = rec
+    return out, fac, sorted(sin)

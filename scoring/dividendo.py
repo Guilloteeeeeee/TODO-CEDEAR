@@ -43,10 +43,11 @@ CASI_NULO_NDC = 90.0          # patrimonio «casi nulo»: la deuda neta es 90% o
 # los analistas de los REIT no estiman FFO). Los topes siguen mirando la ganancia contable.
 SALTO_ANALISTAS = 1.5
 # v1.5.65 (Guille, 10/11/2026: «PONELE UN DESVÍO ESTÁNDAR AL 1,5 Y LISTO»): sin escalón. Entre 1,5 − DESVIO_SALTO y 1,5 + DESVIO_SALTO la
-# ganancia que se usa pasa de a poco de la contable a la estimada (a 1,3 veces: 0% estimada; a 1,5: mitad y mitad; a 1,7: 100%).
-# DESVIO_SALTO = desvío estándar del salto (estimada ÷ contable) en las empresas sin gastos extraordinarios (entre 0,5 y 2 veces): 0,207 en
-# las 15 de la calibración del 10/11/2026 (media 1,11). Recalcularlo cuando estén las estimaciones de todas las empresas.
-DESVIO_SALTO = 0.2
+# ganancia que se usa pasa de a poco de la contable a la estimada (v1.5.66: a 1,25 veces 0% estimada; a 1,5, mitad y mitad; desde 1,75, 100%).
+# DESVIO_SALTO = desvío estándar del salto (estimada ÷ contable) en las empresas generales sin gastos extraordinarios (entre 0,5 y 2 veces).
+# v1.5.66: recalculado con las estimaciones de todas las empresas (11/11/2026): 0,254 en 141 empresas (media 1,18; solo EE.UU.: 0,242 en 99).
+# Antes, con las 15 de la calibración: 0,207. Banda: de 1,25 a 1,75 veces.
+DESVIO_SALTO = 0.25
 MIN_ANALISTAS = 5
 VIGENCIA_ESTIMACION = 130     # días: las estimaciones se bajan una vez por trimestre, después de los balances
 REDONDEO = 0.001             # v1.5.61: una baja por pago menor a esto es redondeo de Yahoo (montos viejos ajustados por splits, a 3 decimales)
@@ -258,7 +259,7 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
 
 
 def peso_estimada(estimada, contable):
-    """Cuánto pesa la ganancia estimada (0 a 1) según el salto estimada ÷ contable: 0 hasta 1,3 veces, 1 desde 1,7 veces y en el medio de a
+    """Cuánto pesa la ganancia estimada (0 a 1) según el salto estimada ÷ contable: 0 hasta 1,25 veces, 1 desde 1,75 veces y en el medio de a
     poco (1,5 = 0,5). Con pérdida contable (o sin contable), 1."""
     if not estimada or estimada <= 0:
         return 0.0
@@ -292,7 +293,8 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
         grupo = TICKER_TO_SECTOR.get(row.get("ticker"))
     return {"ticker": row.get("ticker"), "grupo": grupo, "pais": row.get("pais"), "dividendo_anual": row.get("annual_dividend"),
             "precio": row.get("precio_actual"), "p_ffo": row.get("p_ffo_actual"), "dy": row.get("dividend_yield_actual"),
-            "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "estados": estados, "historial": historial,
+            "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "moneda_estados": row.get("moneda_estados"),
+            "ajuste_adr": "equivalentes del ADR" in (row.get("moneda_nota") or ""), "estados": estados, "historial": historial,
             "estimacion": estimacion}
 
 
@@ -362,7 +364,10 @@ def calcular(e):
         est_v = estimacion_vigente(e) if not (banco or reit) else None
         eps_est = _n((est_v or {}).get("actual"))
         n_an = (est_v or {}).get("analistas") or 0
-        peso_est = peso_estimada(eps_est, max(pos) if pos else None) if (eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS
+        # v1.5.66: solo si los estados están en dólares y sin ajuste de acciones por ADR: los analistas estiman en dólares por ADR, y
+        # comparar eso con una ganancia en reales, yuanes o libras (o por acción ordinaria) daría saltos que no existen (Embraer, JD, GSK)
+        misma_base = (e.get("moneda_estados") in (None, "", "USD")) and not e.get("ajuste_adr")
+        peso_est = peso_estimada(eps_est, max(pos) if pos else None) if (misma_base and eps_est and eps_est > 0 and n_an >= MIN_ANALISTAS
                                                                           and pay_fcf is not None and pay_fcf <= 100) else 0.0
         if peso_est > 0:
             base_e = eps_est if not pos else max(pos) + peso_est * (eps_est - max(pos))

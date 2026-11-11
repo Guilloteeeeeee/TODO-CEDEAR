@@ -577,6 +577,16 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.66 — Estimaciones de todas las empresas, desvío recalculado y SEC informe por informe
+- **Datos de Guille (11/11/2026):** estimaciones de analistas de 224 de 227 empresas (`data/estimaciones_analistas.json`, `data/historico/estimaciones.json`), tercera corrida de `bajar_sec.bat` y calibración.
+- **Desvío estándar recalculado** con todas las empresas: 0,254 en 141 empresas generales (media 1,18; solo EE.UU.: 0,242) → `DESVIO_SALTO` = 0,25: la estimada entra de a poco entre 1,25 y 1,75 veces la contable.
+- **Resguardo de moneda:** la excepción de los analistas solo corre con estados en dólares y sin ajuste de acciones por ADR (los analistas estiman en dólares por ADR; contra reales, yuanes o libras daba saltos falsos: Embraer, JD, GSK, Nokia).
+- **SEC informe por informe** (`sec.eps_por_informe`, `factores_por_informe`, `llevar_a_base`): cada 10-K/20-F se lleva a la base de hoy de Yahoo con su propio factor, directo (años en común con Yahoo) o encadenado (años en común con un informe más nuevo). Resuelve splits que Yahoo no tiene, escisiones que Yahoo anota como split (DuPont) y cambios de relación del ADR (AstraZeneca, Telefônica Brasil). La unión SEC → Yahoo queda como red de seguridad.
+- **ExxonMobil:** desde el 1/7/2026 cotiza como ExxonMobil Holdings Corporation (cambio de domicilio a Texas) y ese registrante todavía no tiene informes anuales: `bajar_sec.py` usa los de Exxon Mobil Corporation (`CIK_ANTERIOR`).
+- Mientras tanto, sin ganancia por acción de la SEC: DuPont, AstraZeneca, GE y Dell (unión rara); vuelve en la próxima corrida.
+- Calibración contra SSD: 6,6 puntos de diferencia media, 12 de 21 en la misma categoría, ninguna a dos (Chevron 87 → 90 = SSD).
+- Pruebas: `tests/test_v1563_sec.py` (OK 9), `tests/test_v1562_dividendo.py` (OK 24).
+
 ### v1.5.65 — Score de Seguridad del Dividendo: sin escalón en la excepción de los analistas
 - Pedido de Guille (10/11/2026: «PONELE UN DESVÍO ESTÁNDAR AL 1,5 Y LISTO»): la ganancia estimada entra de a poco entre 1,3 y 1,7 veces la contable (1,5 ± 0,2): a 1,3 veces pesa 0%, a 1,5 la mitad y desde 1,7 el 100% (`DESVIO_SALTO`, `peso_estimada`). 0,2 es el desvío estándar del salto en las 15 empresas de la calibración sin gastos extraordinarios (0,207; media 1,11); recalcularlo con las estimaciones de todas las empresas.
 - Efecto en las 21 comparadas con SSD: Altria (salto 1,38, pesa 20%) 64 → 66; el resto igual. Diferencia media 6,8 puntos, 12 de 21 en la misma categoría, ninguna a dos.
