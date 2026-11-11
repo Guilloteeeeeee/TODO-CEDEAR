@@ -48,3 +48,7 @@ Después de correr cualquiera de esos `.bat`, se sube la carpeta `data/historico
 - Fotos: octubre 2026 (166 empresas, 59 ETFs) y noviembre 2026 (323 empresas, 96 ETFs, 323 fichas).
 - Informes: 306 versiones.
 - Precios, dividendos y splits: se completan con la primera corrida de `bajar_historico.bat`.
+
+## v1.5.69 — Dividendos en su moneda y monedas
+- `dividendos_locales.json`: {"fecha", "datos": {TICKER: {"simbolo" (bolsa de origen, p. ej. GSK.L), "moneda", "pagos": [[fecha, monto en su moneda]], "coinciden" (parte de los pagos del ADR con un pago local a 25 días o menos), "ok" (se usa si coinciden ≥ 60% y no hay saltos de unidad), "motivo", "act"}}}. Lo baja `bajar_dividendos_locales.py` (también al final de `bajar_historico.bat`); si Yahoo trae menos pagos que la vez anterior, queda lo anterior.
+- `monedas.json`: {"fecha", "monedas": {MONEDA: {"simbolo", "usd_por_unidad": {fecha semanal: dólares por unidad}, "act"}}}. Solo se agrega.

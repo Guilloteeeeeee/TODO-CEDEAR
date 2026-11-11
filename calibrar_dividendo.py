@@ -31,8 +31,11 @@ from scoring import dividendo as SD  # noqa: E402
 # Scores de Simply Safe Dividends que pasó Guille el 10/11/2026 (VALE: sin score en SSD).
 SSD = {"KO": 80, "PG": 90, "JNJ": 99, "PEP": 80, "MCD": 77, "ADP": 90, "TXN": 80, "ABBV": 80, "MO": 60, "VZ": 70, "T": 70, "PFE": 50,
        "MMM": 60, "CVX": 90, "XOM": 80, "F": 40, "NEE": 80, "O": 80, "PLD": 61, "WELL": 80, "JPM": 70, "VALE": None,
-       "NGG": 45, "LYG": None, "NOK": None, "ABEV": None}     # v1.5.68: las de afuera que pasó Guille el 11/11/2026 (sin score en SSD = None)
-FECHA_SSD = "10/11/2026 (las de afuera: 11/11/2026)"
+       "NGG": 45, "LYG": None, "NOK": None, "ABEV": None,     # v1.5.68: las de afuera que pasó Guille el 11/11/2026 (sin score en SSD = None)
+       # tercera tanda de Guille (11/11/2026): 14 de afuera y 9 de EE.UU.
+       "PM": 70, "PHG": 73, "UL": 60, "SHEL": 60, "TTE": 50, "BP": 50, "DEO": 80, "NVS": 61, "AZN": 70, "GSK": 70, "BHP": 40, "RIO": 40,
+       "TSM": 70, "TM": 50, "BMY": 70, "MRK": 90, "IBM": 65, "CSCO": 91, "CL": 90, "KMB": 70, "HD": 80, "CAT": 93, "LMT": 80, "CEG": 60, "VST": 60}
+FECHA_SSD = "10/11/2026 (desde National Grid: 11/11/2026)"
 TOPE_S = 30
 
 
@@ -100,7 +103,12 @@ def _cat_n(s):
     return 0 if s <= 20 else 1 if s <= 40 else 2 if s <= 60 else 3 if s <= 80 else 4
 
 
-def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, estimaciones):
+def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, estimaciones, locales=None, monedas=None):
+    from data import moneda_dividendo as MD
+    if locales is None:
+        locales = H.leer("dividendos_locales.json", {}).get("datos", {})
+    if monedas is None:
+        monedas = H.leer("monedas.json", {})
     res = {}
     for t in tickers:
         row = cache.get(t)
@@ -114,13 +122,16 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
                 hoy = dt.date.fromisoformat(act)
             except ValueError:
                 hoy = None
-        hist = SD.analizar_dividendos(divs.get(t), hoy=hoy, sigue_pagando=bool((row.get("annual_dividend") or 0) > 0)) if divs.get(t) else None
-        ent = SD.entrada(row, est, hist, estimaciones.get(t))
+        # v1.5.69: el recorte se busca en la moneda en que la empresa fija su dividendo (data/moneda_dividendo.py)
+        hist, fuente = MD.historial(t, row.get("moneda_estados"), divs.get(t), pais=row.get("pais"), hoy=hoy,
+                                    sigue_pagando=bool((row.get("annual_dividend") or 0) > 0), locales=locales, monedas=monedas, precios=precios)
+        ent = SD.entrada(row, est, hist, estimaciones.get(t), dividendo_variable=(fuente == "variable"))
         ent["hoy"] = hoy                     # v1.5.62: vigencia de la estimación de analistas contra la fecha de los datos
         r = SD.calcular(ent)
         fy = [a for a in ((est or {}).get("resultados") or {}).get("anios", []) if isinstance(a, int)]
         r["anios_estados"] = f"{min(fy)}–{max(fy)}" if fy else "sin estados"
         r["historial"] = {k: v for k, v in (hist or {}).items() if k != "tasa"} if hist else None
+        r["fuente_historial"] = fuente
         res[t] = r
     return res
 
@@ -177,7 +188,9 @@ def main(args):
         hist = (f"años sin recortar {h['anios_sin_recorte']}, pagando {h['anios_pagando']}, aumentos en 12 años {h['aumentos_12']}, "
                 f"2008-09: {h['crisis_0809']}, 2020: {h['crisis_2020']}, pagos por año {h['frecuencia']}") if h else "sin historial"
         tend = next((v for v in r["variables"] if v["clave"] == "tendencia"), None)
-        lin += [f"■ {t} ({r['score']}): {r['conclusion'] or '—'}", f"   Historial: {hist}",
+        de = {"dolares": "en dólares", "local": "en su moneda (bolsa de origen)", "convertido": "en su moneda (convertido desde el ADR)",
+              "variable": "regla de años pagando (sin su moneda)"}.get(r.get("fuente_historial"), "")
+        lin += [f"■ {t} ({r['score']}): {r['conclusion'] or '—'}", f"   Historial ({de}): {hist}",
                 f"   Tendencia: {'%+.1f%% (%s)' % (tend['valor'], tend['fuente']) if tend else 'sin dato'}", ""]
     if fallas:
         lin += [f"Sin estimación de analistas en Yahoo: {', '.join(fallas)}"]

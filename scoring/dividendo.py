@@ -156,7 +156,7 @@ def _habitual(c):
     return min((1, 2, 4), key=lambda x: (abs(x - c), -x))
 
 
-def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
+def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
     """Lee la historia de pagos y devuelve años sin recortar, años pagando, aumentos en los últimos 12 años y qué hizo en 2008-09 y 2020.
     - «Dividendo anual regular» de cada año = mediana de sus pagos × pagos habituales por año (la mediana no se mueve por un dividendo
       extraordinario suelto, que según el método no cuenta).
@@ -164,7 +164,8 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
       ese año y el siguiente es menos del 90% de los dos anteriores; así un pago corrido de diciembre a enero no cuenta como recorte).
     - El año en curso no cuenta como año completo, pero si en él el dividendo bajó o se suspendió, los años sin recortar quedan en 0.
     - v1.5.61: sigue_pagando=True (el cache dice que hoy paga dividendo): si en el historial faltan los últimos pagos (pasa con algunos ADR en
-      Yahoo), no se toma como suspensión; queda "historial_incompleto"."""
+      Yahoo), no se toma como suspensión; queda "historial_incompleto".
+    - v1.5.69: tolerancia = baja que cuenta como recorte (1%; con pagos reconstruidos desde los dólares, data.moneda_dividendo usa 5%)."""
     hoy = hoy or _dt.date.today()
     por_anio = {}
     for f, m in pagos or []:
@@ -209,18 +210,39 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
     todos = sorted(p for a in por_anio for p in por_anio[a])
     fechas = [_dt.date.fromisoformat(f) for f, _ in todos]
 
+    faltan = []
+
+    def esperados(a):
+        """Pagos que ya tendría que haber hecho en el año `a` (el año en curso, hasta hoy; un año completo, la frecuencia habitual)."""
+        if a < actual:
+            return frec
+        return int(frec * (hoy - _dt.date(actual, 1, 1)).days / 365)
+
+    def hueco(a):
+        # v1.5.69: Yahoo a veces pierde pagos (en el archivo faltan pagos del 2.º semestre de 2025 en 26 empresas: Johnson Controls,
+        # Tenaris, BHP…). Si el año tuvo menos pagos que lo habitual, pero cada pago no bajó y al año siguiente sigue pagando lo mismo o
+        # más, con la cantidad de pagos que corresponde, se toma como dato faltante y no como recorte.
+        if not (0 < n[a] < frec) or not por_anio.get(a - 1) or not por_anio.get(a + 1):
+            return False
+        ref = median(m for _, m in por_anio[a - 1]) * (1 - tolerancia)
+        return (median(m for _, m in por_anio[a]) >= ref and median(m for _, m in por_anio[a + 1]) >= ref
+                and len(por_anio[a + 1]) >= max(1, esperados(a + 1)))
+
     def recorte(a):
         if a - 1 not in tasa or n.get(a - 1, 0) == 0:
             return False               # antes no pagaba: no hay recorte posible
         if n[a] == 0:
             return True                # no pagó en todo el año: suspensión
-        if tasa[a] < tasa[a - 1] * 0.99 and (tasa[a - 1] - tasa[a]) / f_anio[a] > REDONDEO:
+        if hueco(a):
+            faltan.append(a)
+            return False
+        if tasa[a] < tasa[a - 1] * (1 - tolerancia) and (tasa[a - 1] - tasa[a]) / f_anio[a] > REDONDEO:
             # bajó el dividendo regular (más que el redondeo de Yahoo en los montos viejos ajustados por splits: Texas Instruments 2003,
             # 0,0215 → 0,021 por pago, no es recorte). v1.5.61: si el año siguiente vuelve a estar a la altura del anterior, fue el año del cambio de
             # frecuencia (Accenture 2019: último pago semestral de 1,46 y primero trimestral de 0,80) y no un recorte
             sig = tasa.get(a + 1) if a + 1 in tasa and n.get(a + 1) else None
             cambio = len({f_anio.get(a - 1), f_anio[a], f_anio.get(a + 1, f_anio[a])}) > 1     # solo si cambia la frecuencia alrededor
-            return not cambio or sig is None or sig < tasa[a - 1] * 0.99
+            return not cambio or sig is None or sig < tasa[a - 1] * (1 - tolerancia)
         if n[a] < f_anio[a]:
             # pagó menos veces de lo habitual: si el pago que falta se corrió a pocos días del año (diciembre -> enero), no es recorte
             desde, hasta = _dt.date(a, 1, 1) - _dt.timedelta(days=45), _dt.date(a, 12, 31) + _dt.timedelta(days=45)
@@ -234,7 +256,7 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
     en_curso = False
     f_ult = f_anio[ultimo_c]           # v1.5.61: el año en curso se lee con la frecuencia del último año completo
     if por_anio.get(actual):
-        if median(m for _, m in todos[-f_ult:]) * f_ult < tasa[ultimo_c] * 0.99:
+        if median(m for _, m in todos[-f_ult:]) * f_ult < tasa[ultimo_c] * (1 - tolerancia):
             en_curso = True
     dejo = (hoy - fechas[-1]).days > 365 / f_ult * 1.6 + 15
     incompleto = bool(dejo and sigue_pagando)
@@ -265,7 +287,7 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False):
 
     return {"anios_sin_recorte": sin_recorte, "anios_pagando": pagando, "aumentos_12": aumentos, "frecuencia": frec,
             "crisis_0809": crisis((2008, 2009), 2007), "crisis_2020": crisis((2020, 2021), 2019), "recorte_en_curso": en_curso,
-            "ultimo_completo": ultimo_c, "historial_incompleto": incompleto, "ultimo_pago": todos[-1][0],
+            "ultimo_completo": ultimo_c, "historial_incompleto": incompleto, "ultimo_pago": todos[-1][0], "datos_faltantes": faltan,
             "tasa": {a: round(t, 4) for a, t in tasa.items()}}
 
 
@@ -350,7 +372,7 @@ def estimacion_vigente(e):
     return est
 
 
-def entrada(row, estados, historial=None, estimacion=None, grupo=None):
+def entrada(row, estados, historial=None, estimacion=None, grupo=None, dividendo_variable=None):
     """Arma la entrada de calcular() con una fila del cache (data/cache_datos.json) y los estados de la empresa."""
     if grupo is None:
         from config.sectors import TICKER_TO_SECTOR
@@ -360,7 +382,7 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None):
             "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "moneda_estados": row.get("moneda_estados"),
             "ajuste_adr": "equivalentes del ADR" in (row.get("moneda_nota") or ""), "fx": _num_nota(row.get("moneda_nota"), r"fx spot ([0-9.]+)"),
             "n_inv": _num_nota(row.get("moneda_nota"), r"equivalentes del ADR \(x([0-9.]+)"), "estados": estados, "historial": historial,
-            "estimacion": estimacion, "ffo_empresa": ffo_empresa(row.get("ticker"))}
+            "estimacion": estimacion, "ffo_empresa": ffo_empresa(row.get("ticker")), "dividendo_variable": dividendo_variable}
 
 
 # ---------------------------------------------------------------------------------------------------------------------
@@ -381,7 +403,9 @@ def calcular(e):
         return res
     est = e.get("estados") or {}
     util, reit, banco = grupo in UTILITIES, grupo in REITS, grupo in BANCOS
-    variable_ext = (e.get("pais") or "United States") != "United States"
+    # v1.5.69: el recorte se busca en la moneda del dividendo (data.moneda_dividendo.historial); la regla de «años pagando» queda solo
+    # para las de afuera sin forma de medirlo en su moneda (e["dividendo_variable"] = True). Sin el dato, la regla de antes (por país).
+    variable_ext = e["dividendo_variable"] if e.get("dividendo_variable") is not None else (e.get("pais") or "United States") != "United States"
     s = {k: serie(est, k) for k in (EPS, OPI, EBITDA, INT, FCF, DIVP, ND, PAT, DT)}
     ratio_nd = serie(est, "Deuda neta / EBITDA")
     V = []          # variables: dict(clave, pilar, pts, max, valor, texto_valor)
