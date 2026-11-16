@@ -104,6 +104,8 @@ def buscar_ticker(paquetes, ticker, hoy=None):
         faltan = "hoy" if dias == 0 else "mañana" if dias == 1 else f"en {dias} días" if dias > 1 else f"hace {-dias} días"
         cuando = f"el {_SEM[f0.weekday()]} {f0.strftime('%d/%m/%Y')} ({faltan})"
     mom = {"antes": ", antes de la apertura del mercado", "despues": ", después del cierre del mercado"}.get(ag.get("momento"), "")
+    if (f1 or f0) < hoy:      # v1.5.70: la fecha guardada ya pasó (el archivo es anterior a la presentación)
+        return f"{t} presentó resultados el {f0.strftime('%d/%m/%Y')}. La fecha de los próximos llega con la próxima bajada de datos."
     return f"{t} presenta resultados {cuando}{mom}."
 
 

@@ -53,7 +53,7 @@ for nom, pos in casos.items():
                 for t in ("Objetivo como inversor", "Estructura de tu cartera", "Diversificación geográfica", "Diversificación sectorial", "Liquidez", "Conclusiones finales"):
                     chk(t in titulos, f"{nom}: falta {t}")
                 if res["peso"]["rv"] >= 1 and res.get("super"):
-                    chk("Defensivo 50 %, Cíclico 20 % y Sensible 30 %" in txt and "entre 20 y 30 posiciones" in txt, f"{nom}: leyenda sectorial")
+                    chk("Defensivo 50%, Cíclico 20% y Sensible 30%" in txt and "entre 20 y 30 posiciones" in txt, f"{nom}: leyenda sectorial")
                 ref = CM.referencia(edad, perfil)
                 chk("Objetivo:" in txt and re.sub(r"^normalmente ", "generalmente ", CM.OBJETIVO_RESUMEN[ref[0]]) in txt, f"{nom}/{edad}: objetivo")
                 chk("La diversificación geográfica es clave" in txt and "Armar una cartera lleva tiempo" in txt and "La cartera teórica de referencia para una persona de" in txt, f"{nom}: bases fijas")
@@ -73,3 +73,4 @@ chk(pos[0].get("pais") == "Alemania", "columna País leída")
 import openpyxl
 wb = openpyxl.load_workbook(io.BytesIO(C.plantilla_excel())); chk("País (opcional)" in [c.value for c in wb.active[1]], "plantilla con País")
 print("OK", ok, "MAL", bad)
+__import__("sys").exit(1 if bad else 0)      # v1.5.70: una prueba con MAL termina con error

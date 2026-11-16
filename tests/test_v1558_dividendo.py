@@ -197,3 +197,4 @@ estado, _, sumados = BS.procesar("X", facts, archivo, [])
 chk(estado == "ok" and sumados == ["2014", "2015"] and "2014" in archivo["X"]["anios"], "bajar_sec.procesar suma los años")
 
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

@@ -20,7 +20,7 @@ for edad in (28, 45, 52, 66, 75):
         todo = re.sub(r"\*\*|==|__", "", " ".join(" ".join(f) for _, f in sec))
         for a in ("Malkiel", "Graham", "Lynch", "Buffett", "Chowder", "Damodaran", "Nelissen"):
             chk(a not in todo, f"autor {a} en {edad}/{perfil}")
-        chk("recomend" not in todo.lower().replace("no es una recomend", "").replace("una recomendación formal", ""), f"recomendación en {edad}/{perfil}")
+        chk("recomend" not in todo.lower().replace("no es una recomend", "").replace("una recomendación formal", "").replace("y no una recomendación de inversión", ""), f"recomendación en {edad}/{perfil}")
         h = CV.visual_html(res, edad, perfil, "Ana", "01/11/2026")
         chk("Hola Ana" in h and "puede cometer errores" in h and "absoluta responsabilidad" in h and "Aviso Legal:" in h and "Abrazo grande" in h, "saludo/avisos")
         chk("Estructura de tu Cartera" in h and "Pesos" not in h and "pesos" not in todo.lower(), "sin la palabra pesos")
@@ -40,14 +40,14 @@ chk("se deslinda" in C.AVISO_CARTERA[0] and "no queda guardado" in C.AVISO_CARTE
 import subprocess
 open(os.path.join(__import__("tempfile").gettempdir(), "t.pdf"),"wb").write(CI.pdf_informe(res, 52, "Moderado", nombre="Ana", hoy=None, previa=g))
 tx = subprocess.run(["pdftotext","-layout",os.path.join(__import__("tempfile").gettempdir(), "t.pdf"),"-"],capture_output=True,text=True).stdout
-chk(all(x in tx for x in ("Fecha del análisis","Hola Ana","Estructura de tu Cartera","Conclusiones Finales","En orden de importancia","Abrazo grande","Comparación con tu evaluación anterior","absoluta responsabilidad","Aviso Legal:")), "pdf = app")
+chk(all(x in tx for x in ("Fecha del análisis","Hola Ana","Estructura de tu Cartera","Conclusiones Finales","Comparada con la cartera de referencia","Abrazo grande","Comparación con tu evaluación anterior","absoluta responsabilidad","Aviso Legal:")), "pdf = app")
 chk("/Pattern" in open(os.path.join(__import__("tempfile").gettempdir(), "t.pdf"),"rb").read().decode("latin1") or True, "pdf ok")
 chk("Privacidad" not in tx and "asesoramiento financiero, legal" not in tx and "TodoCedears ·" not in tx, "sin avisos viejos ni pie")
 for sec_ in ("Objetivo como inversor","Estructura de tu cartera","Diversificación geográfica","Diversificación sectorial","Liquidez","Conclusiones finales"):
     chk(sec_ in [t for t,_ in C.devolucion(res,52,"Moderado","Ana")], "sección "+sec_)
 sc = dict(C.devolucion(res,52,"Moderado","Ana"))["Diversificación sectorial"]
 sc = [re.sub(r"\*\*|==|__", "", x) for x in sc]
-chk(any("Defensivo 50 %, Cíclico 20 % y Sensible 30 %" in x for x in sc) and any("entre 20 y 30 posiciones" in x for x in dict(C.devolucion(res,52,"Moderado","Ana"))["Diversificación sectorial (detalle GICS)"]), "leyenda sectorial y guía de empresas siempre")
+chk(any("Defensivo 50%, Cíclico 20% y Sensible 30%" in x for x in sc) and any("entre 20 y 30 posiciones" in x for x in dict(C.devolucion(res,52,"Moderado","Ana"))["Diversificación sectorial (detalle GICS)"]), "leyenda sectorial y guía de empresas siempre")
 chk(any("ETF" not in x or "no entran" in x for x in sc), "ok")
 # v1.5.3: formato y texto pedidos por Guille (03/11/2026)
 res = C.analizar(pos, 48, "Agresivo", emp, {})
@@ -59,13 +59,13 @@ chk("No tenés oro" not in txt and "cv-hl" not in h and "cv-pq" not in h and "Tu
 chk(h.count("conic-gradient") >= 4, "tortas (clases, geografía, supersectores y GICS)")
 chk("Renta Variable" in txt and not re.search(r"renta (variable|fija)", txt), "Renta Variable con mayúscula: " + " / ".join(m.group(0) for m in re.finditer(r".{25}renta (?:variable|fija).{20}", txt)))
 fr = dict(C.devolucion(res, 48, "Agresivo", "Andrés"))["Conclusiones finales"]
-chk(fr[0].startswith("Armar una cartera lleva tiempo") and not fr[0].startswith("**") and any(x.startswith("##En orden de importancia") for x in fr), "conclusiones")
+chk(fr[0].startswith("Armar una cartera lleva tiempo") and not fr[0].startswith("**") and any(x.startswith("##Comparada con la cartera de referencia") for x in fr), "conclusiones")
 lq = dict(C.devolucion(res, 48, "Agresivo", "Andrés"))["Liquidez"]
 chk(lq[0].startswith("La liquidez (efectivo"), "liquidez: primero la base teórica")
 _e = {"AAPL": {"nombre": "Apple", "sector": "Tecnología", "pais": "Estados Unidos"}}
 _r = C.analizar([{"ticker": "AAPL", "monto": 7000, "tipo": ""}, {"ticker": "Adcap Money Market", "monto": 2000, "tipo": "Money Market"}, {"ticker": "Efectivo USD", "monto": 1000, "tipo": "efectivo"}], 45, "Moderado", _e, {})
 _l = " ".join(dict(C.devolucion(_r, 45, "Moderado", "Laura"))["Liquidez"])
-chk("esa liquidez está en Adcap Money Market (20 %) y Efectivo USD (10 %)" in _l, "liquidez: dice dónde está: " + _l[-200:])
+chk("esa liquidez está en Adcap Money Market (20%) y Efectivo USD (10%)" in _l, "liquidez: dice dónde está: " + _l[-200:])
 _r2 = C.analizar([{"ticker": "AAPL", "monto": 6500, "tipo": ""}, {"ticker": "Adcap Money Market", "monto": 3500, "tipo": "Money Market"}], 45, "Moderado", _e, {})
 _l2 = " ".join(dict(C.devolucion(_r2, 45, "Moderado", "Laura"))["Liquidez"])
 chk("no es plata quieta" in _l2 and "sin rendimiento propio" not in _l2, "liquidez en Money Market: no dice que no rinde: " + _l2[:300])
@@ -75,3 +75,4 @@ chk("sin rendimiento propio" in _l3 and "no es plata quieta" not in _l3, "efecti
 pdf = CI.pdf_informe(res, 48, "Agresivo", nombre="Andrés")
 chk((C.resumen_de_pdf(pdf) or {}).get("formato") == "evaluacion_cartera_v1" and C.resumen_de_pdf(b"%PDF-1.4 no") is None, "resumen dentro del PDF")
 print("OK", ok, "MAL", bad)
+__import__("sys").exit(1 if bad else 0)      # v1.5.70: una prueba con MAL termina con error

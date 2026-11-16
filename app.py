@@ -6,7 +6,7 @@ y técnicas de Stock Analysis y Yahoo Finance (caché que se actualiza una vez p
 Ejecutar: streamlit run app.py
 """
 
-APP_VERSION = "1.5.69"
+APP_VERSION = "1.5.70"
 
 import re
 import contextlib
@@ -203,6 +203,21 @@ try:
     from config.ajustes import PRECIOS_VIVOS, PRECIOS_MINUTOS_CACHE
 except ImportError:      # ajustes.py viejo
     PRECIOS_VIVOS, PRECIOS_MINUTOS_CACHE = True, 5
+try:
+    from config.ajustes import VALORACION_CON_PRECIO_DE_HOY
+except ImportError:
+    VALORACION_CON_PRECIO_DE_HOY = True
+from scoring.engine import rescorar_con_precios as _rescorar_con_precios
+
+
+def _con_precios_de_hoy(df_p):
+    """v1.5.70 (decisión de Guille, 16/11/2026): con el precio de hoy ya puesto, recalcula puntaje y categoría (ver scoring/engine.py)."""
+    if not VALORACION_CON_PRECIO_DE_HOY:
+        return df_p
+    try:
+        return _rescorar_con_precios(df_p)[0]
+    except Exception:  # noqa: BLE001
+        return df_p
 
 
 def _orden_tickers(df: pd.DataFrame) -> tuple:
@@ -507,16 +522,23 @@ def _etfs_guardados():
         return {}, None
 
 
-@st.cache_data(ttl=max(1, int(PRECIOS_MINUTOS_CACHE)) * 60, show_spinner=False)
-def _info_etfs(items: tuple) -> dict:
+def _bajar_info_etfs(items: tuple) -> dict:
+    info = _pv.bajar_usd([s for _, s in items], respaldo=False)
+    usd, var = info.get("usd") or {}, info.get("var") or {}
+    return {"precio": {t: usd[s] for t, s in items if s in usd}, "var": {t: var[s] for t, s in items if s in var}}
+
+
+def _info_etfs(items: tuple, esperar: float = 5.0) -> dict:
     """Precios en dolares y variacion del dia de los ETFs: items = ((ticker, simbolo de Yahoo), ...). Un solo pedido a Yahoo.
-    {'precio': {ticker: usd}, 'var': {ticker: %}} (vacios si no responde)."""
+    {'precio': {ticker: usd}, 'var': {ticker: %}} (vacios si no responde).
+    v1.5.70: igual que las empresas (data/swr.py): se devuelve al instante lo último bajado y se renueva en segundo plano. Antes, cuando Yahoo no
+    respondía, la tabla de ETFs esperaba la bajada entera (medido: 47,6 s sin ningún precio) y además guardaba ese resultado vacío 5 minutos."""
+    vacio = {"precio": {}, "var": {}}
     try:
-        info = _pv.bajar_usd([s for _, s in items], respaldo=False)
-        usd, var = info.get("usd") or {}, info.get("var") or {}
-        return {"precio": {t: usd[s] for t, s in items if s in usd}, "var": {t: var[s] for t, s in items if s in var}}
+        return _swr.obtener(("etfs", items), lambda: _bajar_info_etfs(items), max(1, int(PRECIOS_MINUTOS_CACHE)) * 60,
+                            valido=lambda r: bool(r.get("precio")), vacio=vacio, esperar=esperar) or vacio
     except Exception:  # noqa: BLE001
-        return {"precio": {}, "var": {}}
+        return vacio
 
 
 def _precios_etfs(items: tuple) -> dict:
@@ -1832,6 +1854,14 @@ def _confirmar_lectura(pos, firma, empresas, etfs, C):
     if not out:
         st.warning("No hay posiciones en la tabla. Agregá al menos una fila con el ticker y el monto.")
         return None, ["al menos una posición en la tabla"], None
+    # v1.5.70 (pedido de Guille): aviso si la moneda de la tabla no cierra con los % del archivo o con el precio por unidad de los CEDEARs; la persona corrige ahí mismo
+    try:
+        extras = {str(p["ticker"]).strip().upper(): {k: p[k] for k in ("pct_archivo", "cantidad", "precio") if k in p} for p in pos}
+        ratios = {C.clave_tk(t): v.get("ratio") for t, v in __import__("data.cedears", fromlist=["cargar"]).cargar().items()}
+        for aviso in C.chequeo_monedas([dict(q, **extras.get(q["ticker"].upper(), {})) for q in out], empresas, ratios):
+            st.warning(aviso)
+    except Exception:  # noqa: BLE001
+        pass
     tot = {"usd": sum(q["monto"] for q in out if q["moneda"] == "usd"), "ars": sum(q["monto"] for q in out if q["moneda"] == "ars")}
     partes = ([f"US\\$ {_fmt_num(tot['usd'])}"] if tot["usd"] else []) + ([f"\\$ {_fmt_num(tot['ars'])}"] if tot["ars"] else [])      # \\$ para que no lo tome como fórmula
     if partes:
@@ -1938,7 +1968,8 @@ def _evaluar_cartera(df, C, CV):
                 if hay_img:
                     st.info("Leí tu captura: el sistema puede confundir números y letras, así que revisá bien la tabla.")
                 for _, r in df.iterrows():
-                    empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta")}
+                    empresas[C.clave_tk(r.get("ticker"))] = {"nombre": r.get("nombre"), "sector": r.get("sector"), "pais": r.get("pais"), "categoria": r.get("categoria"), "beta": r.get("beta"),
+                                                             "precio_usd": r.get("precio_actual")}      # v1.5.70: para controlar la moneda por el precio por unidad
                 try:
                     etfs = {C.clave_tk(e["ticker"]): e for e in __import__("data.etfs", fromlist=["cargar"]).cargar()}
                 except Exception:  # noqa: BLE001
@@ -2069,7 +2100,7 @@ def _rentabilidad_anual(C):
     def filas_res(aportado, retirado, gan, tot, dias):
         signo = "+" if gan >= 0 else "−"
         return [f"Aportes: <b>{usd(aportado)}</b>", f"Retiros: <b>{usd(retirado)}</b>",
-                f"Rendimiento sobre el capital invertido: <b>{signo}US$ {_fmt_num(abs(gan))}</b> ({signo}{_fmt_num(abs(tot), 1)} %)", f"Período analizado: <b>{C.duracion_txt(dias)}</b>"]
+                f"Rendimiento sobre el capital invertido: <b>{signo}US$ {_fmt_num(abs(gan))}</b> ({signo}{_fmt_num(abs(tot), 1)}%)", f"Período analizado: <b>{C.duracion_txt(dias)}</b>"]
     nominal = "Los números son nominales (no descuentan inflación ni cambios en el tipo de cambio) y no garantizan resultados futuros."
     aviso_corto = "Pasó menos de un año, así que no te lo pasamos a «por año»: con tan poco tiempo ese número exagera. Te mostramos lo que rindió en ese período."
 
@@ -2109,11 +2140,11 @@ def _rentabilidad_anual(C):
             return
         filas = filas_res(r["aportado"], r["retirado"], r["ganancia"], r["total_pct"], r["dias"])
         if r["anual"] is not None:
-            tarjeta("Tu Rentabilidad Anualizada en Dólares fue:", f"{_fmt_num(r['anual'], 1)} %", "", filas,
+            tarjeta("Tu Rentabilidad Anualizada en Dólares fue:", f"{_fmt_num(r['anual'], 1)}%", "", filas,
                     ["Calculado con la fecha de cada aporte y retiro: es la tasa anual con la que creció el dinero mientras estuvo invertido. " + nominal])
         else:
             sg = "+" if r["periodo_pct"] >= 0 else "−"
-            tarjeta(f"Tu Rentabilidad en Dólares en {C.duracion_txt(r['dias'])} fue:", f"{sg}{_fmt_num(abs(r['periodo_pct']), 1)} %", "", filas,
+            tarjeta(f"Tu Rentabilidad en Dólares en {C.duracion_txt(r['dias'])} fue:", f"{sg}{_fmt_num(abs(r['periodo_pct']), 1)}%", "", filas,
                     ["Es lo que rindió el dinero que tuviste invertido durante ese tiempo (cada aporte y retiro pesa según los días que estuvo en la cartera). " + nominal], aviso=aviso_corto)
         return
 
@@ -2145,12 +2176,12 @@ def _rentabilidad_anual(C):
     nota_ret = "Los retiros se contaron como si los hubieras hecho hoy: si los hiciste antes, el resultado real cambia un poco. " if ret else ""
     if anios < 1:
         sg = "+" if tot >= 0 else "−"
-        tarjeta(f"Tu Rentabilidad en Dólares en {C.duracion_txt(dias)} fue:", f"{sg}{_fmt_num(abs(tot), 1)} %", "", filas,
+        tarjeta(f"Tu Rentabilidad en Dólares en {C.duracion_txt(dias)} fue:", f"{sg}{_fmt_num(abs(tot), 1)}%", "", filas,
                 ["Es lo que ganó tu plata sobre lo que pusiste en total. Si fuiste aportando de a poco, sobre el dinero que estuvo invertido el rendimiento fue algo mayor. "
                  "Si querés afinarlo, volvé y elegí la opción de las fechas exactas. " + nota_ret + nominal], aviso=aviso_corto)
         return
     if final <= 0:
-        st.warning("Con capital final en cero no se puede estimar la tasa por año. Si perdiste todo, la ganancia total es −100 %.")
+        st.warning("Con capital final en cero no se puede estimar la tasa por año. Si perdiste todo, la ganancia total es −100%.")
         return
     r = C.rentabilidad_anual(aportado, final, anios, ret)
     if r is None:
@@ -2159,12 +2190,12 @@ def _rentabilidad_anual(C):
     pares = [x for x in (r["anual_inicio"], r["anual_parejo"]) if x is not None]
     lo, hi = min(pares), max(pares)
     if hi - lo > 0.05:
-        porque = (f"<b>Por qué es una estimación:</b> no sabemos cuándo pusiste cada aporte, y eso cambia el resultado. Si pusiste toda la plata el primer día, tu rendimiento por año fue de <b>{_fmt_num(lo, 1)} %</b>. "
-                  f"Si fuiste aportando un poquito cada mes, el dinero estuvo menos tiempo invertido y el rendimiento por año fue de <b>{_fmt_num(hi, 1)} %</b>. Lo real está entre esos dos números. "
+        porque = (f"<b>Por qué es una estimación:</b> no sabemos cuándo pusiste cada aporte, y eso cambia el resultado. Si pusiste toda la plata el primer día, tu rendimiento por año fue de <b>{_fmt_num(lo, 1)}%</b>. "
+                  f"Si fuiste aportando un poquito cada mes, el dinero estuvo menos tiempo invertido y el rendimiento por año fue de <b>{_fmt_num(hi, 1)}%</b>. Lo real está entre esos dos números. "
                   "Para el número exacto, volvé y elegí la opción de las fechas exactas.")
-        tarjeta("Tu Rentabilidad Anualizada en Dólares se encuentra en el rango entre:", f"{_fmt_num(lo, 1)} % y {_fmt_num(hi, 1)} %", "", filas, [nota_ret + nominal], nota_g=porque)
+        tarjeta("Tu Rentabilidad Anualizada en Dólares se encuentra en el rango entre:", f"{_fmt_num(lo, 1)}% y {_fmt_num(hi, 1)}%", "", filas, [nota_ret + nominal], nota_g=porque)
     else:
-        tarjeta("Tu Rentabilidad Anualizada en Dólares fue:", f"{_fmt_num(lo, 1)} %", "", filas, [nota_ret + nominal])
+        tarjeta("Tu Rentabilidad Anualizada en Dólares fue:", f"{_fmt_num(lo, 1)}%", "", filas, [nota_ret + nominal])
 
 
 def render_barra_cartera(df):
@@ -2215,7 +2246,7 @@ def render_ideas(universe_key):
             info_p = _precios_usd(_orden_tickers(df))
             df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"), info_p.get("var"))
             if n_p:
-                df = df_p
+                df = _con_precios_de_hoy(df_p)
         except Exception:  # noqa: BLE001
             pass
     if PRECIOS_VIVOS and etfs and clave in (None, "altos"):
@@ -2375,7 +2406,7 @@ def _main(ctx):
                 info_p = _precios_usd(_orden_tickers(df))
             df_p, n_p = _pv.aplicar_precios(df, info_p.get("usd") or {}, info_p.get("fecha"), info_p.get("hora"), info_p.get("fuente"), info_p.get("var"))
             if n_p:
-                df = df_p
+                df = _con_precios_de_hoy(df_p)
                 f_p = info_p.get("fecha")
                 # v1.2.48: el pie no dice de que fuente vino cada precio (dato interno nuestro): solo la fecha y la hora
                 # v1.4.9 (pedido de Guille): no se muestra la fecha del cache (puede quedar vieja); solo la de los precios de hoy, como "Datos al dd/mm/aaaa (hh:mm)"

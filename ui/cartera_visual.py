@@ -4,7 +4,7 @@ import html
 import re
 
 from data import carteras_modelo as CM
-from ui.cartera import AVISO_CARTERA, CLASES, despedida, saludo, LIQ_MAX, LIQ_MIN, comparar, devolucion, nivel
+from ui.cartera import AVISO_CARTERA, AVISO_INICIO, CLASES, despedida, saludo, LIQ_MAX, LIQ_MIN, comparar, devolucion, nivel
 
 COL_CLASE = {"rv": "#2563eb", "rf": "#7c3aed", "efectivo": "#14b8a6", "oro": "#f59e0b", "cripto": "#ec4899", "otros": "#94a3b8"}
 COL_GEO = {"usa": "#2563eb", "desarrollados": "#0ea5e9", "emergentes": "#f97316", "fuera_sd": "#8b5cf6", "global": "#14b8a6", "sin": "#cbd5e1"}
@@ -113,7 +113,7 @@ def _lista(frases):
 
 
 def _tramos(items):
-    """Tramos del gráfico (conic-gradient). Una porción chica (por ejemplo 1 %) se dibuja con un mínimo para que se vea; la leyenda lleva el número real."""
+    """Tramos del gráfico (conic-gradient). Una porción chica (por ejemplo 1%) se dibuja con un mínimo para que se vea; la leyenda lleva el número real."""
     tot = sum(v for _, v, _ in items) or 1
     vis = [max(v / tot, 0.03) for _, v, _ in items]
     sv = sum(vis)
@@ -131,7 +131,7 @@ def _bloque(items, vacio="Sin datos para graficar"):
     tot = sum(v for _, v, _ in items) or 1
     if items:
         tramos = _tramos(items)
-        leyenda = "".join(f'<div><i style="background:{c}"></i>{html.escape(n)}</div><b>{v / tot * 100:.0f} %</b>' for n, v, c in items)
+        leyenda = "".join(f'<div><i style="background:{c}"></i>{html.escape(n)}</div><b>{v / tot * 100:.0f}%</b>' for n, v, c in items)
     else:
         tramos, leyenda = ["#e5e9f0 0% 100%"], f"<div>{vacio}</div><b></b>"
     return (f'<div class="cv-dos"><div class="cv-bd"><div class="cv-top"><div class="cv-donut" style="background:conic-gradient({", ".join(tramos)})"></div>'
@@ -151,8 +151,8 @@ def aviso_html():
 def _barra_apilada(partes):
     """partes: [(nombre, %, color)]; barra apilada con la leyenda abajo."""
     partes = [(n, v, c) for n, v, c in partes if v >= 0.5]
-    segs = "".join(f'<i style="width:{v:.2f}%;background:{c}" title="{html.escape(n)} {v:.0f} %">{f"{v:.0f}%" if v >= 7 else ""}</i>' for n, v, c in partes)
-    lg = "".join(f'<span><i style="background:{c}"></i>{html.escape(n)} <b>{v:.0f} %</b></span>' for n, v, c in partes)
+    segs = "".join(f'<i style="width:{v:.2f}%;background:{c}" title="{html.escape(n)} {v:.0f}%">{f"{v:.0f}%" if v >= 7 else ""}</i>' for n, v, c in partes)
+    lg = "".join(f'<span><i style="background:{c}"></i>{html.escape(n)} <b>{v:.0f}%</b></span>' for n, v, c in partes)
     return f'<div class="cv-st">{segs}</div><div class="cv-lg2">{lg}</div>'
 
 
@@ -196,7 +196,7 @@ def visual_html(res, edad, perfil, nombre="", fecha="", previa=None):
     ef = res.get("efectivo_propio")
     out = []
     s1, s2 = saludo(nombre, edad, perfil)
-    out.append(_card("Evaluación de tu Portfolio", f'<p class="cv-p"><b>{html.escape(s1)}</b></p><p class="cv-p">{html.escape(s2)}</p>' + _cuerpo(sec.get("Objetivo como inversor", [])),
+    out.append(_card("Evaluación de tu Portfolio", f'<p class="cv-p"><b>{html.escape(s1)}</b></p><p class="cv-p">{html.escape(s2)}</p><p class="cv-p"><i>{html.escape(AVISO_INICIO)}</i></p>' + _cuerpo(sec.get("Objetivo como inversor", [])),
                      pie=html.escape(str(fecha))))
     out.append(_card("Estructura de tu Cartera", _bloque_donut(pi, con_liquidez=bool(ef)) + _cuerpo(sec["Estructura de tu cartera"])))
     g = res.get("geo")

@@ -75,7 +75,7 @@ def ultimo_cruce(pares, corta=50, larga=200, ventana=1100):
 
 
 def volatilidad(cierres, ruedas=252):
-    """Desvío estándar de los retornos diarios de las últimas `ruedas` ruedas, anualizado (fracción: 0.3 = 30 %); None si hay menos de 60 retornos."""
+    """Desvío estándar de los retornos diarios de las últimas `ruedas` ruedas, anualizado (fracción: 0.3 = 30%); None si hay menos de 60 retornos."""
     if not cierres or len(cierres) < 61:
         return None
     c = cierres[-(ruedas + 1):]
@@ -88,7 +88,7 @@ def volatilidad(cierres, ruedas=252):
 
 
 def caida_maxima(pares, anios):
-    """Peor caída (fracción negativa: -0.35 = -35 %) de un pico a un piso posterior dentro de los últimos `anios` años; None si la historia es más corta
+    """Peor caída (fracción negativa: -0.35 = -35%) de un pico a un piso posterior dentro de los últimos `anios` años; None si la historia es más corta
     que el período."""
     if not pares:
         return None
@@ -168,9 +168,9 @@ def tile_rango(ind):
     desde_max = p / hi - 1.0 if hi else None
     desde_min = p / lo - 1.0 if lo else None
     filas = [_fila("Distancia al máximo", _color(desde_max, _pct(desde_max)) if desde_max is not None else "—",
-                   "Cuánto está el precio por debajo del máximo de las últimas 52 semanas. Ej.: máximo US$ 100, hoy US$ 85 → -15,0 %."),
+                   "Cuánto está el precio por debajo del máximo de las últimas 52 semanas. Ej.: máximo US$ 100, hoy US$ 85 → -15,0%."),
              _fila("Distancia al mínimo", _color(desde_min, _pct(desde_min)) if desde_min is not None else "—",
-                   "Cuánto está el precio por encima del mínimo de las últimas 52 semanas. Ej.: mínimo US$ 70, hoy US$ 85 → +21,4 %."),
+                   "Cuánto está el precio por encima del mínimo de las últimas 52 semanas. Ej.: mínimo US$ 70, hoy US$ 85 → +21,4%."),
              _fila("Promedio de 52 semanas", _money(med),
                    "Promedio de todos los cierres del último año. Si el precio de hoy está por encima, el último año cotizó en promedio más barato que hoy."),
              _fila("Hoy vs promedio", _color(p / med - 1.0, _pct(p / med - 1.0)), "Diferencia entre el precio de hoy y ese promedio.")]
@@ -183,7 +183,7 @@ def tile_promedios(ind):
     p = ind["precio"]
     s50, s200 = ind.get("sma50"), ind.get("sma200")
     filas = [_fila("Promedio de 50 ruedas", _vs(p, s50),
-                   "Promedio de los últimos 50 cierres (unos 2 meses y medio). Ej.: si promedió US$ 100 y hoy cotiza a US$ 110, el precio está +10 % por encima: viene subiendo en el corto plazo."),
+                   "Promedio de los últimos 50 cierres (unos 2 meses y medio). Ej.: si promedió US$ 100 y hoy cotiza a US$ 110, el precio está +10% por encima: viene subiendo en el corto plazo."),
              _fila("Promedio de 200 ruedas", _vs(p, s200),
                    "Promedio de los últimos 200 cierres (casi 10 meses): muestra la tendencia de fondo. Cuanto más arriba esté el precio, más fuerte viene el último tramo.")]
     if s50 is not None and s200 is not None:
@@ -230,10 +230,10 @@ def tile_riesgo(ind):
     from ui import ficha as F
     v = ind.get("vol")
     filas = [_fila("Volatilidad anual", _pct(v, signo=False) if v is not None else "—",
-                   "Cuánto suele moverse el precio en un año (desvío estándar de los retornos diarios, anualizado). Ej.: 30 % significa que un año típico puede traer movimientos de unos 30 % "
+                   "Cuánto suele moverse el precio en un año (desvío estándar de los retornos diarios, anualizado). Ej.: 30% significa que un año típico puede traer movimientos de unos 30% "
                    "hacia arriba o hacia abajo. Cuanto mayor, más sube y baja."),
              _fila("Caída máxima en 1 año", _color(ind["dd1"], _pct(ind["dd1"])) if ind.get("dd1") is not None else "—",
-                   "La peor caída desde un pico hasta el piso siguiente dentro del último año. Ej.: -35 % quiere decir que quien compró justo en el pico llegó a perder el 35 %."),
+                   "La peor caída desde un pico hasta el piso siguiente dentro del último año. Ej.: -35% quiere decir que quien compró justo en el pico llegó a perder el 35%."),
              _fila("Caída máxima en 5 años", _color(ind["dd5"], _pct(ind["dd5"])) if ind.get("dd5") is not None else "—",
                    "Lo mismo, mirando los últimos 5 años (sólo si el activo tiene esa historia).")]
     return F._tile("s6", "Riesgo", '<div class="fch-kv" style="margin-top:0">' + "".join(filas) + "</div>", ac="#ef4444")

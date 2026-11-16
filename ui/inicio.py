@@ -6,7 +6,7 @@ import html
 
 TITULO_1 = "No compres CEDEARs a ciegas."
 TITULO_2 = "Conocelos antes de invertir."
-TEXTO = "Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para saber cuáles están baratas."
+TEXTO = "Todos los CEDEARs de Acciones y ETFs en un solo lugar. Análisis de empresas y filtros para estimar cuáles podrían estar baratas."
 TEXTO_NEGRITA = "Todo Gratuito!"
 BOTON = "Comenzar"
 
@@ -47,9 +47,9 @@ def _score(n, col):
 
 # Foto fija del 02/11/2026 (datos de la app: nombre, sector, valoración con su barra, score y dividendo). Los colores ya están oscurecidos para que se lean sobre blanco.
 FOTO = [
-    {"nombre": "Microsoft Corporation", "sub": "MSFT · Software y nube", "pos": 28.5, "col": "#10632f", "txt": "Podría estar significativamente infravalorada", "sc": 71, "dy": "0,8 %"},
-    {"nombre": "Alphabet Inc.", "sub": "GOOGL · Comunicación", "pos": 44.1, "col": "#b68b06", "txt": "Podría estar razonablemente valuada", "sc": 53, "dy": "0,3 %"},
-    {"nombre": "The Coca-Cola Company", "sub": "KO · Consumo Básico", "pos": 64.2, "col": "#c25911", "txt": "Podría estar moderadamente sobrevalorada", "sc": 36, "dy": "2,2 %"},
+    {"nombre": "Microsoft Corporation", "sub": "MSFT · Software y nube", "pos": 28.5, "col": "#10632f", "txt": "Podría estar significativamente infravalorada", "sc": 71, "dy": "0,8%"},
+    {"nombre": "Alphabet Inc.", "sub": "GOOGL · Comunicación", "pos": 44.1, "col": "#b68b06", "txt": "Podría estar razonablemente valuada", "sc": 53, "dy": "0,3%"},
+    {"nombre": "The Coca-Cola Company", "sub": "KO · Consumo Básico", "pos": 64.2, "col": "#c25911", "txt": "Podría estar moderadamente sobrevalorada", "sc": 36, "dy": "2,2%"},
 ]
 
 

@@ -169,3 +169,4 @@ estado, det, _ = BS.procesar("Q", {"entityName": "Ejemplo SA", "facts": {"dei": 
 chk(estado == "sin_datos" and "Ejemplo SA" in det and "ninguno de nuestros conceptos" in det, f"diagnóstico de «sin datos»: {det}")
 
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

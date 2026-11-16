@@ -102,3 +102,4 @@ chk(S.quitar_por_accion(r) == ["2019"] and r["anios"]["2022"]["resultados"][EPS]
     "quitar_por_accion solo toca los años de la SEC")
 
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

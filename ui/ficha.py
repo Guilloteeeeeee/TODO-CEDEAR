@@ -705,10 +705,18 @@ def _tiles_resumen(row, ficha, mercado, agenda=None):
     res = ag.get("resultados")
     if res and res[0]:
         f0, f1 = res
-        txt = f"{f0.strftime('%d/%m/%Y')} – {f1.strftime('%d/%m/%Y')}" if f1 else f0.strftime("%d/%m/%Y")
-        mom = {"antes": " · antes de la apertura", "despues": " · después del cierre"}.get(ag.get("momento"), "")
-        cuan.append(_fila_kv("Fecha de resultados (Earnings Date)", txt + mom,
-                             "Día en que la empresa presenta sus resultados trimestrales. Si todavía no la confirmó, es una estimación y puede cambiar."))
+        import datetime as _dtf
+        _hoy = _dtf.date.today()
+        _d = lambda x: x.date() if hasattr(x, "date") and callable(x.date) else x      # noqa: E731
+        if _d(f1 or f0) < _hoy:
+            # v1.5.70: la fecha guardada ya pasó (el archivo es de antes de que presentara): no se muestra como «próxima»
+            cuan.append(_fila_kv("Últimos resultados", f"Presentó el {f0.strftime('%d/%m/%Y')}",
+                                 "Día en que la empresa presentó sus últimos resultados trimestrales. La fecha de los próximos se actualiza con la próxima bajada de datos."))
+        else:
+            txt = f"{f0.strftime('%d/%m/%Y')} – {f1.strftime('%d/%m/%Y')}" if f1 else f0.strftime("%d/%m/%Y")
+            mom = {"antes": " · antes de la apertura", "despues": " · después del cierre"}.get(ag.get("momento"), "")
+            cuan.append(_fila_kv("Fecha de resultados (Earnings Date)", txt + mom,
+                                 "Día en que la empresa presenta sus resultados trimestrales. Si todavía no la confirmó, es una estimación y puede cambiar."))
     if _n(f.get("ev")):
         cuan.append(_fila_kv("Valor de empresa (EV)", _usd_abrev(f.get("ev")), "Lo que costaría comprar toda la empresa: valor de mercado más deuda, menos caja."))
     if _n(f.get("acciones")):
@@ -1182,6 +1190,9 @@ def tiles_analisis_v4(af, estados=None, row=None, universo=None, historial=None,
     if val.get("texto"):
         fp = ctx.get("fecha_precio")
         art += "<h3>Valuación</h3>"
+        if fp:      # v1.5.70: la categoría de la ficha se mueve con el precio de hoy; la del informe es una foto del día en que se escribió
+            art += (f'<p style="font-size:.86em;color:#64748b;font-style:italic">Valuación al {html.escape(str(fp))}, cuando se escribió este informe. '
+                    'La de hoy está en la solapa Valuación.</p>')
         art += V.texto_html(val["texto"], ctx=ctx, graficos=graf)
     cr = AF.cruce(cal, (row or {}).get("categoria")) if row is not None else ""
     art += ('<h3>Conclusión</h3>'

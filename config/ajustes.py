@@ -190,7 +190,14 @@ FONDO_PAGINA = "#f5f6f8"
 
 # v1.2.46: precios en vivo. True = al abrir la app se baja de Yahoo Finance el ultimo precio de cada empresa (un solo pedido) y se usa en la
 # tabla y en la pagina de la empresa; tambien el precio en pesos de cada CEDEAR (pagina de la empresa). Se guarda PRECIOS_MINUTOS_CACHE minutos
-# (todos los visitantes comparten la descarga). El puntaje y el Fair Value NO se recalculan con el precio nuevo. Si Yahoo no responde, se
-# sigue con el precio del cache. False = como hasta la v1.2.45 (siempre el precio del cache).
+# (todos los visitantes comparten la descarga). Si Yahoo no responde, se sigue con el precio del cache. False = como hasta la v1.2.45
+# (siempre el precio del cache).
 PRECIOS_VIVOS = True
 PRECIOS_MINUTOS_CACHE = 5
+
+# v1.5.70 (decisión de Guille, 16/11/2026: «la valuación con los últimos datos contables dura hasta el siguiente balance; lo que cambia es el
+# precio y eso lleva al cambio de categoría»). True = el puntaje y la categoría se recalculan con el precio de hoy: los múltiplos de precio
+# (PER, P/S, P/B, P/FCF, PEG, P/FFO, P/AFFO) se mueven igual que el precio, EV/EBITDA y EV/Ventas según la deuda (ev_sobre_cap) y los
+# rendimientos (Dividend Yield, rendimiento total) al revés. Las medianas, las métricas que se usan y el Fair Value quedan como en el cache.
+# Ver scoring/engine.py, rescorar_con_precios. False = la categoría sale del cache (como hasta la v1.5.69).
+VALORACION_CON_PRECIO_DE_HOY = True

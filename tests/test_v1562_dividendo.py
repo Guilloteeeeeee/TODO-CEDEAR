@@ -116,3 +116,4 @@ chk(BE.archivar({"KO": {"actual": 9.9, "fecha": "2026-11-10"}}, hist) == 0 and h
     "la misma fecha no se pisa")
 
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

@@ -34,7 +34,10 @@ SSD = {"KO": 80, "PG": 90, "JNJ": 99, "PEP": 80, "MCD": 77, "ADP": 90, "TXN": 80
        "NGG": 45, "LYG": None, "NOK": None, "ABEV": None,     # v1.5.68: las de afuera que pasó Guille el 11/11/2026 (sin score en SSD = None)
        # tercera tanda de Guille (11/11/2026): 14 de afuera y 9 de EE.UU.
        "PM": 70, "PHG": 73, "UL": 60, "SHEL": 60, "TTE": 50, "BP": 50, "DEO": 80, "NVS": 61, "AZN": 70, "GSK": 70, "BHP": 40, "RIO": 40,
-       "TSM": 70, "TM": 50, "BMY": 70, "MRK": 90, "IBM": 65, "CSCO": 91, "CL": 90, "KMB": 70, "HD": 80, "CAT": 93, "LMT": 80, "CEG": 60, "VST": 60}
+       "TSM": 70, "TM": 50, "BMY": 70, "MRK": 90, "IBM": 65, "CSCO": 91, "CL": 90, "KMB": 70, "HD": 80, "CAT": 93, "LMT": 80, "CEG": 60, "VST": 60,
+       # cuarta tanda (Guille, 11/11/2026): pares de EE.UU. de las de afuera, para ver si SSD castiga por ser extranjera
+       "COP": 61, "OXY": 60, "LLY": 96, "AMGN": 74, "GILD": 70, "ABT": 90, "MDLZ": 66, "HSY": 80, "FCX": 50, "NEM": 50,
+       "SCCO": 24, "NUE": 90, "GM": 60, "AVGO": 67, "QCOM": 80, "AMAT": 86, "KLAC": 71}
 FECHA_SSD = "10/11/2026 (desde National Grid: 11/11/2026)"
 TOPE_S = 30
 

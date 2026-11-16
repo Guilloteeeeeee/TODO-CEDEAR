@@ -26,3 +26,4 @@ from PIL import Image
 _px = Image.open("static/logos/ASML.png").convert("RGB").getpixel((2, 2))
 chk(min(_px) > 240, "ASML: logo con fondo blanco (no el oscuro)")
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

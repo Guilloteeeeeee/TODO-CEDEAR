@@ -1,12 +1,16 @@
-streamlit>=1.46.0
-yfinance>=0.2.40
-pandas>=2.0.0
-numpy>=1.26.0
-beautifulsoup4>=4.12.0
-requests>=2.31.0
-openpyxl>=3.1
-deep-translator>=1.11
-reportlab>=4.0
-xlrd>=2.0.1
-pypdf>=5.0
+# v1.5.70: Streamlit va fijo en la versión probada. La estética usa selectores internos de Streamlit (data-testid, st-key-...) y una versión
+# nueva instalada sola al volver a publicar puede romper la pantalla sin aviso. Para actualizarla: cambiar el número, correr
+# `python correr_pruebas.py` y mirar la app antes de publicar. Las demás librerías quedan con tope de versión mayor (yfinance libre hacia
+# arriba dentro de la 1.x porque Yahoo cambia seguido y sus arreglos llegan por ahí). Los .bat de la PC de Guille no usan este archivo.
+streamlit==1.67.0
+yfinance>=1.8.0,<2
+pandas>=2.0.0,<4
+numpy>=1.26.0,<3
+beautifulsoup4>=4.12.0,<5
+requests>=2.31.0,<3
+openpyxl>=3.1,<4
+deep-translator>=1.11,<2
+reportlab>=4.0,<6
+xlrd>=2.0.1,<3
+pypdf>=5.0,<7
 rapidocr-onnxruntime>=1.3.0

@@ -44,3 +44,4 @@ mundo3 = [nota("Toyota shares slide", 1), nota("Bank of Japan holds interest rat
 bl3 = N.ordenar_bloques({"bloques": {"locales": bloque(loc), "usa": bloque(usa3), "mundo": bloque(mundo3)}}, TK, ahora=ahora)
 chk(any(N.es_macro(n["titulo"]) for b in bl3[1:] for n in b["notas"]), "no se forzó la macro de Resto del mundo")
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

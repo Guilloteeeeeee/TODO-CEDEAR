@@ -536,6 +536,100 @@ def score_dataframe(df: pd.DataFrame, ticker_to_sector: dict = None,
 
 
 # ---------------------------------------------------------------------------
+# v1.5.70: VALORACIÓN CON EL PRECIO DE HOY (decisión de Guille, 16/11/2026)
+# ---------------------------------------------------------------------------
+# La valuación (medianas, Fair Value) sale de los últimos datos contables y dura hasta el próximo balance; lo que cambia todos los días es el
+# precio, y con él los múltiplos y la categoría. Acá se recalcula el puntaje de cada empresa con su precio de hoy, sin bajar nada.
+
+PRECIO_PROPORCIONAL = {"per", "ps", "p_b", "p_fcf", "peg", "p_ffo", "p_affo"}   # se mueven igual que el precio
+SEGUN_EV = {"ev_ebitda", "ev_ventas"}                                           # el EV cambia solo en la parte de las acciones (la deuda no)
+RENDIMIENTOS = {"dividend_yield", "rend_total"}                                 # el dividendo no cambia: el rendimiento se mueve al revés
+
+
+def factor_metrica(metrica: str, k: float, ev_sobre_cap=None) -> float:
+    """Cuánto cambia el valor actual de `metrica` si el precio se multiplica por `k`.
+    EV/EBITDA y EV/Ventas: EV = capitalización + deuda neta; con e = EV / capitalización, el EV nuevo / el viejo = (k + e − 1) / e.
+    Ej.: deuda neta igual a la mitad de la capitalización (e = 1,5) y precio +10% (k = 1,1): (1,1 + 0,5) / 1,5 = 1,067 → +6,7%."""
+    if metrica in RENDIMIENTOS:
+        return 1.0 / k
+    if metrica in SEGUN_EV:
+        try:
+            e = float(ev_sobre_cap)
+        except (TypeError, ValueError):
+            e = None
+        if e is not None and not np.isnan(e) and e > 0:
+            return (k + e - 1.0) / e
+        return k
+    return k
+
+
+def rescorar_fila(row: dict) -> Optional[dict]:
+    """Puntaje de una fila del cache con su precio de hoy (`precio_actual`) en lugar del del cache (`precio_cache`).
+    Usa las mismas métricas y las mismas medianas (propias o de respaldo) que el cache; solo mueve los valores actuales.
+    Devuelve el resultado de calcular_score o None si no corresponde (sin precio nuevo, sin detalle, o el precio cambiaría
+    qué métricas se usan: en ese caso queda la categoría del cache)."""
+    try:
+        p0, p1 = float(row.get("precio_cache")), float(row.get("precio_actual"))
+    except (TypeError, ValueError):
+        return None
+    if not (p0 > 0 and p1 > 0) or np.isnan(p0) or np.isnan(p1):
+        return None
+    k = p1 / p0
+    sector = row.get("sector") or TICKER_TO_SECTOR.get(row.get("ticker", ""), "")
+    det = row.get("detalle")
+    if sector not in SECTOR_CONFIG or not isinstance(det, dict) or not det:
+        return None
+    calc = dict(row)
+    ev_cap = row.get("ev_sobre_cap")
+    for m, d in det.items():
+        a = d.get("actual") if isinstance(d, dict) else None
+        calc[f"{m}_actual"] = (float(a) * factor_metrica(m, k, ev_cap)) if _num_ok(a) else None
+        calc[f"{m}_mediana"] = d.get("mediana") if isinstance(d, dict) else None
+    for m in METRICAS_EXCLUIDAS.get(row.get("ticker", ""), {}):
+        calc[f"{m}_actual"] = None
+        calc[f"{m}_mediana"] = None
+    r = calcular_score(calc, sector)
+    usadas_cache = row.get("metricas_usadas")
+    if r["score_total"] is None or set(r["detalle"]) != set(det) or (_num_ok(usadas_cache) and int(usadas_cache) != r["metricas_usadas"]):
+        return None
+    for m, d in r["detalle"].items():          # se conservan las marcas del cache (fuente, referencia, descartadas a mano)
+        viejo = det.get(m) or {}
+        for clave in ("fuente", "referencia", "referencia_origen"):
+            if clave in viejo:
+                d[clave] = viejo[clave]
+        if viejo.get("estado") == "descartada":
+            d.update({"actual": viejo.get("actual"), "mediana": viejo.get("mediana"), "score": None,
+                      "estado": "descartada", "motivo": viejo.get("motivo")})
+    return r
+
+
+def rescorar_con_precios(df: pd.DataFrame) -> tuple:
+    """Copia de `df` (ya pasado por precios_vivos.aplicar_precios) con puntaje y categoría recalculados con el precio de hoy en las filas con
+    precio en vivo. El puntaje y la categoría del cache quedan en `score_cache` y `categoria_cache`. Devuelve (df, cantidad_que_cambió_de_categoría)."""
+    if df is None or len(df) == 0 or "precio_cache" not in df.columns:
+        return df, 0
+    df = df.copy()
+    if "score_cache" not in df.columns:
+        df["score_cache"] = df.get("score_total")
+        df["categoria_cache"] = df.get("categoria")
+    if "precio_en_vivo" not in df.columns:
+        return df, 0
+    cambios = 0
+    for i in df.index:
+        if not bool(df.at[i, "precio_en_vivo"]):
+            continue
+        r = rescorar_fila(df.loc[i].to_dict())
+        if r is None:
+            continue
+        if r["categoria"] != df.at[i, "categoria_cache"]:
+            cambios += 1
+        for c in ("score_fundamental", "score_total", "categoria", "color_hex", "emoji", "metricas_usadas"):
+            df.at[i, c] = r[c]
+        df.at[i, "detalle"] = r["detalle"]
+    return df, cambios
+
+
+# ---------------------------------------------------------------------------
 # UTILIDADES DE VISUALIZACIÓN
 # ---------------------------------------------------------------------------
 

@@ -551,7 +551,7 @@ def tokens_historia(titulo):
 
 
 def misma_historia(a, b):
-    """a y b: conjuntos de palabras (tokens_historia). True si comparten al menos 2 y esas 2 son por lo menos el 25 % del titular mas corto."""
+    """a y b: conjuntos de palabras (tokens_historia). True si comparten al menos 2 y esas 2 son por lo menos el 25% del titular mas corto."""
     if not a or not b:
         return False
     c = len(a & b)

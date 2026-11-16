@@ -39,7 +39,7 @@ def _n(x):
 
 
 def _pct(x):
-    """El caché guarda el rendimiento como fraccion (0.0239 = 2,39 %); la tabla muestra el numero ya en %."""
+    """El caché guarda el rendimiento como fraccion (0.0239 = 2,39%); la tabla muestra el numero ya en %."""
     v = _n(x)
     if v is None or v <= 0:
         return None

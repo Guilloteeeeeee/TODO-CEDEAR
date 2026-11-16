@@ -94,3 +94,4 @@ chk(SD.ffo_empresa("KO") is None, "sin dato para quien no está")
 chk(SD.entrada({"ticker": "PLD"}, {}, grupo="REITs")["ffo_empresa"]["medida"].startswith("Core"), "entrada trae el FFO de la empresa")
 
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

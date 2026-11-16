@@ -161,3 +161,4 @@ finally:
     H.CARPETA, BL.AQUI = viejo_c, viejo_aqui
 
 print(f"OK {ok} MAL {mal}")
+__import__("sys").exit(1 if mal else 0)      # v1.5.70: una prueba con MAL termina con error

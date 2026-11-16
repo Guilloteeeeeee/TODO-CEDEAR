@@ -9,7 +9,7 @@ Cada criterio sale de una columna que ya existe en los datos (no se calcula nada
   clave        nombre interno (tambien nombre de la columna de ordenamiento)
   nombre       texto que ve la persona
   col          columna de `df` de donde sale el numero
-  escala       factor para pasarlo a las unidades que se escriben (el Dividend Yield se guarda como fraccion: 0,0125 = 1,25 %)
+  escala       factor para pasarlo a las unidades que se escriben (el Dividend Yield se guarda como fraccion: 0,0125 = 1,25%)
   unidad       "%" o "x" (veces)
   paso         salto de los campos minimo / maximo
   ayuda        texto que se ve al pasar el mouse por el titulo de la columna
@@ -56,7 +56,7 @@ CRITERIOS = [
     {"clave": "peg_actual", "nombre": "PEG", "col": "peg_actual", "escala": 1.0, "unidad": "x", "paso": 0.5,
      "ayuda": "El P/E dividido el crecimiento esperado de las ganancias. Solo informativo: no entra al puntaje."},
     {"clave": "posicion_52s", "nombre": "Posición en el rango de 52 semanas", "col": "posicion_52s", "escala": 100.0, "unidad": "%", "paso": 10.0,
-     "ayuda": "Dónde está el precio entre el mínimo (0 %) y el máximo (100 %) de las últimas 52 semanas."},
+     "ayuda": "Dónde está el precio entre el mínimo (0%) y el máximo (100%) de las últimas 52 semanas."},
 ]
 # v1.2.72: parametros tecnicos (informativos, no entran al puntaje). Salen de data/tecnicos.json (lo baja bajar_tecnicos.bat) y se agregan al df como columnas tec_*.
 _TEC = "Es un dato técnico: informa, no es una señal de compra ni de venta. "
@@ -68,7 +68,7 @@ TECNICOS = [
     {"clave": "tec_vs200", "nombre": "Precio vs. promedio de 200 ruedas", "col": "tec_vs200", "escala": 100.0, "unidad": "%", "paso": 5.0,
      "ayuda": _TEC + "Cuánto más arriba (+) o más abajo (−) está el precio de hoy respecto del promedio de sus últimos 200 cierres (casi un año): la tendencia de largo plazo."},
     {"clave": "tec_dist_max", "nombre": "Distancia al máximo de 52 semanas", "col": "tec_dist_max", "escala": 100.0, "unidad": "%", "paso": 5.0,
-     "ayuda": _TEC + "Cuánto está por debajo del precio más alto del último año. 0 % = en su máximo; −20 % = 20 % abajo del máximo."},
+     "ayuda": _TEC + "Cuánto está por debajo del precio más alto del último año. 0% = en su máximo; −20% = 20% abajo del máximo."},
     {"clave": "tec_r1m", "nombre": "Rendimiento 1 mes", "col": "tec_r1m", "escala": 100.0, "unidad": "%", "paso": 5.0,
      "ayuda": _TEC + "Cuánto subió o bajó el precio en el último mes (sin contar dividendos)."},
     {"clave": "tec_r3m", "nombre": "Rendimiento 3 meses", "col": "tec_r3m", "escala": 100.0, "unidad": "%", "paso": 5.0,
@@ -102,7 +102,7 @@ def agregar_columnas(df):
 
 def valores(df, c):
     """Serie con el valor del criterio `c` en las unidades que se escriben (porcentaje o veces). Sin dato = NaN.
-    Dividend Yield: sin dato o cero = no paga dividendo = 0 (asi "maximo 2 %" no deja afuera a las que no pagan)."""
+    Dividend Yield: sin dato o cero = no paga dividendo = 0 (asi "maximo 2%" no deja afuera a las que no pagan)."""
     if c["col"] not in df.columns:
         return pd.Series([float("nan")] * len(df), index=df.index)
     s = pd.to_numeric(df[c["col"]], errors="coerce")

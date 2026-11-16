@@ -91,7 +91,7 @@ def traducir_lista(textos, mail="", pedir=None):
 
 def traducir_texto_largo(texto, mail="", pedir=None, max_trozos=8):
     """Traduccion de un texto largo (descripcion de una empresa) con el servicio gratuito, por trozos de hasta ~450 letras cortados en fin de oracion.
-    Devuelve el texto en castellano o None si no se pudo traducir al menos el 80 % de los trozos (nunca mezcla idiomas a medias)."""
+    Devuelve el texto en castellano o None si no se pudo traducir al menos el 80% de los trozos (nunca mezcla idiomas a medias)."""
     frases = [f for f in re.split(r"(?<=[.!?])\s+", str(texto or "").strip()) if f]
     trozos, act = [], ""
     for f in frases:

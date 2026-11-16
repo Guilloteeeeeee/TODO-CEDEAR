@@ -61,7 +61,8 @@ BANDA = 0.07                      # ±7 %: "en línea con"
 
 PROHIBIDAS = ("damodaran", "nelissen", "seeking alpha", "morningstar", "dividend collection", "te recomendamos", "recomendamos comprar", "precio objetivo",
               "potencial de suba", "potencial alcista", "comprá", "vendé", "en el dinámico mundo", "cabe destacar", "es importante señalar", "sin lugar a dudas",
-              "en resumen,", "navegar los desafíos", "jugador clave", "bloque de datos", "según el modelo", "no una excelente", "no es excelente", "no llega a ser excelente")
+              "en resumen,", "navegar los desafíos", "jugador clave", "bloque de datos", "según el modelo", "no una excelente", "no es excelente", "no llega a ser excelente",
+              "ojo", "remedio", "remedios", "dosis chica", "dosis chicas")      # v1.5.70: palabras prohibidas por Guille (antes solo estaban en el prompt)
 
 
 # --- formatos -----------------------------------------------------------------------------------------------------------------

@@ -64,3 +64,4 @@ chk("el programa no evalúa la calidad de cada empresa emisora: sería prudente 
 src = open(os.path.join(ROOT, "ui", "cartera.py"), encoding="utf-8").read()
 chk("dosis chic" not in src.lower(), "el código no tiene «dosis chica»")
 print(f"OK {ok} MAL {bad}")
+__import__("sys").exit(1 if bad else 0)      # v1.5.70: una prueba con MAL termina con error

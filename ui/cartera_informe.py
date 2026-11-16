@@ -7,7 +7,7 @@ import io
 import os
 import re
 
-from ui.cartera import AVISO_CARTERA, CLASES, despedida, devolucion, resumen_para_pdf, saludo
+from ui.cartera import AVISO_CARTERA, AVISO_INICIO, CLASES, despedida, devolucion, resumen_para_pdf, saludo
 
 _RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGO = os.path.join(_RAIZ, "assets", "marca", "finanzas-para-medicos-128.png")
@@ -52,7 +52,7 @@ def _pie(items, tam, centro=""):
     g = Doughnut()
     g.x, g.y, g.width, g.height = 2, 2, tam - 4, tam - 4
     tot_ = sum(v for v, _ in items) or 1
-    g.data = [max(v, 0.03 * tot_) for v, _ in items]      # una porción chica (1 %) se dibuja con un mínimo para que se vea
+    g.data = [max(v, 0.03 * tot_) for v, _ in items]      # una porción chica (1%) se dibuja con un mínimo para que se vea
     for i, (_, c) in enumerate(items):
         g.slices[i].fillColor = _hex(c)
         g.slices[i].strokeColor = _hex("#ffffff")
@@ -96,7 +96,7 @@ def _barra_apilada_pdf(partes, ancho):
         if v >= 8:
             d.add(String(x + w / 2, 4, f"{v:.0f}%", fontName="Helvetica-Bold", fontSize=8, fillColor=_hex("#ffffff"), textAnchor="middle"))
         x += w
-    return [d, _leyenda([(f"{n} {v:.0f} %", c) for n, v, c in partes], ancho)]
+    return [d, _leyenda([(f"{n} {v:.0f}%", c) for n, v, c in partes], ancho)]
 
 
 def _barra_peso(valor, color, ancho):
@@ -172,14 +172,14 @@ def pdf_informe(res, edad, perfil, aviso="", hoy=None, nombre="", previa=None):
     cab.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0), ("RIGHTPADDING", (0, 0), (-1, -1), 0),
                              ("LINEBELOW", (0, 0), (-1, 0), 2, verde), ("BOTTOMPADDING", (0, 0), (-1, 0), 6)]))
     s1, s2 = saludo(nombre, edad, perfil)
-    el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"]), Spacer(1, 8), Paragraph(f"<b>{html.escape(s1)}</b>", st["p"]), Spacer(1, 3), Paragraph(html.escape(s2), st["p"]), Spacer(1, 6)]
+    el = [cab, Spacer(1, 8), Paragraph(TITULO, st["tit"]), Spacer(1, 8), Paragraph(f"<b>{html.escape(s1)}</b>", st["p"]), Spacer(1, 3), Paragraph(html.escape(s2), st["p"]), Spacer(1, 4), Paragraph(f"<i>{html.escape(AVISO_INICIO)}</i>", st["pq"]), Spacer(1, 6)]
     el += [Paragraph(_md(x), st["p"]) for x in sec.get("Objetivo como inversor", [])]
 
     # --- tortas (sin título ni texto adentro)
     def torta(items, medida=30 * mm):
         items = [(n, v, c) for n, v, c in items if v >= 0.5]
         tot = sum(v for _, v, _ in items) or 1
-        leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f} %</b>', st["pq"]) for n, v, c in items] or [Paragraph("Sin inversiones cargadas en estos grupos.", st["pq"])]
+        leyenda = [Paragraph(f'<font color="{c}"><b>•</b></font> {html.escape(n)}: <b>{v / tot * 100:.0f}%</b>', st["pq"]) for n, v, c in items] or [Paragraph("Sin inversiones cargadas en estos grupos.", st["pq"])]
         celda = Table([[_pie([(v, c) for _, v, c in items], medida), leyenda]], colWidths=[medida + 4 * mm, 62 * mm], hAlign="CENTER")
         celda.setStyle(TableStyle([("VALIGN", (0, 0), (-1, -1), "MIDDLE"), ("LEFTPADDING", (0, 0), (-1, -1), 0)]))
         return [celda, Spacer(1, 8)]

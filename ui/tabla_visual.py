@@ -31,7 +31,8 @@ from ui.banderas import bandera_html
 from ui.logos import logo_html
 
 # Color de texto (para leer sobre blanco) de cada color de categoria, y color del texto sobre el relleno de la etiqueta
-_TEXTO_OSCURO = {"#eab308": "#ca8a04", "#82b93f": "#4d7a12", "#f97316": "#c2410c", "#dc2626": "#b91c1c"}
+_TEXTO_OSCURO = {"#eab308": "#a16207",      # v1.5.70: amarillo más tostado (contraste 4,9 a 1 sobre blanco; antes #ca8a04, 2,9 a 1)
+                  "#82b93f": "#4d7a12", "#f97316": "#c2410c", "#dc2626": "#b91c1c"}
 _TEXTO_EN_RELLENO = {"#15803d": "#ffffff", "#82b93f": "#1a2e05", "#eab308": "#3b2f00", "#f97316": "#2b1300", "#dc2626": "#ffffff"}
 
 try:

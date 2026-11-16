@@ -526,7 +526,7 @@ SIN_PAISES = {"IBIT", "ETHA", "GLD", "SLV", "USO", "GSG", "CORN", "SOYB", "DBB",
 
 def paises_de(e, d):
     """(lista [{'nombre','pct'}], nota). Primero el desglose que traiga el archivo de Yahoo (clave 'paises', si algún día se carga); si el índice es de un
-    único país (columna `pais` del CSV), 100 % ese país por definición; si no, vacío (no se inventa nada)."""
+    único país (columna `pais` del CSV), 100% ese país por definición; si no, vacío (no se inventa nada)."""
     d = d or {}
     if d.get("paises"):
         return d["paises"], ""
