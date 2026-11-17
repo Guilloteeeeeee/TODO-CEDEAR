@@ -375,6 +375,10 @@ ESTADOS = {
 
 
 _MARCA_TTM = "TTM|"
+# v1.5.73 (Guille 17/11/2026, captura de Eli Lilly en Yahoo): en estas filas cada columna toma la primera clave de Yahoo que tenga dato (Yahoo a veces
+# trae «Interest Expense» en unos años y «Interest Expense Non Operating» en otros: Eli Lilly). En el resto de las filas se sigue usando una sola clave
+# para toda la fila (no mezclar definiciones entre años).
+POR_CELDA = {"Gasto por intereses", "Intereses pagados"}
 
 
 def _col_ttm(q, flujo):
@@ -399,15 +403,42 @@ def _col_ttm(q, flujo):
         return None, None
 
 
-def _con_ttm(anual, trimestral, flujo):
-    """Copia del df anual con una columna "TTM|<fecha del ultimo trimestre>" al comienzo (si hay trimestres y son mas nuevos que el ultimo anio fiscal)."""
+def _CLAVES_POR_CELDA():
+    return [k for _, filas in ESTADOS.values() for rot, claves, _t in filas if rot in POR_CELDA for k in claves]
+
+
+def _ttm_yahoo(df):
+    """v1.5.73: la columna de los ultimos 12 meses que arma Yahoo (tk.ttm_income_stmt / tk.ttm_cashflow) -> (serie, fecha) o (None, None)."""
     try:
-        if anual is None or trimestral is None:
+        if df is None or df.empty:
+            return None, None
+        c = list(df.columns)[0]
+        return (df.iloc[:, 0], c) if hasattr(c, "year") else (None, None)
+    except Exception:  # noqa: BLE001
+        return None, None
+
+
+def _con_ttm(anual, trimestral, flujo, ttm_yahoo=None):
+    """Copia del df anual con una columna "TTM|<fecha del ultimo trimestre>" al comienzo (si hay trimestres y son mas nuevos que el ultimo anio fiscal).
+    v1.5.73: manda la suma de los 4 trimestres; donde falta (un trimestre sin dato), se usa el dato de 12 meses que publica Yahoo (ttm_yahoo), si es
+    del mismo trimestre. Si no hay trimestres, se usa solo el de Yahoo."""
+    try:
+        if anual is None or (trimestral is None and ttm_yahoo is None):
             return anual
-        serie, fecha = _col_ttm(trimestral, flujo)
+        serie, fecha = _col_ttm(trimestral, flujo) if trimestral is not None else (None, None)
+        ty, fy = _ttm_yahoo(ttm_yahoo) if flujo else (None, None)
+        if ty is not None:
+            if serie is None:
+                serie, fecha = ty, fy
+            elif abs((fy - fecha).days) <= 20:
+                serie = serie.combine_first(ty)
         if serie is None or (fecha - list(anual.columns)[0]).days < 30:
             return anual
         df = anual.copy()
+        # filas de intereses que solo vienen en los trimestres o en el dato de 12 meses (otra clave de Yahoo): se agregan para la columna TTM
+        extra = [k for k in _CLAVES_POR_CELDA() if k in serie.index and k not in df.index]
+        if extra:
+            df = df.reindex(list(df.index) + extra)
         df.insert(0, _MARCA_TTM + fecha.strftime("%Y-%m-%d"), serie.reindex(df.index))
         return df
     except Exception:  # noqa: BLE001
@@ -428,6 +459,12 @@ def _tabla_estado(df, filas, max_anios=4):
         return {}
     out = []
     for rot, claves, tipo in filas:
+        if rot in POR_CELDA:
+            presentes = [k for k in claves if k in df.index]
+            vals = [next((v for v in (_num(df.loc[k][c]) for k in presentes) if v is not None), None) for c in cols]
+            if any(v is not None for v in vals):
+                out.append((rot, vals, tipo))
+            continue
         for k in claves:
             if k in df.index:
                 vals = [_num(df.loc[k][c]) for c in cols]
@@ -491,7 +528,7 @@ def analizar_estados(dfs, moneda=None):
     for clave, (fuente, filas) in ESTADOS.items():
         df = dfs.get(fuente)
         if df is not None:
-            df = _con_ttm(df, dfs.get("q_" + fuente), flujo=(fuente != "balance_sheet"))
+            df = _con_ttm(df, dfs.get("q_" + fuente), flujo=(fuente != "balance_sheet"), ttm_yahoo=dfs.get("t_" + fuente))
         t = _tabla_estado(df, filas) if df is not None else {}
         if t:
             d[clave] = t
@@ -587,6 +624,8 @@ def bajar_paquete(ticker, timeout=25.0, ticker_obj=None):
         tarea("qinc", lambda: tk.quarterly_income_stmt),
         tarea("qbal", lambda: tk.quarterly_balance_sheet),
         tarea("qcf", lambda: tk.quarterly_cashflow),
+        tarea("tinc", lambda: getattr(tk, "ttm_income_stmt", None)),      # v1.5.73: los 12 meses que publica Yahoo (respaldo de la suma)
+        tarea("tcf", lambda: getattr(tk, "ttm_cashflow", None)),
     ]
     for h in hilos:
         h.join(timeout)
@@ -608,7 +647,8 @@ def bajar_paquete(ticker, timeout=25.0, ticker_obj=None):
         pass
     try:
         out["estados"] = analizar_estados({"income_stmt": res.get("inc"), "balance_sheet": res.get("bal"), "cashflow": res.get("cf"),
-                                          "q_income_stmt": res.get("qinc"), "q_balance_sheet": res.get("qbal"), "q_cashflow": res.get("qcf")}, info.get("financialCurrency"))
+                                          "q_income_stmt": res.get("qinc"), "q_balance_sheet": res.get("qbal"), "q_cashflow": res.get("qcf"),
+                                          "t_income_stmt": res.get("tinc"), "t_cashflow": res.get("tcf")}, info.get("financialCurrency"))
     except Exception:  # noqa: BLE001
         pass
     return out
