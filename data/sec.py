@@ -28,10 +28,18 @@ CONCEPTOS = {
                                            ("ifrs-full", "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities")],
     "Dividendos pagados": [("us-gaap", "PaymentsOfDividendsCommonStock"), ("us-gaap", "PaymentsOfDividends"),
                            ("ifrs-full", "DividendsPaidClassifiedAsFinancingActivities")],
+    # v1.5.72 (Guille 17/11/2026: el gasto por intereses «tiene que estar sí o sí»; también para el futuro score de calidad)
+    "Gasto por intereses": [("us-gaap", "InterestExpense"), ("us-gaap", "InterestExpenseNonoperating"), ("us-gaap", "InterestExpenseDebt"),
+                            ("us-gaap", "InterestAndDebtExpense"), ("ifrs-full", "InterestExpense"), ("ifrs-full", "FinanceCosts")],
+    "Intereses pagados": [("us-gaap", "InterestPaidNet"), ("us-gaap", "InterestPaid"), ("ifrs-full", "InterestPaidClassifiedAsOperatingActivities"),
+                          ("ifrs-full", "InterestPaidClassifiedAsFinancingActivities")],
 }
 GRUPO = {"Ingresos": "resultados", "Resultado operativo": "resultados", "Resultado neto": "resultados", "Ganancia por acción (diluida)": "resultados",
          "Activo total": "balance", "Patrimonio neto": "balance",
-         "Flujo de efectivo operativo": "flujo", "Inversión en activos fijos (CAPEX)": "flujo", "Dividendos pagados": "flujo"}
+         "Flujo de efectivo operativo": "flujo", "Inversión en activos fijos (CAPEX)": "flujo", "Dividendos pagados": "flujo",
+         "Gasto por intereses": "resultados", "Intereses pagados": "flujo"}
+# v1.5.72: filas que la SEC completa también en los años que trae Yahoo, cuando Yahoo las deja vacías (ver huecos)
+HUECOS = ("Gasto por intereses", "Intereses pagados")
 TIPO = {"Ganancia por acción (diluida)": "eps"}          # el resto, montos ("m"), como en paquetes_yahoo
 NEGATIVOS = ("Inversión en activos fijos (CAPEX)", "Dividendos pagados")   # Yahoo los muestra en negativo
 INSTANTANEOS = {"Activo total", "Patrimonio neto"}      # se miden a una fecha (balance), no durante un año
@@ -120,6 +128,43 @@ def coincide(sec_anios, reg):
         if dets:
             return alguno, f"{a} " + "; ".join(dets)
     return None, "sin año en común para comparar"
+
+
+def huecos(sec_anios, reg):
+    """v1.5.72: celdas de HUECOS (gasto por intereses, intereses pagados) que Yahoo deja vacías en sus años y la SEC sí tiene.
+    Cada año se controla por separado: misma moneda y resultado neto o ingresos dentro de 5 % (así es el mismo año fiscal).
+    Se guardan en positivo (como el gasto por intereses de Yahoo). -> ({año: {grupo: {rot: v}, "moneda", "presentado"}}, [años que no coinciden])."""
+    guard = (reg or {}).get("anios") or {}
+    out, no = {}, []
+    for a in sorted(guard):
+        g = guard[a]
+        if g.get("fuente") == "SEC" or a not in sec_anios:
+            continue
+        s = sec_anios[a]
+        faltan = {}
+        for rot in HUECOS:
+            gr = GRUPO[rot]
+            if (g.get(gr) or {}).get(rot) is not None:
+                continue
+            v = (s.get(gr) or {}).get(rot)
+            if v is not None:
+                faltan.setdefault(gr, {})[rot] = abs(v)
+        if not faltan:
+            continue
+        if s.get("moneda") != g.get("moneda", "USD"):
+            no.append(f"{a}: la SEC informa en {s.get('moneda')} y lo guardado está en {g.get('moneda', 'USD')}")
+            continue
+        ok = False
+        for rot in (NETO_ROT, "Ingresos"):
+            vs, vg = (s.get("resultados") or {}).get(rot), (g.get("resultados") or {}).get(rot)
+            if vs is not None and vg not in (None, 0) and abs(vs - vg) / abs(vg) <= TOLERANCIA_SOLAPE:
+                ok = True
+                break
+        if not ok:
+            no.append(f"{a}: resultado neto e ingresos de la SEC no coinciden con lo guardado")
+            continue
+        out[a] = {**faltan, "moneda": s.get("moneda"), "presentado": s.get("presentado")}
+    return out, no
 
 
 def factor_por_accion(sec_anios, reg, splits=None):

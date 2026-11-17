@@ -148,10 +148,12 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             from scoring import dividendo_v1 as V1
             e1 = dict(ent, grupo=SD.grupo_de(row) if hasattr(SD, "grupo_de") else ent.get("grupo"), rend=ent.get("dy"),
                       mes_cierre=(fichas.get(t) or {}).get("mes_cierre_fiscal"), cet1=(cet1.get(t) or {}).get("cet1"),
-                      fuente_historial=fuente)
-            f = SD.ffo_empresa(t)
-            if f:
-                e1["affo"], e1["affo_nombre"] = (f.get("affo_12m"), "AFFO") if f.get("affo_12m") else (f.get("ffo_12m"), "FFO (provisorio)")
+                      cet1_requisito=(cet1.get(t) or {}).get("requisito"), fuente_historial=fuente,
+                      intereses_manual=V1.intereses_manual(t))
+            # v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): solo AFFO cargado y vigente
+            f = SD.ffo_vigente(ent)
+            if f and (f.get("affo_payout_12m") or f.get("affo_12m")):
+                e1["affo"], e1["affo_payout"], e1["affo_nombre"] = f.get("affo_12m"), f.get("affo_payout_12m"), f.get("affo_medida") or "AFFO"
             r["v1"] = V1.calcular(e1)
         except Exception as ex:  # noqa: BLE001
             r["v1"] = {"score": None, "error": f"{type(ex).__name__}: {ex}"}

@@ -1,5 +1,5 @@
 {
-  "nota": "FFO por acción que informa cada REIT en su comunicado de resultados (v1.5.68, Guille 11/11/2026: «claro! esto sí»). Se usa en el Score de Seguridad del Dividendo en lugar del FFO de Stock Analysis (que es el FFO NAREIT y se hunde con gastos extraordinarios: Welltower 2025 = 2,68 contra 5,29 normalizado). Medida: el FFO sin extraordinarios de cada empresa (normalized FFO o core FFO), no el AFFO. ffo_12m = suma de los últimos cuatro trimestres informados; ffo_anual = último año fiscal completo. Renovar cada trimestre, después de los resultados (fin de febrero, mayo, agosto y noviembre). Si 'hasta' tiene más de 200 días, el score vuelve al dato de Stock Analysis. v1.5.71: también affo_12m (AFFO por acción de los últimos 12 meses, o la medida equivalente que informe la empresa, con su nombre en affo_medida) para el score de dividendos v1; mientras no esté, el v1 usa el FFO (provisorio).",
+  "nota": "FFO por acción que informa cada REIT en su comunicado de resultados (v1.5.68, Guille 11/11/2026: «claro! esto sí»). Se usa en el Score de Seguridad del Dividendo en lugar del FFO de Stock Analysis (que es el FFO NAREIT y se hunde con gastos extraordinarios: Welltower 2025 = 2,68 contra 5,29 normalizado). Medida: el FFO sin extraordinarios de cada empresa (normalized FFO o core FFO), no el AFFO. ffo_12m = suma de los últimos cuatro trimestres informados; ffo_anual = último año fiscal completo. Renovar cada trimestre, después de los resultados (fin de febrero, mayo, agosto y noviembre). Si 'hasta' tiene más de 200 días, el score vuelve al dato de Stock Analysis. v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): para el score de dividendos v1, el AFFO que informa la empresa, mismos 12 meses que el FFO (hasta). affo_payout_12m = dividendos pagados ÷ AFFO de esos 12 meses, en % (por acción o en totales, como lo informe la empresa); affo_12m = AFFO por acción (si la empresa lo informa así); affo_detalle = cómo se sumó; affo_fuentes. Si la empresa no informa AFFO: affo_no_informa con el motivo (la métrica no cuenta para esa empresa).",
   "datos": {
     "WELL": {
       "medida": "Normalized FFO por acción diluida",
@@ -13,7 +13,12 @@
         "https://www.sec.gov/Archives/edgar/data/0000766704/000076670426000043/a3q26combinedearningsrel.htm",
         "https://www.barchart.com/story/news/140562/welltower-reports-fourth-quarter-2025-results"
       ],
-      "cargado": "2026-11-11"
+      "cargado": "2026-11-11",
+      "affo_no_informa": "Welltower no publica AFFO ni FAD (sus medidas complementarias son FFO, FFO normalizado, NOI, RevPOR y EBITDA). Pendiente de decisión de Guille.",
+      "affo_fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000766704/000076670426000026/a2q26earningsrelease991.htm"
+      ],
+      "cargado_affo": "2026-11-17"
     },
     "O": {
       "medida": "Normalized FFO por acción diluida",
@@ -26,7 +31,18 @@
         "https://www.sec.gov/Archives/edgar/data/0000726728/000072672826000056/realtyincomeq32026supple.htm",
         "https://www.realtyincome.com/sites/realty-income/files/2026-02/q4-2025-supplemental-report.pdf"
       ],
-      "cargado": "2026-11-11"
+      "cargado": "2026-11-11",
+      "affo_medida": "AFFO por acción diluida",
+      "affo_12m": 4.43,
+      "affo_payout_12m": 73.2,
+      "affo_detalle": "AFFO: 4T2025 1,08 + nueve meses 2026 3,35 = 4,43 por acción. Dividendos pagados: 4T2025 0,8085 (3,217 del año 2025 − 2,4085 de nueve meses 2025) + nueve meses 2026 2,4345 = 3,243 por acción. 3,243 ÷ 4,43 = 73,2 %.",
+      "affo_fuentes": [
+        "https://www.prnewswire.com/news-releases/realty-income-announces-operating-results-for-the-three-and-nine-months-ended-september-30-2026-302926890.html",
+        "https://www.sec.gov/Archives/edgar/data/0000726728/000072672826000059/o-20260930.htm",
+        "https://www.sec.gov/Archives/edgar/data/726728/000072672826000009/o-991q42025.htm",
+        "https://fintool.com/app/research/companies/O/earnings/Q4 2025"
+      ],
+      "cargado_affo": "2026-11-17"
     },
     "PLD": {
       "medida": "Core FFO por acción diluida",
@@ -41,7 +57,15 @@
         "https://ir.prologis.com/press-releases/detail/1036/prologis-reports-first-quarter-2026-results",
         "https://www.prologis.com/sites/corporate/files/documents/2026/01/2026-01-21-Prologis-Reports-Fourth-Quarter-and-Full-Year-2025-Results.pdf"
       ],
-      "cargado": "2026-11-11"
+      "cargado": "2026-11-11",
+      "affo_medida": "AFFO atribuible a accionistas y tenedores de unidades (total, en millones de dólares)",
+      "affo_payout_12m": 78.9,
+      "affo_detalle": "AFFO: 4T2025 1.151,5 + nueve meses 2026 4.001,7 = 5.153,2 millones. Dividendos y distribuciones a unidades: 4T2025 968 + nueve meses 2026 3.097 = 4.065 millones. 4.065 ÷ 5.153,2 = 78,9 %.",
+      "affo_fuentes": [
+        "https://ir.prologis.com/news-events/press-releases/detail/1055/prologis-reports-third-quarter-2026-results",
+        "https://ir.prologis.com/press-releases/detail/1029/prologis-reports-fourth-quarter-and-full-year-2025-results"
+      ],
+      "cargado_affo": "2026-11-17"
     }
   }
 }

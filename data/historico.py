@@ -369,6 +369,63 @@ def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fue
     return reg, sumados
 
 
+def completar_huecos(reg, huecos, ticker="", cambios=None, hoy=None, fuente="SEC"):
+    """v1.5.72: guarda en reg["huecos"] las celdas que Yahoo deja vacías en sus años y otra fuente oficial (la SEC) sí tiene
+    (huecos = data/sec.huecos: {año: {grupo: {rot: v}, "moneda", "presentado"}}). Las cifras de Yahoo no se tocan: estados_completos usa
+    estas solo donde Yahoo no tiene el dato. Lo de una corrida anterior queda (solo se agrega) y se pisa con lo nuevo. -> (reg, [años nuevos o cambiados])."""
+    hoy = hoy or _hoy()
+    reg = dict(reg or {})
+    antes = {a: dict(h) for a, h in (reg.get("huecos") or {}).items()}
+    cambiados = []
+    for a, h in sorted((huecos or {}).items()):
+        vals = {g: {r: _n(v) for r, v in (h.get(g) or {}).items() if _n(v) is not None} for g in GRUPOS}
+        vals = {g: v for g, v in vals.items() if v}
+        if not vals:
+            continue
+        previo = antes.get(a) or {}
+        if {g: previo.get(g) for g in vals} == vals and previo.get("moneda") == h.get("moneda"):
+            continue
+        antes[a] = {"fuente": fuente, "moneda": h.get("moneda", "USD"), "presentado": h.get("presentado", ""), "captura": hoy, **vals}
+        cambiados.append(a)
+    if cambiados:
+        reg["huecos"] = dict(sorted(antes.items()))
+        if cambios is not None:
+            _anotar(cambios, "huecos_" + fuente.lower(), ticker, anios=cambiados,
+                    detalle=f"celdas vacías de Yahoo completadas desde {fuente} ({', '.join(sorted({r for a in cambiados for g in GRUPOS for r in (antes[a].get(g) or {})}))})")
+    return reg, cambiados
+
+
+def _con_huecos(est, reg):
+    """Completa las celdas vacías de los estados (formato paquetes_yahoo) con reg["huecos"], mismo año fiscal y misma moneda. No modifica est."""
+    hz = (reg or {}).get("huecos") or {}
+    if not est or not hz:
+        return est
+    moneda = est.get("moneda") or "USD"
+    out = dict(est)
+    for g in GRUPOS:
+        t = est.get(g)
+        if not t:
+            continue
+        cols = t.get("anios", [])
+        idx = {str(int(a)): i for i, a in enumerate(cols) if not _es_ttm(a)}
+        filas = None
+        for a, h in hz.items():
+            if a not in idx or h.get("moneda", moneda) != moneda:
+                continue
+            for rot, v in (h.get(g) or {}).items():
+                if filas is None:
+                    filas = [[f[0], list(f[1]) if len(f) > 1 else [None] * len(cols), *f[2:]] for f in t.get("filas", []) if f]
+                fila = next((f for f in filas if f[0] == rot), None)
+                if fila is None:
+                    fila = [rot, [None] * len(cols), "m"]
+                    filas.append(fila)
+                if fila[1][idx[a]] is None:
+                    fila[1][idx[a]] = v
+        if filas is not None:
+            out[g] = {**t, "filas": filas}
+    return out
+
+
 def _ajustar_por_splits(grupos, factor):
     if factor == 1.0:
         return grupos
@@ -395,6 +452,8 @@ def estados_completos(ticker, estados=None, carpeta=None, archivo=None, splits=N
     reg = (archivo if archivo is not None else leer("estados.json", {}, carpeta)).get(tk)
     if not reg or not reg.get("anios"):
         return estados or {}
+    if reg.get("huecos"):         # v1.5.72: celdas vacías de Yahoo que la SEC sí tiene (gasto por intereses, intereses pagados)
+        estados = _con_huecos(estados, reg)
     sp = splits if splits is not None else leer("splits.json", {}, carpeta).get(tk, [])
     moneda = (estados or {}).get("moneda") or (reg.get("ttm") or {}).get("moneda") or next(iter(reg["anios"].values())).get("moneda") or "USD"
     actuales = set()
@@ -426,6 +485,7 @@ def estados_completos(ticker, estados=None, carpeta=None, archivo=None, splits=N
         fys = sorted((a for a in por_anio if not _es_ttm(a)), reverse=True)[:max_anios]
         cols = ttms + fys
         out[g] = {"anios": cols, "filas": [[r, [por_anio.get(a, {}).get(r) for a in cols], tip_g.get(r, "")] for r in ord_g]}
+    out = _con_huecos(out, reg)
     return out if out.get("resultados") else (estados or {})
 
 

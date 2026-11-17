@@ -1,0 +1,25 @@
+{
+  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, SOLO para las empresas que no lo informan en sus estados (ni Yahoo ni la SEC lo tienen). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
+  "datos": {
+    "AAPL": {
+      "anio": 2026,
+      "monto": 2600000000,
+      "medida": "Intereses de sus bonos a pagar en el año fiscal 2026, según su informe anual 2025 («Future interest payments associated with the Notes total $37.0 billion, with $2.6 billion payable within 12 months»). Apple no informa el gasto por intereses desde el año fiscal 2024. El informe anual 2026 prevé 2.400 millones para el año fiscal 2027.",
+      "fuentes": [
+        "https://s2.q4cdn.com/470004039/files/doc_earnings/2025/q4/filing/10K-Q4-2025-as-filed.pdf",
+        "https://www.sec.gov/Archives/edgar/data/0000320193/000032019326000026/aapl-20260926.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "GRMN": {
+      "anio": 2025,
+      "monto": 0,
+      "medida": "Sin deuda financiera: su estado de resultados 2025 solo tiene intereses ganados (la «deuda» de Yahoo son alquileres).",
+      "fuentes": [
+        "https://www8.garmin.com/aboutGarmin/invRelations/reports/2025_Form_10-K.pdf",
+        "https://app.edgar.tools/companies/GRMN"
+      ],
+      "cargado": "2026-11-17"
+    }
+  }
+}

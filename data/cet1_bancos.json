@@ -1,4 +1,297 @@
 {
-  "nota": "v1.5.71 — CET1 (capital ordinario de nivel 1, % de los activos ponderados por riesgo) de cada banco, tomado del último informe trimestral de la empresa, para el score de dividendos v1 (Guille, 16/11/2026). Campos: cet1 (en %, por ejemplo 15.4), hasta (cierre del trimestre, AAAA-MM-DD), fuente (URL del documento de la empresa), cargado. Las que no informan CET1 (aseguradoras, administradoras de fondos, brokers) van con \"no_aplica\": true. Lo renueva la tarea programada «FFO trimestral de los REIT (TodoCedears)» los días 28 de febrero, mayo, agosto y noviembre.",
-  "datos": {}
+  "nota": "v1.5.72 — CET1 (capital ordinario de nivel 1, % de los activos ponderados por riesgo) de cada banco al 30/09/2026, del informe de la empresa, para el score de dividendos v1 (Guille, 16/11/2026: «cet1, entonces hagámoslo»). Campos: cet1 (%), hasta, requisito (% mínimo regulatorio de ESE banco con sus colchones; el documento pone la zona crítica en «menor al requisito regulatorio»; hace falta solo cuando el CET1 es 11 % o menos), medida, fuentes, cargado. Las que no informan CET1 (aseguradoras, administradoras, brokers) van con no_aplica y el motivo. Renovar cada trimestre, después de los resultados.",
+  "datos": {
+    "JPM": {
+      "cet1": 13.9,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000019617/000162828026065616/a3q26_earningsxpresentat.htm",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 11.5
+    },
+    "BAC": {
+      "cet1": 10.9,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU. (preliminar)",
+      "fuentes": [
+        "https://www.stockhub.kr/en/insights/view_1791978175589_5eyg32da2",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 10.0
+    },
+    "WFC": {
+      "cet1": 10.0,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://www.familywealthreport.com/article.php/Wells-Fargo-Wealth-Management-Revenue-Rises-In-Q3-2026",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 8.5
+    },
+    "C": {
+      "cet1": 12.8,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU. (preliminar)",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000831001/000110465926115323/c-ex99d1.htm",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 11.6
+    },
+    "GS": {
+      "cet1": 12.4,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://www.tradingkey.com/news/transcripts/262214752-tradingkey",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 11.4
+    },
+    "MS": {
+      "cet1": 14.9,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://last10k.com/sec-filings/ms/0000895421-26-000288.htm",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 11.8
+    },
+    "USB": {
+      "cet1": 10.8,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://www.usbank.com/about-us-bank/news-and-stories/article-library/us-bancorp-reports-third-quarter-2026-results.html",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 7.1
+    },
+    "BNY": {
+      "cet1": 10.9,
+      "hasta": "2026-09-30",
+      "medida": "CET1 del comunicado de resultados (Basilea III de EE.UU.)",
+      "fuentes": [
+        "https://last10k.com/sec-filings/bny/0001390777-26-000104.htm",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 8.5
+    },
+    "SCHW": {
+      "cet1": 24.5,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://content.schwab.com/web/retail/public/about-schwab/SEC_Form10Q_093026.pdf",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 7.0
+    },
+    "AXP": {
+      "cet1": 10.9,
+      "hasta": "2026-09-30",
+      "medida": "Standardized, Basilea III de EE.UU.",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000004962/000000496226000409/axp-20260930.htm",
+        "https://www.federalreserve.gov/publications/files/large-bank-capital-requirements-20260624.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 7.0
+    },
+    "HSBC": {
+      "cet1": 13.9,
+      "hasta": "2026-09-30",
+      "medida": "CET1 regulatorio (Reino Unido)",
+      "fuentes": [
+        "https://www.hsbc.com/investors/results-and-announcements/all-reporting/3q-2026-quick-read"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "BCS": {
+      "cet1": 14.2,
+      "hasta": "2026-09-30",
+      "medida": "CET1 regulatorio (Reino Unido)",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000312069/000165495426009079/a9532z.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "LYG": {
+      "cet1": 13.3,
+      "hasta": "2026-09-30",
+      "medida": "CET1 regulatorio (Reino Unido)",
+      "fuentes": [
+        "https://www.lloydsbankinggroup.com/assets/pdfs/investors/financial-performance/lloyds-banking-group-plc/2026/q3/2026-lbg-q3-ims.pdf"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "SAN": {
+      "cet1": 12.7,
+      "hasta": "2026-09-30",
+      "medida": "CET1 (BCE)",
+      "fuentes": [
+        "https://www.santander.com/en/press-room/press-releases/2026/10/q3-2026-santander-bank-results"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "BBVA": {
+      "cet1": 12.21,
+      "hasta": "2026-09-30",
+      "medida": "CET1 (BCE)",
+      "fuentes": [
+        "https://www.bbva.com/en/economy-and-finance/earnings-3q2026/"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "ING": {
+      "cet1": 13.3,
+      "hasta": "2026-09-30",
+      "medida": "CET1 (BCE)",
+      "fuentes": [
+        "https://www.taiwannews.com.tw/en/news/6467859"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 11.1
+    },
+    "MUFG": {
+      "cet1": 12.65,
+      "hasta": "2026-09-30",
+      "medida": "CET1 regulatorio (Japón, KM1)",
+      "fuentes": [
+        "https://www.mufg.jp/dam/ir/report/basel3/2027-2q/pdf/mufg2609_09_en.pdf"
+      ],
+      "cargado": "2026-11-17",
+      "nota": "Su medida de gestión (Basilea III final, sin ganancias no realizadas) es más baja: 9,2 % a marzo de 2026."
+    },
+    "MFG": {
+      "cet1": 12.74,
+      "hasta": "2026-09-30",
+      "medida": "CET1 regulatorio (Japón, preliminar)",
+      "fuentes": [
+        "https://www.stocktitan.net/sec-filings/MFG/6-k-mizuho-financial-group-inc-current-report-foreign-issuer-5d12820711aa.html"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "NMR": {
+      "cet1": 12.6,
+      "hasta": "2026-09-30",
+      "medida": "CET1 Basilea III (Japón, preliminar)",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0001163653/000119312526442521/d522871d6k.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "KB": {
+      "cet1": 13.8,
+      "hasta": "2026-09-30",
+      "medida": "CET1 (Corea, preliminar)",
+      "fuentes": [
+        "https://www.mt.co.kr/en/finance/2026/10/29/2026102915320248850"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "HDB": {
+      "cet1": 17.1,
+      "hasta": "2026-09-30",
+      "medida": "CET1 (India, individual)",
+      "fuentes": [
+        "https://hellobanker.in/hdfc-bank-q2-results-fy27-net-profit-rises-4-7-to-₹19510-crore-npa-ratio-improves-to-1-11/"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "IBN": {
+      "cet1": 16.01,
+      "hasta": "2026-09-30",
+      "medida": "CET1 (India, individual)",
+      "fuentes": [
+        "https://www.jmfinancialservices.in/market-news-and-insights/1737579"
+      ],
+      "cargado": "2026-11-17",
+      "requisito": 8.2
+    },
+    "ITUB": {
+      "cet1": 12.7,
+      "hasta": "2026-09-30",
+      "medida": "Capital principal (Brasil)",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0001132597/000113259726000275/call_3q26xeng.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "BBD": {
+      "cet1": 12.1,
+      "hasta": "2026-09-30",
+      "medida": "Capital principal (Brasil)",
+      "fuentes": [
+        "https://investalk.bb.com.br/noticias/mercado/BBDC3T26"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "BSBR": {
+      "cet1": 10.9,
+      "hasta": "2026-09-30",
+      "medida": "Capital principal (Brasil)",
+      "fuentes": [
+        "https://visnoinvest.com.br/news/15934/santander-brasil-sanb11-registra-lucro-de-r-29-bi-no-3t26"
+      ],
+      "cargado": "2026-11-17",
+      "nota": "Requisito regulatorio no encontrado en un documento de la empresa: se usa 9,5 % (piso de la zona gris)."
+    },
+    "BRK-B": {
+      "no_aplica": true,
+      "motivo": "conglomerado con aseguradoras: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "AIG": {
+      "no_aplica": true,
+      "motivo": "aseguradora: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "AEG": {
+      "no_aplica": true,
+      "motivo": "aseguradora: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "TRV": {
+      "no_aplica": true,
+      "motivo": "aseguradora: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "BX": {
+      "no_aplica": true,
+      "motivo": "administradora de fondos: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "HOOD": {
+      "no_aplica": true,
+      "motivo": "broker: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "IBKR": {
+      "no_aplica": true,
+      "motivo": "broker: no informa CET1",
+      "cargado": "2026-11-17"
+    },
+    "NU": {
+      "pendiente": "banco: CET1 de septiembre de 2026 no encontrado todavía (solo el del conglomerado de Brasil a junio)",
+      "cargado": "2026-11-17"
+    },
+    "XP": {
+      "pendiente": "CET1 de septiembre de 2026 no encontrado todavía",
+      "cargado": "2026-11-17"
+    }
+  }
 }

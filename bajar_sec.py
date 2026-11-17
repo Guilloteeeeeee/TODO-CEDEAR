@@ -8,6 +8,9 @@ y no solo los 4 que trae Yahoo.
 - Antes de sumar, controla que en el año que tienen los dos la SEC y lo guardado coincidan (resultado neto o ingresos dentro de 5 %).
 - v1.5.61: pasa la ganancia por acción de la SEC a la base de Yahoo (en los ADR la SEC informa por acción ordinaria y Yahoo por ADR).
   Si no coinciden (por ejemplo, otra moneda o un año fiscal corrido), esa empresa se saltea y queda anotada en el resultado.
+- v1.5.72 (Guille 17/11/2026: el gasto por intereses «tiene que estar sí o sí»): además completa, en los años que trae Yahoo, el gasto por
+  intereses y los intereses pagados cuando Yahoo los deja vacíos (data/sec.huecos, año por año: misma moneda y resultado neto o ingresos
+  dentro de 5 %). Quedan aparte (reg["huecos"]) y la app los usa solo donde Yahoo no tiene el dato.
 - No cambia el cache, los puntajes ni la pantalla. Lo guardado queda en data/historico/estados.json (y el registro en cambios.json).
 
 La SEC pide (https://www.sec.gov/os/accessing-edgar-data) que cada programa se identifique con un nombre y un mail de contacto y que no haga más
@@ -132,6 +135,27 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
     return "corregido", f"{len(corregidos)} años corregidos · {det}", corregidos
 
 
+def sin_intereses(archivo, tickers):
+    """v1.5.72: empresas que pagan dividendo sin gasto por intereses ni intereses pagados en su último año (para cargar a mano con fuente)."""
+    try:
+        cache = {r["ticker"]: r for r in json.load(open(os.path.join(AQUI, "data", "cache_datos.json"), encoding="utf-8"))["data"]}
+    except (OSError, ValueError):
+        cache = {}
+    out = []
+    for t in tickers:
+        reg = archivo.get(t.upper()) or {}
+        an = {a: r for a, r in (reg.get("anios") or {}).items() if r.get("fuente") != "SEC"}
+        if not an or not ((cache.get(t) or {}).get("annual_dividend") or 0) > 0:
+            continue
+        u = max(an)
+        hz = (reg.get("huecos") or {}).get(u) or {}
+        tiene = any(((an[u].get(g) or {}).get(r) is not None) or ((hz.get(g) or {}).get(r) is not None)
+                    for g, r in (("resultados", "Gasto por intereses"), ("flujo", "Intereses pagados")))
+        if not tiene:
+            out.append(f"{t} ({u})")
+    return out or ["ninguna"]
+
+
 def main(tickers=None):
     tickers = [t.upper() for t in (tickers or _empresas())]
     ua = _contacto()
@@ -141,7 +165,8 @@ def main(tickers=None):
     archivo = H.leer("estados.json", {})
     cambios = H.leer("cambios.json", [])
     splits = H.leer("splits.json", {})
-    filas, seguidos = {"ok": [], "corregido": [], "nada_nuevo": [], "no_coincide": [], "sin_datos": [], "sin_cik": [], "error": []}, 0
+    filas, seguidos = {"ok": [], "corregido": [], "nada_nuevo": [], "no_coincide": [], "sin_datos": [], "sin_cik": [], "error": [],
+                       "huecos": [], "huecos_no": []}, 0
     print(f"Sumando años viejos de la SEC a {len(tickers)} empresas (no cierres la ventana)...")
     for i, t in enumerate(tickers, 1):
         cik = mapa.get(t.replace("-", "."), mapa.get(t))
@@ -171,6 +196,13 @@ def main(tickers=None):
             except Exception:  # noqa: BLE001
                 pass
         estado, det, sumados = procesar(t, facts, archivo, cambios, splits=splits.get(t))
+        # v1.5.72: celdas que Yahoo deja vacías en sus años (gasto por intereses, intereses pagados) y la SEC sí tiene
+        hz, hz_no = S.huecos(S.a_anios(facts), archivo.get(t.upper()))
+        if hz:
+            archivo[t.upper()], cambiados = H.completar_huecos(archivo.get(t.upper()), hz, t.upper(), cambios)
+            filas["huecos"].append(f"{t}: {', '.join(sorted(hz))}" + (" (ya estaban)" if not cambiados else ""))
+        if hz_no:
+            filas["huecos_no"].append(f"{t}: " + "; ".join(hz_no))
         if estado == "ok":
             filas["ok"].append(f"{t}: +{len(sumados)} años ({sumados[0]}–{sumados[-1]})" + (f" · {det.split(' · ', 1)[1]}" if " · " in det else ""))
         else:
@@ -192,7 +224,11 @@ def main(tickers=None):
              "", f"■ No coinciden con Yahoo (se saltearon, para revisar): {len(filas['no_coincide'])}"] + [f"   {x}" for x in filas["no_coincide"]] + [
              "", f"■ Sin datos anuales en la SEC: {len(filas['sin_datos'])}"] + [f"   {x}" for x in filas["sin_datos"]] + [
              "", f"■ No presentan informes en la SEC: {len(filas['sin_cik'])} ({', '.join(filas['sin_cik'])})",
-             "", f"■ Errores: {len(filas['error'])}"] + [f"   {x}" for x in filas["error"]]
+             "", f"■ Errores: {len(filas['error'])}"] + [f"   {x}" for x in filas["error"]] + [
+             "", f"■ Gasto por intereses / intereses pagados completados desde la SEC (Yahoo los dejaba vacíos): {len(filas['huecos'])}"] + [
+             f"   {x}" for x in filas["huecos"]] + [
+             "", f"■ Intereses que no se completaron porque el año no coincide: {len(filas['huecos_no'])}"] + [f"   {x}" for x in filas["huecos_no"]] + [
+             "", "■ Siguen sin gasto por intereses en su último año (ni Yahoo ni la SEC): " + ", ".join(sin_intereses(archivo, tickers))]
     with open(os.path.join(AQUI, "resultados_sec.txt"), "w", encoding="utf-8") as f:
         f.write("\n".join(texto) + "\n")
     print("\n" + "\n".join(texto))

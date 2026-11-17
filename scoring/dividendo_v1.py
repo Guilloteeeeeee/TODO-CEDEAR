@@ -13,6 +13,8 @@ Regla de Guille: «respetar lo más posible el archivo». Lo que el documento no
   - Crecimiento de ventas: anual compuesto de 3 años fiscales.
   - Utilities: FFO/Deuda de S&P ≈ flujo operativo ÷ deuda total. REITs: cobertura de cargos fijos ≈ EBITDA ÷ intereses.
 Definiciones mías, pendientes de su OK (marcadas PROPUESTA): pesos de las métricas de reemplazo por sector, «pagos erráticos».
+v1.5.72 (Guille 17/11/2026): cobertura con resultado e intereses del mismo período (12 meses o último año, nada más viejo; SEC y carga manual
+con fuente de respaldo) y obligatoria; REITs solo con AFFO (sin FFO provisorio); CET1 con el requisito regulatorio de cada banco.
 """
 import datetime as _dt
 import json
@@ -114,28 +116,62 @@ def calcular(e):
         vs.append(dict(clave=clave, pts=pts, max=mx, valor=valor, **extra))
 
     # --- cobertura de intereses (25) / cobertura de cargos fijos en REITs (EBITDA ÷ intereses) / CET1 en bancos ---------
+    # v1.5.72 (Guille 17/11/2026: usar un dato de años atrás «es una atrocidad»): resultado e intereses del MISMO período, los últimos 12 meses
+    # o el último año fiscal; nada más viejo. Intereses: el gasto (Yahoo; si falta, la SEC, data/sec.huecos) → los pagados (flujo de efectivo)
+    # → cargado a mano con fuente (data/intereses_manuales.json, empresas que no lo informan). Sin cobertura no hay score.
     cob = None
     if not banco:
-        i = _ultimo(inte, 4)
-        if not i and _ultimo(int_pag, 4):
-            i = abs(_ultimo(int_pag, 4))
-            notas.append("intereses: los pagados (flujo de efectivo)")
-        base = _ultimo(ebitda) if reit else _ultimo(ebit)
-        if base is None and not reit and i and _ultimo(S("r", "Resultado antes de impuestos")) is not None:
-            base = _ultimo(S("r", "Resultado antes de impuestos")) + abs(i)      # sin resultado operativo: antes de impuestos + intereses
+        base_s = ebitda if reit else ebit
+        antes_imp = S("r", "Resultado antes de impuestos")
+        fy_base = [a for a in _anuales(base_s)] or [a for a in _anuales(antes_imp)]
+        periodos = (["TTM"] if "TTM" in base_s or "TTM" in antes_imp else []) + ([max(fy_base)] if fy_base else [])
+
+        def _base(p, i):
+            b = base_s.get(p)
+            if b is None and not reit and antes_imp.get(p) is not None:
+                b = antes_imp[p] + abs(i)            # sin resultado operativo: antes de impuestos + intereses
+            return b
+
+        for p in periodos:
+            i, de = inte.get(p), "gasto"
+            if i is None and int_pag.get(p) is not None:
+                i, de = int_pag[p], "pagados"
+            if i is None:
+                continue
+            b = _base(p, i)
+            if b is None:
+                continue
+            cob = 99.0 if abs(i) == 0 else b / abs(i)
+            if de == "pagados":
+                notas.append(f"intereses: los pagados (flujo de efectivo, {p})")
+            break
+        man = e.get("intereses_manual")
+        if cob is None and man and V0._n(man.get("monto")) is not None:
+            p = int(man.get("anio") or 0)
+            b = _base(p, man["monto"]) if p in base_s or p in antes_imp else None
+            if b is not None:
+                cob = 99.0 if V0._n(man["monto"]) == 0 else b / abs(V0._n(man["monto"]))
+                notas.append(f"intereses cargados a mano ({p}): {man.get('medida', '')[:80]}")
         d = _ultimo(deuda)
-        if i and base is not None:
-            cob = base / abs(i)
-        elif d is not None and d <= 0:
+        if cob is None and d is not None and d <= 0:
             cob = 99.0
             notas.append("sin deuda: cobertura segura")
         if reit:
             var("cobertura", _zona(cob, (3.0, False), (1.5, False), (25, 10, 0), False), 25, cob, nombre="EBITDA ÷ intereses (cargos fijos)")
         else:
             var("cobertura", _zona(cob, (5.0, False), (2.0, False), (25, 10, 0), False), 25, cob)
+        if cob is None:
+            return {"score": None, "categoria": None, "variables": vs, "ajustes": ajustes, "topes": topes,
+                    "notas": notas + ["falta el gasto por intereses de los últimos 12 meses o del último año fiscal"]}
     else:
-        c1 = V0._n(e.get("cet1"))
-        var("cet1", _zona(c1, (11.0, False), (9.5, False), (25, 10, 0), False), 25, c1)
+        # CET1 (documento): segura > 11 %, gris 9,5 % a 11 %, crítica = por debajo del requisito regulatorio de ESE banco. Con la regla de
+        # bordes de Guille la gris llega hasta el requisito. Si el requisito no está cargado se usa 9,5 % (piso de la gris del documento).
+        c1, req = V0._n(e.get("cet1")), V0._n(e.get("cet1_requisito"))
+        piso = req if req is not None else 9.5
+        pts = None if c1 is None else (25 if c1 > 11 else 10 if c1 >= piso else 0)
+        if c1 is not None and c1 <= 11 and req is None:
+            notas.append("CET1: sin el requisito regulatorio cargado, se usó 9,5 %")
+        var("cet1", pts, 25, c1, requisito=req)
 
     # --- payout sobre flujo libre (20) / AFFO en REITs / ganancias en utilities y bancos ---------------------------------------
     fcf_pay = None
@@ -143,8 +179,11 @@ def calcular(e):
     if d12 is not None and f12 is not None:
         fcf_pay = abs(d12) / f12 * 100 if f12 > 0 else 999.0
     if reit:
-        affo = V0._n(e.get("affo"))
-        pay = (dpa / affo * 100 if affo and affo > 0 else 999.0) if (dpa and affo is not None) else None
+        # v1.5.72: dividendos pagados ÷ AFFO de los mismos 12 meses, con las cifras de la empresa (data/ffo_reit.json, affo_payout_12m);
+        # si solo hay AFFO por acción, dividendo anual ÷ AFFO. Sin AFFO de la empresa, la métrica no cuenta (nada de FFO provisorio).
+        affo, pay = V0._n(e.get("affo")), V0._n(e.get("affo_payout"))
+        if pay is None:
+            pay = (dpa / affo * 100 if affo and affo > 0 else 999.0) if (dpa and affo is not None) else None
         var("affo", _zona(pay, (80, False), (90, False), (20, 10, 0), True), 20, pay, nombre=e.get("affo_nombre") or "AFFO")
     elif util or banco:
         e12 = _ultimo(eps)
@@ -279,3 +318,17 @@ def cargar_json(nombre):
         return json.load(open(os.path.join(AQUI, "data", nombre), encoding="utf-8")).get("datos", {})
     except (OSError, ValueError):
         return {}
+
+
+_MANUALES = {}
+
+
+def intereses_manual(ticker, ruta=None):
+    """v1.5.72: gasto por intereses cargado a mano con fuente (data/intereses_manuales.json) para las empresas que no lo informan, o None."""
+    ruta = ruta or os.path.join(AQUI, "data", "intereses_manuales.json")
+    if ruta not in _MANUALES:
+        try:
+            _MANUALES[ruta] = json.load(open(ruta, encoding="utf-8")).get("datos", {})
+        except (OSError, ValueError):
+            _MANUALES[ruta] = {}
+    return _MANUALES[ruta].get(ticker)
