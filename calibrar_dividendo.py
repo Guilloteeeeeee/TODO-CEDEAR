@@ -120,6 +120,10 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
         cet1 = json.load(open(os.path.join(AQUI, "data", "cet1_bancos.json"), encoding="utf-8")).get("datos", {})
     except (OSError, ValueError):
         cet1 = {}
+    try:
+        solv = json.load(open(os.path.join(AQUI, "data", "solvencia_aseguradoras.json"), encoding="utf-8")).get("datos", {})
+    except (OSError, ValueError):
+        solv = {}
     res = {}
     for t in tickers:
         row = cache.get(t)
@@ -149,7 +153,8 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             e1 = dict(ent, grupo=SD.grupo_de(row) if hasattr(SD, "grupo_de") else ent.get("grupo"), rend=ent.get("dy"),
                       mes_cierre=(fichas.get(t) or {}).get("mes_cierre_fiscal"), cet1=(cet1.get(t) or {}).get("cet1"),
                       cet1_requisito=(cet1.get(t) or {}).get("requisito"), fuente_historial=fuente,
-                      intereses_manual=V1.intereses_manual(t))
+                      intereses_manual=V1.intereses_manual(t), solvencia=(solv.get(t) or {}).get("solvencia"),
+                      solvencia_requisito=(solv.get(t) or {}).get("requisito"))
             # v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): solo AFFO cargado y vigente
             f = SD.ffo_vigente(ent)
             if f and (f.get("affo_payout_12m") or f.get("affo_12m")):

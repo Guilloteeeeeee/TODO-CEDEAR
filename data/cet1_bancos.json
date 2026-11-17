@@ -252,22 +252,22 @@
     },
     "BRK-B": {
       "no_aplica": true,
-      "motivo": "conglomerado con aseguradoras: no informa CET1",
+      "motivo": "conglomerado con aseguradoras: no informa CET1; se usa su índice de solvencia (data/solvencia_aseguradoras.json)",
       "cargado": "2026-11-17"
     },
     "AIG": {
       "no_aplica": true,
-      "motivo": "aseguradora: no informa CET1",
+      "motivo": "aseguradora: no informa CET1; se usa su índice de solvencia (data/solvencia_aseguradoras.json)",
       "cargado": "2026-11-17"
     },
     "AEG": {
       "no_aplica": true,
-      "motivo": "aseguradora: no informa CET1",
+      "motivo": "aseguradora: no informa CET1; se usa su índice de solvencia (data/solvencia_aseguradoras.json)",
       "cargado": "2026-11-17"
     },
     "TRV": {
       "no_aplica": true,
-      "motivo": "aseguradora: no informa CET1",
+      "motivo": "aseguradora: no informa CET1; se usa su índice de solvencia (data/solvencia_aseguradoras.json)",
       "cargado": "2026-11-17"
     },
     "BX": {

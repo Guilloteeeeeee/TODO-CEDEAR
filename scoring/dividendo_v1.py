@@ -36,6 +36,8 @@ UTILITIES = {"Utilities"}
 VARIABLE_DECLARADA = {
     "GFI": "paga 35% del flujo libre antes de inversiones discrecionales (resultados 1S2026)",
 }
+RECOMPRAS_ANIOS = 10        # v1.5.74: recompras que se suman a las ganancias retenidas (Guille: aprobado)
+SOLVENCIA_SEGURA = 150.0    # v1.5.74 PROPUESTA: índice de solvencia de las aseguradoras (segura más de 150 %; crítica debajo del requisito, 100 %)
 # PROPUESTA: «historial de pagos erráticos» = 3 o más años con recorte en los últimos 10 (en la moneda del dividendo)
 ERRATICO_RECORTES, ERRATICO_ANIOS = 3, 10
 
@@ -109,6 +111,7 @@ def calcular(e):
     deuda, dneta, caja = S("b", "Deuda total"), S("b", "Deuda neta"), S("b", "Caja e inversiones de corto plazo")
     ac, inv, pc, at = S("b", "Activo corriente"), S("b", "Inventarios"), S("b", "Pasivo corriente"), S("b", "Activo total")
     rr, tes = S("b", "Ganancias retenidas"), S("b", "Acciones en tesorería")
+    recomp, arrend = S("f", "Recompra de acciones"), S("b", "Deuda por arrendamientos")
     dpa = V0._n(e.get("dividendo_anual"))
     vs, ajustes, topes, notas = [], [], [], []
 
@@ -156,6 +159,12 @@ def calcular(e):
         if cob is None and d is not None and d <= 0:
             cob = 99.0
             notas.append("sin deuda: cobertura segura")
+        # v1.5.74 (Guille: «si no hay interés a pagar la cobertura es máxima»): sin intereses informados y sin deuda financiera (la deuda total de
+        # Yahoo incluye los alquileres) → cobertura máxima
+        a = _ultimo(arrend)
+        if cob is None and d is not None and a is not None and d - abs(a) <= 0.01 * d:
+            cob = 99.0
+            notas.append("sin deuda financiera (su deuda son alquileres) ni intereses: cobertura máxima")
         if reit:
             var("cobertura", _zona(cob, (3.0, False), (1.5, False), (25, 10, 0), False), 25, cob, nombre="EBITDA ÷ intereses (cargos fijos)")
         else:
@@ -163,6 +172,11 @@ def calcular(e):
         if cob is None:
             return {"score": None, "categoria": None, "variables": vs, "ajustes": ajustes, "topes": topes,
                     "notas": notas + ["falta el gasto por intereses de los últimos 12 meses o del último año fiscal"]}
+    elif V0._n(e.get("solvencia")) is not None:
+        # v1.5.74 (Guille 17/11/2026: «hagamos con índice de solvencia» en las aseguradoras). PROPUESTA de cortes, igual que el CET1: segura más de
+        # 150 %, gris desde el requisito (100 % = el mínimo regulatorio) hasta 150 %, crítica por debajo del requisito.
+        sv, rq = V0._n(e.get("solvencia")), V0._n(e.get("solvencia_requisito")) or 100.0
+        var("solvencia", 25 if sv > SOLVENCIA_SEGURA else 10 if sv >= rq else 0, 25, sv, requisito=rq)
     else:
         # CET1 (documento): segura > 11 %, gris 9,5 % a 11 %, crítica = por debajo del requisito regulatorio de ESE banco. Con la regla de
         # bordes de Guille la gris llega hasta el requisito. Si el requisito no está cargado se usa 9,5 % (piso de la gris del documento).
@@ -233,10 +247,16 @@ def calcular(e):
         var("ffo_deuda", _zona(fd, (15, False), (10, False), (10, 5, 0), False), 10, fd)
 
     # --- ganancias retenidas ajustadas ÷ activos (10) (no en REITs) ---------------------------------------------------------
+    # v1.5.74 (Guille 17/11/2026: «me gusta la solución»): ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los
+    # últimos 10 años fiscales. Así no se castiga a las que cancelan las acciones que recompran (Apple) y no se cuenta dos veces una recompra.
     if not reit:
         r, t, a = _ultimo(rr), _ultimo(tes), _ultimo(at)
-        re_ta = (r + abs(t or 0)) / a * 100 if (r is not None and a) else None
-        var("re_ta", _zona(re_ta, (35, False), (15, False), (10, 5, 0), False), 10, re_ta)
+        an_r = _anuales(recomp)
+        rec10 = sum(abs(v) for k, v in an_r.items() if k > max(an_r) - RECOMPRAS_ANIOS) if an_r else 0.0
+        suma = max(abs(t or 0), rec10)
+        re_ta = (r + suma) / a * 100 if (r is not None and a) else None
+        var("re_ta", _zona(re_ta, (35, False), (15, False), (10, 5, 0), False), 10, re_ta,
+            recompras=rec10, anios_recompras=len([k for k in an_r if k > max(an_r) - RECOMPRAS_ANIOS]) if an_r else 0)
 
     # --- prueba ácida (5) (no en bancos) ------------------------------------------------------------------------------------
     if not banco:
@@ -280,7 +300,7 @@ def calcular(e):
         elif hace <= 10:
             ajustes.append(("recorte_5_10", -10))
     # el bono se anula si la cobertura (o su reemplazo) o el payout principal están en zona crítica
-    critica = any(v["pts"] == 0 for v in vs if v["clave"] in ("cobertura", "cet1", "fcf_payout", "affo", "eps_payout"))
+    critica = any(v["pts"] == 0 for v in vs if v["clave"] in ("cobertura", "cet1", "solvencia", "fcf_payout", "affo", "eps_payout"))
     if sin_suba >= 3:
         ajustes.append(("congelamiento", -5))           # congelamiento crónico: −5 y pierde el bono
     elif not variable and not critica:

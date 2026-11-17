@@ -33,15 +33,17 @@ CONCEPTOS = {
                             ("us-gaap", "InterestAndDebtExpense"), ("ifrs-full", "InterestExpense"), ("ifrs-full", "FinanceCosts")],
     "Intereses pagados": [("us-gaap", "InterestPaidNet"), ("us-gaap", "InterestPaid"), ("ifrs-full", "InterestPaidClassifiedAsOperatingActivities"),
                           ("ifrs-full", "InterestPaidClassifiedAsFinancingActivities")],
+    # v1.5.74 (Guille 17/11/2026, ganancias retenidas de las «caníbales»): recompras de 10 años
+    "Recompra de acciones": [("us-gaap", "PaymentsForRepurchaseOfCommonStock"), ("ifrs-full", "PaymentsToAcquireOrRedeemEntitysShares")],
 }
 GRUPO = {"Ingresos": "resultados", "Resultado operativo": "resultados", "Resultado neto": "resultados", "Ganancia por acción (diluida)": "resultados",
          "Activo total": "balance", "Patrimonio neto": "balance",
          "Flujo de efectivo operativo": "flujo", "Inversión en activos fijos (CAPEX)": "flujo", "Dividendos pagados": "flujo",
-         "Gasto por intereses": "resultados", "Intereses pagados": "flujo"}
+         "Gasto por intereses": "resultados", "Intereses pagados": "flujo", "Recompra de acciones": "flujo"}
 # v1.5.72: filas que la SEC completa también en los años que trae Yahoo, cuando Yahoo las deja vacías (ver huecos)
 HUECOS = ("Gasto por intereses", "Intereses pagados")
 TIPO = {"Ganancia por acción (diluida)": "eps"}          # el resto, montos ("m"), como en paquetes_yahoo
-NEGATIVOS = ("Inversión en activos fijos (CAPEX)", "Dividendos pagados")   # Yahoo los muestra en negativo
+NEGATIVOS = ("Inversión en activos fijos (CAPEX)", "Dividendos pagados", "Recompra de acciones")   # Yahoo los muestra en negativo
 INSTANTANEOS = {"Activo total", "Patrimonio neto"}      # se miden a una fecha (balance), no durante un año
 FORMULARIOS = ("10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 TOLERANCIA_SOLAPE = 0.05                                 # en el año que tienen los dos, SEC y Yahoo tienen que coincidir dentro de 5 %

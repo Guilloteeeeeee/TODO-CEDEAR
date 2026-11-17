@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.74 — Score v1: recompras en ganancias retenidas, sin deuda = cobertura máxima, solvencia de aseguradoras (17/11/2026)
+- **Ganancias retenidas de las «caníbales» (aprobado por Guille: «me gusta la solución»):** ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los últimos 10 años fiscales (`RECOMPRAS_ANIOS`), ÷ activos. `bajar_sec.py` suma las recompras de los años viejos (`PaymentsForRepurchaseOfCommonStock`).
+- **Sin intereses y sin deuda financiera → cobertura máxima** (Guille: «si no hay interés a pagar la cobertura es máxima»): la deuda total de Yahoo incluye los alquileres; nueva fila `Deuda por arrendamientos` («Capital Lease Obligations», no se muestra en la ficha). Si la deuda son solo alquileres y no hay intereses informados, cobertura máxima.
+- **Aseguradoras con índice de solvencia** (Guille: «hagamos con índice de solvencia»): `data/solvencia_aseguradoras.json` (Aegon 169 % al 30/06/2026; Travelers, AIG y Berkshire no publican el número). Cortes PROPUESTOS, como el CET1: segura más de 150 % (`SOLVENCIA_SEGURA`), gris desde el requisito (100 %), crítica por debajo.
+- PACCAR: intereses de su financiera 2025 (783 millones) en `data/intereses_manuales.json` (respaldo: si Yahoo o la SEC lo traen, mandan ellos).
+- La tarea programada trimestral ahora renueva FFO y AFFO de los REIT, CET1 de los bancos y solvencia de las aseguradoras (Guille: «renová cada trimestre AFFO y CET1»).
+- Pruebas: `tests/test_v1574_recompras_solvencia.py` (OK 23).
+
 ### v1.5.73 — Columna de 12 meses con el dato de Yahoo (17/11/2026)
 - **Caso de Guille (captura de Eli Lilly en Yahoo):** Yahoo muestra el gasto por intereses de los últimos 12 meses (897,1 millones) aunque 2025 esté vacío; nuestra bajada lo perdía porque la columna de 12 meses se arma sumando 4 trimestres y a la clave «Interest Expense» le faltaba uno. Ahora (`data/yahoo_extra.py`): la suma de trimestres sigue mandando, pero donde falta se usa el dato de 12 meses que publica Yahoo (`tk.ttm_income_stmt`, `tk.ttm_cashflow`, mismo trimestre: `_con_ttm(..., ttm_yahoo=)`); y en las filas de intereses (`POR_CELDA`) cada columna toma la primera clave de Yahoo con dato («Interest Expense» o «Interest Expense Non Operating»). El resto de las filas sigue con una sola clave por fila. Hace falta volver a correr `bajar_paquetes_yahoo.bat`.
 - Pruebas: `tests/test_v1573_ttm_yahoo.py` (OK 8).

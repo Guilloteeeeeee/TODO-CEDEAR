@@ -361,6 +361,7 @@ ESTADOS = {
         ("Patrimonio neto", ["Stockholders Equity", "Common Stock Equity"], "t"),
         ("Ganancias retenidas", ["Retained Earnings"], "m"),           # score de dividendos v1 (no se muestran en la ficha)
         ("Acciones en tesorería", ["Treasury Stock"], "m"),
+        ("Deuda por arrendamientos", ["Capital Lease Obligations"], "m"),   # v1.5.74: deuda financiera = deuda total − alquileres
         ("Capital invertido (según Yahoo)", ["Invested Capital"], "m")]),
     "flujo": ("cashflow", [
         ("Flujo de efectivo operativo", ["Operating Cash Flow", "Cash Flow From Continuing Operating Activities"], "t"),

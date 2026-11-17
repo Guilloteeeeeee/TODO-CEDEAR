@@ -1,0 +1,32 @@
+{
+  "nota": "v1.5.74 — Índice de solvencia de las aseguradoras (Guille 17/11/2026: en lugar del CET1, «hagamos con índice de solvencia»), del último informe de la empresa, para el score de dividendos v1. Campos: solvencia (%), requisito (% mínimo regulatorio de esa medida; 100 % en Solvencia II y su equivalente de Bermudas), hasta, medida, fuentes, cargado. Las que no publican el número van con no_publica y el motivo. Renovar cada trimestre junto con el CET1.",
+  "datos": {
+    "AEG": {
+      "solvencia": 169,
+      "requisito": 100,
+      "hasta": "2026-06-30",
+      "medida": "Índice de solvencia del grupo (marco de Bermudas, alineado con Solvencia II). Aegon informa además el RBC de EE.UU.: 420 % (su nivel operativo es 400 %).",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0000769218/000119312526357707/d115717d6k.htm",
+        "https://ml-eu.globenewswire.com/Resource/Download/5f35225d-9de5-4b6f-bfa2-2f7ea87de0d9"
+      ],
+      "nota": "Último dato: 30/06/2026 (la actualización del 3T2026 todavía no la encontré).",
+      "cargado": "2026-11-17"
+    },
+    "TRV": {
+      "no_publica": "Su informe anual solo dice que cada aseguradora de EE.UU. está «muy por encima» del nivel en que el regulador actuaría; no da el número.",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/86312/000008631226000065/trv-20251231.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "AIG": {
+      "no_publica": "No encontré el índice en sus informes trimestrales ni en el anual 2025.",
+      "cargado": "2026-11-17"
+    },
+    "BRK-B": {
+      "no_publica": "No encontré un índice de solvencia publicado del grupo (conglomerado con aseguradoras).",
+      "cargado": "2026-11-17"
+    }
+  }
+}

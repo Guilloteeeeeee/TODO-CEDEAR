@@ -1,5 +1,5 @@
 {
-  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, SOLO para las empresas que no lo informan en sus estados (ni Yahoo ni la SEC lo tienen). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
+  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, para las empresas que no lo informan o cuyo dato no traen Yahoo ni la SEC (respaldo: si después aparece en Yahoo o en la SEC, manda ese). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
   "datos": {
     "AAPL": {
       "anio": 2026,
@@ -18,6 +18,15 @@
       "fuentes": [
         "https://www8.garmin.com/aboutGarmin/invRelations/reports/2025_Form_10-K.pdf",
         "https://app.edgar.tools/companies/GRMN"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "PCAR": {
+      "anio": 2025,
+      "monto": 783000000,
+      "medida": "«Interest and other borrowing expenses» de su financiera (PACCAR Financial Services), año 2025: es el costo de la plata que pide prestada para financiar a quienes compran camiones. Yahoo no trae esta fila.",
+      "fuentes": [
+        "https://app.edgar.tools/companies/PCAR"
       ],
       "cargado": "2026-11-17"
     }

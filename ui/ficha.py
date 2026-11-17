@@ -1654,7 +1654,7 @@ AYUDA_ESTADOS = {
 }
 
 
-SOLO_SCORE = {"Ganancias retenidas", "Acciones en tesorería", "Intereses pagados"}   # filas que se bajan para el score de dividendos v1
+SOLO_SCORE = {"Ganancias retenidas", "Acciones en tesorería", "Intereses pagados", "Deuda por arrendamientos"}   # filas que se bajan para el score de dividendos v1
 
 
 def _tabla_estado_html(t, moneda, industria=None):
