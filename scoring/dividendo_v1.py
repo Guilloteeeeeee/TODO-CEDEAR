@@ -18,6 +18,7 @@ con fuente de respaldo) y obligatoria; REITs solo con AFFO (sin FFO provisorio);
 """
 import datetime as _dt
 import json
+import math
 import os
 
 from scoring import dividendo as V0
@@ -72,6 +73,14 @@ def categoria(p):
     return CATEGORIAS[-1][1]
 
 
+def _periodo(serie, n=2):
+    """Como _ultimo, pero devuelve el período («TTM» o el año)."""
+    for k in list(serie)[: max(1, n)]:
+        if serie[k] is not None:
+            return k
+    return None
+
+
 def _ultimo(serie, n=2):
     """Primer valor no nulo empezando por los últimos 12 meses (si falta, el último año fiscal); n = cuántos períodos mirar."""
     for k in list(serie)[: max(1, n)]:
@@ -118,9 +127,84 @@ def calcular(e):
     recomp, arrend = S("f", "Recompra de acciones"), S("b", "Deuda por arrendamientos")
     dpa = V0._n(e.get("dividendo_anual"))
     vs, ajustes, topes, notas = [], [], [], []
+    # v1.5.79: deuda del último trimestre que no cierra con el balance (KEPCO: Yahoo anota 3,1 billones de wones contra 132,9 del cierre del
+    # año, con el pasivo total subiendo): se descarta y se usa la del último año fiscal. Si el pasivo baja junto con la deuda (Spotify, Hecla,
+    # Honeywell), es un pago de verdad y queda.
+    fy_d = [a for a in deuda if isinstance(a, int) and deuda[a]]
+    if deuda.get("TTM") is not None and fy_d:
+        u_d, pt = max(fy_d), S("b", "Pasivo total")
+        caida = deuda[u_d] - deuda["TTM"]
+        if (deuda["TTM"] < 0.5 * deuda[u_d] and pt.get(u_d) and pt.get("TTM") and caida > 0.1 * pt[u_d]
+                and pt[u_d] - pt["TTM"] < 0.25 * caida):
+            deuda = {k: x for k, x in deuda.items() if k != "TTM"}
+            dneta = {k: x for k, x in dneta.items() if k != "TTM"}
+            notas.append(f"deuda del último trimestre descartada (no cierra con el pasivo): se usa la de {u_d}")
 
     def var(clave, pts, mx, valor, **extra):
         vs.append(dict(clave=clave, pts=pts, max=mx, valor=valor, **extra))
+
+    # v1.5.79: estados en otra moneda (o acciones llevadas a ADR). El dividendo por acción de Yahoo viene en dólares por ADR y la ganancia por
+    # acción del balance en la moneda de la empresa: National Grid daba 99 % de pago (dólares ÷ libras), KB y KEPCO 0 % (dólares ÷ wones). La
+    # ganancia se pasa a dólares por ADR con el tipo de cambio del cache. Dos controles con lo que dice Yahoo del precio:
+    # - si las acciones del balance no son las del ADR (Santander Brasil: 2 acciones por ADR; Coca-Cola FEMSA: 10), se llevan a las del ADR
+    #   (resultado neto ÷ ganancia por acción contra capitalización ÷ precio; sin capitalización, contra precio ÷ PER);
+    # - si Yahoo marca los estados en otra moneda pero vienen en dólares (Petrobras y Embraer presentan en dólares), no se convierten: se ve
+    #   porque precio ÷ PER coincide con la ganancia sin convertir y no con la convertida (solo con monedas lejos del dólar).
+    mon = e.get("moneda_estados") or "USD"
+    otra_moneda = mon != "USD" or bool(e.get("ajuste_adr"))
+    fx_e = 1.0 if mon == "USD" else V0._n(e.get("fx"))
+    pr_e, per_e, mc_e = V0._n(e.get("precio")), V0._n(e.get("per")), V0._n(e.get("market_cap"))
+    ancla = pr_e / per_e if (pr_e and per_e and per_e > 0) else None      # ganancia por ADR en dólares según Yahoo (precio ÷ PER)
+
+    def _k(r):
+        return r if (r and r > 0 and not (1 / 1.5 <= r <= 1.5)) else 1.0
+
+    def k_cap(per):
+        n_, g_ = neto.get(per), eps.get(per)
+        return _k((n_ / g_) / (mc_e / pr_e)) if (n_ and g_ and mc_e and pr_e) else None
+
+    if otra_moneda and fx_e and ancla and abs(math.log(fx_e)) > math.log(3):
+        p0 = _periodo(eps)
+        g0 = eps.get(p0) if p0 is not None else None
+        if g0 and g0 > 0:
+            k0 = k_cap(p0) or 1.0
+            if abs(math.log(g0 * k0 / ancla)) < math.log(1.5) and abs(math.log(g0 * fx_e * k0 / ancla)) > math.log(3):
+                fx_e = 1.0
+                notas.append(f"estados en dólares (Yahoo los marca en {mon})")
+
+    def acciones_por_adr(per):
+        k = k_cap(per)
+        if k is not None:
+            return k
+        g_ = eps.get(per)
+        return _k(ancla / (g_ * fx_e)) if (ancla and g_ and g_ > 0 and fx_e) else 1.0
+
+    def a_dolares_adr(valor, per):
+        """Ganancia por acción del balance (en su moneda) → dólares por ADR (None sin tipo de cambio)."""
+        if valor is None or not otra_moneda:
+            return valor
+        if fx_e is None:
+            return None
+        return valor * fx_e * acciones_por_adr(per)
+
+    def estimacion_en_dolares(g):
+        """Yahoo no dice en qué moneda ni por qué acción viene la estimación de los analistas (TSMC: dólares por ADR; KB: wones por acción):
+        se compara con la ganancia contable en cada base posible (como v0.2, salto_homologado: la más cercana) y se pasa a dólares por ADR.
+        La ganancia contable sirve solo para reconocer la base: si los dos últimos períodos dieron pérdida, se usa uno anterior."""
+        if g <= 0:
+            return g
+        pos = [(p, eps[p]) for p in list(eps)[:4] if eps.get(p) is not None and eps[p] > 0]
+        pos = pos[:2] if len([x for x in pos if x[0] in list(eps)[:2]]) else pos[:1]
+        if not pos or fx_e is None:
+            return None
+        per_c, c = max(pos, key=lambda x: x[1])
+        c_usd = a_dolares_adr(c, per_c)
+        bases = {c, c * fx_e, c_usd, c_usd / fx_e}
+        n_inv = V0._n(e.get("n_inv"))
+        if n_inv and n_inv > 0:
+            bases |= {b / n_inv for b in list(bases)}
+        c_base = min(bases, key=lambda b: abs(math.log(g / b)))
+        return g * c_usd / c_base
 
     # --- cobertura de intereses (25) / cobertura de cargos fijos en REITs (EBITDA ÷ intereses) / CET1 en bancos ---------
     # v1.5.72 (Guille 17/11/2026: usar un dato de años atrás «es una atrocidad»): resultado e intereses del MISMO período, los últimos 12 meses
@@ -232,7 +316,8 @@ def calcular(e):
             pay = (dpa / affo * 100 if affo and affo > 0 else 999.0) if (dpa and affo is not None) else None
         var("affo", _zona(pay, (80, False), (90, False), (20, 10, 0), True), 20, pay, nombre=e.get("affo_nombre") or "AFFO")
     elif util or banco:
-        e12 = _ultimo(eps)
+        per = _periodo(eps)
+        e12 = a_dolares_adr(eps.get(per), per) if per is not None else None
         pay = (dpa / e12 * 100 if e12 and e12 > 0 else 999.0) if (dpa and e12 is not None) else None
         if util:
             var("eps_payout", _zona(pay, (70, False), (80, False), (20, 10, 0), True), 20, pay)
@@ -244,11 +329,16 @@ def calcular(e):
     # --- payout futuro (15): plan B, ganancia de los próximos 12 meses (no en REITs) ------------------------------------------
     if not reit:
         g = ntm(e.get("estimacion"), e.get("mes_cierre"), e.get("hoy"))
+        if g is not None and otra_moneda:
+            g = estimacion_en_dolares(g)
         fp = (dpa / g * 100 if g > 0 else 999.0) if (dpa and g is not None) else None
         if util:
             # v1.5.78 (Guille 17/11/2026: «sí, obvio, deberías haberlo hecho así de arranque»): las utilities usan para el pago futuro el
             # mismo corte que para el pago actual sobre ganancias (segura < 70 %, crítica > 80 %)
             var("payout_futuro", _zona(fp, (70, False), (80, False), (15, 7, 0), True), 15, fp)
+        elif banco:
+            # v1.5.79 (Guille 17/11/2026: «bancos, misma lógica»): mismo corte que el pago actual de los bancos (segura < 50 %, crítica > 75 %)
+            var("payout_futuro", _zona(fp, (50, False), (75, True), (15, 7, 0), True), 15, fp)
         else:
             var("payout_futuro", _zona(fp, (55, False), (80, True), (15, 7, 0), True), 15, fp)
 
@@ -282,11 +372,13 @@ def calcular(e):
         if reit:
             var("deuda", _zona(nd, (5.5, False), (6.5, False), (15, 7, 0), True), 15, nd)
         elif util:
-            var("deuda", _zona(nd, (5.0, False), (6.0, False), (15, 7, 0), True), 15, nd)
+            # v1.5.79 (Guille 17/11/2026: «mitad y mitad, 15 puntos de 100 la deuda»): en las utilities los 15 puntos de deuda se reparten
+            # entre deuda neta ÷ EBITDA (7,5) y FFO ÷ Deuda (7,5, abajo); el total queda sobre 100 como en el resto
+            var("deuda", _zona(nd, (5.0, False), (6.0, False), (7.5, 3.5, 0), True), 7.5, nd)
         else:
             var("deuda", _zona(nd, (2.5, False), (4.5, False), (15, 7, 0), True), 15, nd)
 
-    # --- FFO/Deuda en utilities (≈ flujo operativo ÷ deuda total): PROPUESTA 10 puntos más, el total se lleva a 100 ---------
+    # --- FFO ÷ Deuda en utilities (7,5): la otra mitad de los 15 puntos de deuda (v1.5.79) -----------------------------------
     if util:
         # v1.5.78 (Guille 17/11/2026: «con esa fórmula estamos más acorde con el score que diseñé»): el documento pide el FFO ÷ Deuda de
         # S&P; si la empresa lo publica (data/ffo_deuda_utilities.json) se usa ese; si no, la cuenta de la app (flujo operativo ÷ deuda total)
@@ -297,7 +389,7 @@ def calcular(e):
         else:
             o, d = _ultimo(cfo), _ultimo(deuda)
             fd = o / d * 100 if (o is not None and d) else None
-        var("ffo_deuda", _zona(fd, (15, False), (10, False), (10, 5, 0), False), 10, fd, fuente="empresa" if sp.get("ffo_deuda") is not None else "app")
+        var("ffo_deuda", _zona(fd, (15, False), (10, False), (7.5, 3.5, 0), False), 7.5, fd, fuente="empresa" if sp.get("ffo_deuda") is not None else "app")
 
     # --- ganancias retenidas ajustadas ÷ activos (10) (no en REITs) ---------------------------------------------------------
     # v1.5.74 (Guille 17/11/2026: «me gusta la solución»): ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los

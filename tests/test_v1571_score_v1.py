@@ -108,7 +108,8 @@ chk(v(r_neg, "re_ta")["pts"] == 0 and v(r_tes, "re_ta")["pts"] == 10, "ganancias
 rre = V1.calcular(e(grupo="REITs", affo=2.0))
 chk(v(rre, "payout_futuro") is None and v(rre, "re_ta") is None and v(rre, "affo")["pts"] == 20, "REIT: variables")
 ru = V1.calcular(e(grupo="Utilities"))
-chk(v(ru, "ffo_deuda")["pts"] == 10 and v(ru, "fcf_payout") is None and v(ru, "eps_payout")["pts"] == 20, "utilities: variables")
+chk(v(ru, "ffo_deuda")["pts"] == 7.5 and v(ru, "deuda")["max"] == 7.5 and v(ru, "fcf_payout") is None and v(ru, "eps_payout")["pts"] == 20,
+    "utilities: variables (v1.5.79: deuda 7,5 + FFO ÷ Deuda 7,5)")
 rq = V1.calcular(e(grupo="Software y nube", estados=est(ac=600.0, inv=0.0, pc=500.0)))
 chk(v(rq, "acida")["pts"] == 2, "tecnología: ácida 1,2 es gris (segura arriba de 1,5)")
 

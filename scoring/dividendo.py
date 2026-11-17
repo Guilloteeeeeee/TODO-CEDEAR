@@ -205,7 +205,33 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
         return f
 
     f_anio = {a: frec_de(a) for a in anios}
-    tasa = {a: (median(m for _, m in por_anio[a]) * f_anio[a] if n[a] else 0.0) for a in anios}
+
+    def regular(a):
+        """Dividendo anual regular del año: mediana × frecuencia. v1.5.79: con pagos desparejos (a cuenta y final, como National Grid) y más
+        pagos que lo habitual, la mediana elige uno de los regulares y lo multiplica: el «pago» que Yahoo anota en las ampliaciones de capital
+        (National Grid 2010 y 2024) o un extraordinario (2017) inflaba el año y el siguiente salía como recorte. Ahí se descarta el pago que
+        menos se parece al del año anterior en la misma época y se suman los que quedan."""
+        ps = por_anio.get(a) or []
+        if not ps:
+            return 0.0
+        f = f_anio[a]
+        # referencia: el año anterior (o el siguiente) con los 2 pagos habituales; solo en empresas que pagan 2 veces por año (a cuenta y final)
+        ref = next((por_anio[x] for x in (a - 1, a + 1) if len(por_anio.get(x) or []) == f), [])
+        if len(ps) > f == 2 and ref and max(m for _, m in ref) > 1.3 * min(m for _, m in ref):
+            def dia(fecha):
+                return _dt.date.fromisoformat(fecha).timetuple().tm_yday
+
+            def error(p):
+                d = dia(p[0])
+                r = min(ref, key=lambda q: min(abs(dia(q[0]) - d), 366 - abs(dia(q[0]) - d)))[1]
+                return abs(math.log(p[1] / r))
+            quedan = list(ps)
+            while len(quedan) > f:
+                quedan.remove(max(quedan, key=error))
+            return sum(m for _, m in quedan)
+        return median(m for _, m in ps) * f
+
+    tasa = {a: regular(a) for a in anios}
 
     todos = sorted(p for a in por_anio for p in por_anio[a])
     fechas = [_dt.date.fromisoformat(f) for f, _ in todos]
@@ -395,6 +421,7 @@ def entrada(row, estados, historial=None, estimacion=None, grupo=None, dividendo
     return {"ticker": row.get("ticker"), "grupo": grupo, "pais": row.get("pais"), "dividendo_anual": row.get("annual_dividend"),
             "precio": row.get("precio_actual"), "p_ffo": row.get("p_ffo_actual"), "dy": row.get("dividend_yield_actual"),
             "dy_mediana": row.get("dividend_yield_mediana"), "market_cap": row.get("market_cap"), "moneda_estados": row.get("moneda_estados"),
+            "per": row.get("per_actual"),
             "ajuste_adr": "equivalentes del ADR" in (row.get("moneda_nota") or ""), "fx": _num_nota(row.get("moneda_nota"), r"fx spot ([0-9.]+)"),
             "n_inv": _num_nota(row.get("moneda_nota"), r"equivalentes del ADR \(x([0-9.]+)"), "estados": estados, "historial": historial,
             "estimacion": estimacion, "ffo_empresa": ffo_empresa(row.get("ticker")), "dividendo_variable": dividendo_variable}

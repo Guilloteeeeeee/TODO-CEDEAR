@@ -79,7 +79,7 @@ chk('var("payout_futuro", _zona(fp, (70, False), (80, False), (15, 7, 0), True),
 # --- 4) FFO ÷ Deuda publicado por la empresa -------------------------------------------------------------------------------------
 r = V1.calcular(entrada(grupo="Utilities", ffo_sp={"ffo_deuda": 19.4, "anio": 2025}))
 f = var(r, "ffo_deuda")
-chk(f["valor"] == 19.4 and f["pts"] == 10 and f.get("fuente") == "empresa", f"usa el de la empresa ({f})")
+chk(f["valor"] == 19.4 and f["pts"] == 7.5 and f.get("fuente") == "empresa", f"usa el de la empresa ({f})")
 r = V1.calcular(entrada(grupo="Utilities"))
 f = var(r, "ffo_deuda")
 chk(abs(f["valor"] - 3e9 / 15.6e9 * 100) < 0.01 and f.get("fuente") == "app", f"sin dato de la empresa, la cuenta de la app ({f})")
