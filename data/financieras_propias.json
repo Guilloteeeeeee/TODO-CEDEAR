@@ -1,0 +1,98 @@
+{
+  "nota": "v1.5.76 — Empresas con financiera propia (Guille 17/11/2026: «sí, hagámoslo como hace SSD»). La financiera pide prestado para prestarles a quienes compran los productos de la empresa; sus intereses son el costo de ese negocio de préstamos y los pagan los intereses de sus clientes (igual que en un banco). Por eso, en el score de dividendos v1, la cobertura de intereses y la deuda neta ÷ EBITDA se miden SOLO del negocio industrial, como SSD y las calificadoras. Campos (montos en la moneda de los estados de la empresa, en unidades, no millones): anio = año fiscal de las cifras; intereses = intereses del negocio industrial (si falta, se usa la cobertura normal porque Yahoo ya trae los intereses sin la financiera); ebit = resultado operativo del negocio industrial (si falta, el consolidado de ese año, que en estas empresas ya tiene restados los intereses de la financiera); deuda y caja del negocio industrial (caja = efectivo y equivalentes más inversiones de corto plazo), o deuda_neta directa (negativa = le sobra caja); ebitda = del negocio industrial (si falta, el consolidado de ese año); medida, fuentes, cargado. pendiente = falta la cifra de deuda (se sigue usando la consolidada) y por qué no cambia el puntaje. Renovar cada año cuando sale el informe anual.",
+  "datos": {
+    "PCAR": {
+      "anio": 2025,
+      "intereses": 0,
+      "deuda": 0,
+      "caja": 9253700000,
+      "medida": "El negocio de camiones y repuestos (Truck, Parts and Other) no tiene deuda financiera: sus pasivos son solo cuentas a pagar, ingresos diferidos y otros (7.890,9 millones); toda la deuda es de PACCAR Financial Services. Caja = «Cash and marketable securities» de camiones y repuestos al 31/12/2025.",
+      "fuentes": [
+        "https://www.paccar.com/media/hnfncp5s/financials-january-1-2026.pdf"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "DE": {
+      "anio": 2025,
+      "intereses": 372000000,
+      "ebit": 5517000000,
+      "deuda": 9170000000,
+      "caja": 6557000000,
+      "ebitda": 6797000000,
+      "medida": "Equipment Operations (Deere sin John Deere Financial), año fiscal cerrado el 2/11/2025, datos complementarios de consolidación del informe anual: gasto por intereses 372; resultado antes de impuestos 5.145 (+ intereses 372 = resultado operativo 5.517); amortizaciones 1.280 (EBITDA 6.797); préstamos de corto plazo 414 + de largo plazo 8.756 = deuda 9.170; efectivo 6.340 + inversiones 217 = caja 6.557. En millones de dólares.",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/315189/000110465925122321/de-20251102x10k.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "GM": {
+      "anio": 2025,
+      "deuda": 16642000000,
+      "caja": 21747000000,
+      "medida": "Negocio automotor (sin GM Financial) al 31/12/2025: deuda de corto plazo 1.120 + de largo plazo 15.522 = 16.642; efectivo 15.062 + títulos de deuda negociables 6.685 = 21.747 (millones de dólares). Intereses: Yahoo ya trae los del negocio automotor («Automotive interest expense», 727 millones en 2025).",
+      "fuentes": [
+        "https://investor.gm.com/static-files/4b25227e-c523-46ab-af4c-0f4ad592a016",
+        "https://app.edgar.tools/companies/GM/disclosures/debt"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "F": {
+      "anio": 2025,
+      "deuda": 21900000000,
+      "caja": 28700000000,
+      "medida": "Ford sin Ford Credit («Company excluding Ford Credit») al 31/12/2025: deuda 21.900 millones; caja de la compañía 28.700 millones. Intereses: Yahoo ya trae los de la compañía sin Ford Credit («Interest expense on Company debt excluding Ford Credit»). Hoy Ford tiene pérdida operativa, así que su puntaje lo deciden los topes de pérdida.",
+      "fuentes": [
+        "https://www.tradingview.com/news/tradingview:db9ed299b0aa5:0-ford-motor-co-sec-10-k-report/",
+        "https://app.edgar.tools/companies/F-PC"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "IBM": {
+      "anio": 2025,
+      "deuda": 46200000000,
+      "caja": 14500000000,
+      "medida": "IBM sin IBM Financing al 31/12/2025: deuda total 61.300 millones menos 15.100 de la deuda de IBM Financing = 46.200; efectivo, efectivo restringido e inversiones negociables 14.500. EBITDA: el consolidado (la parte de IBM Financing es chica). Intereses: Yahoo ya trae los que van a resultados fuera del costo de la financiera.",
+      "fuentes": [
+        "https://pdf.dfcfw.com/pdf/H2_AN202601291818532532_1.pdf"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "TM": {
+      "anio": 2026,
+      "intereses": 90538000000,
+      "deuda": 2800078000000,
+      "caja": 9885097000000,
+      "medida": "Toyota sin servicios financieros («Non-Financial Services Businesses»), año fiscal cerrado el 31/03/2026, en yenes: intereses pagados 90.538 millones (el estado de resultados de ese negocio no separa el gasto); deuda de corto plazo y porción corriente 976.235 + de largo plazo 1.823.843 = 2.800.078 millones; caja = solo efectivo y equivalentes, 9.885.097 millones (sus activos líquidos totales, con depósitos y bonos, son 16,7 billones). El resultado operativo consolidado ya tiene restados los intereses de la financiera.",
+      "fuentes": [
+        "https://global.toyota/pages/global_toyota/ir/financial-results/2026_4q_summary_en.pdf",
+        "https://global.toyota/pages/global_toyota/ir/financial-results/2026_4q_presentation_2_en.pdf"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "HMC": {
+      "anio": 2026,
+      "deuda_neta": -3324500000000,
+      "medida": "Honda sin servicios financieros, al 31/03/2026: caja neta de 3,3245 billones de yenes (la empresa la informa así). Intereses: Yahoo ya trae los del negocio no financiero. Hoy Honda tiene pérdida operativa, así que su puntaje lo deciden los topes de pérdida.",
+      "fuentes": [
+        "https://www.nasdaq.com/articles/honda-motor-q4-earnings-call-highlights"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "CAT": {
+      "anio": 2025,
+      "pendiente": "Falta la deuda de Caterpillar sin Cat Financial (no la encontré publicada fuera del informe anual completo). No cambia el puntaje: con la deuda consolidada ya está en la zona segura (2,1 veces el EBITDA) y sin la financiera solo puede bajar. Intereses: Yahoo ya trae los de Caterpillar sin Cat Financial («Interest expense excluding Financial Products»).",
+      "fuentes": [
+        "https://s25.q4cdn.com/358376879/files/doc_financials/2025/q3/cat-20250930.pdf"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "HOG": {
+      "anio": 2025,
+      "pendiente": "Falta la deuda de Harley-Davidson sin su financiera (HDFS). No cambia el puntaje mientras tenga pérdida operativa en los últimos 12 meses (lo deciden los topes). Intereses: Yahoo ya trae los de la parte industrial (33 millones en 2025; los de la financiera van aparte, 389 millones).",
+      "fuentes": [
+        "https://app.edgar.tools/companies/HOG"
+      ],
+      "cargado": "2026-11-17"
+    }
+  }
+}

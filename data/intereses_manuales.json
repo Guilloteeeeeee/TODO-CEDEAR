@@ -1,5 +1,5 @@
 {
-  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, para las empresas que no lo informan o cuyo dato no traen Yahoo ni la SEC (respaldo: si después aparece en Yahoo o en la SEC, manda ese). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. v1.5.75 (Guille 17/11/2026: «necesitamos que lo consigas sí o sí»): también los intereses PAGADOS (flujo de efectivo) cuando la empresa solo informa intereses netos de lo que gana por su caja. Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
+  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, para las empresas que no lo informan o cuyo dato no traen Yahoo ni la SEC (respaldo: si después aparece en Yahoo o en la SEC, manda ese). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. v1.5.75 (Guille 17/11/2026: «necesitamos que lo consigas sí o sí»): también los intereses PAGADOS (flujo de efectivo) cuando la empresa solo informa intereses netos de lo que gana por su caja. v1.5.76: solo_pagados = la empresa tiene la línea de gasto por intereses deformada (coberturas de tasa): se usan siempre los intereses pagados (NextEra). Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
   "datos": {
     "AAPL": {
       "anio": 2026,
@@ -56,6 +56,17 @@
       "medida": "Gasto por intereses 2025 (informe anual 2025). Yahoo lo tiene en otra fila que no siempre baja; respaldo hasta que la bajada de Yahoo lo traiga.",
       "fuentes": [
         "https://chartrow.com/quote/lly/financials"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "NEE": {
+      "anio": 2025,
+      "monto": 3500000000,
+      "solo_pagados": true,
+      "medida": "Intereses PAGADOS en 2025 (flujo de efectivo, 3.500 millones). Decisión de Guille (17/11/2026: «hagamos como hacés vos»): su línea de gasto por intereses mezcla ganancias y pérdidas de sus coberturas de tasa (585 millones en 2022, 3.324 en 2023, 2.235 en 2024, 4.572 en 2025, y en los 12 meses hasta septiembre de 2026 da una cobertura de 14,8 veces que no es real). Con solo_pagados el score usa los intereses pagados de Yahoo (12 meses o último año) y, si faltan, este número.",
+      "fuentes": [
+        "https://chartrow.com/quote/nee/financials",
+        "https://www.opencapital.sh/stocks/NEE/metrics/other_interest_paid_net"
       ],
       "cargado": "2026-11-17"
     },

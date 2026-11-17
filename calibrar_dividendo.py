@@ -145,6 +145,8 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
         r = SD.calcular(ent)
         fy = [a for a in ((est or {}).get("resultados") or {}).get("anios", []) if isinstance(a, int)]
         r["anios_estados"] = f"{min(fy)}–{max(fy)}" if fy else "sin estados"
+        # v1.5.76: gasto por intereses contra intereses pagados del último año fiscal (para encontrar líneas deformadas, como NextEra)
+        r["intereses_fy"] = comparar_intereses(est)
         r["historial"] = {k: v for k, v in (hist or {}).items() if k != "tasa"} if hist else None
         r["fuente_historial"] = fuente
         # score nuevo de Guille (v1, scoring/dividendo_v1.py), en paralelo: misma entrada más lo que pide el documento
@@ -153,7 +155,7 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             e1 = dict(ent, grupo=SD.grupo_de(row) if hasattr(SD, "grupo_de") else ent.get("grupo"), rend=ent.get("dy"),
                       mes_cierre=(fichas.get(t) or {}).get("mes_cierre_fiscal"), cet1=(cet1.get(t) or {}).get("cet1"),
                       cet1_requisito=(cet1.get(t) or {}).get("requisito"), fuente_historial=fuente,
-                      intereses_manual=V1.intereses_manual(t), solvencia=(solv.get(t) or {}).get("solvencia"),
+                      intereses_manual=V1.intereses_manual(t), financiera_propia=V1.financiera_propia(t), solvencia=(solv.get(t) or {}).get("solvencia"),
                       solvencia_requisito=(solv.get(t) or {}).get("requisito"))
             # v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): solo AFFO cargado y vigente
             f = SD.ffo_vigente(ent)
@@ -168,6 +170,41 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             r["v1"] = {"score": None, "error": f"{type(ex).__name__}: {ex}"}
         res[t] = r
     return res
+
+
+DIF_INTERESES = 0.30      # v1.5.76: diferencia entre gasto e intereses pagados que se lista para revisar
+
+
+def comparar_intereses(est):
+    """{"anio", "gasto", "pagados"} del último año fiscal con los dos datos, o None."""
+    r = (est or {}).get("resultados") or {}
+    f = (est or {}).get("flujo") or {}
+
+    def fila(parte, nombre):
+        for x in parte.get("filas", []):
+            if x[0] == nombre:
+                return dict(zip(parte.get("anios", []), x[1]))
+        return {}
+    g, p = fila(r, "Gasto por intereses"), fila(f, "Intereses pagados")
+    for a in sorted((a for a in g if isinstance(a, int)), reverse=True):
+        if g.get(a) is not None and p.get(a) is not None:
+            return {"anio": a, "gasto": abs(g[a]), "pagados": abs(p[a])}
+    return None
+
+
+def listado_intereses(res):
+    """Líneas del informe: empresas cuyo gasto por intereses difiere más de DIF_INTERESES de los intereses pagados del mismo año."""
+    filas = []
+    for t, r in sorted(res.items()):
+        c = r.get("intereses_fy")
+        if c and c["pagados"] > 0 and abs(c["gasto"] - c["pagados"]) / c["pagados"] > DIF_INTERESES:
+            filas.append(f"  {t:7} {c['anio']}: gasto {c['gasto'] / 1e6:,.0f} millones · pagados {c['pagados'] / 1e6:,.0f} millones "
+                         f"({(c['gasto'] / c['pagados'] - 1) * 100:+.0f} %)")
+    con = sum(1 for r in res.values() if r.get("intereses_fy"))
+    if not con:
+        return ["INTERESES: todavía no hay intereses pagados de Yahoo (corré bajar_paquetes_yahoo.bat).", ""]
+    return ([f"INTERESES: gasto contra pagados del mismo año ({con} empresas con los dos datos). Diferencias de más de "
+             f"{DIF_INTERESES * 100:.0f} % (revisar si es una línea deformada, como NextEra):"] + (filas or ["  ninguna"]) + [""])
 
 
 def main(args):
@@ -220,6 +257,7 @@ def main(args):
         lin.append(f"{t:8}{str(ssd if ssd is not None else '—'):>5}{str(r['score'] if r['score'] is not None else '—'):>9}{str(dif if dif is not None else ''):>5}  "
                    f"{(r['categoria'] or '—') + ' / ' + cat_s:28} {pp}  {r.get('anios_estados', ''):10} {', '.join(r['notas'] + [c for c, _ in r['topes']])}"
                    f"  | v1: {(r.get('v1') or {}).get('score')}")
+    lin += listado_intereses(res)
     lin += ["", "DETALLE (conclusión que vería el usuario e historial del dividendo)", ""]
     for t in lista:
         r = res.get(t)

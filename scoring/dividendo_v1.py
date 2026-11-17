@@ -123,11 +123,18 @@ def calcular(e):
     # o el último año fiscal; nada más viejo. Intereses: el gasto (Yahoo; si falta, la SEC, data/sec.huecos) → los pagados (flujo de efectivo)
     # → cargado a mano con fuente (data/intereses_manuales.json, empresas que no lo informan). Sin cobertura no hay score.
     cob = None
+    finp = e.get("financiera_propia") or {}
     if not banco:
         base_s = ebitda if reit else ebit
         antes_imp = S("r", "Resultado antes de impuestos")
         fy_base = [a for a in _anuales(base_s)] or [a for a in _anuales(antes_imp)]
         periodos = (["TTM"] if "TTM" in base_s or "TTM" in antes_imp else []) + ([max(fy_base)] if fy_base else [])
+        man = e.get("intereses_manual")
+        if man and man.get("solo_pagados"):
+            # v1.5.76 (Guille 17/11/2026, NextEra: «hagamos como hacés vos»): su línea de intereses mezcla ganancias y pérdidas de coberturas
+            # de tasa; se usan los intereses PAGADOS (flujo de efectivo) del mismo período, o los cargados a mano
+            inte = {}
+            notas.append("intereses: los pagados (su gasto por intereses incluye coberturas de tasa)")
 
         def _base(p, i):
             b = base_s.get(p)
@@ -135,6 +142,17 @@ def calcular(e):
                 b = antes_imp[p] + abs(i)            # sin resultado operativo: antes de impuestos + intereses
             return b
 
+        if finp.get("anio") and fy_base and max(fy_base) > int(finp["anio"]):
+            notas.append(f"financiera propia: las cifras del negocio industrial son de {finp['anio']} y ya hay un año fiscal más nuevo (renovar)")
+        if V0._n(finp.get("intereses")) is not None:
+            # v1.5.76 (Guille 17/11/2026: «sí, hagámoslo como hace SSD»): empresa con financiera propia → cobertura del negocio industrial
+            # (data/financieras_propias.json): resultado operativo ÷ intereses del negocio sin la financiera, del mismo año fiscal
+            p, i = int(finp.get("anio") or 0), V0._n(finp["intereses"])
+            b = V0._n(finp.get("ebit")) if V0._n(finp.get("ebit")) is not None else base_s.get(p)
+            if b is not None:
+                cob = 99.0 if i == 0 else b / abs(i)
+                notas.append(f"cobertura del negocio sin su financiera ({p})")
+            periodos = []
         for p in periodos:
             i, de = inte.get(p), "gasto"
             if i is None and int_pag.get(p) is not None:
@@ -148,7 +166,6 @@ def calcular(e):
             if de == "pagados":
                 notas.append(f"intereses: los pagados (flujo de efectivo, {p})")
             break
-        man = e.get("intereses_manual")
         if cob is None and man and V0._n(man.get("monto")) is not None:
             p = int(man.get("anio") or 0)
             b = _base(p, man["monto"]) if p in base_s or p in antes_imp else None
@@ -230,6 +247,15 @@ def calcular(e):
         if dn is None and _ultimo(deuda) is not None and _ultimo(caja) is not None:
             dn = _ultimo(deuda) - _ultimo(caja)
         eb = _ultimo(ebitda)
+        # v1.5.76: con financiera propia, deuda neta y EBITDA del negocio industrial (data/financieras_propias.json); sin la cifra de deuda
+        # cargada (pendiente) sigue la consolidada
+        dn_fp = V0._n(finp.get("deuda_neta"))
+        if dn_fp is None and V0._n(finp.get("deuda")) is not None and V0._n(finp.get("caja")) is not None:
+            dn_fp = V0._n(finp["deuda"]) - V0._n(finp["caja"])
+        if dn_fp is not None:
+            dn = dn_fp
+            eb = V0._n(finp.get("ebitda")) or ebitda.get(int(finp.get("anio") or 0)) or eb
+            notas.append(f"deuda del negocio sin su financiera ({finp.get('anio')})")
         nd = None
         if dn is not None and eb:
             nd = -1.0 if dn <= 0 else (dn / eb if eb > 0 else 99.0)
@@ -352,3 +378,17 @@ def intereses_manual(ticker, ruta=None):
         except (OSError, ValueError):
             _MANUALES[ruta] = {}
     return _MANUALES[ruta].get(ticker)
+
+
+_FINANCIERAS = {}
+
+
+def financiera_propia(ticker, ruta=None):
+    """v1.5.76: cifras del negocio industrial de las empresas con financiera propia (data/financieras_propias.json), o None."""
+    ruta = ruta or os.path.join(AQUI, "data", "financieras_propias.json")
+    if ruta not in _FINANCIERAS:
+        try:
+            _FINANCIERAS[ruta] = json.load(open(ruta, encoding="utf-8")).get("datos", {})
+        except (OSError, ValueError):
+            _FINANCIERAS[ruta] = {}
+    return _FINANCIERAS[ruta].get(ticker)
