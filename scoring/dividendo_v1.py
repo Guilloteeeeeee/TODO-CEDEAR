@@ -36,6 +36,7 @@ UTILITIES = {"Utilities"}
 VARIABLE_DECLARADA = {
     "GFI": "paga 35% del flujo libre antes de inversiones discrecionales (resultados 1S2026)",
 }
+VIGENCIA_FINANCIERA = 200  # v1.5.77: días desde el cierre del trimestre de las cifras de una financiera propia antes de avisar «renovar»
 RECOMPRAS_ANIOS = 10        # v1.5.74: recompras que se suman a las ganancias retenidas (Guille: aprobado)
 SOLVENCIA_SEGURA = 150.0    # v1.5.74, aprobado por Guille el 17/11/2026: índice de solvencia de las aseguradoras (segura más de 150 %; crítica debajo del requisito, 100 %)
 # PROPUESTA: «historial de pagos erráticos» = 3 o más años con recorte en los últimos 10 (en la moneda del dividendo)
@@ -142,16 +143,27 @@ def calcular(e):
                 b = antes_imp[p] + abs(i)            # sin resultado operativo: antes de impuestos + intereses
             return b
 
-        if finp.get("anio") and fy_base and max(fy_base) > int(finp["anio"]):
+        # v1.5.77: las cifras pueden ser de un año fiscal («anio») o del último trimestre («hasta»: balance a esa fecha e intereses de los
+        # 12 meses que terminan ahí); las renueva la tarea trimestral (Guille 17/11/2026)
+        trim = bool(finp.get("hasta"))
+        if trim:
+            try:
+                ref = e.get("hoy") or _dt.date.today()
+                ref = _dt.date.fromisoformat(str(ref)[:10]) if not isinstance(ref, _dt.date) else ref
+                if (ref - _dt.date.fromisoformat(str(finp["hasta"])[:10])).days > VIGENCIA_FINANCIERA:
+                    notas.append(f"financiera propia: las cifras del negocio industrial son al {finp['hasta']} (renovar)")
+            except ValueError:
+                pass
+        elif finp.get("anio") and fy_base and max(fy_base) > int(finp["anio"]):
             notas.append(f"financiera propia: las cifras del negocio industrial son de {finp['anio']} y ya hay un año fiscal más nuevo (renovar)")
         if V0._n(finp.get("intereses")) is not None:
             # v1.5.76 (Guille 17/11/2026: «sí, hagámoslo como hace SSD»): empresa con financiera propia → cobertura del negocio industrial
-            # (data/financieras_propias.json): resultado operativo ÷ intereses del negocio sin la financiera, del mismo año fiscal
-            p, i = int(finp.get("anio") or 0), V0._n(finp["intereses"])
+            # (data/financieras_propias.json): resultado operativo ÷ intereses del negocio sin la financiera, del mismo período
+            p, i = ("TTM" if trim else int(finp.get("anio") or 0)), V0._n(finp["intereses"])
             b = V0._n(finp.get("ebit")) if V0._n(finp.get("ebit")) is not None else base_s.get(p)
             if b is not None:
                 cob = 99.0 if i == 0 else b / abs(i)
-                notas.append(f"cobertura del negocio sin su financiera ({p})")
+                notas.append(f"cobertura del negocio sin su financiera ({finp.get('hasta') or p})")
             periodos = []
         for p in periodos:
             i, de = inte.get(p), "gasto"
@@ -254,8 +266,8 @@ def calcular(e):
             dn_fp = V0._n(finp["deuda"]) - V0._n(finp["caja"])
         if dn_fp is not None:
             dn = dn_fp
-            eb = V0._n(finp.get("ebitda")) or ebitda.get(int(finp.get("anio") or 0)) or eb
-            notas.append(f"deuda del negocio sin su financiera ({finp.get('anio')})")
+            eb = V0._n(finp.get("ebitda")) or (ebitda.get("TTM") if finp.get("hasta") else ebitda.get(int(finp.get("anio") or 0))) or eb
+            notas.append(f"deuda del negocio sin su financiera ({finp.get('hasta') or finp.get('anio')})")
         nd = None
         if dn is not None and eb:
             nd = -1.0 if dn <= 0 else (dn / eb if eb > 0 else 99.0)
