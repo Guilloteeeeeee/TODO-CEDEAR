@@ -1,0 +1,43 @@
+{
+  "nota": "v1.5.78 — FFO ÷ Deuda de las utilities como lo pide el documento de Guille («S&P FFO / Deuda Total»), cargado desde lo que publica cada empresa (Guille 17/11/2026: «con esa fórmula estamos más acorde con el score que diseñé»). Si la empresa no lo publica, el score usa la cuenta de la app (flujo operativo ÷ deuda total). Campos: ffo_deuda (en %), anio (año fiscal), medida (qué número es exactamente; si no es el de S&P, se dice), fuentes, cargado. no_publica = buscado y no publicado (se usa la cuenta de la app). pendiente = todavía no buscado. Lo renueva la tarea trimestral.",
+  "datos": {
+    "NEE": {
+      "ffo_deuda": 19.4,
+      "anio": 2025,
+      "medida": "S&P-adjusted FFO-to-debt de 2025 (19,4 %), publicado por NextEra en su página para inversores de renta fija («Financial Strength»), con el umbral de baja de calificación de S&P (18 %).",
+      "fuentes": [
+        "https://investor.nexteraenergy.com/fixed-income-investors/financial-strength"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "NGG": {
+      "ffo_deuda": 13.0,
+      "anio": 2026,
+      "medida": "FFO/adjusted net debt del año fiscal cerrado el 31/03/2026 (13,0 %; 13,7 % el año anterior), calculado por National Grid con el criterio de las calificadoras (Annual Report and Accounts 2025/26, «Balance sheet strength»). No es la cifra de S&P: National Grid no publica la de S&P.",
+      "fuentes": [
+        "https://www.nationalgrid.com/document/579696/download"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "CEG": {
+      "no_publica": "Constellation publica sus calificaciones (S&P BBB+, Moody's Baa1) y el umbral de Moody's (25 % de FFO/Deuda), pero no su FFO ÷ Deuda de S&P.",
+      "fuentes": [
+        "https://investors.constellationenergy.com/fixed-income-investors"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "VST": {
+      "no_publica": "Vistra publica su objetivo de deuda neta ÷ EBITDA ajustado (alrededor de 2,3 veces a fines de 2027) y sus calificaciones, pero no su FFO ÷ Deuda de S&P.",
+      "fuentes": [
+        "https://investor.vistracorp.com/2026-03-17-Vistra-Achieves-Investment-Grade-Credit-Ratings-from-S-P-and-Fitch"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "KEP": {
+      "pendiente": "Todavía no buscado (KEPCO)."
+    },
+    "SBS": {
+      "pendiente": "Todavía no buscado (Sabesp)."
+    }
+  }
+}

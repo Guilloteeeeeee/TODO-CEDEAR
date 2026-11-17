@@ -577,6 +577,14 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.78 — Score v1: medio premio con aumentos simbólicos, tope 99, utilities con su corte de pago futuro y FFO ÷ Deuda de la empresa (17/11/2026)
+- **Aumentos simbólicos (Guille: «de acuerdo, vamos con eso»):** si el dividendo regular creció menos de 1,5 % por año en los últimos 3 años completos, el premio queda en la mitad (aristócrata +5, aspirante +2,5). Se mide en la moneda del dividendo (`CRECIMIENTO_SIMBOLICO`, `CRECIMIENTO_ANIOS`). Hoy alcanza a IBM (0,6 %), Cardinal Health (0,8 %) y Medtronic (1,4 %). Se usan 3 años porque a 5 Yahoo deforma los pagos viejos cuando la empresa separa un negocio (IBM y Kyndryl).
+- **Tope 99** (`TOPE_SCORE`, Guille: por estética).
+- **Utilities, pago futuro con su propio corte** (Guille: «sí, obvio»): segura por debajo de 70 %, crítica arriba de 80 %, igual que el pago actual sobre ganancias.
+- **FFO ÷ Deuda de las utilities desde lo que publica cada empresa** (`data/ffo_deuda_utilities.json`, `ffo_deuda_sp`; el documento pide el de S&P): NextEra 19,4 % (S&P, 2025); National Grid 13,0 % (su propio cálculo con criterio de calificadoras, no el de S&P); Constellation y Vistra no lo publican (cuenta de la app); KEPCO y Sabesp pendientes. Lo renueva la tarea trimestral.
+- Resultado: NextEra 67 → 80 (SSD: 80).
+- Pruebas: `tests/test_v1578_utilities_premio.py` (OK 17); `test_v1571` ajustada al tope 99.
+
 ### v1.5.77 — Renovación trimestral de intereses y financieras propias (17/11/2026)
 - **Pedido de Guille: renovar cada trimestre también los intereses cargados a mano y las cifras de las financieras, en la misma tarea que el FFO, el CET1 y la solvencia.** La tarea programada trimestral ahora también actualiza `data/intereses_manuales.json` (año fiscal nuevo cuando sale el informe anual; si alguna empresa con dividendo queda sin cobertura, busca sus intereses) y `data/financieras_propias.json`.
 - `data/financieras_propias.json` acepta cifras trimestrales: `hasta` (cierre del último trimestre) con la deuda y la caja a esa fecha y los intereses de los 12 meses que terminan ahí. El resultado y el EBITDA salen de la columna de 12 meses de Yahoo si la empresa no publica los del negocio industrial. Con más de 200 días (`VIGENCIA_FINANCIERA`) avisa «renovar».

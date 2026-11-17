@@ -46,9 +46,9 @@ def v(r, clave):
     return next((x for x in r["variables"] if x["clave"] == clave), None)
 
 
-# 1) empresa sana: base 100, aspirante (+5), tope 100
+# 1) empresa sana: base 100, aspirante (+5), tope 99 (v1.5.78: Guille prefiere que el score no muestre 100)
 r = V1.calcular(e())
-chk(r["base"] == 100 and r["score"] == 100 and ("aspirante", 5) in r["ajustes"], f"empresa sana: {r['base']} {r['score']} {r['ajustes']}")
+chk(r["base"] == 100 and r["score"] == 99 and ("aspirante", 5) in r["ajustes"], f"empresa sana: {r['base']} {r['score']} {r['ajustes']}")
 chk(r["categoria"] == "Muy seguro", "categoría")
 
 # 2) bordes (Guille: cada zona va hasta el punto inmediato anterior de la siguiente)

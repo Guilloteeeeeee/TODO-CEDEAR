@@ -36,6 +36,9 @@ UTILITIES = {"Utilities"}
 VARIABLE_DECLARADA = {
     "GFI": "paga 35% del flujo libre antes de inversiones discrecionales (resultados 1S2026)",
 }
+CRECIMIENTO_SIMBOLICO = 1.5  # v1.5.78: % anual del dividendo regular por debajo del cual el premio de aristócrata/aspirante queda en la mitad
+CRECIMIENTO_ANIOS = 3        # v1.5.78: años completos para medirlo (a 5 años, Yahoo deforma los pagos viejos cuando la empresa separa un negocio)
+TOPE_SCORE = 99              # v1.5.78: el score no muestra 100 (Guille, por estética)
 VIGENCIA_FINANCIERA = 200  # v1.5.77: días desde el cierre del trimestre de las cifras de una financiera propia antes de avisar «renovar»
 RECOMPRAS_ANIOS = 10        # v1.5.74: recompras que se suman a las ganancias retenidas (Guille: aprobado)
 SOLVENCIA_SEGURA = 150.0    # v1.5.74, aprobado por Guille el 17/11/2026: índice de solvencia de las aseguradoras (segura más de 150 %; crítica debajo del requisito, 100 %)
@@ -242,7 +245,12 @@ def calcular(e):
     if not reit:
         g = ntm(e.get("estimacion"), e.get("mes_cierre"), e.get("hoy"))
         fp = (dpa / g * 100 if g > 0 else 999.0) if (dpa and g is not None) else None
-        var("payout_futuro", _zona(fp, (55, False), (80, True), (15, 7, 0), True), 15, fp)
+        if util:
+            # v1.5.78 (Guille 17/11/2026: «sí, obvio, deberías haberlo hecho así de arranque»): las utilities usan para el pago futuro el
+            # mismo corte que para el pago actual sobre ganancias (segura < 70 %, crítica > 80 %)
+            var("payout_futuro", _zona(fp, (70, False), (80, False), (15, 7, 0), True), 15, fp)
+        else:
+            var("payout_futuro", _zona(fp, (55, False), (80, True), (15, 7, 0), True), 15, fp)
 
     # --- crecimiento de ventas, 3 años (10) -------------------------------------------------------------------------------
     an = _anuales(ingresos)
@@ -280,9 +288,16 @@ def calcular(e):
 
     # --- FFO/Deuda en utilities (≈ flujo operativo ÷ deuda total): PROPUESTA 10 puntos más, el total se lleva a 100 ---------
     if util:
-        o, d = _ultimo(cfo), _ultimo(deuda)
-        fd = o / d * 100 if (o is not None and d) else None
-        var("ffo_deuda", _zona(fd, (15, False), (10, False), (10, 5, 0), False), 10, fd)
+        # v1.5.78 (Guille 17/11/2026: «con esa fórmula estamos más acorde con el score que diseñé»): el documento pide el FFO ÷ Deuda de
+        # S&P; si la empresa lo publica (data/ffo_deuda_utilities.json) se usa ese; si no, la cuenta de la app (flujo operativo ÷ deuda total)
+        sp = e.get("ffo_deuda_sp") or {}
+        fd = V0._n(sp.get("ffo_deuda"))
+        if fd is not None:
+            notas.append(f"FFO ÷ Deuda publicado por la empresa ({sp.get('anio')})")
+        else:
+            o, d = _ultimo(cfo), _ultimo(deuda)
+            fd = o / d * 100 if (o is not None and d) else None
+        var("ffo_deuda", _zona(fd, (15, False), (10, False), (10, 5, 0), False), 10, fd, fuente="empresa" if sp.get("ffo_deuda") is not None else "app")
 
     # --- ganancias retenidas ajustadas ÷ activos (10) (no en REITs) ---------------------------------------------------------
     # v1.5.74 (Guille 17/11/2026: «me gusta la solución»): ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los
@@ -341,11 +356,22 @@ def calcular(e):
     critica = any(v["pts"] == 0 for v in vs if v["clave"] in ("cobertura", "cet1", "solvencia", "fcf_payout", "affo", "eps_payout"))
     if sin_suba >= 3:
         ajustes.append(("congelamiento", -5))           # congelamiento crónico: −5 y pierde el bono
-    elif not variable and not critica:
+    elif not variable and not critica and racha >= 10:
+        # v1.5.78 (Guille 17/11/2026: «de acuerdo, vamos con eso»): si el dividendo regular creció menos de CRECIMIENTO_SIMBOLICO % por año en
+        # los últimos CRECIMIENTO_ANIOS años completos (aumentos de un centavo para no perder la racha), el premio queda en la mitad.
+        # Se mide en la moneda del dividendo, con la misma serie que la racha.
+        tasa = {int(k): x for k, x in (h.get("tasa") or {}).items()}
+        u0 = h.get("ultimo_completo")
+        crec = None
+        if u0 and tasa.get(u0) and tasa.get(u0 - CRECIMIENTO_ANIOS):
+            crec = ((tasa[u0] / tasa[u0 - CRECIMIENTO_ANIOS]) ** (1 / CRECIMIENTO_ANIOS) - 1) * 100
+        simbolico = crec is not None and crec < CRECIMIENTO_SIMBOLICO
+        if simbolico:
+            notas.append(f"aumentos simbólicos: el dividendo creció {crec:.1f} % por año en {CRECIMIENTO_ANIOS} años (medio premio)")
         if racha >= 25:
-            ajustes.append(("aristocrata", 10))
-        elif racha >= 10:
-            ajustes.append(("aspirante", 5))
+            ajustes.append(("aristocrata", 5 if simbolico else 10))
+        else:
+            ajustes.append(("aspirante", 2.5 if simbolico else 5))
 
     # --- trampa de rendimiento -------------------------------------------------------------------------------------------------
     rend = V0._n(e.get("rend"))
@@ -366,7 +392,7 @@ def calcular(e):
         topes.append(("dividendo_variable", 80))
     for _, t in topes:
         total = min(total, t)
-    total = max(0, min(100, int(round(round(total, 6)))))
+    total = max(0, min(TOPE_SCORE, int(round(round(total, 6)))))     # v1.5.78: tope 99 (Guille 17/11/2026, por estética)
     return {"score": total, "categoria": categoria(total), "variables": vs, "ajustes": ajustes, "topes": topes, "notas": notas,
             "base": round(base, 1), "variable": variable, "erratico": erratico}
 
@@ -404,3 +430,18 @@ def financiera_propia(ticker, ruta=None):
         except (OSError, ValueError):
             _FINANCIERAS[ruta] = {}
     return _FINANCIERAS[ruta].get(ticker)
+
+
+_FFO_DEUDA = {}
+
+
+def ffo_deuda_sp(ticker, ruta=None):
+    """v1.5.78: FFO ÷ Deuda publicado por la utility (data/ffo_deuda_utilities.json) o None si no lo publica o no se cargó."""
+    ruta = ruta or os.path.join(AQUI, "data", "ffo_deuda_utilities.json")
+    if ruta not in _FFO_DEUDA:
+        try:
+            _FFO_DEUDA[ruta] = json.load(open(ruta, encoding="utf-8")).get("datos", {})
+        except (OSError, ValueError):
+            _FFO_DEUDA[ruta] = {}
+    d = _FFO_DEUDA[ruta].get(ticker)
+    return d if d and d.get("ffo_deuda") is not None else None
