@@ -285,7 +285,22 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
             return "no_pagaba"
         return "recorto" if any(rec.get(a) for a in anios_c) else "sin_recorte"
 
+    # v1.6 (score nuevo de Guille): años con recorte, racha de subas y años seguidos sin subir al final de la serie
+    recortes = sorted(a for a in anios if a - 1 in tasa and n.get(a - 1, 0) and (n[a] == 0 or rec.get(a)))
+    racha = 0
+    for a in reversed([x for x in anios if x <= ultimo_c]):
+        if a - 1 in tasa and n[a] and n.get(a - 1) and not rec.get(a) and tasa[a] > tasa[a - 1] * 1.001:
+            racha += 1
+        else:
+            break
+    sin_suba = 0
+    for a in reversed([x for x in anios if x <= ultimo_c]):
+        if a - 1 in tasa and n[a] and n.get(a - 1) and not rec.get(a) and tasa[a] <= tasa[a - 1] * 1.001:
+            sin_suba += 1
+        else:
+            break
     return {"anios_sin_recorte": sin_recorte, "anios_pagando": pagando, "aumentos_12": aumentos, "frecuencia": frec,
+            "recortes": recortes, "racha_subas": racha, "anios_sin_suba": sin_suba,
             "crisis_0809": crisis((2008, 2009), 2007), "crisis_2020": crisis((2020, 2021), 2019), "recorte_en_curso": en_curso,
             "ultimo_completo": ultimo_c, "historial_incompleto": incompleto, "ultimo_pago": todos[-1][0], "datos_faltantes": faltan,
             "tasa": {a: round(t, 4) for a, t in tasa.items()}}

@@ -1,0 +1,281 @@
+"""
+Score de Seguridad de Dividendos — versión 1 (diseño de Guille, documento «Score de Seguridad de Dividendos (Escala 0 - 100)», 16/11/2026).
+
+Se programa aparte del score v0.2 (scoring/dividendo.py) para compararlos contra Simply Safe Dividends antes de reemplazar nada.
+Regla de Guille: «respetar lo más posible el archivo». Lo que el documento no dice y Guille definió el 16/11/2026:
+  - Bordes: cada zona va hasta el punto inmediato anterior de la siguiente (la gris cubre todo lo que no es segura ni crítica).
+  - Zona gris con puntaje fijo (como en el documento).
+  - Freno por pérdida: resultado neto negativo en el último año fiscal completo → máximo 20, sin excepciones (también REITs).
+  - Ganancias retenidas ajustadas = ganancias retenidas + |acciones en tesorería| (así no castiga las recompras).
+  - Trampa de rendimiento: rendimiento > 8% y payout sobre flujo libre > 100% → −30 y máximo 40.
+  - Payout futuro: siempre el plan B (no hay consenso gratis de flujo libre futuro); ganancia de los próximos 12 meses = mezcla de la
+    estimación de este año fiscal y la del próximo según los meses que faltan.
+  - Crecimiento de ventas: anual compuesto de 3 años fiscales.
+  - Utilities: FFO/Deuda de S&P ≈ flujo operativo ÷ deuda total. REITs: cobertura de cargos fijos ≈ EBITDA ÷ intereses.
+Definiciones mías, pendientes de su OK (marcadas PROPUESTA): pesos de las métricas de reemplazo por sector, «pagos erráticos».
+"""
+import datetime as _dt
+import json
+import os
+
+from scoring import dividendo as V0
+
+AQUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+CATEGORIAS = [(20, "Muy inseguro"), (40, "Inseguro"), (60, "Límite"), (80, "Seguro"), (100, "Muy seguro")]
+
+ASSET_LIGHT = {"Hardware y servicios TI", "Semiconductores", "Software y nube", "Salud", "Pagos y datos"}
+STAPLES = {"Consumo Básico"}
+BANCOS = {"Bancos y seguros"}
+REITS = {"REITs"}
+UTILITIES = {"Utilities"}
+
+# Política de dividendo variable declarada (techo 80, sin bono). Cada una con su fuente.
+VARIABLE_DECLARADA = {
+    "GFI": "paga 35% del flujo libre antes de inversiones discrecionales (resultados 1S2026)",
+}
+# PROPUESTA: «historial de pagos erráticos» = 3 o más años con recorte en los últimos 10 (en la moneda del dividendo)
+ERRATICO_RECORTES, ERRATICO_ANIOS = 3, 10
+
+
+def _zona(x, segura, critica, pts, menor_es_mejor):
+    """Puntos por zona: segura / gris / crítica. segura y crítica son (umbral, incluido)."""
+    if x is None:
+        return None
+    s, s_inc = segura
+    c, c_inc = critica
+    if menor_es_mejor:
+        if x < s or (s_inc and x == s):
+            return pts[0]
+        if x > c or (c_inc and x == c):
+            return pts[2]
+    else:
+        if x > s or (s_inc and x == s):
+            return pts[0]
+        if x < c or (c_inc and x == c):
+            return pts[2]
+    return pts[1]
+
+
+def categoria(p):
+    for tope, nombre in CATEGORIAS:
+        if p <= tope:
+            return nombre
+    return CATEGORIAS[-1][1]
+
+
+def _ultimo(serie, n=2):
+    """Primer valor no nulo empezando por los últimos 12 meses (si falta, el último año fiscal); n = cuántos períodos mirar."""
+    for k in list(serie)[: max(1, n)]:
+        if serie[k] is not None:
+            return serie[k]
+    return None
+
+
+def _anuales(serie):
+    return {k: v for k, v in serie.items() if isinstance(k, int) and v is not None}
+
+
+def ntm(est, mes_cierre=None, hoy=None):
+    """Ganancia por acción de los próximos 12 meses: mezcla de la estimación del año fiscal en curso y la del próximo."""
+    if not est or est.get("actual") is None:
+        return None
+    hoy = hoy or _dt.date.today()
+    mes = int(mes_cierre or 12)
+    cierre = _dt.date(hoy.year, mes, 28)
+    if cierre < hoy:
+        cierre = _dt.date(hoy.year + 1, mes, 28)
+    faltan = max(0.0, min(12.0, (cierre - hoy).days / 30.44))
+    w = faltan / 12
+    prox = est.get("proximo")
+    if prox is None:
+        return est["actual"]
+    return w * est["actual"] + (1 - w) * prox
+
+
+def calcular(e):
+    """e: la entrada del score v0.2 (scoring.dividendo.entrada) más: "hist" ya en la moneda del dividendo, "mes_cierre", "cet1",
+    "affo" (por acción), "rend" (rendimiento del dividendo, 0,05 = 5%). Devuelve {"score", "categoria", "variables", "ajustes", "topes"}."""
+    grupo = e.get("grupo")
+    banco, reit, util = grupo in BANCOS, grupo in REITS, grupo in UTILITIES
+    est = e.get("estados") or {}
+    S = lambda parte, fila: V0.serie(est, fila)  # noqa: E731
+    neto, ebit, inte = S("r", "Resultado neto"), S("r", "Resultado operativo"), S("r", "Gasto por intereses")
+    ebitda, ingresos, eps = S("r", "EBITDA"), S("r", "Ingresos"), S("r", "Ganancia por acción (diluida)")
+    fcf, divp, cfo = S("f", "Flujo de efectivo libre"), S("f", "Dividendos pagados"), S("f", "Flujo de efectivo operativo")
+    int_pag = S("f", "Intereses pagados")
+    deuda, dneta, caja = S("b", "Deuda total"), S("b", "Deuda neta"), S("b", "Caja e inversiones de corto plazo")
+    ac, inv, pc, at = S("b", "Activo corriente"), S("b", "Inventarios"), S("b", "Pasivo corriente"), S("b", "Activo total")
+    rr, tes = S("b", "Ganancias retenidas"), S("b", "Acciones en tesorería")
+    dpa = V0._n(e.get("dividendo_anual"))
+    vs, ajustes, topes, notas = [], [], [], []
+
+    def var(clave, pts, mx, valor, **extra):
+        vs.append(dict(clave=clave, pts=pts, max=mx, valor=valor, **extra))
+
+    # --- cobertura de intereses (25) / cobertura de cargos fijos en REITs (EBITDA ÷ intereses) / CET1 en bancos ---------
+    cob = None
+    if not banco:
+        i = _ultimo(inte, 4)
+        if not i and _ultimo(int_pag, 4):
+            i = abs(_ultimo(int_pag, 4))
+            notas.append("intereses: los pagados (flujo de efectivo)")
+        base = _ultimo(ebitda) if reit else _ultimo(ebit)
+        if base is None and not reit and i and _ultimo(S("r", "Resultado antes de impuestos")) is not None:
+            base = _ultimo(S("r", "Resultado antes de impuestos")) + abs(i)      # sin resultado operativo: antes de impuestos + intereses
+        d = _ultimo(deuda)
+        if i and base is not None:
+            cob = base / abs(i)
+        elif d is not None and d <= 0:
+            cob = 99.0
+            notas.append("sin deuda: cobertura segura")
+        if reit:
+            var("cobertura", _zona(cob, (3.0, False), (1.5, False), (25, 10, 0), False), 25, cob, nombre="EBITDA ÷ intereses (cargos fijos)")
+        else:
+            var("cobertura", _zona(cob, (5.0, False), (2.0, False), (25, 10, 0), False), 25, cob)
+    else:
+        c1 = V0._n(e.get("cet1"))
+        var("cet1", _zona(c1, (11.0, False), (9.5, False), (25, 10, 0), False), 25, c1)
+
+    # --- payout sobre flujo libre (20) / AFFO en REITs / ganancias en utilities y bancos ---------------------------------------
+    fcf_pay = None
+    d12, f12 = _ultimo(divp), _ultimo(fcf)
+    if d12 is not None and f12 is not None:
+        fcf_pay = abs(d12) / f12 * 100 if f12 > 0 else 999.0
+    if reit:
+        affo = V0._n(e.get("affo"))
+        pay = (dpa / affo * 100 if affo and affo > 0 else 999.0) if (dpa and affo is not None) else None
+        var("affo", _zona(pay, (80, False), (90, False), (20, 10, 0), True), 20, pay, nombre=e.get("affo_nombre") or "AFFO")
+    elif util or banco:
+        e12 = _ultimo(eps)
+        pay = (dpa / e12 * 100 if e12 and e12 > 0 else 999.0) if (dpa and e12 is not None) else None
+        if util:
+            var("eps_payout", _zona(pay, (70, False), (80, False), (20, 10, 0), True), 20, pay)
+        else:
+            var("eps_payout", _zona(pay, (50, False), (75, True), (20, 10, 0), True), 20, pay)
+    else:
+        var("fcf_payout", _zona(fcf_pay, (60, False), (85, False), (20, 10, 0), True), 20, fcf_pay)
+
+    # --- payout futuro (15): plan B, ganancia de los próximos 12 meses (no en REITs) ------------------------------------------
+    if not reit:
+        g = ntm(e.get("estimacion"), e.get("mes_cierre"), e.get("hoy"))
+        fp = (dpa / g * 100 if g > 0 else 999.0) if (dpa and g is not None) else None
+        var("payout_futuro", _zona(fp, (55, False), (80, True), (15, 7, 0), True), 15, fp)
+
+    # --- crecimiento de ventas, 3 años (10) -------------------------------------------------------------------------------
+    an = _anuales(ingresos)
+    sgr = None
+    if an:
+        u = max(an)
+        if u - 3 in an and an[u - 3] > 0 and an[u] > 0:
+            sgr = ((an[u] / an[u - 3]) ** (1 / 3) - 1) * 100
+    var("ventas", _zona(sgr, (3, False), (0, False), (10, 5, 0), False), 10, sgr)
+
+    # --- deuda neta ÷ EBITDA (15) -------------------------------------------------------------------------------------------
+    if not banco:
+        dn = _ultimo(dneta)
+        if dn is None and _ultimo(deuda) is not None and _ultimo(caja) is not None:
+            dn = _ultimo(deuda) - _ultimo(caja)
+        eb = _ultimo(ebitda)
+        nd = None
+        if dn is not None and eb:
+            nd = -1.0 if dn <= 0 else (dn / eb if eb > 0 else 99.0)
+        if reit:
+            var("deuda", _zona(nd, (5.5, False), (6.5, False), (15, 7, 0), True), 15, nd)
+        elif util:
+            var("deuda", _zona(nd, (5.0, False), (6.0, False), (15, 7, 0), True), 15, nd)
+        else:
+            var("deuda", _zona(nd, (2.5, False), (4.5, False), (15, 7, 0), True), 15, nd)
+
+    # --- FFO/Deuda en utilities (≈ flujo operativo ÷ deuda total): PROPUESTA 10 puntos más, el total se lleva a 100 ---------
+    if util:
+        o, d = _ultimo(cfo), _ultimo(deuda)
+        fd = o / d * 100 if (o is not None and d) else None
+        var("ffo_deuda", _zona(fd, (15, False), (10, False), (10, 5, 0), False), 10, fd)
+
+    # --- ganancias retenidas ajustadas ÷ activos (10) (no en REITs) ---------------------------------------------------------
+    if not reit:
+        r, t, a = _ultimo(rr), _ultimo(tes), _ultimo(at)
+        re_ta = (r + abs(t or 0)) / a * 100 if (r is not None and a) else None
+        var("re_ta", _zona(re_ta, (35, False), (15, False), (10, 5, 0), False), 10, re_ta)
+
+    # --- prueba ácida (5) (no en bancos) ------------------------------------------------------------------------------------
+    if not banco:
+        a_c, p_c = _ultimo(ac), _ultimo(pc)
+        q = (a_c - (_ultimo(inv) or 0)) / p_c if (a_c is not None and p_c) else None
+        if util:
+            pts = None if q is None else (0 if q < 0.4 else 5)
+        elif grupo in ASSET_LIGHT:
+            pts = _zona(q, (1.5, False), (1.0, False), (5, 2, 0), False)
+        elif grupo in STAPLES:
+            pts = _zona(q, (0.6, False), (0.4, False), (5, 2, 0), False)
+        else:
+            pts = _zona(q, (1.1, False), (0.7, False), (5, 2, 0), False)
+        var("acida", pts, 5, q)
+
+    # --- base: puntos sobre el máximo posible, llevados a 100 ----------------------------------------------------------------
+    con = [v for v in vs if v["pts"] is not None]
+    mx = sum(v["max"] for v in con)
+    if not con or mx < 40:
+        return {"score": None, "categoria": None, "variables": vs, "ajustes": ajustes, "topes": topes, "notas": notas + ["faltan datos"]}
+    base = sum(v["pts"] for v in con) / mx * 100
+    if mx != 100:
+        notas.append(f"base sobre {mx} puntos posibles, llevada a 100")
+
+    # --- historial (moneda del dividendo) -------------------------------------------------------------------------------------
+    h = e.get("historial") or {}
+    tk = e.get("ticker")
+    ult = h.get("ultimo_completo")
+    medible = e.get("fuente_historial") != "variable"     # sin el dividendo en su moneda no se puede medir: ni castigo ni bono
+    rec = [a for a in (h.get("recortes") or []) if ult is None or a <= ult] if medible else []
+    # un recorte a mitad de año aparece también en el año siguiente (y una suspensión, en cada año sin pagos): se cuenta desde
+    # el primer año de cada tramo seguido de recortes
+    eventos = [a for a in rec if a - 1 not in rec]
+    hace = 0 if (h.get("recorte_en_curso") and medible) else (ult - max(eventos) if eventos and ult else None)
+    erratico = sum(1 for a in eventos if ult and a > ult - ERRATICO_ANIOS) >= ERRATICO_RECORTES
+    variable = tk in VARIABLE_DECLARADA or erratico
+    racha, sin_suba = (h.get("racha_subas") or 0, h.get("anios_sin_suba") or 0) if medible else (0, 0)
+    if hace is not None:
+        if hace < 5:
+            ajustes.append(("recorte_menos_5", -25))
+        elif hace <= 10:
+            ajustes.append(("recorte_5_10", -10))
+    # el bono se anula si la cobertura (o su reemplazo) o el payout principal están en zona crítica
+    critica = any(v["pts"] == 0 for v in vs if v["clave"] in ("cobertura", "cet1", "fcf_payout", "affo", "eps_payout"))
+    if sin_suba >= 3:
+        ajustes.append(("congelamiento", -5))           # congelamiento crónico: −5 y pierde el bono
+    elif not variable and not critica:
+        if racha >= 25:
+            ajustes.append(("aristocrata", 10))
+        elif racha >= 10:
+            ajustes.append(("aspirante", 5))
+
+    # --- trampa de rendimiento -------------------------------------------------------------------------------------------------
+    rend = V0._n(e.get("rend"))
+    trampa = rend is not None and rend > 0.08 and fcf_pay is not None and fcf_pay > 100
+    if trampa:
+        ajustes.append(("trampa_rendimiento", -30))
+
+    total = base + sum(x for _, x in ajustes)
+    # --- frenos -------------------------------------------------------------------------------------------------------------------
+    an_n = _anuales(neto)
+    if an_n and an_n[max(an_n)] < 0:
+        topes.append(("perdida", 20))
+    if cob is not None and not banco and cob < 1.5:
+        topes.append(("cobertura_letal", 20))
+    if trampa:
+        topes.append(("trampa_rendimiento", 40))
+    if variable:
+        topes.append(("dividendo_variable", 80))
+    for _, t in topes:
+        total = min(total, t)
+    total = max(0, min(100, int(round(round(total, 6)))))
+    return {"score": total, "categoria": categoria(total), "variables": vs, "ajustes": ajustes, "topes": topes, "notas": notas,
+            "base": round(base, 1), "variable": variable, "erratico": erratico}
+
+
+def cargar_json(nombre):
+    try:
+        return json.load(open(os.path.join(AQUI, "data", nombre), encoding="utf-8")).get("datos", {})
+    except (OSError, ValueError):
+        return {}

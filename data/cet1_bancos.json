@@ -1,0 +1,4 @@
+{
+  "nota": "v1.5.71 — CET1 (capital ordinario de nivel 1, % de los activos ponderados por riesgo) de cada banco, tomado del último informe trimestral de la empresa, para el score de dividendos v1 (Guille, 16/11/2026). Campos: cet1 (en %, por ejemplo 15.4), hasta (cierre del trimestre, AAAA-MM-DD), fuente (URL del documento de la empresa), cargado. Las que no informan CET1 (aseguradoras, administradoras de fondos, brokers) van con \"no_aplica\": true. Lo renueva la tarea programada «FFO trimestral de los REIT (TodoCedears)» los días 28 de febrero, mayo, agosto y noviembre.",
+  "datos": {}
+}

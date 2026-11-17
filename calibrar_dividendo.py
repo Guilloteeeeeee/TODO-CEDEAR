@@ -112,6 +112,14 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
         locales = H.leer("dividendos_locales.json", {}).get("datos", {})
     if monedas is None:
         monedas = H.leer("monedas.json", {})
+    try:
+        fichas = json.load(open(os.path.join(AQUI, "data", "fichas.json"), encoding="utf-8")).get("datos", {})
+    except (OSError, ValueError):
+        fichas = {}
+    try:
+        cet1 = json.load(open(os.path.join(AQUI, "data", "cet1_bancos.json"), encoding="utf-8")).get("datos", {})
+    except (OSError, ValueError):
+        cet1 = {}
     res = {}
     for t in tickers:
         row = cache.get(t)
@@ -135,6 +143,18 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
         r["anios_estados"] = f"{min(fy)}–{max(fy)}" if fy else "sin estados"
         r["historial"] = {k: v for k, v in (hist or {}).items() if k != "tasa"} if hist else None
         r["fuente_historial"] = fuente
+        # score nuevo de Guille (v1, scoring/dividendo_v1.py), en paralelo: misma entrada más lo que pide el documento
+        try:
+            from scoring import dividendo_v1 as V1
+            e1 = dict(ent, grupo=SD.grupo_de(row) if hasattr(SD, "grupo_de") else ent.get("grupo"), rend=ent.get("dy"),
+                      mes_cierre=(fichas.get(t) or {}).get("mes_cierre_fiscal"), cet1=(cet1.get(t) or {}).get("cet1"),
+                      fuente_historial=fuente)
+            f = SD.ffo_empresa(t)
+            if f:
+                e1["affo"], e1["affo_nombre"] = (f.get("affo_12m"), "AFFO") if f.get("affo_12m") else (f.get("ffo_12m"), "FFO (provisorio)")
+            r["v1"] = V1.calcular(e1)
+        except Exception as ex:  # noqa: BLE001
+            r["v1"] = {"score": None, "error": f"{type(ex).__name__}: {ex}"}
         res[t] = r
     return res
 
@@ -170,6 +190,12 @@ def main(args):
         sp = _spearman([a for a, _ in pares], [b for _, b in pares])
         lin += [f"Empresas comparadas: {n}", f"Diferencia media con SSD: {mae:.1f} puntos", f"Misma categoría que SSD: {misma} de {n}",
                 f"A dos categorías o más: {lejos}", f"Parecido en el orden (1 = el mismo orden, 0 = nada que ver): {sp:.2f}" if sp is not None else "", ""]
+    p1 = [((res[t].get("v1") or {}).get("score"), SSD[t]) for t in lista if res.get(t) and SSD.get(t) is not None and (res[t].get("v1") or {}).get("score") is not None]
+    if p1:
+        n1 = len(p1)
+        lin += ["SCORE NUEVO (v1, en paralelo, todavía no se muestra):", f"Diferencia media con SSD: {sum(abs(a - b) for a, b in p1) / n1:.1f} puntos",
+                f"Misma categoría que SSD: {sum(1 for a, b in p1 if _cat_n(a) == _cat_n(b))} de {n1}",
+                f"A dos categorías o más: {sum(1 for a, b in p1 if abs(_cat_n(a) - _cat_n(b)) >= 2)}", ""]
     lin.append(f"{'Empresa':8}{'SSD':>5}{'Nuestro':>9}{'Dif':>5}  {'Categoría nuestra / SSD':28} P1   P2   P3   P4   P5   Años est.  Notas")
     for t in lista:
         r = res.get(t)
@@ -181,7 +207,8 @@ def main(args):
         p = r["pilares"]
         pp = "  ".join(f"{p[k][0]:>4.1f}" if k in p else "  — " for k in (1, 2, 3, 4, 5))
         lin.append(f"{t:8}{str(ssd if ssd is not None else '—'):>5}{str(r['score'] if r['score'] is not None else '—'):>9}{str(dif if dif is not None else ''):>5}  "
-                   f"{(r['categoria'] or '—') + ' / ' + cat_s:28} {pp}  {r.get('anios_estados', ''):10} {', '.join(r['notas'] + [c for c, _ in r['topes']])}")
+                   f"{(r['categoria'] or '—') + ' / ' + cat_s:28} {pp}  {r.get('anios_estados', ''):10} {', '.join(r['notas'] + [c for c, _ in r['topes']])}"
+                   f"  | v1: {(r.get('v1') or {}).get('score')}")
     lin += ["", "DETALLE (conclusión que vería el usuario e historial del dividendo)", ""]
     for t in lista:
         r = res.get(t)

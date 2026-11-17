@@ -359,6 +359,8 @@ ESTADOS = {
         ("Deuda neta", ["Net Debt"], "m"),
         ("Pasivo total", ["Total Liabilities Net Minority Interest"], "t"),
         ("Patrimonio neto", ["Stockholders Equity", "Common Stock Equity"], "t"),
+        ("Ganancias retenidas", ["Retained Earnings"], "m"),           # score de dividendos v1 (no se muestran en la ficha)
+        ("Acciones en tesorería", ["Treasury Stock"], "m"),
         ("Capital invertido (según Yahoo)", ["Invested Capital"], "m")]),
     "flujo": ("cashflow", [
         ("Flujo de efectivo operativo", ["Operating Cash Flow", "Cash Flow From Continuing Operating Activities"], "t"),
@@ -367,7 +369,8 @@ ESTADOS = {
         ("Flujo de efectivo de inversión", ["Investing Cash Flow"], "m"),
         ("Flujo de efectivo de financiamiento", ["Financing Cash Flow"], "m"),
         ("Recompra de acciones", ["Repurchase Of Capital Stock"], "m"),
-        ("Dividendos pagados", ["Cash Dividends Paid", "Common Stock Dividend Paid"], "m")]),
+        ("Dividendos pagados", ["Cash Dividends Paid", "Common Stock Dividend Paid"], "m"),
+        ("Intereses pagados", ["Interest Paid Supplemental Data"], "m")]),
 }
 
 

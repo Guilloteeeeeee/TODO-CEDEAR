@@ -1654,12 +1654,17 @@ AYUDA_ESTADOS = {
 }
 
 
+SOLO_SCORE = {"Ganancias retenidas", "Acciones en tesorería", "Intereses pagados"}   # filas que se bajan para el score de dividendos v1
+
+
 def _tabla_estado_html(t, moneda, industria=None):
     """industria (v1.2.88): {rótulo de la fila: valor} -> suma una última columna con el promedio de la industria (Damodaran); en las filas sin dato queda en blanco."""
     cab = ("<tr><th>Concepto</th>" + "".join(f"<th>{a}</th>" for a in t["anios"])
            + ('<th class="ind-d" title="Promedio de la industria (Damodaran, ene-2026)">Industria</th>' if industria else "") + "</tr>")
     filas = ""
     for rot, vals, tipo in t["filas"]:
+        if rot in SOLO_SCORE:
+            continue
         negrita = ' class="tot"' if tipo == "t" else ""
         tip = AYUDA_ESTADOS.get(rot)
         nom = f'<span class="hv" title="{html.escape(tip, quote=True)}">{html.escape(rot)}</span>' if tip else html.escape(rot)
