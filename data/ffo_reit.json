@@ -1,5 +1,5 @@
 {
-  "nota": "FFO por acción que informa cada REIT en su comunicado de resultados (v1.5.68, Guille 11/11/2026: «claro! esto sí»). Se usa en el Score de Seguridad del Dividendo en lugar del FFO de Stock Analysis (que es el FFO NAREIT y se hunde con gastos extraordinarios: Welltower 2025 = 2,68 contra 5,29 normalizado). Medida: el FFO sin extraordinarios de cada empresa (normalized FFO o core FFO), no el AFFO. ffo_12m = suma de los últimos cuatro trimestres informados; ffo_anual = último año fiscal completo. Renovar cada trimestre, después de los resultados (fin de febrero, mayo, agosto y noviembre). Si 'hasta' tiene más de 200 días, el score vuelve al dato de Stock Analysis. v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): para el score de dividendos v1, el AFFO que informa la empresa, mismos 12 meses que el FFO (hasta). affo_payout_12m = dividendos pagados ÷ AFFO de esos 12 meses, en % (por acción o en totales, como lo informe la empresa); affo_12m = AFFO por acción (si la empresa lo informa así); affo_detalle = cómo se sumó; affo_fuentes. Si la empresa no informa AFFO: affo_no_informa con el motivo (la métrica no cuenta para esa empresa).",
+  "nota": "FFO por acción que informa cada REIT en su comunicado de resultados (v1.5.68, Guille 11/11/2026: «claro! esto sí»). Se usa en el Score de Seguridad del Dividendo en lugar del FFO de Stock Analysis (que es el FFO NAREIT y se hunde con gastos extraordinarios: Welltower 2025 = 2,68 contra 5,29 normalizado). Medida: el FFO sin extraordinarios de cada empresa (normalized FFO o core FFO), no el AFFO. ffo_12m = suma de los últimos cuatro trimestres informados; ffo_anual = último año fiscal completo. Renovar cada trimestre, después de los resultados (fin de febrero, mayo, agosto y noviembre). Si 'hasta' tiene más de 200 días, el score vuelve al dato de Stock Analysis. v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): para el score de dividendos v1, el AFFO que informa la empresa, mismos 12 meses que el FFO (hasta). affo_payout_12m = dividendos pagados ÷ AFFO de esos 12 meses, en % (por acción o en totales, como lo informe la empresa); affo_12m = AFFO por acción (si la empresa lo informa así); affo_detalle = cómo se sumó; affo_fuentes. Si la empresa no informa AFFO: affo_no_informa con el motivo (la métrica no cuenta para esa empresa). v1.5.75 (Guille 17/11/2026): usar_ffo_como_affo = la empresa no publica AFFO y el score v1 usa su ffo_12m en ese lugar, sin aclaración en lo que se muestre (hoy: WELL).",
   "datos": {
     "WELL": {
       "medida": "Normalized FFO por acción diluida",
@@ -14,11 +14,13 @@
         "https://www.barchart.com/story/news/140562/welltower-reports-fourth-quarter-2025-results"
       ],
       "cargado": "2026-11-11",
-      "affo_no_informa": "Welltower no publica AFFO ni FAD (sus medidas complementarias son FFO, FFO normalizado, NOI, RevPOR y EBITDA). Pendiente de decisión de Guille.",
+      "affo_no_informa": "Welltower no publica AFFO ni FAD (sus medidas complementarias son FFO, FFO normalizado, NOI, RevPOR y EBITDA).",
       "affo_fuentes": [
         "https://www.sec.gov/Archives/edgar/data/0000766704/000076670426000026/a2q26earningsrelease991.htm"
       ],
-      "cargado_affo": "2026-11-17"
+      "cargado_affo": "2026-11-17",
+      "usar_ffo_como_affo": true,
+      "decision_affo": "Guille, 17/11/2026: «WELL con FFO, pero no aclares». El score v1 usa ffo_12m en el lugar del AFFO, sin aclaración en lo que se muestre."
     },
     "O": {
       "medida": "Normalized FFO por acción diluida",

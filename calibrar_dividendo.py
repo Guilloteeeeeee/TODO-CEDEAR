@@ -159,6 +159,10 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             f = SD.ffo_vigente(ent)
             if f and (f.get("affo_payout_12m") or f.get("affo_12m")):
                 e1["affo"], e1["affo_payout"], e1["affo_nombre"] = f.get("affo_12m"), f.get("affo_payout_12m"), f.get("affo_medida") or "AFFO"
+            elif f and f.get("usar_ffo_como_affo") and f.get("ffo_12m"):
+                # v1.5.75 (Guille 17/11/2026: «WELL con FFO, pero no aclares»): la empresa no publica AFFO; se usa su FFO normalizado de 12 meses
+                # en el lugar del AFFO, sin aclaración en lo que se muestre
+                e1["affo"], e1["affo_nombre"] = f["ffo_12m"], "AFFO"
             r["v1"] = V1.calcular(e1)
         except Exception as ex:  # noqa: BLE001
             r["v1"] = {"score": None, "error": f"{type(ex).__name__}: {ex}"}

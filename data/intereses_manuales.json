@@ -1,5 +1,5 @@
 {
-  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, para las empresas que no lo informan o cuyo dato no traen Yahoo ni la SEC (respaldo: si después aparece en Yahoo o en la SEC, manda ese). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
+  "nota": "v1.5.72 — Gasto por intereses cargado a mano, con fuente, para las empresas que no lo informan o cuyo dato no traen Yahoo ni la SEC (respaldo: si después aparece en Yahoo o en la SEC, manda ese). Lo usa la cobertura de intereses del score de dividendos v1 cuando no hay gasto por intereses ni intereses pagados en los últimos 12 meses ni en el último año fiscal. v1.5.75 (Guille 17/11/2026: «necesitamos que lo consigas sí o sí»): también los intereses PAGADOS (flujo de efectivo) cuando la empresa solo informa intereses netos de lo que gana por su caja. Campos: anio (año fiscal al que corresponde), monto (en la moneda de los estados; 0 = sin deuda financiera), medida (qué es exactamente), fuentes, cargado. Renovar cuando salga el informe anual nuevo.",
   "datos": {
     "AAPL": {
       "anio": 2026,
@@ -11,6 +11,35 @@
       ],
       "cargado": "2026-11-17"
     },
+    "ARCO": {
+      "anio": 2025,
+      "monto": 59352000,
+      "medida": "Intereses pagados en 2025 (estado de flujo de efectivo, información complementaria, línea «Interest»: 59.352 miles de dólares). Su línea de resultados «Net interest expense and other financing results» (13,7 millones) viene achicada por 52,9 millones de intereses ganados por un crédito fiscal en Brasil, por eso no sirve.",
+      "fuentes": [
+        "https://www.sec.gov/Archives/edgar/data/0001508478/000162828026028950/arco-20251231.htm"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "CRM": {
+      "anio": 2026,
+      "monto": 324000000,
+      "medida": "Gasto por intereses del año fiscal 2026 (cerrado el 31/01/2026). Ojo: en marzo de 2026 emitió 25.000 millones de dólares en bonos, así que los intereses de los 12 meses siguientes son unas tres veces más (con eso la cobertura sigue arriba de 5).",
+      "fuentes": [
+        "https://chartrow.com/quote/crm/financials",
+        "https://www.opencapital.sh/filings/0001108524-26-000190"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "GEV": {
+      "anio": 2025,
+      "monto": 53000000,
+      "medida": "Intereses pagados en 2025 (flujo de efectivo). Su estado de resultados solo muestra intereses y otros resultados financieros netos, que dan ganancia (+186 millones); su deuda financiera es chica (unos 289 millones, sin contar alquileres).",
+      "fuentes": [
+        "https://chartrow.com/quote/gev/financials",
+        "https://www.opencapital.sh/stocks/GEV/metrics/interest_paid"
+      ],
+      "cargado": "2026-11-17"
+    },
     "GRMN": {
       "anio": 2025,
       "monto": 0,
@@ -18,6 +47,34 @@
       "fuentes": [
         "https://www8.garmin.com/aboutGarmin/invRelations/reports/2025_Form_10-K.pdf",
         "https://app.edgar.tools/companies/GRMN"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "LLY": {
+      "anio": 2025,
+      "monto": 895000000,
+      "medida": "Gasto por intereses 2025 (informe anual 2025). Yahoo lo tiene en otra fila que no siempre baja; respaldo hasta que la bajada de Yahoo lo traiga.",
+      "fuentes": [
+        "https://chartrow.com/quote/lly/financials"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "NKE": {
+      "anio": 2026,
+      "monto": 323000000,
+      "medida": "Intereses pagados en el año fiscal 2026 (cerrado el 31/05/2026; «Interest, net of capitalized interest», flujo de efectivo). Nike solo informa en resultados los intereses netos de lo que gana por su caja, que le dan ganancia.",
+      "fuentes": [
+        "https://chartrow.com/quote/nke/financials",
+        "https://app.edgar.tools/companies/NKE"
+      ],
+      "cargado": "2026-11-17"
+    },
+    "NTES": {
+      "anio": 2025,
+      "monto": 387982000,
+      "medida": "Intereses pagados en 2025, en yuanes («Cash paid for interest expenses»: 387.982 miles, información complementaria del flujo de efectivo). NetEase solo informa en resultados los intereses netos, que le dan ganancia (3.953 millones de yuanes).",
+      "fuentes": [
+        "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0415/2026041501230.pdf"
       ],
       "cargado": "2026-11-17"
     },

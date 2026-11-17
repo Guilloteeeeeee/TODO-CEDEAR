@@ -577,6 +577,13 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.75 — Score v1: intereses de todas las empresas, Welltower con FFO, cortes de solvencia aprobados (17/11/2026)
+- **Intereses «sí o sí» (Guille):** cargados con fuente en `data/intereses_manuales.json` los de las 6 que faltaban. Nike (año fiscal 2026), NetEase, GE Vernova y Arcos Dorados: intereses PAGADOS del flujo de efectivo, porque en resultados solo informan intereses netos de lo que ganan por su caja (o, en Arcos Dorados, achicados por intereses de un crédito fiscal en Brasil). Salesforce (año fiscal 2026) y Eli Lilly (2025): gasto por intereses. Con los datos de hoy, las 196 empresas con dividendo (sin contar bancos y aseguradoras) tienen cobertura de intereses y score. La prueba nueva controla que siga así.
+- **Welltower** (Guille: «WELL con FFO, pero no aclares»): no publica AFFO; el score v1 usa su FFO normalizado de 12 meses en ese lugar (`usar_ffo_como_affo` en `data/ffo_reit.json`), con el nombre AFFO. Da 70 (Seguro).
+- **Solvencia de las aseguradoras:** cortes aprobados por Guille («OK, de acuerdo»): segura más de 150 %, gris desde el requisito (100 %), crítica por debajo.
+- Esperan decisión de Guille: cobertura y deuda de las empresas con financiera propia (PACCAR, Deere, GM y otras) e intereses de NextEra (coberturas de tasa).
+- Pruebas: `tests/test_v1575_intereses_well.py` (OK 38).
+
 ### v1.5.74 — Score v1: recompras en ganancias retenidas, sin deuda = cobertura máxima, solvencia de aseguradoras (17/11/2026)
 - **Ganancias retenidas de las «caníbales» (aprobado por Guille: «me gusta la solución»):** ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los últimos 10 años fiscales (`RECOMPRAS_ANIOS`), ÷ activos. `bajar_sec.py` suma las recompras de los años viejos (`PaymentsForRepurchaseOfCommonStock`).
 - **Sin intereses y sin deuda financiera → cobertura máxima** (Guille: «si no hay interés a pagar la cobertura es máxima»): la deuda total de Yahoo incluye los alquileres; nueva fila `Deuda por arrendamientos` («Capital Lease Obligations», no se muestra en la ficha). Si la deuda son solo alquileres y no hay intereses informados, cobertura máxima.

@@ -37,7 +37,7 @@ VARIABLE_DECLARADA = {
     "GFI": "paga 35% del flujo libre antes de inversiones discrecionales (resultados 1S2026)",
 }
 RECOMPRAS_ANIOS = 10        # v1.5.74: recompras que se suman a las ganancias retenidas (Guille: aprobado)
-SOLVENCIA_SEGURA = 150.0    # v1.5.74 PROPUESTA: índice de solvencia de las aseguradoras (segura más de 150 %; crítica debajo del requisito, 100 %)
+SOLVENCIA_SEGURA = 150.0    # v1.5.74, aprobado por Guille el 17/11/2026: índice de solvencia de las aseguradoras (segura más de 150 %; crítica debajo del requisito, 100 %)
 # PROPUESTA: «historial de pagos erráticos» = 3 o más años con recorte en los últimos 10 (en la moneda del dividendo)
 ERRATICO_RECORTES, ERRATICO_ANIOS = 3, 10
 
@@ -173,7 +173,7 @@ def calcular(e):
             return {"score": None, "categoria": None, "variables": vs, "ajustes": ajustes, "topes": topes,
                     "notas": notas + ["falta el gasto por intereses de los últimos 12 meses o del último año fiscal"]}
     elif V0._n(e.get("solvencia")) is not None:
-        # v1.5.74 (Guille 17/11/2026: «hagamos con índice de solvencia» en las aseguradoras). PROPUESTA de cortes, igual que el CET1: segura más de
+        # v1.5.74 (Guille 17/11/2026: «hagamos con índice de solvencia» en las aseguradoras; cortes aprobados: «OK, de acuerdo»), igual que el CET1: segura más de
         # 150 %, gris desde el requisito (100 % = el mínimo regulatorio) hasta 150 %, crítica por debajo del requisito.
         sv, rq = V0._n(e.get("solvencia")), V0._n(e.get("solvencia_requisito")) or 100.0
         var("solvencia", 25 if sv > SOLVENCIA_SEGURA else 10 if sv >= rq else 0, 25, sv, requisito=rq)
