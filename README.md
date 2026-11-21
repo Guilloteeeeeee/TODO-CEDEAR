@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.83 — Score v1: el congelamiento hace errático al dividendo (21/11/2026)
+- **Guille cambió la regla de la v1.5.82: «no lo consideres como recorte sino como dividendo errático».** 3 o más años completos seguidos sin subir el dividendo, si terminaron en los últimos 10 años (o siguen), hacen errático al dividendo: techo 80 y sin premio, igual que 3 recortes en 10 años. Ya no resta −25/−10. El recorte sigue restando aparte (`congelado_hasta` en el resultado).
+- **En la moneda en que la empresa emite el dividendo** (Guille: «siempre tener en cuenta la moneda de emisión»): dólares o pagos de la bolsa de origen (57 de las 58 de afuera tienen su símbolo local; falta Vodafone). Con la serie convertida desde el ADR queda sin medir y lo anota («congelamiento sin medir»): el tipo de cambio mensual mueve ±3 % y tapa una suba chica (Unilever 2024: +2,2 % en euros, −1 % convertido). Se mide cuando lleguen `dividendos_locales.json` y `monedas.json` (`bajar_dividendos_locales.bat`).
+- Cambian 24 empresas (NVIDIA, Interactive Brokers, Equifax, AstraZeneca, Baker Hughes, Micron, Kinross, Agnico Eagle, Halliburton, SLB… quedan en 80). Contra SSD: diferencia media 17,2 (v1.5.81: 18,0; v1.5.82: 16,7), «Muy segura» 82 de 158.
+- Pruebas: `tests/test_v1581_congelamiento.py` (OK 12) y `test_v1571` ajustadas.
+
 ### v1.5.82 — Score v1: el congelamiento cuenta como un recorte (21/11/2026)
 - **Decisión de Guille: «el congelamiento debe correr la misma suerte que un recorte, suspensiones u omisiones».** 3 o más años completos seguidos sin subir el dividendo son un evento como un recorte, fechado en el último año congelado: −25 si terminó hace menos de 5 años (o sigue congelado), −10 si terminó hace 5 a 10, y sin premio. Manda el evento más reciente (recorte o congelamiento): no se suman. No cuenta para los pagos erráticos (eso es subir y bajar). Reemplaza el −5 del congelamiento crónico (`congelamientos` en scoring/dividendo_v1.py).
 - Solo se mide con el dividendo en dólares o en su moneda: con la serie convertida, el tipo de cambio no deja ver una suba del 3 % (las de afuera se van a medir cuando estén los dividendos de la bolsa de origen, `bajar_dividendos_locales.bat`).
