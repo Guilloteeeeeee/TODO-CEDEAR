@@ -137,17 +137,37 @@ def _completar(h, base):
     return h
 
 
+# v1.5.80: consolidaciones de acciones hechas para que el dividendo por acción siga comparable después de repartir una parte de la empresa
+# (escisión) o un dividendo extraordinario. Yahoo las anota como un split y agranda los dividendos de antes, pero no descuenta lo que se
+# repartió: el dividendo de después parece un recorte (Unilever 2026, National Grid 2017). Se deshace ese ajuste con el mismo factor que
+# guardó el archivo de splits (data/historico/splits.json). Fecha, factor, motivo y fuente.
+CONSOLIDACIONES_COMPARABLES = {
+    "UL": [("2025-12-09", 0.888, "escisión de The Magnum Ice Cream Company, 8 acciones nuevas por cada 9",
+            "unilever.com/investors/the-magnum-ice-cream-company-demerger: «share consolidation to ensure post-demerger comparability of share price, EPS, and DPS»")],
+    "NGG": [("2017-05-22", 0.916, "dividendo extraordinario de 84,375 peniques, 11 acciones nuevas por cada 12",
+             "nationalgrid.com/document/137676: «A share consolidation will be used to maintain earnings per share and dividends per share on a comparable basis»")],
+}
+
+
+def sin_consolidacion(ticker, pagos):
+    """Pagos con el ajuste de las consolidaciones de CONSOLIDACIONES_COMPARABLES deshecho (los anteriores a la fecha × factor)."""
+    for fecha, factor, *_ in CONSOLIDACIONES_COMPARABLES.get(ticker, []):
+        pagos = [[p[0], p[1] * factor] if p[0] < fecha else p for p in pagos or []]
+    return pagos
+
+
 def historial(ticker, moneda_estados, pagos, pais=None, hoy=None, sigue_pagando=False, locales=None, monedas=None, precios=None):
     """-> (historial de analizar_dividendos, fuente). fuente: "dolares" | "local" | "convertido" | "variable" (la regla de antes).
     El score usa la regla de EE.UU. (años sin recortar) salvo con fuente "variable"."""
     from scoring import dividendo as SD
+    pagos = sin_consolidacion(ticker, pagos)
     mon = moneda(ticker, moneda_estados, pais)
     base = SD.analizar_dividendos(pagos, hoy=hoy, sigue_pagando=sigue_pagando) if pagos else None
     if mon == "USD":
         return base, "dolares"
     loc = (locales or {}).get(ticker) or {}
     if loc.get("ok") and loc.get("pagos"):
-        h = SD.analizar_dividendos(loc["pagos"], hoy=hoy, sigue_pagando=sigue_pagando)
+        h = SD.analizar_dividendos(sin_consolidacion(ticker, loc["pagos"]), hoy=hoy, sigue_pagando=sigue_pagando)
         if h:
             return _completar(h, base), "local"
     conv, _ = convertir(pagos, mon, monedas, precios)

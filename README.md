@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.80 — Dividendos: consolidaciones que mantienen comparable el dividendo (Unilever, National Grid) (21/11/2026)
+- **Unilever:** en diciembre de 2025 separó The Magnum Ice Cream Company y consolidó sus acciones (8 nuevas por cada 9) para que precio, ganancia y dividendo por acción siguieran comparables. Yahoo anotó la consolidación como un split y agrandó los dividendos de antes, pero no descontó la escisión: el dividendo de 2026 (0,4664 euros por trimestre, +3 % según la empresa) parecía un recorte. Ahora se deshace ese ajuste (`data/moneda_dividendo.py`: `CONSOLIDACIONES_COMPARABLES`, `sin_consolidacion`, en `historial`, también para los pagos de la bolsa de origen). Unilever: v1 49 → 74, v0.2 78 → 84 (SSD 60).
+- **National Grid:** la consolidación de 2017 (11 por cada 12, con el dividendo extraordinario de 84,375 peniques) tiene el mismo tratamiento: desaparece el recorte falso de 2017. El de 2025 queda (Guille 21/11/2026: «sí, hay un recorte»). Sigue en 27.
+- Pruebas: `tests/test_v1580_consolidaciones.py` (OK 8; controla que cada factor coincida con el archivo de splits).
+
 ### v1.5.79 — Score v1: deuda de las utilities 7,5 + 7,5, pago futuro de los bancos, monedas de las empresas de afuera, National Grid y KEPCO (17/11/2026)
 - **Utilities (Guille: «mitad y mitad, 15 puntos de 100 la deuda»):** los 15 puntos de deuda se reparten entre deuda neta ÷ EBITDA (7,5) y FFO ÷ Deuda (7,5); cada una con zona segura 7,5, gris 3,5 y crítica 0. El total de las utilities queda sobre 100, como el resto.
 - **Bancos (Guille: «misma lógica»):** el pago futuro usa el mismo corte que el pago actual de los bancos (segura < 50 %, crítica ≥ 75 %). Hoy no cambia a ningún banco por esto.
