@@ -89,7 +89,8 @@ chk(not any(a.startswith("recorte") for a, _ in r11["ajustes"]), "recorte hace m
 ra = V1.calcular(e(historial=dict(HIST, racha_subas=30)))
 chk(("aristocrata", 10) in ra["ajustes"], "25 años o más de subas: +10")
 rg = V1.calcular(e(historial=dict(HIST, racha_subas=0, anios_sin_suba=4)))
-chk(("congelamiento", -5) in rg["ajustes"] and not any(a in ("aristocrata", "aspirante") for a, _ in rg["ajustes"]), "congelado 4 años: −5 y sin bono")
+chk(("congelamiento_menos_5", -25) in rg["ajustes"] and not any(a in ("aristocrata", "aspirante") for a, _ in rg["ajustes"]),
+    "congelado 4 años (v1.5.81: como un recorte): −25 y sin bono")
 rx = V1.calcular(e(historial=dict(HIST, racha_subas=30), estados=est(divp=-350.0)))
 chk(not any(a == "aristocrata" for a, _ in rx["ajustes"]), "payout de flujo crítico: se anula el bono")
 rv = V1.calcular(e(ticker="GFI", historial=dict(HIST, racha_subas=30)))

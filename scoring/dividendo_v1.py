@@ -73,6 +73,24 @@ def categoria(p):
     return CATEGORIAS[-1][1]
 
 
+def congelamientos(h, minimo=3):
+    """Último año de cada tramo de `minimo` o más años completos seguidos sin subir el dividendo regular (sin recorte), en la serie `tasa`
+    del historial. v1.5.81."""
+    tasa = {int(k): v for k, v in (h.get("tasa") or {}).items()}
+    ult, rec = h.get("ultimo_completo"), set(h.get("recortes") or [])
+    planos = [a for a in sorted(tasa) if ult and a <= ult and a - 1 in tasa and tasa[a] and tasa[a - 1] and a not in rec
+              and tasa[a] <= tasa[a - 1] * 1.001]
+    fin, tramo = [], []
+    for a in planos + [None]:
+        if a is not None and tramo and a == tramo[-1] + 1:
+            tramo.append(a)
+            continue
+        if len(tramo) >= minimo:
+            fin.append(tramo[-1])
+        tramo = [a] if a is not None else []
+    return fin
+
+
 def _periodo(serie, n=2):
     """Como _ultimo, pero devuelve el período («TTM» o el año)."""
     for k in list(serie)[: max(1, n)]:
@@ -442,16 +460,28 @@ def calcular(e):
     erratico = sum(1 for a in eventos if ult and a > ult - ERRATICO_ANIOS) >= ERRATICO_RECORTES
     variable = tk in VARIABLE_DECLARADA or erratico
     racha, sin_suba = (h.get("racha_subas") or 0, h.get("anios_sin_suba") or 0) if medible else (0, 0)
-    if hace is not None:
+    # v1.5.81 (Guille 21/11/2026: «el congelamiento debe correr la misma suerte que un recorte, suspensiones u omisiones»): 3 o más años
+    # seguidos sin subir son un evento como un recorte, fechado en el último año congelado (−25 si fue hace menos de 5 años, −10 si fue
+    # hace 5 a 10). Manda el evento más reciente, sea recorte o congelamiento. No cuenta para los pagos erráticos (eso es subir y bajar).
+    # Solo se mide con el dividendo en dólares o en su moneda: con la serie convertida, el tipo de cambio no deja ver un 3 % de suba.
+    congel = congelamientos(h) if (medible and e.get("fuente_historial") not in ("convertido",)) else []
+    if sin_suba >= 3 and ult and e.get("fuente_historial") != "convertido" and ult not in congel:
+        congel.append(ult)
+    hace_c = (ult - max(congel)) if (congel and ult) else None
+    if hace_c is not None and (hace is None or hace_c < hace):
+        if hace_c < 5:
+            ajustes.append(("congelamiento_menos_5", -25))
+        elif hace_c <= 10:
+            ajustes.append(("congelamiento_5_10", -10))
+        notas.append(f"dividendo congelado 3 años o más hasta {max(congel)}: cuenta como un recorte")
+    elif hace is not None:
         if hace < 5:
             ajustes.append(("recorte_menos_5", -25))
         elif hace <= 10:
             ajustes.append(("recorte_5_10", -10))
     # el bono se anula si la cobertura (o su reemplazo) o el payout principal están en zona crítica
     critica = any(v["pts"] == 0 for v in vs if v["clave"] in ("cobertura", "cet1", "solvencia", "fcf_payout", "affo", "eps_payout"))
-    if sin_suba >= 3:
-        ajustes.append(("congelamiento", -5))           # congelamiento crónico: −5 y pierde el bono
-    elif not variable and not critica and racha >= 10:
+    if not variable and not critica and racha >= 10 and not any(k.startswith("congelamiento") for k, _ in ajustes):
         # v1.5.78 (Guille 17/11/2026: «de acuerdo, vamos con eso»): si el dividendo regular creció menos de CRECIMIENTO_SIMBOLICO % por año en
         # los últimos CRECIMIENTO_ANIOS años completos (aumentos de un centavo para no perder la racha), el premio queda en la mitad.
         # Se mide en la moneda del dividendo, con la misma serie que la racha.

@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.82 — Score v1: el congelamiento cuenta como un recorte (21/11/2026)
+- **Decisión de Guille: «el congelamiento debe correr la misma suerte que un recorte, suspensiones u omisiones».** 3 o más años completos seguidos sin subir el dividendo son un evento como un recorte, fechado en el último año congelado: −25 si terminó hace menos de 5 años (o sigue congelado), −10 si terminó hace 5 a 10, y sin premio. Manda el evento más reciente (recorte o congelamiento): no se suman. No cuenta para los pagos erráticos (eso es subir y bajar). Reemplaza el −5 del congelamiento crónico (`congelamientos` en scoring/dividendo_v1.py).
+- Solo se mide con el dividendo en dólares o en su moneda: con la serie convertida, el tipo de cambio no deja ver una suba del 3 % (las de afuera se van a medir cuando estén los dividendos de la bolsa de origen, `bajar_dividendos_locales.bat`).
+- Cambian 21 empresas (NVIDIA 99 → 75, Interactive Brokers 99 → 75, AstraZeneca 83 → 58, Equifax 97 → 72, AIG 78 → 53, CVS 78 → 53, Baker Hughes 88 → 63…). Contra SSD: diferencia media 18,0 → 16,7, misma categoría 30 % → 32 %, a una categoría o menos 83 % → 87 %; 17 se acercan a SSD y 3 se alejan.
+- Pruebas: `tests/test_v1581_congelamiento.py` (OK 12); `test_v1571` ajustada.
+
 ### v1.5.81 — Comparación completa con SSD (21/11/2026)
 - **Lista completa de Simply Safe Dividends** que pasó Guille (323 CEDEARs) guardada en `data/referencias/ssd_2026-11-21.json`; `calibrar_dividendo.py` la usa (manda sobre la lista vieja). Las «sin calificar» quedan sin score de SSD; las que no pagan y las «a confirmar» (Snap con 99, Fiserv con 60, Roku con «*») no se comparan.
 - **Score v1 sin dividendo = sin score** («no paga dividendo»): Roku, Snap y Fiserv salían con puntaje.
