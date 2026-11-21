@@ -115,6 +115,9 @@ def calcular(e):
     "affo" (por acción), "rend" (rendimiento del dividendo, 0,05 = 5%). Devuelve {"score", "categoria", "variables", "ajustes", "topes"}."""
     grupo = e.get("grupo")
     banco, reit, util = grupo in BANCOS, grupo in REITS, grupo in UTILITIES
+    # v1.5.81: sin dividendo no hay score de seguridad del dividendo (Roku, Snap y Fiserv salían con puntaje en la comparación con SSD)
+    if not V0._n(e.get("dividendo_anual")):
+        return {"score": None, "categoria": None, "variables": [], "ajustes": [], "topes": [], "notas": ["no paga dividendo"]}
     est = e.get("estados") or {}
     S = lambda parte, fila: V0.serie(est, fila)  # noqa: E731
     neto, ebit, inte = S("r", "Resultado neto"), S("r", "Resultado operativo"), S("r", "Gasto por intereses")

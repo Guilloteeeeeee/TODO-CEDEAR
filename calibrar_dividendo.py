@@ -39,6 +39,18 @@ SSD = {"KO": 80, "PG": 90, "JNJ": 99, "PEP": 80, "MCD": 77, "ADP": 90, "TXN": 80
        "COP": 61, "OXY": 60, "LLY": 96, "AMGN": 74, "GILD": 70, "ABT": 90, "MDLZ": 66, "HSY": 80, "FCX": 50, "NEM": 50,
        "SCCO": 24, "NUE": 90, "GM": 60, "AVGO": 67, "QCOM": 80, "AMAT": 86, "KLAC": 71}
 FECHA_SSD = "10/11/2026 (desde National Grid: 11/11/2026)"
+# v1.5.81: lista completa de SSD que pasó Guille el 21/11/2026 (data/referencias/ssd_2026-11-21.json): manda sobre lo de arriba.
+# Las «sin calificar» (UR) quedan sin score de SSD; las que no pagan (NP) y las marcadas «a confirmar» no se comparan.
+try:
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "referencias", "ssd_2026-11-21.json"), encoding="utf-8") as _f:
+        _lista = json.load(_f)
+    for _t, _v in _lista["scores"].items():
+        if _t in _lista.get("a_confirmar", {}) or _v == "NP":
+            continue
+        SSD[_t] = _v if isinstance(_v, int) else None
+    FECHA_SSD = "21/11/2026 (lista completa)"
+except (OSError, ValueError, KeyError):
+    pass
 TOPE_S = 30
 
 

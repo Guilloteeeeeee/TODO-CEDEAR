@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.81 — Comparación completa con SSD (21/11/2026)
+- **Lista completa de Simply Safe Dividends** que pasó Guille (323 CEDEARs) guardada en `data/referencias/ssd_2026-11-21.json`; `calibrar_dividendo.py` la usa (manda sobre la lista vieja). Las «sin calificar» quedan sin score de SSD; las que no pagan y las «a confirmar» (Snap con 99, Fiserv con 60, Roku con «*») no se comparan.
+- **Score v1 sin dividendo = sin score** («no paga dividendo»): Roku, Snap y Fiserv salían con puntaje.
+- Resultado (158 empresas con número de SSD): v1 a 18,0 puntos en promedio (10,6 por encima), misma categoría en 30 %, a una categoría o menos en 83 %; v0.2 a 14,5 (8,7 por encima), 39 % y 91 %. El v1 pone 96 de 158 en «Muy segura» (SSD: 30). Planilla con todas: «Score de dividendos: nosotros contra SSD (21/11/2026)».
+
 ### v1.5.80 — Dividendos: consolidaciones que mantienen comparable el dividendo (Unilever, National Grid) (21/11/2026)
 - **Unilever:** en diciembre de 2025 separó The Magnum Ice Cream Company y consolidó sus acciones (8 nuevas por cada 9) para que precio, ganancia y dividendo por acción siguieran comparables. Yahoo anotó la consolidación como un split y agrandó los dividendos de antes, pero no descontó la escisión: el dividendo de 2026 (0,4664 euros por trimestre, +3 % según la empresa) parecía un recorte. Ahora se deshace ese ajuste (`data/moneda_dividendo.py`: `CONSOLIDACIONES_COMPARABLES`, `sin_consolidacion`, en `historial`, también para los pagos de la bolsa de origen). Unilever: v1 49 → 74, v0.2 78 → 84 (SSD 60).
 - **National Grid:** la consolidación de 2017 (11 por cada 12, con el dividendo extraordinario de 84,375 peniques) tiene el mismo tratamiento: desaparece el recorte falso de 2017. El de 2025 queda (Guille 21/11/2026: «sí, hay un recorte»). Sigue en 27.
