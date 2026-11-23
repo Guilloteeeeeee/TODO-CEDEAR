@@ -290,8 +290,13 @@
       "cargado": "2026-11-17"
     },
     "XP": {
-      "pendiente": "CET1 de septiembre de 2026 no encontrado todavía",
-      "cargado": "2026-11-17"
+      "cet1": 17.2,
+      "hasta": "2026-09-30",
+      "medida": "CET1 gerencial del grupo (informe 3T26: «Our CET1 ratio remains at a comfortable level of 17.2%»; índice BIS 20,3 %)",
+      "fuentes": [
+        "https://www.earningswhispers.com/article/XP/2611166253"
+      ],
+      "cargado": "2026-11-23"
     }
   }
 }

@@ -427,6 +427,16 @@ def calcular(e):
         rec10 = sum(abs(v) for k, v in an_r.items() if k > max(an_r) - RECOMPRAS_ANIOS) if an_r else 0.0
         suma = max(abs(t or 0), rec10)
         re_ta = (r + suma) / a * 100 if (r is not None and a) else None
+        # v1.5.86: mientras Yahoo no traiga la fila (bajar_paquetes_yahoo.bat), las ganancias retenidas y la tesorería salen de Stock
+        # Analysis (data/ganancias_retenidas_manuales.json). El cociente usa el activo total de la misma columna de Stock Analysis; las
+        # recompras (de los estados de la app) se llevan a sus unidades con el cociente de los dos activos totales.
+        grm = e.get("ganancias_retenidas") or {}
+        ta_m, re_m = V0._n(grm.get("activo_total")), V0._n(grm.get("ganancias_retenidas"))
+        if r is None and ta_m and re_m is not None:
+            k = ta_m * 1e6 / a if a else 1.0
+            suma = max(abs(V0._n(grm.get("tesoreria")) or 0) * 1e6, rec10 * k)
+            re_ta = (re_m * 1e6 + suma) / (ta_m * 1e6) * 100
+            notas.append(f"ganancias retenidas de Stock Analysis ({grm.get('fecha_ganancias') or grm.get('fecha')}), hasta tener la fila de Yahoo")
         var("re_ta", _zona(re_ta, (35, False), (15, False), (10, 5, 0), False), 10, re_ta,
             recompras=rec10, anios_recompras=len([k for k in an_r if k > max(an_r) - RECOMPRAS_ANIOS]) if an_r else 0)
 
@@ -567,6 +577,16 @@ def intereses_manual(ticker, ruta=None):
 
 
 _FINANCIERAS = {}
+
+
+def ganancias_retenidas(ticker, ruta=None):
+    """v1.5.86: entrada de data/ganancias_retenidas_manuales.json (Stock Analysis, millones) o None."""
+    ruta = ruta or os.path.join(AQUI, "data", "ganancias_retenidas_manuales.json")
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            return (json.load(f).get("datos") or {}).get(ticker)
+    except (OSError, ValueError):
+        return None
 
 
 def ventas_comparables(ticker, ruta=None):
