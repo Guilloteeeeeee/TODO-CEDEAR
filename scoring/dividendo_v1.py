@@ -511,6 +511,22 @@ def calcular(e):
     if trampa:
         ajustes.append(("trampa_rendimiento", -30))
 
+    # v1.5.85 (Guille 23/11/2026: «si hay divi errático y recorte castiga el que reste más puntos de los 2»): con dividendo errático (o
+    # variable) y recorte no se castiga doble. El techo de 80 resta lo que el puntaje tenga por encima de 80; el recorte, 25 o 10. Cuenta
+    # solo el que resta más: si es el techo, el recorte no se suma; si es el recorte, el puntaje queda debajo de 80 y el techo no actúa.
+    rec_aj = next(((k, x) for k, x in ajustes if k in ("recorte_menos_5", "recorte_5_10")), None)
+    if variable and rec_aj:
+        sin_recorte = base + sum(x for k, x in ajustes if k != rec_aj[0])
+        resta_techo = max(0.0, sin_recorte - 80)
+        cual = "errático" if erratico else "variable"
+        rt = round(resta_techo, 1)
+        rt_txt = f"-{rt:g}" if rt else "0"
+        if resta_techo >= -rec_aj[1]:
+            ajustes.remove(rec_aj)
+            notas.append(f"recorte ({rec_aj[1]:g}) y dividendo {cual}: cuenta el que resta más, el techo de 80 ({rt_txt})")
+        else:
+            notas.append(f"recorte ({rec_aj[1]:g}) y dividendo {cual}: cuenta el que resta más, el recorte (el techo de 80 restaría {rt_txt})")
+
     total = base + sum(x for _, x in ajustes)
     # --- frenos -------------------------------------------------------------------------------------------------------------------
     an_n = _anuales(neto)

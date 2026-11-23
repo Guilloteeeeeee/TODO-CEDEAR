@@ -577,6 +577,11 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.85 — Score v1: con dividendo errático y recorte cuenta el castigo que resta más (23/11/2026)
+- **Guille: «el recorte no debería restar aparte en los dividendos erráticos, sino castiga doble. A partir de ahora si hay divi errático y recorte castiga el que reste más puntos de los 2».** El techo de 80 resta lo que el puntaje tenga por encima de 80; el recorte, 25 (menos de 5 años) o 10 (5 a 10 años). Cuenta solo el que resta más, y una nota dice cuál («cuenta el que resta más, el techo de 80» o «…, el recorte»). Vale también para el dividendo variable declarado (mismo techo).
+- **No cambia ningún puntaje** (323 empresas comparadas antes y después): el techo ya se aplicaba después de restar el recorte, así que nunca se sumaban. Ahora queda escrito como regla. De las 28 empresas con las dos cosas, en 5 pesa más el techo (Freeport, GE, Halliburton, SLB y Western Digital, en 80) y en 23 el recorte (AT&T, Pitney Bowes, HSBC, Santander…).
+- Pruebas: `tests/test_v1585_recorte_erratico.py` (OK 21); `test_v1581` ajustada.
+
 ### v1.5.84 — Score v1: ventas comparables cuando la empresa separa un negocio; comparación con SSD por categoría (23/11/2026)
 - **Guille: «ok ventas».** Cuando una empresa separa o vende un negocio y lo presenta como operación discontinuada, su informe anual vuelve a presentar solo los años recientes sin ese negocio, pero Yahoo trae el año más viejo todavía con el negocio adentro: las ventas parecían caer. Ahora el crecimiento de ventas se mide desde el primer año presentado de la misma forma (2 años como mínimo), con `data/ventas_comparables.json` (desde, motivo, fuente, revisado): Unilever (helados), DuPont (Qnity y Aramids), Kimberly-Clark (IFP con Suzano), International Paper (Global Cellulose Fibers) y Honeywell (Solstice), todas verificadas en documentos de la empresa. Las compras (por ejemplo, DS Smith en International Paper) y las ventas que la empresa no vuelve a presentar quedan como las informa Yahoo. Cambian DuPont (ventas 0 → 5, sigue en 20 por sus topes) y Honeywell (52 → 58).
 - La tarea trimestral («… y ventas comparables») revisa el archivo y busca escisiones nuevas (paso 8 bis).
@@ -584,7 +589,7 @@ cedear-screener/
 - Pruebas: `tests/test_v1584_ventas.py` (OK 11).
 
 ### v1.5.83 — Score v1: el congelamiento hace errático al dividendo (21/11/2026)
-- **Guille cambió la regla de la v1.5.82: «no lo consideres como recorte sino como dividendo errático».** 3 o más años completos seguidos sin subir el dividendo, si terminaron en los últimos 10 años (o siguen), hacen errático al dividendo: techo 80 y sin premio, igual que 3 recortes en 10 años. Ya no resta −25/−10. El recorte sigue restando aparte (`congelado_hasta` en el resultado).
+- **Guille cambió la regla de la v1.5.82: «no lo consideres como recorte sino como dividendo errático».** 3 o más años completos seguidos sin subir el dividendo, si terminaron en los últimos 10 años (o siguen), hacen errático al dividendo: techo 80 y sin premio, igual que 3 recortes en 10 años. Ya no resta −25/−10. El recorte sigue restando aparte (`congelado_hasta` en el resultado; desde la v1.5.85, cuenta el que resta más de los dos).
 - **En la moneda en que la empresa emite el dividendo** (Guille: «siempre tener en cuenta la moneda de emisión»): dólares o pagos de la bolsa de origen (57 de las 58 de afuera tienen su símbolo local; falta Vodafone). Con la serie convertida desde el ADR queda sin medir y lo anota («congelamiento sin medir»): el tipo de cambio mensual mueve ±3 % y tapa una suba chica (Unilever 2024: +2,2 % en euros, −1 % convertido). Se mide cuando lleguen `dividendos_locales.json` y `monedas.json` (`bajar_dividendos_locales.bat`).
 - Cambian 24 empresas (NVIDIA, Interactive Brokers, Equifax, AstraZeneca, Baker Hughes, Micron, Kinross, Agnico Eagle, Halliburton, SLB… quedan en 80). Contra SSD: diferencia media 17,2 (v1.5.81: 18,0; v1.5.82: 16,7), «Muy segura» 82 de 158.
 - Pruebas: `tests/test_v1581_congelamiento.py` (OK 12) y `test_v1571` ajustadas.

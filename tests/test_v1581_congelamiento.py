@@ -66,9 +66,9 @@ chk(not r["erratico"] and not r["topes"], "terminó hace 12 años: sin efecto")
 r = V1.calcular(entrada({2021: 0.9, **plano(2022, 2025)}, sin_suba=3))
 chk(erratico(r), "sigue congelado: errático")
 
-# --- 3) el recorte sigue restando aparte ---------------------------------------------------------------------------------------------
+# --- 3) recorte y congelamiento: v1.5.85, cuenta el que resta más (ver tests/test_v1585_recorte_erratico.py) -----------------------
 r = V1.calcular(entrada(nvda, recortes=[2019], racha=2))
-chk(aj(r).get("recorte_5_10") == -10 and r["erratico"], f"recorte en 2019 (−10) y congelamiento hasta 2023 (errático) ({r['ajustes']})")
+chk(r["erratico"] and r["score"] == 80 and "recorte_5_10" not in aj(r), f"recorte en 2019 (−10) y congelamiento hasta 2023: pesa más el techo de 80 ({r['ajustes']})")
 largo = {2009: 0.8, 2010: 0.9, **{a: 1.0 + 0.1 * (a - 2010) for a in range(2011, 2026)}}
 r = V1.calcular(entrada(largo, racha=15))
 chk(("aspirante", 5) in r["ajustes"] and not r["erratico"], "sin congelamiento: premio como siempre")
