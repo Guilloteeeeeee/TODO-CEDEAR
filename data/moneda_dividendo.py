@@ -178,22 +178,6 @@ def historial(ticker, moneda_estados, pagos, pais=None, hoy=None, sigue_pagando=
     return base, "variable"
 
 
-def locales_con_respaldo(locales, ruta=None):
-    """v1.5.86: dividendos de la bolsa de origen de data/historico/dividendos_locales.json (Yahoo) más los copiados de Stock Analysis
-    (data/dividendos_locales_manuales.json, últimos 20 pagos) para las empresas que Yahoo todavía no trajo o no dio por buenas.
-    Si Yahoo trae la empresa bien, manda Yahoo."""
-    import json
-    import os
-    ruta = ruta or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "dividendos_locales_manuales.json")
-    try:
-        with open(ruta, encoding="utf-8") as f:
-            manual = json.load(f).get("datos", {})
-    except (OSError, ValueError):
-        manual = {}
-    buenos = {t: d for t, d in (locales or {}).items() if d.get("ok") and d.get("pagos")}
-    return {**(locales or {}), **{t: d for t, d in manual.items() if t not in buenos}}
-
-
 def coincidencia(pagos_adr, pagos_local, dias=25, desde=None):
     """Parte de los pagos del ADR (desde que empieza la serie local, o `desde`) que tienen un pago local a `dias` días o menos.
     Sirve para confirmar que el símbolo de la bolsa de origen es la misma empresa."""

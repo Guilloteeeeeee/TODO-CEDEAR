@@ -577,13 +577,10 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
-### v1.5.86 — Score v1: ganancias retenidas, dividendos en su moneda y CET1 de XP buscados acá, sin los .bat (23/11/2026)
-- **Guille: «no podés buscarlos vos para hacer las pruebas y ver en qué optimizar? Xq yo por ahora no puedo bajar los bats».** Desde acá Yahoo, la SEC y casi todo están bloqueados para la terminal; Stock Analysis responde por la herramienta de lectura web.
-- **Ganancias retenidas y acciones en tesorería** de las 155 empresas con número de SSD (sin REIT), del último balance trimestral de Stock Analysis → `data/ganancias_retenidas_manuales.json` (fecha, moneda, activo total, ganancias retenidas, tesorería, url). Control: en 123 de 155 el activo total coincide exacto con el de Yahoo; en las otras la diferencia es de fecha (otro trimestre). El cociente usa el activo de la misma columna de Stock Analysis y las recompras de la app llevadas a esa escala. Si Yahoo trae la fila (`bajar_paquetes_yahoo.bat`), manda Yahoo.
-- **Dividendos en la bolsa de origen** de las 16 de afuera con número de SSD (AEG, ASML, CCJ, ERIC, GSK, HMC, KOF, NGG, NVO, NVS, SIEGY, SONY, TM, TSM, TTE, UL; Vodafone no tiene bolsa en su moneda) → `data/dividendos_locales_manuales.json` (últimos 20 pagos; `MD.locales_con_respaldo`: si `bajar_dividendos_locales.bat` trae la empresa bien, manda Yahoo). Dos pagos que Stock Analysis no ajustó por split se corrigieron con nota (Honda 2023, Sony 2024) y se dejaron afuera los pagos anunciados para después del 23/11. Los años anteriores a la serie se completan como antes (`_completar`): se pierden recortes viejos que la serie convertida marcaba (Siemens 2021, Cameco 2018), a confirmar con el .bat.
-- **CET1 de XP**: 17,2 % al 30/09/2026 (informe 3T26). AIG, TRV, BX e IBKR siguen sin CET1 ni índice de solvencia publicados.
-- Contra SSD (158): diferencia media 16,7 (antes 17,1), sesgo +9,3, misma categoría 31 %, a una categoría o menos 89 %, «Muy segura» 77 (SSD 30). Grupos: 49 / 78 / 10 / 0 arriba, 14 / 5 / 2 abajo. Cambian 104 puntajes. Solapa «Datos completos (v1.5.86)» de la planilla de comparación.
-- Pruebas: `tests/test_v1586_respaldos.py` (OK 14).
+### v1.5.87 — Se saca de la app lo copiado de Stock Analysis en la v1.5.86 (23/11/2026)
+- **Guille: «no era mi idea eh. Mi idea era hacer los simulacros acá para ir viendo mejoras antes de tener los datos finales de Yahoo Finance / SEC traídos con los bats».** Se deshizo la v1.5.86: salen `data/ganancias_retenidas_manuales.json`, `data/dividendos_locales_manuales.json`, el respaldo en el score v1 y su prueba. El score v1 vuelve a ser el de la v1.5.85.
+- Los datos de Stock Analysis y el código de la simulación quedan fuera de la app, solo para simular en la nube antes de tener los datos de los .bat.
+- Queda el CET1 de XP (17,2 % al 30/09/2026) en `data/cet1_bancos.json`: sale del informe de la propia empresa, como los demás bancos de ese archivo.
 
 ### v1.5.85 — Score v1: con dividendo errático y recorte cuenta el castigo que resta más (23/11/2026)
 - **Guille: «el recorte no debería restar aparte en los dividendos erráticos, sino castiga doble. A partir de ahora si hay divi errático y recorte castiga el que reste más puntos de los 2».** El techo de 80 resta lo que el puntaje tenga por encima de 80; el recorte, 25 (menos de 5 años) o 10 (5 a 10 años). Cuenta solo el que resta más, y una nota dice cuál («cuenta el que resta más, el techo de 80» o «…, el recorte»). Vale también para el dividendo variable declarado (mismo techo).
