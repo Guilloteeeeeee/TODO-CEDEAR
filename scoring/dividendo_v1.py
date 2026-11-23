@@ -368,8 +368,14 @@ def calcular(e):
     sgr = None
     if an:
         u = max(an)
-        if u - 3 in an and an[u - 3] > 0 and an[u] > 0:
-            sgr = ((an[u] / an[u - 3]) ** (1 / 3) - 1) * 100
+        # v1.5.84 (Guille 23/11/2026: «ok ventas»): si la empresa separó un negocio y volvió a presentar solo los años recientes sin él
+        # (data/ventas_comparables.json), el crecimiento se mide desde el primer año presentado de la misma forma (2 años como mínimo)
+        desde = V0._n((e.get("ventas_comparables") or {}).get("desde"))
+        b = max(u - 3, int(desde)) if desde else u - 3
+        if desde and b > u - 3:
+            notas.append(f"ventas desde {b}: la empresa volvió a presentar esos años sin el negocio que separó")
+        if u - b >= 2 and b in an and an[b] > 0 and an[u] > 0:
+            sgr = ((an[u] / an[b]) ** (1 / (u - b)) - 1) * 100
     var("ventas", _zona(sgr, (3, False), (0, False), (10, 5, 0), False), 10, sgr)
 
     # --- deuda neta ÷ EBITDA (15) -------------------------------------------------------------------------------------------
@@ -545,6 +551,16 @@ def intereses_manual(ticker, ruta=None):
 
 
 _FINANCIERAS = {}
+
+
+def ventas_comparables(ticker, ruta=None):
+    """Entrada de data/ventas_comparables.json para el ticker ({"desde", "motivo", "fuente", "revisado"}) o None. v1.5.84."""
+    ruta = ruta or os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "ventas_comparables.json")
+    try:
+        with open(ruta, encoding="utf-8") as f:
+            return (json.load(f).get("empresas") or {}).get(ticker)
+    except (OSError, ValueError):
+        return None
 
 
 def financiera_propia(ticker, ruta=None):

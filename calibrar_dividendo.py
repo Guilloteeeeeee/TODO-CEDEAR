@@ -167,7 +167,7 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             e1 = dict(ent, grupo=SD.grupo_de(row) if hasattr(SD, "grupo_de") else ent.get("grupo"), rend=ent.get("dy"),
                       mes_cierre=(fichas.get(t) or {}).get("mes_cierre_fiscal"), cet1=(cet1.get(t) or {}).get("cet1"),
                       cet1_requisito=(cet1.get(t) or {}).get("requisito"), fuente_historial=fuente,
-                      intereses_manual=V1.intereses_manual(t), financiera_propia=V1.financiera_propia(t), ffo_deuda_sp=V1.ffo_deuda_sp(t), solvencia=(solv.get(t) or {}).get("solvencia"),
+                      intereses_manual=V1.intereses_manual(t), financiera_propia=V1.financiera_propia(t), ventas_comparables=V1.ventas_comparables(t), ffo_deuda_sp=V1.ffo_deuda_sp(t), solvencia=(solv.get(t) or {}).get("solvencia"),
                       solvencia_requisito=(solv.get(t) or {}).get("requisito"))
             # v1.5.72 (Guille 17/11/2026: «nada de FFO provisorio, carguemos el AFFO y usémoslo»): solo AFFO cargado y vigente
             f = SD.ffo_vigente(ent)
