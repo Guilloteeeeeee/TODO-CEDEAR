@@ -5,6 +5,8 @@ Esta es la lista de verdad. Los recordatorios programados del 1/12 mandan a leer
 Reglas fijas: español simple con voseo, estilo Dorsey (definición + ejemplo con números), trato de amigo, cerrar con "Conclusión resumen", no inventar datos, no más puntajes en sombra, no mostrar método ni pesos en pantalla. En el tema GuruFocus incluir siempre: "Que nos parezcamos más a GuruFocus no prueba que tengamos razón. El PEG podría estar captando algo que a ellos se les escapa."
 
 ## 🆕 Actualización 04/11/2026 (lo último; manda sobre lo de abajo si se contradice)
+**v1.5.88 (23/11) — Bancos opción B y Sony opción B (Guille).** Meta realista aprobada: 55–60 % en la misma categoría que SSD y 95 % a una o menos. Siguiente: simular zonas seguras más exigentes por variable (en la nube, fuera de la app).
+
 **v1.5.87 (23/11) — Se saca de la app lo copiado de Stock Analysis (Guille: era solo para simular acá).** Las simulaciones con esos datos se hacen fuera del repo. Decisiones que quedan para Guille, con números de la simulación del 23/11: (1) ganancias retenidas ÷ activos en bancos (dan bajas por estructura), (2) pérdida que viene de operaciones discontinuadas (Sony: escisión de su financiera), (3) la saturación arriba. La lista de .bat de la v1.5.84 sigue vigente.
 
 **v1.5.85 (23/11) — Errático + recorte: cuenta el que resta más (Guille).** Sin cambios de puntaje. La lista de lo que Guille tiene que correr y mandar es la de la v1.5.84 de abajo, pero con el zip v1.5.85.

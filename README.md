@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.88 — Score v1: bancos sin ganancias retenidas ÷ activos; sin freno por pérdida cuando viene de operaciones discontinuadas (23/11/2026)
+- **Guille: «Bancos opción B».** Donde hay CET1 cargado, ganancias retenidas ÷ activos no se usa: un banco trabaja con unas 10 veces más activos que patrimonio y el cociente le da bajo aunque sea sólido; su capital ya lo mide el CET1. La base se reparte entre las demás variables. Aseguradoras, administradoras y brokers sin CET1 siguen con la medida.
+- **Guille: «Sony, vamos con la B».** Si la pérdida del último año fiscal viene de operaciones discontinuadas (escisión o venta) y el resultado de las operaciones que siguen fue positivo, no hay freno por pérdida. Fila nueva de Yahoo «Resultado de operaciones continuas» (`Net Income From Continuing Operation Net Minority Interest`), que trae `bajar_paquetes_yahoo.bat` (no se muestra en la ficha).
+- Con los datos de hoy no cambia ningún puntaje de la app: las ganancias retenidas y la fila nueva llegan con `bajar_paquetes_yahoo.bat`.
+- Pruebas: `tests/test_v1588_bancos_sony.py` (OK 10).
+
 ### v1.5.87 — Se saca de la app lo copiado de Stock Analysis en la v1.5.86 (23/11/2026)
 - **Guille: «no era mi idea eh. Mi idea era hacer los simulacros acá para ir viendo mejoras antes de tener los datos finales de Yahoo Finance / SEC traídos con los bats».** Se deshizo la v1.5.86: salen `data/ganancias_retenidas_manuales.json`, `data/dividendos_locales_manuales.json`, el respaldo en el score v1 y su prueba. El score v1 vuelve a ser el de la v1.5.85.
 - Los datos de Stock Analysis y el código de la simulación quedan fuera de la app, solo para simular en la nube antes de tener los datos de los .bat.

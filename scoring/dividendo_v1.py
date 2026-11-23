@@ -6,6 +6,7 @@ Regla de Guille: «respetar lo más posible el archivo». Lo que el documento no
   - Bordes: cada zona va hasta el punto inmediato anterior de la siguiente (la gris cubre todo lo que no es segura ni crítica).
   - Zona gris con puntaje fijo (como en el documento).
   - Freno por pérdida: resultado neto negativo en el último año fiscal completo → máximo 20, sin excepciones (también REITs).
+    v1.5.88 (Guille 23/11/2026, opción B): salvo que la pérdida venga de operaciones discontinuadas (escisión o venta) y lo que sigue haya ganado.
   - Ganancias retenidas ajustadas = ganancias retenidas + |acciones en tesorería| (así no castiga las recompras).
   - Trampa de rendimiento: rendimiento > 8% y payout sobre flujo libre > 100% → −30 y máximo 40.
   - Payout futuro: siempre el plan B (no hay consenso gratis de flujo libre futuro); ganancia de los próximos 12 meses = mezcla de la
@@ -421,7 +422,13 @@ def calcular(e):
     # --- ganancias retenidas ajustadas ÷ activos (10) (no en REITs) ---------------------------------------------------------
     # v1.5.74 (Guille 17/11/2026: «me gusta la solución»): ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los
     # últimos 10 años fiscales. Así no se castiga a las que cancelan las acciones que recompran (Apple) y no se cuenta dos veces una recompra.
-    if not reit:
+    # v1.5.88 (Guille 23/11/2026: «bancos, opción B»): en los bancos no se usa. Sus activos son unas 10 veces su patrimonio por cómo es el
+    # negocio, así que el cociente da bajo aunque sean sólidos, y su capital ya lo mide el CET1 (cuyo numerador es sobre todo ganancias
+    # retenidas). Solo donde hay CET1 cargado; aseguradoras, administradoras y brokers sin CET1 siguen con la medida.
+    sin_reta_banco = banco and V0._n(e.get("cet1")) is not None
+    if sin_reta_banco:
+        notas.append("ganancias retenidas ÷ activos no se usa en bancos: el CET1 ya mide su capital")
+    if not reit and not sin_reta_banco:
         r, t, a = _ultimo(rr), _ultimo(tes), _ultimo(at)
         an_r = _anuales(recomp)
         rec10 = sum(abs(v) for k, v in an_r.items() if k > max(an_r) - RECOMPRAS_ANIOS) if an_r else 0.0
@@ -531,7 +538,15 @@ def calcular(e):
     # --- frenos -------------------------------------------------------------------------------------------------------------------
     an_n = _anuales(neto)
     if an_n and an_n[max(an_n)] < 0:
-        topes.append(("perdida", 20))
+        # v1.5.88 (Guille 23/11/2026, Sony: «vamos con la B»): si la pérdida viene de operaciones discontinuadas (una escisión o una venta,
+        # muchas veces un ajuste contable sin salida de caja) y el resultado de las operaciones que siguen fue positivo ese mismo año, el freno
+        # mira lo que sigue: el dividendo lo paga el negocio que queda
+        u_n = max(an_n)
+        cont = _anuales(S("r", "Resultado de operaciones continuas")).get(u_n)
+        if cont is not None and cont > 0:
+            notas.append(f"pérdida de {u_n} por operaciones discontinuadas: las que siguen ganaron, sin freno por pérdida")
+        else:
+            topes.append(("perdida", 20))
     if cob is not None and not banco and cob < 1.5:
         topes.append(("cobertura_letal", 20))
     if trampa:

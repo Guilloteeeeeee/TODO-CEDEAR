@@ -342,6 +342,7 @@ ESTADOS = {
         ("Impuesto a las ganancias", ["Tax Provision"], "m"),
         ("Tasa de impuesto", ["Tax Rate For Calcs"], "pct"),
         ("Resultado neto", ["Net Income", "Net Income Common Stockholders"], "t"),
+        ("Resultado de operaciones continuas", ["Net Income From Continuing Operation Net Minority Interest", "Net Income Continuous Operations"], "m"),   # v1.5.88: score de dividendos v1 (freno por pérdida)
         ("Ganancia por acción (diluida)", ["Diluted EPS"], "eps"),
         ("Acciones promedio (diluidas)", ["Diluted Average Shares"], "n")]),
     "balance": ("balance_sheet", [
