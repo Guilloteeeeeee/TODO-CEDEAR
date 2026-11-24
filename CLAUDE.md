@@ -102,5 +102,8 @@ Este archivo existe para no tener que releer toda la app en cada sesión: buscá
 3. Copiar a TODO-CEDEAR: `git archive HEAD | tar -x -C ../todo-cedear` → commit + push allí.
 4. Zip para Guille: `git archive --format=zip HEAD -o TodoCedears_vX.Y.Z.zip`.
 
+## Auditoría del score de dividendos (24/11/2026)
+- Carpeta `auditoria/`: `PROMPT_AUDITORIA.md` (para correr en Claude Code), `METODOS_5_VERSIONES.md`, `puntajes_5_versiones.xlsx`, `Word_Guille_16-11-2026.docx`, `calcular_5_versiones.py` (las 5 versiones; `capa` = 3.1 y 3.2) → `resultado_5_versiones.json`. El informe va a `auditoria/INFORME_AUDITORIA.md` en la rama `auditoria-score-dividendos`.
+
 ## Pendientes
 Ver `PENDIENTES_01-12.md` (lista del 01/12/2026 y pendientes urgentes al principio). Los informes (Análisis Fundamental) se trabajan en una charla aparte: ver `TRASPASO_ANALISIS.md`.
