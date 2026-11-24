@@ -156,7 +156,10 @@ def _habitual(c):
     return min((1, 2, 4), key=lambda x: (abs(x - c), -x))
 
 
-def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
+CORRIMIENTO_DIAS = 182          # v1.5.89: medio año, para leer el año «corrido» (pago a cuenta + final) en las que pagan 2 veces por año
+
+
+def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01, _corrido=False):
     """Lee la historia de pagos y devuelve años sin recortar, años pagando, aumentos en los últimos 12 años y qué hizo en 2008-09 y 2020.
     - «Dividendo anual regular» de cada año = mediana de sus pagos × pagos habituales por año (la mediana no se mueve por un dividendo
       extraordinario suelto, que según el método no cuenta).
@@ -165,7 +168,13 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
     - El año en curso no cuenta como año completo, pero si en él el dividendo bajó o se suspendió, los años sin recortar quedan en 0.
     - v1.5.61: sigue_pagando=True (el cache dice que hoy paga dividendo): si en el historial faltan los últimos pagos (pasa con algunos ADR en
       Yahoo), no se toma como suspensión; queda "historial_incompleto".
-    - v1.5.69: tolerancia = baja que cuenta como recorte (1%; con pagos reconstruidos desde los dólares, data.moneda_dividendo usa 5%)."""
+    - v1.5.69: tolerancia = baja que cuenta como recorte (1%; con pagos reconstruidos desde los dólares, data.moneda_dividendo usa 5%).
+    - v1.5.89: en las que pagan 2 veces por año (a cuenta y final), el año calendario mezcla el final de un ejercicio con el pago a cuenta
+      del siguiente: si la empresa sube el pago a cuenta y baja el final, o empieza a pagar a cuenta, el año calendario baja aunque el
+      dividendo de cada ejercicio suba (Toyota 2016: ejercicios 200 → 210 → 210 yenes, años calendario 225 → 210; Honda 2022 y 2025; Novo
+      Nordisk 2017; ASML 2020; Lloyds 2018). Cuando el año del recorte y el anterior tienen sus 2 pagos, el recorte cuenta solo si también
+      aparece corriendo los pagos medio año (ese año «corrido» junta el pago a cuenta con su final). Una suspensión o un pago que falta
+      siguen contando como antes (Vale 2019)."""
     hoy = hoy or _dt.date.today()
     por_anio = {}
     for f, m in pagos or []:
@@ -278,6 +287,18 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
         return False
 
     rec = {a: recorte(a) for a in anios}
+    calendario = []
+    if not _corrido:
+        semestral = [a for a in anios if rec[a] and n[a] == 2 and n.get(a - 1) == 2 and f_anio[a] == 2]
+        if semestral:
+            dd = _dt.timedelta(days=CORRIMIENTO_DIAS)
+            corr = analizar_dividendos([((_dt.date.fromisoformat(f) + dd).isoformat(), m) for f, m in todos], hoy=hoy + dd,
+                                       sigue_pagando=sigue_pagando, tolerancia=tolerancia, _corrido=True)
+            r_corr = set((corr or {}).get("recortes") or [])
+            for a in semestral:
+                if corr and a not in r_corr and a + 1 not in r_corr and min(corr.get("tasa") or {a: 0}) < a:
+                    rec[a] = False
+                    calendario.append(a)
     # año en curso: si el dividendo bajó o dejó de pagarse, los años sin recortar quedan en 0
     en_curso = False
     f_ult = f_anio[ultimo_c]           # v1.5.61: el año en curso se lee con la frecuencia del último año completo
@@ -329,7 +350,7 @@ def analizar_dividendos(pagos, hoy=None, sigue_pagando=False, tolerancia=0.01):
             "recortes": recortes, "racha_subas": racha, "anios_sin_suba": sin_suba,
             "crisis_0809": crisis((2008, 2009), 2007), "crisis_2020": crisis((2020, 2021), 2019), "recorte_en_curso": en_curso,
             "ultimo_completo": ultimo_c, "historial_incompleto": incompleto, "ultimo_pago": todos[-1][0], "datos_faltantes": faltan,
-            "tasa": {a: round(t, 4) for a, t in tasa.items()}}
+            "solo_calendario": calendario, "tasa": {a: round(t, 4) for a, t in tasa.items()}}
 
 
 def _num_nota(nota, patron):
