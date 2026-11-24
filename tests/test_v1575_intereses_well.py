@@ -40,7 +40,7 @@ w = ffo["WELL"]
 chk(w.get("usar_ffo_como_affo") is True and w.get("ffo_12m"), "WELL: marcada para usar el FFO")
 chk("Pendiente de decisión" not in (w.get("affo_no_informa") or ""), "WELL: ya no figura pendiente")
 src = open(os.path.join(RAIZ, "calibrar_dividendo.py"), encoding="utf-8").read()
-chk('usar_ffo_como_affo' in src and 'e1["affo"], e1["affo_nombre"] = f["ffo_12m"], "AFFO"' in src, "calibrar: usa el FFO y lo nombra AFFO")
+chk('usar_ffo_como_affo' in src and 'e1["affo"], e1["affo_nombre"], e1["affo_es_ffo"] = f["ffo_12m"], "AFFO", True' in src, "calibrar: usa el FFO y lo nombra AFFO")
 for t, f in ffo.items():
     if t != "WELL":
         chk(not f.get("usar_ffo_como_affo"), f"{t}: solo WELL usa el FFO en lugar del AFFO")

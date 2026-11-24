@@ -129,9 +129,20 @@ def ntm(est, mes_cierre=None, hoy=None):
     return w * est["actual"] + (1 - w) * prox
 
 
-def calcular(e):
+def calcular(e, version=3):
     """e: la entrada del score v0.2 (scoring.dividendo.entrada) más: "hist" ya en la moneda del dividendo, "mes_cierre", "cet1",
-    "affo" (por acción), "rend" (rendimiento del dividendo, 0,05 = 5%). Devuelve {"score", "categoria", "variables", "ajustes", "topes"}."""
+    "affo" (por acción), "rend" (rendimiento del dividendo, 0,05 = 5%). Devuelve {"score", "categoria", "variables", "ajustes", "topes"}.
+    v1.5.91 (Guille 24/11/2026, numeración para la auditoría): version=3 = el Word del 16/11 con las decisiones posteriores de Guille (lo de
+    siempre); version=2 = el Word puro con lo definido el 16/11 (como se programó en la v1.5.71), con los mismos arreglos de datos. En la
+    versión 2 se apagan: recompras en ganancias retenidas, solvencia de aseguradoras, FFO de Welltower como AFFO, financieras propias,
+    medio premio simbólico, tope 99, pago futuro propio de utilities y bancos, utilities 7,5 + 7,5 (vuelve a deuda 15 + FFO ÷ Deuda 10 sobre
+    110), congelamiento = errático (vuelve a −5 y sin premio, solo si sigue congelado), ventas comparables, «cuenta el castigo que resta más»,
+    bancos sin ganancias retenidas y el freno por pérdida de operaciones discontinuadas."""
+    v2 = version == 2
+    if v2:
+        e = dict(e, solvencia=None, financiera_propia=None, ventas_comparables=None)
+        if e.get("affo_es_ffo"):
+            e["affo"] = None
     grupo = e.get("grupo")
     banco, reit, util = grupo in BANCOS, grupo in REITS, grupo in UTILITIES
     # v1.5.81: sin dividendo no hay score de seguridad del dividendo (Roku, Snap y Fiserv salían con puntaje en la comparación con SSD)
@@ -354,11 +365,11 @@ def calcular(e):
         if g is not None and otra_moneda:
             g = estimacion_en_dolares(g)
         fp = (dpa / g * 100 if g > 0 else 999.0) if (dpa and g is not None) else None
-        if util:
+        if util and not v2:
             # v1.5.78 (Guille 17/11/2026: «sí, obvio, deberías haberlo hecho así de arranque»): las utilities usan para el pago futuro el
             # mismo corte que para el pago actual sobre ganancias (segura < 70 %, crítica > 80 %)
             var("payout_futuro", _zona(fp, (70, False), (80, False), (15, 7, 0), True), 15, fp)
-        elif banco:
+        elif banco and not v2:
             # v1.5.79 (Guille 17/11/2026: «bancos, misma lógica»): mismo corte que el pago actual de los bancos (segura < 50 %, crítica > 75 %)
             var("payout_futuro", _zona(fp, (50, False), (75, True), (15, 7, 0), True), 15, fp)
         else:
@@ -399,6 +410,8 @@ def calcular(e):
             nd = -1.0 if dn <= 0 else (dn / eb if eb > 0 else 99.0)
         if reit:
             var("deuda", _zona(nd, (5.5, False), (6.5, False), (15, 7, 0), True), 15, nd)
+        elif util and v2:
+            var("deuda", _zona(nd, (5.0, False), (6.0, False), (15, 7, 0), True), 15, nd)      # v1.5.71: deuda 15 y FFO ÷ Deuda 10 aparte
         elif util:
             # v1.5.79 (Guille 17/11/2026: «mitad y mitad, 15 puntos de 100 la deuda»): en las utilities los 15 puntos de deuda se reparten
             # entre deuda neta ÷ EBITDA (7,5) y FFO ÷ Deuda (7,5, abajo); el total queda sobre 100 como en el resto
@@ -417,7 +430,10 @@ def calcular(e):
         else:
             o, d = _ultimo(cfo), _ultimo(deuda)
             fd = o / d * 100 if (o is not None and d) else None
-        var("ffo_deuda", _zona(fd, (15, False), (10, False), (7.5, 3.5, 0), False), 7.5, fd, fuente="empresa" if sp.get("ffo_deuda") is not None else "app")
+        if v2:     # v1.5.71: PROPUESTA de Claude, 10 puntos más y el total sobre 110 llevado a 100
+            var("ffo_deuda", _zona(fd, (15, False), (10, False), (10, 5, 0), False), 10, fd, fuente="empresa" if sp.get("ffo_deuda") is not None else "app")
+        else:
+            var("ffo_deuda", _zona(fd, (15, False), (10, False), (7.5, 3.5, 0), False), 7.5, fd, fuente="empresa" if sp.get("ffo_deuda") is not None else "app")
 
     # --- ganancias retenidas ajustadas ÷ activos (10) (no en REITs) ---------------------------------------------------------
     # v1.5.74 (Guille 17/11/2026: «me gusta la solución»): ganancias retenidas + lo mayor entre las acciones en tesorería y las recompras de los
@@ -425,14 +441,14 @@ def calcular(e):
     # v1.5.88 (Guille 23/11/2026: «bancos, opción B»): en los bancos no se usa. Sus activos son unas 10 veces su patrimonio por cómo es el
     # negocio, así que el cociente da bajo aunque sean sólidos, y su capital ya lo mide el CET1 (cuyo numerador es sobre todo ganancias
     # retenidas). Solo donde hay CET1 cargado; aseguradoras, administradoras y brokers sin CET1 siguen con la medida.
-    sin_reta_banco = banco and V0._n(e.get("cet1")) is not None
+    sin_reta_banco = banco and V0._n(e.get("cet1")) is not None and not v2
     if sin_reta_banco:
         notas.append("ganancias retenidas ÷ activos no se usa en bancos: el CET1 ya mide su capital")
     if not reit and not sin_reta_banco:
         r, t, a = _ultimo(rr), _ultimo(tes), _ultimo(at)
         an_r = _anuales(recomp)
         rec10 = sum(abs(v) for k, v in an_r.items() if k > max(an_r) - RECOMPRAS_ANIOS) if an_r else 0.0
-        suma = max(abs(t or 0), rec10)
+        suma = abs(t or 0) if v2 else max(abs(t or 0), rec10)      # v2 (16/11): ganancias retenidas + |acciones en tesorería|
         re_ta = (r + suma) / a * 100 if (r is not None and a) else None
         var("re_ta", _zona(re_ta, (35, False), (15, False), (10, 5, 0), False), 10, re_ta,
             recompras=rec10, anios_recompras=len([k for k in an_r if k > max(an_r) - RECOMPRAS_ANIOS]) if an_r else 0)
@@ -477,7 +493,9 @@ def calcular(e):
     # Con la serie convertida desde los pagos del ADR el tipo de cambio no deja ver una suba del 3 %: queda sin medir hasta tener los
     # pagos de la bolsa de origen (bajar_dividendos_locales.bat).
     congel = []
-    if medible and e.get("fuente_historial") != "convertido":
+    if v2:
+        pass                                   # v2: el congelamiento crónico resta 5 y saca el premio (abajo), no hace errático
+    elif medible and e.get("fuente_historial") != "convertido":
         congel = congelamientos(h)
         if sin_suba >= 3 and ult and ult not in congel:
             congel.append(ult)
@@ -495,7 +513,11 @@ def calcular(e):
             ajustes.append(("recorte_5_10", -10))
     # el bono se anula si la cobertura (o su reemplazo) o el payout principal están en zona crítica
     critica = any(v["pts"] == 0 for v in vs if v["clave"] in ("cobertura", "cet1", "solvencia", "fcf_payout", "affo", "eps_payout"))
-    if not variable and not critica and racha >= 10:
+    if v2 and sin_suba >= 3:
+        ajustes.append(("congelamiento", -5))           # v2 (Word): congelamiento crónico (3 o más años sin subas, vigente): −5 y pierde el bono
+    elif v2 and not variable and not critica and racha >= 10:
+        ajustes.append(("aristocrata", 10) if racha >= 25 else ("aspirante", 5))
+    elif not v2 and not variable and not critica and racha >= 10:
         # v1.5.78 (Guille 17/11/2026: «de acuerdo, vamos con eso»): si el dividendo regular creció menos de CRECIMIENTO_SIMBOLICO % por año en
         # los últimos CRECIMIENTO_ANIOS años completos (aumentos de un centavo para no perder la racha), el premio queda en la mitad.
         # Se mide en la moneda del dividendo, con la misma serie que la racha.
@@ -522,7 +544,7 @@ def calcular(e):
     # variable) y recorte no se castiga doble. El techo de 80 resta lo que el puntaje tenga por encima de 80; el recorte, 25 o 10. Cuenta
     # solo el que resta más: si es el techo, el recorte no se suma; si es el recorte, el puntaje queda debajo de 80 y el techo no actúa.
     rec_aj = next(((k, x) for k, x in ajustes if k in ("recorte_menos_5", "recorte_5_10")), None)
-    if variable and rec_aj:
+    if variable and rec_aj and not v2:
         sin_recorte = base + sum(x for k, x in ajustes if k != rec_aj[0])
         resta_techo = max(0.0, sin_recorte - 80)
         cual = "errático" if erratico else "variable"
@@ -543,7 +565,7 @@ def calcular(e):
         # mira lo que sigue: el dividendo lo paga el negocio que queda
         u_n = max(an_n)
         cont = _anuales(S("r", "Resultado de operaciones continuas")).get(u_n)
-        if cont is not None and cont > 0:
+        if cont is not None and cont > 0 and not v2:
             notas.append(f"pérdida de {u_n} por operaciones discontinuadas: las que siguen ganaron, sin freno por pérdida")
         else:
             topes.append(("perdida", 20))
@@ -555,7 +577,7 @@ def calcular(e):
         topes.append(("dividendo_variable", 80))
     for _, t in topes:
         total = min(total, t)
-    total = max(0, min(TOPE_SCORE, int(round(round(total, 6)))))     # v1.5.78: tope 99 (Guille 17/11/2026, por estética)
+    total = max(0, min(100 if v2 else TOPE_SCORE, int(round(round(total, 6)))))     # v1.5.78: tope 99 (Guille 17/11/2026, por estética)
     return {"score": total, "categoria": categoria(total), "variables": vs, "ajustes": ajustes, "topes": topes, "notas": notas,
             "base": round(base, 1), "variable": variable, "erratico": erratico, "congelado_hasta": max(congelado) if congelado else None}
 

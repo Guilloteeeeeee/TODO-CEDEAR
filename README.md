@@ -577,6 +577,12 @@ cedear-screener/
 └── descargar_logos.py/.bat # Baja los logos a static/logos/
 ```
 
+### v1.5.91 — Numeración de las versiones del score de dividendos y versión 2 programada, para la auditoría (24/11/2026)
+- **Guille: numeración para auditar.** Versión 1 = el primer método (`scoring/dividendo.py`, «v0.2»); versión 2 = su Word del 16/11 con lo definido ese día; versión 3 = la versión 2 con sus decisiones posteriores (`scoring/dividendo_v1.py`, antes «v1»); versiones 3.1 y 3.2 = opciones 1 y 2 (solo simulación). Los arreglos de lectura de datos van igual para todas.
+- **Versión 2 programada**: `dividendo_v1.calcular(e, version=2)` apaga las 14 decisiones posteriores al 16/11 (recompras, solvencia de aseguradoras, FFO de Welltower, financieras propias, medio premio, tope 99, pago futuro de utilities y bancos, utilities 7,5 + 7,5, congelamiento = errático, ventas comparables, «el castigo que resta más», bancos sin ganancias retenidas, Sony). `calibrar_dividendo.calcular_todo` guarda `r["v2"]`. Sin argumento sigue siendo la versión 3: ningún puntaje de la app cambia.
+- Contra SSD (158 empresas, datos del 24/11): versión 1 35,4 % misma categoría; versión 2 32,5 %; versión 3 28,5 %; 3.1 56,3 %; 3.2 54,4 %.
+- Pruebas: `tests/test_v1591_version2.py` (OK 15); `tests/test_v1575_intereses_well.py` actualizada.
+
 ### v1.5.90 — La SEC compara cifras y no solo la etiqueta de moneda; fichas con el mes de cierre del ejercicio (24/11/2026)
 - **Vale, Embraer y Petrobras:** Yahoo da sus estados en dólares pero los rotula BRL (Petrobras 2024: resultado neto 7,5 mil millones = los US$ 7,5 mil millones que informó la empresa; en reales fueron R$ 36,6 mil millones). `bajar_sec.bat` salteaba sus años por la etiqueta. Ahora, si todo lo guardado tiene una sola etiqueta, distinta de la de la SEC, y en el año en común más nuevo el resultado neto o los ingresos coinciden (5 %), los años de la SEC se suman con la etiqueta de lo guardado y la marca `moneda_sec` (`sec.con_etiqueta_de_lo_guardado`; también en `sec.huecos`). Si las cifras no coinciden (moneda distinta de verdad), se saltea como antes. El score de dividendos y la tabla ya los trataban como dólares (v1.5.79).
 - **Fichas:** las 323 fichas del 24/11 vinieron sin el mes de cierre del ejercicio: Yahoo ya no da `lastFiscalYearEnd`. `bajar_fichas.py` lo saca de la fecha del último balance anual (`_mes_de_columnas`). Hace falta para el pago futuro del score v1 (Toyota, Sony, Microsoft, Apple, Visa, Oracle, Nike, Costco, BHP, Diageo no cierran en diciembre).

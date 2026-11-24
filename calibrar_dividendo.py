@@ -176,8 +176,10 @@ def calcular_todo(tickers, cache, paquetes, archivo, splits, divs, precios, esti
             elif f and f.get("usar_ffo_como_affo") and f.get("ffo_12m"):
                 # v1.5.75 (Guille 17/11/2026: «WELL con FFO, pero no aclares»): la empresa no publica AFFO; se usa su FFO normalizado de 12 meses
                 # en el lugar del AFFO, sin aclaración en lo que se muestre
-                e1["affo"], e1["affo_nombre"] = f["ffo_12m"], "AFFO"
+                e1["affo"], e1["affo_nombre"], e1["affo_es_ffo"] = f["ffo_12m"], "AFFO", True
             r["v1"] = V1.calcular(e1)
+            # v1.5.91: versión 2 (el Word puro con lo definido el 16/11), con la misma entrada, para la auditoría de Guille
+            r["v2"] = V1.calcular(e1, version=2)
         except Exception as ex:  # noqa: BLE001
             r["v1"] = {"score": None, "error": f"{type(ex).__name__}: {ex}"}
         res[t] = r
