@@ -132,6 +132,38 @@ def coincide(sec_anios, reg):
     return None, "sin año en común para comparar"
 
 
+def _cifras_coinciden(s, g):
+    """Resultado neto o ingresos dentro de TOLERANCIA_SOLAPE (sin mirar la etiqueta de moneda)."""
+    for rot in (NETO_ROT, "Ingresos"):
+        vs, vg = (s.get("resultados") or {}).get(rot), (g.get("resultados") or {}).get(rot)
+        if vs is not None and vg not in (None, 0) and abs(vs - vg) / abs(vg) <= TOLERANCIA_SOLAPE:
+            return True
+    return False
+
+
+def con_etiqueta_de_lo_guardado(sec_anios, reg):
+    """v1.5.90: Yahoo a veces rotula mal la moneda: Vale, Embraer y Petrobras vienen en dólares con la etiqueta BRL (Petrobras 2024:
+    resultado neto 7,5 mil millones, que son dólares; en reales fueron 36,6). La SEC trae esos años bien rotulados en USD y la comparación
+    los salteaba por la etiqueta. Si todo lo guardado (no SEC) tiene una sola etiqueta, distinta de la de la SEC, y en el año en común más
+    nuevo el resultado neto o los ingresos coinciden (5 %), las cifras están en la misma moneda: los años de la SEC en esa moneda pasan a
+    llevar la etiqueta de lo guardado (y "moneda_sec" con la original), así la serie queda pareja y el resto de la app la trata como a
+    los años de Yahoo. -> (sec_anios, detalle o "")."""
+    guard = {a: r for a, r in ((reg or {}).get("anios") or {}).items() if r.get("fuente") != "SEC"}
+    etiquetas = {r.get("moneda", "USD") for r in guard.values()}
+    if len(etiquetas) != 1:
+        return sec_anios, ""
+    eg = etiquetas.pop()
+    comunes = sorted(set(sec_anios) & set(guard), reverse=True)
+    if not comunes:
+        return sec_anios, ""
+    a = comunes[0]
+    es = sec_anios[a].get("moneda")
+    if es == eg or not _cifras_coinciden(sec_anios[a], guard[a]):
+        return sec_anios, ""
+    out = {k: (dict(r, moneda=eg, moneda_sec=es) if r.get("moneda") == es else r) for k, r in sec_anios.items()}
+    return out, f"lo guardado dice {eg} pero las cifras de {a} son las de la SEC en {es} (Yahoo rotula mal la moneda): se usan con la etiqueta {eg}"
+
+
 def huecos(sec_anios, reg):
     """v1.5.72: celdas de HUECOS (gasto por intereses, intereses pagados) que Yahoo deja vacías en sus años y la SEC sí tiene.
     Cada año se controla por separado: misma moneda y resultado neto o ingresos dentro de 5 % (así es el mismo año fiscal).
@@ -153,7 +185,7 @@ def huecos(sec_anios, reg):
                 faltan.setdefault(gr, {})[rot] = abs(v)
         if not faltan:
             continue
-        if s.get("moneda") != g.get("moneda", "USD"):
+        if s.get("moneda") != g.get("moneda", "USD") and not _cifras_coinciden(s, g):     # v1.5.90: etiqueta distinta, cifras iguales = vale
             no.append(f"{a}: la SEC informa en {s.get('moneda')} y lo guardado está en {g.get('moneda', 'USD')}")
             continue
         ok = False
@@ -165,7 +197,7 @@ def huecos(sec_anios, reg):
         if not ok:
             no.append(f"{a}: resultado neto e ingresos de la SEC no coinciden con lo guardado")
             continue
-        out[a] = {**faltan, "moneda": s.get("moneda"), "presentado": s.get("presentado")}
+        out[a] = {**faltan, "moneda": g.get("moneda", "USD"), "presentado": s.get("presentado")}
     return out, no
 
 

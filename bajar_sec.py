@@ -85,6 +85,7 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
     base = dict(reg)
     if previos:
         base["anios"] = {a: r for a, r in reg["anios"].items() if a not in previos}
+    sec_anios, nota_mon = S.con_etiqueta_de_lo_guardado(sec_anios, base)     # v1.5.90: Vale, Embraer, Petrobras (Yahoo rotula BRL)
     ok, det = S.coincide(sec_anios, base)
     if ok is False:
         return "no_coincide", det, []
@@ -97,6 +98,8 @@ def procesar(ticker, facts, archivo, cambios, hoy=None, splits=None):
     det_f = (f"ganancia por acción llevada a la base de Yahoo (factores {', '.join(f'{x:g}' for x in distintos)})" if distintos else "")
     if sin_base:
         det_f = (det_f + "; " if det_f else "") + f"{len(sin_base)} años sin ganancia por acción (su informe no se pudo llevar a la base de Yahoo)"
+    if nota_mon:
+        det_f = (det_f + "; " if det_f else "") + nota_mon
     factor = distintos[0] if distintos else 1.0
     # red de seguridad (v1.5.63): si la unión SEC → Yahoo salta y el año de la unión no se verificó en directo, queda afuera la ganancia por
     # acción de la SEC (los montos sí se guardan). Con verificación directa un salto es real (fusión, preferidas: Agnico Eagle, Corning).

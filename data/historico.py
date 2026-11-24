@@ -348,7 +348,7 @@ def sumar_anios_viejos(reg, anios_nuevos, ticker="", cambios=None, hoy=None, fue
         fac = _n(factor_accion) or 1.0
         if fac != 1.0:
             nuevo["factor_accion"] = fac
-        for k in ("factor_accion", "modo_accion", "sin_por_accion"):     # v1.5.66: marcas que pone sec.llevar_a_base, año por año
+        for k in ("factor_accion", "modo_accion", "sin_por_accion", "moneda_sec"):     # v1.5.66: marcas de sec.llevar_a_base, año por año (v1.5.90: moneda_sec)
             if rec.get(k) is not None:
                 nuevo[k] = rec[k]
         for g in GRUPOS:

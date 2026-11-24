@@ -104,7 +104,14 @@ hz2, no2 = S.huecos(sa, reg_mal)
 chk(not hz2 and no2 and "2025" in no2[0], "huecos: si el año no coincide (neto e ingresos), no se completa")
 reg_eur = copy.deepcopy(reg)
 reg_eur["anios"]["2025"]["moneda"] = "EUR"
-chk(not S.huecos(sa, reg_eur)[0], "huecos: otra moneda, no se completa")
+# v1.5.90: la etiqueta sola ya no decide (Yahoo rotula BRL lo que está en dólares: Vale, Embraer, Petrobras): con cifras iguales se completa
+# con la etiqueta de lo guardado; con cifras de verdad en otra moneda (acá 10 % distintas, como un tipo de cambio), no
+chk(S.huecos(sa, reg_eur)[0].get("2025", {}).get("moneda") == "EUR", "huecos: etiqueta distinta con cifras iguales, se completa con la etiqueta guardada")
+for g in ("resultados",):
+    for rot in ("Resultado neto", "Ingresos"):
+        if reg_eur["anios"]["2025"][g].get(rot) is not None:
+            reg_eur["anios"]["2025"][g][rot] *= 0.9
+chk(not S.huecos(sa, reg_eur)[0], "huecos: otra moneda de verdad (cifras distintas), no se completa")
 reg_sec = copy.deepcopy(reg)
 reg_sec["anios"]["2025"]["fuente"] = "SEC"
 chk(not S.huecos(sa, reg_sec)[0], "huecos: solo en los años de Yahoo")

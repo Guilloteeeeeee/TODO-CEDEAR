@@ -92,6 +92,10 @@ def bajar_una(t):
         est = tk.income_stmt
         d["cagr_ingresos_3a"] = _cagr(est, "Total Revenue")
         d["cagr_eps_3a"] = _cagr(est, "Diluted EPS")
+        if d.get("mes_cierre_fiscal") is None:
+            # v1.5.90: Yahoo dejó de dar lastFiscalYearEnd (las 323 fichas del 24/11/2026 vinieron sin el mes): se toma de la fecha de
+            # cierre del último balance anual (las columnas del estado de resultados son las fechas de cierre de cada ejercicio)
+            d["mes_cierre_fiscal"] = _mes_de_columnas(getattr(est, "columns", None))
     except Exception:  # noqa: BLE001
         pass
     return {k: v for k, v in d.items() if v not in (None, "")}
@@ -176,6 +180,15 @@ def _mes_cierre(epoch):
         from datetime import datetime as _dt, timezone as _tz
         return _dt.fromtimestamp(int(epoch), tz=_tz.utc).month
     except (TypeError, ValueError, OSError, OverflowError):
+        return None
+
+
+def _mes_de_columnas(columnas):
+    """Mes (1-12) de la fecha más nueva entre las columnas de un estado anual de yfinance (fechas de cierre de cada ejercicio), o None."""
+    try:
+        fechas = [c for c in (columnas if columnas is not None else []) if hasattr(c, "month")]
+        return max(fechas).month if fechas else None
+    except (TypeError, ValueError):
         return None
 
 
